@@ -24,9 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// SliderStyle is a class which saves Slider's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class SliderStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -101,9 +99,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a SliderStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public SliderStyle() : base()
         {
             IndicatorType = Slider.IndicatorType.None;
@@ -114,9 +110,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a SliderStyle with style.
         /// </summary>
         /// <param name="style">Create SliderStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public SliderStyle(SliderStyle style) : base(style)
         {
             if(style == null)
@@ -134,65 +128,49 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set background track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set slided track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set thumb.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set low indicator image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle LowIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set high indicator image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle HighIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set low indicator text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle LowIndicator { get; set; }
 
         /// <summary>
         /// Get or set high indicator text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle HighIndicator { get; set; }
 
         /// <summary>
         /// Get or set Indicator type
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public IndicatorType? IndicatorType
         {
             get => (IndicatorType?)GetValue(IndicatorTypeProperty);
@@ -202,9 +180,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set track thickness
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public uint? TrackThickness
         {
             get => (uint?)GetValue(TrackThicknessProperty);
@@ -214,9 +190,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set space between track and indicator
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public uint? SpaceBetweenTrackAndIndicator
         {
             get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
@@ -226,9 +200,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set space between track and indicator
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
             get
@@ -240,90 +212,61 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            SliderStyle sliderAttributes = bindableObject as SliderStyle;
+            SliderStyle sliderStyle = bindableObject as SliderStyle;
 
-            if (null != sliderAttributes)
+            if (null != sliderStyle)
             {
-                if (sliderAttributes.Track != null)
+                if (sliderStyle.Track != null)
                 {
-                    if (null == Track)
-                    {
-                        Track = new ImageViewStyle();
-                    }
-                    Track.CopyFrom(sliderAttributes.Track);
+                    Track?.CopyFrom(sliderStyle.Track);
                 }
 
-                if (sliderAttributes.Progress != null)
+                if (sliderStyle.Progress != null)
                 {
-                    if (null == Progress)
-                    {
-                        Progress = new ImageViewStyle();
-                    }
-                    Progress.CopyFrom(sliderAttributes.Progress);
+                    Progress?.CopyFrom(sliderStyle.Progress);
                 }
 
-                if (sliderAttributes.Thumb != null)
+                if (sliderStyle.Thumb != null)
                 {
-                    if (null == Thumb)
-                    {
-                        Thumb = new ImageViewStyle();
-                    }
-                    Thumb.CopyFrom(sliderAttributes.Thumb);
+                    Thumb?.CopyFrom(sliderStyle.Thumb);
                 }
 
-                if (sliderAttributes.LowIndicatorImage != null)
+                if (sliderStyle.LowIndicatorImage != null)
                 {
-                    if (null == LowIndicatorImage)
-                    {
-                        LowIndicatorImage = new ImageViewStyle();
-                    }
-                    LowIndicatorImage.CopyFrom(sliderAttributes.LowIndicatorImage);
+                    LowIndicatorImage?.CopyFrom(sliderStyle.LowIndicatorImage);
                 }
 
-                if (sliderAttributes.HighIndicatorImage != null)
+                if (sliderStyle.HighIndicatorImage != null)
                 {
-                    if (null == HighIndicatorImage)
-                    {
-                        HighIndicatorImage = new ImageViewStyle();
-                    }
-                    HighIndicatorImage.CopyFrom(sliderAttributes.HighIndicatorImage);
+                    HighIndicatorImage?.CopyFrom(sliderStyle.HighIndicatorImage);
                 }
 
-                if (sliderAttributes.LowIndicator != null)
+                if (sliderStyle.LowIndicator != null)
                 {
-                    if (null == LowIndicator)
-                    {
-                        LowIndicator = new TextLabelStyle();
-                    }
-                    LowIndicator.CopyFrom(sliderAttributes.LowIndicator);
+                    LowIndicator?.CopyFrom(sliderStyle.LowIndicator);
                 }
 
-                if (sliderAttributes.HighIndicator != null)
+                if (sliderStyle.HighIndicator != null)
                 {
-                    if (null == HighIndicator)
-                    {
-                        HighIndicator = new TextLabelStyle();
-                    }
-                    HighIndicator.CopyFrom(sliderAttributes.HighIndicator);
+                    HighIndicator?.CopyFrom(sliderStyle.HighIndicator);
                 }
 
-                if (sliderAttributes.TrackThickness != null)
+                if (sliderStyle.TrackThickness != null)
                 {
-                    TrackThickness = sliderAttributes.TrackThickness;
+                    TrackThickness = sliderStyle.TrackThickness;
                 }
 
-                if (sliderAttributes.TrackPadding != null)
+                if (sliderStyle.TrackPadding != null)
                 {
-                    TrackPadding = sliderAttributes.TrackPadding;
+                    TrackPadding = sliderStyle.TrackPadding;
                 }
             }
         }

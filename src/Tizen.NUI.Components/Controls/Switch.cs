@@ -46,9 +46,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Switch with style.
         /// </summary>
         /// <param name="style">Create Switch by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Switch(string style) : base(style)
         {
             Initialize();
@@ -57,11 +55,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a Switch with style.
         /// </summary>
-        /// <param name="style">Create Switch by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Switch(SwitchStyle style) : base(style)
+        /// <param name="switchStyle">Create Switch by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
             Initialize();
         }
@@ -72,8 +68,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<SelectEventArgs> SelectedEvent;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of switch.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new SwitchStyle Style => ViewStyle as SwitchStyle;
 
         /// <summary>
@@ -256,11 +254,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Switch attribues.
+        /// Get Switch style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default switch style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new SwitchStyle();
@@ -296,15 +293,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
-            if (null != tempAttributes)
+            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
+            if (null != switchStyle)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(switchStyle);
             }
         }
 

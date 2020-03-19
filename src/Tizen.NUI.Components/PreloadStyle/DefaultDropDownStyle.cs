@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Return default DropDown style
         /// </summary>
-        internal protected override ViewStyle GetAttributes()
+        internal protected override ViewStyle GetViewStyle()
         {
             DropDownStyle style = new DropDownStyle
             {
@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Return default DropDownItem style
         /// </summary>
-        internal protected override ViewStyle GetAttributes()
+        internal protected override ViewStyle GetViewStyle()
         {
             DropDownItemStyle style = new DropDownItemStyle
             {

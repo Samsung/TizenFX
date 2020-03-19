@@ -155,13 +155,13 @@ namespace Tizen.NUI.Components
         public DropDown(string style) : base(style) { }
 
         /// <summary>
-        /// Creates a new instance of a DropDown with attributes.
+        /// Creates a new instance of a DropDown with style.
         /// </summary>
-        /// <param name="attributes">Create DropDown by attributes customized by user.</param>
+        /// <param name="dropDownStyle">Create DropDown by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown(DropDownStyle attributes) : base(attributes)
+        public DropDown(DropDownStyle dropDownStyle) : base(dropDownStyle)
         {
         }
 
@@ -401,7 +401,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Update DropDown by attributes.
+        /// Update DropDown by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -492,8 +492,9 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get DropDown attribues.
+        /// Get DropDown style.
         /// </summary>
+        /// <returns>The default dropdown style.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -790,12 +791,12 @@ namespace Tizen.NUI.Components
             {
                 if(style != null)
                 {
-                    ViewStyle attributes = StyleManager.Instance.GetViewStyle(style);
-                    if(attributes == null)
+                    ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(style);
+                    if(viewStyle == null)
                     {
                         throw new InvalidOperationException($"There is no style {style}");
                     }
-                    itemDataStyle = attributes as DropDownItemStyle;
+                    itemDataStyle = viewStyle as DropDownItemStyle;
                 }
                 Initialize();
             }
@@ -1336,6 +1337,10 @@ namespace Tizen.NUI.Components
                 base.Dispose(type);
             }
 
+            /// <summary>
+            /// Get DropDownItemView style.
+            /// </summary>
+            /// <returns>The empty.</returns>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override ViewStyle GetViewStyle()

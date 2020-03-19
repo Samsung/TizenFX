@@ -147,21 +147,17 @@ namespace Tizen.NUI.Components
         /// The constructor of the Progress class with specific style.
         /// </summary>
         /// <param name="style">style name</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Progress(string style) : base(style)
         {
             Initialize();
         }
 
         /// <summary>
-        /// The constructor of the Progress class with specific Attributes.
+        /// The constructor of the Progress class with specific style.
         /// </summary>
-        /// <param name="progressStyle">The Attributes object to initialize the Progress.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="progressStyle">The style object to initialize the Progress.</param>
+        /// <since_tizen> 8 </since_tizen>
         public Progress(ProgressStyle progressStyle) : base(progressStyle)
         {
             Initialize();
@@ -192,8 +188,10 @@ namespace Tizen.NUI.Components
             Indeterminate
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of progress.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ProgressStyle Style => ViewStyle as ProgressStyle;
 
         /// <summary>
@@ -420,11 +418,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <param name="sender">serder object</param>
-        /// <param name="e">ThemeChangeEventArgs</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ProgressStyle;
@@ -483,11 +479,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Progress attribues.
+        /// Get Progress style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default progress style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ProgressStyle();

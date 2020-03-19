@@ -23,9 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// PopupStyle is a class which saves Popup's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class PopupStyle : ControlStyle
     {
         static PopupStyle() { }
@@ -33,9 +31,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public PopupStyle() : base()
         {
             InitSubStyle();
@@ -45,9 +41,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a PopupStyle with style.
         /// </summary>
         /// <param name="style">Create PopupStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public PopupStyle(PopupStyle style) : base(style)
         {
             InitSubStyle();
@@ -55,42 +49,37 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Title Text's Style.
+        /// Title Text's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle Title { get; set; }
 
         /// <summary>
-        /// Popup button's attributes.
+        /// Popup button's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ButtonStyle Buttons { get; set; }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            PopupStyle popupAttributes = bindableObject as PopupStyle;
-            if (popupAttributes != null)
+            PopupStyle popupStyle = bindableObject as PopupStyle;
+            if (popupStyle != null)
             {
-                if (popupAttributes.Title != null)
+                if (popupStyle.Title != null)
                 {
-                    Title.CopyFrom(popupAttributes.Title);
+                    Title?.CopyFrom(popupStyle.Title);
                 }
 
-                if (popupAttributes.Buttons != null)
+                if (popupStyle.Buttons != null)
                 {
-                    Buttons.CopyFrom(popupAttributes.Buttons);
+                    Buttons?.CopyFrom(popupStyle.Buttons);
                 }
             }
         }

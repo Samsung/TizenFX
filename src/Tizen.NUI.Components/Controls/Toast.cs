@@ -81,8 +81,10 @@ namespace Tizen.NUI.Components
         private Timer timer = null;
         private readonly uint duration = 3000;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of toast.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ToastStyle Style => ViewStyle as ToastStyle;
         static Toast() { }
 
@@ -98,11 +100,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Toast class with specific Style.
         /// </summary>
-        /// <param name="style">Construct Style</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Toast(ToastStyle style) : base(style)
+        /// <param name="toastStyle">Construct Style</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
             Initialize();
         }
@@ -111,9 +111,7 @@ namespace Tizen.NUI.Components
         /// Constructor of the Toast class with special style.
         /// </summary>
         /// <param name="style"> style name </param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Toast(string style) : base(style)
         {
             Initialize();
@@ -282,9 +280,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Apply style.
+        /// Apply style to toast.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="viewStyle">The style to apply.</param>
+		/// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -334,11 +333,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Toast attribues.
+        /// Get Toast style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default toast style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ToastStyle();

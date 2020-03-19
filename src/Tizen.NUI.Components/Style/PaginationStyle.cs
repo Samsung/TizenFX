@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
                 }
                 if (null != paginationStyle.IndicatorImageURL)
                 {
-                    IndicatorImageURL.Clone(paginationStyle.IndicatorImageURL);
+                    IndicatorImageURL?.Clone(paginationStyle.IndicatorImageURL);
                 }
                 IndicatorSpacing = paginationStyle.IndicatorSpacing;
             }

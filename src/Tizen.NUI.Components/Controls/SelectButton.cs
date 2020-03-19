@@ -65,11 +65,11 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a SelectButton with style.
         /// </summary>
-        /// <param name="style">Create SelectButton by style customized by user.</param>
+        /// <param name="buttonStyle">Create SelectButton by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SelectButton(ButtonStyle style) : base(style)
+        public SelectButton(ButtonStyle buttonStyle) : base(buttonStyle)
         {
             Initialize();
         }

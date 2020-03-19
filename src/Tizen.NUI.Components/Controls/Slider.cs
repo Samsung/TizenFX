@@ -162,9 +162,7 @@ namespace Tizen.NUI.Components
         /// The constructor of the Slider class with specific style.
         /// </summary>
         /// <param name="style">The string to initialize the Slider</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Slider(string style) : base(style)
         {
             Initialize();
@@ -173,11 +171,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Slider class with specific style.
         /// </summary>
-        /// <param name="style">The style object to initialize the Slider</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Slider(SliderStyle style) : base(style)
+        /// <param name="sliderStyle">The style object to initialize the Slider</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Slider(SliderStyle sliderStyle) : base(sliderStyle)
         {
             Initialize();
         }
@@ -268,8 +264,10 @@ namespace Tizen.NUI.Components
             Text
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of slider.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new SliderStyle Style => ViewStyle as SliderStyle;
 
         /// <summary>
@@ -721,11 +719,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Slider attribues.
+        /// Get Slider style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default slider style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new SliderStyle();
@@ -777,7 +774,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Update Slider by attributes.
+        /// Update Slider by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -796,11 +793,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <param name="sender">serder object</param>
-        /// <param name="e">ThemeChangeEventArgs</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(style) as SliderStyle;
@@ -811,8 +806,11 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Apply style to scrollbar.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -821,27 +819,27 @@ namespace Tizen.NUI.Components
 
             if (null != sliderStyle?.Progress)
             {
-                CreateSlidedTrackAttributes();
+                CreateSlidedTrack();
             }
 
             if (null != sliderStyle?.LowIndicator)
             {
-                CreateLowIndicatorTextAttributes();
+                CreateLowIndicatorText();
             }
 
             if (null != sliderStyle?.HighIndicator)
             {
-                CreateHighIndicatorTextAttributes();
+                CreateHighIndicatorText();
             }
 
             if (null != sliderStyle?.Track)
             {
-                CreateBackgroundTrackAttributes();
+                CreateBackgroundTrack();
             }
 
             if (null != sliderStyle?.Thumb)
             {
-                CreateThumbAttributes();
+                CreateThumb();
             }
         }
 
@@ -858,7 +856,7 @@ namespace Tizen.NUI.Components
             RelayoutRequest();
         }
 
-        private void CreateSlidedTrackAttributes()
+        private void CreateSlidedTrack()
         {
             if (null == slidedTrackImage)
             {
@@ -887,7 +885,7 @@ namespace Tizen.NUI.Components
             slidedTrackImage.ApplyStyle(Style.Progress);
         }
 
-        private void CreateLowIndicatorTextAttributes()
+        private void CreateLowIndicatorText()
         {
             if (null == lowIndicatorText)
             {
@@ -907,7 +905,7 @@ namespace Tizen.NUI.Components
             lowIndicatorText.ApplyStyle(Style.LowIndicator);
         }
 
-        private void CreateHighIndicatorTextAttributes()
+        private void CreateHighIndicatorText()
         {
             if (null == highIndicatorText)
             {
@@ -927,7 +925,7 @@ namespace Tizen.NUI.Components
             highIndicatorText.ApplyStyle(Style.HighIndicator);
         }
 
-        private void CreateBackgroundTrackAttributes()
+        private void CreateBackgroundTrack()
         {
             if (null == bgTrackImage)
             {
@@ -957,7 +955,7 @@ namespace Tizen.NUI.Components
             bgTrackImage.ApplyStyle(Style.Track);
         }
 
-        private void CreateThumbAttributes()
+        private void CreateThumb()
         {
             if (null == thumbImage)
             {

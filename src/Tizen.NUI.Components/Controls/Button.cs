@@ -147,22 +147,18 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Button with style.
         /// </summary>
         /// <param name="style">Create Button by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a Button with attributes.
+        /// Creates a new instance of a Button with style.
         /// </summary>
-        /// <param name="controlStyle">Create Button by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button(ButtonStyle controlStyle) : base(controlStyle)
+        /// <param name="buttonStyle">Create Button by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
             Initialize();
         }
@@ -215,8 +211,10 @@ namespace Tizen.NUI.Components
             Right,
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Style of the button.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ButtonStyle Style => ViewStyle as ButtonStyle;
 
         /// <summary>
@@ -716,8 +714,11 @@ namespace Tizen.NUI.Components
             return base.OnTouch(touch);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Apply style to button.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -755,11 +756,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Button attribues.
+        /// Get Button style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default button style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ButtonStyle();
@@ -809,7 +809,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// It is hijack by using protected, attributes copy problem when class inherited from Button.
+        /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
@@ -966,15 +966,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ButtonStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
-            if (tempAttributes != null)
+            ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
+            if (buttonStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(buttonStyle);
                 UpdateUIContent();
             }
         }
