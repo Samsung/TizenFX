@@ -41,6 +41,15 @@ namespace Tizen.NUI
         // 	view.ComputedConstraint = result;
         // }
 
+        /// <summary>
+        /// Creates a new TemplatedPage with default values.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TemplatedPage(Window win) : base(win)
+        {
+        }
+
         internal override void SetChildInheritedBindingContext(Element child, object context)
         {
             if (ControlTemplate == null)

@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Linq;
 
 namespace Tizen.NUI
 {
@@ -34,7 +35,7 @@ namespace Tizen.NUI
         private Layer _rootLayer;
         private string _windowTitle;
         private List<Layer> _childLayers = new List<Layer>();
-        private Dictionary<Type, Page> pages = new Dictionary<Type, Page>();
+        private List<Page> pages = new List<Page>();
         private LayoutController localController;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1126,7 +1127,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddPage(Page page)
         {
-            pages.Add(page.GetType(), page);
+            pages.Add(page);
         }
 
         /// <summary>
@@ -1137,21 +1138,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemovePage(Page page)
         {
-            if (pages.ContainsValue(page))
-            {
-                pages.Remove(page.GetType());
-            }
-        }
-
-        /// <summary>
-        /// Remove a page from the window.
-        /// </summary>
-        /// <param name="type">Type of page to remove.</param>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemovePage(Type type)
-        {
-            pages.Remove(type);
+            pages.Remove(page);
         }
 
         /// <summary>
@@ -1167,13 +1154,23 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a page according to specific type.
         /// </summary>
+        /// <returns>The specific page list.</returns>
         /// <since_tizen> 8 </since_tizen>
-        /// <returns>The specific page.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Page GetPage(Type type)
+        public List<Page> GetPage(Type type)
         {
-            pages.TryGetValue(type, out Page page);
-            return page;
+            return pages.Where(p=> p.GetType() == type).ToList();
+        }
+
+        /// <summary>
+        /// Gets all pages.
+        /// </summary>
+        /// <returns>The page list.</returns>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<Page> GetAllPages()
+        {
+            return pages;
         }
 
         internal Any GetNativeHandle()

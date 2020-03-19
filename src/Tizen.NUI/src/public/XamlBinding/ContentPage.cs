@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ContentPage(Window win)
+        public ContentPage(Window win) : base(win)
         {
             IsCreateByXaml = true;
 
@@ -109,8 +109,7 @@ namespace Tizen.NUI
             Root.WidthResizePolicy = ResizePolicyType.FillToParent;
             Root.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            win.Add(Root);
-            win.AddPage(this);
+            window.Add(Root);
         }
 
         /// <summary>
@@ -155,11 +154,10 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if(Root != null) 
             {
-                Window.Instance.Remove(Root);
+                window.Remove(Root);
                 Root.Dispose();
                 Root = null;
             }
-            Window.Instance.RemovePage(this);
             base.Dispose(type);
         }
 
@@ -186,7 +184,7 @@ namespace Tizen.NUI
             if ( Root != null )
             {
                 //Remove it from the window
-                Window.Instance.Remove(Root);
+                window.Remove(Root);
                 Root.Dispose();
                 Root = null;
 
@@ -194,7 +192,7 @@ namespace Tizen.NUI
                 Root = new View();
                 Root.WidthResizePolicy = ResizePolicyType.FillToParent;
                 Root.HeightResizePolicy = ResizePolicyType.FillToParent;
-                Window.Instance.Add(Root);
+                window.Add(Root);
 
                 ClearHandler();
             }

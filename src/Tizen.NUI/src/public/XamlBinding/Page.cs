@@ -55,6 +55,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
+        /// <summary>
+        /// Save current window.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Window window;
+
         internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
         /// <summary>
@@ -73,10 +80,12 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Page()
+        public Page(Window win)
         {
+            window = win;
             // ToolbarItems = toolbarItems;
             InternalChildren.CollectionChanged += InternalChildrenOnCollectionChanged;
+            window.AddPage(this);
         }
 
         /// <summary>
@@ -212,6 +221,31 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Equality operator
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Page x, Page y)
+        {
+            // if the C# objects are the same return true
+            if (Page.ReferenceEquals(x, y))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Inequality operator. Returns Null if either operand is Null
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Page x, Page y)
+        {
+            return !(x == y);
+        }
+
+        /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -342,6 +376,32 @@ namespace Tizen.NUI
 
             OnDisappearing();
             Disappearing?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// To make the ContentPage instance be disposed.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            window.RemovePage(this);
+            base.Dispose(type);
         }
 
         Application FindApplication(Element element)
