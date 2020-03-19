@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -22,39 +21,33 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// StyleBase class.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class StyleBase
     {
         /// <summary>
         /// StyleBase construct.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public StyleBase()
         {
         }
+
         /// <summary>
         /// Content object.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         protected object Content
         {
             get;
             set;
         }
+
         /// <summary>
-        /// Get attributes.
+        /// Get view style.
         /// </summary>
-        /// <returns>Attributes</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal virtual ViewStyle GetAttributes()
+        /// <returns>ViewStyle</returns>
+        /// <since_tizen> 8 </since_tizen>
+        protected internal virtual ViewStyle GetViewStyle()
         {
             return Content as ViewStyle;
         }

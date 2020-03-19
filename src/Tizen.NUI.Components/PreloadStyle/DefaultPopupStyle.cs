@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Return default Popup style
         /// </summary>
-        internal protected override ViewStyle GetAttributes()
+        internal protected override ViewStyle GetViewStyle()
         {
             PopupStyle style = new PopupStyle
             {

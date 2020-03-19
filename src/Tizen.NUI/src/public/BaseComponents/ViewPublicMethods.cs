@@ -313,6 +313,9 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
 
+                LayoutGroup layout = Layout as LayoutGroup;
+                layout?.ChangeLayoutSiblingOrder(parentChildren.Count-1);
+
                 Interop.NDalic.RaiseToTop(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -336,6 +339,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
+
+                LayoutGroup layout = Layout as LayoutGroup;
+                layout?.ChangeLayoutSiblingOrder(0);
 
                 Interop.NDalic.LowerToBottom(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)

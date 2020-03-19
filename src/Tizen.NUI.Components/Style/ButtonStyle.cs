@@ -22,11 +22,9 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ButtonAttributes is a class which saves Button's ux data.
+    /// ButtonStyle is a class which saves Button's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class ButtonStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -116,9 +114,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ButtonStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ButtonStyle() : base()
         {
             InitSubStyle();
@@ -128,9 +124,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ButtonStyle with style.
         /// </summary>
         /// <param name="style">Create ButtonStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ButtonStyle(ButtonStyle style) : base(style)
         {
             if(style == null)
@@ -145,37 +139,35 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Overlay image's Style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Overlay { get; set; }
 
         /// <summary>
         /// Text's Style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Icon's Style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Icon { get; set; }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Flag to decide Button can be selected or not.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public bool? IsSelectable
         {
             get => (bool?)GetValue(IsSelectableProperty);
             set => SetValue(IsSelectableProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Flag to decide selected state in Button.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public bool? IsSelected
         {
             get => (bool?)GetValue(IsSelectedProperty);
@@ -185,9 +177,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Flag to decide button can be selected or not.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public bool? IsEnabled
         {
             get => (bool?)GetValue(IsEnabledProperty);
@@ -197,17 +187,17 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Icon relative orientation.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Button.IconOrientation? IconRelativeOrientation
         {
             get => (Button.IconOrientation?)GetValue(IconRelativeOrientationProperty);
             set => SetValue(IconRelativeOrientationProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Icon padding in Button, work only when show icon and text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public Extents IconPadding
         {
             get
@@ -218,8 +208,10 @@ namespace Tizen.NUI.Components
             set => SetValue(IconPaddingProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Text padding in Button, work only when show icon and text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
             get
@@ -230,8 +222,11 @@ namespace Tizen.NUI.Components
             set => SetValue(TextPaddingProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
@@ -242,17 +237,17 @@ namespace Tizen.NUI.Components
             {
                 if (null != buttonStyle.Overlay)
                 {
-                    Overlay.CopyFrom(buttonStyle.Overlay);
+                    Overlay?.CopyFrom(buttonStyle.Overlay);
                 }
 
                 if (null != buttonStyle.Text)
                 {
-                    Text.CopyFrom(buttonStyle.Text);
+                    Text?.CopyFrom(buttonStyle.Text);
                 }
 
                 if (null != buttonStyle.Icon)
                 {
-                    Icon.CopyFrom(buttonStyle.Icon);
+                    Icon?.CopyFrom(buttonStyle.Icon);
                 }
 
                 IsSelectable = buttonStyle.IsSelectable;

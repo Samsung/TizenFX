@@ -215,22 +215,18 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="style">Create Popup by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Popup(string style) : base(style)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a Popup with attributes.
+        /// Creates a new instance of a Popup with style.
         /// </summary>
-        /// <param name="attributes">Create Popup by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Popup(PopupStyle attributes) : base(attributes)
+        /// <param name="popupStyle">Create Popup by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Popup(PopupStyle popupStyle) : base(popupStyle)
         {
             Initialize();
         }
@@ -278,15 +274,19 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Add button by style's name.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public void AddButton(string buttonText, string style)
         {
             AddButton(buttonText);
         }
 
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Add button by style.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public void AddButton(string buttonText, ButtonStyle style)
         {
             if (Style.Buttons != null && style != null)
@@ -327,8 +327,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of popup.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new PopupStyle Style => ViewStyle as PopupStyle;
 
         /// <summary>
@@ -680,8 +682,11 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Apply style to popup.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -699,11 +704,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Popup attribues.
+        /// Get Popup style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default popup style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new PopupStyle();
@@ -712,16 +716,16 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
-            if (tempAttributes != null)
+            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
+            if (popupStyle != null)
             {
                 string strSaveTitleText = TitleText;
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(popupStyle);
                 Style.Title.Text = strSaveTitleText;
                 UpdateView();
             }
@@ -731,7 +735,7 @@ namespace Tizen.NUI.Components
         {
             container.Add(this);
             LeaveRequired = true;
-            PropertyChanged += PopupAttributesPropertyChanged;
+            PropertyChanged += PopupStylePropertyChanged;
 
             // ContentView
             ContentView = new View()
@@ -779,7 +783,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void PopupAttributesPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void PopupStylePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals("LayoutDirection"))
             {

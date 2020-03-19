@@ -50,9 +50,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Tab with style.
         /// </summary>
         /// <param name="style">Create Tab by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Tab(string style) : base(style)
         {
             Initialize();
@@ -61,11 +59,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a Tab with style.
         /// </summary>
-        /// <param name="style">Create Tab by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tab(TabStyle style) : base(style)
+        /// <param name="tabStyle">Create Tab by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Tab(TabStyle tabStyle) : base(tabStyle)
         {
             Initialize();
         }
@@ -76,8 +72,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of tab.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new TabStyle Style => ViewStyle as TabStyle;
 
         /// <summary>
@@ -352,8 +350,11 @@ namespace Tizen.NUI.Components
             UpdateItems();
         }
 
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Apply style to tab.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -419,7 +420,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Update Tab by attributes.
+        /// Update Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -430,11 +431,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Tab attribues.
+        /// Get Tab style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default tab style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new TabStyle();
@@ -443,15 +443,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as TabStyle;
-            if (tempAttributes != null)
+            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(style) as TabStyle;
+            if (tabStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(tabStyle);
             }
         }
 
@@ -588,19 +588,6 @@ namespace Tizen.NUI.Components
                 {
                     underline.Hide();
                 }
-            }
-        }
-
-        private void CreateUnderLineAttributes()
-        {
-            if (Style.UnderLine == null)
-            {
-                Style.UnderLine = new ViewStyle()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                };
             }
         }
 
