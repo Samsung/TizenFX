@@ -126,6 +126,30 @@ namespace Tizen.NUI
             RequestLayout();
         }
 
+
+        /// <summary>
+        /// Sets the sibling order of the layout item so the layout can be defined within the same parent.
+        /// </summary>
+        /// <param name="order">the sibling order of the layout item</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeLayoutSiblingOrder(int order)
+        {
+            if(Owner != null && Owner.Parent != null)
+            {
+                LayoutGroup parent = Owner.Parent.Layout as LayoutGroup;
+
+                if(parent != null && parent.LayoutChildren.Count>order)
+                {
+                    parent.LayoutChildren.Remove(this);
+                    parent.LayoutChildren.Insert(order,this);
+                }
+            }
+
+            RequestLayout();
+        }
+
         // Attaches to View ChildAdded signal so called when a View is added to a view.
         private void AddChildToLayoutGroup(View child)
         {
