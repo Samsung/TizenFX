@@ -204,12 +204,13 @@ namespace Tizen.System
         public bool IsSupportedPattern(FeedbackType type, String pattern)
         {
             bool supported = false;
+            int number;
             Interop.Feedback.FeedbackError res;
 
-            if (!Pattern.ContainsKey(pattern))
+            if (!Pattern.TryGetValue(pattern, out number))
                 throw new ArgumentException("Invalid Arguments");
 
-            res = (Interop.Feedback.FeedbackError)Interop.Feedback.IsSupportedPattern((Interop.Feedback.FeedbackType)type, Pattern[pattern], out supported);
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.IsSupportedPattern((Interop.Feedback.FeedbackType)type, number, out supported);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
@@ -258,15 +259,16 @@ namespace Tizen.System
         /// </example>
         public void Play(FeedbackType type, String pattern)
         {
+            int number;
             Interop.Feedback.FeedbackError res;
 
-            if (!Pattern.ContainsKey(pattern))
+            if (!Pattern.TryGetValue(pattern, out number))
                 throw new ArgumentException("Invalid Arguments");
 
             if (type == FeedbackType.All)
-                res = (Interop.Feedback.FeedbackError)Interop.Feedback.Play(Pattern[pattern]);
+                res = (Interop.Feedback.FeedbackError)Interop.Feedback.Play(number);
             else
-                res = (Interop.Feedback.FeedbackError)Interop.Feedback.PlayType((Interop.Feedback.FeedbackType)type, Pattern[pattern]);
+                res = (Interop.Feedback.FeedbackError)Interop.Feedback.PlayType((Interop.Feedback.FeedbackType)type, number);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
