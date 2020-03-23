@@ -1311,5 +1311,21 @@ namespace ElmSharp
         /// For internal use only
         /// </summary>
         internal static Window CreateWindow(string name) => PreloadedWindow.GetInstance() ?? new Window(name);
+
+        /// <summary>
+        /// Disable window effect. For internal use only.
+        /// </summary>
+        internal static void DisableWindowEffect(Window window)
+        {
+            Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "1");
+        }
+
+        /// <summary>
+        /// Enable window effect. For internal use only.
+        /// </summary>
+        internal static void EnableWindowEffect(Window window)
+        {
+            Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "0");
+        }
     }
 }

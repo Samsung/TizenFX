@@ -434,5 +434,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_illume_command_send(IntPtr obj, IntPtr param);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_aux_hint_add(IntPtr obj, string hint, string val);
     }
 }
