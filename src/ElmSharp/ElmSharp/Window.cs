@@ -1317,7 +1317,10 @@ namespace ElmSharp
         /// </summary>
         internal static void DisableWindowEffect(Window window)
         {
-            Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "1");
+            if (window != null)
+            {
+                Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "1");
+            }
         }
 
         /// <summary>
@@ -1325,7 +1328,10 @@ namespace ElmSharp
         /// </summary>
         internal static void EnableWindowEffect(Window window)
         {
-            Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "0");
+            if (window != null)
+            {
+                Interop.Elementary.elm_win_aux_hint_add(window.Handle, "wm.policy.win.effect.disable", "0");
+            }
         }
     }
 }
