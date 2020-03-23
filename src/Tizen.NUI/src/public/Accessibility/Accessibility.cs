@@ -23,7 +23,7 @@ using Tizen.NUI.BaseComponents;
 using tlog = Tizen.Log;
 #endif
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Accessibility
 {
     /// <summary>
     /// Accessibility provides Dali-ATSPI interface which has funtionality of Screen-Reader and general accessibility
