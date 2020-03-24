@@ -131,7 +131,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderAudioOptions"/>
         /// <seealso cref="StreamRecorderVideoOptions"/>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Prepare(StreamRecorderOptions options)
         {
             if (options == null)
@@ -169,7 +168,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Prepare"/>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Unprepare()
         {
             if (State == RecorderState.Idle)
@@ -200,7 +198,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Start()
         {
             if (State == RecorderState.Recording)
@@ -230,7 +227,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Pause()
         {
             if (State == RecorderState.Paused)
@@ -265,7 +261,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Commit()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -287,7 +282,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Cancel()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -373,7 +367,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Dispose()
         {
             Dispose(true);
