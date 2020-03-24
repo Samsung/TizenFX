@@ -34,11 +34,11 @@ namespace Tizen.Multimedia
         private bool _audioEnabled;
         private bool _videoEnabled;
         private StreamRecorderVideoFormat _sourceFormat;
-        private const string Feature = "http://tizen.org/feature/multimedia.streamrecorder.record";
+        private const string Feature = "http://tizen.org/feature/multimedia.stream_recorder";
 
         private static bool IsSupported()
         {
-            return System.Information.TryGetValue(Feature, out bool isSupported) ? isSupported : false;
+            return System.Information.TryGetValue(Feature, out bool isSupported) && isSupported;
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
+        /// <feature> http://tizen.org/feature/multimedia.stream_recorder </feature>
         public StreamRecorder()
         {
             if (IsSupported() == false)
             {
-                throw new PlatformNotSupportedException(
+                throw new NotSupportedException(
                     $"The feature({Feature}) is not supported on the current device.");
             }
 
