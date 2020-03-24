@@ -123,7 +123,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">Both <see cref="StreamRecorderOptions.Audio"/> and
         ///     <see cref="StreamRecorderOptions.Video"/> are null.
         /// </exception>
-        /// <exception cref="NotSupportedException"><paramref name="options"/> contains a value which is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Unprepare"/>
         /// <seealso cref="Start"/>
