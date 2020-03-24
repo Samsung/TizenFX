@@ -123,6 +123,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">Both <see cref="StreamRecorderOptions.Audio"/> and
         ///     <see cref="StreamRecorderOptions.Video"/> are null.
         /// </exception>
+        /// <exception cref="NotSupportedException"><paramref name="options"/> contains a value which is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Unprepare"/>
         /// <seealso cref="Start"/>
@@ -271,7 +272,6 @@ namespace Tizen.Multimedia
         /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
         /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.
         /// </remarks>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
