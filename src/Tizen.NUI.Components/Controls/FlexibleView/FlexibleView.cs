@@ -264,6 +264,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetLayoutManager(LayoutManager layoutManager)
         {
+            if (null == layoutManager) return;
             mLayout = layoutManager;
 
             mLayout.SetRecyclerView(this);
@@ -466,7 +467,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// you can override it to create your own default attributes.
+        /// you can override it to create your own default style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1349,6 +1350,20 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            /**
+             * Requests that the given child of the RecyclerView be positioned onto the screen. This
+             * method can be called for both unfocusable and focusable child views. For unfocusable
+             * child views, focusedChildVisible is typically true in which case, layout manager
+             * makes the child view visible only if the currently focused child stays in-bounds of RV.
+             * @param parent The parent RecyclerView.
+             * @param child The direct child making the request.
+             * @param rect The rectangle in the child's coordinates the child
+             *              wishes to be on the screen.
+             * @param immediate True to forbid animated or delayed scrolling,
+             *                  false otherwise
+             * @param focusedChildVisible Whether the currently focused view must stay visible.
+             * @return Whether the group scrolled to handle the operation
+             */
             internal bool RequestChildRectangleOnScreen(FlexibleView parent, FlexibleView.ViewHolder child, Recycler recycler, bool immediate)
             {
                 Vector2 scrollAmount = GetChildRectangleOnScreenScrollAmount(parent, child);
@@ -1396,6 +1411,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void LayoutChild(ViewHolder child, float left, float top, float width, float height)
             {
+                if (null == child) return;
                 View itemView = child.ItemView;
                 itemView.SizeWidth = width - itemView.Margin.Start - itemView.Margin.End;
                 itemView.SizeHeight = height - itemView.Margin.Top - itemView.Margin.Bottom;
@@ -1744,7 +1760,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void ScrapAttachedViews(Recycler recycler)
             {
-                if (mChildHelper == null)
+                if (null == mChildHelper || null == recycler)
                 {
                     return;
                 }
@@ -1764,6 +1780,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RemoveAndRecycleViewAt(int index, Recycler recycler)
             {
+                if (null == recycler) return;
                 ViewHolder v = mChildHelper.GetChildAt(index);
                 mChildHelper.RemoveViewAt(index);
                 recycler.RecycleView(v);
@@ -1967,6 +1984,7 @@ namespace Tizen.NUI.Components
 
             private void AddViewInternal(ViewHolder holder, int index, bool disappearing)
             {
+                if (null == holder) return;
                 if (holder.IsScrap())
                 {
                     holder.Unscrap();
@@ -1980,6 +1998,7 @@ namespace Tizen.NUI.Components
 
             private void RecycleChildrenInt(FlexibleView.Recycler recycler)
             {
+                if (null == recycler) return;
                 foreach (ViewHolder holder in mPendingRecycleViews)
                 {
                     holder.PendingRecycle = false;
@@ -2330,6 +2349,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RecycleView(ViewHolder itemView)
             {
+                if (null == itemView) return;
                 itemView.ScrapContainer = null;
                 mRecyclerPool.PutRecycledView(itemView);
             }

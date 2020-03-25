@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
@@ -128,6 +129,10 @@ namespace Tizen.NUI.BaseComponents
                 // If child already has a parent then re-parent child
                 if (oldParent != null)
                 {
+                    if (child.Layout !=null)
+                    {
+                        child.Layout.SetReplaceFlag();
+                    }
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
@@ -308,6 +313,9 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
 
+                LayoutGroup layout = Layout as LayoutGroup;
+                layout?.ChangeLayoutSiblingOrder(parentChildren.Count-1);
+
                 Interop.NDalic.RaiseToTop(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -331,6 +339,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
+
+                LayoutGroup layout = Layout as LayoutGroup;
+                layout?.ChangeLayoutSiblingOrder(0);
 
                 Interop.NDalic.LowerToBottom(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -598,6 +609,30 @@ namespace Tizen.NUI.BaseComponents
             Transition trans = null;
             transDictionary.TryGetValue(transitionName, out trans);
             return trans;
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ObjectDump()
+        {
+            if ( 0== Children.Count)
+            {
+                Type type = this.GetType();
+                PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                foreach(var property in properties)
+                {
+                    if (null != property && property.CanRead)
+                    {
+                        Console.WriteLine($"{type.Name} {property.Name} ({property.PropertyType.Name}): {property.GetValueString(this, property.PropertyType)}");
+                    }
+                }
+                return;
+            }
+
+            foreach (View view in Children)
+            {
+                view.ObjectDump();
+            }
         }
     }
 }

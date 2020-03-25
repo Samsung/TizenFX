@@ -331,6 +331,10 @@ namespace Tizen.NUI
             {
                 value = new PropertyValue((Extents)obj);
             }
+            else if (type.Equals(typeof(Rectangle)))
+            {
+                value = new PropertyValue((Rectangle)obj);
+            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -644,6 +648,26 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.PropertyValue.delete_Property_Value(swigCPtr);
+        }
+
+        internal static PropertyValue CreateWithGuard(string value)
+        {
+            return value == null ? new PropertyValue() : new PropertyValue(value);
+        }
+
+        internal static PropertyValue CreateWithGuard(Vector2 value)
+        {
+            return value == null ? new PropertyValue() : new PropertyValue(value);
+        }
+
+        internal static PropertyValue CreateWithGuard(Rectangle value)
+        {
+            return value == null ? new PropertyValue() : new PropertyValue(value);
+        }
+
+        internal static PropertyValue CreateWithGuard(Color value)
+        {
+            return value == null ? new PropertyValue() : new PropertyValue(value);
         }
     }
 }

@@ -98,17 +98,35 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
+        /// Read face down gesture detector data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading face down gesture detector data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading face down gesture detector data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            FaceDown = (DetectorState)sensorData.values[0];
+        }
+
+        /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the face down gesture detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FaceDownGestureDetectorDataUpdatedEventArgs> DataUpdated;
 
-        private static Interop.SensorListener.SensorEventCallback _callback;
+        private static Interop.SensorListener.SensorEventsCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
-                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
+                updateBatchEvents(eventPtr, events_count);
+                Interop.SensorEventStruct sensorData = latestEvent();
 
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 FaceDown = (DetectorState) sensorData.values[0];
@@ -116,7 +134,7 @@ namespace Tizen.Sensor
                 DataUpdated?.Invoke(this, new FaceDownGestureDetectorDataUpdatedEventArgs(sensorData.values[0]));
             };
 
-            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for face down gesture detector");
@@ -126,7 +144,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for face down gesture detector");

@@ -41,5 +41,11 @@ namespace Tizen.Applications
         /// Component type is watch application.
         /// </summary>
         WatchApplication,
+
+        /// <summary>
+        /// Component type is component-based application.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        ComponentBasedApplication,
     }
 }

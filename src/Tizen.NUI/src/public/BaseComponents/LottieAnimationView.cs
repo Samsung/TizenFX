@@ -20,12 +20,12 @@ using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-#if (NUI_DEBUG_ON)
-using tlog = Tizen.Log;
-#endif
-
 namespace Tizen.NUI.BaseComponents
 {
+    #if (NUI_DEBUG_ON)
+    using tlog = Tizen.Log;
+    #endif
+
     /// <summary>
     /// LottieAnimationView renders an animated vector image (Lottie file).
     /// </summary>
@@ -172,11 +172,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             currentStates.playState = (PlayStateType)ret;
                             tlog.Fatal(tag, $"gotten play state={ret} >");
-                            return currentStates.playState;
                         }
                     }
                 }
-                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
+                else
+                {
+                    Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
+                }
                 return currentStates.playState;
             }
         }
@@ -485,6 +487,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (val.Get(contentMap))
                     {
+                        currentStates.contentInfo = new List<Tuple<string, int, int>>();
                         for (uint i = 0; i < contentMap.Count(); i++)
                         {
                             string key = contentMap.GetKeyAt(i).StringKey;
@@ -508,6 +511,87 @@ namespace Tizen.NUI.BaseComponents
             }
             tlog.Fatal(tag, $">");
             return currentStates.contentInfo;
+        }
+
+        /// <summary>
+        /// A marker has its start frame and end frame. 
+        /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// </summary>
+        /// <param name="marker1">First marker</param>
+        /// <param name="marker2">Second marker</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
+        {
+            tlog.Fatal(tag, $"< [{GetId()}] SetMinMaxFrameByMarker({marker1}, {marker2})");
+
+            currentStates.changed = true;
+            currentStates.mark1 = marker1;
+            currentStates.mark2 = marker2;
+
+            PropertyArray array = new PropertyArray();
+            array.PushBack(new PropertyValue(currentStates.mark1));
+            if (marker2 != null)
+            {
+                array.PushBack(new PropertyValue(currentStates.mark2));
+            }
+
+            PropertyMap map = new PropertyMap();
+            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
+            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            tlog.Fatal(tag, $"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
+        }
+
+        /// <summary>
+        /// Get MinMax Frame
+        /// </summary>
+        /// <returns>Tuple of Min and Max frames</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tuple<int, int> GetMinMaxFrame()
+        {
+            tlog.Fatal(tag, $"< [{GetId()}] GetMinMaxFrame()! total frame={currentStates.totalFrame}");
+
+            PropertyMap map = Image;
+            if (map != null)
+            {
+                PropertyValue val = map.Find(ImageVisualProperty.PlayRange);
+                if (val != null)
+                {
+                    PropertyArray array = new PropertyArray();
+                    if (val.Get(array))
+                    {
+                        uint cnt = array.Count();
+                        int item1 = -1, item2 = -1;
+                        for (uint i = 0; i < cnt; i++)
+                        {
+                            PropertyValue v = array.GetElementAt(i);
+                            int intRet;
+                            if (v.Get(out intRet))
+                            {
+                                tlog.Fatal(tag, $"Got play range of string [{i}]: {intRet}");
+                                if (i == 0)
+                                {
+                                    item1 = intRet;
+                                }
+                                else if (i == 1)
+                                {
+                                    item2 = intRet;
+                                }
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#1");
+                            }
+                        }
+                        tlog.Fatal(tag, $"  [{GetId()}] GetMinMaxFrame(min:{item1}, max:{item2})! >");
+                        return new Tuple<int, int>(item1, item2);
+                    }
+                }
+            }
+            Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#2");
+            return new Tuple<int, int>(-1, -1);
         }
         #endregion Method
 
@@ -676,6 +760,7 @@ namespace Tizen.NUI.BaseComponents
             internal float scale;
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
+            internal string mark1, mark2;
         };
         private states currentStates;
 

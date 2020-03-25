@@ -31,14 +31,13 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MessageProperty = BindableProperty.Create("Message", typeof(string), typeof(Toast), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MessageProperty = BindableProperty.Create(nameof(Message), typeof(string), typeof(Toast), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Toast)bindable;
             if (newValue != null)
             {
                 instance.strText = (string)(newValue);
-                instance.textLabel.Text = instance.strText;
-                instance.UpdateText();
+                instance.Style.Text.Text = instance.strText;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -49,7 +48,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create("Duration", typeof(uint), typeof(Toast), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(Toast), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Toast)bindable;
             if (newValue != null)
@@ -75,25 +74,19 @@ namespace Tizen.NUI.Components
         }
 
         private Window window = null;
-		protected TextLabel[] textLabels = null;
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected TextLabel textLabel = null;
-
+        /// <summary> text labels </summary>
+        protected TextLabel[] textLabels = null;
+        private TextLabel textLabel = null;
         private string strText = null;
-        private NPatchVisual toastBackground = null;
         private Timer timer = null;
-        private string[] textArray = null;
-
-        private readonly int maxTextAreaWidth = 808;
-        private readonly int textPaddingLeft = 96;
-        private readonly int textPaddingTop = 38;
         private readonly uint duration = 3000;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of toast.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ToastStyle Style => ViewStyle as ToastStyle;
+        static Toast() { }
 
         /// <summary>
         /// Construct Toast with null.
@@ -107,11 +100,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Toast class with specific Style.
         /// </summary>
-        /// <param name="Style">Construct Style</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Toast(ToastStyle style) : base(style)
+        /// <param name="toastStyle">Construct Style</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
             Initialize();
         }
@@ -120,9 +111,7 @@ namespace Tizen.NUI.Components
         /// Constructor of the Toast class with special style.
         /// </summary>
         /// <param name="style"> style name </param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Toast(string style) : base(style)
         {
             Initialize();
@@ -134,23 +123,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string[] TextArray
         {
-            get
-            {
-                return textArray;
-            }
-            set
-            {
-                if (null != value)
-                {
-                    textArray = value;
-                    string message = "";
-                    foreach (string text in textArray)
-                    {
-                        message += text + "\n";
-                    }
-                    Message = message;
-                }
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -161,15 +135,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)Style.Text?.PointSize?.All;
+                return (float)Style?.Text?.PointSize?.All;
             }
             set
             {
-                if (null == Style.Text.PointSize)
+                if (null != Style?.Text)
                 {
-                    Style.Text.PointSize = new FloatSelector();
+                    Style.Text.PointSize = value;
                 }
-                Style.Text.PointSize.All = value;
             }
         }
 
@@ -181,11 +154,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.FontFamily.All;
+                return Style?.Text?.FontFamily?.All;
             }
             set
             {
-                Style.Text.FontFamily = value;
+                if (null != Style?.Text)
+                {
+                    Style.Text.FontFamily = value;
+                }
             }
         }
 
@@ -197,17 +173,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.TextColor?.All;
+                return Style?.Text?.TextColor?.All;
             }
             set
             {
-                //CreateTextAttributes();
-                if (null == Style.Text.TextColor)
+                if (null != Style?.Text)
                 {
-                    Style.Text.TextColor = new ColorSelector();
+                    Style.Text.TextColor = value;
                 }
-                Style.Text.TextColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -219,13 +192,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                //CreateTextAttributes();
-                Style.Text.HorizontalAlignment = value;
-                //RelayoutRequest();
+                if (null != Style?.Text)
+                {
+                    Style.Text.HorizontalAlignment = value;
+                }
             }
         }
 
@@ -237,6 +211,7 @@ namespace Tizen.NUI.Components
             window.Add(this);
             this.Position.X = (window.Size.Width - this.Size.Width) / 2;
             this.Position.Y = (window.Size.Height - this.Size.Height) / 2;
+            timer.Start();
         }
 
         /// <summary>
@@ -269,28 +244,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != value)
+                if (null != value && null != Style.Text)
                 {
-                    //CreateTextAttributes();
                     Style.Text.Padding.CopyFrom(value);
-
-                    //if (null == textPadding)
-                    //{
-                    //    textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                    //    {
-                    //        toastAttributes.TextAttributes.Padding.Start = start;
-                    //        toastAttributes.TextAttributes.Padding.End = end;
-                    //        toastAttributes.TextAttributes.Padding.Top = top;
-                    //        toastAttributes.TextAttributes.Padding.Bottom = bottom;
-                    //        RelayoutRequest();
-                    //    }, value.Start, value.End, value.Top, value.Bottom);
-                    //}
-                    //else
-                    //{
-                    //    textPadding.CopyFrom(value);
-                    //}
-
-                    //RelayoutRequest();
                 }
             }
         }
@@ -320,6 +276,28 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(DurationProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Apply style to toast.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+		/// <since_tizen> 8 </since_tizen>
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            ToastStyle toastStyle = viewStyle as ToastStyle;
+
+            if (null != toastStyle)
+            {
+                if (null == textLabel)
+                {
+                    textLabel = new TextLabel();
+                    this.Add(textLabel);
+                }
+                textLabel.ApplyStyle(toastStyle.Text);
             }
         }
 
@@ -355,45 +333,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Relayout control's elements
+        /// Get Toast style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private void UpdateText()
-        {
-            if (window == null)
-            {
-                //return;
-            }
-
-            int _textPaddingLeft = Style.Text?.Padding.Start ?? textPaddingLeft;
-            int _textPaddingRight = Style.Text?.Padding.End ?? _textPaddingLeft;
-            int _textPaddingTop = Style.Text?.Padding.Top ?? textPaddingTop;
-            int _textPaddingBottom = Style.Text?.Padding.Bottom ?? _textPaddingTop;
-
-            int _textAreaWidth = (int)Size.Width - _textPaddingLeft - _textPaddingRight;
-            int _textAreaHeight = (int)Size.Height - _textPaddingTop - _textPaddingBottom;
-            _textAreaWidth = _textAreaWidth > maxTextAreaWidth ? maxTextAreaWidth : _textAreaWidth;        
-            if (textLabel != null)
-            {
-                textLabel.Position = new Position(_textPaddingLeft, _textPaddingTop);
-                textLabel.Size = new Size(_textAreaWidth, _textAreaHeight);
-                if (LayoutDirection == ViewLayoutDirectionType.RTL)
-                {
-                    textLabel.ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
-                    textLabel.PivotPoint = Tizen.NUI.PivotPoint.TopRight;
-                    textLabel.PositionUsesPivotPoint = true;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get Toast attribues.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default toast style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ToastStyle();
@@ -401,25 +344,15 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            toastBackground = new NPatchVisual();
-            if (toastBackground == null)
-            {
-                throw new Exception("Toast background is null.");
-            }
-            SetToastBackground();
-
-            textLabel = new TextLabel();
             if (null == textLabel)
             {
-                throw new Exception("Toast textLabel is null.");
+                textLabel = new TextLabel();
+                this.Add(textLabel);
             }
-            textLabel.TextColor = Color.White;
-            this.Add(textLabel);
 
             this.VisibilityChanged += OnVisibilityChanged;
             timer = new Timer(Style.Duration ?? duration);
             timer.Tick += OnTick;
-            timer.Start();
         }
 
         private bool OnTick(object sender, EventArgs e)
@@ -432,21 +365,13 @@ namespace Tizen.NUI.Components
         {
             if (true == e.Visibility)
             {
+                window?.Add(this);
                 timer.Start();
             }
-        }
-
-        private void SetToastBackground()
-        {
-            if (null != Style?.Background?.ResourceUrl)
+            else
             {
-                toastBackground.URL = Style.Background.ResourceUrl.All;
+                window?.Remove(this);
             }
-            if (null != Style?.Background?.Border)
-            {
-                toastBackground.Border = Style.Background.Border.All;
-            }
-            this.Background = toastBackground.OutputVisualMap;
         }
     }
 }

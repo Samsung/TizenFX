@@ -39,13 +39,33 @@ internal static partial class Interop
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_invoke", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError InvokeSingle(IntPtr single_handle, IntPtr input_data, out IntPtr output_data);
 
+        /* int ml_single_invoke_dynamic (ml_single_h single, const ml_tensors_data_h input, const ml_tensors_info_h in_info, ml_tensors_data_h * output, ml_tensors_info_h * out_info) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_invoke_dynamic", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError InvokeSingleDynamic(IntPtr single_handle, IntPtr input_data, IntPtr input_info, out IntPtr output_data, out IntPtr output_info);
+
         /* int ml_single_get_input_info (ml_single_h single, ml_tensors_info_h *info) */
-        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_invoke", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError GetInputTensorsInfoFromSingle(IntPtr single_handle, out IntPtr input_info);
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_get_input_info", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetInputTensorsInfo(IntPtr single_handle, out IntPtr input_info);
 
         /* int ml_single_get_output_info (ml_single_h single, ml_tensors_info_h *info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_get_output_info", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError GetOutputTensorsInfoFromSingle(IntPtr single_handle, out IntPtr output_info);
+        internal static extern NNStreamerError GetOutputTensorsInfo(IntPtr single_handle, out IntPtr output_info);
+
+        /* int ml_single_set_input_info (ml_single_h single, const ml_tensors_info_h info) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_set_input_info", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetInputInfo(IntPtr single_handle, IntPtr in_handle);
+
+        /* int ml_single_set_timeout (ml_single_h single, unsigned int timeout)*/
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_set_timeout", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetTimeout(IntPtr single_handle, int time_ms);
+
+        /* int ml_single_set_property (ml_single_h single, const char *name, const char *value) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_set_property", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetValue(IntPtr single_handle, string name, string value);
+
+        /* int ml_single_get_property (ml_single_h single, const char *name, char **value) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_get_property", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetValue(IntPtr single_handle, string name, out IntPtr value);
     }
 
     internal static partial class Util
@@ -57,14 +77,6 @@ internal static partial class Interop
         /* int ml_tensors_info_destroy (ml_tensors_info_h info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError DestroyTensorsInfo(IntPtr info);
-
-        /* int ml_tensors_info_validate (const ml_tensors_info_h info, bool *valid) */
-        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_validate", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError ValidateTensorsInfo(IntPtr info, out bool valid);
-
-        /* int ml_tensors_info_clone (ml_tensors_info_h dest, const ml_tensors_info_h src) */
-        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_clone", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError CloneTensorsInfo(out IntPtr dest_info, IntPtr src_info);
 
         /* int ml_tensors_info_set_count (ml_tensors_info_h info, unsigned int count) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_set_count", CallingConvention = CallingConvention.Cdecl)]
@@ -96,11 +108,7 @@ internal static partial class Interop
 
         /* int ml_tensors_info_get_tensor_dimension (ml_tensors_info_h info, unsigned int index, ml_tensor_dimension dimension) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_get_tensor_dimension", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError GetTensorDimension(IntPtr info, int index, out int[] dimension);
-
-        /* size_t ml_tensors_info_get_size (const ml_tensors_info_h info) */
-        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_get_size", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetTensorsSize(IntPtr info);
+        internal static extern NNStreamerError GetTensorDimension(IntPtr info, int index, [In, Out] uint[] dimension);
 
         /* int ml_tensors_data_create (const ml_tensors_info_h info, ml_tensors_data_h *data) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_data_create", CallingConvention = CallingConvention.Cdecl)]
@@ -122,15 +130,16 @@ internal static partial class Interop
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_check_nnfw_availability", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError CheckNNFWAvailability(NNFWType nnfw, HWType hw, out bool available);
 
-        /* ml_tensors_data_get_tensor_count (ml_tensors_data_h data, unsigned int *num_tensors) */
-        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_data_get_tensor_count", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern NNStreamerError GetTensorsCount(IntPtr data, out uint count);
-
         internal static byte[] IntPtrToByteArray(IntPtr unmanagedByteArray, int size)
         {
             byte[] retByte = new byte[size];
             Marshal.Copy(unmanagedByteArray, retByte, 0, size);
             return retByte;
+        }
+
+        internal static string IntPtrToString(IntPtr val)
+        {
+            return (val != IntPtr.Zero) ? Marshal.PtrToStringAnsi(val) : string.Empty;
         }
     }
 }

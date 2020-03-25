@@ -75,6 +75,33 @@ namespace Tizen.Applications
     }
 
     /// <summary>
+    /// Enumeration for inexact interval.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum AlarmStandardPeriod
+    {
+        /// <summary>
+        /// 900 seconds.
+        /// </summary>
+        FifteenMinutes = 900,
+
+        /// <summary>
+        /// 1800 seconds.
+        /// </summary>
+        HalfHour = FifteenMinutes * 2,
+
+        /// <summary>
+        /// 3600 seconds.
+        /// </summary>
+        Hour = HalfHour * 2,
+
+        /// <summary>
+        /// 86400 seconds.
+        /// </summary>
+        Day = Hour * 24,
+    }
+
+    /// <summary>
     /// Mobile devices typically give constant access to information from various sources. Some of this information is best delivered through alarms.
     /// The most obvious case is a calendar scheduling application, which lets you know when a meeting is about to start. Alarms are certainly better than actively waiting in a loop.
     /// They are also better than putting an interface to sleep because they do not block your main UI thread.
@@ -233,6 +260,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sets an alarm to be triggered after a specific time.
+        /// The alarm will first go off delay seconds later and then will go off every certain amount of time defined using standard period seconds.
+        /// </summary>
+        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
+        /// <param name="standardPeriod"> It can be the <see cref="Tizen.Applications.AlarmStandardPeriod"/>. If then, the period of alarm is guaranteed. </param>
+        /// <param name="appControl"> The destination AppControl is used to perform a specific task when the alarm is triggered. </param>
+        /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 8 </since_tizen>
+        public static Alarm CreateAlarm(int delay, AlarmStandardPeriod standardPeriod, AppControl appControl)
+        {
+            return CreateAlarm(delay, (int)standardPeriod, appControl);
+        }
+
+        /// <summary>
         /// Sets a notification alarm to be triggered at a specific time.
         /// The date describes the time of the first occurrence.
         /// </summary>
@@ -353,6 +398,25 @@ namespace Tizen.Applications
             alarm = new Alarm(alarmId);
 
             return alarm;
+        }
+
+        /// <summary>
+        /// Sets a notification alarm to be triggered after a specific time.
+        /// The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.
+        /// </summary>
+        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
+        /// <param name="standardPeriod"> It can be the <see cref="Tizen.Applications.AlarmStandardPeriod"/>. If then, the period of alarm is guaranteed.</param>
+        /// <param name="notification"> The notification to be posted when the alarm is triggered. </param>
+        /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 8 </since_tizen>
+        public static Alarm CreateAlarm(int delay, AlarmStandardPeriod standardPeriod, Notification notification)
+        {
+            return CreateAlarm(delay, (int)standardPeriod, notification);
         }
 
         /// <summary>

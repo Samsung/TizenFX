@@ -35,6 +35,8 @@ namespace Tizen.NUI.BaseComponents
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
 
+        static TextField() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFieldStyle Style => ViewStyle as TextFieldStyle;
@@ -1460,20 +1462,20 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             return textField.textColorSelector;
         });
-        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.placeholderTextColorSelector.Clone((Selector<Color>)newValue);
+            textField.placeholderTextColorSelector.Clone((Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             return textField.placeholderTextColorSelector;
         });
-        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            textField.primaryCursorColorSelector.Clone((Selector<Color>)newValue);
+            textField.primaryCursorColorSelector.Clone((Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1559,27 +1561,27 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private TriggerableSelector<Color> _placeholderTextColorSelector;
-        private TriggerableSelector<Color> placeholderTextColorSelector
+        private TriggerableSelector<Vector4> _placeholderTextColorSelector;
+        private TriggerableSelector<Vector4> placeholderTextColorSelector
         {
             get
             {
                 if (null == _placeholderTextColorSelector)
                 {
-                    _placeholderTextColorSelector = new TriggerableSelector<Color>(this, PlaceholderTextColorProperty);
+                    _placeholderTextColorSelector = new TriggerableSelector<Vector4>(this, PlaceholderTextColorProperty);
                 }
                 return _placeholderTextColorSelector;
             }
         }
 
-        private TriggerableSelector<Color> _primaryCursorColorSelector;
-        private TriggerableSelector<Color> primaryCursorColorSelector
+        private TriggerableSelector<Vector4> _primaryCursorColorSelector;
+        private TriggerableSelector<Vector4> primaryCursorColorSelector
         {
             get
             {
                 if (null == _primaryCursorColorSelector)
                 {
-                    _primaryCursorColorSelector = new TriggerableSelector<Color>(this, PrimaryCursorColorProperty);
+                    _primaryCursorColorSelector = new TriggerableSelector<Vector4>(this, PrimaryCursorColorProperty);
                 }
                 return _primaryCursorColorSelector;
             }

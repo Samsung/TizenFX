@@ -460,5 +460,61 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VOLUME = Interop.VideoView.VideoView_Property_VOLUME_get();
             internal static readonly int UNDERLAY = Interop.VideoView.VideoView_Property_UNDERLAY_get();
         }
+
+        internal System.IntPtr GetNativePlayerHandle()
+        {
+            var ret = Interop.VideoView.GetNativePlayerHandle(swigCPtr);
+            NUILog.Debug($"NativePlayerHandle=0x{ret:X}");
+            return ret;
+        }
+    }
+
+    /// <summary>
+    /// Contains and encapsulates Native Player handle.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SafeNativePlayerHandle : SafeHandle
+    {
+        /// <summary>
+        /// Contructor, null handle is set.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SafeNativePlayerHandle() : base(global::System.IntPtr.Zero, false)
+        {
+        }
+
+        /// <summary>
+        /// Contructor, Native player handle is set to handle.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
+        {
+            if(videoView != null)
+            {
+                SetHandle(videoView.GetNativePlayerHandle());
+            }
+        }
+
+        /// <summary>
+        /// Null check if the handle is valid or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsInvalid
+        {
+            get
+            {
+                return handle == global::System.IntPtr.Zero;
+            }
+        }
+        /// <summary>
+        /// Release handle itself.
+        /// </summary>
+        /// <returns>true when released successfully.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool ReleaseHandle()
+        {
+            SetHandle(global::System.IntPtr.Zero);
+            return true;
+        }
     }
 }

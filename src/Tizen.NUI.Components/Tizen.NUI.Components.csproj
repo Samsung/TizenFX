@@ -19,6 +19,12 @@
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="res\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
   <!-- Include Nuget Package for Tizen Project building -->
 

@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DirectionProperty = BindableProperty.Create("Direction", typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create("MaxValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create("MinValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("CurrentValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -102,7 +102,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create("Duration", typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
                 instance.Style.Duration = (uint)newValue;
                 if (instance.scrollAniPlayer != null)
                 {
-                    instance.scrollAniPlayer.Duration = (int)newValue;
+                    instance.scrollAniPlayer.Duration = (int)(uint)newValue;
                 }
             }
         },
@@ -129,6 +129,7 @@ namespace Tizen.NUI.Components
         private int minValue;
         private int maxValue;
         private int curValue;
+        static ScrollBar() { }
 
         /// <summary>
         /// The constructor of ScrollBar.
@@ -143,9 +144,7 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar with specific style.
         /// </summary>
         /// <param name="style">style name</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ScrollBar(string style) : base(style)
         {
             Initialize();
@@ -154,11 +153,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of ScrollBar with specific style.
         /// </summary>
-        /// <param name="style">The style object to initialize the ScrollBar.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBar(ScrollBarStyle style) : base(style)
+        /// <param name="scrollBarStyle">The style object to initialize the ScrollBar.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public ScrollBar(ScrollBarStyle scrollBarStyle) : base(scrollBarStyle)
         {
             Initialize();
         }
@@ -183,8 +180,10 @@ namespace Tizen.NUI.Components
         }
 
         #region public property 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of scrollbar.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
 
         /// <summary>
@@ -225,22 +224,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (Style.Thumb.Size == null)
-                {
-                    Style.Thumb.Size = new Size();
-                }
-                return Style.Thumb.Size;
+                return Style?.Thumb?.Size;
             }
             set
             {
-                if (Style.Thumb.Size == null)
+                if (null != Style?.Thumb)
                 {
-                    Style.Thumb.Size = new Size();
-                }
-                if (thumbImage != null)
-                {
-                    Style.Thumb.Size.Width = value.Width;
-                    Style.Thumb.Size.Height = value.Height;
+                    Style.Thumb.Size = value;
                     RelayoutRequest();
                 }
             }
@@ -254,19 +244,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track.ResourceUrl.All;
+                return Style?.Track?.ResourceUrl?.All;
             }
             set
             {
-                if (trackImage != null)
+                if (null != Style?.Track)
                 {
-                    if (Style.Track.ResourceUrl == null)
-                    {
-                        Style.Track.ResourceUrl = new StringSelector();
-                    }
-                    Style.Track.ResourceUrl.All = value;
+                    Style.Track.ResourceUrl = value;
+                    RelayoutRequest();
                 }
-                RelayoutRequest();
             }
         }
 
@@ -278,19 +264,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track.BackgroundColor?.All;
+                return Style?.Track?.BackgroundColor?.All;
             }
             set
             {
-                if (Style.Track.BackgroundColor == null)
+                if (null != Style?.Track)
                 {
-                    Style.Track.BackgroundColor = new ColorSelector { All = value };
+                    Style.Track.BackgroundColor = value;
+                    RelayoutRequest();
                 }
-                else
-                {
-                    Style.Track.BackgroundColor.All = value;
-                }
-                RelayoutRequest();
             }
         }
 
@@ -302,19 +284,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb.BackgroundColor?.All;
+                return Style?.Thumb?.BackgroundColor?.All;
             }
             set
             {
-                if(Style.Thumb.BackgroundColor == null)
+                if(null != Style?.Thumb)
                 {
-                    Style.Thumb.BackgroundColor = new ColorSelector { All = value };
+                    Style.Thumb.BackgroundColor = value;
+                    RelayoutRequest();
                 }
-                else
-                {
-                    Style.Thumb.BackgroundColor.All = value;
-                }
-                RelayoutRequest();
             }
         }
 
@@ -403,7 +381,7 @@ namespace Tizen.NUI.Components
         /// Method to set current value. The thumb object would move to the corresponding position with animation or not.
         /// </summary>
         /// <param name="currentValue">The special current value.</param>
-        /// <param name="EnableAnimation">Enable move with animation or not, the default value is true.</param>
+        /// <param name="enableAnimation">Enable move with animation or not, the default value is true.</param>
         /// <exception cref="ArgumentOutOfRangeException">Throw when current size is less than the min value, or greater than the max value.</exception>
         /// <example>
         /// <code>
@@ -426,7 +404,9 @@ namespace Tizen.NUI.Components
             if (currentValue < minValue || currentValue > maxValue)
             {
                 //TNLog.E("Current value is less than the Min value, or greater than the Max value. currentValue = " + currentValue + ";");
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
                 throw new ArgumentOutOfRangeException("Wrong Current value. It shoud be greater than the Min value, and less than the Max value!");
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
 
             enableAni = enableAnimation;
@@ -475,9 +455,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Scrollbar style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default scrollbar style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ScrollBarStyle();
@@ -486,12 +465,12 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ScrollBarStyle;
+            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
             if (tempStyle != null)
             {
                 Style.CopyFrom(tempStyle);

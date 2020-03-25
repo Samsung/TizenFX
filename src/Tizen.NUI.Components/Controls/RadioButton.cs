@@ -33,6 +33,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RadioButton : SelectButton
     {
+        static RadioButton() { }
+
         /// <summary>
         /// Creates a new instance of a RadioButton.
         /// </summary>
@@ -49,13 +51,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton(string style) : base(style) { }
         /// <summary>
-        /// Creates a new instance of a RadioButton with attributes.
+        /// Creates a new instance of a RadioButton with style.
         /// </summary>
-        /// <param name="attrs"></param>
+        /// <param name="buttonStyle"></param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton(SelectButtonStyle attrs) : base(attrs) { }
+        public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
         /// <summary>
         /// Get RadioButtonGroup to which this selections belong.
         /// </summary>

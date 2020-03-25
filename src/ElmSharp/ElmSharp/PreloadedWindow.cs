@@ -14,17 +14,34 @@
  * limitations under the License.
  */
 
+using System;
+using System.ComponentModel;
+using System.Reflection;
+
 namespace ElmSharp
 {
-    internal class PreloadedWindow : Window
+    /// <summary>
+    /// Pre-created window which prepares features that takes time in advance.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PreloadedWindow : Window
     {
         static PreloadedWindow s_precreated;
 
-        public PreloadedWindow(bool useBaseLayout=true) : base("PreloadWindow")
+        internal PreloadedWindow(bool useBaseLayout=true) : base("PreloadWindow")
         {
             s_precreated = this;
             if (useBaseLayout)
                 InitializeBaseLayout();
+            WarmupWidgets();
+            BackButtonPressed += DummyHandler;
+            BackButtonPressed -= DummyHandler;
+            void DummyHandler(object sender, System.EventArgs e) { }
+
+            if (Elementary.GetProfile() == "wearable")
+            {
+                WarmupWearableWidgets();
+            }
         }
 
         public Layout BaseLayout
@@ -33,9 +50,23 @@ namespace ElmSharp
             protected set;
         }
 
+        public Conformant BaseConformant
+        {
+            get;
+            protected set;
+        }
+
+        public object BaseCircleSurface
+        {
+            get;
+            set;
+        }
+
+
         public void InitializeBaseLayout()
         {
             var conformant = new Conformant(this);
+            BaseConformant = conformant;
             conformant.Show();
 
             var layout = new Layout(conformant);
@@ -44,6 +75,40 @@ namespace ElmSharp
 
             BaseLayout = layout;
             conformant.SetContent(BaseLayout);
+        }
+
+        public void WarmupWidgets()
+        {
+            new Entry(this).Unrealize();
+            new Scroller(this).Unrealize();
+            new Box(this).Unrealize();
+            new Label(this).Unrealize();
+            new GenList(this).Unrealize();
+            new Button(this).Unrealize();
+            new Check(this).Unrealize();
+            new Naviframe(this).Unrealize();
+            new Slider(this).Unrealize();
+            new Spinner(this).Unrealize();
+            new ProgressBar(this).Unrealize();
+            new GestureLayer(this).Unrealize();
+            new Polygon(this).Unrealize();
+            new Image(this).Unrealize();
+            //TODO: Consider to call Image.LoadAsync()
+        }
+
+        public void WarmupWearableWidgets()
+        {
+            try
+            {
+                Assembly assem = Assembly.Load("ElmSharp.Wearable");
+                var type = assem.GetType("ElmSharp.Wearable.Preload");
+                type.GetMethod("WarmupWidgets", BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { this });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                Console.WriteLine("Fail to preload ElmSharp.Wearable");
+            }
         }
 
         public static PreloadedWindow GetInstance()

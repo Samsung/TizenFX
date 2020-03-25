@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Tizen.NUI.Samples</RootNamespace>
+    <AssemblyName>Tizen.NUI.Samples</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Samples\AnimatedVectorImageViewTest.cs" />
+    <Compile Remove="Samples\ButtonSample.cs" />
+    <Compile Remove="Samples\CheckBoxSample.cs" />
+    <Compile Remove="Samples\DropDownSample.cs" />
+    <Compile Remove="Samples\PopupSample.cs" />
+    <Compile Remove="Samples\RadioButtonSample.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Multimedia.MediaPlayer/Tizen.Multimedia.MediaPlayer.csproj" />
+    <ProjectReference Include="../../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+  </ItemGroup>
+
+</Project>
+

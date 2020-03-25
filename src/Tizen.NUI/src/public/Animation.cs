@@ -1283,28 +1283,22 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if (this != null)
-            {
-                if (_animationFinishedEventCallback != null)
-                {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
-                }
-
-                if (_animationProgressReachedEventCallback != null)
-                {
-
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                }
-            }
-
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if (this != null)
+            if (_animationFinishedEventHandler != null)
             {
-                this.Clear();
+                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                _animationFinishedEventHandler = null;
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                _animationProgressReachedEventCallback = null;
             }
 
             base.Dispose(type);
@@ -1314,6 +1308,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
+            if(swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] Animation ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
+                return;
+            }
             Interop.Animation.delete_Animation(swigCPtr);
         }
 

@@ -31,199 +31,176 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonCountProperty = BindableProperty.Create("ButtonCount", typeof(int), typeof(Popup), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create(nameof(ButtonHeight), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if ((int)newValue != instance.buttonCount)
-            {
-                instance.buttonCount = (int)newValue;
-                instance.UpdateButton();
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Popup)bindable;
-            return instance.buttonCount;
-        });
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create("ShadowOffset", typeof(Vector4), typeof(Popup), new Vector4(0, 0, 0, 0), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Popup)bindable;
-            if (newValue != null)
-            {
-                if (instance.Style.ShadowOffset == null)
-                {
-                    instance.Style.ShadowOffset = new Vector4(0, 0, 0, 0);
-                }
-                instance.Style.ShadowOffset = (Vector4)newValue;
-                instance.UpdateShadow();
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Popup)bindable;
-            return instance.Style.ShadowOffset;
-        });
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create("ButtonHeight", typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Popup)bindable;
-            if (newValue != null)
+            if (newValue != null && instance?.Style?.Buttons?.Size != null )
             {
                 instance.Style.Buttons.Size.Height = (int)newValue;
-                instance.UpdateButton();
+                instance.btGroup.Itemheight = (int)newValue;
+                instance.UpdateView();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Size?.Height ?? 0;
+            return (int)(instance.Style?.Buttons?.Size?.Height ?? 0);
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonTextPointSizeProperty = BindableProperty.Create("ButtonTextPointSize", typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonTextPointSizeProperty = BindableProperty.Create(nameof(ButtonTextPointSize), typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.Text.PointSize == null)
+                if (instance.Style?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.PointSize = new Selector<float?>();
+                    instance.Style.Buttons.Text.PointSize = (float)newValue;
                 }
-                instance.Style.Buttons.Text.PointSize.All = (float)newValue;
-                instance.UpdateButton();
+                instance.btGroup.ItemPointSize = (float)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Text?.PointSize?.All ?? 0;
+            return instance.Style?.Buttons?.Text?.PointSize?.All ?? 0;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonFontFamilyProperty = BindableProperty.Create("ButtonFontFamily", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonFontFamilyProperty = BindableProperty.Create(nameof(ButtonFontFamily), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
                 instance.Style.Buttons.Text.FontFamily = (string)newValue;
-                instance.UpdateButton();
+                instance.btGroup.ItemFontFamily = (string)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Text?.FontFamily;
+            return instance.Style?.Buttons?.Text?.FontFamily.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonTextColorProperty = BindableProperty.Create("ButtonTextColor", typeof(Color), typeof(Popup), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonTextColorProperty = BindableProperty.Create(nameof(ButtonTextColor), typeof(Color), typeof(Popup), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {  
-                if (instance.Style.Buttons.Text.TextColor == null)
+                if (instance.Style?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.TextColor = new Selector<Color>();
+                    instance.Style.Buttons.Text.TextColor = (Color)newValue;
                 }
-                instance.Style.Buttons.Text.TextColor.All = (Color)newValue;
-                //instance.UpdateButton();
+                instance.btGroup.ItemTextColor = (Color)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Text?.TextColor?.All;
+            return instance.Style?.Buttons?.Text?.TextColor?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonOverLayBackgroundColorSelectorProperty = BindableProperty.Create("ButtonOverLayBackgroundColorSelector", typeof(Selector<Color>), typeof(Popup), new Selector<Color>(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonOverLayBackgroundColorSelectorProperty = BindableProperty.Create(nameof(ButtonOverLayBackgroundColorSelector), typeof(Selector<Color>), typeof(Popup), new Selector<Color>(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
                 instance.Style.Buttons.Overlay.BackgroundColor = (Selector<Color>)newValue;
-                instance.UpdateButton();
+                instance.btGroup.OverLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Overlay?.BackgroundColor;
+            return instance.Style?.Buttons?.Overlay?.BackgroundColor;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonTextAlignmentProperty = BindableProperty.Create("ButtonTextAlignment", typeof(HorizontalAlignment), typeof(Popup), new HorizontalAlignment(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonTextAlignmentProperty = BindableProperty.Create(nameof(ButtonTextAlignment), typeof(HorizontalAlignment), typeof(Popup), new HorizontalAlignment(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
                 instance.Style.Buttons.Text.HorizontalAlignment = (HorizontalAlignment)newValue;
-                instance.UpdateButton();
+                instance.btGroup.ItemTextAlignment = (HorizontalAlignment)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+            return instance.Style?.Buttons?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonBackgroundProperty = BindableProperty.Create("ButtonBackground", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonBackgroundProperty = BindableProperty.Create(nameof(ButtonBackground), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.Background.ResourceUrl == null)
+                if (instance.Style.Buttons.BackgroundImage == null)
                 {
-                    instance.Style.Buttons.Background.ResourceUrl = new Selector<string>();
+                    instance.Style.Buttons.BackgroundImage = new Selector<string>();
                 }
-                instance.Style.Buttons.Background.ResourceUrl.All = (string)newValue;
-                instance.UpdateButton();
+                instance.btGroup.ItemBackgroundImageUrl = (string)newValue;
+                instance.Style.Buttons.BackgroundImage = (string)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Background?.ResourceUrl?.All;
+            return instance.Style?.Buttons?.BackgroundImage?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonBackgroundBorderProperty = BindableProperty.Create("ButtonBackgroundBorder", typeof(Rectangle), typeof(Popup), new Rectangle(0, 0, 0, 0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonBackgroundBorderProperty = BindableProperty.Create(nameof(ButtonBackgroundBorder), typeof(Rectangle), typeof(Popup), new Rectangle(0, 0, 0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.Background.Border == null)
+                if (instance.Style.Buttons.BackgroundImageBorder == null)
                 {
-                    instance.Style.Buttons.Background.Border = new Selector<Rectangle>();
+                    instance.Style.Buttons.BackgroundImageBorder = new Selector<Rectangle>();
                 }
-                instance.Style.Buttons.Background.Border.All = (Rectangle)newValue;
-                instance.UpdateButton();
+                instance.Style.Buttons.BackgroundImageBorder = (Rectangle)newValue;
+                instance.btGroup.ItemBackgroundBorder = (Rectangle)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Background?.Border?.All;
+            return instance.Style?.Buttons?.BackgroundImageBorder?.All;
         });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ButtonImageShadowProperty = BindableProperty.Create(nameof(ButtonImageShadow), typeof(ImageShadow), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Popup)bindable;
+            ImageShadow shadow = (ImageShadow)newValue;
+            instance.btGroup.ItemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+            instance.Style.Buttons.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Popup)bindable;
+            return instance.Style?.Buttons?.ImageShadow?.All;
+        });
+
 
         private TextLabel titleText;
-        private List<Button> buttonList;
-        private List<string> buttonTextList = new List<string>();
-
-        private int buttonCount = 0;
+        private ButtonGroup btGroup = null;
+        private Window window = null;
+        private Layer container = new Layer();
+        static Popup() { }
 
         /// <summary>
         /// Creates a new instance of a Popup.
@@ -238,24 +215,110 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="style">Create Popup by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Popup(string style) : base(style)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a Popup with attributes.
+        /// Creates a new instance of a Popup with style.
         /// </summary>
-        /// <param name="attributes">Create Popup by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Popup(PopupStyle attributes) : base(attributes)
+        /// <param name="popupStyle">Create Popup by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public Popup(PopupStyle popupStyle) : base(popupStyle)
         {
             Initialize();
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void Post(Window targetWindow)
+        {
+            if (targetWindow == null)
+            {
+                return;
+            }
+
+            window = targetWindow;
+            window.AddLayer(container);
+            container.RaiseToTop();
+        }
+
+        /// <summary>
+        /// Dismiss the dialog
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void Dismiss()
+        {
+            if (window == null)
+            {
+                return;
+            }
+
+            window.RemoveLayer(container);
+            window = null;
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddButton(string buttonText)
+        {
+            if (Style.Buttons != null)
+            {
+                Button btn = new Button(Style.Buttons);
+                btn.Style.Text.Text = buttonText;
+                btn.ClickEvent += ButtonClickEvent;
+                btGroup.AddItem(btn);
+                UpdateView();
+            }
+        }
+
+        /// <summary>
+        /// Add button by style's name.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public void AddButton(string buttonText, string style)
+        {
+            AddButton(buttonText);
+        }
+
+        /// <summary>
+        /// Add button by style.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public void AddButton(string buttonText, ButtonStyle style)
+        {
+            if (Style.Buttons != null && style != null)
+            {
+                Style.Buttons.CopyFrom(style);
+                AddButton(buttonText);
+            }
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Button GetButton(int index)
+        {
+            return btGroup.GetItem(index);
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveButton(int index)
+        {
+            btGroup.RemoveItem(index);
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddContentText(View childView)
+        {
+            if (null != ContentView)
+            {
+                ContentView.Add(childView);
+            }
+            UpdateView();
         }
 
         /// <summary>
@@ -264,8 +327,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of popup.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new PopupStyle Style => ViewStyle as PopupStyle;
 
         /// <summary>
@@ -276,20 +341,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Title?.Text?.All;
+                return Style?.Title?.Text?.All;
             }
             set
             {
                 if (value != null)
                 {
-                    //CreateTitleTextAttributes();
-                    if (Style.Title.Text == null)
+                    if (Style?.Title != null)
                     {
-                        Style.Title.Text = new StringSelector();
+                        Style.Title.Text = value;
                     }
-                    Style.Title.Text.All = value;
-
-                    //RelayoutRequest();
                 }
             }
         }
@@ -302,17 +363,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Title?.PointSize?.All ?? 0;
+                return Style?.Title?.PointSize?.All ?? 0;
             }
             set
             {
-                //CreateTitleTextAttributes();
-                if (Style.Title.PointSize == null)
+                if (Style?.Title != null)
                 {
-                    Style.Title.PointSize = new FloatSelector();
+                    Style.Title.PointSize = value;
                 }
-                Style.Title.PointSize.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -324,17 +382,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Title?.TextColor?.All;
+                return Style?.Title?.TextColor?.All;
             }
             set
             {
-                //CreateTitleTextAttributes();
-                if (Style.Title.TextColor == null)
+                if (Style?.Title != null)
                 {
-                    Style.Title.TextColor = new ColorSelector();
+                    Style.Title.TextColor = value;
                 }
-                Style.Title.TextColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -346,13 +401,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Title?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return Style?.Title?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                //CreateTitleTextAttributes();
                 Style.Title.HorizontalAlignment = value;
-                //RelayoutRequest();
             }
         }
 
@@ -364,13 +417,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Title?.Position ?? new Position(0, 0, 0);
+                return Style?.Title?.Position ?? new Position(0, 0, 0);
             }
             set
             {
-                //CreateTitleTextAttributes();
                 Style.Title.Position = value;
-                //RelayoutRequest();
             }
         }
 
@@ -382,13 +433,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)(Style.Title?.Size?.Height ?? 0);
+                return (int)(Style?.Title?.Size?.Height ?? 0);
             }
             set
             {
-                //CreateTitleTextAttributes();
-                Style.Title.Size.Height = value;
-                //RelayoutRequest();
+                if (Style?.Title?.Size != null)
+                {
+                     Style.Title.Size.Height = value;
+                }
             }
         }
 
@@ -408,32 +460,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public int ButtonCount
         {
-            get
-            {
-                return (int)GetValue(ButtonCountProperty);
-            }
-            set
-            {
-                SetValue(ButtonCountProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Shadow offset in Popup, including left, right, up and bottom offset.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 ShadowOffset
-        {
-            get
-            {
-                return (Vector4)GetValue(ShadowOffsetProperty);
-            }
-            set
-            {
-                SetValue(ShadowOffsetProperty, value);
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -540,7 +568,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ButtonBackgroundImageURL
+        public string ButtonBackground
         {
             get
             {     
@@ -558,7 +586,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ButtonBackgroundImageBorder
+        public Rectangle ButtonBackgroundBorder
         {
             get
             {
@@ -571,20 +599,18 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Button's image shadow in Popup.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Size2D Size2D
+        public ImageShadow ButtonImageShadow
         {
-            get
-            {
-                return base.Size2D;
-            }
-            set
-            {
-                base.Size2D = value;
-                UpdateShadow();
-            }
+            get => (ImageShadow)GetValue(ButtonImageShadowProperty);
+            set => SetValue(ButtonImageShadowProperty, value);
         }
+
 
         /// <summary>
         /// Set button text by index.
@@ -594,19 +620,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public void SetButtonText(int index, string text)
         {
-            if(index < 0 && index >= buttonCount)
-            {
-                return;
-            }
-            if(buttonTextList.Count < index + 1)
-            {
-                for (int i = buttonTextList.Count; i < index + 1; i++)
-                {
-                    buttonTextList.Add("");
-                }
-            }
-            buttonTextList[index] = text;
-            UpdateButton();
+            AddButton(text);
         }
 
         /// <summary>
@@ -635,13 +649,11 @@ namespace Tizen.NUI.Components
                     ContentView.Dispose();
                     ContentView = null;
                 }
-                if (buttonList != null)
+
+                if (btGroup != null)
                 {
-                    foreach(Button btn in buttonList)
-                    {
-                        Remove(btn);
-                        btn.Dispose();
-                    }
+                    btGroup.Dispose();
+                    btGroup = null;
                 }
             }
 
@@ -670,32 +682,32 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Apply style to popup.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
-
-            PopupStyle popupStyle = viewStyle as PopupStyle;
-
-            if (null != popupStyle)
+            PopupStyle ppStyle = viewStyle as PopupStyle;
+            if (null != ppStyle)
             {
                 if (null == titleText)
                 {
                     titleText = new TextLabel();
                     Add(titleText);
                 }
-
-                titleText.ApplyStyle(Style.Title);
+                titleText.RaiseToTop();
+                titleText.ApplyStyle(ppStyle.Title);
             }
         }
 
         /// <summary>
-        /// Get Popup attribues.
+        /// Get Popup style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>The default popup style.</returns>
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new PopupStyle();
@@ -704,22 +716,26 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as PopupStyle;
-            if (tempAttributes != null)
+            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
+            if (popupStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
-                RelayoutRequest();
+                string strSaveTitleText = TitleText;
+                Style.CopyFrom(popupStyle);
+                Style.Title.Text = strSaveTitleText;
+                UpdateView();
             }
         }
 
         private void Initialize()
         {
+            container.Add(this);
             LeaveRequired = true;
+            PropertyChanged += PopupStylePropertyChanged;
 
             // ContentView
             ContentView = new View()
@@ -735,73 +751,29 @@ namespace Tizen.NUI.Components
             if (null == titleText)
             {
                 titleText = new TextLabel();
+                titleText.RaiseToTop();
                 Add(titleText);
             }
 
-            buttonList = new List<Button>();
+            // Button
+            btGroup = new ButtonGroup(this);
         }
 
-        private void UpdateButton()
+        private void UpdateView()
         {
-            if (buttonCount <= 0) return;
-            if (buttonTextList.Count != buttonCount) return;
-
-            if (buttonList != null)
-            {
-                foreach (Button btn in buttonList)
-                {
-                    btn.ClickEvent -= ButtonClickEvent;
-                    this.Remove(btn);
-                    btn.Dispose();
-                }
-                buttonList.Clear();
-            }
-
-            int buttonWidth = Size2D.Width / buttonCount;
-            int buttonHeight = (int)Style.Buttons.Size.Height;
-            for (int i = 0; i < buttonCount; i++)
-            {             
-                Button btn = new Button(Style.Buttons);
-                btn.Size2D = new Size2D(buttonWidth, buttonHeight);
-                btn.Style.Text.Text = buttonTextList[i];
-                btn.ClickEvent += ButtonClickEvent;
-
-                this.Add(btn);
-                buttonList.Add(btn);
-            }
-
-            int pos = 0;
-            if (buttonList != null && buttonList.Count > 0)
-            {
-                if (LayoutDirection == ViewLayoutDirectionType.RTL)
-                {
-                    for (int i = buttonList.Count - 1; i >= 0; i--)
-                    {
-                        buttonList[i].PositionX = pos;
-                        pos += buttonList[i].Size2D.Width;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < buttonList.Count; i++)
-                    {
-                        buttonList[i].PositionX = pos;
-                        pos += buttonList[i].Size2D.Width;
-                    }
-                }
-            }
-
+            btGroup.UpdateButton(Style.Buttons);
             UpdateContentView();
+            UpdateTitle();
         }
 
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
-            if (PopupButtonClickEvent != null && buttonList != null)
+            if (PopupButtonClickEvent != null && btGroup.Count > 0)
             {
                 Button button = sender as Button;
-                for (int i = 0; i < buttonList.Count; i++)
+                for (int i = 0; i < btGroup.Count; i++)
                 {
-                    if(button == buttonList[i])
+                    if (button == GetButton(i))
                     {
                         ButtonClickEventArgs args = new ButtonClickEventArgs();
                         args.ButtonIndex = i;
@@ -810,69 +782,13 @@ namespace Tizen.NUI.Components
                 }
             }
         }
-        private void UpdateShadow()
+
+        private void PopupStylePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (Style.ShadowOffset == null) return;
-            int w = 0;
-            int h = 0;
-            if (Style.Shadow != null)
+            if (e.PropertyName.Equals("LayoutDirection"))
             {
-                w = (int)(Size2D.Width + Style.ShadowOffset.W + Style.ShadowOffset.X);
-                h = (int)(Size2D.Height + Style.ShadowOffset.Y + Style.ShadowOffset.Z);
-
-                shadowImage.Size2D = new Size2D(w, h);
+                btGroup.UpdateButton(Style.Buttons);
             }
-        }
-
-        private void UpdateTitle()
-        {
-            int w = 0;
-            int h = 0;
-            int titleX = 0;
-            int titleY = 0;
-            int titleH = 0;
-            int buttonH = 0;
-
-            if (Style.Title != null)
-            {
-                if (titleText.Text != null && titleText.Text != "")
-                {
-                    Style.Title.Text = new Selector<string> { All = titleText.Text };
-                    w = (int)(Size2D.Width - titleText.PositionX * 2);
-
-                    if (Style.Title.Size != null)
-                    {
-                        titleH = (int)titleText.Size.Height;
-                    }
-                    titleText.Size2D = new Size2D(w, titleH);                 
-                }
-                else
-                {
-                    titleText.Size2D = new Size2D(0, 0);
-                }
-            }
-
-            if (titleText != null)
-            {
-                if (LayoutDirection == ViewLayoutDirectionType.RTL)
-                {
-                    if (Style.Title != null)
-                    {
-                        Style.Title.HorizontalAlignment = HorizontalAlignment.End;
-                    }
-                    titleText.HorizontalAlignment = HorizontalAlignment.End;
-                }
-                else if (LayoutDirection == ViewLayoutDirectionType.LTR)
-                {
-                    if (Style.Title != null)
-                    {
-                        Style.Title.HorizontalAlignment = HorizontalAlignment.Begin;
-                    }
-                    titleText.HorizontalAlignment = HorizontalAlignment.Begin;
-                }
-            }
-
-            UpdateContentView();
         }
 
         private void UpdateContentView()
@@ -880,22 +796,35 @@ namespace Tizen.NUI.Components
             int titleX = 0;
             int titleY = 0;
             int titleH = 0;
-            if (Style.Title.Size != null)
+            int buttonH = 0;
+            string strText = Style.Title.Text.All;
+            if (!string.IsNullOrEmpty(strText) && Style.Title.Size != null)
             {
                 titleH = (int)titleText.Size.Height;
             }
-            if (Style.Title.Position != null)
+
+            if (!string.IsNullOrEmpty(strText) && Style.Title.Position != null)
             {
                 titleX = (int)Style.Title.Position.X;
                 titleY = (int)Style.Title.Position.Y;
             }
-            int buttonH = (int)Style.Buttons.Size.Height;
 
-            ContentView.Size2D = new Size2D(Size2D.Width - titleX * 2, Size2D.Height - titleY - titleH - buttonH);
-            ContentView.Position2D = new Position2D(titleX, titleY + titleH);
+            if (btGroup.Count != 0 && Style?.Buttons?.Size != null )
+            {
+                buttonH = (int)Style.Buttons.Size.Height;
+            }
+            ContentView.Size = new Size(Size.Width - titleX * 2, Size.Height - titleY - titleH - buttonH);
+            ContentView.Position = new Position(titleX, titleY + titleH);
             ContentView.RaiseToTop();
         }
 
+        private void UpdateTitle()
+        {
+            if (titleText != null && string.IsNullOrEmpty(Style.Title.Text.All) && Style.Title.Size != null)
+            {
+                titleText.RaiseToTop();
+            }
+        }
         /// <summary>
         /// ButtonClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>

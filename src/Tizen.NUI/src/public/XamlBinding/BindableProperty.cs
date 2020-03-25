@@ -191,16 +191,12 @@ namespace Tizen.NUI.Binding
             {
                 nameToBindableProperty[propertyName] = this;
             }
-
-            if (!baseTypePropertyHasBeenAdded.Contains(declaringType))
-            {
-                AddParentTypeProperty(declaringType.BaseType, nameToBindableProperty);
-                baseTypePropertyHasBeenAdded.Add(declaringType);
-            }
         }
 
-        private void AddParentTypeProperty(Type type, Dictionary<string, BindableProperty> propertyDict)
+        private static bool AddParentTypeProperty(Type type, Dictionary<string, BindableProperty> propertyDict)
         {
+            bool ret = false;
+
             if (null != type)
             {
                 Dictionary<string, BindableProperty> nameToBindableProperty;
@@ -208,6 +204,8 @@ namespace Tizen.NUI.Binding
 
                 if (null != nameToBindableProperty)
                 {
+                    ret = true;
+
                     foreach (KeyValuePair<string, BindableProperty> keyValuePair in nameToBindableProperty)
                     {
                         if (!propertyDict.ContainsKey(keyValuePair.Key))
@@ -217,8 +215,13 @@ namespace Tizen.NUI.Binding
                     }
                 }
 
-                AddParentTypeProperty(type.BaseType, propertyDict);
+                if (true == AddParentTypeProperty(type.BaseType, propertyDict))
+                {
+                    ret = true;
+                }
             }
+
+            return ret;
         }
 
         static internal Dictionary<Type, Dictionary<string, BindableProperty>> bindablePropertyOfType = new Dictionary<Type, Dictionary<string, BindableProperty>>();
@@ -228,10 +231,24 @@ namespace Tizen.NUI.Binding
         {
             dictionary = null;
 
-            while (null != type && null == dictionary)
+            bindablePropertyOfType.TryGetValue(type, out dictionary);
+
+            if (!baseTypePropertyHasBeenAdded.Contains(type))
             {
-                bindablePropertyOfType.TryGetValue(type, out dictionary);
-                type = type.BaseType;
+                bool isCurDictNull = false;
+
+                if (null == dictionary)
+                {
+                    isCurDictNull = true;
+                    dictionary = new Dictionary<string, BindableProperty>();
+                }
+
+                if (true == AddParentTypeProperty(type.BaseType, dictionary) && true == isCurDictNull)
+                {
+                    bindablePropertyOfType.Add(type, dictionary);
+                }
+
+                baseTypePropertyHasBeenAdded.Add(type);
             }
         }
 

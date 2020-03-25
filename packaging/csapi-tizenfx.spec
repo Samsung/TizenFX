@@ -1,14 +1,16 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
-%define TIZEN_NET_API_VERSION 7
-%define TIZEN_NET_RPM_VERSION 7.0.0.999+nui550
-%define TIZEN_NET_NUGET_VERSION 7.0.0.99999
+%define TIZEN_NET_API_VERSION 8
+%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui550
+%define TIZEN_NET_NUGET_VERSION 8.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
 %define DOTNET_NUGET_SOURCE /nuget
+
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
@@ -182,6 +184,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
+/usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 
 %files
 %license LICENSE
@@ -203,6 +206,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
+%manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
 %files common -f common.filelist

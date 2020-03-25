@@ -22,6 +22,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CheckBox : SelectButton
     {
+        static CheckBox() { }
         /// <summary>
         /// Creates a new instance of a CheckBox.
         /// </summary>
@@ -29,6 +30,7 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox() : base() { }
+
         /// <summary>
         /// Creates a new instance of a CheckBox with style.
         /// </summary>
@@ -37,13 +39,14 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox(string style) : base(style) { }
+
         /// <summary>
-        /// Creates a new instance of a CheckBox with attributes.
+        /// Creates a new instance of a CheckBox with style.
         /// </summary>
-        /// <param name="attrs"></param>
+        /// <param name="buttonStyle"></param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(SelectButtonStyle attrs) : base(attrs) { }
+        public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.

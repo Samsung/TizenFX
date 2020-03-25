@@ -16,6 +16,8 @@
 
 using System;
 using Tizen.System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
@@ -46,10 +48,39 @@ namespace Tizen.Sensor
         private SensorPausePolicy _pausePolicy = SensorPausePolicy.None;
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
+        private List<Interop.SensorEventStruct> batchedEvents { get; set; } = new List<Interop.SensorEventStruct>();
 
+
+        /// <summary>
+        /// Read a sensor data synchronously.
+        /// </summary>
+        internal abstract void ReadData();
         internal abstract SensorType GetSensorType();
         internal abstract void EventListenStart();
         internal abstract void EventListenStop();
+
+        internal void updateBatchEvents(IntPtr eventsPtr, uint events_count)
+        {
+            if (events_count >= 1)
+            {
+                batchedEvents.Clear();
+                IntPtr currentPtr = eventsPtr;
+                for (int i = 0; i < events_count; i++)
+                {
+                    batchedEvents.Add(Interop.IntPtrToEventStruct(currentPtr));
+                    currentPtr += Marshal.SizeOf<Interop.SensorEventStruct>();
+                }
+            }
+        }
+
+        internal Interop.SensorEventStruct latestEvent()
+        {
+            if (batchedEvents.Count > 0)
+            {
+                return batchedEvents[batchedEvents.Count-1];
+            }
+            return default(Interop.SensorEventStruct);
+        }
 
         internal Sensor(uint index)
         {
@@ -326,6 +357,7 @@ namespace Tizen.Sensor
                     Log.Error(Globals.LogTag, "Error starting sensor");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Unable to Start Sensor Listener");
                 }
+                ReadData();
                 EventListenStart();
                 _isSensing = true;
                 Log.Info(Globals.LogTag, "Sensor started");

@@ -72,7 +72,8 @@ namespace Tizen.NUI
                 }
             }
 
-            throw new ArgumentException($"{description} can't be found.", "Description");
+            return (T)type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault().GetValue(null);
+            //throw new ArgumentException($"{description} can't be found.", "Description");
         }
 
         /// <summary>
