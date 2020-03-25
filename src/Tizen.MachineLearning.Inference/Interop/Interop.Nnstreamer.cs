@@ -58,6 +58,14 @@ internal static partial class Interop
         /* int ml_single_set_timeout (ml_single_h single, unsigned int timeout)*/
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_set_timeout", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError SetTimeout(IntPtr single_handle, int time_ms);
+
+        /* int ml_single_set_property (ml_single_h single, const char *name, const char *value) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_set_property", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetValue(IntPtr single_handle, string name, string value);
+
+        /* int ml_single_get_property (ml_single_h single, const char *name, char **value) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_single_get_property", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetValue(IntPtr single_handle, string name, out IntPtr value);
     }
 
     internal static partial class Util
@@ -127,6 +135,11 @@ internal static partial class Interop
             byte[] retByte = new byte[size];
             Marshal.Copy(unmanagedByteArray, retByte, 0, size);
             return retByte;
+        }
+
+        internal static string IntPtrToString(IntPtr val)
+        {
+            return (val != IntPtr.Zero) ? Marshal.PtrToStringAnsi(val) : string.Empty;
         }
     }
 }

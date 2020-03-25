@@ -179,6 +179,72 @@ namespace Tizen.MachineLearning.Inference
             NNStreamer.CheckException(ret, "fail to set the timeout!");
         }
 
+        /// <summary> Sets the property value for the given model.
+        /// <para>A model/framework may support changing the model information, such as tensor dimension and data layout, after opening the model.</para>
+        /// <para>If tries to change unavailable property or the model does not allow changing the information, this will raise an exception.</para>
+        /// <para>For the details about the properties, see 'tensor_filter' plugin definition in <a href="https://github.com/nnsuite/nnstreamer">NNStreamer</a>.</para>
+        /// </summary>
+        /// <param name="name">The property name</param>
+        /// <param name="value">The property value</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported, or given property is not available.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetValue(string name, string value)
+        {
+            NNStreamerError ret = NNStreamerError.None;
+
+            NNStreamer.CheckNNStreamerSupport();
+
+            /* Check the argument */
+            if (string.IsNullOrEmpty(name))
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "The property name is invalid");
+
+            if (string.IsNullOrEmpty(value))
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "The property value is invalid");
+
+            ret = Interop.SingleShot.SetValue(_handle, name, value);
+            if (ret != NNStreamerError.None)
+            {
+                if (ret == NNStreamerError.NotSupported)
+                    NNStreamer.CheckException(ret, "Failed to to set the property, the property name is not available.");
+                else
+                    NNStreamer.CheckException(ret, "Failed to to set the property, the property value is invalid.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the property value for the given model.
+        /// </summary>
+        /// <param name="name">The property name</param>
+        /// <returns>The property value</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported, or given property is not available.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public string GetValue(string name)
+        {
+            NNStreamerError ret = NNStreamerError.None;
+            IntPtr val = IntPtr.Zero;
+
+            NNStreamer.CheckNNStreamerSupport();
+
+            /* Check the argument */
+            if (string.IsNullOrEmpty(name))
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "The property name is invalid");
+
+            ret = Interop.SingleShot.GetValue(_handle, name, out val);
+            if (ret != NNStreamerError.None)
+            {
+                if (ret == NNStreamerError.NotSupported)
+                    NNStreamer.CheckException(ret, "Failed to to get the property, the property name is not available.");
+                else
+                    NNStreamer.CheckException(ret, "Failed to to get the property, the property value is invalid.");
+            }
+
+            return Interop.Util.IntPtrToString(val);
+        }
+
         /// <summary>
         /// Destructor of the Single instance.
         /// </summary>
