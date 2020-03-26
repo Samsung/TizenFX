@@ -75,6 +75,27 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of a SelectButton with a custom Adapter.
+        /// </summary>
+        /// <param name="adapter">A custom UI adapter for the SelectButton.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectButton(ButtonAdapter adapter) : base(adapter)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a SelectButton with style and a custom Adapter.
+        /// </summary>
+        /// <param name="buttonStyle">Create Button by style customized by user.</param>
+        /// <param name="adapter">Optional parameter to set a custom UI adapter for the Button.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectButton(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle, adapter)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

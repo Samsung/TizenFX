@@ -831,4 +831,96 @@ namespace Tizen.NUI.BaseComponents
         }
         #endregion Private
     }
+
+    /// <summary>
+    /// A struct containing frame informations for a LottieAnimationView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public readonly struct LottieFrameInfo
+    {
+        /// <summary>
+        /// The start frame of the lottie animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int StartFrame { get; }
+
+        /// <summary>
+        /// The end frame of the lottie animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int EndFrame { get; }
+
+        /// <summary>
+        /// Create LottieFrameInfo struct with animation range information
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LottieFrameInfo CreateAnimationRange(int startFrame, int endFrame)
+        {
+            return new LottieFrameInfo(startFrame, endFrame);
+        }
+
+        /// <summary>
+        /// Create LottieFrameInfo struct with still image information
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LottieFrameInfo CreateStillImage(int stillImageFrame)
+        {
+            return new LottieFrameInfo(stillImageFrame, stillImageFrame);
+        }
+
+        internal LottieFrameInfo(int startFrame, int endFrame)
+        {
+            StartFrame = startFrame;
+            EndFrame = endFrame;
+        }
+
+        internal bool IsStillImage()
+        {
+            return StartFrame == EndFrame;
+        }
+
+        internal void Show(LottieAnimationView lottieView)
+        {
+            if (!BeReadyToShow(lottieView))
+            {
+                return;
+            }
+
+            lottieView.SetMinMaxFrame(StartFrame, Math.Min(EndFrame, lottieView.TotalFrame - 1));
+            lottieView.CurrentFrame = StartFrame;
+
+            if (!IsStillImage())
+            {
+                lottieView.Play();
+            }
+        }
+
+        internal void ShowEndFrame(LottieAnimationView lottieView)
+        {
+            if (!BeReadyToShow(lottieView))
+            {
+                return;
+            }
+
+            lottieView.SetMinMaxFrame(StartFrame, Math.Min(EndFrame, lottieView.TotalFrame - 1));
+            lottieView.CurrentFrame = Math.Min(EndFrame, lottieView.TotalFrame - 1);
+        }
+
+        private bool BeReadyToShow(LottieAnimationView lottieView)
+        {
+            // Validate input lottieView
+            if (null== lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
+            {
+                return false;
+            }
+
+            // Stop if it was playing
+            if (lottieView.PlayState == LottieAnimationView.PlayStateType.Playing)
+            {
+                lottieView.Stop();
+            }
+
+            return true;
+        }
+    }
 }

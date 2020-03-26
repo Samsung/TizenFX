@@ -27,10 +27,8 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Switch : Button
     {
-        private const int aniTime = 100; // will be defined in const file later
         private ImageView trackImage;
         private ImageView thumbImage;
-        private Animation handlerAni = null;
         static Switch() { }
 
         /// <summary>
@@ -39,7 +37,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Switch() : base()
         {
-            Initialize();
+            Initialize(Adapter as SwitchAdapter);
         }
 
         /// <summary>
@@ -49,7 +47,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(string style) : base(style)
         {
-            Initialize();
+            Initialize(Adapter as SwitchAdapter);
         }
 
         /// <summary>
@@ -59,7 +57,27 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
-            Initialize();
+            Initialize(Adapter as SwitchAdapter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Switch with custom Adapter.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Switch(SwitchAdapter adapter) : base(adapter)
+        {
+            Initialize(adapter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Switch with style and a custom Adapter.
+        /// </summary>
+        /// <param name="switchStyle">Create Switch by style customized by user.</param>
+        /// <param name="adapter">Optional parameter to set a custom UI adapter for the Switch.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Switch(SwitchStyle switchStyle, SwitchAdapter adapter) : base(switchStyle, adapter)
+        {
+            Initialize(adapter);
         }
 
         /// <summary>
@@ -186,16 +204,6 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (null != handlerAni)
-                {
-                    if (handlerAni.State == Animation.States.Playing)
-                    {
-                        handlerAni.Stop();
-                    }
-                    handlerAni.Dispose();
-                    handlerAni = null;
-                }
-
                 Utility.Dispose(thumbImage);
                 Utility.Dispose(trackImage);
             }
@@ -263,31 +271,34 @@ namespace Tizen.NUI.Components
             return new SwitchStyle();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Get default UI Adapter for this class.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ButtonAdapter GetDefaultAdapter()
+        {
+            return new Switch.DefaultAdapter();
+        }
+
+        private void Initialize(SwitchAdapter adapter)
         {
             Style.IsSelectable = true;
-            handlerAni = new Animation(aniTime);
-            trackImage = new ImageView()
-            {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                Name = "SwitchBackgroundImage",
-            };
-            Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
 
-            thumbImage = new ImageView()
+            trackImage = new ImageView();
+            adapter?.OnCreateTrack(this, ref trackImage, Style.Track);
+            if (null != trackImage)
             {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                Name = "SwitchHandlerImage",
-            };
-            trackImage.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
+                Add(trackImage);
+                trackImage.ApplyStyle(Style.Track);
+            }
+
+            thumbImage = new ImageView();
+            adapter?.OnCreateThumb(this, ref thumbImage, Style.Thumb);
+            if (null != thumbImage)
+            {
+                Add(thumbImage);
+                thumbImage.ApplyStyle(Style.Thumb);
+            }
         }
 
         /// <summary>
@@ -307,16 +318,6 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
-            if (handlerAni.State == Animation.States.Playing)
-            {
-                handlerAni.Stop();
-            }
-            handlerAni.Clear();
-            handlerAni.AnimateTo(thumbImage, "PositionX", Size2D.Width - thumbImage.Size2D.Width - thumbImage.Position2D.X);
-            trackImage.Opacity = 0.5f; ///////need defined by UX
-            handlerAni.AnimateTo(trackImage, "Opacity", 1);
-            handlerAni.Play();
-
             if (SelectedEvent != null)
             {
                 SelectEventArgs eventArgs = new SelectEventArgs();
@@ -334,6 +335,51 @@ namespace Tizen.NUI.Components
             /// <summary> Select state of Switch </summary>
             /// <since_tizen> 6 </since_tizen>
             public bool IsSelected;
+        }
+
+        /// <summary>
+        /// DefaultAdapter class enables developers to write custom UI components in Switch and their behaviors on states by override methods.
+        /// </summary>
+        internal class DefaultAdapter : SwitchAdapter
+        {
+            private Animation selectAnimation;
+
+            public override void OnClick(Button button, Touch clickUp)
+            {
+                var thumb = ((Switch)button).thumbImage;
+                var trackWidth = ((Switch)button).trackImage.Size.Width;
+
+                if (null == thumb)
+                {
+                    return;
+                }
+
+                if (null == selectAnimation)
+                {
+                    selectAnimation = new Animation(100);
+                }
+                else if (selectAnimation.State == Animation.States.Playing)
+                {
+                    selectAnimation.Stop();
+                }
+
+                selectAnimation.Clear();
+                selectAnimation.AnimateTo(thumb, "PositionX", trackWidth - thumb.Size.Width - thumb.Position.X);
+                selectAnimation.Play();
+            }
+
+            public override void OnDisconnect(Button button)
+            {
+                if (null != selectAnimation)
+                {
+                    if (selectAnimation.State == Animation.States.Playing)
+                    {
+                        selectAnimation.Stop();
+                    }
+                    selectAnimation.Dispose();
+                    selectAnimation = null;
+                }
+            }
         }
     }
 }

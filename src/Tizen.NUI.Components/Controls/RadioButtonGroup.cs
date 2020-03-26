@@ -105,7 +105,7 @@ namespace Tizen.NUI.Components
             {
                 if (btn != null && btn != radio && btn.IsEnabled == true)
                 {
-                    btn.IsSelected = false;
+                    btn.UpdateSelectedStateByUI(false);
                 }
             }
         }

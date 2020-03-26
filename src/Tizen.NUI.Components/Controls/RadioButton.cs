@@ -58,6 +58,26 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
+
+        /// <summary>
+        /// Creates a new instance of a RadioButton with a custom Adapter.
+        /// </summary>
+        /// <param name="adapter">A custom UI adapter for the RadioButton.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RadioButton(ButtonAdapter adapter) : base(adapter)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of a RadioButton with style and a custon Adapter.
+        /// </summary>
+        /// <param name="buttonStyle">Create Button by style customized by user.</param>
+        /// <param name="adapter">Optional parameter to set a custom UI adapter for the RadioButton.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RadioButton(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle, adapter)
+        {
+        }
+
         /// <summary>
         /// Get RadioButtonGroup to which this selections belong.
         /// </summary>
@@ -86,7 +106,7 @@ namespace Tizen.NUI.Components
         {
             if (!IsSelected)
             {
-                IsSelected = true;
+                UpdateSelectedStateByUI(true);
             }
         }
     }

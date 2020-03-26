@@ -140,7 +140,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Button() : base()
         {
-            Initialize();
+            Initialize(GetDefaultAdapter());
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
-            Initialize();
+            Initialize(GetDefaultAdapter());
         }
 
         /// <summary>
@@ -160,7 +160,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize();
+            Initialize(GetDefaultAdapter() as ButtonAdapter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Button with a custom Adapter.
+        /// </summary>
+        /// <param name="adapter">A custom UI adapter for the Button.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Button(ButtonAdapter adapter) : base()
+        {
+            Initialize(adapter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Button with style and a custom Adapter.
+        /// </summary>
+        /// <param name="buttonStyle">Create Button by style customized by user.</param>
+        /// <param name="adapter">Optional parameter to set a custom UI adapter for the Button.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Button(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle)
+        {
+            Initialize(adapter);
         }
 
         /// <summary>
@@ -484,9 +505,19 @@ namespace Tizen.NUI.Components
             set
             {
                 isSelected = value;
-                UpdateState();
+                UpdateState(false);
             }
         }
+
+        internal void UpdateSelectedStateByUI(bool selected, Touch touchInfo = null)
+        {
+            if (Style.IsSelectable != null && Style.IsSelectable == true)
+            {
+                isSelected = selected;
+            }
+            UpdateState(true, touchInfo);
+        }
+
         /// <summary>
         /// Flag to decide enable or disable in Button.
         /// </summary>
@@ -511,7 +542,7 @@ namespace Tizen.NUI.Components
             set
             {
                 isEnabled = value;
-                UpdateState();
+                UpdateState(false);
             }
         }
 
@@ -569,6 +600,22 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// The UI Adapter.
+        /// A custom UI Adapter can be set from the constructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ButtonAdapter Adapter { get; set; }
+
+        /// <summary>
+        /// Get default UI Adapter for this class.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ButtonAdapter GetDefaultAdapter()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Dispose Button and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -582,6 +629,8 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                Adapter?.OnDisconnect(this);
+
                 if (buttonIcon != null)
                 {
                     Utility.Dispose(buttonIcon);
@@ -612,7 +661,7 @@ namespace Tizen.NUI.Components
                 if (key.KeyPressedName == "Return")
                 {
                     isPressed = true;
-                    UpdateState();
+                    UpdateState(true);
                     if(isEnabled)
                     {
                         ClickEventArgs eventArgs = new ClickEventArgs();
@@ -625,11 +674,7 @@ namespace Tizen.NUI.Components
                 if (key.KeyPressedName == "Return")
                 {
                     isPressed = false;
-                    if (Style.IsSelectable != null && Style.IsSelectable == true)
-                    {
-                        isSelected = !isSelected;
-                    }
-                    UpdateState();
+                    UpdateSelectedStateByUI(!isSelected);
                 }
             }
             return base.OnKey(key);
@@ -644,7 +689,7 @@ namespace Tizen.NUI.Components
         public override void OnFocusGained()
         {
             base.OnFocusGained();
-            UpdateState();
+            UpdateState(false);
         }
 
         /// <summary>
@@ -656,26 +701,9 @@ namespace Tizen.NUI.Components
         public override void OnFocusLost()
         {
             base.OnFocusLost();
-            UpdateState();
+            UpdateState(false);
         }
 
-        /// <summary>
-        /// Tap gesture event callback.
-        /// </summary>
-        /// <param name="source">Source which recieved touch event.</param>
-        /// <param name="e">Tap gesture event argument.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            if (isEnabled)
-            {
-                ClickEventArgs eventArgs = new ClickEventArgs();
-                OnClick(eventArgs);
-                base.OnTapGestureDetected(source, e);
-            }
-        }
         /// <summary>
         /// Called after a touch event is received by the owning view.<br />
         /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
@@ -694,20 +722,29 @@ namespace Tizen.NUI.Components
             {
                 case PointStateType.Down:
                     isPressed = true;
-                    UpdateState();
+                    UpdateState(true, touch);
                     return true;
                 case PointStateType.Interrupted:
                     isPressed = false;
-                    UpdateState();
+                    UpdateState(false);
                     return true;
                 case PointStateType.Up:
+                {
+                    bool clicked = isPressed && isEnabled;
+
                     isPressed = false;
-                    if (Style.IsSelectable != null && Style.IsSelectable == true)
+
+                    UpdateSelectedStateByUI(!isSelected, touch);
+
+                    if (clicked)
                     {
-                        isSelected = !isSelected;
+                        ClickEventArgs eventArgs = new ClickEventArgs();
+                        OnClick(eventArgs);
+                        Adapter?.OnClick(this, touch);
                     }
-                    UpdateState();
+
                     return true;
+                }
                 default:
                     break;
             }
@@ -727,31 +764,9 @@ namespace Tizen.NUI.Components
 
             if (null != buttonStyle)
             {
-                if (null == overlayImage)
-                {
-                    overlayImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-                    this.Add(overlayImage);
-                }
-
-                if (null == buttonText)
-                {
-                    buttonText = new TextLabel();
-                    this.Add(buttonText);
-                }
-
-                if (null == buttonIcon)
-                {
-                    buttonIcon = new ImageView();
-                    this.Add(buttonIcon);
-                }
-
-                overlayImage.ApplyStyle(buttonStyle.Overlay);
-                buttonText.ApplyStyle(buttonStyle.Text);
-                buttonIcon.ApplyStyle(buttonStyle.Icon);
+                overlayImage?.ApplyStyle(buttonStyle.Overlay);
+                buttonText?.ApplyStyle(buttonStyle.Text);
+                buttonIcon?.ApplyStyle(buttonStyle.Icon);
             }
         }
 
@@ -771,15 +786,18 @@ namespace Tizen.NUI.Components
         {
             base.OnUpdate();
             UpdateUIContent();
+            Adapter?.OnRelayout(this);
         }
 
         /// <summary>
         /// Update Button State.
         /// </summary>
+        /// <param name="byUI">True if the state has changed by user interation. (e.g. touch, key)</param>
+        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UpdateState()
+        protected void UpdateState(bool byUI, Touch touchInfo = null)
         {
             ControlStates sourceState = ControlState;
             ControlStates targetState;
@@ -805,6 +823,8 @@ namespace Tizen.NUI.Components
                     CurrentState = targetState
                 };
                 stateChangeHander?.Invoke(this, e);
+
+                Adapter?.OnControlStateChanged(this, sourceState, targetState, byUI, touchInfo);
             }
         }
 
@@ -812,11 +832,62 @@ namespace Tizen.NUI.Components
         /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        private void Initialize()
+        private void Initialize(ButtonAdapter adapter)
         {
+            ComposeSubComponents(adapter);
+
             if (null == Style.IconRelativeOrientation) Style.IconRelativeOrientation = IconOrientation.Left;
-            UpdateState();
+            UpdateState(false);
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            if (null != buttonIcon)
+            {
+                buttonIcon.ResourceLoaded += OnResourceLoaded;
+            }
+        }
+
+        /// <summary>
+        /// Compose sub components in Button
+        /// </summary>
+        private void ComposeSubComponents(ButtonAdapter adapter)
+        {
+            var currentStyle = Style;
+            Adapter = adapter;
+
+            // Create overlayImage
+            overlayImage = new ImageView();
+            adapter?.OnCreateOverlayImage(this, ref overlayImage, currentStyle?.Overlay);
+            if (null != overlayImage)
+            {
+                Add(overlayImage);
+                overlayImage.ApplyStyle(currentStyle?.Overlay);
+            }
+
+            // Create icon
+            buttonIcon = new ImageView();
+            adapter?.OnCreateIcon(this, ref buttonIcon, currentStyle?.Icon);
+            if (null != buttonIcon)
+            {
+                Add(buttonIcon);
+                buttonIcon.ApplyStyle(currentStyle?.Icon);
+            }
+
+            // Create text
+            buttonText = new TextLabel();
+            adapter?.OnCreateText(this, ref buttonText, currentStyle?.Text);
+            if (null != buttonText)
+            {
+                Add(buttonText);
+                buttonText.ApplyStyle(currentStyle?.Text);
+            }
+        }
+
+        private void OnResourceLoaded(object target, ImageView.ResourceLoadedEventArgs args)
+        {
+            if (args.Status == ResourceLoadingStatusType.Ready)
+            {
+                MeasureText();
+            }
         }
 
         /// <summary>
@@ -1025,5 +1096,81 @@ namespace Tizen.NUI.Components
             public ControlStates CurrentState;
         }
 
+        /// <summary>
+        /// OverlayAnimationAdapter class is a customized ButtonAdapter that play blinking animation on Button pressed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class OverlayAnimationAdapter : ButtonAdapter
+        {
+            private ImageView overlayImage;
+            private Animation pressAnimation;
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public override void OnCreateOverlayImage(Button button, ref ImageView overlayImage, ImageViewStyle style)
+            {
+                this.overlayImage = overlayImage;
+                overlayImage.Hide();
+            }
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public override void OnControlStateChanged(Button button, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
+            {
+                if (currentState != ControlStates.Pressed || null == overlayImage)
+                {
+                    return;
+                }
+
+                if (null == pressAnimation)
+                {
+                    var keyFrames = new KeyFrames();
+                    keyFrames.Add(0.0f, 0.0f);
+                    keyFrames.Add(0.25f, 1.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
+                    keyFrames.Add(1.0f, 0.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
+
+                    pressAnimation = new Animation(400);
+                    pressAnimation.EndAction = Animation.EndActions.StopFinal;
+                    pressAnimation.AnimateBetween(overlayImage, "Opacity", keyFrames);
+                    pressAnimation.AnimateTo(overlayImage, "Scale", new Vector3(1, 1, 1), 0, 300, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
+                    pressAnimation.Finished += OnPressAnimationFinished;
+                }
+
+                if (pressAnimation.State == Animation.States.Playing)
+                {
+                    pressAnimation.Stop();
+                    overlayImage.Hide();
+                }
+
+                overlayImage.Opacity = 0.0f;
+                overlayImage.CornerRadius = button.CornerRadius;
+                overlayImage.Background = button.Background;
+                overlayImage.Size = button.Size;
+                overlayImage.Scale = new Vector3(0.86f, 0.86f, 1);
+                overlayImage.Show();
+
+                pressAnimation.Play();
+            }
+
+            private void OnPressAnimationFinished(object sender, EventArgs e)
+            {
+                overlayImage?.Hide();
+            }
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public override void OnDisconnect(Button button)
+            {
+                if (null != pressAnimation)
+                {
+                    if (pressAnimation.State == Animation.States.Playing)
+                    {
+                        pressAnimation.Stop();
+                    }
+                    pressAnimation.Dispose();
+                    pressAnimation = null;
+                }
+            }
+        }
     }
 }
