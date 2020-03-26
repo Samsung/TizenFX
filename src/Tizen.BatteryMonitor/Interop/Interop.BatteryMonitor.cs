@@ -28,19 +28,19 @@ internal static partial class Interop
         [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_destroy")]
         internal static extern int Destroy(IntPtr bmHandle);
 
-        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_usage_for_resource_id")]
-        internal static extern int GetUsagePercentForResource(IntPtr BMHandle, ResourceType rtype, out int batteryUsage);
+        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_mah_usage_for_resource_id_from_handle")]
+        internal static extern int GetPowerUsageForResource(IntPtr BMHandle, ResourceType rtype, out double batteryUsage);
 
-        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_usage_by_app_id_for_all_resource_id")]
-        internal static extern int GetUsagePercentByAppForAllResource(string appID, DurationType dtype, IntPtr bmHandle);
+        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_usage_handle_by_app_id_for_all_resource_id")]
+        internal static extern int GetPowerUsageByAppForAllResource(string appID, long stime, long etime, IntPtr bmHandle);
 
-        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_usage_by_app_id_for_resource_id")]
-        internal static extern int GetUsagePercentByAppForResource(string appID, ResourceType rtype, DurationType dtype, out int batteryUsage);
+        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_mah_usage_by_app_id_for_resource_id")]
+        internal static extern int GetPowerUsageByAppForResource(string appID, ResourceType rtype, long stime, long etime, out double batteryUsage);
 
-        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_usage_by_app_id")]
-        internal static extern int GetTotalUsagePercentByApp(string appID, DurationType dtype, out int batteryUsage);
+        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_mah_usage_by_app_id")]
+        internal static extern int GetTotalPowerUsageByApp(string appID, long stime, long etime, out double batteryUsage);
 
-        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_usage_by_resource_id")]
-        internal static extern int GetTotalUsagePercentByResource(ResourceType rtype, DurationType dtype, out int batteryUsage);
+        [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_mah_usage_by_resource_id")]
+        internal static extern int GetTotalPowerUsageByResource(ResourceType rtype, long stime, long etime, out double batteryUsage);
     }
 }

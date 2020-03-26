@@ -30,54 +30,26 @@ namespace Tizen.BatteryMonitor
         /// <summary>
         /// Wi-Fi.
         /// </summary>
-        Wifi,
+        Wifi = 1,
 
         /// <summary>
         /// CPU.
         /// </summary>
-        Cpu,
+        Cpu = 2,
 
         /// <summary>
         /// Display.
         /// </summary>
-        Display,
+        Display = 3,
 
         /// <summary>
         /// Network.
         /// </summary>
-        DeviceNetwork,
+        DeviceNetwork = 4,
 
         /// <summary>
         /// GPS.
         /// </summary>
-        GpsSensor,
-
-        /// <summary>
-        /// Heart Rate Monitor.
-        /// </summary>
-        HrmSensor,
-
-        /// <summary>
-        /// Battery.
-        /// </summary>
-        Battery
+        Gps = 5
     }
-
-    /// <summary>
-    /// Enumeration for feature data collection period.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public enum DurationType {
-
-        /// <summary>
-        /// Set the period from a day ago to now.
-        /// </summary>
-        Day = 0,
-
-        /// <summary>
-        /// Set the period from a week ago to now.
-        /// </summary>
-        Week
-    }
-
 }
