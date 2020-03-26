@@ -8,6 +8,7 @@
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
+%define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0
@@ -142,6 +143,11 @@ GetFileList() {
       echo "%{DOTNET_ASSEMBLY_PATH}/ref/$f"
     fi
   done
+  for f in $(cat packaging/PreloadFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1); do
+    if [ -f preload/$f ]; then
+      echo "%{DOTNET_PRELOAD_PATH}/$f"
+    fi
+  done
 }
 
 GetFileList common > common.filelist
@@ -156,6 +162,7 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
 mkdir -p %{buildroot}%{DOTNET_TOOLS_PATH}
+mkdir -p %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install Runtime Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -180,6 +187,9 @@ install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 # Install Tools
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
+
+# Install Preload
+install -p -m 644 preload/* %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
