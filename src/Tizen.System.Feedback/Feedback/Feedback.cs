@@ -208,7 +208,7 @@ namespace Tizen.System
             Interop.Feedback.FeedbackError res;
 
             if (!Pattern.TryGetValue(pattern, out number))
-                throw new ArgumentException("Invalid Arguments");
+                throw new ArgumentException($"Not supported pattern string : {pattern}", nameof(pattern));
 
             res = (Interop.Feedback.FeedbackError)Interop.Feedback.IsSupportedPattern((Interop.Feedback.FeedbackType)type, number, out supported);
 
@@ -263,7 +263,7 @@ namespace Tizen.System
             Interop.Feedback.FeedbackError res;
 
             if (!Pattern.TryGetValue(pattern, out number))
-                throw new ArgumentException("Invalid Arguments");
+                throw new ArgumentException($"Not supported pattern string : {pattern}", nameof(pattern));
 
             if (type == FeedbackType.All)
                 res = (Interop.Feedback.FeedbackError)Interop.Feedback.Play(number);
