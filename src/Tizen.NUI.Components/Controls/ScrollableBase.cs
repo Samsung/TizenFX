@@ -569,16 +569,7 @@ namespace Tizen.NUI.Components
             if (animate)
             {
                 // Calculate scroll animaton duration
-                float scrollDistance = 0.0f;
-                if (childCurrentPosition < childTargetPosition)
-                {
-                    scrollDistance = Math.Abs(childCurrentPosition + childTargetPosition);
-                }
-                else
-                {
-                    scrollDistance = Math.Abs(childCurrentPosition - childTargetPosition);
-                }
-
+                float scrollDistance = Math.Abs(displacement);
                 int duration = (int)((320*FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
 
