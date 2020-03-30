@@ -88,7 +88,6 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 string url = (string)newValue;
-                view.ClearBackground();
 
                 if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
                 {
