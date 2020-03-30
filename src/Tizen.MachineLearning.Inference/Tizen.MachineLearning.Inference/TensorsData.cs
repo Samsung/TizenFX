@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -36,8 +36,9 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="handle">The handle of tensors data.</param>
         /// <param name="info">The handle of tensors info. (Default: null)</param>
         /// <param name="isFetch">The boolean value for fetching the data (Default: false)</param>
+        /// <param name="hasOwnership">The boolean value for automatic disposal (Default: true)</param>
         /// <since_tizen> 6 </since_tizen>
-        private TensorsData(IntPtr handle, TensorsInfo info, bool isFetch)
+        private TensorsData(IntPtr handle, TensorsInfo info, bool isFetch = false, bool hasOwnership = true)
         {
             NNStreamer.CheckNNStreamerSupport();
             NNStreamerError ret = NNStreamerError.None;
@@ -78,6 +79,9 @@ namespace Tizen.MachineLearning.Inference
                     _dataList.Add(bufData);
                 }
             }
+
+            /* If it created as DataReceivedEventArgs, do not dispose. */
+            _disposed = !hasOwnership;
         }
 
         /// <summary>
@@ -231,21 +235,16 @@ namespace Tizen.MachineLearning.Inference
             }
         }
 
-        internal static TensorsData CreateFromNativeHandle(IntPtr dataHandle, IntPtr infoHandle, bool isFetch)
+        internal static TensorsData CreateFromNativeHandle(IntPtr dataHandle, IntPtr infoHandle, bool isFetch = false, bool hasOwnership = true)
         {
-            TensorsData retTensorsData = null;
+            TensorsInfo info = null;
 
-            if (infoHandle == IntPtr.Zero)
+            if (infoHandle != IntPtr.Zero)
             {
-                retTensorsData = new TensorsData(dataHandle, null, isFetch);
-            }
-            else
-            {
-                TensorsInfo info = TensorsInfo.ConvertTensorsInfoFromHandle(infoHandle);
-                retTensorsData = new TensorsData(dataHandle, info, isFetch);
+                info = TensorsInfo.ConvertTensorsInfoFromHandle(infoHandle);
             }
 
-            return retTensorsData;
+            return new TensorsData(dataHandle, info, isFetch, hasOwnership);
         }
 
         private void CheckIndex(int index)
