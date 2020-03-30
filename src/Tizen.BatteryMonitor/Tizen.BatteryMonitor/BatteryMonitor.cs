@@ -31,7 +31,6 @@ namespace Tizen.BatteryMonitor
     /// <since_tizen> 6 </since_tizen>
     public sealed class BatteryMonitor : IDisposable
     {
-        internal IntPtr bmHandle;
         private static volatile BatteryMonitor _instance = null;
         private static readonly object _syncLock = new object();
         private bool _disposed = false;
@@ -59,7 +58,6 @@ namespace Tizen.BatteryMonitor
                 {
                     if (_instance == null) {
                         _instance = new BatteryMonitor();
-                        _instance.CreateBatteryMonitorDataHandle();
                     }
                     return _instance;
                 }
@@ -73,15 +71,6 @@ namespace Tizen.BatteryMonitor
         ~BatteryMonitor()
         {
             Dispose(false);
-        }
-
-        internal void CreateBatteryMonitorDataHandle() {
-            int ret = Interop.BatteryMonitor.Create(out bmHandle);
-            if (((BatteryMonitorError)ret != BatteryMonitorError.None))
-            {
-                Log.Error(Globals.LogTag, "Error Creating Battery Monitor Data Handle" + (BatteryMonitorError)ret);
-                throw BatteryMonitorErrorFactory.ThrowBatteryMonitorException(ret);
-            }
         }
 
         internal double GetPowerUsageForResource(IntPtr BMHandle, ResourceType rtype)
@@ -107,6 +96,7 @@ namespace Tizen.BatteryMonitor
         /// <returns>Returns the battery consumption in mAh(milli-Ampere hour) for the resources specified by the application in custom interval.</returns>
         public List<double> GetPowerUsageByAppForAllResource(string appID, long stime, long etime, List<ResourceType> rtypes)
         {
+            IntPtr bmHandle = IntPtr.Zero;
             List<double> batteryUsage = new List<double>();
             int ret = Interop.BatteryMonitor.GetPowerUsageByAppForAllResource(appID, stime, etime, bmHandle);
             if (((BatteryMonitorError)ret != BatteryMonitorError.None))
@@ -118,7 +108,12 @@ namespace Tizen.BatteryMonitor
             foreach(ResourceType type in rtypes) {
                 batteryUsage.Add(_instance.GetPowerUsageForResource(bmHandle,type));
             }
-
+            ret = Interop.BatteryMonitor.Destroy(bmHandle);
+            if (((BatteryMonitorError)ret != BatteryMonitorError.None))
+            {
+                Log.Error(Globals.LogTag, "Error in Destroy handle, " + (BatteryMonitorError)ret);
+                throw BatteryMonitorErrorFactory.ThrowBatteryMonitorException(ret);
+            }
             return batteryUsage;
         }
 
@@ -161,7 +156,6 @@ namespace Tizen.BatteryMonitor
                 throw BatteryMonitorErrorFactory.ThrowBatteryMonitorException(ret);
             }
             return batteryUsage;
-
         }
 
         /// <summary>
@@ -194,20 +188,9 @@ namespace Tizen.BatteryMonitor
                 return;
 
             if (disposing) {
-                DestroyHandle();
                 _instance = null;
             }
             _disposed = true;
-        }
-
-        private void DestroyHandle()
-        {
-            int ret = Interop.BatteryMonitor.Destroy(bmHandle);
-            if (((BatteryMonitorError)ret != BatteryMonitorError.None))
-            {
-                Log.Error(Globals.LogTag, "Error in Destroy handle, " + (BatteryMonitorError)ret);
-                throw BatteryMonitorErrorFactory.ThrowBatteryMonitorException(ret);
-            }
         }
 
         /// <summary>

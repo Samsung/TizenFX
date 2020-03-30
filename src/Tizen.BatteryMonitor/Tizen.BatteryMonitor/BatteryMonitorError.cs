@@ -58,22 +58,22 @@ namespace Tizen.BatteryMonitor
         /// <summary>
         /// Related record does not exist.
         /// </summary>
-        RecordNotFound = 0x9100000 | 0x01,
+        RecordNotFound = -0x03060000 | 0x01,
 
         /// <summary>
         /// DB operation failed .
         /// </summary>
-        DBFailed = 0x9100000 | 0x02,
+        DBFailed = -0x03060000 | 0x02,
 
         /// <summary>
         /// DB is not connected.
         /// </summary>
-        DBNotOpened = 0x9100000 | 0x03,
+        DBNotOpened = -0x03060000 | 0x03,
 
         /// <summary>
         /// Internal error for generic use.
         /// </summary>
-        Internal = 0x9100000 | 0x04
+        Internal = -0x03060000 | 0x04
     }
 
     internal static class BatteryMonitorErrorFactory

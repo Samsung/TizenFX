@@ -43,13 +43,18 @@ namespace Tizen.BatteryMonitor
         Display = 3,
 
         /// <summary>
-        /// Network.
+        /// Device Network.
         /// </summary>
         DeviceNetwork = 4,
 
         /// <summary>
-        /// GPS.
+        /// GPS Sensor.
         /// </summary>
-        Gps = 5
+        Gps = 5,
+
+        /// <summary>
+        /// Use for iterating over enums only.
+        /// </summary>
+        Max
     }
 }
