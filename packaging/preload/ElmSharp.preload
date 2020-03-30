@@ -1,0 +1,44 @@
+###########################################
+## AssemblyName.dll TypeName             ##
+## AssemblyName.dll TypeName.Preload()   ##
+## The methods must not have parameters. ##
+###########################################
+ElmSharp.dll ElmSharp.Box
+ElmSharp.dll ElmSharp.Button
+ElmSharp.dll ElmSharp.Check
+ElmSharp.dll ElmSharp.Color
+ElmSharp.dll ElmSharp.Conformant
+ElmSharp.dll ElmSharp.DateTimeSelector
+ElmSharp.dll ElmSharp.DisplayRotation
+ElmSharp.dll ElmSharp.EdjeObject
+ElmSharp.dll ElmSharp.EdjeObject+SignalData
+ElmSharp.dll ElmSharp.EdjeTextPartObject
+ElmSharp.dll ElmSharp.Elementary
+ElmSharp.dll ElmSharp.Entry
+ElmSharp.dll ElmSharp.EvasKeyEventArgs
+ElmSharp.dll ElmSharp.EvasMap
+ElmSharp.dll ElmSharp.EvasObject
+ElmSharp.dll ElmSharp.FocusDirection
+ElmSharp.dll ElmSharp.GenList
+ElmSharp.dll ElmSharp.GestureLayer+GestureType
+ElmSharp.dll ElmSharp.IInvalidatable
+ElmSharp.dll ElmSharp.Image
+ElmSharp.dll ElmSharp.ItemObject+SignalData
+ElmSharp.dll ElmSharp.Label
+ElmSharp.dll ElmSharp.Layout
+ElmSharp.dll ElmSharp.Naviframe
+ElmSharp.dll ElmSharp.NaviItem
+ElmSharp.dll ElmSharp.Point3D
+ElmSharp.dll ElmSharp.ProgressBar
+ElmSharp.dll ElmSharp.Radio
+ElmSharp.dll ElmSharp.Rect
+ElmSharp.dll ElmSharp.Rectangle
+ElmSharp.dll ElmSharp.Scroller
+ElmSharp.dll ElmSharp.Size
+ElmSharp.dll ElmSharp.Slider
+ElmSharp.dll ElmSharp.Spinner
+ElmSharp.dll ElmSharp.Widget
+ElmSharp.dll ElmSharp.Window
+ElmSharp.dll ElmSharp.WrapType
+ElmSharp.dll Interop
+ElmSharp.dll ElmSharp.Window.Preload()
