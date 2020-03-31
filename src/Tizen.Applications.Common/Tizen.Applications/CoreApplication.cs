@@ -267,7 +267,7 @@ namespace Tizen.Applications
                 currentCultureInfo = GetFallbackCultureInfo(pLocale);
             }
 
-            CultureInfo.CurrentCulture = currentCultureInfo;
+            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = currentCultureInfo;
         }
 
         private CultureInfo GetCultureInfo(string locale)
