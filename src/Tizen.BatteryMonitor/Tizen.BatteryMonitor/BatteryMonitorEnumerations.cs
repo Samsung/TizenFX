@@ -20,7 +20,7 @@ namespace Tizen.BatteryMonitor
     /// <summary>
     /// Enumeration for battery consuming features.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
+    /// <since_tizen> 7 </since_tizen>
     public enum ResourceType {
         /// <summary>
         /// Bluetooth Low Energy.

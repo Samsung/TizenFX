@@ -22,8 +22,8 @@ namespace Tizen.BatteryMonitor
     /// <summary>
     /// Battery Monitor error codes.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public enum BatteryMonitorError
+    /// <since_tizen> 7 </since_tizen>
+    internal enum BatteryMonitorError
     {
         /// <summary>
         /// Successful.

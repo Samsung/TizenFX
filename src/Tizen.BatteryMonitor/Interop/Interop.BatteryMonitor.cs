@@ -35,9 +35,9 @@ internal static partial class Interop
         internal static extern int GetPowerUsageByAppForResource(string appID, ResourceType rtype, long stime, long etime, out double batteryUsage);
 
         [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_power_usage_by_app_id")]
-        internal static extern int GetTotalPowerUsageByApp(string appID, long stime, long etime, out double batteryUsage);
+        internal static extern int GetTotalPowerUsage(string appID, long stime, long etime, out double batteryUsage);
 
         [DllImport(Libraries.BatteryMonitor, EntryPoint = "battery_monitor_get_total_power_usage_by_resource_id")]
-        internal static extern int GetTotalPowerUsageByResource(ResourceType rtype, long stime, long etime, out double batteryUsage);
+        internal static extern int GetTotalPowerUsage(ResourceType rtype, long stime, long etime, out double batteryUsage);
     }
 }
