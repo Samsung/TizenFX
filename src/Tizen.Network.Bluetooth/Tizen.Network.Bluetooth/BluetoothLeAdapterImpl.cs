@@ -201,6 +201,18 @@ namespace Tizen.Network.Bluetooth
             return ret;
         }
 
+        internal int SetScanMode(BluetoothLeScanMode mode)
+        {
+            int ret = (int)BluetoothError.None;
+
+            ret = Interop.Bluetooth.SetLeScanMode(mode);
+            if (ret != (int)BluetoothError.None) {
+                Log.Error (Globals.LogTag, "Failed to set LE scan mode - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException (ret);
+            }
+            return ret;
+        }
+
         internal IList<string> GetLeScanResultServiceUuids(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
             if (!BluetoothAdapter.IsBluetoothEnabled || !Globals.IsInitialize)

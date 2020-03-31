@@ -21,6 +21,40 @@ using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Network.Bluetooth {
+    /// <summary>
+    /// This class is used to control the Bluetooth LE Adapter.<br/>
+    /// </summary>
+    /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 7 </since_tizen>
+    static public class BluetoothLeAdapter
+    {
+        /// <summary>
+        /// Sets the Bluetooth LE scan mode.
+        /// </summary>
+        /// <remarks>
+        /// The Bluetooth must be enabled.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// or the operation is failed.</exception>
+        /// <since_tizen> 7 </since_tizen>
+        static public void SetScanMode(BluetoothLeScanMode mode)
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothLeImplAdapter.Instance.SetScanMode(mode);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to set scan mode, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+    }
 
     /// <summary>
     /// This is the BluetoothLeAdvertiser class. It handles the LE advertising operation amd callback.
