@@ -20,10 +20,10 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The ILottieAdapter provides interfaces that will be needed by a Button to play Lottie animation when state changed.
+    /// The ILottieExtension provides interfaces that will be needed by a Button to play Lottie animation when state changed.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface ILottieButtonAdapter
+    public interface ILottieButtonExtension
     {
         /// <summary>
         /// Give a Lottie frame information on Button created.

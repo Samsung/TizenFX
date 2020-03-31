@@ -20,28 +20,10 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// LottieButtonAdapter is a ButtonAdapter class that uses Lottie image for a Button icon.
+    /// LottieSwitchExtension is a SwitchExtension class that uses Lottie image for a Switch icon.
     /// </summary>
-    /// <remarks>
-    /// You can make a custom LottieButton by overriding methods.
-    /// </remarks>
-    /// <example>
-    /// <code>
-    /// public class CustomLottieButton : LottieButtonAdapter
-    /// {
-    ///     public CustomLottieButton(string url) : base(url)
-    ///     {
-    ///     }
-    /// 
-    ///     public override LottieFrameInfo? GetFrameInfoOnClick(bool isSelected)
-    ///     {
-    ///         return LottieFrameInfo.CreateAnimationRange(0, 30);
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class LottieButtonAdapter : ButtonAdapter, ILottieButtonAdapter
+    public abstract class LottieSwitchExtension : SwitchExtension, ILottieButtonExtension
     {
         /// <summary>
         /// The Lottie view that will be used as an icon part in a Button.
@@ -50,10 +32,10 @@ namespace Tizen.NUI.Components
         protected LottieAnimationView LottieView { get; set; }
 
         /// <summary>
-        /// A constructor that creates LottieButtonAdapter with a specified Lottie resource URL
+        /// A constructor that creates LottieSwitchExtension with a specified Lottie resource URL
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LottieButtonAdapter(string resourceURL) : base()
+        public LottieSwitchExtension(string resourceURL) : base()
         {
             LottieView = new LottieAnimationView();
             LottieView.URL = resourceURL;
@@ -73,9 +55,23 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnControlStateChanged(Button button, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
+        public override void OnCreateTrack(Switch switchButton, ref ImageView track, ImageViewStyle style)
         {
-            HandleStateChange(currentState, button.IsSelected, byUI, this, LottieView);
+            track = null;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnCreateThumb(Switch switchButton, ref ImageView thumb, ImageViewStyle style)
+        {
+            thumb = null;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnControlStateChanged(Button.ButtonExposer buttonExposer, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
+        {
+            LottieButtonExtension.HandleStateChange(currentState, buttonExposer.Button.IsSelected, byUI, this, LottieView);
         }
 
         /// <inheritdoc/>
@@ -104,36 +100,6 @@ namespace Tizen.NUI.Components
         public virtual LottieFrameInfo? GetFrameInfoOnPress(bool isSelected)
         {
             return null;
-        }
-
-        static internal void HandleStateChange(ControlStates state, bool isSelected, bool byUser, ILottieButtonAdapter adapter, LottieAnimationView lottieView)
-        {
-            switch (state)
-            {
-                case ControlStates.Normal:
-                case ControlStates.Focused:
-                case ControlStates.Selected:
-                case ControlStates.SelectedFocused:
-                    if (byUser)
-                    {
-                        adapter.GetFrameInfoOnClick(isSelected)?.Show(lottieView);
-                    }
-                    else
-                    {
-                        adapter.GetFrameInfoOnClick(isSelected)?.ShowEndFrame(lottieView);
-                    }
-                    break;
-
-                case ControlStates.Disabled:
-                case ControlStates.DisabledFocused:
-                case ControlStates.DisabledSelected:
-                    adapter.GetFrameInfoOnDisable(isSelected)?.Show(lottieView);
-                    break;
-
-                case ControlStates.Pressed:
-                    adapter.GetFrameInfoOnPress(isSelected)?.Show(lottieView);
-                    break;
-            }
         }
     }
 }

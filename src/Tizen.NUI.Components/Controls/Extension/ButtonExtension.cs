@@ -20,15 +20,15 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The ButtonAdapter class enables developers to write custom UI components in a Button and their behaviors on various states by override methods.
+    /// The ButtonExtension class allows developers to access the Button's components and extend their behavior in various states.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class ButtonAdapter
+    public abstract class ButtonExtension
     {
         /// <summary>
         /// Called immediately after the Button creates the text part.
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
+        /// <param name="button">The Button instance that the extension currently applied to.</param>
         /// <param name="text">The created Button's text part.</param>
         /// <param name="style">The initial style that will be appled to Button's text part.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -39,7 +39,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Called immediately after the Button creates the icon part.
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
+        /// <param name="button">The Button instance that the extension currently applied to.</param>
         /// <param name="icon">The created Button's icon part.</param>
         /// <param name="style">The initial style that will be appled to Button's icon part.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Called immediately after the Button creates the overlay image part.
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
+        /// <param name="button">The Button instance that the extension currently applied to.</param>
         /// <param name="overlayImage">The created Button's overlayImage part.</param>
         /// <param name="style">The initial style that will be appled to Button's overlay image part.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -61,41 +61,41 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Describes actions on Button's ControlStates changed.
         /// </summary>
-        /// <param name="button">The Control instance that the adapter currently applied to.</param>
+        /// <param name="buttonExposer">The Button exposer to access to Button's components.</param>
         /// <param name="previousState">The previous contol state of the Button.</param>
         /// <param name="currentState">The current control state of the Button.</param>
         /// <param name="byUI">True if the state has changed by user interaction. (e.g. touch, key)</param>
         /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnControlStateChanged(Button button, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
+        public virtual void OnControlStateChanged(Button.ButtonExposer buttonExposer, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
         {
         }
 
         /// <summary>
         /// Called when the Button is Clicked by a user
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
-        /// <param name="clickUp">The touch information on click upButton instance that the adapter currently applied to.</param>
+        /// <param name="buttonExposer">The Button exposer to access to Button's components.</param>
+        /// <param name="clickUp">The touch information on click up.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnClick(Button button, Touch clickUp)
+        public virtual void OnClick(Button.ButtonExposer buttonExposer, Touch clickUp)
         {
         }
 
         /// <summary>
         /// Called after the size negotiation has been finished for the attached Control.
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
+        /// <param name="buttonExposer">The Button exposer to access to Button's components.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnRelayout(Button button)
+        public virtual void OnRelayout(Button.ButtonExposer buttonExposer)
         {
         }
 
         /// <summary>
-        /// Called when the attached Control is trying to disconnect the relation with the adapter.
+        /// Called when the attached Control is trying to disconnect the relation with the extension.
         /// </summary>
-        /// <param name="button">The Button instance that the adapter currently applied to.</param>
+        /// <param name="buttonExposer">The Button exposer to access to Button's components.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnDisconnect(Button button)
+        public virtual void OnDisconnect(Button.ButtonExposer buttonExposer)
         {
         }
   }

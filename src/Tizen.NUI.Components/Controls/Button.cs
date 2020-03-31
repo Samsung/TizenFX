@@ -140,7 +140,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Button() : base()
         {
-            Initialize(GetDefaultAdapter());
+            Initialize(GetDefaultExtension());
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
-            Initialize(GetDefaultAdapter());
+            Initialize(GetDefaultExtension());
         }
 
         /// <summary>
@@ -160,28 +160,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize(GetDefaultAdapter() as ButtonAdapter);
+            Initialize(GetDefaultExtension() as ButtonExtension);
         }
 
         /// <summary>
-        /// Creates a new instance of a Button with a custom Adapter.
+        /// Creates a new instance of a Button with a custom extension.
         /// </summary>
-        /// <param name="adapter">A custom UI adapter for the Button.</param>
+        /// <param name="extension">A custom extension for the Button.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button(ButtonAdapter adapter) : base()
+        public Button(ButtonExtension extension) : base()
         {
-            Initialize(adapter);
+            Initialize(extension);
         }
 
         /// <summary>
-        /// Creates a new instance of a Button with style and a custom Adapter.
+        /// Creates a new instance of a Button with style and a custom extension.
         /// </summary>
         /// <param name="buttonStyle">Create Button by style customized by user.</param>
-        /// <param name="adapter">Optional parameter to set a custom UI adapter for the Button.</param>
+        /// <param name="extension">A custom extension for the Button.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle)
+        public Button(ButtonStyle buttonStyle, ButtonExtension extension) : base(buttonStyle)
         {
-            Initialize(adapter);
+            Initialize(extension);
         }
 
         /// <summary>
@@ -600,17 +600,17 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The UI Adapter.
-        /// A custom UI Adapter can be set from the constructor.
+        /// The ButtonExtension instance.
+        /// A custom extension can be set from the constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ButtonAdapter Adapter { get; set; }
+        protected virtual ButtonExtension Extension { get; set; }
 
         /// <summary>
-        /// Get default UI Adapter for this class.
+        /// Get default ButtonExtension for this class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ButtonAdapter GetDefaultAdapter()
+        protected virtual ButtonExtension GetDefaultExtension()
         {
             return null;
         }
@@ -629,7 +629,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                Adapter?.OnDisconnect(this);
+                Extension?.OnDisconnect(GetExposer());
 
                 if (buttonIcon != null)
                 {
@@ -740,7 +740,7 @@ namespace Tizen.NUI.Components
                     {
                         ClickEventArgs eventArgs = new ClickEventArgs();
                         OnClick(eventArgs);
-                        Adapter?.OnClick(this, touch);
+                        Extension?.OnClick(GetExposer(), touch);
                     }
 
                     return true;
@@ -786,7 +786,7 @@ namespace Tizen.NUI.Components
         {
             base.OnUpdate();
             UpdateUIContent();
-            Adapter?.OnRelayout(this);
+            Extension?.OnRelayout(GetExposer());
         }
 
         /// <summary>
@@ -824,7 +824,7 @@ namespace Tizen.NUI.Components
                 };
                 stateChangeHander?.Invoke(this, e);
 
-                Adapter?.OnControlStateChanged(this, sourceState, targetState, byUI, touchInfo);
+                Extension?.OnControlStateChanged(GetExposer(), sourceState, targetState, byUI, touchInfo);
             }
         }
 
@@ -832,31 +832,26 @@ namespace Tizen.NUI.Components
         /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        private void Initialize(ButtonAdapter adapter)
+        private void Initialize(ButtonExtension extension)
         {
-            ComposeSubComponents(adapter);
+            ComposeSubComponents(extension);
 
             if (null == Style.IconRelativeOrientation) Style.IconRelativeOrientation = IconOrientation.Left;
             UpdateState(false);
             LayoutDirectionChanged += OnLayoutDirectionChanged;
-
-            if (null != buttonIcon)
-            {
-                buttonIcon.ResourceLoaded += OnResourceLoaded;
-            }
         }
 
         /// <summary>
         /// Compose sub components in Button
         /// </summary>
-        private void ComposeSubComponents(ButtonAdapter adapter)
+        private void ComposeSubComponents(ButtonExtension extension)
         {
             var currentStyle = Style;
-            Adapter = adapter;
+            Extension = extension;
 
             // Create overlayImage
             overlayImage = new ImageView();
-            adapter?.OnCreateOverlayImage(this, ref overlayImage, currentStyle?.Overlay);
+            extension?.OnCreateOverlayImage(this, ref overlayImage, currentStyle?.Overlay);
             if (null != overlayImage)
             {
                 Add(overlayImage);
@@ -865,16 +860,17 @@ namespace Tizen.NUI.Components
 
             // Create icon
             buttonIcon = new ImageView();
-            adapter?.OnCreateIcon(this, ref buttonIcon, currentStyle?.Icon);
+            extension?.OnCreateIcon(this, ref buttonIcon, currentStyle?.Icon);
             if (null != buttonIcon)
             {
                 Add(buttonIcon);
                 buttonIcon.ApplyStyle(currentStyle?.Icon);
+                buttonIcon.Relayout += OnIconRelayout;
             }
 
             // Create text
             buttonText = new TextLabel();
-            adapter?.OnCreateText(this, ref buttonText, currentStyle?.Text);
+            extension?.OnCreateText(this, ref buttonText, currentStyle?.Text);
             if (null != buttonText)
             {
                 Add(buttonText);
@@ -1096,31 +1092,75 @@ namespace Tizen.NUI.Components
             public ControlStates CurrentState;
         }
 
+        internal virtual ButtonExposer GetExposer()
+        {
+            return new ButtonExposer(this);
+        }
+
         /// <summary>
-        /// OverlayAnimationAdapter class is a customized ButtonAdapter that play blinking animation on Button pressed.
+        /// ButtonExposer helps ButtonExtension to access inside of a Button.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class OverlayAnimationAdapter : ButtonAdapter
+        public class ButtonExposer
         {
-            private ImageView overlayImage;
+            private Button button;
+
+            internal ButtonExposer(Button button)
+            {
+                this.button = button;
+            }
+
+            /// <summary>
+            /// Expose Button instance.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Button Button => button;
+
+            /// <summary>
+            /// Expose Button's text part.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public TextLabel Text => button.buttonText;
+
+            /// <summary>
+            /// Expose Button's icon part.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ImageView Icon => button.buttonIcon;
+
+            /// <summary>
+            /// Expose Button's overlay image part.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ImageView OverlayImage => button.overlayImage;
+        }
+
+        /// <summary>
+        /// OverlayAnimationExtension class is a customized ButtonExtension that play blinking animation on Button pressed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class OverlayAnimationExtension : ButtonExtension
+        {
             private Animation pressAnimation;
 
             /// <inheritdoc/>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public override void OnCreateOverlayImage(Button button, ref ImageView overlayImage, ImageViewStyle style)
             {
-                this.overlayImage = overlayImage;
                 overlayImage.Hide();
             }
 
             /// <inheritdoc/>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnControlStateChanged(Button button, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
+            public override void OnControlStateChanged(ButtonExposer buttonExposer, ControlStates previousState, ControlStates currentState, bool byUI, Touch touchInfo)
             {
-                if (currentState != ControlStates.Pressed || null == overlayImage)
+                if (currentState != ControlStates.Pressed || null == buttonExposer.OverlayImage)
                 {
                     return;
                 }
+
+                var button = buttonExposer.Button;
+                var overlayImage = buttonExposer.OverlayImage;
 
                 if (null == pressAnimation)
                 {
@@ -1133,7 +1173,6 @@ namespace Tizen.NUI.Components
                     pressAnimation.EndAction = Animation.EndActions.StopFinal;
                     pressAnimation.AnimateBetween(overlayImage, "Opacity", keyFrames);
                     pressAnimation.AnimateTo(overlayImage, "Scale", new Vector3(1, 1, 1), 0, 300, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
-                    pressAnimation.Finished += OnPressAnimationFinished;
                 }
 
                 if (pressAnimation.State == Animation.States.Playing)
@@ -1152,14 +1191,9 @@ namespace Tizen.NUI.Components
                 pressAnimation.Play();
             }
 
-            private void OnPressAnimationFinished(object sender, EventArgs e)
-            {
-                overlayImage?.Hide();
-            }
-
             /// <inheritdoc/>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnDisconnect(Button button)
+            public override void OnDisconnect(ButtonExposer buttonExposer)
             {
                 if (null != pressAnimation)
                 {

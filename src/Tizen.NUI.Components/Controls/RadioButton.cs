@@ -60,21 +60,21 @@ namespace Tizen.NUI.Components
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
-        /// Creates a new instance of a RadioButton with a custom Adapter.
+        /// Creates a new instance of a RadioButton with a custom extension.
         /// </summary>
-        /// <param name="adapter">A custom UI adapter for the RadioButton.</param>
+        /// <param name="extension">A custom extension for the RadioButton.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton(ButtonAdapter adapter) : base(adapter)
+        public RadioButton(ButtonExtension extension) : base(extension)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a RadioButton with style and a custon Adapter.
+        /// Creates a new instance of a RadioButton with style and a custon Extension.
         /// </summary>
         /// <param name="buttonStyle">Create Button by style customized by user.</param>
-        /// <param name="adapter">Optional parameter to set a custom UI adapter for the RadioButton.</param>
+        /// <param name="extension">A custom extension for the RadioButton.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle, adapter)
+        public RadioButton(ButtonStyle buttonStyle, ButtonExtension extension) : base(buttonStyle, extension)
         {
         }
 

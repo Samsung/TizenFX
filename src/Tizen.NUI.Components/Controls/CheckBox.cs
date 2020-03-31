@@ -49,21 +49,21 @@ namespace Tizen.NUI.Components
         public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
-        /// Creates a new instance of a CheckBox with a custom Adapter.
+        /// Creates a new instance of a CheckBox with a custom extension.
         /// </summary>
-        /// <param name="adapter">A custom UI adapter for the CheckBox.</param>
+        /// <param name="extension">A custom extension for the CheckBox.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(ButtonAdapter adapter) : base(adapter)
+        public CheckBox(ButtonExtension extension) : base(extension)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of a CheckBox with style and a custon Adapter.
+        /// Creates a new instance of a CheckBox with style and a custon extension.
         /// </summary>
         /// <param name="buttonStyle">Create Button by style customized by user.</param>
-        /// <param name="adapter">Optional parameter to set a custom UI adapter for the CheckBox.</param>
+        /// <param name="extension">A custom extension for the CheckBox.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(ButtonStyle buttonStyle, ButtonAdapter adapter) : base(buttonStyle, adapter)
+        public CheckBox(ButtonStyle buttonStyle, ButtonExtension extension) : base(buttonStyle, extension)
         {
         }
 

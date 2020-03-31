@@ -20,15 +20,15 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The SwitchAdapter class enables developers to write custom UI components in a Switch and their behaviors on various states by override methods.
+    /// The SwitchExtension class allows developers to access the Switch's components and extend their behavior in various states.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class SwitchAdapter : ButtonAdapter
+    public abstract class SwitchExtension : ButtonExtension
     {
         /// <summary>
         /// Called immediately after the Switch creates the track part.
         /// </summary>
-        /// <param name="switchButton">The Switch instance that the adapter currently applied to.</param>
+        /// <param name="switchButton">The Switch instance that the extension currently applied to.</param>
         /// <param name="track">The created Switch's track part.</param>
         /// <param name="style">The initial style that will be appled to Switch's track part.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -39,7 +39,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Called immediately after the Switch creates the thumb part.
         /// </summary>
-        /// <param name="switchButton">The Switch instance that the adapter currently applied to.</param>
+        /// <param name="switchButton">The Switch instance that the extension currently applied to.</param>
         /// <param name="thumb">The created Switch's thumb part.</param>
         /// <param name="style">The initial style that will be appled to Switch's thumb part.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]

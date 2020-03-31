@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Switch() : base()
         {
-            Initialize(Adapter as SwitchAdapter);
+            Initialize(Extension as SwitchExtension);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(string style) : base(style)
         {
-            Initialize(Adapter as SwitchAdapter);
+            Initialize(Extension as SwitchExtension);
         }
 
         /// <summary>
@@ -57,27 +57,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
-            Initialize(Adapter as SwitchAdapter);
+            Initialize(Extension as SwitchExtension);
         }
 
         /// <summary>
-        /// Creates a new instance of a Switch with custom Adapter.
+        /// Creates a new instance of a Switch with custom extension.
         /// </summary>
+        /// <param name="extension">A custom extension for the Switch.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Switch(SwitchAdapter adapter) : base(adapter)
+        public Switch(SwitchExtension extension) : base(extension)
         {
-            Initialize(adapter);
+            Initialize(extension);
         }
 
         /// <summary>
-        /// Creates a new instance of a Switch with style and a custom Adapter.
+        /// Creates a new instance of a Switch with style and a custom extension.
         /// </summary>
         /// <param name="switchStyle">Create Switch by style customized by user.</param>
-        /// <param name="adapter">Optional parameter to set a custom UI adapter for the Switch.</param>
+        /// <param name="extension">A custom extension for the Switch.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Switch(SwitchStyle switchStyle, SwitchAdapter adapter) : base(switchStyle, adapter)
+        public Switch(SwitchStyle switchStyle, SwitchExtension extension) : base(switchStyle, extension)
         {
-            Initialize(adapter);
+            Initialize(extension);
         }
 
         /// <summary>
@@ -272,20 +273,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get default UI Adapter for this class.
+        /// Get default SwitchExtension for this class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ButtonAdapter GetDefaultAdapter()
+        protected override ButtonExtension GetDefaultExtension()
         {
-            return new Switch.DefaultAdapter();
+            return new Switch.DefaultExtension();
         }
 
-        private void Initialize(SwitchAdapter adapter)
+        private void Initialize(SwitchExtension extension)
         {
             Style.IsSelectable = true;
 
             trackImage = new ImageView();
-            adapter?.OnCreateTrack(this, ref trackImage, Style.Track);
+            extension?.OnCreateTrack(this, ref trackImage, Style.Track);
             if (null != trackImage)
             {
                 Add(trackImage);
@@ -293,7 +294,7 @@ namespace Tizen.NUI.Components
             }
 
             thumbImage = new ImageView();
-            adapter?.OnCreateThumb(this, ref thumbImage, Style.Thumb);
+            extension?.OnCreateThumb(this, ref thumbImage, Style.Thumb);
             if (null != thumbImage)
             {
                 Add(thumbImage);
@@ -337,17 +338,44 @@ namespace Tizen.NUI.Components
             public bool IsSelected;
         }
 
+        internal override ButtonExposer GetExposer()
+        {
+            return new SwitchExposer(this);
+        }
+
         /// <summary>
-        /// DefaultAdapter class enables developers to write custom UI components in Switch and their behaviors on states by override methods.
+        /// SwitchExposer helps SwitchExtension to access inside of a Switch.
         /// </summary>
-        internal class DefaultAdapter : SwitchAdapter
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class SwitchExposer : Button.ButtonExposer
+        {
+            internal SwitchExposer(Switch switchButton) : base(switchButton)
+            {
+            }
+
+            /// <summary>
+            /// Expose Switch's overlay track part.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ImageView Track => (Button as Switch)?.trackImage;
+
+            /// <summary>
+            /// Expose Switch's overlay track part.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ImageView Thumb => (Button as Switch)?.thumbImage;
+        }
+
+        /// <summary>
+        /// The Switch.DefaultExtension class implements SwitchExtension to define a thumb animation.
+        /// </summary>
+        internal class DefaultExtension : SwitchExtension
         {
             private Animation selectAnimation;
 
-            public override void OnClick(Button button, Touch clickUp)
+            public override void OnClick(Button.ButtonExposer buttonExposer, Touch clickUp)
             {
-                var thumb = ((Switch)button).thumbImage;
-                var trackWidth = ((Switch)button).trackImage.Size.Width;
+                var thumb = (buttonExposer as SwitchExposer)?.Thumb;
 
                 if (null == thumb)
                 {
@@ -364,11 +392,11 @@ namespace Tizen.NUI.Components
                 }
 
                 selectAnimation.Clear();
-                selectAnimation.AnimateTo(thumb, "PositionX", trackWidth - thumb.Size.Width - thumb.Position.X);
+                selectAnimation.AnimateTo(thumb, "PositionX", ((SwitchExposer)buttonExposer).Track.Size.Width - thumb.Size.Width - thumb.Position.X);
                 selectAnimation.Play();
             }
 
-            public override void OnDisconnect(Button button)
+            public override void OnDisconnect(Button.ButtonExposer buttonExposer)
             {
                 if (null != selectAnimation)
                 {
