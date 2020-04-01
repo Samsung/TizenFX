@@ -297,6 +297,18 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.matchSystemLanguageDirection;
         });
+        /// A BindableProperty for ImageShadow
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(Selector<TextShadow>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.textShadow = SelectorHelper.CopyCloneable<TextShadow>(newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.textShadow;
+        });
 
         private bool? multiLine;
         private HorizontalAlignment? horizontalAlignment;
@@ -320,6 +332,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<string> textSelector;
         private Selector<Color> textColorSelector;
         private Selector<float?> pointSizeSelector;
+        private Selector<TextShadow> textShadow;
 
         static TextLabelStyle() { }
 
@@ -517,6 +530,14 @@ namespace Tizen.NUI.BaseComponents
                 return (null != tmp) ? tmp : pointSizeSelector = new Selector<float?>();
             }
             set => SetValue(PointSizeSelectorProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<TextShadow> TextShadow
+        {
+            get => (Selector<TextShadow>)GetValue(TextShadowProperty);
+            set => SetValue(TextShadowProperty, value);
         }
     }
 }
