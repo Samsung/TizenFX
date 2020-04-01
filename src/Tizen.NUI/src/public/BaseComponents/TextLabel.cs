@@ -1591,7 +1591,7 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateTextShadowVisual()
         {
             TextShadow shadow = (textShadow != null && !textShadow.IsEmpty()) ? textShadow.GetValue() : textShadow?.GetValue();
-            Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), TextShadow.ToPropertyValue(shadow));
+            Object.SetProperty(swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(shadow));
         }
     }
 }
