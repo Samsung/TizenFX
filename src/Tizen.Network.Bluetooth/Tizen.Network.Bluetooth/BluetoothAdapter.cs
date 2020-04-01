@@ -644,11 +644,12 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled.
         /// </remarks>The result of the operation StartLeScan.
         /// <param name="mode">The LE scan mode.</param>
+        /// <since_tizen> 7 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or the Start LE scan is failed.</exception>
         /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
-        /// <since_tizen> 7 </since_tizen>
         static public void StartLeScan(BluetoothLeScanMode mode)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
