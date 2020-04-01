@@ -126,12 +126,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color(string hexColor) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
         {
-            hexColor = hexColor.Replace("#", "");
-            
-            R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
-            G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
-            B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
-            A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+            try
+            {
+                hexColor = hexColor.Replace("#", "");
+                
+                R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
+                G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
+                B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
+                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+            }
+            catch
+            {
+                throw new global::System.ArgumentException("Please check your hex code");
+            }
         }
 
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
