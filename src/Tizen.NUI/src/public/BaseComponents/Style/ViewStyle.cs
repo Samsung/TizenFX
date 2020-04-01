@@ -1408,6 +1408,19 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(CornerRadiusProperty, value);
         }
 
+        internal ViewStyle CreateInstance()
+        {
+            return (ViewStyle)Activator.CreateInstance(GetType());;
+        }
+
+        internal ViewStyle Clone()
+        {
+            var cloned = CreateInstance();
+            cloned.CopyFrom(this);
+
+            return cloned;
+        }
+
         private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
         {
             Padding = new Extents(start, end, top, bottom);

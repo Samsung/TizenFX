@@ -60,7 +60,7 @@ namespace Tizen.NUI.Components
         /// StyleManager static instance.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static StyleManager Instance { get; } = new StyleManager();
+        public static StyleManager Instance { get; internal set; } = new StyleManager();
 
         /// <summary>
         /// Style theme.

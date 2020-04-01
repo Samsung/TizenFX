@@ -17,6 +17,7 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
@@ -89,6 +90,13 @@ namespace Tizen.NUI.Components
                     Thumb?.CopyFrom(switchStyle.Thumb);
                 }
             }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override ButtonExtension CreateExtension()
+        {
+            return new SlidingSwitchExtension();
         }
 
         private void InitSubStyle()
