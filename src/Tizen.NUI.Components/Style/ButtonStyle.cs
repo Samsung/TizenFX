@@ -284,8 +284,6 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FitToChildren,
-                HeightResizePolicy = ResizePolicyType.FitToChildren,
             };
             Icon.PropertyChanged += SubStyleCalledEvent;
         }

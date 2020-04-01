@@ -27,10 +27,6 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Switch : Button
     {
-        private const int aniTime = 100; // will be defined in const file later
-        private ImageView trackImage;
-        private ImageView thumbImage;
-        private Animation handlerAni = null;
         static Switch() { }
 
         /// <summary>
@@ -176,6 +172,65 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Switch's track part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView Track { get; set; }
+
+        /// <summary>
+        /// Switch's thumb part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView Thumb { get; set; }
+
+        /// <summary>
+        /// Switch's selected/unselected animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Animation SelectAnimation { get; set; }
+
+        /// <summary>
+        /// Creates Switch's track part.
+        /// </summary>
+        /// <param name="style">The initial style that will be appled to Switch's track part.</param>
+        /// <return>The created Button's icon part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateTrack(ImageViewStyle style)
+        {
+            return new ImageView();
+        }
+
+        /// <summary>
+        /// Creates Switch's overlay thumb part.
+        /// </summary>
+        /// <param name="style">The initial style that will be appled to Switch's overlay thumb part.</param>
+        /// <return>The created Button's overlay image part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateThumb(ImageViewStyle style)
+        {
+            return new ImageView();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnClick(ClickEventArgs eventArgs)
+        {
+            if (null == Track || null == Thumb || null == SelectAnimation)
+            {
+                return;
+            }
+
+            if (SelectAnimation.State == Animation.States.Playing)
+            {
+                SelectAnimation.Stop();
+            }
+
+            SelectAnimation.Clear();
+            SelectAnimation.AnimateTo(Thumb, "PositionX", Track.Size.Width - Thumb.Size.Width - Thumb.Position.X);
+            SelectAnimation.Play();
+        }
+
+        /// <summary>
         /// Dispose Switch and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -186,18 +241,18 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (null != handlerAni)
+                if (null != SelectAnimation)
                 {
-                    if (handlerAni.State == Animation.States.Playing)
+                    if (SelectAnimation.State == Animation.States.Playing)
                     {
-                        handlerAni.Stop();
+                        SelectAnimation.Stop();
                     }
-                    handlerAni.Dispose();
-                    handlerAni = null;
+                    SelectAnimation.Dispose();
+                    SelectAnimation = null;
                 }
 
-                Utility.Dispose(thumbImage);
-                Utility.Dispose(trackImage);
+                Utility.Dispose(Thumb);
+                Utility.Dispose(Track);
             }
 
             base.Dispose(type);
@@ -266,28 +321,22 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             Style.IsSelectable = true;
-            handlerAni = new Animation(aniTime);
-            trackImage = new ImageView()
-            {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                Name = "SwitchBackgroundImage",
-            };
-            Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
 
-            thumbImage = new ImageView()
+            Track = CreateTrack(Style.Track);
+            if (null != Track)
             {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                Name = "SwitchHandlerImage",
-            };
-            trackImage.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
+                Add(Track);
+                Track.ApplyStyle(Style.Track);
+            }
+
+            Thumb = CreateThumb(Style.Thumb);
+            if (null != Thumb)
+            {
+                Add(Thumb);
+                Thumb.ApplyStyle(Style.Thumb);
+            }
+
+            SelectAnimation = new Animation(100);
         }
 
         /// <summary>
@@ -307,16 +356,6 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
-            if (handlerAni.State == Animation.States.Playing)
-            {
-                handlerAni.Stop();
-            }
-            handlerAni.Clear();
-            handlerAni.AnimateTo(thumbImage, "PositionX", Size2D.Width - thumbImage.Size2D.Width - thumbImage.Position2D.X);
-            trackImage.Opacity = 0.5f; ///////need defined by UX
-            handlerAni.AnimateTo(trackImage, "Opacity", 1);
-            handlerAni.Play();
-
             if (SelectedEvent != null)
             {
                 SelectEventArgs eventArgs = new SelectEventArgs();

@@ -41,13 +41,11 @@ namespace Tizen.NUI.Components
                         Selected = DefaultStyle.GetResourcePath("nui_component_default_switch_track_s.png"),
                         Disabled = DefaultStyle.GetResourcePath("nui_component_default_switch_track_d.png"),
                         DisabledSelected = DefaultStyle.GetResourcePath("nui_component_default_switch_track_ds.png"),
-                    }
+                    },
+                    Border = new Rectangle(30, 30, 30, 30),
                 },
                 Thumb = new ImageViewStyle
                 {
-                    WidthResizePolicy = ResizePolicyType.DimensionDependency,
-                    HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
-                    SizeModeFactor = new Vector3(1, 1, 1),
                     ResourceUrl = new Selector<string>
                     {
                         Normal = DefaultStyle.GetResourcePath("nui_component_default_switch_thumb_n.png"),
