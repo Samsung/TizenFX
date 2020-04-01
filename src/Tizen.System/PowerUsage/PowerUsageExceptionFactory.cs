@@ -17,13 +17,13 @@
 using System;
 using Tizen.Internals.Errors;
 
-namespace Tizen.BatteryMonitor
+namespace Tizen.System
 {
     /// <summary>
-    /// Battery Monitor error codes.
+    /// Power Usage error codes.
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
-    internal enum BatteryMonitorError
+    internal enum PowerUsageError
     {
         /// <summary>
         /// Successful.
@@ -76,38 +76,35 @@ namespace Tizen.BatteryMonitor
         Internal = -0x03060000 | 0x04
     }
 
-    internal static class BatteryMonitorErrorFactory
+    internal static class PowerUsageErrorFactory
     {
-        internal static Exception ThrowBatteryMonitorException(int errCode)
+        internal static Exception ThrowPowerUsageException(int errCode)
         {
-            Log.Error(Globals.LogTag, "Throw BatteryMonitor Exception : " + errCode);
-            BatteryMonitorError error = (BatteryMonitorError)errCode;
+            Log.Error(Globals.LogTag, "Throw PowerUsage Exception : " + errCode);
+            PowerUsageError error = (PowerUsageError)errCode;
             switch (error)
             {
-                case BatteryMonitorError.OutOfMemory:
+                case PowerUsageError.OutOfMemory:
                     return new InvalidOperationException("Out of memory");
-                case BatteryMonitorError.InvalidParameter:
+                case PowerUsageError.InvalidParameter:
                     return new ArgumentException("Invalid Parameter passed");
-                case BatteryMonitorError.NoData:
+                case PowerUsageError.NoData:
                     return new UnauthorizedAccessException("No data available");
-                case BatteryMonitorError.AcessibilityNotallowed:
+                case PowerUsageError.AcessibilityNotallowed:
                     return new NotSupportedException("Permission denied");
-                case BatteryMonitorError.NotSupported:
+                case PowerUsageError.NotSupported:
                     return new InvalidOperationException("Address family not supported");
-                case BatteryMonitorError.RecordNotFound:
+                case PowerUsageError.RecordNotFound:
                     return new InvalidOperationException("Related record does not exist");
-                case BatteryMonitorError.DBFailed:
+                case PowerUsageError.DBFailed:
                     return new InvalidOperationException("DB operation failed");
-                case BatteryMonitorError.DBNotOpened:
+                case PowerUsageError.DBNotOpened:
                     return new InvalidOperationException("DB is not connected");
-                case BatteryMonitorError.Internal:
+                case PowerUsageError.Internal:
                     return new InvalidOperationException("Internal error for generic use");
                 default:
                     return new InvalidOperationException("Unknown Error");
             }
         }
     }
-
-
-
 }
