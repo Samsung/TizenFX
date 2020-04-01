@@ -184,7 +184,7 @@ namespace Tizen.MachineLearning.Inference
         /// <summary> Sets the property value for the given model.
         /// <para>A model/framework may support changing the model information, such as tensor dimension and data layout, after opening the model.</para>
         /// <para>If tries to change unavailable property or the model does not allow changing the information, this will raise an exception.</para>
-        /// <para>For the details about the properties, see 'tensor_filter' plugin definition in <a href="https://github.com/nnsuite/nnstreamer">NNStreamer</a>.</para>
+        /// <para>For the details about the properties, see 'tensor_filter' plugin definition in <a href="https://github.com/nnstreamer/nnstreamer">NNStreamer</a>.</para>
         /// </summary>
         /// <param name="name">The property name</param>
         /// <param name="value">The property value</param>
