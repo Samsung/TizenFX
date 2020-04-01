@@ -19,5 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         internal const string Device = "libcapi-system-device.so.0";
+        internal const string PowerUsage = "libcapi-system-battery-monitor.so.0";
     }
 }
