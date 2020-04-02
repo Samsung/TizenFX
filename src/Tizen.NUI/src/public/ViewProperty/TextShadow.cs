@@ -39,10 +39,10 @@ namespace Tizen.NUI
             propertyMap = new PropertyMap();
 
             Color = color;
-            propertyMap["color"] = PropertyValue.CreateWithGuard(color);
+            propertyMap["color"] = PropertyValue.CreateWithGuard(Color);
 
             Offset = offset;
-            propertyMap["offset"] = PropertyValue.CreateWithGuard(offset);
+            propertyMap["offset"] = PropertyValue.CreateWithGuard(Offset);
 
             BlurRadius = blurRadius;
             propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
@@ -87,11 +87,18 @@ namespace Tizen.NUI
 
         internal TextShadow(TextShadow other, PropertyChangedCallback callback = null)
         {
-            Color = other.Color;
-            BlurRadius = other.BlurRadius;
-            Offset = other.Offset;
-            OnPropertyChanged = callback;
             propertyMap = new PropertyMap();
+
+            Color = other.Color;
+            propertyMap["color"] = PropertyValue.CreateWithGuard(Color);
+
+            Offset = other.Offset;
+            propertyMap["offset"] = PropertyValue.CreateWithGuard(Offset);
+
+            BlurRadius = other.BlurRadius;
+            propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
+
+            OnPropertyChanged = callback;
         }
 
         static internal PropertyValue ToPropertyValue(TextShadow instance)
