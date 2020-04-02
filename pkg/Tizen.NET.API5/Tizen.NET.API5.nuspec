@@ -9,7 +9,7 @@
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://www.tizen.org/</projectUrl>
     <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
-    <description>Reference assemblies of Tizen .NET API Level 4.</description>
+    <description>Reference assemblies of Tizen .NET API Level 5.</description>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
