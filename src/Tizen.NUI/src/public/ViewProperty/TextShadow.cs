@@ -25,10 +25,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextShadow : Internal.ICloneable
     {
-        private Color color = Color.Black;
-        private Vector2 offset = Vector2.Zero;
-        private float blurRadius = 0.0f;
-
         private PropertyMap propertyMap = null;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
@@ -38,9 +34,18 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextShadow()
+        public TextShadow(Color color, Vector2 offset, float blurRadius)
         {
             propertyMap = new PropertyMap();
+
+            Color = color;
+            propertyMap["color"] = PropertyValue.CreateWithGuard(color);
+
+            Offset = offset;
+            propertyMap["offset"] = PropertyValue.CreateWithGuard(offset);
+
+            BlurRadius = blurRadius;
+            propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
         }
 
         /// <summary>
@@ -49,12 +54,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone()
         {
-            return new TextShadow()
-            {
-                Offset = offset,
-                Color = color,
-                BlurRadius = blurRadius,
-            };
+            return new TextShadow(Color, Offset, BlurRadius);
         }
 
         /// <summary>
@@ -64,71 +64,33 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static object Clone(TextShadow instance)
         {
-            return instance == null ? null : new TextShadow()
-            {
-                Offset = instance.Offset,
-                Color = instance.Color,
-                BlurRadius = instance.BlurRadius,
-            };
+            return instance == null ? null : new TextShadow(instance.Color, instance.Offset, instance.BlurRadius);
         }
 
         /// <summary>
         /// The color for the shadow of text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color Color
-        {
-            get
-            {
-                return color;
-            }
-            internal set
-            {
-                color = value;
-                UpdateColor();
-            }
-        }
+        public Color Color { get; } = Color.Black;
 
         /// <summary>
         /// The offset for the shadow of text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Offset
-        {
-            get
-            {
-                return offset;
-            }
-            internal set
-            {
-                offset = value;
-                UpdateOffset();
-            }
-        }
+        public Vector2 Offset { get; } = Vector2.Zero;
 
         /// <summary>
         /// The blur radius of the shadow of text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float BlurRadius
-        {
-            get
-            {
-                return blurRadius;
-            }
-            internal set
-            {
-                blurRadius = value;
-                UpdateBlurRadius();
-            }
-        }
+        public float BlurRadius { get; } = 0.0f;
 
         internal TextShadow(TextShadow other, PropertyChangedCallback callback = null)
         {
             Color = other.Color;
             BlurRadius = other.BlurRadius;
+            Offset = other.Offset;
             OnPropertyChanged = callback;
-
             propertyMap = new PropertyMap();
         }
 
@@ -139,27 +101,7 @@ namespace Tizen.NUI
                 return new PropertyValue();
             }
 
-            PropertyMap pm = instance.propertyMap;
-
-            return new PropertyValue(pm);
-        }
-
-        private void UpdateOffset()
-        {
-            propertyMap["offset"] = PropertyValue.CreateWithGuard(offset);
-            OnPropertyChanged?.Invoke(this);
-        }
-
-        private void UpdateColor()
-        {
-            propertyMap["color"] = PropertyValue.CreateWithGuard(color);
-            OnPropertyChanged?.Invoke(this);
-        }
-
-        private void UpdateBlurRadius()
-        {
-            propertyMap["blurRadius"] = new PropertyValue(blurRadius);
-            OnPropertyChanged?.Invoke(this);
+            return new PropertyValue(instance.propertyMap);
         }
     }
 }
