@@ -231,6 +231,9 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_stop_scan")]
         public static extern int StopScan();
 
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_set_scan_mode")]
+        public static extern int SetLeScanMode(BluetoothLeScanMode mode);
+
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_get_scan_result_service_uuids")]
         public static extern int GetScanResultServiceUuid(ref BluetoothLeScanDataStruct scanData,
             BluetoothLePacketType packetType, ref IntPtr uuids, ref int count);
