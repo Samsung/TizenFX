@@ -1061,6 +1061,26 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the Bluetooth LE scan mode.
+    /// </summary>
+    /// <since_tizen> 7 </since_tizen>
+    public enum BluetoothLeScanMode
+    {
+        /// <summary>
+        /// Balanced mode of power consumption and connection latency
+        /// </summary>
+        Balanced,
+        /// <summary>
+        /// Low connection latency but high power consumption
+        /// </summary>
+        LowLatency,
+        /// <summary>
+        /// Low power consumption but high connection latency
+        /// </summary>
+        LowEnergy
+    }
+
+    /// <summary>
     /// Enumeration for the integer type for GATT handle's values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
