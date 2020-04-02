@@ -82,7 +82,7 @@ namespace Tizen.NUI
             {
                 return color;
             }
-            set
+            internal set
             {
                 color = value;
                 UpdateColor();
@@ -99,7 +99,7 @@ namespace Tizen.NUI
             {
                 return offset;
             }
-            set
+            internal set
             {
                 offset = value;
                 UpdateOffset();
@@ -116,7 +116,7 @@ namespace Tizen.NUI
             {
                 return blurRadius;
             }
-            set
+            internal set
             {
                 blurRadius = value;
                 UpdateBlurRadius();
