@@ -53,6 +53,7 @@ namespace Tizen.NUI.Samples
             textButton.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             textButton.Size2D = new Size2D(300, 80);
             textButton.Position2D = new Position2D(100, 100);
+	    textButton.Style.Text.TextShadow = new TextShadow(Color.Blue, new Vector2(2.0f, 2.0f), 5.0f);
             textButton.Style.Text.Text = "Button";
             root.Add(textButton);
 
