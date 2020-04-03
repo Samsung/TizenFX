@@ -37,7 +37,6 @@ namespace Tizen.NUI.Components
         protected string style;
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
-        private bool isFocused = false;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -107,7 +106,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         internal bool StateFocusableOnTouchMode { get; set; }
 
-        internal bool IsFocused => (isFocused || HasFocus());
+        internal bool IsFocused { get; set; } = false;
 
         /// <summary>
         /// Dispose Control and all children on it.
@@ -171,7 +170,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnFocusGained()
         {
-            isFocused = true;
+            IsFocused = true;
         }
 
         /// <summary>
@@ -182,7 +181,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnFocusLost()
         {
-            isFocused = false;
+            IsFocused = false;
         }
 
         /// <summary>
