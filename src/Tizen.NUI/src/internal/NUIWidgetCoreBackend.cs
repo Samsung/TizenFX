@@ -102,6 +102,14 @@ namespace Tizen.NUI
             _widgetInfo = widgetInfo;
         }
 
+        public void AddWidgetInfo(Dictionary<System.Type, string> widgetInfo)
+        {
+            if (_application != null)
+            {
+                _application.AddWidgetInfo( widgetInfo );
+            }
+        }
+
         /// <summary>
         /// Run Application.
         /// </summary>
