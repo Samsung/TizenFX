@@ -234,7 +234,12 @@ namespace Tizen.Multimedia
         /// Depth pixel format.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        Invz
+        Invz,
+        /// <summary>
+        /// Encoded pixel format : Motion JPEG
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Mjpeg
     }
 
     /// <summary>
