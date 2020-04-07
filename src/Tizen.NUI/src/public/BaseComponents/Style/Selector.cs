@@ -187,9 +187,9 @@ namespace Tizen.NUI.BaseComponents
                 case ControlStates.DisabledFocused:
                     return DisabledFocused != null? DisabledFocused : Other;
                 case ControlStates.DisabledSelected:
-                    return DisabledSelected != null? DisabledSelected : Other;
+                    return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
                 case ControlStates.SelectedFocused:
-                    return SelectedFocused != null ? SelectedFocused : Other;
+                    return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
                 default:
                     return Other;
             }
