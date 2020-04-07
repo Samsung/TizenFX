@@ -15,8 +15,9 @@
  *
  */
 using System;
-using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
@@ -27,10 +28,6 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Switch : Button
     {
-        private const int aniTime = 100; // will be defined in const file later
-        private ImageView trackImage;
-        private ImageView thumbImage;
-        private Animation handlerAni = null;
         static Switch() { }
 
         /// <summary>
@@ -176,6 +173,38 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Switch's track part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView Track { get; set; }
+
+        /// <summary>
+        /// Switch's thumb part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView Thumb { get; set; }
+
+        /// <summary>
+        /// Creates Switch's track part.
+        /// </summary>
+        /// <return>The created Button's icon part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateTrack()
+        {
+            return new ImageView();
+        }
+
+        /// <summary>
+        /// Creates Switch's overlay thumb part.
+        /// </summary>
+        /// <return>The created Button's overlay image part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateThumb()
+        {
+            return new ImageView();
+        }
+
+        /// <summary>
         /// Dispose Switch and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -186,18 +215,8 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (null != handlerAni)
-                {
-                    if (handlerAni.State == Animation.States.Playing)
-                    {
-                        handlerAni.Stop();
-                    }
-                    handlerAni.Dispose();
-                    handlerAni = null;
-                }
-
-                Utility.Dispose(thumbImage);
-                Utility.Dispose(trackImage);
+                Utility.Dispose(Thumb);
+                Utility.Dispose(Track);
             }
 
             base.Dispose(type);
@@ -266,28 +285,36 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             Style.IsSelectable = true;
-            handlerAni = new Animation(aniTime);
-            trackImage = new ImageView()
-            {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                Name = "SwitchBackgroundImage",
-            };
-            Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
 
-            thumbImage = new ImageView()
+            CreateComponents();
+
+            if (null != Track)
             {
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                PositionUsesPivotPoint = true,
-                Name = "SwitchHandlerImage",
-            };
-            trackImage.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
+                Add(Track);
+                Track.ApplyStyle(Style.Track);
+            }
+
+            if (null != Thumb)
+            {
+                Add(Thumb);
+                Thumb.ApplyStyle(Style.Thumb);
+            }
+        }
+
+        private void CreateComponents()
+        {
+            Track = CreateTrack();
+            Thumb = CreateThumb();
+
+            if (Extension as SwitchExtension == null)
+            {
+                return;
+            }
+
+            // Update component with extension
+            var extension = (SwitchExtension)Extension;
+            Track = extension.OnCreateTrack(this, Track);
+            Thumb = extension.OnCreateThumb(this, Thumb);
         }
 
         /// <summary>
@@ -307,16 +334,6 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
-            if (handlerAni.State == Animation.States.Playing)
-            {
-                handlerAni.Stop();
-            }
-            handlerAni.Clear();
-            handlerAni.AnimateTo(thumbImage, "PositionX", Size2D.Width - thumbImage.Size2D.Width - thumbImage.Position2D.X);
-            trackImage.Opacity = 0.5f; ///////need defined by UX
-            handlerAni.AnimateTo(trackImage, "Opacity", 1);
-            handlerAni.Play();
-
             if (SelectedEvent != null)
             {
                 SelectEventArgs eventArgs = new SelectEventArgs();
@@ -334,6 +351,34 @@ namespace Tizen.NUI.Components
             /// <summary> Select state of Switch </summary>
             /// <since_tizen> 6 </since_tizen>
             public bool IsSelected;
+        }
+
+        /// <summary>
+        /// Get current track part to the attached SwitchExtension.
+        /// </summary>
+        /// <remarks>
+        /// It returns null if the passed extension is invaild.
+        /// </remarks>
+        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
+        /// <return>The switch's track part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView GetCurrentTrack(SwitchExtension extension)
+        {
+            return (extension == Extension) ? Track : null;
+        }
+
+         /// <summary>
+        /// Get current thumb part to the attached SwitchExtension.
+        /// </summary>
+        /// <remarks>
+        /// It returns null if the passed extension is invaild.
+        /// </remarks>
+        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
+        /// <return>The switch's thumb part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView GetCurrentThumb(SwitchExtension extension)
+        {
+            return (extension == Extension) ? Thumb : null;
         }
     }
 }
