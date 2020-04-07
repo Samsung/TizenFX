@@ -1,6 +1,5 @@
-using System.Threading.Tasks;
 using System;
-using System.Threading;
+using System.Threading.Tasks;
 using Tizen.System;
 
 
@@ -21,7 +20,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task Value_PROPERTY_READ_ONLY()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /*
                  * PRECONDITION
@@ -44,7 +44,9 @@ namespace SystemSettingsUnitTest
                 Tizen.System.SystemSettings.WallpaperLockScreenChanged -= OnWallpaperLockScreenChangedValue;
                 Tizen.System.SystemSettings.WallpaperLockScreen = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.lock_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
