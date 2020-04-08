@@ -306,7 +306,15 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             Flags = Flags | LayoutFlags.ForceLayout;
-            Window.Instance.LayoutController.RequestLayout(this);
+            if (Parent != null)
+            {
+                 LayoutGroup layoutGroup =  Parent as LayoutGroup;
+                 if(! layoutGroup.LayoutRequested)
+                 {
+                    layoutGroup.RequestLayout();
+                 }
+            }
+			
         }
 
         /// <summary>
