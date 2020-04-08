@@ -206,7 +206,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                var ret = AudioInput.SetVolume(_handle, value < 0.0 ? 0.0 : value > 2.0 ? 2.0 : value);
+                var ret = AudioInput.SetVolume(_handle, Math.Min(Math.Max(value, 0.0), 2.0));
                 MultimediaDebug.AssertNoError((int)ret);
             }
         }
