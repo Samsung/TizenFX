@@ -78,11 +78,12 @@ namespace Tizen.System
 
     internal static class PowerUsageErrorFactory
     {
-        internal static Exception ThrowPowerUsageException(int errCode)
+        internal const string LogTag = "Tizen.System.PowerUsage";
+        internal static Exception ThrowPowerUsageException(PowerUsageError errCode)
         {
-            Log.Error(Globals.LogTag, "Throw PowerUsage Exception : " + errCode);
-            PowerUsageError error = (PowerUsageError)errCode;
-            switch (error)
+            Log.Error(LogTag, "Throw PowerUsage Exception : " + errCode);
+
+            switch (errCode)
             {
                 case PowerUsageError.OutOfMemory:
                     return new InvalidOperationException("Out of memory");
