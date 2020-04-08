@@ -177,6 +177,41 @@ namespace Tizen.Multimedia
         public AudioSampleType SampleType { get; }
 
         /// <summary>
+        /// Gets or sets the volume of the audio input data stream.
+        /// </summary>
+        /// <value>
+        /// The default value is 1.0.<br/>
+        /// The valid range is greater than or equal to 0.0 and less than or equal to 2.0.<br/>
+        /// Note that if the value is less than 0.0, it will be set 0.0 and if the value is greater than 2.0, it will be set 2.0.
+        /// </value>
+        /// <remarks>
+        /// If the value is less than 1.0, the loudness of recorded data will be decreased.<br/>
+        /// If the value is greater than 1.0, the loudness of recorded data will be increased.<br/>
+        /// Note that the volume can be clipped if the value is greater than 1.0 and the loudness of original recorded data is high enough.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The AudioCapture has already been disposed.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public double Volume
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                var ret = AudioInput.GetVolume(_handle, out double volume);
+                MultimediaDebug.AssertNoError((int)ret);
+
+                return volume;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                var ret = AudioInput.SetVolume(_handle, value < 0.0 ? 0.0 : value > 2.0 ? 2.0 : value);
+                MultimediaDebug.AssertNoError((int)ret);
+            }
+        }
+
+        /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
