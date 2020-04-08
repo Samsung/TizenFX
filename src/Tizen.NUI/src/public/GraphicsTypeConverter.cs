@@ -68,7 +68,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertToPixel(float value)
         {
-            return value * (Window.Instance.Dpi.X / defaultDpi);
+            return value * (NUIApplication.GetDefaultWindow().Dpi.X / defaultDpi);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertFromPixel(float value)
         {
-            return value * (defaultDpi / Window.Instance.Dpi.X);
+            return value * (defaultDpi / NUIApplication.GetDefaultWindow().Dpi.X);
         }
     }
 }

@@ -154,7 +154,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if(Root != null) 
             {
-                Window.Instance.Remove(Root);
+                Root.Unparent();
                 Root.Dispose();
                 Root = null;
             }
@@ -184,7 +184,7 @@ namespace Tizen.NUI
             if ( Root != null )
             {
                 //Remove it from the window
-                Window.Instance.Remove(Root);
+                Root.Unparent();
                 Root.Dispose();
                 Root = null;
 
@@ -192,7 +192,7 @@ namespace Tizen.NUI
                 Root = new View();
                 Root.WidthResizePolicy = ResizePolicyType.FillToParent;
                 Root.HeightResizePolicy = ResizePolicyType.FillToParent;
-                Window.Instance.Add(Root);
+                NUIApplication.GetDefaultWindow().Add(Root);
 
                 ClearHandler();
             }
