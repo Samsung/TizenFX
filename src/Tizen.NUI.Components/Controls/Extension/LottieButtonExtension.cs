@@ -70,48 +70,12 @@ namespace Tizen.NUI.Components.Extension
             var lottieStyle = (ILottieButtonStyle)button.Style;
             lottieView.URL = lottieStyle.LottieUrl;
             lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
-            lottieStyle.LottieFrameInfo.OnCreate?.Show(lottieView, true);
+            lottieStyle.PlayRange?.GetValue(ControlStates.Normal)?.Show(lottieView, true);
         }
 
         internal static void UpdateLottieView(Button button, ControlStates previousState, Touch touchInfo, LottieAnimationView lottieView)
         {
-            var lottieStyle = (ILottieButtonStyle)button.Style;
-
-            switch (button.ControlState)
-            {
-                case ControlStates.Normal:
-                    lottieStyle.LottieFrameInfo?.OnUnselect?.Show(lottieView, previousState == ControlStates.Disabled);
-                    break;
-
-                case ControlStates.Focused:
-                    lottieStyle.LottieFrameInfo?.OnUnselect?.Show(lottieView, previousState == ControlStates.DisabledFocused);
-                    break;
-
-                case ControlStates.Selected:
-                case ControlStates.SelectedFocused:
-                    lottieStyle.LottieFrameInfo?.OnSelect?.Show(lottieView);
-                    break;
-
-                case ControlStates.Disabled:
-                case ControlStates.DisabledFocused:
-                    lottieStyle.LottieFrameInfo?.OnDisable?.Show(lottieView);
-                    break;
-
-                case ControlStates.DisabledSelected:
-                    lottieStyle.LottieFrameInfo?.OnDisableSelected?.Show(lottieView);
-                    break;
-
-                case ControlStates.Pressed:
-                    if (button.IsSelected)
-                    {
-                        lottieStyle.LottieFrameInfo?.OnPressSelected?.Show(lottieView);
-                    }
-                    else
-                    {
-                        lottieStyle.LottieFrameInfo?.OnPress?.Show(lottieView);
-                    }
-                    break;
-            }
+            ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, ((int)previousState & (int)ControlStates.Pressed) == 0);
         }
     }
 }

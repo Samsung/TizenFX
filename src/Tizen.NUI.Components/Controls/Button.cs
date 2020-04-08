@@ -842,13 +842,24 @@ namespace Tizen.NUI.Components
             ControlStates sourceState = ControlState;
             ControlStates targetState;
 
-            if(isEnabled)
+            if (isEnabled)
             {
-                targetState = isPressed ? ControlStates.Pressed : (IsFocused ? (IsSelected ? ControlStates.SelectedFocused : ControlStates.Focused) : (IsSelected ? ControlStates.Selected : ControlStates.Normal));
+                // Normal
+                targetState = ControlStates.Normal;
+
+                // Selected
+                targetState |= (IsSelected ? ControlStates.Selected : 0);
+
+                // Pressed, PressedSelected, Focused, SelectedFocused
+                targetState |= (isPressed ? ControlStates.Pressed : (IsFocused ? ControlStates.Focused : 0));
             }
             else
             {
-                targetState = IsSelected ? ControlStates.DisabledSelected : (IsFocused ? ControlStates.DisabledFocused : ControlStates.Disabled);
+                // Disabled
+                targetState = ControlStates.Disabled;
+
+                // DisabledSelected, DisabledFocused
+                targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
             }
 
             if (SetControlState(targetState, touchInfo))
@@ -1128,55 +1139,6 @@ namespace Tizen.NUI.Components
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
             public ControlStates CurrentState;
-        }
-
-        /// <summary>
-        /// A Selector class that describes Buttons state by actions.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ActionSelector<T>
-        {
-            /// <summary>
-            /// Value used when the Button is created.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnCreate { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is selected.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnSelect { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is unselected.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnUnselect { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is disabled.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnDisable { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is disabled in selected state.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnDisableSelected { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is pressed.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnPress { get; set; }
-
-            /// <summary>
-            /// Value used when the Button is pressed in selected state.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public T OnPressSelected { get; set; }
         }
 
         /// <summary>

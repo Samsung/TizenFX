@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components.Extension
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button.ActionSelector<LottieFrameInfo> LottieFrameInfo { get; set; }
+        public Selector<LottieFrameInfo> PlayRange { get; set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Components.Extension
             }
 
             LottieUrl = style.LottieUrl;
-            LottieFrameInfo = style.LottieFrameInfo;
+            PlayRange = style.PlayRange;
         }
 
         /// <inheritdoc/>

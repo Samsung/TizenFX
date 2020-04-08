@@ -212,14 +212,14 @@ namespace Tizen.NUI.Components
             {
                 case PointStateType.Down:
                     ControlState = ControlStates.Pressed;
-                    return true;
+                    break;
                 case PointStateType.Interrupted:
                 case PointStateType.Up:
                     if (ControlState == ControlStates.Pressed)
                     {
                         ControlState = ControlStates.Normal;
                     }
-                    return true;
+                    break;
                 default:
                     break;
             }
