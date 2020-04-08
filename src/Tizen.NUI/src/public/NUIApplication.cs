@@ -196,7 +196,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Window.Instance;
+                return GetDefaultWindow();
             }
         }
 

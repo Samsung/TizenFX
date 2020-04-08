@@ -222,7 +222,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
-        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(myLottie);
         /// myLottie.CurrentFrame = 200; //display 99 frame
         /// myLottie.SetMinMaxFrame(10, 20);
         /// myLottie.CurrentFrame = 15; //display 15 frame
@@ -312,7 +312,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
-        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(myLottie);
         /// myLottie.LoopCount = -1; //infinite loop
         /// myLottie.Play();
         /// myLottie.Stop(); //it plays continuously unless Stop() is called
