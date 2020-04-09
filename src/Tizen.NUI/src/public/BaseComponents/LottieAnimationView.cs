@@ -917,10 +917,14 @@ namespace Tizen.NUI.BaseComponents
             }
 
             lottieView.SetMinMaxFrame(StartFrame, Math.Min(EndFrame, lottieView.TotalFrame - 1));
-            lottieView.CurrentFrame = StartFrame;
 
-            if (!noPlay && !IsStillImage())
+            if (IsStillImage() || noPlay)
             {
+                lottieView.CurrentFrame = EndFrame;
+            }
+            else
+            {
+                lottieView.CurrentFrame = StartFrame;
                 lottieView.Play();
             }
         }
