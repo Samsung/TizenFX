@@ -26,18 +26,36 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public sealed class StyleManager
     {
-        private static readonly string defaultThemeName = "default";
-        private string theme = defaultThemeName;
+        internal const float PointSizeNormal = 12;
+        internal const float PointSizeTitle = 16;
+
+        private const string defaultThemeName = "default";
+        private const string wearableThemeName = "wearable";
+        
+        private string currentThemeName = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
         private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
+
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
         private Dictionary<string, Dictionary<Type, StyleBase>> componentStyleByTheme = new Dictionary<string, Dictionary<Type, StyleBase>>();
+        
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
+        private Dictionary<string, Theme> themeMap = new Dictionary<string, Theme>();
+
         private EventHandler<ThemeChangeEventArgs> themeChangeHander;
+
+        private Theme currentTheme;
 
         /// <summary>
         /// StyleManager construct.
         /// </summary>
         private StyleManager()
         {
+            SetInitialThemeByDeviceProfile();
         }
 
         /// <summary>
@@ -70,15 +88,17 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return theme;
+                return currentThemeName;
             }
 
             set
             {
-                if (theme != value)
+                if (currentThemeName != value)
                 {
-                    theme = value;
-                    themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = theme });
+                    currentThemeName = value.ToLower();
+                    themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
+
+                    UpdateTheme();
                 }
             }
         }
@@ -152,9 +172,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Register a style for a component to theme.
         /// </summary>
-        /// <param name="targetTheme">Theme</param>
+        /// <param name="targetTheme">The target theme name to register a component style. It theme should be a known one.</param>
         /// <param name="component">The type of ComponentStyle</param>
-        /// <param name="style">The type of style</param>
+        /// <param name="style">The derived class of StyleBase</param>
         /// <since_tizen> 8 </since_tizen>
         public void RegisterComponentStyle(string targetTheme, Type component, Type style)
         {
@@ -163,10 +183,10 @@ namespace Tizen.NUI.Components
                 throw new ArgumentException("The argument targetTheme must be specified");
             }
 
-            if (defaultThemeName.Equals(targetTheme))
+            if (!themeMap.ContainsKey(targetTheme))
             {
-                // Ensure default component styles have loaded before override custom default style
-                LoadDefaultComponentStyle();
+                Tizen.Log.Error("NUI", "The theme name should be a known one.");
+                return;
             }
 
             if (!componentStyleByTheme.ContainsKey(targetTheme))
@@ -192,24 +212,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ViewStyle GetComponentStyle(Type component)
         {
-            var currentTheme = theme;
-
-            if (!componentStyleByTheme.ContainsKey(theme))
+            if (componentStyleByTheme.ContainsKey(currentThemeName) && componentStyleByTheme[currentThemeName].ContainsKey(component))
             {
-                currentTheme = defaultThemeName;
+                return componentStyleByTheme[currentThemeName][component].GetViewStyle();
             }
 
-            if (defaultThemeName.Equals(currentTheme))
-            {
-                LoadDefaultComponentStyle();
-            }
-
-            if (!componentStyleByTheme[currentTheme].ContainsKey(component))
-            {
-                return null;
-            }
-
-            return (componentStyleByTheme[currentTheme][component])?.GetViewStyle();
+            return currentTheme.GetComponentStyle(component);
         }
 
         /// <summary>
@@ -225,27 +233,49 @@ namespace Tizen.NUI.Components
             public string CurrentTheme;
         }
 
-        private void LoadDefaultComponentStyle()
+        internal static string GetFrameworkResourcePath(string resourceFileName)
         {
-            if (componentStyleByTheme.ContainsKey(defaultThemeName))
+            return "/usr/share/dotnet.tizen/framework/res/" + resourceFileName;
+        }
+
+        private void SetInitialThemeByDeviceProfile()
+        {
+            themeMap.Add(wearableThemeName, WearableTheme.Instance);
+            themeMap.Add(defaultThemeName, DefaultTheme.Instance);
+
+            currentThemeName = defaultThemeName;
+            currentTheme = DefaultTheme.Instance;
+
+            string currentProfile;
+
+            try
             {
+                System.Information.TryGetValue<string>("tizen.org/feature/profile", out currentProfile);
+                Tizen.Log.Info("NUI", "Profile for initial theme found : " + currentProfile);
+            }
+            catch
+            {
+                Tizen.Log.Error("NUI", "Unknown device profile");
                 return;
             }
 
-            componentStyleByTheme.Add(defaultThemeName, new Dictionary<Type, StyleBase>());
+            if (string.Equals(currentProfile, wearableThemeName))
+            {
+                currentThemeName = wearableThemeName;
+                currentTheme = WearableTheme.Instance;
+            }
+        }
 
-            var defaultComponentsStyle = componentStyleByTheme[defaultThemeName];
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Button), new DefaultButtonStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.CheckBox), new DefaultCheckBoxStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.RadioButton), new DefaultRadioButtonStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Switch), new DefaultSwitchStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Progress), new DefaultProgressStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Slider), new DefaultSliderStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Toast), new DefaultToastStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Popup), new DefaultPopupStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown), new DefaultDropDownStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown.DropDownDataItem), new DefaultDropDownItemStyle());
-            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Tab), new DefaultTabStyle());
+        private void UpdateTheme()
+        {
+            if (themeMap.ContainsKey(currentThemeName))
+            {
+                currentTheme = themeMap[currentThemeName];
+            }
+            else
+            {
+                currentTheme = DefaultTheme.Instance;
+            }
         }
     }
 }

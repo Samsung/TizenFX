@@ -71,7 +71,12 @@ namespace Tizen.NUI.BaseComponents
 
         static View() {}
 
-        private ViewStyle viewStyle;
+        /// <summary>
+        /// The Style instance binded with this View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ViewStyle viewStyle;
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle ViewStyle
@@ -126,7 +131,14 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            this.ViewStyle.CopyFrom(viewStyle);
+            if (this.viewStyle == null)
+            {
+                ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
+            }
+            else
+            {
+                this.viewStyle.CopyFrom(viewStyle);
+            }
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -173,21 +185,38 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (controlStates != value)
+                SetControlState(value, null);
+            }
+        }
+
+        /// <summary>
+        /// Set ControlState with specified change environment
+        /// </summary>
+        /// <param name="state">New state value</param>
+        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
+        /// <return>True, if the state changed successfully.</return>
+        internal bool SetControlState(ControlStates state, Touch touchInfo)
+        {
+            if (controlStates == state)
+            {
+                return false;
+            }
+
+            var prevState = controlStates;
+
+            controlStates = state;
+
+            ControlStateChangeEvent?.Invoke(this, state);
+
+            if (OnControlStateChanged(prevState, touchInfo))
+            {
+                foreach (View child in Children)
                 {
-                    controlStates = value;
-
-                    ControlStateChangeEvent?.Invoke(this, value);
-
-                    if (true == OnControlStateChanged(value))
-                    {
-                        foreach (View child in Children)
-                        {
-                            child.ControlState = value;
-                        }
-                    }
+                    child.SetControlState(state, touchInfo);
                 }
             }
+
+            return true;
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2277,13 +2306,19 @@ namespace Tizen.NUI.BaseComponents
             return new ViewStyle();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Called after the View's ControlStates changed.
+        /// </summary>
+        /// <param name="previousState">The previous state value</param>
+        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
+        /// <return>True if it needs to apply the state to children recursively.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnControlStateChanged(ControlStates currentState)
+        protected virtual bool OnControlStateChanged(ControlStates previousState, Touch touchInfo)
         {
             //If need to apply the state to all child, return true;
             return true;
         }
+
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;

@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="7.0.0.15010" />
-    <PackageReference Include="Tizen.NET.API7" Version="7.0.0.15010" />
-    <PackageReference Include="Tizen.NET.Internals" Version="7.0.0.15010" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
+    <PackageReference Include="Tizen.NET" Version="8.0.1" />
+    <PackageReference Include="Tizen.NET.API8" Version="8.0.1" />
+    <PackageReference Include="Tizen.NET.Internals" Version="8.0.1" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
   </ItemGroup>
 
 </Project>

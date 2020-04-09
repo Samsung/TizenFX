@@ -36,11 +36,8 @@ namespace Tizen.NUI
         public Layer() : this(Interop.Layer.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (Window.Instance != null)
-            {
-                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
-                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
-            }
+            this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
+            this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
         }
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Layer.Layer_SWIGUpcast(cPtr), cMemoryOwn)

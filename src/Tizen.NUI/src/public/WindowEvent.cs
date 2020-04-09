@@ -211,7 +211,7 @@ namespace Tizen.NUI
         /// Instead please use FocusChanged.
         [Obsolete("Please do not use! This will be deprecated! Please use FocusChanged instead! " +
             "Like: " +
-            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FocusChangedEventArgs> WindowFocusChanged
@@ -815,7 +815,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use FocusChangedEventArgs instead! " +
             "Like: " +
-            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class WindowFocusChangedEventArgs : EventArgs
@@ -843,7 +843,7 @@ namespace Tizen.NUI
             /// <since_tizen> 4 </since_tizen>
             public SafeNativeWindowHandle() : base(IntPtr.Zero, false)
             {
-                SetHandle(Tizen.NUI.Window.Instance.GetNativeWindowHandler());
+                SetHandle(NUIApplication.GetDefaultWindow().GetNativeWindowHandler());
             }
             /// <summary>
             /// Null check if the handle is valid or not.

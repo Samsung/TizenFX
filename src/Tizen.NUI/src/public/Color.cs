@@ -117,6 +117,30 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// The conversion constructor from an hexcode of four floats.
+        /// </summary>
+        /// <param name="hexColor">Hex color code</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(string hexColor) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        {
+            try
+            {
+                hexColor = hexColor.Replace("#", "");
+                
+                R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
+                G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
+                B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
+                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+            }
+            catch
+            {
+                throw new global::System.ArgumentException("Please check your hex code");
+            }
+        }
+
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 			hashDummy = false;

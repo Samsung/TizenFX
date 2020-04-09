@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
@@ -121,16 +122,80 @@ namespace Tizen.NUI.Components
             return instance.Style?.TextPadding;
         });
 
-        private ImageView overlayImage;
-
-        private TextLabel buttonText;
-        private ImageView buttonIcon;
-
         private EventHandler<StateChangedEventArgs> stateChangeHander;
 
         private bool isSelected = false;
         private bool isEnabled = true;
         private bool isPressed = false;
+
+        /// <summary>
+        /// Button's overlay image part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView ButtonOverlayImage { get; set; }
+
+        /// <summary>
+        /// Button's text part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected TextLabel ButtonText { get; set; }
+
+        /// <summary>
+        /// Button's icon part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ImageView ButtonIcon { get; set; }
+
+        /// <summary>
+        /// The last touch information triggering selected state change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Touch SelectionChangedByTouch { get; set; }
+
+        /// <summary>
+        /// The ButtonExtension instance that is injected by ButtonStyle.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ButtonExtension Extension { get; set; }
+
+        /// <summary>
+        /// Creates Button's text part.
+        /// </summary>
+        /// <return>The created Button's text part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual TextLabel CreateText()
+        {
+            return new TextLabel();
+        }
+
+        /// <summary>
+        /// Creates Button's icon part.
+        /// </summary>
+        /// <return>The created Button's icon part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateIcon()
+        {
+            return new ImageView();
+        }
+
+        /// <summary>
+        /// Creates Button's overlay image part.
+        /// </summary>
+        /// <return>The created Button's overlay image part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ImageView CreateOverlayImage()
+        {
+            return new ImageView();
+        }
+
+        /// <summary>
+        /// Called when the Button is Clicked by a user
+        /// </summary>
+        /// <param name="eventArgs">The click information.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnClick(ClickEventArgs eventArgs)
+        {
+        }
 
         static Button() { }
 
@@ -484,9 +549,13 @@ namespace Tizen.NUI.Components
             set
             {
                 isSelected = value;
-                UpdateState();
+
+                UpdateState(SelectionChangedByTouch);
+
+                SelectionChangedByTouch = null;
             }
         }
+
         /// <summary>
         /// Flag to decide enable or disable in Button.
         /// </summary>
@@ -582,17 +651,19 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (buttonIcon != null)
+                Extension?.OnDispose(this);
+
+                if (ButtonIcon != null)
                 {
-                    Utility.Dispose(buttonIcon);
+                    Utility.Dispose(ButtonIcon);
                 }
-                if (buttonText != null)
+                if (ButtonText != null)
                 {
-                    Utility.Dispose(buttonText);
+                    Utility.Dispose(ButtonText);
                 }
-                if (overlayImage != null)
+                if (ButtonOverlayImage != null)
                 {
-                    Utility.Dispose(overlayImage);
+                    Utility.Dispose(ButtonOverlayImage);
                 }
             }
 
@@ -613,23 +684,30 @@ namespace Tizen.NUI.Components
                 {
                     isPressed = true;
                     UpdateState();
-                    if(isEnabled)
-                    {
-                        ClickEventArgs eventArgs = new ClickEventArgs();
-                        OnClick(eventArgs);
-                    }
                 }
             }
             else if (key.State == Key.StateType.Up)
             {
                 if (key.KeyPressedName == "Return")
                 {
+                    bool clicked = isPressed && isEnabled;
+
                     isPressed = false;
+
                     if (Style.IsSelectable != null && Style.IsSelectable == true)
                     {
-                        isSelected = !isSelected;
+                        IsSelected = !IsSelected;
                     }
-                    UpdateState();
+                    else
+                    {
+                        UpdateState();
+                    }
+
+                    if (clicked)
+                    {
+                        ClickEventArgs eventArgs = new ClickEventArgs();
+                        OnClickInternal(eventArgs);
+                    }
                 }
             }
             return base.OnKey(key);
@@ -660,23 +738,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Tap gesture event callback.
-        /// </summary>
-        /// <param name="source">Source which recieved touch event.</param>
-        /// <param name="e">Tap gesture event argument.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            if (isEnabled)
-            {
-                ClickEventArgs eventArgs = new ClickEventArgs();
-                OnClick(eventArgs);
-                base.OnTapGestureDetected(source, e);
-            }
-        }
-        /// <summary>
         /// Called after a touch event is received by the owning view.<br />
         /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
         /// </summary>
@@ -694,20 +755,36 @@ namespace Tizen.NUI.Components
             {
                 case PointStateType.Down:
                     isPressed = true;
-                    UpdateState();
+                    UpdateState(touch);
                     return true;
                 case PointStateType.Interrupted:
                     isPressed = false;
                     UpdateState();
                     return true;
                 case PointStateType.Up:
+                {
+                    bool clicked = isPressed && isEnabled;
+
                     isPressed = false;
+
                     if (Style.IsSelectable != null && Style.IsSelectable == true)
                     {
-                        isSelected = !isSelected;
+                        SelectionChangedByTouch = touch;
+                        IsSelected = !IsSelected;
                     }
-                    UpdateState();
+                    else
+                    {
+                        UpdateState(touch);
+                    }
+
+                    if (clicked)
+                    {
+                        ClickEventArgs eventArgs = new ClickEventArgs();
+                        OnClickInternal(eventArgs);
+                    }
+
                     return true;
+                }
                 default:
                     break;
             }
@@ -727,31 +804,9 @@ namespace Tizen.NUI.Components
 
             if (null != buttonStyle)
             {
-                if (null == overlayImage)
-                {
-                    overlayImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-                    this.Add(overlayImage);
-                }
-
-                if (null == buttonText)
-                {
-                    buttonText = new TextLabel();
-                    this.Add(buttonText);
-                }
-
-                if (null == buttonIcon)
-                {
-                    buttonIcon = new ImageView();
-                    this.Add(buttonIcon);
-                }
-
-                overlayImage.ApplyStyle(buttonStyle.Overlay);
-                buttonText.ApplyStyle(buttonStyle.Text);
-                buttonIcon.ApplyStyle(buttonStyle.Icon);
+                ButtonOverlayImage?.ApplyStyle(buttonStyle.Overlay);
+                ButtonText?.ApplyStyle(buttonStyle.Text);
+                ButtonIcon?.ApplyStyle(buttonStyle.Icon);
             }
         }
 
@@ -771,32 +826,44 @@ namespace Tizen.NUI.Components
         {
             base.OnUpdate();
             UpdateUIContent();
+
+            Extension?.OnRelayout(this);
         }
 
         /// <summary>
         /// Update Button State.
         /// </summary>
+        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UpdateState()
+        protected void UpdateState(Touch touchInfo = null)
         {
             ControlStates sourceState = ControlState;
             ControlStates targetState;
 
-            if(isEnabled)
+            if (isEnabled)
             {
-                targetState = isPressed ? ControlStates.Pressed : (IsFocused ? (IsSelected ? ControlStates.SelectedFocused : ControlStates.Focused) : (IsSelected ? ControlStates.Selected : ControlStates.Normal));
+                // Normal
+                targetState = ControlStates.Normal;
+
+                // Selected
+                targetState |= (IsSelected ? ControlStates.Selected : 0);
+
+                // Pressed, PressedSelected, Focused, SelectedFocused
+                targetState |= (isPressed ? ControlStates.Pressed : (IsFocused ? ControlStates.Focused : 0));
             }
             else
             {
-                targetState = IsSelected ? ControlStates.DisabledSelected : (IsFocused ? ControlStates.DisabledFocused : ControlStates.Disabled);
+                // Disabled
+                targetState = ControlStates.Disabled;
+
+                // DisabledSelected, DisabledFocused
+                targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
             }
 
-            if(sourceState != targetState)
+            if (SetControlState(targetState, touchInfo))
             {
-                ControlState = targetState;
-
                 OnUpdate();
 
                 StateChangedEventArgs e = new StateChangedEventArgs
@@ -805,6 +872,8 @@ namespace Tizen.NUI.Components
                     CurrentState = targetState
                 };
                 stateChangeHander?.Invoke(this, e);
+
+                Extension?.OnControlStateChanged(this, sourceState, touchInfo);
             }
         }
 
@@ -814,9 +883,51 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
-            if (null == Style.IconRelativeOrientation) Style.IconRelativeOrientation = IconOrientation.Left;
+            var style = (ButtonStyle)Style;
+
+            Extension = style.CreateExtension();
+
+            CreateComponents();
+
+            if (ButtonOverlayImage != null)
+            {
+                Add(ButtonOverlayImage);
+                ButtonOverlayImage.ApplyStyle(style.Overlay);
+            }
+
+            if (ButtonIcon != null)
+            {
+                Add(ButtonIcon);
+                ButtonIcon.ApplyStyle(style.Icon);
+                ButtonIcon.Relayout += OnIconRelayout;
+            }
+
+            if (null != ButtonText)
+            {
+                Add(ButtonText);
+                ButtonText.ApplyStyle(style.Text);
+            }
+
             UpdateState();
+
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+        }
+
+        private void CreateComponents()
+        {
+            ButtonOverlayImage = CreateOverlayImage();
+            ButtonIcon = CreateIcon();
+            ButtonText = CreateText();
+
+            if (Extension == null)
+            {
+                return;
+            }
+
+            // Update component with extension
+            ButtonOverlayImage = Extension.OnCreateOverlayImage(this, ButtonOverlayImage);
+            ButtonIcon = Extension.OnCreateIcon(this, ButtonIcon);
+            ButtonText = Extension.OnCreateText(this, ButtonText);
         }
 
         /// <summary>
@@ -827,12 +938,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (Style.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
+            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
             {
                 return;
             }
-            buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
-            buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
+            ButtonText.WidthResizePolicy = ResizePolicyType.Fixed;
+            ButtonText.HeightResizePolicy = ResizePolicyType.Fixed;
             int textPaddingStart = Style.TextPadding.Start;
             int textPaddingEnd = Style.TextPadding.End;
             int textPaddingTop = Style.TextPadding.Top;
@@ -845,13 +956,13 @@ namespace Tizen.NUI.Components
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
-                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - buttonIcon.SizeHeight;
+                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
+                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - ButtonIcon.SizeHeight;
             }
             else
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - buttonIcon.SizeWidth;
-                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
+                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - ButtonIcon.SizeWidth;
+                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
         /// <summary>
@@ -862,10 +973,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (Style.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
+            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
             {
                 return;
             }
+
+            var buttonIcon = ButtonIcon;
+            var buttonText = ButtonText;
 
             int textPaddingStart = Style.TextPadding.Start;
             int textPaddingEnd = Style.TextPadding.End;
@@ -993,8 +1107,10 @@ namespace Tizen.NUI.Components
             LayoutChild();
         }
 
-        private void OnClick(ClickEventArgs eventArgs)
+        private void OnClickInternal(ClickEventArgs eventArgs)
         {
+            OnClick(eventArgs);
+            Extension?.OnClick(this, eventArgs);
             ClickEvent?.Invoke(this, eventArgs);
         }
 
@@ -1025,5 +1141,46 @@ namespace Tizen.NUI.Components
             public ControlStates CurrentState;
         }
 
+        /// <summary>
+        /// Get current text part to the attached ButtonExtension.
+        /// </summary>
+        /// <remarks>
+        /// It returns null if the passed extension is invaild.
+        /// </remarks>
+        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
+        /// <return>The button's text part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel GetCurrentText(ButtonExtension extension)
+        {
+            return (extension == Extension) ? ButtonText : null;
+        }
+
+        /// <summary>
+        /// Get current icon part to the attached ButtonExtension.
+        /// </summary>
+        /// <remarks>
+        /// It returns null if the passed extension is invaild.
+        /// </remarks>
+        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
+        /// <return>The button's icon part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView GetCurrentIcon(ButtonExtension extension)
+        {
+            return (extension == Extension) ? ButtonIcon : null;
+        }
+
+        /// <summary>
+        /// Get current overlay image part to the attached ButtonExtension.
+        /// </summary>
+        /// <remarks>
+        /// It returns null if the passed extension is invaild.
+        /// </remarks>
+        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
+        /// <return>The button's overlay image part.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView GetCurrentOverlayImage(ButtonExtension extension)
+        {
+            return (extension == Extension) ? ButtonOverlayImage : null;
+        }
     }
 }

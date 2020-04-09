@@ -536,14 +536,14 @@ namespace Tizen.NUI
 
                 if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
                 {
-                    Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }
                 else
                 {
-                    Owner.Size = new Size(right - left, bottom - top, Owner.Position.Z);
+                    Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
                     if(SetPositionByLayout)
                     {
-                        Owner.Position = new Position(left, top, Owner.Position.Z);
+                        Owner.SetPosition(left, top, Owner.Position.Z);
                     }
                 }
 

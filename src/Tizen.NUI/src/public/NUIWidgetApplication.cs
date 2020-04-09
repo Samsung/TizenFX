@@ -62,6 +62,28 @@ namespace Tizen.NUI
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetType">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( System.Type widgetType )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetTypes">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( Dictionary<System.Type, string> widgetTypes )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(widgetTypes);
+        }
+
         internal WidgetApplication ApplicationHandle
         {
             get

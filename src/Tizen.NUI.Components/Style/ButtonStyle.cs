@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
@@ -44,7 +44,10 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
-            buttonStyle.isSelected = (bool?)newValue;
+            if (buttonStyle.IsSelectable != null && buttonStyle.IsSelectable == true)
+            {
+                buttonStyle.isSelected = (bool?)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -255,6 +258,18 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Create corresponding ButtonExtension.
+        /// This is to be called by a Button.
+        /// You may override this function to customize button's behavior.
+        /// </summary>
+        /// <return>The new ButtonExtension instance.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual ButtonExtension CreateExtension()
+        {
+            return null;
+        }
+
         private void InitSubStyle()
         {
             Overlay = new ImageViewStyle()
@@ -284,10 +299,10 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FitToChildren,
-                HeightResizePolicy = ResizePolicyType.FitToChildren,
             };
             Icon.PropertyChanged += SubStyleCalledEvent;
+
+            IconRelativeOrientation = Button.IconOrientation.Left;
         }
 
         private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
