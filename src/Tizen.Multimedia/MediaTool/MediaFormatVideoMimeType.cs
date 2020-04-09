@@ -88,6 +88,11 @@ namespace Tizen.Multimedia
         Mpeg4Asp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2071),
 
         /// <summary>
+        /// AOMedia Video 1.
+        /// </summary>
+        Av1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20E0),
+
+        /// <summary>
         /// I420.
         /// </summary>
         I420 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x2510),
@@ -135,26 +140,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// RGB565.
         /// </summary>
-        Rgb565 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25a0),
+        Rgb565 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25A0),
 
         /// <summary>
         /// RGB888.
         /// </summary>
-        Rgb888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25b0),
+        Rgb888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25B0),
 
         /// <summary>
         /// RGBA.
         /// </summary>
-        Rgba = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25c0),
+        Rgba = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25C0),
 
         /// <summary>
         /// ARGB.
         /// </summary>
-        Argb = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25d0),
+        Argb = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25D0),
 
         /// <summary>
         /// BGRA.
         /// </summary>
-        Bgra = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25e0),
+        Bgra = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25E0),
+
+        /// <summary>
+        /// Y8.
+        /// </summary>
+        Y8 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25F0),
     }
 }
