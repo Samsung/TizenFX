@@ -111,6 +111,7 @@ namespace Tizen.System
                 else
                 {
                     Log.Error(PowerUsageErrorFactory.LogTag, "Power usage resource types parameter is empty");
+                    throw new ArgumentNullException(nameof(rtypes));
                 }
             }
             finally
@@ -147,15 +148,15 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppPerResource(appID, rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                if (ret != PowerUsageError.RecordNotFound)
+                if (ret == PowerUsageError.RecordNotFound)
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource" + ret);
-                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error PowerUsageResourceType is not supported");
+                    throw new ArgumentException($"{rtype} is not supproted", nameof(rtype));
                 }
                 else
                 {
                     Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource ," + ret);
-                    throw new ArgumentException($"Invalid PowerUsageResourceType {rtype} passed");
+                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
                 }
             }
             return batteryUsage;
@@ -212,15 +213,15 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByResource(rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                if (ret != PowerUsageError.RecordNotFound)
+                if (ret == PowerUsageError.RecordNotFound)
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
-                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error PowerUsageResourceType is not supported");
+                    throw new ArgumentException($"{rtype} is not supproted", nameof(rtype));
                 }
                 else
                 {
                     Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
-                    throw new ArgumentException($"Invalid PowerUsageResourceType {rtype} passed");
+                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
                 }
             }
             return batteryUsage;
