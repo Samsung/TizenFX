@@ -41,11 +41,6 @@ namespace Tizen.System
         InvalidParameter = ErrorCode.InvalidParameter,
 
         /// <summary>
-        /// No data available.
-        /// </summary>
-        NoData = ErrorCode.NoData,
-
-        /// <summary>
         /// Permission denied.
         /// </summary>
         AcessibilityNotallowed = ErrorCode.PermissionDenied,
@@ -89,12 +84,10 @@ namespace Tizen.System
                     return new InvalidOperationException("Out of memory");
                 case PowerUsageError.InvalidParameter:
                     return new ArgumentException("Invalid Parameter passed");
-                case PowerUsageError.NoData:
-                    return new UnauthorizedAccessException("No data available");
                 case PowerUsageError.AcessibilityNotallowed:
-                    return new NotSupportedException("Permission denied");
+                    return new UnauthorizedAccessException("Permission denied");
                 case PowerUsageError.NotSupported:
-                    return new InvalidOperationException("Address family not supported");
+                    return new NotSupportedException("Not supported");
                 case PowerUsageError.RecordNotFound:
                     return new InvalidOperationException("Related record does not exist");
                 case PowerUsageError.DBFailed:

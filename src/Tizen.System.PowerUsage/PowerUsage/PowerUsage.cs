@@ -98,15 +98,23 @@ namespace Tizen.System
                 {
                     foreach (PowerUsageResourceType type in rtypes)
                     {
-                        batteryUsage.Add(type,GetPowerUsage(dataHandle, type));
+                        try
+                        {
+                            batteryUsage[type] = GetPowerUsage(dataHandle, type);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage for {type}");
+                        }
                     }
                 }
                 else
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Resource types parameter is empty");
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Power usage resource types parameter is empty");
                 }
             }
-            finally {
+            finally
+            {
                 PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.BatteryUsageDataDestroy(dataHandle);
                 if (ret != PowerUsageError.None)
                 {
@@ -139,8 +147,16 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppPerResource(appID, rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource" + ret);
-                throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                if (ret != PowerUsageError.RecordNotFound)
+                {
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource" + ret);
+                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                }
+                else
+                {
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource ," + ret);
+                    throw new ArgumentException($"Invalid PowerUsageResourceType {rtype} passed");
+                }
             }
             return batteryUsage;
         }
@@ -196,8 +212,16 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByResource(rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
-                throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                if (ret != PowerUsageError.RecordNotFound)
+                {
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
+                    throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
+                }
+                else
+                {
+                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
+                    throw new ArgumentException($"Invalid PowerUsageResourceType {rtype} passed");
+                }
             }
             return batteryUsage;
         }
