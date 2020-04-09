@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.Components.Extension;
 
-namespace Tizen.NUI.Wearable
+namespace Tizen.NUI.Components
 {
     /// <summary>
     /// Describes Button Animation used in OneUI_Watch2.X
@@ -79,7 +79,7 @@ namespace Tizen.NUI.Wearable
     /// OverlayAnimationButtonExtension class is a extended ButtonExtension class that make the overlay image blinking on a Button pressed.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OverlayAnimationButtonExtension : ButtonExtension
+    internal class OverlayAnimationButtonExtension : ButtonExtension
     {
         private Animation PressAnimation { get; set; }
 
@@ -123,10 +123,10 @@ namespace Tizen.NUI.Wearable
                 keyFrames.Add(0.25f, 1.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
                 keyFrames.Add(1.0f, 0.0f, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
 
-                PressAnimation = new Animation(400);
+                PressAnimation = new Animation(600);
                 PressAnimation.EndAction = Animation.EndActions.StopFinal;
                 PressAnimation.AnimateBetween(overlayImage, "Opacity", keyFrames);
-                PressAnimation.AnimateTo(overlayImage, "Scale", new Vector3(1, 1, 1), 0, 300, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
+                PressAnimation.AnimateTo(overlayImage, "Scale", new Vector3(1, 1, 1), 0, 600, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
             }
 
             if (PressAnimation.State == Animation.States.Playing)
@@ -139,7 +139,7 @@ namespace Tizen.NUI.Wearable
             overlayImage.CornerRadius = button.CornerRadius;
             overlayImage.Background = button.Background;
             overlayImage.Size = button.Size;
-            overlayImage.Scale = new Vector3(0.86f, 0.86f, 1);
+            overlayImage.Scale = new Vector3(0.80f, 0.80f, 1);
             overlayImage.Show();
 
             PressAnimation.Play();

@@ -439,7 +439,7 @@ namespace Tizen.NUI.Components
             if (null != buttonText)
             {
                 buttonText.Text = Style.Button.Text.Text.All;
-                buttonText.PointSize = Style.Button.Text.PointSize?.GetValue(ControlState) ?? DefaultStyle.PointSizeNormal;
+                buttonText.PointSize = Style.Button.Text.PointSize?.GetValue(ControlState) ?? StyleManager.PointSizeNormal;
                 buttonTextWidth = buttonText.NaturalSize.Width;
             }
             float fitWidth = (Style.Button.Icon.Size?.Width ?? 48) + Style.SpaceBetweenButtonTextAndIcon + buttonTextWidth;

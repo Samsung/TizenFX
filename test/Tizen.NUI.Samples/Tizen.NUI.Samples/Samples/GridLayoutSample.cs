@@ -85,7 +85,7 @@ namespace Tizen.NUI.Samples
                 BackgroundColor = Color.Black,
                 Layout = new GridLayout()
                 {
-                    LinearOrientation = GridLayout.Orientation.Vertical,
+                    GridOrientation = GridLayout.Orientation.Vertical,
                     Columns = 5,
                 },
 
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Samples
         {
             GridLayout layout = new GridLayout();
             layout.Columns = 5;
-            layout.LinearOrientation = GridLayout.Orientation.Vertical;
+            layout.GridOrientation = GridLayout.Orientation.Vertical;
             layoutView.Layout = layout;
             layoutOption = 1;
             layout.LayoutWithTransition = true;
@@ -171,7 +171,7 @@ namespace Tizen.NUI.Samples
             GridLayout layout = new GridLayout();
             layout.LayoutWithTransition = true;
             layout.Rows = 5;
-            layout.LinearOrientation = GridLayout.Orientation.Horizontal;
+            layout.GridOrientation = GridLayout.Orientation.Horizontal;
             layoutView.Layout = layout;
 
             layoutOption = 2;

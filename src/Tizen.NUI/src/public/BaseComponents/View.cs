@@ -71,7 +71,12 @@ namespace Tizen.NUI.BaseComponents
 
         static View() {}
 
-        private ViewStyle viewStyle;
+        /// <summary>
+        /// The Style instance binded with this View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ViewStyle viewStyle;
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle ViewStyle
