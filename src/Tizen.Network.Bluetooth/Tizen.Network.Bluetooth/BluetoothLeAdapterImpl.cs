@@ -401,30 +401,10 @@ namespace Tizen.Network.Bluetooth
                 _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
             }
 
-            Interop.Libc.Free(serviceListArray);
+            Interop.Bluetooth.FreeServiceDataList(serviceListArray, _serviceListCount);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return _list;
-        }
-
-        internal int FreeServiceDataList()
-        {
-            if (_list.Count > 0)
-            {
-                int iServiceDataSize = Marshal.SizeOf(typeof(BluetoothLeServiceData));
-                IntPtr structServiceData = Marshal.AllocHGlobal(iServiceDataSize);
-                Marshal.StructureToPtr(_list, structServiceData, false);
-
-                int ret = Interop.Bluetooth.FreeServiceDataList(structServiceData, _serviceListCount);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to free Service Data List, Error - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-
-                Marshal.FreeHGlobal(structServiceData);
-            }
-            return 0;
         }
 
         internal int GetScanResultAppearance(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
