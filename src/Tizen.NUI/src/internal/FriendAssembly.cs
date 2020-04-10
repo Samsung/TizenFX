@@ -36,7 +36,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.TV.FLUX.Example, " + PublicKey.TizenTV)]
 [assembly: InternalsVisibleTo("Tizen.TV.NUI.Example, " + PublicKey.TizenTV)]
 
-[assembly: InternalsVisibleTo("Tizen.TV.NUI.Example, " + PublicKey.Sample)]
+[assembly: InternalsVisibleTo("NuiSample, " + PublicKey.Sample)]
 internal static class PublicKey
 {
     internal const string TizenFX =
