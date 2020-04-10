@@ -177,10 +177,6 @@ namespace Tizen.Network.Bluetooth {
         /// </summary>
         ~BluetoothLeDevice()
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                BluetoothLeImplAdapter.Instance.FreeServiceDataList();
-            }
         }
 
         /// <summary>
