@@ -38,7 +38,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal Texture(NativeImageInterface nativeImageInterface) : this(Interop.Texture.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Texture(NativeImageInterface nativeImageInterface) : this(Interop.Texture.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
