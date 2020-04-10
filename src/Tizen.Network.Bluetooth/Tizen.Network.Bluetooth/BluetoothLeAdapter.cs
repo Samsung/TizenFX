@@ -173,13 +173,6 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// BluetoothLeDevice destructor.
-        /// </summary>
-        ~BluetoothLeDevice()
-        {
-        }
-
-        /// <summary>
         /// The remote address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
