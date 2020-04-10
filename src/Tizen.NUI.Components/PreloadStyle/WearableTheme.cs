@@ -41,7 +41,7 @@ namespace Tizen.NUI.Components
                 BackgroundColor = new Selector<Color>
                 {
                     Normal = new Color(0, 42f/255f, 77f/255f, 0.85f),
-                    Pressed = new Color(0, 70f/255f, 128f/255f, 0.70f),
+                    Pressed = new Color(0, 70f/255f, 128f/255f, 0.85f),
                     Disabled = new Color(61f/255f, 61f/255f, 61f/255f, 0.85f),
                 },
                 Text = new TextLabelStyle
@@ -61,7 +61,6 @@ namespace Tizen.NUI.Components
                 Opacity = new Selector<float?>
                 {
                     Other = 1.0f,
-                    Pressed = 0.6f,
                     Disabled = 0.3f,
                 }
             };
