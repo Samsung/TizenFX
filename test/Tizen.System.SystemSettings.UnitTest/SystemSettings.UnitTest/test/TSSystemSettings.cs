@@ -632,9 +632,11 @@ namespace SystemSettingsUnitTest
             LogUtils.StartTest();
             /* TEST CODE */
             Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.FontType, "FontType_READ_WRITE: FontType not an instance of string");
-            string setValue = "BreezeSans";
+            //string setValue = "BreezeSans";
+//            string setValue = "SamsungOneUI";
+            string setValue = Tizen.System.SystemSettings.DefaultFontType;
             string preValue = Tizen.System.SystemSettings.FontType;
-
+            Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>>>>>>>>> Default Font set : " + setValue);
             Tizen.System.SystemSettings.FontType = setValue;
             var getValue = Tizen.System.SystemSettings.FontType;
             Assert.IsTrue(getValue.CompareTo(setValue) == 0, "FontType_READ_WRITE: Set value and get value of the property should be same.");
@@ -644,7 +646,7 @@ namespace SystemSettingsUnitTest
         }
 
         private static bool s_fontTypeCallbackCalled = false;
-        private static readonly string s_fontTypeValue = "BreezeSans";
+        private static readonly string s_fontTypeValue = Tizen.System.SystemSettings.DefaultFontType;
         private static TaskCompletionSource<bool> s_tcsFontType;
         ////[Test]
         //[Category("P1")]
@@ -661,7 +663,7 @@ namespace SystemSettingsUnitTest
             Tizen.System.SystemSettings.FontTypeChanged += OnFontTypeChanged;
             string preValue = Tizen.System.SystemSettings.FontType;
             Tizen.System.SystemSettings.FontType = s_fontTypeValue;
-            await s_tcsFontSizeNormal.Task;
+            await s_tcsFontType.Task;
             Assert.IsTrue(s_fontTypeCallbackCalled, "FontTypeChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_fontTypeCallbackCalled = false;
             Tizen.System.SystemSettings.FontTypeChanged -= OnFontTypeChanged;
@@ -721,7 +723,6 @@ namespace SystemSettingsUnitTest
             Tizen.System.SystemSettings.MotionActivationEnabled = s_motionActivationValue;
             await s_tcsMotionActivation.Task;
 
-            s_tcsMotionActivation = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_motionActivationCallbackCalled, "MotionActivationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_motionActivationCallbackCalled = false;
             s_motionActivationValue = !s_motionActivationValue;
@@ -867,7 +868,6 @@ namespace SystemSettingsUnitTest
             bool preValue = Tizen.System.SystemSettings.Data3GNetworkEnabled;
             Tizen.System.SystemSettings.Data3GNetworkEnabled = s_data3GNetworkSettingValue;
             await s_tcsData3GNetwork.Task;
-            s_tcsData3GNetwork = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_data3GNetworkCallbackCalled, "Data3GNetworkSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
 
             s_data3GNetworkSettingValue = !s_data3GNetworkSettingValue;
@@ -1146,7 +1146,6 @@ namespace SystemSettingsUnitTest
             bool preValue = Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled;
             Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled = s_localeTimeformat24HourValue;
             await s_tcsTimeFormat.Task;
-            s_tcsTimeFormat = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_timeFormatCallbackCalled, "LocaleTimeFormat24HourSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_timeFormatCallbackCalled = false;
 
@@ -2072,12 +2071,11 @@ namespace SystemSettingsUnitTest
             bool preValue = Tizen.System.SystemSettings.AccessibilityTtsEnabled;
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
             await s_tcsAccessibilityTts.Task;
-            s_tcsAccessibilityTts = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_accessibilityTtsCallbackCalled = false;
             s_accessibilityTtsValue = !s_accessibilityTtsValue;
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
-            await s_tcsFontSizeNormal.Task;
+            await s_tcsAccessibilityTts.Task;
             Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_accessibilityTtsCallbackCalled = false;
 
@@ -2137,7 +2135,6 @@ namespace SystemSettingsUnitTest
             bool preValue = Tizen.System.SystemSettings.Vibration;
             Tizen.System.SystemSettings.Vibration = s_vibrationValue;
             await s_tcsVibration.Task;
-            s_tcsVibration = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_vibrationCallbackCalled = false;
             s_vibrationValue = !s_vibrationValue;
@@ -2220,7 +2217,6 @@ namespace SystemSettingsUnitTest
                 s_automaticTimeUpdateCallbackCalled = false;
                 s_automaticTimeUpdateValue = !s_automaticTimeUpdateValue;
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-				s_tcsAutomaticTimeUpdate = new TaskCompletionSource<bool>();
                 Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_automaticTimeUpdateCallbackCalled = false;
 
@@ -2289,12 +2285,11 @@ namespace SystemSettingsUnitTest
             bool preValue = Tizen.System.SystemSettings.DeveloperOptionState;
             Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
             await s_tcsDeveloperOptionState.Task;
-            s_tcsDeveloperOptionState = new TaskCompletionSource<bool>();
             Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_developerOptionStateCallbackCalled = false;
             s_developerOptionStateValue = !s_developerOptionStateValue;
             Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
-            await s_tcsFontSizeNormal.Task;
+            await s_tcsDeveloperOptionState.Task;
             Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_developerOptionStateCallbackCalled = false;
 
@@ -2381,9 +2376,9 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
                 LogUtils.NotSupport();
             }
         }
@@ -2421,9 +2416,9 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.negative", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.negative)");
                 LogUtils.NotSupport();
             }
         }
@@ -2462,9 +2457,9 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.negative", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.negative)");
                 LogUtils.NotSupport();
             }
         }
@@ -2486,17 +2481,28 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void RotaryEventEnabled_READ_WRITE()
         {
-            LogUtils.StartTest();
-            /* TEST CODE */
-            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.RotaryEventEnabled, "RotaryEventEnabled_READ_WRITE: RotaryEventEnabled not an instance of string");
-            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            var setValue = !preValue;
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.RotaryEventEnabled, "RotaryEventEnabled_READ_WRITE: RotaryEventEnabled not an instance of string");
+                bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                var setValue = !preValue;
 
-            Tizen.System.SystemSettings.RotaryEventEnabled = setValue;
-            var getValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            Assert.IsTrue(getValue == setValue, "RotaryEventEnabled_READ_WRITE: Set value and get value of the property should be same.");
-            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
-            LogUtils.WriteOK();
+                Tizen.System.SystemSettings.RotaryEventEnabled = setValue;
+                var getValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                Assert.IsTrue(getValue == setValue, "RotaryEventEnabled_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/input.rotating_bezel", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/input.rotating_bezel)");
+                LogUtils.NotSupport();
+            }
         }
 
         private static TaskCompletionSource<bool> s_tcsRotaryEventEnabled;
@@ -2511,22 +2517,33 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task RotaryEventEnabledChanged_CHECK_EVENT()
         {
-            s_tcsRotaryEventEnabled = new TaskCompletionSource<bool>();
-            LogUtils.StartTest();
-            /* TEST CODE */
-            Tizen.System.SystemSettings.RotaryEventEnabledChanged += OnRotaryEventEnabledChanged;
-            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            s_rotaryEventEnabledValue = !preValue;
-            Tizen.System.SystemSettings.RotaryEventEnabled = s_rotaryEventEnabledValue;
-            await s_tcsRotaryEventEnabled.Task;
-            Assert.IsTrue(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler added. Not getting called");
-            s_rotaryEventEnabledCallbackCalled = false;
-            Tizen.System.SystemSettings.RotaryEventEnabledChanged -= OnRotaryEventEnabledChanged;
-            Tizen.System.SystemSettings.RotaryEventEnabled = !s_rotaryEventEnabledValue;
-            await Task.Delay(100);
-            Assert.IsFalse(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler removed. Still getting called");
-            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
-            LogUtils.WriteOK();
+            try
+            {
+                s_tcsRotaryEventEnabled = new TaskCompletionSource<bool>();
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Tizen.System.SystemSettings.RotaryEventEnabledChanged += OnRotaryEventEnabledChanged;
+                bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                s_rotaryEventEnabledValue = !preValue;
+                Tizen.System.SystemSettings.RotaryEventEnabled = s_rotaryEventEnabledValue;
+                await s_tcsRotaryEventEnabled.Task;
+                Assert.IsTrue(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_rotaryEventEnabledCallbackCalled = false;
+                Tizen.System.SystemSettings.RotaryEventEnabledChanged -= OnRotaryEventEnabledChanged;
+                Tizen.System.SystemSettings.RotaryEventEnabled = !s_rotaryEventEnabledValue;
+                await Task.Delay(100);
+                Assert.IsFalse(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/input.rotating_bezel", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/input.rotating_bezel)");
+                LogUtils.NotSupport();
+            }
         }
         private static void OnRotaryEventEnabledChanged(object sender, Tizen.System.RotaryEventEnabledChangedEventArgs e)
         {
