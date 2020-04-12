@@ -82,8 +82,8 @@ namespace Tizen.System
         public static IDictionary<PowerUsageResourceType, double> GetPowerUsage(string appID, IList<PowerUsageResourceType> rtypes, DateTime start, DateTime end)
         {
             IntPtr dataHandle = IntPtr.Zero;
-            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Utc);
-            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Utc);
+            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Local);
+            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Local);
             IDictionary<PowerUsageResourceType, double> batteryUsage = new Dictionary<PowerUsageResourceType, double>();
             try
             {
@@ -143,8 +143,8 @@ namespace Tizen.System
         public static double GetPowerUsage(string appID, PowerUsageResourceType rtype, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Utc);
-            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Utc);
+            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Local);
+            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Local);
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppPerResource(appID, rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
@@ -179,8 +179,8 @@ namespace Tizen.System
         public static double GetPowerUsage(string appID, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Utc);
-            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Utc);
+            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Local);
+            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Local);
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByApp(appID, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
@@ -207,8 +207,8 @@ namespace Tizen.System
         public static double GetPowerUsage(PowerUsageResourceType rtype, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Utc);
-            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Utc);
+            DateTimeOffset startTime = DateTime.SpecifyKind(start, DateTimeKind.Local);
+            DateTimeOffset endTime = DateTime.SpecifyKind(end, DateTimeKind.Local);
 
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByResource(rtype, startTime.ToUnixTimeSeconds(), endTime.ToUnixTimeSeconds(), out batteryUsage);
             if (ret != PowerUsageError.None)
