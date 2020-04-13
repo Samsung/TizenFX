@@ -1191,34 +1191,53 @@ namespace Tizen.Applications
             }
         }
 
+        private static void InvokeEventHandlerWithArgs(EventHandler<PackageManagerEventArgs> handlers, PackageManagerEventArgs args)
+        {
+            foreach (EventHandler<PackageManagerEventArgs> handler in handlers?.GetInvocationList())
+            {
+                try
+                {
+                    handler.Invoke(null, args);
+                }
+                catch (Exception e)
+                {
+                    Log.Warn(LogTag, string.Format("Exception occurred in handler {0}: {1}", handler.Method.Name, e.Message));
+                }
+            }
+        }
+
         private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
         {
+            PackageManagerEventArgs args;
             try
             {
-                if (eventType == Interop.PackageManager.EventType.Install)
-                {
-                    s_installEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Uninstall)
-                {
-                    s_uninstallEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Update)
-                {
-                    s_updateEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Move)
-                {
-                    s_moveEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.ClearData)
-                {
-                    s_clearDataEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
+                args = new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress);
             }
             catch (Exception e)
             {
                 Log.Warn(LogTag, e.Message);
+                return;
+            }
+
+            if (eventType == Interop.PackageManager.EventType.Install)
+            {
+                InvokeEventHandlerWithArgs(s_installEventHandler, args);
+            }
+            else if (eventType == Interop.PackageManager.EventType.Uninstall)
+            {
+                InvokeEventHandlerWithArgs(s_uninstallEventHandler, args);
+            }
+            else if (eventType == Interop.PackageManager.EventType.Update)
+            {
+                InvokeEventHandlerWithArgs(s_updateEventHandler, args);
+            }
+            else if (eventType == Interop.PackageManager.EventType.Move)
+            {
+                InvokeEventHandlerWithArgs(s_moveEventHandler, args);
+            }
+            else if (eventType == Interop.PackageManager.EventType.ClearData)
+            {
+                InvokeEventHandlerWithArgs(s_clearDataEventHandler, args);
             }
         }
 
