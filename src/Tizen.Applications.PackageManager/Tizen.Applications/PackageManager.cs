@@ -1191,21 +1191,6 @@ namespace Tizen.Applications
             }
         }
 
-        private static void InvokeEventHandlerWithArgs(EventHandler<PackageManagerEventArgs> handlers, PackageManagerEventArgs args)
-        {
-            foreach (EventHandler<PackageManagerEventArgs> handler in handlers?.GetInvocationList())
-            {
-                try
-                {
-                    handler.Invoke(null, args);
-                }
-                catch (Exception e)
-                {
-                    Log.Warn(LogTag, string.Format("Exception occurred in handler {0}: {1}", handler.Method.Name, e.Message));
-                }
-            }
-        }
-
         private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
         {
             PackageManagerEventArgs args;
@@ -1244,10 +1229,7 @@ namespace Tizen.Applications
                 }
             }
 
-            if (handlers != null)
-            {
-                InvokeEventHandlerWithArgs(handlers, args);
-            }
+            handlers?.Invoke(null, args);
         }
 
         private static void UnregisterPackageManagerEventIfNeeded()
