@@ -130,7 +130,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading accelerometer data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             X = sensorData.values[0];
             Y = sensorData.values[1];
             Z = sensorData.values[2];
@@ -143,7 +143,7 @@ namespace Tizen.Sensor
             _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 X = sensorData.values[0];
                 Y = sensorData.values[1];
                 Z = sensorData.values[2];

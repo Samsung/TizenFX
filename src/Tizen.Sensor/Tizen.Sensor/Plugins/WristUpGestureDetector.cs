@@ -110,7 +110,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading wrist up gesture detector data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             WristUp = (DetectorState)sensorData.values[0];
         }
 
@@ -128,7 +128,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 WristUp = (DetectorState) sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new WristUpGestureDetectorDataUpdatedEventArgs(sensorData.values[0]));

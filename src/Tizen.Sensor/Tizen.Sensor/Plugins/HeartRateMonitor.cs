@@ -119,7 +119,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading heart rate monitor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             HeartRate = (int)sensorData.values[0];
         }
 
@@ -127,11 +127,12 @@ namespace Tizen.Sensor
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) =>
+            {
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 HeartRate = (int)sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new HeartRateMonitorDataUpdatedEventArgs((int)sensorData.values[0]));

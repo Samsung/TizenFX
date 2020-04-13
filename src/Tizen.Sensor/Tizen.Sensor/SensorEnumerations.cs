@@ -102,18 +102,26 @@ namespace Tizen.Sensor
         /// <summary>
         /// Pedometer sensor.
         /// </summary>
+        HRMBatch = 0x200,
+        /// <summary>
+        /// Pedometer sensor.
+        /// </summary>
+        HRMLEDGreenBatch = 0x201,
+        /// <summary>
+        /// Pedometer sensor.
+        /// </summary>
         Pedometer = 0x300,
         /// <summary>
         /// Sleep monitor sensor.
         /// </summary>
         SleepMonitor = 0x301,
         /// <summary>
-        /// Stationary activity detector.
-        /// </summary>
         /// Auto Rotation sensor.
         /// </summary>
         AutoRotation = 0x901,
         /// <summary>
+        /// Stationary activity detector.
+        /// </summary>
         StationaryActivityDetector = 0x1A00,
         /// <summary>
         /// Walking activity detector.
@@ -353,5 +361,58 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         Degree_270 = 4
+    }
+
+
+    /// <summary>
+    /// HeartRateMonitorBatchState types.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum HeartRateMonitorBatchState
+    {
+        /// <summary>
+        /// Flush but there was no batched data
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_NODATA_FLUSH = -99,
+
+        /// <summary>
+        /// Very low measurement reliability 
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_VERYLOW_RELIABILITY = -10,
+
+        /// <summary>
+        ///  Low measurement reliability
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_LOW_RELIABILITY = -8,
+
+        /// <summary>
+        /// Device detachment was detected during auto measurement
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_DETACHED_AUTO = -5,
+
+        /// <summary>
+        /// Device detachment was detected
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_DETACHED = -3,
+
+        /// <summary>
+        /// The Movement was detected during on-demand measurement
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_DETECT_MOVE = -2,
+
+        /// <summary>
+        /// Device attachment was detected
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_ATTACHED = -1,
+
+        /// <summary>
+        /// Initial state before measurement
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_NONE = 0,
+
+        /// <summary>
+        /// SENSOR_HRM_BATCH_STATE_OK
+        /// </summary>
+        SENSOR_HRM_BATCH_STATE_OK = 1
     }
 }
