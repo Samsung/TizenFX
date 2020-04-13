@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void RegisterComponentStyle(string targetTheme, Type component, Type style)
         {
-            if (targetTheme == null)
+            if (targetTheme == null || component == null || style == null)
             {
                 throw new ArgumentException("The argument targetTheme must be specified");
             }
