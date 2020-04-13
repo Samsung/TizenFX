@@ -350,6 +350,7 @@ namespace Tizen.NUI.Components
         private PanGestureDetector mPanGestureDetector;
         private TapGestureDetector mTapGestureDetector;
         private View mScrollingChild;
+        private View mInterruptTouchingChild;
         private float multiplier =1.0f;
         private bool scrolling = false;
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
@@ -382,6 +383,18 @@ namespace Tizen.NUI.Components
             mScrollingChild = new View();
             mScrollingChild.Name = "DefaultScrollingChild";
 
+            //Interrupt touching when panning is started;
+            mInterruptTouchingChild = new View()
+            {
+                Name = "InterruptTouchingChild",
+                Size = new Size(Window.Instance.WindowSize),
+                BackgroundColor = Color.Transparent,
+            };
+
+            mInterruptTouchingChild.TouchEvent += (object source, View.TouchEventArgs args) => {
+                return true;
+            };
+
             Layout = new ScrollableBaseCustomLayout();
         }
 
@@ -399,19 +412,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            if(mScrollingChild.Name != "DefaultScrollingChild")
+            if(view.Name != "InterruptTouchingChild")
             {
-                propertyNotification.Notified -= OnPropertyChanged;
-                mScrollingChild.RemovePropertyNotification(propertyNotification);
-            }
+                if(mScrollingChild.Name != "DefaultScrollingChild")
+                {
+                    propertyNotification.Notified -= OnPropertyChanged;
+                    mScrollingChild.RemovePropertyNotification(propertyNotification);
+                }
 
-            mScrollingChild = view;
-            propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
-            propertyNotification.Notified += OnPropertyChanged;
-
-            {
-                if (Children.Count > 1)
-                    Log.Error("ScrollableBase", $"Only 1 child should be added to ScrollableBase.");
+                mScrollingChild = view;
+                propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
+                propertyNotification.Notified += OnPropertyChanged;
             }
         }
 
@@ -424,10 +435,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildRemove(View view)
         {
-            propertyNotification.Notified -= OnPropertyChanged;
-            mScrollingChild.RemovePropertyNotification(propertyNotification);
+            if(view.Name != "InterruptTouchingChild")
+            {
+                propertyNotification.Notified -= OnPropertyChanged;
+                mScrollingChild.RemovePropertyNotification(propertyNotification);
 
-            mScrollingChild = new View();
+                mScrollingChild = new View();
+            }
         }
 
 
@@ -736,6 +750,7 @@ namespace Tizen.NUI.Components
         {
             if (e.PanGesture.State == Gesture.StateType.Started)
             {
+                Add(mInterruptTouchingChild);
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
@@ -780,6 +795,8 @@ namespace Tizen.NUI.Components
                     }
                 }
                 totalDisplacementForPan = 0;
+
+                Remove(mInterruptTouchingChild);
             }
         }
 

@@ -109,6 +109,7 @@ namespace Tizen.NUI
                             Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
                             if (NDalicPINVOKE.SWIGPendingException.Pending)
                                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                            childLayout.Owner.InternalParent = null;
                         }
                     }
 
