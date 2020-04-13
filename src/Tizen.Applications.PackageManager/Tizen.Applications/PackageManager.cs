@@ -1219,25 +1219,34 @@ namespace Tizen.Applications
                 return;
             }
 
-            if (eventType == Interop.PackageManager.EventType.Install)
+            EventHandler<PackageManagerEventArgs> handlers = null;
+            lock (s_pkgEventLock)
             {
-                InvokeEventHandlerWithArgs(s_installEventHandler, args);
+                if (eventType == Interop.PackageManager.EventType.Install)
+                {
+                    handlers = s_installEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Uninstall)
+                {
+                    handlers = s_uninstallEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Update)
+                {
+                    handlers = s_updateEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Move)
+                {
+                    handlers = s_moveEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.ClearData)
+                {
+                    handlers = s_clearDataEventHandler;
+                }
             }
-            else if (eventType == Interop.PackageManager.EventType.Uninstall)
+
+            if (handlers != null)
             {
-                InvokeEventHandlerWithArgs(s_uninstallEventHandler, args);
-            }
-            else if (eventType == Interop.PackageManager.EventType.Update)
-            {
-                InvokeEventHandlerWithArgs(s_updateEventHandler, args);
-            }
-            else if (eventType == Interop.PackageManager.EventType.Move)
-            {
-                InvokeEventHandlerWithArgs(s_moveEventHandler, args);
-            }
-            else if (eventType == Interop.PackageManager.EventType.ClearData)
-            {
-                InvokeEventHandlerWithArgs(s_clearDataEventHandler, args);
+                InvokeEventHandlerWithArgs(handlers, args);
             }
         }
 
