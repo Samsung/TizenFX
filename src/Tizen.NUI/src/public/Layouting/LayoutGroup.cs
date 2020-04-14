@@ -106,10 +106,16 @@ namespace Tizen.NUI
                     {
                         if(childLayout.Owner != null)
                         {
-                            Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
-                            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                            childLayout.Owner.InternalParent = null;
+                            View parent = childLayout.Owner.GetParent() as View;
+
+                            if(parent != null)
+                            {
+                                parent.RemoveChild(childLayout.Owner);
+                            }
+                            else
+                            {
+                                NUIApplication.GetDefaultWindow().Remove(childLayout.Owner);
+                            }
                         }
                     }
 
@@ -119,11 +125,13 @@ namespace Tizen.NUI
                     childRemoved = true;
                 }
             }
+
             if (childRemoved)
             {
                 // If child removed then set all siblings not being added to a ChangeOnRemove transition.
                 SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnRemove);
             }
+
             RequestLayout();
         }
 
