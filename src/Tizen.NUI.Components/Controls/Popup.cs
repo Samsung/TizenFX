@@ -186,8 +186,8 @@ namespace Tizen.NUI.Components
         {
             var instance = (Popup)bindable;
             ImageShadow shadow = (ImageShadow)newValue;
-            instance.btGroup.ItemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
-            instance.Style.Buttons.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+            instance.btGroup.ItemImageShadow = new ImageShadow(shadow);
+            instance.Style.Buttons.ImageShadow = new ImageShadow(shadow);
         },
         defaultValueCreator: (bindable) =>
         {

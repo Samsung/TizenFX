@@ -346,7 +346,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether the width or the height size values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
-        SizePolicy
+        SizePolicy,
+        /// <summary>
+        /// Extra size value that will be added to the computed visual size.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ExtraSize,
     }
 
     /// <summary>
@@ -581,6 +586,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
+        /// <summary>
+        /// Then radius value for the area to blur.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int BlurRadius = NDalic.COLOR_VISUAL_MIX_COLOR + 2;
     }
 
     /// <summary>

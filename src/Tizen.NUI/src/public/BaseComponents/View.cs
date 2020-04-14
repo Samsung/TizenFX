@@ -59,13 +59,7 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
-        private Rectangle backgroundImageBorder;
-
-        private CloneableViewSelector<ImageShadow> imageShadow;
-
-        private CloneableViewSelector<Shadow> boxShadow;
-
-        private ViewSelector<float?> cornerRadius;
+        private BackgroundExtraData backgroundExtraData;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
@@ -127,6 +121,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
@@ -167,7 +163,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal delegate void ControlStateChangesDelegate(View obj, ControlStates state);
+        internal delegate void ControlStateChangesDelegate(View obj, ControlStateChagedInfo controlStateChangedInfo);
         internal event ControlStateChangesDelegate ControlStateChangeEvent;
 
         private ControlStates controlStates;
@@ -206,9 +202,11 @@ namespace Tizen.NUI.BaseComponents
 
             controlStates = state;
 
-            ControlStateChangeEvent?.Invoke(this, state);
+            var changeInfo = new ControlStateChagedInfo(prevState, state, touchInfo);
 
-            if (OnControlStateChanged(prevState, touchInfo))
+            ControlStateChangeEvent?.Invoke(this, changeInfo);
+
+            if (OnControlStateChanged(changeInfo))
             {
                 foreach (View child in Children)
                 {
@@ -338,6 +336,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "BoxShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -345,8 +346,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (ImageShadow)GetValue(ImageShadowProperty);
-                return value == null ? null : new ImageShadow(value, OnImageShadowChanged);
+                return (ImageShadow)GetValue(ImageShadowProperty);
             }
             set
             {
@@ -360,6 +360,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -367,8 +370,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (Shadow)GetValue(BoxShadowProperty);
-                return value == null ? null : new Shadow(value, OnBoxShadowChanged);
+                return (Shadow)GetValue(BoxShadowProperty);
             }
             set
             {
@@ -387,8 +389,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float? value = (float?)GetValue(CornerRadiusProperty);
-                return value ?? 0;
+                return (float)GetValue(CornerRadiusProperty);
             }
             set
             {
@@ -2309,11 +2310,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called after the View's ControlStates changed.
         /// </summary>
-        /// <param name="previousState">The previous state value</param>
-        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
+        /// <param name="controlStateChangedInfo">The information including state changed variables.</param>
         /// <return>True if it needs to apply the state to children recursively.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnControlStateChanged(ControlStates previousState, Touch touchInfo)
+        protected virtual bool OnControlStateChanged(ControlStateChagedInfo controlStateChangedInfo)
         {
             //If need to apply the state to all child, return true;
             return true;

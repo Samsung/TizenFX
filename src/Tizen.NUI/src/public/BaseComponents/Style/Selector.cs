@@ -151,16 +151,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PressedSelected State.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public T PressedSelected
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Other State.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -201,10 +191,19 @@ namespace Tizen.NUI.BaseComponents
                     return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
                 case ControlStates.SelectedFocused:
                     return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
-                case ControlStates.PressedSelected:
-                    return PressedSelected != null ? PressedSelected : (Selected != null ? Selected : Other);
                 default:
+                {
+                    // Handle combined states
+                    if ((int)(state & ControlStates.Selected) != 0 && Selected != null)
+                    {
+                        return Selected;
+                    }
+                    else if ((int)(state & ControlStates.Pressed) != 0 && Pressed != null)
+                    {
+                        return Pressed;
+                    }
                     return Other;
+                }
             }
         }
         /// <summary>
@@ -224,7 +223,6 @@ namespace Tizen.NUI.BaseComponents
             DisabledSelected = selector.DisabledSelected;
             DisabledFocused = selector.DisabledFocused;
             SelectedFocused = selector.SelectedFocused;
-            PressedSelected = selector.PressedSelected;
             Other = selector.Other;
         }
 
@@ -241,8 +239,12 @@ namespace Tizen.NUI.BaseComponents
             DisabledSelected = (T)(other.DisabledSelected)?.Clone();
             DisabledFocused = (T)(other.DisabledFocused)?.Clone();
             SelectedFocused = (T)(other.SelectedFocused)?.Clone();
-            PressedSelected = (T)(other.PressedSelected)?.Clone();
             Other = (T)(other.Other)?.Clone();
+        }
+
+        internal bool HasMultiValue()
+        {
+            return All == null;
         }
     }
 
@@ -273,11 +275,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnViewControlState(View obj, ControlStates state)
+        private void OnViewControlState(View obj, View.ControlStateChagedInfo controlStateChangedInfo)
         {
-            if (null != obj && null != GetValue(state))
+            if (null != obj && null != GetValue(controlStateChangedInfo.CurrentState))
             {
-                obj.SetValue(targetBindableProperty, GetValue(state));
+                obj.SetValue(targetBindableProperty, GetValue(controlStateChangedInfo.CurrentState));
             }
         }
 
