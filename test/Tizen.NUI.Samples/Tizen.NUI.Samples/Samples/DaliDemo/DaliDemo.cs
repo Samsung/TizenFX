@@ -10,7 +10,7 @@ namespace Tizen.NUI.Samples
 {
     public class DaliDemo : NUIApplication
     {
-        public DaliDemo(string styleSheet) : base(styleSheet)
+        public DaliDemo(string styleSheet) : base(styleSheet, WindowMode.Transparent)
         {
         }
 
