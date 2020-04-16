@@ -160,17 +160,10 @@ namespace Tizen.NUI
             for (uint i = 0; i < rootNode.ChildCount; i++)
             {
                 View view = rootNode.GetChildAt(i);
-                if (rootNode.Layout == null )
+                if (view.Layout == null )
                 {
-                    if (rootNode.GetType() == typeof(View))
-                    {
-                        rootNode.Layout = new LayoutGroup();
-                        AutomaticallyAssignLayouts(rootNode);
-                    }
-                    else
-                    {
-                        rootNode.Layout = new LayoutItem();
-                    }
+                    view.Layout = new AbsoluteLayout();
+                    AutomaticallyAssignLayouts(rootNode);
                 }
             }
         }

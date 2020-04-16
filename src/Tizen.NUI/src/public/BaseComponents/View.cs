@@ -2156,7 +2156,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value?.Owner != null)
                 {
                     // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new LayoutGroup();
+                    value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
                     value.Owner.Layout.Margin = value.Margin;
