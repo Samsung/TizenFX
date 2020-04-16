@@ -2119,13 +2119,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(temp);
+                Color temp = (Color)GetValue(ColorProperty);
                 return new Color(OnColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
-                SetColor(value);
+                SetValue(ColorProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -2363,6 +2363,31 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
+
+        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.colorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.colorSelector;
+        });
+
+        private TriggerableSelector<Color> _colorSelector;
+        private TriggerableSelector<Color> colorSelector
+        {
+            get
+            {
+                if (null == _colorSelector)
+                {
+                    _colorSelector = new TriggerableSelector<Color>(this, ColorProperty);
+                }
+                return _colorSelector;
+            }
+        }
+
         internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
