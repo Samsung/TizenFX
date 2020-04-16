@@ -221,6 +221,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetParent")]
             public static extern global::System.IntPtr GetParent(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeId")]
+            public static extern int GetNativeId(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         }
     }
 }

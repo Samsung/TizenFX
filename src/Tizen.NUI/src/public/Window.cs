@@ -1117,6 +1117,18 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Get native window ID
+        /// </summary>
+        /// <returns>native window ID</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetNativeId()
+        {
+            int ret = Interop.Window.GetNativeId(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal Any GetNativeHandle()
         {
             Any ret = new Any(Interop.WindowInternal.Window_GetNativeHandle(swigCPtr), true);
