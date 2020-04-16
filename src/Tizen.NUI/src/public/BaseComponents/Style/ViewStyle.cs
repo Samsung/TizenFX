@@ -729,6 +729,20 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.backgroundColorSelector;
         });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            if (null == viewStyle.colorSelector) viewStyle.colorSelector = new Selector<Color>();
+            viewStyle.colorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            return viewStyle.colorSelector;
+        });
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -851,6 +865,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<float?> opacitySelector;
         private Selector<Color> backgroundColorSelector;
         private Selector<Rectangle> backgroundImageBorderSelector;
+        private Selector<Color> colorSelector;
 
         static ViewStyle() {}
 
@@ -1355,6 +1370,20 @@ namespace Tizen.NUI.BaseComponents
                 return (null != color) ? color : backgroundColorSelector = new Selector<Color>();
             }
             set => SetValue(BackgroundColorSelectorProperty, value);
+        }
+
+        /// <summary>
+        /// Color
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Color> Color
+        {
+            get
+            {
+                Selector<Color> color = (Selector<Color>)GetValue(ColorSelectorProperty);
+                return (null != color) ? color : colorSelector = new Selector<Color>();
+            }
+            set => SetValue(ColorSelectorProperty, value);
         }
 
         /// <summary>View BackgroundBorder</summary>

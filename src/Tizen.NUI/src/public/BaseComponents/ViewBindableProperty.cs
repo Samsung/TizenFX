@@ -80,6 +80,26 @@ namespace Tizen.NUI.BaseComponents
             return backgroundColor;
         });
 
+        /// <summary>
+        /// ColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorProperty = BindableProperty.Create("Color", typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                view.SetColor((Color)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
+            return color;
+        });
+
         /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
