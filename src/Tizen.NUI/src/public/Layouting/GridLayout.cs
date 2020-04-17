@@ -205,7 +205,6 @@ namespace Tizen.NUI
 
             var childCount = LayoutChildren.Count;
 
-            // WIDTH SPECIFICATIONS
             if (childCount > 0)
             {
                 foreach (LayoutItem childLayout in LayoutChildren)
@@ -217,9 +216,19 @@ namespace Tizen.NUI
                 }
 
                 if (_GridOrientation == Orientation.Horizontal)
+                {
                     widthSize = CalculateHorizontalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                    heightSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
+                                    heightSize:
+                                    (int)(LayoutChildren[0].MeasuredHeight.Size.AsDecimal() + LayoutChildren[0].Margin.Top + LayoutChildren[0].Margin.Bottom)*Rows;
+                }
                 else
+                {
+                    widthSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
+                                    heightSize:
+                                    (int)(LayoutChildren[0].MeasuredWidth.Size.AsDecimal() + LayoutChildren[0].Margin.Start + LayoutChildren[0].Margin.End)*Columns;
                     heightSize = CalculateVerticalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                }
 
             } // Children exists
             else
