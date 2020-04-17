@@ -1169,6 +1169,10 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
+            if(_instance)
+            {
+                return _instance;
+            }
 
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1180,6 +1184,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(1, stylesheet, windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1190,6 +1198,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1200,6 +1212,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
