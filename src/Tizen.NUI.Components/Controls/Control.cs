@@ -53,7 +53,16 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control() : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetComponentStyle(this.GetType());
+            var cur_type = this.GetType();
+            ViewStyle viewStyle = null;
+
+            do
+            {
+                if (cur_type.Equals(typeof(Tizen.NUI.Components.Control))) break;
+                viewStyle = StyleManager.Instance.GetComponentStyle(cur_type);
+                cur_type = cur_type.BaseType;
+            }
+            while (viewStyle == null);
 
             if (viewStyle != null)
             {
