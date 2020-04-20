@@ -242,6 +242,8 @@ namespace Tizen.NUI.BaseComponents
         private string _resourceUrl = "";
         private bool _synchronosLoading = false;
         private string _alphaMaskUrl = null;
+        private int _desired_width = -1;
+        private int _desired_height = -1;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -764,10 +766,51 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
+        {
+            switch(value)
+            {
+                case FittingModeType.ShrinkToFit:
+                    return VisualFittingModeType.FitKeepAspectRatio;
+                case FittingModeType.ScaleToFill:
+                    return VisualFittingModeType.OverFitKeepAspectRatio;
+                case FittingModeType.Center:
+                    return VisualFittingModeType.Center;
+                case FittingModeType.Fill:
+                    return VisualFittingModeType.Fill;
+                case FittingModeType.FitHeight:
+                    return VisualFittingModeType.FitHeight;
+                case FittingModeType.FitWidth:
+                    return VisualFittingModeType.FitHeight;
+                default:
+                    return VisualFittingModeType.Fill;
+            }
+        }
+
+        internal FittingModeType ConvertVisualFittingModetoFittingMode(VisualFittingModeType value)
+        {
+            switch(value)
+            {
+                case VisualFittingModeType.FitKeepAspectRatio:
+                    return FittingModeType.ShrinkToFit;
+                case VisualFittingModeType.OverFitKeepAspectRatio:
+                    return FittingModeType.ScaleToFill;
+                case VisualFittingModeType.Center:
+                    return FittingModeType.Center;
+                case VisualFittingModeType.Fill:
+                    return FittingModeType.Fill;
+                case VisualFittingModeType.FitHeight:
+                    return FittingModeType.FitHeight;
+                case VisualFittingModeType.FitWidth:
+                    return FittingModeType.FitHeight;
+                default:
+                    return FittingModeType.ShrinkToFit;
+            }
+        }
 
         /// <summary>
-        /// Gets or sets fitting options used when resizing images to fit the desired dimensions.<br />
-        /// If not supplied, the default is FittingModeType.ShrinkToFit.<br />
+        /// Gets or sets fitting options used when resizing images to fit.<br />
+        /// If not supplied, the default is FittingModeType.Fill.<br />
         /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
@@ -777,16 +820,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)FittingModeType.ShrinkToFit;
+                int ret = (int)VisualFittingModeType.Fill;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.FittingMode)?.Get(out ret);
-
-                return (FittingModeType)ret;
+                imageMap?.Find(Visual.Property.VisualFittingMode)?.Get(out ret);
+                return ConvertVisualFittingModetoFittingMode((VisualFittingModeType)ret);
             }
             set
             {
-                UpdateImage(ImageVisualProperty.FittingMode, new PropertyValue((int)value));
+                VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
+                UpdateImage(Visual.Property.VisualFittingMode, new PropertyValue((int) ret));
             }
         }
 
@@ -804,16 +847,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = -1;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredWidth)?.Get(out ret);
+                imageMap?.Find(ImageVisualProperty.DesiredWidth)?.Get(out _desired_width);
 
-                return ret;
+                return _desired_width;
             }
             set
             {
                 UpdateImage(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
+                _desired_width = value;
             }
         }
 
@@ -829,16 +872,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = -1;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredHeight)?.Get(out ret);
+                imageMap?.Find(ImageVisualProperty.DesiredHeight)?.Get(out _desired_height);
 
-                return ret;
+                return _desired_height;
             }
             set
             {
                 UpdateImage(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
+                _desired_height = value;
             }
         }
 
@@ -1065,6 +1108,31 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
                 temp.Insert(key, value);
+            }
+
+            // Do Fitting Buffer when desired dimension is set
+            if( _desired_width != -1 && _desired_height != -1)
+            {
+                if(_resourceUrl != null)
+                {
+                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
+
+                  int ret_width,ret_height;
+                  if( imageSize.Width > imageSize.Height)
+                  {
+                      ret_width = _desired_width;
+                      ret_height = imageSize.Height * _desired_height /(imageSize.Width);
+                  }
+                  else
+                  {
+                      ret_width = imageSize.Width*_desired_width/(imageSize.Height);
+                      ret_height = _desired_height;
+
+                  }
+                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
+                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
+                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ShrinkToFit));
+                }
             }
 
             UpdateImageMap(temp);
