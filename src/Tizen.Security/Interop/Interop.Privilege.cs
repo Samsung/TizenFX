@@ -42,5 +42,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_privilege_status")]
             internal static extern int GetPrivacyPrivilegeStatus(string privilege, out bool status);
+
+        internal enum ErrorCode
+        {
+            NoMatchingPrivilege = -0x01E20000 | 0x01
+        }
     }
 }

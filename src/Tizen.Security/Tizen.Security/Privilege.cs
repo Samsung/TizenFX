@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2016-2018 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016-2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,11 +51,12 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege, then it returns last token of the given privilege.</remarks>
+		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <returns>The display name of the given privilege at the given API version.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege)
@@ -74,12 +75,13 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege, then it returns last token of the given privilege.</remarks>
+		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <param name="packageType">The type of application package.</param>
         /// <returns>The display name of the given privilege at the given API version and the package type.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         public static string GetDisplayName(string apiVersion, string privilege, PackageType packageType)
@@ -98,11 +100,12 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege.</remarks>
+		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <returns>The description of given privilege at the given API version</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege)
@@ -121,12 +124,13 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege.</remarks>
+		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <param name="packageType">The type of application package.</param>
         /// <returns>The description of given privilege at the given API version and the package type.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         public static string GetDescription(string apiVersion, string privilege, PackageType packageType)
@@ -149,7 +153,7 @@ namespace Tizen.Security
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>The privacy group's display name that the given privilege is included in.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
@@ -173,7 +177,7 @@ namespace Tizen.Security
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>Status true if the privilege is on and false if the privilege is off.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
@@ -201,11 +205,15 @@ namespace Tizen.Security
         {
             if (err == (int)ErrorCode.None)
                 return;
-            Tizen.Log.Error(Interop.Privilege.LogTag, "[" + ErrorFacts.GetErrorMessage(err) + "] " + msg);
+            if (err == (int)Interop.Privilege.ErrorCode.NoMatchingPrivilege)
+                Tizen.Log.Error(Interop.Privilege.LogTag, "[System.ArgumentException] No such a privilege. " + msg);
+            else
+                Tizen.Log.Error(Interop.Privilege.LogTag, "[" + ErrorFacts.GetErrorMessage(err) + "] " + msg);
             switch (err)
             {
                 case (int)ErrorCode.NotSupported:
                     throw new NotSupportedException();
+                case (int)Interop.Privilege.ErrorCode.NoMatchingPrivilege:
                 case (int)ErrorCode.InvalidParameter:
                     throw new ArgumentException();
                 case (int)ErrorCode.OutOfMemory:
