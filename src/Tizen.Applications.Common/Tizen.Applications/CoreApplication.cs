@@ -208,7 +208,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            ChangeCurrentCultureInfo(e.Locale);
+            ChangeCurrentUICultureInfo(e.Locale);
             LocaleChanged?.Invoke(this, e);
         }
 
@@ -220,6 +220,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
+            ChangeCurrentCultureInfo(e.Region);
             RegionFormatChanged?.Invoke(this, e);
         }
 
@@ -253,21 +254,27 @@ namespace Tizen.Applications
             base.Dispose(disposing);
         }
 
-        private void ChangeCurrentCultureInfo(string locale)
+        private CultureInfo ConvertCultureInfo(string locale)
         {
             ULocale pLocale = new ULocale(locale);
-            CultureInfo currentCultureInfo = null;
-
             try
             {
-                currentCultureInfo = new CultureInfo(pLocale.Locale.Replace("_", "-"));
+                return new CultureInfo(pLocale.Locale.Replace("_", "-"));
             }
             catch (CultureNotFoundException)
             {
-                currentCultureInfo = GetFallbackCultureInfo(pLocale);
+                return GetFallbackCultureInfo(pLocale);
             }
+        }
 
-            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = currentCultureInfo;
+        private void ChangeCurrentCultureInfo(string locale)
+        {
+            CultureInfo.CurrentCulture = ConvertCultureInfo(locale);
+        }
+
+        private void ChangeCurrentUICultureInfo(string locale)
+        {
+            CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
         }
 
         private CultureInfo GetCultureInfo(string locale)
