@@ -186,9 +186,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
-            Animatable ret = new Animatable(Interop.PropertyNotification.PropertyNotification_GetTarget(swigCPtr), true);
+            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.PropertyNotification_GetTarget(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return ret as Animatable;
         }
 
         /// <summary>
