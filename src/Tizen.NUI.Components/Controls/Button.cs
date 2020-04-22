@@ -453,7 +453,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                textSelector.Clone(value);
+                if (value == null || textSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Button.TextSelector is null");
+                    throw new NullReferenceException("Button.TextSelector is null");
+                }
+                else
+                {
+                    textSelector.Clone(value);
+                }
             }
         }
 
@@ -470,7 +478,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                translatableTextSelector.Clone(value);
+                if (value == null || translatableTextSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Button.TranslatableTextSelector is null");
+                    throw new NullReferenceException("Button.TranslatableTextSelector is null");
+                }
+                else
+                {
+                    translatableTextSelector.Clone(value);
+                }
             }
         }
 
@@ -487,7 +503,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                textColorSelector.Clone(value);
+                if (value == null || textColorSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Button.textColorSelector is null");
+                    throw new NullReferenceException("Button.textColorSelector is null");
+                }
+                else
+                {
+                    textColorSelector.Clone(value);
+                }
             }
         }
 
@@ -504,7 +528,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                pointSizeSelector.Clone(value);
+                if (value == null || pointSizeSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Button.pointSizeSelector is null");
+                    throw new NullReferenceException("Button.pointSizeSelector is null");
+                }
+                else
+                {
+                    pointSizeSelector.Clone(value);
+                }
             }
         }
 
@@ -521,7 +553,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                iconURLSelector.Clone(value);
+                if (value == null || iconURLSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Button.iconURLSelector is null");
+                    throw new NullReferenceException("Button.iconURLSelector is null");
+                }
+                else
+                {
+                    iconURLSelector.Clone(value);
+                }
             }
         }
 
@@ -609,7 +649,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(Style != null && Style.IconRelativeOrientation != value)
+                if (Style != null && Style.IconRelativeOrientation != value)
                 {
                     Style.IconRelativeOrientation = value;
                     UpdateUIContent();
@@ -633,7 +673,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents) GetValue(TextPaddingProperty);
+            get => (Extents)GetValue(TextPaddingProperty);
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -751,7 +791,7 @@ namespace Tizen.NUI.Components
             if (null == touch) return false;
             PointStateType state = touch.GetState(0);
 
-            switch(state)
+            switch (state)
             {
                 case PointStateType.Down:
                     isPressed = true;
@@ -762,29 +802,29 @@ namespace Tizen.NUI.Components
                     UpdateState();
                     return true;
                 case PointStateType.Up:
-                {
-                    bool clicked = isPressed && isEnabled;
-
-                    isPressed = false;
-
-                    if (Style.IsSelectable != null && Style.IsSelectable == true)
                     {
-                        SelectionChangedByTouch = touch;
-                        IsSelected = !IsSelected;
-                    }
-                    else
-                    {
-                        UpdateState(touch);
-                    }
+                        bool clicked = isPressed && isEnabled;
 
-                    if (clicked)
-                    {
-                        ClickEventArgs eventArgs = new ClickEventArgs();
-                        OnClickInternal(eventArgs);
-                    }
+                        isPressed = false;
 
-                    return true;
-                }
+                        if (Style.IsSelectable != null && Style.IsSelectable == true)
+                        {
+                            SelectionChangedByTouch = touch;
+                            IsSelected = !IsSelected;
+                        }
+                        else
+                        {
+                            UpdateState(touch);
+                        }
+
+                        if (clicked)
+                        {
+                            ClickEventArgs eventArgs = new ClickEventArgs();
+                            OnClickInternal(eventArgs);
+                        }
+
+                        return true;
+                    }
                 default:
                     break;
             }

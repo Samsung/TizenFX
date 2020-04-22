@@ -428,7 +428,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                thumbImageURLSelector.Clone(value);
+                if (value == null || thumbImageURLSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Slider.ThumbImageURLSelector is null");
+                    throw new NullReferenceException("Slider.ThumbImageURLSelector is null");
+                }
+                else
+                {
+                    thumbImageURLSelector.Clone(value);
+                }
             }
         }
 
