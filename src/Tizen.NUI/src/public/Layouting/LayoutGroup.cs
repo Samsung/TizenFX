@@ -175,16 +175,7 @@ namespace Tizen.NUI
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    if (child.GetType() == typeof(View))
-                    {
-                        child.Layout = new LayoutGroup();
-                    }
-                    else
-                    {
-                        // Adding child as a leaf, layouting will not propagate past this child.
-                        // Legacy containers will be a LayoutItems too and layout their children how they wish.
-                        child.Layout = new LayoutItem();
-                    }
+                    child.Layout = new AbsoluteLayout();
                 }
             }
             else
