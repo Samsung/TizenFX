@@ -200,7 +200,6 @@ namespace Tizen.NUI.Components
         private ButtonGroup btGroup = null;
         private Window window = null;
         private Layer container = new Layer();
-        private PanGestureDetector detector = new PanGestureDetector();
         static Popup() { }
 
         /// <summary>
@@ -734,8 +733,10 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            detector.Attach(this);
             container.Add(this);
+            container.SetTouchConsumed(true);
+            container.SetHoverConsumed(true);
+
             LeaveRequired = true;
             PropertyChanged += PopupStylePropertyChanged;
 

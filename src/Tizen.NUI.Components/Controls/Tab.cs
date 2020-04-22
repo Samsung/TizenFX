@@ -301,7 +301,15 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                textColorSelector.Clone(value);
+                if (value == null || textColorSelector == null)
+                {
+                    Tizen.Log.Fatal("NUI", "[Exception] Tab.TextColorSelector is null");
+                    throw new NullReferenceException("Tab.TextColorSelector is null");
+                }
+                else
+                {
+                    textColorSelector.Clone(value);
+                }
             }
         }
 

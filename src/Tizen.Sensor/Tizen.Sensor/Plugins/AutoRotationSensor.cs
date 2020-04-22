@@ -138,7 +138,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading auto rotation data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             if (sensorData.values[0] == 0) {
                 Rotation = AutoRotationState.Degree_0;
             } else {
@@ -155,7 +155,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 if (sensorData.values[0] == 0) {
                     Rotation = AutoRotationState.Degree_0;
                 } else {
@@ -189,9 +189,9 @@ namespace Tizen.Sensor
         private void AccuracyListenStart()
         {
             _accuracyCallback = (IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data) => {
-                TimeSpan = new TimeSpan((Int64)timestamp);
+                Timestamp = timestamp;
                 Accuracy = accuracy;
-                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
+                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(timestamp, accuracy));
             };
 
             int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);
