@@ -156,7 +156,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading orientation sensor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             Azimuth = sensorData.values[0];
             Pitch = sensorData.values[1];
             Roll = sensorData.values[2];
@@ -170,7 +170,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 Azimuth = sensorData.values[0];
                 Pitch = sensorData.values[1];
                 Roll = sensorData.values[2];
@@ -201,8 +201,8 @@ namespace Tizen.Sensor
         private void AccuracyListenStart()
         {
             _accuracyCallback = (IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data) => {
-                TimeSpan = new TimeSpan((Int64)timestamp);
-                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
+                Timestamp = timestamp;
+                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(timestamp, accuracy));
             };
 
             int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);

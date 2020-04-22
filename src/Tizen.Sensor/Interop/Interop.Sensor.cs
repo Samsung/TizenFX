@@ -106,6 +106,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_read_data")]
         internal static extern int ReadData(IntPtr listenerHandle, out SensorEventStruct data);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_read_data_list")]
+        internal static extern int ReadDataList(IntPtr listenerHandle, out IntPtr eventsData, out uint events_count);
     }
 
     internal static class SensorManager

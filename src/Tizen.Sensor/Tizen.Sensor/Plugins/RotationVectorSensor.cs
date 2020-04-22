@@ -170,7 +170,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading rotation vector sensor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             X = sensorData.values[0];
             Y = sensorData.values[1];
             Z = sensorData.values[2];
@@ -186,7 +186,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 X = sensorData.values[0];
                 Y = sensorData.values[1];
                 Z = sensorData.values[2];
@@ -219,9 +219,9 @@ namespace Tizen.Sensor
         private void AccuracyListenStart()
         {
             _accuracyCallback = (IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data) => {
-                TimeSpan = new TimeSpan((Int64)timestamp);
+                Timestamp = timestamp;
                 Accuracy = accuracy;
-                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
+                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(timestamp, accuracy));
             };
 
             int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);

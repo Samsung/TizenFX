@@ -118,7 +118,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading pressure sensor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             Pressure = sensorData.values[0];
         }
 
@@ -130,7 +130,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 Pressure = sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new PressureSensorDataUpdatedEventArgs(sensorData.values[0]));
