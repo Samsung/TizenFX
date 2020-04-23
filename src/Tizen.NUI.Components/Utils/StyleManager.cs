@@ -255,7 +255,7 @@ namespace Tizen.NUI.Components
             }
             catch
             {
-                Tizen.Log.Error("NUI", "Unknown device profile");
+                Tizen.Log.Error("NUI", "Unknown device profile\n");
                 return;
             }
 

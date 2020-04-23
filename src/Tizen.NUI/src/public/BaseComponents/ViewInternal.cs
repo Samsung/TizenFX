@@ -1259,59 +1259,115 @@ namespace Tizen.NUI.BaseComponents
             SizeModeFactor = new Vector3(x, y, z);
         }
 
-        private bool HasShadowExtents()
+        private void OnControlStateChangedForShadow(View obj, ControlStateChagedInfo controlStateChangedInfo)
         {
-            bool verifyImageShadow = imageShadow?.GetValue()?.HasValidSizeExtents() ?? false;
-            bool verifyBoxShadow = boxShadow?.GetValue()?.HasValidSizeExtents() ?? false;
-            return verifyImageShadow || verifyBoxShadow;
-        }
+            var boxShadowSelector = (Selector<Shadow>)GetValue(BoxShadowSelectorProperty);
 
-        private void UpdateRelayoutCallbackForShadow(bool hadShadowExtents)
-        {
-            bool hasShadowExtents = HasShadowExtents();
-
-            if (!hadShadowExtents && hasShadowExtents)
+            if (boxShadowSelector != null)
             {
-                Relayout += OnRelayoutForShadow;
+                ShadowBase prevShadow = boxShadowSelector.GetValue(controlStateChangedInfo.PreviousState);
+
+                var boxShadow = boxShadowSelector.GetValue(controlStateChangedInfo.CurrentState);
+
+                if (boxShadow == prevShadow)
+                {
+                    return;
+                }
+
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, boxShadow == null ? new PropertyValue() : boxShadow.ToPropertyValue(this));
+
+                return;
             }
-            else if (hadShadowExtents && !hasShadowExtents)
+
+            var imageShadowSelector = (Selector<ImageShadow>)GetValue(ImageShadowSelectorProperty);
+
+            if (imageShadowSelector != null)
             {
-                Relayout -= OnRelayoutForShadow;
+                ShadowBase prevShadow = imageShadowSelector?.GetValue(controlStateChangedInfo.PreviousState);
+
+                var imageShadow = imageShadowSelector.GetValue(controlStateChangedInfo.CurrentState);
+
+                if (imageShadow == prevShadow)
+                {
+                    return;
+                }
+
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, imageShadow == null ? new PropertyValue() : imageShadow.ToPropertyValue(this));
             }
         }
 
-        private void OnRelayoutForShadow(object sender, global::System.EventArgs e)
+        private void UpdateShadow(ShadowBase shadow, bool needToListenStateChanged)
         {
-            ApplyShadow();
+            ControlStateChangeEvent -= OnControlStateChangedForShadow;
+
+            if (shadow == null)
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue());
+            }
+            else
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, shadow.ToPropertyValue(this));
+            }
+
+            if (needToListenStateChanged)
+            {
+                ControlStateChangeEvent += OnControlStateChangedForShadow;
+            }
         }
 
-        private void OnControlStateChangedForShadow(View obj, NUI.Components.ControlStates state)
+        private void OnControlStateChangedForCornerRadius(View obj, ControlStateChagedInfo controlStateChangedInfo)
         {
-            ApplyShadow();
+            var selector = (Selector<float?>)GetValue(CornerRadiusSelectorProperty);
+
+            if (selector == null)
+            {
+                return;
+            }
+
+            float? currentCornerRadius = selector.GetValue(controlStateChangedInfo.CurrentState);
+
+            if (selector.GetValue(controlStateChangedInfo.PreviousState) == currentCornerRadius)
+            {
+                UpdateCornerRadius(currentCornerRadius ?? 0, true);
+            }
         }
 
-        private void ApplyShadow()
+        private void UpdateCornerRadius(float value, bool needToListenStateChanged)
         {
-            ShadowBase shadow = (boxShadow != null && !boxShadow.IsEmpty()) ? (ShadowBase)boxShadow.GetValue() : (ShadowBase)imageShadow?.GetValue();
-            Tizen.NUI.Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ShadowBase.ToPropertyValue(shadow, this));
-        }
+            ControlStateChangeEvent -= OnControlStateChangedForCornerRadius;
 
-        private void OnControlStateChangedForCornerRadius(View obj, NUI.Components.ControlStates state)
-        {
-            ApplyCornerRadius();
-            ApplyShadow();
-        }
+            if (needToListenStateChanged)
+            {
+                ControlStateChangeEvent += OnControlStateChangedForCornerRadius;
+            }
 
-        private void ApplyCornerRadius()
-        {
+            if (value != 0)
+            {
+                (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = value;
+            }
+
             Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
             Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
 
             if (!backgroundMap.Empty())
             {
-                // TODO (NDalic.VISUAL_PROPERTY_MIX_COLOR + 3) to CornerRadius
-                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius.GetValue() ?? 0);
+                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
                 Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
+            }
+
+            UpdateShadowCornerRadius(value);
+        }
+
+        private void UpdateShadowCornerRadius(float value)
+        {
+            // TODO Update corner radius property only whe DALi supports visual property update.
+            PropertyMap map = new PropertyMap();
+
+            if (Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW).Get(map) && !map.Empty())
+            {
+                map[Visual.Property.CornerRadius] = new PropertyValue(value);
+
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(map));
             }
         }
     }

@@ -180,7 +180,7 @@ namespace Tizen.NUI.Components
                     //{
                     //    container.RemoveVisual("SelectIndicator");
                     //}
-                    //else 
+                    //else
                     if (selectedIndex >= value)
                     {
                         selectedIndex = 0;
@@ -250,6 +250,7 @@ namespace Tizen.NUI.Components
         {
             if (!(selectOutIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle.IndicatorImageURL.Normal;
+            visual.Opacity = 0.5f;
         }
 
         /// <summary>
@@ -263,6 +264,7 @@ namespace Tizen.NUI.Components
         {
             if (!(selectInIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle.IndicatorImageURL.Selected;
+            visual.Opacity = 1.0f;
         }
 
         /// <summary>
@@ -292,7 +294,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                container.RemoveAll();    
+                container.RemoveAll();
                 indicatorList.Clear();
 
                 this.Remove(container);
@@ -330,7 +332,8 @@ namespace Tizen.NUI.Components
             ImageVisual indicator = new ImageVisual
             {
                 URL = paginationStyle.IndicatorImageURL.Normal,
-                Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height)
+                Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height),
+                Opacity = 0.5f,
             };
             indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);

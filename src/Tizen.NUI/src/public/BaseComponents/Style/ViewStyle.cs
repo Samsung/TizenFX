@@ -760,12 +760,13 @@ namespace Tizen.NUI.BaseComponents
 
         /// A BindableProperty for ImageShadow
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageShadowSelectorProperty = BindableProperty.Create("ImageShadowSelector", typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.imageShadow = SelectorHelper.CopyCloneable<ImageShadow>(newValue);
 
-            if (viewStyle.imageShadow != null) viewStyle.boxShadow = null;
+            viewStyle.imageShadow = (Selector<ImageShadow>)newValue;
+
+            viewStyle.boxShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -775,12 +776,13 @@ namespace Tizen.NUI.BaseComponents
 
         /// A BindableProperty for BoxShadow
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BoxShadowSelectorProperty = BindableProperty.Create("BoxShadowSelector", typeof(Selector<Shadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.boxShadow = SelectorHelper.CopyCloneable<Shadow>(newValue);
 
-            if (viewStyle.boxShadow != null) viewStyle.imageShadow = null;
+            viewStyle.boxShadow = (Selector<Shadow>)newValue;
+
+            viewStyle.imageShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -790,10 +792,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// A BindableProperty for CornerRadius
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create("CornerRadiusSelector", typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.cornerRadius = SelectorHelper.CopyValue<float?>(newValue);
+            viewStyle.cornerRadius = (Selector<float?>)(newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1404,27 +1406,24 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// The mutually exclusive with "BoxShadow".
+        /// If BoxShadow is not null, the ImageShadow value will be ignored.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<ImageShadow> ImageShadow
         {
-            get => (Selector<ImageShadow>)GetValue(ImageShadowProperty);
-            set => SetValue(ImageShadowProperty, value);
+            get => (Selector<ImageShadow>)GetValue(ImageShadowSelectorProperty);
+            set => SetValue(ImageShadowSelectorProperty, value);
         }
 
         /// <summary>
         /// Describes a box shaped shadow drawing for a View.
         /// It is null by default.
         /// </summary>
-        /// <remarks>
-        /// The mutually exclusive with "ImageShadow".
-        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Shadow> BoxShadow
         {
-            get => (Selector<Shadow>)GetValue(BoxShadowProperty);
-            set => SetValue(BoxShadowProperty, value);
+            get => (Selector<Shadow>)GetValue(BoxShadowSelectorProperty);
+            set => SetValue(BoxShadowSelectorProperty, value);
         }
 
         /// <summary>
