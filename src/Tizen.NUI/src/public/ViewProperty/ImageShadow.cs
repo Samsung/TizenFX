@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,9 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase, Tizen.NUI.Internal.ICloneable
+    public class ImageShadow : ShadowBase
     {
         private static readonly Rectangle noBorder = new Rectangle();
-
-        private string url;
-
-        private Rectangle border;
 
         /// <summary>
         /// Constructor
@@ -38,16 +34,33 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow() : base()
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+            Border = noBorder;
         }
 
-        internal ImageShadow(ImageShadow other, PropertyChangedCallback callback = null) : base(other)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow(string url, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+            Url = url;
+            Border = border;
+        }
 
-            Url = other.Url;
-            Border = other.Border;
-            OnPropertyChanged = callback;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow(ImageShadow other) : this(other.Url, other.Border, other.Offset, other.Extents)
+        {
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ImageShadow(PropertyMap propertyMap) : base(propertyMap)
+        {
         }
 
         /// <summary>
@@ -56,84 +69,17 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator ImageShadow(string value)
         {
-            ImageShadow imageShadow = new ImageShadow()
+            return new ImageShadow()
             {
-                Url = value ?? "",
+                Url = value
             };
-            return imageShadow;
-        }
-
-        /// <summary>
-        /// Deep copy method
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone()
-        {
-            return new ImageShadow() {
-                Offset = offset,
-                Extents = extents,
-                Url = url,
-                Border = border
-            };
-        }
-
-        /// <summary>
-        /// Deep copy method (static)
-        /// This provides nullity check.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public object Clone(ImageShadow instance)
-        {
-            return instance == null ? null : new ImageShadow() {
-                Offset = instance.offset,
-                Extents = instance.extents,
-                Url = instance.url,
-                Border = instance.border
-            };
-        }
-
-        private void OnBorderChanged(int x, int y, int width, int height)
-        {
-            UpdateBorder();
-        }
-
-        private void UpdateUrl()
-        {
-            propertyMap[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(url);
-            OnPropertyChanged?.Invoke(this);
-        }
-
-        private void UpdateBorder()
-        {
-            if (Rectangle.IsNullOrZero(border))
-            {
-                propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
-            }
-            else
-            {
-                propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
-            }
-
-            propertyMap[ImageVisualProperty.Border] = PropertyValue.CreateWithGuard(border);
-            OnPropertyChanged?.Invoke(this);
         }
 
         /// <summary>
         /// The url for the shadow image to load.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Url
-        {
-            get
-            {
-                return url;
-            }
-            set
-            {
-                url = value;
-                UpdateUrl();
-            }
-        }
+        public string Url { get; set; }
 
         /// <summary>
         /// Optional.<br />
@@ -141,22 +87,86 @@ namespace Tizen.NUI
         /// Set left, right, bottom, top length of the border you don't want to stretch in the image.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle Border
+        public Rectangle Border { get; set; }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object other)
         {
-            get
+            if (!base.Equals(other))
             {
-                return border;
+                return false;
             }
-            set
+
+            var otherShadow = (ImageShadow)other;
+
+            if (!((Url == null) ? otherShadow.Url == null : Url.Equals(otherShadow.Url)))
             {
-                border = new Rectangle(OnBorderChanged, value ?? noBorder);
-                UpdateBorder();
+                return false;
+            }
+
+            return Border.Equals(otherShadow.Border);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = base.GetHashCode();
+                hash = (hash * 7) + (Url == null ? 0 : Url.GetHashCode());
+                hash = (hash * 7) + (Border.GetHashCode());
+                return hash;
             }
         }
 
-        override internal bool IsValid()
+        internal override bool IsEmpty()
         {
-            return !string.IsNullOrEmpty(url);
+            return string.IsNullOrEmpty(Url);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override PropertyMap GetPropertyMap()
+        {
+            var map = base.GetPropertyMap();
+
+            map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+
+            if (Rectangle.IsNullOrZero(Border))
+            {
+                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+            }
+            else
+            {
+                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+            }
+
+            map[ImageVisualProperty.Border] = PropertyValue.CreateWithGuard(Border);
+
+            map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(Url);
+
+            return map;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool SetPropertyMap(PropertyMap propertyMap)
+        {
+            if (!base.SetPropertyMap(propertyMap))
+            {
+                return false;
+            }
+
+            Border = noBorder;
+            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
+
+            string url = null;
+            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
+            Url = url;
+
+            return true;
         }
     }
 }

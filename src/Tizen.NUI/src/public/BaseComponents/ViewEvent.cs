@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1052,6 +1054,40 @@ namespace Tizen.NUI.BaseComponents
                     status = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ControlStateChagedInfo
+        {
+            /// <summary>
+            /// The previous control state.
+            /// </summary>
+            public ControlStateChagedInfo(ControlStates previousState, ControlStates currentState, Touch touch)
+            {
+                PreviousState = previousState;
+                CurrentState = currentState;
+                Touch = touch;
+            }
+
+            /// <summary>
+            /// The previous control state.
+            /// </summary>
+            public ControlStates PreviousState { get; }
+
+            /// <summary>
+            /// The current control state.
+            /// </summary>
+            public ControlStates CurrentState { get; }
+
+            /// <summary>
+            /// The touch information in case the state has changed by touching.
+            /// </summary>
+            /// <remarks>
+            /// The value is null if it is not the case.
+            /// </remarks>
+            public Touch Touch { get; }
         }
 
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
