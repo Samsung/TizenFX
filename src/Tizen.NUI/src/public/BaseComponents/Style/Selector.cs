@@ -193,15 +193,7 @@ namespace Tizen.NUI.BaseComponents
                     return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
                 default:
                 {
-                    // Handle combined states
-                    if ((int)(state & ControlStates.Selected) != 0 && Selected != null)
-                    {
-                        return Selected;
-                    }
-                    else if ((int)(state & ControlStates.Pressed) != 0 && Pressed != null)
-                    {
-                        return Pressed;
-                    }
+                    // TODO Handle combined states
                     return Other;
                 }
             }
@@ -256,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         {
             targetView = view;
             targetBindableProperty = bindableProperty;
-            view.ControlStateChangeEvent += OnViewControlState;
+            view.ControlStateChangeEventInternal += OnViewControlState;
         }
 
         /// <summary>
@@ -275,7 +267,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnViewControlState(View obj, View.ControlStateChagedInfo controlStateChangedInfo)
+        private void OnViewControlState(View obj, View.ControlStateChangedInfo controlStateChangedInfo)
         {
             if (null != obj && null != GetValue(controlStateChangedInfo.CurrentState))
             {
@@ -336,8 +328,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (hadMultiValue != HasMultiValue())
             {
-                if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
-                else view.ControlStateChangeEvent += controlStateChanged;
+                if (hadMultiValue) view.ControlStateChangeEventInternal -= controlStateChanged;
+                else view.ControlStateChangeEventInternal += controlStateChanged;
             }
         }
 
@@ -357,7 +349,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (HasMultiValue())
             {
-                view.ControlStateChangeEvent -= controlStateChanged;
+                view.ControlStateChangeEventInternal -= controlStateChanged;
             }
             selector = null;
         }

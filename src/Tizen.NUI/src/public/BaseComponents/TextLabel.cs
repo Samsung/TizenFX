@@ -1583,7 +1583,7 @@ namespace Tizen.NUI.BaseComponents
             TextShadow = instance;
         }
 
-        private void OnControlStateChangedForShadow(View obj, ControlStateChagedInfo controlStateChangedInfo)
+        private void OnControlStateChangedForShadow(View obj, ControlStateChangedInfo controlStateChangedInfo)
         {
             UpdateTextShadowVisual();
         }

@@ -691,6 +691,8 @@ namespace Tizen.NUI.Components
                     VerticalAlignment = VerticalAlignment.Center
                 };
                 Add(TextItem);
+
+                EnableControlStatePropagation = true;
             }
 
             internal int Index
