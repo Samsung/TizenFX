@@ -528,6 +528,32 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Inhouse API.
+        /// This allows the user to specify whether this layer should consume touch (including gestures).
+        /// If set, any layers behind this layer will not be hit-test.
+        /// </summary>
+        /// <param name="consume">Whether the layer should consume touch (including gestures).</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTouchConsumed(bool consume)
+        {
+            Interop.Layer.Layer_SetTouchConsumed(swigCPtr, consume);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Inhouse API.
+        /// This allows the user to specify whether this layer should consume hover.
+        /// If set, any layers behind this layer will not be hit-test.
+        /// </summary>
+        /// <param name="consume">Whether the layer should consume hover</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetHoverConsumed(bool consume)
+        {
+            Interop.Layer.Layer_SetHoverConsumed(swigCPtr, consume);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal uint GetDepth()
         {
             var parentChildren = window?.LayersChildren;
@@ -603,25 +629,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetTouchConsumed(bool consume)
-        {
-            Interop.Layer.Layer_SetTouchConsumed(swigCPtr, consume);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal bool IsTouchConsumed()
         {
             bool ret = Interop.Layer.Layer_IsTouchConsumed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        internal void SetHoverConsumed(bool consume)
-        {
-            Interop.Layer.Layer_SetHoverConsumed(swigCPtr, consume);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal bool IsHoverConsumed()
         {
             bool ret = Interop.Layer.Layer_IsHoverConsumed(swigCPtr);

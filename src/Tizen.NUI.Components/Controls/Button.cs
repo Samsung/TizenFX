@@ -884,14 +884,22 @@ namespace Tizen.NUI.Components
 
             if (isEnabled)
             {
-                // Normal
-                targetState = ControlStates.Normal;
+                if (isPressed)
+                {
+                    // Pressed
+                    targetState = ControlStates.Pressed;
+                }
+                else
+                {
+                    // Normal
+                    targetState = ControlStates.Normal;
 
-                // Selected
-                targetState |= (IsSelected ? ControlStates.Selected : 0);
+                    // Selected
+                    targetState |= (IsSelected ? ControlStates.Selected : 0);
 
-                // Pressed, PressedSelected, Focused, SelectedFocused
-                targetState |= (isPressed ? ControlStates.Pressed : (IsFocused ? ControlStates.Focused : 0));
+                    // Focused, SelectedFocused
+                    targetState |= (IsFocused ? ControlStates.Focused : 0);
+                }
             }
             else
             {
@@ -902,7 +910,7 @@ namespace Tizen.NUI.Components
                 targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
             }
 
-            if (SetControlState(targetState, touchInfo))
+            if (SetControlState(targetState, ControlStateChangedInfo.InputMethodType.Touch, touchInfo))
             {
                 OnUpdate();
 
@@ -928,6 +936,8 @@ namespace Tizen.NUI.Components
             Extension = style.CreateExtension();
 
             CreateComponents();
+
+            EnableControlStatePropagation = true;
 
             if (ButtonOverlayImage != null)
             {

@@ -60,6 +60,7 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
         private BackgroundExtraData backgroundExtraData;
+        private bool controlStatePropagation = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
@@ -163,8 +164,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal delegate void ControlStateChangesDelegate(View obj, ControlStateChagedInfo controlStateChangedInfo);
-        internal event ControlStateChangesDelegate ControlStateChangeEvent;
+        /// <summary>
+        /// The delegate for ControlState changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void ControlStateChangesDelegate(View obj, ControlStateChangedInfo controlStateChangedInfo);
+
+        /// <summary>
+        /// The event that is triggered when the View's ControlState is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event ControlStateChangesDelegate ControlStateChangeEvent;
+
+        internal event ControlStateChangesDelegate ControlStateChangeEventInternal;
 
         private ControlStates controlStates;
         /// <summary>
@@ -181,40 +193,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetControlState(value, null);
+                SetControlState(value, ControlStateChangedInfo.InputMethodType.None, null);
             }
-        }
-
-        /// <summary>
-        /// Set ControlState with specified change environment
-        /// </summary>
-        /// <param name="state">New state value</param>
-        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
-        /// <return>True, if the state changed successfully.</return>
-        internal bool SetControlState(ControlStates state, Touch touchInfo)
-        {
-            if (controlStates == state)
-            {
-                return false;
-            }
-
-            var prevState = controlStates;
-
-            controlStates = state;
-
-            var changeInfo = new ControlStateChagedInfo(prevState, state, touchInfo);
-
-            ControlStateChangeEvent?.Invoke(this, changeInfo);
-
-            if (OnControlStateChanged(changeInfo))
-            {
-                foreach (View child in Children)
-                {
-                    child.SetControlState(state, touchInfo);
-                }
-            }
-
-            return true;
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2297,6 +2277,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Enable/Disable ControlState propagation for children.
+        /// It is false by default.
+        /// If the View needs to share ControlState with descendants, please set it true.
+        /// Please note that, changing the value will also changes children's EnableControlStatePropagation value recursively.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlStatePropagation
+        {
+            get => controlStatePropagation;
+            set
+            {
+                controlStatePropagation = value;
+
+                foreach (View child in Children)
+                {
+                    child.EnableControlStatePropagation = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -2308,15 +2309,50 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set ControlState with specified inpu environment
+        /// </summary>
+        /// <param name="state">New state value</param>
+        /// <param name="inputMethod">Indicates the input method that triggered this change.</param>
+        /// <param name="inputData">The input method data that depends on the inputMethod.</param>
+        /// <return>True, if the state changed successfully.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetControlState(ControlStates state, ControlStateChangedInfo.InputMethodType inputMethod, object inputData)
+        {
+            if (controlStates == state)
+            {
+                return false;
+            }
+
+            var prevState = controlStates;
+
+            controlStates = state;
+
+            var changeInfo = new ControlStateChangedInfo(prevState, state, inputMethod, inputData);
+
+            ControlStateChangeEventInternal?.Invoke(this, changeInfo);
+
+            OnControlStateChanged(changeInfo);
+
+            if (controlStatePropagation)
+            {
+                foreach (View child in Children)
+                {
+                    child.SetControlState(state, inputMethod, inputData);
+                }
+            }
+
+            ControlStateChangeEvent?.Invoke(this, changeInfo);
+
+            return true;
+        }
+
+        /// <summary>
         /// Called after the View's ControlStates changed.
         /// </summary>
         /// <param name="controlStateChangedInfo">The information including state changed variables.</param>
-        /// <return>True if it needs to apply the state to children recursively.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnControlStateChanged(ControlStateChagedInfo controlStateChangedInfo)
+        protected virtual void OnControlStateChanged(ControlStateChangedInfo controlStateChangedInfo)
         {
-            //If need to apply the state to all child, return true;
-            return true;
         }
 
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>

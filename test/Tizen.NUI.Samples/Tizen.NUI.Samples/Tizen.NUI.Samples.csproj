@@ -33,6 +33,7 @@
     <ProjectReference Include="../../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI.Wearable/Tizen.NUI.Wearable.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,7 +21,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// The platform provided shadow drawing for View
+    /// Represents a shadow with color and blur radius for a View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Shadow : ShadowBase
@@ -30,7 +30,9 @@ namespace Tizen.NUI
 
         private static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
 
-        /// <summary></summary>
+        /// <summary>
+        /// Create a Shadow with default values.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow() : base()
         {
@@ -38,7 +40,9 @@ namespace Tizen.NUI
             Color = defaultColor;
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Create a Shadow with custom values.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
         {
@@ -46,13 +50,17 @@ namespace Tizen.NUI
             Color = color;
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow(Shadow other) : this(other.BlurRadius, other.Offset, other.Color, other.Extents)
         {
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Create a Shadow from a propertyMap.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
@@ -70,6 +78,7 @@ namespace Tizen.NUI
         /// <remark>
         /// Negative value is ignored. (no blur)
         /// </remark>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float BlurRadius { get; set; }
 
         /// <inheritdoc/>
