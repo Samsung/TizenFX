@@ -103,6 +103,7 @@ Tizen.System.Feedback.dll                          #common #mobile #mobile-emul 
 Tizen.System.Information.dll                       #common #mobile #mobile-emul #tv #wearable
 Tizen.System.MediaKey.dll                          #common #mobile #mobile-emul #tv #wearable
 Tizen.System.PlatformConfig.dll                    #common #mobile #mobile-emul #tv #wearable
+Tizen.System.PowerUsage.dll                        #wearable
 Tizen.System.Storage.dll                           #common #mobile #mobile-emul #tv #wearable
 Tizen.System.SystemSettings.dll                    #common #mobile #mobile-emul #tv #wearable
 Tizen.System.Usb.dll                               #common #mobile #mobile-emul
