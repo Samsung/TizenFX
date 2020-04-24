@@ -549,7 +549,7 @@ namespace Tizen.NUI.Components
 
         private void ScrollBy(float displacement, bool animate)
         {
-            if (GetChildCount() == 0 || displacement == 0 || maxScrollDistance < 0)
+            if (GetChildCount() == 0 || maxScrollDistance < 0)
             {
                 return;
             }
@@ -587,7 +587,7 @@ namespace Tizen.NUI.Components
                 int duration = (int)((320*FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
 
-                AnimateChildTo(duration, childTargetPosition);
+                AnimateChildTo(duration, AdjustScrollToChild(childTargetPosition));
             }
             else
             {
@@ -691,7 +691,7 @@ namespace Tizen.NUI.Components
                                                    " parent length:" + scrollerLength +
                                                    " scrolling child length:" + scrollingChildLength);
 
-            return Math.Max(scrollingChildLength - scrollerLength,0);
+            return Math.Max(scrollingChildLength,0);
         }
 
         private void PageSnap()
@@ -793,6 +793,10 @@ namespace Tizen.NUI.Components
                     {
                         PageSnap();
                     }
+                    else
+                    {
+                        ScrollBy(0, true);
+                    }
                 }
                 totalDisplacementForPan = 0;
 
@@ -818,6 +822,13 @@ namespace Tizen.NUI.Components
             scrolling = false;
             OnScrollAnimationEnd();
         }
+
+
+        protected virtual float AdjustScrollToChild(float position)
+        {
+            return position;
+        }
+
     }
 
 } // namespace
