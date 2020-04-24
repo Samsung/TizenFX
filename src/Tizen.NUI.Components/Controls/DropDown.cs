@@ -205,9 +205,118 @@ namespace Tizen.NUI.Components
             Right,
         }
 
+        /// <summary>
+        /// Get or set header text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6 after ACR done. Before ACR, need to be hidden as inhouse API.
+        public TextLabel HeaderText
+        {
+            get
+            {
+                if (null == headerText)
+                {
+                    headerText = new TextLabel()
+                    {
+                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        ParentOrigin = NUI.ParentOrigin.Center,
+                        PivotPoint = NUI.ParentOrigin.Center,
+                        PositionUsesPivotPoint = true,
+                        Name = "DropDownHeaderText"
+                    };
+                    Add(headerText);
+                }
+                return headerText;
+            }
+            set
+            {
+                headerText = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set button.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6 after ACR done. Before ACR, need to be hidden as inhouse API.
+        public Button Button
+        {
+            get
+            {
+                if (null == button)
+                {
+                    button = new Button()
+                    {
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.PivotPoint.CenterLeft,
+                        PositionUsesPivotPoint = true,
+                        HeightResizePolicy = ResizePolicyType.FitToChildren,
+                        IconRelativeOrientation = Button.IconOrientation.Right,
+                        Name = "DropDownButton"
+                    };
+                    button.ClickEvent += ButtonClickEvent;
+                    Add(button);
+
+                    if (null == buttonText)
+                    {
+                        buttonText = new TextLabel();
+                    }
+                }
+                return button;
+            }
+            set
+            {
+                button = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set the background image of list.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6 after ACR done. Before ACR, need to be hidden as inhouse API.
+        public ImageView ListBackgroundImage
+        {
+            get
+            {
+                if (null == listBackgroundImage)
+                {
+                    listBackgroundImage = new ImageView()
+                    {
+                        Name = "ListBackgroundImage",
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        WidthResizePolicy = ResizePolicyType.FitToChildren,
+                        HeightResizePolicy = ResizePolicyType.FitToChildren,
+                    };
+                    Add(listBackgroundImage);
+
+                    if (null == scrollableBase) // scrollableBase used to test of ListContainer Setup invoked already
+                    {
+                        SetUpListContainer();
+                    }
+                }
+                return listBackgroundImage;
+            }
+            set
+            {
+                listBackgroundImage = value;
+            }
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DropDownStyle Style => ViewStyle as DropDownStyle;
+        public new DropDownStyle Style
+        {
+            get
+            {
+                return new DropDownStyle(ViewStyle as DropDownStyle);
+            }
+        }
 
         /// <summary>
         /// Space between button text and button icon in DropDown.
@@ -353,10 +462,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AttachScrollBar(ScrollBar scrollBar)
         {
-            if (scrollableBase == null)
-            {
-                return;
-            }
+            if (scrollableBase == null) return;
             Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
@@ -368,10 +474,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (scrollableBase == null)
-            {
-                return;
-            }
+            if (scrollableBase == null) return;
             Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
@@ -384,18 +487,18 @@ namespace Tizen.NUI.Components
             DropDownStyle dropDownStyle = viewStyle as DropDownStyle;
             if (null != dropDownStyle)
             {
-                CreateHeaderText();
-                CreateButtonText();
-                CreateButton();
-
-                CreateListBackgroundImage();
-                if (null == scrollableBase) // scrollableBase used to test of ListContainer Setup invoked already
+                if (null != dropDownStyle.Button)
                 {
-                    SetUpListContainer();
+                    Button.ApplyStyle(dropDownStyle.Button);
                 }
-                button.ApplyStyle(dropDownStyle.Button);
-                headerText.ApplyStyle(dropDownStyle.HeaderText);
-                listBackgroundImage.ApplyStyle(dropDownStyle.ListBackgroundImage);
+                if (null != dropDownStyle.HeaderText)
+                {
+                    HeaderText.ApplyStyle(dropDownStyle.HeaderText);
+                }
+                if (null != dropDownStyle.ListBackgroundImage)
+                {
+                    ListBackgroundImage.ApplyStyle(dropDownStyle.ListBackgroundImage);
+                }
                 UpdateDropDown();
             }
         }
@@ -409,10 +512,10 @@ namespace Tizen.NUI.Components
         protected void UpdateDropDown()
         {
             if (null == scrollableBase || null == listBackgroundImage || null == dropDownMenuFullList) return;
-            if (null == Style.ListBackgroundImage.Size) return;
+            if (null == ListBackgroundImage.Size) return;
             // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
-            scrollableBase.Size = Style.ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
-            scrollableBase.Position2D = new Position2D(listPadding.Start, listPadding.Top);
+            scrollableBase.Size = ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
+            scrollableBase.Position = new Position(listPadding.Start, listPadding.Top);
 
             int listBackgroundImageX = 0;
             int listBackgroundImageY = 0;
@@ -426,7 +529,7 @@ namespace Tizen.NUI.Components
                 listBackgroundImageX = -(int)listMargin.End;
                 listBackgroundImageY = (int)listMargin.Top;
             }
-            listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
+            listBackgroundImage.Position = new Position(listBackgroundImageX, listBackgroundImageY);
             dropDownMenuFullList?.Layout?.RequestLayout();
         }
 
@@ -438,11 +541,11 @@ namespace Tizen.NUI.Components
             float buttonTextWidth = 0;
             if (null != buttonText)
             {
-                buttonText.Text = Style.Button.Text.Text.All;
-                buttonText.PointSize = Style.Button.Text.PointSize?.GetValue(ControlState) ?? StyleManager.PointSizeNormal;
+                buttonText.Text = Button.ButtonText.Text;
+                buttonText.PointSize = Button.ButtonText?.PointSize ?? StyleManager.PointSizeNormal;
                 buttonTextWidth = buttonText.NaturalSize.Width;
             }
-            float fitWidth = (Style.Button.Icon.Size?.Width ?? 48) + Style.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
+            float fitWidth = (Button.ButtonIcon.Size?.Width ?? 48) + SpaceBetweenButtonTextAndIcon + buttonTextWidth;
             fitWidth += (button.IconPadding.Start + button.IconPadding.End);
             button.Size.Width = Math.Max(button.Size.Width, fitWidth);
             RelayoutRequest();
@@ -525,68 +628,6 @@ namespace Tizen.NUI.Components
         private void OnClickEvent(object sender, ItemClickEventArgs e)
         {
             ItemClickEvent?.Invoke(sender, e);
-        }
-
-        private void CreateHeaderText()
-        {
-            if (null == headerText)
-            {
-                headerText = new TextLabel()
-                {
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    ParentOrigin = NUI.ParentOrigin.Center,
-                    PivotPoint = NUI.ParentOrigin.Center,
-                    PositionUsesPivotPoint = true,
-                };
-                headerText.Name = "DropDownHeaderText";
-                Add(headerText);
-            }
-        }
-
-        private void CreateButtonText()
-        {
-            if (null == buttonText)
-            {
-                buttonText = new TextLabel();
-            }
-        }
-
-        private void CreateButton()
-        {
-            if (null == button)
-            {
-                button = new Button()
-                {
-                    ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                    PivotPoint = NUI.PivotPoint.CenterLeft,
-                    PositionUsesPivotPoint = true,
-                    HeightResizePolicy = ResizePolicyType.FitToChildren,
-                    IconRelativeOrientation = Button.IconOrientation.Right,
-                };
-                button.Name = "DropDownButton";
-                button.ClickEvent += ButtonClickEvent;
-                Add(button);
-            }
-        }
-
-        private void CreateListBackgroundImage()
-        {
-            if (null == listBackgroundImage)
-            {
-                listBackgroundImage = new ImageView
-                {
-                    Name = "ListBackgroundImage",
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    WidthResizePolicy = ResizePolicyType.FitToChildren,
-                    HeightResizePolicy = ResizePolicyType.FitToChildren,
-                };
-                Add(listBackgroundImage);
-            }
         }
 
         private void SetUpListContainer()
@@ -1345,7 +1386,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override ViewStyle GetViewStyle()
             {
-                return null;
+                return new DropDownItemStyle();
             }
 
             private void CreateIcon()

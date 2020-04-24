@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             if (null == Style) return;
-            Style.IsSelectable = true;
+            IsSelectable = true;
         }
 
         private void OnSelect()

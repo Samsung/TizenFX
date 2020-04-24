@@ -18,7 +18,6 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
@@ -36,13 +35,14 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.privateIconRelativeOrientation = (IconOrientation?)newValue;
+                instance.iconRelativeOrientation = (IconOrientation)newValue;
+                instance.UpdateUIContent();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.privateIconRelativeOrientation;
+            return instance.iconRelativeOrientation;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -51,13 +51,14 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.privateIsEnabled = (bool)newValue;
+                instance.isEnabled = (bool)newValue;
+                instance.UpdateState();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.privateIsEnabled;
+            return instance.isEnabled;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -66,13 +67,15 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.privateIsSelected = (bool)newValue;
+                instance.isSelected = (bool)newValue;
+                instance.UpdateState(instance.SelectionChangedByTouch);
+                instance.SelectionChangedByTouch = null;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.privateIsSelected;
+            return instance.isSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -81,112 +84,73 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.privateIsSelectable = (bool)newValue;
+                instance.isSelectable = (bool)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.privateIsSelectable;
+            return instance.isSelectable;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.Style?.IconPadding)
+            if (null != newValue)
             {
-                instance.Style.IconPadding.CopyFrom((Extents)newValue);
+                if (null == instance.iconPadding) instance.iconPadding = new Extents(instance.OnIconPaddingChanged, 0, 0, 0, 0);
+                instance.iconPadding.CopyFrom((Extents)newValue);
                 instance.UpdateUIContent();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.IconPadding;
+            return instance.iconPadding;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.Style?.TextPadding)
+            if (null != newValue)
             {
-                instance.Style.TextPadding.CopyFrom((Extents)newValue);
+                if (null == instance.textPadding) instance.textPadding = new Extents(instance.OnTextPaddingChanged, 0, 0, 0, 0);
+                instance.textPadding.CopyFrom((Extents)newValue);
                 instance.UpdateUIContent();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.TextPadding;
+            return instance.textPadding;
         });
+
+        private ImageView overlayImage;
+        private TextLabel buttonText;
+        private ImageView buttonIcon;
 
         private EventHandler<StateChangedEventArgs> stateChangeHander;
 
+        private bool isSelectable;
         private bool isSelected = false;
         private bool isEnabled = true;
         private bool isPressed = false;
-
-        /// <summary>
-        /// Button's overlay image part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView ButtonOverlayImage { get; set; }
-
-        /// <summary>
-        /// Button's text part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected TextLabel ButtonText { get; set; }
-
-        /// <summary>
-        /// Button's icon part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView ButtonIcon { get; set; }
+        private StringSelector translatableTextSelector = new StringSelector();
+        private StringSelector textSelector = new StringSelector();
+        private ColorSelector textColorSelector = new ColorSelector();
+        private FloatSelector pointSizeSelector = new FloatSelector();
+        private StringSelector iconURLSelector = new StringSelector();
+        private IconOrientation iconRelativeOrientation;
+        private Extents iconPadding;
+        private Extents textPadding;
 
         /// <summary>
         /// The last touch information triggering selected state change.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected Touch SelectionChangedByTouch { get; set; }
-
-        /// <summary>
-        /// The ButtonExtension instance that is injected by ButtonStyle.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ButtonExtension Extension { get; set; }
-
-        /// <summary>
-        /// Creates Button's text part.
-        /// </summary>
-        /// <return>The created Button's text part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual TextLabel CreateText()
-        {
-            return new TextLabel();
-        }
-
-        /// <summary>
-        /// Creates Button's icon part.
-        /// </summary>
-        /// <return>The created Button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ImageView CreateIcon()
-        {
-            return new ImageView();
-        }
-
-        /// <summary>
-        /// Creates Button's overlay image part.
-        /// </summary>
-        /// <return>The created Button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ImageView CreateOverlayImage()
-        {
-            return new ImageView();
-        }
 
         /// <summary>
         /// Called when the Button is Clicked by a user
@@ -233,6 +197,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ClickEventArgs> ClickEvent;
+
         /// <summary>
         /// An event for the button state changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
@@ -248,6 +213,7 @@ namespace Tizen.NUI.Components
                 stateChangeHander -= value;
             }
         }
+
         /// <summary>
         /// Icon orientation.
         /// </summary>
@@ -277,10 +243,87 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Style of the button.
+        /// Button's icon part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ButtonIcon
+        {
+            get
+            {
+                if (null == buttonIcon)
+                {
+                    buttonIcon = new ImageView();
+                    Add(buttonIcon);
+                }
+                return buttonIcon;
+            }
+            set
+            {
+                buttonIcon = value;
+            }
+        }
+
+        /// <summary>
+        /// Button's overlay image part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ButtonOverlay
+        {
+            get
+            {
+                if (null == overlayImage)
+                {
+                    overlayImage = new ImageView()
+                    {
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                    };
+                    Add(overlayImage);
+                }
+                return overlayImage;
+            }
+            set
+            {
+                overlayImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Button's text part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel ButtonText
+        {
+            get
+            {
+                if (null == buttonText)
+                {
+                    buttonText = new TextLabel()
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+                    Add(buttonText);
+                }
+                return buttonText;
+            }
+            set
+            {
+                buttonText = value;
+            }
+        }
+
+        /// <summary>
+        /// Get a copy of style of the button.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public new ButtonStyle Style => ViewStyle as ButtonStyle;
+        public new ButtonStyle Style
+        {
+            get
+            {
+                return new ButtonStyle(ViewStyle as ButtonStyle);
+            }
+        }
 
         /// <summary>
         /// The text of Button.
@@ -290,14 +333,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.Text?.GetValue(ControlState);
+                return ButtonText.Text;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.Text = value;
-                }
+                ButtonText.Text = value;
             }
         }
 
@@ -317,18 +357,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private bool privateIsSelectable
-        {
-            get
-            {
-                return Style?.IsSelectable ?? false;
-            }
-            set
-            {
-                Style.IsSelectable = value;
-            }
-        }
-
         /// <summary>
         /// Translate text string in Button.
         /// </summary>
@@ -337,14 +365,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TranslatableText?.All;
+                return ButtonText.TranslatableText;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.TranslatableText = value;
-                }
+                ButtonText.TranslatableText = value;
             }
         }
 
@@ -356,14 +381,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.PointSize?.All ?? 0;
+                return ButtonText.PointSize;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.PointSize = value;
-                }
+                ButtonText.PointSize = value;
             }
         }
 
@@ -375,16 +397,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.FontFamily.All;
+                return ButtonText.FontFamily;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.FontFamily = value;
-                }
+                ButtonText.FontFamily = value;
             }
         }
+
         /// <summary>
         /// Text color in Button.
         /// </summary>
@@ -393,16 +413,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TextColor?.All;
+                return ButtonText.TextColor;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.TextColor = value;
-                }
+                ButtonText.TextColor = value;
             }
         }
+
         /// <summary>
         /// Text horizontal alignment in Button.
         /// </summary>
@@ -411,16 +429,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return ButtonText.HorizontalAlignment;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.HorizontalAlignment = value;
-                }
+                ButtonText.HorizontalAlignment = value;
             }
         }
+
         /// <summary>
         /// Icon image's resource url in Button.
         /// </summary>
@@ -429,18 +445,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Icon?.ResourceUrl?.All;
+                return ButtonIcon.ResourceUrl;
             }
             set
             {
-                if (null != Style?.Icon)
-                {
-                    Style.Icon.ResourceUrl = value;
-                }
+                ButtonIcon.ResourceUrl = value;
             }
         }
 
-        private StringSelector textSelector = new StringSelector();
         /// <summary>
         /// Text string selector in Button.
         /// </summary>
@@ -465,7 +477,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector translatableTextSelector = new StringSelector();
         /// <summary>
         /// Translateable text string selector in Button.
         /// </summary>
@@ -490,7 +501,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private ColorSelector textColorSelector = new ColorSelector();
         /// <summary>
         /// Text color selector in Button.
         /// </summary>
@@ -515,7 +525,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private FloatSelector pointSizeSelector = new FloatSelector();
         /// <summary>
         /// Text font size selector in Button.
         /// </summary>
@@ -540,7 +549,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector iconURLSelector = new StringSelector();
         /// <summary>
         /// Icon image's resource url selector in Button.
         /// </summary>
@@ -580,21 +588,6 @@ namespace Tizen.NUI.Components
                 SetValue(IsSelectedProperty, value);
             }
         }
-        private bool privateIsSelected
-        {
-            get
-            {
-                return isSelected;
-            }
-            set
-            {
-                isSelected = value;
-
-                UpdateState(SelectionChangedByTouch);
-
-                SelectionChangedByTouch = null;
-            }
-        }
 
         /// <summary>
         /// Flag to decide enable or disable in Button.
@@ -609,18 +602,6 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(IsEnabledProperty, value);
-            }
-        }
-        private bool privateIsEnabled
-        {
-            get
-            {
-                return isEnabled;
-            }
-            set
-            {
-                isEnabled = value;
-                UpdateState();
             }
         }
 
@@ -641,29 +622,18 @@ namespace Tizen.NUI.Components
                 SetValue(IconRelativeOrientationProperty, value);
             }
         }
-        private IconOrientation? privateIconRelativeOrientation
+
+        /// <summary>
+        /// Icon padding in button, work only when show icon and text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Extents IconPadding
         {
             get
             {
-                return Style?.IconRelativeOrientation;
+                Extents padding = (Extents)GetValue(IconPaddingProperty);
+                return (null != padding) ? padding : iconPadding = new Extents(OnIconPaddingChanged, 0, 0, 0, 0);
             }
-            set
-            {
-                if (Style != null && Style.IconRelativeOrientation != value)
-                {
-                    Style.IconRelativeOrientation = value;
-                    UpdateUIContent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Icon padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public Extents IconPadding
-        {
-            get => (Extents)GetValue(IconPaddingProperty);
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -673,7 +643,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents)GetValue(TextPaddingProperty);
+            get
+            {
+                Extents padding = (Extents)GetValue(TextPaddingProperty);
+                return (null != padding) ? padding : textPadding = new Extents(OnTextPaddingChanged, 0, 0, 0, 0);
+            }
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -691,24 +665,23 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                Extension?.OnDispose(this);
-
-                if (ButtonIcon != null)
+                if (buttonIcon != null)
                 {
-                    Utility.Dispose(ButtonIcon);
+                    Utility.Dispose(buttonIcon);
                 }
-                if (ButtonText != null)
+                if (buttonText != null)
                 {
-                    Utility.Dispose(ButtonText);
+                    Utility.Dispose(buttonText);
                 }
-                if (ButtonOverlayImage != null)
+                if (overlayImage != null)
                 {
-                    Utility.Dispose(ButtonOverlayImage);
+                    Utility.Dispose(overlayImage);
                 }
             }
 
             base.Dispose(type);
         }
+
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
         /// </summary>
@@ -733,8 +706,7 @@ namespace Tizen.NUI.Components
                     bool clicked = isPressed && isEnabled;
 
                     isPressed = false;
-
-                    if (Style.IsSelectable != null && Style.IsSelectable == true)
+                    if (isSelectable)
                     {
                         IsSelected = !IsSelected;
                     }
@@ -802,29 +774,28 @@ namespace Tizen.NUI.Components
                     UpdateState();
                     return true;
                 case PointStateType.Up:
+                {
+                    bool clicked = isPressed && isEnabled;
+
+                    isPressed = false;
+                    if (isSelectable)
                     {
-                        bool clicked = isPressed && isEnabled;
-
-                        isPressed = false;
-
-                        if (Style.IsSelectable != null && Style.IsSelectable == true)
-                        {
-                            SelectionChangedByTouch = touch;
-                            IsSelected = !IsSelected;
-                        }
-                        else
-                        {
-                            UpdateState(touch);
-                        }
-
-                        if (clicked)
-                        {
-                            ClickEventArgs eventArgs = new ClickEventArgs();
-                            OnClickInternal(eventArgs);
-                        }
-
-                        return true;
+                        SelectionChangedByTouch = touch;
+                        IsSelected = !IsSelected;
                     }
+                    else
+                    {
+                        UpdateState(touch);
+                    }
+
+                    if (clicked)
+                    {
+                        ClickEventArgs eventArgs = new ClickEventArgs();
+                        OnClickInternal(eventArgs);
+                    }
+
+                    return true;
+                }
                 default:
                     break;
             }
@@ -844,9 +815,18 @@ namespace Tizen.NUI.Components
 
             if (null != buttonStyle)
             {
-                ButtonOverlayImage?.ApplyStyle(buttonStyle.Overlay);
-                ButtonText?.ApplyStyle(buttonStyle.Text);
-                ButtonIcon?.ApplyStyle(buttonStyle.Icon);
+                if (null != buttonStyle.Overlay)
+                {
+                    ButtonOverlay.ApplyStyle(buttonStyle.Overlay);
+                }
+                if (null != buttonStyle.Text)
+                {
+                    ButtonText.ApplyStyle(buttonStyle.Text);
+                }
+                if (null != buttonStyle.Icon)
+                {
+                    ButtonIcon.ApplyStyle(buttonStyle.Icon);
+                }
             }
         }
 
@@ -866,8 +846,6 @@ namespace Tizen.NUI.Components
         {
             base.OnUpdate();
             UpdateUIContent();
-
-            Extension?.OnRelayout(this);
         }
 
         /// <summary>
@@ -920,8 +898,6 @@ namespace Tizen.NUI.Components
                     CurrentState = targetState
                 };
                 stateChangeHander?.Invoke(this, e);
-
-                Extension?.OnControlStateChanged(this, sourceState, touchInfo);
             }
         }
 
@@ -931,53 +907,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
-            var style = (ButtonStyle)Style;
-
-            Extension = style.CreateExtension();
-
-            CreateComponents();
-
-            EnableControlStatePropagation = true;
-
-            if (ButtonOverlayImage != null)
-            {
-                Add(ButtonOverlayImage);
-                ButtonOverlayImage.ApplyStyle(style.Overlay);
-            }
-
-            if (ButtonIcon != null)
-            {
-                Add(ButtonIcon);
-                ButtonIcon.ApplyStyle(style.Icon);
-                ButtonIcon.Relayout += OnIconRelayout;
-            }
-
-            if (null != ButtonText)
-            {
-                Add(ButtonText);
-                ButtonText.ApplyStyle(style.Text);
-            }
-
+            iconRelativeOrientation = IconOrientation.Left; 
             UpdateState();
-
             LayoutDirectionChanged += OnLayoutDirectionChanged;
-        }
-
-        private void CreateComponents()
-        {
-            ButtonOverlayImage = CreateOverlayImage();
-            ButtonIcon = CreateIcon();
-            ButtonText = CreateText();
-
-            if (Extension == null)
-            {
-                return;
-            }
-
-            // Update component with extension
-            ButtonOverlayImage = Extension.OnCreateOverlayImage(this, ButtonOverlayImage);
-            ButtonIcon = Extension.OnCreateIcon(this, ButtonIcon);
-            ButtonText = Extension.OnCreateText(this, ButtonText);
         }
 
         /// <summary>
@@ -988,33 +920,32 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
-            {
-                return;
-            }
-            ButtonText.WidthResizePolicy = ResizePolicyType.Fixed;
-            ButtonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingStart = Style.TextPadding.Start;
-            int textPaddingEnd = Style.TextPadding.End;
-            int textPaddingTop = Style.TextPadding.Top;
-            int textPaddingBottom = Style.TextPadding.Bottom;
+            if (buttonIcon == null || buttonText == null) return;
 
-            int iconPaddingStart = Style.IconPadding.Start;
-            int iconPaddingEnd = Style.IconPadding.End;
-            int iconPaddingTop = Style.IconPadding.Top;
-            int iconPaddingBottom = Style.IconPadding.Bottom;
+            buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
+            buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
+            int textPaddingStart = TextPadding.Start;
+            int textPaddingEnd = TextPadding.End;
+            int textPaddingTop = TextPadding.Top;
+            int textPaddingBottom = TextPadding.Bottom;
+
+            int iconPaddingStart = IconPadding.Start;
+            int iconPaddingEnd = IconPadding.End;
+            int iconPaddingTop = IconPadding.Top;
+            int iconPaddingBottom = IconPadding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
-                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - ButtonIcon.SizeHeight;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - ButtonIcon.SizeHeight;
             }
             else
             {
-                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - ButtonIcon.SizeWidth;
-                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - ButtonIcon.SizeWidth;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
+
         /// <summary>
         /// Layout child, it can be override.
         /// </summary>
@@ -1023,23 +954,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
-            {
-                return;
-            }
+            if (buttonIcon == null || buttonText == null) return;
 
-            var buttonIcon = ButtonIcon;
-            var buttonText = ButtonText;
+            int textPaddingStart = TextPadding.Start;
+            int textPaddingEnd = TextPadding.End;
+            int textPaddingTop = TextPadding.Top;
+            int textPaddingBottom = TextPadding.Bottom;
 
-            int textPaddingStart = Style.TextPadding.Start;
-            int textPaddingEnd = Style.TextPadding.End;
-            int textPaddingTop = Style.TextPadding.Top;
-            int textPaddingBottom = Style.TextPadding.Bottom;
-
-            int iconPaddingStart = Style.IconPadding.Start;
-            int iconPaddingEnd = Style.IconPadding.End;
-            int iconPaddingTop = Style.IconPadding.Top;
-            int iconPaddingBottom = Style.IconPadding.Bottom;
+            int iconPaddingStart = IconPadding.Start;
+            int iconPaddingEnd = IconPadding.End;
+            int iconPaddingTop = IconPadding.Top;
+            int iconPaddingBottom = IconPadding.Bottom;
 
             switch (IconRelativeOrientation)
             {
@@ -1127,6 +1052,7 @@ namespace Tizen.NUI.Components
                 buttonIcon.PivotPoint = NUI.PivotPoint.Center;
             }
         }
+
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
@@ -1138,7 +1064,7 @@ namespace Tizen.NUI.Components
             ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
             if (buttonStyle != null)
             {
-                Style.CopyFrom(buttonStyle);
+                ApplyStyle(buttonStyle);
                 UpdateUIContent();
             }
         }
@@ -1159,15 +1085,19 @@ namespace Tizen.NUI.Components
 
         private void OnClickInternal(ClickEventArgs eventArgs)
         {
+            Command?.Execute(CommandParameter);
             OnClick(eventArgs);
-            Extension?.OnClick(this, eventArgs);
             ClickEvent?.Invoke(this, eventArgs);
         }
 
-        private void OnIconRelayout(object sender, EventArgs e)
+        private void OnIconPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
         {
-            MeasureText();
-            LayoutChild();
+            IconPadding = new Extents(start, end, top, bottom);
+        }
+
+        private void OnTextPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            TextPadding = new Extents(start, end, top, bottom);
         }
 
         /// <summary>
@@ -1177,6 +1107,7 @@ namespace Tizen.NUI.Components
         public class ClickEventArgs : EventArgs
         {
         }
+
         /// <summary>
         /// StateChangeEventArgs is a class to record button state change event arguments which will sent to user.
         /// </summary>
@@ -1189,48 +1120,6 @@ namespace Tizen.NUI.Components
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
             public ControlStates CurrentState;
-        }
-
-        /// <summary>
-        /// Get current text part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's text part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel GetCurrentText(ButtonExtension extension)
-        {
-            return (extension == Extension) ? ButtonText : null;
-        }
-
-        /// <summary>
-        /// Get current icon part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentIcon(ButtonExtension extension)
-        {
-            return (extension == Extension) ? ButtonIcon : null;
-        }
-
-        /// <summary>
-        /// Get current overlay image part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentOverlayImage(ButtonExtension extension)
-        {
-            return (extension == Extension) ? ButtonOverlayImage : null;
         }
     }
 }
