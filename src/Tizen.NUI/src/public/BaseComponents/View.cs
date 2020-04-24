@@ -193,44 +193,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetControlState(value, null);
+                SetControlState(value, ControlStateChangedInfo.InputMethodType.None, null);
             }
-        }
-
-        /// <summary>
-        /// Set ControlState with specified change environment
-        /// </summary>
-        /// <param name="state">New state value</param>
-        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
-        /// <return>True, if the state changed successfully.</return>
-        internal bool SetControlState(ControlStates state, Touch touchInfo)
-        {
-            if (controlStates == state)
-            {
-                return false;
-            }
-
-            var prevState = controlStates;
-
-            controlStates = state;
-
-            var changeInfo = new ControlStateChangedInfo(prevState, state, ControlStateChangedInfo.InputMethodType.Touch, touchInfo);
-
-            ControlStateChangeEventInternal?.Invoke(this, changeInfo);
-
-            OnControlStateChanged(changeInfo);
-
-            if (controlStatePropagation)
-            {
-                foreach (View child in Children)
-                {
-                    child.SetControlState(state, touchInfo);
-                }
-            }
-
-            ControlStateChangeEvent?.Invoke(this, changeInfo);
-
-            return true;
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2342,6 +2306,44 @@ namespace Tizen.NUI.BaseComponents
         protected virtual ViewStyle GetViewStyle()
         {
             return new ViewStyle();
+        }
+
+        /// <summary>
+        /// Set ControlState with specified inpu environment
+        /// </summary>
+        /// <param name="state">New state value</param>
+        /// <param name="inputMethod">Indicates the input method that triggered this change.</param>
+        /// <param name="inputData">The input method data that depends on the inputMethod.</param>
+        /// <return>True, if the state changed successfully.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetControlState(ControlStates state, ControlStateChangedInfo.InputMethodType inputMethod, object inputData)
+        {
+            if (controlStates == state)
+            {
+                return false;
+            }
+
+            var prevState = controlStates;
+
+            controlStates = state;
+
+            var changeInfo = new ControlStateChangedInfo(prevState, state, inputMethod, inputData);
+
+            ControlStateChangeEventInternal?.Invoke(this, changeInfo);
+
+            OnControlStateChanged(changeInfo);
+
+            if (controlStatePropagation)
+            {
+                foreach (View child in Children)
+                {
+                    child.SetControlState(state, inputMethod, inputData);
+                }
+            }
+
+            ControlStateChangeEvent?.Invoke(this, changeInfo);
+
+            return true;
         }
 
         /// <summary>

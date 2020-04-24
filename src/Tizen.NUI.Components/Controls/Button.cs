@@ -910,7 +910,7 @@ namespace Tizen.NUI.Components
                 targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
             }
 
-            if (SetControlState(targetState, touchInfo))
+            if (SetControlState(targetState, ControlStateChangedInfo.InputMethodType.Touch, touchInfo))
             {
                 OnUpdate();
 
