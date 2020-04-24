@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ButtonGroup : BindableObject, global::System.IDisposable
+    public class ButtonGroup : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -38,7 +38,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.SizeHeight = (float)newValue;
+                    btn.SizeHeight = (float)newValue;
                 }
                 btGroup.itemheight = (float)newValue;
             }
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.PointSize = (float)newValue;
+                    btn.ButtonText.PointSize = (float)newValue;
                 }
                 btGroup.itemPointSize = (float)newValue;
             }
@@ -78,7 +78,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.FontFamily = (string)newValue;
+                    btn.ButtonText.FontFamily = (string)newValue;
                 }
                 btGroup.itemFontFamily = (string)newValue;
             }
@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.TextColor = (Color)newValue;
+                    btn.ButtonText.TextColor = (Color)newValue;
                 }
                 btGroup.itemTextColor = (Color)newValue;
             }
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.HorizontalAlignment = (HorizontalAlignment)newValue;
+                    btn.ButtonText.HorizontalAlignment = (HorizontalAlignment)newValue;
                 }
                 btGroup.itemTextAlignment = (HorizontalAlignment)newValue;
             }
@@ -136,9 +136,10 @@ namespace Tizen.NUI.Components
             ButtonGroup btGroup = (ButtonGroup)bindable;
             if (btGroup.itemGroup != null && newValue != null)
             {
+                Selector<Color> color = (Selector<Color>)newValue;
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Overlay.BackgroundColor = (Selector<Color>)newValue;
+                    btn.ButtonOverlay.SetValue(BackgroundColorSelectorProperty, color);
                 }
                 btGroup.overLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
@@ -158,11 +159,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    if (btn.Style.BackgroundImage == null)
-                    {
-                        btn.Style.BackgroundImage = new Selector<string>();
-                    }              
-                    btn.Style.BackgroundImage = (string)newValue;
+                    btn.BackgroundImage = (string)newValue;
                 }
                 btGroup.itemBackgroundImageUrl = (string)newValue;
             }
@@ -203,7 +200,7 @@ namespace Tizen.NUI.Components
                 var shadow = (ImageShadow)newValue;
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.ImageShadow = new ImageShadow(shadow);
+                    btn.ImageShadow = new ImageShadow(shadow);
                 }
                 btGroup.itemImageShadow = new ImageShadow(shadow);
             }
@@ -223,11 +220,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ButtonGroup(View view) : base()
         {
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Begin,
+            };
+            ParentOrigin = NUI.ParentOrigin.BottomCenter;
+            PivotPoint = NUI.PivotPoint.BottomCenter;
+            PositionUsesPivotPoint = true;
             itemGroup = new List<Button>();
             if ((root = view) == null)
             {
                 throw new Exception("Root view is null.");
             }
+            root.Add(this);
         }
 
         /// <summary>
@@ -291,7 +297,7 @@ namespace Tizen.NUI.Components
                 return;
             }
             itemGroup.Add(bt);
-            root.Add(bt);
+            Add(bt);
         }
 
         /// <summary>
@@ -307,7 +313,7 @@ namespace Tizen.NUI.Components
                 return;
             }
             itemGroup.Remove(bt);
-            root.Remove(bt);
+            Remove(bt);
             bt.Dispose();
         }
 
@@ -324,7 +330,7 @@ namespace Tizen.NUI.Components
             }
             Button bt = itemGroup[index];
             itemGroup.Remove(bt);
-            root.Remove(bt);
+            Remove(bt);
             bt.Dispose();
         }
 
@@ -336,7 +342,7 @@ namespace Tizen.NUI.Components
         {
             foreach (Button bt in itemGroup)
             {
-                root.Remove(bt);
+                Remove(bt);
                 bt.Dispose();
             }
             itemGroup.Clear();
@@ -358,26 +364,28 @@ namespace Tizen.NUI.Components
                 btnTemp.Size = new Size(buttonWidth, buttonHeight);
             }
 
-            int pos = 0;
-            if (root.LayoutDirection == ViewLayoutDirectionType.RTL)
+            if (btStyle == null || btStyle.Text == null || btStyle.Text.TextColor == null) return;
+            ItemTextColor = btStyle.Text.TextColor.All;
+        }
+
+        public void UpdateLayout(ViewLayoutDirectionType type)
+        {
+            if (type == ViewLayoutDirectionType.RTL)
             {
-                for (int i = Count - 1; i >= 0; i--)
+                Layout = new LinearLayout()
                 {
-                    itemGroup[i].Style.PositionX = pos;
-                    pos += (int)(itemGroup[i].Size.Width);
-                }
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.End,
+                };
             }
             else
             {
-                for (int i = 0; i < Count; i++)
+                Layout = new LinearLayout()
                 {
-                    itemGroup[i].Style.PositionX = pos;
-                    pos += (int)(itemGroup[i].Size.Width);
-                }
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Begin,
+                };
             }
-
-            if (btStyle == null || btStyle.Text == null || btStyle.Text.TextColor == null) return;
-            ItemTextColor = btStyle.Text.TextColor.All;
         }
 
         /// <summary>
@@ -524,20 +532,24 @@ namespace Tizen.NUI.Components
         /// Dispose.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed) return;
-            if (itemGroup != null)
+
+            if (type == DisposeTypes.Explicit)
             {
-                RemoveAll();
-                itemGroup = null;
+                if (itemGroup != null)
+                {
+                    RemoveAll();
+                    itemGroup = null;
+                }
             }
-            disposed = true;
+
+            base.Dispose(type);
         }
 
         private List<Button> itemGroup;
         private View root = null;
-        private bool disposed = false;
         private float itemheight;
         private float itemPointSize;
         private string itemFontFamily;

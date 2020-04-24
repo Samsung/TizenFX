@@ -121,6 +121,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                translatableTextSelector.Clear();
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -158,6 +159,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                translatablePlaceholderTextSelector.Clear();
                 SetValue(TranslatablePlaceholderTextProperty, value);
             }
         }
@@ -191,6 +193,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                textSelector.Clear();
                 SetValueAndForceSendChangeSignal(TextProperty, value);
                 NotifyPropertyChanged();
             }
@@ -242,6 +245,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                fontFamilySelector.Clear();
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -276,6 +280,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                pointSizeSelector.Clear();
                 SetValue(PointSizeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -366,6 +371,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                textColorSelector.Clear();
                 SetValue(TextColorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -387,6 +393,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                placeholderTextColorSelector.Clear();
                 SetValue(PlaceholderTextColorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -464,6 +471,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                primaryCursorColorSelector.Clear();
                 SetValue(PrimaryCursorColorProperty, value);
                 NotifyPropertyChanged();
             }

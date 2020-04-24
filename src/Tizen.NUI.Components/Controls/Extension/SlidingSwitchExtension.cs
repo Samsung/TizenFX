@@ -44,8 +44,8 @@ namespace Tizen.NUI.Components.Extension
             }
 
             var switchButton = (Switch)button;
-            var track = switchButton.GetCurrentTrack(this);
-            var thumb = switchButton.GetCurrentThumb(this);
+            var track = switchButton.Track;
+            var thumb = switchButton.Thumb;
 
             if (track == null || thumb == null || null == slidingAnimation)
             {

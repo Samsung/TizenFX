@@ -28,45 +28,42 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
             {
-                instance.Style.Images = (string[])newValue;
-                instance.imageVisual.URLS = new List<string>((string[])newValue);
+                instance.images = (string[])newValue;
             }
+            instance.UpdateVisual();
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.Style.Images;
+            return instance.images;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                instance.Style.Size = size;
-                if (null != instance.imageVisual)
-                {
-                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
-                }
+                instance.Size2D = size;
             }
+            instance.UpdateVisual();
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.Style.Size;
+            return (Size)instance.Size2D;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000/16.6f), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
@@ -74,18 +71,30 @@ namespace Tizen.NUI.Components
                 int frameRate = (int)newValue;
                 if (0 != frameRate) //It will crash if 0 
                 {
-                    instance.Style.FrameRate.All = frameRate;
-                    instance.imageVisual.FrameDelay = 1000.0f / frameRate;
+                    instance.frameRate = frameRate;
                 }
+                instance.UpdateVisual();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.Style.FrameRate?.All ?? (int)(1000/16.6f);
+            return instance.frameRate;
         });
 
-        private AnimatedImageVisual imageVisual = null;
+        private AnimatedImageVisual imageVisual = new AnimatedImageVisual()
+        {
+            URLS = new List<string>(),
+            FrameDelay = 16.6f,
+            LoopCount = -1,
+            Size = new Size2D(100, 100),
+            Position = new Vector2(0, 0),
+            Origin = Visual.AlignType.Center,
+            AnchorPoint = Visual.AlignType.Center
+        };
+
+        private string[] images;
+        private int frameRate = (int)(1000 / 16.6f);
 
         static Loading() { }
 
@@ -119,10 +128,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get style of loading.
+        /// Return a copied Style instance of Loading
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Loading.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new LoadingStyle Style => ViewStyle as LoadingStyle;
+        public new LoadingStyle Style
+        {
+            get
+            {
+                return new LoadingStyle(ViewStyle as LoadingStyle);
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading image resource array.
@@ -143,8 +162,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets loading image resources.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] Images
         {
@@ -225,36 +243,24 @@ namespace Tizen.NUI.Components
         }
 
         private void Initialize()
-        {
-            imageVisual = new AnimatedImageVisual()
-            {
-                URLS = new List<string>(),
-                FrameDelay = 16.6f,
-                LoopCount = -1,
-                Size = new Size2D(100, 100),
-                Position = new Vector2(0, 0),
-                Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center
-            };
-
+        {   
             UpdateVisual();
-
             this.AddVisual("loadingImageVisual", imageVisual);
         }
 
         private void UpdateVisual()
         {
-            if (null != Style.Images)
+            if (imageVisual != null) 
             {
-                imageVisual.URLS = new List<string>(Style.Images);
-            }
-            if (null != Style.FrameRate?.All && 0 != Style.FrameRate.All.Value)
-            {
-                imageVisual.FrameDelay = 1000.0f / (float)Style.FrameRate.All.Value;
-            }
-            if (null != Style.LoadingSize)
-            {
-                imageVisual.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
+                imageVisual.Size = Size2D;
+                if (null != images)
+                {
+                    imageVisual.URLS = new List<string>(images);
+                }
+                if (0 != frameRate)
+                {
+                    imageVisual.FrameDelay = 1000.0f / (float)frameRate;
+                }
             }
         }
     }

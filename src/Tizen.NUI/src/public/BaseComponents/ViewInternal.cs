@@ -1068,9 +1068,6 @@ namespace Tizen.NUI.BaseComponents
                 view.InternalParent = null;
             }
 
-            simpleBinding.Dispose();
-            simpleBinding = null;
-
             viewStyle = null;
 
             base.Dispose(type);

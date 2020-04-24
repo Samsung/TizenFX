@@ -28,6 +28,58 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PaginationStyle : ControlStyle
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorImageURLProperty = BindableProperty.Create(nameof(IndicatorImageURL), typeof(Selector<string>), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            if (newValue != null)
+            {
+                instance.indicatorImageURL = (Selector<string>)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            return instance.indicatorImageURL;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(PaginationStyle), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            if (newValue != null)
+            {
+                instance.indicatorSize = (Size)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            return instance.indicatorSize;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int), typeof(PaginationStyle), (int)0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            if (newValue != null)
+            {
+                instance.indicatorSpacing = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (PaginationStyle)bindable;
+            return instance.indicatorSpacing;
+        });
+
+        private Selector<string> indicatorImageURL;
+        private Size indicatorSize;
+        private int indicatorSpacing;
+
         static PaginationStyle() { }
 
         /// <summary>
@@ -57,7 +109,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size IndicatorSize { get; set; }
+        public Size IndicatorSize
+        {
+            get
+            {
+                return (Size)GetValue(IndicatorSizeProperty);
+            }
+            set
+            {
+                SetValue(IndicatorSizeProperty, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
@@ -65,7 +127,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> IndicatorImageURL { get; set; } = new Selector<string>();
+        public Selector<string> IndicatorImageURL
+        {
+            get
+            {
+                return (Selector<string>)GetValue(IndicatorImageURLProperty);
+            }
+            set
+            {
+                SetValue(IndicatorImageURLProperty, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the space of the indicator.
@@ -73,31 +145,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IndicatorSpacing { get; set; }
-
-        /// <summary>
-        /// Retrieves a copy of PaginationStyle.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
+        public int IndicatorSpacing
         {
-            base.CopyFrom(bindableObject);
-
-            PaginationStyle paginationStyle = bindableObject as PaginationStyle;
-            if (null != paginationStyle)
+            get
             {
-                if (null != paginationStyle.IndicatorSize)
-                {
-                    IndicatorSize = new Size(paginationStyle.IndicatorSize.Width, paginationStyle.IndicatorSize.Height);
-                }
-                if (null != paginationStyle.IndicatorImageURL)
-                {
-                    IndicatorImageURL?.Clone(paginationStyle.IndicatorImageURL);
-                }
-                IndicatorSpacing = paginationStyle.IndicatorSpacing;
+                return (int)GetValue(IndicatorSpacingProperty);
             }
+            set
+            {
+                SetValue(IndicatorSpacingProperty, value);
+            } 
         }
     }
 }

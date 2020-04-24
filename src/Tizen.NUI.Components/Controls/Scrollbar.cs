@@ -27,23 +27,23 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class ScrollBar : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
-                instance.Style.Direction = (DirectionType?)newValue;
+                instance.direction = (DirectionType)newValue;
                 instance.UpdateValue();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (ScrollBar)bindable;
-            return instance.Style.Direction;
+            return instance.direction;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
             var instance = (ScrollBar)bindable;
             return instance.maxValue;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -81,7 +81,7 @@ namespace Tizen.NUI.Components
             var instance = (ScrollBar)bindable;
             return instance.minValue;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -100,14 +100,13 @@ namespace Tizen.NUI.Components
             var instance = (ScrollBar)bindable;
             return instance.curValue;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
-                instance.Style.Duration = (uint)newValue;
                 if (instance.scrollAniPlayer != null)
                 {
                     instance.scrollAniPlayer.Duration = (int)(uint)newValue;
@@ -117,18 +116,19 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (ScrollBar)bindable;
-            return instance.Style.Duration;
+            return (uint)instance.scrollAniPlayer?.Duration;
         });
 
+        private Animation scrollAniPlayer = null;
         private ImageView trackImage;
         private ImageView thumbImage;
-        private Animation scrollAniPlayer = null;
         private float thumbImagePosX;
         private float thumbImagePosY;
         private bool enableAni = false;
         private int minValue;
         private int maxValue;
         private int curValue;
+        private DirectionType direction;
         static ScrollBar() { }
 
         /// <summary>
@@ -181,10 +181,80 @@ namespace Tizen.NUI.Components
 
         #region public property 
         /// <summary>
-        /// Get style of scrollbar.
+        /// Return a copied Style instance of Scrollbar
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Scrollbar.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
+        public new ScrollBarStyle Style
+        {
+            get
+            {
+                return new ScrollBarStyle(ViewStyle as ScrollBarStyle);
+            }
+        }
+
+        /// <summary>
+        /// Return ImageView instance of background
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView TrackImage
+        {
+            get
+            {
+                if (null == trackImage)
+                {
+                    trackImage = new ImageView()
+                    {
+                        Focusable = false,
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.ParentOrigin.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent
+                    };
+                    Add(trackImage);
+                }
+                return trackImage;
+            }
+            set
+            {
+                trackImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Return ImageView instance of travelling thumbnail
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ThumbImage
+        {
+            get
+            {
+                if (null == thumbImage)
+                {
+                    thumbImage = new ImageView()
+                    {
+                        Focusable = false,
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.ParentOrigin.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.Fixed,
+                        HeightResizePolicy = ResizePolicyType.Fixed
+                    };
+                    Add(thumbImage);
+                }
+                return thumbImage;
+            }
+            set
+            {
+                thumbImage = value;
+            }
+        }
 
         /// <summary>
         /// The property to get/set the direction of the ScrollBar.
@@ -224,15 +294,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return ThumbImage.Size;
             }
             set
             {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                    RelayoutRequest();
-                }
+                ThumbImage.Size = value;
+                RelayoutRequest();
             }
         }
 
@@ -244,15 +311,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.ResourceUrl?.All;
+                return TrackImage.ResourceUrl;
             }
             set
             {
-                if (null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                    RelayoutRequest();
-                }
+                TrackImage.ResourceUrl = value;
+                RelayoutRequest();
             }
         }
 
@@ -264,15 +328,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.BackgroundColor?.All;
+                return TrackImage.BackgroundColor;
             }
             set
             {
-                if (null != Style?.Track)
-                {
-                    Style.Track.BackgroundColor = value;
-                    RelayoutRequest();
-                }
+                TrackImage.BackgroundColor = value;
+                RelayoutRequest();
             }
         }
 
@@ -284,15 +345,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.BackgroundColor?.All;
+                return ThumbImage.BackgroundColor;
             }
             set
             {
-                if(null != Style?.Thumb)
-                {
-                    Style.Thumb.BackgroundColor = value;
-                    RelayoutRequest();
-                }
+                ThumbImage.BackgroundColor = value;
+                RelayoutRequest();
             }
         }
 
@@ -414,6 +472,23 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Apply style to ScrollBar.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+            ScrollBarStyle sbStyle = viewStyle as ScrollBarStyle;
+            if (null != sbStyle)
+            {
+                TrackImage.ApplyStyle(sbStyle.Track);
+                ThumbImage.ApplyStyle(sbStyle.Thumb);
+                UpdateValue();
+            }
+        }
+
+        /// <summary>
         /// Dispose ScrollBar.
         /// </summary>
         /// <param name="type">The DisposeTypes value.</param>
@@ -481,30 +556,7 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             this.Focusable = false;
-
-            trackImage = new ImageView
-            {
-                Focusable = false,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
-            };
-            this.Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
-
-            thumbImage = new ImageView
-            {
-                Focusable = false,
-                WidthResizePolicy = ResizePolicyType.Fixed,
-                HeightResizePolicy = ResizePolicyType.Fixed,
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
-            };
-            this.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
+            Duration = Style.Duration;
 
             scrollAniPlayer = new Animation(334);
             scrollAniPlayer.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
@@ -523,22 +575,22 @@ namespace Tizen.NUI.Components
         {
             if (minValue >= maxValue || curValue < minValue || curValue > maxValue) return;
 
-            float width = (float)Size2D.Width;
-            float height = (float)Size2D.Height;
+            float width = Size.Width;
+            float height = Size.Height;
             float thumbW = 0.0f;
             float thumbH = 0.0f;
-            if (Style.Thumb.Size == null)
+            if (ThumbImage.Size == null)
             {
                 return;
             }
             else
             {
-                thumbW = Style.Thumb.Size.Width;
-                thumbH = Style.Thumb.Size.Height;
+                thumbW = ThumbImage.Size.Width;
+                thumbH = ThumbImage.Size.Height;
             }
             float ratio = (float)(curValue - minValue) / (float)(maxValue - minValue);
 
-            if (Style.Direction == DirectionType.Horizontal)
+            if (Direction == DirectionType.Horizontal)
             {
                 if (LayoutDirection == ViewLayoutDirectionType.RTL)
                 {
@@ -556,14 +608,14 @@ namespace Tizen.NUI.Components
 
                 if (!enableAni)
                 {
-                    thumbImage.Position = new Position(posX, posY, 0);
+                    ThumbImage.Position = new Position(posX, posY, 0);
                 }
                 else
                 {
                     if (null != scrollAniPlayer)
                     {
                         scrollAniPlayer.Clear();
-                        scrollAniPlayer.AnimateTo(thumbImage, "PositionX", posX);
+                        scrollAniPlayer.AnimateTo(ThumbImage, "PositionX", posX);
                         scrollAniPlayer.Play();
                     }
                 }
@@ -581,30 +633,20 @@ namespace Tizen.NUI.Components
 
                 if (!enableAni)
                 {
-                    thumbImage.Position = new Position(posX, posY, 0);
+                    ThumbImage.Position = new Position(posX, posY, 0);
                 }
                 else
                 {
                     if (null != scrollAniPlayer)
                     {
                         scrollAniPlayer.Clear();
-                        scrollAniPlayer.AnimateTo(thumbImage, "PositionY", posY);
+                        scrollAniPlayer.AnimateTo(ThumbImage, "PositionY", posY);
                         scrollAniPlayer.Play();
                     }
                 }
             }
 
             if (enableAni) enableAni = false;
-        }
-
-        private DirectionType CurrentDirection()
-        {
-            DirectionType dir = DirectionType.Horizontal;
-            if (null != Style.Direction)
-            {
-                dir = Style.Direction.Value;
-            }
-            return dir;
         }
 
         private int CalculateCurrentValue(float offset, DirectionType dir)
@@ -617,15 +659,15 @@ namespace Tizen.NUI.Components
                     thumbImage.PositionX = 0;
                     curValue = minValue;
                 }
-                else if (thumbImagePosX > Size2D.Width - thumbImage.Size2D.Width)
+                else if (thumbImagePosX > Size.Width - thumbImage.Size.Width)
                 {
-                    thumbImage.PositionX = Size2D.Width - thumbImage.Size2D.Width;
+                    thumbImage.PositionX = Size.Width - thumbImage.Size.Width;
                     curValue = maxValue;
                 }
                 else
                 {
                     thumbImage.PositionX = thumbImagePosX;
-                    curValue = (int)((thumbImagePosX / (float)(Size2D.Width - thumbImage.Size2D.Width)) * (float)(maxValue - minValue) + 0.5f);
+                    curValue = (int)((thumbImagePosX / (float)(Size.Width - thumbImage.Size.Width)) * (float)(maxValue - minValue) + 0.5f);
                 }
             }
             else
@@ -636,15 +678,15 @@ namespace Tizen.NUI.Components
                     thumbImage.PositionY = 0;
                     curValue = minValue;
                 }
-                else if (thumbImagePosY > Size2D.Height - thumbImage.Size2D.Height)
+                else if (thumbImagePosY > Size.Height - thumbImage.Size.Height)
                 {
-                    thumbImage.PositionY = Size2D.Height - thumbImage.Size2D.Height;
+                    thumbImage.PositionY = Size.Height - thumbImage.Size.Height;
                     curValue = maxValue;
                 }
                 else
                 {
                     thumbImage.PositionY = thumbImagePosY;
-                    curValue = (int)((thumbImagePosY / (float)(Size2D.Height - thumbImage.Size2D.Height)) * (float)(maxValue - minValue) + 0.5f);
+                    curValue = (int)((thumbImagePosY / (float)(Size.Height - thumbImage.Size.Height)) * (float)(maxValue - minValue) + 0.5f);
                 }
             }
 

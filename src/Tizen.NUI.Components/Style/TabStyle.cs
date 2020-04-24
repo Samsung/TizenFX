@@ -77,16 +77,6 @@ namespace Tizen.NUI.Components
             }
             ItemSpace = style.ItemSpace;
             UseTextNaturalSize = style.UseTextNaturalSize;
-
-            if (null != style.UnderLine)
-            {
-                UnderLine?.CopyFrom(style.UnderLine);
-            }
-
-            if (null != style.Text)
-            {
-                Text?.CopyFrom(style.Text);
-            }
         }
 
         /// <summary>

@@ -28,6 +28,9 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Switch : Button
     {
+        private ImageView track = null;
+        private ImageView thumb = null;
+
         static Switch() { }
 
         /// <summary>
@@ -66,32 +69,120 @@ namespace Tizen.NUI.Components
         public event EventHandler<SelectEventArgs> SelectedEvent;
 
         /// <summary>
-        /// Get style of switch.
+        /// Return a copied Style instance of Switch
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Switch.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style => ViewStyle as SwitchStyle;
+        public new SwitchStyle Style
+        {
+            get
+            {
+                return new SwitchStyle(ViewStyle as SwitchStyle);
+            }
+        }
+
+        /// <summary>
+        /// Apply style to switch.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            SwitchStyle swStyle = viewStyle as SwitchStyle;
+
+            if (null != swStyle)
+            {
+                if (swStyle.Track != null)
+                {
+                    Track.ApplyStyle(swStyle.Track);
+                }
+
+                if (swStyle.Thumb != null)
+                {
+                    Thumb.ApplyStyle(swStyle.Thumb);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Switch's track part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView Track
+        {
+            get
+            {
+                if (track == null)
+                {
+                    track = new ImageView()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent
+                    };
+                    Add(track);
+                }
+                return track;
+            }
+            set
+            {
+                track = value;
+            }
+        }
+
+        /// <summary>
+        /// Switch's thumb part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView Thumb
+        {
+            get
+            {
+                if (thumb == null)
+                {
+                    thumb = new ImageView()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.Fixed,
+                        HeightResizePolicy = ResizePolicyType.Fixed
+                    };
+                    Add(thumb);
+                }
+                return thumb;
+            }
+            set
+            {
+                thumb = value;
+            }
+        }
 
         /// <summary>
         /// Background image's resource url in Switch.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string SwitchBackgroundImageURL
         {
             get
             {
-                return Style?.Track?.ResourceUrl?.All;
+                return Track.ResourceUrl;
             }
             set
             {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                }
+                Track.ResourceUrl = value;
             }
         }
 
+        private StringSelector switchBackgroundImageURLSelector = new StringSelector();
         /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
@@ -100,15 +191,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Track?.ResourceUrl);
-                return strSl;
+                return switchBackgroundImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Track)
+                if (value == null || switchBackgroundImageURLSelector == null)
                 {
-                    Style.Track.ResourceUrl = value;
+                    Tizen.Log.Fatal("NUI", "[Exception] SwitchBackgroundImageURLSelector is null");
+                    throw new NullReferenceException("SwitchBackgroundImageURLSelector is null");
+                }
+                else
+                {
+                    switchBackgroundImageURLSelector.Clone(value);
                 }
             }
         }
@@ -121,17 +215,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.ResourceUrl?.All;
+                return Thumb.ResourceUrl;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
+                Thumb.ResourceUrl = value;
             }
         }
 
+        private StringSelector switchHandlerImageURLSelector = new StringSelector();
         /// <summary>
         /// Handler image's resource url selector in Switch.
         /// </summary>
@@ -140,15 +232,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Thumb?.ResourceUrl);
-                return strSl;
+                return switchHandlerImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
+                if (value == null || switchHandlerImageURLSelector == null)
                 {
-                    Style.Thumb.ResourceUrl = value;
+                    Tizen.Log.Fatal("NUI", "[Exception] SwitchHandlerImageURLSelector is null");
+                    throw new NullReferenceException("SwitchHandlerImageURLSelector is null");
+                }
+                else
+                {
+                    switchHandlerImageURLSelector.Clone(value);
                 }
             }
         }
@@ -161,47 +256,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return Thumb.Size;
             }
             set
             {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                }
+                Thumb.Size = value;
             }
-        }
-
-        /// <summary>
-        /// Switch's track part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView Track { get; set; }
-
-        /// <summary>
-        /// Switch's thumb part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView Thumb { get; set; }
-
-        /// <summary>
-        /// Creates Switch's track part.
-        /// </summary>
-        /// <return>The created Button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ImageView CreateTrack()
-        {
-            return new ImageView();
-        }
-
-        /// <summary>
-        /// Creates Switch's overlay thumb part.
-        /// </summary>
-        /// <return>The created Button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual ImageView CreateThumb()
-        {
-            return new ImageView();
         }
 
         /// <summary>
@@ -227,8 +287,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
@@ -252,8 +311,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnTouch(Touch touch)
         {
@@ -284,37 +342,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            Style.IsSelectable = true;
-
-            CreateComponents();
-
-            if (null != Track)
-            {
-                Add(Track);
-                Track.ApplyStyle(Style.Track);
-            }
-
-            if (null != Thumb)
-            {
-                Add(Thumb);
-                Thumb.ApplyStyle(Style.Thumb);
-            }
-        }
-
-        private void CreateComponents()
-        {
-            Track = CreateTrack();
-            Thumb = CreateThumb();
-
-            if (Extension as SwitchExtension == null)
-            {
-                return;
-            }
-
-            // Update component with extension
-            var extension = (SwitchExtension)Extension;
-            Track = extension.OnCreateTrack(this, Track);
-            Thumb = extension.OnCreateThumb(this, Thumb);
+            IsSelectable = true;
         }
 
         /// <summary>
@@ -351,34 +379,6 @@ namespace Tizen.NUI.Components
             /// <summary> Select state of Switch </summary>
             /// <since_tizen> 6 </since_tizen>
             public bool IsSelected;
-        }
-
-        /// <summary>
-        /// Get current track part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's track part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentTrack(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Track : null;
-        }
-
-         /// <summary>
-        /// Get current thumb part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's thumb part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentThumb(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Thumb : null;
         }
     }
 }

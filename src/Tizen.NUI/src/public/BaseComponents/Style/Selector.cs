@@ -276,6 +276,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Reset it with specific selector.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Clear()
+        {
+            if (targetView)
+            {
+                targetView.ControlStateChangeEventInternal -= OnViewControlState;
+            }
+            targetView = null;
+            targetBindableProperty = null;
+        }
+
         private View targetView;
         private BindableProperty targetBindableProperty;
     }

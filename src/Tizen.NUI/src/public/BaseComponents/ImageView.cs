@@ -37,6 +37,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             string url = (string)newValue;
+
             url = (url == null ? "" : url);
             if (imageView.IsCreateByXaml && url.Contains("*Resource*"))
             {
@@ -161,9 +162,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            var imageView = (ImageView)bindable;
             if(newValue != null)
             {
-                var imageView = (ImageView)bindable;
                 imageView._border = (Rectangle)newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
             }
@@ -423,8 +424,9 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                resourceUrlSelector.Clear();
                 SetValue(ResourceUrlProperty, value);
-                NotifyPropertyChanged();       
+                NotifyPropertyChanged();
             }
         }
 
@@ -553,6 +555,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                borderSelector.Clear();
                 SetValue(BorderProperty, value);
                 NotifyPropertyChanged();
             }

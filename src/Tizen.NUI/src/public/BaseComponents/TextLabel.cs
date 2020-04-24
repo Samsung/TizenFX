@@ -630,6 +630,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                TranslatableTextSelector.Clear();
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -679,6 +680,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                textSelector.Clear();
                 SetValue(TextProperty, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
@@ -697,6 +699,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                fontFamilySelector.Clear();
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
@@ -733,6 +736,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                pointSizeSelector.Clear();
                 SetValue(PointSizeProperty, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
@@ -811,6 +815,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                textColorSelector.Clear();
                 SetValue(TextColorProperty, value);
                 NotifyPropertyChanged();
             }
