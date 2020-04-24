@@ -1059,35 +1059,77 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ControlStateChagedInfo
+        public class ControlStateChangedInfo
         {
             /// <summary>
             /// The previous control state.
             /// </summary>
-            public ControlStateChagedInfo(ControlStates previousState, ControlStates currentState, Touch touch)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlStateChangedInfo(ControlStates previousState, ControlStates currentState, InputMethodType inputMethod, object inputData)
             {
                 PreviousState = previousState;
                 CurrentState = currentState;
-                Touch = touch;
+                InputMethod = inputMethod;
+                InputData = inputData;
             }
 
             /// <summary>
             /// The previous control state.
             /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStates PreviousState { get; }
 
             /// <summary>
             /// The current control state.
             /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStates CurrentState { get; }
 
             /// <summary>
-            /// The touch information in case the state has changed by touching.
+            /// Indicates the input method that triggered this change.
             /// </summary>
-            /// <remarks>
-            /// The value is null if it is not the case.
-            /// </remarks>
-            public Touch Touch { get; }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public InputMethodType InputMethod { get; }
+
+            /// <summary>
+            /// The input method data in detail.
+            ///
+            /// The type of data depends on the InputMethod,
+            /// ---------------------------------------
+            ///  InputMethod    |   Typep of InputData
+            /// ---------------------------------------
+            ///  None           |   (null)
+            ///  Touch          |   Tizen.NUI.Touch
+            ///  Key            |   Tizen.NUI.Key
+            /// ---------------------------------------
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public object InputData { get; }
+
+            /// <summary>
+            /// List of input method that can trigger ControlStates change.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public enum InputMethodType
+            {
+                /// <summary>
+                /// ControlState has changed without user input.
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                None,
+
+                /// <summary>
+                /// ControlState has changed by a touch.
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                Touch,
+
+                /// <summary>
+                /// ControlState has changed by key input.
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                Key,
+            }
         }
 
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;

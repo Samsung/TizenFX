@@ -1259,7 +1259,7 @@ namespace Tizen.NUI.BaseComponents
             SizeModeFactor = new Vector3(x, y, z);
         }
 
-        private void OnControlStateChangedForShadow(View obj, ControlStateChagedInfo controlStateChangedInfo)
+        private void OnControlStateChangedForShadow(View obj, ControlStateChangedInfo controlStateChangedInfo)
         {
             var boxShadowSelector = (Selector<Shadow>)GetValue(BoxShadowSelectorProperty);
 
@@ -1298,7 +1298,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void UpdateShadow(ShadowBase shadow, bool needToListenStateChanged)
         {
-            ControlStateChangeEvent -= OnControlStateChangedForShadow;
+            ControlStateChangeEventInternal -= OnControlStateChangedForShadow;
 
             if (shadow == null)
             {
@@ -1311,11 +1311,11 @@ namespace Tizen.NUI.BaseComponents
 
             if (needToListenStateChanged)
             {
-                ControlStateChangeEvent += OnControlStateChangedForShadow;
+                ControlStateChangeEventInternal += OnControlStateChangedForShadow;
             }
         }
 
-        private void OnControlStateChangedForCornerRadius(View obj, ControlStateChagedInfo controlStateChangedInfo)
+        private void OnControlStateChangedForCornerRadius(View obj, ControlStateChangedInfo controlStateChangedInfo)
         {
             var selector = (Selector<float?>)GetValue(CornerRadiusSelectorProperty);
 
@@ -1334,11 +1334,11 @@ namespace Tizen.NUI.BaseComponents
 
         private void UpdateCornerRadius(float value, bool needToListenStateChanged)
         {
-            ControlStateChangeEvent -= OnControlStateChangedForCornerRadius;
+            ControlStateChangeEventInternal -= OnControlStateChangedForCornerRadius;
 
             if (needToListenStateChanged)
             {
-                ControlStateChangeEvent += OnControlStateChangedForCornerRadius;
+                ControlStateChangeEventInternal += OnControlStateChangedForCornerRadius;
             }
 
             if (value != 0)

@@ -849,6 +849,8 @@ namespace Tizen.NUI.Components
             {
                 CreateThumb();
             }
+
+            EnableControlStatePropagation = true;
         }
 
         private void Initialize()
