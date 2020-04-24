@@ -1057,13 +1057,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The class represents the information of the situation where the View's control state changes.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ControlStateChangedInfo
         {
             /// <summary>
-            /// The previous control state.
+            /// Create an instance with mandatory fields.
             /// </summary>
+            /// <param name="previousState">The previous control state.</param>
+            /// <param name="currentState">The current control state.</param>
+            /// <param name="inputMethod">Indicates the input method that triggered this change.</param>
+            /// <param name="inputData">The input method data that depends on the inputMethod.</param>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStateChangedInfo(ControlStates previousState, ControlStates currentState, InputMethodType inputMethod, object inputData)
             {
