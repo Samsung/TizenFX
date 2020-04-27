@@ -78,7 +78,8 @@ internal static partial class Interop
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool ewk_view_forward_possible(IntPtr obj);
 
-        internal delegate void ScriptExcuteCallback(IntPtr obj, IntPtr resultValue, IntPtr userData);
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void ScriptExcuteCallback(IntPtr obj, IntPtr returnValue, IntPtr userData);
 
         [DllImport(Libraries.ChromiumEwk)]
         [return: MarshalAs(UnmanagedType.U1)]
