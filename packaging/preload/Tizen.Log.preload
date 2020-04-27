@@ -1,0 +1,7 @@
+###########################################
+## AssemblyName.dll TypeName             ##
+## AssemblyName.dll TypeName.Preload()   ##
+## The methods must not have parameters. ##
+###########################################
+Tizen.Log.dll Interop
+Tizen.Log.dll Tizen.Log
