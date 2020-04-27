@@ -1,0 +1,12 @@
+###########################################
+## AssemblyName.dll TypeName             ##
+## AssemblyName.dll TypeName.Preload()   ##
+## The methods must not have parameters. ##
+###########################################
+ElmSharp.Wearable.dll ElmSharp.Wearable.CircleDateTimeSelector
+ElmSharp.Wearable.dll ElmSharp.Wearable.CircleGenList
+ElmSharp.Wearable.dll ElmSharp.Wearable.CircleScroller
+ElmSharp.Wearable.dll ElmSharp.Wearable.CircleSpinner
+ElmSharp.Wearable.dll ElmSharp.Wearable.ICircleWidget
+ElmSharp.Wearable.dll ElmSharp.Wearable.IRotaryActionWidget
+ElmSharp.Wearable.dll Interop
