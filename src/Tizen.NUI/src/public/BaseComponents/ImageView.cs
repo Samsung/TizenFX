@@ -928,6 +928,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override void UpdateCornerRadius(float value, bool needToListenStateChanged)
+        {
+            base.UpdateCornerRadius(value, needToListenStateChanged);
+
+            UpdateImage(0, null);
+        }
+
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
@@ -1061,6 +1068,11 @@ namespace Tizen.NUI.BaseComponents
             }
 
             temp.Insert(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronosLoading));
+
+            if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
+            {
+                temp.Insert(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius));
+            }
 
             if (value != null)
             {
