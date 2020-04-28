@@ -31,6 +31,7 @@ namespace Tizen.NUI.Components
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
         private int mPageWidth = 0;
+        protected Position mPreviousScrollPosition = new Position();
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -265,7 +266,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ScrollAvailableArea { set; get; }
+        public Vector2 ScrollAvailableArea { set; get; }
 
         /// <summary>
         /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
@@ -498,6 +499,8 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollEvent?.Invoke(this, eventArgs);
+
+            mPreviousScrollPosition = mScrollingChild.CurrentPosition;
         }
 
         private void StopScroll()
@@ -564,10 +567,8 @@ namespace Tizen.NUI.Components
 
             if(ScrollAvailableArea != null)
             {
-                float minScrollPosition = ScrollingDirection == Direction.Horizontal? ScrollAvailableArea.X:ScrollAvailableArea.Y;
-                float maxScrollPosition = ScrollingDirection == Direction.Horizontal? 
-                                        ScrollAvailableArea.X + ScrollAvailableArea.Width:
-                                        ScrollAvailableArea.Y + ScrollAvailableArea.Height;
+                float minScrollPosition = ScrollAvailableArea.X;
+                float maxScrollPosition = ScrollAvailableArea.Y;
 
                 childTargetPosition = Math.Min( -minScrollPosition, childTargetPosition );
                 childTargetPosition = Math.Max( -maxScrollPosition, childTargetPosition );
@@ -691,7 +692,7 @@ namespace Tizen.NUI.Components
                                                    " parent length:" + scrollerLength +
                                                    " scrolling child length:" + scrollingChildLength);
 
-            return Math.Max(scrollingChildLength,0);
+            return Math.Max(scrollingChildLength - scrollerLength,0);
         }
 
         private void PageSnap()

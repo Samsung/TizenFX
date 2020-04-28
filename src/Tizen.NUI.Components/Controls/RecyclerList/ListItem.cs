@@ -6,14 +6,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 
-namespace Tizen.NUI.Wearable
+namespace Tizen.NUI.Components
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ListItem : Control
     {
         public ListItem()
         {
-            PositionUsesPivotPoint = true;
         }
 
         public int DataIndex{get;set;}=0;

@@ -5,7 +5,7 @@ using Tizen.NUI.Components;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Wearable
+namespace Tizen.NUI.Components
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutManager
@@ -23,21 +23,30 @@ namespace Tizen.NUI.Wearable
         public View Container{get;set;}
         public Size ItemSize{get;set;} = new Size();
         public Orientation LayoutOrientation{get;set;} = Orientation.Vertical;
-
-        public virtual List<ListItem> OnScroll(float scrollPosition)
-        {
-            return new List<ListItem>();
+        public float StepSize{
+            get
+            {
+                return mStepSize;
+            }
         }
+        protected float mStepSize = 0.0f;
 
-        protected virtual void Layout(float scrollPosition)
+        public virtual void Layout(float scrollPosition)
         {
            
+        }
+
+        public virtual List<ListItem> Recycle(float scrollPositio)
+        {
+            return new List<ListItem>();
         }
 
         public virtual float CalculateCandidateScrollPosition(float position)
         {
             return position;
         }
+
+        
 
     }
 }

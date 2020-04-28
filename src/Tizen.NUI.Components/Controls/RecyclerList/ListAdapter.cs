@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 
-namespace Tizen.NUI.Wearable
+namespace Tizen.NUI.Components
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ListAdapter

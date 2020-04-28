@@ -6,29 +6,23 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 
-namespace Tizen.NUI.Wearable
+namespace Tizen.NUI.Components
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LinearLayoutManager : LayoutManager
+    public class LinearListLayoutManager : LayoutManager
     {
 
         private float mLayoutOriginPosition = 0;
-        public LinearLayoutManager(Size itemSize, View container)
+        public LinearListLayoutManager()
         {
-            ItemSize = itemSize;
-            Container = container;
-            Layout(0.0f);
         }
 
-        protected override void Layout(float scrollPosition)
+        public override void Layout(float scrollPosition)
         {
             ListItem previousItem = null;
 
             foreach(ListItem item in Container.Children)
             {
-                item.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-                item.PositionUsesPivotPoint = false;
-
                 float targetPosition = mLayoutOriginPosition;
 
                 if(previousItem != null)
@@ -44,11 +38,17 @@ namespace Tizen.NUI.Wearable
 
                 previousItem = item;
             }
+
+            if(mStepSize == 0)
+            {
+                mStepSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
+            }
         }
 
-        public override List<ListItem> OnScroll(float scrollPosition)
+        public override List<ListItem> Recycle(float scrollPosition)
         {
             List<ListItem> result = new List<ListItem>();
+
             float itemSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
 
             View firstVisibleItem = Container.Children[3];
@@ -60,10 +60,8 @@ namespace Tizen.NUI.Wearable
 
             if(checkFront)
             {
-                Tizen.Log.Error("NUI",firstVisibleItemPosition+" vs "+Math.Abs(scrollPosition)+"\n");
                 if(firstVisibleItemPosition < Math.Abs(scrollPosition))
                 {
-                    Tizen.Log.Error("NUI","Too MANY ITEM IN FRONT !!! ===\n");
                     // Too many item is in front!!! move first item to back!!!!
                     ListItem target = Container.Children[0] as ListItem;
                     target.DataIndex = mPrevFirstDataIndex + Container.Children.Count;
@@ -79,10 +77,8 @@ namespace Tizen.NUI.Wearable
             }
             else
             {
-                Tizen.Log.Error("NUI",firstVisibleItemPosition+" vs "+(Math.Abs(scrollPosition)+itemSize)+"\n");
                 if(firstVisibleItemPosition > Math.Abs(scrollPosition) + itemSize)
                 {
-                    Tizen.Log.Error("NUI","Too MANY ITEM IN BACK !!! ===\n");
                     ListItem target = Container.Children[Container.Children.Count - 1] as ListItem;
                     target.DataIndex = mPrevFirstDataIndex - 1;
 
@@ -98,8 +94,12 @@ namespace Tizen.NUI.Wearable
 
             mPrevScrollPosition = scrollPosition;
 
-            Layout(scrollPosition);
             return result;
+        }
+
+        public override float CalculateCandidateScrollPosition(float position)
+        {
+            return position;
         }
     }
 }

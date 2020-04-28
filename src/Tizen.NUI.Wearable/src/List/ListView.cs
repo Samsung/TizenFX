@@ -13,125 +13,28 @@ namespace Tizen.NUI.Wearable
     /// </summary>
     /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ListView : ScrollableBase
+    public class ListView : RecyclerList
     {
-        private ListAdapter mAdapter;
-        private View mContainer;
-        protected LayoutManager mLayoutManager;
-        private int mTotalItemCount = 15;
-
-        public ListView()
+        public ListView(ListAdapter adapter) : base(adapter, new FishEyeLayoutManager())
         {
-            Name = "[List]";
-            mContainer = new View()
-            {
-                WidthSpecification = ScrollingDirection == Direction.Vertical? LayoutParamPolicies.MatchParent:LayoutParamPolicies.WrapContent,
-                HeightSpecification = ScrollingDirection == Direction.Horizontal? LayoutParamPolicies.MatchParent:LayoutParamPolicies.WrapContent,
-                Layout = new AbsoluteLayout()
-                {
-                    SetPositionByLayout = false,
-                },
-                Name="Container",
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = ScrollingDirection == Direction.Vertical?Tizen.NUI.PivotPoint.TopCenter:Tizen.NUI.PivotPoint.CenterLeft,
-                BackgroundColor = new Color("#000000"),
-            };
-            BackgroundColor = new Color("#000000");
+            ScrollingDirection = ScrollableBase.Direction.Vertical;
 
-            Add(mContainer);
-            ScrollEvent += OnScroll;
+            mContainer.PositionUsesPivotPoint = true;
+            mContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            mContainer.PivotPoint = ScrollingDirection == Direction.Vertical?Tizen.NUI.PivotPoint.TopCenter:Tizen.NUI.PivotPoint.CenterLeft;
+
             ScrollDragStartEvent += OnScrollDragStart;
             ScrollAnimationEndEvent += OnAnimationEnd;
-        }
 
-        public ListAdapter Adapter{
-            get
+            foreach(View child in mContainer.Children)
             {
-                return mAdapter;
-            }
-            set
-            {
-                mAdapter = value;
-                mAdapter.OnDataChanged += OnAdapterDataChanged;
-                InitializeChild();
-            }
-        }
-
-        public Size ItemSize{get;set;} = new Size();
-
-
-        private void InitializeChild()
-        {
-            ItemSize = mAdapter.CreateListItem().Size;
-
-            if(ScrollingDirection == Direction.Horizontal)
-            {
-                mContainer.WidthSpecification = (int)(ItemSize.Width * mAdapter.Data.Count);
-            }
-            else
-            {
-                mContainer.HeightSpecification = (int)(ItemSize.Height * mAdapter.Data.Count);
+                child.PositionUsesPivotPoint = true;
+                child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
             }
 
-            for(int i = 0; i< mTotalItemCount; i++)
-            {
-                ListItem item = mAdapter.CreateListItem();
-                item.DataIndex = i;
-                item.Name ="["+i+"] recycle";
-
-                if(i<mAdapter.Data.Count)
-                {
-                    mAdapter.BindData(item);
-                }
-
-                mContainer.Add(item);
-            }
-
-            mLayoutManager = new FishEyeLayoutManager(ItemSize,mContainer);
-            // mLayoutManager = new LinearLayoutManager(ItemSize,mContainer);
-
+            ListItem focusedItem = mContainer.Children[0] as ListItem;
+            focusedItem.OnFocusGained();
         }
-
-        private void OnScroll(object source, ScrollableBase.ScrollEventArgs args)
-        {
-            List<ListItem> recycledItemList = mLayoutManager.OnScroll(ScrollingDirection == Direction.Horizontal?args.Position.X:args.Position.Y);
-            BindData(recycledItemList);
-        }
-
-        private void OnAdapterDataChanged(object source, EventArgs args)
-        {
-            List<ListItem> changedData = new List<ListItem>();
-
-            foreach(ListItem item in mContainer.Children)
-            {
-                changedData.Add(item);
-            }
-
-            BindData(changedData);
-        }
-
-        private void BindData(List<ListItem> changedData)
-        {
-            foreach(ListItem item in changedData)
-            {
-                if(item.DataIndex > -1 && item.DataIndex < mAdapter.Data.Count)
-                {
-                    item.Show();
-                    mAdapter.BindData(item);
-                }
-                else
-                {
-                    item.Hide();
-                }
-            }
-        }
-
-        protected override float AdjustScrollToChild(float position)
-        {
-            return mLayoutManager.CalculateCandidateScrollPosition(position);
-        }
-
 
         private void OnAnimationEnd(object source, ScrollableBase.ScrollEventArgs args)
         {
@@ -139,14 +42,8 @@ namespace Tizen.NUI.Wearable
 
             if(layoutManager != null)
             {
-                foreach(ListItem item in mContainer.Children)
-                {
-                    if(item.DataIndex == layoutManager.CurrentFocusedIndex)
-                    {
-                        item.ControlState = ControlStates.Focused;
-                        break;
-                    }
-                }
+                ListItem focusedItem = mContainer.Children[layoutManager.FocusedIndex] as ListItem;
+                focusedItem.OnFocusGained();
             }
         }
 
@@ -156,20 +53,9 @@ namespace Tizen.NUI.Wearable
 
             if(layoutManager != null)
             {
-                foreach(ListItem item in mContainer.Children)
-                {
-                    if(item.DataIndex == layoutManager.CurrentFocusedIndex)
-                    {
-                        item.ControlState = ControlStates.Normal;
-                        break;
-                    }
-                }
+                ListItem focusedItem = mContainer.Children[layoutManager.FocusedIndex] as ListItem;
+                focusedItem.OnFocusLost();
             }
-        }
-
-        protected override bool OnControlStateChanged(ControlStates previousState, Touch touchInfo)
-        {
-            return false;
         }
     }
 }

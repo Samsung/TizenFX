@@ -747,6 +747,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        ///  Retrieves the size of the view as float value.<br />
+        ///  The coordinates are relative to the view's parent.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size CurrentSizeFloat
+        {
+            get
+            {
+                return GetCurrentSizeFloat();
+            }
+        }
+
+        /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
