@@ -85,7 +85,7 @@ namespace Tizen.System
             IDictionary<PowerUsageResourceType, double> batteryUsage = new Dictionary<PowerUsageResourceType, double>();
             try
             {
-                PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppForAllResources(appID, ((DateTimeOffset)start).ToUnixTimeSeconds(), ((DateTimeOffset)end).ToUnixTimeSeconds(), out dataHandle);
+                PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppForAllResources(appID, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out dataHandle);
                 if (ret != PowerUsageError.None)
                 {
                     Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage for all resources" + ret);
@@ -141,7 +141,7 @@ namespace Tizen.System
         public static double GetPowerUsage(string appID, PowerUsageResourceType rtype, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppPerResource(appID, rtype, ((DateTimeOffset)start).ToUnixTimeSeconds(), ((DateTimeOffset)end).ToUnixTimeSeconds(), out batteryUsage);
+            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppPerResource(appID, rtype, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
                 if (ret == PowerUsageError.RecordNotFound)
@@ -175,7 +175,7 @@ namespace Tizen.System
         public static double GetPowerUsage(string appID, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByApp(appID, ((DateTimeOffset)start).ToUnixTimeSeconds(), ((DateTimeOffset)end).ToUnixTimeSeconds(), out batteryUsage);
+            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByApp(appID, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
                 Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app," + ret);
@@ -201,7 +201,7 @@ namespace Tizen.System
         public static double GetPowerUsage(PowerUsageResourceType rtype, DateTime start, DateTime end)
         {
             double batteryUsage = 0;
-            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByResource(rtype, ((DateTimeOffset)start).ToUnixTimeSeconds(), ((DateTimeOffset)end).ToUnixTimeSeconds(), out batteryUsage);
+            PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByResource(rtype, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
                 if (ret == PowerUsageError.RecordNotFound)
