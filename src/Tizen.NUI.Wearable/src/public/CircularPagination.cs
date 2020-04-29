@@ -537,6 +537,7 @@ namespace Tizen.NUI.Wearable
             {
                 visual.URL = circularPaginationStyle.IndicatorImageURL.Normal;
             }
+            visual.Opacity = 0.5f;
         }
 
         /// <summary>
@@ -557,6 +558,7 @@ namespace Tizen.NUI.Wearable
             {
                 visual.URL = circularPaginationStyle.IndicatorImageURL.Selected;
             }
+            visual.Opacity = 1.0f;
         }
 
         /// <summary>
@@ -636,7 +638,8 @@ namespace Tizen.NUI.Wearable
             ImageVisual indicator = new ImageVisual
             {
                 URL = circularPaginationStyle.IndicatorImageURL.Normal,
-                Size = new Size2D((int)circularPaginationStyle.IndicatorSize.Width, (int)circularPaginationStyle.IndicatorSize.Height)
+                Size = new Size2D((int)circularPaginationStyle.IndicatorSize.Width, (int)circularPaginationStyle.IndicatorSize.Height),
+                Opacity = 0.5f,
             };
 
             if (isOddNumber)
@@ -707,6 +710,7 @@ namespace Tizen.NUI.Wearable
                     {
                         indicator.URL = circularPaginationStyle.IndicatorImageURL.Selected;
                     }
+                    indicator.Opacity = 1.0f;
                 }
                 else
                 {
@@ -719,6 +723,7 @@ namespace Tizen.NUI.Wearable
                     {
                         indicator.URL = circularPaginationStyle.IndicatorImageURL.Normal;
                     }
+                    indicator.Opacity = 0.5f;
                 }
 
                 if (isOddNumber)
@@ -770,6 +775,7 @@ namespace Tizen.NUI.Wearable
                 {
                     newOne.URL = circularPaginationStyle.IndicatorImageURL.Normal;
                 }
+                newOne.Opacity  = 0.5f;
                 container.AddVisual("Indicator" + i, newOne);
                 indicatorList.Add(newOne);
             }
@@ -783,10 +789,12 @@ namespace Tizen.NUI.Wearable
             if (isCenterImageSet && (selectedIndex == leftIndicatorCount))
             {
                 indicatorList[selectedIndex].URL = circularPaginationStyle.CenterIndicatorImageURL.Selected;
+                indicatorList[selectedIndex].Opacity = 1.0f;
             }
             else
             {
                 indicatorList[selectedIndex].URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                indicatorList[selectedIndex].Opacity = 1.0f;
             }
         }
     }
