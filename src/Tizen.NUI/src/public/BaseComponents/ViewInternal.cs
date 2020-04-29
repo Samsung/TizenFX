@@ -1005,6 +1005,32 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
         }
 
+        internal virtual void UpdateCornerRadius(float value, bool needToListenStateChanged)
+        {
+            ControlStateChangeEventInternal -= OnControlStateChangedForCornerRadius;
+
+            if (needToListenStateChanged)
+            {
+                ControlStateChangeEventInternal += OnControlStateChangedForCornerRadius;
+            }
+
+            if (value != 0)
+            {
+                (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = value;
+            }
+
+            Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
+
+            if (!backgroundMap.Empty())
+            {
+                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
+            }
+
+            UpdateShadowCornerRadius(value);
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1330,32 +1356,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 UpdateCornerRadius(currentCornerRadius ?? 0, true);
             }
-        }
-
-        private void UpdateCornerRadius(float value, bool needToListenStateChanged)
-        {
-            ControlStateChangeEventInternal -= OnControlStateChangedForCornerRadius;
-
-            if (needToListenStateChanged)
-            {
-                ControlStateChangeEventInternal += OnControlStateChangedForCornerRadius;
-            }
-
-            if (value != 0)
-            {
-                (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = value;
-            }
-
-            Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
-
-            if (!backgroundMap.Empty())
-            {
-                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
-            }
-
-            UpdateShadowCornerRadius(value);
         }
 
         private void UpdateShadowCornerRadius(float value)
