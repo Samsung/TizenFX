@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -27,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Notification
     {
+        private static HashSet<Notification> instanceSet;
+
         private Window notificationWindow;
 
         private Timer timer;
@@ -101,9 +104,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (timer != null && timer.IsRunning())
+                if (timer != null)
                 {
                     timer.Stop();
+                    timer.Tick -= OnTimeOut;
                 }
 
                 timer = value;
@@ -140,7 +144,9 @@ namespace Tizen.NUI.Components
 
             state = NotificationState.Post;
 
-            onPostAnimation.Play();
+            onPostAnimation?.Play();
+
+            RegisterInstance(this);
         }
 
         /// <summary>
@@ -264,7 +270,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Dismiss the notification window directly without calling OnDismissDelegate.
+        /// Dismiss the notification window directly without waiting the onDismissAnimation finished.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ForceQuit()
@@ -275,6 +281,31 @@ namespace Tizen.NUI.Components
             }
 
             ClearAll();
+        }
+
+        private static void RegisterInstance(Notification instance)
+        {
+            if (instanceSet == null)
+            {
+                instanceSet = new HashSet<Notification>();
+            }
+
+            instanceSet.Add(instance);
+        }
+
+        private static void UnregisterInstance(Notification instance)
+        {
+            if (instanceSet == null)
+            {
+                return;
+            }
+
+            instanceSet.Remove(instance);
+
+            if (instanceSet.Count == 0)
+            {
+                instanceSet = null;
+            }
         }
 
         private void DestroyNotificationWindow()
@@ -313,13 +344,24 @@ namespace Tizen.NUI.Components
 
         private void ClearAll()
         {
+            if (onDismissAnimation != null)
+            {
+                onDismissAnimation.Finished -= OnAnimationEnd;
+
+                onDismissAnimation.Stop();
+            }
+
             notificationWindow.Remove(ContentView);
+
+            notificationWindow.TouchEvent -= OnWindowTouch;
 
             Timer = null;
 
             DestroyNotificationWindow();
 
             state = NotificationState.Ready;
+
+            UnregisterInstance(this);
         }
 
         private void OnWindowTouch(object target, Window.TouchEventArgs args)
@@ -336,8 +378,6 @@ namespace Tizen.NUI.Components
 
         private void OnAnimationEnd(object target, EventArgs args)
         {
-            onDismissAnimation.Finished -= OnAnimationEnd;
-
             ClearAll();
         }
     }
