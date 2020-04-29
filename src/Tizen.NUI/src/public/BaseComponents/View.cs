@@ -59,10 +59,10 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
-        private BackgroundExtraData backgroundExtraData;
         private bool controlStatePropagation = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+        internal BackgroundExtraData backgroundExtraData;
 
         static View() {}
 
