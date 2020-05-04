@@ -165,18 +165,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The delegate for ControlState changed event.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void ControlStateChangesDelegate(View obj, ControlStateChangedInfo controlStateChangedInfo);
-
-        /// <summary>
         /// The event that is triggered when the View's ControlState is changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event ControlStateChangesDelegate ControlStateChangeEvent;
+        public event EventHandler<ControlStateChangedEventArgs> ControlStateChangedEvent;
 
-        internal event ControlStateChangesDelegate ControlStateChangeEventInternal;
+        internal event EventHandler<ControlStateChangedEventArgs> ControlStateChangeEventInternal;
 
         private ControlStates controlStates;
         /// <summary>
@@ -193,7 +187,30 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetControlState(value, ControlStateChangedInfo.InputMethodType.None, null);
+                if (controlStates == value)
+                {
+                    return;
+                }
+
+                var prevState = controlStates;
+
+                controlStates = value;
+
+                var changeInfo = new ControlStateChangedEventArgs(prevState, value);
+
+                ControlStateChangeEventInternal?.Invoke(this, changeInfo);
+
+                OnControlStateChanged(changeInfo);
+
+                if (controlStatePropagation)
+                {
+                    foreach (View child in Children)
+                    {
+                        child.ControlState = value;
+                    }
+                }
+
+                ControlStateChangedEvent?.Invoke(this, changeInfo);
             }
         }
 
@@ -2309,49 +2326,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set ControlState with specified inpu environment
-        /// </summary>
-        /// <param name="state">New state value</param>
-        /// <param name="inputMethod">Indicates the input method that triggered this change.</param>
-        /// <param name="inputData">The input method data that depends on the inputMethod.</param>
-        /// <return>True, if the state changed successfully.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool SetControlState(ControlStates state, ControlStateChangedInfo.InputMethodType inputMethod, object inputData)
-        {
-            if (controlStates == state)
-            {
-                return false;
-            }
-
-            var prevState = controlStates;
-
-            controlStates = state;
-
-            var changeInfo = new ControlStateChangedInfo(prevState, state, inputMethod, inputData);
-
-            ControlStateChangeEventInternal?.Invoke(this, changeInfo);
-
-            OnControlStateChanged(changeInfo);
-
-            if (controlStatePropagation)
-            {
-                foreach (View child in Children)
-                {
-                    child.SetControlState(state, inputMethod, inputData);
-                }
-            }
-
-            ControlStateChangeEvent?.Invoke(this, changeInfo);
-
-            return true;
-        }
-
-        /// <summary>
         /// Called after the View's ControlStates changed.
         /// </summary>
         /// <param name="controlStateChangedInfo">The information including state changed variables.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnControlStateChanged(ControlStateChangedInfo controlStateChangedInfo)
+        protected virtual void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
         }
 

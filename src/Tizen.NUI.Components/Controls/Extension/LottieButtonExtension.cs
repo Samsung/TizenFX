@@ -55,9 +55,9 @@ namespace Tizen.NUI.Components.Extension
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnControlStateChanged(Button button, ControlStates previousState, Touch touchInfo)
+        public override void OnControlStateChanged(Button button, View.ControlStateChangedEventArgs args)
         {
-            UpdateLottieView(button, previousState, touchInfo, LottieView);
+            UpdateLottieView(button, args.PreviousState, LottieView);
         }
 
         internal static void InitializeLottieView(Button button, LottieAnimationView lottieView)
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Components.Extension
             lottieStyle.PlayRange?.GetValue(ControlStates.Normal)?.Show(lottieView, true);
         }
 
-        internal static void UpdateLottieView(Button button, ControlStates previousState, Touch touchInfo, LottieAnimationView lottieView)
+        internal static void UpdateLottieView(Button button, ControlStates previousState, LottieAnimationView lottieView)
         {
             ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, ((int)previousState & (int)ControlStates.Pressed) == 0);
         }

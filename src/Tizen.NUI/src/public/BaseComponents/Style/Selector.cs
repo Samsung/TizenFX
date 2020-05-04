@@ -267,11 +267,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnViewControlState(View obj, View.ControlStateChangedInfo controlStateChangedInfo)
+        private void OnViewControlState(object obj, View.ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            if (null != obj && null != GetValue(controlStateChangedInfo.CurrentState))
+            View view = obj as View;
+            if (null != view && null != GetValue(controlStateChangedInfo.CurrentState))
             {
-                obj.SetValue(targetBindableProperty, GetValue(controlStateChangedInfo.CurrentState));
+                view.SetValue(targetBindableProperty, GetValue(controlStateChangedInfo.CurrentState));
             }
         }
 
@@ -286,9 +287,9 @@ namespace Tizen.NUI.BaseComponents
     {
         protected Selector<T> selector;
         protected View view;
-        protected View.ControlStateChangesDelegate controlStateChanged;
+        protected EventHandler<View.ControlStateChangedEventArgs> controlStateChanged;
 
-        internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
+        internal ViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged)
         {
             if (view == null || controlStateChanged == null)
             {
@@ -370,7 +371,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     internal class CloneableViewSelector<T> : ViewSelector<T> where T : Tizen.NUI.Internal.ICloneable
     {
-        internal CloneableViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged) : base(view, controlStateChanged)
+        internal CloneableViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged) : base(view, controlStateChanged)
         {
         }
 
