@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -42,9 +44,7 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the type of target. It's used for running inference backend.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// <remarks>
-    /// Deprecated.(API Level 8) Not used.
-    /// </remarks>
+    [Obsolete("Please do not use! This will be deprecated in level 8.")]
     public enum InferenceTargetType
     {
         /// <summary>

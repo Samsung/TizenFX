@@ -323,9 +323,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        /// <remarks>
-        /// Deprecated.(API Level 8) Not used.
-        /// </remarks>
+        [Obsolete("Please do not use! This will be deprecated in level 8.")]
         public InferenceTargetType Target
         {
             get
