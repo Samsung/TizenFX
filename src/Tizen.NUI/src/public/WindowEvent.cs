@@ -106,7 +106,7 @@ namespace Tizen.NUI
             remove
             {
                 _rootLayerTouchDataEventHandler -= value;
-                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false)
+                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false && _rootLayerTouchDataCallback != null)
                 {
                     this.TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
                 }
