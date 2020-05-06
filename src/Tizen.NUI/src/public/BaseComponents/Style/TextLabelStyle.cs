@@ -310,6 +310,46 @@ namespace Tizen.NUI.BaseComponents
             return textLabelStyle.textShadow;
         });
 
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(bool), typeof(TextLabelStyle), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.title = (bool)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.title;
+        });
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FadeOutWidthProperty = BindableProperty.Create(nameof(FadeOutWidth), typeof(int), typeof(TextLabelStyle), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fadeOutWidth = (int)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fadeOutWidth;
+        });
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FadeOutColorProperty = BindableProperty.Create(nameof(FadeOutColor), typeof(Color), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fadeOutColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fadeOutColor;
+        });
+
         private bool? multiLine;
         private HorizontalAlignment? horizontalAlignment;
         private VerticalAlignment? verticalAlignment;
@@ -333,6 +373,9 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Color> textColorSelector;
         private Selector<float?> pointSizeSelector;
         private Selector<TextShadow> textShadow;
+        private bool title;
+        private int fadeOutWidth = 32;
+        private Color fadeOutColor = Tizen.NUI.Color.Black;
 
         static TextLabelStyle() { }
 
@@ -538,6 +581,33 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<TextShadow>)GetValue(TextShadowProperty);
             set => SetValue(TextShadowProperty, value);
+        }
+
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Title
+        {
+            get => (bool)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
+        }
+
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int FadeOutWidth
+        {
+            get => (int)GetValue(FadeOutWidthProperty);
+            set => SetValue(FadeOutWidthProperty, value);
+        }
+
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color FadeOutColor
+        {
+            get => (Color)GetValue(FadeOutColorProperty);
+            set => SetValue(FadeOutColorProperty, value);
         }
     }
 }

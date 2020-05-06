@@ -20,6 +20,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -612,6 +613,62 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+        }
+
+        /// <summary>
+        /// Apply style to textLabel.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            TextLabelStyle textLabelStyle = viewStyle as TextLabelStyle;
+
+            if (null != textLabelStyle)
+            {
+                this.fadeOutColor = textLabelStyle.FadeOutColor;
+                this.fadeOutWidth = textLabelStyle.FadeOutWidth;
+                if (textLabelStyle.Title)
+                {
+                    UpdateTitleChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// You can override it to clean-up your own resources
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 8 </since_tizen>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                if (null != leftImage)
+                {
+                    leftImage.Unparent();
+                    leftImage.Dispose();
+                    leftImage = null;
+                }
+                if (null != rightImage)
+                {
+                    rightImage.Unparent();
+                    rightImage.Dispose();
+                    rightImage = null;
+                }
+            }
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -1593,5 +1650,195 @@ namespace Tizen.NUI.BaseComponents
             TextShadow shadow = (textShadow != null && !textShadow.IsEmpty()) ? textShadow.GetValue() : textShadow?.GetValue();
             Object.SetProperty(swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(shadow));
         }
+
+
+        // [Code for fadeOut effect.]
+        private static readonly string VERTEX_SHADER =
+                        "attribute mediump vec2 aPosition;\n" +
+                        "varying mediump vec2 vTexCoord;\n" +
+                        "uniform highp mat4 uMvpMatrix;\n" +
+                        "uniform mediump vec3 uSize;\n" +
+                        "varying mediump vec2 sTexCoordRect;\n" +
+                        "void main()\n" +
+                        "{\n" +
+                        "   gl_Position = uMvpMatrix * vec4(aPosition * uSize.xy, 0.0, 1.0);\n" +
+                        "   vTexCoord = aPosition + vec2(0.5);\n" +
+                        "}\n";
+
+        private static readonly string FRAGMENT_SHADER =
+                        "uniform lowp vec4 uColor;\n" +
+                        "varying mediump vec2 vTexCoord;\n" +
+                        "uniform sampler2D sTexture;\n" +
+                        "void main()\n" +
+                        "{\n" +
+                        "   gl_FragColor = texture2D(sTexture, vTexCoord) * uColor;\n" +
+                        "}\n";
+
+        private bool title = false;
+        private ImageView leftImage = null;
+        private ImageView rightImage = null;
+        private Geometry geometry = null;
+        private Shader shader = null;
+        private Renderer mLeftRenderer = null;
+        private Renderer mRightRenderer = null;
+        private int fadeOutWidth;
+        private Color fadeOutColor;
+
+        private void UpdateTitleChanged()
+        {
+            if (null == leftImage)
+            {
+                leftImage = new ImageView();
+                leftImage.PositionUsesPivotPoint = true;
+                leftImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
+                leftImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+                leftImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+                leftImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+                this.Add(leftImage);
+            }
+            if (null == rightImage)
+            {
+                rightImage = new ImageView();
+                rightImage.PositionUsesPivotPoint = true;
+                rightImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
+                rightImage.PivotPoint = Tizen.NUI.PivotPoint.TopRight;
+                rightImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+                rightImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+                this.Add(rightImage);
+            }
+            if (null == geometry)
+            {
+                geometry = CreateQuadGeometry();
+            }
+            if (null == shader)
+            {
+                shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            }
+            if (null == mLeftRenderer)
+            {
+                mLeftRenderer = new Renderer(geometry, shader);
+            }
+            if (null == mRightRenderer)
+            {
+                mRightRenderer = new Renderer(geometry, shader);
+            }
+
+
+            leftImage.Size.Width = fadeOutWidth;
+            rightImage.Size.Width = fadeOutWidth;
+
+            if(fadeOutWidth > 0)
+            {
+                Color startColor = new Color(fadeOutColor.R, fadeOutColor.G, fadeOutColor.B, fadeOutColor.A * 0.6F);
+                Color endColor = new Color(fadeOutColor.R, fadeOutColor.G, fadeOutColor.B, 0.0F);
+
+                TextureSet outerTextureSet = CreateTexture(startColor, endColor);
+                TextureSet insiderTextureSet = CreateTexture(endColor, startColor);
+
+                mLeftRenderer.SetTextures(outerTextureSet);
+                mRightRenderer.SetTextures(insiderTextureSet);
+
+                leftImage.AddRenderer(mLeftRenderer);
+                rightImage.AddRenderer(mRightRenderer);
+            }
+
+            this.Ellipsis = false;
+            this.HorizontalAlignment = HorizontalAlignment.Center;
+            this.VerticalAlignment = VerticalAlignment.Center;
+
+        }
+
+
+
+        TextureSet CreateTexture(Vector4 color1, Vector4 color2)
+        {
+            TextureSet textureSet = new TextureSet();
+            const int width = 2;
+            const int height = 1;
+            uint size = width * height * 4;
+            byte[] pixelBuffer = new byte[size];
+            pixelBuffer[0] = (byte)(0xFF * color1.X);
+            pixelBuffer[1] = (byte)(0xFF * color1.Y);
+            pixelBuffer[2] = (byte)(0xFF * color1.Z);
+            pixelBuffer[3] = (byte)(0xFF * color1.W);
+            pixelBuffer[4] = (byte)(0xFF * color2.X);
+            pixelBuffer[5] = (byte)(0xFF * color2.Y);
+            pixelBuffer[6] = (byte)(0xFF * color2.Z);
+            pixelBuffer[7] = (byte)(0xFF * color2.W);
+
+            PixelData pixelData = new PixelData(pixelBuffer, size, width, height, PixelFormat.RGBA8888, PixelData.ReleaseFunction.DeleteArray );
+            Texture texture = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, width, height);
+            texture.Upload(pixelData);
+
+            textureSet.SetTexture(0u, texture);
+            return textureSet;
+        }
+
+        private PropertyBuffer CreatePropertyBuffer()
+        {
+            PropertyMap vertexFormat = new PropertyMap();
+            vertexFormat.Add("aPosition", new PropertyValue((int)PropertyType.Vector2));
+            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
+            return vertexBuffer;
+        }
+
+        private struct Vec2
+        {
+            float x;
+            float y;
+            public Vec2(float xIn, float yIn)
+            {
+                x = xIn;
+                y = yIn;
+            }
+        }
+
+        private struct TexturedQuadVertex
+        {
+            public Vec2 position;
+        };
+
+        private byte[] Struct2Bytes(TexturedQuadVertex[] obj)
+        {
+            int size = Marshal.SizeOf(obj);
+            byte[] bytes = new byte[size];
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            Marshal.StructureToPtr(obj, ptr, false);
+            Marshal.Copy(ptr, bytes, 0, size);
+            Marshal.FreeHGlobal(ptr);
+            return bytes;
+        }
+
+        private Geometry CreateQuadGeometry()
+        {
+            PropertyBuffer vertexData = CreatePropertyBuffer();
+
+            TexturedQuadVertex vertex1 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex2 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex3 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex4 = new TexturedQuadVertex();
+            vertex1.position = new Vec2(-0.5f, -0.5f);
+            vertex2.position = new Vec2(-0.5f, 0.5f);
+            vertex3.position = new Vec2(0.5f, -0.5f);
+            vertex4.position = new Vec2(0.5f, 0.5f);
+
+
+            TexturedQuadVertex[] texturedQuadVertexData = new TexturedQuadVertex[4] { vertex1, vertex2, vertex3, vertex4 };
+
+            int lenght = Marshal.SizeOf(vertex1);
+            IntPtr pA = Marshal.AllocHGlobal(lenght * 4);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * lenght, true);
+            }
+            vertexData.SetData(pA, 4);
+
+            Geometry geometry = new Geometry();
+            geometry.AddVertexBuffer(vertexData);
+            geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
+            return geometry;
+        }
+        // [Code for fadeOut effect.]
     }
 }
