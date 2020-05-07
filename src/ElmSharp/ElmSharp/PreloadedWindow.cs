@@ -117,5 +117,10 @@ namespace ElmSharp
             s_precreated = null;
             return instance;
         }
+
+        public static PreloadedWindow PeekInstance()
+        {
+            return s_precreated;
+        }
     }
 }
