@@ -46,6 +46,7 @@ namespace Tizen.Multimedia.Vision
         private const string _keyModelStdValue = "MV_INFERENCE_MODEL_STD_VALUE";
         private const string _keyBackendType = "MV_INFERENCE_BACKEND_TYPE";
         private const string _keyTargetType = "MV_INFERENCE_TARGET_TYPE";
+        private const string _keyTargetDevice = "MV_INFERENCE_TARGET_DEVICE";
         private const string _keyInputTensorWidth = "MV_INFERENCE_INPUT_TENSOR_WIDTH";
         private const string _keyInputTensorHeight = "MV_INFERENCE_INPUT_TENSOR_HEIGHT";
         private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS";
@@ -352,13 +353,13 @@ namespace Tizen.Multimedia.Vision
         {
             get
             {
-                return (InferenceTargetDevice)GetInt(_keyTargetType);
+                return (InferenceTargetDevice)GetInt(_keyTargetDevice);
             }
             set
             {
                 ValidationUtil.ValidateEnum(typeof(InferenceTargetDevice), value, nameof(Device));
 
-                Set(_keyTargetType, (int)value);
+                Set(_keyTargetDevice, (int)value);
             }
         }
 
