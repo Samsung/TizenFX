@@ -324,7 +324,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated in level 8.")]
+        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Device instead.")]
         public InferenceTargetType Target
         {
             get
