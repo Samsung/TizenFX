@@ -10,6 +10,19 @@ namespace Tizen.NUI.Samples
         private Button button1, button2;
         private Toast toast1_1, toast2_1;  //1-null para 2-attributes; X_1-color; X_2 image track
         private View root;
+        private View parentView;
+        private void InitParentView()
+        {
+            parentView = new View();
+            parentView.Position = new Position(80, 650);
+            parentView.Size = new Size(1800, 108);
+            parentView.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                CellPadding = new Size2D(450, 50)
+            };
+            root.Add(parentView);
+        }
 
         public void Activate()
         {
@@ -18,18 +31,18 @@ namespace Tizen.NUI.Samples
             root = new View()
             {
                 Size = new Size(1920, 1080),
-                BackgroundColor = new Color(0.8f, 0.8f, 0.8f, 0.6f),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
-
+            InitParentView();
             CreateBoardAndButtons();
 
             toast1_1 = Toast.FromText("null parameter construction", 1000);
-            toast1_1.Size = new Size(500, 132);
+            toast1_1.Size = new Size(700, 132);
             toast1_1.Post(window);
 
             ToastStyle attr = new ToastStyle
             {
-                Size = new Size(512, 132),
+                Size = new Size(712, 132),
                 BackgroundImage = CommonResource.GetFHResourcePath() + "12. Toast Popup/toast_background.png",
                 BackgroundImageBorder = new Rectangle(64, 64, 4, 4),
                 Duration = 3000
@@ -38,8 +51,6 @@ namespace Tizen.NUI.Samples
             toast2_1 = new Toast(attr);
             toast2_1.Message = "attibute parameter construction";
             toast2_1.Post(window);
-            //root.Add(toast2_1);
-
 
             board.UpFocusableView = button1;
             window.Add(root);
@@ -90,19 +101,17 @@ namespace Tizen.NUI.Samples
 
             button1 = new Button();
             button1.BackgroundColor = Color.Green;
-            button1.Position = new Position(80, 600);
             button1.Size = new Size(200, 50);
-            button1.Style.Text.Text = "toast1_1 Show";
-            root.Add(button1);
+            button1.ButtonText.Text= "toast1_1 Show";
+            parentView.Add(button1);
             button1.Focusable = true;
             button1.ClickEvent += toast1_1Show;
 
             button2 = new Button();
             button2.BackgroundColor = Color.Green;
-            button2.Position = new Position(700, 600);
             button2.Size = new Size(100, 50);
-            button2.Style.Text.Text = "toast2_1 Show";
-            root.Add(button2);
+            button2.ButtonText.Text = "toast2_1 Show";
+            parentView.Add(button2);
             button2.Focusable = true;
             button2.ClickEvent += toast2_1Show;
         }

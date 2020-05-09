@@ -31,44 +31,54 @@ namespace Tizen.NUI.Samples
         new Color(0.75f, 0.46f, 0.06f, 1),//#ffec7510 Food
         new Color(0.59f, 0.38f, 0.85f, 1),//#ff9762d9 Kitchen
         };
+
+        private View parentView;
+        private void InitParentView()
+        {
+            parentView = new View();
+            parentView.Position = new Position(100, 300);
+            parentView.Size = new Size(1800, 108);
+            parentView.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                CellPadding = new Size2D(180, 108)
+            };
+            root.Add(parentView);
+        }
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
             window.Add(root);
+            InitParentView();
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             createText[0] = new TextLabel();
             createText[0].Text = "Create Tab just by properties";
-            createText[0].Size2D = new Size2D(450, 100);
-            createText[0].Position2D = new Position2D(200, 100);
+            createText[0].Size = new Size(450, 100);
+            createText[0].Position = new Position(200, 100);
             createText[0].MultiLine = true;
             root.Add(createText[0]);
 
             tab = new Tab();
-            tab.Size2D = new Size2D(700, 108);
-            tab.Position2D = new Position2D(100, 300);
+            tab.Size = new Size(700, 108);
             tab.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-            //tab.IsNatureTextWidth = true;
-            //tab.ItemGap = 40;
-            //tab.LeftSpace = 56;
-            //tab.RightSpace = 56;
-            //tab.TopSpace = 1;
-            //tab.BottomSpace = 0;
-            tab.Style.UnderLine.Size = new Size(1, 3);
-            tab.Style.UnderLine.BackgroundColor = color[0];
-            tab.Style.Text.PointSize = 25;
-            tab.Style.Text.TextColor = new Selector<Color>
+            tab.Underline.Size = new Size(1, 3);
+            tab.Underline.BackgroundColor = color[0];
+            tab.PointSize = 25;
+            tab.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[0],
             };
             tab.ItemChangedEvent += TabItemChangedEvent;
-            root.Add(tab);
+            parentView.Add(tab);
 
             for (int i = 0; i < 3; i++)
             {
@@ -85,8 +95,8 @@ namespace Tizen.NUI.Samples
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
             createText[1] = new TextLabel();
             createText[1].Text = "Create Tab just by Attributes";
-            createText[1].Size2D = new Size2D(450, 100);
-            createText[1].Position2D = new Position2D(1000, 100);
+            createText[1].Size = new Size(450, 100);
+            createText[1].Position = new Position(1000, 100);
             createText[1].MultiLine = true;
             root.Add(createText[1]);
 
@@ -114,11 +124,10 @@ namespace Tizen.NUI.Samples
             };
 
             tab2 = new Tab(attrs);
-            tab2.Size2D = new Size2D(500, 108);
-            tab2.Position2D = new Position2D(900, 300);
+            tab2.Size = new Size(500, 108);
             tab2.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
             tab2.ItemChangedEvent += Tab2ItemChangedEvent;
-            root.Add(tab2);
+            parentView.Add(tab2);
 
             for (int i = 0; i < 3; i++)
             {
@@ -128,21 +137,43 @@ namespace Tizen.NUI.Samples
             }
             tab2.SelectedItemIndex = 0;
 
-            button = new Button();
-            button.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            button.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            button.Size2D = new Size2D(280, 80);
-            button.Position2D = new Position2D(400, 700);
-            button.Style.Text.Text = mode[index];
+            var buttonStyle = new ButtonStyle()
+            {
+                Size = new Size(300, 80),
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
+                        Other = ""
+                    },
+                    Border = new Rectangle(5, 5, 5, 5)
+                },
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>
+                    {
+                        Normal = new Color(0, 0, 0, 1),
+                        Pressed = new Color(0, 0, 0, 0.7f),
+                        Selected = new Color(0.058f, 0.631f, 0.92f, 1),
+                        Disabled = new Color(0, 0, 0, 0.4f)
+                    },
+                    PointSize = 18,
+                },
+                BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png",
+                BackgroundImageBorder = new Rectangle(5, 5, 5, 5),
+            };
+
+            button = new Button(buttonStyle);
+            button.Position = new Position(100, 600);
+            button.ButtonText.Text = mode[index];
             button.ClickEvent += ButtonClickEvent;
             root.Add(button);
 
-            button2 = new Button();
-            button2.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            button2.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            button2.Size2D = new Size2D(580, 80);
-            button2.Position2D = new Position2D(250, 500);
-            button2.Style.Text.Text = "LayoutDirection is left to right";
+            button2 = new Button(buttonStyle);
+            button2.Size = new Size(500, 80);
+            button2.Position = new Position(100, 500);
+            button2.ButtonText.Text = "LayoutDirection is left to right";
             button2.ClickEvent += ButtonClickEvent2;
             root.Add(button2);
         }
@@ -210,15 +241,15 @@ namespace Tizen.NUI.Samples
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
             index = (index + 1) % 4;
-            button.Style.Text.Text = mode[index];
-            tab.Style.UnderLine.BackgroundColor = color[index];
-            tab.Style.Text.TextColor = new Selector<Color>
+            button.ButtonText.Text = mode[index];
+            tab.Underline.BackgroundColor = color[index];
+            tab.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[index],
             };
-            tab2.Style.UnderLine.BackgroundColor = color[index];
-            tab2.Style.Text.TextColor = new Selector<Color>
+            tab2.Underline.BackgroundColor = color[index];
+            tab2.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[index],
@@ -231,13 +262,13 @@ namespace Tizen.NUI.Samples
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.RTL;
                 tab2.LayoutDirection = ViewLayoutDirectionType.RTL;
-                button2.Style.Text.Text = "LayoutDirection is right to left";
+                button2.ButtonText.Text = "LayoutDirection is right to left";
             }
             else
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.LTR;
                 tab2.LayoutDirection = ViewLayoutDirectionType.LTR;
-                button2.Style.Text.Text = "LayoutDirection is left to right";
+                button2.ButtonText.Text = "LayoutDirection is left to right";
             }
         }
     }

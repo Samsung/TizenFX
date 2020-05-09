@@ -41,6 +41,19 @@ namespace Tizen.NUI.Samples
             Initialize();
         }
 
+        public void Clear()
+        {
+            if (null != rootView)
+            {
+                if (null != rootView.GetParent())
+                {
+                    rootView.GetParent().Remove(rootView);
+                }
+                rootView.Dispose();
+                rootView = null;
+            }
+        }
+
         private void Initialize()
         {
             mContactCardLayoutInfo = new ContactCardLayoutInfo();

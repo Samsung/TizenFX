@@ -9,7 +9,7 @@ namespace Tizen.NUI.Samples
     public class ContactData
     {
         public const int itemSize = 15;
-        public static readonly string floder = CommonResource.GetFHResourcePath() + "ContactCard/";
+        public static readonly string floder = CommonResource.GetDaliResourcePath() + "ContactCard/";
         public class Item
         {
             public string name;

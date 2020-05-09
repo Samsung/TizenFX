@@ -1,6 +1,6 @@
 ﻿using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
@@ -34,11 +34,10 @@ namespace Tizen.NUI.Samples
 
         private string SPIRAL_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral.png";
         private string SPIRAL_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral-selected.png";
-        private string GRID_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid.png";
-        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid-selected.png";
-        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth.png";
-        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth-selected.png";
-
+        private string GRID_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid.png";
+        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid-selected.png";
+        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth.png";
+        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth-selected.png";
 
         private ItemView mItemView;
         private ItemFactoryWrapper mItemFactoryWrapper;
@@ -52,11 +51,11 @@ namespace Tizen.NUI.Samples
         private LongPressGestureDetector mLongPressGestureDetector;
         private TapGestureDetector mTapDetector;
 
-        private PushButton mLayoutButton;
-        private PushButton mEditButton;
-        private PushButton mDeleteButton;
-        private PushButton mInsertButton;
-        private PushButton mReplaceButton;
+        private Button mLayoutButton;
+        private Button mEditButton;
+        private Button mDeleteButton;
+        private Button mInsertButton;
+        private Button mReplaceButton;
         private TextLabel mTitle;
         private ImageView mToolBarBackground;
 
@@ -83,7 +82,7 @@ namespace Tizen.NUI.Samples
 
         private void SetTitle(string title)
         {
-            if (mTitle != null)
+            if(mTitle != null)
             {
                 mTitle.Text = title;
             }
@@ -115,22 +114,25 @@ namespace Tizen.NUI.Samples
                 {
                     case (int)AllImagesLayouts.SPIRAL_LAYOUT:
                         {
-                            mLayoutButton.UnselectedBackgroundVisual = CreateImageVisual(SPIRAL_LAYOUT_IMAGE);
-                            mLayoutButton.SelectedBackgroundVisual = CreateImageVisual(SPIRAL_LAYOUT_IMAGE_SELECTED);
+                            var style = mLayoutButton.Style;
+                            style.BackgroundImage = new Selector<string>() { Normal = SPIRAL_LAYOUT_IMAGE, Selected = SPIRAL_LAYOUT_IMAGE_SELECTED };
+                            mLayoutButton.ApplyStyle(style);
                             break;
                         }
 
                     case (int)AllImagesLayouts.GRID_LAYOUT:
                         {
-                            mLayoutButton.UnselectedBackgroundVisual = CreateImageVisual(GRID_LAYOUT_IMAGE);
-                            mLayoutButton.SelectedBackgroundVisual = CreateImageVisual(GRID_LAYOUT_IMAGE_SELECTED);
+                            var style = mLayoutButton.Style;
+                            style.BackgroundImage = new Selector<string>() { Normal = GRID_LAYOUT_IMAGE, Selected = GRID_LAYOUT_IMAGE_SELECTED };
+                            mLayoutButton.ApplyStyle(style);
                             break;
                         }
 
                     case (int)AllImagesLayouts.DEPTH_LAYOUT:
                         {
-                            mLayoutButton.UnselectedBackgroundVisual = CreateImageVisual(DEPTH_LAYOUT_IMAGE);
-                            mLayoutButton.SelectedBackgroundVisual = CreateImageVisual(DEPTH_LAYOUT_IMAGE_SELECTED);
+                            var style = mLayoutButton.Style;
+                            style.BackgroundImage = new Selector<string>() { Normal = DEPTH_LAYOUT_IMAGE, Selected = DEPTH_LAYOUT_IMAGE_SELECTED };
+                            mLayoutButton.ApplyStyle(style);
                             break;
                         }
                     default:
@@ -474,42 +476,44 @@ namespace Tizen.NUI.Samples
 
         private void CreateLayoutButton()
         {
-            mLayoutButton = new PushButton();
-            mLayoutButton.UnselectedBackgroundVisual = CreateImageVisual(SPIRAL_LAYOUT_IMAGE);
-            mLayoutButton.SelectedBackgroundVisual = CreateImageVisual(SPIRAL_LAYOUT_IMAGE_SELECTED);
+            mLayoutButton = new Button();
+            var style = mLayoutButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = SPIRAL_LAYOUT_IMAGE, Selected = SPIRAL_LAYOUT_IMAGE_SELECTED };
+            mLayoutButton.ApplyStyle(style);
+            mLayoutButton.IsSelectable = true;
             mLayoutButton.Size2D = new Size2D(34, 34);
             mLayoutButton.ParentOrigin = ParentOrigin.TopRight;
             mLayoutButton.PivotPoint = PivotPoint.TopRight;
             mLayoutButton.Position2D = new Position2D(0, 25);
             mLayoutButton.PositionUsesPivotPoint = true;
             mLayoutButton.LeaveRequired = true;
-            mLayoutButton.Clicked += (obj, e) =>
+            mLayoutButton.ClickEvent += (obj, e) =>
             {
                 mCurrentLayout = (mCurrentLayout + 1) % (int)mItemView.GetLayoutCount();
                 ChangeLayout();
 
                 SetLayoutTitle();
                 SetLayoutImage();
-                return true;
             };
             mToolBarLayer.Add(mLayoutButton);
         }
 
         public void CreateEditButton()
         {
-            mEditButton = new PushButton();
-            mEditButton.UnselectedBackgroundVisual = CreateImageVisual(EDIT_IMAGE);
-            mEditButton.SelectedBackgroundVisual = CreateImageVisual(EDIT_IMAGE_SELECTED);
+            mEditButton = new Button();
+            var style = mEditButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = EDIT_IMAGE, Selected = EDIT_IMAGE_SELECTED };
+            mEditButton.ApplyStyle(style);
+            mEditButton.IsSelectable = true;
             mEditButton.Size2D = new Size2D(34, 34);
             mEditButton.ParentOrigin = ParentOrigin.TopLeft;
             mEditButton.PivotPoint = PivotPoint.TopLeft;
             mEditButton.Position2D = new Position2D(5, 25);
             mEditButton.PositionUsesPivotPoint = true;
             mEditButton.LeaveRequired = true;
-            mEditButton.Clicked += (obj, e) =>
+            mEditButton.ClickEvent += (obj, e) =>
             {
                 SwitchToNextMode();
-                return true;
             };
             mToolBarLayer.Add(mEditButton);
         }
@@ -539,18 +543,20 @@ namespace Tizen.NUI.Samples
 
         private void CreateDeleteButton()
         {
-            mDeleteButton = new PushButton();
+            mDeleteButton = new Button();
+            var style = mDeleteButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = DELETE_IMAGE, Selected = DELETE_IMAGE_SELECTED };
+            mDeleteButton.ApplyStyle(style);
+            mDeleteButton.IsSelectable = true;
             mDeleteButton.ParentOrigin = ParentOrigin.BottomRight;
             mDeleteButton.PivotPoint = PivotPoint.BottomRight;
             mDeleteButton.PositionUsesPivotPoint = true;
             mDeleteButton.Position2D = new Position2D(BUTTON_BORDER, BUTTON_BORDER);
             mDeleteButton.DrawMode = DrawModeType.Overlay2D;
-            mDeleteButton.UnselectedBackgroundVisual = CreateImageVisual(DELETE_IMAGE);
-            mDeleteButton.SelectedBackgroundVisual = CreateImageVisual(DELETE_IMAGE_SELECTED);
             mDeleteButton.Size2D = new Size2D(50, 50);
             mDeleteButton.LeaveRequired = true;
             mDeleteButton.Hide();
-            mDeleteButton.Clicked += (obj, e) =>
+            mDeleteButton.ClickEvent += (obj, e) =>
             {
                 ItemIdContainer removeList = new ItemIdContainer();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
@@ -571,25 +577,26 @@ namespace Tizen.NUI.Samples
                 {
                     mItemView.RemoveItems(removeList, 0.5f);
                 }
-                return true;
             };
             NUIApplication.GetDefaultWindow().Add(mDeleteButton);
         }
 
         private void CreateInsertButton()
         {
-            mInsertButton = new PushButton();
+            mInsertButton = new Button();
+            var style = mInsertButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = INSERT_IMAGE, Selected = INSERT_IMAGE_SELECTED };
+            mInsertButton.ApplyStyle(style);
+            mInsertButton.IsSelectable = true;
             mInsertButton.ParentOrigin = ParentOrigin.BottomRight;
             mInsertButton.PivotPoint = PivotPoint.BottomRight;
             mInsertButton.PositionUsesPivotPoint = true;
             mInsertButton.Position2D = new Position2D(BUTTON_BORDER, BUTTON_BORDER);
             mInsertButton.DrawMode = DrawModeType.Overlay2D;
-            mInsertButton.UnselectedBackgroundVisual = CreateImageVisual(INSERT_IMAGE);
-            mInsertButton.SelectedBackgroundVisual = CreateImageVisual(INSERT_IMAGE_SELECTED);
             mInsertButton.Size2D = new Size2D(50, 50);
             mInsertButton.LeaveRequired = true;
             mInsertButton.Hide();
-            mInsertButton.Clicked += (obj, e) =>
+            mInsertButton.ClickEvent += (obj, e) =>
             {
                 ItemContainer insertList = new ItemContainer();
                 Random random = new Random();
@@ -610,25 +617,26 @@ namespace Tizen.NUI.Samples
                 {
                     mItemView.InsertItems(insertList, 0.5f);
                 }
-                return true;
             };
             NUIApplication.GetDefaultWindow().Add(mInsertButton);
         }
 
         private void CreateReplaceButton()
         {
-            mReplaceButton = new PushButton();
+            mReplaceButton = new Button();
+            var style = mReplaceButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = REPLACE_IMAGE, Selected = REPLACE_IMAGE_SELECTED };
+            mReplaceButton.ApplyStyle(style);
+            mReplaceButton.IsSelectable = true;
             mReplaceButton.ParentOrigin = ParentOrigin.BottomRight;
             mReplaceButton.PivotPoint = PivotPoint.BottomRight;
             mReplaceButton.PositionUsesPivotPoint = true;
-            mReplaceButton.Position2D = new Position2D(BUTTON_BORDER, BUTTON_BORDER);
+            mReplaceButton.Position = new Position(BUTTON_BORDER, BUTTON_BORDER);
             mReplaceButton.DrawMode = DrawModeType.Overlay2D;
-            mReplaceButton.UnselectedBackgroundVisual = CreateImageVisual(REPLACE_IMAGE);
-            mReplaceButton.SelectedBackgroundVisual = CreateImageVisual(REPLACE_IMAGE_SELECTED);
-            mReplaceButton.Size2D = new Size2D(50, 50);
+            mReplaceButton.Size = new Size(50, 50);
             mReplaceButton.LeaveRequired = true;
             mReplaceButton.Hide();
-            mReplaceButton.Clicked += (obj, e) =>
+            mReplaceButton.ClickEvent += (obj, e) =>
             {
                 ItemContainer replaceList = new ItemContainer();
                 Random random = new Random();
@@ -650,7 +658,6 @@ namespace Tizen.NUI.Samples
                 {
                     mItemView.ReplaceItems(replaceList, 0.5f);
                 }
-                return true;
             };
             NUIApplication.GetDefaultWindow().Add(mReplaceButton);
         }

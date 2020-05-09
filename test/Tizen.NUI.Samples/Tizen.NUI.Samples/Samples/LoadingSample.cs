@@ -6,10 +6,12 @@ namespace Tizen.NUI.Samples
 {
     public class LoadingSample : IExample
     {
-        private TextLabel board1, board2, board;
-        private Button button1, button2, button3, button4;
-        private Loading loading1_1, loading2_1;  //1-null para 2-attributes; X_1-color; X_2 image track
+        private TextLabel propBoard, propLogBoard, attrBoard;
+        private Button propFpsAddBtn, propFpsMinusBtn, attrBtn;
+        private Loading propLoading, attrLoading;
         private View root;
+        private View parent, propParent, propBtnParent, attrParent;
+        private string[] imageArray;
 
         public void Activate()
         {
@@ -17,12 +19,51 @@ namespace Tizen.NUI.Samples
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+            };
+            window.Add(root);
+
+            parent = new View()
+            {
+                Position = new Position(100, 200),
+                Size = new Size(1000, 780)
+            };
+            parent.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size(20, 0)
             };
 
-            CreateBoardAndButtons();
-            string[] imageArray = new string[36];
-            for (int i=0; i<36; i++)
+            propParent = new View()
+            {
+                Position = new Position(100, 200),
+                Size = new Size(500, 780)
+            };
+            propParent.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size(20, 100)
+            };
+
+            attrParent = new View()
+            {
+                Position = new Position(600, 200),
+                Size = new Size(500, 780)
+            };
+            attrParent.Layout = new LinearLayout() {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size(20, 100)
+            };
+
+            root.Add(parent);
+            parent.Add(propParent);
+            parent.Add(attrParent);
+
+            imageArray = new string[36];
+            for (int i = 0; i < 36; i++)
             {
                 if (i < 10)
                 {
@@ -34,103 +75,127 @@ namespace Tizen.NUI.Samples
                 }
             }
 
-            loading1_1 = new Loading();
-            loading1_1.Position2D = new Position2D(100, 350);
-            loading1_1.Size2D = new Size2D(100, 100);
+            CreatePropLayout();
+            CreateAttrLayout();
+        }
 
-            loading1_1.Images = imageArray;
-            root.Add(loading1_1);
+        void CreatePropLayout()
+        {
+            propBoard = new TextLabel();
+            propBoard.WidthSpecification = 380;
+            propBoard.HeightSpecification = 70;
+            propBoard.PointSize = 20;
+            propBoard.HorizontalAlignment = HorizontalAlignment.Center;
+            propBoard.VerticalAlignment = VerticalAlignment.Center;
+            propBoard.BackgroundColor = Color.Magenta;
+            propBoard.Text = "Property construction";
+            propParent.Add(propBoard);
+
+            propLoading = new Loading();
+            propLoading.WidthSpecification = 100;
+            propLoading.HeightSpecification = 100;
+            propLoading.Images = imageArray;
+            propParent.Add(propLoading);
+
+            CreatePropBtnLayout();
+
+            propLogBoard = new TextLabel();
+            propLogBoard.WidthSpecification = 380;
+            propLogBoard.HeightSpecification = 70;
+            propLogBoard.PointSize = 20;
+            propLogBoard.HorizontalAlignment = HorizontalAlignment.Center;
+            propLogBoard.VerticalAlignment = VerticalAlignment.Center;
+            propLogBoard.BackgroundColor = Color.Magenta;
+            propLogBoard.Text = "log pad";
+            propLogBoard.PointSize = 15;
+            propParent.Add(propLogBoard);
+        }
+
+        void CreatePropBtnLayout()
+        {
+            propBtnParent = new View()
+            {
+                Size = new Size(400, 50)
+            };
+            var propBtnLayout = new LinearLayout();
+            propBtnLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            propBtnLayout.LinearAlignment = LinearLayout.Alignment.Center;
+            propBtnLayout.CellPadding = new Size(10, 50);
+            propBtnParent.Layout = propBtnLayout;
+            propParent.Add(propBtnParent);
+
+            propFpsAddBtn = new Button();
+            propFpsAddBtn.WidthSpecification = 150;
+            propFpsAddBtn.HeightSpecification = 50;
+            var propFpsAddStyle = propFpsAddBtn.Style;
+            propFpsAddStyle.Text.Text = "FPS++";
+            propFpsAddStyle.Text.PointSize = 15;
+            propFpsAddBtn.ApplyStyle(propFpsAddStyle);
+            propBtnParent.Add(propFpsAddBtn);
+            propFpsAddBtn.Focusable = true;
+            propFpsAddBtn.ClickEvent += propFpsAdd;
+            FocusManager.Instance.SetCurrentFocusView(propFpsAddBtn);
+
+            propFpsMinusBtn = new Button();
+            propFpsMinusBtn.WidthSpecification = 150;
+            propFpsMinusBtn.HeightSpecification = 50;
+            var propFpsMinusStyle = propFpsMinusBtn.Style;
+            propFpsMinusStyle.Text.Text = "FPS--";
+            propFpsMinusStyle.Text.PointSize = 15;
+            propFpsMinusBtn.ApplyStyle(propFpsMinusStyle);
+            propBtnParent.Add(propFpsMinusBtn);
+            propFpsMinusBtn.Focusable = true;
+            propFpsMinusBtn.ClickEvent += propFpsMinus;
+            FocusManager.Instance.SetCurrentFocusView(propFpsMinusBtn);
+
+            propFpsAddBtn.RightFocusableView = propFpsMinusBtn;
+            propFpsMinusBtn.LeftFocusableView = propFpsAddBtn;
+        }
+
+        private void CreateAttrLayout()
+        {
+            attrBoard = new TextLabel();
+            attrBoard.WidthSpecification = 380;
+            attrBoard.HeightSpecification = 70;
+            attrBoard.PointSize = 20;
+            attrBoard.HorizontalAlignment = HorizontalAlignment.Center;
+            attrBoard.VerticalAlignment = VerticalAlignment.Center;
+            attrBoard.BackgroundColor = Color.Magenta;
+            attrBoard.Text = "Attribute construction";
+            attrParent.Add(attrBoard);
 
             LoadingStyle style = new LoadingStyle
             {
                 Images = imageArray
             };
+            attrLoading = new Loading(style);
+            attrLoading.Size = new Size(100, 100);
+            attrParent.Add(attrLoading);
 
-            loading2_1 = new Loading(style);
-            loading2_1.Position2D = new Position2D(500, 350);
-            loading2_1.Size2D = new Size2D(100, 100);
-            root.Add(loading2_1);
-
-            window.Add(root);
-
-            FocusManager.Instance.SetCurrentFocusView(button1);
+            attrBtn = new Button()
+            {
+                WidthSpecification = 300,
+                HeightSpecification = 50,
+            };
+            var attrBtnStyle = attrBtn.Style;
+            attrBtnStyle.Text.Text = "Normal Loading";
+            attrBtnStyle.Text.PointSize = 15;
+            attrBtn.ApplyStyle(attrBtnStyle);
+            attrParent.Add(attrBtn);
+            attrBtn.Focusable = true;
+            FocusManager.Instance.SetCurrentFocusView(attrBtn);
         }
 
-        void CreateBoardAndButtons()
+        private void propFpsAdd(object sender, global::System.EventArgs e)
         {
-            board = new TextLabel();
-            board.Size2D = new Size2D(1000, 100);
-            board.Position2D = new Position2D(430, 900);
-            board.PointSize = 30;
-            board.HorizontalAlignment = HorizontalAlignment.Center;
-            board.VerticalAlignment = VerticalAlignment.Center;
-            board.BackgroundColor = Color.Magenta;
-            board.Text = "log pad";
-            root.Add(board);
-
-            board1 = new TextLabel();
-            board1.Size2D = new Size2D(300, 70);
-            board1.Position2D = new Position2D(50, 200);
-            board1.PointSize = 20;
-            board1.HorizontalAlignment = HorizontalAlignment.Center;
-            board1.VerticalAlignment = VerticalAlignment.Center;
-            board1.BackgroundColor = Color.Magenta;
-            board1.Text = "NULL parameter construction";
-            root.Add(board1);
-
-            board2 = new TextLabel();
-            board2.Size2D = new Size2D(300, 70);
-            board2.Position2D = new Position2D(400, 200);
-            board2.PointSize = 20;
-            board2.HorizontalAlignment = HorizontalAlignment.Center;
-            board2.VerticalAlignment = VerticalAlignment.Center;
-            board2.BackgroundColor = Color.Magenta;
-            board2.Text = "Attribute parameter construction";
-            root.Add(board2);
-
-            button1 = new Button();
-            button1.BackgroundColor = Color.Green;
-            button1.Position2D = new Position2D(80, 600);
-            button1.Size2D = new Size2D(100, 50);
-            button1.Style.Text.Text = "FPS++";
-            root.Add(button1);
-            button1.Focusable = true;
-            button1.ClickEvent += Loading1FPSAdd;
-            button1.FocusGained += FocusGained;
-            button1.FocusLost += FocusLost;
-
-            button2 = new Button();
-            button2.BackgroundColor = Color.Green;
-            button2.Position2D = new Position2D(200, 600);
-            button2.Size2D = new Size2D(100, 50);
-            button2.Style.Text.Text = "FPS--";
-            root.Add(button2);
-            button2.Focusable = true;
-            button2.ClickEvent += Loading1FPSMinus;
-            button2.FocusGained += FocusGained;
-            button2.FocusLost += FocusLost;
-
-            button1.RightFocusableView = button2;
-            button2.LeftFocusableView = button1;
-
-            button3 = new Button();
-            button3.BackgroundColor = Color.Green;
-            button3.Position2D = new Position2D(450, 600);
-            button3.Size2D = new Size2D(180, 50);
-            button3.Style.Text.Text = "Normal Loading";
-            root.Add(button3);
+            propLoading.FrameRate += 1;
+            propLogBoard.Text = "loading1_1 FPS: " + propLoading.FrameRate.ToString();
         }
 
-        private void Loading1FPSAdd(object sender, global::System.EventArgs e)
+        private void propFpsMinus(object sender, global::System.EventArgs e)
         {
-            loading1_1.FrameRate += 1;
-            board.Text = "loading1_1 FPS: "+loading1_1.FrameRate.ToString();
-        }
-
-        private void Loading1FPSMinus(object sender, global::System.EventArgs e)
-        {
-            loading1_1.FrameRate -= 1;
-            board.Text = "loading1_1 FPS: " + loading1_1.FrameRate.ToString();
+            propLoading.FrameRate -= 1;
+            propLogBoard.Text = "loading1_1 FPS: " + propLoading.FrameRate.ToString();
         }
 
         private void FocusLost(object sender, global::System.EventArgs e)
@@ -147,62 +212,56 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            if (board != null)
-            {
-                root.Remove(board);
-                board.Dispose();
-                board = null;
-            }
-            if (board1 != null)
-            {
-                root.Remove(board1);
-                board1.Dispose();
-                board1 = null;
-            }
-            if (board2 != null)
-            {
-                root.Remove(board2);
-                board2.Dispose();
-                board2 = null;
-            }
-            if (button1 != null)
-            {
-                button1.ClickEvent -= Loading1FPSAdd;
-                button1.FocusGained -= FocusGained;
-                button1.FocusLost -= FocusLost;
-                root.Remove(button1);
-                button1.Dispose();
-                button1 = null;
-            }
-            if (button2 != null)
-            {
-                button2.ClickEvent -= Loading1FPSMinus;
-                button2.FocusGained -= FocusGained;
-                button2.FocusLost -= FocusLost;
-                root.Remove(button2);
-                button2.Dispose();
-                button2 = null;
-            }
-            if (button3 != null)
-            {
-                root.Remove(button3);
-                button3.Dispose();
-                button3 = null;
-            }
-            if (loading1_1 != null)
-            {
-                root.Remove(loading1_1);
-                loading1_1.Dispose();
-                loading1_1 = null;
-            }
-            if (loading2_1 != null)
-            {
-                root.Remove(loading2_1);
-                loading2_1.Dispose();
-                loading2_1 = null;
-            }
             if (root != null)
             {
+                propBtnParent.Remove(propFpsAddBtn);
+                propFpsAddBtn.Dispose();
+                propFpsAddBtn = null;
+
+                propBtnParent.Remove(propFpsMinusBtn);
+                propFpsMinusBtn.Dispose();
+                propFpsMinusBtn = null;
+
+                propParent.Remove(propBtnParent);
+                propBtnParent.Dispose();
+                propBtnParent = null;
+
+                propParent.Remove(propBoard);
+                propBoard.Dispose();
+                propBoard = null;
+
+                propParent.Remove(propLoading);
+                propLoading.Dispose();
+                propLoading = null;
+
+                propParent.Remove(propLogBoard);
+                propLogBoard.Dispose();
+                propLogBoard = null;
+
+                attrParent.Remove(attrBoard);
+                attrBoard.Dispose();
+                attrBoard = null;
+
+                attrParent.Remove(attrLoading);
+                attrLoading.Dispose();
+                attrLoading = null;
+
+                attrParent.Remove(attrBtn);
+                attrBtn.Dispose();
+                attrBtn = null;
+
+                parent.Remove(propParent);
+                propParent.Dispose();
+                propParent = null;
+
+                parent.Remove(attrParent);
+                attrParent.Dispose();
+                attrParent = null;
+
+                root.Remove(parent);
+                parent.Dispose();
+                parent = null;
+
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
                 root = null;

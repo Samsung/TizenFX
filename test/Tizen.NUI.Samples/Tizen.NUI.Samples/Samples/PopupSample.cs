@@ -7,6 +7,8 @@ namespace Tizen.NUI.Samples
     public class PopupSample : IExample
     {
         private View root;
+        private View parent1;
+        private View parent2;
 
         private TextLabel[] createText = new TextLabel[2];
 
@@ -38,37 +40,63 @@ namespace Tizen.NUI.Samples
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
                 BackgroundColor = Color.White,
             };
             window.Add(root);
 
+            parent1 = new View()
+            {
+                Size = new Size(1920, 1080),
+            };
+            parent1.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center,
+                CellPadding = new Size(50, 50)
+            };
+
+            parent2 = new View()
+            {
+                Size = new Size(1032, 980),
+            };
+            parent2.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size(400, 400)
+            };
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             createText[0] = new TextLabel();
             createText[0].Text = "Create Popup just by properties";
-            createText[0].Size2D = new Size2D(500, 100);
-            createText[0].Position2D = new Position2D(500, 50);
-            root.Add(createText[0]);
+            createText[0].WidthSpecification = 500;
+            createText[0].HeightSpecification = 100;
+            parent2.Add(createText[0]);
 
             popup = new Popup();
-            popup.MinimumSize = new Size2D(1032, 184);
+            popup.MinimumSize = new Size(1032, 184);
             popup.Size = new Size(1032, 400);
-            popup.Position = new Position(200, 100);
+            popup.Position = new Position(150, 100);
 
             // Title
-            popup.Style.Title.PointSize = 25;
-            popup.Style.Title.SizeHeight = 68;
-            popup.Style.Title.HorizontalAlignment = HorizontalAlignment.Begin;
-            popup.Style.Title.Position = new Position(64, 52);
-            popup.Style.Title.Text = "Popup Title";
+            popup.Title.PointSize = 25;
+            popup.Title.Size = new Size(0, 68);
+            popup.Title.PositionUsesPivotPoint = true;
+            popup.Title.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
+            popup.Title.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            popup.Title.HorizontalAlignment = HorizontalAlignment.Begin;
+            popup.Title.VerticalAlignment = VerticalAlignment.Bottom;
+            popup.Title.Position = new Position(64, 52);
+            popup.Title.Text = "Popup Title";
+            popup.Title.Padding = 0;
 
             // Shadow
-            popup.Style.ImageShadow = new ImageShadow
+            popup.ImageShadow = new ImageShadow
             {
                 Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
                 Border = new Rectangle(24, 24, 24, 24),
                 Offset = new Vector2(-24, -24),
-                Extents = new Vector2(48, 48),
+                Extents = new Vector2(48, 48)
             };
 
             // Background
@@ -98,7 +126,7 @@ namespace Tizen.NUI.Samples
             popup.Post(window);
 
             contentText = new TextLabel();
-            contentText.Size2D = new Size2D(904, 100);
+            contentText.Size = new Size(904, 100);
             contentText.PointSize = 20;
             contentText.HorizontalAlignment = HorizontalAlignment.Begin;
             contentText.VerticalAlignment = VerticalAlignment.Center;
@@ -109,13 +137,13 @@ namespace Tizen.NUI.Samples
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
             createText[1] = new TextLabel();
             createText[1].Text = "Create Popup just by Attributes";
-            createText[1].Size2D = new Size2D(500, 100);
-            createText[1].Position2D = new Position2D(500, 550);
-            root.Add(createText[1]);
+            createText[1].WidthSpecification = 500;
+            createText[1].HeightSpecification = 100;
+            parent2.Add(createText[1]);
 
             PopupStyle attrs = new PopupStyle
             {
-                MinimumSize = new Size2D(1032, 184),
+                MinimumSize = new Size(1032, 184),
                 BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "11. Popup/popup_background.png" },
                 BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(0, 0, 81, 81) },
                 ImageShadow = new ImageShadow
@@ -171,14 +199,14 @@ namespace Tizen.NUI.Samples
                         PivotPoint = Tizen.NUI.PivotPoint.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
-                        TextColor = new Selector<Color> { All = color[index2] },
+                        TextColor = new Selector<Color> { All = color[index2] }
                     },
                 },
             };
 
             popup2 = new Popup(attrs);
             popup2.Size = new Size(1032, 400);
-            popup2.Position = new Position(200, 600);     
+            popup2.Position = new Position(150, 600);
             popup2.AddButton("Yes");
             popup2.AddButton("Exit");
             popup2.ButtonHeight = 132;
@@ -187,7 +215,7 @@ namespace Tizen.NUI.Samples
             popup2.Post(window);
 
             contentText2 = new TextLabel();
-            contentText2.Size2D = new Size2D(904, 100);
+            contentText2.Size = new Size(904, 100);
             contentText2.PointSize = 20;
             contentText2.HorizontalAlignment = HorizontalAlignment.Begin;
             contentText2.VerticalAlignment = VerticalAlignment.Center;
@@ -195,13 +223,16 @@ namespace Tizen.NUI.Samples
             popup2.ContentView.Add(contentText2);
 
             button = new Button();
-            button.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            button.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            button.Size2D = new Size2D(580, 80);
-            button.Position2D = new Position2D(1300, 500);
-            button.Style.Text.Text = "LayoutDirection is left to right";
+            button.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
+            button.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
+            button.WidthSpecification = 580;
+            button.HeightSpecification = 80;
+            button.ButtonText.Text = "LayoutDirection is left to right";
             button.ClickEvent += ButtonClickEvent;
-            root.Add(button);
+
+            parent1.Add(parent2);
+            parent1.Add(button);
+            root.Add(parent1);
         }
 
         private void Popup2LayoutDirectionChanged(object sender, View.LayoutDirectionChangedEventArgs e)
@@ -256,13 +287,13 @@ namespace Tizen.NUI.Samples
             {
                 popup.LayoutDirection = ViewLayoutDirectionType.RTL;
                 popup2.LayoutDirection = ViewLayoutDirectionType.RTL;
-                button.Style.Text.Text = "LayoutDirection is right to left";
+                button.ButtonText.Text = "LayoutDirection is right to left";
             }
             else
             {
                 popup.LayoutDirection = ViewLayoutDirectionType.LTR;
                 popup2.LayoutDirection = ViewLayoutDirectionType.LTR;
-                button.Style.Text.Text = "LayoutDirection is left to right";
+                button.ButtonText.Text = "LayoutDirection is left to right";
             }           
         }
 
@@ -280,6 +311,7 @@ namespace Tizen.NUI.Samples
                     }
 
                     root.Remove(popup);
+                    popup.Dismiss();
                     popup.Dispose();
                     popup = null;
                 }
@@ -294,6 +326,7 @@ namespace Tizen.NUI.Samples
                     }
 
                     root.Remove(popup2);
+                    popup2.Dismiss();
                     popup2.Dispose();
                     popup2 = null;
                 }

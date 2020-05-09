@@ -6,10 +6,10 @@ namespace Tizen.NUI.Samples
 {
     public class ButtonSample : IExample
     {
-        private static readonly int XBase = 100;
-        private static readonly int YBase = 300;
-        private static readonly int XPadding = 350;
         private View root;
+        private View parent1;
+        private View parent2;
+        private View parent3;
         Button textButton;
         Button iconButton;
 
@@ -28,19 +28,6 @@ namespace Tizen.NUI.Samples
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
-
-            //ImageView imageView1 = new ImageView();
-            //imageView1.Size2D = new Size2D(48, 48);
-            //imageView1.Position2D = new Position2D(200, 200);
-            //imageView1.ResourceUrl = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check.png";
-            //window.Add(imageView1);
-
-            //ImageView imageView2 = new ImageView();
-            //imageView2.Size2D = new Size2D(48, 48);
-            //imageView2.Position2D = new Position2D(500, 200);
-            //imageView2.ResourceUrl = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_check_on_24c447.png";
-            //window.Add(imageView2);
-
             root = new View()
             {
                 Size2D = new Size2D(1920, 1080),
@@ -48,166 +35,240 @@ namespace Tizen.NUI.Samples
             window.Add(root);
             window.KeyEvent += Window_KeyEvent;
 
+            parent1 = new View()
+            {
+                Position = new Position(100, 100),
+                Size = new Size(300, 900)
+            };
+            parent1.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(50, 50) };
+
+            parent2 = new View()
+            {
+                Size = new Size(300, 900),
+                Position = new Position(450, 100),
+            };
+            parent2.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(50, 50) };
+
             textButton = new Button();
-            textButton.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            textButton.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            textButton.Size2D = new Size2D(300, 80);
-            textButton.Position2D = new Position2D(100, 100);
-	    textButton.Style.Text.TextShadow = new TextShadow(Color.Blue, new Vector2(2.0f, 2.0f), 5.0f);
-            textButton.Style.Text.Text = "Button";
-            root.Add(textButton);
+            var textStyle = textButton.Style;
+            textStyle.BackgroundColor = new Selector<Color>();
+            textButton.ApplyStyle(textStyle);
+            textButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
+            textButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
+            textButton.WidthSpecification = 300;
+            textButton.HeightSpecification = 80;
+            textButton.ButtonText.Text = "Button";
+            parent1.Add(textButton);
 
             iconButton = new Button();
-            iconButton.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            iconButton.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            iconButton.Size2D = new Size2D(100, 100);
-            iconButton.Position2D = new Position2D(600, 100);
-            iconButton.Style.Icon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
-            root.Add(iconButton);
+            var iconStyle = iconButton.Style;
+            iconStyle.Text.Text = "";
+            iconStyle.BackgroundColor = new Selector<Color>();
+            iconButton.ApplyStyle(iconStyle);
+            iconButton.Name = "IconButton";
+            iconButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
+            iconButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
+            iconButton.WidthSpecification = 80;
+            iconButton.HeightSpecification = 80;
+            iconButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
+            parent2.Add(iconButton);
+            iconButton.ClickEvent += (ojb, e) => {
+                var btn = iconButton.ButtonIcon.GetParent() as Button;
+                string name = btn.Name;
+            };
 
+            parent3 = new View()
+            {
+                Size = new Size(600, 400),
+                Position = new Position(900, 100),
+            };
+            parent3.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             iconTextButton = new Button();
-            iconTextButton.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            iconTextButton.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
+            var iconTextStyle = iconTextButton.Style;
+            iconTextStyle.BackgroundColor = new Selector<Color>();
+            iconTextStyle.Text.Text = "IconTextButton";
+            iconTextButton.ApplyStyle(iconTextStyle);
+            iconTextButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
+            iconTextButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
-            iconTextButton.Style.Icon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
-            iconTextButton.Style.IconPadding.Top = 20;
-            iconTextButton.Style.IconPadding.Bottom = 20;
-            iconTextButton.Style.IconPadding.Start = 20;
-            iconTextButton.Style.IconPadding.End = 20;
-            iconTextButton.Style.Text.Text = "IconTextButton";
-            iconTextButton.Style.TextPadding.Top = 20;
-            iconTextButton.Style.TextPadding.Bottom = 20;
-            iconTextButton.Style.TextPadding.Start = 20;
-            iconTextButton.Style.TextPadding.End = 50;
-            iconTextButton.Size2D = new Size2D(500, 300);
-            iconTextButton.Position2D = new Position2D(900, 100);
-            root.Add(iconTextButton);
+            iconTextButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
+            iconTextButton.IconPadding.Top = 20;
+            iconTextButton.IconPadding.Bottom = 20;
+            iconTextButton.IconPadding.Start = 20;
+            iconTextButton.IconPadding.End = 20;
+            iconTextButton.TextPadding.Top = 20;
+            iconTextButton.TextPadding.Bottom = 20;
+            iconTextButton.TextPadding.Start = 20;
+            iconTextButton.TextPadding.End = 50;
+            iconTextButton.WidthSpecification = 500;
+            iconTextButton.HeightSpecification = 300;
+            parent3.Add(iconTextButton);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
+            var utilityBasicButtonStyle = new ButtonStyle()
+            {
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
+                        Other = ""
+                    },
+                    Border = new Rectangle(5, 5, 5, 5)
+                },
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>
+                    {
+                        Normal = new Color(0, 0, 0, 1),
+                        Pressed = new Color(0, 0, 0, 0.7f),
+                        Selected = new Color(0.058f, 0.631f, 0.92f, 1),
+                        Disabled = new Color(0, 0, 0, 0.4f)
+                    },
+                    Text = "UtilityBasicButton",
+                    PointSize = 20,
+                },
+                BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png",
+                BackgroundImageBorder = new Rectangle(5, 5, 5, 5),
+            };
             utilityBasicButton = new Button();
+            utilityBasicButton.ApplyStyle(utilityBasicButtonStyle);
             utilityBasicButton.IsSelectable = true;
-            utilityBasicButton.Style.BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png";
-            utilityBasicButton.Style.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
-            utilityBasicButton.Style.ImageShadow = new ImageShadow
+            utilityBasicButton.ImageShadow = new ImageShadow
             {
                 Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityBasicButton.Style.Overlay.ResourceUrl = new Selector<string>
-            {
-                Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
-                Other = ""
-            };
-            utilityBasicButton.Style.Overlay.Border = new Rectangle(5, 5, 5, 5);
-
-            utilityBasicButton.Style.Text.TextColor = new Selector<Color>
-            {
-                Normal = new Color(0, 0, 0, 1),
-                Pressed = new Color(0, 0, 0, 0.7f),
-                Selected = new Color(0.058f, 0.631f, 0.92f, 1),
-                Disabled = new Color(0, 0, 0, 0.4f)
-            };
-
-            utilityBasicButton.Size2D = new Size2D(300, 80);
-            utilityBasicButton.Position2D = new Position2D(XBase, 300);
-            utilityBasicButton.Style.Text.PointSize = 20;
-            utilityBasicButton.Style.Text.Text = "UtilityBasicButton";
+            utilityBasicButton.WidthSpecification = 300;
+            utilityBasicButton.HeightSpecification = 80;
             utilityBasicButton.IsEnabled = false;
-            root.Add(utilityBasicButton);
+            parent1.Add(utilityBasicButton);
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var utilityServiceButtonStyle = new ButtonStyle()
+            {
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
+                        Other = ""
+                    },
+                    Border = new Rectangle(5, 5, 5, 5)
+                },
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>
+                    {
+                        Normal = new Color(1, 1, 1, 1),
+                        Pressed = new Color(1, 1, 1, 0.7f),
+                        Disabled = new Color(1, 1, 1, 0.4f)
+                    },
+                    Text = "ServiceBasicButton",
+                    PointSize = 20,
+                },
+                BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_point_btn_normal.png",
+                BackgroundImageBorder = new Rectangle(5, 5, 5, 5)
+            };
             utilityServiceButton = new Button();
-            utilityServiceButton.Style.BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_point_btn_normal.png";
-            utilityServiceButton.Style.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
-            utilityServiceButton.Style.ImageShadow = new ImageShadow
+            utilityServiceButton.ApplyStyle(utilityServiceButtonStyle);
+            utilityServiceButton.ImageShadow = new ImageShadow
             {
                 Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityServiceButton.Style.Overlay.ResourceUrl = new Selector<string>
-            {
-                Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
-                Other = ""
-            };
-            utilityServiceButton.Style.Overlay.Border = new Rectangle(5, 5, 5, 5);
-            utilityServiceButton.Style.Text.TextColor = new Selector<Color>
-            {
-                Normal = new Color(1, 1, 1, 1),
-                Pressed = new Color(1, 1, 1, 0.7f),
-                Disabled = new Color(1, 1, 1, 0.4f)
-            };
 
-            utilityServiceButton.Size2D = new Size2D(300, 80);
-            utilityServiceButton.Position2D = new Position2D(XBase, 500);
-            utilityServiceButton.Style.Text.PointSize = 20;
-            utilityServiceButton.Style.Text.Text = "ServiceBasicButton";
-            root.Add(utilityServiceButton);
+            utilityServiceButton.WidthSpecification = 300;
+            utilityServiceButton.HeightSpecification = 80;
+            parent1.Add(utilityServiceButton);
+
             /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var utilityToggleButtonStyle = new ButtonStyle()
+            {
+                BackgroundImage = new Selector<string>
+                {
+                    Normal = CommonResource.GetFHResourcePath() + "3. Button/rectangle_toggle_btn_normal.png",
+                    Selected = CommonResource.GetFHResourcePath() + "3. Button/rectangle_point_btn_normal.png",
+                },
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
+                        Other = ""
+                    }
+                },
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>
+                    {
+                        Normal = new Color(0.058f, 0.631f, 0.92f, 1),
+                        Selected = new Color(1, 1, 1, 1),
+                    },
+                    Text = new Selector<string>
+                    {
+                        Normal = "Toggle Off",
+                        Selected = "Toggle On"
+                    },
+                    PointSize = 20
+                },
+                BackgroundColor = new Selector<Color>()
+            };
             utilityToggleButton = new Button();
+            utilityToggleButton.ApplyStyle(utilityToggleButtonStyle);
             utilityToggleButton.IsSelectable = true;
-            utilityToggleButton.Style.BackgroundImage = new Selector<string>
-            {
-                Normal = CommonResource.GetFHResourcePath() + "3. Button/rectangle_toggle_btn_normal.png",
-                Selected = CommonResource.GetFHResourcePath() + "3. Button/rectangle_point_btn_normal.png",
-            };
-
-            utilityToggleButton.Style.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
-            utilityToggleButton.Style.ImageShadow = new ImageShadow
+            utilityToggleButton.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
+            utilityToggleButton.ImageShadow = new ImageShadow
             {
                 Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityToggleButton.Style.Overlay.ResourceUrl = new Selector<string>
-            {
-                Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
-                Other = ""
-            };
-            utilityToggleButton.Style.Overlay.Border = new Rectangle(5, 5, 5, 5);
+            utilityToggleButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
 
+            utilityToggleButton.WidthSpecification = 300;
+            utilityToggleButton.HeightSpecification = 80;
+            parent1.Add(utilityToggleButton);
 
-            utilityToggleButton.Style.Text.TextColor = new Selector<Color>
-            {
-                Normal = new Color(0.058f, 0.631f, 0.92f, 1),
-                Selected = new Color(1, 1, 1, 1),
-            };
-
-            utilityToggleButton.Size2D = new Size2D(300, 80);
-            utilityToggleButton.Position2D = new Position2D(XBase, 700);
-            utilityToggleButton.Style.Text.PointSize = 20;
-            utilityToggleButton.Style.Text.Text = new Selector<string>
-            {
-                Normal = "Toggle Off",
-                Selected = "Toggle On"
-            };
-            root.Add(utilityToggleButton);
             /////////////////////////////////////////////////////////////////////////////////////////////////////////
-            utilityOvalButton = new Button();
-            utilityOvalButton.IsSelectable = true;
-            utilityOvalButton.Style.BackgroundImage = new Selector<string>
+            var utilityOvalButtonStyle = new ButtonStyle()
             {
-                Normal = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_normal.png",
-                Selected = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_select.png",
+                BackgroundImage = new Selector<string>
+                {
+                    Normal = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_normal.png",
+                    Selected = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_select.png",
+                },
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_press_overlay.png",
+                        Other = ""
+                    }
+                },
+                Text = new TextLabelStyle()
+                {
+                    Text = "",
+                },
+                BackgroundColor = new Selector<Color>(),
             };
-            utilityOvalButton.Style.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
-            utilityOvalButton.Style.ImageShadow = new ImageShadow
+            utilityOvalButton = new Button();
+            utilityOvalButton.ApplyStyle(utilityOvalButtonStyle);
+            utilityOvalButton.IsSelectable = true;
+            utilityOvalButton.BackgroundImageBorder = new Rectangle(5, 5, 5, 5);
+            utilityOvalButton.ImageShadow = new ImageShadow
             {
                 Url = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityOvalButton.Style.Overlay.ResourceUrl = new Selector<string>
-            {
-                Pressed = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_press_overlay.png",
-                Other = ""
-            };
-            utilityOvalButton.Style.Overlay.Border = new Rectangle(5, 5, 5, 5);
+            utilityOvalButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
 
-            utilityOvalButton.Size2D = new Size2D(104, 104);
-            utilityOvalButton.Position2D = new Position2D(XBase, 900);
-            utilityOvalButton.Style.Text.PointSize = 20;
-            root.Add(utilityOvalButton);
+            utilityOvalButton.WidthSpecification = 104;
+            utilityOvalButton.HeightSpecification = 104;
+            utilityOvalButton.ButtonText.PointSize = 20;
+            parent1.Add(utilityOvalButton);
 
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            ButtonStyle familyBasicButtonAttributes = new ButtonStyle
+            ButtonStyle familyBasicButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
                 BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png" },
@@ -239,17 +300,16 @@ namespace Tizen.NUI.Samples
                         Selected = new Color(0.141f, 0.769f, 0.278f, 1),
                         Disabled = new Color(0, 0, 0, 0.4f),
                     },
+                    Text = "FamilyBasicButton",
                 }
             };
-            familyBasicButton = new Button(familyBasicButtonAttributes);
-            familyBasicButton.Size2D = new Size2D(300, 80);
-            familyBasicButton.Position2D = new Position2D(XBase + XPadding, 300);
-            familyBasicButton.Style.Text.PointSize = 20;
-            familyBasicButton.Style.Text.Text = "FamilyBasicButton";
-            root.Add(familyBasicButton);
+            familyBasicButton = new Button(familyBasicButtonStyle);
+            familyBasicButton.WidthSpecification = 300;
+            familyBasicButton.HeightSpecification = 80;
+            parent2.Add(familyBasicButton);
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
-            ButtonStyle familyServiceButtonAttributes = new ButtonStyle
+            ButtonStyle familyServiceButtonStyle = new ButtonStyle
             {
                 IsSelectable = false,
                 BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/[Button] App Primary Color/rectangle_point_btn_normal_24c447.png" },
@@ -281,16 +341,16 @@ namespace Tizen.NUI.Samples
                         Pressed = new Color(1, 1, 1, 0.7f),
                         Disabled = new Color(1, 1, 1, 0.4f),
                     },
+                    Text = "FamilySeviceButton"
                 }
             };
-            familyServiceButton = new Button(familyServiceButtonAttributes);
-            familyServiceButton.Size2D = new Size2D(300, 80);
-            familyServiceButton.Position2D = new Position2D(XBase + XPadding, 500);
-            familyServiceButton.Style.Text.PointSize = 20;
-            familyServiceButton.Style.Text.Text = "FamilySeviceButton";
-            root.Add(familyServiceButton);
+            familyServiceButton = new Button(familyServiceButtonStyle);
+            familyServiceButton.WidthSpecification = 300;
+            familyServiceButton.HeightSpecification = 80;
+            parent2.Add(familyServiceButton);
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
-            ButtonStyle familyToggleButtonAttributes = new ButtonStyle
+            ButtonStyle familyToggleButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
                 BackgroundImage = new Selector<string>
@@ -325,20 +385,20 @@ namespace Tizen.NUI.Samples
                         Normal = new Color(0.141f, 0.769f, 0.278f, 1),
                         Selected = new Color(1, 1, 1, 1),
                     },
+                    Text = new Selector<string>
+                    {
+                        Normal = "Toggle Off",
+                        Selected = "Toggle On"
+                    }
                 }
             };
-            familyToggleButton = new Button(familyToggleButtonAttributes);
-            familyToggleButton.Size2D = new Size2D(300, 80);
-            familyToggleButton.Position2D = new Position2D(XBase + XPadding, 700);
-            familyToggleButton.Style.Text.PointSize = 20;
-            familyToggleButton.Style.Text.Text = new Selector<string>
-            {
-                Normal = "Toggle Off",
-                Selected = "Toggle On"
-            };
-            root.Add(familyToggleButton);
+            familyToggleButton = new Button(familyToggleButtonStyle);
+            familyToggleButton.WidthSpecification = 300;
+            familyToggleButton.HeightSpecification = 80;
+            parent2.Add(familyToggleButton);
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
-            ButtonStyle familyOvalButtonAttributes = new ButtonStyle
+            ButtonStyle familyOvalButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
                 BackgroundImage = new Selector<string>
@@ -360,11 +420,14 @@ namespace Tizen.NUI.Samples
                     Border = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) },
                 },
             };
-            familyOvalButton = new Button(familyOvalButtonAttributes);
-            familyOvalButton.Size2D = new Size2D(104, 104);
-            familyOvalButton.Position2D = new Position2D(XBase + XPadding, 900);
-            familyOvalButton.Style.Text.PointSize = 20;
-            root.Add(familyOvalButton);
+            familyOvalButton = new Button(familyOvalButtonStyle);
+            familyOvalButton.WidthSpecification = 104;
+            familyOvalButton.HeightSpecification = 104;
+            parent2.Add(familyOvalButton);
+
+            root.Add(parent1);
+            root.Add(parent2);
+            root.Add(parent3);
         }
 
         private void Window_KeyEvent(object sender, Window.KeyEventArgs e)
@@ -405,8 +468,54 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
+                parent1.Remove(textButton);
+                textButton.Dispose();
+                textButton = null;
+                parent1.Remove(utilityBasicButton);
+                utilityBasicButton.Dispose();
+                utilityBasicButton = null;
+                parent1.Remove(utilityServiceButton);
+                utilityServiceButton.Dispose();
+                utilityServiceButton = null;
+                parent1.Remove(utilityToggleButton);
+                utilityToggleButton.Dispose();
+                utilityToggleButton = null;
+                parent1.Remove(utilityOvalButton);
+                utilityOvalButton.Dispose();
+                utilityOvalButton = null;
+
+                parent1.Remove(familyBasicButton);
+                familyBasicButton.Dispose();
+                familyBasicButton = null;
+                parent1.Remove(familyServiceButton);
+                familyServiceButton.Dispose();
+                familyServiceButton = null;
+                parent1.Remove(familyToggleButton);
+                familyToggleButton.Dispose();
+                familyToggleButton = null;
+                parent1.Remove(familyOvalButton);
+                familyOvalButton.Dispose();
+                familyOvalButton = null;
+
+                parent3.Remove(iconTextButton);
+                iconTextButton.Dispose();
+                iconTextButton = null;
+
+                root.Remove(parent1);
+                parent1.Dispose();
+                parent1 = null;
+
+                root.Remove(parent2);
+                parent2.Dispose();
+                parent2 = null;
+
+                root.Remove(parent3);
+                parent3.Dispose();
+                parent3 = null;
+
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
+                root = null;
             }
         }
     }
