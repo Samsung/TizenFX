@@ -1,27 +1,26 @@
-using System;
+﻿using System;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Examples
 {
-    public class TestDetailApps : NUIApplication
+    class VideoViewTest : NUIApplication
     {
-        protected override void OnCreate() 
+
+        protected override void OnCreate()
         {
             base.OnCreate();
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
-            AppDetailPage detailPage = new AppDetailPage(window);
-
-            Extensions.LoadFromXaml(detailPage, typeof(AppDetailPage));
-            detailPage.SetFocus();
-
+            TempPage myPage = new TempPage(window);
+            Extensions.LoadFromXaml(myPage, typeof(TempPage));
             Console.WriteLine("==================  Set BindingContext in Application !!!! ==================");
+            myPage.SetFocus();
         }
 
         public static void _Main(string[] args)
         {
-            TestDetailApps p = new TestDetailApps();
+            TempTest p = new TempTest();
             p.Run(args);
         }
     }

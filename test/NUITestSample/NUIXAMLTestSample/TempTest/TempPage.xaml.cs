@@ -16,15 +16,15 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class TempPage : ContentPage
+    public partial class TempPage : ContentPage
     {
 
         public TempPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         /// <summary>
@@ -51,16 +51,6 @@ namespace Tizen.NUI.Examples
             // button1.DownFocusableView = button2;
             // button2.UpFocusableView = button1;
             // FocusManager.Instance.SetCurrentFocusView(button1);
-        }
-
-        private bool OnClicked(object sender, EventArgs e)
-        {
-            if (sender is Button)
-            {
-                Button button = sender as Button;
-                button.LabelText = "Click Me";
-            }
-            return true;
         }
 
         private void OnFocusGained(object obj, EventArgs e)

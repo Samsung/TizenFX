@@ -15,16 +15,15 @@
  *
  */
 using System;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class AmbientDuoPage : ContentPage
+    public partial class AmbientDuoPage : ContentPage
     {
 
         public AmbientDuoPage(Window win) : base (win)
         {
+            InitializeComponent();
             Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoduo_img_bg_01_no9patch.png";
             ClearEvent += OnClearEvent;
             Root.Opacity = 0.0f;
