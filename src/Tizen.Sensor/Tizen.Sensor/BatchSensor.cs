@@ -21,7 +21,9 @@ namespace Tizen.Sensor
 {
     public abstract class BatchSensor<TData> : Sensor where TData : Tizen.Sensor.BatchData
     {
-        public BatchSensor(uint index = 0) : base(index) { }
+        public BatchSensor(uint index = 0) : base(index) {
+            UpdateBatchData((IntPtr)null, 0);
+        }
         public IReadOnlyList<TData> Data { get; protected set; }
 
         /// <summary>
