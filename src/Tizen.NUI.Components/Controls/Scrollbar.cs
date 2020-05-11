@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// The ScrollBar class of nui component. It allows users to recognize the direction and the range of lists/content. .
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class ScrollBar : Control
+    public class ScrollBar : Control, IScrollBar
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -411,6 +411,27 @@ namespace Tizen.NUI.Components
 
             enableAni = enableAnimation;
             CurrentValue = currentValue;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View Initialize(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false)
+        {
+            return this;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            // TODO
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            // TODO
         }
 
         /// <summary>

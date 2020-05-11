@@ -612,9 +612,15 @@ namespace Tizen.NUI
             get;
         }
 
-        internal void UpdateVisual()
+        /// <summary>
+        /// Suppress UpdateVisual() to update properties to Parent.
+        /// If it is set to true, UpdateVisual() is ignored unless it is called with force.
+        /// </summary>
+        internal bool SupressUpdateVisual { get; set; } = false;
+
+        internal void UpdateVisual(bool force = false)
         {
-            if (VisualIndex > 0)
+            if (VisualIndex > 0 && (!SupressUpdateVisual || force))
             {
                 NUILog.Debug("UpdateVisual()! VisualIndex=" + VisualIndex);
                 Parent.UpdateVisual(VisualIndex, Name, this);
