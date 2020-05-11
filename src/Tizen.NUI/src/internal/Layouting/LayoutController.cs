@@ -152,22 +152,6 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        // Traverse through children from the provided root.
-        // If a child has no layout but is a pure View then assign a default layout and continue traversal.
-        // If child has no layout and not a pure View then assign a LayoutItem that terminates the layouting (leaf),
-        private void AutomaticallyAssignLayouts(View rootNode)
-        {
-            for (uint i = 0; i < rootNode.ChildCount; i++)
-            {
-                View view = rootNode.GetChildAt(i);
-                if (view.Layout == null )
-                {
-                    view.Layout = new AbsoluteLayout();
-                    AutomaticallyAssignLayouts(rootNode);
-                }
-            }
-        }
-
         // Traverse the tree looking for a root node that is a layout.
         // Once found, it's children can be assigned Layouts and the Measure process started.
         private void FindRootLayouts(View rootNode)
@@ -175,8 +159,6 @@ namespace Tizen.NUI
             if (rootNode.Layout != null)
             {
                 Debug.WriteLineIf( LayoutDebugController, "LayoutController Root found:" + rootNode.Name);
-                // rootNode has a layout, ensure all children have default layouts or layout items.
-                AutomaticallyAssignLayouts(rootNode);
                 // rootNode has a layout, start measuring and layouting from here.
                 MeasureAndLayout(rootNode);
             }
