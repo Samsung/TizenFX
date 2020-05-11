@@ -108,6 +108,11 @@ namespace Tizen.Network.Stc
                     {
                         Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
                         task.SetException(StcErrorFactory.GetStcException(result));
+                        lock (_getAllStatsCb_map)
+                        {
+                            _getAllStatsCb_map.Remove(key);
+                        }
+                        return;
                     }
 
                     List<NetworkStatistics> statsList = new List<NetworkStatistics>();
