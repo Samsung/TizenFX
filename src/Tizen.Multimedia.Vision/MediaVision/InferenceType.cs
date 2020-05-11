@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -30,13 +32,19 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Tensor Flow Lite backend type
         /// </summary>
-        TFLite
+        TFLite,
+
+        /// <summary>
+        /// ArmNN backend type
+        /// </summary>
+        ArmNN
     }
 
     /// <summary>
     /// Specifies the type of target. It's used for running inference backend.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API8; Will be removed in API10. Please use InferenceTargetDevice instead.")]
     public enum InferenceTargetType
     {
         /// <summary>
@@ -53,5 +61,44 @@ namespace Tizen.Multimedia.Vision
         /// Custom target
         /// </summary>
         Custom
+    }
+
+    /// <summary>
+    /// Specifies the device of target. It's used for running inference backend.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum InferenceTargetDevice
+    {
+        /// <summary>
+        /// CPU device
+        /// </summary>
+        CPU = 1 << 0,
+
+        /// <summary>
+        /// GPU device
+        /// </summary>
+        GPU = 1 << 1,
+
+        /// <summary>
+        /// Custom device
+        /// </summary>
+        Custom = 1 << 2
+    }
+
+    /// <summary>
+    /// Specifies the data type.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum InferenceDataType
+    {
+        /// <summary>
+        /// Float 32 bit
+        /// </summary>
+        Float32,
+
+        /// <summary>
+        /// Unsigned Integer 8 bit
+        /// </summary>
+        UInt8
     }
 }
