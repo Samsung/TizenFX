@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<AppDetailPage x:Class="Tizen.NUI.Examples.SearchPage"
+<ContentPage x:Class="Tizen.NUI.Examples.SearchPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <View Name="UpperArea" BackgroundColor="Green" SizeWidth="1920" SizeHeight="332" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionY="30"  PositionUsesPivotPoint="true">
@@ -32,4 +32,4 @@
             <ImageView Name="listItem35" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/youtube/ytb015.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
         </TableView>
     </View>
-</AppDetailPage>
+</ContentPage>

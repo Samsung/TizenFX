@@ -15,16 +15,15 @@
  *
  */
 using System;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class AmbientMultiPage3 : ContentPage
+    public partial class AmbientMultiPage3 : ContentPage
     {
 
         public AmbientMultiPage3(Window win) : base (win)
         {
+            InitializeComponent();
             Root.Opacity = 0.0f;
         }
 
