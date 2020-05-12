@@ -16,11 +16,10 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class WeatherPage : ContentPage
+    public partial class WeatherPage : ContentPage
     {
         private Vector2 bezierPointIn1 = new Vector2(0.21f, 2);
         private Vector2 bezierPointIn2 = new Vector2(0.14f, 1);
@@ -32,6 +31,7 @@ namespace Tizen.NUI.Examples
 
         public WeatherPage(Window win) : base (win)
         {
+            InitializeComponent();
             Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather/bg.bmp";
             // Root.BackgroundColor = Color.Green;
         }

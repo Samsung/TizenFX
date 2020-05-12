@@ -16,11 +16,10 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class SearchPage : ContentPage
+    public partial class SearchPage : ContentPage
     {
         private Vector2 bezierPointIn1 = new Vector2(0.21f, 2);
         private Vector2 bezierPointIn2 = new Vector2(0.14f, 1);
@@ -34,6 +33,7 @@ namespace Tizen.NUI.Examples
 
         public SearchPage(Window win) : base (win)
         {
+            InitializeComponent();
             Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/store_default_bg_01.png";
         }
 
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Examples
             {
                 if (e.Direction == View.FocusDirection.Down)
                 {
-                    View view = e.CurrentView.Parent as View;
+                    View view = e.CurrentView.GetParent() as View;
                     if (view.Name == "UpperListTable")
                     {
                         e.ProposedView = midListTable.GetChildAt(new TableView.CellPosition(0, 0)); ;
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Examples
                 }
                 else if (e.Direction == View.FocusDirection.Up)
                 {
-                    View view = e.CurrentView.Parent as View;
+                    View view = e.CurrentView.GetParent() as View;
                     if (view.Name == "BottomListTable")
                     {
                         e.ProposedView = midListTable.GetChildAt(new TableView.CellPosition(0, 0)); ;

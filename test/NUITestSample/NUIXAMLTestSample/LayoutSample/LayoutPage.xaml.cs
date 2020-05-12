@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,15 @@
  * limitations under the License.
  *
  */
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public partial class FlexContainerPage : ContentPage
+    public partial class LayoutPage : View
     {
-
-        public FlexContainerPage(Window win) : base (win)
+        public LayoutPage()
         {
             InitializeComponent();
-        }
-
-        public override void SetFocus()
-        {
         }
     }
 }

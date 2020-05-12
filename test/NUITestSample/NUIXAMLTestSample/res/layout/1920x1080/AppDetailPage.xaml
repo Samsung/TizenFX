@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<AppDetailPage x:Class="Tizen.NUI.Examples.AppDetailPage"
+<ContentPage x:Class="Tizen.NUI.Examples.AppDetailPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:l="clr-namespace:Tizen.NUI.Examples;"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <View Name="UpperArea" SizeWidth="1920" SizeHeight="780" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true">
@@ -37,4 +37,4 @@
             <ImageView Name="listItem5" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss1.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
         </TableView>
     </View>
-</AppDetailPage>
+</ContentPage>

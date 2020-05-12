@@ -16,14 +16,14 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class AmbientMonoPage : ContentPage
+    public partial class AmbientMonoPage : ContentPage
     {
         public AmbientMonoPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         /// <summary>

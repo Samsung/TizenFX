@@ -13,28 +13,66 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="lib\" />
-    <Folder Include="res\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15214" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
+    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.11" />
   </ItemGroup>
     <ItemGroup>
-    <EmbeddedResource Include="TempTest/TempPage.xaml" />
     <EmbeddedResource Include="TestAmbient/*.xaml" />
-    <EmbeddedResource Include="TestMyContents/MediaHubPage.xaml" />
-    <EmbeddedResource Include="TestDetailApps/AppDetailPage.xaml" />
-    <EmbeddedResource Include="UTC/TestButton/ButtonTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestFlexContainer/FlexContainerPage.xaml" />
-    <EmbeddedResource Include="UTC/TestImageView/ImageTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestScrollBar/ScrollBarTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestSlider/SliderTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestTableView/TableTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestTextEditor/TextEditorTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestTextField/TextFieldTestPage.xaml" />
-    <EmbeddedResource Include="UTC/TestTextLabel/TextLabelTestPage.xaml" />
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="lib\**" />
   </ItemGroup>
+    <ItemGroup>
+      <None Remove="res\layout\1920x1080\AmbientDuoPage.xaml" />
+      <None Remove="res\layout\1920x1080\AmbientMonoPage.xaml" />
+      <None Remove="res\layout\1920x1080\AmbientMultiPage.xaml" />
+      <None Remove="res\layout\1920x1080\AmbientMultiPage2.xaml" />
+      <None Remove="res\layout\1920x1080\AmbientMultiPage3.xaml" />
+      <None Remove="res\layout\1920x1080\AppDetailPage.xaml" />
+      <None Remove="res\layout\1920x1080\BixbyFinancePage.xaml" />
+      <None Remove="res\layout\1920x1080\BixbyWidgetPage.xaml" />
+      <None Remove="res\layout\1920x1080\LayoutPage.xaml" />
+      <None Remove="res\layout\1920x1080\MediaHubPage.xaml" />
+      <None Remove="res\layout\1920x1080\SearchPage.xaml" />
+      <None Remove="res\layout\1920x1080\WeatherPage.xaml" />
+      <None Remove="res\layout\ButtonTestPage.xaml" />
+      <None Remove="res\layout\FlexContainerPage.xaml" />
+      <None Remove="res\layout\ImageTestPage.xaml" />
+      <None Remove="res\layout\ScrollBarTestPage.xaml" />
+      <None Remove="res\layout\SliderTestPage.xaml" />
+      <None Remove="res\layout\TableTestPage.xaml" />
+      <None Remove="res\layout\TempPage.xaml" />
+      <None Remove="res\layout\TextEditorTestPage.xaml" />
+      <None Remove="res\layout\TextFieldTestPage.xaml" />
+      <None Remove="res\layout\TextLabelTestPage.xaml" />
+      <None Remove="res\layout\VideoViewPage.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="res\layout\1920x1080\AmbientDuoPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\AmbientMonoPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\AmbientMultiPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\AmbientMultiPage2.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\AmbientMultiPage3.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\AppDetailPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\BixbyFinancePage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\BixbyWidgetPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\LayoutPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\MediaHubPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\SearchPage.xaml" />
+      <EmbeddedResource Include="res\layout\1920x1080\WeatherPage.xaml" />
+      <EmbeddedResource Include="res\layout\ButtonTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\FlexContainerPage.xaml" />
+      <EmbeddedResource Include="res\layout\ImageTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\ScrollBarTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\SliderTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\TableTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\TempPage.xaml" />
+      <EmbeddedResource Include="res\layout\TextEditorTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\TextFieldTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\TextLabelTestPage.xaml" />
+      <EmbeddedResource Include="res\layout\VideoViewPage.xaml" />
+    </ItemGroup>
 
 </Project>
 

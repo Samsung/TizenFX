@@ -14,17 +14,16 @@
  * limitations under the License.
  *
  */
-using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class ImageTestPage : ContentPage
+    public partial class ImageTestPage : ContentPage
     {
 
         public ImageTestPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()
