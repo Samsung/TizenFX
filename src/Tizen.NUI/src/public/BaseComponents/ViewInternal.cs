@@ -1285,7 +1285,7 @@ namespace Tizen.NUI.BaseComponents
             SizeModeFactor = new Vector3(x, y, z);
         }
 
-        private void OnControlStateChangedForShadow(View obj, ControlStateChangedInfo controlStateChangedInfo)
+        private void OnControlStateChangedForShadow(object obj, ControlStateChangedEventArgs controlStateChangedInfo)
         {
             var boxShadowSelector = (Selector<Shadow>)GetValue(BoxShadowSelectorProperty);
 
@@ -1341,7 +1341,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnControlStateChangedForCornerRadius(View obj, ControlStateChangedInfo controlStateChangedInfo)
+        private void OnControlStateChangedForCornerRadius(object obj, ControlStateChangedEventArgs controlStateChangedInfo)
         {
             var selector = (Selector<float?>)GetValue(CornerRadiusSelectorProperty);
 

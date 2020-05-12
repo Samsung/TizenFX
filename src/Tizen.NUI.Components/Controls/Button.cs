@@ -590,9 +590,7 @@ namespace Tizen.NUI.Components
             {
                 isSelected = value;
 
-                UpdateState(SelectionChangedByTouch);
-
-                SelectionChangedByTouch = null;
+                UpdateState();
             }
         }
 
@@ -795,7 +793,8 @@ namespace Tizen.NUI.Components
             {
                 case PointStateType.Down:
                     isPressed = true;
-                    UpdateState(touch);
+                    Extension?.SetTouchInfo(touch);
+                    UpdateState();
                     return true;
                 case PointStateType.Interrupted:
                     isPressed = false;
@@ -809,12 +808,13 @@ namespace Tizen.NUI.Components
 
                         if (Style.IsSelectable != null && Style.IsSelectable == true)
                         {
-                            SelectionChangedByTouch = touch;
+                            Extension?.SetTouchInfo(touch);
                             IsSelected = !IsSelected;
                         }
                         else
                         {
-                            UpdateState(touch);
+                            Extension?.SetTouchInfo(touch);
+                            UpdateState();
                         }
 
                         if (clicked)
@@ -877,7 +877,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UpdateState(Touch touchInfo = null)
+        protected void UpdateState()
         {
             ControlStates sourceState = ControlState;
             ControlStates targetState;
@@ -910,8 +910,10 @@ namespace Tizen.NUI.Components
                 targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
             }
 
-            if (SetControlState(targetState, ControlStateChangedInfo.InputMethodType.Touch, touchInfo))
+            if (sourceState != targetState)
             {
+                ControlState = targetState;
+
                 OnUpdate();
 
                 StateChangedEventArgs e = new StateChangedEventArgs
@@ -921,7 +923,7 @@ namespace Tizen.NUI.Components
                 };
                 stateChangeHander?.Invoke(this, e);
 
-                Extension?.OnControlStateChanged(this, sourceState, touchInfo);
+                Extension?.OnControlStateChanged(this, new ControlStateChangedEventArgs(sourceState, targetState));
             }
         }
 
