@@ -78,7 +78,6 @@ Tizen.Multimedia.Vision.dll                        #common #mobile #mobile-emul 
 Tizen.Network.Bluetooth.dll                        #common #mobile #tv #wearable
 Tizen.Network.Connection.dll                       #common #mobile #mobile-emul #tv #wearable
 Tizen.Network.IoTConnectivity.dll                  #common #mobile #mobile-emul #tv #wearable
-Tizen.Network.Mtp.dll
 Tizen.Network.Nfc.dll                              #mobile #mobile-emul #wearable
 Tizen.Network.Nsd.dll                              #common #mobile #mobile-emul #tv #wearable
 Tizen.Network.Smartcard.dll                        #mobile #mobile-emul #wearable
@@ -107,7 +106,6 @@ Tizen.System.PowerUsage.dll                        #wearable
 Tizen.System.Storage.dll                           #common #mobile #mobile-emul #tv #wearable
 Tizen.System.SystemSettings.dll                    #common #mobile #mobile-emul #tv #wearable
 Tizen.System.Usb.dll                               #common #mobile #mobile-emul
-Tizen.Tapi.dll
 Tizen.Telephony.dll                                #mobile #mobile-emul #wearable
 Tizen.Tracer.dll                                   #common #mobile #mobile-emul #tv #wearable
 Tizen.Uix.InputMethod.dll                          #common #mobile #mobile-emul #tv #wearable
