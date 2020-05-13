@@ -50,8 +50,7 @@ namespace Tizen.Security
         /// Gets the display name of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege.</remarks>
-		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
+        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <returns>The display name of the given privilege at the given API version.</returns>
@@ -74,8 +73,7 @@ namespace Tizen.Security
         /// Gets the display name of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege.</remarks>
-		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
+        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <param name="packageType">The type of application package.</param>
