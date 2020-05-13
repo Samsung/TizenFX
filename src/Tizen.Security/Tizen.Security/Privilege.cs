@@ -99,8 +99,7 @@ namespace Tizen.Security
         /// Gets the description of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege.</remarks>
-		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
+        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <returns>The description of given privilege at the given API version</returns>
@@ -123,8 +122,7 @@ namespace Tizen.Security
         /// Gets the description of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege.</remarks>
-		/// <remarks>Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
+        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
         /// <param name="apiVersion">The API version.</param>
         /// <param name="privilege">The privilege.</param>
         /// <param name="packageType">The type of application package.</param>
@@ -177,7 +175,7 @@ namespace Tizen.Security
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>Status true if the privilege is on and false if the privilege is off.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
