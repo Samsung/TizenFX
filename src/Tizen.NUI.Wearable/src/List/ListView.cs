@@ -15,6 +15,7 @@ namespace Tizen.NUI.Wearable
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ListView : RecyclerList
     {
+        private ListItem FocusedItem = null;
         public ListView(ListAdapter adapter) : base(adapter, new FishEyeLayoutManager())
         {
             ScrollingDirection = ScrollableBase.Direction.Vertical;
@@ -45,21 +46,17 @@ namespace Tizen.NUI.Wearable
 
         protected override void OnPreReachedTargetPosition(float targetPosition)
         {
-            FishEyeLayoutManager layoutManager = mLayoutManager as FishEyeLayoutManager;
+            int targetDataIndex = (int)(Math.Abs(targetPosition) / mLayoutManager.StepSize);
 
-            if(layoutManager != null)
+            for(int i = 0 ; i<mContainer.Children.Count;i++)
             {
-                int targetDataIndex = (int)(Math.Abs(targetPosition) / mLayoutManager.StepSize);
+                ListItem item = mContainer.Children[i] as ListItem;
 
-                for(int i = 0 ; i<mContainer.Children.Count;i++)
+                if(targetDataIndex == item.DataIndex)
                 {
-                    ListItem item = mContainer.Children[i] as ListItem;
-
-                    if(targetDataIndex == item.DataIndex)
-                    {
-                        item.OnFocusGained();
-                        break;
-                    }
+                    FocusedItem = item;
+                    item.OnFocusGained();
+                    break;
                 }
             }
         }
@@ -68,14 +65,7 @@ namespace Tizen.NUI.Wearable
 
         private void OnScrollDragStart(object source, ScrollableBase.ScrollEventArgs args)
         {
-            dragStartPosition = args.Position.Y;
-            FishEyeLayoutManager layoutManager = mLayoutManager as FishEyeLayoutManager;
-
-            if(layoutManager != null)
-            {
-                ListItem focusedItem = mContainer.Children[layoutManager.FocusedIndex] as ListItem;
-                focusedItem.OnFocusLost();
-            }
+            FocusedItem?.OnFocusLost();
         }
     }
 }
