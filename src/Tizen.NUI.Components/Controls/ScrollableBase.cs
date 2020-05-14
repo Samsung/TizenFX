@@ -495,12 +495,29 @@ namespace Tizen.NUI.Components
             ScrollAnimationEndEvent?.Invoke(this, eventArgs);
         }
 
+        private bool readyToNotice = false;
+
+        protected float noticeAnimationEndBeforePosition = 0.0f;
+
         private void OnScroll()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollEvent?.Invoke(this, eventArgs);
 
+
+            if(readyToNotice && mScrollingChild.CurrentPosition.Y <= finalTargetPosition + noticeAnimationEndBeforePosition && mScrollingChild.CurrentPosition.Y >= finalTargetPosition - noticeAnimationEndBeforePosition)
+            {
+                //Notice first
+                readyToNotice = false;
+                OnPreReachedTargetPosition(finalTargetPosition);
+            }
+
             mPreviousScrollPosition = mScrollingChild.CurrentPosition;
+        }
+
+        protected virtual void OnPreReachedTargetPosition(float targetPosition)
+        {
+
         }
 
         private void StopScroll()
@@ -550,6 +567,8 @@ namespace Tizen.NUI.Components
             scrollAnimation.Play();
         }
 
+        protected float finalTargetPosition;
+
         private void ScrollBy(float displacement, bool animate)
         {
             if (GetChildCount() == 0 || maxScrollDistance < 0)
@@ -587,8 +606,11 @@ namespace Tizen.NUI.Components
                 float scrollDistance = Math.Abs(displacement);
                 int duration = (int)((320*FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
+                
+                finalTargetPosition = AdjustScrollToChild(childTargetPosition);
+                readyToNotice = true;
 
-                AnimateChildTo(duration, AdjustScrollToChild(childTargetPosition));
+                AnimateChildTo(duration, finalTargetPosition);
             }
             else
             {
@@ -601,6 +623,8 @@ namespace Tizen.NUI.Components
                 {
                     mScrollingChild.PositionY = childTargetPosition;
                 }
+
+                finalTargetPosition = childTargetPosition;
             }
         }
 
