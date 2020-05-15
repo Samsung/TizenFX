@@ -39,26 +39,36 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
+            // Create root view.
             root = new View()
             {
                 Size = new Size(1920, 1080),
-                BackgroundColor = Color.White,
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
 				Padding = new Extents(40, 40, 40, 40),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size(40, 40),
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                }
             };
-            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, CellPadding = new Size(40, 40) };
             window.Add(root);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
-            left = new View();
-            left.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
-            left.WidthSpecification = 920;
-            left.HeightSpecification = 800;
+            left = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical
+                }
+            };
 
+            //Create left description text.
             createText[0] = new TextLabel();
             createText[0].Text = "Create RadioButton just by properties";
             createText[0].TextColor = Color.White;
-            createText[0].WidthSpecification = 500;
-            createText[0].HeightSpecification = 100;
+            createText[0].Size = new Size(800, 100);
             left.Add(createText[0]);
 
             leftbody = new View();
@@ -69,13 +79,15 @@ namespace Tizen.NUI.Samples
                 group[i] = new RadioButtonGroup();
                 modeText[i] = new TextLabel();
                 modeText[i].Text = mode[i];
-                modeText[i].WidthSpecification = 200;
-                modeText[i].HeightSpecification = 48;
+                modeText[i].Size = new Size(200, 48);
+                modeText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText[i].VerticalAlignment = VerticalAlignment.Center;
                 leftbody.Add(modeText[i]);
             }
 
             for (int i = 0; i < num; i++)
             {
+                // create utility radio button.
                 utilityRadioButton[i] = new RadioButton();
                 var utilityStyle = utilityRadioButton[i].Style;
                 utilityStyle.Icon.Opacity = new Selector<float?>
@@ -94,12 +106,11 @@ namespace Tizen.NUI.Samples
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                 };
                 utilityRadioButton[i].ApplyStyle(utilityStyle);
-                utilityRadioButton[i].WidthSpecification = 48;
-                utilityRadioButton[i].HeightSpecification = 48;
+                utilityRadioButton[i].Size = new Size(48, 48);
                 utilityRadioButton[i].ButtonIcon.Size = new Size(48, 48);
                 group[0].Add(utilityRadioButton[i]);
 
-                ////////
+                // create family radio button.
                 familyRadioButton[i] = new RadioButton();
                 var familyStyle = familyRadioButton[i].Style;
                 familyStyle.Icon.Opacity = new Selector<float?>
@@ -118,13 +129,12 @@ namespace Tizen.NUI.Samples
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_24c447.png",
                 };
                 familyRadioButton[i].ApplyStyle(familyStyle);
-                familyRadioButton[i].WidthSpecification = 48;
-                familyRadioButton[i].HeightSpecification = 48;
+                familyRadioButton[i].Size = new Size(48, 48);
                 familyRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[1].Add(familyRadioButton[i]);
 
-                /////////
+                // create food radio button.
                 foodRadioButton[i] = new RadioButton();
                 var foodStyle = foodRadioButton[i].Style;
                 foodStyle.Icon.Opacity = new Selector<float?>
@@ -143,12 +153,12 @@ namespace Tizen.NUI.Samples
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_ec7510.png",
                 };
                 foodRadioButton[i].ApplyStyle(foodStyle);
-                foodRadioButton[i].WidthSpecification = 150;
-                foodRadioButton[i].HeightSpecification = 48;
+                foodRadioButton[i].Size = new Size(150, 48);
                 foodRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[2].Add(foodRadioButton[i]);
-                ////////
+
+                // create kitchen radio button.
                 kitchenRadioButton[i] = new RadioButton();
                 var kitchenStyle = kitchenRadioButton[i].Style;
                 kitchenStyle.Icon.Opacity = new Selector<float?>
@@ -167,8 +177,7 @@ namespace Tizen.NUI.Samples
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_9762d9.png",
                 };
                 kitchenRadioButton[i].ApplyStyle(kitchenStyle);
-                kitchenRadioButton[i].WidthSpecification = 48;
-                kitchenRadioButton[i].HeightSpecification = 48;
+                kitchenRadioButton[i].Size = new Size(48, 48);
                 kitchenRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[3].Add(kitchenRadioButton[i]);
@@ -178,21 +187,23 @@ namespace Tizen.NUI.Samples
                 leftbody.Add(foodRadioButton[i]);
                 leftbody.Add(kitchenRadioButton[i]);
             }
-            //foodRadioButton[0].LayoutDirection = ViewLayoutDirectionType.RTL;
 
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            right = new View();
-            right.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
-            right.WidthSpecification = 920;
-            right.HeightSpecification = 800;
+            right = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                }
+            };
 
             rightbody = new View();
             rightbody.Layout = new GridLayout() { Columns = 4 };
             createText[1] = new TextLabel();
-            createText[1].Text = "Create RadioButton just by Attributes";
+            createText[1].Text = "Create RadioButton just by styles";
             createText[1].TextColor = Color.White;
-            createText[1].WidthSpecification = 500;
-            createText[1].HeightSpecification = 100;
+            createText[1].Size = new Size(800, 100);
             right.Add(createText[1]);
 
             for (int i = 0; i < num; i++)
@@ -200,12 +211,14 @@ namespace Tizen.NUI.Samples
                 group2[i] = new RadioButtonGroup();
                 modeText2[i] = new TextLabel();
                 modeText2[i].Text = mode[i];
-                modeText2[i].WidthSpecification = 200;
-                modeText2[i].HeightSpecification = 48;
+                modeText2[i].Size = new Size(200, 48);
+                modeText2[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText2[i].VerticalAlignment = VerticalAlignment.Center;
                 rightbody.Add(modeText2[i]);
             }
 
-            ButtonStyle utilityAttrs = new ButtonStyle
+            //Create utility style of radio button.
+            ButtonStyle utilityStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -225,8 +238,9 @@ namespace Tizen.NUI.Samples
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                     },
                 },            
-            };         
-            ButtonStyle familyAttrs = new ButtonStyle
+            };
+            //Create family style of radio button.
+            ButtonStyle familyStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -247,7 +261,8 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            ButtonStyle foodAttrs = new ButtonStyle
+            //Create food style of radio button.
+            ButtonStyle foodStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -268,7 +283,8 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            ButtonStyle kitchenAttrs = new ButtonStyle
+            //Create kitchen style of radio button.
+            ButtonStyle kitchenStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -291,24 +307,20 @@ namespace Tizen.NUI.Samples
             };
             for (int i = 0; i < num; i++)
             {
-                utilityRadioButton2[i] = new RadioButton(utilityAttrs);
-                utilityRadioButton2[i].WidthSpecification = 48;
-                utilityRadioButton2[i].HeightSpecification = 48;
+                utilityRadioButton2[i] = new RadioButton(utilityStyle2);
+                utilityRadioButton2[i].Size = new Size(48, 48);
                 group2[0].Add(utilityRadioButton2[i]);
 
-                familyRadioButton2[i] = new RadioButton(familyAttrs);
-                familyRadioButton2[i].WidthSpecification = 48;
-                familyRadioButton2[i].HeightSpecification = 48;
+                familyRadioButton2[i] = new RadioButton(familyStyle2);
+                familyRadioButton2[i].Size = new Size(48, 48);
                 group2[1].Add(familyRadioButton2[i]);
 
-                foodRadioButton2[i] = new RadioButton(foodAttrs);
-                foodRadioButton2[i].WidthSpecification = 48;
-                foodRadioButton2[i].HeightSpecification = 48;
+                foodRadioButton2[i] = new RadioButton(foodStyle2);
+                foodRadioButton2[i].Size = new Size(48, 48);
                 group2[2].Add(foodRadioButton2[i]);
 
-                kitchenRadioButton2[i] = new RadioButton(kitchenAttrs);
-                kitchenRadioButton2[i].WidthSpecification = 48;
-                kitchenRadioButton2[i].HeightSpecification = 48;
+                kitchenRadioButton2[i] = new RadioButton(kitchenStyle2);
+                kitchenRadioButton2[i].Size = new Size(48, 48);
                 group2[3].Add(kitchenRadioButton2[i]);
 
                 rightbody.Add(utilityRadioButton2[i]);

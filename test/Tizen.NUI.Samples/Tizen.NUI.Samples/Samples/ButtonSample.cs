@@ -30,36 +30,52 @@ namespace Tizen.NUI.Samples
             Window window = NUIApplication.GetDefaultWindow();
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
+                Layout = new LinearLayout()
+                {
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size(50, 50),
+                }
             };
             window.Add(root);
             window.KeyEvent += Window_KeyEvent;
 
             parent1 = new View()
             {
-                Position = new Position(100, 100),
-                Size = new Size(300, 900)
+                Size = new Size(300, 900),
+                Layout = new LinearLayout()
+                {
+                    LinearAlignment = LinearLayout.Alignment.Top,
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size(50, 50),
+                }
             };
-            parent1.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(50, 50) };
 
             parent2 = new View()
             {
                 Size = new Size(300, 900),
-                Position = new Position(450, 100),
+                Layout = new LinearLayout()
+                {
+                    LinearAlignment = LinearLayout.Alignment.Top,
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size(50, 50),
+                }
             };
-            parent2.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(50, 50) };
 
+            // Only show a text button.
             textButton = new Button();
             var textStyle = textButton.Style;
             textStyle.BackgroundColor = new Selector<Color>();
             textButton.ApplyStyle(textStyle);
             textButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             textButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            textButton.WidthSpecification = 300;
-            textButton.HeightSpecification = 80;
+            textButton.Size = new Size(300, 80);
             textButton.ButtonText.Text = "Button";
             parent1.Add(textButton);
 
+            //Only show an icon button.
             iconButton = new Button();
             var iconStyle = iconButton.Style;
             iconStyle.Text.Text = "";
@@ -68,8 +84,7 @@ namespace Tizen.NUI.Samples
             iconButton.Name = "IconButton";
             iconButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             iconButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            iconButton.WidthSpecification = 80;
-            iconButton.HeightSpecification = 80;
+            iconButton.Size = new Size(80, 80);
             iconButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
             parent2.Add(iconButton);
             iconButton.ClickEvent += (ojb, e) => {
@@ -80,9 +95,15 @@ namespace Tizen.NUI.Samples
             parent3 = new View()
             {
                 Size = new Size(600, 400),
-                Position = new Position(900, 100),
+                Layout = new LinearLayout()
+                {
+                    LinearAlignment = LinearLayout.Alignment.Top,
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size(50, 50),
+                }
             };
-            parent3.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
+
+            //Show a button with icon and text.
             iconTextButton = new Button();
             var iconTextStyle = iconTextButton.Style;
             iconTextStyle.BackgroundColor = new Selector<Color>();
@@ -92,19 +113,13 @@ namespace Tizen.NUI.Samples
             iconTextButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
             iconTextButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
-            iconTextButton.IconPadding.Top = 20;
-            iconTextButton.IconPadding.Bottom = 20;
-            iconTextButton.IconPadding.Start = 20;
-            iconTextButton.IconPadding.End = 20;
-            iconTextButton.TextPadding.Top = 20;
-            iconTextButton.TextPadding.Bottom = 20;
-            iconTextButton.TextPadding.Start = 20;
-            iconTextButton.TextPadding.End = 50;
-            iconTextButton.WidthSpecification = 500;
-            iconTextButton.HeightSpecification = 300;
+            iconTextButton.IconPadding = new Extents(20, 20, 20, 20);
+            iconTextButton.TextPadding = new Extents(20, 50, 20, 20);
+            iconTextButton.Size = new Size(500, 300);
             parent3.Add(iconTextButton);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
+            //Create utility basic style of button.
             var utilityBasicButtonStyle = new ButtonStyle()
             {
                 Overlay = new ImageViewStyle()
@@ -139,12 +154,11 @@ namespace Tizen.NUI.Samples
                 Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityBasicButton.WidthSpecification = 300;
-            utilityBasicButton.HeightSpecification = 80;
+            utilityBasicButton.Size = new Size(300, 80);
             utilityBasicButton.IsEnabled = false;
             parent1.Add(utilityBasicButton);
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create utility service style of button.
             var utilityServiceButtonStyle = new ButtonStyle()
             {
                 Overlay = new ImageViewStyle()
@@ -178,11 +192,10 @@ namespace Tizen.NUI.Samples
                 Border = new Rectangle(5, 5, 5, 5)
             };
 
-            utilityServiceButton.WidthSpecification = 300;
-            utilityServiceButton.HeightSpecification = 80;
+            utilityServiceButton.Size = new Size(300, 80);
             parent1.Add(utilityServiceButton);
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create utility toggle style of button.
             var utilityToggleButtonStyle = new ButtonStyle()
             {
                 BackgroundImage = new Selector<string>
@@ -225,11 +238,10 @@ namespace Tizen.NUI.Samples
             };
             utilityToggleButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
 
-            utilityToggleButton.WidthSpecification = 300;
-            utilityToggleButton.HeightSpecification = 80;
+            utilityToggleButton.Size = new Size(300, 80);
             parent1.Add(utilityToggleButton);
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create utility oval style of button.
             var utilityOvalButtonStyle = new ButtonStyle()
             {
                 BackgroundImage = new Selector<string>
@@ -262,12 +274,12 @@ namespace Tizen.NUI.Samples
             };
             utilityOvalButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
 
-            utilityOvalButton.WidthSpecification = 104;
-            utilityOvalButton.HeightSpecification = 104;
+            utilityOvalButton.Size = new Size(104, 104);
             utilityOvalButton.ButtonText.PointSize = 20;
             parent1.Add(utilityOvalButton);
 
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
+            //Create family basic style of Button.
             ButtonStyle familyBasicButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
@@ -304,11 +316,10 @@ namespace Tizen.NUI.Samples
                 }
             };
             familyBasicButton = new Button(familyBasicButtonStyle);
-            familyBasicButton.WidthSpecification = 300;
-            familyBasicButton.HeightSpecification = 80;
+            familyBasicButton.Size = new Size(300, 80);
             parent2.Add(familyBasicButton);
 
-            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create family service style of button.
             ButtonStyle familyServiceButtonStyle = new ButtonStyle
             {
                 IsSelectable = false,
@@ -345,11 +356,10 @@ namespace Tizen.NUI.Samples
                 }
             };
             familyServiceButton = new Button(familyServiceButtonStyle);
-            familyServiceButton.WidthSpecification = 300;
-            familyServiceButton.HeightSpecification = 80;
+            familyServiceButton.Size = new Size(300, 80);
             parent2.Add(familyServiceButton);
 
-            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create family toggle style of button.
             ButtonStyle familyToggleButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
@@ -393,11 +403,10 @@ namespace Tizen.NUI.Samples
                 }
             };
             familyToggleButton = new Button(familyToggleButtonStyle);
-            familyToggleButton.WidthSpecification = 300;
-            familyToggleButton.HeightSpecification = 80;
+            familyToggleButton.Size = new Size(300, 80);
             parent2.Add(familyToggleButton);
 
-            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //Create family oval style of button.
             ButtonStyle familyOvalButtonStyle = new ButtonStyle
             {
                 IsSelectable = true,
@@ -421,10 +430,10 @@ namespace Tizen.NUI.Samples
                 },
             };
             familyOvalButton = new Button(familyOvalButtonStyle);
-            familyOvalButton.WidthSpecification = 104;
-            familyOvalButton.HeightSpecification = 104;
+            familyOvalButton.Size = new Size(104, 104);
             parent2.Add(familyOvalButton);
 
+            // Add three layout into root
             root.Add(parent1);
             root.Add(parent2);
             root.Add(parent3);
@@ -449,10 +458,10 @@ namespace Tizen.NUI.Samples
                         iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
                         break;
                     case "5":
-                        iconTextButton.Style.Icon.Padding.Start = 50;
+                        iconTextButton.ButtonIcon.Padding.Start = 50;
                         break;
                     case "6":
-                        iconTextButton.Style.Icon.Padding.End = 50;
+                        iconTextButton.ButtonIcon.Padding.End = 50;
                         break;
                     case "7":
                         iconTextButton.LayoutDirection = ViewLayoutDirectionType.RTL;

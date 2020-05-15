@@ -35,10 +35,17 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
+            //Create root view with linear layout.
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
-                BackgroundColor = Color.White,
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size(50, 50),
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                }
             };
             window.Add(root);
 
@@ -46,17 +53,23 @@ namespace Tizen.NUI.Samples
             parent1 = new View()
             {
                 Size = new Size(900, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size(50, 50),
+                    LinearAlignment = LinearLayout.Alignment.Top,
+                }
             };
 
             root.Add(parent1);
+            // Create a description text.
             createText[0] = new TextLabel();
             createText[0].Text = "Create DropDown just by properties";
-            createText[0].WidthSpecification = 450;
-            createText[0].HeightSpecification = 100;
-            createText[0].Position = new Position(50, 100);
+            createText[0].Size = new Size(800, 100);
             createText[0].MultiLine = true;
             parent1.Add(createText[0]);
 
+            //Create a dropdown by property.
             #region CreateByProperty
             dropDown = new DropDown();
             var style = dropDown.Style;
@@ -66,13 +79,12 @@ namespace Tizen.NUI.Samples
             style.Button.Text.FontFamily = "SamsungOneUI 500";
             style.Button.Text.TextColor = new Color(0, 0, 0, 1);
             dropDown.ApplyStyle(style);
-            dropDown.WidthSpecification = 900;
-            dropDown.HeightSpecification = 108;
-            dropDown.Position = new Position(50, 300);
+            dropDown.Size = new Size(900, 108);
             dropDown.HeaderText.Text = "TitleArea";
             dropDown.HeaderText.TextColor = new Color(0, 0, 0, 1);
             dropDown.HeaderText.PointSize = 28;
             dropDown.HeaderText.FontFamily = "SamsungOneUI 500C";
+            dropDown.HeaderText.PositionX = 50;
             dropDown.Button.ButtonText.Text = "DropDown Text";
             dropDown.Button.ButtonIcon.Size = new Size(48, 48);
             dropDown.Button.IconRelativeOrientation = Button.IconOrientation.Right;
@@ -108,6 +120,7 @@ namespace Tizen.NUI.Samples
             }
 
             dropDown.SelectedItemIndex = 3;
+
             ////////Attach scrollbar///////////
             scrollBar = new ScrollBar();
             scrollBar.Direction = ScrollBar.DirectionType.Vertical;
@@ -123,18 +136,24 @@ namespace Tizen.NUI.Samples
             parent2 = new View()
             {
                 Size = new Size(900, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size(50, 50),
+                    LinearAlignment = LinearLayout.Alignment.Top,
+                }
             };
             root.Add(parent2);
 
+            // Create a description text.
             createText[1] = new TextLabel();
             createText[1].Text = "Create DropDown just by Attributes";
-            createText[1].WidthSpecification = 450;
-            createText[1].HeightSpecification = 100;
-            createText[1].Position = new Position(1000, 100);
+            createText[1].Size = new Size(800, 100);
             createText[1].MultiLine = true;
             parent2.Add(createText[1]);
 
-            #region CreateByAttributes
+            //Create a dropdown by style.
+            #region CreateByStyle
 
             DropDownStyle dropDownStyle = new DropDownStyle
             {
@@ -144,6 +163,7 @@ namespace Tizen.NUI.Samples
                     PointSize = new Selector<float?> { All = 28 },
                     TextColor = new Selector<Color> { All = new Color(0, 0, 0, 1) },
                     FontFamily = "SamsungOneUI 500C",
+                    PositionX = 50,
                 },
 
                 Button = new ButtonStyle
@@ -162,6 +182,7 @@ namespace Tizen.NUI.Samples
                     },
                     IconRelativeOrientation = Button.IconOrientation.Right,
                     PositionX = 56,
+                    BackgroundImage = "",
                 },
                 ListBackgroundImage = new ImageViewStyle
                 {
@@ -176,9 +197,7 @@ namespace Tizen.NUI.Samples
             };
 
             dropDown2 = new DropDown(dropDownStyle);
-            dropDown2.WidthSpecification = 900;
-            dropDown2.HeightSpecification = 108;
-            dropDown2.Position = new Position(1000, 300);
+            dropDown2.Size = new Size(900, 108);
             parent2.Add(dropDown2);
 
             DropDownItemStyle itemStyle = new DropDownItemStyle
@@ -214,8 +233,7 @@ namespace Tizen.NUI.Samples
             ////////Attach scrollbar///////////
             scrollBar2 = new ScrollBar();
             scrollBar2.Direction = ScrollBar.DirectionType.Vertical;
-            scrollBar2.WidthSpecification = 4;
-            scrollBar2.HeightSpecification = 446;
+            scrollBar2.Size = new Size(4, 446);
             scrollBar2.TrackImage.BackgroundColor = Color.Green;
             scrollBar2.ThumbImage.Size = new Size(4, 30);
             scrollBar2.ThumbImage.BackgroundColor = Color.Yellow;
@@ -223,6 +241,7 @@ namespace Tizen.NUI.Samples
             dropDown2.AttachScrollBar(scrollBar2);
 
             #endregion
+            //Add all views into root view.
             root.Add(parent1);
             root.Add(parent2);
         }

@@ -43,21 +43,30 @@ namespace Tizen.NUI.Samples
                 Size = new Size(1920, 1080),
                 BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
                 Padding = new Extents(40, 40, 40, 40),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size(40, 40),
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                }
             };
-            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, CellPadding = new Size(40, 40) };
             window.Add(root);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
-            left = new View();
-            left.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
-            left.WidthSpecification = 920;
-            left.HeightSpecification = 800;
+            left = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                },
+            };
 
+            //Create description text.
             createText[0] = new TextLabel();
             createText[0].Text = "Create CheckBox just by properties";
             createText[0].TextColor = Color.White;
-            createText[0].WidthSpecification =500;
-            createText[0].HeightSpecification =100;
+            createText[0].Size = new Size(800, 100);
             left.Add(createText[0]);
 
             leftbody = new View();
@@ -68,13 +77,15 @@ namespace Tizen.NUI.Samples
                 group[i] = new CheckBoxGroup();
                 modeText[i] = new TextLabel();
                 modeText[i].Text = mode[i];
-                modeText[i].WidthSpecification = 200;
-                modeText[i].HeightSpecification = 48;
+                modeText[i].Size = new Size(200, 48);
+                modeText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText[i].VerticalAlignment = VerticalAlignment.Center;
                 leftbody.Add(modeText[i]);
             }
 
             for (int i = 0; i < num; i++)
             {
+                //Create utility radio button.
                 utilityCheckBox[i] = new CheckBox();
                 var utilityStyle = utilityCheckBox[i].Style;
                 utilityStyle.Icon.Opacity = new Selector<float?>
@@ -107,13 +118,12 @@ namespace Tizen.NUI.Samples
                 };
                 utilityCheckBox[i].ApplyStyle(utilityStyle);
 
-                utilityCheckBox[i].WidthSpecification = 48;
-                utilityCheckBox[i].HeightSpecification = 48;
+                utilityCheckBox[i].Size = new Size(48, 48);
                 utilityCheckBox[i].Margin = new Extents(76, 76, 25, 25);
                 utilityCheckBox[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[0].Add(utilityCheckBox[i]);
-                //////
+                //Create family radio button.
                 familyCheckBox[i] = new CheckBox();
                 var familyStyle = familyCheckBox[i].Style;
                 familyStyle.Icon.Opacity = new Selector<float?>
@@ -133,12 +143,11 @@ namespace Tizen.NUI.Samples
                 };
                 familyCheckBox[i].ApplyStyle(familyStyle);
 
-                familyCheckBox[i].WidthSpecification = 48;
-                familyCheckBox[i].HeightSpecification = 48;
+                familyCheckBox[i].Size = new Size(48, 48);
                 familyCheckBox[i].Margin = new Extents(76, 76, 25, 25);
                 familyCheckBox[i].ButtonIcon.Size = new Size(48, 48);
                 group[1].Add(familyCheckBox[i]);
-                /////////
+                //Create food radio button.
                 foodCheckBox[i] = new CheckBox();
                 var foodStyle = foodCheckBox[i].Style;
                 foodStyle.Icon.Opacity = new Selector<float?>
@@ -157,13 +166,12 @@ namespace Tizen.NUI.Samples
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_check_on_ec7510.png",
                 };
                 foodCheckBox[i].ApplyStyle(foodStyle);
-                foodCheckBox[i].WidthSpecification = 48;
-                foodCheckBox[i].HeightSpecification = 48;
+                foodCheckBox[i].Size = new Size(48, 48);
                 familyCheckBox[i].Margin = new Extents(76, 76, 25, 25);
                 foodCheckBox[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[2].Add(foodCheckBox[i]);
-                ////////
+                //Create kitchen radio button.
                 kitchenCheckBox[i] = new CheckBox();
                 var kitchenStyle = kitchenCheckBox[i].Style;
                 kitchenStyle.Icon.Opacity = new Selector<float?>
@@ -195,18 +203,23 @@ namespace Tizen.NUI.Samples
                 leftbody.Add(kitchenCheckBox[i]);
             }
             /////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            right = new View();
-            right.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
-            right.WidthSpecification = 920;
-            right.HeightSpecification = 800;
+            right = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                }
+            };
 
             rightbody = new View();
             rightbody.Layout = new GridLayout() { Columns = 4 };
+
+            //Create description text.
             createText[1] = new TextLabel();
-            createText[1].Text = "Create CheckBox just by Attributes";
+            createText[1].Text = "Create CheckBox just by styles";
             createText[1].TextColor = Color.White;
-            createText[1].WidthSpecification = 500;
-            createText[1].HeightSpecification = 100;
+            createText[1].Size = new Size(800, 100);
             right.Add(createText[1]);
 
             for (int i = 0; i < num; i++)
@@ -214,12 +227,13 @@ namespace Tizen.NUI.Samples
                 group2[i] = new CheckBoxGroup();
                 modeText2[i] = new TextLabel();
                 modeText2[i].Text = mode[i];
-                modeText2[i].WidthSpecification = 200;
-                modeText2[i].HeightSpecification = 48;
+                modeText2[i].Size = new Size(200, 48);
+                modeText2[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText2[i].VerticalAlignment = VerticalAlignment.Center;
                 rightbody.Add(modeText2[i]);
             }
-
-            ButtonStyle utilityAttrs = new ButtonStyle
+            //Create utility style of radio button.
+            ButtonStyle utilityStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -254,7 +268,8 @@ namespace Tizen.NUI.Samples
                     },
                 }
             };
-            ButtonStyle familyAttrs = new ButtonStyle
+            //Create family style of radio button.
+            ButtonStyle familyStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -275,7 +290,8 @@ namespace Tizen.NUI.Samples
                     },
                 }
             };
-            ButtonStyle foodAttrs = new ButtonStyle
+            //Create food style of radio button.
+            ButtonStyle foodStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -297,7 +313,8 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            ButtonStyle kitchenAttrs = new ButtonStyle
+            //Create kitchen style of radio button.
+            ButtonStyle kitchenStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -321,27 +338,23 @@ namespace Tizen.NUI.Samples
             };
             for (int i = 0; i < num; i++)
             {
-                utilityCheckBox2[i] = new CheckBox(utilityAttrs);
-                utilityCheckBox2[i].WidthSpecification = 48;
-                utilityCheckBox2[i].HeightSpecification = 48;
+                utilityCheckBox2[i] = new CheckBox(utilityStyle2);
+                utilityCheckBox2[i].Size = new Size(48, 48);
                 utilityCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[0].Add(utilityCheckBox2[i]);
 
-                familyCheckBox2[i] = new CheckBox(familyAttrs);
-                familyCheckBox2[i].WidthSpecification = 48;
-                familyCheckBox2[i].HeightSpecification = 48;
+                familyCheckBox2[i] = new CheckBox(familyStyle2);
+                familyCheckBox2[i].Size = new Size(48, 48);
                 familyCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[1].Add(familyCheckBox2[i]);
 
-                foodCheckBox2[i] = new CheckBox(foodAttrs);
-                foodCheckBox2[i].WidthSpecification = 48;
-                foodCheckBox2[i].HeightSpecification = 48;
+                foodCheckBox2[i] = new CheckBox(foodStyle2);
+                foodCheckBox2[i].Size = new Size(48, 48);
                 foodCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[2].Add(foodCheckBox2[i]);
 
-                kitchenCheckBox2[i] = new CheckBox(kitchenAttrs);
-                kitchenCheckBox2[i].WidthSpecification = 48;
-                kitchenCheckBox2[i].HeightSpecification = 48;
+                kitchenCheckBox2[i] = new CheckBox(kitchenStyle2);
+                kitchenCheckBox2[i].Size = new Size(48, 48);
                 kitchenCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[3].Add(kitchenCheckBox2[i]);
 

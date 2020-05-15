@@ -7,7 +7,7 @@ namespace Tizen.NUI.Samples
     public class SwitchSample : IExample
     {
         private View root;
-
+        private View[] parentView = new View[3];
         private TextLabel[] createText = new TextLabel[2];
         private TextLabel[] modeText = new TextLabel[4];
         private TextLabel[] modeText2 = new TextLabel[4];
@@ -29,33 +29,6 @@ namespace Tizen.NUI.Samples
             "Kitchen",
         };
 
-        private View parentTextView;
-        private View[] parentView = new View[4];
-        private void InitParentView()
-        {
-            parentTextView = new View();
-            parentTextView.Position = new Position(310, 200);
-            parentTextView.Size = new Size(1800, 60);
-            parentTextView.Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-            };
-            root.Add(parentTextView);
-
-            for (int i = 0; i < 4; i++)
-            {
-                parentView[i] = new View();
-                parentView[i].Position = new Position(300, 300 + 100 * i);
-                parentView[i].Size = new Size(1800, 60);
-                parentView[i].Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    CellPadding = new Size2D(104, 60)
-                };
-                root.Add(parentView[i]);
-            }
-        }
-
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
@@ -65,10 +38,80 @@ namespace Tizen.NUI.Samples
                 Size = new Size(1920, 1080),
                 BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             window.Add(root);
-            InitParentView();
 
-            SwitchStyle utilityAttrs = new SwitchStyle
+            CreateTextView();
+            CreateModeView();
+            CreateSwitchView();
+        }
+
+        private void CreateTextView()
+        {
+            // Init parent of TextView
+            parentView[0] = new View();
+            parentView[0].Size = new Size(1920, 200);
+            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(180, 0) };
+            root.Add(parentView[0]);
+
+            for (int i = 0; i < 2; i++)
+            {
+                createText[i] = new TextLabel();
+                createText[i].Size = new Size(600, 100);
+                createText[i].PointSize = 20.0f;
+                createText[i].BackgroundColor = Color.Magenta;
+                createText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                createText[i].VerticalAlignment = VerticalAlignment.Center;
+                parentView[0].Add(createText[i]);
+            }
+
+            // Text of "Create Switch just by properties"
+            createText[0].Text = "Create Switch just by Properties";
+            createText[0].Margin = new Extents(160, 0, 0, 0);
+
+            // Text of "Create Switch just by Style"
+            createText[1].Text = "Create Switch just by Style";
+        }
+
+        private void CreateModeView()
+        {
+            // Init parent of ModeView
+            parentView[1] = new View();
+            parentView[1].Size = new Size(1920, 100);
+            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, CellPadding = new Size2D(0, 0) };
+            root.Add(parentView[1]);
+
+            // Create mode text
+            for (int i = 0; i < 4; i++)
+            {
+                modeText[i] = new TextLabel();
+                modeText[i].Text = mode[i];
+                modeText[i].Size = new Size(196, 48);
+                modeText[i].PointSize = 20.0f;
+                parentView[1].Add(modeText[i]);
+            }
+            modeText[0].Margin = new Extents(100, 0, 0, 0);
+
+            for (int j = 0; j < 4; j++)
+            {
+                modeText2[j] = new TextLabel();
+                modeText2[j].Text = mode[j];
+                modeText2[j].Size = new Size(196, 48);
+                modeText2[j].PointSize = 20.0f;
+                parentView[1].Add(modeText2[j]);
+            }
+        }
+
+        private void CreateSwitchView()
+        {
+            // Init parent of SwitchView
+            parentView[2] = new View();
+            parentView[2].Size = new Size(1920, 680);
+            parentView[2].Layout = new GridLayout() { Columns = 8, Rows = 4, GridOrientation = GridLayout.Orientation.Horizontal };
+            root.Add(parentView[2]);
+
+            // Create switch styles
+            SwitchStyle utilitySt = new SwitchStyle
             {
                 Size = new Size(96, 60),
                 IsSelectable = true,
@@ -95,7 +138,7 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            SwitchStyle familyAttrs = new SwitchStyle
+            SwitchStyle familySt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -121,7 +164,7 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            SwitchStyle foodAttrs = new SwitchStyle
+            SwitchStyle foodSt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -147,7 +190,7 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            SwitchStyle kitchenAttrs = new SwitchStyle
+            SwitchStyle kitchenSt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -175,82 +218,65 @@ namespace Tizen.NUI.Samples
             };
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
-            createText[0] = new TextLabel();
-            createText[0].Text = "Create Switch just by properties";
-            createText[0].Size = new Size(500, 100);
-            createText[0].Position = new Position(400, 100);
-            root.Add(createText[0]);
-
-            int num = 4;
-            for (int i = 0; i < num; i++)
-            {
-                modeText[i] = new TextLabel();
-                modeText[i].Text = mode[i];
-                modeText[i].Size = new Size(200, 48);
-                modeText[i].PointSize = 20.0f;
-                parentTextView.Add(modeText[i]);
-            }
-            for (int i = 0; i < num; i++)
+            int i = 0;
+            for (; i < 4; i++)
             {
                 utilitySwitch[i] = new Switch();
-                utilitySwitch[i].ApplyStyle(utilityAttrs);
+                utilitySwitch[i].ApplyStyle(utilitySt);
                 utilitySwitch[i].Size = new Size(96, 60);
-
-                ////////
+                utilitySwitch[i].Margin = new Extents(100, 0, 20, 0);
+                parentView[2].Add(utilitySwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
                 familySwitch[i] = new Switch();
-                familySwitch[i].ApplyStyle(familyAttrs);
+                familySwitch[i].ApplyStyle(familySt);
                 familySwitch[i].Size = new Size(96, 60);
-
-                ///////////
+                parentView[2].Add(familySwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
                 foodSwitch[i] = new Switch();
-                foodSwitch[i].ApplyStyle(foodAttrs);
+                foodSwitch[i].ApplyStyle(foodSt);
                 foodSwitch[i].Size = new Size(96, 60);
-
-                //////////
+                parentView[2].Add(foodSwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
                 kitchenSwitch[i] = new Switch();
-                kitchenSwitch[i].ApplyStyle(kitchenAttrs);
+                kitchenSwitch[i].ApplyStyle(kitchenSt);
                 kitchenSwitch[i].Size = new Size(96, 60);
-
-                parentView[i].Add(utilitySwitch[i]);
-                parentView[i].Add(familySwitch[i]);
-                parentView[i].Add(foodSwitch[i]);
-                parentView[i].Add(kitchenSwitch[i]);
+                parentView[2].Add(kitchenSwitch[i]);
             }
 
-            ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            createText[1] = new TextLabel();
-            createText[1].Text = "Create Switch just by Attributes";
-            createText[1].Size = new Size(500, 100);
-            createText[1].Position = new Position(1200, 100);
-            root.Add(createText[1]);
-
-            for (int i = 0; i < num; i++)
+            ///////////////////////////////////////////////Create by Style//////////////////////////////////////////////////////////
+            for (i = 0; i < 4; i++)
             {
-                modeText2[i] = new TextLabel();
-                modeText2[i].Text = mode[i];
-                modeText2[i].Size = new Size(200, 48);
-                modeText2[i].PointSize = 20.0f;
-                parentTextView.Add(modeText2[i]);
-            }
-
-            for (int i = 0; i < num; i++)
-            {
-                utilitySwitch2[i] = new Switch(utilityAttrs);
+                utilitySwitch2[i] = new Switch();
+                utilitySwitch2[i].ApplyStyle(utilitySt);
                 utilitySwitch2[i].Size = new Size(96, 60);
-
-                familySwitch2[i] = new Switch(familyAttrs);
+                parentView[2].Add(utilitySwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                familySwitch2[i] = new Switch();
+                familySwitch2[i].ApplyStyle(familySt);
                 familySwitch2[i].Size = new Size(96, 60);
-
-                foodSwitch2[i] = new Switch(foodAttrs);
+                parentView[2].Add(familySwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                foodSwitch2[i] = new Switch();
+                foodSwitch2[i].ApplyStyle(foodSt);
                 foodSwitch2[i].Size = new Size(96, 60);
-
-                kitchenSwitch2[i] = new Switch(kitchenAttrs);
+                parentView[2].Add(foodSwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                kitchenSwitch2[i] = new Switch();
+                kitchenSwitch2[i].ApplyStyle(kitchenSt);
                 kitchenSwitch2[i].Size = new Size(96, 60);
-
-                parentView[i].Add(utilitySwitch2[i]);
-                parentView[i].Add(familySwitch2[i]);
-                parentView[i].Add(foodSwitch2[i]);
-                parentView[i].Add(kitchenSwitch2[i]);
+                parentView[2].Add(kitchenSwitch2[i]);
             }
 
             utilitySwitch[2].IsEnabled = false;
@@ -289,56 +315,53 @@ namespace Tizen.NUI.Samples
                 int num = 4;
                 for (int i = 0; i < num; i++)
                 {
-                    root.Remove(utilitySwitch[i]);
                     utilitySwitch[i].Dispose();
                     utilitySwitch[i] = null;
 
-                    root.Remove(familySwitch[i]);
                     familySwitch[i].Dispose();
                     familySwitch[i] = null;
 
-                    root.Remove(foodSwitch[i]);
                     foodSwitch[i].Dispose();
                     foodSwitch[i] = null;
 
-                    root.Remove(kitchenSwitch[i]);
                     kitchenSwitch[i].Dispose();
                     kitchenSwitch[i] = null;
 
-                    root.Remove(modeText[i]);
                     modeText[i].Dispose();
                     modeText[i] = null;
 
-                    root.Remove(utilitySwitch2[i]);
                     utilitySwitch2[i].Dispose();
                     utilitySwitch2[i] = null;
 
-                    root.Remove(familySwitch2[i]);
                     familySwitch2[i].Dispose();
                     familySwitch2[i] = null;
 
-                    root.Remove(foodSwitch2[i]);
                     foodSwitch2[i].Dispose();
                     foodSwitch2[i] = null;
 
-                    root.Remove(kitchenSwitch2[i]);
                     kitchenSwitch2[i].Dispose();
                     kitchenSwitch2[i] = null;
 
-                    root.Remove(modeText2[i]);
                     modeText2[i].Dispose();
                     modeText2[i] = null;
                 }
 
-                root.Remove(createText[0]);
                 createText[0].Dispose();
                 createText[0] = null;
-                root.Remove(createText[1]);
                 createText[1].Dispose();
                 createText[1] = null;
 
+                for (int j = 0; j < 3; j++)
+                {
+                    if (parentView[j] != null)
+                    {
+                        parentView[j].Dispose();
+                        parentView[j] = null;
+                    }
+                }
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
+                root = null;
             }
         }
     }

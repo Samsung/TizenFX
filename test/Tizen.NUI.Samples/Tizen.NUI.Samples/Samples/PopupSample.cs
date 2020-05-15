@@ -41,7 +41,7 @@ namespace Tizen.NUI.Samples
             root = new View()
             {
                 Size = new Size(1920, 1080),
-                BackgroundColor = Color.White,
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
             window.Add(root);
 
@@ -66,6 +66,7 @@ namespace Tizen.NUI.Samples
                 LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
                 CellPadding = new Size(400, 400)
             };
+            
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             createText[0] = new TextLabel();
             createText[0].Text = "Create Popup just by properties";
@@ -110,9 +111,8 @@ namespace Tizen.NUI.Samples
             popup.ButtonBackgroundBorder = new Rectangle(5, 5, 5, 5);
             popup.ButtonOverLayBackgroundColorSelector = new Selector<Color>
             {
-                Normal = new Color(1.0f, 1.0f, 1.0f, 1.0f),
-                Pressed = new Color(0.0f, 0.0f, 0.0f, 0.1f),
-                Selected = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
+                Pressed = new Color(0.0f, 0.0f, 0.0f, 0.5f)
             };
             popup.ButtonImageShadow = new ImageShadow
             {
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Samples
             popup.Post(window);
 
             contentText = new TextLabel();
-            contentText.Size = new Size(904, 100);
+            contentText.Size = new Size(1032, 100);
             contentText.PointSize = 20;
             contentText.HorizontalAlignment = HorizontalAlignment.Begin;
             contentText.VerticalAlignment = VerticalAlignment.Center;
@@ -187,9 +187,8 @@ namespace Tizen.NUI.Samples
                         HeightResizePolicy = ResizePolicyType.FillToParent,
                         BackgroundColor = new Selector<Color>
                         {
-                            Normal = new Color(1.0f, 1.0f, 1.0f, 1.0f),
-                            Pressed = new Color(0.0f, 0.0f, 0.0f, 0.1f),
-                            Selected = new Color(1.0f, 1.0f, 1.0f, 1.0f),
+                            Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
+                            Pressed = new Color(0.0f, 0.0f, 0.0f, 0.5f),
                         }
                     },
                     Text = new TextLabelStyle
@@ -215,7 +214,7 @@ namespace Tizen.NUI.Samples
             popup2.Post(window);
 
             contentText2 = new TextLabel();
-            contentText2.Size = new Size(904, 100);
+            contentText2.Size = new Size(1032, 100);
             contentText2.PointSize = 20;
             contentText2.HorizontalAlignment = HorizontalAlignment.Begin;
             contentText2.VerticalAlignment = VerticalAlignment.Center;

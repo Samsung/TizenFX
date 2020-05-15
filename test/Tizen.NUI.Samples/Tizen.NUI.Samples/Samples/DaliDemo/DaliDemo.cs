@@ -92,6 +92,7 @@ namespace Tizen.NUI.Samples
         protected override void OnCreate()
         {
             base.OnCreate();
+            StyleManager.Get().ApplyTheme(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "style/demo-theme.json");
             CreateDaliDemo();
 
             NUIApplication.GetDefaultWindow().KeyEvent += Instance_KeyEvent;

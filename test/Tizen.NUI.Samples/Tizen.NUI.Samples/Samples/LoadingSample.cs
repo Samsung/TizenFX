@@ -6,11 +6,12 @@ namespace Tizen.NUI.Samples
 {
     public class LoadingSample : IExample
     {
-        private TextLabel propBoard, propLogBoard, attrBoard;
-        private Button propFpsAddBtn, propFpsMinusBtn, attrBtn;
-        private Loading propLoading, attrLoading;
+        private TextLabel[] textLabel = new TextLabel[3];
+        private Button[] button = new Button[3];
+        private Loading[] loading = new Loading[2];
         private View root;
-        private View parent, propParent, propBtnParent, attrParent;
+        private View gridLayout;
+        private View[] layout = new View[4];
         private string[] imageArray;
 
         public void Activate()
@@ -20,47 +21,24 @@ namespace Tizen.NUI.Samples
             root = new View()
             {
                 Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f)
             };
             window.Add(root);
 
-            parent = new View()
+            gridLayout = new View()
             {
-                Position = new Position(100, 200),
-                Size = new Size(1000, 780)
+                Position = new Position(400, 200),
+                Size = new Size(1920, 1080)
             };
-            parent.Layout = new LinearLayout()
+            gridLayout.Layout = new GridLayout()
             {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
-                CellPadding = new Size(20, 0)
+                Columns = 2,
+                Rows = 4,
+                GridOrientation = GridLayout.Orientation.Horizontal,
+                
             };
-
-            propParent = new View()
-            {
-                Position = new Position(100, 200),
-                Size = new Size(500, 780)
-            };
-            propParent.Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
-                CellPadding = new Size(20, 100)
-            };
-
-            attrParent = new View()
-            {
-                Position = new Position(600, 200),
-                Size = new Size(500, 780)
-            };
-            attrParent.Layout = new LinearLayout() {
-                LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
-                CellPadding = new Size(20, 100)
-            };
-
-            root.Add(parent);
-            parent.Add(propParent);
-            parent.Add(attrParent);
+            //parent.Layout.Measure(new MeasureSpecification(new LayoutLength(1000), MeasureSpecification.ModeType.Exactly), new MeasureSpecification(new LayoutLength(780), MeasureSpecification.ModeType.Exactly));
+            root.Add(gridLayout);
 
             imageArray = new string[36];
             for (int i = 0; i < 36; i++)
@@ -81,121 +59,135 @@ namespace Tizen.NUI.Samples
 
         void CreatePropLayout()
         {
-            propBoard = new TextLabel();
-            propBoard.WidthSpecification = 380;
-            propBoard.HeightSpecification = 70;
-            propBoard.PointSize = 20;
-            propBoard.HorizontalAlignment = HorizontalAlignment.Center;
-            propBoard.VerticalAlignment = VerticalAlignment.Center;
-            propBoard.BackgroundColor = Color.Magenta;
-            propBoard.Text = "Property construction";
-            propParent.Add(propBoard);
+            textLabel[0] = new TextLabel();
+            textLabel[0].WidthSpecification = 500;
+            textLabel[0].HeightSpecification = 100;
+            //To set spacing between grid cells.
+            textLabel[0].Margin = new Extents(0, 20, 0, 100);
+            textLabel[0].PointSize = 20;
+            textLabel[0].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[0].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[0].BackgroundColor = Color.Magenta;
+            textLabel[0].Text = "Property construction";
+            gridLayout.Add(textLabel[0]);
 
-            propLoading = new Loading();
-            propLoading.WidthSpecification = 100;
-            propLoading.HeightSpecification = 100;
-            propLoading.Images = imageArray;
-            propParent.Add(propLoading);
+            // layout for loading which is created by properties.
+            // It'll update the visual when framerate is changed, so put loading into a layout.
+            layout[1] = new View();
+            layout[1].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            loading[0] = new Loading();
+            loading[0].Size = new Size(100, 100);
+            loading[0].Images = imageArray;
+            layout[1].Add(loading[0]);
+            gridLayout.Add(layout[1]);
 
             CreatePropBtnLayout();
 
-            propLogBoard = new TextLabel();
-            propLogBoard.WidthSpecification = 380;
-            propLogBoard.HeightSpecification = 70;
-            propLogBoard.PointSize = 20;
-            propLogBoard.HorizontalAlignment = HorizontalAlignment.Center;
-            propLogBoard.VerticalAlignment = VerticalAlignment.Center;
-            propLogBoard.BackgroundColor = Color.Magenta;
-            propLogBoard.Text = "log pad";
-            propLogBoard.PointSize = 15;
-            propParent.Add(propLogBoard);
+            textLabel[1] = new TextLabel();
+            textLabel[1].PointSize = 20;
+            textLabel[1].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[1].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[1].BackgroundColor = Color.Magenta;
+            textLabel[1].Text = "log pad";
+            textLabel[1].PointSize = 15;
+            gridLayout.Add(textLabel[1]);
         }
 
         void CreatePropBtnLayout()
         {
-            propBtnParent = new View()
-            {
-                Size = new Size(400, 50)
+            // layout for button.
+            // To avoid button size same as the grid cell.
+            layout[0] = new View() {};
+            layout[0].Layout = new LinearLayout()
+            { 
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center,
+                CellPadding = new Size(10, 50)
             };
-            var propBtnLayout = new LinearLayout();
-            propBtnLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            propBtnLayout.LinearAlignment = LinearLayout.Alignment.Center;
-            propBtnLayout.CellPadding = new Size(10, 50);
-            propBtnParent.Layout = propBtnLayout;
-            propParent.Add(propBtnParent);
+           
+            button[0] = new Button();
+            button[0].Size = new Size(200, 50);
+            button[0].ButtonText.Text = "FPS++";
+            button[0].PointSize = 15;
+            layout[0].Add(button[0]);
+            button[0].Focusable = true;
+            button[0].ClickEvent += propFpsAdd;
+            FocusManager.Instance.SetCurrentFocusView(button[0]);
 
-            propFpsAddBtn = new Button();
-            propFpsAddBtn.WidthSpecification = 150;
-            propFpsAddBtn.HeightSpecification = 50;
-            var propFpsAddStyle = propFpsAddBtn.Style;
-            propFpsAddStyle.Text.Text = "FPS++";
-            propFpsAddStyle.Text.PointSize = 15;
-            propFpsAddBtn.ApplyStyle(propFpsAddStyle);
-            propBtnParent.Add(propFpsAddBtn);
-            propFpsAddBtn.Focusable = true;
-            propFpsAddBtn.ClickEvent += propFpsAdd;
-            FocusManager.Instance.SetCurrentFocusView(propFpsAddBtn);
+            button[1] = new Button();
+            button[1].Size = new Size(200, 50);
+            button[1].ButtonText.Text = "FPS--";
+            button[1].PointSize = 15;
+            layout[0].Add(button[1]);
+            button[1].Focusable = true;
+            button[1].ClickEvent += propFpsMinus;
+            FocusManager.Instance.SetCurrentFocusView(button[1]);
 
-            propFpsMinusBtn = new Button();
-            propFpsMinusBtn.WidthSpecification = 150;
-            propFpsMinusBtn.HeightSpecification = 50;
-            var propFpsMinusStyle = propFpsMinusBtn.Style;
-            propFpsMinusStyle.Text.Text = "FPS--";
-            propFpsMinusStyle.Text.PointSize = 15;
-            propFpsMinusBtn.ApplyStyle(propFpsMinusStyle);
-            propBtnParent.Add(propFpsMinusBtn);
-            propFpsMinusBtn.Focusable = true;
-            propFpsMinusBtn.ClickEvent += propFpsMinus;
-            FocusManager.Instance.SetCurrentFocusView(propFpsMinusBtn);
+            gridLayout.Add(layout[0]);
 
-            propFpsAddBtn.RightFocusableView = propFpsMinusBtn;
-            propFpsMinusBtn.LeftFocusableView = propFpsAddBtn;
+            button[0].RightFocusableView = button[1];
+            button[1].LeftFocusableView = button[0];
         }
 
         private void CreateAttrLayout()
         {
-            attrBoard = new TextLabel();
-            attrBoard.WidthSpecification = 380;
-            attrBoard.HeightSpecification = 70;
-            attrBoard.PointSize = 20;
-            attrBoard.HorizontalAlignment = HorizontalAlignment.Center;
-            attrBoard.VerticalAlignment = VerticalAlignment.Center;
-            attrBoard.BackgroundColor = Color.Magenta;
-            attrBoard.Text = "Attribute construction";
-            attrParent.Add(attrBoard);
+            textLabel[2] = new TextLabel();
+            textLabel[2].PointSize = 20;
+            textLabel[2].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[2].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[2].BackgroundColor = Color.Magenta;
+            textLabel[2].Text = "Attribute construction";
+            gridLayout.Add(textLabel[2]);
 
+            // layout for loading which is created by attributes.
+            // It'll update the visual when framerate is changed, so put loading into a layout.
+            layout[2] = new View();
+            layout[2].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
             LoadingStyle style = new LoadingStyle
             {
                 Images = imageArray
             };
-            attrLoading = new Loading(style);
-            attrLoading.Size = new Size(100, 100);
-            attrParent.Add(attrLoading);
+            loading[1] = new Loading(style);
+            loading[1].Size = new Size(100, 100);
+            layout[2].Add(loading[1]);
+            gridLayout.Add(layout[2]);
 
-            attrBtn = new Button()
+            // layout for button.
+            // To avoid button size same as the grid cell.
+            layout[3] = new View() { };
+            layout[3].Layout = new LinearLayout()
             {
-                WidthSpecification = 300,
-                HeightSpecification = 50,
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
             };
-            var attrBtnStyle = attrBtn.Style;
-            attrBtnStyle.Text.Text = "Normal Loading";
-            attrBtnStyle.Text.PointSize = 15;
-            attrBtn.ApplyStyle(attrBtnStyle);
-            attrParent.Add(attrBtn);
-            attrBtn.Focusable = true;
-            FocusManager.Instance.SetCurrentFocusView(attrBtn);
+            button[2] = new Button();
+            button[2].Size = new Size(400, 50);
+            button[2].ButtonText.Text = "Normal Loading";
+            button[2].PointSize = 15;
+            layout[3].Add(button[2]);
+            gridLayout.Add(layout[3]);
+            button[2].Focusable = true;
+            FocusManager.Instance.SetCurrentFocusView(button[2]);
         }
 
         private void propFpsAdd(object sender, global::System.EventArgs e)
         {
-            propLoading.FrameRate += 1;
-            propLogBoard.Text = "loading1_1 FPS: " + propLoading.FrameRate.ToString();
+            loading[0].FrameRate += 1;
+            textLabel[1].Text = "loading1_1 FPS: " + loading[0].FrameRate.ToString();
         }
 
         private void propFpsMinus(object sender, global::System.EventArgs e)
         {
-            propLoading.FrameRate -= 1;
-            propLogBoard.Text = "loading1_1 FPS: " + propLoading.FrameRate.ToString();
+            loading[0].FrameRate -= 1;
+            textLabel[1].Text = "loading1_1 FPS: " + loading[0].FrameRate.ToString();
         }
 
         private void FocusLost(object sender, global::System.EventArgs e)
@@ -214,53 +206,57 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
-                propBtnParent.Remove(propFpsAddBtn);
-                propFpsAddBtn.Dispose();
-                propFpsAddBtn = null;
+                layout[0].Remove(button[0]);
+                button[0].Dispose();
+                button[0] = null;
 
-                propBtnParent.Remove(propFpsMinusBtn);
-                propFpsMinusBtn.Dispose();
-                propFpsMinusBtn = null;
+                layout[0].Remove(button[1]);
+                button[1].Dispose();
+                button[1] = null;
 
-                propParent.Remove(propBtnParent);
-                propBtnParent.Dispose();
-                propBtnParent = null;
+                gridLayout.Remove(layout[0]);
+                layout[0].Dispose();
+                layout[0] = null;
 
-                propParent.Remove(propBoard);
-                propBoard.Dispose();
-                propBoard = null;
+                gridLayout.Remove(textLabel[0]);
+                textLabel[0].Dispose();
+                textLabel[0] = null;
 
-                propParent.Remove(propLoading);
-                propLoading.Dispose();
-                propLoading = null;
+                layout[1].Remove(loading[0]);
+                loading[0].Dispose();
+                loading[0] = null;
 
-                propParent.Remove(propLogBoard);
-                propLogBoard.Dispose();
-                propLogBoard = null;
+                gridLayout.Remove(layout[1]);
+                layout[1].Dispose();
+                layout[1] = null;
 
-                attrParent.Remove(attrBoard);
-                attrBoard.Dispose();
-                attrBoard = null;
+                gridLayout.Remove(textLabel[1]);
+                textLabel[1].Dispose();
+                textLabel[1] = null;
 
-                attrParent.Remove(attrLoading);
-                attrLoading.Dispose();
-                attrLoading = null;
+                gridLayout.Remove(textLabel[2]);
+                textLabel[2].Dispose();
+                textLabel[2] = null;
 
-                attrParent.Remove(attrBtn);
-                attrBtn.Dispose();
-                attrBtn = null;
+                layout[2].Remove(loading[1]);
+                loading[1].Dispose();
+                loading[1] = null;
 
-                parent.Remove(propParent);
-                propParent.Dispose();
-                propParent = null;
+                gridLayout.Remove(layout[2]);
+                layout[2].Dispose();
+                layout[2] = null;
 
-                parent.Remove(attrParent);
-                attrParent.Dispose();
-                attrParent = null;
+                layout[3].Remove(button[2]);
+                button[2].Dispose();
+                button[2] = null;
 
-                root.Remove(parent);
-                parent.Dispose();
-                parent = null;
+                gridLayout.Remove(layout[3]);
+                layout[3].Dispose();
+                layout[3] = null;
+
+                root.Remove(gridLayout);
+                gridLayout.Dispose();
+                gridLayout = null;
 
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
