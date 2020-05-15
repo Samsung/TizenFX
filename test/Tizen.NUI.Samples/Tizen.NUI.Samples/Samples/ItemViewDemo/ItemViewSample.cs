@@ -34,10 +34,10 @@ namespace Tizen.NUI.Samples
 
         private string SPIRAL_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral.png";
         private string SPIRAL_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral-selected.png";
-        private string GRID_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid.png";
-        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid-selected.png";
-        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth.png";
-        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth-selected.png";
+        private string GRID_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid.png";
+        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid-selected.png";
+        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth.png";
+        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth-selected.png";
 
         private ItemView mItemView;
         private ItemFactoryWrapper mItemFactoryWrapper;
@@ -57,10 +57,12 @@ namespace Tizen.NUI.Samples
         private Button mInsertButton;
         private Button mReplaceButton;
         private TextLabel mTitle;
-        private ImageView mToolBarBackground;
 
-        private Layer mToolBarLayer;
+        private Layer mDefaultLayer;
+        private View mRootView;
+        private View mToolBarLayer;
         private View mContentView;
+        private View mItemLayout;
 
         private int mDurationSeconds = 250;
 
@@ -82,7 +84,7 @@ namespace Tizen.NUI.Samples
 
         private void SetTitle(string title)
         {
-            if(mTitle != null)
+            if (mTitle != null)
             {
                 mTitle.Text = title;
             }
@@ -168,27 +170,43 @@ namespace Tizen.NUI.Samples
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
-            window.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
+            mDefaultLayer = window.GetDefaultLayer();
+            mDefaultLayer.Behavior = Layer.LayerBehavior.Layer3D;
             window.BackgroundColor = Color.Black;
-            CreateContentView();
-            //CreateToolBarView();
-            CreateToolBarLayer();
 
-            CreateLayoutButton();
-            CreateEditButton();
+            mRootView = new View()
+            {
+                Size = new Size(1920, 1080)
+            };
+            mRootView.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical
+            };
+            mDefaultLayer.Add(mRootView);
+
+            CreateToolBarLayer();
+            CreateContentView();
+
             CreateInsertButton();
             CreateReplaceButton();
             CreateDeleteButton();
 
+            CreateSpiralLayout();
             CreateGridLayout();
             CreateDepthLayout();
-            CreateSpiralLayout();
+
+            // Layout to fix the position of mItemView.
+            mItemLayout = new View() { };
+            mItemLayout.Layout = new LinearLayout()
+            { 
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            mContentView.Add(mItemLayout);
 
             mLayout = new PropertyArray();
             mLayout.PushBack(new PropertyValue(mSpiralLayout));
             mLayout.PushBack(new PropertyValue(mDepthLayout));
             mLayout.PushBack(new PropertyValue(mGridLayout));
-
 
             mItemFactoryWrapper = new ItemFactoryWrapper();
             mItemFactoryWrapper.GetNumberDelegate = GetNumberOfItems;
@@ -198,9 +216,7 @@ namespace Tizen.NUI.Samples
             mItemView.PositionUsesPivotPoint = true;
             mItemView.ParentOrigin = Position.ParentOriginCenter;
             mItemView.PivotPoint = Position.PivotPointCenter;
-            window.Add(mItemView);
-
-            window.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
+            mItemLayout.Add(mItemView);
 
             mItemView.Layout = mLayout;
             mItemView.SetMinimumSwipeDistance(MIN_SWIPE_DISTANCE);
@@ -221,7 +237,7 @@ namespace Tizen.NUI.Samples
             {
                 case Gesture.StateType.Started:
                     {
-                        Size2D windowSize = NUIApplication.GetDefaultWindow().Size;
+                        Size windowSize = NUIApplication.GetDefaultWindow().Size;
                         ItemRange range = new ItemRange(0, 0);
                         mItemView.GetItemsRange(range);
 
@@ -262,7 +278,7 @@ namespace Tizen.NUI.Samples
                     }
             }
 
-            Size2D windowSize = window.Size;
+            Size windowSize = window.Size;
 
             if (layoutId == (int)AllImagesLayouts.DEPTH_LAYOUT)
             {
@@ -280,8 +296,6 @@ namespace Tizen.NUI.Samples
             // Activate the layout
             mItemView.ActivateLayout((uint)layoutId, new Vector3(800, 800, 800), 0.0f);
         }
-
-
 
         public uint GetNumberOfItems()
         {
@@ -301,8 +315,6 @@ namespace Tizen.NUI.Samples
             propertyMap.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)VisualFittingModeType.FitKeepAspectRatio));
             ImageView actor = new ImageView();
             actor.Image = propertyMap;
-            actor.PositionZ = 0.0f;
-            actor.Position = new Position(1000.0f, 0, -1000.0f);
 
             // Add a border image child actor
             ImageView borderActor = new ImageView();
@@ -327,12 +339,13 @@ namespace Tizen.NUI.Samples
             // Add a checkbox child actor; invisible until edit-mode is enabled
             ImageView checkBox = new ImageView();
             checkBox.Name = "CheckBox";
-            checkBox.SetColorMode(ColorMode.UseParentColor);
+            checkBox.BackgroundColor = Color.Yellow;
+            checkBox.SetColorMode(ColorMode.UseOwnColor);
             checkBox.ParentOrigin = ParentOrigin.TopRight;
             checkBox.PivotPoint = PivotPoint.TopRight;
             checkBox.Size = spiralItemSize;
             checkBox.PositionZ = 0.1f;
-
+            
             PropertyMap solidColorProperty = new PropertyMap();
             solidColorProperty.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
             solidColorProperty.Insert(ColorVisualProperty.MixColor, new PropertyValue(new Color(0.0f, 0.0f, 0.0f, 0.6f)));
@@ -363,16 +376,32 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            if (mLayoutButton != null)
-            {
-                mLayoutButton.GetParent().Remove(mLayoutButton);
-                mLayoutButton.Dispose();
-            }
-
             if (mEditButton != null)
             {
-                mEditButton.GetParent().Remove(mEditButton);
+                mToolBarLayer.Remove(mEditButton);
                 mEditButton.Dispose();
+                mEditButton = null;
+            }
+
+            if (mTitle != null)
+            {
+                mToolBarLayer.Remove(mTitle);
+                mTitle.Dispose();
+                mTitle = null;
+            }
+
+            if (mLayoutButton != null)
+            {
+                mToolBarLayer.Remove(mLayoutButton);
+                mLayoutButton.Dispose();
+                mLayoutButton = null;
+            }
+
+            if (mToolBarLayer != null)
+            {
+                mRootView.Remove(mToolBarLayer);
+                mToolBarLayer.Dispose();
+                mToolBarLayer = null;
             }
 
             if (mReplaceButton != null)
@@ -393,81 +422,94 @@ namespace Tizen.NUI.Samples
                 mDeleteButton.Dispose();
             }
 
-            if (mTitle != null)
-            {
-                mTitle.GetParent().Remove(mTitle);
-                mTitle.Dispose();
-            }
-
-            if (mToolBarBackground != null)
-            {
-                mToolBarBackground.GetParent().Remove(mToolBarBackground);
-                mToolBarBackground.Dispose();
-            }
-
             if (mItemView != null)
             {
-                mItemView.GetParent().Remove(mItemView);
+                mItemLayout.Remove(mItemView);
                 mItemView.Dispose();
+                mItemView = null;
+            }
+
+            if (mItemLayout != null)
+            {
+                mContentView.Remove(mItemLayout);
+                mItemLayout.Dispose();
+                mItemLayout = null;
             }
 
             if (mContentView != null)
             {
-                NUIApplication.GetDefaultWindow().Remove(mContentView);
+                mRootView.Remove(mContentView);
                 mContentView.Dispose();
+                mContentView = null;
             }
 
-            if (mToolBarLayer != null)
+            if (mRootView != null)
             {
-                NUIApplication.GetDefaultWindow().RemoveLayer(mToolBarLayer);
-                mToolBarLayer.Dispose();
+                mDefaultLayer.Remove(mRootView);
+                mRootView.Dispose();
+                mRootView = null;
             }
 
-            NUIApplication.GetDefaultWindow().GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer2D;
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Behavior = Layer.LayerBehavior.LayerUI;
         }
 
         public void CreateContentView()
         {
-            mContentView = new View();
-            mContentView.ParentOrigin = ParentOrigin.Center;
-            mContentView.PivotPoint = PivotPoint.Center;
-            mContentView.PositionUsesPivotPoint = true;
-            mContentView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            mContentView.HeightResizePolicy = ResizePolicyType.FillToParent;
-            NUIApplication.GetDefaultWindow().Add(mContentView);
-
-            mContentView.LowerToBottom();
+            mContentView = new View()
+            {
+                Size = new Size(1920, 1080)
+            };
+            mContentView.Layout = new LinearLayout()
+            {
+                //LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            mRootView.Add(mContentView);
         }
 
 
         private void CreateToolBarLayer()
         {
-            mToolBarLayer = new Layer();
-            mToolBarLayer.Name = "TOOLBAR";
-            mToolBarLayer.SetAnchorPoint(PivotPoint.TopCenter);
-            mToolBarLayer.SetParentOrigin(ParentOrigin.TopCenter);
-            mToolBarLayer.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.Width);
-            mToolBarLayer.SetSize(0, 80);
-            NUIApplication.GetDefaultWindow().AddLayer(mToolBarLayer);
-
+            mToolBarLayer = new View()
+            {
+                Name = "TOOLBAR",
+                Size = new Size(1920, 80),
+                BackgroundImage = TOOLBAR_IMAGE
+            };
+            mToolBarLayer.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            mRootView.Add(mToolBarLayer);
             mToolBarLayer.RaiseToTop();
 
-            mToolBarBackground = new ImageView();
-            mToolBarBackground.ParentOrigin = ParentOrigin.TopLeft;
-            mToolBarBackground.PivotPoint = PivotPoint.TopLeft;
-            mToolBarBackground.PositionUsesPivotPoint = true;
-            mToolBarBackground.WidthResizePolicy = ResizePolicyType.FillToParent;
-            mToolBarBackground.HeightResizePolicy = ResizePolicyType.FillToParent;
-            mToolBarBackground.ResourceUrl = TOOLBAR_IMAGE;
-            mToolBarLayer.Add(mToolBarBackground);
+            CreateEditButton();
+            CreateToolBarTitle();
+            CreateLayoutButton();
+        }
 
+        public void CreateEditButton()
+        {
+            mEditButton = new Button();
+            var style = mEditButton.Style;
+            style.BackgroundImage = new Selector<string>() { Normal = EDIT_IMAGE, Selected = EDIT_IMAGE_SELECTED };
+            mEditButton.ApplyStyle(style);
+            mEditButton.IsSelectable = true;
+            mEditButton.Size = new Size(34, 34);
+            mEditButton.LeaveRequired = true;
+            mEditButton.ClickEvent += (obj, e) =>
+            {
+                SwitchToNextMode();
+            };
+            mToolBarLayer.Add(mEditButton);
+        }
+
+        private void CreateToolBarTitle()
+        {
             mTitle = new TextLabel();
-            mTitle.ParentOrigin = ParentOrigin.TopLeft;
-            mTitle.PivotPoint = PivotPoint.TopLeft;
-            mTitle.PositionUsesPivotPoint = true;
+            mTitle.Size = new Size(1750, 80);
             mTitle.PointSize = 10.0f;
-            mTitle.WidthResizePolicy = ResizePolicyType.FillToParent;
-            mTitle.HeightResizePolicy = ResizePolicyType.FillToParent;
             mTitle.Text = APPLICATION_TITLE;
             mTitle.VerticalAlignment = VerticalAlignment.Center;
             mTitle.HorizontalAlignment = HorizontalAlignment.Center;
@@ -478,44 +520,24 @@ namespace Tizen.NUI.Samples
         {
             mLayoutButton = new Button();
             var style = mLayoutButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = SPIRAL_LAYOUT_IMAGE, Selected = SPIRAL_LAYOUT_IMAGE_SELECTED };
+            style.BackgroundImage = new Selector<string>()
+            {
+                Normal = SPIRAL_LAYOUT_IMAGE,
+                Selected = SPIRAL_LAYOUT_IMAGE_SELECTED
+            };
             mLayoutButton.ApplyStyle(style);
             mLayoutButton.IsSelectable = true;
-            mLayoutButton.Size2D = new Size2D(34, 34);
-            mLayoutButton.ParentOrigin = ParentOrigin.TopRight;
-            mLayoutButton.PivotPoint = PivotPoint.TopRight;
-            mLayoutButton.Position2D = new Position2D(0, 25);
-            mLayoutButton.PositionUsesPivotPoint = true;
+            mLayoutButton.Size = new Size(34, 34);
+            mLayoutButton.BackgroundColor = Color.Yellow;
             mLayoutButton.LeaveRequired = true;
             mLayoutButton.ClickEvent += (obj, e) =>
             {
                 mCurrentLayout = (mCurrentLayout + 1) % (int)mItemView.GetLayoutCount();
                 ChangeLayout();
-
                 SetLayoutTitle();
                 SetLayoutImage();
             };
             mToolBarLayer.Add(mLayoutButton);
-        }
-
-        public void CreateEditButton()
-        {
-            mEditButton = new Button();
-            var style = mEditButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = EDIT_IMAGE, Selected = EDIT_IMAGE_SELECTED };
-            mEditButton.ApplyStyle(style);
-            mEditButton.IsSelectable = true;
-            mEditButton.Size2D = new Size2D(34, 34);
-            mEditButton.ParentOrigin = ParentOrigin.TopLeft;
-            mEditButton.PivotPoint = PivotPoint.TopLeft;
-            mEditButton.Position2D = new Position2D(5, 25);
-            mEditButton.PositionUsesPivotPoint = true;
-            mEditButton.LeaveRequired = true;
-            mEditButton.ClickEvent += (obj, e) =>
-            {
-                SwitchToNextMode();
-            };
-            mToolBarLayer.Add(mEditButton);
         }
 
         private void SetLayoutTitle()
@@ -551,9 +573,8 @@ namespace Tizen.NUI.Samples
             mDeleteButton.ParentOrigin = ParentOrigin.BottomRight;
             mDeleteButton.PivotPoint = PivotPoint.BottomRight;
             mDeleteButton.PositionUsesPivotPoint = true;
-            mDeleteButton.Position2D = new Position2D(BUTTON_BORDER, BUTTON_BORDER);
             mDeleteButton.DrawMode = DrawModeType.Overlay2D;
-            mDeleteButton.Size2D = new Size2D(50, 50);
+            mDeleteButton.Size = new Size(50, 50);
             mDeleteButton.LeaveRequired = true;
             mDeleteButton.Hide();
             mDeleteButton.ClickEvent += (obj, e) =>
@@ -591,9 +612,8 @@ namespace Tizen.NUI.Samples
             mInsertButton.ParentOrigin = ParentOrigin.BottomRight;
             mInsertButton.PivotPoint = PivotPoint.BottomRight;
             mInsertButton.PositionUsesPivotPoint = true;
-            mInsertButton.Position2D = new Position2D(BUTTON_BORDER, BUTTON_BORDER);
             mInsertButton.DrawMode = DrawModeType.Overlay2D;
-            mInsertButton.Size2D = new Size2D(50, 50);
+            mInsertButton.Size = new Size(50, 50);
             mInsertButton.LeaveRequired = true;
             mInsertButton.Hide();
             mInsertButton.ClickEvent += (obj, e) =>
@@ -631,7 +651,6 @@ namespace Tizen.NUI.Samples
             mReplaceButton.ParentOrigin = ParentOrigin.BottomRight;
             mReplaceButton.PivotPoint = PivotPoint.BottomRight;
             mReplaceButton.PositionUsesPivotPoint = true;
-            mReplaceButton.Position = new Position(BUTTON_BORDER, BUTTON_BORDER);
             mReplaceButton.DrawMode = DrawModeType.Overlay2D;
             mReplaceButton.Size = new Size(50, 50);
             mReplaceButton.LeaveRequired = true;
