@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -26,6 +27,60 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            if (newValue != null)
+            {
+                instance.images = (string[])newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            return instance.images;
+        });
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(LoadingStyle), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            if (newValue != null)
+            {
+                Size size = (Size)newValue;
+                instance.loadingSize = size;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            return instance.loadingSize;
+        });
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(Selector<int?>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            if (newValue != null)
+            {
+                if (instance.frameRate == null) instance.frameRate = new Selector<int?>();
+                instance.frameRate.Clone((Selector<int?>)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (LoadingStyle)bindable;
+            return instance.frameRate;
+        });
+
+        private string[] images = null;
+        private Size loadingSize = null;
+        private Selector<int?> frameRate = null;
+
         static LoadingStyle() { }
 
         /// <summary>
@@ -52,19 +107,53 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public string[] Images { get; set; }
+        public string[] Images 
+        {
+            get
+            {
+                string[] im = (string[])GetValue(ImagesProperty);
+                return (null != im) ? im : images = new string[1];
+            }
+            set
+            {
+                SetValue(ImagesProperty, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading image size.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Size LoadingSize { get; set; }
+        public Size LoadingSize 
+        {
+            get
+            {
+                Size size = (Size)GetValue(SizeProperty);
+                return (null != size) ? size : loadingSize = new Size(10, 10);
+            }
+            set
+            {
+                SetValue(SizeProperty, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading frame per second.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
+        //public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
+        public Selector<int?> FrameRate
+        {
+            get
+            {
+                Selector<int?> fm = (Selector<int?>)GetValue(FrameRateProperty);
+                return (null != fm) ? fm : frameRate = new Selector<int?>();
+            }
+            set
+            {
+                SetValue(FrameRateProperty, value);
+            }
+        }
 
         /// <summary>
         /// Style's clone function.
@@ -74,24 +163,6 @@ namespace Tizen.NUI.Components
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
-
-            LoadingStyle loadingStyle = bindableObject as LoadingStyle;
-
-            if (null != loadingStyle)
-            {
-                if (null != loadingStyle.FrameRate)
-                {
-                    FrameRate?.Clone(loadingStyle.FrameRate);
-                }
-                if (null != loadingStyle.LoadingSize)
-                {
-                    LoadingSize = loadingStyle.LoadingSize;
-                }
-                if (null != loadingStyle.Images)
-                {
-                    Images = loadingStyle.Images;
-                }
-            }
         }
     }
 }

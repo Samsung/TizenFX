@@ -151,6 +151,26 @@ namespace Tizen.NUI.Components
             };
         }
 
+        protected override DropDownItemStyle GetDropDownItemStyle()
+        {
+            return new DropDownItemStyle
+            {
+                Size = new Size(360, 50),
+                BackgroundColor = new Selector<Color>
+                {
+                    Pressed = new Color(0.05f, 0.63f, 0.9f, 1),
+                    Selected = new Color(0.8f, 0.8f, 0.8f, 1),
+                    Normal = new Color(1, 1, 1, 1),
+                },
+                Text = new TextLabelStyle
+                {
+                    PointSize = StyleManager.PointSizeNormal,
+                    Position = new Position(28, 0),
+                    Text = "List item",
+                },
+            };
+        }
+
         protected override PopupStyle GetPopupStyle()
         {
             return new PopupStyle

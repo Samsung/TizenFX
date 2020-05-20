@@ -25,12 +25,11 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// DropDown is one kind of common component, a dropdown allows the user click dropdown button to choose one value from a list.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DropDown : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create(nameof(ListPadding), typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -46,7 +45,7 @@ namespace Tizen.NUI.Components
             var instance = (DropDown)bindable;
             return instance.listPadding;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedItemIndexProperty = BindableProperty.Create(nameof(SelectedItemIndex), typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -66,7 +65,7 @@ namespace Tizen.NUI.Components
             var instance = (DropDown)bindable;
             return instance.selectedItemIndex;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListMarginProperty = BindableProperty.Create(nameof(ListMargin), typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -82,7 +81,7 @@ namespace Tizen.NUI.Components
             var instance = (DropDown)bindable;
             return instance.listMargin;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListRelativeOrientationProperty = BindableProperty.Create(nameof(ListRelativeOrientation), typeof(ListOrientation), typeof(DropDown), ListOrientation.Left, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -98,7 +97,7 @@ namespace Tizen.NUI.Components
             var instance = (DropDown)bindable;
             return instance.listRelativeOrientation;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SpaceBetweenButtonTextAndIconProperty = BindableProperty.Create(nameof(SpaceBetweenButtonTextAndIcon), typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -140,8 +139,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a DropDown.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown() : base() { }
 
@@ -149,8 +147,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a DropDown with style.
         /// </summary>
         /// <param name="style">Create DropDown by special style defined in UX.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown(string style) : base(style) { }
 
@@ -158,8 +155,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a DropDown with style.
         /// </summary>
         /// <param name="dropDownStyle">Create DropDown by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown(DropDownStyle dropDownStyle) : base(dropDownStyle)
         {
@@ -168,52 +164,164 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ClickEventHandler<ClickEventArgs>(object sender, ClickEventArgs e);
 
         /// <summary>
         /// An event for the item clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event ClickEventHandler<ItemClickEventArgs> ItemClickEvent;
 
         /// <summary>
         /// List position in relation to the main button.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ListOrientation
         {
             /// <summary>
             /// Left.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             Left,
             /// <summary>
             /// Right.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             Right,
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Get or set header text.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel HeaderText
+        {
+            get
+            {
+                if (null == headerText)
+                {
+                    headerText = new TextLabel()
+                    {
+                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        ParentOrigin = NUI.ParentOrigin.Center,
+                        PivotPoint = NUI.ParentOrigin.Center,
+                        PositionUsesPivotPoint = true,
+                        Name = "DropDownHeaderText"
+                    };
+                    Add(headerText);
+                }
+                return headerText;
+            }
+            set
+            {
+                headerText = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set button.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Button Button
+        {
+            get
+            {
+                if (null == button)
+                {
+                    button = new Button()
+                    {
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.PivotPoint.CenterLeft,
+                        PositionUsesPivotPoint = true,
+                        HeightResizePolicy = ResizePolicyType.FitToChildren,
+                        IconRelativeOrientation = Button.IconOrientation.Right,
+                        Name = "DropDownButton"
+                    };
+                    button.ClickEvent += ButtonClickEvent;
+                    Add(button);
+
+                    if (null == buttonText)
+                    {
+                        buttonText = new TextLabel();
+                    }
+                }
+                return button;
+            }
+            set
+            {
+                button = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set the background image of list.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ListBackgroundImage
+        {
+            get
+            {
+                if (null == listBackgroundImage)
+                {
+                    listBackgroundImage = new ImageView()
+                    {
+                        Name = "ListBackgroundImage",
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        WidthResizePolicy = ResizePolicyType.FitToChildren,
+                        HeightResizePolicy = ResizePolicyType.FitToChildren,
+                    };
+                    Add(listBackgroundImage);
+
+                    if (null == scrollableBase) // scrollableBase used to test of ListContainer Setup invoked already
+                    {
+                        SetUpListContainer();
+                    }
+                }
+                return listBackgroundImage;
+            }
+            set
+            {
+                listBackgroundImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Return a copied Style instance of DropDown
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the DropDown.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        //public new DropDownStyle Style
+        //{
+        //    get
+        //    {
+        //        return new DropDownStyle(ViewStyle as DropDownStyle);
+        //    }
+        //}
         public new DropDownStyle Style => ViewStyle as DropDownStyle;
 
         /// <summary>
         /// Space between button text and button icon in DropDown.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SpaceBetweenButtonTextAndIcon
         {
             get => (int)GetValue(SpaceBetweenButtonTextAndIconProperty);
@@ -223,8 +331,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// List relative orientation in DropDown.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ListOrientation ListRelativeOrientation
         {
             get => (ListOrientation)GetValue(ListRelativeOrientationProperty);
@@ -234,8 +342,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Space in list.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListMargin
         {
             get
@@ -249,8 +357,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Selected item index in list.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedItemIndex
         {
             get => (int)GetValue(SelectedItemIndexProperty);
@@ -260,8 +368,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// List padding in DropDown.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListPadding
         {
             get
@@ -276,8 +384,7 @@ namespace Tizen.NUI.Components
         /// Add list item by item data. The added item will be added to end of all items automatically.
         /// </summary>
         /// <param name="itemData">Item data which will apply to tab item view.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddItem(DropDownDataItem itemData)
         {
@@ -290,8 +397,7 @@ namespace Tizen.NUI.Components
         /// Delete list item by index.
         /// </summary>
         /// <param name="index">Position index where will be deleted.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteItem(int index)
         {
@@ -326,8 +432,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="item">Item data which will apply to tab item view.</param>
         /// <param name="index">Position index where will be inserted.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertItem(DropDownDataItem item, int index)
         {
@@ -348,34 +453,26 @@ namespace Tizen.NUI.Components
         /// Add scroll bar to list.
         /// </summary>
         /// <param name="scrollBar">Scroll bar defined by user which will be added to list.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AttachScrollBar(ScrollBar scrollBar)
         {
-            if (scrollableBase == null)
-            {
-                return;
-            }
+            if (scrollableBase == null) return;
             Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
         /// <summary>
         /// Detach scroll bar to list.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (scrollableBase == null)
-            {
-                return;
-            }
+            if (scrollableBase == null) return;
             Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
@@ -384,18 +481,18 @@ namespace Tizen.NUI.Components
             DropDownStyle dropDownStyle = viewStyle as DropDownStyle;
             if (null != dropDownStyle)
             {
-                CreateHeaderText();
-                CreateButtonText();
-                CreateButton();
-
-                CreateListBackgroundImage();
-                if (null == scrollableBase) // scrollableBase used to test of ListContainer Setup invoked already
+                if (null != dropDownStyle.Button)
                 {
-                    SetUpListContainer();
+                    Button.ApplyStyle(dropDownStyle.Button);
                 }
-                button.ApplyStyle(dropDownStyle.Button);
-                headerText.ApplyStyle(dropDownStyle.HeaderText);
-                listBackgroundImage.ApplyStyle(dropDownStyle.ListBackgroundImage);
+                if (null != dropDownStyle.HeaderText)
+                {
+                    HeaderText.ApplyStyle(dropDownStyle.HeaderText);
+                }
+                if (null != dropDownStyle.ListBackgroundImage)
+                {
+                    ListBackgroundImage.ApplyStyle(dropDownStyle.ListBackgroundImage);
+                }
                 UpdateDropDown();
             }
         }
@@ -403,16 +500,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Update DropDown by style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateDropDown()
         {
             if (null == scrollableBase || null == listBackgroundImage || null == dropDownMenuFullList) return;
-            if (null == Style.ListBackgroundImage.Size) return;
+            if (null == ListBackgroundImage.Size) return;
             // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
-            scrollableBase.Size = Style.ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
-            scrollableBase.Position2D = new Position2D(listPadding.Start, listPadding.Top);
+            scrollableBase.Size = ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
+            scrollableBase.Position = new Position(listPadding.Start, listPadding.Top);
 
             int listBackgroundImageX = 0;
             int listBackgroundImageY = 0;
@@ -426,26 +522,26 @@ namespace Tizen.NUI.Components
                 listBackgroundImageX = -(int)listMargin.End;
                 listBackgroundImageY = (int)listMargin.Top;
             }
-            listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
+            listBackgroundImage.Position = new Position(listBackgroundImageX, listBackgroundImageY);
             dropDownMenuFullList?.Layout?.RequestLayout();
         }
 
         /// <summary>
         /// update.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
             float buttonTextWidth = 0;
             if (null != buttonText)
             {
-                buttonText.Text = Style.Button.Text.Text.All;
-                buttonText.PointSize = Style.Button.Text.PointSize?.GetValue(ControlState) ?? StyleManager.PointSizeNormal;
+                buttonText.Text = Button.ButtonText.Text;
+                buttonText.PointSize = Button.ButtonText?.PointSize ?? StyleManager.PointSizeNormal;
                 buttonTextWidth = buttonText.NaturalSize.Width;
             }
-            float fitWidth = (Style.Button.Icon.Size?.Width ?? 48) + Style.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
+            float fitWidth = (Button.ButtonIcon.Size?.Width ?? 48) + SpaceBetweenButtonTextAndIcon + buttonTextWidth;
             fitWidth += (button.IconPadding.Start + button.IconPadding.End);
             button.Size.Width = Math.Max(button.Size.Width, fitWidth);
-            RelayoutRequest();
 
             int numberOfItemsToAdd = adapter.GetItemCount();
 
@@ -468,8 +564,7 @@ namespace Tizen.NUI.Components
         /// Dispose DropDown and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -495,8 +590,7 @@ namespace Tizen.NUI.Components
         /// Get DropDown style.
         /// </summary>
         /// <returns>The default dropdown style.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle GetViewStyle()
         {
@@ -525,68 +619,6 @@ namespace Tizen.NUI.Components
         private void OnClickEvent(object sender, ItemClickEventArgs e)
         {
             ItemClickEvent?.Invoke(sender, e);
-        }
-
-        private void CreateHeaderText()
-        {
-            if (null == headerText)
-            {
-                headerText = new TextLabel()
-                {
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    ParentOrigin = NUI.ParentOrigin.Center,
-                    PivotPoint = NUI.ParentOrigin.Center,
-                    PositionUsesPivotPoint = true,
-                };
-                headerText.Name = "DropDownHeaderText";
-                Add(headerText);
-            }
-        }
-
-        private void CreateButtonText()
-        {
-            if (null == buttonText)
-            {
-                buttonText = new TextLabel();
-            }
-        }
-
-        private void CreateButton()
-        {
-            if (null == button)
-            {
-                button = new Button()
-                {
-                    ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                    PivotPoint = NUI.PivotPoint.CenterLeft,
-                    PositionUsesPivotPoint = true,
-                    HeightResizePolicy = ResizePolicyType.FitToChildren,
-                    IconRelativeOrientation = Button.IconOrientation.Right,
-                };
-                button.Name = "DropDownButton";
-                button.ClickEvent += ButtonClickEvent;
-                Add(button);
-            }
-        }
-
-        private void CreateListBackgroundImage()
-        {
-            if (null == listBackgroundImage)
-            {
-                listBackgroundImage = new ImageView
-                {
-                    Name = "ListBackgroundImage",
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    WidthResizePolicy = ResizePolicyType.FitToChildren,
-                    HeightResizePolicy = ResizePolicyType.FitToChildren,
-                };
-                Add(listBackgroundImage);
-            }
         }
 
         private void SetUpListContainer()
@@ -739,19 +771,16 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// ItemClickEventArgs is a class to record item click event arguments which will sent to user.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ItemClickEventArgs : EventArgs
         {
             /// <summary> Clicked item index of DropDown's list </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int Index;
             /// <summary> Clicked item text string of DropDown's list </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string Text;
         }
@@ -761,8 +790,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// DropDownDataItem is a class to record all data which will be applied to DropDown item.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         //[EditorBrowsable(EditorBrowsableState.Never)]
         public class DropDownDataItem
         {
@@ -771,8 +799,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Creates a new instance of a DropDownItemData.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem()
             {
@@ -784,8 +811,7 @@ namespace Tizen.NUI.Components
             /// Creates a new instance of a DropDownItemData with style.
             /// </summary>
             /// <param name="style">Create DropDownItemData by special style defined in UX.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem(string style)
             {
@@ -805,8 +831,7 @@ namespace Tizen.NUI.Components
             /// Creates a new instance of a DropDownItemData with style.
             /// </summary>
             /// <param name="style">Create DropDownItemData by style customized by user.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem(DropDownItemStyle style)
             {
@@ -817,8 +842,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item size.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Size Size
             {
@@ -835,8 +859,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item background color selector.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Selector<Color> BackgroundColor
             {
@@ -858,8 +881,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item text string.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string Text
             {
@@ -883,8 +905,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item text's point size.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public float PointSize
             {
@@ -908,8 +929,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item text's font family.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string FontFamily
             {
@@ -933,8 +953,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item text's position.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Position TextPosition
             {
@@ -951,8 +970,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's icon's resource url.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string IconResourceUrl
             {
@@ -976,8 +994,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's icon's size.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Size IconSize
             {
@@ -994,8 +1011,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's icon's position.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Position IconPosition
             {
@@ -1012,8 +1028,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's check image's resource url.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string CheckImageResourceUrl
             {
@@ -1037,8 +1052,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's check image's size.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Size CheckImageSize
             {
@@ -1055,8 +1069,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// DropDown item's check image's right space.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int CheckImageGapToBoundary
             {
@@ -1073,8 +1086,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Flag to decide DropDown item is selected or not.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool IsSelected
             {
@@ -1099,7 +1111,7 @@ namespace Tizen.NUI.Components
         #endregion
 
         #region DropDownItemView
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal class DropDownItemView : Control
         {
@@ -1107,15 +1119,15 @@ namespace Tizen.NUI.Components
             private ImageView mIcon = null;
             private ImageView mCheck = null;
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownItemView() : base() { }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Selector<Color> BackgroundColorSelector { get; set; }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string Text
             {
@@ -1130,7 +1142,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string FontFamily
             {
@@ -1145,7 +1157,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public float? PointSize
             {
@@ -1160,7 +1172,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Color TextColor
             {
@@ -1175,7 +1187,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Position TextPosition
             {
@@ -1190,7 +1202,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string IconResourceUrl
             {
@@ -1205,7 +1217,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Size IconSize
             {
@@ -1220,7 +1232,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Position IconPosition
             {
@@ -1235,7 +1247,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string CheckResourceUrl
             {
@@ -1250,7 +1262,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Position CheckPosition
             {
@@ -1265,7 +1277,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Size CheckImageSize
             {
@@ -1280,7 +1292,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool IsSelected
             {
@@ -1302,7 +1314,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override void Dispose(DisposeTypes type)
             {
@@ -1341,11 +1353,11 @@ namespace Tizen.NUI.Components
             /// Get DropDownItemView style.
             /// </summary>
             /// <returns>The empty.</returns>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override ViewStyle GetViewStyle()
             {
-                return null;
+                return new DropDownItemStyle();
             }
 
             private void CreateIcon()
@@ -1403,8 +1415,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// DropDownListBridge is bridge to connect item data and an item View.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class DropDownListBridge
         {
@@ -1415,8 +1426,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Creates a new instance of a DropDownListBridge.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownListBridge() { }
 
@@ -1425,8 +1435,7 @@ namespace Tizen.NUI.Components
             /// </summary>
             /// <param name="position">Position index where will be inserted.</param>
             /// <param name="data">Item data which will apply to tab item view.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void InsertData(int position, DropDownDataItem data)
             {
@@ -1442,8 +1451,7 @@ namespace Tizen.NUI.Components
             /// Remove data by position.
             /// </summary>
             /// <param name="position">Position index where will be removed.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RemoveData(int position)
             {
@@ -1455,8 +1463,7 @@ namespace Tizen.NUI.Components
             /// Get data by position.
             /// </summary>
             /// <param name="position">Position index where will be gotten.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem GetData(int position)
             {
@@ -1466,8 +1473,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Get view holder by view type.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ViewHolder OnCreateViewHolder()
             {
@@ -1481,8 +1487,7 @@ namespace Tizen.NUI.Components
             /// </summary>
             /// <param name="holder">View holder.</param>
             /// <param name="position">Position index of source data.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void BindViewHolder(ViewHolder holder, int position)
             {
@@ -1559,8 +1564,7 @@ namespace Tizen.NUI.Components
             /// Destroy view holder, it can be override.
             /// </summary>
             /// <param name="holder">View holder.</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void OnDestroyViewHolder(ViewHolder holder)
             {
@@ -1574,8 +1578,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Get item count, it can be override.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int GetItemCount()
             {
@@ -1590,8 +1593,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// A ViewHolder is a class that holds a View created from DropDownListBridge data.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ViewHolder
         {
@@ -1599,8 +1601,7 @@ namespace Tizen.NUI.Components
             /// ViewHolder constructor.
             /// </summary>
             /// <param name="itemView">View</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ViewHolder(View itemView)
             {
@@ -1614,8 +1615,7 @@ namespace Tizen.NUI.Components
             /// <summary>
             /// Returns the view.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public View ItemView { get; }
 

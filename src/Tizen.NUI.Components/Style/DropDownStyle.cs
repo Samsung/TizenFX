@@ -226,11 +226,6 @@ namespace Tizen.NUI.Components
                 Button?.CopyFrom(dropDownStyle.Button);
                 HeaderText?.CopyFrom(dropDownStyle.HeaderText);
                 ListBackgroundImage?.CopyFrom(dropDownStyle.ListBackgroundImage);
-                SpaceBetweenButtonTextAndIcon = dropDownStyle.SpaceBetweenButtonTextAndIcon;
-                ListRelativeOrientation = dropDownStyle.ListRelativeOrientation;
-                ListMargin?.CopyFrom(dropDownStyle.ListMargin);
-                SelectedItemIndex = dropDownStyle.SelectedItemIndex;
-                ListPadding?.CopyFrom(dropDownStyle.ListPadding);
             }
         }
 

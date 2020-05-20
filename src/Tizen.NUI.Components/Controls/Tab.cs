@@ -35,6 +35,12 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
+        private bool useTextNaturalSize = false;
+        private int itemSpace = 0;
+        private float pointSize;
+        private string fontFamily;
+        private Color textColor;
+
         static Tab() { }
 
         /// <summary>
@@ -73,10 +79,44 @@ namespace Tizen.NUI.Components
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
         /// <summary>
-        /// Get style of tab.
+        /// Return a copied Style instance of Tab
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Tab.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
+        //public new TabStyle Style
+        //{
+        //    get
+        //    {
+        //        return new TabStyle(ViewStyle as TabStyle);
+        //    } 
+        //}
         public new TabStyle Style => ViewStyle as TabStyle;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View Underline
+        {
+            get
+            {
+                if (null == underline)
+                {
+                    underline = new View()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
+                    };
+                    Add(underline);
+                }
+                return underline;
+            }
+            set
+            {
+                underline = value;
+            }
+        }
 
         /// <summary>
         /// Selected item's index in Tab.
@@ -106,15 +146,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UseTextNaturalSize ?? false;
+                return useTextNaturalSize;
             }
             set
             {
-                if (null != Style)
-                {
-                    Style.UseTextNaturalSize = value;
-                    RelayoutRequest();
-                }
+                useTextNaturalSize = value;
+                RelayoutRequest();
             }
         }
 
@@ -126,15 +163,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.ItemSpace ?? 0;
+                return itemSpace;
             }
             set
             {
-                if (null != Style)
-                {
-                    Style.ItemSpace = value;
-                    RelayoutRequest();
-                }
+                itemSpace = value;
+                RelayoutRequest();
             }
         }
 
@@ -157,39 +191,33 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Item paddings in Tab. Sequence as Left, Right, Top, Bottom
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ItemPadding
         {
             get
             {
+                if (null == space)
+                {
+                    space = new Extents(0, 0, 0, 0);
+                }
                 return space;
             }
             set
             {
-                if(null != value && null != Style?.ItemPadding)
+                if (null == space)
                 {
-                    Style.ItemPadding.CopyFrom(value);
-
-                    if (null == space)
+                    space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
-                        space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                        {
-                            Style.ItemPadding.Start = start;
-                            Style.ItemPadding.End = end;
-                            Style.ItemPadding.Top = top;
-                            Style.ItemPadding.Bottom = bottom;
-                            RelayoutRequest();
-                        }, value.Start, value.End, value.Top, value.Bottom);
-                    }
-                    else
-                    {
-                        space.CopyFrom(value);
-                    }
-
-                    RelayoutRequest();
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
                 }
+                else
+                {
+                    space.CopyFrom(value);
+                }
+
+                RelayoutRequest();
             }
         }
 
@@ -201,14 +229,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UnderLine?.Size;
+                return Underline.Size;
             }
             set
             {
-                if (null != Style?.UnderLine)
-                {
-                    Style.UnderLine.Size = value;
-                }
+                Underline.Size = value;
+                RelayoutRequest();
             }
         }
 
@@ -220,14 +246,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UnderLine?.BackgroundColor?.All;
+                return Underline.BackgroundColor;
             }
             set
             {
-                if (null != Style?.UnderLine)
-                {
-                    Style.UnderLine.BackgroundColor = value;
-                }
+                Underline.BackgroundColor = value;
+                RelayoutRequest();
             }
         }
 
@@ -239,14 +263,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.PointSize?.All ?? 0;
+                return pointSize;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.PointSize = value;
-                }
+                pointSize = value;
+                RelayoutRequest();
             }
         }
 
@@ -258,14 +280,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.FontFamily?.All;
+                return fontFamily;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.FontFamily = value;
-                }
+                fontFamily = value;
+                RelayoutRequest();
             }
         }
 
@@ -277,14 +297,12 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TextColor?.All;
+                return textColor;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.TextColor = value;
-                }
+                textColor = value;
+                RelayoutRequest();
             }
         }
 
@@ -371,19 +389,8 @@ namespace Tizen.NUI.Components
 
             if (null != tabStyle)
             {
-                if (null == underline)
-                {
-                    underline = new View()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                    };
-                    Add(underline);
-                    CreateUnderLineAnimation();
-                }
-
-                underline.ApplyStyle(Style.UnderLine);
+                Underline.ApplyStyle(Style.UnderLine);
+                CreateUnderLineAnimation();
             }
         }
 
@@ -430,8 +437,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Update Tab.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
@@ -466,8 +472,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Layout child in Tab and it can be override by user.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
@@ -482,58 +487,57 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int preX = (int)Style.ItemPadding.Start;
+            int preX = (int)ItemPadding.Start;
             int preW = 0;
-            int itemSpace = Style.ItemSpace;
 
             if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
-                if (Style.UseTextNaturalSize == true)
+                if (useTextNaturalSize == true)
                 {
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemSpace;
+                        itemList[i].Position.X = preX;
+                        itemList[i].Size.Width = preW;
+                        preX = (int)itemList[i].Position.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
+                    preW = ((int)Size.Width - (int)ItemPadding.Start - (int)ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemSpace;
+                        itemList[i].Position.X = preX;
+                        itemList[i].Size.Width = preW;
+                        preX = (int)itemList[i].Position.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
             }
             else
             {
-                preX = (int)Style.ItemPadding.End;
-                if (Style.UseTextNaturalSize == true)
+                preX = (int)ItemPadding.End;
+                if (useTextNaturalSize == true)
                 {
-                    int w = Size2D.Width;
+                    int w = (int)Size.Width;
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = w - preW - preX;
-                        itemList[i].Size2D.Width = preW;
-                        preX = w - itemList[i].Position2D.X + itemSpace;
+                        itemList[i].Position.X = w - preW - preX;
+                        itemList[i].Size.Width = preW;
+                        preX = w - (int)itemList[i].Position.X + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
+                    preW = ((int)Size.Width - (int)ItemPadding.Start - (int)ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemSpace;
+                        itemList[i].Position.X = preX;
+                        itemList[i].Size.Width = preW;
+                        preX = (int)itemList[i].Position.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
@@ -554,19 +558,15 @@ namespace Tizen.NUI.Components
         private void AddItemByIndex(TabItemData itemData, int index)
         {
             if (null == itemData) return;
-            int h = 0;
-            int topSpace = (int)Style.ItemPadding.Top;
-            if (Style.UnderLine != null && Style.UnderLine.Size != null)
-            {
-                h = (int)Style.UnderLine.Size.Height;
-            }
+            int h = (int)Underline.Size.Height;
+            int topSpace = (int)ItemPadding.Top;
 
             Tab.TabItem item = new TabItem();
             item.TextItem.ApplyStyle(Style.Text);
 
             item.Text = itemData.Text;
-            item.Size2D.Height = Size2D.Height - h - topSpace;
-            item.Position2D.Y = topSpace;
+            item.Size.Height = Size.Height - h - topSpace;
+            item.Position.Y = topSpace;
             item.TouchEvent += ItemTouchEvent;
             Add(item);
 
@@ -609,15 +609,12 @@ namespace Tizen.NUI.Components
         
         private void UpdateUnderLinePos()
         {
-            if (underline == null || Style.UnderLine == null || Style.UnderLine.Size == null
-                || itemList == null || itemList.Count <= 0)
+            if (underline == null || underline.Size == null || itemList == null || itemList.Count <= 0)
             {
                 return;
             }
 
-            Style.UnderLine.Size.Width = itemList[curIndex].Size2D.Width;
-
-            underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Style.UnderLine.Size.Height);
+            underline.Size = new Size(itemList[curIndex].Size.Width, (int)Style.UnderLine.Size.Height);
             underline.BackgroundColor = Style.UnderLine.BackgroundColor.All;
             if (isNeedAnimation)
             {
@@ -627,12 +624,12 @@ namespace Tizen.NUI.Components
                     underlineAni.Stop();
                 }
                 underlineAni.Clear();
-                underlineAni.AnimateTo(underline, "PositionX", itemList[curIndex].Position2D.X);
+                underlineAni.AnimateTo(underline, "PositionX", itemList[curIndex].Position.X);
                 underlineAni.Play();
             }
             else
             {
-                underline.Position2D.X = itemList[curIndex].Position2D.X;
+                underline.Position.X = (int)itemList[curIndex].Position.X;
                 isNeedAnimation = true;
             }
 
@@ -691,8 +688,6 @@ namespace Tizen.NUI.Components
                     VerticalAlignment = VerticalAlignment.Center
                 };
                 Add(TextItem);
-
-                EnableControlStatePropagation = true;
             }
 
             internal int Index

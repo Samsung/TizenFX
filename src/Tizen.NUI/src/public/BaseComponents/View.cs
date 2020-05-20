@@ -271,6 +271,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                backgroundColorSelector.Clear();
                 SetValue(BackgroundColorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -288,6 +289,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                backgroundImageSelector.Clear();
                 SetValue(BackgroundImageProperty, value);
                 NotifyPropertyChanged();
             }
@@ -306,6 +308,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                backgroundImageBorderSelector.Clear();
                 SetValue(BackgroundImageBorderProperty, value);
                 NotifyPropertyChanged();
             }
@@ -775,6 +778,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                opacitySelector.Clear();
                 SetValue(OpacityProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1631,7 +1635,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 // If View has a Layout then padding in stored in the base Layout class
-                if (Layout !=null)
+                if (Layout != null)
                 {
                     return Layout.Padding;
                 }
@@ -2122,6 +2126,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                colorSelector.Clear();
                 SetValue(ColorProperty, value);
                 NotifyPropertyChanged();
             }

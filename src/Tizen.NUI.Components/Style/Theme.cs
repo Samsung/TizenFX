@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
             styleMap.Add(typeof(Button), GetButtonStyle);
             styleMap.Add(typeof(CheckBox), GetCheckBoxStyle);
             styleMap.Add(typeof(DropDown), GetDropDownStyle);
+            styleMap.Add(typeof(DropDown.DropDownDataItem), GetDropDownItemStyle);
             styleMap.Add(typeof(Popup), GetPopupStyle);
             styleMap.Add(typeof(Progress), GetProgressStyle);
             styleMap.Add(typeof(RadioButton), GetRadioButtonStyle);
@@ -61,6 +62,8 @@ namespace Tizen.NUI.Components
         protected abstract ButtonStyle GetCheckBoxStyle();
 
         protected abstract DropDownStyle GetDropDownStyle();
+
+        protected abstract DropDownItemStyle GetDropDownItemStyle();
 
         protected abstract PopupStyle GetPopupStyle();
 
