@@ -38,7 +38,6 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.GattConnectionStateChangedCallBack _gattConnectionStateChangedCallback;
 
         private int _serviceListCount = 0;
-        private IList<BluetoothLeServiceData> _list = new List<BluetoothLeServiceData>();
         private bool _scanStarted;
 
         internal static BluetoothLeImplAdapter Instance
@@ -394,6 +393,7 @@ namespace Tizen.Network.Bluetooth
 
             Log.Info(Globals.LogTag, "Count of ServiceDataList: " + _serviceListCount);
 
+            IList<BluetoothLeServiceData> _list = new List<BluetoothLeServiceData>();
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
             {
