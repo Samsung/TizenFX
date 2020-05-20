@@ -1714,10 +1714,6 @@ namespace Tizen.NUI.BaseComponents
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (_layout != null)
                 {
-                    // Note: it only works if minimum size is >= than natural size.
-                    // To force the size it should be done through the width&height spec or Size2D.
-                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Width);
-                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Height);
                     _layout.RequestLayout();
                 }
                 SetValue(MaximumSizeProperty, value);
