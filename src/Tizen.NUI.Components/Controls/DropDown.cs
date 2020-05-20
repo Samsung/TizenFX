@@ -869,12 +869,15 @@ namespace Tizen.NUI.Components
                 }
                 set
                 {
-                    if (null == itemDataStyle?.BackgroundColor)
+                    if (null != itemDataStyle)
                     {
-                        itemDataStyle.BackgroundColor = new Selector<Color>();
-                    }
+                        if (null == itemDataStyle.BackgroundColor)
+                        {
+                            itemDataStyle.BackgroundColor = new Selector<Color>();
+                        }
 
-                    itemDataStyle.BackgroundColor.Clone(value);
+                        itemDataStyle.BackgroundColor.Clone(value);
+                    }
                 }
             }
 

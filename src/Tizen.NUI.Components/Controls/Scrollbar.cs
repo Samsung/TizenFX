@@ -221,7 +221,7 @@ namespace Tizen.NUI.Components
                 }
                 return trackImage;
             }
-            set
+            internal set
             {
                 trackImage = value;
             }
@@ -242,8 +242,8 @@ namespace Tizen.NUI.Components
                     {
                         Focusable = false,
                         PositionUsesPivotPoint = true,
-                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = NUI.ParentOrigin.CenterLeft,
+                        ParentOrigin = NUI.ParentOrigin.TopLeft,
+                        PivotPoint = NUI.ParentOrigin.TopLeft,
                         WidthResizePolicy = ResizePolicyType.Fixed,
                         HeightResizePolicy = ResizePolicyType.Fixed
                     };
@@ -251,7 +251,7 @@ namespace Tizen.NUI.Components
                 }
                 return thumbImage;
             }
-            set
+            internal set
             {
                 thumbImage = value;
             }

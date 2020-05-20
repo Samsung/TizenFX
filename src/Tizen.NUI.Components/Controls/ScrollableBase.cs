@@ -412,17 +412,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            if(view.Name != "InterruptTouchingChild")
+            if(null != view && view.Name != "InterruptTouchingChild")
             {
-                if(mScrollingChild.Name != "DefaultScrollingChild")
+                if(null != mScrollingChild && mScrollingChild.Name != "DefaultScrollingChild")
                 {
                     propertyNotification.Notified -= OnPropertyChanged;
                     mScrollingChild.RemovePropertyNotification(propertyNotification);
                 }
 
                 mScrollingChild = view;
-                propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
-                propertyNotification.Notified += OnPropertyChanged;
+                propertyNotification = mScrollingChild.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
+                if (null != propertyNotification)
+                {
+                    propertyNotification.Notified += OnPropertyChanged;
+                }
             }
         }
 

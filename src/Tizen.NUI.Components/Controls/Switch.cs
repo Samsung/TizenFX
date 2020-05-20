@@ -132,7 +132,7 @@ namespace Tizen.NUI.Components
                 }
                 return track;
             }
-            set
+            internal set
             {
                 track = value;
             }
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Components
                 }
                 return thumb;
             }
-            set
+            internal set
             {
                 thumb = value;
             }

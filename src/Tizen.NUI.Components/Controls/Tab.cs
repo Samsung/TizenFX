@@ -112,7 +112,7 @@ namespace Tizen.NUI.Components
                 }
                 return underline;
             }
-            set
+            internal set
             {
                 underline = value;
             }
