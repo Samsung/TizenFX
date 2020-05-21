@@ -18,6 +18,12 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string MediaVision = "libcapi-media-vision.so.0";
+        public const string MediaVisionCommon = "libmv_common.so";
+        public const string MediaVisionFace = "libmv_face.so";
+        public const string MediaVisionInference = "libmv_inference.so";
+        public const string MediaVisionImage = "libmv_image.so";
+        public const string MediaVisionSurveillance = "libmv_surveillance.so";
+        public const string MediaVisionBarcodeDetector = "libmv_barcode_detector.so";
+        public const string MediaVisionBarcodeGenerator = "libmv_barcode_generator.so";
     }
 }
