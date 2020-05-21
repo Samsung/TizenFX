@@ -393,18 +393,18 @@ namespace Tizen.Network.Bluetooth
 
             Log.Info(Globals.LogTag, "Count of ServiceDataList: " + _serviceListCount);
 
-            IList<BluetoothLeServiceData> _list = new List<BluetoothLeServiceData>();
+            IList<BluetoothLeServiceData> list = new List<BluetoothLeServiceData>();
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
             {
                 var svc = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
-                _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
+                list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
             }
 
             Interop.Bluetooth.FreeServiceDataList(serviceListArray, _serviceListCount);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
-            return _list;
+            return list;
         }
 
         internal int GetScanResultAppearance(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
