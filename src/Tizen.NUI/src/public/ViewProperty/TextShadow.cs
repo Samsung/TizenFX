@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : ICloneable
+    public class TextShadow : ISelectorItem
     {
         private readonly PropertyMap propertyMap = null;
 
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone()
         {
-            return new TextShadow(Color, Offset, BlurRadius);
+            return new TextShadow((Color)Color?.Clone(), Offset, BlurRadius);
         }
 
         /// <summary>

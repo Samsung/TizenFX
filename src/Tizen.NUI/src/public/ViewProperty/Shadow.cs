@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// Represents a shadow with color and blur radius for a View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Shadow : ShadowBase, ICloneable
+    public class Shadow : ShadowBase, ISelectorItem
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
 
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
         {
             BlurRadius = blurRadius;
-            Color = new Color(color);
+            Color = color == null ? null : new Color(color);
         }
 
         /// <summary>
