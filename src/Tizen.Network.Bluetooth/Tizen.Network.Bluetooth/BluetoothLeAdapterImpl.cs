@@ -393,7 +393,7 @@ namespace Tizen.Network.Bluetooth
 
             Log.Info(Globals.LogTag, "Count of ServiceDataList: " + _serviceListCount);
 
-            IList<BluetoothLeServiceData> _list = new List<BluetoothLeServiceData>();
+            IList<BluetoothLeServiceData> list = new List<BluetoothLeServiceData>();
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
             {
