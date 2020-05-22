@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using Native = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
@@ -36,7 +35,13 @@ namespace Tizen.Multimedia.Remoting
 
         internal MediaControlMetadata(IntPtr handle)
         {
-            Debug.Assert(handle != IntPtr.Zero);
+            // If native framework return null handle,
+            // it means server doesn't set metadata yet and it's not error.
+            // So we need to return empty metadata instance as native framework does.
+            if (handle == IntPtr.Zero)
+            {
+                return;
+            }
 
             Title = Native.GetMetadata(handle, MediaControllerNativeAttribute.Title);
             Artist = Native.GetMetadata(handle, MediaControllerNativeAttribute.Artist);
