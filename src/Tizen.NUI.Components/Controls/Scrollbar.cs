@@ -187,6 +187,66 @@ namespace Tizen.NUI.Components
         public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
 
         /// <summary>
+        /// Return ImageView instance of background
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView TrackImage
+        {
+            get
+            {
+                if (null == trackImage)
+                {
+                    trackImage = new ImageView()
+                    {
+                        Focusable = false,
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.ParentOrigin.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent
+                    };
+                    Add(trackImage);
+                }
+                return trackImage;
+            }
+            set
+            {
+                trackImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Return ImageView instance of travelling thumbnail
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ThumbImage
+        {
+            get
+            {
+                if (null == thumbImage)
+                {
+                    thumbImage = new ImageView()
+                    {
+                        Focusable = false,
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = NUI.ParentOrigin.CenterLeft,
+                        WidthResizePolicy = ResizePolicyType.Fixed,
+                        HeightResizePolicy = ResizePolicyType.Fixed
+                    };
+                    Add(thumbImage);
+                }
+                return thumbImage;
+            }
+            set
+            {
+                thumbImage = value;
+            }
+        }
+
+        /// <summary>
         /// The property to get/set the direction of the ScrollBar.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -414,6 +474,23 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Apply style to ScrollBar.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+            ScrollBarStyle sbStyle = viewStyle as ScrollBarStyle;
+            if (null != sbStyle)
+            {
+                TrackImage.ApplyStyle(sbStyle.Track);
+                ThumbImage.ApplyStyle(sbStyle.Thumb);
+                UpdateValue();
+            }
+        }
+
+        /// <summary>
         /// Dispose ScrollBar.
         /// </summary>
         /// <param name="type">The DisposeTypes value.</param>
@@ -481,30 +558,6 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             this.Focusable = false;
-
-            trackImage = new ImageView
-            {
-                Focusable = false,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
-            };
-            this.Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
-
-            thumbImage = new ImageView
-            {
-                Focusable = false,
-                WidthResizePolicy = ResizePolicyType.Fixed,
-                HeightResizePolicy = ResizePolicyType.Fixed,
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
-            };
-            this.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
 
             scrollAniPlayer = new Animation(334);
             scrollAniPlayer.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);

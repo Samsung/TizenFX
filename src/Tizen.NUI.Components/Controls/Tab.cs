@@ -78,6 +78,29 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public new TabStyle Style => ViewStyle as TabStyle;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View Underline
+        {
+            get
+            {
+                if (null == underline)
+                {
+                    underline = new View()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
+                    };
+                    Add(underline);
+                }
+                return underline;
+            }
+            set
+            {
+                underline = value;
+            }
+        }
+
         /// <summary>
         /// Selected item's index in Tab.
         /// </summary>
@@ -371,19 +394,8 @@ namespace Tizen.NUI.Components
 
             if (null != tabStyle)
             {
-                if (null == underline)
-                {
-                    underline = new View()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                    };
-                    Add(underline);
-                    CreateUnderLineAnimation();
-                }
-
-                underline.ApplyStyle(Style.UnderLine);
+                Underline.ApplyStyle(tabStyle.UnderLine);
+                CreateUnderLineAnimation();
             }
         }
 
