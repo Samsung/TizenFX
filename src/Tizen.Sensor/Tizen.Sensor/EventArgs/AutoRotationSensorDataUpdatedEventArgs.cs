@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The AutoRotationSensor changed event arguments class is used for storing the data returned by the auto rotation sensor.
+    /// The AutoRotationSensorDataUpdatedEventArgs is used for storing the data returned by the auto-rotation sensor.
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
     public class AutoRotationSensorDataUpdatedEventArgs : EventArgs
@@ -39,7 +39,7 @@ namespace Tizen.Sensor
         public AutoRotationState Rotation { get; private set; } = AutoRotationState.Degree_0;
 
         /// <summary>
-        /// Gets the accuracy of the auto rotation data.
+        /// Gets the accuracy of the auto-rotation data.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         /// <value> Accuracy </value>
