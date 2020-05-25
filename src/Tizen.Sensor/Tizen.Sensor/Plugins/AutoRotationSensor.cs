@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The AutoRotationSensor class is used for registering callbacks for the auto rotation sensor and getting the auto rotation data.
+    /// The AutoRotationSensor class is used for registering callbacks for the auto-rotation sensor and getting the auto-rotation data.
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
     public sealed class AutoRotationSensor : Sensor
@@ -38,14 +38,14 @@ namespace Tizen.Sensor
 
 
         /// <summary>
-        /// Gets the accuracy of the auto rotation data.
+        /// Gets the accuracy of the auto-rotation data.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
-        /// Returns true or false based on whether the auto rotation sensor is supported by the device.
+        /// Returns true or false based on whether the auto-rotation sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -67,7 +67,7 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular auto rotation sensor in case of multiple sensors.
+        /// Index. The default value of this is 0. Index refers to a specific auto-rotation sensor in case of multiple sensors.
         /// </param>
         public AutoRotationSensor(uint index = 0) : base(index)
         {
@@ -80,7 +80,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// An event handler for storing the callback functions for the event corresponding to the change in the auto rotation sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the auto-rotation sensor data.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
 
@@ -117,7 +117,7 @@ namespace Tizen.Sensor
             int error = Interop.SensorManager.GetSensorList(SensorType.AutoRotation, out list, out count);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error getting sensor list for auto rotation");
+                Log.Error(Globals.LogTag, "Error getting sensor list for auto-rotation");
                 count = 0;
             }
             else
@@ -126,7 +126,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read auto rotation data synchronously.
+        /// Read auto-rotation data synchronously.
         /// </summary>
         internal override void ReadData()
         {
@@ -134,8 +134,8 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error reading auto rotation data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading auto rotation data failed");
+                Log.Error(Globals.LogTag, "Error reading auto-rotation data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading auto-rotation data failed");
             }
 
             Timestamp = sensorData.timestamp;
@@ -169,8 +169,8 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error setting event callback for auto rotation sensor");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set event callback for auto rotation");
+                Log.Error(Globals.LogTag, "Error setting event callback for auto-rotation sensor");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set event callback for auto-rotation");
             }
         }
 
@@ -179,8 +179,8 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error unsetting event callback for auto rotation sensor");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for auto rotation");
+                Log.Error(Globals.LogTag, "Error unsetting event callback for auto-rotation sensor");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset event callback for auto-rotation");
             }
         }
 
@@ -197,8 +197,8 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error setting accuracy event callback for auto rotation sensor");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set accuracy event callback for auto rotation");
+                Log.Error(Globals.LogTag, "Error setting accuracy event callback for auto-rotation sensor");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to set accuracy event callback for auto-rotation");
             }
         }
 
@@ -207,8 +207,8 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.UnsetAccuracyCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error unsetting accuracy event callback for auto rotation sensor");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset accuracy event callback for auto rotation");
+                Log.Error(Globals.LogTag, "Error unsetting accuracy event callback for auto-rotation sensor");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset accuracy event callback for auto-rotation");
             }
         }
     }

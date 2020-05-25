@@ -116,7 +116,7 @@ namespace Tizen.Sensor
         /// </summary>
         SleepMonitor = 0x301,
         /// <summary>
-        /// Auto Rotation sensor.
+        /// Auto-rotation sensor.
         /// </summary>
         AutoRotation = 0x901,
         /// <summary>
@@ -333,7 +333,7 @@ namespace Tizen.Sensor
     }
     
     /// <summary>
-    /// The auto rotation state.
+    /// The auto-rotation state.
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
     public enum AutoRotationState

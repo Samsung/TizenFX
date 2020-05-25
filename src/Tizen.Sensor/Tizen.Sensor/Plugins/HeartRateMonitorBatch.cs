@@ -221,7 +221,7 @@ namespace Tizen.Sensor
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting accuracy event callback for HeartRateMonitorBatch sensor");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset accuracy event callback for auto rotation");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Unable to unset accuracy event callback for HeartRateMonitorBatch");
             }
         }
     }
