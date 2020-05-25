@@ -399,5 +399,13 @@ namespace Tizen.NUI.Components
                 }
             };
         }
+
+        protected override LoadingStyle GetLoadingStyle()
+        {
+            return new LoadingStyle
+            {
+                LoadingSize = new Size(100, 100)
+            };
+        }
     }
 }

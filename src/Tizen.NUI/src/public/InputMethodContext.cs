@@ -366,7 +366,7 @@ namespace Tizen.NUI
         public enum InputPanelLanguage
         {
             /// <summary>
-            /// IME Language automatically set depending on the system display.
+            /// IME Language is automatically set depending on the system display.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
             Automatic,
