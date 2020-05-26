@@ -245,6 +245,33 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Rotate the buffer by the given angle.
+        /// </summary>
+        /// <param name="angle">The angle in degrees.</param>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Rotate(Degree angle)
+        {
+            bool ret = Interop.PixelBuffer.PixelBuffer_Rotate(swigCPtr, Degree.getCPtr(angle));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        ///  Gets the pixel buffer
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public global::System.IntPtr GetBuffer()
+        {
+            global::System.IntPtr ret = Interop.PixelBuffer.PixelBuffer_GetBuffer(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PixelBuffer obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -257,13 +284,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal SWIGTYPE_p_unsigned_char GetBuffer()
-        {
-            global::System.IntPtr cPtr = Interop.PixelBuffer.PixelBuffer_GetBuffer(swigCPtr);
-            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
+
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
