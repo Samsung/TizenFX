@@ -157,6 +157,7 @@ namespace Tizen.NUI.Wearable
         private float currentValue = 0;
         private bool isEnabled = true;
 
+        private Animation sweepAngleAnimation;
 
         /// <summary>
         /// Get style of progress.
@@ -270,7 +271,11 @@ namespace Tizen.NUI.Wearable
             }
             set
             {
+                sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 100, AlphaFunction.BuiltinFunctions.EaseIn);
+
                 SetValue(CurrentValueProperty, value);
+
+                UpdateAnimation();
             }
         }
 
@@ -404,8 +409,12 @@ namespace Tizen.NUI.Wearable
         {
             Size = new Size(360.0f, 360.0f);
 
+            sweepAngleAnimation?.Stop();
+            sweepAngleAnimation = null;
+
             trackVisual = new ArcVisual
             {
+                SupressUpdateVisual = true,
                 Thickness = this.Thickness,
                 Cap = ArcVisual.CapType.Butt,
                 MixColor = TrackColor,
@@ -416,10 +425,12 @@ namespace Tizen.NUI.Wearable
 
             progressVisual = new ArcVisual
             {
+                SupressUpdateVisual = true,
                 Thickness = this.Thickness,
                 Cap = ArcVisual.CapType.Butt,
                 MixColor = ProgressColor,
                 StartAngle = 0.0f,
+                SweepAngle = 0.0f
             };
             this.AddVisual(ProgressVisualName, progressVisual);
 
@@ -454,8 +465,8 @@ namespace Tizen.NUI.Wearable
             trackVisual.Thickness = thickness;
             progressVisual.Thickness = thickness;
 
-            trackVisual.UpdateVisual();
-            progressVisual.UpdateVisual();
+            trackVisual.UpdateVisual(true);
+            progressVisual.UpdateVisual(true);
         }
 
         private void UpdateProgressVisualSweepAngle()
@@ -464,8 +475,29 @@ namespace Tizen.NUI.Wearable
             float progressWidth = 360.0f * progressRatio; // Circle
             progressVisual.SweepAngle = progressWidth;
 
-            progressVisual.UpdateVisual();
-            //trackVisual.UpdateVisual(); // TODO : Not sure to update track visual here.
+            if (!sweepAngleAnimation)
+            {
+                progressVisual.UpdateVisual(true);
+            }
+        }
+
+        private void UpdateAnimation()
+        {
+            // TODO : Currently not sure which effect is needed.
+            AlphaFunction.BuiltinFunctions builtinAlphaFunction = AlphaFunction.BuiltinFunctions.EaseIn;
+
+            if (sweepAngleAnimation)
+            {
+                sweepAngleAnimation?.Stop();
+            }
+
+            sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 100, builtinAlphaFunction);
+
+            if (sweepAngleAnimation)
+            {
+                sweepAngleAnimation.Play();
+            }
+
         }
 
         private void UpdateTrackVisualColor(Color trackColor)
@@ -476,7 +508,7 @@ namespace Tizen.NUI.Wearable
             }
 
             trackVisual.MixColor = trackColor;
-            trackVisual.UpdateVisual();
+            trackVisual.UpdateVisual(true);
         }
 
         private void UpdateProgressVisualColor(Color progressColor)
@@ -492,7 +524,7 @@ namespace Tizen.NUI.Wearable
                 progressVisual.Opacity = 0.6f;
             }
 
-            progressVisual.UpdateVisual();
+            progressVisual.UpdateVisual(true);
         }
 
         #endregion Methods
