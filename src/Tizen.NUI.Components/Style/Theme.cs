@@ -42,6 +42,7 @@ namespace Tizen.NUI.Components
             styleMap.Add(typeof(Switch), GetSwitchStyle);
             styleMap.Add(typeof(Tab), GetTabStyle);
             styleMap.Add(typeof(Toast), GetToastStyle);
+            styleMap.Add(typeof(Loading), GetLoadingStyle);
         }
 
         internal delegate ViewStyle ComponentStyleGetter();
@@ -75,5 +76,7 @@ namespace Tizen.NUI.Components
         protected abstract TabStyle GetTabStyle();
 
         protected abstract ToastStyle GetToastStyle();
+
+        protected abstract LoadingStyle GetLoadingStyle();
     }
 }
