@@ -414,7 +414,7 @@ namespace Tizen.NUI.Wearable
 
             trackVisual = new ArcVisual
             {
-                SupressUpdateVisual = true,
+                SuppressUpdateVisual = true,
                 Thickness = this.Thickness,
                 Cap = ArcVisual.CapType.Butt,
                 MixColor = TrackColor,
@@ -425,7 +425,7 @@ namespace Tizen.NUI.Wearable
 
             progressVisual = new ArcVisual
             {
-                SupressUpdateVisual = true,
+                SuppressUpdateVisual = true,
                 Thickness = this.Thickness,
                 Cap = ArcVisual.CapType.Butt,
                 MixColor = ProgressColor,
