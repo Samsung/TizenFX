@@ -242,7 +242,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <summary>
-        /// The property to get/set the minim value of the CircularProgress.
+        /// The property to get/set the minimum value of the CircularProgress.
         /// The default value is 0.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
