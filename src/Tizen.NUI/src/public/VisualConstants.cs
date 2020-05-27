@@ -148,7 +148,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Image rows: Limit loaded image resolution to row height using the FitHeight mode.
         /// </summary>
-        FitHeight
+        FitHeight,
+        /// <summary>
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the Center mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Center,
+        /// <summary>
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the ScaleToFill mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Fill
     }
 
     /// <summary>
@@ -298,7 +308,27 @@ namespace Tizen.NUI
         /// <summary>
         /// The visual should be stretched to fill, not preserving aspect ratio.
         /// </summary>
-        Fill
+        Fill,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be fillled without empty area, and outside is cropped away.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        OverFitKeepAspectRatio,
+        /// <summary>
+        /// The visual should keep original size of image. it is not scaled and not strecthed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Center,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. Height is scaled proportionately to maintain aspect ratio.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FitHeight,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. WIDTH is scaled proportionately to maintain aspect ratio.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FitWidth,
     }
 
     /// <summary>
