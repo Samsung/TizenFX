@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -60,6 +61,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         protected VisualFittingModeType? _visualFittingMode = null;
+
+        /// <summary>
+        /// The corner radius value of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected float? _cornerRadius = null;
 
         /// <summary>
         /// The map for visual.
@@ -594,6 +601,23 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The corner radius of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CornerRadius
+        {
+            get
+            {
+                return _cornerRadius ?? (0.0f);
+            }
+            set
+            {
+                _cornerRadius = value;
+                UpdateVisual();
+            }
+        }
+
         internal string Name
         {
             set;
@@ -612,9 +636,15 @@ namespace Tizen.NUI
             get;
         }
 
-        internal void UpdateVisual()
+        /// <summary>
+        /// Suppress UpdateVisual() to update properties to Parent.
+        /// If it is set to true, UpdateVisual() is ignored unless it is called with force.
+        /// </summary>
+        internal bool SuppressUpdateVisual { get; set; } = false;
+
+        internal void UpdateVisual(bool force = false)
         {
-            if (VisualIndex > 0)
+            if (VisualIndex > 0 && (!SuppressUpdateVisual || force))
             {
                 NUILog.Debug("UpdateVisual()! VisualIndex=" + VisualIndex);
                 Parent.UpdateVisual(VisualIndex, Name, this);
@@ -641,6 +671,7 @@ namespace Tizen.NUI
             if (_mixColor != null) { _outputVisualMap.Add(Visual.Property.MixColor, new PropertyValue(_mixColor)); }
             if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
             if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
+            if (_cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)_cornerRadius)); }
         }
 
         private void ComposingTransformMap()

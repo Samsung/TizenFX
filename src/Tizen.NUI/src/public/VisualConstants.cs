@@ -409,7 +409,12 @@ namespace Tizen.NUI
             /// <summary>
             /// Renders a animated image (animated GIF).
             /// </summary>
-            AnimatedImage
+            AnimatedImage,
+            /// <summary>
+            /// Renders an arc.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Arc = AnimatedImage + 3,
         }
 
         /// <summary>
@@ -454,7 +459,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
             /// <summary>
-            /// The fitting mode of the visual.
+            /// The corner radius of the visual.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
@@ -1120,5 +1125,43 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
+    }
+
+    /// <summary>
+    /// This specifies properties of the ArcVisual.
+    /// </summary>
+    internal struct ArcVisualProperty
+    {
+        /// <summary>
+        /// The thickness of the arc.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>This is mandatory property.</remarks>
+        internal static readonly int Thickness = NDalic.IMAGE_VISUAL_URL;
+
+        /// <summary>
+        /// The start angle where the arc begins in degrees.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>The property of optional. The default value is 0.</remarks>
+        internal static readonly int StartAngle = Thickness + 1;
+
+        /// <summary>
+        /// The sweep angle of the arc in degrees.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>The property of optional. The default value is 360.</remarks>
+        internal static readonly int SweepAngle = Thickness + 2;
+
+        /// <summary>
+        /// The cap style of the arc.
+        /// </summary>
+        /// <remarks>
+        /// The value is integer type.
+        /// The value 0 means butt, the arc does not extend beyond its two endpoints.
+        /// The value 1 means round, the arc will be extended by a half circle with the center at the end.
+        /// </remarks>
+        /// <remarks>The property of optional. The default value is 0 (butt).</remarks>
+        internal static readonly int Cap = Thickness + 3;
     }
 }
