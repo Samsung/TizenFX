@@ -206,7 +206,10 @@ namespace Tizen.NUI
                 transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
             }
 
-            return transformMap.Count() == 0 ? new PropertyValue() : new PropertyValue(transformMap);
+            transformMap[(int)VisualTransformPropertyType.Origin] = new PropertyValue((int)Visual.AlignType.Center);
+            transformMap[(int)VisualTransformPropertyType.AnchorPoint] = new PropertyValue((int)Visual.AlignType.Center);
+
+            return new PropertyValue(transformMap);
         }
 
         /// <summary>
