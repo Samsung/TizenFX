@@ -274,7 +274,7 @@ namespace Tizen.NUI.Components
         /// Get or set background track.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView BgTrackImageBgTrackImage
+        public ImageView BackgroundTrackImage
         {
             get
             {
