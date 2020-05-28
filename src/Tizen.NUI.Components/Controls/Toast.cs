@@ -117,34 +117,6 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel TextLabel
-        {
-            get
-            {
-                if (null == textLabel)
-                {
-                    textLabel = new TextLabel()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                        PivotPoint = Tizen.NUI.PivotPoint.Center,
-                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                        HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        TextColor = Color.White
-                    };
-                    Add(textLabel);
-                }
-                return textLabel;
-            }
-            internal set
-            {
-                textLabel = value;
-            }
-        }
-
         /// <summary>
         /// Gets or sets the text array of toast.
         /// </summary>
@@ -320,7 +292,12 @@ namespace Tizen.NUI.Components
 
             if (null != toastStyle)
             {
-                TextLabel.ApplyStyle(toastStyle.Text);
+                if (null == textLabel)
+                {
+                    textLabel = new TextLabel();
+                    this.Add(textLabel);
+                }
+                textLabel.ApplyStyle(toastStyle.Text);
             }
         }
 
@@ -367,6 +344,12 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
+            if (null == textLabel)
+            {
+                textLabel = new TextLabel();
+                this.Add(textLabel);
+            }
+
             this.VisibilityChanged += OnVisibilityChanged;
             timer = new Timer(Style.Duration ?? duration);
             timer.Tick += OnTick;

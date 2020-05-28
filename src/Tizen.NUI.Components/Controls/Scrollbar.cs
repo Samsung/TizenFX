@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,693 +15,590 @@
  *
  */
 using System;
-using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The ScrollBar class of nui component. It allows users to recognize the direction and the range of lists/content. .
+    /// The Scrollbar is a component that contains track and thumb to indicate the current scrolled position of a scrollable object.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public class ScrollBar : Control
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Scrollbar : ScrollbarBase
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        #region Fields
+
+        /// <summary>Bindable property of TrackThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float), typeof(Scrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                instance.Style.Direction = (DirectionType?)newValue;
-                instance.UpdateValue();
-            }
+            var instance = ((Scrollbar)bindable);
+            var thickness = (float?)newValue;
+
+            ((ScrollbarStyle)instance.viewStyle).TrackThickness = thickness;
+            instance.UpdateTrackThickness(thickness ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (ScrollBar)bindable;
-            return instance.Style.Direction;
+            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackThickness ?? 0;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>Bindable property of ThumbThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float), typeof(Scrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.maxValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
+            var instance = ((Scrollbar)bindable);
+            var thickness = (float?)newValue;
+
+            ((ScrollbarStyle)instance.viewStyle).ThumbThickness = thickness;
+            instance.UpdateThumbThickness(thickness ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (ScrollBar)bindable;
-            return instance.maxValue;
+            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.ThumbThickness ?? 0;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.minValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
+            var instance = ((Scrollbar)bindable);
+            var color = (Color)newValue;
+
+            ((ScrollbarStyle)instance.viewStyle).TrackColor = color;
+            instance.UpdateTrackColor(color);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (ScrollBar)bindable;
-            return instance.minValue;
+            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackColor;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.curValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
+            var instance = ((Scrollbar)bindable);
+            var color = (Color)newValue;
+
+            ((ScrollbarStyle)instance.viewStyle).ThumbColor = color;
+            instance.UpdateThumbColor(color);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (ScrollBar)bindable;
-            return instance.curValue;
+            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.ThumbColor;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>Bindable property of TrackPadding</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Scrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                instance.Style.Duration = (uint)newValue;
-                if (instance.scrollAniPlayer != null)
-                {
-                    instance.scrollAniPlayer.Duration = (int)(uint)newValue;
-                }
-            }
+            var instance = ((Scrollbar)bindable);
+            var trackPadding = (Extents)newValue;
+
+            ((ScrollbarStyle)instance.viewStyle).TrackPadding = trackPadding;
+            instance.UpdateTrackPadding(trackPadding);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (ScrollBar)bindable;
-            return instance.Style.Duration;
+            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackPadding;
         });
 
-        private ImageView trackImage;
-        private ImageView thumbImage;
-        private Animation scrollAniPlayer = null;
-        private float thumbImagePosX;
-        private float thumbImagePosY;
-        private bool enableAni = false;
-        private int minValue;
-        private int maxValue;
-        private int curValue;
-        static ScrollBar() { }
+        private ColorVisual trackVisual;
+        private ColorVisual thumbVisual;
+        private Animation thumbPositionAnimation;
+        private Animation thumbSizeAnimation;
+        private Calculator calculator;
+        private Size containerSize = new Size(0, 0);
+        private float currentPosition;
+
+        #endregion Fields
+
+
+        #region Constructors
 
         /// <summary>
-        /// The constructor of ScrollBar.
+        /// Create an empty Scrollbar.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public ScrollBar() : base()
+        public Scrollbar() : base(new ScrollbarStyle())
         {
-            Initialize();
         }
 
         /// <summary>
-        /// The constructor of ScrollBar with specific style.
+        /// Create a Scrollbar and initialize with properties.
         /// </summary>
-        /// <param name="style">style name</param>
-        /// <since_tizen> 8 </since_tizen>
-        public ScrollBar(string style) : base(style)
-        {
-            Initialize();
-        }
-
-        /// <summary>
-        /// The constructor of ScrollBar with specific style.
-        /// </summary>
-        /// <param name="scrollBarStyle">The style object to initialize the ScrollBar.</param>
-        /// <since_tizen> 8 </since_tizen>
-        public ScrollBar(ScrollBarStyle scrollBarStyle) : base(scrollBarStyle)
-        {
-            Initialize();
-        }
-
-        /// <summary>
-        /// The direction type of the Scroll.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public enum DirectionType
-        {
-            /// <summary>
-            /// The Horizontal type.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            Horizontal,
-
-            /// <summary>
-            /// The Vertical type.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            Vertical
-        }
-
-        #region public property 
-        /// <summary>
-        /// Get style of scrollbar.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
-
-        /// <summary>
-        /// Return ImageView instance of background
-        /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="contentLength">The length of the scrollable content area.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
+        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView TrackImage
+        public Scrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new ScrollbarStyle())
         {
-            get
-            {
-                if (null == trackImage)
-                {
-                    trackImage = new ImageView()
-                    {
-                        Focusable = false,
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = NUI.ParentOrigin.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-                    Add(trackImage);
-                }
-                return trackImage;
-            }
-            internal set
-            {
-                trackImage = value;
-            }
+            Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
 
         /// <summary>
-        /// Return ImageView instance of travelling thumbnail
+        /// Create an empty Scrollbar with a ScrollbarStyle instance to set style properties.
         /// </summary>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView ThumbImage
+        public Scrollbar(ScrollbarStyle style) : base(style)
         {
-            get
-            {
-                if (null == thumbImage)
-                {
-                    thumbImage = new ImageView()
-                    {
-                        Focusable = false,
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = NUI.ParentOrigin.CenterLeft,
-                        WidthResizePolicy = ResizePolicyType.Fixed,
-                        HeightResizePolicy = ResizePolicyType.Fixed
-                    };
-                    Add(thumbImage);
-                }
-                return thumbImage;
-            }
-            internal set
-            {
-                thumbImage = value;
-            }
         }
 
         /// <summary>
-        /// The property to get/set the direction of the ScrollBar.
+        /// Static constructor to initialize bindable properties when loading.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public DirectionType Direction
+        static Scrollbar()
         {
-            get
-            {
-                return (DirectionType)GetValue(DirectionProperty);
-            }
-            set
-            {
-                SetValue(DirectionProperty, value);
-            }
+        }
+
+        #endregion Constructors
+
+
+        #region Properties
+
+        /// <summary>
+        /// The thickness of the track.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TrackThickness
+        {
+            get => (float)GetValue(TrackThicknessProperty);
+            set => SetValue(TrackThicknessProperty, value);
         }
 
         /// <summary>
-        /// The property to get/set the size of the thumb object.
+        /// The thickness of the thumb.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throw when ThumbSize is null.</exception>
-        /// <example>
-        /// <code>
-        /// ScrollBar scroll;
-        /// try
-        /// {
-        ///     scroll.ThumbSize = new Size(500, 10, 0);
-        /// }
-        /// catch(InvalidOperationException e)
-        /// {
-        ///     Tizen.Log.Error(LogTag, "Failed to set ThumbSize value : " + e.Message);
-        /// }
-        /// </code>
-        /// </example>
-        /// <since_tizen> 6 </since_tizen>
-        public Size ThumbSize
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ThumbThickness
         {
-            get
-            {
-                return Style?.Thumb?.Size;
-            }
-            set
-            {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                    RelayoutRequest();
-                }
-            }
+            get => (float)GetValue(ThumbThicknessProperty);
+            set => SetValue(ThumbThicknessProperty, value);
         }
 
         /// <summary>
-        /// The property to get/set the image URL of the track object.
+        /// The color of the track part.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public string TrackImageURL
-        {
-            get
-            {
-                return Style?.Track?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// The property to get/set the color of the track object.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
-            get
-            {
-                return Style?.Track?.BackgroundColor?.All;
-            }
-            set
-            {
-                if (null != Style?.Track)
-                {
-                    Style.Track.BackgroundColor = value;
-                    RelayoutRequest();
-                }
-            }
+            get => (Color)GetValue(TrackColorProperty);
+            set => SetValue(TrackColorProperty, value);
         }
 
         /// <summary>
-        /// The property to get/set the color of the thumb object.
+        /// The color of the thumb part.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
-            get
-            {
-                return Style?.Thumb?.BackgroundColor?.All;
-            }
-            set
-            {
-                if(null != Style?.Thumb)
-                {
-                    Style.Thumb.BackgroundColor = value;
-                    RelayoutRequest();
-                }
-            }
+            get => (Color)GetValue(ThumbColorProperty);
+            set => SetValue(ThumbColorProperty, value);
         }
 
         /// <summary>
-        /// The property to get/set the max value of the ScrollBar.
+        /// The padding value of the track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int MaxValue
-        {
-            get
-            {
-                return (int)GetValue(MaxValueProperty);
-            }
-            set
-            {
-                SetValue(MaxValueProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// The property to get/set the min value of the ScrollBar.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int MinValue
-        {
-            get
-            {
-                return (int)GetValue(MinValueProperty);
-            }
-            set
-            {
-                SetValue(MinValueProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// The property to get/set the current value of the ScrollBar.
-        /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Throw when Current value is less than Min value, or greater than Max value.</exception>
-        /// <example>
-        /// <code>
-        /// ScrollBar scroll;
-        /// scroll.MaxValue = 100;
-        /// scroll.MinValue = 0;
-        /// try
-        /// {
-        ///     scroll.CurrentValue = 50;
-        /// }
-        /// catch(ArgumentOutOfRangeException e)
-        /// {
-        ///     Tizen.Log.Error(LogTag, "Failed to set Current value : " + e.Message);
-        /// }
-        /// </code>
-        /// </example>
-        /// <since_tizen> 6 </since_tizen>
-        public int CurrentValue
-        {
-            get
-            {
-                return (int)GetValue(CurrentValueProperty);
-            }
-            set
-            {
-                SetValue(CurrentValueProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Property to set/get animation duration.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public uint Duration
-        {
-            get
-            {
-                return (uint)GetValue(DurationProperty);
-            }
-            set
-            {
-                SetValue(DurationProperty, value);
-            }
-        }
-        #endregion
-
-        /// <summary>
-        /// Method to set current value. The thumb object would move to the corresponding position with animation or not.
-        /// </summary>
-        /// <param name="currentValue">The special current value.</param>
-        /// <param name="enableAnimation">Enable move with animation or not, the default value is true.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Throw when current size is less than the min value, or greater than the max value.</exception>
-        /// <example>
-        /// <code>
-        /// ScrollBar scroll;
-        /// scroll.MinValue = 0;
-        /// scroll.MaxValue = 100;
-        /// try
-        /// {
-        ///     scroll.SetCurrentValue(50);
-        /// }
-        /// catch(ArgumentOutOfRangeException e)
-        /// {
-        ///     Tizen.Log.Error(LogTag, "Failed to set current value : " + e.Message);
-        /// }
-        /// </code>
-        /// </example>
-        /// <since_tizen> 6 </since_tizen>
-        public void SetCurrentValue(int currentValue, bool enableAnimation = true)
-        {
-            if (currentValue < minValue || currentValue > maxValue)
-            {
-                //TNLog.E("Current value is less than the Min value, or greater than the Max value. currentValue = " + currentValue + ";");
-#pragma warning disable CA2208 // Instantiate argument exceptions correctly
-                throw new ArgumentOutOfRangeException("Wrong Current value. It shoud be greater than the Min value, and less than the Max value!");
-#pragma warning restore CA2208 // Instantiate argument exceptions correctly
-            }
-
-            enableAni = enableAnimation;
-            CurrentValue = currentValue;
-        }
-
-        /// <summary>
-        /// Apply style to ScrollBar.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
+        public Extents TrackPadding
         {
-            base.ApplyStyle(viewStyle);
-            ScrollBarStyle sbStyle = viewStyle as ScrollBarStyle;
-            if (null != sbStyle)
+            get => (Extents)GetValue(TrackPaddingProperty);
+            set => SetValue(TrackPaddingProperty, value);
+        }
+
+        #endregion Properties
+
+
+        #region Methods
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false)
+        {
+            if (isHorizontal)
             {
-                TrackImage.ApplyStyle(sbStyle.Track);
-                ThumbImage.ApplyStyle(sbStyle.Thumb);
-                UpdateValue();
+                calculator = new HorizontalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
+            }
+            else
+            {
+                calculator = new VerticalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
+            }
+
+            thumbPositionAnimation?.Stop();
+            thumbPositionAnimation = null;
+
+            thumbSizeAnimation?.Stop();
+            thumbSizeAnimation = null;
+
+            Size trackSize = calculator.CalculateTrackSize(TrackThickness, containerSize, TrackPadding);
+            Vector2 trackPosition = calculator.CalculateTrackPosition(TrackPadding);
+            Size thumbSize = calculator.CalculateThumbSize(ThumbThickness, trackSize);
+            Vector2 thumbPosition = calculator.CalculateThumbPosition(trackSize, thumbSize, TrackPadding);
+
+            if (trackVisual == null)
+            {
+                trackVisual = new ColorVisual
+                {
+                    SuppressUpdateVisual = true,
+                    Color = TrackColor,
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    Origin = calculator.CalculatorTrackAlign(),
+                    AnchorPoint = calculator.CalculatorTrackAlign(),
+                    Size = trackSize,
+                    Position = trackPosition,
+                };
+
+                AddVisual("Track", trackVisual);
+            }
+            else
+            {
+                trackVisual.Size = trackSize;
+                trackVisual.Position = trackPosition;
+                trackVisual.UpdateVisual(true);
+            }
+
+            if (thumbVisual == null)
+            {
+                thumbVisual = new ColorVisual
+                {
+                    SuppressUpdateVisual = true,
+                    MixColor = ThumbColor,
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    Origin = calculator.CalculatorThumbAlign(),
+                    AnchorPoint = calculator.CalculatorThumbAlign(),
+                    Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f,
+                    Size = thumbSize,
+                    Position = thumbPosition,
+                };
+
+                AddVisual("Thumb", thumbVisual);
+            }
+            else
+            {
+                thumbVisual.Size = thumbSize;
+                thumbVisual.Position = thumbPosition;
+                thumbVisual.UpdateVisual(true);
             }
         }
 
-        /// <summary>
-        /// Dispose ScrollBar.
-        /// </summary>
-        /// <param name="type">The DisposeTypes value.</param>
-        /// <since_tizen> 6 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// <inheritdoc/>
+        /// <remarks>Please note that, for now, only alpha functions created with BuiltinFunctions are valid when animating. Otherwise, it will be treated as a linear alpha function. </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
-            if (disposed)
+            if (calculator == null)
             {
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
+            calculator.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
+            calculator.currentPosition = position;
+
+            thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, TrackPadding);
+            thumbVisual.Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f;
+
+            if (durationMs == 0)
             {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+                thumbVisual.UpdateVisual(true);
 
-                Utility.Dispose(trackImage);
-                Utility.Dispose(thumbImage);
-
-                if (scrollAniPlayer != null)
-                {
-                    scrollAniPlayer.Stop();
-                    scrollAniPlayer.Clear();
-                    scrollAniPlayer.Dispose();
-                    scrollAniPlayer = null;
-                }
+                return;
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            //Unreference this from if a static instance refer to this. 
+            // TODO Support non built-in alpha function for visual trainsition in DALi.
+            AlphaFunction.BuiltinFunctions builtinAlphaFunction = alphaFunction?.GetBuiltinFunction() ?? AlphaFunction.BuiltinFunctions.Default;
 
-            //You must call base.Dispose(type) just before exit.
-            base.Dispose(type);
+            thumbPositionAnimation?.Stop();
+            thumbPositionAnimation = AnimateVisual(thumbVisual, "position", thumbVisual.Position, 0, (int)durationMs, builtinAlphaFunction);
+            thumbPositionAnimation.Play();
+
+            thumbSizeAnimation?.Stop();
+            thumbSizeAnimation = AnimateVisual(thumbVisual, "size", thumbVisual.Size, 0, (int)durationMs, builtinAlphaFunction);
+            thumbSizeAnimation.Play();
         }
 
-        /// <summary>
-        /// Get Scrollbar style.
-        /// </summary>
-        /// <returns>The default scrollbar style.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        /// <inheritdoc/>
+        /// <remarks>Please note that, for now, only alpha functions created with BuiltinFunctions are valid when animating. Otherwise, it will be treated as a linear alpha function. </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            if (calculator == null)
+            {
+                return;
+            }
+
+            calculator.currentPosition = position;
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, TrackPadding);
+
+            if (durationMs == 0)
+            {
+                thumbVisual.UpdateVisual(true);
+
+                return;
+            }
+
+            // TODO Support non built-in alpha function for visual trainsition in DALi.
+            AlphaFunction.BuiltinFunctions builtinAlphaFunction = alphaFunction?.GetBuiltinFunction() ?? AlphaFunction.BuiltinFunctions.Default;
+
+            thumbPositionAnimation?.Stop();
+            thumbPositionAnimation = AnimateVisual(thumbVisual, "position", thumbVisual.Position, 0, (int)durationMs, builtinAlphaFunction);
+            thumbPositionAnimation.Play();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            base.OnRelayout(size, container);
+
+            if (size.Width == containerSize.Width && size.Height == containerSize.Height)
+            {
+                return;
+            }
+
+            containerSize = new Size(size.Width, size.Height);
+
+            if (calculator == null)
+            {
+                return;
+            }
+
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, TrackPadding);
+            trackVisual.Position = calculator.CalculateTrackPosition(TrackPadding);
+            thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
+            thumbVisual.Position = calculator.CalculateThumbPosition(trackVisual.Size, thumbVisual.Size, TrackPadding);
+
+            trackVisual.UpdateVisual(true);
+            thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle GetViewStyle()
         {
-            return new ScrollBarStyle();
+            return new ScrollbarStyle();
         }
 
         /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// Update TrackThickness property of the scrollbar.
         /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        /// <param name="thickness">The width of the track.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateTrackThickness(float thickness)
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
-            if (tempStyle != null)
-            {
-                Style.CopyFrom(tempStyle);
-                UpdateValue();
-            }
-        }
-
-        private void Initialize()
-        {
-            this.Focusable = false;
-
-            scrollAniPlayer = new Animation(334);
-            scrollAniPlayer.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-
-            thumbImagePosX = 0;
-            thumbImagePosY = 0;
-            LayoutDirectionChanged += OnLayoutDirectionChanged;
-        }
-
-        private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
-        {
-            RelayoutRequest();
-        }
-
-        private void UpdateValue()
-        {
-            if (minValue >= maxValue || curValue < minValue || curValue > maxValue) return;
-
-            float width = (float)Size2D.Width;
-            float height = (float)Size2D.Height;
-            float thumbW = 0.0f;
-            float thumbH = 0.0f;
-            if (Style.Thumb.Size == null)
+            if (trackVisual == null)
             {
                 return;
             }
-            else
-            {
-                thumbW = Style.Thumb.Size.Width;
-                thumbH = Style.Thumb.Size.Height;
-            }
-            float ratio = (float)(curValue - minValue) / (float)(maxValue - minValue);
 
-            if (Style.Direction == DirectionType.Horizontal)
-            {
-                if (LayoutDirection == ViewLayoutDirectionType.RTL)
-                {
-                    ratio = 1.0f - ratio;
-                }
-
-                float posX = ratio * (width - thumbW);
-                float posY = (height - thumbH) / 2.0f;
-
-                thumbImagePosX = posX;
-                if (null != scrollAniPlayer)
-                {
-                    scrollAniPlayer.Stop();
-                }
-
-                if (!enableAni)
-                {
-                    thumbImage.Position = new Position(posX, posY, 0);
-                }
-                else
-                {
-                    if (null != scrollAniPlayer)
-                    {
-                        scrollAniPlayer.Clear();
-                        scrollAniPlayer.AnimateTo(thumbImage, "PositionX", posX);
-                        scrollAniPlayer.Play();
-                    }
-                }
-            }
-            else
-            {
-                float posX = (width - thumbW) / 2.0f;
-                float posY = ratio * (height - thumbH);
-
-                thumbImagePosY = posY;
-                if (null != scrollAniPlayer)
-                {
-                    scrollAniPlayer.Stop();
-                }
-
-                if (!enableAni)
-                {
-                    thumbImage.Position = new Position(posX, posY, 0);
-                }
-                else
-                {
-                    if (null != scrollAniPlayer)
-                    {
-                        scrollAniPlayer.Clear();
-                        scrollAniPlayer.AnimateTo(thumbImage, "PositionY", posY);
-                        scrollAniPlayer.Play();
-                    }
-                }
-            }
-
-            if (enableAni) enableAni = false;
+            trackVisual.Size = calculator.CalculateTrackSize(thickness, containerSize, TrackPadding);
+            trackVisual.UpdateVisual(true);
         }
 
-        private DirectionType CurrentDirection()
+        /// <summary>
+        /// Update ThumbThickness property of the scrollbar.
+        /// </summary>
+        /// <param name="thickness">The width of the track.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateThumbThickness(float thickness)
         {
-            DirectionType dir = DirectionType.Horizontal;
-            if (null != Style.Direction)
+            if (thumbVisual == null)
             {
-                dir = Style.Direction.Value;
+                return;
             }
-            return dir;
+
+            thumbVisual.Size = calculator.CalculateThumbSize(thickness, trackVisual.Size);
+            thumbVisual.UpdateVisual(true);
         }
 
-        private int CalculateCurrentValue(float offset, DirectionType dir)
+        /// <summary>
+        /// Update TrackColor property of the scrollbar.
+        /// </summary>
+        /// <param name="color">The color of the track.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateTrackColor(Color color)
         {
-            if (dir == DirectionType.Horizontal)
+            if (trackVisual == null)
             {
-                thumbImagePosX += offset;
-                if (thumbImagePosX < 0)
-                {
-                    thumbImage.PositionX = 0;
-                    curValue = minValue;
-                }
-                else if (thumbImagePosX > Size2D.Width - thumbImage.Size2D.Width)
-                {
-                    thumbImage.PositionX = Size2D.Width - thumbImage.Size2D.Width;
-                    curValue = maxValue;
-                }
-                else
-                {
-                    thumbImage.PositionX = thumbImagePosX;
-                    curValue = (int)((thumbImagePosX / (float)(Size2D.Width - thumbImage.Size2D.Width)) * (float)(maxValue - minValue) + 0.5f);
-                }
-            }
-            else
-            {
-                thumbImagePosY += offset;
-                if (thumbImagePosY < 0)
-                {
-                    thumbImage.PositionY = 0;
-                    curValue = minValue;
-                }
-                else if (thumbImagePosY > Size2D.Height - thumbImage.Size2D.Height)
-                {
-                    thumbImage.PositionY = Size2D.Height - thumbImage.Size2D.Height;
-                    curValue = maxValue;
-                }
-                else
-                {
-                    thumbImage.PositionY = thumbImagePosY;
-                    curValue = (int)((thumbImagePosY / (float)(Size2D.Height - thumbImage.Size2D.Height)) * (float)(maxValue - minValue) + 0.5f);
-                }
+                return;
             }
 
-            return curValue;
+            trackVisual.MixColor = color;
+            trackVisual.UpdateVisual(true);
         }
+
+        /// <summary>
+        /// Update ThumbColor property of the scrollbar.
+        /// </summary>
+        /// <param name="color">The color of the thumb.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void UpdateThumbColor(Color color)
+        {
+            if (thumbVisual == null)
+            {
+                return;
+            }
+
+            thumbVisual.MixColor = color;
+            thumbVisual.UpdateVisual(true);
+        }
+
+        /// <summary>
+        /// Update TrackPadding property of the scrollbar.
+        /// </summary>
+        /// <param name="trackPadding">The padding of the track.</param>
+        protected virtual void UpdateTrackPadding(Extents trackPadding)
+        {
+            if (calculator == null)
+            {
+                return;
+            }
+
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding); 
+            trackVisual.Position = calculator.CalculateTrackPosition(trackPadding);
+            thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
+            thumbVisual.Position = calculator.CalculateThumbPaddingPosition(trackVisual.Size, thumbVisual.Size, thumbVisual.Position, trackPadding);
+
+            trackVisual.UpdateVisual(true);
+            thumbVisual.UpdateVisual(true);
+        }
+
+        #endregion Methods
+
+
+        #region Classes
+
+        private abstract class Calculator
+        {
+            public float contentLength;
+            public float visibleLength;
+            public float currentPosition;
+
+            public Calculator(float contentLength, float visibleLength, float currentPosition)
+            {
+                this.contentLength = contentLength;
+                this.visibleLength = visibleLength;
+                this.currentPosition = currentPosition;
+            }
+
+            public bool CalculateThumbVisibility()
+            {
+                return contentLength > visibleLength;
+            }
+
+            public abstract Visual.AlignType CalculatorTrackAlign();
+            public abstract Visual.AlignType CalculatorThumbAlign();
+            public abstract Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding);
+            public abstract Vector2 CalculateTrackPosition(Extents trackPadding);
+            public abstract Size CalculateThumbSize(float thickness, Size trackSize);
+            public abstract Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding);
+            public abstract Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding);
+            public abstract Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding);
+        }
+
+        private class HorizontalCalculator : Calculator
+        {
+            public HorizontalCalculator(float contentLength, float visibleLength, float currentPosition) : base(contentLength, visibleLength, currentPosition)
+            {
+            }
+
+            public override Visual.AlignType CalculatorTrackAlign()
+            {
+                return Visual.AlignType.BottomCenter;
+            }
+
+            public override Visual.AlignType CalculatorThumbAlign()
+            {
+                return Visual.AlignType.BottomBegin;
+            }
+
+            public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
+            {
+                return new Size(containerSize.Width - trackPadding.Start - trackPadding.End, thickness);
+            }
+
+            public override Vector2 CalculateTrackPosition(Extents trackPadding)
+            {
+                return new Vector2(0, -trackPadding.Bottom);
+            }
+
+            public override Size CalculateThumbSize(float thickness, Size trackSize)
+            {
+                return new Size(trackSize.Width * visibleLength / contentLength, thickness);
+            }
+
+            public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
+            {
+                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding.Bottom;
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+                return new Vector2(trackPadding.Start + trackSize.Width * pos / contentLength, -padding);
+            }
+
+            public override Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding)
+            {
+                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding.Bottom;
+                return new Vector2(thumbCurrentPosition.X, -padding);
+            }
+
+            public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding)
+            {
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+                return new Vector2(trackPadding.Start + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
+            }
+        }
+
+        private class VerticalCalculator : Calculator
+        {
+            public VerticalCalculator(float contentLength, float visibleLength, float currentPosition) : base(contentLength, visibleLength, currentPosition)
+            {
+            }
+
+            public override Visual.AlignType CalculatorTrackAlign()
+            {
+                return Visual.AlignType.CenterEnd;
+            }
+
+            public override Visual.AlignType CalculatorThumbAlign()
+            {
+                return Visual.AlignType.TopEnd;
+            }
+
+            public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
+            {
+                return new Size(thickness, containerSize.Height - trackPadding.Top - trackPadding.Bottom);
+            }
+
+            public override Vector2 CalculateTrackPosition(Extents trackPadding)
+            {
+                return new Vector2(-trackPadding.End, 0);
+            }
+
+            public override Size CalculateThumbSize(float thickness, Size trackSize)
+            {
+                return new Size(thickness, trackSize.Height * visibleLength / contentLength);
+            }
+
+            public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
+            {
+                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding.End;
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+                return new Vector2(-padding, trackPadding.Top + trackSize.Height * pos / contentLength);
+            }
+
+            public override Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding)
+            {
+                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding.End;
+                return new Vector2(-padding, thumbCurrentPosition.Y);
+            }
+
+            public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbPosition, Extents trackPadding)
+            {
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+                return new Vector2(thumbPosition.X, trackPadding.Top + trackSize.Height * pos / contentLength);
+            }
+        }
+
+        #endregion Classes
     }
 }

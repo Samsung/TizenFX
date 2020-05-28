@@ -271,54 +271,6 @@ namespace Tizen.NUI.Components
         public new SliderStyle Style => ViewStyle as SliderStyle;
 
         /// <summary>
-        /// Get or set background track.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView BackgroundTrackImage
-        {
-            get
-            {
-                return CreateBackgroundTrack();
-            }
-            internal set
-            {
-                bgTrackImage = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set slided track.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView SlidedTrackImage
-        {
-            get
-            {
-                return CreateSlidedTrack();
-            }
-            internal set
-            {
-                slidedTrackImage = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set thumb.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView ThumbImage
-        {
-            get
-            {
-                return CreateThumb();
-            }
-            internal set
-            {
-                thumbImage = value;
-            }
-        }
-
-        /// <summary>
         /// Get or set low indicator text.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
