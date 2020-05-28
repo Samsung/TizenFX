@@ -271,7 +271,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImage = null;
+                    viewStyle.BackgroundColor = value;
+                }
+                else
+                {
+                    SetValue(BackgroundColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -288,7 +297,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundColor = null;
+                    viewStyle.BackgroundImage = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -306,7 +324,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageBorderProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImageBorder = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageBorderProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -775,7 +801,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(OpacityProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Opacity = value;
+                }
+                else
+                {
+                    SetValue(OpacityProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -1714,10 +1748,6 @@ namespace Tizen.NUI.BaseComponents
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (_layout != null)
                 {
-                    // Note: it only works if minimum size is >= than natural size.
-                    // To force the size it should be done through the width&height spec or Size2D.
-                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Width);
-                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Height);
                     _layout.RequestLayout();
                 }
                 SetValue(MaximumSizeProperty, value);
@@ -2122,7 +2152,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Color = value;
+                }
+                else
+                {
+                    SetValue(ColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }

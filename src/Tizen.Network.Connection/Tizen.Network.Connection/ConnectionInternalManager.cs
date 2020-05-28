@@ -85,6 +85,10 @@ namespace Tizen.Network.Connection
 
         private TizenSynchronizationContext context = new TizenSynchronizationContext();
 
+        private Dictionary<IntPtr, Interop.Connection.ConnectionCallback> _callback_map =
+            new Dictionary<IntPtr, Interop.Connection.ConnectionCallback>();
+        private int _requestId = 0;
+
         internal static ConnectionInternalManager Instance
         {
             get
@@ -867,26 +871,35 @@ namespace Tizen.Network.Connection
             if (profile != null)
             {
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "SetDefaultCellularProfile done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
+                        Log.Info(Globals.LogTag, "SetDefaultCellularProfile done " + profile.Name);
+                        if (error != ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + error));
+                        }
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
 
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.SetDefaultCellularServiceProfileAsync " + profile.Name);
                     try
                     {
-                        int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
+                        int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, _callback_map[id], id);
 
                         if ((ConnectionError)ret != ConnectionError.None)
                         {
@@ -965,26 +978,35 @@ namespace Tizen.Network.Connection
             {
                 Log.Debug(Globals.LogTag, "OpenProfileAsync " + profile.Name);
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "OpenProfileAsync done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
+                        Log.Info(Globals.LogTag, "OpenProfileAsync done " + profile.Name);
+                        if (error != ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + error));
+                        }
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
 
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.OpenProfile " + profile.Name);
                     try
                     {
-                        int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+                        int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, _callback_map[id], id);
                         if ((ConnectionError)ret != ConnectionError.None)
                         {
                             Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
@@ -1016,26 +1038,35 @@ namespace Tizen.Network.Connection
             {
                 Log.Info(Globals.LogTag, "CloseProfileAsync " + profile.Name);
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "CloseProfileAsync done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
+                        Log.Info(Globals.LogTag, "CloseProfileAsync done " + profile.Name);
+                        if (error!= ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + error));
+                        }
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
 
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.CloseProfile " + profile.Name);
                     try
                     {
-                        int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+                        int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, _callback_map[id], id);
                         if ((ConnectionError)ret != ConnectionError.None)
                         {
                             Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);

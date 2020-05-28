@@ -41,8 +41,8 @@ namespace Tizen.NUI
 			static ExceptionArgumentDelegate argumentDelegate = new ExceptionArgumentDelegate(SetPendingArgumentException);
 			static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
 			static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
-	
-			[global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SWIGRegisterExceptionCallbacks_NDalic")]
+
+			[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionCallbacks_NDalic")]
 			public static extern void SWIGRegisterExceptionCallbacks_NDalic(
 										ExceptionDelegate applicationDelegate,
 										ExceptionDelegate arithmeticDelegate,
@@ -56,7 +56,7 @@ namespace Tizen.NUI
 										ExceptionDelegate overflowDelegate,
 										ExceptionDelegate systemExceptionDelegate);
 	
-			[global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_NDalic")]
+			[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_NDalic")]
 			public static extern void SWIGRegisterExceptionCallbacksArgument_NDalic(
 										ExceptionArgumentDelegate argumentDelegate,
 										ExceptionArgumentDelegate argumentNullDelegate,
@@ -202,7 +202,7 @@ namespace Tizen.NUI
             public delegate string SWIGStringDelegate(string message);
             static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
-            [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SWIGRegisterStringCallback_NDalic")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterStringCallback_NDalic")]
             public static extern void SWIGRegisterStringCallback_NDalic(SWIGStringDelegate stringDelegate);
             static string CreateString(string cString)
             {
@@ -223,52 +223,52 @@ namespace Tizen.NUI
             Tizen.Log.Error("NUI", "Create NDalicPINVOKE");
         }
 
-		[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
-		public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+		    [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
+		    public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_SWIGUpcast")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_SWIGUpcast")]
         public static extern global::System.IntPtr Application_SWIGUpcast(global::System.IntPtr jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
         public static extern global::System.IntPtr Application_New__MANUAL_4(int jarg1, string jarg2, string jarg3, int jarg4);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowSizePosition")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowSizePosition")]
         public static extern global::System.IntPtr Application_New_WithWindowSizePosition(int jarg1, string jarg2, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_MainLoop__SWIG_0")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_MainLoop__SWIG_0")]
         public static extern void Application_MainLoop__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_InitSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_InitSignal")]
         public static extern global::System.IntPtr Application_InitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_TerminateSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TerminateSignal")]
         public static extern global::System.IntPtr Application_TerminateSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_PauseSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_PauseSignal")]
         public static extern global::System.IntPtr Application_PauseSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_ResumeSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_ResumeSignal")]
         public static extern global::System.IntPtr Application_ResumeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_ResetSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_ResetSignal")]
         public static extern global::System.IntPtr Application_ResetSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_ResizeSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_ResizeSignal")]
         public static extern global::System.IntPtr Application_ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_AppControlSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_AppControlSignal")]
         public static extern global::System.IntPtr Application_AppControlSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_LanguageChangedSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LanguageChangedSignal")]
         public static extern global::System.IntPtr Application_LanguageChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_RegionChangedSignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_RegionChangedSignal")]
         public static extern global::System.IntPtr Application_RegionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignal")]
         public static extern global::System.IntPtr Application_LowBatterySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
         public static extern global::System.IntPtr Application_LowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 }

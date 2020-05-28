@@ -15,78 +15,67 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
 
-namespace Tizen.NUI.Components
+namespace Tizen.NUI.Wearable
 {
     /// <summary>
-    /// ScrollbarStyle is a class which saves Scrollbar's style data.
+    /// CircularScrollbarStyle is a class which saves CircularScrollbar's ux data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollbarStyle : ControlStyle
+    public class CircularScrollbarStyle : ControlStyle
     {
         #region Fields
 
-        /// <summary>Bindable property of TrackThickness</summary>
+        /// <summary>Bindable property of Thickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float?), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackThickness = (float?)newValue;
+            ((CircularScrollbarStyle)bindable).thickness = (float?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)bindable).trackThickness;
+            return ((CircularScrollbarStyle)bindable).thickness;
         });
 
-        /// <summary>Bindable property of ThumbThickness</summary>
+        /// <summary>Bindable property of TrackSweepAngle</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackSweepAngleProperty = BindableProperty.Create(nameof(TrackSweepAngle), typeof(float?), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).thumbThickness = (float?)newValue;
+            ((CircularScrollbarStyle)bindable).trackSweepAngle = (float?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)bindable).thumbThickness;
+            return ((CircularScrollbarStyle)bindable).trackSweepAngle;
         });
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackColor = (Color)newValue;
+            ((CircularScrollbarStyle)bindable).trackColor = (Color)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)bindable).trackColor;
+            return ((CircularScrollbarStyle)bindable).trackColor;
         });
 
         /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).thumbColor = (Color)newValue;
+            ((CircularScrollbarStyle)bindable).thumbColor = (Color)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)bindable).thumbColor;
+            return ((CircularScrollbarStyle)bindable).thumbColor;
         });
 
-        /// <summary>Bindable property of TrackPadding</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).trackPadding = (Extents)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).trackPadding;
-        });
-
-        private float? trackThickness;
-        private float? thumbThickness;
+        private float? thickness;
+        private float? trackSweepAngle;
         private Color trackColor;
         private Color thumbColor;
-        private Extents trackPadding;
 
         #endregion Fields
 
@@ -94,10 +83,10 @@ namespace Tizen.NUI.Components
         #region Constructors
 
         /// <summary>
-        /// Creates a new instance of a ScrollbarStyle.
+        /// Creates a new instance of a CircularScrollbarStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollbarStyle() : base()
+        public CircularScrollbarStyle() : base()
         {
             Initialize();
         }
@@ -107,7 +96,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create ScrollbarStyle by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollbarStyle(ScrollbarStyle style) : base(style)
+        public CircularScrollbarStyle(CircularScrollbarStyle style) : base(style)
         {
             this.CopyFrom(style);
         }
@@ -115,7 +104,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Static constructor to initialize bindable properties when loading.
         /// </summary>
-        static ScrollbarStyle()
+        static CircularScrollbarStyle()
         {
         }
 
@@ -125,23 +114,27 @@ namespace Tizen.NUI.Components
         #region Properties
 
         /// <summary>
-        /// The thickness of the track.
+        /// The thickness of the scrollbar and track.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? TrackThickness
+        public float? Thickness
         {
-            get => (float?)GetValue(TrackThicknessProperty);
-            set => SetValue(TrackThicknessProperty, value);
+            get => (float?)GetValue(ThicknessProperty);
+            set => SetValue(ThicknessProperty, value);
         }
 
         /// <summary>
-        /// The thickness of the thumb.
+        /// The sweep angle of track area in degrees.
         /// </summary>
+        /// <remarks>
+        /// Values below 6 degrees are treated as 6 degrees.
+        /// Values exceeding 180 degrees are treated as 180 degrees.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? ThumbThickness
+        public float? TrackSweepAngle
         {
-            get => (float?)GetValue(ThumbThicknessProperty);
-            set => SetValue(ThumbThicknessProperty, value);
+            get => (float?)GetValue(TrackSweepAngleProperty);
+            set => SetValue(TrackSweepAngleProperty, value);
         }
 
         /// <summary>
@@ -164,16 +157,6 @@ namespace Tizen.NUI.Components
             set => SetValue(ThumbColorProperty, value);
         }
 
-        /// <summary>
-        /// The padding value of the track.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents TrackPadding
-        {
-            get => (Extents)GetValue(TrackPaddingProperty);
-            set => SetValue(TrackPaddingProperty, value);
-        }
-
         #endregion Properties
 
 
@@ -185,25 +168,23 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            var style = bindableObject as ScrollbarStyle;
+            var style = bindableObject as CircularScrollbarStyle;
 
             if (null != style)
             {
-                TrackThickness = style.TrackThickness;
-                ThumbThickness = style.ThumbThickness;
+                Thickness = style.Thickness;
+                TrackSweepAngle = style.TrackSweepAngle;
                 TrackColor = style.TrackColor;
                 ThumbColor = style.ThumbColor;
-                TrackPadding = style.TrackPadding;
             }
         }
 
         private void Initialize()
         {
-            TrackThickness = 6.0f;
-            ThumbThickness = 6.0f;
+            Thickness = 10.0f;
+            TrackSweepAngle = 60.0f;
             TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
             ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            TrackPadding = 4;
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
         }

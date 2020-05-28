@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                instance.Style.Size = size;
+                ((View)bindable).Size = size;
                 if (null != instance.imageVisual)
                 {
                     instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 int frameRate = (int)newValue;
-                if (0 != frameRate) //It will crash if 0 
+                if (0 != frameRate) //It will crash if 0
                 {
                     instance.Style.FrameRate.All = frameRate;
                     instance.imageVisual.FrameDelay = 1000.0f / frameRate;
@@ -170,7 +170,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                SetValue(SizeProperty, value); 
+                SetValue(SizeProperty, value);
             }
         }
 
@@ -231,7 +231,6 @@ namespace Tizen.NUI.Components
                 URLS = new List<string>(),
                 FrameDelay = 16.6f,
                 LoopCount = -1,
-                Size = new Size2D(100, 100),
                 Position = new Vector2(0, 0),
                 Origin = Visual.AlignType.Center,
                 AnchorPoint = Visual.AlignType.Center
@@ -254,7 +253,7 @@ namespace Tizen.NUI.Components
             }
             if (null != Style.LoadingSize)
             {
-                imageVisual.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
+                this.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
             }
         }
     }
