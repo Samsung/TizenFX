@@ -104,13 +104,13 @@ namespace Tizen.NUI.Components
             return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackPadding;
         });
 
-        private static readonly string TrackVisualName = "Track";
-        private static readonly string ThumbVisualName = "Thumb";
         private ColorVisual trackVisual;
         private ColorVisual thumbVisual;
         private Animation thumbPositionAnimation;
         private Animation thumbSizeAnimation;
         private Calculator calculator;
+        private Size containerSize = new Size(0, 0);
+        private float currentPosition;
 
         #endregion Fields
 
@@ -127,14 +127,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Create a Scrollbar and initialize with properties.
         /// </summary>
-        /// <param name="contentLength">The total length of the content.</param>
-        /// <param name="viewSize">The size of View that contains the content to scroll.</param>
-        /// <param name="currentPosition">The start position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</param>
-        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical if the value is false.</param>
+        /// <param name="contentLength">The length of the scrollable content area.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
+        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Scrollbar(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false) : base(new ScrollbarStyle())
+        public Scrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new ScrollbarStyle())
         {
-            Initialize(contentLength, viewSize, currentPosition, isHorizontal);
+            Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
 
         /// <summary>
@@ -214,18 +214,16 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void Initialize(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false)
+        public override void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false)
         {
             if (isHorizontal)
             {
-                calculator = new HorizontalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewSize.Width);
+                calculator = new HorizontalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
             }
             else
             {
-                calculator = new VerticalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewSize.Height);
+                calculator = new VerticalCalculator(contentLength > 0.0f ? contentLength : 0.0f, viewportLength, currentPosition);
             }
-
-            Size = viewSize;
 
             thumbPositionAnimation?.Stop();
             thumbPositionAnimation = null;
@@ -233,11 +231,55 @@ namespace Tizen.NUI.Components
             thumbSizeAnimation?.Stop();
             thumbSizeAnimation = null;
 
-            CreateTrackVisual();
-            CreateThumbVisual(currentPosition);
+            Size trackSize = calculator.CalculateTrackSize(TrackThickness, containerSize, TrackPadding);
+            Vector2 trackPosition = calculator.CalculateTrackPosition(TrackPadding);
+            Size thumbSize = calculator.CalculateThumbSize(ThumbThickness, trackSize);
+            Vector2 thumbPosition = calculator.CalculateThumbPosition(trackSize, thumbSize, TrackPadding);
 
-            AddVisual(TrackVisualName, trackVisual);
-            AddVisual(ThumbVisualName, thumbVisual);
+            if (trackVisual == null)
+            {
+                trackVisual = new ColorVisual
+                {
+                    SuppressUpdateVisual = true,
+                    Color = TrackColor,
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    Origin = calculator.CalculatorTrackAlign(),
+                    AnchorPoint = calculator.CalculatorTrackAlign(),
+                    Size = trackSize,
+                    Position = trackPosition,
+                };
+
+                AddVisual("Track", trackVisual);
+            }
+            else
+            {
+                trackVisual.Size = trackSize;
+                trackVisual.Position = trackPosition;
+                trackVisual.UpdateVisual(true);
+            }
+
+            if (thumbVisual == null)
+            {
+                thumbVisual = new ColorVisual
+                {
+                    SuppressUpdateVisual = true,
+                    MixColor = ThumbColor,
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    Origin = calculator.CalculatorThumbAlign(),
+                    AnchorPoint = calculator.CalculatorThumbAlign(),
+                    Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f,
+                    Size = thumbSize,
+                    Position = thumbPosition,
+                };
+
+                AddVisual("Thumb", thumbVisual);
+            }
+            else
+            {
+                thumbVisual.Size = thumbSize;
+                thumbVisual.Position = thumbPosition;
+                thumbVisual.UpdateVisual(true);
+            }
         }
 
         /// <inheritdoc/>
@@ -250,10 +292,11 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            calculator.Update(contentLength > 0.0f ? contentLength : 0.0f);
+            calculator.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
+            calculator.currentPosition = position;
 
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
-            thumbVisual.Position = calculator.CalculateThumbScrollPosition(position, trackVisual.Size, thumbVisual.Position, TrackPadding);
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, TrackPadding);
             thumbVisual.Opacity = calculator.CalculateThumbVisibility() ? 1.0f : 0.0f;
 
             if (durationMs == 0)
@@ -280,12 +323,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
-            if (thumbVisual == null)
+            if (calculator == null)
             {
                 return;
             }
 
-            thumbVisual.Position = calculator.CalculateThumbScrollPosition(position, trackVisual.Size, thumbVisual.Position, TrackPadding);
+            calculator.currentPosition = position;
+            thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, TrackPadding);
 
             if (durationMs == 0)
             {
@@ -304,48 +348,36 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            base.OnRelayout(size, container);
+
+            if (size.Width == containerSize.Width && size.Height == containerSize.Height)
+            {
+                return;
+            }
+
+            containerSize = new Size(size.Width, size.Height);
+
+            if (calculator == null)
+            {
+                return;
+            }
+
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, TrackPadding);
+            trackVisual.Position = calculator.CalculateTrackPosition(TrackPadding);
+            thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
+            thumbVisual.Position = calculator.CalculateThumbPosition(trackVisual.Size, thumbVisual.Size, TrackPadding);
+
+            trackVisual.UpdateVisual(true);
+            thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle GetViewStyle()
         {
             return new ScrollbarStyle();
-        }
-
-        /// <summary>
-        /// Create a track visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void CreateTrackVisual()
-        {
-            trackVisual = new ColorVisual
-            {
-                SuppressUpdateVisual = true,
-                Color = Color.Black,
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                Origin = calculator.CalculatorTrackAlign(),
-                AnchorPoint = calculator.CalculatorTrackAlign(),
-                Size = calculator.CalculateTrackSize(TrackThickness, TrackPadding),
-                Position = calculator.CalculateTrackPosition(TrackPadding),
-            };
-        }
-
-        /// <summary>
-        /// Create a thumb visual.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void CreateThumbVisual(float currentPosition)
-        {
-            Size thumbSize = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
-
-            thumbVisual = new ColorVisual
-            {
-                SuppressUpdateVisual = true,
-                MixColor = ThumbColor,
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                Origin = calculator.CalculatorThumbAlign(),
-                AnchorPoint = calculator.CalculatorThumbAlign(),
-                Size = thumbSize,
-                Position = calculator.CalculateThumbPosition(currentPosition, trackVisual.Size, thumbSize, TrackPadding),
-                Opacity = (calculator.CalculateThumbVisibility() ? 1.0f : 0.0f),
-            };
         }
 
         /// <summary>
@@ -360,7 +392,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            trackVisual.Size = calculator.CalculateTrackSize(thickness, TrackPadding);
+            trackVisual.Size = calculator.CalculateTrackSize(thickness, containerSize, TrackPadding);
             trackVisual.UpdateVisual(true);
         }
 
@@ -418,12 +450,12 @@ namespace Tizen.NUI.Components
         /// <param name="trackPadding">The padding of the track.</param>
         protected virtual void UpdateTrackPadding(Extents trackPadding)
         {
-            if (trackVisual == null || thumbVisual == null)
+            if (calculator == null)
             {
                 return;
             }
 
-            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, trackPadding); 
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding); 
             trackVisual.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
             thumbVisual.Position = calculator.CalculateThumbPaddingPosition(trackVisual.Size, thumbVisual.Size, thumbVisual.Position, trackPadding);
@@ -439,18 +471,15 @@ namespace Tizen.NUI.Components
 
         private abstract class Calculator
         {
-            protected float contentLength;
-            protected float visibleLength;
+            public float contentLength;
+            public float visibleLength;
+            public float currentPosition;
 
-            public Calculator(float contentLength, float visibleLength)
+            public Calculator(float contentLength, float visibleLength, float currentPosition)
             {
                 this.contentLength = contentLength;
                 this.visibleLength = visibleLength;
-            }
-
-            public void Update(float contentLength)
-            {
-                this.contentLength = contentLength;
+                this.currentPosition = currentPosition;
             }
 
             public bool CalculateThumbVisibility()
@@ -460,17 +489,17 @@ namespace Tizen.NUI.Components
 
             public abstract Visual.AlignType CalculatorTrackAlign();
             public abstract Visual.AlignType CalculatorThumbAlign();
-            public abstract Size CalculateTrackSize(float thickness, Extents trackPadding);
+            public abstract Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding);
             public abstract Vector2 CalculateTrackPosition(Extents trackPadding);
             public abstract Size CalculateThumbSize(float thickness, Size trackSize);
-            public abstract Vector2 CalculateThumbPosition(float position, Size trackSize, Size thumbSize, Extents trackPadding);
+            public abstract Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding);
             public abstract Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding);
-            public abstract Vector2 CalculateThumbScrollPosition(float position, Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding);
+            public abstract Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding);
         }
 
         private class HorizontalCalculator : Calculator
         {
-            public HorizontalCalculator(float contentLength, float visibleLength) : base(contentLength, visibleLength)
+            public HorizontalCalculator(float contentLength, float visibleLength, float currentPosition) : base(contentLength, visibleLength, currentPosition)
             {
             }
 
@@ -484,9 +513,9 @@ namespace Tizen.NUI.Components
                 return Visual.AlignType.BottomBegin;
             }
 
-            public override Size CalculateTrackSize(float thickness, Extents trackPadding)
+            public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
             {
-                return new Size(visibleLength - trackPadding.Start - trackPadding.End, thickness);
+                return new Size(containerSize.Width - trackPadding.Start - trackPadding.End, thickness);
             }
 
             public override Vector2 CalculateTrackPosition(Extents trackPadding)
@@ -499,10 +528,10 @@ namespace Tizen.NUI.Components
                 return new Size(trackSize.Width * visibleLength / contentLength, thickness);
             }
 
-            public override Vector2 CalculateThumbPosition(float position, Size trackSize, Size thumbSize, Extents trackPadding)
+            public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
             {
                 float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding.Bottom;
-                float pos = Math.Min(Math.Max(position, 0.0f), contentLength - visibleLength);
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
                 return new Vector2(trackPadding.Start + trackSize.Width * pos / contentLength, -padding);
             }
 
@@ -512,16 +541,16 @@ namespace Tizen.NUI.Components
                 return new Vector2(thumbCurrentPosition.X, -padding);
             }
 
-            public override Vector2 CalculateThumbScrollPosition(float position, Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding)
+            public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding)
             {
-                float pos = Math.Min(Math.Max(position, 0.0f), contentLength - visibleLength);
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
                 return new Vector2(trackPadding.Start + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
             }
         }
 
         private class VerticalCalculator : Calculator
         {
-            public VerticalCalculator(float contentLength, float visibleLength) : base(contentLength, visibleLength)
+            public VerticalCalculator(float contentLength, float visibleLength, float currentPosition) : base(contentLength, visibleLength, currentPosition)
             {
             }
 
@@ -535,9 +564,9 @@ namespace Tizen.NUI.Components
                 return Visual.AlignType.TopEnd;
             }
 
-            public override Size CalculateTrackSize(float thickness, Extents trackPadding)
+            public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
             {
-                return new Size(thickness, visibleLength - trackPadding.Top - trackPadding.Bottom);
+                return new Size(thickness, containerSize.Height - trackPadding.Top - trackPadding.Bottom);
             }
 
             public override Vector2 CalculateTrackPosition(Extents trackPadding)
@@ -550,10 +579,10 @@ namespace Tizen.NUI.Components
                 return new Size(thickness, trackSize.Height * visibleLength / contentLength);
             }
 
-            public override Vector2 CalculateThumbPosition(float position, Size trackSize, Size thumbSize, Extents trackPadding)
+            public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
             {
                 float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding.End;
-                float pos = Math.Min(Math.Max(position, 0.0f), contentLength - visibleLength);
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
                 return new Vector2(-padding, trackPadding.Top + trackSize.Height * pos / contentLength);
             }
 
@@ -563,9 +592,9 @@ namespace Tizen.NUI.Components
                 return new Vector2(-padding, thumbCurrentPosition.Y);
             }
 
-            public override Vector2 CalculateThumbScrollPosition(float position, Size trackSize, Vector2 thumbPosition, Extents trackPadding)
+            public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbPosition, Extents trackPadding)
             {
-                float pos = Math.Min(Math.Max(position, 0.0f), contentLength - visibleLength);
+                float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
                 return new Vector2(thumbPosition.X, trackPadding.Top + trackSize.Height * pos / contentLength);
             }
         }
