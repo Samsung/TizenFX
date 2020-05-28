@@ -20,7 +20,7 @@ namespace Tizen.NUI
 
     class NDalicPINVOKE
     {
-        public const string Lib = "libdali2-csharp-binder.so";
+        public const string Lib = "libdali-csharp-binder.so";
         protected class SWIGExceptionHelper
 		{
 			/// <since_tizen> 3 </since_tizen>
@@ -41,7 +41,7 @@ namespace Tizen.NUI
 			static ExceptionArgumentDelegate argumentDelegate = new ExceptionArgumentDelegate(SetPendingArgumentException);
 			static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
 			static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
-
+	
 			[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionCallbacks_NDalic")]
 			public static extern void SWIGRegisterExceptionCallbacks_NDalic(
 										ExceptionDelegate applicationDelegate,
