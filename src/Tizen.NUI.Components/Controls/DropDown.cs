@@ -231,7 +231,7 @@ namespace Tizen.NUI.Components
                 }
                 return headerText;
             }
-            set
+            internal set
             {
                 headerText = value;
             }
@@ -267,7 +267,7 @@ namespace Tizen.NUI.Components
                 }
                 return button;
             }
-            set
+            internal set
             {
                 button = value;
             }
@@ -302,7 +302,7 @@ namespace Tizen.NUI.Components
                 }
                 return listBackgroundImage;
             }
-            set
+            internal set
             {
                 listBackgroundImage = value;
             }

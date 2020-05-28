@@ -280,7 +280,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateBackgroundTrack();
             }
-            set
+            internal set
             {
                 bgTrackImage = value;
             }
@@ -296,7 +296,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateSlidedTrack();
             }
-            set
+            internal set
             {
                 slidedTrackImage = value;
             }
@@ -312,7 +312,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateThumb();
             }
-            set
+            internal set
             {
                 thumbImage = value;
             }
@@ -328,7 +328,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateLowIndicatorText();
             }
-            set
+            internal set
             {
                 lowIndicatorText = value;
             }
@@ -344,7 +344,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateHighIndicatorText();
             }
-            set
+            internal set
             {
                 highIndicatorText = value;
             }

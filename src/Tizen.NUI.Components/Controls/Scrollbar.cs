@@ -210,7 +210,7 @@ namespace Tizen.NUI.Components
                 }
                 return trackImage;
             }
-            set
+            internal set
             {
                 trackImage = value;
             }
@@ -240,7 +240,7 @@ namespace Tizen.NUI.Components
                 }
                 return thumbImage;
             }
-            set
+            internal set
             {
                 thumbImage = value;
             }

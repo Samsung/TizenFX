@@ -348,7 +348,7 @@ namespace Tizen.NUI.Components
                 }
                 return titleText;
             }
-            set
+            internal set
             {
                 titleText = value;
             }

@@ -139,7 +139,7 @@ namespace Tizen.NUI.Components
                 }
                 return textLabel;
             }
-            set
+            internal set
             {
                 textLabel = value;
             }
