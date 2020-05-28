@@ -185,6 +185,8 @@ namespace Tizen.NUI.Wearable
             TrackSweepAngle = 60.0f;
             TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
             ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
+            WidthResizePolicy = ResizePolicyType.FillToParent;
+            HeightResizePolicy = ResizePolicyType.FillToParent;
         }
 
         #endregion Methods

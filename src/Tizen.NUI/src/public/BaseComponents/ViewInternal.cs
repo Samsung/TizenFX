@@ -554,6 +554,14 @@ namespace Tizen.NUI.BaseComponents
             return size;
         }
 
+        internal Size2D GetCurrentSizeFloat()
+        {
+            Size ret = new Size(Interop.Actor.Actor_GetCurrentSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal Vector3 GetNaturalSize()
         {
             Vector3 ret = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);

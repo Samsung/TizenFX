@@ -204,6 +204,8 @@ namespace Tizen.NUI.Components
             TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
             ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
             TrackPadding = 4;
+            WidthResizePolicy = ResizePolicyType.FillToParent;
+            HeightResizePolicy = ResizePolicyType.FillToParent;
         }
 
         #endregion Methods

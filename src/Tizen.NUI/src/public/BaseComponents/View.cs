@@ -271,7 +271,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImage = null;
+                    viewStyle.BackgroundColor = value;
+                }
+                else
+                {
+                    SetValue(BackgroundColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -288,7 +297,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundColor = null;
+                    viewStyle.BackgroundImage = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -306,7 +324,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageBorderProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImageBorder = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageBorderProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -775,7 +801,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(OpacityProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Opacity = value;
+                }
+                else
+                {
+                    SetValue(OpacityProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -2118,7 +2152,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Color = value;
+                }
+                else
+                {
+                    SetValue(ColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }

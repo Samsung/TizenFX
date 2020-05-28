@@ -334,6 +334,27 @@ namespace Tizen.NUI.Components
         public new PopupStyle Style => ViewStyle as PopupStyle;
 
         /// <summary>
+        /// Popup Title.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel Title
+        {
+            get
+            {
+                if (null == titleText)
+                {
+                    titleText = new TextLabel();
+                    Add(titleText);
+                }
+                return titleText;
+            }
+            internal set
+            {
+                titleText = value;
+            }
+        }
+
+        /// <summary>
         /// Title text string in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -693,13 +714,8 @@ namespace Tizen.NUI.Components
             PopupStyle ppStyle = viewStyle as PopupStyle;
             if (null != ppStyle)
             {
-                if (null == titleText)
-                {
-                    titleText = new TextLabel();
-                    Add(titleText);
-                }
-                titleText.RaiseToTop();
-                titleText.ApplyStyle(ppStyle.Title);
+                Title.ApplyStyle(ppStyle.Title);
+                Title.RaiseToTop();
             }
         }
 
@@ -749,14 +765,6 @@ namespace Tizen.NUI.Components
             };
             Add(ContentView);
             ContentView.RaiseToTop();
-
-            // Title
-            if (null == titleText)
-            {
-                titleText = new TextLabel();
-                titleText.RaiseToTop();
-                Add(titleText);
-            }
 
             // Button
             btGroup = new ButtonGroup(this);
