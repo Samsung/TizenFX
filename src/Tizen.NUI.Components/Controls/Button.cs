@@ -122,29 +122,15 @@ namespace Tizen.NUI.Components
             return instance.Style?.TextPadding;
         });
 
+        private ImageView overlayImage;
+        private TextLabel buttonText;
+        private ImageView buttonIcon;
+
         private EventHandler<StateChangedEventArgs> stateChangeHander;
 
         private bool isSelected = false;
         private bool isEnabled = true;
         private bool isPressed = false;
-
-        /// <summary>
-        /// Button's overlay image part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView ButtonOverlayImage { get; set; }
-
-        /// <summary>
-        /// Button's text part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected TextLabel ButtonText { get; set; }
-
-        /// <summary>
-        /// Button's icon part.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ImageView ButtonIcon { get; set; }
 
         /// <summary>
         /// The last touch information triggering selected state change.
@@ -277,8 +263,92 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Style of the button.
+        /// Button's icon part.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ButtonIcon
+        {
+            get
+            {
+                if (null == buttonIcon)
+                {
+                    buttonIcon = CreateIcon();
+                    if (null != Extension)
+                    {
+                        buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
+                    }
+                    Add(buttonIcon);
+                    buttonIcon.Relayout += OnIconRelayout;
+                }
+                return buttonIcon;
+            }
+            internal set
+            {
+                buttonIcon = value;
+            }
+        }
+
+        /// <summary>
+        /// Button's overlay image part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView ButtonOverlay
+        {
+            get
+            {
+                if (null == overlayImage)
+                {
+                    overlayImage = CreateOverlayImage();
+                    if (null != Extension)
+                    {
+                        overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
+                    }
+                    overlayImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+                    overlayImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+                    Add(overlayImage);
+                }
+                return overlayImage;
+            }
+            internal set
+            {
+                overlayImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Button's text part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel ButtonText
+        {
+            get
+            {
+                if (null == buttonText)
+                {
+                    buttonText = CreateText();
+                    if (null != Extension)
+                    {
+                        buttonText = Extension.OnCreateText(this, buttonText);
+                    }
+                    buttonText.HorizontalAlignment = HorizontalAlignment.Center;
+                    buttonText.VerticalAlignment = VerticalAlignment.Center;
+                    Add(buttonText);
+                }
+                return buttonText;
+            }
+            internal set
+            {
+                buttonText = value;
+            }
+        }
+
+        /// <summary>
+        /// Return a copied Style instance of Button
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Button.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
         public new ButtonStyle Style => ViewStyle as ButtonStyle;
 
@@ -699,9 +769,9 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(ButtonText);
                 }
-                if (ButtonOverlayImage != null)
+                if (ButtonOverlay != null)
                 {
-                    Utility.Dispose(ButtonOverlayImage);
+                    Utility.Dispose(ButtonOverlay);
                 }
             }
 
@@ -841,12 +911,23 @@ namespace Tizen.NUI.Components
             base.ApplyStyle(viewStyle);
 
             ButtonStyle buttonStyle = viewStyle as ButtonStyle;
-
             if (null != buttonStyle)
             {
-                ButtonOverlayImage?.ApplyStyle(buttonStyle.Overlay);
-                ButtonText?.ApplyStyle(buttonStyle.Text);
-                ButtonIcon?.ApplyStyle(buttonStyle.Icon);
+                Extension = buttonStyle.CreateExtension();
+                if (buttonStyle.Overlay != null)
+                {
+                    ButtonOverlay?.ApplyStyle(buttonStyle.Overlay);
+                }
+
+                if (buttonStyle.Text != null)
+                {
+                    ButtonText?.ApplyStyle(buttonStyle.Text);
+                }
+
+                if (buttonStyle.Icon != null)
+                {
+                    ButtonIcon?.ApplyStyle(buttonStyle.Icon);
+                }
             }
         }
 
@@ -934,52 +1015,9 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             var style = (ButtonStyle)Style;
-
-            Extension = style.CreateExtension();
-
-            CreateComponents();
-
             EnableControlStatePropagation = true;
-
-            if (ButtonOverlayImage != null)
-            {
-                Add(ButtonOverlayImage);
-                ButtonOverlayImage.ApplyStyle(style.Overlay);
-            }
-
-            if (ButtonIcon != null)
-            {
-                Add(ButtonIcon);
-                ButtonIcon.ApplyStyle(style.Icon);
-                ButtonIcon.Relayout += OnIconRelayout;
-            }
-
-            if (null != ButtonText)
-            {
-                Add(ButtonText);
-                ButtonText.ApplyStyle(style.Text);
-            }
-
             UpdateState();
-
             LayoutDirectionChanged += OnLayoutDirectionChanged;
-        }
-
-        private void CreateComponents()
-        {
-            ButtonOverlayImage = CreateOverlayImage();
-            ButtonIcon = CreateIcon();
-            ButtonText = CreateText();
-
-            if (Extension == null)
-            {
-                return;
-            }
-
-            // Update component with extension
-            ButtonOverlayImage = Extension.OnCreateOverlayImage(this, ButtonOverlayImage);
-            ButtonIcon = Extension.OnCreateIcon(this, ButtonIcon);
-            ButtonText = Extension.OnCreateText(this, ButtonText);
         }
 
         /// <summary>
@@ -1232,7 +1270,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView GetCurrentOverlayImage(ButtonExtension extension)
         {
-            return (extension == Extension) ? ButtonOverlayImage : null;
+            return (extension == Extension) ? ButtonOverlay : null;
         }
     }
 }

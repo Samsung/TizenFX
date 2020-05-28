@@ -271,6 +271,38 @@ namespace Tizen.NUI.Components
         public new SliderStyle Style => ViewStyle as SliderStyle;
 
         /// <summary>
+        /// Get or set low indicator text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel LowIndicatorText
+        {
+            get
+            {
+                return CreateLowIndicatorText();
+            }
+            internal set
+            {
+                lowIndicatorText = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set high indicator text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel HighIndicatorText
+        {
+            get
+            {
+                return CreateHighIndicatorText();
+            }
+            internal set
+            {
+                highIndicatorText = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the direction type of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -827,27 +859,27 @@ namespace Tizen.NUI.Components
 
             if (null != sliderStyle?.Progress)
             {
-                CreateSlidedTrack();
+                CreateSlidedTrack().ApplyStyle(sliderStyle.Progress);
             }
 
             if (null != sliderStyle?.LowIndicator)
             {
-                CreateLowIndicatorText();
+                CreateLowIndicatorText().ApplyStyle(sliderStyle.LowIndicator);
             }
 
             if (null != sliderStyle?.HighIndicator)
             {
-                CreateHighIndicatorText();
+                CreateHighIndicatorText().ApplyStyle(sliderStyle.HighIndicator);
             }
 
             if (null != sliderStyle?.Track)
             {
-                CreateBackgroundTrack();
+                CreateBackgroundTrack().ApplyStyle(sliderStyle.Track);
             }
 
             if (null != sliderStyle?.Thumb)
             {
-                CreateThumb();
+                CreateThumb().ApplyStyle(sliderStyle.Thumb);
             }
 
             EnableControlStatePropagation = true;
@@ -866,7 +898,7 @@ namespace Tizen.NUI.Components
             RelayoutRequest();
         }
 
-        private void CreateSlidedTrack()
+        private ImageView CreateSlidedTrack()
         {
             if (null == slidedTrackImage)
             {
@@ -887,15 +919,10 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (null == Style.Progress)
-            {
-                Style.Progress = new ImageViewStyle();
-            }
-
-            slidedTrackImage.ApplyStyle(Style.Progress);
+            return slidedTrackImage;
         }
 
-        private void CreateLowIndicatorText()
+        private TextLabel CreateLowIndicatorText()
         {
             if (null == lowIndicatorText)
             {
@@ -907,15 +934,10 @@ namespace Tizen.NUI.Components
                 this.Add(lowIndicatorText);
             }
 
-            if (null == Style.LowIndicator)
-            {
-                Style.LowIndicator = new TextLabelStyle();
-            }
-
-            lowIndicatorText.ApplyStyle(Style.LowIndicator);
+            return lowIndicatorText;
         }
 
-        private void CreateHighIndicatorText()
+        private TextLabel CreateHighIndicatorText()
         {
             if (null == highIndicatorText)
             {
@@ -927,15 +949,10 @@ namespace Tizen.NUI.Components
                 this.Add(highIndicatorText);
             }
 
-            if (null == Style.HighIndicator)
-            {
-                Style.HighIndicator = new TextLabelStyle();
-            }
-
-            highIndicatorText.ApplyStyle(Style.HighIndicator);
+            return highIndicatorText;
         }
 
-        private void CreateBackgroundTrack()
+        private ImageView CreateBackgroundTrack()
         {
             if (null == bgTrackImage)
             {
@@ -957,15 +974,10 @@ namespace Tizen.NUI.Components
                 bgTrackImage.TouchEvent += OnTouchEventForBgTrack;
             }
 
-            if (null == Style.Track)
-            {
-                Style.Track = new ImageViewStyle();
-            }
-
-            bgTrackImage.ApplyStyle(Style.Track);
+            return bgTrackImage;
         }
 
-        private void CreateThumb()
+        private ImageView CreateThumb()
         {
             if (null == thumbImage)
             {
@@ -988,12 +1000,7 @@ namespace Tizen.NUI.Components
                 panGestureDetector.Detected += OnPanGestureDetected;
             }
 
-            if (null == Style.Thumb)
-            {
-                Style.Thumb= new ImageViewStyle();
-            }
-
-            thumbImage.ApplyStyle(Style.Thumb);
+            return thumbImage;
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
