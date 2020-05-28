@@ -39,13 +39,10 @@ namespace Tizen.NUI.Samples
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             homeCircular = new CircularPagination();
-            //homeCircular.Position2D = new Position2D(50, 410);
+            homeCircular.Position2D = new Position2D(50, 410);
             homeCircular.Size2D = new Size2D(360, 360);
             homeCircular.BackgroundColor = new Color(0.7f, 0.7f, 0.7f, 0.6f);
 
-            homeCircular.ParentOrigin = ParentOrigin.Center;
-            homeCircular.PivotPoint = PivotPoint.Center;
-            homeCircular.PositionUsesPivotPoint = true;
             homeCircular.IndicatorSize = new Size(26, 26);
             homeCircular.IndicatorImageURL = new Selector<string>()
             {
