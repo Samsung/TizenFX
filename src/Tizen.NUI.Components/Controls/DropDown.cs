@@ -644,25 +644,6 @@ namespace Tizen.NUI.Components
             ItemClickEvent?.Invoke(sender, e);
         }
 
-        private void CreateHeaderText()
-        {
-            if (null == headerText)
-            {
-                headerText = new TextLabel()
-                {
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    ParentOrigin = NUI.ParentOrigin.Center,
-                    PivotPoint = NUI.ParentOrigin.Center,
-                    PositionUsesPivotPoint = true,
-                };
-                headerText.Name = "DropDownHeaderText";
-                Add(headerText);
-            }
-        }
-
         private void CreateButtonText()
         {
             if (null == buttonText)
@@ -686,23 +667,6 @@ namespace Tizen.NUI.Components
                 button.Name = "DropDownButton";
                 button.ClickEvent += ButtonClickEvent;
                 Add(button);
-            }
-        }
-
-        private void CreateListBackgroundImage()
-        {
-            if (null == listBackgroundImage)
-            {
-                listBackgroundImage = new ImageView
-                {
-                    Name = "ListBackgroundImage",
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    WidthResizePolicy = ResizePolicyType.FitToChildren,
-                    HeightResizePolicy = ResizePolicyType.FitToChildren,
-                };
-                Add(listBackgroundImage);
             }
         }
 
