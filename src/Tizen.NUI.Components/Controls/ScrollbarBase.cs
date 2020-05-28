@@ -77,12 +77,12 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Initialize the scroll bar.
         /// </summary>
-        /// <param name="contentLength">The total length of the content.</param>
-        /// <param name="viewSize">The size of the View that contains the content to scroll. The ScrollbarBase will have the same size as the given viewSize.</param>
-        /// <param name="currentPosition">The start position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</param>
-        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical if the value is false.</param>
+        /// <param name="contentLength">The length of the scrollable content area.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
+        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract void Initialize(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false);
+        public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
 
         #endregion Methods
     }

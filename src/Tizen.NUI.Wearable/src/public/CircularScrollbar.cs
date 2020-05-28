@@ -97,6 +97,7 @@ namespace Tizen.NUI.Wearable
         private float visibleLength;
         private float currentPosition;
         private float directionAlpha;
+        private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
 
@@ -115,14 +116,14 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create a CircularScrollbar and initialize with properties.
         /// </summary>
-        /// <param name="contentLength">The total length of the content.</param>
-        /// <param name="viewSize">The size of View that contains the content to scroll.</param>
-        /// <param name="currentPosition">Scrolled position.</param>
-        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical if the value is false.</param>
+        /// <param name="contentLength">The length of the scrollable content area.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
+        /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbar(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false) : base(new CircularScrollbarStyle())
+        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new CircularScrollbarStyle())
         {
-            Initialize(contentLength, viewSize, currentPosition, isHorizontal);
+            Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
 
         /// <summary>
@@ -196,14 +197,12 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void Initialize(float contentLength, Size viewSize, float currentPosition, bool isHorizontal = false)
+        public override void Initialize(float contentLength, float viewportLenth, float currentPosition, bool isHorizontal = false)
         {
             this.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
-            this.visibleLength = isHorizontal ? viewSize.Width : viewSize.Height;
+            this.visibleLength = viewportLenth;
             this.currentPosition = currentPosition;
             this.directionAlpha = isHorizontal ? 270.0f : 0.0f;
-
-            Size = viewSize;
 
             thumbStartAngleAnimation?.Stop();
             thumbStartAngleAnimation = null;
@@ -211,11 +210,58 @@ namespace Tizen.NUI.Wearable
             thumbSweepAngleAnimation?.Stop();
             thumbSweepAngleAnimation = null;
 
-            CreateTrackVisual();
-            CreateThumbVisual(currentPosition);
 
-            AddVisual("Track", trackVisual);
-            AddVisual("Thumb", thumbVisual);
+            float trackSweepAngle = CalculateTrackSweepAngle(TrackSweepAngle);
+            float trackStartAngle = CalculateTrackStartAngle(trackSweepAngle);
+            float thumbSweepAngle = CalculateThumbSweepAngle(TrackSweepAngle);
+            float thumbStartAngle = CalculateThumbStartAngle(currentPosition, trackStartAngle, trackSweepAngle, thumbSweepAngle);
+
+            if (trackVisual == null)
+            {
+                trackVisual = new ArcVisual
+                {
+                    SuppressUpdateVisual = true,
+                    Thickness = this.Thickness,
+                    Cap = ArcVisual.CapType.Round,
+                    MixColor = TrackColor,
+                    Size = containerSize - new Size(2, 2),
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    SweepAngle = trackSweepAngle,
+                    StartAngle = trackStartAngle,
+                };
+
+                AddVisual("Track", trackVisual);
+            }
+            else
+            {
+                trackVisual.SweepAngle = trackSweepAngle;
+                trackVisual.StartAngle = trackStartAngle;
+                trackVisual.UpdateVisual(true);
+            }
+
+            if (thumbVisual == null)
+            {
+                thumbVisual = new ArcVisual
+                {
+                    SuppressUpdateVisual = true,
+                    Thickness = trackVisual.Thickness,
+                    Cap = ArcVisual.CapType.Round,
+                    MixColor = ThumbColor,
+                    Size = containerSize - new Size(2, 2),
+                    SizePolicy = VisualTransformPolicyType.Absolute,
+                    SweepAngle = thumbSweepAngle,
+                    StartAngle = thumbStartAngle,
+                    Opacity = CalculateThumbVisibility() ? 1.0f : 0.0f,
+                };
+
+                AddVisual("Thumb", thumbVisual);
+            }
+            else
+            {
+                thumbVisual.SweepAngle = thumbSweepAngle;
+                thumbVisual.StartAngle = thumbStartAngle;
+                thumbVisual.UpdateVisual(true);
+            }
         }
 
         /// <inheritdoc/>
@@ -285,44 +331,34 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        {
+            base.OnRelayout(size, container);
+
+            if (size.Width == containerSize?.Width && size.Height == containerSize.Height)
+            {
+                return;
+            }
+
+            containerSize = new Size(size.Width, size.Height);
+
+            if (trackVisual == null)
+            {
+                return;
+            }
+
+            trackVisual.Size = containerSize - new Size(2, 2);
+            thumbVisual.Size = containerSize - new Size(2, 2);
+            
+            trackVisual.UpdateVisual(true);
+            thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle GetViewStyle()
         {
             return new CircularScrollbarStyle();
-        }
-
-        private void CreateTrackVisual()
-        {
-            float sweepAngle = CalculateTrackSweepAngle(TrackSweepAngle);
-
-            trackVisual = new ArcVisual
-            {
-                SuppressUpdateVisual = true,
-                Thickness = this.Thickness,
-                Cap = ArcVisual.CapType.Round,
-                MixColor = TrackColor,
-                Size = new Size(visibleLength - 2, visibleLength - 2),
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                SweepAngle = sweepAngle,
-                StartAngle = CalculateTrackStartAngle(sweepAngle),
-            };
-        }
-
-        private void CreateThumbVisual(float position)
-        {
-            float sweepAngle = CalculateThumbSweepAngle(TrackSweepAngle);
-            
-            thumbVisual = new ArcVisual
-            {
-                SuppressUpdateVisual = true,
-                Thickness = trackVisual.Thickness,
-                Cap = ArcVisual.CapType.Round,
-                MixColor = ThumbColor,
-                Size = new Size(visibleLength - 2, visibleLength - 2),
-                SizePolicy = VisualTransformPolicyType.Absolute,
-                SweepAngle = sweepAngle,
-                StartAngle = CalculateThumbStartAngle(position, trackVisual.StartAngle, trackVisual.SweepAngle, sweepAngle),
-                Opacity = CalculateThumbVisibility() ? 1.0f : 0.0f,
-            };
         }
 
         private float CalculateTrackStartAngle(float currentTrackSweepAngle)
