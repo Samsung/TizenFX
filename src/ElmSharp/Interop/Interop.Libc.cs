@@ -39,7 +39,7 @@ internal static partial class Interop
             public int tm_isdst;
 
             // The glibc version of struct tm has additional fields
-            public long tm_gmtoff;
+            public IntPtr tm_gmtoff;
             public IntPtr tm_zone;
 
             public static implicit operator SystemTime(DateTime value)
