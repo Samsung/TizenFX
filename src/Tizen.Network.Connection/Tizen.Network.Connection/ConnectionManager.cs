@@ -405,10 +405,8 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular network state.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public static CellularState CellularState
         {
             get
