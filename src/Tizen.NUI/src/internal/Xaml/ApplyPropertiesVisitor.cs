@@ -345,12 +345,13 @@ namespace Tizen.NUI.Xaml
             if (xpe == null && TrySetBinding(xamlelement, property, localName, value, lineInfo, out xpe))
                 return;
 
-            //If it's a BindableProberty, SetValue
-            if (xpe == null && TrySetValue(xamlelement, property, attached, value, lineInfo, serviceProvider, out xpe))
-                return;
-
+            //Call TrySetProperty first and then TrySetValue to keep the code logic consistent whether it is through xaml or code.
             //If we can assign that value to a normal property, let's do it
             if (xpe == null && TrySetProperty(xamlelement, localName, value, lineInfo, serviceProvider, context, out xpe))
+                return;
+
+            //If it's a BindableProberty, SetValue
+            if (xpe == null && TrySetValue(xamlelement, property, attached, value, lineInfo, serviceProvider, out xpe))
                 return;
 
             //If it's an already initialized property, add to it
