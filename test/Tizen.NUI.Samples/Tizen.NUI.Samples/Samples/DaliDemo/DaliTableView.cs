@@ -133,14 +133,16 @@ namespace Tizen.NUI.Samples
             logo.ParentOrigin = new Position(0.5f, 0.1f, 0.5f);
             logo.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             logo.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+            float logoScale = (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
+            logo.Scale = new Vector3(logoScale, logoScale, 0);
 
             //// The logo should appear on top of everything.
             mRootActor.Add(logo);
 
             // Show version in a popup when log is tapped
-            mLogoTapDetector = new TapGestureDetector();
-            mLogoTapDetector.Attach(logo);
-            mLogoTapDetector.Detected += OnLogoTapped;
+            //mLogoTapDetector = new TapGestureDetector();
+            //mLogoTapDetector.Attach(logo);
+            //mLogoTapDetector.Detected += OnLogoTapped;
 
             // Scrollview occupying the majority of the screen
             mScrollView = new ScrollView();
@@ -356,6 +358,10 @@ namespace Tizen.NUI.Samples
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
             label.HeightResizePolicy = ResizePolicyType.FillToParent;
+            //var fit = new PropertyMap();
+            //fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(3.0f)).Add("maxSize", new PropertyValue(50.0f));
+            //label.TextFit = fit;
+            label.PointSize = 11.0f * (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
 
             // Pad around the label as its size is the same as the 9-patch border. It will overlap it without padding.
             label.SetPadding(new PaddingType((int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING));
