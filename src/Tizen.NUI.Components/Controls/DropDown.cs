@@ -1426,7 +1426,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override ViewStyle GetViewStyle()
             {
-                return null;
+                return new DropDownItemStyle();
             }
 
             private void CreateIcon()
