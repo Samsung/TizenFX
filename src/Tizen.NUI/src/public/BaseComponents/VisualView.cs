@@ -215,14 +215,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = alphaFunction?.GetDescription();
+            return AnimateVisual(target, property, destinationValue, startTime, endTime, alphaFunction == null ? null : new PropertyValue(alphaFunction?.GetDescription()), initialValue);
+        }
 
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, PropertyValue alphaFunction, object initialValue = null)
+        {
             foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == target.Name)
                 {
                     PropertyMap _animator = new PropertyMap();
-                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
+                    if (alphaFunction != null) { _animator.Add("alphaFunction", alphaFunction); }
 
                     PropertyMap _timePeriod = new PropertyMap();
                     _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
@@ -267,14 +272,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = alphaFunction?.GetDescription();
+            AnimateVisualAdd(target, property, destinationValue, startTime, endTime, alphaFunction == null ? null : new PropertyValue(alphaFunction?.GetDescription()), initialValue);
+        }
 
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, PropertyValue alphaFunction, object initialValue = null)
+        {
             foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == target.Name)
                 {
                     PropertyMap _animator = new PropertyMap();
-                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
+                    if (alphaFunction != null) { _animator.Add("alphaFunction", alphaFunction); }
 
                     PropertyMap _timePeriod = new PropertyMap();
                     _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
@@ -317,6 +327,8 @@ namespace Tizen.NUI.BaseComponents
                 return null;
             }
             TransitionData _transitionData = new TransitionData(_animateArray);
+
+            _animateArray.Clear();
 
             return this.CreateTransition(_transitionData);
         }
