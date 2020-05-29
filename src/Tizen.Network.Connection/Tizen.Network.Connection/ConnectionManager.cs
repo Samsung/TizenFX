@@ -406,6 +406,8 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular network state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         public static CellularState CellularState
         {
             get
@@ -420,6 +422,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>WiFi connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public static ConnectionState WiFiState
         {
             get
@@ -434,6 +439,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Bluetooth connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public static ConnectionState BluetoothState
         {
             get
@@ -448,6 +456,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Ethernet connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public static ConnectionState EthernetState
         {
             get
@@ -462,6 +473,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Ethernet cable state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public static EthernetCableState EthernetCableState
         {
             get
@@ -488,6 +502,12 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Data connection current profile.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public ConnectionType Type
         {
             get
@@ -502,6 +522,12 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <value>Connection state of the current connection type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public ConnectionState State
         {
             get
