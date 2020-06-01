@@ -44,6 +44,7 @@ namespace Tizen.NUI.Components
             styleMap.Add(typeof(Tab), GetTabStyle);
             styleMap.Add(typeof(Toast), GetToastStyle);
             styleMap.Add(typeof(Loading), GetLoadingStyle);
+            styleMap.Add(typeof(Pagination), GetPaginationStyle);
         }
 
         internal delegate ViewStyle ComponentStyleGetter();
@@ -81,5 +82,7 @@ namespace Tizen.NUI.Components
         protected abstract ToastStyle GetToastStyle();
 
         protected abstract LoadingStyle GetLoadingStyle();
+
+        protected abstract PaginationStyle GetPaginationStyle();
     }
 }

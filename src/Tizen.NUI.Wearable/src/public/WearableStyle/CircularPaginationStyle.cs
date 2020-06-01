@@ -37,7 +37,10 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularPaginationStyle() : base() { }
+        public CircularPaginationStyle() : base()
+        {
+            Initialize();
+        }
 
         /// <summary>
         /// Creates a new instance of a CircularPaginationStyle using style.
@@ -102,6 +105,15 @@ namespace Tizen.NUI.Wearable
                     CenterIndicatorImageURL?.Clone(circularPaginationStyle.CenterIndicatorImageURL);
                 }
             }
+        }
+
+        private void Initialize()
+        {
+            IndicatorImageURL = new Selector<string>()
+            {
+                Normal = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_normal_dot.png",
+                Selected = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_focus_dot.png",
+            };
         }
     }
 }

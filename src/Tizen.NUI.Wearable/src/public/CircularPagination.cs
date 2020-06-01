@@ -81,17 +81,6 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularPagination(string style) : base(style)
-        {
-            Initialize();
-        }
-
-        /// <summary>
-        /// Creates a new instance of a CircularPagination using style.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularPagination(CircularPaginationStyle style) : base(style)
         {
             Initialize();
