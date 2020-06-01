@@ -1,9 +1,10 @@
-using System;
+
 using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
     internal class RegisterXNamesVisitor : IXamlNodeVisitor
     {
         public RegisterXNamesVisitor(HydrationContext context)

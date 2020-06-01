@@ -25,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
+
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +36,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal static class TypeConversionExtensions
     {
         internal static object ConvertTo(this object value, Type toType, Func<ParameterInfo> pinfoRetriever,

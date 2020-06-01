@@ -1,8 +1,10 @@
-using System;
+
 using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// <summary>
     /// Template that specifies a group of styles and effects for controls.
     /// </summary>

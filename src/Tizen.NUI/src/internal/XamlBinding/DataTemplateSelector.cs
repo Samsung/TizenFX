@@ -1,8 +1,10 @@
-using System;
+
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal abstract class DataTemplateSelector : DataTemplate
     {
         Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();

@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -9,6 +9,8 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// <summary>
     /// A BindableProperty is a backing store for properties allowing bindings on BindableObject.
     /// </summary>

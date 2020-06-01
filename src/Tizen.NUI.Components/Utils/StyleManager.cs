@@ -14,13 +14,15 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
+    using global::System;
+
     /// <summary>
     /// StyleManager is a class to manager all style.
     /// </summary>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +7,8 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal static class DependencyService
     {
         static bool s_initialized;

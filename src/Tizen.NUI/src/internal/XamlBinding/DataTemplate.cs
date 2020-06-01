@@ -1,8 +1,10 @@
-using System;
+
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal class DataTemplate : ElementTemplate
     {
         public DataTemplate()

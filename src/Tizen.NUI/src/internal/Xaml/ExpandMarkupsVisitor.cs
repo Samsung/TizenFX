@@ -1,10 +1,12 @@
-using System;
+
 using System.Collections.Generic;
 using System.Xml;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal class ExpandMarkupsVisitor : IXamlNodeVisitor
     {
         public ExpandMarkupsVisitor(HydrationContext context)

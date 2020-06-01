@@ -1,6 +1,5 @@
 #define DO_NOT_CHECK_FOR_BINDING_REUSE
 
-using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections.Generic;
@@ -8,6 +7,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
+    using global::System;
+
     //FIXME: need a better name for this, and share with Binding, so we can share more unittests
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]

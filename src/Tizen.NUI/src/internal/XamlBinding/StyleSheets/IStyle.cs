@@ -5,7 +5,7 @@ namespace Tizen.NUI.StyleSheets
 {
     internal interface IStyle
     {
-        Type TargetType { get; }
+        global::System.Type TargetType { get; }
 
         void Apply(BindableObject bindable);
         void UnApply(BindableObject bindable);

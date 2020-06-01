@@ -10,11 +10,11 @@ namespace Tizen.NUI.Xaml
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Type TargetType { get; private set; }
+        public global::System.Type TargetType { get; private set; }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TypeConversionAttribute(Type targetType)
+        public TypeConversionAttribute(global::System.Type targetType)
         {
             TargetType = targetType;
         }

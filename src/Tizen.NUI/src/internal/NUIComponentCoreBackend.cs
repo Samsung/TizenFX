@@ -15,7 +15,6 @@
  *
  */
 
-using System;
 using System.Collections.Generic;
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
@@ -23,10 +22,12 @@ using Tizen.Applications.ComponentBased.Common;
 
 namespace Tizen.NUI
 {
+    using global::System;
+
     class NUIComponentCoreBackend : ICoreBackend
     {
-        private Dictionary<Type, ComponentStateManger> _componentFactories;
-        public Dictionary<Type, ComponentStateManger>  ComponentFactories
+        private Dictionary<System.Type, ComponentStateManger> _componentFactories;
+        public Dictionary<System.Type, ComponentStateManger>  ComponentFactories
         {
             set
             {
@@ -136,7 +137,7 @@ namespace Tizen.NUI
         {
             IntPtr nativeComponentFactoryMap = IntPtr.Zero;
             int n = 0;
-            foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
+            foreach (KeyValuePair<System.Type, ComponentStateManger> entry in _componentFactories)
             {
                 nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
                 n++;

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal class BindingExpression
     {
         internal const string PropertyNotFoundErrorMessage = "'{0}' property not found on '{1}', target property: '{2}.{3}'";

@@ -1,9 +1,11 @@
-using System;
+
 using System.Reflection;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal sealed class MarkupExtensionParser : MarkupExpressionParser, IExpressionParser<object>
     {
         IMarkupExtension markupExtension;

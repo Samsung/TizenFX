@@ -1,9 +1,11 @@
-using System;
+
 using System.Collections.Generic;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     [ContentProperty("Platforms")]
     internal class OnPlatform<T>
     {

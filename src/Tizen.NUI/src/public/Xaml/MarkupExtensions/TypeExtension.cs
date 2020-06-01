@@ -1,8 +1,10 @@
-using System;
+
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     [ContentProperty(nameof(TypeName))]
     [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.TypeExtension")]
     internal class TypeExtension : IMarkupExtension<Type>

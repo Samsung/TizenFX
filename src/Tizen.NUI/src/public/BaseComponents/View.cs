@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -23,6 +23,8 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
+    using global::System;
+
     /// <summary>
     /// View is the base class for all views.
     /// </summary>

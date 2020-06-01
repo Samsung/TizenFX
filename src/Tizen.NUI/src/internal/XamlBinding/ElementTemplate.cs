@@ -1,10 +1,12 @@
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// <summary>
     /// Base class for DataTemplate and ControlTemplate classes.
     /// </summary>

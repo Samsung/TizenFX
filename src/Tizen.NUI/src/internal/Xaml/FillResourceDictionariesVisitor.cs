@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,6 +6,7 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
     internal class FillResourceDictionariesVisitor : IXamlNodeVisitor
     {
         public FillResourceDictionariesVisitor(HydrationContext context)

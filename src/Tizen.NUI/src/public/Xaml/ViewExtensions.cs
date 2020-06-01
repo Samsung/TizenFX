@@ -25,13 +25,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Reflection;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     /// <summary>
     /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.Applications;
@@ -24,6 +24,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+    using global::System;
 
     /// <summary>
     /// The class for supporting multi-components application model.
@@ -31,7 +32,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIComponentApplication : CoreApplication
     {
-        private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
+        private Dictionary<System.Type, ComponentStateManger> _componentFactories = new Dictionary<System.Type, ComponentStateManger>();
 
         /// <summary>
         /// Initializes the ComponentApplication class.
@@ -41,7 +42,7 @@ namespace Tizen.NUI
         /// The value should be a component id which is declared in tizen-manifest.xml.
         /// </param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIComponentApplication(IDictionary<Type, string> typeInfo) : base(new NUIComponentCoreBackend())
+        public NUIComponentApplication(IDictionary<System.Type, string> typeInfo) : base(new NUIComponentCoreBackend())
         {
             foreach (var component in typeInfo)
             {
@@ -57,7 +58,7 @@ namespace Tizen.NUI
         /// <param name="compId">Component ID</param>
         /// <exception cref="ArgumentException">Thrown when component type is already added or not sub-class of FrameComponent or ServiceComponent</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterComponent(Type compType, string compId)
+        public void RegisterComponent(System.Type compType, string compId)
         {
             if (_componentFactories.ContainsKey(compType))
             {

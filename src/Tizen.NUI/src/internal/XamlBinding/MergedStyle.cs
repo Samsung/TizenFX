@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,11 +7,13 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal sealed class MergedStyle : IStyle
     {
         ////If the base type is one of these, stop registering dynamic resources further
         ////The last one (typeof(Element)) is a safety guard as we might be creating VisualElement directly in internal code
-        static readonly IList<Type> s_stopAtTypes = new List<Type> { typeof(View), typeof(Element) };
+        static readonly IList<global::System.Type> s_stopAtTypes = new List<global::System.Type> { typeof(View), typeof(Element) };
 
         IList<BindableProperty> _classStyleProperties;
 
@@ -25,7 +27,7 @@ namespace Tizen.NUI.Binding
 
         IList<string> _styleClass;
 
-        public MergedStyle(Type targetType, BindableObject target)
+        public MergedStyle(global::System.Type targetType, BindableObject target)
         {
             Target = target;
             TargetType = targetType;
@@ -88,7 +90,7 @@ namespace Tizen.NUI.Binding
             Style?.Apply(bindable);
         }
 
-        public Type TargetType { get; }
+        public global::System.Type TargetType { get; }
 
         public void UnApply(BindableObject bindable)
         {
@@ -124,7 +126,7 @@ namespace Tizen.NUI.Binding
 
         void RegisterImplicitStyles()
         {
-            Type type = TargetType;
+            global::System.Type type = TargetType;
             while (true) {
                 BindableProperty implicitStyleProperty = BindableProperty.Create("ImplicitStyle", typeof(Style), typeof(View), default(Style),
                         propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());

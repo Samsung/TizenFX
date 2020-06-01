@@ -19,18 +19,18 @@ namespace Tizen.NUI.Xaml
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Type Type { get; set; }
+        public global::System.Type Type { get; set; }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlResourceIdAttribute(string resourceId, string path, Type type)
+        public XamlResourceIdAttribute(string resourceId, string path, global::System.Type type)
         {
             ResourceId = resourceId;
             Path = path;
             Type = type;
         }
 
-        internal static string GetResourceIdForType(Type type)
+        internal static string GetResourceIdForType(global::System.Type type)
         {
             var assembly = type.GetTypeInfo().Assembly;
             foreach (var xria in assembly.GetCustomAttributes<XamlResourceIdAttribute>()) {
@@ -40,7 +40,7 @@ namespace Tizen.NUI.Xaml
             return null;
         }
 
-        internal static string GetPathForType(Type type)
+        internal static string GetPathForType(global::System.Type type)
         {
             var assembly = type.GetTypeInfo().Assembly;
             foreach (var xria in assembly.GetCustomAttributes<XamlResourceIdAttribute>()) {
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Xaml
             return null;
         }
 
-        internal static Type GetTypeForResourceId(Assembly assembly, string resourceId)
+        internal static global::System.Type GetTypeForResourceId(Assembly assembly, string resourceId)
         {
             foreach (var xria in assembly.GetCustomAttributes<XamlResourceIdAttribute>()) {
                 if (xria.ResourceId == resourceId)
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Xaml
             return null;
         }
 
-        internal static Type GetTypeForPath(Assembly assembly, string path)
+        internal static global::System.Type GetTypeForPath(Assembly assembly, string path)
         {
             foreach (var xria in assembly.GetCustomAttributes<XamlResourceIdAttribute>()) {
                 if (xria.Path == path)

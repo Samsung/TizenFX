@@ -16,7 +16,7 @@ namespace Tizen.NUI.StyleSheets
             };
         }
 
-        public object GetService(Type serviceType)
+        public object GetService(global::System.Type serviceType)
         {
             if (serviceType == typeof(IProvideValueTarget))
                 return vtProvider;

@@ -1,10 +1,12 @@
-using System;
+
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// <summary>
     /// An abstract class that provides a BindingMode and a formatting option.
     /// </summary>

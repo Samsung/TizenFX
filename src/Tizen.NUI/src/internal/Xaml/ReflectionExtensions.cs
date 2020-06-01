@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,6 +6,8 @@ using System.Reflection;
 
 namespace Tizen.NUI.Binding.Internals
 {
+    using global::System;
+
     internal static class ReflectionExtensions
     {
         public static FieldInfo GetField(this Type type, Func<FieldInfo, bool> predicate)

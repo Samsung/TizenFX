@@ -5,11 +5,11 @@ namespace Tizen.NUI.Binding
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     internal class DependencyAttribute : Attribute
     {
-        public DependencyAttribute(Type implementorType)
+        public DependencyAttribute(System.Type implementorType)
         {
             Implementor = implementorType;
         }
 
-        internal Type Implementor { get; private set; }
+        internal System.Type Implementor { get; private set; }
     }
 }

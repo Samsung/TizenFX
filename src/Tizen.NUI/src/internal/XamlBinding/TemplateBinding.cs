@@ -1,8 +1,10 @@
-using System;
+
 using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal class TemplateBinding : BindingBase
     {
         internal const string SelfPath = ".";

@@ -25,7 +25,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -38,6 +37,8 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal static class XamlParser
     {
         public const string XFUri = "http://tizen.org/Tizen.NUI/2018/XAML";

@@ -5,11 +5,11 @@ namespace Tizen.NUI.Binding
     [AttributeUsage(AttributeTargets.Class)]
     internal sealed class RenderWithAttribute : Attribute
     {
-        public RenderWithAttribute(Type type)
+        public RenderWithAttribute(System.Type type)
         {
             Type = type;
         }
 
-        public Type Type { get; }
+        public System.Type Type { get; }
     }
 }

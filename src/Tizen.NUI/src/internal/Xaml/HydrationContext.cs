@@ -1,8 +1,10 @@
-using System;
+
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal class HydrationContext
     {
         public HydrationContext()

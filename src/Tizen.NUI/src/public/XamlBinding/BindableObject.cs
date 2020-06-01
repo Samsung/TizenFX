@@ -1,4 +1,4 @@
-﻿using System;
+﻿using global::System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -57,11 +57,11 @@ namespace Tizen.NUI.Binding
             if (null != that)
             {
                 Dictionary<string, BindableProperty> nameToBindableProperty1;
-                Type type1 = this.GetType();
+                global::System.Type type1 = this.GetType();
                 BindableProperty.GetBindablePropertysOfType(type1, out nameToBindableProperty1);
 
                 Dictionary<string, BindableProperty> nameToBindableProperty2;
-                Type type2 = that.GetType();
+                global::System.Type type2 = that.GetType();
                 BindableProperty.GetBindablePropertysOfType(type2, out nameToBindableProperty2);
 
                 if (null != nameToBindableProperty1)

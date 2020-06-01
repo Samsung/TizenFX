@@ -15,13 +15,15 @@
  *
  */
 
-using System;
+
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
 namespace Tizen.NUI
 {
+    using global::System;
+
     /// <summary>
     /// Enum help class.
     /// </summary>
@@ -54,7 +56,7 @@ namespace Tizen.NUI
         /// <returns>The numeric value.</returns>
         public static T GetValueByDescription<T>(this string description) where T : struct
         {
-            Type type = typeof(T);
+            System.Type type = typeof(T);
             foreach (var field in type.GetFields())
             {
                 if (description == field.Name)

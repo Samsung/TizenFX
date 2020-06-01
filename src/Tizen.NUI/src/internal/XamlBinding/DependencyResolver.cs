@@ -1,10 +1,12 @@
-using System;
+
 using System.Linq;
 using System.Reflection;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal static class DependencyResolver
     {
         static Func<Type, object[], object> Resolver { get; set; }

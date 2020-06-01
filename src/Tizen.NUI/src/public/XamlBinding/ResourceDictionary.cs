@@ -1,4 +1,4 @@
-using System;
+using global::System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,10 +18,10 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ResourceDictionary : IResourceDictionary, IDictionary<string, object>
     {
-        static ConditionalWeakTable<Type, ResourceDictionary> s_instances = new ConditionalWeakTable<Type, ResourceDictionary>();
+        static ConditionalWeakTable<global::System.Type, ResourceDictionary> s_instances = new ConditionalWeakTable<global::System.Type, ResourceDictionary>();
         readonly Dictionary<string, object> _innerDictionary = new Dictionary<string, object>();
         ResourceDictionary _mergedInstance;
-        Type _mergedWith;
+        global::System.Type _mergedWith;
         Uri _source;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -38,7 +38,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(TypeTypeConverter))]
         [Obsolete("Use Source")]
-        public Type MergedWith {
+        public global::System.Type MergedWith {
             get { return _mergedWith; }
             set {
                 if (_mergedWith == value)

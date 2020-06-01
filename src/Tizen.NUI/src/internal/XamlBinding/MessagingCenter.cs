@@ -1,10 +1,12 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     internal interface IMessagingCenter
     {
         void Send<TSender, TArgs>(TSender sender, string message, TArgs args) where TSender : class;

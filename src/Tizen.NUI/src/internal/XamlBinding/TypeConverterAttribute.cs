@@ -51,7 +51,7 @@ namespace Tizen.NUI.Binding
             ConverterTypeName = typeName;
         }
 
-        public TypeConverterAttribute(Type type)
+        public TypeConverterAttribute(global::System.Type type)
         {
             ConverterTypeName = type.AssemblyQualifiedName;
         }

@@ -25,6 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,11 +45,11 @@ namespace Tizen.NUI.Xaml.Internals
     [Obsolete ("Replaced by ResourceLoader")]
     public static class XamlLoader
     {
-        static Func<Type, string> xamlFileProvider;
+        static Func<System.Type, string> xamlFileProvider;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Func<Type, string> XamlFileProvider {
+        public static Func<System.Type, string> XamlFileProvider {
             get { return xamlFileProvider; }
             internal set
             {
@@ -67,7 +68,7 @@ namespace Tizen.NUI.Xaml
 {
     static internal class XamlLoader
     {
-        public static void Load(object view, Type callingType)
+        public static void Load(object view, System.Type callingType)
         {
             try
             {
@@ -88,7 +89,7 @@ namespace Tizen.NUI.Xaml
             var xaml = GetAnimationXaml(path);
             if (string.IsNullOrEmpty(xaml))
                 throw new XamlParseException(string.Format("No embeddedresource found for {0}", path), new XmlLineInfo());
-            Type type = typeof(T);
+            System.Type type = typeof(T);
             T ret = (T)type.Assembly.CreateInstance(type.FullName);
 
             NameScopeExtensions.PushElement(ret);
@@ -228,7 +229,7 @@ namespace Tizen.NUI.Xaml
 
             return null;
         }
-        static string GetXamlForType(Type type)
+        static string GetXamlForType(System.Type type)
         {
             //the Previewer might want to provide it's own xaml for this... let them do that
             //the check at the end is preferred (using ResourceLoader). keep this until all the previewers are updated
@@ -273,8 +274,8 @@ namespace Tizen.NUI.Xaml
         }
 
         //if the assembly was generated using a version of XamlG that doesn't outputs XamlResourceIdAttributes, we still need to find the resource, and load it
-        static readonly Dictionary<Type, string> XamlResources = new Dictionary<Type, string>();
-        static string LegacyGetXamlForType(Type type)
+        static readonly Dictionary<System.Type, string> XamlResources = new Dictionary<System.Type, string>();
+        static string LegacyGetXamlForType(System.Type type)
         {
             var assembly = type.GetTypeInfo().Assembly;
 
@@ -354,7 +355,7 @@ namespace Tizen.NUI.Xaml
         }
 
         //part of the legacy as well...
-        static string ReadResourceAsXaml(Type type, Assembly assembly, string likelyTargetName, bool validate = false)
+        static string ReadResourceAsXaml(System.Type type, Assembly assembly, string likelyTargetName, bool validate = false)
         {
             using (var stream = assembly.GetManifestResourceStream(likelyTargetName))
             using (var reader = new StreamReader(stream))

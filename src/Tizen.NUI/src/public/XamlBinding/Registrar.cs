@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,6 +7,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
+    using global::System;
+
     /// <summary>
     /// For internal use.
     /// </summary>

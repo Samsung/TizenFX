@@ -1,10 +1,12 @@
-using System;
+
 using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ProvideCompiled("Tizen.NUI.Core.XamlC.PassthroughValueProvider")]

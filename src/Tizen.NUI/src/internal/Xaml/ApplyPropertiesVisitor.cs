@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +6,12 @@ using System.Xml;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Binding;
 using Tizen.NUI.StyleSheets;
-
 using static System.String;
 
 namespace Tizen.NUI.Xaml
 {
+    using global::System;
+
     internal class ApplyPropertiesVisitor : IXamlNodeVisitor
     {
         public static readonly IList<XmlName> Skips = new List<XmlName> {

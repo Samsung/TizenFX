@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -10,6 +10,8 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Binding : BindingBase

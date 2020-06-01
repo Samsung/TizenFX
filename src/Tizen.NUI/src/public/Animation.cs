@@ -17,11 +17,10 @@
 
 namespace Tizen.NUI
 {
-    using System;
+    using global::System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
-
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -850,7 +849,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal object ConvertTo(object value, Type toType)
+        internal object ConvertTo(object value, System.Type toType)
         {
             Func<object> getConverter = () =>
             {
@@ -858,14 +857,14 @@ namespace Tizen.NUI
                 if (converterTypeName == null)
                     return null;
 
-                Type convertertype = Type.GetType(converterTypeName);
+                System.Type convertertype = System.Type.GetType(converterTypeName);
                 return Activator.CreateInstance(convertertype);
             };
 
             return ConvertTo(value, toType, getConverter);
         }
 
-        internal object ConvertTo(object value, Type toType, Func<object> getConverter)
+        internal object ConvertTo(object value, System.Type toType, Func<object> getConverter)
         {
             if (value == null)
                 return null;
@@ -960,12 +959,12 @@ namespace Tizen.NUI
                 return null;
             if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
                 return (string)converterAttribute.ConstructorArguments[0].Value;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(Type))
-                return ((Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(System.Type))
+                return ((System.Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
             return null;
         }
 
-        internal MethodInfo GetImplicitConversionOperator(Type onType, Type fromType, Type toType)
+        internal MethodInfo GetImplicitConversionOperator(System.Type onType, System.Type fromType, System.Type toType)
         {
 #if NETSTANDARD1_0
             var mi = onType.GetRuntimeMethod("op_Implicit", new[] { fromType });

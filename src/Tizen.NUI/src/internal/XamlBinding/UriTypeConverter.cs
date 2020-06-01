@@ -1,7 +1,9 @@
-﻿using System;
+﻿
 
 namespace Tizen.NUI.Binding
 {
+    using global::System;
+
     [Xaml.ProvideCompiled("Tizen.NUI.Core.XamlC.UriTypeConverter")]
     [Xaml.TypeConversion(typeof(Uri))]
     internal class UriTypeConverter : TypeConverter

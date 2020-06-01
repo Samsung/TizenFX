@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -10,6 +10,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.StyleSheets
 {
+    using global::System;
+
     internal sealed class StyleSheet : IStyle
     {
         StyleSheet()
