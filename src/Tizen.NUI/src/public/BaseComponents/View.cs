@@ -1053,7 +1053,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
-                WidthSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -1076,7 +1075,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
-                HeightSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -1536,28 +1534,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(WidthResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch (value)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                    {
-                        WidthSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    case ResizePolicyType.FillToParent:
-                    {
-                        WidthSpecification = LayoutParamPolicies.MatchParent;
-                        break;
-                    }
-                    case ResizePolicyType.FitToChildren:
-                    {
-                        WidthSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    default:
-                        break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -1575,28 +1551,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HeightResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch (value)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                    {
-                        HeightSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    case ResizePolicyType.FillToParent:
-                    {
-                        HeightSpecification = LayoutParamPolicies.MatchParent;
-                        break;
-                    }
-                    case ResizePolicyType.FitToChildren:
-                    {
-                        HeightSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    default:
-                        break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -1665,7 +1619,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 // If View has a Layout then padding in stored in the base Layout class
-                if (Layout !=null)
+                if (Layout != null)
                 {
                     return Layout.Padding;
                 }
@@ -1854,10 +1808,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeProperty, value);
-                // Set Specification so when layouts measure this View it matches the value set here.
-                // All Views are currently Layouts.
-                WidthSpecification = (int)Math.Ceiling(value.Width);
-                HeightSpecification = (int)Math.Ceiling(value.Height);
                 NotifyPropertyChanged();
             }
         }

@@ -763,6 +763,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)newValue));
+                view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -783,6 +784,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+                view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1126,6 +1128,28 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch ((ResizePolicyType)newValue)
+                {
+                    case ResizePolicyType.UseNaturalSize:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    case ResizePolicyType.FillToParent:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.MatchParent;
+                            break;
+                        }
+                    case ResizePolicyType.FitToChildren:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1149,6 +1173,28 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch ((ResizePolicyType)newValue)
+                {
+                    case ResizePolicyType.UseNaturalSize:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    case ResizePolicyType.FillToParent:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.MatchParent;
+                            break;
+                        }
+                    case ResizePolicyType.FitToChildren:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1256,7 +1302,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue((Size)newValue));
+                Size size = (Size)newValue;
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
+                view.WidthSpecification = (int)System.Math.Ceiling(size.Width);
+                view.HeightSpecification = (int)System.Math.Ceiling(size.Height);
             }
         },
         defaultValueCreator: (bindable) =>

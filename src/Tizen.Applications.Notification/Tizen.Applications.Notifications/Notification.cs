@@ -180,11 +180,11 @@ namespace Tizen.Applications.Notifications
         /// {
         ///     SoundOption = AccessoryOption.Custom,
         ///     SoundPath = "Sound File Path",
-        ///     IsVibration = true,
+        ///     CanVibrate = true,
         ///     LedOption = AccessoryOption.Custom,
-        ///     LedOnMs = 100;
-        ///     LedOffMs = 50;
-        ///     LedColor = Color.Lime
+        ///     LedOnMillisecond = 100,
+        ///     LedOffMillisecond = 50,
+        ///     LedColor = Tizen.Common.Color.Lime
         /// };
         ///
         /// notification.Accessory = accessory;
