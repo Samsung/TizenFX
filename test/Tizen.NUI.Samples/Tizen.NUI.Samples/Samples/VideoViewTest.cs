@@ -27,16 +27,17 @@ namespace Tizen.NUI.Samples
         myPlayer player;
         string resourcePath;
         const string tag = "NUITEST";
+        View dummy;
         public void Activate()
         {
             win = NUIApplication.GetDefaultWindow();
-            win.BackgroundColor = Color.Green;
+            win.BackgroundColor = new Color(1, 1, 1, 0);
             win.KeyEvent += Win_KeyEvent;
             win.TouchEvent += Win_TouchEvent;
 
-            var dummy = new View();
+            dummy = new View();
             dummy.Size = new Size(200, 200);
-            dummy.BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.2f);
+            dummy.BackgroundColor = new Color(1, 1, 1, 0.5f);
             win.Add(dummy);
 
             resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "v.mp4";
@@ -49,9 +50,20 @@ namespace Tizen.NUI.Samples
         {
             win.KeyEvent -= Win_KeyEvent;
             win.TouchEvent -= Win_TouchEvent;
-            videoView?.Unparent();
-            player?.Dispose();
-            player = null;
+
+            tlog.Fatal(tag, $"Deactivate()!");
+
+            dummy.Unparent();
+
+            videoView.Unparent();
+
+            // currently it is crashed when Dispose() is called. need to check.
+            //videoView.Dispose();
+            //videoView = null;
+            //player.Unprepare();
+            //player.Dispose();
+            //player = null;
+            tlog.Fatal(tag, $"Deactivate()! videoView dispsed");
         }
 
         int cnt;

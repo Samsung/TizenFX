@@ -95,20 +95,27 @@ namespace Tizen.NUI
                     {
                         if (!childLayout.IsReplaceFlag())
                         {
-                            Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                            NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
                         }
 
                         childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                         // Add LayoutItem to the transition stack so can animate it out.
-                        Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
                     }
                     else
                     {
                         if(childLayout.Owner != null)
                         {
-                            Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
-                            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                            View parent = childLayout.Owner.GetParent() as View;
+
+                            if(parent != null)
+                            {
+                                parent.RemoveChild(childLayout.Owner);
+                            }
+                            else
+                            {
+                                NUIApplication.GetDefaultWindow().Remove(childLayout.Owner);
+                            }
                         }
                     }
 
@@ -118,11 +125,13 @@ namespace Tizen.NUI
                     childRemoved = true;
                 }
             }
+
             if (childRemoved)
             {
                 // If child removed then set all siblings not being added to a ChangeOnRemove transition.
                 SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnRemove);
             }
+
             RequestLayout();
         }
 
@@ -166,16 +175,7 @@ namespace Tizen.NUI
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    if (child.GetType() == typeof(View))
-                    {
-                        child.Layout = new LayoutGroup();
-                    }
-                    else
-                    {
-                        // Adding child as a leaf, layouting will not propagate past this child.
-                        // Legacy containers will be a LayoutItems too and layout their children how they wish.
-                        child.Layout = new LayoutItem();
-                    }
+                    child.Layout = new AbsoluteLayout();
                 }
             }
             else

@@ -417,7 +417,7 @@ namespace Tizen.NUI.Samples
                 createText[1].Dispose();
                 createText[1] = null;
 
-                window.Remove(root);
+                NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
             }
         }

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -60,6 +60,7 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="fwType">Types of Neural Network Framework</param>
         /// <param name="hwType">Types of hardware resources to be used for NNFWs</param>
         /// <param name="isDynamicMode">Support Dynamic Mode</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 8 </since_tizen>
@@ -81,6 +82,7 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="fwType">Types of Neural Network Framework (Default:NNFWType.Any)</param>
         /// <param name="hwType">Types of hardware resources to be used for NNFWs (Default: HWType.Any)</param>
         /// <param name="isDynamicMode">Support Dynamic Mode (Default: false)</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 8 </since_tizen>
@@ -163,8 +165,9 @@ namespace Tizen.MachineLearning.Inference
         /// Sets the maximum amount of time to wait for an output, in milliseconds.
         /// </summary>
         /// <param name="ms">The time to wait for an output (milliseconds)</param>
-        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <since_tizen> 8 </since_tizen>
         public void SetTimeout(int ms)
         {
@@ -172,8 +175,7 @@ namespace Tizen.MachineLearning.Inference
             NNStreamerError ret = NNStreamerError.None;
 
             if (ms <= 0)
-                ret = NNStreamerError.InvalidParameter;
-            NNStreamer.CheckException(ret, "timeout: " + ms.ToString());
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "Invalid timeout: " + ms.ToString());
 
             ret = Interop.SingleShot.SetTimeout(_handle, ms);
             NNStreamer.CheckException(ret, "fail to set the timeout!");
@@ -182,7 +184,7 @@ namespace Tizen.MachineLearning.Inference
         /// <summary> Sets the property value for the given model.
         /// <para>A model/framework may support changing the model information, such as tensor dimension and data layout, after opening the model.</para>
         /// <para>If tries to change unavailable property or the model does not allow changing the information, this will raise an exception.</para>
-        /// <para>For the details about the properties, see 'tensor_filter' plugin definition in <a href="https://github.com/nnsuite/nnstreamer">NNStreamer</a>.</para>
+        /// <para>For the details about the properties, see 'tensor_filter' plugin definition in <a href="https://github.com/nnstreamer/nnstreamer">NNStreamer</a>.</para>
         /// </summary>
         /// <param name="name">The property name</param>
         /// <param name="value">The property value</param>

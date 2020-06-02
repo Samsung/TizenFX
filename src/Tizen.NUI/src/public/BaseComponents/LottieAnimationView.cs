@@ -222,7 +222,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
-        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(myLottie);
         /// myLottie.CurrentFrame = 200; //display 99 frame
         /// myLottie.SetMinMaxFrame(10, 20);
         /// myLottie.CurrentFrame = 15; //display 15 frame
@@ -312,7 +312,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
-        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(myLottie);
         /// myLottie.LoopCount = -1; //infinite loop
         /// myLottie.Play();
         /// myLottie.Stop(); //it plays continuously unless Stop() is called
@@ -830,5 +830,132 @@ namespace Tizen.NUI.BaseComponents
             tlog.Fatal(tag, $"===================================");
         }
         #endregion Private
+    }
+
+    /// <summary>
+    /// A class containing frame informations for a LottieAnimationView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class LottieFrameInfo
+    {
+        /// <summary>
+        /// Creates a new instance with a playing range.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LottieFrameInfo(int startFrame, int endFrame)
+        {
+            StartFrame = startFrame;
+            EndFrame = endFrame;
+        }
+
+        /// <summary>
+        /// Creates a new instance with a still image frame.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LottieFrameInfo(int stillImageFrame) : this(stillImageFrame, stillImageFrame)
+        {
+        }
+
+        /// <summary>
+        /// Create a new instance from a pair notation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator LottieFrameInfo((int, int) pair)
+        {
+            return new LottieFrameInfo(pair.Item1, pair.Item2);
+        }
+
+        /// <summary>
+        /// Create a new instance from an int value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator LottieFrameInfo(int stillImageFrame)
+        {
+            return new LottieFrameInfo(stillImageFrame);
+        }
+
+        /// <summary>
+        /// The start frame of the lottie animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int StartFrame { get; }
+
+        /// <summary>
+        /// The end frame of the lottie animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int EndFrame { get; }
+
+        /// <summary>
+        /// Create LottieFrameInfo struct with animation range information
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LottieFrameInfo CreateAnimationRange(int startFrame, int endFrame)
+        {
+            return new LottieFrameInfo(startFrame, endFrame);
+        }
+
+        /// <summary>
+        /// Create LottieFrameInfo struct with still image information
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LottieFrameInfo CreateStillImage(int stillImageFrame)
+        {
+            return new LottieFrameInfo(stillImageFrame, stillImageFrame);
+        }
+
+        /// <summary>
+        /// Inhouse API.
+        /// Whether this LottieFrameInfo represents one frame or more.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsStillImage()
+        {
+            return StartFrame == EndFrame;
+        }
+
+        /// <summary>
+        /// Inhouse API.
+        /// Play specified LottieAnimationView with this frame information.
+        /// </summary>
+        /// <param name="lottieView">The target LottieAnimationView to play.</param>
+        /// <param name="noPlay">Whether go direct to the EndFrame. It is false by default.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Show(LottieAnimationView lottieView, bool noPlay = false)
+        {
+            if (!BeReadyToShow(lottieView))
+            {
+                return;
+            }
+
+            lottieView.SetMinMaxFrame(StartFrame, Math.Min(EndFrame, lottieView.TotalFrame - 1));
+
+            if (IsStillImage() || noPlay)
+            {
+                lottieView.CurrentFrame = EndFrame;
+            }
+            else
+            {
+                lottieView.CurrentFrame = StartFrame;
+                lottieView.Play();
+            }
+        }
+
+        private bool BeReadyToShow(LottieAnimationView lottieView)
+        {
+            // Validate input lottieView
+            if (null== lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
+            {
+                return false;
+            }
+
+            // Stop if it was playing
+            if (lottieView.PlayState == LottieAnimationView.PlayStateType.Playing)
+            {
+                lottieView.Stop();
+            }
+
+            return true;
+        }
     }
 }

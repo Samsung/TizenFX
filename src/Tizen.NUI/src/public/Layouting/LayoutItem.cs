@@ -74,6 +74,12 @@ namespace Tizen.NUI
          public bool LayoutWithTransition{get; set;}
 
         /// <summary>
+        /// [Draft] Set position by layouting result
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetPositionByLayout{get;set;} = true;
+
+        /// <summary>
         /// [Draft] Margin for this LayoutItem
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -300,7 +306,15 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             Flags = Flags | LayoutFlags.ForceLayout;
-            Window.Instance.LayoutController.RequestLayout(this);
+            if (Parent != null)
+            {
+                 LayoutGroup layoutGroup =  Parent as LayoutGroup;
+                 if(! layoutGroup.LayoutRequested)
+                 {
+                    layoutGroup.RequestLayout();
+                 }
+            }
+			
         }
 
         /// <summary>
@@ -353,8 +367,16 @@ namespace Tizen.NUI
         {
             get
             {
-                int naturalWidth = Owner.NaturalSize2D.Width;
-                return new LayoutLength(Math.Max( MinimumWidth.AsDecimal(), naturalWidth ));
+                float maximumWidth = Owner.MaximumSize.Width;
+                float minimumWidth = Owner.MinimumSize.Width;
+
+                float baseHeight = Owner.MaximumSize.Height > 0 ? Math.Min(Owner.MaximumSize.Height,Owner.NaturalSize.Height) : Owner.NaturalSize.Height;
+                float baseWidth = Owner.GetWidthForHeight(baseHeight);
+
+                float result = minimumWidth > 0 ? Math.Max(baseWidth, minimumWidth) : baseWidth;
+                result = maximumWidth > 0 ? Math.Min(result, maximumWidth) : result;
+
+                return new LayoutLength(result);
             }
         }
 
@@ -367,8 +389,16 @@ namespace Tizen.NUI
         {
             get
             {
-                int naturalHeight = Owner.NaturalSize2D.Height;
-                return new LayoutLength(Math.Max( MinimumHeight.AsDecimal(), naturalHeight ));
+                float maximumHeight = Owner.MaximumSize.Height;
+                float minimumHeight = Owner.MinimumSize.Height;
+
+                float baseWidth = Owner.MaximumSize.Width > 0 ? Math.Min(Owner.MaximumSize.Width,Owner.NaturalSize.Width) : Owner.NaturalSize.Width;
+                float baseHeight = Owner.GetHeightForWidth(baseWidth);
+
+                float result = minimumHeight > 0 ? Math.Max(baseHeight, minimumHeight) : baseHeight;
+                result = maximumHeight > 0 ? Math.Min(result, maximumHeight) : result;
+
+                return new LayoutLength(result);
             }
         }
 
@@ -530,12 +560,15 @@ namespace Tizen.NUI
 
                 if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
                 {
-                    Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }
                 else
                 {
-                    Owner.Size = new Size(right - left, bottom - top, Owner.Position.Z);
-                    Owner.Position = new Position(left, top, Owner.Position.Z);
+                    Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
+                    if(SetPositionByLayout)
+                    {
+                        Owner.SetPosition(left, top, Owner.Position.Z);
+                    }
                 }
 
 

@@ -706,9 +706,11 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-            if (Window.Instance)
+
+            List<Window> windows = GetWindowList();
+            foreach (Window window in windows)
             {
-                Window.Instance.DisconnectNativeSignals();
+                window?.DisconnectNativeSignals();
             }
         }
 
@@ -1167,6 +1169,10 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
+            if(_instance)
+            {
+                return _instance;
+            }
 
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1178,6 +1184,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(1, stylesheet, windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1188,6 +1198,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1198,6 +1212,10 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1333,7 +1351,12 @@ namespace Tizen.NUI
 
         public Window GetWindow()
         {
-            Window ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindow(swigCPtr)) as Window;
+            if(ret == null)
+            {
+                ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1365,7 +1388,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static List<Window> GetWindowList()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Window> GetWindowList()
         {
             uint ListSize = Interop.Application.Application_GetWindowsListSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

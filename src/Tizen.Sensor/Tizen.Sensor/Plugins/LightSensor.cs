@@ -117,7 +117,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading light sensor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             Level = sensorData.values[0];
         }
 
@@ -129,7 +129,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 Level = sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new LightSensorDataUpdatedEventArgs(sensorData.values[0]));

@@ -76,16 +76,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (_mixColorForColorVisual != null)
+            Color color = _mixColorForColorVisual ?? _mixColor;
+
+            if (color != null)
+            {
+                _outputVisualMap = null;
+
+                base.ComposingPropertyMap();
+
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
+            }
+            else
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(_mixColorForColorVisual));
-                if (_shader != null) { _outputVisualMap.Add(Visual.Property.Shader, new PropertyValue(_shader)); }
-                if (_premultipliedAlpha != null) { _outputVisualMap.Add(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-                if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
-                if (_renderIfTransparent != null) { _outputVisualMap.Add(ColorVisualProperty.RenderIfTransparent, new PropertyValue((bool)_renderIfTransparent)); }
-                if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }

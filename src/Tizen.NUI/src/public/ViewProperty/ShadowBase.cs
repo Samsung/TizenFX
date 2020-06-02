@@ -15,7 +15,7 @@
  *
  */
 
- using System.ComponentModel;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,99 +25,58 @@ namespace Tizen.NUI
     /// This class can be used to convert visual properties to map.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    abstract public class ShadowBase
+    public abstract class ShadowBase
     {
-        internal delegate void PropertyChangedCallback(ShadowBase instance);
-
-        internal PropertyChangedCallback OnPropertyChanged = null;
-
         private static readonly Vector2 noOffset = new Vector2(0, 0);
 
         private static readonly Vector2 noExtents = new Vector2(0, 0);
-
-        private static readonly Vector2 absoluteTransformPolicy = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
-
-
-        /// <summary>
-        /// The location offset value from the View
-        /// </summary>
-        protected internal Vector2 offset;
-
-        /// <summary>
-        /// The size value in extension length
-        /// </summary>
-        protected internal Vector2 extents;
-
-        /// <summary>
-        /// The output property map
-        /// </summary>
-        protected internal PropertyMap propertyMap;
 
         /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ShadowBase() : this(noOffset, noExtents)
+        protected ShadowBase() : this(noOffset, noExtents)
         {
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ShadowBase(Vector2 offset, Vector2 extents)
+        {
+            Offset = offset;
+            Extents = extents;
+        }
+
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal protected ShadowBase(PropertyMap propertyMap)
+        {
+            Offset = noOffset;
+            Extents = noExtents;
+
+            if (propertyMap == null)
+            {
+                return;
+            }
+
+            SetPropertyMap(propertyMap);
         }
 
         /// <summary>
         /// Copy Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ShadowBase(ShadowBase other) : this(other.offset, other.extents)
+        protected ShadowBase(ShadowBase other) : this(other.Offset, other.Extents)
         {
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        private ShadowBase(Vector2 offset, Vector2 extents)
-        {
-            propertyMap = new PropertyMap();
-
-            Offset = offset;
-            Extents = extents;
-        }
-
-        private void OnOffsetOrSizeChanged(float x, float y)
-        {
-            OnPropertyChanged?.Invoke(this);
         }
 
         /// <summary>
         /// The position offset value (x, y) from the top left corner.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Offset
-        {
-            get
-            {
-                return offset;
-            }
-            set
-            {
-                offset = new Vector2(OnOffsetOrSizeChanged, value ?? noOffset);
-                OnPropertyChanged?.Invoke(this);
-            }
-        }
-
-        /// <summary>
-        /// The value indicates percentage of the container size. <br />
-        /// e.g. (0.5f, 1.0f) means 50% of the container's width and 100% of container's height.
-        /// </summary>
-        /// <Remarks> It is not guaranteed that this would work well. It will be removed in the next version.</Remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Scale
-        {
-            get
-            {
-                return new Vector2();
-            }
-            set
-            {
-            }
-        }
+        public Vector2 Offset { get; set; }
 
         /// <summary>
         /// The shadow will extend its size by specified amount of length.<br />
@@ -126,63 +85,145 @@ namespace Tizen.NUI
         /// the output shadow will have size (105, 95).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Extents
+        public Vector2 Extents { get; set; }
+
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(ShadowBase shadow1, ShadowBase shadow2)
         {
-            get
+            return object.ReferenceEquals(shadow1, null) ? object.ReferenceEquals(shadow2, null) : shadow1.Equals(shadow2);
+        }
+
+        /// <summary></summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(ShadowBase shadow1, ShadowBase shadow2)
+        {
+            return !(shadow1 == shadow2);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object other)
+        {
+            if ((other == null) || ! this.GetType().Equals(other.GetType())) 
             {
-                return extents;
+                return false;
             }
-            set
+            
+            var otherShadow = (ShadowBase)other;
+
+            if (!((Offset == null) ? otherShadow.Offset == null : Offset.Equals(otherShadow.Offset)))
             {
-                extents = new Vector2(OnOffsetOrSizeChanged, value ?? noExtents);
-                OnPropertyChanged?.Invoke(this);
+                return false;
+            }
+
+            return ((Extents == null) ? otherShadow.Extents == null : Extents.Equals(otherShadow.Extents));
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = Offset == null ? 0 : Offset.GetHashCode();
+                hash = (hash * 7) + (Extents == null ? 0 : Extents.GetHashCode());
+                return hash;
             }
         }
 
-        private PropertyValue GetTransformMap(BaseComponents.View attachedView)
+        internal abstract bool IsEmpty();
+
+        internal PropertyValue ToPropertyValue(BaseComponents.View attachedView)
         {
-            var transformMap = new PropertyMap();
-
-            if (!offset.Equals(noOffset))
-            {
-                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(absoluteTransformPolicy);
-                transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(offset);
-            }
-
-            if (!extents.Equals(noExtents))
-            {
-                var viewSize = new Vector2(attachedView.GetRelayoutSize(DimensionType.Width), attachedView.GetRelayoutSize(DimensionType.Height));
-                var shadowSize = viewSize + extents;
-
-                transformMap[(int)VisualTransformPropertyType.SizePolicy] = new PropertyValue(absoluteTransformPolicy);
-                transformMap[(int)VisualTransformPropertyType.Size] = PropertyValue.CreateWithGuard(shadowSize);
-            }
-
-            return transformMap.Count() == 0 ? new PropertyValue() : new PropertyValue(transformMap);
-        }
-
-        abstract internal bool IsValid();
-
-        internal bool HasValidSizeExtents()
-        {
-            return IsValid() && !extents.Equals(noExtents);
-        }
-
-        static internal PropertyValue ToPropertyValue(ShadowBase instance, BaseComponents.View attachedView)
-        {
-            if (instance == null || !instance.IsValid())
+            if (IsEmpty())
             {
                 return new PropertyValue();
             }
 
+            var map = GetPropertyMap();
+
             if (attachedView.CornerRadius > 0)
             {
-                instance.propertyMap[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
             }
 
-            instance.propertyMap[Visual.Property.Transform] = instance.GetTransformMap(attachedView);
+            map[Visual.Property.Transform] = GetTransformMap();
 
-            return new PropertyValue(instance.propertyMap);
+            return new PropertyValue(map);
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual PropertyMap GetPropertyMap()
+        {
+            PropertyMap map = new PropertyMap();
+
+            return map;
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool SetPropertyMap(PropertyMap propertyMap)
+        {
+            if (propertyMap == null)
+            {
+                return false;
+            }
+
+            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+
+            if (transformProperty == null)
+            {
+                // No transform map
+                return true;
+            }
+
+            var transformMap = new PropertyMap();
+
+            if (transformProperty.Get(transformMap))
+            {
+                SetTransformMap(transformMap);
+            }
+
+            return true;
+        }
+
+        private PropertyValue GetTransformMap()
+        {
+            var transformMap = new PropertyMap();
+
+            if (!Offset.Equals(noOffset))
+            {
+                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute));
+                transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
+            }
+
+            if (!Extents.Equals(noExtents))
+            {
+                transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
+            }
+
+            transformMap[(int)VisualTransformPropertyType.Origin] = new PropertyValue((int)Visual.AlignType.Center);
+            transformMap[(int)VisualTransformPropertyType.AnchorPoint] = new PropertyValue((int)Visual.AlignType.Center);
+
+            return new PropertyValue(transformMap);
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetTransformMap(PropertyMap transformMap)
+        {
+            if (transformMap == null)
+            {
+                return;
+            }
+
+            transformMap.Find((int)VisualTransformPropertyType.Offset)?.Get(Offset);
+            transformMap.Find((int)VisualTransformPropertyType.ExtraSize)?.Get(Extents);
         }
     }
 }

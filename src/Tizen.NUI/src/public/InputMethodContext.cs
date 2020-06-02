@@ -360,10 +360,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for the language mode of the input panel.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public enum InputPanelLanguage
+        {
+            /// <summary>
+            /// IME Language is automatically set depending on the system display.
+            /// </summary>
+            /// <since_tizen> 8 </since_tizen>
+            Automatic,
+            /// <summary>
+            /// Latin alphabet at all times.
+            /// </summary>
+            /// <since_tizen> 8 </since_tizen>
+            Alphabet
+        }
+
+        /// <summary>
         /// Gets or sets whether the IM context allows to use the text prediction.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public bool TextPrediction
         {
             get
@@ -646,8 +663,7 @@ namespace Tizen.NUI
         /// For example, string mimeType = "text/plain,image/png,image/gif,application/pdf";
         /// </summary>
         /// <param name="mimeType">The allowed MIME type.</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void SetMIMEType(string mimeType)
         {
             Interop.InputMethodContext.InputMethodContext_SetMIMEType(swigCPtr, mimeType);
@@ -659,12 +675,34 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="x">The top-left x coordinate of the input panel.</param>
         /// <param name="y">The top-left y coordinate of the input panel.</param>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void SetInputPanelPosition(uint x, uint y)
         {
             Interop.InputMethodContext.InputMethodContext_SetInputPanelPosition(swigCPtr, x, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the language of the input panel.
+        /// </summary>
+        /// <param name="language">The language to be set to the input panel</param>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetInputPanelLanguage(InputMethodContext.InputPanelLanguage language)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetInputPanelLanguage(swigCPtr, (int)language);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the language of the input panel.
+        /// </summary>
+        /// <returns>The language of the input panel</returns>
+        /// <since_tizen> 8 </since_tizen>
+        public InputMethodContext.InputPanelLanguage GetInputPanelLanguage()
+        {
+            InputMethodContext.InputPanelLanguage ret = (InputMethodContext.InputPanelLanguage)Interop.InputMethodContext.InputMethodContext_GetInputPanelLanguage(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)

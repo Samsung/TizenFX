@@ -186,8 +186,8 @@ namespace Tizen.NUI.Components
         {
             var instance = (Popup)bindable;
             ImageShadow shadow = (ImageShadow)newValue;
-            instance.btGroup.ItemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
-            instance.Style.Buttons.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+            instance.btGroup.ItemImageShadow = new ImageShadow(shadow);
+            instance.Style.Buttons.ImageShadow = new ImageShadow(shadow);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -332,6 +332,27 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public new PopupStyle Style => ViewStyle as PopupStyle;
+
+        /// <summary>
+        /// Popup Title.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel Title
+        {
+            get
+            {
+                if (null == titleText)
+                {
+                    titleText = new TextLabel();
+                    Add(titleText);
+                }
+                return titleText;
+            }
+            internal set
+            {
+                titleText = value;
+            }
+        }
 
         /// <summary>
         /// Title text string in Popup.
@@ -693,13 +714,8 @@ namespace Tizen.NUI.Components
             PopupStyle ppStyle = viewStyle as PopupStyle;
             if (null != ppStyle)
             {
-                if (null == titleText)
-                {
-                    titleText = new TextLabel();
-                    Add(titleText);
-                }
-                titleText.RaiseToTop();
-                titleText.ApplyStyle(ppStyle.Title);
+                Title.ApplyStyle(ppStyle.Title);
+                Title.RaiseToTop();
             }
         }
 
@@ -734,6 +750,9 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             container.Add(this);
+            container.SetTouchConsumed(true);
+            container.SetHoverConsumed(true);
+
             LeaveRequired = true;
             PropertyChanged += PopupStylePropertyChanged;
 
@@ -746,14 +765,6 @@ namespace Tizen.NUI.Components
             };
             Add(ContentView);
             ContentView.RaiseToTop();
-
-            // Title
-            if (null == titleText)
-            {
-                titleText = new TextLabel();
-                titleText.RaiseToTop();
-                Add(titleText);
-            }
 
             // Button
             btGroup = new ButtonGroup(this);

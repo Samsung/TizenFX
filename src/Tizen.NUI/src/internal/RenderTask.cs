@@ -14,11 +14,14 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class RenderTask : Animatable
+    /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RenderTask : Animatable
     {
 
         internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RenderTask.RenderTask_SWIGUpcast(cPtr), cMemoryOwn)
@@ -210,13 +213,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void SetTargetFrameBuffer(FrameBufferImage frameBuffer)
+        internal void SetTargetFrameBuffer(FrameBufferImage frameBuffer)
         {
             Interop.RenderTask.RenderTask_SetTargetFrameBuffer(swigCPtr, FrameBufferImage.getCPtr(frameBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public FrameBufferImage GetTargetFrameBuffer()
+        internal FrameBufferImage GetTargetFrameBuffer()
         {
             FrameBufferImage ret = new FrameBufferImage(Interop.RenderTask.RenderTask_GetTargetFrameBuffer(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

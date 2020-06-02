@@ -196,7 +196,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Window.Instance;
+                return GetDefaultWindow();
             }
         }
 
@@ -373,6 +373,17 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
+        }
+
+        /// <summary>
+        /// This is used to improve application launch performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void PreLoad()
+        {
+            Interop.Application.Application_PreInitialize();
+            Application.NewApplication("", Application.WindowMode.Opaque);
+            NUIApplication.GetDefaultWindow();
         }
     }
 

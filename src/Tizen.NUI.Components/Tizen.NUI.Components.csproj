@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
   </ItemGroup>
 
   <ItemGroup>

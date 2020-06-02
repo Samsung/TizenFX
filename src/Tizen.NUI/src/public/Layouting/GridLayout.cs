@@ -43,7 +43,7 @@ namespace Tizen.NUI
             Vertical
         }
 
-        private Orientation _linearOrientation = Orientation.Vertical;
+        private Orientation _GridOrientation = Orientation.Vertical;
         const int AUTO_FIT = -1;
         private int _columns = 1;
         private int _rows = 1;
@@ -61,15 +61,15 @@ namespace Tizen.NUI
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Orientation LinearOrientation
+        public Orientation GridOrientation
         {
             get
             {
-                return _linearOrientation;
+                return _GridOrientation;
             }
             set
             {
-                _linearOrientation = value;
+                _GridOrientation = value;
                 RequestLayout();
             }
         }
@@ -205,7 +205,6 @@ namespace Tizen.NUI
 
             var childCount = LayoutChildren.Count;
 
-            // WIDTH SPECIFICATIONS
             if (childCount > 0)
             {
                 foreach (LayoutItem childLayout in LayoutChildren)
@@ -216,12 +215,33 @@ namespace Tizen.NUI
                     }
                 }
 
-                if (_linearOrientation == Orientation.Horizontal)
-                    CalculateHorizontalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                if (_GridOrientation == Orientation.Horizontal)
+                {
+                    widthSize = CalculateHorizontalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                    heightSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
+                                    heightSize:
+                                    (int)(LayoutChildren[0].MeasuredHeight.Size.AsDecimal() + LayoutChildren[0].Margin.Top + LayoutChildren[0].Margin.Bottom)*Rows;
+                }
                 else
-                    CalculateVerticalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                {
+                    widthSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
+                                    heightSize:
+                                    (int)(LayoutChildren[0].MeasuredWidth.Size.AsDecimal() + LayoutChildren[0].Margin.Start + LayoutChildren[0].Margin.End)*Columns;
+                    heightSize = CalculateVerticalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
+                }
 
             } // Children exists
+            else
+            {
+                if (_GridOrientation == Orientation.Horizontal)
+                {
+                    widthSize = (gridWidthMode == MeasureSpecification.ModeType.Unspecified)?0:widthSize;
+                }
+                else
+                {
+                    heightSize = (gridHeightMode == MeasureSpecification.ModeType.Unspecified)?0:heightSize;
+                }
+            }
 
             LayoutLength widthLength = new LayoutLength(widthSize + Padding.Start + Padding.End);
             LayoutLength heightLenght = new LayoutLength(heightSize + Padding.Top + Padding.Bottom);
@@ -232,7 +252,7 @@ namespace Tizen.NUI
             SetMeasuredDimensions(widthMeasuredSize, heightMeasuredSize);
         }
 
-        private void CalculateHorizontalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
+        private int CalculateHorizontalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
         {
             int availableContentWidth;
             int availableContentHeight;
@@ -299,9 +319,11 @@ namespace Tizen.NUI
             DetermineNumberOfRows(availableContentHeight);
 
             _locations.CalculateLocationsRow(_rows, availableContentWidth, availableContentHeight, childCount);
+
+            return availableContentWidth;
         }
 
-        private void CalculateVerticalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
+        private int CalculateVerticalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
         {
             int availableContentWidth;
             int availableContentHeight;
@@ -382,6 +404,8 @@ namespace Tizen.NUI
 
             // Locations define the start, end,top and bottom of each cell.
             _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
+
+            return availableContentHeight;
         }
 
         /// <summary>

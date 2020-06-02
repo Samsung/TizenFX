@@ -59,19 +59,19 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
-        private Rectangle backgroundImageBorder;
-
-        private CloneableViewSelector<ImageShadow> imageShadow;
-
-        private CloneableViewSelector<Shadow> boxShadow;
-
-        private ViewSelector<float?> cornerRadius;
+        private bool controlStatePropagation = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+        internal BackgroundExtraData backgroundExtraData;
 
         static View() {}
 
-        private ViewStyle viewStyle;
+        /// <summary>
+        /// The Style instance binded with this View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ViewStyle viewStyle;
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle ViewStyle
@@ -122,11 +122,20 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            this.ViewStyle.CopyFrom(viewStyle);
+            if (this.viewStyle == null)
+            {
+                ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
+            }
+            else
+            {
+                this.viewStyle.CopyFrom(viewStyle);
+            }
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -155,8 +164,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal delegate void ControlStateChangesDelegate(View obj, ControlStates state);
-        internal event ControlStateChangesDelegate ControlStateChangeEvent;
+        /// <summary>
+        /// The event that is triggered when the View's ControlState is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ControlStateChangedEventArgs> ControlStateChangedEvent;
+
+        internal event EventHandler<ControlStateChangedEventArgs> ControlStateChangeEventInternal;
 
         private ControlStates controlStates;
         /// <summary>
@@ -173,20 +187,30 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (controlStates != value)
+                if (controlStates == value)
                 {
-                    controlStates = value;
+                    return;
+                }
 
-                    ControlStateChangeEvent?.Invoke(this, value);
+                var prevState = controlStates;
 
-                    if (true == OnControlStateChanged(value))
+                controlStates = value;
+
+                var changeInfo = new ControlStateChangedEventArgs(prevState, value);
+
+                ControlStateChangeEventInternal?.Invoke(this, changeInfo);
+
+                OnControlStateChanged(changeInfo);
+
+                if (controlStatePropagation)
+                {
+                    foreach (View child in Children)
                     {
-                        foreach (View child in Children)
-                        {
-                            child.ControlState = value;
-                        }
+                        child.ControlState = value;
                     }
                 }
+
+                ControlStateChangedEvent?.Invoke(this, changeInfo);
             }
         }
 
@@ -247,7 +271,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImage = null;
+                    viewStyle.BackgroundColor = value;
+                }
+                else
+                {
+                    SetValue(BackgroundColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -264,7 +297,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundColor = null;
+                    viewStyle.BackgroundImage = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -282,7 +324,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageBorderProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImageBorder = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageBorderProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -309,6 +359,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "BoxShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -316,8 +369,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (ImageShadow)GetValue(ImageShadowProperty);
-                return value == null ? null : new ImageShadow(value, OnImageShadowChanged);
+                return (ImageShadow)GetValue(ImageShadowProperty);
             }
             set
             {
@@ -331,6 +383,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -338,8 +393,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (Shadow)GetValue(BoxShadowProperty);
-                return value == null ? null : new Shadow(value, OnBoxShadowChanged);
+                return (Shadow)GetValue(BoxShadowProperty);
             }
             set
             {
@@ -358,8 +412,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float? value = (float?)GetValue(CornerRadiusProperty);
-                return value ?? 0;
+                return (float)GetValue(CornerRadiusProperty);
             }
             set
             {
@@ -748,7 +801,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(OpacityProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Opacity = value;
+                }
+                else
+                {
+                    SetValue(OpacityProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -1687,10 +1748,6 @@ namespace Tizen.NUI.BaseComponents
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (_layout != null)
                 {
-                    // Note: it only works if minimum size is >= than natural size.
-                    // To force the size it should be done through the width&height spec or Size2D.
-                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Width);
-                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Height);
                     _layout.RequestLayout();
                 }
                 SetValue(MaximumSizeProperty, value);
@@ -2090,13 +2147,21 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(temp);
+                Color temp = (Color)GetValue(ColorProperty);
                 return new Color(OnColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
-                SetColor(value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Color = value;
+                }
+                else
+                {
+                    SetValue(ColorProperty, value);
+                }
+
+                NotifyPropertyChanged();
             }
         }
 
@@ -2127,7 +2192,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value?.Owner != null)
                 {
                     // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new LayoutGroup();
+                    value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
                     value.Owner.Layout.Margin = value.Margin;
@@ -2267,6 +2332,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Enable/Disable ControlState propagation for children.
+        /// It is false by default.
+        /// If the View needs to share ControlState with descendants, please set it true.
+        /// Please note that, changing the value will also changes children's EnableControlStatePropagation value recursively.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlStatePropagation
+        {
+            get => controlStatePropagation;
+            set
+            {
+                controlStatePropagation = value;
+
+                foreach (View child in Children)
+                {
+                    child.EnableControlStatePropagation = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -2277,13 +2363,15 @@ namespace Tizen.NUI.BaseComponents
             return new ViewStyle();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Called after the View's ControlStates changed.
+        /// </summary>
+        /// <param name="controlStateChangedInfo">The information including state changed variables.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnControlStateChanged(ControlStates currentState)
+        protected virtual void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            //If need to apply the state to all child, return true;
-            return true;
         }
+
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -2328,6 +2416,31 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
+
+        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.colorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.colorSelector;
+        });
+
+        private TriggerableSelector<Color> _colorSelector;
+        private TriggerableSelector<Color> colorSelector
+        {
+            get
+            {
+                if (null == _colorSelector)
+                {
+                    _colorSelector = new TriggerableSelector<Color>(this, ColorProperty);
+                }
+                return _colorSelector;
+            }
+        }
+
         internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;

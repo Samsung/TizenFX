@@ -149,6 +149,7 @@ namespace Tizen.NUI.BaseComponents
             get;
             set;
         }
+
         /// <summary>
         /// Other State.
         /// </summary>
@@ -185,13 +186,16 @@ namespace Tizen.NUI.BaseComponents
                 case ControlStates.Selected:
                     return Selected != null? Selected : Other;
                 case ControlStates.DisabledFocused:
-                    return DisabledFocused != null? DisabledFocused : Other;
+                    return DisabledFocused != null? DisabledFocused : (Disabled != null ? Disabled : Other);
                 case ControlStates.DisabledSelected:
-                    return DisabledSelected != null? DisabledSelected : Other;
+                    return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
                 case ControlStates.SelectedFocused:
-                    return SelectedFocused != null ? SelectedFocused : Other;
+                    return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
                 default:
+                {
+                    // TODO Handle combined states
                     return Other;
+                }
             }
         }
         /// <summary>
@@ -229,6 +233,11 @@ namespace Tizen.NUI.BaseComponents
             SelectedFocused = (T)(other.SelectedFocused)?.Clone();
             Other = (T)(other.Other)?.Clone();
         }
+
+        internal bool HasMultiValue()
+        {
+            return All == null;
+        }
     }
 
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -239,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         {
             targetView = view;
             targetBindableProperty = bindableProperty;
-            view.ControlStateChangeEvent += OnViewControlState;
+            view.ControlStateChangeEventInternal += OnViewControlState;
         }
 
         /// <summary>
@@ -258,11 +267,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnViewControlState(View obj, ControlStates state)
+        private void OnViewControlState(object obj, View.ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            if (null != obj && null != GetValue(state))
+            View view = obj as View;
+            if (null != view && null != GetValue(controlStateChangedInfo.CurrentState))
             {
-                obj.SetValue(targetBindableProperty, GetValue(state));
+                view.SetValue(targetBindableProperty, GetValue(controlStateChangedInfo.CurrentState));
             }
         }
 
@@ -277,9 +287,9 @@ namespace Tizen.NUI.BaseComponents
     {
         protected Selector<T> selector;
         protected View view;
-        protected View.ControlStateChangesDelegate controlStateChanged;
+        protected EventHandler<View.ControlStateChangedEventArgs> controlStateChanged;
 
-        internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
+        internal ViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged)
         {
             if (view == null || controlStateChanged == null)
             {
@@ -319,8 +329,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (hadMultiValue != HasMultiValue())
             {
-                if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
-                else view.ControlStateChangeEvent += controlStateChanged;
+                if (hadMultiValue) view.ControlStateChangeEventInternal -= controlStateChanged;
+                else view.ControlStateChangeEventInternal += controlStateChanged;
             }
         }
 
@@ -340,7 +350,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (HasMultiValue())
             {
-                view.ControlStateChangeEvent -= controlStateChanged;
+                view.ControlStateChangeEventInternal -= controlStateChanged;
             }
             selector = null;
         }
@@ -361,7 +371,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     internal class CloneableViewSelector<T> : ViewSelector<T> where T : Tizen.NUI.Internal.ICloneable
     {
-        internal CloneableViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged) : base(view, controlStateChanged)
+        internal CloneableViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged) : base(view, controlStateChanged)
         {
         }
 

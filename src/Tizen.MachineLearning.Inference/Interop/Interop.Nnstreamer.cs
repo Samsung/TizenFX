@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -23,6 +23,81 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string Nnstreamer = "libcapi-nnstreamer.so.0";
+    }
+
+    internal static partial class Pipeline
+    {
+        /* typedef void (*ml_pipeline_state_cb) (ml_pipeline_state_e state, void *user_data); */
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void StateChangedCallback(PipelineState state, IntPtr user_data);
+
+        /* typedef void (*ml_pipeline_sink_cb) (const ml_tensors_data_h data, const ml_tensors_info_h info, void *user_data); */
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void NewDataCallback(IntPtr data, IntPtr info, IntPtr user_data);
+
+        /* int ml_pipeline_construct (const char *pipeline_description, ml_pipeline_state_cb cb, void *user_data, ml_pipeline_h *pipe); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_construct", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError Construct(string pipeline_description, StateChangedCallback callback, IntPtr user_data, out IntPtr pipeline_handle);
+
+        /* int ml_pipeline_destroy (ml_pipeline_h pipe); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_destroy", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError Destroy(IntPtr pipeline_handle);
+
+        /* int ml_pipeline_get_state (ml_pipeline_h pipe, ml_pipeline_state_e *state) */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_get_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetState(IntPtr pipeline_handle, out int state);
+
+        /* int ml_pipeline_start (ml_pipeline_h pipe); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_start", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError Start(IntPtr pipeline_handle);
+
+        /* int ml_pipeline_stop (ml_pipeline_h pipe); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_stop", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError Stop(IntPtr pipeline_handle);
+
+        /* int ml_pipeline_sink_register (ml_pipeline_h pipe, const char *sink_name, ml_pipeline_sink_cb cb, void *user_data, ml_pipeline_sink_h *sink_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_sink_register", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError RegisterSinkCallback(IntPtr pipeline_handle, string sink_name, NewDataCallback callback, IntPtr user_data, out IntPtr sink_handle);
+
+        /* int ml_pipeline_sink_unregister (ml_pipeline_sink_h sink_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_sink_unregister", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError UnregisterSinkCallback(IntPtr sink_handle);
+
+        /* int ml_pipeline_src_get_handle (ml_pipeline_h pipe, const char *src_name, ml_pipeline_src_h *src_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_src_get_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetSrcHandle(IntPtr pipeline_handle, string src_name, out IntPtr src_handle);
+
+        /* int ml_pipeline_src_release_handle (ml_pipeline_src_h src_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_src_release_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError ReleaseSrcHandle(IntPtr src_handle);
+
+        /* int ml_pipeline_src_input_data (ml_pipeline_src_h src_handle, ml_tensors_data_h data, ml_pipeline_buf_policy_e policy); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_src_input_data", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError InputSrcData(IntPtr src_handle, IntPtr data_handle, PipelineBufferPolicy policy);
+
+        /* int ml_pipeline_valve_get_handle (ml_pipeline_h pipe, const char *valve_name, ml_pipeline_valve_h *valve_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_valve_get_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetValveHandle(IntPtr pipeline_handle, string valve_name, out IntPtr valve_handle);
+
+        /* int ml_pipeline_valve_release_handle (ml_pipeline_valve_h valve_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_valve_release_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError ReleaseValveHandle(IntPtr valve_handle);
+
+        /* int ml_pipeline_valve_set_open (ml_pipeline_valve_h valve_handle, bool open); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_valve_set_open", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError OpenValve(IntPtr valve_handle, bool open);
+
+        /* int ml_pipeline_switch_get_handle (ml_pipeline_h pipe, const char *switch_name, ml_pipeline_switch_e *switch_type, ml_pipeline_switch_h *switch_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_switch_get_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetSwitchHandle(IntPtr pipeline_handle, string switch_name, out SwitchType switch_type, out IntPtr switch_handle);
+
+        /* int ml_pipeline_switch_release_handle (ml_pipeline_switch_h switch_handle); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_switch_release_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError ReleaseSwitchHandle(IntPtr switch_handle);
+
+        /* int ml_pipeline_switch_select (ml_pipeline_switch_h switch_handle, const char *pad_name); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_switch_select", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SelectSwitchPad(IntPtr switch_handle, string pad_name);
     }
 
     internal static partial class SingleShot
@@ -73,7 +148,7 @@ internal static partial class Interop
         /* int ml_tensors_info_create (ml_tensors_info_h *info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError CreateTensorsInfo(out IntPtr info);
-            
+
         /* int ml_tensors_info_destroy (ml_tensors_info_h info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError DestroyTensorsInfo(IntPtr info);

@@ -148,7 +148,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Image rows: Limit loaded image resolution to row height using the FitHeight mode.
         /// </summary>
-        FitHeight
+        FitHeight,
+        /// <summary>
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the Center mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Center,
+        /// <summary>
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the ScaleToFill mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Fill
     }
 
     /// <summary>
@@ -298,7 +308,27 @@ namespace Tizen.NUI
         /// <summary>
         /// The visual should be stretched to fill, not preserving aspect ratio.
         /// </summary>
-        Fill
+        Fill,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. The visual will be fillled without empty area, and outside is cropped away.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        OverFitKeepAspectRatio,
+        /// <summary>
+        /// The visual should keep original size of image. it is not scaled and not strecthed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Center,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. Height is scaled proportionately to maintain aspect ratio.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FitHeight,
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio. WIDTH is scaled proportionately to maintain aspect ratio.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FitWidth,
     }
 
     /// <summary>
@@ -346,7 +376,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether the width or the height size values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
-        SizePolicy
+        SizePolicy,
+        /// <summary>
+        /// Extra size value that will be added to the computed visual size.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ExtraSize,
     }
 
     /// <summary>
@@ -404,7 +439,12 @@ namespace Tizen.NUI
             /// <summary>
             /// Renders a animated image (animated GIF).
             /// </summary>
-            AnimatedImage
+            AnimatedImage,
+            /// <summary>
+            /// Renders an arc.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Arc = AnimatedImage + 3,
         }
 
         /// <summary>
@@ -449,7 +489,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
             /// <summary>
-            /// The fitting mode of the visual.
+            /// The corner radius of the visual.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
@@ -581,6 +621,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
+        /// <summary>
+        /// Then radius value for the area to blur.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int BlurRadius = NDalic.COLOR_VISUAL_MIX_COLOR + 2;
     }
 
     /// <summary>
@@ -1110,5 +1155,43 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
+    }
+
+    /// <summary>
+    /// This specifies properties of the ArcVisual.
+    /// </summary>
+    internal struct ArcVisualProperty
+    {
+        /// <summary>
+        /// The thickness of the arc.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>This is mandatory property.</remarks>
+        internal static readonly int Thickness = NDalic.IMAGE_VISUAL_URL;
+
+        /// <summary>
+        /// The start angle where the arc begins in degrees.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>The property of optional. The default value is 0.</remarks>
+        internal static readonly int StartAngle = Thickness + 1;
+
+        /// <summary>
+        /// The sweep angle of the arc in degrees.
+        /// </summary>
+        /// <remarks>The value is float type.</remarks>
+        /// <remarks>The property of optional. The default value is 360.</remarks>
+        internal static readonly int SweepAngle = Thickness + 2;
+
+        /// <summary>
+        /// The cap style of the arc.
+        /// </summary>
+        /// <remarks>
+        /// The value is integer type.
+        /// The value 0 means butt, the arc does not extend beyond its two endpoints.
+        /// The value 1 means round, the arc will be extended by a half circle with the center at the end.
+        /// </remarks>
+        /// <remarks>The property of optional. The default value is 0 (butt).</remarks>
+        internal static readonly int Cap = Thickness + 3;
     }
 }

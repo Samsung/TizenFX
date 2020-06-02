@@ -17,8 +17,9 @@
 using ElmSharp;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Tizen.WebView
 {
@@ -131,6 +132,9 @@ namespace Tizen.WebView
         private IntPtr _realHandle;
         private Context _context;
         private Settings _settings;
+
+        private IDictionary<IntPtr, Interop.ChromiumEwk.ScriptExcuteCallback> _evalCallbacks = new Dictionary<IntPtr, Interop.ChromiumEwk.ScriptExcuteCallback>();
+        private int _evalCallbackId = 0;
 
         // focus dummy
         private SmartEvent _focusIn;
@@ -476,6 +480,40 @@ namespace Tizen.WebView
         public void Eval(string script)
         {
             Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, null, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Requests the evaluation of the given script.
+        /// </summary>
+        /// <param name="script">The JavaScript code string to evaluate.</param>
+        /// <returns>A task that contains the result of the evaluation as a string.</returns>
+        /// <since_tizen> 8 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when a script is null or empty string.</exception>
+        public async Task<string> EvalAsync(string script)
+        {
+            if (string.IsNullOrEmpty(script))
+            {
+                throw new ArgumentException(nameof(script));
+            }
+
+            var tcs = new TaskCompletionSource<string>();
+            IntPtr id = IntPtr.Zero;
+
+            lock (_evalCallbacks)
+            {
+                id = (IntPtr)_evalCallbackId++;
+                _evalCallbacks[id] = (obj, returnValue, userData) =>
+                {
+                    tcs.SetResult(Marshal.PtrToStringAnsi(returnValue));
+                    lock (_evalCallbacks)
+                    {
+                        _evalCallbacks.Remove(userData);
+                    }
+                };
+            }
+
+            Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, _evalCallbacks[id], id);
+            return await tcs.Task;
         }
 
         /// <summary>

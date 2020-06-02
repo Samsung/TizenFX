@@ -337,6 +337,22 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(TextShadow), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                (textLabel.textShadow ?? (textLabel.textShadow = new CloneableViewSelector<TextShadow>(textLabel, textLabel.OnControlStateChangedForShadow))).Set(newValue);
+                Object.SetProperty(textLabel.swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(textLabel.textShadow.GetValue()));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textShadow?.GetValue();
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
@@ -515,6 +531,8 @@ namespace Tizen.NUI.BaseComponents
 
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
+
+        private CloneableViewSelector<TextShadow> textShadow;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1097,6 +1115,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Describes a text shadow for a TextLabel.
+        /// It is null by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextShadow TextShadow
+        {
+            get
+            {
+                var value = (TextShadow)GetValue(TextShadowProperty);
+                return value == null ? null : new TextShadow(value, OnTextShadowChanged);
+            }
+            set
+            {
+                SetValue(TextShadowProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Emboss property.<br />
         /// The default emboss parameters.<br />
         /// </summary>
@@ -1541,5 +1578,20 @@ namespace Tizen.NUI.BaseComponents
             UnderlineColor = new Vector4(x, y, z, w);
         }
 
+        private void OnTextShadowChanged(TextShadow instance)
+        {
+            TextShadow = instance;
+        }
+
+        private void OnControlStateChangedForShadow(object obj, ControlStateChangedEventArgs controlStateChangedInfo)
+        {
+            UpdateTextShadowVisual();
+        }
+
+        private void UpdateTextShadowVisual()
+        {
+            TextShadow shadow = (textShadow != null && !textShadow.IsEmpty()) ? textShadow.GetValue() : textShadow?.GetValue();
+            Object.SetProperty(swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(shadow));
+        }
     }
 }

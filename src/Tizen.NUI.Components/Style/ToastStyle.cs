@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components
                 HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                TextColor = Color.White
+                TextColor = Tizen.NUI.Color.White,
             };
         }
     }

@@ -67,6 +67,7 @@ namespace ElmSharp
             public uint keycode;
             public IntPtr data;
             public IntPtr dev;
+            public int event_flags;
         }
     }
 }
