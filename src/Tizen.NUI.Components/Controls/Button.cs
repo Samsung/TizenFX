@@ -1199,6 +1199,7 @@ namespace Tizen.NUI.Components
 
         private void OnClickInternal(ClickEventArgs eventArgs)
         {
+            Command?.Execute(CommandParameter);
             OnClick(eventArgs);
             Extension?.OnClick(this, eventArgs);
             ClickEvent?.Invoke(this, eventArgs);

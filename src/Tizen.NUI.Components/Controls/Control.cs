@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using System.Windows.Input;
 
 namespace Tizen.NUI.Components
 {
@@ -30,6 +31,15 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Control : VisualView
     {
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
+            propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
+
         /// <summary> Control style. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -104,9 +114,20 @@ namespace Tizen.NUI.Components
             Initialize(style);
         }
 
-        internal void ApplyAttributes(View view, ViewStyle viewStyle)
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ICommand Command
         {
-            view.CopyFrom(viewStyle);
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
         /// <summary>
@@ -116,6 +137,22 @@ namespace Tizen.NUI.Components
         internal bool StateFocusableOnTouchMode { get; set; }
 
         internal bool IsFocused { get; set; } = false;
+
+        internal void CommandCanExecuteChanged(object sender, EventArgs eventArgs)
+        {
+            ICommand cmd = Command;
+            if (cmd != null)
+                cmd.CanExecute(CommandParameter);
+        }
+
+        internal void OnCommandChanged()
+        {
+            if (Command != null)
+            {
+                Command.CanExecuteChanged += CommandCanExecuteChanged;
+                CommandCanExecuteChanged(this, EventArgs.Empty);
+            }
+        }
 
         /// <summary>
         /// Dispose Control and all children on it.
