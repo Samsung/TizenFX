@@ -29,6 +29,31 @@ namespace Tizen.NUI.Components
     public class LinearListLayoutManager : LayoutManager
     {
         private float mLayoutOriginPosition = 0;
+        private int firstVisibleItemIndex = -1;
+        private int lastVisibleItemIndex = -1;
+
+        private bool IsItemVisible(float scrollPosition, RecycleItem item)
+        {
+            bool result = false;
+            View list = Container.GetParent() as View;
+
+            Vector2 visibleArea = new Vector2( Math.Abs(scrollPosition), 
+                Math.Abs(scrollPosition) + (LayoutOrientation == Orientation.Horizontal?
+                                                list.Size.Width:list.Size.Height)
+            );
+
+            float firstCheckPoint = LayoutOrientation == Orientation.Horizontal? item.Position.X:item.Position.Y;
+            float secondCheckPoint = LayoutOrientation == Orientation.Horizontal? 
+                                        firstCheckPoint + item.Size.Width:
+                                        firstCheckPoint + item.Size.Height;
+
+            // Tizen.Log.Error("NUI", "[1p] "+visibleArea.X+ " =< "+firstCheckPoint+" =< "+visibleArea.Y+" ==== \n");
+            // Tizen.Log.Error("NUI", "[2p] "+visibleArea.X+ " =< "+secondCheckPoint+" =< "+visibleArea.Y+" ==== \n");
+
+            result = (firstCheckPoint >= visibleArea.X && firstCheckPoint <= visibleArea.Y) || (secondCheckPoint >= visibleArea.X && secondCheckPoint <= visibleArea.Y);
+
+            return result;
+        }
 
         /// <summary>
         /// This is called to find out where items are lain out according to current scroll position.
@@ -38,24 +63,43 @@ namespace Tizen.NUI.Components
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public override void Layout(float scrollPosition)
         {
+            firstVisibleItemIndex = -1;
+            lastVisibleItemIndex = -1;
+
             RecycleItem previousItem = null;
 
-            foreach(RecycleItem item in Container.Children)
+            for(int i = 0 ; i < Container.Children.Count ; i++)
             {
-                float targetPosition = mLayoutOriginPosition;
+                RecycleItem item = Container.Children[i] as RecycleItem;
 
                 if(previousItem != null)
                 {
-                    targetPosition = LayoutOrientation == Orientation.Horizontal?
-                    previousItem.PositionX + previousItem.SizeWidth:
-                    previousItem.PositionY + previousItem.SizeHeight;
+                    item.Position = LayoutOrientation == Orientation.Horizontal?
+                        new Position(
+                            previousItem.Position.X + (previousItem.CurrentSize.Width != 0 ?
+                                                            previousItem.CurrentSize.Width:
+                                                            previousItem.Size.Width),
+                            item.PositionY
+                        ):
+                        new Position(
+                            item.PositionX,
+                            previousItem.Position.Y + (previousItem.CurrentSize.Height != 0 ? 
+                                                            previousItem.CurrentSize.Height:
+                                                            previousItem.Size.Height)
+                        );
                 }
 
-                item.Position = LayoutOrientation == Orientation.Horizontal?
-                new Position(targetPosition,item.PositionY):
-                new Position(item.PositionX,targetPosition);
+                bool isVisible = IsItemVisible(scrollPosition, item);
+
+                if(isVisible)
+                {
+                    firstVisibleItemIndex = firstVisibleItemIndex == -1? i : firstVisibleItemIndex;
+                    lastVisibleItemIndex = i;
+                }
 
                 previousItem = item;
+
+                // Tizen.Log.Error("NUI","["+item.DataIndex+"] "+item.Position.Y+" ==== \n");
             }
 
             if(mStepSize == 0)
@@ -74,47 +118,36 @@ namespace Tizen.NUI.Components
         public override List<RecycleItem> Recycle(float scrollPosition)
         {
             List<RecycleItem> result = new List<RecycleItem>();
-
-            float itemSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
-
-            View firstVisibleItem = Container.Children[3];
-            float firstVisibleItemPosition = LayoutOrientation == Orientation.Horizontal?firstVisibleItem.Position.X:firstVisibleItem.Position.Y;
-
-            firstVisibleItemPosition += 180;
-
+          
             bool checkFront = (mPrevScrollPosition - scrollPosition) > 0;
 
             if(checkFront)
             {
-                if(firstVisibleItemPosition < Math.Abs(scrollPosition))
+                if(firstVisibleItemIndex > 3)
                 {
                     // Too many item is in front!!! move first item to back!!!!
                     RecycleItem target = Container.Children[0] as RecycleItem;
-                    target.DataIndex = mPrevFirstDataIndex + Container.Children.Count;
-
+                    target.DataIndex = target.DataIndex + Container.Children.Count;
                     target.SiblingOrder = Container.Children.Count - 1;
-                    mPrevFirstDataIndex += 1;
 
                     result.Add(target);
-
-                    mLayoutOriginPosition += LayoutOrientation == Orientation.Horizontal?
-                        ItemSize.Width:ItemSize.Height;
                 }
             }
             else
             {
-                if(firstVisibleItemPosition > Math.Abs(scrollPosition) + itemSize)
+                if(lastVisibleItemIndex < Container.Children.Count - 3)
                 {
-                    RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
-                    target.DataIndex = mPrevFirstDataIndex - 1;
+                    RecycleItem prevFirstItem = Container.Children[0] as RecycleItem;
 
+                    RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
+                    target.Position = new Position(
+                        LayoutOrientation == Orientation.Horizontal ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
+                        LayoutOrientation == Orientation.Horizontal ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
+                    );
+                    target.DataIndex = target.DataIndex - Container.Children.Count;
                     target.SiblingOrder = 0;
-                    mPrevFirstDataIndex -= 1;
 
                     result.Add(target);
-
-                    mLayoutOriginPosition -= LayoutOrientation == Orientation.Horizontal?
-                        Container.Children[0].SizeWidth:Container.Children[0].SizeHeight;
                 }
             }
 
