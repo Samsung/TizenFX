@@ -123,7 +123,8 @@ namespace Tizen.NUI.Samples
             button[0] = new Button();
             button[0].WidthSpecification = 140;
             button[0].HeightSpecification = 50;
-            button[0].ButtonText.Text = "+";
+            button[0].Text = "+";
+            button[0].BackgroundColor = Color.Green;
             layout[2].Add(button[0]);
             button[0].Focusable = true;
             button[0].ClickEvent += ProgressAdd;
@@ -131,7 +132,8 @@ namespace Tizen.NUI.Samples
             button[1] = new Button();
             button[1].WidthSpecification = 140;
             button[1].HeightSpecification = 50;
-            button[1].ButtonText.Text = "-";
+            button[1].Text = "-";
+            button[1].BackgroundColor = Color.Green;
             layout[2].Add(button[1]);
             button[1].Focusable = true;
             button[1].ClickEvent += ProgressMinus;

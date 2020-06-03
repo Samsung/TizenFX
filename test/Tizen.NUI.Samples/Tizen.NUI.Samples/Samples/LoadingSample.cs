@@ -32,7 +32,6 @@ namespace Tizen.NUI.Samples
             };
             gridLayout.Layout = new GridLayout()
             {
-                Columns = 2,
                 Rows = 4,
                 GridOrientation = GridLayout.Orientation.Horizontal,
                 
@@ -111,8 +110,9 @@ namespace Tizen.NUI.Samples
            
             button[0] = new Button();
             button[0].Size = new Size(200, 50);
-            button[0].ButtonText.Text = "FPS++";
+            button[0].Text = "FPS++";
             button[0].PointSize = 15;
+            button[0].BackgroundColor = Color.Green;
             layout[0].Add(button[0]);
             button[0].Focusable = true;
             button[0].ClickEvent += propFpsAdd;
@@ -120,8 +120,9 @@ namespace Tizen.NUI.Samples
 
             button[1] = new Button();
             button[1].Size = new Size(200, 50);
-            button[1].ButtonText.Text = "FPS--";
+            button[1].Text = "FPS--";
             button[1].PointSize = 15;
+            button[1].BackgroundColor = Color.Green;
             layout[0].Add(button[1]);
             button[1].Focusable = true;
             button[1].ClickEvent += propFpsMinus;
@@ -170,8 +171,9 @@ namespace Tizen.NUI.Samples
             };
             button[2] = new Button();
             button[2].Size = new Size(400, 50);
-            button[2].ButtonText.Text = "Normal Loading";
+            button[2].Text = "Normal Loading";
             button[2].PointSize = 15;
+            button[2].BackgroundColor = Color.Green;
             layout[3].Add(button[2]);
             gridLayout.Add(layout[3]);
             button[2].Focusable = true;

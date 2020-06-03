@@ -84,7 +84,7 @@ namespace Tizen.NUI.Samples
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             tab = new Tab();
-            tab.Size = new Size(500, 108);
+            tab.Size = new Size(700, 108);
             tab.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
             tab.Underline.Size = new Size(1, 3);
             tab.Underline.BackgroundColor = color[0];

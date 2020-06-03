@@ -96,7 +96,6 @@ namespace Tizen.NUI.Samples
             {
                 Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
                 Border = new Rectangle(24, 24, 24, 24),
-                Offset = new Vector2(-24, -24),
                 Extents = new Vector2(48, 48)
             };
 
@@ -150,7 +149,6 @@ namespace Tizen.NUI.Samples
                 {
                     Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
                     Border = new Rectangle(24, 24, 24, 24),
-                    Offset = new Vector2(-24, -24),
                     Extents = new Vector2(48, 48),
                 },
                 Title = new TextLabelStyle

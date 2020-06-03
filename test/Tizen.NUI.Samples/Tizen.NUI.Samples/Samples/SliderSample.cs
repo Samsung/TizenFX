@@ -94,7 +94,7 @@ namespace Tizen.NUI.Samples
         private void CreateTopView()
         {
             top_parent = new View() { Size = new Size(1920, 240) };
-            top_parent.Layout = new GridLayout() { Columns = 2, Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
+            top_parent.Layout = new GridLayout() { Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
             root.Add(top_parent);
 
             for (int i = 0; i < 2; i++)
@@ -137,7 +137,7 @@ namespace Tizen.NUI.Samples
 
             // Add Horizontal Slider
             hori_slider_parent = new View() { Size = new Size(1920, 160) };
-            hori_slider_parent.Layout = new GridLayout() { Columns = 2, Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
+            hori_slider_parent.Layout = new GridLayout() { Rows = 2, GridOrientation = GridLayout.Orientation.Horizontal };
             bottom_parent.Add(hori_slider_parent);
             slider_null_style[0].Margin = new Extents(100, 0, 30, 0);
             hori_slider_parent.Add(slider_null_style[0]);
@@ -242,8 +242,8 @@ namespace Tizen.NUI.Samples
             Slider source = new Slider(st);
             source.TrackThickness = 4;
             source.ThumbSize = new Size(60, 60);
-            source.BgTrackImageBgTrackImage.BackgroundColor = new Color(0, 0, 0, 0.1f);
-            source.SlidedTrackImage.BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1);
+            source.BgTrackColor = new Color(0, 0, 0, 0.1f);
+            source.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
             source.Direction = dir;
             source.Focusable = true;
             source.MinValue = MIN_VALUE;

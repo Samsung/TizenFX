@@ -107,7 +107,7 @@ namespace Tizen.NUI.Samples
             // Init parent of SwitchView
             parentView[2] = new View();
             parentView[2].Size = new Size(1920, 680);
-            parentView[2].Layout = new GridLayout() { Columns = 8, Rows = 4, GridOrientation = GridLayout.Orientation.Horizontal };
+            parentView[2].Layout = new GridLayout() { Rows = 4, GridOrientation = GridLayout.Orientation.Horizontal };
             root.Add(parentView[2]);
 
             // Create switch styles

@@ -120,9 +120,9 @@ namespace Tizen.NUI.Samples
                 button[i].Focusable = true;
                 parentView[1].Add(button[i]);
             }
-            button[0].ButtonText.Text= "toast1_1 Show";
+            button[0].Text = "toast1_1 Show";
             button[0].ClickEvent += toast1_1Show;
-            button[1].ButtonText.Text = "toast2_1 Show";
+            button[1].Text = "toast2_1 Show";
             button[1].ClickEvent += toast2_1Show;
 
             // Set init focus
@@ -159,12 +159,14 @@ namespace Tizen.NUI.Samples
 
                 if (toast1_1 != null)
                 {
+                    NUIApplication.GetDefaultWindow().Remove(toast1_1);
                     toast1_1.Dispose();
                     toast1_1 = null;
                 }
 
                 if (toast2_1 != null)
                 {
+                    NUIApplication.GetDefaultWindow().Remove(toast2_1);
                     toast2_1.Dispose();
                     toast2_1 = null;
                 }

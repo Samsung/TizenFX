@@ -34,12 +34,12 @@ namespace Tizen.NUI.Samples
             layout[1]= new View()
             {
                 Size = new Size(700, 70),
-            };
-            layout[1].Layout = new LinearLayout() 
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center,
-                CellPadding = new Size(20, 50)
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    CellPadding = new Size(20, 50)
+                }
             };
             layout[0].Add(layout[1]);
 
@@ -47,12 +47,12 @@ namespace Tizen.NUI.Samples
             layout[2] = new View()
             {
                 Size = new Size(700, 70),
-            };
-            layout[2].Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center,
-                CellPadding = new Size(20, 50)
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    CellPadding = new Size(20, 50)
+                }
             };
             layout[0].Add(layout[2]);
 
@@ -60,12 +60,10 @@ namespace Tizen.NUI.Samples
 
             ///////////////////////////////////////////////Create by Properties//////////////////////////////////////////////////////////
             pagination[0] = new Pagination();
-            pagination[0].Name = "Pagination1";
-            pagination[0].Size = new Size(300, 50);
-            pagination[0].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
-            pagination[0].IndicatorSize = new Size(26, 26);
             var indicatorImageUrlStyle = new PaginationStyle()
             {
+                IndicatorSize = new Size(26, 26),
+                IndicatorSpacing = 8,
                 IndicatorImageURL = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
@@ -73,7 +71,9 @@ namespace Tizen.NUI.Samples
                 }
             };
             pagination[0].ApplyStyle(indicatorImageUrlStyle);
-            pagination[0].IndicatorSpacing = 8;
+            pagination[0].Name = "Pagination1";
+            pagination[0].Size = new Size(300, 50);
+            pagination[0].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
             pagination[0].IndicatorCount = PAGE_COUNT;
             pagination[0].SelectedIndex = 0;
             layout[1].Add(pagination[0]);

@@ -218,12 +218,12 @@ namespace Tizen.NUI.Samples
             scrollBar1 = new ScrollBar();
             scrollBar1.Direction = ScrollBar.DirectionType.Vertical;
             scrollBar1.Position = new Position(394, 2);
-            scrollBar1.WidthSpecification = 2;
+            scrollBar1.WidthSpecification = 4;
             scrollBar1.HeightSpecification = 446;
-            scrollBar1.TrackImage.BackgroundColor = Color.Green;
-            scrollBar1.ThumbImage.Size = new Size(4, 30);
-            scrollBar1.ThumbImage.BackgroundColor = Color.Yellow;
-            scrollBar1.TrackImage.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            scrollBar1.TrackColor = Color.Green;
+            scrollBar1.ThumbSize = new Size(4, 30);
+            scrollBar1.ThumbColor = Color.Yellow;
+            scrollBar1.TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             flexibleView1.AttachScrollBar(scrollBar1);
 
             // Create horizontal flexibleView
@@ -254,13 +254,27 @@ namespace Tizen.NUI.Samples
             scrollBar2.Position = new Position(2, 194);
             scrollBar2.WidthSpecification = 696;
             scrollBar2.HeightSpecification = 4;
-            scrollBar2.TrackImage.BackgroundColor = Color.Green;
-            scrollBar2.ThumbImage.Size = new Size(30, 4);
-            scrollBar2.ThumbImage.BackgroundColor = Color.Yellow;
-            scrollBar2.TrackImage.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            scrollBar2.TrackColor = Color.Green;
+            scrollBar2.ThumbSize = new Size(30, 4);
+            scrollBar2.ThumbColor = Color.Yellow;
+            scrollBar2.TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             flexibleView2.AttachScrollBar(scrollBar2);
 
             FocusManager.Instance.SetCurrentFocusView(flexibleView1);
+            FocusManager.Instance.PreFocusChange += onPreFocusChange;
+        }
+
+        private View onPreFocusChange(object sender, NUI.FocusManager.PreFocusChangeEventArgs e)
+        {
+            if (e.CurrentView != null && e.CurrentView.Name == "RecyclerView1" && e.Direction == View.FocusDirection.Right && e.ProposedView == null)
+            {
+                return flexibleView2;
+            }
+            if (e.CurrentView != null && e.CurrentView.Name == "RecyclerView2" && e.Direction == View.FocusDirection.Left && e.ProposedView == null)
+            {
+                return flexibleView1;
+            }
+            return e.CurrentView;
         }
 
         private void FlexibleView_FocusLost(object sender, EventArgs e)
@@ -338,6 +352,9 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            FocusManager.Instance.PreFocusChange -= onPreFocusChange;
+            FocusManager.Instance.ClearFocus();
+
             flexibleView1.DetachScrollBar();
             scrollBar1.Dispose();
             scrollBar1 = null;

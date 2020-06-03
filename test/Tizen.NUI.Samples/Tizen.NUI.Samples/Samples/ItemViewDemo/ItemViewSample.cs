@@ -62,7 +62,6 @@ namespace Tizen.NUI.Samples
         private View mRootView;
         private View mToolBarLayer;
         private View mContentView;
-        private View mItemLayout;
 
         private int mDurationSeconds = 250;
 
@@ -195,14 +194,6 @@ namespace Tizen.NUI.Samples
             CreateGridLayout();
             CreateDepthLayout();
 
-            // Layout to fix the position of mItemView.
-            mItemLayout = new View() { };
-            mItemLayout.Layout = new LinearLayout()
-            { 
-                LinearAlignment = LinearLayout.Alignment.Center
-            };
-            mContentView.Add(mItemLayout);
-
             mLayout = new PropertyArray();
             mLayout.PushBack(new PropertyValue(mSpiralLayout));
             mLayout.PushBack(new PropertyValue(mDepthLayout));
@@ -212,11 +203,11 @@ namespace Tizen.NUI.Samples
             mItemFactoryWrapper.GetNumberDelegate = GetNumberOfItems;
             mItemFactoryWrapper.NewItemDelegate = NewItemView;
 
-            mItemView = new ItemView(mItemFactoryWrapper);
-            mItemView.PositionUsesPivotPoint = true;
-            mItemView.ParentOrigin = Position.ParentOriginCenter;
-            mItemView.PivotPoint = Position.PivotPointCenter;
-            mItemLayout.Add(mItemView);
+            mItemView = new ItemView(mItemFactoryWrapper)
+            { 
+                Size = new Size(800, 800, 800)
+            };
+            mContentView.Add(mItemView);
 
             mItemView.Layout = mLayout;
             mItemView.SetMinimumSwipeDistance(MIN_SWIPE_DISTANCE);
@@ -339,8 +330,7 @@ namespace Tizen.NUI.Samples
             // Add a checkbox child actor; invisible until edit-mode is enabled
             ImageView checkBox = new ImageView();
             checkBox.Name = "CheckBox";
-            checkBox.BackgroundColor = Color.Yellow;
-            checkBox.SetColorMode(ColorMode.UseOwnColor);
+            checkBox.SetColorMode(ColorMode.UseParentColor);
             checkBox.ParentOrigin = ParentOrigin.TopRight;
             checkBox.PivotPoint = PivotPoint.TopRight;
             checkBox.Size = spiralItemSize;
@@ -408,32 +398,28 @@ namespace Tizen.NUI.Samples
             {
                 mReplaceButton.GetParent().Remove(mReplaceButton);
                 mReplaceButton.Dispose();
+                mReplaceButton = null;
             }
 
             if (mInsertButton != null)
             {
                 mInsertButton.GetParent().Remove(mInsertButton);
                 mInsertButton.Dispose();
+                mInsertButton = null;
             }
 
             if (mDeleteButton != null)
             {
                 mDeleteButton.GetParent().Remove(mDeleteButton);
                 mDeleteButton.Dispose();
+                mDeleteButton = null;
             }
 
             if (mItemView != null)
             {
-                mItemLayout.Remove(mItemView);
+                mContentView.Remove(mItemView);
                 mItemView.Dispose();
                 mItemView = null;
-            }
-
-            if (mItemLayout != null)
-            {
-                mContentView.Remove(mItemLayout);
-                mItemLayout.Dispose();
-                mItemLayout = null;
             }
 
             if (mContentView != null)
@@ -461,7 +447,7 @@ namespace Tizen.NUI.Samples
             };
             mContentView.Layout = new LinearLayout()
             {
-                //LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
                 LinearAlignment = LinearLayout.Alignment.Center
             };
             mRootView.Add(mContentView);
@@ -492,9 +478,13 @@ namespace Tizen.NUI.Samples
         public void CreateEditButton()
         {
             mEditButton = new Button();
-            var style = mEditButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = EDIT_IMAGE, Selected = EDIT_IMAGE_SELECTED };
-            mEditButton.ApplyStyle(style);
+            var mEditButtonStyle = new ButtonStyle
+            {
+                Text = null,
+                BackgroundColor = new Selector<Color>(),
+                BackgroundImage = new Selector<string>() { Normal = EDIT_IMAGE, Selected = EDIT_IMAGE_SELECTED }
+            };
+            mEditButton.ApplyStyle(mEditButtonStyle);
             mEditButton.IsSelectable = true;
             mEditButton.Size = new Size(34, 34);
             mEditButton.LeaveRequired = true;
@@ -508,7 +498,7 @@ namespace Tizen.NUI.Samples
         private void CreateToolBarTitle()
         {
             mTitle = new TextLabel();
-            mTitle.Size = new Size(1750, 80);
+            mTitle.Size = new Size(1800, 80);
             mTitle.PointSize = 10.0f;
             mTitle.Text = APPLICATION_TITLE;
             mTitle.VerticalAlignment = VerticalAlignment.Center;
@@ -519,16 +509,18 @@ namespace Tizen.NUI.Samples
         private void CreateLayoutButton()
         {
             mLayoutButton = new Button();
-            var style = mLayoutButton.Style;
-            style.BackgroundImage = new Selector<string>()
+            var mLayoutButtonStyle = new ButtonStyle
             {
-                Normal = SPIRAL_LAYOUT_IMAGE,
-                Selected = SPIRAL_LAYOUT_IMAGE_SELECTED
+                Text = null,
+                BackgroundImage = new Selector<string>()
+                {
+                    Normal = SPIRAL_LAYOUT_IMAGE,
+                    Selected = SPIRAL_LAYOUT_IMAGE_SELECTED
+                }
             };
-            mLayoutButton.ApplyStyle(style);
+            mLayoutButton.ApplyStyle(mLayoutButtonStyle);
             mLayoutButton.IsSelectable = true;
             mLayoutButton.Size = new Size(34, 34);
-            mLayoutButton.BackgroundColor = Color.Yellow;
             mLayoutButton.LeaveRequired = true;
             mLayoutButton.ClickEvent += (obj, e) =>
             {
@@ -566,9 +558,13 @@ namespace Tizen.NUI.Samples
         private void CreateDeleteButton()
         {
             mDeleteButton = new Button();
-            var style = mDeleteButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = DELETE_IMAGE, Selected = DELETE_IMAGE_SELECTED };
-            mDeleteButton.ApplyStyle(style);
+            var mDeleteButtonStyle = new ButtonStyle
+            {
+                Text = null,
+                BackgroundColor = new Selector<Color>(),
+                BackgroundImage = new Selector<string>() { Normal = DELETE_IMAGE, Selected = DELETE_IMAGE_SELECTED }
+            };
+            mDeleteButton.ApplyStyle(mDeleteButtonStyle);
             mDeleteButton.IsSelectable = true;
             mDeleteButton.ParentOrigin = ParentOrigin.BottomRight;
             mDeleteButton.PivotPoint = PivotPoint.BottomRight;
@@ -605,9 +601,13 @@ namespace Tizen.NUI.Samples
         private void CreateInsertButton()
         {
             mInsertButton = new Button();
-            var style = mInsertButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = INSERT_IMAGE, Selected = INSERT_IMAGE_SELECTED };
-            mInsertButton.ApplyStyle(style);
+            var mInsertButtonStyle = new ButtonStyle
+            {
+                Text = null,
+                BackgroundColor = new Selector<Color>(),
+                BackgroundImage = new Selector<string>() { Normal = INSERT_IMAGE, Selected = INSERT_IMAGE_SELECTED }
+            };
+            mInsertButton.ApplyStyle(mInsertButtonStyle);
             mInsertButton.IsSelectable = true;
             mInsertButton.ParentOrigin = ParentOrigin.BottomRight;
             mInsertButton.PivotPoint = PivotPoint.BottomRight;
@@ -644,9 +644,13 @@ namespace Tizen.NUI.Samples
         private void CreateReplaceButton()
         {
             mReplaceButton = new Button();
-            var style = mReplaceButton.Style;
-            style.BackgroundImage = new Selector<string>() { Normal = REPLACE_IMAGE, Selected = REPLACE_IMAGE_SELECTED };
-            mReplaceButton.ApplyStyle(style);
+            var mReplaceButtonStyle = new ButtonStyle
+            {
+                Text = null,
+                BackgroundColor = new Selector<Color>(),
+                BackgroundImage = new Selector<string>() { Normal = REPLACE_IMAGE, Selected = REPLACE_IMAGE_SELECTED }
+            };
+            mReplaceButton.ApplyStyle(mReplaceButtonStyle);
             mReplaceButton.IsSelectable = true;
             mReplaceButton.ParentOrigin = ParentOrigin.BottomRight;
             mReplaceButton.PivotPoint = PivotPoint.BottomRight;

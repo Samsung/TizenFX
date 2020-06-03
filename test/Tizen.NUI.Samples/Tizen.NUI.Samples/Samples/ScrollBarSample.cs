@@ -58,26 +58,26 @@ namespace Tizen.NUI.Samples
             // Add ScrollBar of Null style construction
             scrollBar[0] = new ScrollBar();
             scrollBar[0].Size = new Size(400, 4);
-            scrollBar[0].TrackImage.BackgroundColor = Color.Green;
+            scrollBar[0].TrackColor = Color.Green;
             scrollBar[0].MaxValue = (int)scrollBar[0].SizeWidth / 10;
             scrollBar[0].MinValue = 0;
-            scrollBar[0].ThumbImage.Size = new Size(30, 4);
+            scrollBar[0].ThumbSize = new Size(30, 4);
             scrollBar[0].CurrentValue = 0; //set after thumbsize
-            scrollBar[0].ThumbImage.BackgroundColor = Color.Black;
+            scrollBar[0].ThumbColor = Color.Black;
             null_style_parent.Add(scrollBar[0]);
 
             scrollBar[1] = new ScrollBar();
             scrollBar[1].Size = new Size(400, 4);
-            scrollBar[1].TrackImage.BackgroundColor = Color.Green;
+            scrollBar[1].TrackColor = Color.Green;
             scrollBar[1].MaxValue = (int)scrollBar[1].SizeWidth / 10;
             scrollBar[1].MinValue = 0;
-            scrollBar[1].ThumbImage.Size = new Size(30, 4);
+            scrollBar[1].ThumbSize = new Size(30, 4);
             scrollBar[1].CurrentValue = 0;//set after thumbsize
-            scrollBar[1].ThumbImage.BackgroundColor = Color.Yellow;
-            scrollBar[1].TrackImage.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            scrollBar[1].ThumbColor = Color.Yellow;
+            scrollBar[1].TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             null_style_parent.Add(scrollBar[1]);
         }
-
+        
         private void CreateStylePart()
         {
             style_parent = new View() { Size = new Size(960, 540) };
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Samples
             scrollBar[2].Size = new Size(400, 4);
             scrollBar[2].MaxValue = (int)scrollBar[2].SizeWidth / 10;
             scrollBar[2].MinValue = 0;
-            scrollBar[2].ThumbImage.Size = new Size(30, 4);
+            scrollBar[2].ThumbSize = new Size(30, 4);
             scrollBar[2].CurrentValue = 0;//set after thumbsize
             style_parent.Add(scrollBar[2]);
         }
@@ -143,16 +143,16 @@ namespace Tizen.NUI.Samples
                 bottom_parent.Add(button[i]);
             }
 
-            button[0].ButtonText.Text = "+";
+            button[0].Text = "+";
             button[0].ClickEvent += Scroll1Add;
 
-            button[1].ButtonText.Text = "-";
+            button[1].Text = "-";
             button[1].ClickEvent += Scroll1Minus;
 
-            button[2].ButtonText.Text = "+ / - 4";
+            button[2].Text = "+ / - 4";
             button[2].ClickEvent += Scroll1_2move;
 
-            button[3].ButtonText.Text = "change direction";
+            button[3].Text = "change direction";
             button[3].ClickEvent += Scroll1_2Changed;
             button[3].Size = new Size(180, 50);
 
@@ -173,10 +173,14 @@ namespace Tizen.NUI.Samples
 
         private void Scroll1_2Changed(object sender, global::System.EventArgs e)
         {
-            if(scrollBar[1].LayoutDirection == ViewLayoutDirectionType.LTR)
-                scrollBar[1].LayoutDirection= ViewLayoutDirectionType.RTL;
+            if (scrollBar[1].LayoutDirection == ViewLayoutDirectionType.LTR)
+            {
+                scrollBar[1].LayoutDirection = ViewLayoutDirectionType.RTL;
+            }
             else
+            {
                 scrollBar[1].LayoutDirection = ViewLayoutDirectionType.LTR;
+            }
         }
 
         private void Scroll1_2move(object sender, global::System.EventArgs e)

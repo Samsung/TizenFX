@@ -125,10 +125,10 @@ namespace Tizen.NUI.Samples
             scrollBar = new ScrollBar();
             scrollBar.Direction = ScrollBar.DirectionType.Vertical;
             scrollBar.Size = new Size(4, 446);
-            scrollBar.TrackImage.BackgroundColor = Color.Green;
-            scrollBar.ThumbImage.Size = new Size(4, 30);
-            scrollBar.ThumbImage.BackgroundColor = Color.Yellow;
-            scrollBar.TrackImage.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            scrollBar.TrackColor = Color.Green;
+            scrollBar.ThumbSize = new Size(4, 30);
+            scrollBar.ThumbColor = Color.Yellow;
+            scrollBar.TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             dropDown.AttachScrollBar(scrollBar);
 
             #endregion
@@ -234,10 +234,10 @@ namespace Tizen.NUI.Samples
             scrollBar2 = new ScrollBar();
             scrollBar2.Direction = ScrollBar.DirectionType.Vertical;
             scrollBar2.Size = new Size(4, 446);
-            scrollBar2.TrackImage.BackgroundColor = Color.Green;
-            scrollBar2.ThumbImage.Size = new Size(4, 30);
-            scrollBar2.ThumbImage.BackgroundColor = Color.Yellow;
-            scrollBar2.TrackImage.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            scrollBar2.TrackColor = Color.Green;
+            scrollBar2.ThumbSize = new Size(4, 30);
+            scrollBar2.ThumbColor = Color.Yellow;
+            scrollBar2.TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             dropDown2.AttachScrollBar(scrollBar2);
 
             #endregion
