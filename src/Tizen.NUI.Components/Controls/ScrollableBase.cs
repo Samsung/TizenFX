@@ -610,6 +610,11 @@ namespace Tizen.NUI.Components
             }
             else
             {
+                if (Math.Equals(maxScrollDistance, 0.0f))
+                {
+                    maxScrollDistance = CalculateMaximumScrollDistance();
+                }
+
                 targetPosition = Math.Min(0, targetPosition);
                 targetPosition = Math.Max(-maxScrollDistance, targetPosition);
             }
