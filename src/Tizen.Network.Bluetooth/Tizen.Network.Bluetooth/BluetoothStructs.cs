@@ -244,7 +244,9 @@ namespace Tizen.Network.Bluetooth
             resultDevice.RemoteDeviceService = uuidList;
             resultDevice.RemoteDeviceCount = device.ServiceCount;
             resultDevice.RemoteManufLength = device.ManufacturerDataLength;
-            resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(device.ManufacturerData, device.ManufacturerDataLength);
+
+            if (device.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(device.ManufacturerData, device.ManufacturerDataLength);
 
             return resultDevice;
         }
@@ -281,8 +283,11 @@ namespace Tizen.Network.Bluetooth
             }
 
             resultDevice.RemotePaired = structDevice.IsPaired;
-            resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(structDevice.ManufacturerData, structDevice.ManufacturerDataLength);
             resultDevice.RemoteManufLength = structDevice.ManufacturerDataLength;
+
+            if (structDevice.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(structDevice.ManufacturerData, structDevice.ManufacturerDataLength);
+
             return resultDevice;
         }
 
