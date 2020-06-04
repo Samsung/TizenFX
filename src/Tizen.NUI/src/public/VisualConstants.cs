@@ -887,7 +887,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// @brief  The looping mode the AnimatedVectorImageVisual will use.
-        /// @details Name "loopingMode", Type LoopingMode::Type (Property::INTEGER) 
+        /// @details Name "loopingMode", Type LoopingMode::Type (Property::INTEGER)
         /// @note Default value is LoopingMode::RESTART.
         /// </summary>
         /// <remarks>
@@ -1194,4 +1194,67 @@ namespace Tizen.NUI
         /// <remarks>The property of optional. The default value is 0 (butt).</remarks>
         internal static readonly int Cap = Thickness + 3;
     }
+
+    /// Enumeration for Circular alignment.
+    /// The @p horizontalAlignment and @p verticalAlignment can be used to align the text within the text area.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CircularAlignment
+    {
+        /// <summary>
+        /// Texts place at the begin of Circular direction.
+        /// </summary>
+        [Description("BEGIN")]
+        Begin,
+        /// <summary>
+        /// Texts place at the center of Circular direction.
+        /// </summary>
+        [Description("CENTER")]
+        Center,
+        /// <summary>
+        /// Texts place at the end of Circular direction.
+        /// </summary>
+        [Description("END")]
+        End
+    }
+
+    /// <summary>
+    /// Enumeration for Text Layout.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextLayout
+    {
+        /// <summary>
+        /// SingleLine.
+        /// </summary>
+        [Description("singleLine")]
+        SingleLine,
+        /// <summary>
+        /// MultiLine.
+        /// </summary>
+        [Description("multiLine")]
+        MultiLine,
+        /// <summary>
+        /// Circular.
+        /// </summary>
+        [Description("circular")]
+        Circular
+    }
+
+    /// <summary>
+    /// Defines how a color is blended.
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ColorBlendingMode
+    {
+        /// <summary>
+        ///  No blend.
+        /// </summary>
+        None,
+        /// <summary>
+        ///  The color is multiplied by another one.
+        /// </summary>
+        Multiply
+    };
 }
