@@ -591,7 +591,9 @@ namespace Tizen.NUI.Components
             float currentPositionX = mScrollingChild.CurrentPosition.X != 0 ? mScrollingChild.CurrentPosition.X : mScrollingChild.Position.X;
             float currentPositionY = mScrollingChild.CurrentPosition.Y != 0 ? mScrollingChild.CurrentPosition.Y : mScrollingChild.Position.Y;
             float delta = ScrollingDirection == Direction.Horizontal ? currentPositionX : currentPositionY;
-            delta -= position;
+            // The argument position is the new pan position. So the new position of ScrollableBase becomes (-position).
+            // To move ScrollableBase's position to (-position), it moves by (-position - currentPosition).
+            delta = -position - delta;
 
             ScrollBy(delta, animate);
         }
