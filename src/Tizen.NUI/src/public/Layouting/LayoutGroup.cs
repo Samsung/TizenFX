@@ -20,6 +20,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using System.Linq;
+using Tizen.NUI.Binding.Internals;
+using static Tizen.NUI.Binding.BindableObject;
 
 namespace Tizen.NUI
 {
@@ -557,6 +559,16 @@ namespace Tizen.NUI
                         new LayoutLength(childOwner.HeightSpecification));
             child.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
 
+        }
+
+        internal static void SetChildValue(Binding.BindableObject bindable, Binding.BindableProperty property, object value)
+        {
+            bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet, false);
+        }
+        internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
+        {
+            View view = bindable as View;
+            view?.Layout?.RequestLayout();
         }
     }
 }
