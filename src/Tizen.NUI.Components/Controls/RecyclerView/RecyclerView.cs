@@ -89,11 +89,11 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                mContainer.Size = new Size(mLayoutManager.StepSize * mAdapter.Data.Count, Size.Height);
+                mContainer.SizeWidth = mLayoutManager.StepSize * mAdapter.Data.Count;
             }
             else
             {
-                mContainer.Size = new Size(360, mLayoutManager.StepSize * mAdapter.Data.Count);
+                mContainer.SizeHeight = mLayoutManager.StepSize * mAdapter.Data.Count;
             }
         }
 
