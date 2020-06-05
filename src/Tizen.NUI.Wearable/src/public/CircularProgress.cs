@@ -441,11 +441,7 @@ namespace Tizen.NUI.Wearable
 
         private void HandleProgressVisualVisibility()
         {
-            if (minValue == currentValue)
-            {
-                progressVisual.Opacity = 0.0f;
-            }
-            else if (isEnabled)
+            if (isEnabled)
             {
                 progressVisual.Opacity = 1.0f;
             }
