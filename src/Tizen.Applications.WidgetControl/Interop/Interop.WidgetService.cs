@@ -108,5 +108,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
         internal static extern string GetWidgetPackageId(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_max_count")]
+        internal static extern int GetWidgetMaxCount(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_instance_count")]
+        internal static extern int GetWidgetInstanceCount(string widgetId, string cluster, string category);
     }
 }
