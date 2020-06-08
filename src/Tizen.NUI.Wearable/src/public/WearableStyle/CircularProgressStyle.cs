@@ -62,7 +62,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of CurrentValue</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("currentValue", typeof(float), typeof(CircularProgressStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(CircularProgressStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).currentValue = (float)newValue;
         },
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create("trackColor", typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).trackColor = (Color)newValue;
         },
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ProgressColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create("progressColor", typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).progressColor = (Color)newValue;
         },
