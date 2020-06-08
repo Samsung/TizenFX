@@ -240,6 +240,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Apply style to pagination.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+            if (viewStyle != null)
+            {
+                paginationStyle = viewStyle as PaginationStyle;
+            }
+        }
+
+        /// <summary>
         /// You can override it to do your select out operation.
         /// </summary>
         /// <param name="selectOutIndicator">The indicator will be selected out</param>
