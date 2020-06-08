@@ -423,6 +423,7 @@ namespace Tizen.NUI.Components
                 }
 
                 mScrollingChild = view;
+                mScrollingChild.Layout.SetPositionByLayout = false;
                 propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
                 propertyNotification.Notified += OnPropertyChanged;
             }
@@ -442,6 +443,7 @@ namespace Tizen.NUI.Components
                 propertyNotification.Notified -= OnPropertyChanged;
                 mScrollingChild.RemovePropertyNotification(propertyNotification);
 
+                mScrollingChild.Layout.SetPositionByLayout = true;
                 mScrollingChild = new View();
             }
         }
