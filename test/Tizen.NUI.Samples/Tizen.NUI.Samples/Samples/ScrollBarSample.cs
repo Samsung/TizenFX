@@ -6,47 +6,97 @@ namespace Tizen.NUI.Samples
 {
     public class ScrollbarSample : IExample
     {
-        private TextLabel board1, board2, board;
-        private Button button1, button2, button3, button4, button5;
-        private ScrollBar scrollBar1_1, scrollBar1_2, scrollBar2_1, scrollBar2_2;  //1-null para 2-attributes; X_1-color; X_2 image track
+        private TextLabel text_nullstyle, text_style;
+        private Button[] button = new Button[4];
+        private ScrollBar[] scrollBar = new ScrollBar[3];
         private View root;
+        private View top_parent, bottom_parent, null_style_parent, style_parent;
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
-
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
+            window.Add(root);
 
-            CreateBoardAndButtons();
+            // TextLabel of Null style construction and Style construction
+            CreateTopView();
 
-            scrollBar1_1 = new ScrollBar();
-            scrollBar1_1.Position2D = new Position2D(50, 300);
-            scrollBar1_1.Size2D = new Size2D(300, 4);
-            scrollBar1_1.Style.Track.BackgroundColor = Color.Green;           
-            scrollBar1_1.MaxValue = (int)scrollBar1_1.SizeWidth / 10;
-            scrollBar1_1.MinValue = 0;
-            scrollBar1_1.Style.Thumb.Size = new Size(30, 4);
-            scrollBar1_1.CurrentValue = 0; //set after thumbsize
-            scrollBar1_1.Style.Thumb.BackgroundColor = Color.Black;
-            root.Add(scrollBar1_1);
+            // Buttons for moving thumbnail
+            CreateBottomView();
+        }
+        private void CreateTopView()
+        {
+            top_parent = new View() { Size = new Size(1920, 540) };
+            top_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal };
+            root.Add(top_parent);
+            CreateNullStylePart();
+            CreateStylePart();
+        }
 
-            scrollBar1_2 = new ScrollBar();
-            scrollBar1_2.Position2D = new Position2D(50, 400);
-            scrollBar1_2.Size2D = new Size2D(300, 4);
-            scrollBar1_2.Style.Track.BackgroundColor = Color.Green;
-            scrollBar1_2.MaxValue = (int)scrollBar1_2.SizeWidth / 10;
-            scrollBar1_2.MinValue = 0;
-            scrollBar1_2.Style.Thumb.Size = new Size(30, 4);
-            scrollBar1_2.CurrentValue = 0;//set after thumbsize
-            scrollBar1_2.Style.Thumb.BackgroundColor = Color.Yellow;
-            scrollBar1_2.Style.Track.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+        private void CreateNullStylePart()
+        {
+            null_style_parent = new View() { Size = new Size(960, 540) };
+            null_style_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(0, 50) };
+            top_parent.Add(null_style_parent);
 
-            root.Add(scrollBar1_2);
+            // Add Textlabel of "Null style construction"
+            text_nullstyle = new TextLabel();
+            text_nullstyle.Size = new Size(400, 70);
+            text_nullstyle.PointSize = 20;
+            text_nullstyle.HorizontalAlignment = HorizontalAlignment.Center;
+            text_nullstyle.VerticalAlignment = VerticalAlignment.Center;
+            text_nullstyle.BackgroundColor = Color.Magenta;
+            text_nullstyle.Text = "Null style construction";
+            text_nullstyle.Focusable = true;
+            null_style_parent.Add(text_nullstyle);
 
-            ScrollBarStyle attr = new ScrollBarStyle
+            // Add ScrollBar of Null style construction
+            scrollBar[0] = new ScrollBar();
+            scrollBar[0].Size = new Size(400, 4);
+            scrollBar[0].TrackColor = Color.Green;
+            scrollBar[0].MaxValue = (int)scrollBar[0].SizeWidth / 10;
+            scrollBar[0].MinValue = 0;
+            scrollBar[0].ThumbSize = new Size(30, 4);
+            scrollBar[0].CurrentValue = 0; //set after thumbsize
+            scrollBar[0].ThumbColor = Color.Black;
+            null_style_parent.Add(scrollBar[0]);
+
+            scrollBar[1] = new ScrollBar();
+            scrollBar[1].Size = new Size(400, 4);
+            scrollBar[1].TrackColor = Color.Green;
+            scrollBar[1].MaxValue = (int)scrollBar[1].SizeWidth / 10;
+            scrollBar[1].MinValue = 0;
+            scrollBar[1].ThumbSize = new Size(30, 4);
+            scrollBar[1].CurrentValue = 0;//set after thumbsize
+            scrollBar[1].ThumbColor = Color.Yellow;
+            scrollBar[1].TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
+            null_style_parent.Add(scrollBar[1]);
+        }
+        
+        private void CreateStylePart()
+        {
+            style_parent = new View() { Size = new Size(960, 540) };
+            style_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(0, 50) };
+            top_parent.Add(style_parent);
+
+            // Add Textlabel of "Style construction"
+            text_style = new TextLabel();
+            text_style.Size = new Size(400, 70);
+            text_style.PointSize = 20;
+            text_style.HorizontalAlignment = HorizontalAlignment.Center;
+            text_style.VerticalAlignment = VerticalAlignment.Center;
+            text_style.BackgroundColor = Color.Magenta;
+            text_style.Text = "Style construction";
+            text_style.Focusable = true;
+            style_parent.Add(text_style);
+
+            // Add ScrollBar of Style construction
+            ScrollBarStyle st = new ScrollBarStyle
             {
                 Track = new ImageViewStyle
                 {
@@ -63,172 +113,86 @@ namespace Tizen.NUI.Samples
                     }
                 },
             };
-
-            scrollBar2_1 = new ScrollBar(attr);
-            scrollBar2_1.Position2D = new Position2D(500, 300);
-            scrollBar2_1.Size2D = new Size2D(300, 4);
-            scrollBar2_1.MaxValue = (int)scrollBar2_1.SizeWidth / 10;
-            scrollBar2_1.MinValue = 0;
-            scrollBar2_1.Style.Thumb.Size = new Size(30, 4);
-            scrollBar2_1.CurrentValue = 0; //set after thumbsize
-            root.Add(scrollBar2_1);
-
-            board.UpFocusableView = button1;
-
-            window.Add(root);
-
-            FocusManager.Instance.SetCurrentFocusView(button1);
+            scrollBar[2] = new ScrollBar(st);
+            scrollBar[2].Size = new Size(400, 4);
+            scrollBar[2].MaxValue = (int)scrollBar[2].SizeWidth / 10;
+            scrollBar[2].MinValue = 0;
+            scrollBar[2].ThumbSize = new Size(30, 4);
+            scrollBar[2].CurrentValue = 0;//set after thumbsize
+            style_parent.Add(scrollBar[2]);
         }
 
-        void CreateBoardAndButtons()
+        private void CreateBottomView()
         {
+            bottom_parent = new View() { Size = new Size(1920, 540) };
+            bottom_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(50, 50) };
+            root.Add(bottom_parent);
 
-            board = new TextLabel();
-            board.Size2D = new Size2D(1000, 100);
-            board.Position2D = new Position2D(430, 900);
-            board.PointSize = 30;
-            board.HorizontalAlignment = HorizontalAlignment.Center;
-            board.VerticalAlignment = VerticalAlignment.Center;
-            board.BackgroundColor = Color.Magenta;
-            board.Text = "log pad";
-            root.Add(board);
-            board.Focusable = true;
-            board.FocusGained += Board_FocusGained;
-            board.FocusLost += Board_FocusLost;
-
-            board1 = new TextLabel();
-            board1.Size2D = new Size2D(300, 70);
-            board1.Position2D = new Position2D(50, 150);
-            board1.PointSize = 20;
-            board1.HorizontalAlignment = HorizontalAlignment.Center;
-            board1.VerticalAlignment = VerticalAlignment.Center;
-            board1.BackgroundColor = Color.Magenta;
-            board1.Text = "NULL parameter construction";
-            root.Add(board1);
-            board1.Focusable = true;
-            board1.FocusGained += Board_FocusGained;
-            board1.FocusLost += Board_FocusLost;
-
-            board2 = new TextLabel();
-            board2.Size2D = new Size2D(300, 70);
-            board2.Position2D = new Position2D(500, 150);
-            board2.PointSize = 20;
-            board2.HorizontalAlignment = HorizontalAlignment.Center;
-            board2.VerticalAlignment = VerticalAlignment.Center;
-            board2.BackgroundColor = Color.Magenta;
-            board2.Text = "Attribute construction";
-            root.Add(board2);
-            board2.Focusable = true;
-            board2.FocusGained += Board_FocusGained;
-            board2.FocusLost += Board_FocusLost;
-
-            button1 = new Button();
-            button1.BackgroundColor = Color.Green;
-            button1.Position2D = new Position2D(100, 700);
-            button1.Size2D = new Size2D(80, 50);
-            button1.Style.Text.Text = "+";
-            root.Add(button1);
-            button1.Focusable = true;
-            button1.ClickEvent += Scroll1Add;
-
-            button2 = new Button();
-            button2.BackgroundColor = Color.Green;
-            button2.Position2D = new Position2D(200, 700);
-            button2.Size2D = new Size2D(80, 50);
-            button2.Style.Text.Text = "-";
-            root.Add(button2);
-            button2.Focusable = true;
-            button2.ClickEvent += Scroll1Minus;
-
-            button5 = new Button();
-            button5.BackgroundColor = Color.Green;
-            button5.Position2D = new Position2D(400, 800);
-            button5.Size2D = new Size2D(100, 50);
-            button5.Style.Text.Text = "+ / - 4";
-            root.Add(button5);
-            button5.Focusable = true;
-            button5.ClickEvent += Scroll1_2move;
-
-            Button  button22 = new Button();
-            button22.BackgroundColor = Color.Green;
-            button22.Position2D = new Position2D(100, 800);
-            button22.Size2D = new Size2D(200, 50);
-            button22.Style.Text.Text = "change direction";
-            root.Add(button22);
-            button22.Focusable = true;
-            button22.ClickEvent += Scroll1_2Changed;
-
-            button3 = new Button();
-            button3.BackgroundColor = Color.Green;
-            button3.Position2D = new Position2D(450, 700);
-            button3.Size2D = new Size2D(80, 50);
-            button3.Style.Text.Text = "+";
-            root.Add(button3);
-            button3.Focusable = true;
-            button3.ClickEvent += Scroll2Add;
-
-            button4 = new Button();
-            button4.BackgroundColor = Color.Green;
-            button4.Position2D = new Position2D(550, 700);
-            button4.Size2D = new Size2D(80, 50);
-            button4.Style.Text.Text = "-";
-            root.Add(button4);
-            button4.Focusable = true;
-            button4.ClickEvent += Scroll2Minus;
+            // Create buttons
+            CreateButtons();
         }
 
-        private void Board_FocusLost(object sender, global::System.EventArgs e)
+        void CreateButtons()
         {
-            board.BackgroundColor = Color.Magenta;
-        }
+            for (int i = 0; i < 4; i++)
+            {
+                button[i] = new Button();
+                button[i].BackgroundColor = Color.Green;
+                button[i].Size = new Size(80, 50);
+                button[i].Focusable = true;
+                bottom_parent.Add(button[i]);
+            }
 
-        private void Board_FocusGained(object sender, global::System.EventArgs e)
-        {
-            board.BackgroundColor = Color.Cyan;
+            button[0].Text = "+";
+            button[0].ClickEvent += Scroll1Add;
+
+            button[1].Text = "-";
+            button[1].ClickEvent += Scroll1Minus;
+
+            button[2].Text = "+ / - 4";
+            button[2].ClickEvent += Scroll1_2move;
+
+            button[3].Text = "change direction";
+            button[3].ClickEvent += Scroll1_2Changed;
+            button[3].Size = new Size(180, 50);
+
+            // Set focus to Add Button
+            FocusManager.Instance.SetCurrentFocusView(button[0]);
         }
 
         private void Scroll1Add(object sender, global::System.EventArgs e)
         {
-            scrollBar1_1.CurrentValue++;
+            scrollBar[0].CurrentValue++;
+            scrollBar[2].CurrentValue++;
         }
         private void Scroll1Minus(object sender, global::System.EventArgs e)
         {
-            scrollBar1_1.CurrentValue--;
-        }
-        private void Scroll2Add(object sender, global::System.EventArgs e)
-        {
-            scrollBar2_1.CurrentValue++;
-        }
-        private void Scroll2Minus(object sender, global::System.EventArgs e)
-        {
-            scrollBar2_1.CurrentValue--;
+            scrollBar[0].CurrentValue--;
+            scrollBar[2].CurrentValue--;
         }
 
         private void Scroll1_2Changed(object sender, global::System.EventArgs e)
         {
-            if(scrollBar1_2.LayoutDirection == ViewLayoutDirectionType.LTR)
-                scrollBar1_2.LayoutDirection= ViewLayoutDirectionType.RTL;
+            if (scrollBar[1].LayoutDirection == ViewLayoutDirectionType.LTR)
+            {
+                scrollBar[1].LayoutDirection = ViewLayoutDirectionType.RTL;
+            }
             else
-                scrollBar1_2.LayoutDirection = ViewLayoutDirectionType.LTR;
+            {
+                scrollBar[1].LayoutDirection = ViewLayoutDirectionType.LTR;
+            }
         }
 
         private void Scroll1_2move(object sender, global::System.EventArgs e)
         {
-            if (scrollBar1_2.CurrentValue < scrollBar1_2.MaxValue / 2)
+            if (scrollBar[1].CurrentValue < scrollBar[1].MaxValue / 2)
             {
-                scrollBar1_2.SetCurrentValue(scrollBar1_2.MaxValue - 2);
+                scrollBar[1].SetCurrentValue(scrollBar[1].MaxValue - 2);
             }
             else
             {
-                scrollBar1_2.SetCurrentValue(2);
+                scrollBar[1].SetCurrentValue(2);
             }
-        }
-
-        private void ScrollPan(object sender, global::System.EventArgs e)
-        {
-            board.Text = board.Text + " 1";
-            if (board.Text.Length > 20)
-                board.Text = "";
         }
 
         public void Deactivate()
@@ -236,7 +200,62 @@ namespace Tizen.NUI.Samples
             if (root != null)
             {
                 NUIApplication.GetDefaultWindow().Remove(root);
+                if (text_nullstyle != null)
+                {
+                    text_nullstyle.Dispose();
+                    text_nullstyle = null;
+                }
+
+                if (text_style != null)
+                {
+                    text_style.Dispose();
+                    text_style = null;
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (button[i] != null)
+                    {
+                        button[i].Dispose();
+                        button[i] = null;
+                    }
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (scrollBar[i] != null)
+                    {
+                        scrollBar[i].Dispose();
+                        scrollBar[i] = null;
+                    }
+                }
+
+                if (top_parent != null)
+                {
+                    top_parent.Dispose();
+                    top_parent = null;
+                }
+
+                if (bottom_parent != null)
+                {
+                    bottom_parent.Dispose();
+                    bottom_parent = null;
+                }
+
+                if (null_style_parent != null)
+                {
+                    null_style_parent.Dispose();
+                    null_style_parent = null;
+                }
+
+                if (style_parent != null)
+                {
+                    style_parent.Dispose();
+                    style_parent = null;
+                }
+
                 root.Dispose();
+                root = null;
             }
         }
     }

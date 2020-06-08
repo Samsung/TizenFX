@@ -7,12 +7,11 @@ namespace Tizen.NUI.Samples
     public class TabSample : IExample
     {
         private View root;
+        private View[] parentView = new View[3];
 
         private TextLabel[] createText = new TextLabel[2];
-
         private Tab tab = null;
         private Tab tab2 = null;
-
         private Button button = null;
         private Button button2 = null;
         private int index = 0;
@@ -31,50 +30,78 @@ namespace Tizen.NUI.Samples
         new Color(0.75f, 0.46f, 0.06f, 1),//#ffec7510 Food
         new Color(0.59f, 0.38f, 0.85f, 1),//#ff9762d9 Kitchen
         };
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             window.Add(root);
 
-            ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
-            createText[0] = new TextLabel();
-            createText[0].Text = "Create Tab just by properties";
-            createText[0].Size2D = new Size2D(450, 100);
-            createText[0].Position2D = new Position2D(200, 100);
-            createText[0].MultiLine = true;
-            root.Add(createText[0]);
+            CreateTextView();
+            CreateTabView();
+            CreateButtonView();
+        }
+        private void CreateTextView()
+        {
+            // Init parent of TextView
+            parentView[0] = new View();
+            parentView[0].Size = new Size(1920, 300);
+            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            root.Add(parentView[0]);
 
+            for (int i = 0; i < 2; i++)
+            {
+                createText[i] = new TextLabel();
+                createText[i].Size = new Size(500, 100);
+                createText[i].PointSize = 20.0f;
+                createText[i].BackgroundColor = Color.Magenta;
+                createText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                createText[i].VerticalAlignment = VerticalAlignment.Center;
+                createText[i].MultiLine = true;
+                parentView[0].Add(createText[i]);
+            }
+
+            // Text of "Create Switch just by Properties"
+            createText[0].Text = "Create Tab just by Properties";
+
+            // Text of "Create Switch just by Style"
+            createText[1].Text = "Create Tab just by Style";
+        }
+
+        private void CreateTabView()
+        {
+            // Init parent of TabView
+            parentView[1] = new View();
+            parentView[1].Size = new Size(1920, 200);
+            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            root.Add(parentView[1]);
+
+            ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             tab = new Tab();
-            tab.Size2D = new Size2D(700, 108);
-            tab.Position2D = new Position2D(100, 300);
+            tab.Size = new Size(700, 108);
             tab.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-            //tab.IsNatureTextWidth = true;
-            //tab.ItemGap = 40;
-            //tab.LeftSpace = 56;
-            //tab.RightSpace = 56;
-            //tab.TopSpace = 1;
-            //tab.BottomSpace = 0;
-            tab.Style.UnderLine.Size = new Size(1, 3);
-            tab.Style.UnderLine.BackgroundColor = color[0];
-            tab.Style.Text.PointSize = 25;
-            tab.Style.Text.TextColor = new Selector<Color>
+            tab.Underline.Size = new Size(1, 3);
+            tab.Underline.BackgroundColor = color[0];
+            tab.PointSize = 25;
+            tab.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[0],
             };
             tab.ItemChangedEvent += TabItemChangedEvent;
-            root.Add(tab);
+            parentView[1].Add(tab);
 
             for (int i = 0; i < 3; i++)
             {
                 Tab.TabItemData item = new Tab.TabItemData();
                 item.Text = "Tab " + i;
-                if(i==1)
+                if (i == 1)
                 {
                     item.Text = "Long Tab " + i;
                 }
@@ -82,15 +109,8 @@ namespace Tizen.NUI.Samples
             }
             tab.SelectedItemIndex = 0;
 
-            ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            createText[1] = new TextLabel();
-            createText[1].Text = "Create Tab just by Attributes";
-            createText[1].Size2D = new Size2D(450, 100);
-            createText[1].Position2D = new Position2D(1000, 100);
-            createText[1].MultiLine = true;
-            root.Add(createText[1]);
-
-            TabStyle attrs = new TabStyle
+            ///////////////////////////////////////////////Create by Style//////////////////////////////////////////////////////////
+            TabStyle st = new TabStyle
             {
                 //IsNatureTextWidth = false,
                 ItemPadding = new Extents(56, 56, 1, 0),
@@ -100,7 +120,7 @@ namespace Tizen.NUI.Samples
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
                     PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                    BackgroundColor = new Selector<Color> { All = color[0]},
+                    BackgroundColor = new Selector<Color> { All = color[0] },
                 },
                 Text = new TextLabelStyle
                 {
@@ -110,15 +130,14 @@ namespace Tizen.NUI.Samples
                         Normal = Color.Black,
                         Selected = color[0],
                     },
-                },                
+                },
             };
 
-            tab2 = new Tab(attrs);
-            tab2.Size2D = new Size2D(500, 108);
-            tab2.Position2D = new Position2D(900, 300);
+            tab2 = new Tab(st);
+            tab2.Size = new Size(500, 108);
             tab2.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
             tab2.ItemChangedEvent += Tab2ItemChangedEvent;
-            root.Add(tab2);
+            parentView[1].Add(tab2);
 
             for (int i = 0; i < 3; i++)
             {
@@ -127,24 +146,57 @@ namespace Tizen.NUI.Samples
                 tab2.AddItem(item);
             }
             tab2.SelectedItemIndex = 0;
+        }
 
-            button = new Button();
-            button.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            button.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            button.Size2D = new Size2D(280, 80);
-            button.Position2D = new Position2D(400, 700);
-            button.Style.Text.Text = mode[index];
+        private void CreateButtonView()
+        {
+            // Init parent of ButtonView
+            parentView[2] = new View();
+            parentView[2].Size = new Size(1920, 200);
+            parentView[2].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            root.Add(parentView[2]);
+
+            // Create Buttons
+            var buttonStyle = new ButtonStyle()
+            {
+                Size = new Size(300, 80),
+                Overlay = new ImageViewStyle()
+                {
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_press_overlay.png",
+                        Other = ""
+                    },
+                    Border = new Rectangle(5, 5, 5, 5)
+                },
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>
+                    {
+                        Normal = new Color(0, 0, 0, 1),
+                        Pressed = new Color(0, 0, 0, 0.7f),
+                        Selected = new Color(0.058f, 0.631f, 0.92f, 1),
+                        Disabled = new Color(0, 0, 0, 0.4f)
+                    },
+                    PointSize = 18,
+                },
+                BackgroundImage = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png",
+                BackgroundImageBorder = new Rectangle(5, 5, 5, 5),
+            };
+
+            // Button of switching mode
+            button = new Button(buttonStyle);
+            button.Size = new Size(500, 80);
+            button.ButtonText.Text = mode[index];
             button.ClickEvent += ButtonClickEvent;
-            root.Add(button);
+            parentView[2].Add(button);
 
-            button2 = new Button();
-            button2.Style.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
-            button2.Style.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
-            button2.Size2D = new Size2D(580, 80);
-            button2.Position2D = new Position2D(250, 500);
-            button2.Style.Text.Text = "LayoutDirection is left to right";
+            // Button of LayoutDirection
+            button2 = new Button(buttonStyle);
+            button2.Size = new Size(500, 80);
+            button2.ButtonText.Text = "LayoutDirection is left to right";
             button2.ClickEvent += ButtonClickEvent2;
-            root.Add(button2);
+            parentView[2].Add(button2);
         }
 
         private void TabItemChangedEvent(object sender, Tab.ItemChangedEventArgs e)
@@ -158,42 +210,47 @@ namespace Tizen.NUI.Samples
             {
                 if (button != null)
                 {
-                    root.Remove(button);
                     button.Dispose();
                     button = null;
                 }
 
                 if (button2 != null)
                 {
-                    root.Remove(button2);
                     button2.Dispose();
                     button2 = null;
                 }
 
                 if (tab != null)
                 {
-                    root.Remove(tab);
                     tab.Dispose();
                     tab = null;
                 }
+
                 if (tab2 != null)
                 {
-                    root.Remove(tab2);
                     tab2.Dispose();
                     tab2 = null;
                 }
 
                 if (createText[0] != null)
                 {
-                    root.Remove(createText[0]);
                     createText[0].Dispose();
                     createText[0] = null;
                 }
+
                 if (createText[1] != null)
                 {
-                    root.Remove(createText[1]);
                     createText[1].Dispose();
                     createText[1] = null;
+                }
+
+                for (int j = 0; j < 3; j++)
+                {
+                    if (parentView[j] != null)
+                    {
+                        parentView[j].Dispose();
+                        parentView[j] = null;
+                    }
                 }
 
                 NUIApplication.GetDefaultWindow().Remove(root);
@@ -204,21 +261,21 @@ namespace Tizen.NUI.Samples
 
         private void Tab2ItemChangedEvent(object sender, Tab.ItemChangedEventArgs e)
         {
-            createText[1].Text = "Create Tab just by Attributes, Selected index from " + e.PreviousIndex + " to " + e.CurrentIndex;
+            createText[1].Text = "Create Tab just by Style, Selected index from " + e.PreviousIndex + " to " + e.CurrentIndex;
         }
 
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
             index = (index + 1) % 4;
-            button.Style.Text.Text = mode[index];
-            tab.Style.UnderLine.BackgroundColor = color[index];
-            tab.Style.Text.TextColor = new Selector<Color>
+            button.ButtonText.Text = mode[index];
+            tab.Underline.BackgroundColor = color[index];
+            tab.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[index],
             };
-            tab2.Style.UnderLine.BackgroundColor = color[index];
-            tab2.Style.Text.TextColor = new Selector<Color>
+            tab2.Underline.BackgroundColor = color[index];
+            tab2.TextColorSelector = new ColorSelector
             {
                 Normal = Color.Black,
                 Selected = color[index],
@@ -231,13 +288,13 @@ namespace Tizen.NUI.Samples
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.RTL;
                 tab2.LayoutDirection = ViewLayoutDirectionType.RTL;
-                button2.Style.Text.Text = "LayoutDirection is right to left";
+                button2.ButtonText.Text = "LayoutDirection is right to left";
             }
             else
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.LTR;
                 tab2.LayoutDirection = ViewLayoutDirectionType.LTR;
-                button2.Style.Text.Text = "LayoutDirection is left to right";
+                button2.ButtonText.Text = "LayoutDirection is left to right";
             }
         }
     }

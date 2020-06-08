@@ -6,10 +6,13 @@ namespace Tizen.NUI.Samples
 {
     public class LoadingSample : IExample
     {
-        private TextLabel board1, board2, board;
-        private Button button1, button2, button3, button4;
-        private Loading loading1_1, loading2_1;  //1-null para 2-attributes; X_1-color; X_2 image track
+        private TextLabel[] textLabel = new TextLabel[3];
+        private Button[] button = new Button[3];
+        private Loading[] loading = new Loading[2];
         private View root;
+        private View gridLayout;
+        private View[] layout = new View[4];
+        private string[] imageArray;
 
         public void Activate()
         {
@@ -17,12 +20,27 @@ namespace Tizen.NUI.Samples
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f)
             };
+            window.Add(root);
 
-            CreateBoardAndButtons();
-            string[] imageArray = new string[36];
-            for (int i=0; i<36; i++)
+            gridLayout = new View()
+            {
+                Position = new Position(400, 200),
+                Size = new Size(1920, 1080)
+            };
+            gridLayout.Layout = new GridLayout()
+            {
+                Rows = 4,
+                GridOrientation = GridLayout.Orientation.Horizontal,
+                
+            };
+            //parent.Layout.Measure(new MeasureSpecification(new LayoutLength(1000), MeasureSpecification.ModeType.Exactly), new MeasureSpecification(new LayoutLength(780), MeasureSpecification.ModeType.Exactly));
+            root.Add(gridLayout);
+
+            imageArray = new string[36];
+            for (int i = 0; i < 36; i++)
             {
                 if (i < 10)
                 {
@@ -34,103 +52,144 @@ namespace Tizen.NUI.Samples
                 }
             }
 
-            loading1_1 = new Loading();
-            loading1_1.Position2D = new Position2D(100, 350);
-            loading1_1.Size2D = new Size2D(100, 100);
+            CreatePropLayout();
+            CreateAttrLayout();
+        }
 
-            loading1_1.Images = imageArray;
-            root.Add(loading1_1);
+        void CreatePropLayout()
+        {
+            textLabel[0] = new TextLabel();
+            textLabel[0].WidthSpecification = 500;
+            textLabel[0].HeightSpecification = 100;
+            //To set spacing between grid cells.
+            textLabel[0].Margin = new Extents(0, 20, 0, 100);
+            textLabel[0].PointSize = 20;
+            textLabel[0].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[0].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[0].BackgroundColor = Color.Magenta;
+            textLabel[0].Text = "Property construction";
+            gridLayout.Add(textLabel[0]);
 
+            // layout for loading which is created by properties.
+            // It'll update the visual when framerate is changed, so put loading into a layout.
+            layout[1] = new View();
+            layout[1].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            loading[0] = new Loading();
+            loading[0].Size = new Size(100, 100);
+            loading[0].Images = imageArray;
+            layout[1].Add(loading[0]);
+            gridLayout.Add(layout[1]);
+
+            CreatePropBtnLayout();
+
+            textLabel[1] = new TextLabel();
+            textLabel[1].PointSize = 20;
+            textLabel[1].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[1].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[1].BackgroundColor = Color.Magenta;
+            textLabel[1].Text = "log pad";
+            textLabel[1].PointSize = 15;
+            gridLayout.Add(textLabel[1]);
+        }
+
+        void CreatePropBtnLayout()
+        {
+            // layout for button.
+            // To avoid button size same as the grid cell.
+            layout[0] = new View() {};
+            layout[0].Layout = new LinearLayout()
+            { 
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center,
+                CellPadding = new Size(10, 50)
+            };
+           
+            button[0] = new Button();
+            button[0].Size = new Size(200, 50);
+            button[0].Text = "FPS++";
+            button[0].PointSize = 15;
+            button[0].BackgroundColor = Color.Green;
+            layout[0].Add(button[0]);
+            button[0].Focusable = true;
+            button[0].ClickEvent += propFpsAdd;
+            FocusManager.Instance.SetCurrentFocusView(button[0]);
+
+            button[1] = new Button();
+            button[1].Size = new Size(200, 50);
+            button[1].Text = "FPS--";
+            button[1].PointSize = 15;
+            button[1].BackgroundColor = Color.Green;
+            layout[0].Add(button[1]);
+            button[1].Focusable = true;
+            button[1].ClickEvent += propFpsMinus;
+            FocusManager.Instance.SetCurrentFocusView(button[1]);
+
+            gridLayout.Add(layout[0]);
+
+            button[0].RightFocusableView = button[1];
+            button[1].LeftFocusableView = button[0];
+        }
+
+        private void CreateAttrLayout()
+        {
+            textLabel[2] = new TextLabel();
+            textLabel[2].PointSize = 20;
+            textLabel[2].HorizontalAlignment = HorizontalAlignment.Center;
+            textLabel[2].VerticalAlignment = VerticalAlignment.Center;
+            textLabel[2].BackgroundColor = Color.Magenta;
+            textLabel[2].Text = "Attribute construction";
+            gridLayout.Add(textLabel[2]);
+
+            // layout for loading which is created by attributes.
+            // It'll update the visual when framerate is changed, so put loading into a layout.
+            layout[2] = new View();
+            layout[2].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
             LoadingStyle style = new LoadingStyle
             {
                 Images = imageArray
             };
+            loading[1] = new Loading(style);
+            loading[1].Size = new Size(100, 100);
+            layout[2].Add(loading[1]);
+            gridLayout.Add(layout[2]);
 
-            loading2_1 = new Loading(style);
-            loading2_1.Position2D = new Position2D(500, 350);
-            loading2_1.Size2D = new Size2D(100, 100);
-            root.Add(loading2_1);
-
-            window.Add(root);
-
-            FocusManager.Instance.SetCurrentFocusView(button1);
+            // layout for button.
+            // To avoid button size same as the grid cell.
+            layout[3] = new View() { };
+            layout[3].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            button[2] = new Button();
+            button[2].Size = new Size(400, 50);
+            button[2].Text = "Normal Loading";
+            button[2].PointSize = 15;
+            button[2].BackgroundColor = Color.Green;
+            layout[3].Add(button[2]);
+            gridLayout.Add(layout[3]);
+            button[2].Focusable = true;
+            FocusManager.Instance.SetCurrentFocusView(button[2]);
         }
 
-        void CreateBoardAndButtons()
+        private void propFpsAdd(object sender, global::System.EventArgs e)
         {
-            board = new TextLabel();
-            board.Size2D = new Size2D(1000, 100);
-            board.Position2D = new Position2D(430, 900);
-            board.PointSize = 30;
-            board.HorizontalAlignment = HorizontalAlignment.Center;
-            board.VerticalAlignment = VerticalAlignment.Center;
-            board.BackgroundColor = Color.Magenta;
-            board.Text = "log pad";
-            root.Add(board);
-
-            board1 = new TextLabel();
-            board1.Size2D = new Size2D(300, 70);
-            board1.Position2D = new Position2D(50, 200);
-            board1.PointSize = 20;
-            board1.HorizontalAlignment = HorizontalAlignment.Center;
-            board1.VerticalAlignment = VerticalAlignment.Center;
-            board1.BackgroundColor = Color.Magenta;
-            board1.Text = "NULL parameter construction";
-            root.Add(board1);
-
-            board2 = new TextLabel();
-            board2.Size2D = new Size2D(300, 70);
-            board2.Position2D = new Position2D(400, 200);
-            board2.PointSize = 20;
-            board2.HorizontalAlignment = HorizontalAlignment.Center;
-            board2.VerticalAlignment = VerticalAlignment.Center;
-            board2.BackgroundColor = Color.Magenta;
-            board2.Text = "Attribute parameter construction";
-            root.Add(board2);
-
-            button1 = new Button();
-            button1.BackgroundColor = Color.Green;
-            button1.Position2D = new Position2D(80, 600);
-            button1.Size2D = new Size2D(100, 50);
-            button1.Style.Text.Text = "FPS++";
-            root.Add(button1);
-            button1.Focusable = true;
-            button1.ClickEvent += Loading1FPSAdd;
-            button1.FocusGained += FocusGained;
-            button1.FocusLost += FocusLost;
-
-            button2 = new Button();
-            button2.BackgroundColor = Color.Green;
-            button2.Position2D = new Position2D(200, 600);
-            button2.Size2D = new Size2D(100, 50);
-            button2.Style.Text.Text = "FPS--";
-            root.Add(button2);
-            button2.Focusable = true;
-            button2.ClickEvent += Loading1FPSMinus;
-            button2.FocusGained += FocusGained;
-            button2.FocusLost += FocusLost;
-
-            button1.RightFocusableView = button2;
-            button2.LeftFocusableView = button1;
-
-            button3 = new Button();
-            button3.BackgroundColor = Color.Green;
-            button3.Position2D = new Position2D(450, 600);
-            button3.Size2D = new Size2D(180, 50);
-            button3.Style.Text.Text = "Normal Loading";
-            root.Add(button3);
+            loading[0].FrameRate += 1;
+            textLabel[1].Text = "loading1_1 FPS: " + loading[0].FrameRate.ToString();
         }
 
-        private void Loading1FPSAdd(object sender, global::System.EventArgs e)
+        private void propFpsMinus(object sender, global::System.EventArgs e)
         {
-            loading1_1.FrameRate += 1;
-            board.Text = "loading1_1 FPS: "+loading1_1.FrameRate.ToString();
-        }
-
-        private void Loading1FPSMinus(object sender, global::System.EventArgs e)
-        {
-            loading1_1.FrameRate -= 1;
-            board.Text = "loading1_1 FPS: " + loading1_1.FrameRate.ToString();
+            loading[0].FrameRate -= 1;
+            textLabel[1].Text = "loading1_1 FPS: " + loading[0].FrameRate.ToString();
         }
 
         private void FocusLost(object sender, global::System.EventArgs e)
@@ -147,62 +206,60 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            if (board != null)
-            {
-                root.Remove(board);
-                board.Dispose();
-                board = null;
-            }
-            if (board1 != null)
-            {
-                root.Remove(board1);
-                board1.Dispose();
-                board1 = null;
-            }
-            if (board2 != null)
-            {
-                root.Remove(board2);
-                board2.Dispose();
-                board2 = null;
-            }
-            if (button1 != null)
-            {
-                button1.ClickEvent -= Loading1FPSAdd;
-                button1.FocusGained -= FocusGained;
-                button1.FocusLost -= FocusLost;
-                root.Remove(button1);
-                button1.Dispose();
-                button1 = null;
-            }
-            if (button2 != null)
-            {
-                button2.ClickEvent -= Loading1FPSMinus;
-                button2.FocusGained -= FocusGained;
-                button2.FocusLost -= FocusLost;
-                root.Remove(button2);
-                button2.Dispose();
-                button2 = null;
-            }
-            if (button3 != null)
-            {
-                root.Remove(button3);
-                button3.Dispose();
-                button3 = null;
-            }
-            if (loading1_1 != null)
-            {
-                root.Remove(loading1_1);
-                loading1_1.Dispose();
-                loading1_1 = null;
-            }
-            if (loading2_1 != null)
-            {
-                root.Remove(loading2_1);
-                loading2_1.Dispose();
-                loading2_1 = null;
-            }
             if (root != null)
             {
+                layout[0].Remove(button[0]);
+                button[0].Dispose();
+                button[0] = null;
+
+                layout[0].Remove(button[1]);
+                button[1].Dispose();
+                button[1] = null;
+
+                gridLayout.Remove(layout[0]);
+                layout[0].Dispose();
+                layout[0] = null;
+
+                gridLayout.Remove(textLabel[0]);
+                textLabel[0].Dispose();
+                textLabel[0] = null;
+
+                layout[1].Remove(loading[0]);
+                loading[0].Dispose();
+                loading[0] = null;
+
+                gridLayout.Remove(layout[1]);
+                layout[1].Dispose();
+                layout[1] = null;
+
+                gridLayout.Remove(textLabel[1]);
+                textLabel[1].Dispose();
+                textLabel[1] = null;
+
+                gridLayout.Remove(textLabel[2]);
+                textLabel[2].Dispose();
+                textLabel[2] = null;
+
+                layout[2].Remove(loading[1]);
+                loading[1].Dispose();
+                loading[1] = null;
+
+                gridLayout.Remove(layout[2]);
+                layout[2].Dispose();
+                layout[2] = null;
+
+                layout[3].Remove(button[2]);
+                button[2].Dispose();
+                button[2] = null;
+
+                gridLayout.Remove(layout[3]);
+                layout[3].Dispose();
+                layout[3] = null;
+
+                root.Remove(gridLayout);
+                gridLayout.Dispose();
+                gridLayout = null;
+
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
                 root = null;

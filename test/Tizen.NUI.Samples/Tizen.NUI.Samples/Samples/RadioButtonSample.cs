@@ -7,6 +7,10 @@ namespace Tizen.NUI.Samples
     public class RadioButtonSample : IExample
     {
         private View root;
+        private View left;
+        private View right;
+        private View leftbody;
+        private View rightbody;
 
         private TextLabel[] createText = new TextLabel[2];
         private TextLabel[] modeText = new TextLabel[4];
@@ -35,156 +39,186 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
+            // Create root view.
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
-                BackgroundColor = Color.White,
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
+				Padding = new Extents(40, 40, 40, 40),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size(40, 40),
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                }
             };
             window.Add(root);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
+            left = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical
+                }
+            };
+
+            //Create left description text.
             createText[0] = new TextLabel();
             createText[0].Text = "Create RadioButton just by properties";
             createText[0].TextColor = Color.White;
-            createText[0].Size2D = new Size2D(500, 100);
-            createText[0].Position2D = new Position2D(400, 100);
-            root.Add(createText[0]);
+            createText[0].Size = new Size(800, 100);
+            left.Add(createText[0]);
 
+            leftbody = new View();
+            leftbody.Layout = new GridLayout() { Columns = 4 };
             int num = 4;
             for (int i = 0; i < num; i++)
             {
                 group[i] = new RadioButtonGroup();
                 modeText[i] = new TextLabel();
                 modeText[i].Text = mode[i];
-                modeText[i].Size2D = new Size2D(200, 48);
-                modeText[i].Position2D = new Position2D(300 + 200 * i, 200);
-                root.Add(modeText[i]);
+                modeText[i].Size = new Size(200, 48);
+                modeText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText[i].VerticalAlignment = VerticalAlignment.Center;
+                leftbody.Add(modeText[i]);
             }
 
             for (int i = 0; i < num; i++)
             {
+                // create utility radio button.
                 utilityRadioButton[i] = new RadioButton();
-                utilityRadioButton[i].Size2D = new Size2D(48, 48);
-                utilityRadioButton[i].Position2D = new Position2D(300, 300 + i * 100);
-                utilityRadioButton[i].Style.Icon.Size = new Size(48, 48);
-                utilityRadioButton[i].Style.Icon.Padding.Start = 5;
-                utilityRadioButton[i].Style.Icon.Padding.End = 5;
-                utilityRadioButton[i].Style.Icon.Opacity = new Selector<float?>
+                var utilityStyle = utilityRadioButton[i].Style;
+                utilityStyle.Icon.Opacity = new Selector<float?>
                 {
                     Normal = 1.0f,
                     Selected = 1.0f,
                     Disabled = 0.4f,
                     DisabledSelected = 0.4f
                 };
-                utilityRadioButton[i].Style.Icon.ResourceUrl = new Selector<string>
+                utilityStyle.Icon.BackgroundImage = "";
+                utilityStyle.Icon.ResourceUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                     Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                 };
-
+                utilityRadioButton[i].ApplyStyle(utilityStyle);
+                utilityRadioButton[i].Size = new Size(48, 48);
+                utilityRadioButton[i].ButtonIcon.Size = new Size(48, 48);
                 group[0].Add(utilityRadioButton[i]);
-                ////////
+
+                // create family radio button.
                 familyRadioButton[i] = new RadioButton();
-                familyRadioButton[i].Size2D = new Size2D(48, 48);
-                familyRadioButton[i].Position2D = new Position2D(500, 300 + i * 100);
-                familyRadioButton[i].Style.Icon.Size = new Size(48, 48);
-                familyRadioButton[i].Style.Icon.Padding.Start = 5;
-                familyRadioButton[i].Style.Icon.Padding.End = 5;
-                familyRadioButton[i].Style.Icon.Opacity = new Selector<float?>
+                var familyStyle = familyRadioButton[i].Style;
+                familyStyle.Icon.Opacity = new Selector<float?>
                 {
                     Normal = 1.0f,
                     Selected = 1.0f,
                     Disabled = 0.4f,
                     DisabledSelected = 0.4f
                 };
-                familyRadioButton[i].Style.Icon.ResourceUrl = new Selector<string>
+                familyStyle.Icon.BackgroundImage = "";
+                familyStyle.Icon.ResourceUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_24c447.png",
                     Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_24c447.png",
                 };
+                familyRadioButton[i].ApplyStyle(familyStyle);
+                familyRadioButton[i].Size = new Size(48, 48);
+                familyRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[1].Add(familyRadioButton[i]);
-                /////////
+
+                // create food radio button.
                 foodRadioButton[i] = new RadioButton();
-                foodRadioButton[i].Size2D = new Size2D(150, 48);
-                foodRadioButton[i].Position2D = new Position2D(700, 300 + i * 100);
-                foodRadioButton[i].Style.Icon.Size = new Size(48, 48);
-                foodRadioButton[i].Style.Icon.Padding.Start = 5;
-                foodRadioButton[i].Style.Icon.Padding.End = 5;
-                foodRadioButton[i].Style.Icon.Opacity = new Selector<float?>
+                var foodStyle = foodRadioButton[i].Style;
+                foodStyle.Icon.Opacity = new Selector<float?>
                 {
                     Normal = 1.0f,
                     Selected = 1.0f,
                     Disabled = 0.4f,
                     DisabledSelected = 0.4f
                 };
-                foodRadioButton[i].Style.Icon.ResourceUrl = new Selector<string>
+                foodStyle.Icon.BackgroundImage = "";
+                foodStyle.Icon.ResourceUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_ec7510.png",
                     Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_ec7510.png",
                 };
-
-                //foodRadioButton[i].Text = "Radio" + i;
-                //foodRadioButton[i].TextAlignment = HorizontalAlignment.Begin;
-                //foodRadioButton[i].PointSize = 12;
-                //foodRadioButton[i].TextPaddingLeft = 70;
+                foodRadioButton[i].ApplyStyle(foodStyle);
+                foodRadioButton[i].Size = new Size(150, 48);
+                foodRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[2].Add(foodRadioButton[i]);
-                ////////
+
+                // create kitchen radio button.
                 kitchenRadioButton[i] = new RadioButton();
-                kitchenRadioButton[i].Size2D = new Size2D(48, 48);
-                kitchenRadioButton[i].Position2D = new Position2D(900, 300 + i * 100);
-                kitchenRadioButton[i].Style.Icon.Size = new Size(48, 48);
-                kitchenRadioButton[i].Style.Icon.Padding.Start = 5;
-                kitchenRadioButton[i].Style.Icon.Padding.End = 5;
-                kitchenRadioButton[i].Style.Icon.Opacity = new Selector<float?>
+                var kitchenStyle = kitchenRadioButton[i].Style;
+                kitchenStyle.Icon.Opacity = new Selector<float?>
                 {
                     Normal = 1.0f,
                     Selected = 1.0f,
                     Disabled = 0.4f,
                     DisabledSelected = 0.4f
                 };
-                kitchenRadioButton[i].Style.Icon.ResourceUrl = new Selector<string>
+                kitchenStyle.Icon.BackgroundImage = "";
+                kitchenStyle.Icon.ResourceUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_9762d9.png",
                     Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_btn_radio_on_9762d9.png",
                 };
+                kitchenRadioButton[i].ApplyStyle(kitchenStyle);
+                kitchenRadioButton[i].Size = new Size(48, 48);
+                kitchenRadioButton[i].ButtonIcon.Size = new Size(48, 48);
 
                 group[3].Add(kitchenRadioButton[i]);
 
-                root.Add(utilityRadioButton[i]);
-                root.Add(familyRadioButton[i]);
-                root.Add(foodRadioButton[i]);
-                root.Add(kitchenRadioButton[i]);
+                leftbody.Add(utilityRadioButton[i]);
+                leftbody.Add(familyRadioButton[i]);
+                leftbody.Add(foodRadioButton[i]);
+                leftbody.Add(kitchenRadioButton[i]);
             }
-            //foodRadioButton[0].LayoutDirection = ViewLayoutDirectionType.RTL;
+
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
+            right = new View()
+            {
+                Size = new Size(920, 800),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                }
+            };
+
+            rightbody = new View();
+            rightbody.Layout = new GridLayout() { Columns = 4 };
             createText[1] = new TextLabel();
-            createText[1].Text = "Create RadioButton just by Attributes";
+            createText[1].Text = "Create RadioButton just by styles";
             createText[1].TextColor = Color.White;
-            createText[1].Size2D = new Size2D(500, 100);
-            createText[1].Position2D = new Position2D(1200, 100);
-            root.Add(createText[1]);
+            createText[1].Size = new Size(800, 100);
+            right.Add(createText[1]);
 
             for (int i = 0; i < num; i++)
             {
                 group2[i] = new RadioButtonGroup();
                 modeText2[i] = new TextLabel();
                 modeText2[i].Text = mode[i];
-                modeText2[i].Size2D = new Size2D(200, 48);
-                modeText2[i].Position2D = new Position2D(1100 + 200 * i, 200);
-                root.Add(modeText2[i]);
+                modeText2[i].Size = new Size(200, 48);
+                modeText2[i].HorizontalAlignment = HorizontalAlignment.Center;
+                modeText2[i].VerticalAlignment = VerticalAlignment.Center;
+                rightbody.Add(modeText2[i]);
             }
 
-            ButtonStyle utilityAttrs = new ButtonStyle
+            //Create utility style of radio button.
+            ButtonStyle utilityStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -204,8 +238,9 @@ namespace Tizen.NUI.Samples
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                     },
                 },            
-            };         
-            ButtonStyle familyAttrs = new ButtonStyle
+            };
+            //Create family style of radio button.
+            ButtonStyle familyStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -226,7 +261,8 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            ButtonStyle foodAttrs = new ButtonStyle
+            //Create food style of radio button.
+            ButtonStyle foodStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -247,7 +283,8 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            ButtonStyle kitchenAttrs = new ButtonStyle
+            //Create kitchen style of radio button.
+            ButtonStyle kitchenStyle2 = new ButtonStyle
             {
                 Icon = new ImageViewStyle
                 {
@@ -270,31 +307,32 @@ namespace Tizen.NUI.Samples
             };
             for (int i = 0; i < num; i++)
             {
-                utilityRadioButton2[i] = new RadioButton(utilityAttrs);
-                utilityRadioButton2[i].Size2D = new Size2D(48, 48);
-                utilityRadioButton2[i].Position2D = new Position2D(1100, 300 + i * 100);
+                utilityRadioButton2[i] = new RadioButton(utilityStyle2);
+                utilityRadioButton2[i].Size = new Size(48, 48);
                 group2[0].Add(utilityRadioButton2[i]);
 
-                familyRadioButton2[i] = new RadioButton(familyAttrs);
-                familyRadioButton2[i].Size2D = new Size2D(48, 48);
-                familyRadioButton2[i].Position2D = new Position2D(1300, 300 + i * 100);
+                familyRadioButton2[i] = new RadioButton(familyStyle2);
+                familyRadioButton2[i].Size = new Size(48, 48);
                 group2[1].Add(familyRadioButton2[i]);
 
-                foodRadioButton2[i] = new RadioButton(foodAttrs);
-                foodRadioButton2[i].Size2D = new Size2D(48, 48);
-                foodRadioButton2[i].Position2D = new Position2D(1500, 300 + i * 100);
+                foodRadioButton2[i] = new RadioButton(foodStyle2);
+                foodRadioButton2[i].Size = new Size(48, 48);
                 group2[2].Add(foodRadioButton2[i]);
 
-                kitchenRadioButton2[i] = new RadioButton(kitchenAttrs);
-                kitchenRadioButton2[i].Size2D = new Size2D(48, 48);
-                kitchenRadioButton2[i].Position2D = new Position2D(1700, 300 + i * 100);
+                kitchenRadioButton2[i] = new RadioButton(kitchenStyle2);
+                kitchenRadioButton2[i].Size = new Size(48, 48);
                 group2[3].Add(kitchenRadioButton2[i]);
 
-                root.Add(utilityRadioButton2[i]);
-                root.Add(familyRadioButton2[i]);
-                root.Add(foodRadioButton2[i]);
-                root.Add(kitchenRadioButton2[i]);
+                rightbody.Add(utilityRadioButton2[i]);
+                rightbody.Add(familyRadioButton2[i]);
+                rightbody.Add(foodRadioButton2[i]);
+                rightbody.Add(kitchenRadioButton2[i]);
             }
+
+            root.Add(left);
+            root.Add(right);
+            left.Add(leftbody);
+            right.Add(rightbody);
 
             utilityRadioButton[2].IsEnabled = false;
             familyRadioButton[2].IsEnabled = false;
@@ -332,56 +370,69 @@ namespace Tizen.NUI.Samples
                 int num = 4;
                 for (int i = 0; i < num; i++)
                 {
-                    root.Remove(utilityRadioButton[i]);
+                    leftbody.Remove(utilityRadioButton[i]);
                     utilityRadioButton[i].Dispose();
                     utilityRadioButton[i] = null;
 
-                    root.Remove(familyRadioButton[i]);
+                    leftbody.Remove(familyRadioButton[i]);
                     familyRadioButton[i].Dispose();
                     familyRadioButton[i] = null;
 
-                    root.Remove(foodRadioButton[i]);
+                    leftbody.Remove(foodRadioButton[i]);
                     foodRadioButton[i].Dispose();
                     foodRadioButton[i] = null;
 
-                    root.Remove(kitchenRadioButton[i]);
+                    leftbody.Remove(kitchenRadioButton[i]);
                     kitchenRadioButton[i].Dispose();
                     kitchenRadioButton[i] = null;
 
-                    root.Remove(modeText[i]);
+                    leftbody.Remove(modeText[i]);
                     modeText[i].Dispose();
                     modeText[i] = null;
 
-                    root.Remove(utilityRadioButton2[i]);
+                    rightbody.Remove(utilityRadioButton2[i]);
                     utilityRadioButton2[i].Dispose();
                     utilityRadioButton2[i] = null;
 
-                    root.Remove(familyRadioButton2[i]);
+                    rightbody.Remove(familyRadioButton2[i]);
                     familyRadioButton2[i].Dispose();
                     familyRadioButton2[i] = null;
 
-                    root.Remove(foodRadioButton2[i]);
+                    rightbody.Remove(foodRadioButton2[i]);
                     foodRadioButton2[i].Dispose();
                     foodRadioButton2[i] = null;
 
-                    root.Remove(kitchenRadioButton2[i]);
+                    rightbody.Remove(kitchenRadioButton2[i]);
                     kitchenRadioButton2[i].Dispose();
                     kitchenRadioButton2[i] = null;
 
-                    root.Remove(modeText2[i]);
+                    rightbody.Remove(modeText2[i]);
                     modeText2[i].Dispose();
                     modeText2[i] = null;
                 }
 
-                root.Remove(createText[0]);
+                left.Remove(createText[0]);
                 createText[0].Dispose();
                 createText[0] = null;
-                root.Remove(createText[1]);
+                left.Remove(leftbody);
+                leftbody.Dispose();
+                leftbody = null;
+                right.Remove(createText[1]);
                 createText[1].Dispose();
                 createText[1] = null;
+                right.Remove(rightbody);
+                rightbody.Dispose();
+                rightbody = null;
 
+                root.Remove(left);
+                left.Dispose();
+                left = null;
+                root.Remove(right);
+                right.Dispose();
+                right = null;
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
+                root = null;
             }
         }
     }

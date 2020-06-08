@@ -7,7 +7,7 @@ namespace Tizen.NUI.Samples
     public class SwitchSample : IExample
     {
         private View root;
-
+        private View[] parentView = new View[3];
         private TextLabel[] createText = new TextLabel[2];
         private TextLabel[] modeText = new TextLabel[4];
         private TextLabel[] modeText2 = new TextLabel[4];
@@ -21,7 +21,6 @@ namespace Tizen.NUI.Samples
         private Switch[] familySwitch2 = new Switch[4];
         private Switch[] foodSwitch2 = new Switch[4];
         private Switch[] kitchenSwitch2 = new Switch[4];
-
         private static string[] mode = new string[]
         {
             "Utility",
@@ -29,137 +28,92 @@ namespace Tizen.NUI.Samples
             "Food",
             "Kitchen",
         };
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
 
             root = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             window.Add(root);
 
-            ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
-            createText[0] = new TextLabel();
-            createText[0].Text = "Create Switch just by properties";
-            createText[0].Size2D = new Size2D(500, 100);
-            createText[0].Position2D = new Position2D(400, 100);
-            root.Add(createText[0]);
+            CreateTextView();
+            CreateModeView();
+            CreateSwitchView();
+        }
 
-            int num = 4;
-            for (int i = 0; i < num; i++)
+        private void CreateTextView()
+        {
+            // Init parent of TextView
+            parentView[0] = new View();
+            parentView[0].Size = new Size(1920, 200);
+            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(180, 0) };
+            root.Add(parentView[0]);
+
+            for (int i = 0; i < 2; i++)
+            {
+                createText[i] = new TextLabel();
+                createText[i].Size = new Size(600, 100);
+                createText[i].PointSize = 20.0f;
+                createText[i].BackgroundColor = Color.Magenta;
+                createText[i].HorizontalAlignment = HorizontalAlignment.Center;
+                createText[i].VerticalAlignment = VerticalAlignment.Center;
+                parentView[0].Add(createText[i]);
+            }
+
+            // Text of "Create Switch just by properties"
+            createText[0].Text = "Create Switch just by Properties";
+            createText[0].Margin = new Extents(160, 0, 0, 0);
+
+            // Text of "Create Switch just by Style"
+            createText[1].Text = "Create Switch just by Style";
+        }
+
+        private void CreateModeView()
+        {
+            // Init parent of ModeView
+            parentView[1] = new View();
+            parentView[1].Size = new Size(1920, 100);
+            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, CellPadding = new Size2D(0, 0) };
+            root.Add(parentView[1]);
+
+            // Create mode text
+            for (int i = 0; i < 4; i++)
             {
                 modeText[i] = new TextLabel();
                 modeText[i].Text = mode[i];
-                modeText[i].Size2D = new Size2D(200, 48);
-                modeText[i].Position2D = new Position2D(300 + 200 * i, 200);
-                root.Add(modeText[i]);
+                modeText[i].Size = new Size(196, 48);
+                modeText[i].PointSize = 20.0f;
+                parentView[1].Add(modeText[i]);
             }
+            modeText[0].Margin = new Extents(100, 0, 0, 0);
 
-            for (int i = 0; i < num; i++)
+            for (int j = 0; j < 4; j++)
             {
-                utilitySwitch[i] = new Switch();
-                utilitySwitch[i].Size2D = new Size2D(96, 60);
-                utilitySwitch[i].Position2D = new Position2D(300, 300 + i * 100);
-                utilitySwitch[i].Style.Thumb.Size = new Size(60, 60);
-                utilitySwitch[i].Style.Track.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_on.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off_dim.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_on_dim.png",
-                };
-                utilitySwitch[i].Style.Thumb.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                };
-
-                ////////
-                familySwitch[i] = new Switch();
-                familySwitch[i].Size2D = new Size2D(96, 60);
-                familySwitch[i].Position2D = new Position2D(500, 300 + i * 100);
-                familySwitch[i].Style.Thumb.Size = new Size(60, 60);
-                familySwitch[i].Style.Track.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_24c447.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_24c447.png",
-                };
-                familySwitch[i].Style.Thumb.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                };
-                /////////
-                foodSwitch[i] = new Switch();
-                foodSwitch[i].Size2D = new Size2D(96, 60);
-                foodSwitch[i].Position2D = new Position2D(700, 300 + i * 100);
-                foodSwitch[i].Style.Thumb.Size = new Size(60, 60);
-                foodSwitch[i].Style.Track.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_ec7510.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_ec7510.png",
-                };
-                foodSwitch[i].Style.Thumb.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                };
-
-                ////////
-                kitchenSwitch[i] = new Switch();
-                kitchenSwitch[i].Size2D = new Size2D(96, 60);
-                kitchenSwitch[i].Position2D = new Position2D(900, 300 + i * 100);
-                kitchenSwitch[i].Style.Thumb.Size = new Size(60, 60);
-                kitchenSwitch[i].Style.Track.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_9762d9.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_9762d9.png",
-                };
-                kitchenSwitch[i].Style.Thumb.ResourceUrl = new Selector<string>
-                {
-                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
-                    Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                    DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
-                };
-
-                root.Add(utilitySwitch[i]);
-                root.Add(familySwitch[i]);
-                root.Add(foodSwitch[i]);
-                root.Add(kitchenSwitch[i]);
+                modeText2[j] = new TextLabel();
+                modeText2[j].Text = mode[j];
+                modeText2[j].Size = new Size(196, 48);
+                modeText2[j].PointSize = 20.0f;
+                parentView[1].Add(modeText2[j]);
             }
+        }
 
-            ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            createText[1] = new TextLabel();
-            createText[1].Text = "Create Switch just by Attributes";
-            createText[1].Size2D = new Size2D(500, 100);
-            createText[1].Position2D = new Position2D(1200, 100);
-            root.Add(createText[1]);
+        private void CreateSwitchView()
+        {
+            // Init parent of SwitchView
+            parentView[2] = new View();
+            parentView[2].Size = new Size(1920, 680);
+            parentView[2].Layout = new GridLayout() { Rows = 4, GridOrientation = GridLayout.Orientation.Horizontal };
+            root.Add(parentView[2]);
 
-            for (int i = 0; i < num; i++)
+            // Create switch styles
+            SwitchStyle utilitySt = new SwitchStyle
             {
-                modeText2[i] = new TextLabel();
-                modeText2[i].Text = mode[i];
-                modeText2[i].Size2D = new Size2D(200, 48);
-                modeText2[i].Position2D = new Position2D(1100 + 200 * i, 200);
-                root.Add(modeText2[i]);
-            }
-
-            SwitchStyle utilityAttrs = new SwitchStyle
-            {
+                Size = new Size(96, 60),
                 IsSelectable = true,
                 Track = new ImageViewStyle
                 {
@@ -170,6 +124,7 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off_dim.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_on_dim.png",
                     },
+                    Border = new Rectangle(30, 30, 30, 30),
                 },
                 Thumb = new ImageViewStyle
                 {
@@ -182,8 +137,8 @@ namespace Tizen.NUI.Samples
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
                     },
                 },
-            };         
-            SwitchStyle familyAttrs = new SwitchStyle
+            };
+            SwitchStyle familySt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -195,6 +150,7 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off_dim.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_24c447.png",
                     },
+                    Border = new Rectangle(30, 30, 30, 30),
                 },
                 Thumb = new ImageViewStyle
                 {
@@ -208,7 +164,7 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            SwitchStyle foodAttrs = new SwitchStyle
+            SwitchStyle foodSt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -220,6 +176,7 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off_dim.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_ec7510.png",
                     },
+                    Border = new Rectangle(30, 30, 30, 30),
                 },
                 Thumb = new ImageViewStyle
                 {
@@ -233,7 +190,7 @@ namespace Tizen.NUI.Samples
                     },
                 },
             };
-            SwitchStyle kitchenAttrs = new SwitchStyle
+            SwitchStyle kitchenSt = new SwitchStyle
             {
                 IsSelectable = true,
                 Track = new ImageViewStyle
@@ -245,10 +202,11 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_bg_off_dim.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/[Controller] App Primary Color/controller_switch_bg_on_dim_9762d9.png",
                     },
+                    Border = new Rectangle(30, 30, 30, 30),
                 },
                 Thumb = new ImageViewStyle
                 {
-                    Size =  new Size(60, 60),
+                    Size = new Size(60, 60),
                     ResourceUrl = new Selector<string>
                     {
                         Normal = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler.png",
@@ -256,30 +214,69 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_switch_handler_dim.png",
                     },
-                },               
+                },
             };
-            for (int i = 0; i < num; i++)
+
+            ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
+            int i = 0;
+            for (; i < 4; i++)
             {
-                utilitySwitch2[i] = new Switch(utilityAttrs);
-                utilitySwitch2[i].Size2D = new Size2D(96, 60);
-                utilitySwitch2[i].Position2D = new Position2D(1100, 300 + i * 100);
+                utilitySwitch[i] = new Switch();
+                utilitySwitch[i].ApplyStyle(utilitySt);
+                utilitySwitch[i].Size = new Size(96, 60);
+                utilitySwitch[i].Margin = new Extents(100, 0, 20, 0);
+                parentView[2].Add(utilitySwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                familySwitch[i] = new Switch();
+                familySwitch[i].ApplyStyle(familySt);
+                familySwitch[i].Size = new Size(96, 60);
+                parentView[2].Add(familySwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                foodSwitch[i] = new Switch();
+                foodSwitch[i].ApplyStyle(foodSt);
+                foodSwitch[i].Size = new Size(96, 60);
+                parentView[2].Add(foodSwitch[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                kitchenSwitch[i] = new Switch();
+                kitchenSwitch[i].ApplyStyle(kitchenSt);
+                kitchenSwitch[i].Size = new Size(96, 60);
+                parentView[2].Add(kitchenSwitch[i]);
+            }
 
-                familySwitch2[i] = new Switch(familyAttrs);
-                familySwitch2[i].Size2D = new Size2D(96, 60);
-                familySwitch2[i].Position2D = new Position2D(1300, 300 + i * 100);
-
-                foodSwitch2[i] = new Switch(foodAttrs);
-                foodSwitch2[i].Size2D = new Size2D(96, 60);
-                foodSwitch2[i].Position2D = new Position2D(1500, 300 + i * 100);
-
-                kitchenSwitch2[i] = new Switch(kitchenAttrs);
-                kitchenSwitch2[i].Size2D = new Size2D(96, 60);
-                kitchenSwitch2[i].Position2D = new Position2D(1700, 300 + i * 100);
-
-                root.Add(utilitySwitch2[i]);
-                root.Add(familySwitch2[i]);
-                root.Add(foodSwitch2[i]);
-                root.Add(kitchenSwitch2[i]);
+            ///////////////////////////////////////////////Create by Style//////////////////////////////////////////////////////////
+            for (i = 0; i < 4; i++)
+            {
+                utilitySwitch2[i] = new Switch();
+                utilitySwitch2[i].ApplyStyle(utilitySt);
+                utilitySwitch2[i].Size = new Size(96, 60);
+                parentView[2].Add(utilitySwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                familySwitch2[i] = new Switch();
+                familySwitch2[i].ApplyStyle(familySt);
+                familySwitch2[i].Size = new Size(96, 60);
+                parentView[2].Add(familySwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                foodSwitch2[i] = new Switch();
+                foodSwitch2[i].ApplyStyle(foodSt);
+                foodSwitch2[i].Size = new Size(96, 60);
+                parentView[2].Add(foodSwitch2[i]);
+            }
+            for (i = 0; i < 4; i++)
+            {
+                kitchenSwitch2[i] = new Switch();
+                kitchenSwitch2[i].ApplyStyle(kitchenSt);
+                kitchenSwitch2[i].Size = new Size(96, 60);
+                parentView[2].Add(kitchenSwitch2[i]);
             }
 
             utilitySwitch[2].IsEnabled = false;
@@ -318,56 +315,53 @@ namespace Tizen.NUI.Samples
                 int num = 4;
                 for (int i = 0; i < num; i++)
                 {
-                    root.Remove(utilitySwitch[i]);
                     utilitySwitch[i].Dispose();
                     utilitySwitch[i] = null;
 
-                    root.Remove(familySwitch[i]);
                     familySwitch[i].Dispose();
                     familySwitch[i] = null;
 
-                    root.Remove(foodSwitch[i]);
                     foodSwitch[i].Dispose();
                     foodSwitch[i] = null;
 
-                    root.Remove(kitchenSwitch[i]);
                     kitchenSwitch[i].Dispose();
                     kitchenSwitch[i] = null;
 
-                    root.Remove(modeText[i]);
                     modeText[i].Dispose();
                     modeText[i] = null;
 
-                    root.Remove(utilitySwitch2[i]);
                     utilitySwitch2[i].Dispose();
                     utilitySwitch2[i] = null;
 
-                    root.Remove(familySwitch2[i]);
                     familySwitch2[i].Dispose();
                     familySwitch2[i] = null;
 
-                    root.Remove(foodSwitch2[i]);
                     foodSwitch2[i].Dispose();
                     foodSwitch2[i] = null;
 
-                    root.Remove(kitchenSwitch2[i]);
                     kitchenSwitch2[i].Dispose();
                     kitchenSwitch2[i] = null;
 
-                    root.Remove(modeText2[i]);
                     modeText2[i].Dispose();
                     modeText2[i] = null;
                 }
 
-                root.Remove(createText[0]);
                 createText[0].Dispose();
                 createText[0] = null;
-                root.Remove(createText[1]);
                 createText[1].Dispose();
                 createText[1] = null;
 
+                for (int j = 0; j < 3; j++)
+                {
+                    if (parentView[j] != null)
+                    {
+                        parentView[j].Dispose();
+                        parentView[j] = null;
+                    }
+                }
                 NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
+                root = null;
             }
         }
     }
