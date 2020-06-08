@@ -82,7 +82,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of CurrentValue</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("currentValue", typeof(float), typeof(CircularSlider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(CircularSlider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
             if (newValue != null)
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create("trackColor", typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ProgressColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create("progressColor", typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
 
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create("thumbColor", typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
 
@@ -179,9 +179,9 @@ namespace Tizen.NUI.Wearable
             return instance.privateIsEnabled;
         });
 
-        private static readonly string TrackVisualName = "Track";
-        private static readonly string ProgressVisualName = "Progress";
-        private static readonly string ThumbVisualName = "Thumb";
+        private const string TrackVisualName = "Track";
+        private const string ProgressVisualName = "Progress";
+        private const string ThumbVisualName = "Thumb";
         private ArcVisual trackVisual;
         private ArcVisual progressVisual;
         private ArcVisual thumbVisual;
@@ -191,8 +191,6 @@ namespace Tizen.NUI.Wearable
         private float currentValue = 0;
         private Size thumbSize;
         private bool isEnabled = true;
-
-        private EventHandler<ValueChangedArgs> valueChangedHandler;
 
         float sliderPadding = 6.0f;
 
@@ -209,13 +207,19 @@ namespace Tizen.NUI.Wearable
         /// Value Changed event data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ValueChangedArgs : EventArgs
+        public class ValueChangedEventArgs : EventArgs
         {
+            private float currentValue = 0.0f;
+
             /// <summary>
-            /// Curren value
+            /// Current value
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float CurrentValue;
+            public float CurrentValue
+            {
+                get { return currentValue; }
+                set { currentValue = value; }
+            }
         }
 
         #endregion Fields
@@ -245,24 +249,17 @@ namespace Tizen.NUI.Wearable
 
         #endregion Constructors
 
-
-        #region Properties
+        #region Events
 
         /// <summary>
         /// The value changed event handler.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ValueChangedArgs> ValueChangedEvent
-        {
-            add
-            {
-                valueChangedHandler += value;
-            }
-            remove
-            {
-                valueChangedHandler -= value;
-            }
-        }
+        public event EventHandler<ValueChangedEventArgs> ValueChanged;
+
+        #endregion Events
+
+        #region Properties
 
         /// <summary>
         /// The thickness of the track and progress.
@@ -327,6 +324,10 @@ namespace Tizen.NUI.Wearable
             }
             set
             {
+                if (sweepAngleAnimation)
+                {
+                    sweepAngleAnimation.Stop();
+                }
                 // For the first Animation effect
                 sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 100, AlphaFunction.BuiltinFunctions.EaseIn);
 
@@ -424,7 +425,7 @@ namespace Tizen.NUI.Wearable
             set
             {
                 isEnabled = value;
-                if(isEnabled)
+                if (isEnabled)
                 {
                     UpdateTrackVisualColor(new Color(0.0f, 0.16f, 0.30f, 1.0f)); // #002A4D
                 }
@@ -595,11 +596,11 @@ namespace Tizen.NUI.Wearable
 
             if (sweepAngleAnimation)
             {
-                sweepAngleAnimation?.Stop();
+                sweepAngleAnimation.Stop();
             }
             if (thumbAnimation)
             {
-                thumbAnimation?.Stop();
+                thumbAnimation.Stop();
             }
 
             sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 500, builtinAlphaFunction);
@@ -611,12 +612,7 @@ namespace Tizen.NUI.Wearable
                 thumbAnimation.Play();
             }
 
-            if (valueChangedHandler != null)
-            {
-                ValueChangedArgs args = new ValueChangedArgs();
-                args.CurrentValue = currentValue;
-                valueChangedHandler(this, args);
-            }
+            ValueChanged?.Invoke(this, new ValueChangedEventArgs() { CurrentValue = currentValue });
         }
 
         private void UpdateTrackVisualColor(Color trackColor)
@@ -638,7 +634,7 @@ namespace Tizen.NUI.Wearable
             }
 
             progressVisual.MixColor = progressColor;
-            if( !isEnabled ) // Dim state
+            if (!isEnabled) // Dim state
             {
                 progressVisual.Opacity = 0.6f;
             }
