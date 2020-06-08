@@ -37,27 +37,42 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WearableList(RecycleAdapter adapter) : base(adapter, new FishEyeLayoutManager())
+        public WearableList() : base(new RecycleAdapter(), new FishEyeLayoutManager())
         {
             ScrollingDirection = ScrollableBase.Direction.Vertical;
 
             ScrollDragStartEvent += OnScrollDragStart;
             ScrollAnimationEndEvent += OnAnimationEnd;
 
-            foreach (View child in mContainer.Children)
-            {
-                child.PositionUsesPivotPoint = true;
-                child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
-            }
-
             mContainer.PositionUsesPivotPoint = true;
             mContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
-            mContainer.PivotPoint = ScrollingDirection == Direction.Vertical ? Tizen.NUI.PivotPoint.TopCenter : Tizen.NUI.PivotPoint.CenterLeft;
-            ScrollAvailableArea = new Vector2( 0,ListLayoutManager.StepSize * (mAdapter.Data.Count - 1) );
-
+            mContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
             noticeAnimationEndBeforePosition = 50;
 
+            ScrollAvailableArea = new Vector2( 0, mContainer.SizeHeight);
+
             SetFocus(0, false);
+        }
+
+        public new RecycleAdapter Adapter
+        {
+            get
+            {
+                return base.Adapter;
+            }
+
+            set
+            {
+                base.Adapter = value;
+
+                foreach (View child in mContainer.Children)
+                {
+                    child.PositionUsesPivotPoint = true;
+                    child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
+                }
+
+                ScrollAvailableArea = new Vector2( 0, mContainer.SizeHeight );
+            }
         }
 
         /// <summary>

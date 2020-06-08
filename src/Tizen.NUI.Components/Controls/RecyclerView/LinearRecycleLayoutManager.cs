@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LinearListLayoutManager : LayoutManager
+    public class LinearRecycleLayoutManager : RecycleLayoutManager
     {
         private int firstVisibleItemIndex = -1;
         private int lastVisibleItemIndex = -1;
@@ -105,6 +105,17 @@ namespace Tizen.NUI.Components
             {
                 mStepSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
             }
+        }
+
+        /// <summary>
+        /// This is called to find out how much container size can be.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override float CalculateLayoutOrientationSize()
+        {
+            return mStepSize * DataCount;
         }
 
         /// <summary>
