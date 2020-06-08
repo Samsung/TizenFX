@@ -30,6 +30,40 @@ AutoReqProv: no
 BuildRequires: dotnet-build-tools
 Requires(post): /usr/bin/vconftool
 
+# BuildRequires for StructValidator
+BuildRequires: coregl
+BuildRequires: pkgconfig(elementary)
+BuildRequires: pkgconfig(efl-extension)
+BuildRequires: pkgconfig(capi-media-camera)
+BuildRequires: pkgconfig(rua)
+BuildRequires: pkgconfig(component-based-core-base)
+BuildRequires: pkgconfig(notification)
+BuildRequires: pkgconfig(capi-appfw-service-application)
+BuildRequires: pkgconfig(capi-appfw-application)
+BuildRequires: pkgconfig(capi-appfw-widget-application)
+%if "%{profile}" != "tv"
+BuildRequires: pkgconfig(capi-appfw-watch-application)
+%endif
+BuildRequires: pkgconfig(data-control)
+BuildRequires: pkgconfig(capi-location-manager)
+BuildRequires: pkgconfig(capi-media-vision)
+BuildRequires: pkgconfig(capi-network-bluetooth)
+BuildRequires: pkgconfig(capi-network-wifi-direct)
+BuildRequires: pkgconfig(key-manager)
+%if "%{profile}" == "tv"
+BuildRequires: pkgconfig(trustzone-nwd)
+%else
+BuildRequires: pkgconfig(tef-libteec)
+%endif
+BuildRequires: pkgconfig(capi-system-sensor)
+BuildRequires: pkgconfig(capi-system-runtime-info)
+BuildRequires: pkgconfig(capi-telephony)
+BuildRequires: pkgconfig(capi-ui-inputmethod)
+BuildRequires: pkgconfig(stt-engine)
+BuildRequires: pkgconfig(tts-engine)
+BuildRequires: pkgconfig(chromium-efl)
+
+
 %description
 %{summary}
 
@@ -132,9 +166,24 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
 %define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
+%if %{defined profile}
+%{build_cmd} --full /p:BuildProfile=%{profile}
+%else
 %{build_cmd} --full
+%endif
 %{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
+dotnet validate-struct %{_tizenfx_bin_path}/bin/public || echo "
+    #######################################################
+    ##################### W A R N I N G ###################
+    #######################################################
+    # The sturct size mismatches MUST BE FIXED.           #
+    # It will make building errors later                  #
+    #######################################################
+"
+
+
+# Generate filelist for rpm packaging
 GetFileList() {
   PROFILE=$1
   cat packaging/PlatformFileList.txt | grep -v "\.preload" | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"

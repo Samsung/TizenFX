@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class Libc
@@ -25,6 +27,7 @@ internal static partial class Interop
         internal static extern int Free(IntPtr ptr);
 
         // Broken-down time is stored in the structure tm which is defined in <time.h> as follows:
+        [NativeStruct("struct tm", Include = "time.h")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct SystemTime
         {

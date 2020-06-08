@@ -17,16 +17,19 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class Eina
     {
+        [NativeStruct("Eina_Size2D", Include="Elementary.h", PkgConfig="elementary")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Size2D
         {
             public int w;
             public int h;
-        };
+        }
 
         [DllImport(Libraries.Eina)]
         [return: MarshalAs(UnmanagedType.U1)]

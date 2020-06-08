@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Applications;
 
 internal static partial class Interop
@@ -61,6 +62,9 @@ internal static partial class Interop
 
         internal delegate void WatchAppAmbientChangedCallback(bool ambientMode, IntPtr userData);
 
+#if !PROFILE_TV
+        [NativeStruct("watch_app_lifecycle_callback_s", Include="watch_app.h", PkgConfig="capi-appfw-watch-application")]
+#endif
         [StructLayout(LayoutKind.Sequential)]
         internal struct WatchAppLifecycleCallbacks
         {

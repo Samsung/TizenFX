@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Telephony;
 
 /// <summary>
@@ -41,6 +42,7 @@ internal static partial class Interop
       SIMNotAvailable = TIZEN_ERROR_TELEPHONY | 0x1001
     };
 
+    [NativeStruct("telephony_handle_list_s", Include="telephony_common.h", PkgConfig="capi-telephony")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct HandleList
     {

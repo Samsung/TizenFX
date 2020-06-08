@@ -16,9 +16,11 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 
 internal static partial class Interop
 {
+    [NativeStruct("ckmc_policy_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcPolicy
     {
@@ -33,6 +35,7 @@ internal static partial class Interop
         public readonly bool extractable;
     }
 
+    [NativeStruct("ckmc_key_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcKey
     {
@@ -50,6 +53,7 @@ internal static partial class Interop
         public readonly string password;
     }
 
+    [NativeStruct("ckmc_cert_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcCert
     {
@@ -64,6 +68,7 @@ internal static partial class Interop
         public readonly int dataFormat;
     }
 
+    [NativeStruct("ckmc_raw_buffer_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcRawBuffer
     {
@@ -76,6 +81,7 @@ internal static partial class Interop
         public readonly UIntPtr size;
     }
 
+    [NativeStruct("ckmc_alias_list_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcAliasList
     {
@@ -83,6 +89,7 @@ internal static partial class Interop
         public readonly IntPtr next;
     }
 
+    [NativeStruct("ckmc_cert_list_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcCertList
     {
@@ -95,6 +102,7 @@ internal static partial class Interop
         public readonly IntPtr next;
     }
 
+    [NativeStruct("ckmc_pkcs12_s", Include="ckmc/ckmc-type.h", PkgConfig="key-manager")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct CkmcPkcs12
     {

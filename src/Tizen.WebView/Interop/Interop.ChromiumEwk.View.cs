@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.WebView;
 
 internal static partial class Interop
@@ -165,6 +166,7 @@ internal static partial class Interop
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool ewk_view_url_request_set(IntPtr obj, string url, HttpMethod method, IntPtr headers, string body);
 
+        [NativeStruct("Ewk_Script_Message", Include="ewk_view.h", PkgConfig="chromium-efl")]
         [StructLayout(LayoutKind.Sequential, CharSet =CharSet.Ansi)]
         internal struct ScriptMessage
         {

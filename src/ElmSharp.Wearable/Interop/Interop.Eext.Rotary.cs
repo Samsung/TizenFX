@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class Eext
@@ -34,6 +36,7 @@ internal static partial class Interop
             CounterClockwise
         }
 
+        [NativeStruct("Eext_Rotary_Event_Info", Include="circle/efl_extension_rotary.h", PkgConfig="efl-extension")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Eext_Rotary_Event_Info
         {

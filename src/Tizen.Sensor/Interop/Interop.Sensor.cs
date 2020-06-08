@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Sensor;
 
 internal static partial class Interop
@@ -130,6 +131,7 @@ internal static partial class Interop
         internal static extern int Free(IntPtr ptr);
     }
 
+    [NativeStruct("sensor_event_s", Include="sensor.h", PkgConfig="capi-system-sensor")]
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
     internal struct SensorEventStruct
     {

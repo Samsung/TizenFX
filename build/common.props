@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <DefineConstants Condition="'$(BuildProfile)' == 'tv'">$(DefineConstants);PROFILE_TV</DefineConstants>
+    <DefineConstants Condition="'$(BuildProfile)' == 'wearable'">$(DefineConstants);PROFILE_WEARABLE</DefineConstants>
+    <DefineConstants Condition="'$(BuildProfile)' == 'mobile'">$(DefineConstants);PROFILE_MOBILE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Open.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>

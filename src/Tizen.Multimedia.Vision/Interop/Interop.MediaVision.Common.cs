@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
@@ -107,6 +108,7 @@ internal static partial class Interop
     /// </summary>
     internal static partial class MediaVision
     {
+        [NativeStruct("mv_point_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Point
         {
@@ -114,6 +116,7 @@ internal static partial class Interop
             internal int y;
         }
 
+        [NativeStruct("mv_rectangle_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Rectangle
         {
@@ -123,6 +126,7 @@ internal static partial class Interop
             internal int height;
         }
 
+        [NativeStruct("mv_quadrangle_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Quadrangle
         {

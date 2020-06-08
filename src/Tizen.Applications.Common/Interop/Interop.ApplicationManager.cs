@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class ApplicationManager
@@ -334,6 +336,7 @@ internal static partial class Interop
         internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
 
+        [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct RuaRec
         {
