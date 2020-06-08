@@ -66,9 +66,6 @@ namespace Tizen.NUI.Samples
 
             // Only show a text button.
             textButton = new Button();
-            var textStyle = textButton.Style;
-            textStyle.BackgroundColor = new Selector<Color>();
-            textButton.ApplyStyle(textStyle);
             textButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             textButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             textButton.Size = new Size(300, 80);
@@ -77,10 +74,7 @@ namespace Tizen.NUI.Samples
 
             //Only show an icon button.
             iconButton = new Button();
-            var iconStyle = iconButton.Style;
-            iconStyle.Text.Text = "";
-            iconStyle.BackgroundColor = new Selector<Color>();
-            iconButton.ApplyStyle(iconStyle);
+            iconButton.Text = "";
             iconButton.Name = "IconButton";
             iconButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             iconButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
@@ -105,10 +99,7 @@ namespace Tizen.NUI.Samples
 
             //Show a button with icon and text.
             iconTextButton = new Button();
-            var iconTextStyle = iconTextButton.Style;
-            iconTextStyle.BackgroundColor = new Selector<Color>();
-            iconTextStyle.Text.Text = "IconTextButton";
-            iconTextButton.ApplyStyle(iconTextStyle);
+            iconTextButton.Text = "IconTextButton";
             iconTextButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             iconTextButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
