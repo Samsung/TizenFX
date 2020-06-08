@@ -10,7 +10,7 @@ namespace Tizen.NUI.Samples
 {
     public class MaskedImage
     {
-        private static readonly string IMAGE_MASK = CommonResource.GetFHResourcePath() + "ContactCard/contact-cards-mask.png";
+        private static readonly string IMAGE_MASK = CommonResource.GetDaliResourcePath() + "ContactCard/contact-cards-mask.png";
 
         public static View Create(string imagePath)
         {
