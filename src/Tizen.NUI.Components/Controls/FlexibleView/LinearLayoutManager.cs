@@ -56,7 +56,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int INVALID_OFFSET = -2147483648;
 
-        private static readonly float MAX_SCROLL_FACTOR = 1 / 3f;
+        private const float MAX_SCROLL_FACTOR = 1 / 3f;
 
         /// <summary>
         /// Current orientation.
@@ -1081,17 +1081,17 @@ namespace Tizen.NUI.Components
         // Helper class that keeps temporary state while {LayoutManager} is filling out the empty space.
         internal class LayoutState
         {
-            public static readonly int LAYOUT_START = -1;
+            public const int LAYOUT_START = -1;
 
-            public static readonly int LAYOUT_END = 1;
+            public const int LAYOUT_END = 1;
 
-            public static readonly int INVALID_LAYOUT = -1000;
+            public const int INVALID_LAYOUT = -1000;
 
-            public static readonly int ITEM_DIRECTION_HEAD = -1;
+            public const int ITEM_DIRECTION_HEAD = -1;
 
-            public static readonly int ITEM_DIRECTION_TAIL = 1;
+            public const int ITEM_DIRECTION_TAIL = 1;
 
-            public static readonly int SCROLLING_OFFSET_NaN = -10000;
+            public const int SCROLLING_OFFSET_NaN = -10000;
 
             // We may not want to recycle children in some cases (e.g. layout)
             public bool Recycle = true;

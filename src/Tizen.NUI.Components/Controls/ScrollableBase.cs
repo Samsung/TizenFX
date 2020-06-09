@@ -378,7 +378,6 @@ namespace Tizen.NUI.Components
             mTapGestureDetector.Attach(this);
             mTapGestureDetector.Detected += OnTapGestureDetected;
 
-
             ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             mScrollingChild = new View();
@@ -392,12 +391,14 @@ namespace Tizen.NUI.Components
                 BackgroundColor = Color.Transparent,
             };
 
-            mInterruptTouchingChild.TouchEvent += (object source, View.TouchEventArgs args) =>
-            {
-                return true;
-            };
+            mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
 
             Layout = new ScrollableBaseCustomLayout();
+        }
+
+        private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
+        {
+            return true;
         }
 
         private void OnPropertyChanged(object source, PropertyNotification.NotifyEventArgs args)
@@ -420,11 +421,13 @@ namespace Tizen.NUI.Components
                 {
                     propertyNotification.Notified -= OnPropertyChanged;
                     mScrollingChild.RemovePropertyNotification(propertyNotification);
+                    mScrollingChild.Relayout -= OnScrollingChildRelayout;
                 }
 
                 mScrollingChild = view;
                 propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
                 propertyNotification.Notified += OnPropertyChanged;
+                mScrollingChild.Relayout += OnScrollingChildRelayout;
             }
         }
 
@@ -441,9 +444,16 @@ namespace Tizen.NUI.Components
             {
                 propertyNotification.Notified -= OnPropertyChanged;
                 mScrollingChild.RemovePropertyNotification(propertyNotification);
+                mScrollingChild.Relayout -= OnScrollingChildRelayout;
 
                 mScrollingChild = new View();
             }
+        }
+
+        private void OnScrollingChildRelayout(object source, EventArgs args)
+        {
+            // Size is changed. Calculate maxScrollDistance.
+            maxScrollDistance = CalculateMaximumScrollDistance();
         }
 
         /// <summary>
@@ -464,8 +474,6 @@ namespace Tizen.NUI.Components
             {
                 CurrentPage = index;
             }
-
-            maxScrollDistance = CalculateMaximumScrollDistance();
 
             float targetPosition = Math.Min(ScrollingDirection == Direction.Vertical ? mScrollingChild.Children[index].Position.Y : mScrollingChild.Children[index].Position.X, maxScrollDistance);
             AnimateChildTo(ScrollDuration, -targetPosition);
@@ -816,7 +824,6 @@ namespace Tizen.NUI.Components
                 {
                     StopScroll();
                 }
-                maxScrollDistance = CalculateMaximumScrollDistance();
                 totalDisplacementForPan = 0.0f;
                 OnScrollDragStart();
             }
