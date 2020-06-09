@@ -82,7 +82,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of CurrentValue</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("currentValue", typeof(float), typeof(CircularProgress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(CircularProgress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularProgress)bindable;
             if (newValue != null)
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create("trackColor", typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularProgress)bindable;
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ProgressColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create("progressColor", typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularProgress)bindable;
 
@@ -147,8 +147,8 @@ namespace Tizen.NUI.Wearable
             return instance.privateIsEnabled;
         });
 
-        private static readonly string TrackVisualName = "Track";
-        private static readonly string ProgressVisualName = "Progress";
+        private const string TrackVisualName = "Track";
+        private const string ProgressVisualName = "Progress";
         private ArcVisual trackVisual;
         private ArcVisual progressVisual;
 
@@ -271,6 +271,10 @@ namespace Tizen.NUI.Wearable
             }
             set
             {
+                if (sweepAngleAnimation)
+                {
+                    sweepAngleAnimation.Stop();
+                }
                 sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 100, AlphaFunction.BuiltinFunctions.EaseIn);
 
                 SetValue(CurrentValueProperty, value);
@@ -335,7 +339,7 @@ namespace Tizen.NUI.Wearable
             set
             {
                 isEnabled = value;
-                if(isEnabled)
+                if (isEnabled)
                 {
                     UpdateTrackVisualColor(new Color(0.0f, 0.16f, 0.30f, 1.0f)); // #002A4D
                 }
@@ -347,7 +351,6 @@ namespace Tizen.NUI.Wearable
         }
 
         #endregion Properties
-
 
 
         #region Methods
@@ -484,7 +487,7 @@ namespace Tizen.NUI.Wearable
 
             if (sweepAngleAnimation)
             {
-                sweepAngleAnimation?.Stop();
+                sweepAngleAnimation.Stop();
             }
 
             sweepAngleAnimation = AnimateVisual(progressVisual, "sweepAngle", progressVisual.SweepAngle, 0, 100, builtinAlphaFunction);
@@ -515,7 +518,7 @@ namespace Tizen.NUI.Wearable
             }
 
             progressVisual.MixColor = progressColor;
-            if( !isEnabled ) // Dim state
+            if (!isEnabled) // Dim state
             {
                 progressVisual.Opacity = 0.6f;
             }
