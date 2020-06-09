@@ -110,7 +110,6 @@ namespace Tizen.NUI.Components
         private Animation thumbSizeAnimation;
         private Calculator calculator;
         private Size containerSize = new Size(0, 0);
-        private float currentPosition;
 
         #endregion Fields
 
