@@ -97,7 +97,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_ELLIPSIS_get")]
             public static extern int TextLabel_Property_ELLIPSIS_get();
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_LINE_COUNT_get")]
             public static extern int TextLabel_Property_LINE_COUNT_get();
 
@@ -124,6 +124,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_TEXT_FIT_get")]
             public static extern int TextLabel_Property_TEXT_FIT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_MIN_LINE_SIZE_get")]
+            public static extern int TextLabel_Property_MIN_LINE_SIZE_get();
         }
     }
 }

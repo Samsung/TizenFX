@@ -542,6 +542,24 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.MIN_LINE_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.MIN_LINE_SIZE).Get(out temp);
+            return temp;
+        });
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
@@ -1346,6 +1364,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The MinLineSize property.<br />
+        /// This api is supported since API8<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            get
+            {
+                return 0.0f;
+            }
+            set
+            {
+                throw new NotSupportedException("MinLineSize not supported. This is supported since API8");
+            }
+        }
+
+        /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
@@ -1576,6 +1611,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
+            internal static readonly int MIN_LINE_SIZE = Interop.TextLabel.TextLabel_Property_MIN_LINE_SIZE_get();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
