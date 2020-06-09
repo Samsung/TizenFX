@@ -977,6 +977,42 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the player command.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum PlayerCommand
+    {
+        /// <summary>
+        /// Play current track
+        /// </summary>
+        Play = 1,
+        /// <summary>
+        /// Pause current track
+        /// </summary>
+        Pause,
+        /// <summary>
+        /// Stop playing track
+        /// </summary>
+        Stop,
+        /// <summary>
+        /// Go to the next track
+        /// </summary>
+        Next,
+        /// <summary>
+        /// Go to the previous track
+        /// </summary>
+        Previous,
+        /// <summary>
+        /// Fast-forward current track
+        /// </summary>
+        Fast_forward,
+        /// <summary>
+        /// Rewind current track
+        /// </summary>
+        Rewind
+    }
+
+    /// <summary>
     /// Enumeration for the Bluetooth LE device address types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

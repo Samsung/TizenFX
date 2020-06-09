@@ -955,6 +955,79 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
+    public class AvrcpControlConnChangedEventArgs : EventArgs
+    {
+        private bool _isConnected;
+        string _remoteAddress;
+        // Setting Values when Event is invoked
+        internal AvrcpControlConnChangedEventArgs(bool conn, string address)
+        {
+            _isConnected = conn;
+            _remoteAddress = address;
+        }
+
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+        }
+
+        public string RemoteAddress
+        {
+            get
+            {
+                return _remoteAddress;
+            }
+        }
+    }
+    public class PositionChangedEventArgs : EventArgs
+    {
+        private uint _pos;
+        internal PositionChangedEventArgs(uint pos)
+        {
+            _pos = pos;
+        }
+        public uint Position
+        {
+            get
+            {
+                return _pos;
+            }
+        }
+    }
+    public class PlayStateChangedEventArgs : EventArgs
+    {
+        private PlayerState _playState;
+        internal PlayStateChangedEventArgs(PlayerState playState)
+        {
+            _playState = playState;
+        }
+        public PlayerState PlayState
+        {
+            get
+            {
+                return _playState;
+            }
+        }
+    }
+    public class TrackInfoChangedEventArgs : EventArgs
+    {
+        private Track _track = new Track();
+        internal TrackInfoChangedEventArgs(Track Data)
+        {
+            _track = Data;
+        }
+        public Track TrackData
+        {
+            get
+            {
+                return _track;
+            }
+        }
+    }
+
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth LE advertising state changed information.
     /// </summary>

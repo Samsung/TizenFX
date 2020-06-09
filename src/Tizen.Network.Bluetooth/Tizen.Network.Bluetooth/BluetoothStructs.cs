@@ -214,6 +214,21 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr data;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TrackInfoStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string Title;
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string Artist;
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string Album;
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string Genre;
+        internal uint total_tracks;
+        internal uint number;
+        internal uint duration;
+    }
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
