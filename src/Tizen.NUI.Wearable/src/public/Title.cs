@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Title : TextLabel
     {
-        private static readonly string VERTEX_SHADER =
+        private const string VERTEX_SHADER =
                         "attribute mediump vec2 aPosition;\n" +
                         "varying mediump vec2 vTexCoord;\n" +
                         "uniform highp mat4 uMvpMatrix;\n" +
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
                         "   vTexCoord = aPosition + vec2(0.5);\n" +
                         "}\n";
 
-        private static readonly string FRAGMENT_SHADER =
+        private const string FRAGMENT_SHADER =
                         "uniform lowp vec4 uColor;\n" +
                         "varying mediump vec2 vTexCoord;\n" +
                         "uniform sampler2D sTexture;\n" +

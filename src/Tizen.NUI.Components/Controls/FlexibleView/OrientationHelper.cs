@@ -27,10 +27,10 @@ namespace Tizen.NUI.Components
     // @see #createVerticalHelper(RecyclerView.LayoutManager)
     internal abstract class OrientationHelper
     {
-        public static readonly int HORIZONTAL = 0;
-        public static readonly int VERTICAL = 1;
+        public const int HORIZONTAL = 0;
+        public const int VERTICAL = 1;
 
-        private static readonly int INVALID_SIZE = -1;
+        private const int INVALID_SIZE = -1;
 
         protected FlexibleView.LayoutManager mLayoutManager;
 
