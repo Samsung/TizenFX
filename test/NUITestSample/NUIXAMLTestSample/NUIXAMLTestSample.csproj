@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="8.0.0.15214" />
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15258" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
     <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.11" />
   </ItemGroup>
@@ -47,6 +47,7 @@
       <None Remove="res\layout\TextFieldTestPage.xaml" />
       <None Remove="res\layout\TextLabelTestPage.xaml" />
       <None Remove="res\layout\VideoViewPage.xaml" />
+      <None Remove="CommandDemo\CommandDemo.xaml" />
     </ItemGroup>
     <ItemGroup>
       <EmbeddedResource Include="res\layout\1920x1080\AmbientDuoPage.xaml" />
@@ -72,7 +73,7 @@
       <EmbeddedResource Include="res\layout\TextFieldTestPage.xaml" />
       <EmbeddedResource Include="res\layout\TextLabelTestPage.xaml" />
       <EmbeddedResource Include="res\layout\VideoViewPage.xaml" />
+      <EmbeddedResource Include="CommandDemo\CommandDemo.xaml" />
     </ItemGroup>
-
 </Project>
 
