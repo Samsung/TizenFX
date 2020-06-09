@@ -110,8 +110,6 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private float dragStartPosition = 0.0f;
-
         private void OnScrollDragStart(object source, ScrollableBase.ScrollEventArgs args)
         {
             RecycleItem prevFocusedItem = FocusedItem;

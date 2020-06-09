@@ -28,7 +28,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LinearListLayoutManager : LayoutManager
     {
-        private float mLayoutOriginPosition = 0;
         private int firstVisibleItemIndex = -1;
         private int lastVisibleItemIndex = -1;
 
