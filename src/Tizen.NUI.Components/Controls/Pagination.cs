@@ -29,8 +29,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Pagination: Control
     {
-        private PaginationStyle paginationStyle;
-
         private VisualView container;
 
         private List<ImageVisual> indicatorList = new List<ImageVisual>();
@@ -74,6 +72,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Get style of pagination.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new PaginationStyle Style => ViewStyle as PaginationStyle;
+
+        /// <summary>
         /// Gets or sets the size of the indicator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -83,15 +88,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return paginationStyle?.IndicatorSize;
+                return Style?.IndicatorSize;
             }
             set
             {
-                if (value == null || paginationStyle == null)
+                if (value == null || Style == null)
                 {
                     return;
                 }
-                paginationStyle.IndicatorSize = value;
+                Style.IndicatorSize = value;
                 UpdateVisual();
             }
         }
@@ -106,15 +111,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return paginationStyle?.IndicatorImageURL;
+                return Style?.IndicatorImageURL;
             }
             set
             {
-                if (value == null || paginationStyle == null)
+                if (value == null || Style == null)
                 {
                     return;
                 }
-                paginationStyle.IndicatorImageURL = value;
+                Style.IndicatorImageURL = value;
                 UpdateVisual();
             }
         }
@@ -129,15 +134,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)paginationStyle?.IndicatorSpacing;
+                return (int)Style?.IndicatorSpacing;
             }
             set
             {
-                if (paginationStyle == null)
-                {
-                    return;
-                }
-                paginationStyle.IndicatorSpacing = value;
+                Style.IndicatorSpacing = value;
                 UpdateVisual();
             }
         }
@@ -240,20 +241,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Apply style to pagination.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            base.ApplyStyle(viewStyle);
-            if (viewStyle != null)
-            {
-                paginationStyle = viewStyle as PaginationStyle;
-            }
-        }
-
-        /// <summary>
         /// You can override it to do your select out operation.
         /// </summary>
         /// <param name="selectOutIndicator">The indicator will be selected out</param>
@@ -263,7 +250,7 @@ namespace Tizen.NUI.Components
         protected virtual void SelectOut(VisualMap selectOutIndicator)
         {
             if (!(selectOutIndicator is ImageVisual visual)) return;
-            visual.URL = paginationStyle.IndicatorImageURL.Normal;
+            visual.URL = Style?.IndicatorImageURL.Normal;
             visual.Opacity = 0.5f;
         }
 
@@ -277,7 +264,7 @@ namespace Tizen.NUI.Components
         protected virtual void SelectIn(VisualMap selectInIndicator)
         {
             if (!(selectInIndicator is ImageVisual visual)) return;
-            visual.URL = paginationStyle.IndicatorImageURL.Selected;
+            visual.URL = Style?.IndicatorImageURL.Selected;
             visual.Opacity = 1.0f;
         }
 
@@ -321,12 +308,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            paginationStyle = Style as PaginationStyle;
-            if (paginationStyle == null)
-            {
-                throw new Exception("Pagination style is null.");
-            }
-
             container = new VisualView()
             {
                 Name = "Container",
@@ -339,51 +320,51 @@ namespace Tizen.NUI.Components
 
         private void CreateIndicator()
         {
-            if (paginationStyle == null)
+            if (Style == null)
             {
                 return;
             }
             ImageVisual indicator = new ImageVisual
             {
-                URL = paginationStyle.IndicatorImageURL.Normal,
-                Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height),
+                URL = Style.IndicatorImageURL.Normal,
+                Size = new Size2D((int)Style.IndicatorSize.Width, (int)Style.IndicatorSize.Height),
                 Opacity = 0.5f,
             };
-            indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
+            indicator.Position = new Position2D((int)(Style.IndicatorSize.Width + Style.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);
             indicatorList.Add(indicator);
         }
 
         private void UpdateContainer()
         {
-            if (paginationStyle == null)
+            if (Style == null)
             {
                 return;
             }
             if (indicatorList.Count > 0)
             {
-                container.SizeWidth = (paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count - paginationStyle.IndicatorSpacing;
+                container.SizeWidth = (Style.IndicatorSize.Width + Style.IndicatorSpacing) * indicatorList.Count - Style.IndicatorSpacing;
             }
             else
             {
                 container.SizeWidth = 0;
             }
-            container.SizeHeight = paginationStyle.IndicatorSize.Height;
+            container.SizeHeight = Style.IndicatorSize.Height;
             container.PositionX = (int)((this.SizeWidth - container.SizeWidth) / 2);
         }
 
         private void UpdateVisual()
         {
-            if (null == paginationStyle.IndicatorSize) return;
-            if (null == paginationStyle.IndicatorImageURL) return;
+            if (null == Style.IndicatorSize) return;
+            if (null == Style.IndicatorImageURL) return;
             if (indicatorCount < 0) return;
 
             for (int i = 0; i < indicatorList.Count; i++)
             {
                 ImageVisual indicator = indicatorList[i];
-                indicator.URL = paginationStyle.IndicatorImageURL.Normal;
-                indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
-                indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
+                indicator.URL = Style.IndicatorImageURL.Normal;
+                indicator.Size = new Size2D((int)Style.IndicatorSize.Width, (int)Style.IndicatorSize.Height);
+                indicator.Position = new Position2D((int)(Style.IndicatorSize.Width + Style.IndicatorSpacing) * i, 0);
             }
         }
     }
