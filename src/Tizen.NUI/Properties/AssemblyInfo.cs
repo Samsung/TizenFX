@@ -10,7 +10,6 @@ using Tizen.NUI;
 // Xamarin.Forms.Loader.dll Xamarin.Forms.Xaml.XamlLoader.Load(object, string), kzu@microsoft.com
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI")]
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.BaseComponents")]
-[assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.UIComponents")]
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.Xaml")]
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.Binding")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml", "Tizen.NUI.Xaml")]
