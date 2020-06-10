@@ -40,11 +40,11 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
             propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
 
-        /// <summary> Control style. </summary>
+        /// <summary> Control stylesheet. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected string style;
+        protected string StyleSheet { get; set; }
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
 
@@ -109,9 +109,9 @@ namespace Tizen.NUI.Components
             }
 
             ApplyStyle(viewStyle);
-            this.style = styleSheet;
+            this.StyleSheet = styleSheet;
 
-            Initialize(style);
+            Initialize(StyleSheet);
         }
 
         /// Internal used.

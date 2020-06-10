@@ -468,7 +468,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(style) as TabStyle;
+            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleSheet) as TabStyle;
             if (tabStyle != null)
             {
                 Style.CopyFrom(tabStyle);

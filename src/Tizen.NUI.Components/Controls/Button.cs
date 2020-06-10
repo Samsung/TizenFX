@@ -1175,7 +1175,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
+            ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(StyleSheet) as ButtonStyle;
             if (buttonStyle != null)
             {
                 Style.CopyFrom(buttonStyle);

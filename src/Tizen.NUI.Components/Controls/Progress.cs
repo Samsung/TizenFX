@@ -423,7 +423,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ProgressStyle;
+            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleSheet) as ProgressStyle;
             if (null != tempStyle)
             {
                 Style.CopyFrom(tempStyle);
