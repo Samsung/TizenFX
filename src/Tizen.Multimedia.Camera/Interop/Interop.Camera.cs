@@ -16,6 +16,7 @@
  
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Multimedia;
 
 internal static partial class Interop
@@ -198,6 +199,7 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_unset_hdr_capture_progress_cb")]
         internal static extern CameraError UnsetHdrCaptureProgressCallback(IntPtr handle);
 
+        [NativeStruct("camera_image_data_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct StillImageDataStruct
         {
@@ -210,6 +212,7 @@ internal static partial class Interop
             internal uint ExifLength;
         }
 
+        [NativeStruct("camera_detected_face_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct DetectedFaceStruct
         {
@@ -287,6 +290,7 @@ internal static partial class Interop
             internal RgbPlaneStruct RgbPlane;
         }
 
+        [NativeStruct("camera_preview_data_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct CameraPreviewDataStruct
         {

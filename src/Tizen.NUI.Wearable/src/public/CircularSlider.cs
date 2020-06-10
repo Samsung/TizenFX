@@ -489,7 +489,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>The default progress style.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new CircularSliderStyle();
         }

@@ -936,7 +936,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default button style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ButtonStyle();
         }
@@ -1199,6 +1199,7 @@ namespace Tizen.NUI.Components
 
         private void OnClickInternal(ClickEventArgs eventArgs)
         {
+            Command?.Execute(CommandParameter);
             OnClick(eventArgs);
             Extension?.OnClick(this, eventArgs);
             ClickEvent?.Invoke(this, eventArgs);

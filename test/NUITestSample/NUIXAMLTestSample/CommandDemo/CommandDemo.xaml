@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="Tizen.NUI.Examples.CommandDemo"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:u="clr-namespace:Tizen.NUI.UIComponents;assembly=Tizen.NUI"
+  xmlns:l="clr-namespace:Tizen.NUI.Examples"
+  xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <View.BindingContext>
+    <l:NameViewModel x:Name="nameViewModel"/>
+  </View.BindingContext>
+
+  <b:TextLabel Text="UserName" Size2D="300,50" Position2D="500,200" BackgroundColor="Yellow" PointSize ="20"/>
+  <b:TextLabel Text="{Binding UserName}" Size2D="300,50" Position2D="500,270" BackgroundColor="Blue" PointSize ="20"/>
+  <b:TextLabel Text="CompanyName" Size2D="300,50" Position2D="500,340" BackgroundColor="Yellow" PointSize ="20"/>
+  <b:TextLabel Text="{Binding CompanyName}" Size2D="300,50" Position2D="500,410" BackgroundColor="Blue" PointSize ="20"/>
+  <c:Button Text="Update" Size2D="200,100" Position2D="500,480" Command="{Binding UpdateName}"/>
+</b:View>

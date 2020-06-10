@@ -410,14 +410,14 @@ namespace Tizen.NUI
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (Padding.Start + Padding.End + child.Margin.Start + child.Margin.End)),
+                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (child.Margin.Start + child.Margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
-                                    new LayoutLength(child.Padding.Start + child.Padding.End),
+                                    new LayoutLength(Padding.Start + Padding.End),
                                     new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (Padding.Top + Padding.Bottom + child.Margin.Top + child.Margin.Bottom)),
+                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (child.Margin.Top + child.Margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));

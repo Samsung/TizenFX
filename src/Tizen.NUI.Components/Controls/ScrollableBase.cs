@@ -62,11 +62,11 @@ namespace Tizen.NUI.Components
 
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureChild(childLayout, widthMeasureSpec, unrestrictedMeasureSpec);  // Height unrestricted by parent
+                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0));  // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureChild(childLayout, unrestrictedMeasureSpec, heightMeasureSpec);  // Width unrestricted by parent
+                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));  // Width unrestricted by parent
                         }
 
                         float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
