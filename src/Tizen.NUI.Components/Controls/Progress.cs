@@ -483,7 +483,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default progress style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ProgressStyle();
         }

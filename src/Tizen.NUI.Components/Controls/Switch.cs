@@ -341,7 +341,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default switch style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new SwitchStyle();
         }
