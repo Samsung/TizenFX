@@ -129,7 +129,12 @@ namespace Tizen.Network.Bluetooth
                 {
                     _sendIndicationTaskSource[requestId].SetResult(true);
                 }
+                else
+                {
+                    _sendIndicationTaskSource[requestId].SetResult(false);
+                }
                 _sendIndicationTaskSource.Remove(requestId);
+                _sendIndicationServer.Remove(requestId);
             }
         }
 
@@ -253,7 +258,8 @@ namespace Tizen.Network.Bluetooth
                 if (result == (int)BluetoothError.None)
                 {
                     _readValueTaskSource[requestId].SetResult(true);
-                } else
+                }
+                else
                 {
                     _readValueTaskSource[requestId].SetResult(false);
                 }
