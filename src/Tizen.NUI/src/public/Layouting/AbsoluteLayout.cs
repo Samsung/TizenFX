@@ -13,32 +13,16 @@
  * limitations under the License.
  *
  */
-using System;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
-    ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
+    ///  Positions are from the top left of the layout and can be set using the View.Position and alike.
     /// </summary>
     public class AbsoluteLayout : LayoutGroup
     {
-        /// <summary>
-        /// Struct to store Measured states of height and width.
-        /// </summary>
-        private struct HeightAndWidthState
-        {
-            public MeasuredSize.StateType widthState;
-            public MeasuredSize.StateType heightState;
-
-            public HeightAndWidthState( MeasuredSize.StateType width, MeasuredSize.StateType height)
-            {
-                widthState = width;
-                heightState = height;
-            }
-        }
-
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
@@ -55,69 +39,46 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            float totalHeight = 0.0f;
-            float totalWidth = 0.0f;
+            // Ensure layout respects it's given minimum size
+            float maxWidth = SuggestedMinimumWidth.AsDecimal();
+            float maxHeight = SuggestedMinimumHeight.AsDecimal();
 
-            HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
-                                                                     MeasuredSize.StateType.MeasuredSizeOK);
+            MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+            MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
-            float minPositionX = 0.0f;
-            float minPositionY = 0.0f;
-            float maxPositionX = 0.0f;
-            float maxPositionY = 0.0f;
-
-            // measure children
-            foreach( LayoutItem childLayout in LayoutChildren )
+            for (int i = 0; i < LayoutChildren.Count; i++)
             {
+                LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    // Get size of child
-                    MeasureChildWithMargins( childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0) );
-                    float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                    float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+                    // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
                     // Determine the width and height needed by the children using their given position and size.
-                    // Children could overlap so find the left most and right most child.
+                    // Children could overlap so find the right most child.
                     Position2D childPosition = childLayout.Owner.Position2D;
-                    float childLeft = childPosition.X;
-                    float childTop = childPosition.Y;
+                    float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childPosition.X;
+                    float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childPosition.Y;
 
-                    minPositionX = Math.Min( minPositionX, childLeft );
-                    maxPositionX = Math.Max( maxPositionX, childLeft + childWidth );
-                    // Children could overlap so find the highest and lowest child.
-                    minPositionY = Math.Min( minPositionY, childTop );
-                    maxPositionY = Math.Max( maxPositionY, childTop + childHeight );
+                    if (maxWidth < childRight)
+                        maxWidth = childRight;
 
-                    // Store current width and height needed to contain all children.
-                    totalWidth = maxPositionX - minPositionX;
-                    totalHeight = maxPositionY - minPositionY;
+                    if (maxHeight < childBottom)
+                        maxHeight = childBottom;
 
                     if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
-                        childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                        childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                     }
-                    if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                    if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
-                        childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                        childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                     }
                 }
             }
 
-
-            MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-            MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-            totalWidth = widthSizeAndState.Size.AsDecimal();
-            totalHeight = heightSizeAndState.Size.AsDecimal();
-
-            // Ensure layout respects it's given minimum size
-            totalWidth = Math.Max( totalWidth, SuggestedMinimumWidth.AsDecimal() );
-            totalHeight = Math.Max( totalHeight, SuggestedMinimumHeight.AsDecimal() );
-
-            widthSizeAndState.State = childState.widthState;
-            heightSizeAndState.State = childState.heightState;
-
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), widthMeasureSpec, childState.widthState ),
-                                   ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childState.heightState ) );
+            SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childWidthState),
+                                  ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childHeightState));
         }
 
         /// <summary>
@@ -133,9 +94,10 @@ namespace Tizen.NUI
         {
             // Absolute layout positions it's children at their Actor positions.
             // Children could overlap or spill outside the parent, as is the nature of absolute positions.
-            foreach( LayoutItem childLayout in LayoutChildren )
+            for (int i = 0; i < LayoutChildren.Count; i++)
             {
-                if( childLayout != null )
+                LayoutItem childLayout = LayoutChildren[i];
+                if ( childLayout != null )
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                     LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -145,9 +107,26 @@ namespace Tizen.NUI
                     LayoutLength childLeft = new LayoutLength(childPosition.X);
                     LayoutLength childTop = new LayoutLength(childPosition.Y);
 
-                    childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                 }
             }
+        }
+
+        private void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
+        {
+            View childOwner = child.Owner;
+
+            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
+                        new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
+                        new LayoutLength(0),
+                        new LayoutLength(childOwner.WidthSpecification));
+
+            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
+                        new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
+                        new LayoutLength(0),
+                        new LayoutLength(childOwner.HeightSpecification));
+
+            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
     }
 
