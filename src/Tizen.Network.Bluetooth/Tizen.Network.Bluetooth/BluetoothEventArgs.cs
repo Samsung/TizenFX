@@ -392,13 +392,7 @@ namespace Tizen.Network.Bluetooth
         /// A value indicating whether the device is connected.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsConnected
-        {
-            get
-            {
-                return _isConnected;
-            }
-        }
+        public bool IsConnected => _isConnected;
 
         /// <summary>
         /// The device connection data.

@@ -132,11 +132,7 @@ namespace Tizen.Network.Bluetooth
         {
             _playStateChangedCallback = (int state, IntPtr userdata) =>
             {
-                if (_playStateChanged != null)
-                {
-                    PlayerState State = (PlayerState)state;
-                    _playStateChanged.Invoke(null, new PlayStateChangedEventArgs(State));
-                }
+                _playStateChanged?.Invoke(null, new PlayStateChangedEventArgs((PlayerState)state));
             };
             int ret = Interop.Bluetooth.SetPlayStatusChangedCallback(_playStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
@@ -158,18 +154,16 @@ namespace Tizen.Network.Bluetooth
         {
             _trackInfoChangedCallback = (ref TrackInfoStruct track_info, IntPtr userdata) =>
             {
-                if (_trackInfoChanged != null)
+                _trackInfoChanged?.Invoke(null, new TrackInfoChangedEventArgs(new Track()
                 {
-                    Track _track = new Track();
-                    _track.Album = track_info.Album;
-                    _track.Artist = track_info.Artist;
-                    _track.Genre = track_info.Genre;
-                    _track.Title = track_info.Title;
-                    _track.TotalTracks = track_info.total_tracks;
-                    _track.TrackNum = track_info.number;
-                    _track.Duration = track_info.duration;
-                    _trackInfoChanged.Invoke(null, new TrackInfoChangedEventArgs(_track));
-                }
+                    Album = track_info.Album,
+                    Artist = track_info.Artist,
+                    Genre = track_info.Genre,
+                    Title = track_info.Title,
+                    TotalTracks = track_info.total_tracks,
+                    TrackNum = track_info.number,
+                    Duration = track_info.duration
+                }));
                 int ret = Interop.Bluetooth.SetTrackInfoChangedCallback(_trackInfoChangedCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
