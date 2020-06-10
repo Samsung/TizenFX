@@ -43,7 +43,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularProgressStyle)((CircularProgress)bindable).viewStyle)?.Thickness;
+            return ((CircularProgress)bindable).Style.Thickness;
         });
 
         /// <summary>Bindable property of MaxValue</summary>
@@ -113,7 +113,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularProgressStyle)((CircularProgress)bindable).viewStyle)?.TrackColor;
+            return ((CircularProgress)bindable).Style.TrackColor;
         });
 
         /// <summary>Bindable property of ProgressColor</summary>
@@ -128,7 +128,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularProgressStyle)((CircularProgress)bindable).viewStyle)?.ProgressColor;
+            return ((CircularProgress)bindable).Style.ProgressColor;
         });
 
         /// <summary>Bindable property of IsEnabled</summary>
@@ -158,12 +158,6 @@ namespace Tizen.NUI.Wearable
         private bool isEnabled = true;
 
         private Animation sweepAngleAnimation;
-
-        /// <summary>
-        /// Get style of progress.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new CircularProgressStyle Style => ViewStyle as CircularProgressStyle;
 
         #endregion Fields
 
@@ -207,6 +201,16 @@ namespace Tizen.NUI.Wearable
 
 
         #region Properties
+
+        /// <summary>
+        /// Return a copied Style instance of CircularProgress
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the CircularProgress.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new CircularProgressStyle Style => ViewStyle as CircularProgressStyle;
 
         /// <summary>
         /// The thickness of the track and progress.

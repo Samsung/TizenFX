@@ -43,7 +43,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.Thickness;
+            return ((CircularSlider)bindable).Style.Thickness;
         });
 
         /// <summary>Bindable property of MaxValue</summary>
@@ -113,7 +113,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.TrackColor;
+            return ((CircularSlider)bindable).Style.TrackColor;
         });
 
         /// <summary>Bindable property of ProgressColor</summary>
@@ -128,7 +128,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.ProgressColor;
+            return ((CircularSlider)bindable).Style.ProgressColor;
         });
 
         /// <summary>Bindable property of ThumbSize</summary>
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.ThumbColor;
+            return ((CircularSlider)bindable).Style.ThumbColor;
         });
 
         /// <summary>Bindable property of IsEnabled</summary>
@@ -196,12 +196,6 @@ namespace Tizen.NUI.Wearable
 
         private Animation sweepAngleAnimation;
         private Animation thumbAnimation;
-
-        /// <summary>
-        /// Get style of progress.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new CircularSliderStyle Style => ViewStyle as CircularSliderStyle;
 
         /// <summary>
         /// Value Changed event data.
@@ -260,6 +254,16 @@ namespace Tizen.NUI.Wearable
         #endregion Events
 
         #region Properties
+
+        /// <summary>
+        /// Return a copied Style instance of CircularSlider
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the CircularSlider.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new CircularSliderStyle Style => ViewStyle as CircularSliderStyle;
 
         /// <summary>
         /// The thickness of the track and progress.
