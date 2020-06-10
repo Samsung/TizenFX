@@ -54,7 +54,6 @@ namespace Tizen.System
         /// </example>
         public static void AppLaunchHome(int timeout) {
             DeviceError res = (DeviceError)Interop.Device.DevicePmQosAppLaunchHome(timeout);
-            Log.Error("CSDevice", "AppLaunchHome");
             if (res != DeviceError.None) {
                 throw DeviceExceptionFactory.CreateException(res, "unable to trasmit PmQos command.");
             }
@@ -81,7 +80,6 @@ namespace Tizen.System
         /// </example>
         public static void HomeScreen(int timeout) {
             DeviceError res = (DeviceError)Interop.Device.DevicePmQosHomeScreen(timeout);
-            Log.Error("CSDevice", "HomeScreen");
             if (res != DeviceError.None) {
                 throw DeviceExceptionFactory.CreateException(res, "unable to trasmit PmQos command.");
             }
