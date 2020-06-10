@@ -41,8 +41,8 @@ namespace Tizen.NUI.Wearable
         {
             ScrollingDirection = ScrollableBase.Direction.Vertical;
 
-            ScrollDragStartEvent += OnScrollDragStart;
-            ScrollAnimationEndEvent += OnAnimationEnd;
+            ScrollDragStarted += OnScrollDragStarted;
+            ScrollAnimationEnded += OnAnimationEnded;
 
             ContentContainer.PositionUsesPivotPoint = true;
             ContentContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private void OnAnimationEnd(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnAnimationEnded(object source, ScrollEventArgs args)
         {
         }
 
@@ -135,7 +135,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private void OnScrollDragStart(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnScrollDragStarted(object source, ScrollEventArgs args)
         {
             RecycleItem prevFocusedItem = FocusedItem;
             prevFocusedItem?.OnFocusLost();

@@ -23,6 +23,25 @@ using System.ComponentModel;
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
+    /// Value Changed event data.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CircularSliderValueChangedEventArgs : EventArgs
+    {
+        private float currentValue = 0.0f;
+
+        /// <summary>
+        /// Current value
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CurrentValue
+        {
+            get { return currentValue; }
+            set { currentValue = value; }
+        }
+    }
+
+    /// <summary>
     /// The CircularSlider class of Wearable is used to let users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// CircularSlider shows the current value with the length of the line.
     /// </summary>
@@ -197,25 +216,6 @@ namespace Tizen.NUI.Wearable
         private Animation sweepAngleAnimation;
         private Animation thumbAnimation;
 
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ValueChangedEventArgs : EventArgs
-        {
-            private float currentValue = 0.0f;
-
-            /// <summary>
-            /// Current value
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public float CurrentValue
-            {
-                get { return currentValue; }
-                set { currentValue = value; }
-            }
-        }
-
         #endregion Fields
 
 
@@ -249,7 +249,7 @@ namespace Tizen.NUI.Wearable
         /// The value changed event handler.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ValueChangedEventArgs> ValueChanged;
+        public event EventHandler<CircularSliderValueChangedEventArgs> ValueChanged;
 
         #endregion Events
 
@@ -616,7 +616,7 @@ namespace Tizen.NUI.Wearable
                 thumbAnimation.Play();
             }
 
-            ValueChanged?.Invoke(this, new ValueChangedEventArgs() { CurrentValue = currentValue });
+            ValueChanged?.Invoke(this, new CircularSliderValueChangedEventArgs() { CurrentValue = currentValue });
         }
 
         private void UpdateTrackVisualColor(Color trackColor)

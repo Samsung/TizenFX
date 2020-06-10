@@ -21,6 +21,19 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// Selection group event arguments
+    /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class GroupSelectedChangedEventArgs : EventArgs
+    {
+        /// <summary>The index of selected item</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int SelectedIndex { get; set; }
+    }
+
+    /// <summary>
     /// SelectionGroup is the base class of CheckBoxGroup and RadioButtonGroup.
     /// It defines a group that is set of selections and enables the user to choose one or multiple selection.
     /// </summary>
@@ -108,7 +121,7 @@ namespace Tizen.NUI.Components
                 return;
             }
             ItemGroup.Add(selection);
-            selection.SelectedEvent += OnSelectedEvent;
+            selection.SelectedChanged += OnSelectedChanged;
         }
 
         /// <summary>
@@ -124,7 +137,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            selection.SelectedEvent -= OnSelectedEvent;
+            selection.SelectedChanged -= OnSelectedChanged;
             ItemGroup.Remove(selection);
         }
 
@@ -139,7 +152,7 @@ namespace Tizen.NUI.Components
         {
         }
 
-        private void OnSelectedEvent(object sender, SelectButton.SelectEventArgs args)
+        private void OnSelectedChanged(object sender, SelectedChangedEventArgs args)
         {
             SelectButton selection = sender as SelectButton;
             if (selection != null)
@@ -150,21 +163,6 @@ namespace Tizen.NUI.Components
                     SelectionHandler(selection);
                 }
             }
-        }
-
-        /// <summary>
-        /// Selection group event arguments
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class SelectGroupEventArgs : EventArgs
-        {
-            /// <summary>The index of selected item</summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public int SelectedIndex { get; set; }
         }
     }
 }
