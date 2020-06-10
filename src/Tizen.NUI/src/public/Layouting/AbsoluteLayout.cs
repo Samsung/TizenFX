@@ -72,7 +72,7 @@ namespace Tizen.NUI
                 if (childLayout != null)
                 {
                     // Get size of child
-                    MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
+                    MeasureChildWithMargins( childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0) );
                     float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
                     float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
 

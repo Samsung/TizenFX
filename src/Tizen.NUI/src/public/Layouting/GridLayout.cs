@@ -211,7 +211,7 @@ namespace Tizen.NUI
                 {
                     if (childLayout != null)
                     {
-                        MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
+                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                     }
                 }
 
