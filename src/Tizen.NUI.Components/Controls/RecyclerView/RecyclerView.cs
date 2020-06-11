@@ -29,9 +29,14 @@ namespace Tizen.NUI.Components
     {
         protected RecycleAdapter mAdapter;
         protected View mContainer;
-        protected LayoutManager mLayoutManager;
+        protected RecycleLayoutManager mLayoutManager;
         protected int mTotalItemCount = 15;
         private List<PropertyNotification> notifications = new List<PropertyNotification>();
+
+        public RecyclerView()
+        {
+            Initialize(new RecycleAdapter(), new RecycleLayoutManager());
+        }
 
         /// <summary>
         /// Default constructor.
@@ -41,7 +46,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecyclerView(RecycleAdapter adapter, LayoutManager layoutManager)
+        public RecyclerView(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
+        {
+            Initialize(adapter, layoutManager);
+        }
+
+        private void Initialize(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
         {
             Name = "[List]";
             mContainer = new View()
@@ -64,6 +74,37 @@ namespace Tizen.NUI.Components
             mLayoutManager = layoutManager;
             mLayoutManager.Container = mContainer;
             mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
+            mLayoutManager.DataCount = mAdapter.Data.Count;
+
+            InitializeItems();
+        }
+
+        private void OnItemSizeChanged(object source, PropertyNotification.NotifyEventArgs args)
+        {
+            mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? mContainer.CurrentPosition.X : mContainer.CurrentPosition.Y);
+        }
+        
+        public int TotalItemCount 
+        {
+            get
+            {
+                return mTotalItemCount;
+            }
+            set
+            {
+                mTotalItemCount = value;
+                InitializeItems();
+            }
+        }
+
+        private void InitializeItems()
+        {
+            for(int i = mContainer.Children.Count -1 ; i > -1 ; i--)
+            {
+                mContainer.Children[i].Unparent();
+                notifications[i].Notified -= OnItemSizeChanged;
+                notifications.RemoveAt(i);
+            }
 
             for (int i = 0; i < mTotalItemCount; i++)
             {
@@ -78,10 +119,7 @@ namespace Tizen.NUI.Components
                 mContainer.Add(item);
 
                 PropertyNotification noti = item.AddPropertyNotification("size", PropertyCondition.Step(0.1f));
-                noti.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
-                {
-                    mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? mContainer.CurrentPosition.X : mContainer.CurrentPosition.Y);
-                };
+                noti.Notified += OnItemSizeChanged;
                 notifications.Add(noti);
             }
 
@@ -89,11 +127,33 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                mContainer.SizeWidth = mLayoutManager.StepSize * mAdapter.Data.Count;
+                mContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
             }
             else
             {
-                mContainer.SizeHeight = mLayoutManager.StepSize * mAdapter.Data.Count;
+                mContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
+            }
+        }
+
+
+        public new Direction ScrollingDirection
+        {
+            get
+            {
+                return base.ScrollingDirection;
+            }
+            set
+            {
+                base.ScrollingDirection = value;
+
+                if (ScrollingDirection == Direction.Horizontal)
+                {
+                    mContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
+                }
+                else
+                {
+                    mContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
+                }
             }
         }
 
@@ -109,6 +169,19 @@ namespace Tizen.NUI.Components
             {
                 return mAdapter;
             }
+            set
+            {
+                if(mAdapter != null)
+                {
+                    mAdapter.OnDataChanged -= OnAdapterDataChanged;
+                }
+
+                mAdapter = value;
+                mAdapter.OnDataChanged += OnAdapterDataChanged;
+                mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
+                mLayoutManager.DataCount = mAdapter.Data.Count;
+                InitializeItems();
+            }
         }
 
         /// <summary>
@@ -117,11 +190,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LayoutManager ListLayoutManager
+        public RecycleLayoutManager LayoutManager
         {
             get
             {
                 return mLayoutManager;
+            }
+            set
+            {
+                mLayoutManager = value;
+                mLayoutManager.Container = mContainer;
+                mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
+                mLayoutManager.DataCount = mAdapter.Data.Count;
+                InitializeItems();
             }
         }
 
@@ -151,6 +232,7 @@ namespace Tizen.NUI.Components
                 if (item.DataIndex > -1 && item.DataIndex < mAdapter.Data.Count)
                 {
                     item.Show();
+                    item.Name = "["+item.DataIndex+"]";
                     mAdapter.BindData(item);
                 }
                 else
