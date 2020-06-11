@@ -1119,7 +1119,8 @@ namespace ElmSharp
 
         private void DisposeEvent()
         {
-            foreach (var evt in _eventStore)
+            var events = new List<IInvalidatable>(_eventStore);
+            foreach (var evt in events)
             {
                 evt.Dispose();
             }
