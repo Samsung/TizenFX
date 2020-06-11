@@ -34,7 +34,11 @@ namespace Tizen.Network.Bluetooth
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
-            _impl._notificationSent += (s, e) => NotificationSent?.Invoke(this, e);
+            _impl._notificationSent += (s, e) =>
+            {
+                e.Server = this;
+                NotificationSent?.Invoke(this, e);
+            };
         }
 
         /// <summary>

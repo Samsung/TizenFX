@@ -29,7 +29,6 @@ namespace Tizen.Network.Bluetooth
         internal event EventHandler<NotificationSentEventArg> _notificationSent;
         int _requestId = 0;
         Dictionary<int, TaskCompletionSource<bool>> _sendIndicationTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
-        Dictionary<int, BluetoothGattServer> _sendIndicationServer = new Dictionary<int, BluetoothGattServer>();
         Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
 
         internal BluetoothGattServerImpl()
@@ -124,7 +123,7 @@ namespace Tizen.Network.Bluetooth
             int requestId = (int)userData;
             if (_sendIndicationTaskSource.ContainsKey(requestId))
             {
-                _notificationSent?.Invoke(characteristicHandle, new NotificationSentEventArg(_sendIndicationServer[requestId], clientAddress, result, completed));
+                _notificationSent?.Invoke(this, new NotificationSentEventArg(null, clientAddress, result, completed));
                 if (completed)
                 {
                     _sendIndicationTaskSource[requestId].SetResult(true);
@@ -134,7 +133,6 @@ namespace Tizen.Network.Bluetooth
                     _sendIndicationTaskSource[requestId].SetResult(false);
                 }
                 _sendIndicationTaskSource.Remove(requestId);
-                _sendIndicationServer.Remove(requestId);
             }
         }
 
@@ -147,7 +145,6 @@ namespace Tizen.Network.Bluetooth
             {
                 requestId = _requestId++;
                 _sendIndicationTaskSource[requestId] = task;
-                _sendIndicationServer[requestId] = server;
             }
 
             int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), _sendIndicationCallback, clientAddress, (IntPtr)requestId);
@@ -156,7 +153,6 @@ namespace Tizen.Network.Bluetooth
                 GattUtil.Error(err, string.Format("Failed to send value changed indication for characteristic uuid {0}", characteristic.Uuid));
                 task.SetResult(false);
                 _sendIndicationTaskSource.Remove(requestId);
-                _sendIndicationServer.Remove(requestId);
                 BluetoothErrorFactory.ThrowBluetoothException(err);
             }
             return task.Task;
