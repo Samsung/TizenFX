@@ -270,7 +270,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ScrollEventArgs : EventArgs
@@ -305,7 +304,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when user starts dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollEventArgs> ScrollDragStartEvent;
@@ -313,7 +311,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when user stops dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollEventArgs> ScrollDragEndEvent;
@@ -322,7 +319,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollEventArgs> ScrollAnimationStartEvent;
@@ -330,7 +326,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when the scrolling slide animation ends, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollEventArgs> ScrollAnimationEndEvent;
@@ -339,11 +334,76 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollEventArgs> ScrollEvent;
 
+
+        /// <summary>
+        /// Scrollbar for ScrollableBase.<br />
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollbarBase Scrollbar
+        {
+            get
+            {
+                return scrollBar;
+            }
+            set
+            {
+                if (scrollBar)
+                {
+                    scrollBar.Unparent();
+                }
+
+                scrollBar = value;
+                scrollBar.Name = "ScrollBar";
+                Add(scrollBar);
+
+                if (hideScrollbar)
+                {
+                    scrollBar.Hide();
+                }
+                else
+                {
+                    scrollBar.Show();
+                }
+
+                SetScrollbar();
+            }
+        }
+
+        /// <summary>
+        /// [Draft] Always hide Scrollbar.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool HideScrollBar
+        {
+            get
+            {
+                return hideScrollbar;
+            }
+            set
+            {
+                hideScrollbar = value;
+
+                if (scrollBar)
+                {
+                    if (value)
+                    {
+                        scrollBar.Hide();
+                    }
+                    else
+                    {
+                        scrollBar.Show();
+                    }
+                }
+            }
+        }
+
+        private bool hideScrollbar = true;
         private Animation scrollAnimation;
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
@@ -351,10 +411,12 @@ namespace Tizen.NUI.Components
         private TapGestureDetector mTapGestureDetector;
         private View mScrollingChild;
         private View mInterruptTouchingChild;
+        private ScrollbarBase scrollBar;
         private float multiplier = 1.0f;
         private bool scrolling = false;
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
+        private Size previousContainerSize = new Size();
 
         // If false then can only flick pages when the current animation/scroll as ended.
         private bool flickWhenAnimating = false;
@@ -366,7 +428,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollableBase() : base()
@@ -396,6 +457,8 @@ namespace Tizen.NUI.Components
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
 
             Layout = new ScrollableBaseCustomLayout();
+
+            Scrollbar = new Scrollbar();
         }
 
         private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -412,12 +475,11 @@ namespace Tizen.NUI.Components
         /// Called after a child has been added to the owning view.
         /// </summary>
         /// <param name="view">The child which has been added.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            if (view.Name != "InterruptTouchingChild")
+            if (view.Name != "InterruptTouchingChild" && view.Name != "ScrollBar")
             {
                 if (mScrollingChild.Name != "DefaultScrollingChild")
                 {
@@ -431,6 +493,7 @@ namespace Tizen.NUI.Components
                 propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
                 propertyNotification.Notified += OnPropertyChanged;
                 mScrollingChild.Relayout += OnScrollingChildRelayout;
+                mScrollingChild.LowerToBottom();
             }
         }
 
@@ -438,12 +501,11 @@ namespace Tizen.NUI.Components
         /// Called after a child has been removed from the owning view.
         /// </summary>
         /// <param name="view">The child which has been removed.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildRemove(View view)
         {
-            if (view.Name != "InterruptTouchingChild")
+            if (view.Name != "InterruptTouchingChild" && view.Name != "ScrollBar")
             {
                 propertyNotification.Notified -= OnPropertyChanged;
                 mScrollingChild.RemovePropertyNotification(propertyNotification);
@@ -457,14 +519,39 @@ namespace Tizen.NUI.Components
         private void OnScrollingChildRelayout(object source, EventArgs args)
         {
             // Size is changed. Calculate maxScrollDistance.
-            maxScrollDistance = CalculateMaximumScrollDistance();
+            bool isSizeChanged = previousContainerSize.Width != mScrollingChild.Size.Width || previousContainerSize.Height != mScrollingChild.Size.Height;
+
+            if (isSizeChanged)
+            {
+                maxScrollDistance = CalculateMaximumScrollDistance();
+                SetScrollbar();
+            }
+
+            previousContainerSize = mScrollingChild.Size;
+        }
+
+        /// <summary>
+        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase. 
+        /// Set the composition that will go into the ScrollableBase according to your ScrollableBase.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void SetScrollbar()
+        {
+            if (Scrollbar)
+            {
+                bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+                float contentLength = isHorizontal ? mScrollingChild.Size.Width : mScrollingChild.Size.Height;
+                float viewportLength = isHorizontal ? Size.Width : Size.Height;
+                float currentPosition = isHorizontal ? mScrollingChild.CurrentPosition.X : mScrollingChild.CurrentPosition.Y;
+                Scrollbar.Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
+            }
         }
 
         /// <summary>
         /// Scrolls to the item at the specified index.
         /// </summary>
         /// <param name="index">Index of item.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollToIndex(int index)
@@ -518,6 +605,11 @@ namespace Tizen.NUI.Components
             ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollEvent?.Invoke(this, eventArgs);
 
+            bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+            float contentLength = isHorizontal ? mScrollingChild.Size.Width : mScrollingChild.Size.Height;
+            float currentPosition = isHorizontal ? mScrollingChild.CurrentPosition.X : mScrollingChild.CurrentPosition.Y;
+
+            scrollBar.Update(contentLength, Math.Abs(currentPosition));
             CheckPreReachedTargetPosition();
         }
 
@@ -538,7 +630,6 @@ namespace Tizen.NUI.Components
         /// This helps developer who wants to know before scroll is reaching target position.
         /// </summary>
         /// <param name="targetPosition">Index of item.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPreReachedTargetPosition(float targetPosition)
@@ -681,7 +772,6 @@ namespace Tizen.NUI.Components
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -745,20 +835,20 @@ namespace Tizen.NUI.Components
 
         private float CalculateMaximumScrollDistance()
         {
-            int scrollingChildLength = 0;
-            int scrollerLength = 0;
+            float scrollingChildLength = 0;
+            float scrollerLength = 0;
             if (ScrollingDirection == Direction.Horizontal)
             {
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Horizontal");
 
-                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredWidth.Size.AsRoundedValue();
-                scrollerLength = CurrentSize.Width;
+                scrollingChildLength = mScrollingChild.Size.Width;
+                scrollerLength = Size.Width;
             }
             else
             {
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Vertical");
-                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue();
-                scrollerLength = CurrentSize.Height;
+                scrollingChildLength = mScrollingChild.Size.Height;
+                scrollerLength = Size.Height;
             }
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy maxScrollDistance:" + (scrollingChildLength - scrollerLength) +
@@ -901,7 +991,6 @@ namespace Tizen.NUI.Components
         /// Adjust scrolling position by own scrolling rules.
         /// Override this function when developer wants to change destination of flicking.(e.g. always snap to center of item)
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual float AdjustTargetPositionOfScrollAnimation(float position)

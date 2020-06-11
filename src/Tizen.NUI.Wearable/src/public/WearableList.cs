@@ -49,9 +49,19 @@ namespace Tizen.NUI.Wearable
             mContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
             NoticeAnimationEndBeforePosition = 50;
 
-            ScrollAvailableArea = new Vector2( 0, mContainer.SizeHeight);
+            ScrollAvailableArea = new Vector2(0, mContainer.SizeHeight);
 
             SetFocus(0, false);
+
+            Scrollbar = new CircularScrollbar();
+        }
+
+        protected override void SetScrollbar()
+        {
+            if(mContainer != null && LayoutManager != null)
+            {
+                Scrollbar.Initialize(mContainer.Size.Height, LayoutManager.StepSize, mContainer.CurrentPosition.Y, false);
+            }
         }
 
         public new RecycleAdapter Adapter
