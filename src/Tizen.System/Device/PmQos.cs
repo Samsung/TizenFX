@@ -28,15 +28,13 @@ namespace Tizen.System
     /// </remarks>
     /// <privilege>
     /// </privilege>
-    /// <since_tizen> 6 </since_tizen>
-    ///
-
-    public class PmQos
+    /// <since_tizen> 8 </since_tizen>
+    public static class PmQos
     {
         /// <summary>
         /// Increase the cpu clock for AppLaunchHome within timeout.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -62,7 +60,7 @@ namespace Tizen.System
         /// <summary>
         /// Increase the cpu clock for HomeScreen within timeout.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
