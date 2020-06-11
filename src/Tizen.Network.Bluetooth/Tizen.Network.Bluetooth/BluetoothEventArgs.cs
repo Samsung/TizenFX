@@ -1256,7 +1256,7 @@ namespace Tizen.Network.Bluetooth
         /// The GATT server instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattServer Server { get; }
+        public BluetoothGattServer Server { get; internal set; }
         /// <summary>
         /// The client address.
         /// </summary>

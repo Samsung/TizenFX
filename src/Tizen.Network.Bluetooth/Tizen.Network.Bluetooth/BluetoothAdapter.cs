@@ -470,7 +470,7 @@ namespace Tizen.Network.Bluetooth
         /// If this succeeds, the DiscoveryStateChanged event will be invoked.
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or 
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or
         /// the discovery process is not is progress. </exception>
         /// <since_tizen> 3 </since_tizen>
         static public void StopDiscovery()
@@ -649,7 +649,6 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or the Start LE scan is failed.</exception>
-        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
         static public void StartLeScan(BluetoothLeScanMode mode)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LayoutManager
+    public class RecycleLayoutManager
     {
         protected float mPrevScrollPosition = 0.0f;
         protected int mPrevFirstDataIndex = 0;
@@ -69,6 +69,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ItemSize{get;set;} = new Size();
  
         /// <summary>
@@ -76,6 +77,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Orientation LayoutOrientation{get;set;} = Orientation.Vertical;
 
         /// <summary>
@@ -83,6 +85,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float StepSize{
             get
             {
@@ -91,14 +94,34 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// How far can you reach the next item.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int DataCount{get; set;}
+
+        /// <summary>
         /// This is called to find out where items are lain out according to current scroll position.
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Layout(float scrollPosition)
         {
            
+        }
+
+        /// <summary>
+        /// This is called to find out how much container size can be.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual float CalculateLayoutOrientationSize()
+        {
+            return 0.0f;
         }
 
         /// <summary>
@@ -108,6 +131,7 @@ namespace Tizen.NUI.Components
         /// <returns>List of RecycleItems which should be recycled.</returns>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual List<RecycleItem> Recycle(float scrollPosition)
         {
             return new List<RecycleItem>();
@@ -119,6 +143,7 @@ namespace Tizen.NUI.Components
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float CalculateCandidateScrollPosition(float scrollPosition)
         {
             return scrollPosition;
