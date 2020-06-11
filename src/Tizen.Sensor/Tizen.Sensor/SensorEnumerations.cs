@@ -109,12 +109,12 @@ namespace Tizen.Sensor
         /// </summary>
         SleepMonitor = 0x301,
         /// <summary>
-        /// Stationary activity detector.
-        /// </summary>
         /// Auto Rotation sensor.
         /// </summary>
         AutoRotation = 0x901,
         /// <summary>
+        /// Stationary activity detector.
+        /// </summary>
         StationaryActivityDetector = 0x1A00,
         /// <summary>
         /// Walking activity detector.
@@ -324,7 +324,7 @@ namespace Tizen.Sensor
         /// <since_tizen> 3 </since_tizen>
         Detected = 1
     }
-    
+
     /// <summary>
     /// The auto rotation state.
     /// </summary>
