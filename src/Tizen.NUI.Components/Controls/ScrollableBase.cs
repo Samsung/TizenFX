@@ -378,7 +378,7 @@ namespace Tizen.NUI.Components
             mTapGestureDetector.Attach(this);
             mTapGestureDetector.Detected += OnTapGestureDetected;
 
-            ClippingMode = ClippingModeType.ClipToBoundingBox;
+            ClippingMode = ClippingModeType.ClipChildren;
 
             mScrollingChild = new View();
             mScrollingChild.Name = "DefaultScrollingChild";
