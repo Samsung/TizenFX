@@ -120,10 +120,7 @@ namespace Tizen.NUI.Components
             return instance.state;
         });
 
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ProgressStatusType state = ProgressStatusType.Determinate;
-
+        private ProgressStatusType state = ProgressStatusType.Determinate;
         private const float round = 0.5f;
         private ImageView trackImage = null;
         private ImageView progressImage = null;

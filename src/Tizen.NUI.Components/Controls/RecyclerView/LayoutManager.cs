@@ -28,9 +28,9 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutManager
     {
-        protected float mPrevScrollPosition = 0.0f;
-        protected int mPrevFirstDataIndex = 0;
-        protected float mStepSize = 0.0f;
+        private float mPrevScrollPosition = 0.0f;
+        private int mPrevFirstDataIndex = 0;
+        private float mStepSize = 0.0f;
 
         /// <summary>
         /// Enumeration for the direction in which the content is laid out
@@ -86,9 +86,13 @@ namespace Tizen.NUI.Components
         public float StepSize{
             get
             {
-                return mStepSize;
+                return MStepSize;
             }
         }
+
+        protected float MPrevScrollPosition { get => mPrevScrollPosition; set => mPrevScrollPosition = value; }
+        protected int MPrevFirstDataIndex { get => mPrevFirstDataIndex; set => mPrevFirstDataIndex = value; }
+        protected float MStepSize { get => mStepSize; set => mStepSize = value; }
 
         /// <summary>
         /// This is called to find out where items are lain out according to current scroll position.

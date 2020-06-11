@@ -27,12 +27,16 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecyclerView : ScrollableBase
     {
-        protected RecycleAdapter mAdapter;
-        protected View mContainer;
-        protected LayoutManager mLayoutManager;
-        protected int mTotalItemCount = 15;
+        private RecycleAdapter mAdapter;
+        private View mContainer;
+        private LayoutManager mLayoutManager;
+        private int mTotalItemCount = 15;
         private List<PropertyNotification> notifications = new List<PropertyNotification>();
 
+        protected RecycleAdapter MAdapter { get => mAdapter; set => mAdapter = value; }
+        protected View MContainer { get => mContainer; set => mContainer = value; }
+        protected LayoutManager MLayoutManager { get => mLayoutManager; set => mLayoutManager = value; }
+        protected int MTotalItemCount { get => mTotalItemCount; set => mTotalItemCount = value; }
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -44,7 +48,7 @@ namespace Tizen.NUI.Components
         public RecyclerView(RecycleAdapter adapter, LayoutManager layoutManager)
         {
             Name = "[List]";
-            mContainer = new View()
+            MContainer = new View()
             {
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Horizontal ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
@@ -55,45 +59,45 @@ namespace Tizen.NUI.Components
                 Name = "Container",
             };
 
-            Add(mContainer);
+            Add(MContainer);
             ScrollEvent += OnScroll;
 
-            mAdapter = adapter;
-            mAdapter.OnDataChanged += OnAdapterDataChanged;
+            MAdapter = adapter;
+            MAdapter.OnDataChanged += OnAdapterDataChanged;
 
-            mLayoutManager = layoutManager;
-            mLayoutManager.Container = mContainer;
-            mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
+            MLayoutManager = layoutManager;
+            MLayoutManager.Container = MContainer;
+            MLayoutManager.ItemSize = MAdapter.CreateRecycleItem().Size;
 
-            for (int i = 0; i < mTotalItemCount; i++)
+            for (int i = 0; i < MTotalItemCount; i++)
             {
-                RecycleItem item = mAdapter.CreateRecycleItem();
+                RecycleItem item = MAdapter.CreateRecycleItem();
                 item.DataIndex = i;
                 item.Name = "[" + i + "] recycle";
 
-                if (i < mAdapter.Data.Count)
+                if (i < MAdapter.Data.Count)
                 {
-                    mAdapter.BindData(item);
+                    MAdapter.BindData(item);
                 }
-                mContainer.Add(item);
+                MContainer.Add(item);
 
                 PropertyNotification noti = item.AddPropertyNotification("size", PropertyCondition.Step(0.1f));
                 noti.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
                 {
-                    mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? mContainer.CurrentPosition.X : mContainer.CurrentPosition.Y);
+                    MLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? MContainer.CurrentPosition.X : MContainer.CurrentPosition.Y);
                 };
                 notifications.Add(noti);
             }
 
-            mLayoutManager.Layout(0.0f);
+            MLayoutManager.Layout(0.0f);
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                mContainer.SizeWidth = mLayoutManager.StepSize * mAdapter.Data.Count;
+                MContainer.SizeWidth = MLayoutManager.StepSize * MAdapter.Data.Count;
             }
             else
             {
-                mContainer.SizeHeight = mLayoutManager.StepSize * mAdapter.Data.Count;
+                MContainer.SizeHeight = MLayoutManager.StepSize * MAdapter.Data.Count;
             }
         }
 
@@ -107,7 +111,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mAdapter;
+                return MAdapter;
             }
         }
 
@@ -121,14 +125,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return mLayoutManager;
+                return MLayoutManager;
             }
         }
 
         private void OnScroll(object source, ScrollableBase.ScrollEventArgs args)
         {
-            mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
-            List<RecycleItem> recycledItemList = mLayoutManager.Recycle(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
+            MLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
+            List<RecycleItem> recycledItemList = MLayoutManager.Recycle(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
             BindData(recycledItemList);
         }
 
@@ -136,7 +140,7 @@ namespace Tizen.NUI.Components
         {
             List<RecycleItem> changedData = new List<RecycleItem>();
 
-            foreach (RecycleItem item in mContainer.Children)
+            foreach (RecycleItem item in MContainer.Children)
             {
                 changedData.Add(item);
             }
@@ -148,10 +152,10 @@ namespace Tizen.NUI.Components
         {
             foreach (RecycleItem item in changedData)
             {
-                if (item.DataIndex > -1 && item.DataIndex < mAdapter.Data.Count)
+                if (item.DataIndex > -1 && item.DataIndex < MAdapter.Data.Count)
                 {
                     item.Show();
-                    mAdapter.BindData(item);
+                    MAdapter.BindData(item);
                 }
                 else
                 {
@@ -173,7 +177,7 @@ namespace Tizen.NUI.Components
         {
             // Destination is depending on implementation of layout manager.
             // Get destination from layout manager.
-            return mLayoutManager.CalculateCandidateScrollPosition(position);
+            return MLayoutManager.CalculateCandidateScrollPosition(position);
         }
     }
 }

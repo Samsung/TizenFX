@@ -359,7 +359,7 @@ namespace Tizen.NUI.Components
         // If false then can only flick pages when the current animation/scroll as ended.
         private bool flickWhenAnimating = false;
         private PropertyNotification propertyNotification;
-        protected float finalTargetPosition;
+        private float finalTargetPosition;
 
         /// <summary>
         /// [Draft] Constructor
@@ -505,7 +505,7 @@ namespace Tizen.NUI.Components
 
         private bool readyToNotice = false;
 
-        protected float noticeAnimationEndBeforePosition = 0.0f;
+        private float noticeAnimationEndBeforePosition = 0.0f;
 
         private void OnScroll()
         {
