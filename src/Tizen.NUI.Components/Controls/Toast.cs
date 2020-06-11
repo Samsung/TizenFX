@@ -74,8 +74,6 @@ namespace Tizen.NUI.Components
         }
 
         private Window window = null;
-        /// <summary> text labels </summary>
-        protected TextLabel[] textLabels = null;
         private TextLabel textLabel = null;
         private string strText = null;
         private Timer timer = null;
