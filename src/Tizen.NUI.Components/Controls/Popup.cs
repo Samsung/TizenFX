@@ -844,7 +844,7 @@ namespace Tizen.NUI.Components
         {
             /// <summary> Button index which is clicked in Popup </summary>
             /// <since_tizen> 6 </since_tizen>
-            public int ButtonIndex;
+            public int ButtonIndex { get; set; }
         }
     }
 }
