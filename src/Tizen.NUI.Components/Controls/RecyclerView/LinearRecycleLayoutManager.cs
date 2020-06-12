@@ -101,9 +101,9 @@ namespace Tizen.NUI.Components
                 // Tizen.Log.Error("NUI","["+item.DataIndex+"] "+item.Position.Y+" ==== \n");
             }
 
-            if(mStepSize == 0)
+            if(StepSize == 0)
             {
-                mStepSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
+                StepSize = LayoutOrientation == Orientation.Horizontal?ItemSize.Width:ItemSize.Height;
             }
         }
 
@@ -115,7 +115,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float CalculateLayoutOrientationSize()
         {
-            return mStepSize * DataCount;
+            return StepSize * DataCount;
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Tizen.NUI.Components
         {
             List<RecycleItem> result = new List<RecycleItem>();
           
-            bool checkFront = (mPrevScrollPosition - scrollPosition) > 0;
+            bool checkFront = (PrevScrollPosition - scrollPosition) > 0;
 
             if(checkFront)
             {
@@ -161,7 +161,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            mPrevScrollPosition = scrollPosition;
+            PrevScrollPosition = scrollPosition;
 
             return result;
         }
