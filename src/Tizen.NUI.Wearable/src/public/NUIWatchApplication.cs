@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,25 +47,18 @@ namespace Tizen.NUI
         /// </summary>
         public class TimeTickEventArgs : EventArgs
         {
-            private WatchTime _watchTime;
             /// <summary>
             /// Default Constructor.
             /// </summary>
             public TimeTickEventArgs( WatchTime watchTime )
             {
-                _watchTime = watchTime;
+                WatchTime = watchTime;
             }
 
             /// <summary>
             /// WatchTime.
             /// </summary>
-            public WatchTime WatchTime
-            {
-                get
-                {
-                    return _watchTime;
-                }
-            }
+            public WatchTime WatchTime { get; }
         }
 
         /// <summary>
@@ -79,25 +72,18 @@ namespace Tizen.NUI
         /// </summary>
         public class AmbientTickEventArgs : EventArgs
         {
-            private WatchTime _watchTime;
             /// <summary>
             /// Default Constructor.
             /// </summary>
             public AmbientTickEventArgs(WatchTime watchTime)
             {
-                _watchTime = watchTime;
+                WatchTime = watchTime;
             }
 
             /// <summary>
             /// WatchTime.
             /// </summary>
-            public WatchTime WatchTime
-            {
-                get
-                {
-                    return _watchTime;
-                }
-            }
+            public WatchTime WatchTime { get; }
         }
 
         /// <summary>
@@ -110,25 +96,18 @@ namespace Tizen.NUI
         /// </summary>
         public class AmbientChangedEventArgs : EventArgs
         {
-            private bool _changed;
             /// <summary>
             /// Default Constructor.
             /// </summary>
             public AmbientChangedEventArgs(bool changed)
             {
-                _changed = changed;
+                Changed = changed;
             }
 
             /// <summary>
             /// Changed.
             /// </summary>
-            public bool Changed
-            {
-                get
-                {
-                    return _changed;
-                }
-            }
+            public bool Changed { get; }
         }
 
         /// <summary>

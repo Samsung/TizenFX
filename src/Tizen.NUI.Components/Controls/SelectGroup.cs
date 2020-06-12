@@ -32,15 +32,11 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class SelectGroup
     {
-        private List<SelectButton> itemGroup;
-
         /// <summary> Selection group composed of items </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected List<SelectButton> ItemGroup { get => itemGroup; set => itemGroup = value; }
-
-        private int selectedIndex;
+        protected List<SelectButton> ItemGroup { get; set; }
 
         /// <summary>
         /// Get the number of items in the SelectionGroup.
@@ -56,7 +52,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int SelectedIndex => selectedIndex;
+        public int SelectedIndex { get; private set; }
 
         /// <summary>
         /// Construct SelectionGroup
@@ -148,7 +144,7 @@ namespace Tizen.NUI.Components
             {
                 if (args.IsSelected == true)
                 {
-                    selectedIndex = selection.Index;
+                    SelectedIndex = selection.Index;
                     SelectionHandler(selection);
                 }
             }

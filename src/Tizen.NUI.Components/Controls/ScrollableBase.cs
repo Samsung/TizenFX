@@ -275,7 +275,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ScrollEventArgs : EventArgs
         {
-            Position position;
 
             /// <summary>
             /// Default constructor.
@@ -285,7 +284,7 @@ namespace Tizen.NUI.Components
             /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
             public ScrollEventArgs(Position position)
             {
-                this.position = position;
+                this.Position = position;
             }
 
             /// <summary>
@@ -293,13 +292,7 @@ namespace Tizen.NUI.Components
             /// </summary>
             /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position Position
-            {
-                get
-                {
-                    return position;
-                }
-            }
+            public Position Position { get; }
         }
 
         /// <summary>
@@ -509,9 +502,8 @@ namespace Tizen.NUI.Components
 
         private bool readyToNotice = false;
 
-        private float noticeAnimationEndBeforePosition = 0.0f;
         // Let's consider more whether this needs to be set as protected.
-        public float NoticeAnimationEndBeforePosition { get => noticeAnimationEndBeforePosition; set => noticeAnimationEndBeforePosition = value; }
+        public float NoticeAnimationEndBeforePosition { get; set; }
 
         private void OnScroll()
         {

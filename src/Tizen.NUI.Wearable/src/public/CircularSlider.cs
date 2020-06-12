@@ -209,17 +209,11 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ValueChangedEventArgs : EventArgs
         {
-            private float currentValue = 0.0f;
-
             /// <summary>
             /// Current value
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float CurrentValue
-            {
-                get { return currentValue; }
-                set { currentValue = value; }
-            }
+            public float CurrentValue { get; set; }
         }
 
         #endregion Fields
