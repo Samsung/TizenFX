@@ -30,13 +30,16 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SelectButton : Button
     {
+        private SelectGroup itemGroup = null;
+
         /// <summary>
         /// Item group which is used to manager all SelectButton in it.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected SelectGroup itemGroup = null;
+        protected SelectGroup ItemGroup { get => itemGroup; set => itemGroup = value; }
+
         static SelectButton() { }
 
         /// <summary>
@@ -92,9 +95,9 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (itemGroup != null)
+                if (ItemGroup != null)
                 {
-                    return itemGroup.GetIndex(this);
+                    return ItemGroup.GetIndex(this);
                 }
 
                 return -1;
@@ -217,7 +220,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool IsSelected;
+            public bool IsSelected { get; set; }
         }
     }
 }
