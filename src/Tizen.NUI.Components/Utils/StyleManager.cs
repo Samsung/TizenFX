@@ -230,7 +230,7 @@ namespace Tizen.NUI.Components
             /// CurrentTheme
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
-            public string CurrentTheme { get; set; }
+            public string CurrentTheme;
         }
 
         internal static string GetFrameworkResourcePath(string resourceFileName)

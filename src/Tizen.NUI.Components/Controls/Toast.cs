@@ -74,7 +74,9 @@ namespace Tizen.NUI.Components
         }
 
         private Window window = null;
-         private TextLabel textLabel = null;
+        /// <summary> text labels </summary>
+        protected TextLabel[] textLabels = null;
+        private TextLabel textLabel = null;
         private string strText = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
@@ -335,7 +337,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default toast style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ToastStyle();
         }

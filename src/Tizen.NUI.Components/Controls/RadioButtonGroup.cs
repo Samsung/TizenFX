@@ -54,7 +54,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton GetItem(int index)
         {
-            return ItemGroup[index] as RadioButton;
+            return itemGroup[index] as RadioButton;
         }
 
         /// <summary>
@@ -96,12 +96,12 @@ namespace Tizen.NUI.Components
         protected override void SelectionHandler(SelectButton selection)
         {
             RadioButton radio = selection as RadioButton;
-            if (!ItemGroup.Contains(radio))
+            if (!itemGroup.Contains(radio))
             {
                 return;
             }
 
-            foreach (RadioButton btn in ItemGroup)
+            foreach (RadioButton btn in itemGroup)
             {
                 if (btn != null && btn != radio && btn.IsEnabled == true)
                 {
