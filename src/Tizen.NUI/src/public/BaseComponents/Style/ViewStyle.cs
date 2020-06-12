@@ -77,7 +77,6 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.subState;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexProperty = BindableProperty.Create(nameof(Flex), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -89,7 +88,6 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.flex;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignSelfProperty = BindableProperty.Create(nameof(AlignSelf), typeof(int?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -101,7 +99,6 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.alignSelf;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexMarginProperty = BindableProperty.Create(nameof(FlexMargin), typeof(Vector4), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
