@@ -473,7 +473,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
+            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ScrollBarStyle;
             if (tempStyle != null)
             {
                 Style.CopyFrom(tempStyle);

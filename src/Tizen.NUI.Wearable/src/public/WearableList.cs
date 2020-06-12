@@ -47,7 +47,7 @@ namespace Tizen.NUI.Wearable
             mContainer.PositionUsesPivotPoint = true;
             mContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
             mContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
-            noticeAnimationEndBeforePosition = 50;
+            NoticeAnimationEndBeforePosition = 50;
 
             ScrollAvailableArea = new Vector2( 0, mContainer.SizeHeight);
 
