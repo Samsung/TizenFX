@@ -436,6 +436,47 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets setup app ID of the widget.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
+        public string SetupAppId
+        {
+            get
+            {
+                string str = Interop.WidgetService.GetSetupAppId(Id);
+                Interop.WidgetService.ErrorCode err =
+                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
+                switch (err)
+                {
+                    case Interop.WidgetService.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException();
+
+                    case Interop.WidgetService.ErrorCode.NotSupported:
+                        throw new NotSupportedException("Not supported");
+
+                    case Interop.WidgetService.ErrorCode.InvalidParameter:
+                        throw new InvalidOperationException("Invalid parameter at unmanaged code");
+
+                    case Interop.WidgetService.ErrorCode.IoError:
+                        throw new InvalidOperationException("Failed to access DB");
+
+                    case Interop.WidgetService.ErrorCode.Fault:
+                        throw new InvalidOperationException("Failed to access DB");
+
+                    case Interop.WidgetService.ErrorCode.NotExist:
+                        throw new InvalidOperationException("Not exist in DB");
+                }
+
+                return str;
+            }
+        }
+
+        /// <summary>
         ///  The event handler for a created widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

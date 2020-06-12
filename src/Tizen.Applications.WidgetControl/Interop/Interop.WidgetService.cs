@@ -108,5 +108,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
         internal static extern string GetWidgetPackageId(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_app_id_of_setup_app")]
+        internal static extern string GetSetupAppId(string widgetId);
     }
 }
