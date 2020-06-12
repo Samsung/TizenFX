@@ -58,11 +58,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return itemGroup as CheckBoxGroup;
+                return base.ItemGroup as CheckBoxGroup;
             }
             internal set
             {
-                itemGroup = value;
+                base.ItemGroup = value;
             }
         }
     }
