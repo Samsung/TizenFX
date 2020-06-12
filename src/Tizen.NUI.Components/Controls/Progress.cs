@@ -120,8 +120,9 @@ namespace Tizen.NUI.Components
             return instance.state;
         });
 
-        /// This needs to be considered more if public-open is necessary.
-        private ProgressStatusType state = ProgressStatusType.Determinate;
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected ProgressStatusType state = ProgressStatusType.Determinate;
 
         private const float round = 0.5f;
         private ImageView trackImage = null;
@@ -422,7 +423,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ProgressStyle;
+            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ProgressStyle;
             if (null != tempStyle)
             {
                 Style.CopyFrom(tempStyle);
@@ -434,9 +435,9 @@ namespace Tizen.NUI.Components
         /// Change Image status. It can be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This needs to be considered more if public-open is necessary.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private void UpdateStates()
+        protected virtual void UpdateStates()
         {
             ChangeImageState(state);
         }
@@ -445,9 +446,9 @@ namespace Tizen.NUI.Components
         /// Update progress value
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This needs to be considered more if public-open is necessary.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private void UpdateValue()
+        protected virtual void UpdateValue()
         {
             if (null == trackImage || null == progressImage)
             {

@@ -44,7 +44,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected string StyleName { get; set; }
+        protected string style;
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
 
@@ -109,9 +109,9 @@ namespace Tizen.NUI.Components
             }
 
             ApplyStyle(viewStyle);
-            this.StyleName = styleSheet;
+            this.style = styleSheet;
 
-            Initialize(StyleName);
+            Initialize(style);
         }
 
         /// Internal used.

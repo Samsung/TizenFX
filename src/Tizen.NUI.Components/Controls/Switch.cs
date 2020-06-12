@@ -359,7 +359,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
+            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
             if (null != switchStyle)
             {
                 Style.CopyFrom(switchStyle);
