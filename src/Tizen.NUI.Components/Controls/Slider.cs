@@ -838,7 +838,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(style) as SliderStyle;
+            SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(StyleName) as SliderStyle;
             if (sliderStyle != null)
             {
                 Style?.CopyFrom(sliderStyle);
