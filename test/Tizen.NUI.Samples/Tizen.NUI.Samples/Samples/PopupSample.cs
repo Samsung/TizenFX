@@ -224,7 +224,7 @@ namespace Tizen.NUI.Samples
             button.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             button.WidthSpecification = 580;
             button.HeightSpecification = 80;
-            button.ButtonText.Text = "LayoutDirection is left to right";
+            button.TextLabel.Text = "LayoutDirection is left to right";
             button.ClickEvent += ButtonClickEvent;
 
             parent1.Add(parent2);
@@ -284,13 +284,13 @@ namespace Tizen.NUI.Samples
             {
                 popup.LayoutDirection = ViewLayoutDirectionType.RTL;
                 popup2.LayoutDirection = ViewLayoutDirectionType.RTL;
-                button.ButtonText.Text = "LayoutDirection is right to left";
+                button.TextLabel.Text = "LayoutDirection is right to left";
             }
             else
             {
                 popup.LayoutDirection = ViewLayoutDirectionType.LTR;
                 popup2.LayoutDirection = ViewLayoutDirectionType.LTR;
-                button.ButtonText.Text = "LayoutDirection is left to right";
+                button.TextLabel.Text = "LayoutDirection is left to right";
             }           
         }
 

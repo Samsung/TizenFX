@@ -85,8 +85,8 @@ namespace Tizen.NUI.Samples
             dropDown.HeaderText.PointSize = 28;
             dropDown.HeaderText.FontFamily = "SamsungOneUI 500C";
             dropDown.HeaderText.PositionX = 50;
-            dropDown.Button.ButtonText.Text = "DropDown Text";
-            dropDown.Button.ButtonIcon.Size = new Size(48, 48);
+            dropDown.Button.TextLabel.Text = "DropDown Text";
+            dropDown.Button.Icon.Size = new Size(48, 48);
             dropDown.Button.IconRelativeOrientation = Button.IconOrientation.Right;
             dropDown.Button.ParentOrigin = ParentOrigin.CenterLeft;
             dropDown.Button.PivotPoint = PivotPoint.CenterLeft;
