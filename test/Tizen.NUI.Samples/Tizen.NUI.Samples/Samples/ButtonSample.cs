@@ -69,7 +69,7 @@ namespace Tizen.NUI.Samples
             textButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             textButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             textButton.Size = new Size(300, 80);
-            textButton.ButtonText.Text = "Button";
+            textButton.TextLabel.Text = "Button";
             parent1.Add(textButton);
 
             //Only show an icon button.
@@ -79,10 +79,10 @@ namespace Tizen.NUI.Samples
             iconButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             iconButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             iconButton.Size = new Size(80, 80);
-            iconButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
+            iconButton.Icon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
             parent2.Add(iconButton);
             iconButton.ClickEvent += (ojb, e) => {
-                var btn = iconButton.ButtonIcon.GetParent() as Button;
+                var btn = iconButton.Icon.GetParent() as Button;
                 string name = btn.Name;
             };
 
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Samples
             iconTextButton.BackgroundImage = CommonResource.GetTVResourcePath() + "component/c_buttonbasic/c_basic_button_white_bg_normal_9patch.png";
             iconTextButton.BackgroundImageBorder = new Rectangle(4, 4, 5, 5);
             iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
-            iconTextButton.ButtonIcon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
+            iconTextButton.Icon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
             iconTextButton.IconPadding = new Extents(20, 20, 20, 20);
             iconTextButton.TextPadding = new Extents(20, 50, 20, 20);
             iconTextButton.Size = new Size(500, 300);
@@ -227,7 +227,7 @@ namespace Tizen.NUI.Samples
                 Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityToggleButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
+            utilityToggleButton.OverlayImage.Border = new Rectangle(5, 5, 5, 5);
 
             utilityToggleButton.Size = new Size(300, 80);
             parent1.Add(utilityToggleButton);
@@ -263,10 +263,10 @@ namespace Tizen.NUI.Samples
                 Url = CommonResource.GetFHResourcePath() + "3. Button/oval_toggle_btn_shadow.png",
                 Border = new Rectangle(5, 5, 5, 5)
             };
-            utilityOvalButton.ButtonOverlay.Border = new Rectangle(5, 5, 5, 5);
+            utilityOvalButton.OverlayImage.Border = new Rectangle(5, 5, 5, 5);
 
             utilityOvalButton.Size = new Size(104, 104);
-            utilityOvalButton.ButtonText.PointSize = 20;
+            utilityOvalButton.TextLabel.PointSize = 20;
             parent1.Add(utilityOvalButton);
 
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
@@ -449,10 +449,10 @@ namespace Tizen.NUI.Samples
                         iconTextButton.IconRelativeOrientation = Button.IconOrientation.Left;
                         break;
                     case "5":
-                        iconTextButton.ButtonIcon.Padding.Start = 50;
+                        iconTextButton.Icon.Padding.Start = 50;
                         break;
                     case "6":
-                        iconTextButton.ButtonIcon.Padding.End = 50;
+                        iconTextButton.Icon.Padding.End = 50;
                         break;
                     case "7":
                         iconTextButton.LayoutDirection = ViewLayoutDirectionType.RTL;

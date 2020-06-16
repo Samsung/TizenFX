@@ -107,7 +107,7 @@ namespace Tizen.NUI.Samples
                 };
                 utilityRadioButton[i].ApplyStyle(utilityStyle);
                 utilityRadioButton[i].Size = new Size(48, 48);
-                utilityRadioButton[i].ButtonIcon.Size = new Size(48, 48);
+                utilityRadioButton[i].Icon.Size = new Size(48, 48);
                 group[0].Add(utilityRadioButton[i]);
 
                 // create family radio button.
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Samples
                 };
                 familyRadioButton[i].ApplyStyle(familyStyle);
                 familyRadioButton[i].Size = new Size(48, 48);
-                familyRadioButton[i].ButtonIcon.Size = new Size(48, 48);
+                familyRadioButton[i].Icon.Size = new Size(48, 48);
 
                 group[1].Add(familyRadioButton[i]);
 
@@ -154,7 +154,7 @@ namespace Tizen.NUI.Samples
                 };
                 foodRadioButton[i].ApplyStyle(foodStyle);
                 foodRadioButton[i].Size = new Size(150, 48);
-                foodRadioButton[i].ButtonIcon.Size = new Size(48, 48);
+                foodRadioButton[i].Icon.Size = new Size(48, 48);
 
                 group[2].Add(foodRadioButton[i]);
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Samples
                 };
                 kitchenRadioButton[i].ApplyStyle(kitchenStyle);
                 kitchenRadioButton[i].Size = new Size(48, 48);
-                kitchenRadioButton[i].ButtonIcon.Size = new Size(48, 48);
+                kitchenRadioButton[i].Icon.Size = new Size(48, 48);
 
                 group[3].Add(kitchenRadioButton[i]);
 
