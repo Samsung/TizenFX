@@ -80,7 +80,7 @@ namespace Tizen.NUI.Samples
             };
             loading[0] = new Loading();
             loading[0].Size = new Size(100, 100);
-            loading[0].Images = imageArray;
+            loading[0].ImageArray = imageArray;
             layout[1].Add(loading[0]);
             gridLayout.Add(layout[1]);
 
