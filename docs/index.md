@@ -17,11 +17,4 @@ One of the major components of .NET Core is the .NET Standard. The .NET APIs pro
 
 You can efficiently build your Tizen .NET application UI and its supporting logic using the Xamarin.Forms APIs. Extended details for these APIs are available on the [Xamarin Web site](https://developer.xamarin.com/api/namespace/Xamarin.Forms/).
 
-The Tizen 4.0 public M2 contains a few limitations on the Xamarin.Forms APIs; these limitations are to be eliminated in future releases. The following classes are not supported:
-
-- `AppLinkEntry`
-- `OpenGLView`
-
-A list of limitations is available at [Current Xamarin.Forms limitations](https://developer.tizen.org/development/articles/current-xamarin.forms-limitations).
-
 [!include[TizenFX API](api/index.md)]
