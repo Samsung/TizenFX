@@ -120,7 +120,7 @@ namespace Tizen.NUI.Samples
 
                 utilityCheckBox[i].Size = new Size(48, 48);
                 utilityCheckBox[i].Margin = new Extents(76, 76, 25, 25);
-                utilityCheckBox[i].ButtonIcon.Size = new Size(48, 48);
+                utilityCheckBox[i].Icon.Size = new Size(48, 48);
 
                 group[0].Add(utilityCheckBox[i]);
                 //Create family radio button.
@@ -145,7 +145,7 @@ namespace Tizen.NUI.Samples
 
                 familyCheckBox[i].Size = new Size(48, 48);
                 familyCheckBox[i].Margin = new Extents(76, 76, 25, 25);
-                familyCheckBox[i].ButtonIcon.Size = new Size(48, 48);
+                familyCheckBox[i].Icon.Size = new Size(48, 48);
                 group[1].Add(familyCheckBox[i]);
                 //Create food radio button.
                 foodCheckBox[i] = new CheckBox();
@@ -168,7 +168,7 @@ namespace Tizen.NUI.Samples
                 foodCheckBox[i].ApplyStyle(foodStyle);
                 foodCheckBox[i].Size = new Size(48, 48);
                 familyCheckBox[i].Margin = new Extents(76, 76, 25, 25);
-                foodCheckBox[i].ButtonIcon.Size = new Size(48, 48);
+                foodCheckBox[i].Icon.Size = new Size(48, 48);
 
                 group[2].Add(foodCheckBox[i]);
                 //Create kitchen radio button.
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Samples
                 kitchenCheckBox[i].WidthSpecification = 48;
                 kitchenCheckBox[i].HeightSpecification = 48;
                 kitchenCheckBox[i].Margin = new Extents(76, 76, 25, 25);
-                kitchenCheckBox[i].ButtonIcon.Size = new Size(48, 48);
+                kitchenCheckBox[i].Icon.Size = new Size(48, 48);
 
                 group[3].Add(kitchenCheckBox[i]);
 

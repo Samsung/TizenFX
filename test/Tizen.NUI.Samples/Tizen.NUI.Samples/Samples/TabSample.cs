@@ -187,14 +187,14 @@ namespace Tizen.NUI.Samples
             // Button of switching mode
             button = new Button(buttonStyle);
             button.Size = new Size(500, 80);
-            button.ButtonText.Text = mode[index];
+            button.TextLabel.Text = mode[index];
             button.ClickEvent += ButtonClickEvent;
             parentView[2].Add(button);
 
             // Button of LayoutDirection
             button2 = new Button(buttonStyle);
             button2.Size = new Size(500, 80);
-            button2.ButtonText.Text = "LayoutDirection is left to right";
+            button2.TextLabel.Text = "LayoutDirection is left to right";
             button2.ClickEvent += ButtonClickEvent2;
             parentView[2].Add(button2);
         }
@@ -267,7 +267,7 @@ namespace Tizen.NUI.Samples
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
             index = (index + 1) % 4;
-            button.ButtonText.Text = mode[index];
+            button.TextLabel.Text = mode[index];
             tab.Underline.BackgroundColor = color[index];
             tab.TextColorSelector = new ColorSelector
             {
@@ -288,13 +288,13 @@ namespace Tizen.NUI.Samples
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.RTL;
                 tab2.LayoutDirection = ViewLayoutDirectionType.RTL;
-                button2.ButtonText.Text = "LayoutDirection is right to left";
+                button2.TextLabel.Text = "LayoutDirection is right to left";
             }
             else
             {
                 tab.LayoutDirection = ViewLayoutDirectionType.LTR;
                 tab2.LayoutDirection = ViewLayoutDirectionType.LTR;
-                button2.ButtonText.Text = "LayoutDirection is left to right";
+                button2.TextLabel.Text = "LayoutDirection is left to right";
             }
         }
     }

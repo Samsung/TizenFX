@@ -266,7 +266,7 @@ namespace Tizen.NUI.Components
         /// Button's icon part.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView ButtonIcon
+        public ImageView Icon
         {
             get
             {
@@ -292,7 +292,7 @@ namespace Tizen.NUI.Components
         /// Button's overlay image part.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView ButtonOverlay
+        public ImageView OverlayImage
         {
             get
             {
@@ -319,7 +319,7 @@ namespace Tizen.NUI.Components
         /// Button's text part.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel ButtonText
+        public TextLabel TextLabel
         {
             get
             {
@@ -761,17 +761,17 @@ namespace Tizen.NUI.Components
             {
                 Extension?.OnDispose(this);
 
-                if (ButtonIcon != null)
+                if (Icon != null)
                 {
-                    Utility.Dispose(ButtonIcon);
+                    Utility.Dispose(Icon);
                 }
-                if (ButtonText != null)
+                if (TextLabel != null)
                 {
-                    Utility.Dispose(ButtonText);
+                    Utility.Dispose(TextLabel);
                 }
-                if (ButtonOverlay != null)
+                if (OverlayImage != null)
                 {
-                    Utility.Dispose(ButtonOverlay);
+                    Utility.Dispose(OverlayImage);
                 }
             }
 
@@ -916,17 +916,17 @@ namespace Tizen.NUI.Components
                 Extension = buttonStyle.CreateExtension();
                 if (buttonStyle.Overlay != null)
                 {
-                    ButtonOverlay?.ApplyStyle(buttonStyle.Overlay);
+                    OverlayImage?.ApplyStyle(buttonStyle.Overlay);
                 }
 
                 if (buttonStyle.Text != null)
                 {
-                    ButtonText?.ApplyStyle(buttonStyle.Text);
+                    TextLabel?.ApplyStyle(buttonStyle.Text);
                 }
 
                 if (buttonStyle.Icon != null)
                 {
-                    ButtonIcon?.ApplyStyle(buttonStyle.Icon);
+                    Icon?.ApplyStyle(buttonStyle.Icon);
                 }
             }
         }
@@ -1028,12 +1028,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
+            if (Style.IconRelativeOrientation == null || Icon == null || TextLabel == null)
             {
                 return;
             }
-            ButtonText.WidthResizePolicy = ResizePolicyType.Fixed;
-            ButtonText.HeightResizePolicy = ResizePolicyType.Fixed;
+            TextLabel.WidthResizePolicy = ResizePolicyType.Fixed;
+            TextLabel.HeightResizePolicy = ResizePolicyType.Fixed;
             int textPaddingStart = Style.TextPadding.Start;
             int textPaddingEnd = Style.TextPadding.End;
             int textPaddingTop = Style.TextPadding.Top;
@@ -1046,13 +1046,13 @@ namespace Tizen.NUI.Components
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
-                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - ButtonIcon.SizeHeight;
+                TextLabel.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
+                TextLabel.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - Icon.SizeHeight;
             }
             else
             {
-                ButtonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - ButtonIcon.SizeWidth;
-                ButtonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
+                TextLabel.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - Icon.SizeWidth;
+                TextLabel.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
         /// <summary>
@@ -1063,13 +1063,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (Style.IconRelativeOrientation == null || ButtonIcon == null || ButtonText == null)
+            if (Style.IconRelativeOrientation == null || Icon == null || TextLabel == null)
             {
                 return;
             }
 
-            var buttonIcon = ButtonIcon;
-            var buttonText = ButtonText;
+            var buttonIcon = Icon;
+            var buttonText = TextLabel;
 
             int textPaddingStart = Style.TextPadding.Start;
             int textPaddingEnd = Style.TextPadding.End;
@@ -1243,7 +1243,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel GetCurrentText(ButtonExtension extension)
         {
-            return (extension == Extension) ? ButtonText : null;
+            return (extension == Extension) ? TextLabel : null;
         }
 
         /// <summary>
@@ -1257,7 +1257,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView GetCurrentIcon(ButtonExtension extension)
         {
-            return (extension == Extension) ? ButtonIcon : null;
+            return (extension == Extension) ? Icon : null;
         }
 
         /// <summary>
@@ -1271,7 +1271,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView GetCurrentOverlayImage(ButtonExtension extension)
         {
-            return (extension == Extension) ? ButtonOverlay : null;
+            return (extension == Extension) ? OverlayImage : null;
         }
     }
 }
