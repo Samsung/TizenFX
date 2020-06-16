@@ -132,21 +132,7 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.privateTrackThickness;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                instance.privateTrackPadding.CopyFrom((Extents)newValue);
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Slider)bindable;
-            return instance.privateTrackPadding;
-        });
+
         static Slider() { }
 
         /// <summary>
@@ -269,38 +255,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public new SliderStyle Style => ViewStyle as SliderStyle;
-
-        /// <summary>
-        /// Get or set low indicator text.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel LowIndicatorText
-        {
-            get
-            {
-                return CreateLowIndicatorText();
-            }
-            internal set
-            {
-                lowIndicatorText = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or set high indicator text.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel HighIndicatorText
-        {
-            get
-            {
-                return CreateHighIndicatorText();
-            }
-            internal set
-            {
-                highIndicatorText = value;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the direction type of slider.
@@ -690,32 +644,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return TrackPadding.Start;
+                return privateTrackPadding.Start;
             }
             set
             {
                 ushort val = (ushort)value;
-                TrackPadding = new Extents(val, val, val, val);
+                privateTrackPadding = new Extents(val, val, val, val);
             }
         }
 
-        /// <summary>
-        /// Gets or sets the value of the space between track and indicator.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents TrackPadding
-        {
-            get
-            {
-                return (Extents)GetValue(TrackPaddingProperty);
-            }
-            set
-            {
-                SetValue(TrackPaddingProperty, value);
-            }
-        }
         private Extents privateTrackPadding
         {
             get
