@@ -14,6 +14,9 @@
  * limitations under the License.
  *
  */
+
+extern alias TizenSystemInformation;
+using TizenSystemInformation.Tizen.System;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -36,6 +39,13 @@ namespace Tizen.NUI
         private List<Layer> _childLayers = new List<Layer>();
         private LayoutController localController;
 
+        private bool IsSupportedMultiWindow()
+        {
+            bool isSupported = false;
+            Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            return isSupported;
+        }
+
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
             if (Interop.Stage.Stage_IsInstalled())
@@ -55,8 +65,14 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
+            if( IsSupportedMultiWindow() == false )
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,8 +85,14 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             this._windowTitle = name;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -970,8 +992,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="parent">The parent window.</param>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void SetParent(Window parent)
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -981,8 +1009,14 @@ namespace Tizen.NUI
         /// After unsetting, the window is disconnected his parent window.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void Unparent()
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("Fail to create window. because this device does not support opengles.surfaceless_context.");
+            }
             Interop.Window.Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -992,8 +1026,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The parent window of the window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Window GetParent()
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(swigCPtr)) as Window;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
