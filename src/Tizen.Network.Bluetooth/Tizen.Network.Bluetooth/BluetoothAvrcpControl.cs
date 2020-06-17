@@ -36,6 +36,9 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothAvrcpControl()
         {
             BluetoothAvrcpControlImpl.Instance.ConnectionChanged += OnConnectionChanged;
+            BluetoothAvrcpControlImpl.Instance.PositionChanged += (s, e) => PositionChanged?.Invoke(this, e);
+            BluetoothAvrcpControlImpl.Instance.PlayStateChanged += (s, e) => PlayStateChanged?.Invoke(this, e);
+            BluetoothAvrcpControlImpl.Instance.TrackInfoChanged += (s, e) => TrackInfoChanged?.Invoke(this, e);
         }
 
         private void OnConnectionChanged(object s, AvrcpControlConnectionChangedEventArgs e)
@@ -83,49 +86,19 @@ namespace Tizen.Network.Bluetooth
         /// The PositionChangedEventArgs event is invoked when the play position of a track is changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<PositionChangedEventArgs> PositionChanged
-        {
-            add
-            {
-                BluetoothAvrcpControlImpl.Instance.PositionChanged += value;
-            }
-            remove
-            {
-                BluetoothAvrcpControlImpl.Instance.PositionChanged -= value;
-            }
-        }
+        public event EventHandler<PositionChangedEventArgs> PositionChanged;
 
         /// <summary>
         /// The PlayStateChangedEventArgs event is invoked when the play state of a track gets changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<PlayStateChangedEventArgs> PlayStateChanged
-        {
-            add
-            {
-                BluetoothAvrcpControlImpl.Instance.PlayStateChanged += value;
-            }
-            remove
-            {
-                BluetoothAvrcpControlImpl.Instance.PlayStateChanged -= value;
-            }
-        }
+        public event EventHandler<PlayStateChangedEventArgs> PlayStateChanged;
 
         /// <summary>
         /// The TrackInfoChangedEventArgs event is invoked when info of a track gets changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<TrackInfoChangedEventArgs> TrackInfoChanged
-        {
-            add
-            {
-                BluetoothAvrcpControlImpl.Instance.TrackInfoChanged += value;
-            }
-            remove
-            {
-                BluetoothAvrcpControlImpl.Instance.TrackInfoChanged -= value;
-            }
-        }
+        public event EventHandler<TrackInfoChangedEventArgs> TrackInfoChanged;
 
         /// <summary>
         /// Asynchronously connects the remote device
