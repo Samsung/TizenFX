@@ -1005,7 +1005,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Fast-forward current track
         /// </summary>
-        Fast_forward,
+        FastForward,
         /// <summary>
         /// Rewind current track
         /// </summary>

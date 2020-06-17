@@ -90,7 +90,7 @@ internal static partial class Interop
         internal delegate void ScanModeChangedCallback(int scan, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void AvrcpControlConnChangedCB(bool connected, string remote_address, IntPtr userData);
+        internal delegate void AvrcpControlConnectionChangedCallback(bool connected, string remoteAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PositionChangedCallback(uint position, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -524,7 +524,7 @@ internal static partial class Interop
         // Bluetooth AVRCP Control
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_initialize")]
-        internal static extern int AvrcpControlInitialize(AvrcpControlConnChangedCB callback, IntPtr userData);
+        internal static extern int AvrcpControlInitialize(AvrcpControlConnectionChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_deinitialize")]
         internal static extern int AvrcpControlDeinitialize();
@@ -575,7 +575,7 @@ internal static partial class Interop
         internal static extern int SendPlayerCommand(PlayerCommand command);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_send_player_command_to")]
-        internal static extern int SendPlayerCommandTo(PlayerCommand command, string remote_address);
+        internal static extern int SendPlayerCommandTo(PlayerCommand command, string remoteAddress);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_absolute_volume")]
         internal static extern int SetAbsoluteVolume(uint volume);

@@ -24,27 +24,17 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<PositionChangedEventArgs> _positionChanged;
         private event EventHandler<PlayStateChangedEventArgs> _playStateChanged;
         private event EventHandler<TrackInfoChangedEventArgs> _trackInfoChanged;
-        private event EventHandler<AvrcpControlConnChangedEventArgs> _connStateChanged;
+        private event EventHandler<AvrcpControlConnectionChangedEventArgs> _connStateChanged;
 
         private Interop.Bluetooth.PositionChangedCallback _positionChangedCallback;
         private Interop.Bluetooth.PlayStatusChangedCallback _playStateChangedCallback;
         private Interop.Bluetooth.TrackInfoChangedCallback _trackInfoChangedCallback;
-        private Interop.Bluetooth.AvrcpControlConnChangedCB _connStateChangedCallback;
+        private Interop.Bluetooth.AvrcpControlConnectionChangedCallback _connStateChangedCallback;
 
         private static BluetoothAvrcpControlImpl _instance = new BluetoothAvrcpControlImpl();
         private bool disposed = false;
 
-        internal event EventHandler<AvrcpControlConnChangedEventArgs> ConnectionChanged
-        {
-            add
-            {
-                _connStateChanged += value;
-            }
-            remove
-            {
-                _connStateChanged -= value;
-            }
-        }
+        internal event EventHandler<AvrcpControlConnectionChangedEventArgs> ConnectionChanged;
 
         internal event EventHandler<PositionChangedEventArgs> PositionChanged
         {
@@ -355,12 +345,12 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
-        internal void SendPlayerCommandTo(PlayerCommand command, string remote_address)
+        internal void SendPlayerCommandTo(PlayerCommand command, string remoteAddress)
         {
-            int ret = Interop.Bluetooth.SendPlayerCommandTo(command, remote_address);
+            int ret = Interop.Bluetooth.SendPlayerCommandTo(command, remoteAddress);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to send player command " + command + " to remote address " + remote_address + " - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, "Failed to send player command " + command + " to remote address " + remoteAddress + " - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -415,14 +405,14 @@ namespace Tizen.Network.Bluetooth
 
         private BluetoothAvrcpControlImpl ()
         {
-            controlInitialize();
+            ControlInitialize();
         }
 
-        private void controlInitialize()
+        private void ControlInitialize()
         {
-            _connStateChangedCallback = (bool connected, string remote_address, IntPtr userData) =>
+            _connStateChangedCallback = (bool connected, string remoteAddress, IntPtr userData) =>
             {
-                _connStateChanged?.Invoke(null, new AvrcpControlConnChangedEventArgs(connected, remote_address));
+                _connStateChanged?.Invoke(null, new AvrcpControlConnectionChangedEventArgs(connected, remoteAddress));
             };
             int ret = Interop.Bluetooth.AvrcpControlInitialize(_connStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
@@ -431,7 +421,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void controlDeinitialize()
+        private void ControlDeinitialize()
         {
             int ret = Interop.Bluetooth.Deinitialize();
             if (ret != (int)BluetoothError.None)
@@ -477,7 +467,7 @@ namespace Tizen.Network.Bluetooth
                 // Free managed objects.
             }
             //Free unmanaged objects
-            controlDeinitialize();
+            ControlDeinitialize();
             UnregisterAllEvents();
             disposed = true;
         }

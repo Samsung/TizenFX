@@ -949,17 +949,25 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    public class AvrcpControlConnChangedEventArgs : EventArgs
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the remote device address.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class AvrcpControlConnectionChangedEventArgs : EventArgs
     {
         private bool _isConnected;
         string _remoteAddress;
         // Setting Values when Event is invoked
-        internal AvrcpControlConnChangedEventArgs(bool conn, string address)
+        internal AvrcpControlConnectionChangedEventArgs(bool conn, string address)
         {
             _isConnected = conn;
             _remoteAddress = address;
         }
 
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public bool IsConnected
         {
             get
@@ -968,6 +976,10 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public string RemoteAddress
         {
             get
@@ -976,6 +988,11 @@ namespace Tizen.Network.Bluetooth
             }
         }
     }
+
+    /// <summary>
+    /// An extended EventArgs class contains the position.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public class PositionChangedEventArgs : EventArgs
     {
         private uint _pos;
@@ -983,6 +1000,11 @@ namespace Tizen.Network.Bluetooth
         {
             _pos = pos;
         }
+
+        /// <summary>
+        /// The current position in milliseconds.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public uint Position
         {
             get
@@ -991,6 +1013,11 @@ namespace Tizen.Network.Bluetooth
             }
         }
     }
+
+    /// <summary>
+    /// An extended EventArgs class contains the play state.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public class PlayStateChangedEventArgs : EventArgs
     {
         private PlayerState _playState;
@@ -998,6 +1025,11 @@ namespace Tizen.Network.Bluetooth
         {
             _playState = playState;
         }
+
+        /// <summary>
+        /// The current play state.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public PlayerState PlayState
         {
             get
@@ -1006,6 +1038,11 @@ namespace Tizen.Network.Bluetooth
             }
         }
     }
+
+    /// <summary>
+    /// An extended EventArgs class contains the play state.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public class TrackInfoChangedEventArgs : EventArgs
     {
         private Track _track = new Track();
@@ -1013,6 +1050,11 @@ namespace Tizen.Network.Bluetooth
         {
             _track = Data;
         }
+
+        /// <summary>
+        /// The current track data
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public Track TrackData
         {
             get

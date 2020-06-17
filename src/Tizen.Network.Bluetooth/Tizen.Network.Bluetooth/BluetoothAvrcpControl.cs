@@ -37,7 +37,7 @@ namespace Tizen.Network.Bluetooth
             BluetoothAvrcpControlImpl.Instance.ConnectionChanged += OnConnectionChanged;
         }
 
-        private void OnConnectionChanged(object s, AvrcpControlConnChangedEventArgs e)
+        private void OnConnectionChanged(object s, AvrcpControlConnectionChangedEventArgs e)
         {
             if (e.RemoteAddress != _remoteAddress)
             {
@@ -73,10 +73,10 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The AvrcpControlConnChangedEventArgs event is invoked when the connection status of device is changed.
+        /// The AvrcpControlConnectionChangedEventArgs event is invoked when the connection status of device is changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<AvrcpControlConnChangedEventArgs> ConnStateChanged;
+        public event EventHandler<AvrcpControlConnectionChangedEventArgs> ConnStateChanged;
 
         /// <summary>
         /// The PositionChangedEventArgs event is invoked when the play position of a track is changed.
@@ -129,11 +129,11 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Asynchronously connects the remote device
         /// </summary>
-        /// <param name="remote_address">Address of device to be connected</param>
+        /// <param name="remoteAddress">Address of device to be connected</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
-        public Task ConnectAsync(string remote_address)
+        public Task ConnectAsync(string remoteAddress)
         {
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
             {
@@ -141,27 +141,27 @@ namespace Tizen.Network.Bluetooth
             }
 
             _taskForConnection = new TaskCompletionSource<bool>();
-            _remoteAddress = remote_address;
-            BluetoothAvrcpControlImpl.Instance.Connect(remote_address);
+            _remoteAddress = remoteAddress;
+            BluetoothAvrcpControlImpl.Instance.Connect(remoteAddress);
             return _taskForConnection.Task;
         }
 
         /// <summary>
         /// Asynchronously disconnects the remote device
         /// </summary>
-        /// <param name="remote_address">Address of device to be disconnected</param>
+        /// <param name="remoteAddress">Address of device to be disconnected</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
-        public Task DisconnectAsync(string remote_address)
+        public Task DisconnectAsync(string remoteAddress)
         {
             if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
             _taskForDisconnection = new TaskCompletionSource<bool>();
-            _remoteAddress = remote_address;
-            BluetoothAvrcpControlImpl.Instance.Disconnect(remote_address);
+            _remoteAddress = remoteAddress;
+            BluetoothAvrcpControlImpl.Instance.Disconnect(remoteAddress);
             return _taskForDisconnection.Task;
         }
 
@@ -436,10 +436,6 @@ namespace Tizen.Network.Bluetooth
             }
             return null;
         }
-        public void FreeTrackInfo(Track trackData) //needs special testing
-        {
-
-        }
 
         /// <summary>
         /// Sends a particular play command to the target device
@@ -472,17 +468,17 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="command">Command to be sent</param>
-        /// <param name="remote_address">Address of the device to send command</param>
+        /// <param name="remoteAddress">Address of the device to send command</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when sending command to the target device fails.
         /// </exception>
         /// <since_tizen> 8 </since_tizen>
-        public void SendPlayerCommandTo(PlayerCommand command, string remote_address)
+        public void SendPlayerCommandTo(PlayerCommand command, string remoteAddress)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                BluetoothAvrcpControlImpl.Instance.SendPlayerCommandTo(command, remote_address);
+                BluetoothAvrcpControlImpl.Instance.SendPlayerCommandTo(command, remoteAddress);
             }
             else
             {
@@ -496,7 +492,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
-        /// <param name="volume">The volume level to be set</param>
+        /// <param name="volume">The volume level to be set(unsigned int)</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when setting absolute volume of the target device fails
@@ -566,7 +562,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
-        /// <param name="delay">Delay to be sent to target</param>
+        /// <param name="delay">Delay to be sent to target(unsigned int)</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when sending delay to the target device fails
