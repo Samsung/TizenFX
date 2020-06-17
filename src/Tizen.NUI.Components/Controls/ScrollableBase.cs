@@ -479,9 +479,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            if (view.Name != "InterruptTouchingChild" && view.Name != "ScrollBar")
+            if (null != view && view.Name != "InterruptTouchingChild" && view.Name != "ScrollBar")
             {
-                if (mScrollingChild.Name != "DefaultScrollingChild")
+                if (null != mScrollingChild && mScrollingChild.Name != "DefaultScrollingChild")
                 {
                     propertyNotification.Notified -= OnPropertyChanged;
                     mScrollingChild.RemovePropertyNotification(propertyNotification);
@@ -491,7 +491,10 @@ namespace Tizen.NUI.Components
                 mScrollingChild = view;
                 mScrollingChild.Layout.SetPositionByLayout = false;
                 propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
-                propertyNotification.Notified += OnPropertyChanged;
+                if (null != propertyNotification)
+                {
+                    propertyNotification.Notified += OnPropertyChanged;
+                }
                 mScrollingChild.Relayout += OnScrollingChildRelayout;
                 mScrollingChild.LowerToBottom();
             }
