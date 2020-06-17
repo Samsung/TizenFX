@@ -356,7 +356,7 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle CreateViewStyle()
+        protected override ViewStyle GetViewStyle()
         {
             return new CircularScrollbarStyle();
         }
