@@ -18,6 +18,7 @@ using System;
 
 using Tizen.Common;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -30,6 +31,7 @@ namespace Tizen.System
     /// <privilege>
     /// </privilege>
     /// <since_tizen> 8 </since_tizen>
+	[EditorBrowsable(EditorBrowsableState.Never)]
     public static class PmQos
     {
         private delegate int PmQosFunc(int timeout);
@@ -37,6 +39,7 @@ namespace Tizen.System
         {
             {PmQosType.AppLaunchHome, Interop.Device.DevicePmQosAppLaunchHome},
             {PmQosType.HomeScreen, Interop.Device.DevicePmQosHomeScreen},
+            /* Add Here */
         };
 
         /// <summary>
@@ -44,7 +47,7 @@ namespace Tizen.System
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <param name="pmqos_name">PmQos Name</param>
-        /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
+        /// <param name="timeout_ms">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
@@ -59,14 +62,14 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
-        public static void IncreaseCPUClock(PmQosType pmqos_name, int timeout) {
+        public static void IncreaseCPUClock(PmQosType pmqos_name, int timeout_ms) {
             PmQosFunc func = null;
             DeviceError res;
 
             if (!PmQosFunctions.TryGetValue(pmqos_name, out func))
                 throw new ArgumentException("Invalid Arguments");
 
-            res = (DeviceError)func(timeout);
+            res = (DeviceError)func(timeout_ms);
 
             if (res != DeviceError.None) {
                 throw DeviceExceptionFactory.CreateException(res, "unable to transmit PmQos command.");
