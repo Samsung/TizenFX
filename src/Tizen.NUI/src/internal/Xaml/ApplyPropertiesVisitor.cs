@@ -238,8 +238,8 @@ namespace Tizen.NUI.Xaml
             if (value.GetType().GetTypeInfo().GetCustomAttribute<AcceptEmptyServiceProviderAttribute>() == null)
                 serviceProvider = new XamlServiceProvider(node, Context);
 
-            if (serviceProvider != null && serviceProvider.IProvideValueTarget != null && propertyName != XmlName.Empty) {
-                ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
+            if (serviceProvider != null && serviceProvider.IProvideValueTarget is XamlValueTargetProvider && propertyName != XmlName.Empty) {
+                (serviceProvider.IProvideValueTarget as XamlValueTargetProvider).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
             }
 
             if (markupExtension != null)
