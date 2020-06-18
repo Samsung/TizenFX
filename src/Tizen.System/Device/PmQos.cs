@@ -31,7 +31,7 @@ namespace Tizen.System
     /// <privilege>
     /// </privilege>
     /// <since_tizen> 8 </since_tizen>
-	[EditorBrowsable(EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class PmQos
     {
         private delegate int PmQosFunc(int timeout);

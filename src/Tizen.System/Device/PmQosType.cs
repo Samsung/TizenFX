@@ -17,6 +17,7 @@
 using System;
 
 using Tizen.Common;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -24,6 +25,7 @@ namespace Tizen.System
     /// This class represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PmQosType
     {
         /// <summary>
