@@ -14,10 +14,6 @@ namespace Tizen.NUI.Binding
                 if (ve != null && ve.IsResourcesCreated)
                 {
                     resources = resources ?? new Dictionary<string, object>();
-                    if (null == resources)
-                    {
-                        return null;
-                    }
                     if (ve.XamlResources != null)
                     {
                         foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
@@ -35,10 +31,6 @@ namespace Tizen.NUI.Binding
                 if (app != null && app.SystemResources != null)
                 {
                     resources = resources ?? new Dictionary<string, object>(8);
-                    if (null == resources)
-                    {
-                        return null;
-                    }
                     foreach (KeyValuePair<string, object> res in app.SystemResources)
                         if (!resources.ContainsKey(res.Key))
                             resources.Add(res.Key, res.Value);

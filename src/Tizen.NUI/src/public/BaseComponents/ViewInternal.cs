@@ -1238,7 +1238,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (trans)
                 {
-                    transDictionary?.Add(trans.Name, trans);
+                    transDictionary.Add(trans.Name, trans);
                 }
             }
         }
@@ -1308,7 +1308,7 @@ namespace Tizen.NUI.BaseComponents
                     return;
                 }
 
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, boxShadow == null ? new PropertyValue() : boxShadow?.ToPropertyValue(this));
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, boxShadow == null ? new PropertyValue() : boxShadow.ToPropertyValue(this));
 
                 return;
             }
@@ -1326,7 +1326,7 @@ namespace Tizen.NUI.BaseComponents
                     return;
                 }
 
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, imageShadow == null ? new PropertyValue() : imageShadow?.ToPropertyValue(this));
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, imageShadow == null ? new PropertyValue() : imageShadow.ToPropertyValue(this));
             }
         }
 
