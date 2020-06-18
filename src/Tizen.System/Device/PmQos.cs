@@ -17,6 +17,7 @@
 using System;
 
 using Tizen.Common;
+using System.Collections.Generic;
 
 namespace Tizen.System
 {
@@ -31,36 +32,18 @@ namespace Tizen.System
     /// <since_tizen> 8 </since_tizen>
     public static class PmQos
     {
-        /// <summary>
-        /// Increase the cpu clock for AppLaunchHome within timeout.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
-        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
-        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
-        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
-        /// <example>
-        /// <code>
-        ///     try
-        ///     {
-        ///         PmQos.AppLaunchHome(100);
-        ///     }
-        ///     Catch(Exception e)
-        ///     {
-        ///     }
-        /// </code>
-        /// </example>
-        public static void AppLaunchHome(int timeout) {
-            DeviceError res = (DeviceError)Interop.Device.DevicePmQosAppLaunchHome(timeout);
-            if (res != DeviceError.None) {
-                throw DeviceExceptionFactory.CreateException(res, "unable to transmit PmQos command.");
-            }
-        }
+        private delegate int PmQosFunc(int timeout);
+        private static readonly Dictionary<PmQosType, PmQosFunc> PmQosFunctions = new Dictionary<PmQosType, PmQosFunc>
+        {
+            {PmQosType.AppLaunchHome, Interop.Device.DevicePmQosAppLaunchHome},
+            {PmQosType.HomeScreen, Interop.Device.DevicePmQosHomeScreen},
+        };
 
         /// <summary>
-        /// Increase the cpu clock for HomeScreen within timeout.
+        /// Increase the cpu clock within timeout.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        /// <param name="pmqos_name">PmQos Name</param>
         /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -69,15 +52,22 @@ namespace Tizen.System
         /// <code>
         ///     try
         ///     {
-        ///         PmQos.HomeScreen(100);
+        ///         PmQos.IncreaseCPUClock(PmQosType.AppLaunchHome, 100);
         ///     }
         ///     Catch(Exception e)
         ///     {
         ///     }
         /// </code>
         /// </example>
-        public static void HomeScreen(int timeout) {
-            DeviceError res = (DeviceError)Interop.Device.DevicePmQosHomeScreen(timeout);
+        public static void IncreaseCPUClock(PmQosType pmqos_name, int timeout) {
+            PmQosFunc func = null;
+            DeviceError res;
+
+            if (!PmQosFunctions.TryGetValue(pmqos_name, out func))
+                throw new ArgumentException("Invalid Arguments");
+
+            res = (DeviceError)func(timeout);
+
             if (res != DeviceError.None) {
                 throw DeviceExceptionFactory.CreateException(res, "unable to transmit PmQos command.");
             }
