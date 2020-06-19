@@ -23,16 +23,15 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     /// <summary>
-    /// The PmQos class provides the methods to control the PmQos.
+    /// The PerformanceController class provides the methods to control the PmQos.
     /// </summary>
     /// <remarks>
-    /// The PmQos API provides the way to control the PmQos. It supports to increase cpu clock within input timeout.
+    /// It supports to control cpu clock within input timeout.
     /// </remarks>
     /// <privilege>
     /// </privilege>
-    /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class PmQos
+    public static class PerformanceController
     {
         private delegate int PmQosFunc(int timeout);
         private static readonly Dictionary<PmQosType, PmQosFunc> PmQosFunctions = new Dictionary<PmQosType, PmQosFunc>
@@ -54,14 +53,14 @@ namespace Tizen.System
         /// <code>
         ///     try
         ///     {
-        ///         PmQos.IncreaseCPUClock(PmQosType.AppLaunchHome, 100);
+        ///         PerformanceController.Request(PmQosType.AppLaunchHome, 100);
         ///     }
         ///     Catch(Exception e)
         ///     {
         ///     }
         /// </code>
         /// </example>
-        public static void IncreaseCPUClock(PmQosType type, int timeout) {
+        public static void Request(PmQosType type, int timeout) {
             PmQosFunc func = null;
 
             if (!PmQosFunctions.TryGetValue(type, out func))
