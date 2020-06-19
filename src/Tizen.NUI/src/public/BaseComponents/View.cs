@@ -491,7 +491,7 @@ namespace Tizen.NUI.BaseComponents
         /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, Will be removed in API11, ")]
+        [Obsolete("Deprecated in API8, will be removed in API10.")]
         public float Flex
         {
             get
@@ -510,7 +510,7 @@ namespace Tizen.NUI.BaseComponents
         /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, Will be removed in API11, ")]
+        [Obsolete("Deprecated in API8, will be removed in API10.")]
         public int AlignSelf
         {
             get
@@ -532,7 +532,7 @@ namespace Tizen.NUI.BaseComponents
         /// The property cascade chaining set is possible. For example, this (view.FlexMargin.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, Will be removed in API11, ")]
+        [Obsolete("Deprecated in API8, will be removed in API10.")]
         public Vector4 FlexMargin
         {
             get
