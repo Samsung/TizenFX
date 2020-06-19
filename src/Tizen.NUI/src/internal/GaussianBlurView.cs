@@ -217,7 +217,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Render the GaussianBlurView once.
         /// Must be called after you Add() it to the window.
-        /// Only works with a gaussian blur view created with blurUserImage = true.
         /// Listen to the Finished signal to determine when the rendering has completed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
