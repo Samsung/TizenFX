@@ -45,9 +45,8 @@ namespace Tizen.System
         /// <summary>
         /// Increase the cpu clock within timeout.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// <param name="pmqos_name">PmQos Name</param>
-        /// <param name="timeout_ms">Cpu clock increasing duration in milliseconds.</param>
+        /// <param name="type">PmQos Name</param>
+        /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
@@ -62,14 +61,13 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
-        public static void IncreaseCPUClock(PmQosType pmqos_name, int timeout_ms) {
+        public static void IncreaseCPUClock(PmQosType type, int timeout) {
             PmQosFunc func = null;
-            DeviceError res;
 
-            if (!PmQosFunctions.TryGetValue(pmqos_name, out func))
+            if (!PmQosFunctions.TryGetValue(type, out func))
                 throw new ArgumentException("Invalid Arguments");
 
-            res = (DeviceError)func(timeout_ms);
+            DeviceError res = (DeviceError)func(timeout);
 
             if (res != DeviceError.None) {
                 throw DeviceExceptionFactory.CreateException(res, "unable to transmit PmQos command.");
