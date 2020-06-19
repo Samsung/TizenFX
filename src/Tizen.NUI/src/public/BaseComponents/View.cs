@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return controlStates;
             }
-            set
+            protected set
             {
                 if (controlStates == value)
                 {
