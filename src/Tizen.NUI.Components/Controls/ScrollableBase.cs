@@ -87,7 +87,7 @@ namespace Tizen.NUI.Components
                         {
                             childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                         }
-                        if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                        if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                         {
                             childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                         }
