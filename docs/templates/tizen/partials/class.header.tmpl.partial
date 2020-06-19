@@ -44,6 +44,18 @@
 {{/inheritedMembers.0}}
 <h6><strong>{{__global.namespace}}</strong>: {{{namespace.specName.0.value}}}</h6>
 <h6><strong>{{__global.assembly}}</strong>: {{assemblies.0}}.dll</h6>
+{{#sincetizen}}
+<h6><strong>{{__global.sincetizen}}</strong>: {{{sincetizen}}}</h6>
+{{/sincetizen}}
+{{#privlevel}}
+<h6><strong>{{__global.privlevel}}</strong>: {{{privlevel}}}</h6>
+{{/privlevel}}
+{{#privilege}}
+<h6><strong>{{__global.privilege}}</strong>: <span class="tz_multiple_items">{{{privilege}}}</span></h6>
+{{/privilege}}
+{{#feature}}
+<h6><strong>{{__global.feature}}</strong>: <span class="tz_multiple_items">{{{feature}}}</span></h6>
+{{/feature}}
 <h5 id="{{id}}_syntax">{{__global.syntax}}</h5>
 <div class="codewrapper">
   <pre><code class="lang-{{_lang}} hljs">{{syntax.content.0.value}}</code></pre>
@@ -113,24 +125,6 @@
 <h5 id="{{id}}_remarks"><strong>{{__global.remarks}}</strong></h5>
 <div class="markdown level0 remarks">{{{remarks}}}</div>
 {{/remarks}}
-
-{{#sincetizen}}
-<h5 id="{{id}}_sincetizen" class="sincetizen">{{__global.sincetizen}}</h5>
-<span class="level0 sincetizen">{{{sincetizen}}}</span>
-{{/sincetizen}}
-{{#privlevel}}
-<h5 id="{{id}}_privlevel" class="privlevel">{{__global.privlevel}}</h5>
-<div class="markdown level0 privlevel">{{{privlevel}}}</div>
-{{/privlevel}}
-{{#privilege}}
-<h5 id="{{id}}_privilege" class="privilege">{{__global.privilege}}</h5>
-<div class="markdown level0 privilege">{{{privilege}}}</div>
-{{/privilege}}
-{{#feature}}
-<h5 id="{{id}}_feature" class="feature">{{__global.feature}}</h5>
-<div class="markdown level0 feature">{{{feature}}}</div>
-{{/feature}}
-
 {{#example.0}}
 <h5 id="{{id}}_examples"><strong>{{__global.examples}}</strong></h5>
 {{/example.0}}
