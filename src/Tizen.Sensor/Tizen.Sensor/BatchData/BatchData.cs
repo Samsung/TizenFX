@@ -5,7 +5,7 @@ using System.Text;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The BatchData class is used for storing value of particular batch type sensor.
+    /// The BatchData class stores the value of a particular batch type sensor.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public abstract class BatchData
