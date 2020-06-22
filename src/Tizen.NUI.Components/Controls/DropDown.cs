@@ -849,11 +849,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ViewHolder(View itemView)
             {
-                if (itemView == null)
-                {
-                    throw new ArgumentNullException("itemView may not be null");
-                }
-                this.ItemView = itemView;
+                ItemView = itemView ?? throw new ArgumentNullException(nameof(itemView), "itemView may not be null");
             }
 
             /// <summary>
