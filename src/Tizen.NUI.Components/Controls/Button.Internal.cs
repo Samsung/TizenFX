@@ -350,6 +350,34 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
+        {
+            base.OnControlStateChanged(controlStateChangedInfo);
+
+            var stateEnabled = !((controlStateChangedInfo.CurrentState & ControlStates.Disabled) == ControlStates.Disabled);
+
+            if (isEnabled != stateEnabled)
+            {
+                isEnabled = stateEnabled;
+            }
+
+            var stateSelected = (controlStateChangedInfo.CurrentState & ControlStates.Selected) == ControlStates.Selected;
+
+            if (isSelected != stateSelected)
+            {
+                isSelected = stateSelected;
+            }
+
+            var statePressed = (controlStateChangedInfo.CurrentState & ControlStates.Pressed) == ControlStates.Pressed;
+
+            if (isPressed != statePressed)
+            {
+                isPressed = statePressed;
+            }
+        }
+
         /// <summary>
         /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>

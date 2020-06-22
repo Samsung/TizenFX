@@ -199,10 +199,12 @@ namespace Tizen.NUI.Components
                     CreateCheckImage();
                     if (value)
                     {
+                        ControlState = ControlStates.Selected;
                         mCheck.Show();
                     }
                     else
                     {
+                        ControlState = ControlStates.Normal;
                         mCheck.Hide();
                     }
                 }

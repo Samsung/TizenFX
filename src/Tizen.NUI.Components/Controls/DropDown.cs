@@ -739,7 +739,6 @@ namespace Tizen.NUI.Components
             if (selectedItemView != null)
             {
                 selectedItemView.IsSelected = false;
-                selectedItemView.ControlState = ControlStates.Normal;
                 adapter.GetData(selectedItemIndex).IsSelected = false;
             }
 
@@ -752,7 +751,6 @@ namespace Tizen.NUI.Components
 
             selectedItemIndex = (int)index;
             selectedItemView = view;
-            selectedItemView.ControlState = ControlStates.Selected;
             selectedItemView.IsSelected = true;
             adapter.GetData(selectedItemIndex).IsSelected = true;
             dropDownMenuFullList.Layout?.RequestLayout();
@@ -761,21 +759,16 @@ namespace Tizen.NUI.Components
         private bool ListItemTouchEvent(object sender, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
-            DropDownItemView touchedView = sender as DropDownItemView;;
+            DropDownItemView touchedView = sender as DropDownItemView;
+
+            touchedView.OnTouch(e.Touch); // Handle control state change
+
             switch (state)
             {
                 case PointStateType.Down:
-                    if (touchedView != null)
-                    {
-                        touchedView.ControlState = ControlStates.Pressed;
-                    }
                     itemPressed = true;  // if matched with a Up then a click event.
                     break;
                 case PointStateType.Motion:
-                    if (touchedView != null)
-                    {
-                        touchedView.ControlState = ControlStates.Normal;
-                    }
                     itemPressed = false;
                     break;
                 case PointStateType.Up:
