@@ -36,12 +36,12 @@ namespace Tizen.NUI.Components
             var instance = ((Scrollbar)bindable);
             var thickness = (float?)newValue;
 
-            ((ScrollbarStyle)instance.viewStyle).TrackThickness = thickness;
+            instance.Style.TrackThickness = thickness;
             instance.UpdateTrackThickness(thickness ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackThickness ?? 0;
+            return ((Scrollbar)bindable).Style.TrackThickness ?? 0;
         });
 
         /// <summary>Bindable property of ThumbThickness</summary>
@@ -51,12 +51,12 @@ namespace Tizen.NUI.Components
             var instance = ((Scrollbar)bindable);
             var thickness = (float?)newValue;
 
-            ((ScrollbarStyle)instance.viewStyle).ThumbThickness = thickness;
+            instance.Style.ThumbThickness = thickness;
             instance.UpdateThumbThickness(thickness ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.ThumbThickness ?? 0;
+            return ((Scrollbar)bindable).Style.ThumbThickness ?? 0;
         });
 
         /// <summary>Bindable property of TrackColor</summary>
@@ -66,12 +66,12 @@ namespace Tizen.NUI.Components
             var instance = ((Scrollbar)bindable);
             var color = (Color)newValue;
 
-            ((ScrollbarStyle)instance.viewStyle).TrackColor = color;
+            instance.Style.TrackColor = color;
             instance.UpdateTrackColor(color);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackColor;
+            return ((Scrollbar)bindable).Style.TrackColor;
         });
 
         /// <summary>Bindable property of ThumbColor</summary>
@@ -81,12 +81,12 @@ namespace Tizen.NUI.Components
             var instance = ((Scrollbar)bindable);
             var color = (Color)newValue;
 
-            ((ScrollbarStyle)instance.viewStyle).ThumbColor = color;
+            instance.Style.ThumbColor = color;
             instance.UpdateThumbColor(color);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.ThumbColor;
+            return ((Scrollbar)bindable).Style.ThumbColor;
         });
 
         /// <summary>Bindable property of TrackPadding</summary>
@@ -96,12 +96,12 @@ namespace Tizen.NUI.Components
             var instance = ((Scrollbar)bindable);
             var trackPadding = (Extents)newValue;
 
-            ((ScrollbarStyle)instance.viewStyle).TrackPadding = trackPadding;
+            instance.Style.TrackPadding = trackPadding;
             instance.UpdateTrackPadding(trackPadding);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((ScrollbarStyle)((Scrollbar)bindable).viewStyle)?.TrackPadding;
+            return ((Scrollbar)bindable).Style.TrackPadding;
         });
 
         private ColorVisual trackVisual;
@@ -155,6 +155,16 @@ namespace Tizen.NUI.Components
 
 
         #region Properties
+
+        /// <summary>
+        /// Return a copied Style instance of Scrollbar
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Scrollbar.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ScrollbarStyle Style => ViewStyle as ScrollbarStyle;
 
         /// <summary>
         /// The thickness of the track.
