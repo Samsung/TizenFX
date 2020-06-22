@@ -132,14 +132,10 @@ namespace Tizen.Network.Bluetooth
             _gattConnectionStateChangedCallback = (int result, bool connected,
                                     string remoteDeviceAddress, IntPtr userData) =>
             {
-                if (_gattConnectionStateChanged != null)
-                {
-                    Log.Info(Globals.LogTag, "Setting gatt connection state changed callback" );
-                    GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs (result,
+                Log.Info(Globals.LogTag, "Setting gatt connection state changed callback");
+                GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs(result,
                         connected, remoteDeviceAddress);
-
-                    _gattConnectionStateChanged(null, e);
-                }
+                _gattConnectionStateChanged?.Invoke(null, e);
             };
 
             int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(
@@ -171,7 +167,7 @@ namespace Tizen.Network.Bluetooth
 
                 AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (res,
                                                                     device);
-                _adapterLeScanResultChanged (null, e);
+                _adapterLeScanResultChanged?.Invoke(null, e);
             };
 
             IntPtr data = IntPtr.Zero;
@@ -527,7 +523,7 @@ namespace Tizen.Network.Bluetooth
             {
                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
-                _advertisingStateChanged(null, e);
+                _advertisingStateChanged?.Invoke(null, e);
             };
 
             IntPtr uData = IntPtr.Zero;
