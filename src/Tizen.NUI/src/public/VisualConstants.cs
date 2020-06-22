@@ -1195,6 +1195,7 @@ namespace Tizen.NUI
         internal static readonly int Cap = Thickness + 3;
     }
 
+    /// <summary>
     /// Enumeration for Circular alignment.
     /// The @p horizontalAlignment and @p verticalAlignment can be used to align the text within the text area.
     /// </summary>

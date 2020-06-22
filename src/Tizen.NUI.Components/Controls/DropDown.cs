@@ -166,20 +166,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void ClickEventHandler<ClickEventArgs>(object sender, ClickEventArgs e);
-
-        /// <summary>
         /// An event for the item clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event ClickEventHandler<ItemClickEventArgs> ItemClickEvent;
+        public event EventHandler<ItemClickEventArgs> ItemClickEvent;
 
         /// <summary>
         /// List position in relation to the main button.
@@ -747,7 +739,6 @@ namespace Tizen.NUI.Components
             if (selectedItemView != null)
             {
                 selectedItemView.IsSelected = false;
-                selectedItemView.ControlState = ControlStates.Normal;
                 adapter.GetData(selectedItemIndex).IsSelected = false;
             }
 
@@ -760,7 +751,6 @@ namespace Tizen.NUI.Components
 
             selectedItemIndex = (int)index;
             selectedItemView = view;
-            selectedItemView.ControlState = ControlStates.Selected;
             selectedItemView.IsSelected = true;
             adapter.GetData(selectedItemIndex).IsSelected = true;
             dropDownMenuFullList.Layout?.RequestLayout();
@@ -769,21 +759,16 @@ namespace Tizen.NUI.Components
         private bool ListItemTouchEvent(object sender, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
-            DropDownItemView touchedView = sender as DropDownItemView;;
+            DropDownItemView touchedView = sender as DropDownItemView;
+
+            touchedView.OnTouch(e.Touch); // Handle control state change
+
             switch (state)
             {
                 case PointStateType.Down:
-                    if (touchedView != null)
-                    {
-                        touchedView.ControlState = ControlStates.Pressed;
-                    }
                     itemPressed = true;  // if matched with a Up then a click event.
                     break;
                 case PointStateType.Motion:
-                    if (touchedView != null)
-                    {
-                        touchedView.ControlState = ControlStates.Normal;
-                    }
                     itemPressed = false;
                     break;
                 case PointStateType.Up:
@@ -857,11 +842,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ViewHolder(View itemView)
             {
-                if (itemView == null)
-                {
-                    throw new ArgumentNullException("itemView may not be null");
-                }
-                this.ItemView = itemView;
+                ItemView = itemView ?? throw new ArgumentNullException(nameof(itemView), "itemView may not be null");
             }
 
             /// <summary>
