@@ -52,7 +52,7 @@ namespace Tizen.Network.Bluetooth
                 if (e.IsConnected == true)
                 {
                     _taskForConnection.SetResult(true);
-                    ConnStateChanged?.Invoke(this, e);
+                    ConnectionStateChanged?.Invoke(this, e);
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace Tizen.Network.Bluetooth
                 if (e.IsConnected == false)
                 {
                     _taskForDisconnection.SetResult(true);
-                    ConnStateChanged?.Invoke(this, e);
+                    ConnectionStateChanged?.Invoke(this, e);
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace Tizen.Network.Bluetooth
         /// The AvrcpControlConnectionChangedEventArgs event is invoked when the connection status of device is changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<AvrcpControlConnectionChangedEventArgs> ConnStateChanged;
+        public event EventHandler<AvrcpControlConnectionChangedEventArgs> ConnectionStateChanged;
 
         /// <summary>
         /// The PositionChangedEventArgs event is invoked when the play position of a track is changed.
@@ -123,19 +123,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Asynchronously disconnects the remote device
         /// </summary>
-        /// <param name="remoteAddress">Address of device to be disconnected</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
-        public Task DisconnectAsync(string remoteAddress)
+        public Task DisconnectAsync()
         {
             if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
             _taskForDisconnection = new TaskCompletionSource<bool>();
-            _remoteAddress = remoteAddress;
-            BluetoothAvrcpControlImpl.Instance.Disconnect(remoteAddress);
+            BluetoothAvrcpControlImpl.Instance.Disconnect(_remoteAddress);
             return _taskForDisconnection.Task;
         }
 
@@ -333,7 +331,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAbsoluteVolume(uint volume)
         {
-            Interop.Bluetooth.SetAbsoluteVolume(volume);
+            BluetoothAvrcpControlImpl.Instance.SetAbsoluteVolume(volume);
         }
 
         /// <summary>
@@ -350,7 +348,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void IncreaseVolume()
         {
-            Interop.Bluetooth.IncreaseVolume();
+            BluetoothAvrcpControlImpl.Instance.IncreaseVolume();
         }
 
         /// <summary>
@@ -367,7 +365,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DecreaseVolume()
         {
-            Interop.Bluetooth.DecreaseVolume();
+            BluetoothAvrcpControlImpl.Instance.DecreaseVolume();
         }
 
         /// <summary>
@@ -385,7 +383,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDelayReport(uint delay)
         {
-            Interop.Bluetooth.SendDelayReport(delay);
+            BluetoothAvrcpControlImpl.Instance.SendDelayReport(delay);
         }
 
         ~BluetoothAvrcpControl()
@@ -407,7 +405,7 @@ namespace Tizen.Network.Bluetooth
             if (disposing)
             {
                 // Free managed objects.
-                ConnStateChanged -= OnConnectionChanged;
+                ConnectionStateChanged -= OnConnectionChanged;
             }
             //Free unmanaged objects.
             disposed = true;
