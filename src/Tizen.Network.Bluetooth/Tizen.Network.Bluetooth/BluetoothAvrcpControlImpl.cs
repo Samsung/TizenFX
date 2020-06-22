@@ -24,7 +24,6 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<PositionChangedEventArgs> _positionChanged;
         private event EventHandler<PlayStateChangedEventArgs> _playStateChanged;
         private event EventHandler<TrackInfoChangedEventArgs> _trackInfoChanged;
-        private event EventHandler<AvrcpControlConnectionChangedEventArgs> _connStateChanged;
 
         private Interop.Bluetooth.PositionChangedCallback _positionChangedCallback;
         private Interop.Bluetooth.PlayStatusChangedCallback _playStateChangedCallback;
@@ -412,7 +411,7 @@ namespace Tizen.Network.Bluetooth
         {
             _connStateChangedCallback = (bool connected, string remoteAddress, IntPtr userData) =>
             {
-                _connStateChanged?.Invoke(null, new AvrcpControlConnectionChangedEventArgs(connected, remoteAddress));
+                ConnectionChanged?.Invoke(null, new AvrcpControlConnectionChangedEventArgs(connected, remoteAddress));
             };
             int ret = Interop.Bluetooth.AvrcpControlInitialize(_connStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)

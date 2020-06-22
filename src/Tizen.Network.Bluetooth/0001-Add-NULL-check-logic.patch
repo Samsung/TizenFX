@@ -1,0 +1,34 @@
+From b13494f4d4093795e5ee56675be8e2418e6c32f6 Mon Sep 17 00:00:00 2001
+From: Wootak Jung <wootak.jung@samsung.com>
+Date: Mon, 22 Jun 2020 12:54:48 +0900
+Subject: [PATCH] Add NULL check logic
+
+---
+ .../Tizen.Network.Bluetooth/BluetoothLeAdapterImpl.cs         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothLeAdapterImpl.cs b/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothLeAdapterImpl.cs
+index 6d772d91f..a3f81543f 100644
+--- a/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothLeAdapterImpl.cs
++++ b/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothLeAdapterImpl.cs
+@@ -171,7 +171,7 @@ namespace Tizen.Network.Bluetooth
+ 
+                 AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (res,
+                                                                     device);
+-                _adapterLeScanResultChanged (null, e);
++                _adapterLeScanResultChanged?.Invoke(null, e);
+             };
+ 
+             IntPtr data = IntPtr.Zero;
+@@ -527,7 +527,7 @@ namespace Tizen.Network.Bluetooth
+             {
+                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
+                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
+-                _advertisingStateChanged(null, e);
++                _advertisingStateChanged?.Invoke(null, e);
+             };
+ 
+             IntPtr uData = IntPtr.Zero;
+-- 
+2.17.1
+

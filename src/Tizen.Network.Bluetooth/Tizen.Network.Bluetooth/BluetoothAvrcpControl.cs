@@ -24,11 +24,14 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class is used to send commands from the control device (For example, headset) to the target device (For example, media player).
     /// </summary>
+    /// <remarks>
+    /// This class can be obtained from BluetoothDevice.GetProfile method.
+    /// </remarks>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <feature> http://tizen.org/feature/network.bluetooth.audio.controller </feature>
     /// <since_tizen> 8 </since_tizen>
     public class BluetoothAvrcpControl : BluetoothProfile
     {
-        private string _remoteAddress;
         private TaskCompletionSource<bool> _taskForConnection;
         private TaskCompletionSource<bool> _taskForDisconnection;
         private bool disposed = false;
@@ -43,7 +46,7 @@ namespace Tizen.Network.Bluetooth
 
         private void OnConnectionChanged(object s, AvrcpControlConnectionChangedEventArgs e)
         {
-            if (e.RemoteAddress != _remoteAddress)
+            if (e.RemoteAddress != RemoteAddress)
             {
                 return;
             }
@@ -103,11 +106,10 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Asynchronously connects the remote device
         /// </summary>
-        /// <param name="remoteAddress">Address of device to be connected</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
-        public Task ConnectAsync(string remoteAddress)
+        public Task ConnectAsync()
         {
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
             {
@@ -115,8 +117,7 @@ namespace Tizen.Network.Bluetooth
             }
 
             _taskForConnection = new TaskCompletionSource<bool>();
-            _remoteAddress = remoteAddress;
-            BluetoothAvrcpControlImpl.Instance.Connect(remoteAddress);
+            BluetoothAvrcpControlImpl.Instance.Connect(RemoteAddress);
             return _taskForConnection.Task;
         }
 
@@ -133,7 +134,7 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
             _taskForDisconnection = new TaskCompletionSource<bool>();
-            BluetoothAvrcpControlImpl.Instance.Disconnect(_remoteAddress);
+            BluetoothAvrcpControlImpl.Instance.Disconnect(RemoteAddress);
             return _taskForDisconnection.Task;
         }
 
