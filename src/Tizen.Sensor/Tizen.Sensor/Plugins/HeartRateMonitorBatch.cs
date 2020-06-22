@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The HeartRateMonitorBatch class is used for registering callbacks for the heart rate monitor batch and getting the heart rate batch data.
+    /// The HeartRateMonitorBatch class registers callbacks of batch jobs for heart rate monitoring and provides batch data of the heart rate.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public sealed class HeartRateMonitorBatch : BatchSensor<HeartRateMonitorBatchData>
@@ -149,7 +149,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read HeartRateMonitorBatch data synchronously.
+        /// Reads HeartRateMonitorBatch data synchronously.
         /// </summary>
         internal override void ReadData()
         {
