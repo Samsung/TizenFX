@@ -166,20 +166,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void ClickEventHandler<ClickEventArgs>(object sender, ClickEventArgs e);
-
-        /// <summary>
         /// An event for the item clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event ClickEventHandler<ItemClickEventArgs> ItemClickEvent;
+        public event EventHandler<ItemClickEventArgs> ItemClickEvent;
 
         /// <summary>
         /// List position in relation to the main button.
