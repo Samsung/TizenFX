@@ -24,20 +24,17 @@ namespace Tizen.System
     /// <summary>
     /// This class represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PmQosType
     {
         /// <summary>
         /// Pre-defined event type "PreCreated".
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public static readonly PmQosType AppLaunchHome = "AppLaunchHome";
 
         /// <summary>
         /// Pre-defined event type "HomeScreen".
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public static readonly PmQosType HomeScreen = "HomeScreen";
 
         private string _typeName;
@@ -46,7 +43,6 @@ namespace Tizen.System
         /// Initializes the PmQosType class.
         /// </summary>
         /// <param name="name">The name of event type.</param>
-        /// <since_tizen> 8 </since_tizen>
         public PmQosType(string name) {
             _typeName = name;
         }
@@ -54,7 +50,6 @@ namespace Tizen.System
         /// <summary>
         /// Returns the name of event type.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public override string ToString() {
             return _typeName;
         }
@@ -62,7 +57,6 @@ namespace Tizen.System
         /// <summary>
         /// Returns the hash code for event type string.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public override int GetHashCode() {
             if (_typeName == null) return 0;
             return _typeName.GetHashCode();
@@ -71,7 +65,6 @@ namespace Tizen.System
         /// <summary>
         /// Determines whether this instance and a specified object.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public override bool Equals(object obj) {
             PmQosType other = obj as PmQosType;
             return other != null && other._typeName == this._typeName;
@@ -80,7 +73,6 @@ namespace Tizen.System
         /// <summary>
         /// Converts a string to PmQosType instance.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         public static implicit operator PmQosType(string value) {
             return new PmQosType(value);
         }
