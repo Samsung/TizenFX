@@ -514,7 +514,7 @@ namespace Tizen.Network.Bluetooth {
                 }
                 else
                 {
-                    client = BluetoothGattClient.CreateClient(_remoteAddress);
+                    client = BluetoothGattClient.CreateClient(_remoteAddress, true);
                 }
             }
             else
