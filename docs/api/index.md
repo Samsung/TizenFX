@@ -1,4 +1,4 @@
-## TizenFX API
+## API Level 6
 
 TizenFX API constists of the following namespaces:
 
