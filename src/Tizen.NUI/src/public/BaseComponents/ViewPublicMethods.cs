@@ -174,10 +174,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
             }
-            else
-            {
-                RemoveChild(child);
-            }
+
+            RemoveChild(child);
         }
 
         /// <summary>
