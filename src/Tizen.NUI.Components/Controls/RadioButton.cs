@@ -69,11 +69,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return itemGroup as RadioButtonGroup;
+                return base.ItemGroup as RadioButtonGroup;
             }
             internal set
             {
-                itemGroup = value;
+                base.ItemGroup = value;
             }
         }
 

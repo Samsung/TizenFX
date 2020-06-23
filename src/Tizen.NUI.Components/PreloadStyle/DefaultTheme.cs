@@ -151,6 +151,26 @@ namespace Tizen.NUI.Components
             };
         }
 
+        protected override DropDownItemStyle GetDropDownItemStyle()
+        {
+            return new DropDownItemStyle
+            {
+                Size = new Size(360, 50),
+                BackgroundColor = new Selector<Color>
+                {
+                    Pressed = new Color(0.05f, 0.63f, 0.9f, 1),
+                    Selected = new Color(0.8f, 0.8f, 0.8f, 1),
+                    Normal = new Color(1, 1, 1, 1),
+                },
+                Text = new TextLabelStyle
+                {
+                    PointSize = StyleManager.PointSizeNormal,
+                    Position = new Position(28, 0),
+                    Text = "List item",
+                },
+            };
+        }
+
         protected override PopupStyle GetPopupStyle()
         {
             return new PopupStyle
@@ -397,6 +417,26 @@ namespace Tizen.NUI.Components
                     TextColor = Color.White,
                     Padding = new Extents(12, 12, 8, 8),
                 }
+            };
+        }
+
+        protected override LoadingStyle GetLoadingStyle()
+        {
+            return new LoadingStyle
+            {
+                LoadingSize = new Size(100, 100)
+            };
+        }
+
+        protected override PaginationStyle GetPaginationStyle()
+        {
+            return new PaginationStyle
+            {
+                IndicatorImageURL = new Selector<string>()
+                {
+                    Normal = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_normal_dot.png"),
+                    Selected = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_focus_dot.png"),
+                },
             };
         }
     }

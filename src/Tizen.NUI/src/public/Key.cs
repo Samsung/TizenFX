@@ -99,12 +99,16 @@ namespace Tizen.NUI
         {
             get
             {
-                return keyPressedName;
+                string ret = Interop.Key.Key_keyPressedName_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                keyPressedName = value;
+                Interop.Key.Key_keyPressedName_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+
         }
 
         /// <summary>
@@ -117,7 +121,9 @@ namespace Tizen.NUI
         {
             get
             {
-                return logicalKey;
+                string ret = Interop.Key.Key_logicalKey_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
@@ -145,11 +151,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return keyString;
+                string ret = Interop.Key.Key_keyString_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                keyString = value;
+                Interop.Key.Key_keyString_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -161,11 +170,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return keyCode;
+                int ret = Interop.Key.Key_keyCode_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                keyCode = value;
+                Interop.Key.Key_keyCode_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -177,11 +189,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return keyModifier;
+                int ret = Interop.Key.Key_keyModifier_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                keyModifier = value;
+                Interop.Key.Key_keyModifier_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -193,11 +208,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return time;
+                uint ret = Interop.Key.Key_time_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                time = value;
+                Interop.Key.Key_time_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -209,11 +227,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return state;
+                Key.StateType ret = (Key.StateType)Interop.Key.Key_state_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             set
             {
-                state = value;
+                Interop.Key.Key_state_set(swigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -245,21 +266,6 @@ namespace Tizen.NUI
             }
         }
 
-        private string keyPressedName
-        {
-            set
-            {
-                Interop.Key.Key_keyPressedName_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                string ret = Interop.Key.Key_keyPressedName_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         private string keyPressed
         {
             set
@@ -270,91 +276,6 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Key.Key_keyPressed_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private string keyString
-        {
-            set
-            {
-                Interop.Key.Key_keyString_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                string ret = Interop.Key.Key_keyString_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int keyCode
-        {
-            set
-            {
-                Interop.Key.Key_keyCode_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = Interop.Key.Key_keyCode_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int keyModifier
-        {
-            set
-            {
-                Interop.Key.Key_keyModifier_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = Interop.Key.Key_keyModifier_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private uint time
-        {
-            set
-            {
-                Interop.Key.Key_time_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                uint ret = Interop.Key.Key_time_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private Key.StateType state
-        {
-            set
-            {
-                Interop.Key.Key_state_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                Key.StateType ret = (Key.StateType)Interop.Key.Key_state_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private string logicalKey
-        {
-            get
-            {
-                string ret = Interop.Key.Key_logicalKey_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

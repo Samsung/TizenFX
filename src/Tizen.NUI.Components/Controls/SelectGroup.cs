@@ -36,7 +36,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected List<SelectButton> itemGroup;
+        protected List<SelectButton> ItemGroup { get; }
 
         private int selectedIndex;
 
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Count => itemGroup.Count;
+        public int Count => ItemGroup.Count;
 
         /// <summary>
         /// Get the index of currently or latest selected item.
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected SelectGroup()
         {
-            itemGroup = new List<SelectButton>();
+            ItemGroup = new List<SelectButton>();
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Contains(SelectButton selection)
         {
-            return itemGroup.Contains(selection);
+            return ItemGroup.Contains(selection);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetIndex(SelectButton selection)
         {
-            return itemGroup.IndexOf(selection);
+            return ItemGroup.IndexOf(selection);
         }
 
         /// <summary>
@@ -103,11 +103,11 @@ namespace Tizen.NUI.Components
         protected void AddSelection(SelectButton selection)
         {
             if (null == selection) return;
-            if (itemGroup.Contains(selection))
+            if (ItemGroup.Contains(selection))
             {
                 return;
             }
-            itemGroup.Add(selection);
+            ItemGroup.Add(selection);
             selection.SelectedEvent += OnSelectedEvent;
         }
 
@@ -120,12 +120,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void RemoveSelection(SelectButton selection)
         {
-            if (!itemGroup.Contains(selection))
+            if (!ItemGroup.Contains(selection))
             {
                 return;
             }
             selection.SelectedEvent -= OnSelectedEvent;
-            itemGroup.Remove(selection);
+            ItemGroup.Remove(selection);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public int SelectedIndex;
+            public int SelectedIndex { get; set; }
         }
     }
 }

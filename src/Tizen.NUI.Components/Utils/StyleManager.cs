@@ -240,11 +240,13 @@ namespace Tizen.NUI.Components
 
         private void SetInitialThemeByDeviceProfile()
         {
-            themeMap.Add(wearableThemeName, WearableTheme.Instance);
-            themeMap.Add(defaultThemeName, DefaultTheme.Instance);
+            Theme wearableTheme = WearableTheme.Instance;
+            Theme defaultTheme = DefaultTheme.Instance;
+            themeMap.Add(wearableThemeName, wearableTheme);
+            themeMap.Add(defaultThemeName, defaultTheme);
 
             currentThemeName = defaultThemeName;
-            currentTheme = DefaultTheme.Instance;
+            currentTheme = defaultTheme;
 
             string currentProfile;
 
@@ -255,14 +257,14 @@ namespace Tizen.NUI.Components
             }
             catch
             {
-                Tizen.Log.Error("NUI", "Unknown device profile");
+                Tizen.Log.Error("NUI", "Unknown device profile\n");
                 return;
             }
 
             if (string.Equals(currentProfile, wearableThemeName))
             {
                 currentThemeName = wearableThemeName;
-                currentTheme = WearableTheme.Instance;
+                currentTheme = wearableTheme;
             }
         }
 

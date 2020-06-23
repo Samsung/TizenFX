@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using System.Windows.Input;
 
 namespace Tizen.NUI.Components
 {
@@ -30,14 +31,22 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Control : VisualView
     {
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
+            propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
+
         /// <summary> Control style. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected string style;
+        protected string StyleName { get; set; }
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
-        private bool isFocused = false;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -53,14 +62,23 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control() : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetComponentStyle(this.GetType());
+            var cur_type = this.GetType();
+            ViewStyle viewStyle = null;
+
+            do
+            {
+                if (cur_type.Equals(typeof(Tizen.NUI.Components.Control))) break;
+                viewStyle = StyleManager.Instance.GetComponentStyle(cur_type);
+                cur_type = cur_type.BaseType;
+            }
+            while (viewStyle == null);
 
             if (viewStyle != null)
             {
                 ApplyStyle(viewStyle);
             }
 
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
@@ -72,7 +90,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(ControlStyle style) : base(style)
         {
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
@@ -91,14 +109,25 @@ namespace Tizen.NUI.Components
             }
 
             ApplyStyle(viewStyle);
-            this.style = styleSheet;
+            this.StyleName = styleSheet;
 
-            Initialize(style);
+            Initialize();
         }
 
-        internal void ApplyAttributes(View view, ViewStyle viewStyle)
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ICommand Command
         {
-            view.CopyFrom(viewStyle);
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
         /// <summary>
@@ -107,7 +136,23 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         internal bool StateFocusableOnTouchMode { get; set; }
 
-        internal bool IsFocused => (isFocused || HasFocus());
+        internal bool IsFocused { get; set; } = false;
+
+        internal void CommandCanExecuteChanged(object sender, EventArgs eventArgs)
+        {
+            ICommand cmd = Command;
+            if (cmd != null)
+                cmd.CanExecute(CommandParameter);
+        }
+
+        internal void OnCommandChanged()
+        {
+            if (Command != null)
+            {
+                Command.CanExecuteChanged += CommandCanExecuteChanged;
+                CommandCanExecuteChanged(this, EventArgs.Empty);
+            }
+        }
 
         /// <summary>
         /// Dispose Control and all children on it.
@@ -171,7 +216,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnFocusGained()
         {
-            isFocused = true;
+            IsFocused = true;
         }
 
         /// <summary>
@@ -182,7 +227,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnFocusLost()
         {
-            isFocused = false;
+            IsFocused = false;
         }
 
         /// <summary>
@@ -252,12 +297,12 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ControlStyle();
         }
 
-        private void Initialize(string style)
+        private void Initialize()
         {
             ControlState = ControlStates.Normal;
 

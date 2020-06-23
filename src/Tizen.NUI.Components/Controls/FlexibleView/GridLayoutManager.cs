@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GridLayoutManager : LinearLayoutManager
     {
-        private static readonly int DEFAULT_SPAN_COUNT = -1;
+        private const int DEFAULT_SPAN_COUNT = -1;
 
         private int mSpanCount = DEFAULT_SPAN_COUNT;
 

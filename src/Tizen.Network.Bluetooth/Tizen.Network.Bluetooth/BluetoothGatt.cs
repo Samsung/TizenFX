@@ -34,23 +34,18 @@ namespace Tizen.Network.Bluetooth
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
+            _impl._notificationSent += (s, e) =>
+            {
+                e.Server = this;
+                NotificationSent?.Invoke(this, e);
+            };
         }
 
         /// <summary>
         /// (event) This event is called when the indication acknowledgement is received for each notified client.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<NotificationSentEventArg> NotificationSent
-        {
-            add
-            {
-                _impl._notificationSent += value;
-            }
-            remove
-            {
-                _impl._notificationSent -= value;
-            }
-        }
+        public event EventHandler<NotificationSentEventArg> NotificationSent;
 
         /// <summary>
         /// Creates the Bluetooth GATT server.
@@ -266,11 +261,19 @@ namespace Tizen.Network.Bluetooth
         private static event EventHandler<GattConnectionStateChangedEventArgs> s_connectionStateChanged;
         private static Interop.Bluetooth.GattConnectionStateChangedCallBack s_connectionStateChangeCallback;
 
-        internal BluetoothGattClient(string remoteAddress)
+        internal BluetoothGattClient(string remoteAddress, bool fromLe)
         {
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
-            StaticConnectionStateChanged += OnConnectionStateChanged;
+            if (fromLe == false)
+            {
+                StaticConnectionStateChanged += OnConnectionStateChanged;
+            }
+            else
+            {
+                // fromLe will be removed after BluetoothLeDevice.GattConnect removed for backward compatibility.
+                // BluetoothLeDevice.GattConnectionStateChanged event will be occured in this case.
+            }
         }
 
         /// <summary>
@@ -284,7 +287,13 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public static BluetoothGattClient CreateClient(string remoteAddress)
         {
-            BluetoothGattClient client = new BluetoothGattClient(remoteAddress);
+            BluetoothGattClient client = new BluetoothGattClient(remoteAddress, false);
+            return client.Isvalid() ? client : null;
+        }
+
+        internal static BluetoothGattClient CreateClient(string remoteAddress, bool fromLe)
+        {
+            BluetoothGattClient client = new BluetoothGattClient(remoteAddress, fromLe);
             return client.Isvalid() ? client : null;
         }
 

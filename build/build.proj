@@ -82,7 +82,7 @@
   <Target Name="Build">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);BuildWithAnalyzer=$(BuildWithAnalyzer)"
+             Properties="Configuration=$(Configuration);BuildWithAnalyzer=$(BuildWithAnalyzer);BuildProfile=$(BuildProfile)"
              BuildInParallel="true"
              UseResultsCache="true"
              Targets="Rebuild" />

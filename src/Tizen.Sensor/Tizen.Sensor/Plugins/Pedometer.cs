@@ -187,7 +187,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 StepCount = (uint)sensorData.values[0];
                 WalkStepCount = (uint)sensorData.values[1];
                 RunStepCount = (uint)sensorData.values[2];

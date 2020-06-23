@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1052,6 +1054,37 @@ namespace Tizen.NUI.BaseComponents
                     status = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The class represents the information of the situation where the View's control state changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ControlStateChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Create an instance with mandatory fields.
+            /// </summary>
+            /// <param name="previousState">The previous control state.</param>
+            /// <param name="currentState">The current control state.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlStateChangedEventArgs(ControlStates previousState, ControlStates currentState)
+            {
+                PreviousState = previousState;
+                CurrentState = currentState;
+            }
+
+            /// <summary>
+            /// The previous control state.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlStates PreviousState { get; }
+
+            /// <summary>
+            /// The current control state.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlStates CurrentState { get; }
         }
 
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;

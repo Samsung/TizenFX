@@ -10,7 +10,7 @@ namespace Tizen.NUI.Samples
 {
     public class DaliDemo : NUIApplication
     {
-        public DaliDemo(string styleSheet) : base(styleSheet, WindowMode.Transparent)
+        public DaliDemo(string styleSheet) : base(styleSheet)
         {
         }
 
@@ -92,6 +92,7 @@ namespace Tizen.NUI.Samples
         protected override void OnCreate()
         {
             base.OnCreate();
+            StyleManager.Get().ApplyTheme(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "style/demo-theme.json");
             CreateDaliDemo();
 
             NUIApplication.GetDefaultWindow().KeyEvent += Instance_KeyEvent;

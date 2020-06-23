@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.InputMethod;
 
 /// <summary>
@@ -57,6 +58,7 @@ internal static partial class Interop
             On
         };
 
+        [NativeStruct("ime_callback_s", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImeCallbackStruct
         {
@@ -70,6 +72,7 @@ internal static partial class Interop
             internal ImeHideCb hide;
         };
 
+        [NativeStruct("ime_preedit_attribute", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImePreEditAttributeStruct
         {

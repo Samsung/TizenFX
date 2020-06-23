@@ -59,23 +59,17 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
-        private Rectangle backgroundImageBorder;
-
-        private CloneableViewSelector<ImageShadow> imageShadow;
-
-        private CloneableViewSelector<Shadow> boxShadow;
-
-        private ViewSelector<float?> cornerRadius;
+        private bool controlStatePropagation = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+        internal BackgroundExtraData backgroundExtraData;
 
         static View() {}
 
         /// <summary>
         /// The Style instance binded with this View.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ViewStyle viewStyle;
+        private ViewStyle viewStyle;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -127,6 +121,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
@@ -167,8 +163,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal delegate void ControlStateChangesDelegate(View obj, ControlStates state);
-        internal event ControlStateChangesDelegate ControlStateChangeEvent;
+        /// <summary>
+        /// The event that is triggered when the View's ControlState is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ControlStateChangedEventArgs> ControlStateChangedEvent;
+
+        internal event EventHandler<ControlStateChangedEventArgs> ControlStateChangeEventInternal;
 
         private ControlStates controlStates;
         /// <summary>
@@ -183,40 +184,33 @@ namespace Tizen.NUI.BaseComponents
             {
                 return controlStates;
             }
-            set
+            protected set
             {
-                SetControlState(value, null);
-            }
-        }
-
-        /// <summary>
-        /// Set ControlState with specified change environment
-        /// </summary>
-        /// <param name="state">New state value</param>
-        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
-        /// <return>True, if the state changed successfully.</return>
-        internal bool SetControlState(ControlStates state, Touch touchInfo)
-        {
-            if (controlStates == state)
-            {
-                return false;
-            }
-
-            var prevState = controlStates;
-
-            controlStates = state;
-
-            ControlStateChangeEvent?.Invoke(this, state);
-
-            if (OnControlStateChanged(prevState, touchInfo))
-            {
-                foreach (View child in Children)
+                if (controlStates == value)
                 {
-                    child.SetControlState(state, touchInfo);
+                    return;
                 }
-            }
 
-            return true;
+                var prevState = controlStates;
+
+                controlStates = value;
+
+                var changeInfo = new ControlStateChangedEventArgs(prevState, value);
+
+                ControlStateChangeEventInternal?.Invoke(this, changeInfo);
+
+                OnControlStateChanged(changeInfo);
+
+                if (controlStatePropagation)
+                {
+                    foreach (View child in Children)
+                    {
+                        child.ControlState = value;
+                    }
+                }
+
+                ControlStateChangedEvent?.Invoke(this, changeInfo);
+            }
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -276,7 +270,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImage = null;
+                    viewStyle.BackgroundColor = value;
+                }
+                else
+                {
+                    SetValue(BackgroundColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -293,7 +296,16 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundColor = null;
+                    viewStyle.BackgroundImage = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -311,7 +323,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(BackgroundImageBorderProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.BackgroundImageBorder = value;
+                }
+                else
+                {
+                    SetValue(BackgroundImageBorderProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -338,6 +358,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "BoxShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -345,8 +368,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (ImageShadow)GetValue(ImageShadowProperty);
-                return value == null ? null : new ImageShadow(value, OnImageShadowChanged);
+                return (ImageShadow)GetValue(ImageShadowProperty);
             }
             set
             {
@@ -360,6 +382,9 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
+        /// Gettter returns copied instance of current shadow.
+        /// </remarks>
+        /// <remarks>
         /// The mutually exclusive with "ImageShadow".
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -367,8 +392,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (Shadow)GetValue(BoxShadowProperty);
-                return value == null ? null : new Shadow(value, OnBoxShadowChanged);
+                return (Shadow)GetValue(BoxShadowProperty);
             }
             set
             {
@@ -387,8 +411,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float? value = (float?)GetValue(CornerRadiusProperty);
-                return value ?? 0;
+                return (float)GetValue(CornerRadiusProperty);
             }
             set
             {
@@ -777,7 +800,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(OpacityProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Opacity = value;
+                }
+                else
+                {
+                    SetValue(OpacityProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -1021,7 +1052,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
-                WidthSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -1044,7 +1074,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
-                HeightSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -1504,28 +1533,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(WidthResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch (value)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                    {
-                        WidthSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    case ResizePolicyType.FillToParent:
-                    {
-                        WidthSpecification = LayoutParamPolicies.MatchParent;
-                        break;
-                    }
-                    case ResizePolicyType.FitToChildren:
-                    {
-                        WidthSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    default:
-                        break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -1543,28 +1550,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HeightResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch (value)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                    {
-                        HeightSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    case ResizePolicyType.FillToParent:
-                    {
-                        HeightSpecification = LayoutParamPolicies.MatchParent;
-                        break;
-                    }
-                    case ResizePolicyType.FitToChildren:
-                    {
-                        HeightSpecification = LayoutParamPolicies.WrapContent;
-                        break;
-                    }
-                    default:
-                        break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -1633,7 +1618,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 // If View has a Layout then padding in stored in the base Layout class
-                if (Layout !=null)
+                if (Layout != null)
                 {
                     return Layout.Padding;
                 }
@@ -1716,10 +1701,6 @@ namespace Tizen.NUI.BaseComponents
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (_layout != null)
                 {
-                    // Note: it only works if minimum size is >= than natural size.
-                    // To force the size it should be done through the width&height spec or Size2D.
-                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Width);
-                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Height);
                     _layout.RequestLayout();
                 }
                 SetValue(MaximumSizeProperty, value);
@@ -1826,10 +1807,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeProperty, value);
-                // Set Specification so when layouts measure this View it matches the value set here.
-                // All Views are currently Layouts.
-                WidthSpecification = (int)Math.Ceiling(value.Width);
-                HeightSpecification = (int)Math.Ceiling(value.Height);
                 NotifyPropertyChanged();
             }
         }
@@ -2124,7 +2101,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ColorProperty, value);
+                if (viewStyle != null)
+                {
+                    viewStyle.Color = value;
+                }
+                else
+                {
+                    SetValue(ColorProperty, value);
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -2156,7 +2141,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value?.Owner != null)
                 {
                     // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new LayoutGroup();
+                    value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
                     value.Owner.Layout.Margin = value.Margin;
@@ -2296,12 +2281,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Enable/Disable ControlState propagation for children.
+        /// It is false by default.
+        /// If the View needs to share ControlState with descendants, please set it true.
+        /// Please note that, changing the value will also changes children's EnableControlStatePropagation value recursively.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlStatePropagation
+        {
+            get => controlStatePropagation;
+            set
+            {
+                controlStatePropagation = value;
+
+                foreach (View child in Children)
+                {
+                    child.EnableControlStatePropagation = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        // TODO: It should be deprecated. please use CreateViewStyle instead.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ViewStyle GetViewStyle()
+        {
+            return CreateViewStyle();
+        }
+
+        /// <summary>
+        /// Create Style, it is abstract function and must be override.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ViewStyle CreateViewStyle()
         {
             return new ViewStyle();
         }
@@ -2309,14 +2325,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called after the View's ControlStates changed.
         /// </summary>
-        /// <param name="previousState">The previous state value</param>
-        /// <param name="touchInfo">The touch information in case the state has changed by touching.</param>
-        /// <return>True if it needs to apply the state to children recursively.</return>
+        /// <param name="controlStateChangedInfo">The information including state changed variables.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnControlStateChanged(ControlStates previousState, Touch touchInfo)
+        protected virtual void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            //If need to apply the state to all child, return true;
-            return true;
         }
 
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>

@@ -177,6 +177,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsTextPredictionAllowed")]
             public static extern bool InputMethodContext_IsTextPredictionAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelLanguage")]
+            public static extern void InputMethodContext_SetInputPanelLanguage(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLanguage")]
+            public static extern int InputMethodContext_GetInputPanelLanguage(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelPosition")]
             public static extern void InputMethodContext_SetInputPanelPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
 

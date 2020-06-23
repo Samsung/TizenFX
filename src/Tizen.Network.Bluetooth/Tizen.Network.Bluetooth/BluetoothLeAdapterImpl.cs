@@ -38,7 +38,6 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.GattConnectionStateChangedCallBack _gattConnectionStateChangedCallback;
 
         private int _serviceListCount = 0;
-        private IList<BluetoothLeServiceData> _list = new List<BluetoothLeServiceData>();
         private bool _scanStarted;
 
         internal static BluetoothLeImplAdapter Instance
@@ -133,14 +132,10 @@ namespace Tizen.Network.Bluetooth
             _gattConnectionStateChangedCallback = (int result, bool connected,
                                     string remoteDeviceAddress, IntPtr userData) =>
             {
-                if (_gattConnectionStateChanged != null)
-                {
-                    Log.Info(Globals.LogTag, "Setting gatt connection state changed callback" );
-                    GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs (result,
+                Log.Info(Globals.LogTag, "Setting gatt connection state changed callback");
+                GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs(result,
                         connected, remoteDeviceAddress);
-
-                    _gattConnectionStateChanged(null, e);
-                }
+                _gattConnectionStateChanged?.Invoke(null, e);
             };
 
             int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(
@@ -172,7 +167,7 @@ namespace Tizen.Network.Bluetooth
 
                 AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (res,
                                                                     device);
-                _adapterLeScanResultChanged (null, e);
+                _adapterLeScanResultChanged?.Invoke(null, e);
             };
 
             IntPtr data = IntPtr.Zero;
@@ -394,17 +389,18 @@ namespace Tizen.Network.Bluetooth
 
             Log.Info(Globals.LogTag, "Count of ServiceDataList: " + _serviceListCount);
 
+            IList<BluetoothLeServiceData> list = new List<BluetoothLeServiceData>();
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
             {
                 var svc = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
-                _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
+                list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
             }
 
             Interop.Bluetooth.FreeServiceDataList(serviceListArray, _serviceListCount);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
-            return _list;
+            return list;
         }
 
         internal int GetScanResultAppearance(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
@@ -527,7 +523,7 @@ namespace Tizen.Network.Bluetooth
             {
                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
-                _advertisingStateChanged(null, e);
+                _advertisingStateChanged?.Invoke(null, e);
             };
 
             IntPtr uData = IntPtr.Zero;

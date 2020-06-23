@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,119 +21,135 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// The platform provided shadow drawing for View
+    /// Represents a shadow with color and blur radius for a View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Shadow : ShadowBase, Tizen.NUI.Internal.ICloneable
+    public class Shadow : ShadowBase
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
 
         private static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
 
-        private Color color;
-
-        private uint blurRadius;
-
         /// <summary>
-        /// Constructor
+        /// Create a Shadow with default values.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow() : base()
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
-
+            BlurRadius = 0;
             Color = defaultColor;
         }
 
-        internal Shadow(Shadow other, PropertyChangedCallback callback = null) : base(other)
+        /// <summary>
+        /// Create a Shadow with custom values.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
-
-            Color = other.Color;
-            BlurRadius = other.BlurRadius;
-            OnPropertyChanged = callback;
+            BlurRadius = blurRadius;
+            Color = color;
         }
 
         /// <summary>
-        /// The boolean conversion
+        /// Copy constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static implicit operator Shadow(bool value)
+        public Shadow(Shadow other) : this(other.BlurRadius, other.Offset, other.Color, other.Extents)
         {
-            Shadow shadow = new Shadow()
-            {
-                Color = value ? defaultColor : noColor,
-            };
-            return shadow;
         }
 
         /// <summary>
-        /// Deep copy method
+        /// Create a Shadow from a propertyMap.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone()
+        internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
-            return new Shadow() {
-                Offset = offset,
-                Extents = extents,
-                Color = color,
-                BlurRadius = blurRadius
-            };
-        }
-
-        private void OnColorChanged(float r, float g, float b, float a)
-        {
-            UpdateColor();
-        }
-
-        private void UpdateColor()
-        {
-            propertyMap[ColorVisualProperty.MixColor] = PropertyValue.CreateWithGuard(color);
-            OnPropertyChanged?.Invoke(this);
-        }
-
-        private void UpdateBlurRadius()
-        {
-            // TODO update blur radius value in the property map
-            OnPropertyChanged?.Invoke(this);
         }
 
         /// <summary>
         /// The color for the shadow.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color Color
-        {
-            get
-            {
-                return color;
-            }
-            set
-            {
-                color = new Color(OnColorChanged, value ?? noColor);
-                UpdateColor();
-            }
-        }
+        public Color Color { get; set; }
 
         /// <summary>
         /// The blur radius value for the shadow. Bigger value, much blurry.
         /// </summary>
-        private uint BlurRadius
+        /// <remark>
+        /// Negative value is ignored. (no blur)
+        /// </remark>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BlurRadius { get; set; }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object other)
         {
-            get
+            if (!base.Equals(other))
             {
-                return blurRadius;
+                return false;
             }
-            set
+
+            var otherShadow = (Shadow)other;
+
+            if (!((Color == null) ? otherShadow.Color == null : Color.Equals(otherShadow.Color)))
             {
-                blurRadius = value;
-                UpdateBlurRadius();
+                return false;
+            }
+
+            return BlurRadius.Equals(otherShadow.BlurRadius);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = base.GetHashCode();
+                hash = (hash * 7) + (Color == null ? 0 : Color.GetHashCode());
+                hash = (hash * 7) + (BlurRadius.GetHashCode());
+                return hash;
             }
         }
 
-        override internal bool IsValid()
+        internal override bool IsEmpty()
         {
-            return color != null && color.A != 0;
+            return (Color == null || Color.A == 0);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override PropertyMap GetPropertyMap()
+        {
+            var map = base.GetPropertyMap();
+
+            map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
+
+            map[ColorVisualProperty.MixColor] = new PropertyValue(Color ?? noColor);
+
+            map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
+
+            return map;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool SetPropertyMap(PropertyMap propertyMap)
+        {
+            if (!base.SetPropertyMap(propertyMap))
+            {
+                return false;
+            }
+
+            Color = noColor;
+            propertyMap.Find(ColorVisualProperty.MixColor)?.Get(Color);
+
+            float blurRadius = 0;
+            propertyMap.Find(ColorVisualProperty.BlurRadius)?.Get(out blurRadius);
+            BlurRadius = blurRadius;
+
+            return true;
         }
     }
 }

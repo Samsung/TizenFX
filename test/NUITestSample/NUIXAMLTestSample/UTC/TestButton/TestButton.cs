@@ -5,7 +5,7 @@ using System.Reflection;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 //using System.ComponentModel;
 

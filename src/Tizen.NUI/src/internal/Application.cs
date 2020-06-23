@@ -1351,7 +1351,12 @@ namespace Tizen.NUI
 
         public Window GetWindow()
         {
-            Window ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindow(swigCPtr)) as Window;
+            if(ret == null)
+            {
+                ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1383,7 +1388,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static List<Window> GetWindowList()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Window> GetWindowList()
         {
             uint ListSize = Interop.Application.Application_GetWindowsListSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -186,8 +186,8 @@ namespace Tizen.NUI.Components
         {
             var instance = (Popup)bindable;
             ImageShadow shadow = (ImageShadow)newValue;
-            instance.btGroup.ItemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
-            instance.Style.Buttons.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+            instance.btGroup.ItemImageShadow = new ImageShadow(shadow);
+            instance.Style.Buttons.ImageShadow = new ImageShadow(shadow);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -200,7 +200,6 @@ namespace Tizen.NUI.Components
         private ButtonGroup btGroup = null;
         private Window window = null;
         private Layer container = new Layer();
-        private PanGestureDetector detector = new PanGestureDetector();
         static Popup() { }
 
         /// <summary>
@@ -333,6 +332,27 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public new PopupStyle Style => ViewStyle as PopupStyle;
+
+        /// <summary>
+        /// Popup Title.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel Title
+        {
+            get
+            {
+                if (null == titleText)
+                {
+                    titleText = new TextLabel();
+                    Add(titleText);
+                }
+                return titleText;
+            }
+            internal set
+            {
+                titleText = value;
+            }
+        }
 
         /// <summary>
         /// Title text string in Popup.
@@ -694,13 +714,8 @@ namespace Tizen.NUI.Components
             PopupStyle ppStyle = viewStyle as PopupStyle;
             if (null != ppStyle)
             {
-                if (null == titleText)
-                {
-                    titleText = new TextLabel();
-                    Add(titleText);
-                }
-                titleText.RaiseToTop();
-                titleText.ApplyStyle(ppStyle.Title);
+                Title.ApplyStyle(ppStyle.Title);
+                Title.RaiseToTop();
             }
         }
 
@@ -709,7 +724,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default popup style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
         }
@@ -722,7 +737,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
+            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(StyleName) as PopupStyle;
             if (popupStyle != null)
             {
                 string strSaveTitleText = TitleText;
@@ -734,8 +749,10 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            detector.Attach(this);
             container.Add(this);
+            container.SetTouchConsumed(true);
+            container.SetHoverConsumed(true);
+
             LeaveRequired = true;
             PropertyChanged += PopupStylePropertyChanged;
 
@@ -748,14 +765,6 @@ namespace Tizen.NUI.Components
             };
             Add(ContentView);
             ContentView.RaiseToTop();
-
-            // Title
-            if (null == titleText)
-            {
-                titleText = new TextLabel();
-                titleText.RaiseToTop();
-                Add(titleText);
-            }
 
             // Button
             btGroup = new ButtonGroup(this);

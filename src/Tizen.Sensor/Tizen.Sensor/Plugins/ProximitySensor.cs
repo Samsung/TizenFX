@@ -117,7 +117,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading proximity sensor data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             Proximity = (ProximitySensorState)sensorData.values[0];
         }
 
@@ -129,7 +129,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 Proximity = (ProximitySensorState) sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new ProximitySensorDataUpdatedEventArgs(sensorData.values[0]));

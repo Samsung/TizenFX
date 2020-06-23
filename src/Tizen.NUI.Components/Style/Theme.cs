@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
             styleMap.Add(typeof(Button), GetButtonStyle);
             styleMap.Add(typeof(CheckBox), GetCheckBoxStyle);
             styleMap.Add(typeof(DropDown), GetDropDownStyle);
+            styleMap.Add(typeof(DropDown.DropDownDataItem), GetDropDownItemStyle);
             styleMap.Add(typeof(Popup), GetPopupStyle);
             styleMap.Add(typeof(Progress), GetProgressStyle);
             styleMap.Add(typeof(RadioButton), GetRadioButtonStyle);
@@ -42,6 +43,8 @@ namespace Tizen.NUI.Components
             styleMap.Add(typeof(Switch), GetSwitchStyle);
             styleMap.Add(typeof(Tab), GetTabStyle);
             styleMap.Add(typeof(Toast), GetToastStyle);
+            styleMap.Add(typeof(Loading), GetLoadingStyle);
+            styleMap.Add(typeof(Pagination), GetPaginationStyle);
         }
 
         internal delegate ViewStyle ComponentStyleGetter();
@@ -62,6 +65,8 @@ namespace Tizen.NUI.Components
 
         protected abstract DropDownStyle GetDropDownStyle();
 
+        protected abstract DropDownItemStyle GetDropDownItemStyle();
+
         protected abstract PopupStyle GetPopupStyle();
 
         protected abstract ProgressStyle GetProgressStyle();
@@ -75,5 +80,9 @@ namespace Tizen.NUI.Components
         protected abstract TabStyle GetTabStyle();
 
         protected abstract ToastStyle GetToastStyle();
+
+        protected abstract LoadingStyle GetLoadingStyle();
+
+        protected abstract PaginationStyle GetPaginationStyle();
     }
 }

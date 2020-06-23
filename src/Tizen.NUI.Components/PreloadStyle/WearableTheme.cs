@@ -122,5 +122,25 @@ namespace Tizen.NUI.Components
                 },
             };
         }
+
+        protected override LoadingStyle GetLoadingStyle()
+        {
+            return new LoadingStyle
+            {
+                LoadingSize = new Size(360, 360)
+            };
+        }
+
+        protected override PaginationStyle GetPaginationStyle()
+        {
+            return new PaginationStyle
+            {
+                IndicatorImageURL = new Selector<string>()
+                {
+                    Normal = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_normal_dot.png"),
+                    Selected = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_focus_dot.png"),
+                },
+            };
+        }
     }
 }

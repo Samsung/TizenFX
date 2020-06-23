@@ -151,16 +151,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PressedSelected State.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public T PressedSelected
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Other State.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -201,10 +191,11 @@ namespace Tizen.NUI.BaseComponents
                     return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
                 case ControlStates.SelectedFocused:
                     return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
-                case ControlStates.PressedSelected:
-                    return PressedSelected != null ? PressedSelected : (Selected != null ? Selected : Other);
                 default:
+                {
+                    // TODO Handle combined states
                     return Other;
+                }
             }
         }
         /// <summary>
@@ -224,7 +215,6 @@ namespace Tizen.NUI.BaseComponents
             DisabledSelected = selector.DisabledSelected;
             DisabledFocused = selector.DisabledFocused;
             SelectedFocused = selector.SelectedFocused;
-            PressedSelected = selector.PressedSelected;
             Other = selector.Other;
         }
 
@@ -241,8 +231,12 @@ namespace Tizen.NUI.BaseComponents
             DisabledSelected = (T)(other.DisabledSelected)?.Clone();
             DisabledFocused = (T)(other.DisabledFocused)?.Clone();
             SelectedFocused = (T)(other.SelectedFocused)?.Clone();
-            PressedSelected = (T)(other.PressedSelected)?.Clone();
             Other = (T)(other.Other)?.Clone();
+        }
+
+        internal bool HasMultiValue()
+        {
+            return All == null;
         }
     }
 
@@ -254,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         {
             targetView = view;
             targetBindableProperty = bindableProperty;
-            view.ControlStateChangeEvent += OnViewControlState;
+            view.ControlStateChangeEventInternal += OnViewControlState;
         }
 
         /// <summary>
@@ -273,11 +267,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnViewControlState(View obj, ControlStates state)
+        private void OnViewControlState(object obj, View.ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            if (null != obj && null != GetValue(state))
+            View view = obj as View;
+            if (null != view && null != GetValue(controlStateChangedInfo.CurrentState))
             {
-                obj.SetValue(targetBindableProperty, GetValue(state));
+                view.SetValue(targetBindableProperty, GetValue(controlStateChangedInfo.CurrentState));
             }
         }
 
@@ -292,9 +287,9 @@ namespace Tizen.NUI.BaseComponents
     {
         protected Selector<T> selector;
         protected View view;
-        protected View.ControlStateChangesDelegate controlStateChanged;
+        protected EventHandler<View.ControlStateChangedEventArgs> controlStateChanged;
 
-        internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
+        internal ViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged)
         {
             if (view == null || controlStateChanged == null)
             {
@@ -334,8 +329,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (hadMultiValue != HasMultiValue())
             {
-                if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
-                else view.ControlStateChangeEvent += controlStateChanged;
+                if (hadMultiValue) view.ControlStateChangeEventInternal -= controlStateChanged;
+                else view.ControlStateChangeEventInternal += controlStateChanged;
             }
         }
 
@@ -355,7 +350,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (HasMultiValue())
             {
-                view.ControlStateChangeEvent -= controlStateChanged;
+                view.ControlStateChangeEventInternal -= controlStateChanged;
             }
             selector = null;
         }
@@ -376,7 +371,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     internal class CloneableViewSelector<T> : ViewSelector<T> where T : Tizen.NUI.Internal.ICloneable
     {
-        internal CloneableViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged) : base(view, controlStateChanged)
+        internal CloneableViewSelector(View view, EventHandler<View.ControlStateChangedEventArgs> controlStateChanged) : base(view, controlStateChanged)
         {
         }
 
@@ -401,18 +396,21 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         static internal Selector<T> CopyCloneable<T>(object value) where T : class, Tizen.NUI.Internal.ICloneable
         {
-            var type = value?.GetType();
-
-            if (type == typeof(Selector<T>))
+            if (null != value)
             {
-                var result = new Selector<T>();
-                result.Clone<T>((Selector<T>)value);
-                return result;
-            }
+                var type = value.GetType();
 
-            if (type == typeof(T))
-            {
-                return new Selector<T>((T)((T)value).Clone());
+                if (type == typeof(Selector<T>))
+                {
+                    var result = new Selector<T>();
+                    result.Clone<T>((Selector<T>)value);
+                    return result;
+                }
+
+                if (type == typeof(T))
+                {
+                    return new Selector<T>((T)((T)value).Clone());
+                }
             }
 
             return null;
@@ -424,18 +422,21 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         static internal Selector<T> CopyValue<T>(object value)
         {
-            var type = value?.GetType();
-
-            if (type == typeof(Selector<T>))
+            if (null != value)
             {
-                var result = new Selector<T>();
-                result.Clone((Selector<T>)value);
-                return result;
-            }
+                var type = value.GetType();
 
-            if (type == typeof(T))
-            {
-                return new Selector<T>((T)value);
+                if (type == typeof(Selector<T>))
+                {
+                    var result = new Selector<T>();
+                    result.Clone((Selector<T>)value);
+                    return result;
+                }
+
+                if (type == typeof(T))
+                {
+                    return new Selector<T>((T)value);
+                }
             }
 
             return null;

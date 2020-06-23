@@ -64,35 +64,35 @@ internal static partial class Interop
                 IntPtr userData = default(IntPtr));
 
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_create")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_create")]
             internal static extern MediaVisionError Create(out IntPtr handle);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_destroy")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_destroy")]
             internal static extern MediaVisionError Destroy(IntPtr handle);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_configure")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_configure")]
             internal static extern MediaVisionError Configure(IntPtr handle, IntPtr engineConfig);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_prepare")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_prepare")]
             internal static extern MediaVisionError Load(IntPtr handle);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_foreach_supported_engine")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_foreach_supported_engine")]
             internal static extern MediaVisionError ForeachSupportedBackend(IntPtr handle,
                 SupportedBackendCallback callback, IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_image_classify")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_image_classify")]
             internal static extern MediaVisionError ClassifyImage(IntPtr source, IntPtr inference,
                 IntPtr roi, ImageClassifedCallback callback, IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_object_detect")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_object_detect")]
             internal static extern MediaVisionError DetectObject(IntPtr source, IntPtr inference,
                 ObjectDetectedCallback callback, IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_face_detect")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_face_detect")]
             internal static extern MediaVisionError DetectFace(IntPtr source, IntPtr inference,
                 FaceDetectedCallback callback, IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_facial_landmark_detect")]
+            [DllImport(Libraries.MediaVisionInference, EntryPoint = "mv_inference_facial_landmark_detect")]
             internal static extern MediaVisionError DetectFacialLandmark(IntPtr source, IntPtr inference,
                 IntPtr roi, FacialLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr));
         }

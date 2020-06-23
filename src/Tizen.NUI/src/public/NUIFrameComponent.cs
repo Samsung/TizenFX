@@ -15,6 +15,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIFrameComponent : FrameComponent
     {
+        private bool defaultWindowSet = false;
         internal NUIWindowInfo NUIWindowInfo
         {
             get;
@@ -36,17 +37,18 @@ namespace Tizen.NUI
         public override IWindowInfo CreateWindowInfo()
         {
             ComponentApplication instance = ComponentApplication.Instance as ComponentApplication;
-            if(instance)
+            if (instance)
             {
-                instance.RegisterFrameComponent(this);
-                if(instance.GetFrameComponentCount() == 1)
+                if (!defaultWindowSet)
                 {
-                    Window = instance.GetWindow();
+                    instance.GetWindow().WindowPositionSize = new Rectangle(0, 0, 1, 1);
+                    instance.GetWindow().BackgroundColor = new Color(0, 0, 0, 0);
+                    instance.GetWindow().Hide();
+                    defaultWindowSet = true;
                 }
-                else
-                {
-                    Window = new Window();
-                }
+
+                Window = new Window();
+                Window.Show();
             }
             NUIWindowInfo = new NUIWindowInfo(Window);
             return NUIWindowInfo;

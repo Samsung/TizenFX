@@ -14,17 +14,15 @@
  * limitations under the License.
  *
  */
-using System;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class FlexContainerPage : ContentPage
+    public partial class FlexContainerPage : ContentPage
     {
 
         public FlexContainerPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()

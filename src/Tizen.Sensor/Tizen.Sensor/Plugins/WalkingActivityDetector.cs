@@ -106,7 +106,7 @@ namespace Tizen.Sensor
                 throw SensorErrorFactory.CheckAndThrowException(error, "Reading walking activity detector data failed");
             }
 
-            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Timestamp = sensorData.timestamp;
             Walking = (DetectorState)sensorData.values[0];
             ActivityAccuracy = (SensorDataAccuracy)sensorData.accuracy;
         }
@@ -125,7 +125,7 @@ namespace Tizen.Sensor
                 updateBatchEvents(eventPtr, events_count);
                 Interop.SensorEventStruct sensorData = latestEvent();
 
-                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+                Timestamp = sensorData.timestamp;
                 Walking = (DetectorState)sensorData.values[0];
                 ActivityAccuracy = (SensorDataAccuracy) sensorData.accuracy;
 

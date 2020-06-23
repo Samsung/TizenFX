@@ -63,6 +63,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelBuffer_Resize")]
             public static extern void PixelBuffer_Resize(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2, ushort jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelBuffer_Rotate")]
+            public static extern bool PixelBuffer_Rotate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

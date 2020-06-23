@@ -48,6 +48,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal Rectangle(Rectangle other) : this(other.x, other.y, other.width, other.height)
+        {
+        }
+
         internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }

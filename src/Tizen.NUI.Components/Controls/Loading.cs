@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                instance.Style.Size = size;
+                ((View)bindable).Size = size;
                 if (null != instance.imageVisual)
                 {
                     instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 int frameRate = (int)newValue;
-                if (0 != frameRate) //It will crash if 0 
+                if (0 != frameRate) //It will crash if 0
                 {
                     instance.Style.FrameRate.All = frameRate;
                     instance.imageVisual.FrameDelay = 1000.0f / frameRate;
@@ -132,29 +132,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Images;
+                return (string[])GetValue(ImageArrayProperty);
             }
             set
             {
-                Images = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets loading image resources.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] Images
-        {
-            get
-            {
-                return (string[])GetValue(ImagesProperty);
-            }
-            set
-            {
-                SetValue(ImagesProperty, value);
+                SetValue(ImageArrayProperty, value);
             }
         }
 
@@ -170,7 +152,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                SetValue(SizeProperty, value); 
+                SetValue(SizeProperty, value);
             }
         }
 
@@ -195,7 +177,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default loading style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new LoadingStyle();
         }
@@ -231,7 +213,6 @@ namespace Tizen.NUI.Components
                 URLS = new List<string>(),
                 FrameDelay = 16.6f,
                 LoopCount = -1,
-                Size = new Size2D(100, 100),
                 Position = new Vector2(0, 0),
                 Origin = Visual.AlignType.Center,
                 AnchorPoint = Visual.AlignType.Center
@@ -254,7 +235,7 @@ namespace Tizen.NUI.Components
             }
             if (null != Style.LoadingSize)
             {
-                imageVisual.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
+                this.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
             }
         }
     }

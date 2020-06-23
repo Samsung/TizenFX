@@ -904,12 +904,24 @@ namespace Tizen.NUI.BaseComponents
             return new LottieFrameInfo(stillImageFrame, stillImageFrame);
         }
 
-        internal bool IsStillImage()
+        /// <summary>
+        /// Inhouse API.
+        /// Whether this LottieFrameInfo represents one frame or more.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsStillImage()
         {
             return StartFrame == EndFrame;
         }
 
-        internal void Show(LottieAnimationView lottieView, bool noPlay = false)
+        /// <summary>
+        /// Inhouse API.
+        /// Play specified LottieAnimationView with this frame information.
+        /// </summary>
+        /// <param name="lottieView">The target LottieAnimationView to play.</param>
+        /// <param name="noPlay">Whether go direct to the EndFrame. It is false by default.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Show(LottieAnimationView lottieView, bool noPlay = false)
         {
             if (!BeReadyToShow(lottieView))
             {

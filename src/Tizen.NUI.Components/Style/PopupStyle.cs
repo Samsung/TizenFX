@@ -89,6 +89,7 @@ namespace Tizen.NUI.Components
             // TODO Apply proper shadow as a default for a Popup
             BoxShadow = new Shadow()
             {
+                BlurRadius = 5,
                 Offset = new Vector2(5, 5),
             };
 

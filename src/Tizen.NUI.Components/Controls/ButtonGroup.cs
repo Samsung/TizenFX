@@ -203,9 +203,9 @@ namespace Tizen.NUI.Components
                 var shadow = (ImageShadow)newValue;
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+                    btn.Style.ImageShadow = new ImageShadow(shadow);
                 }
-                btGroup.itemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+                btGroup.itemImageShadow = new ImageShadow(shadow);
             }
         },
         defaultValueCreator: (bindable) =>
