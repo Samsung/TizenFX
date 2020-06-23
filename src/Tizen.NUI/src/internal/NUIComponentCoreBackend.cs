@@ -131,8 +131,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Callback for Component Application CreateSignal
         /// </summary>
-        /// <param name="data">user data</param>
-        private IntPtr OnCreateNative(IntPtr data)
+        private IntPtr OnCreateNative()
         {
             IntPtr nativeComponentFactoryMap = IntPtr.Zero;
             int n = 0;
@@ -141,7 +140,6 @@ namespace Tizen.NUI
                 nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
                 n++;
             }
-
             return nativeComponentFactoryMap;
         }
 

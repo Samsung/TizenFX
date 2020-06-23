@@ -8,12 +8,10 @@ namespace Tizen.NUI
     class ComponentApplication : Application
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private List<NUIFrameComponent> _frameComponentList;
 
         internal ComponentApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            _frameComponentList = new List<NUIFrameComponent>();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ComponentApplication obj)
@@ -77,14 +75,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-		
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate IntPtr NUIComponentApplicationCreatenativeEventCallbackDelegate(IntPtr data);
 
-		public delegate IntPtr CreateNativeEventHandler(IntPtr data);
-		private CreateNativeEventHandler _applicationCreateNativeEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate IntPtr NUIComponentApplicationCreatenativeEventCallbackDelegate();
+
+        public delegate IntPtr CreateNativeEventHandler();
+        private CreateNativeEventHandler _applicationCreateNativeEventHandler;
         private NUIComponentApplicationCreatenativeEventCallbackDelegate _applicationCreateNativeEventCallbackDelegate;
-		
+
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
@@ -152,31 +150,19 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-		
 
-		
-		// Callback for Application InitSignal
-		private IntPtr OnApplicationCreateNative(IntPtr data)
+        // Callback for Application InitSignal
+        private IntPtr OnApplicationCreateNative()
         {
-            IntPtr ptr = IntPtr.Zero;
-		
-			if (_applicationCreateNativeEventHandler != null)
-			{
-				ptr = _applicationCreateNativeEventHandler.Invoke(data);
-			}
-		    return ptr;
-		}
+            IntPtr handle = IntPtr.Zero;
 
-        internal void RegisterFrameComponent(NUIFrameComponent nuiFrameComponent)
-        {
-            _frameComponentList.Add(nuiFrameComponent);
+            if (_applicationCreateNativeEventHandler != null)
+            {
+                handle = _applicationCreateNativeEventHandler.Invoke();
+            }
+
+            return handle;
         }
-
-        internal int GetFrameComponentCount()
-        {
-            return _frameComponentList.Count;
-        }
-
 
     }
 
