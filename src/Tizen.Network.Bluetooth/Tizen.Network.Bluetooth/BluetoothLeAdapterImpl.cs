@@ -34,9 +34,6 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<AdvertisingStateChangedEventArgs> _advertisingStateChanged = null;
         private Interop.Bluetooth.AdvertisingStateChangedCallBack _advertisingStateChangedCallback;
 
-        private event EventHandler<GattConnectionStateChangedEventArgs> _gattConnectionStateChanged = null;
-        private Interop.Bluetooth.GattConnectionStateChangedCallBack _gattConnectionStateChangedCallback;
-
         private int _serviceListCount = 0;
         private bool _scanStarted;
 
@@ -72,11 +69,6 @@ namespace Tizen.Network.Bluetooth
             {
                 // Free managed objects.
             }
-            //Free unmanaged objects
-            if (_gattConnectionStateChanged != null)
-            {
-                UnRegisterGattConnectionStateChangedEvent();
-            }
 
             //stop scan operation in progress
             StopScan ();
@@ -104,58 +96,6 @@ namespace Tizen.Network.Bluetooth
             remove
             {
                 _advertisingStateChanged -= value;
-            }
-        }
-
-        internal event EventHandler<GattConnectionStateChangedEventArgs> LeGattConnectionStateChanged
-        {
-            add
-            {
-                if (_gattConnectionStateChanged == null)
-                {
-                    RegisterGattConnectionStateChangedEvent();
-                }
-                _gattConnectionStateChanged += value;
-            }
-            remove
-            {
-                _gattConnectionStateChanged -= value;
-                if (_gattConnectionStateChanged == null)
-                {
-                    UnRegisterGattConnectionStateChangedEvent();
-                }
-            }
-        }
-
-        internal void RegisterGattConnectionStateChangedEvent()
-        {
-            _gattConnectionStateChangedCallback = (int result, bool connected,
-                                    string remoteDeviceAddress, IntPtr userData) =>
-            {
-                if (_gattConnectionStateChanged != null)
-                {
-                    Log.Info(Globals.LogTag, "Setting gatt connection state changed callback" );
-                    GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs (result,
-                        connected, remoteDeviceAddress);
-
-                    _gattConnectionStateChanged(null, e);
-                }
-            };
-
-            int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(
-                                    _gattConnectionStateChangedCallback, IntPtr.Zero);
-            if (ret != (int)BluetoothError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
-            }
-        }
-
-        internal void UnRegisterGattConnectionStateChangedEvent()
-        {
-            int ret = Interop.Bluetooth.UnsetGattConnectionStateChangedCallback();
-            if (ret != (int)BluetoothError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to unset gatt connection state changed callback, Error - " + (BluetoothError)ret);
             }
         }
 
