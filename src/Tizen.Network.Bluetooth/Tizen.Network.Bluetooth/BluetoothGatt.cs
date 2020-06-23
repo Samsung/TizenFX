@@ -326,7 +326,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
+        internal static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
         {
             add
             {
