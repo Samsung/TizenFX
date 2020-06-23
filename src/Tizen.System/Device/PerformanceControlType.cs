@@ -25,25 +25,25 @@ namespace Tizen.System
     /// This class represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PmQosType
+    public class PerformanceControlType
     {
         /// <summary>
         /// Pre-defined event type "PreCreated".
         /// </summary>
-        public static readonly PmQosType AppLaunchHome = "AppLaunchHome";
+        public static readonly PerformanceControlType AppLaunchHome = "AppLaunchHome";
 
         /// <summary>
         /// Pre-defined event type "HomeScreen".
         /// </summary>
-        public static readonly PmQosType HomeScreen = "HomeScreen";
+        public static readonly PerformanceControlType HomeScreen = "HomeScreen";
 
         private string _typeName;
 
         /// <summary>
-        /// Initializes the PmQosType class.
+        /// Initializes the PerformanceControlType class.
         /// </summary>
         /// <param name="name">The name of event type.</param>
-        public PmQosType(string name) {
+        public PerformanceControlType(string name) {
             _typeName = name;
         }
 
@@ -66,15 +66,15 @@ namespace Tizen.System
         /// Determines whether this instance and a specified object.
         /// </summary>
         public override bool Equals(object obj) {
-            PmQosType other = obj as PmQosType;
+            PerformanceControlType other = obj as PerformanceControlType;
             return other != null && other._typeName == this._typeName;
         }
 
         /// <summary>
-        /// Converts a string to PmQosType instance.
+        /// Converts a string to PerformanceControlType instance.
         /// </summary>
-        public static implicit operator PmQosType(string value) {
-            return new PmQosType(value);
+        public static implicit operator PerformanceControlType(string value) {
+            return new PerformanceControlType(value);
         }
     }
 }

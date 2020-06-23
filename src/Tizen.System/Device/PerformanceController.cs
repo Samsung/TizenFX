@@ -33,11 +33,11 @@ namespace Tizen.System
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class PerformanceController
     {
-        private delegate int PmQosFunc(int timeout);
-        private static readonly Dictionary<PmQosType, PmQosFunc> PmQosFunctions = new Dictionary<PmQosType, PmQosFunc>
+        private delegate int PerformanceControlFunc(int timeout);
+        private static readonly Dictionary<PerformanceControlType, PerformanceControlFunc> PerformanceControlFunctions = new Dictionary<PerformanceControlType, PerformanceControlFunc>
         {
-            {PmQosType.AppLaunchHome, Interop.Device.DevicePmQosAppLaunchHome},
-            {PmQosType.HomeScreen, Interop.Device.DevicePmQosHomeScreen},
+            {PerformanceControlType.AppLaunchHome, Interop.Device.DevicePmQosAppLaunchHome},
+            {PerformanceControlType.HomeScreen, Interop.Device.DevicePmQosHomeScreen},
             /* Add Here */
         };
 
@@ -53,17 +53,17 @@ namespace Tizen.System
         /// <code>
         ///     try
         ///     {
-        ///         PerformanceController.Request(PmQosType.AppLaunchHome, 100);
+        ///         PerformanceController.Request(PerformanceControlType.AppLaunchHome, 100);
         ///     }
         ///     Catch(Exception e)
         ///     {
         ///     }
         /// </code>
         /// </example>
-        public static void Request(PmQosType type, int timeout) {
-            PmQosFunc func = null;
+        public static void Request(PerformanceControlType type, int timeout) {
+            PerformanceControlFunc func = null;
 
-            if (!PmQosFunctions.TryGetValue(type, out func))
+            if (!PerformanceControlFunctions.TryGetValue(type, out func))
                 throw new ArgumentException("Invalid Arguments");
 
             DeviceError res = (DeviceError)func(timeout);
