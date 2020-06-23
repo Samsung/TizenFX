@@ -111,7 +111,7 @@ namespace Tizen.Network.Bluetooth
 
                 AdapterLeScanResultChangedEventArgs e = new AdapterLeScanResultChangedEventArgs (res,
                                                                     device);
-                _adapterLeScanResultChanged (null, e);
+                _adapterLeScanResultChanged?.Invoke(null, e);
             };
 
             IntPtr data = IntPtr.Zero;
@@ -467,7 +467,7 @@ namespace Tizen.Network.Bluetooth
             {
                 Log.Info(Globals.LogTag, "Setting advertising state changed callback !! " );
                 AdvertisingStateChangedEventArgs e = new AdvertisingStateChangedEventArgs(result, advertiserHandle, state);
-                _advertisingStateChanged(null, e);
+                _advertisingStateChanged?.Invoke(null, e);
             };
 
             IntPtr uData = IntPtr.Zero;
