@@ -39,7 +39,7 @@ namespace Tizen.NUI.Wearable
 
         private bool isSymmetrical = true;
         private int middleIndex = 9;
-        private int indicatorCount = 1;
+        private int indicatorCount = 0;
         private int leftIndicatorCount = 0;
         private int rightIndicatorCount = 0;
         private int selectedIndex = -1;
@@ -190,6 +190,7 @@ namespace Tizen.NUI.Wearable
                 }
                 if (value == false)
                 {
+                    isOddNumber = true;
                     CreateIndicator(middleIndex);
                 }
 
@@ -216,10 +217,16 @@ namespace Tizen.NUI.Wearable
             }
             set
             {
-                if (indicatorCount == value || indicatorCount < 0)
+                if (indicatorCount == value || indicatorCount < 0 || value <= 0)
                 {
                     return;
                 }
+                if (isSymmetrical == false)
+                {
+                    Log.Info("NUI", "This property is not for asymmetric pagination. Change to symmetrical pagination.\n");
+                    isSymmetrical = true;
+                }
+
                 if (value % 2 == 1) // Odd number
                 {
                     isOddNumber = true;
@@ -240,8 +247,9 @@ namespace Tizen.NUI.Wearable
                     {
                         arrayIndex = (18 - value) / 2;
                     }
+                    if (arrayIndex < 0) return;
 
-                    for (int i = indicatorCount; i <= value; i++)
+                    for (int i = (indicatorCount + 1); i <= value; i++)
                     {
                         CreateIndicator( arrayIndex );
                         arrayIndex++;
@@ -265,13 +273,14 @@ namespace Tizen.NUI.Wearable
 
                     if (selectedIndex >= value)
                     {
-                        selectedIndex = 0;
+                        selectedIndex = value - 1;
                         SelectIn(indicatorList[selectedIndex]);
                     }
                 }
                 indicatorCount = value;
 
                 UpdateContainer();
+                UpdateVisual();
             }
         }
 
@@ -297,7 +306,7 @@ namespace Tizen.NUI.Wearable
                     isSymmetrical = false;
                     //return;
                 }
-                if (leftIndicatorCount == value || leftIndicatorCount < 0 || leftIndicatorCount > 9)
+                if (leftIndicatorCount == value || leftIndicatorCount < 0 || value > 9 || value < 0)
                 {
                     return;
                 }
@@ -309,6 +318,7 @@ namespace Tizen.NUI.Wearable
                     for (int i = (middleIndex - value); i < (middleIndex - leftIndicatorCount); i++)
                     {
                         CreateIndicator( i );
+                        selectedIndex++;
                     }
                 }
                 else
@@ -320,14 +330,14 @@ namespace Tizen.NUI.Wearable
                     }
                     indicatorList.RemoveRange(0, (leftIndicatorCount - value)); // LeftIndicator starts from index 0.
 
-                    if (selectedIndex >= ( value + rightIndicatorCount ))
-                    {
-                        selectedIndex--;
-                        SelectIn(indicatorList[selectedIndex]);
-                    }
-                    else if (selectedIndex == 0)
+                    if (selectedIndex == 0)
                     {
                         selectedIndex++;
+                        SelectIn(indicatorList[selectedIndex]);
+                    }
+                    else
+                    {
+                        selectedIndex--;
                         SelectIn(indicatorList[selectedIndex]);
                     }
                 }
@@ -368,7 +378,7 @@ namespace Tizen.NUI.Wearable
                     isSymmetrical = false;
                     //return;
                 }
-                if (rightIndicatorCount == value || rightIndicatorCount < 0 || rightIndicatorCount > 9)
+                if (rightIndicatorCount == value || rightIndicatorCount < 0 || value > 9 || value < 0)
                 {
                     return;
                 }
@@ -421,7 +431,7 @@ namespace Tizen.NUI.Wearable
             }
             set
             {
-                if (selectedIndex == value)
+                if (selectedIndex == value || value < 0 || value >= indicatorCount)
                 {
                     return;
                 }
@@ -493,7 +503,7 @@ namespace Tizen.NUI.Wearable
             }
             else // Only symmetry circular pagination can be even number.
             {
-                evenArray[IndicatorCount/2 + index - 1] = position;
+                evenArray[(middleIndex - (indicatorCount / 2) + index)] = position;
                 indicatorList[index].Position.X = position.X;
                 indicatorList[index].Position.Y = position.Y;
             }
@@ -679,7 +689,7 @@ namespace Tizen.NUI.Wearable
         {
             if (null == circularPaginationStyle.IndicatorSize) return;
             if (null == circularPaginationStyle.IndicatorImageURL) return;
-            if (indicatorCount < 0) return;
+            if (indicatorCount <= 0) return;
 
             for (int i = 0; i < indicatorList.Count; i++)
             {
@@ -729,7 +739,7 @@ namespace Tizen.NUI.Wearable
                 }
                 else
                 {
-                    indicator.Position = evenArray[IndicatorCount/2 + i - 1];
+                    indicator.Position = evenArray[middleIndex - (indicatorCount / 2) + i];
                 }
             }
         }

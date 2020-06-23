@@ -26,6 +26,8 @@ res/nui_component_default_pagination_normal_dot.png #common #mobile #mobile-emul
 res/nui_wearable_checkbox_icon.json                #wearable
 res/nui_wearable_radiobutton_icon.json             #wearable
 res/nui_wearable_switch_icon.json                  #wearable
+res/nui_wearable_circular_pagination_center_normal_dot.png #wearable
+res/nui_wearable_circular_pagination_center_focus_dot.png  #wearable
 Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #tv #wearable
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #wearable
