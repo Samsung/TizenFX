@@ -261,19 +261,11 @@ namespace Tizen.Network.Bluetooth
         private static event EventHandler<GattConnectionStateChangedEventArgs> s_connectionStateChanged;
         private static Interop.Bluetooth.GattConnectionStateChangedCallBack s_connectionStateChangeCallback;
 
-        internal BluetoothGattClient(string remoteAddress, bool fromLe)
+        internal BluetoothGattClient(string remoteAddress)
         {
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
-            if (fromLe == false)
-            {
-                StaticConnectionStateChanged += OnConnectionStateChanged;
-            }
-            else
-            {
-                // fromLe will be removed after BluetoothLeDevice.GattConnect removed for backward compatibility.
-                // BluetoothLeDevice.GattConnectionStateChanged event will be occured in this case.
-            }
+            StaticConnectionStateChanged += OnConnectionStateChanged;
         }
 
         /// <summary>
@@ -287,13 +279,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public static BluetoothGattClient CreateClient(string remoteAddress)
         {
-            BluetoothGattClient client = new BluetoothGattClient(remoteAddress, false);
-            return client.Isvalid() ? client : null;
-        }
-
-        internal static BluetoothGattClient CreateClient(string remoteAddress, bool fromLe)
-        {
-            BluetoothGattClient client = new BluetoothGattClient(remoteAddress, fromLe);
+            BluetoothGattClient client = new BluetoothGattClient(remoteAddress);
             return client.Isvalid() ? client : null;
         }
 
@@ -340,7 +326,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
+        internal static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
         {
             add
             {
