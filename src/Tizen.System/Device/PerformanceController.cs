@@ -23,7 +23,7 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     /// <summary>
-    /// The PerformanceController class provides the methods to control the PmQos.
+    /// The PerformanceController class provides the methods to control the system resources.
     /// </summary>
     /// <remarks>
     /// It supports to control cpu clock within input timeout.
@@ -44,7 +44,7 @@ namespace Tizen.System
         /// <summary>
         /// Increase the cpu clock within timeout.
         /// </summary>
-        /// <param name="type">PmQos Name</param>
+        /// <param name="type">Performance Control Type</param>
         /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
