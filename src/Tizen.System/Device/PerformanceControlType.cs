@@ -30,12 +30,12 @@ namespace Tizen.System
         /// <summary>
         /// Pre-defined event type "PreCreated".
         /// </summary>
-        public static readonly PerformanceControlType AppLaunchHome = "AppLaunchHome";
+        public static readonly PerformanceControlType AppLaunchHome = new PerformanceControlType("AppLaunchHome");
 
         /// <summary>
         /// Pre-defined event type "HomeScreen".
         /// </summary>
-        public static readonly PerformanceControlType HomeScreen = "HomeScreen";
+        public static readonly PerformanceControlType HomeScreen = new PerformanceControlType("HomeScreen");
 
         private string _typeName;
 
@@ -43,7 +43,7 @@ namespace Tizen.System
         /// Initializes the PerformanceControlType class.
         /// </summary>
         /// <param name="name">The name of event type.</param>
-        public PerformanceControlType(string name) {
+        private PerformanceControlType(string name) {
             _typeName = name;
         }
 
@@ -68,13 +68,6 @@ namespace Tizen.System
         public override bool Equals(object obj) {
             PerformanceControlType other = obj as PerformanceControlType;
             return other != null && other._typeName == this._typeName;
-        }
-
-        /// <summary>
-        /// Converts a string to PerformanceControlType instance.
-        /// </summary>
-        public static implicit operator PerformanceControlType(string value) {
-            return new PerformanceControlType(value);
         }
     }
 }
