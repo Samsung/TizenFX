@@ -1113,7 +1113,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 string temp;
                 GetProperty(TextField.Property.SELECTED_TEXT).Get(out temp);
-                return (string)temp;
+                return temp;
             }
         }
 
