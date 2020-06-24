@@ -53,7 +53,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
         {
-            ScrollEvent += OnScroll;
+            Scrolling += OnScrolling;
 
             mAdapter = adapter;
             mAdapter.OnDataChanged += OnAdapterDataChanged;
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void OnScroll(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnScrolling(object source, ScrollEventArgs args)
         {
             mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
             List<RecycleItem> recycledItemList = mLayoutManager.Recycle(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
