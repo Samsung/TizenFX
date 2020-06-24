@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
@@ -23,7 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// StyleManager is a class to manager all style.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
     {
         internal const float PointSizeNormal = 12;
@@ -61,7 +62,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event for the theme changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ThemeChangeEventArgs> ThemeChangedEvent
         {
             add
@@ -77,13 +78,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// StyleManager static instance.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleManager Instance { get; } = new StyleManager();
 
         /// <summary>
         /// Style theme.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Theme
         {
             get
@@ -110,7 +111,7 @@ namespace Tizen.NUI.Components
         /// <param name="theme">Theme.</param>
         /// <param name="styleType">Style type.</param>
         /// <param name="bDefault">Flag to decide if it is default style.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterStyle(string style, string theme, Type styleType, bool bDefault = false)
         {
             if (style == null)
@@ -149,7 +150,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Style name.</param>
         /// <returns>The style corresponding to style name .</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetViewStyle(string style)
         {
             if (style == null)
@@ -175,7 +176,7 @@ namespace Tizen.NUI.Components
         /// <param name="targetTheme">The target theme name to register a component style. It theme should be a known one.</param>
         /// <param name="component">The type of ComponentStyle</param>
         /// <param name="style">The derived class of StyleBase</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterComponentStyle(string targetTheme, Type component, Type style)
         {
             if (targetTheme == null || component == null || style == null)
@@ -209,7 +210,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="component">The type of component</param>
         /// <returns>The style of the component.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetComponentStyle(Type component)
         {
             if (componentStyleByTheme.ContainsKey(currentThemeName) && componentStyleByTheme[currentThemeName].ContainsKey(component))
@@ -223,13 +224,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// ThemeChangeEventArgs is a class to record theme change event arguments which will sent to user.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ThemeChangeEventArgs : EventArgs
         {
             /// <summary>
             /// CurrentTheme
             /// </summary>
-            /// <since_tizen> 8 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string CurrentTheme;
         }
 
