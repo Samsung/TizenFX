@@ -109,12 +109,17 @@ namespace Tizen.NUI.Wearable
 
         private void Initialize()
         {
+            IndicatorSize = new Size(10, 10);
             IndicatorImageURL = new Selector<string>()
             {
                 Normal = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_normal_dot.png",
                 Selected = "/usr/share/dotnet.tizen/framework/res/" + "nui_component_default_pagination_focus_dot.png",
             };
-            IndicatorSize = new Size(10, 10);
+            CenterIndicatorImageURL = new Selector<string>()
+            {
+                Normal = "/usr/share/dotnet.tizen/framework/res/" + "nui_wearable_circular_pagination_center_normal_dot.png",
+                Selected = "/usr/share/dotnet.tizen/framework/res/" + "nui_wearable_circular_pagination_center_focus_dot.png",
+            };
         }
     }
 }
