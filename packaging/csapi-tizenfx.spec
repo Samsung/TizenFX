@@ -31,6 +31,7 @@ BuildRequires: dotnet-build-tools
 Requires(post): /usr/bin/vconftool
 
 # BuildRequires for StructValidator
+%if %{defined enable_struct_test}
 BuildRequires: coregl
 BuildRequires: pkgconfig(elementary)
 BuildRequires: pkgconfig(efl-extension)
@@ -41,28 +42,26 @@ BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(capi-appfw-service-application)
 BuildRequires: pkgconfig(capi-appfw-application)
 BuildRequires: pkgconfig(capi-appfw-widget-application)
-%if "%{profile}" != "tv"
-BuildRequires: pkgconfig(capi-appfw-watch-application)
-%endif
 BuildRequires: pkgconfig(data-control)
 BuildRequires: pkgconfig(capi-location-manager)
 BuildRequires: pkgconfig(capi-media-vision)
 BuildRequires: pkgconfig(capi-network-bluetooth)
 BuildRequires: pkgconfig(capi-network-wifi-direct)
 BuildRequires: pkgconfig(key-manager)
-%if "%{profile}" == "tv"
-BuildRequires: pkgconfig(trustzone-nwd)
-%else
-BuildRequires: pkgconfig(tef-libteec)
-%endif
 BuildRequires: pkgconfig(capi-system-sensor)
 BuildRequires: pkgconfig(capi-system-runtime-info)
-BuildRequires: pkgconfig(capi-telephony)
 BuildRequires: pkgconfig(capi-ui-inputmethod)
 BuildRequires: pkgconfig(stt-engine)
 BuildRequires: pkgconfig(tts-engine)
 BuildRequires: pkgconfig(chromium-efl)
-
+%if "%{profile}" == "tv"
+BuildRequires: pkgconfig(trustzone-nwd)
+%else
+BuildRequires: pkgconfig(capi-appfw-watch-application)
+BuildRequires: pkgconfig(capi-telephony)
+BuildRequires: pkgconfig(tef-libteec)
+%endif
+%endif
 
 %description
 %{summary}
@@ -173,6 +172,7 @@ export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 %endif
 %{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
+%if %{defined enable_struct_test}
 dotnet validate-struct %{_tizenfx_bin_path}/bin/public || echo "
     #######################################################
     ##################### W A R N I N G ###################
@@ -181,7 +181,7 @@ dotnet validate-struct %{_tizenfx_bin_path}/bin/public || echo "
     # It will make building errors later                  #
     #######################################################
 "
-
+%endif
 
 # Generate filelist for rpm packaging
 GetFileList() {
