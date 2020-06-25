@@ -399,7 +399,7 @@ namespace Tizen.Multimedia
         {
             if (display == null)
             {
-                return CameraDisplay.SetTarget(GetHandle(), DisplayType.None, IntPtr.Zero);
+                return CameraDisplay.SetDisplay(GetHandle(), DisplayType.None, IntPtr.Zero);
             }
 
             return display.ApplyTo(this);
@@ -457,12 +457,14 @@ namespace Tizen.Multimedia
             Debug.Assert(_disposed == false);
             ValidationUtil.ValidateEnum(typeof(DisplayType), type, nameof(type));
 
-            return CameraDisplay.SetTarget(GetHandle(), type, evasObject);
+            return CameraDisplay.SetDisplay(GetHandle(), type, evasObject);
         }
 
         CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle)
         {
-            throw new NotSupportedException("Camera does not support NUI.Window display.");
+            Debug.Assert(_disposed == false);
+
+            return CameraDisplay.SetEcoreDisplay(Handle, windowHandle);
         }
 
         /// <summary>
