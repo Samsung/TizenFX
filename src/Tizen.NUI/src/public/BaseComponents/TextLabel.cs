@@ -855,6 +855,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The MinLineSize property.<br />
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            get
+            {
+                return (float)GetValue(MinLineSizeProperty);
+            }
+            set
+            {
+                SetValue(MinLineSizeProperty, value);
+                NotifyPropertyChangedAndRequestLayout();
+            }
+        }
+
+        /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
@@ -1064,6 +1082,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
+            internal static readonly int MIN_LINE_SIZE = Interop.TextLabel.TextLabel_Property_MIN_LINE_SIZE_get();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
