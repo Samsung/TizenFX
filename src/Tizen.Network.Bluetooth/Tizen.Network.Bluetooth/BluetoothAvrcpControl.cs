@@ -35,6 +35,7 @@ namespace Tizen.Network.Bluetooth
         private TaskCompletionSource<bool> _taskForConnection;
         private TaskCompletionSource<bool> _taskForDisconnection;
         private bool disposed = false;
+        private bool isConnected = false;
 
         internal BluetoothAvrcpControl()
         {
@@ -50,6 +51,16 @@ namespace Tizen.Network.Bluetooth
             {
                 return;
             }
+
+            if (e.IsConnected == true)
+            {
+                isConnected = true;
+            }
+            else
+            {
+                isConnected = false;
+            }
+
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
             {
                 if (e.IsConnected == true)
@@ -153,7 +164,14 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return BluetoothAvrcpControlImpl.Instance.GetEqualizerState();
+                if (isConnected == true)
+                {
+                    return BluetoothAvrcpControlImpl.Instance.GetEqualizerState();
+                }
+                else
+                {
+                    return EqualizerState.Off;
+                }
             }
             set
             {
@@ -176,7 +194,14 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return BluetoothAvrcpControlImpl.Instance.GetRepeatMode();
+                if (isConnected == true)
+                {
+                    return BluetoothAvrcpControlImpl.Instance.GetRepeatMode();
+                }
+                else
+                {
+                    return RepeatMode.Off;
+                }
             }
             set
             {
@@ -199,7 +224,14 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return BluetoothAvrcpControlImpl.Instance.GetShuffleMode();
+                if (isConnected == true)
+                {
+                    return BluetoothAvrcpControlImpl.Instance.GetShuffleMode();
+                }
+                else
+                {
+                    return ShuffleMode.Off;
+                }
             }
             set
             {
@@ -222,7 +254,14 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return BluetoothAvrcpControlImpl.Instance.GetScanMode();
+                if (isConnected == true)
+                {
+                    return BluetoothAvrcpControlImpl.Instance.GetScanMode();
+                }
+                else
+                {
+                    return ScanMode.Off;
+                }
             }
             set
             {
@@ -244,7 +283,15 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 8 </since_tizen>
         public uint GetPosition()
         {
-            return BluetoothAvrcpControlImpl.Instance.GetPosition();
+            if (isConnected == true)
+            {
+                return BluetoothAvrcpControlImpl.Instance.GetPosition();
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+                return 0;
+            }
         }
 
         /// <summary>
@@ -261,7 +308,15 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 8 </since_tizen>
         public PlayerState GetPlayStatus()
         {
-            return BluetoothAvrcpControlImpl.Instance.GetPlayStatus();
+            if (isConnected == true)
+            {
+                return BluetoothAvrcpControlImpl.Instance.GetPlayStatus();
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+                return PlayerState.Stopped;
+            }
         }
 
         /// <summary>
@@ -278,7 +333,15 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 8 </since_tizen>
         public Track GetTrackInfo()
         {
-            return BluetoothAvrcpControlImpl.Instance.GetTrackInfo();
+            if (isConnected == true)
+            {
+                return BluetoothAvrcpControlImpl.Instance.GetTrackInfo();
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+                return null;
+            }
         }
 
         /// <summary>
@@ -295,7 +358,14 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 8 </since_tizen>
         public void SendPlayerCommand(PlayerCommand command)
         {
-            BluetoothAvrcpControlImpl.Instance.SendPlayerCommand(command);
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.SendPlayerCommand(command);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         /// <summary>
@@ -314,7 +384,14 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendPlayerCommandTo(PlayerCommand command, string remoteAddress)
         {
-            BluetoothAvrcpControlImpl.Instance.SendPlayerCommandTo(command, remoteAddress);
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.SendPlayerCommandTo(command, remoteAddress);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         /// <summary>
@@ -332,7 +409,14 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAbsoluteVolume(uint volume)
         {
-            BluetoothAvrcpControlImpl.Instance.SetAbsoluteVolume(volume);
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.SetAbsoluteVolume(volume);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         /// <summary>
@@ -349,7 +433,14 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void IncreaseVolume()
         {
-            BluetoothAvrcpControlImpl.Instance.IncreaseVolume();
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.IncreaseVolume();
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         /// <summary>
@@ -366,7 +457,14 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DecreaseVolume()
         {
-            BluetoothAvrcpControlImpl.Instance.DecreaseVolume();
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.DecreaseVolume();
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         /// <summary>
@@ -384,7 +482,14 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDelayReport(uint delay)
         {
-            BluetoothAvrcpControlImpl.Instance.SendDelayReport(delay);
+            if (isConnected == true)
+            {
+                BluetoothAvrcpControlImpl.Instance.SendDelayReport(delay);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.RemoteDeviceNotConnected);
+            }
         }
 
         ~BluetoothAvrcpControl()
