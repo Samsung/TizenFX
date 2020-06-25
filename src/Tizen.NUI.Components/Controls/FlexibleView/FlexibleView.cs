@@ -449,6 +449,8 @@ namespace Tizen.NUI.Components
                 if (mLayout != null)
                 {
                     mLayout.StopScroll(false);
+                    mLayout.Dispose();
+                    mLayout = null;
                 }
 
                 if (mAdapter != null)
@@ -480,6 +482,7 @@ namespace Tizen.NUI.Components
                 if (mChildHelper != null)
                 {
                     mChildHelper.Clear();
+                    mChildHelper.Dispose();
                     mChildHelper = null;
                 }
             }

@@ -73,7 +73,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        internal class ChildHelper
+        internal class ChildHelper : Disposable
         {
             private FlexibleView mFlexibleView;
 
@@ -179,6 +179,27 @@ namespace Tizen.NUI.Components
                     return null;
                 }
                 return mViewList[index];
+            }
+
+            protected override void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    Clear();
+
+                    if (mTapGestureDetector != null)
+                    {
+                        mTapGestureDetector.Detected -= OnTapGestureDetected;
+                        mTapGestureDetector.Dispose();
+                        mTapGestureDetector = null;
+                    }
+                }
+                base.Dispose(type);
             }
 
             private void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)

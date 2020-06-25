@@ -11,7 +11,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class FlexibleViewLayoutManager
+    public abstract class FlexibleViewLayoutManager : Disposable
     {
         /// <summary>
         /// Direction
@@ -706,6 +706,26 @@ namespace Tizen.NUI.Components
         protected virtual FlexibleViewViewHolder FindLastVisibleItemView()
         {
             return null;
+        }
+
+        /// <summary>
+        /// Dispose FlexibleView and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                mScrollAni?.Dispose();
+            }
+
+            base.Dispose(type);
         }
 
         internal virtual FlexibleViewViewHolder OnFocusSearchFailed(FlexibleViewViewHolder focused, FlexibleViewLayoutManager.Direction direction, FlexibleViewRecycler recycler)
