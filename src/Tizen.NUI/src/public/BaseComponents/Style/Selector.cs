@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Selector<T> : BindableObject
+    public class Selector<T> : StateValueCollection<T>
     {
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -70,8 +70,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Normal).Value;
+            set => Add(ControlState.Normal, value);
         }
         /// <summary>
         /// Pressed State.
@@ -81,8 +81,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Pressed).Value;
+            set => Add(ControlState.Pressed, value);
         }
         /// <summary>
         /// Focused State.
@@ -92,8 +92,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Focused).Value;
+            set => Add(ControlState.Focused, value);
         }
         /// <summary>
         /// Selected State.
@@ -103,8 +103,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Selected).Value;
+            set => Add(ControlState.Selected, value);
         }
         /// <summary>
         /// Disabled State.
@@ -114,8 +114,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Disabled).Value;
+            set => Add(ControlState.Disabled, value);
         }
         /// <summary>
         /// DisabledFocused State.
@@ -125,8 +125,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.DisabledFocused).Value;
+            set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
         /// SelectedFocused State.
@@ -135,8 +135,8 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public T SelectedFocused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.SelectedFocused).Value;
+            set => Add(ControlState.SelectedFocused, value);
         }
         /// <summary>
         /// DisabledSelected State.
@@ -146,8 +146,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.DisabledSelected).Value;
+            set => Add(ControlState.DisabledSelected, value);
         }
 
         /// <summary>
@@ -158,8 +158,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Other).Value;
+            set => Add(ControlState.Other, value);
         }
         /// <summary>
         /// Get value by State.
@@ -167,7 +167,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public T GetValue(ControlStates state)
+        public T GetValue(ControlState state)
         {
             if(All != null)
             {
@@ -175,25 +175,32 @@ namespace Tizen.NUI.BaseComponents
             }
             switch(state)
             {
-                case ControlStates.Normal:
+                case null:
+                case var s when s == ControlState.Normal:
                     return Normal != null? Normal : Other;
-                case ControlStates.Focused:
+                case var s when s == ControlState.Focused:
                     return Focused != null? Focused : Other;
-                case ControlStates.Pressed:
+                case var s when s == ControlState.Pressed:
                     return Pressed != null? Pressed : Other;
-                case ControlStates.Disabled:
+                case var s when s == ControlState.Disabled:
                     return Disabled != null? Disabled : Other;
-                case ControlStates.Selected:
-                    return Selected != null? Selected : Other;
-                case ControlStates.DisabledFocused:
+                case var s when s == ControlState.Selected:
+                   return Selected != null? Selected : Other;
+                case var s when s == ControlState.DisabledFocused:
                     return DisabledFocused != null? DisabledFocused : (Disabled != null ? Disabled : Other);
-                case ControlStates.DisabledSelected:
+                case var s when s == ControlState.DisabledSelected:
                     return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
-                case ControlStates.SelectedFocused:
+                case var s when s == ControlState.SelectedFocused:
                     return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
                 default:
                 {
-                    // TODO Handle combined states
+                    StateValuePair<T> value = Find(x => x.State == state);
+                    if (value.Value != null)
+                        return value.Value;
+
+                    value = Find(x => state.Contains(x.State));
+                    if (value.Value != null)
+                        return value.Value;
                     return Other;
                 }
             }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,12 +70,12 @@ namespace Tizen.NUI.Components.Extension
             var lottieStyle = (ILottieButtonStyle)button.Style;
             lottieView.URL = lottieStyle.LottieUrl;
             lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
-            lottieStyle.PlayRange?.GetValue(ControlStates.Normal)?.Show(lottieView, true);
+            lottieStyle.PlayRange?.GetValue(ControlState.Normal)?.Show(lottieView, true);
         }
 
-        internal static void UpdateLottieView(Button button, ControlStates previousState, LottieAnimationView lottieView)
+        internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
         {
-            ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, ((int)previousState & (int)ControlStates.Pressed) == 0);
+            ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, !previousState.Contains(ControlState.Pressed));
         }
     }
 }
