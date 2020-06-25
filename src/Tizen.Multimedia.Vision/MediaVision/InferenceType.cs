@@ -37,7 +37,19 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// ArmNN backend type
         /// </summary>
-        ArmNN
+        ArmNN,
+
+        /// <summary>
+        /// ML Single API of NNStreamer backend type
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        MLApi,
+
+        /// <summary>
+        /// On-device Neural Engine backend type
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        One
     }
 
     /// <summary>
