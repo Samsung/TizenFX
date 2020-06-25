@@ -422,7 +422,7 @@ namespace Tizen.Network.Bluetooth
 
         private void ControlDeinitialize()
         {
-            int ret = Interop.Bluetooth.Deinitialize();
+            int ret = Interop.Bluetooth.AvrcpControlDeinitialize();
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deinitialize AVRCP Control, Error - " + (BluetoothError)ret);
