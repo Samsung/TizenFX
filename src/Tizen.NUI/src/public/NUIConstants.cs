@@ -1261,7 +1261,7 @@ namespace Tizen.NUI
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
         /// <summary>
         /// The number of times the AnimatedImageVisual will be looped
-        /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
+        /// Default -1. if &lt; 0, loop unlimited. else, loop loopCount times.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
@@ -2455,15 +2455,15 @@ namespace Tizen.NUI
     /// An enum of vertical line alignment.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+    /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum VerticalLineAlignment
-    {    
+    {
         /// <summary>
-        /// vertical line alignment is from top. 
+        /// vertical line alignment is from top.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Top,
 
@@ -2471,7 +2471,7 @@ namespace Tizen.NUI
         /// vertical line alignment is from center.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Center,
 
@@ -2479,7 +2479,7 @@ namespace Tizen.NUI
         /// vertical line alignment is from bottom.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Bottom
     }
