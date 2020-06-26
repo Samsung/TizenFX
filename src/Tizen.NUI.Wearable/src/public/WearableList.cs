@@ -54,6 +54,8 @@ namespace Tizen.NUI.Wearable
             SetFocus(0, false);
 
             Scrollbar = new CircularScrollbar();
+            DecelerationThreshold = 60.0f;
+            DecelerationRate = 0.991f;
         }
 
         protected override void SetScrollbar()
