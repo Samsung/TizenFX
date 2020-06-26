@@ -40,9 +40,9 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothAvrcpControl()
         {
             BluetoothAvrcpControlImpl.Instance.ConnectionChanged += OnConnectionChanged;
-            BluetoothAvrcpControlImpl.Instance.PositionChanged += (s, e) => PositionChanged?.Invoke(this, e);
-            BluetoothAvrcpControlImpl.Instance.PlayStateChanged += (s, e) => PlayStateChanged?.Invoke(this, e);
-            BluetoothAvrcpControlImpl.Instance.TrackInfoChanged += (s, e) => TrackInfoChanged?.Invoke(this, e);
+            BluetoothAvrcpControlImpl.Instance.PositionChanged += OnPositionChanged;
+            BluetoothAvrcpControlImpl.Instance.PlayStateChanged += OnPlayStateChanged;
+            BluetoothAvrcpControlImpl.Instance.TrackInfoChanged += OnTrackInfoChanged;
         }
 
         private void OnConnectionChanged(object s, AvrcpControlConnectionChangedEventArgs e)
@@ -81,6 +81,21 @@ namespace Tizen.Network.Bluetooth
                 }
                 _taskForDisconnection = null;
             }
+        }
+
+        private void OnPositionChanged(object s, PositionChangedEventArgs e)
+        {
+            PositionChanged?.Invoke(this, e);
+        }
+
+        private void OnPlayStateChanged(object s, PlayStateChangedEventArgs e)
+        {
+            PlayStateChanged?.Invoke(this, e);
+        }
+
+        private void OnTrackInfoChanged(object s, TrackInfoChangedEventArgs e)
+        {
+            TrackInfoChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -516,7 +531,10 @@ namespace Tizen.Network.Bluetooth
             if (disposing)
             {
                 // Free managed objects.
-                ConnectionStateChanged -= OnConnectionChanged;
+                BluetoothAvrcpControlImpl.Instance.ConnectionChanged -= OnConnectionChanged;
+                BluetoothAvrcpControlImpl.Instance.PositionChanged -= OnPositionChanged;
+                BluetoothAvrcpControlImpl.Instance.PlayStateChanged -= OnPlayStateChanged;
+                BluetoothAvrcpControlImpl.Instance.TrackInfoChanged -= OnTrackInfoChanged;
             }
             //Free unmanaged objects.
             disposed = true;
