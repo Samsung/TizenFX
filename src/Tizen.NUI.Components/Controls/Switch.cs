@@ -168,27 +168,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Switch's track part.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string SwitchBackgroundImageURL
-        {
-            get
-            {
-                return Style?.Track?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                }
-            }
-        }
-
-        /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -341,7 +320,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default switch style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new SwitchStyle();
         }
@@ -359,7 +338,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
+            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
             if (null != switchStyle)
             {
                 Style.CopyFrom(switchStyle);

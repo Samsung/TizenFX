@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
@@ -132,29 +132,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Images;
+                return (string[])GetValue(ImageArrayProperty);
             }
             set
             {
-                Images = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets loading image resources.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] Images
-        {
-            get
-            {
-                return (string[])GetValue(ImagesProperty);
-            }
-            set
-            {
-                SetValue(ImagesProperty, value);
+                SetValue(ImageArrayProperty, value);
             }
         }
 
@@ -195,7 +177,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default loading style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new LoadingStyle();
         }

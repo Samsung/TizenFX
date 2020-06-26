@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2016-2018 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016-2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -162,31 +162,6 @@ namespace Tizen.Security
                     Interop.Privilege.GetPrivacyDisplayName(privilege, out displayName),
                     "Failed to Get Privacy's Display Name in Which the Given Privilege is included.");
             return displayName;
-        }
-
-        /// <summary>
-        /// Gets the status of the given privacy related privilege.
-        /// </summary>
-        /// <feature>http://tizen.org/feature/security.privacy_privilege</feature>
-        /// <since_tizen> 3 </since_tizen>
-        /// <param name="privilege">The privilege.</param>
-        /// <remarks>The privilege must be privacy related.</remarks>
-        /// <returns>Status true if the privilege is on and false if the privilege is off.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
-        /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
-        [Obsolete("Deprecated since API level 5. Please use PrivacyPrivilegeManager.CheckPermission instead.")]
-        public static bool GetPrivacyPrivilegeStatus(string privilege)
-        {
-            bool status;
-            if (privilege == null)
-                PrivilegeErrorFactory.ThrowException(new ArgumentNullException(), "privilege should not be null.");
-            PrivilegeErrorFactory.CheckNThrowException(
-                    Interop.Privilege.GetPrivacyPrivilegeStatus(privilege, out status),
-                    "Failed to Get Privacy Privilege's Status.");
-            return status;
         }
     }
 

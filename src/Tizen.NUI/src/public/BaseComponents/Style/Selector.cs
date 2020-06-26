@@ -396,18 +396,21 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         static internal Selector<T> CopyCloneable<T>(object value) where T : class, Tizen.NUI.Internal.ICloneable
         {
-            var type = value?.GetType();
-
-            if (type == typeof(Selector<T>))
+            if (null != value)
             {
-                var result = new Selector<T>();
-                result.Clone<T>((Selector<T>)value);
-                return result;
-            }
+                var type = value.GetType();
 
-            if (type == typeof(T))
-            {
-                return new Selector<T>((T)((T)value).Clone());
+                if (type == typeof(Selector<T>))
+                {
+                    var result = new Selector<T>();
+                    result.Clone<T>((Selector<T>)value);
+                    return result;
+                }
+
+                if (type == typeof(T))
+                {
+                    return new Selector<T>((T)((T)value).Clone());
+                }
             }
 
             return null;
@@ -419,18 +422,21 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         static internal Selector<T> CopyValue<T>(object value)
         {
-            var type = value?.GetType();
-
-            if (type == typeof(Selector<T>))
+            if (null != value)
             {
-                var result = new Selector<T>();
-                result.Clone((Selector<T>)value);
-                return result;
-            }
+                var type = value.GetType();
 
-            if (type == typeof(T))
-            {
-                return new Selector<T>((T)value);
+                if (type == typeof(Selector<T>))
+                {
+                    var result = new Selector<T>();
+                    result.Clone((Selector<T>)value);
+                    return result;
+                }
+
+                if (type == typeof(T))
+                {
+                    return new Selector<T>((T)value);
+                }
             }
 
             return null;

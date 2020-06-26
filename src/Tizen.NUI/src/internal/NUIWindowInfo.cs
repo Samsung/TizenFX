@@ -34,7 +34,7 @@ namespace Tizen.NUI
             {
                 if (_resId == 0)
                 {
-                    _resId = _win.ResourceID;
+                    _resId = _win.GetNativeId();
                     if (_resId != 0)
                         Log.Info(LogTag, "Fail to get resource ID");
                 }

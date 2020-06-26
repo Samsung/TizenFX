@@ -5,8 +5,9 @@ namespace Tizen.NUI.Samples
 {
     public class PaginationSample : IExample
     {
-        private Pagination pagination1;
-        private Pagination pagination2;
+        private TextLabel[] board = new TextLabel[2];
+        private Pagination[] pagination = new Pagination[2];
+        private View[] layout = new View[3];
 
         private readonly int PAGE_COUNT = 5;
 
@@ -14,42 +15,108 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            ///////////////////////////////////////////////Create by Properties//////////////////////////////////////////////////////////
-            pagination1 = new Pagination();
-            pagination1.Name = "Pagination1";
-            pagination1.Position2D = new Position2D(500, 450);
-            pagination1.Size2D = new Size2D(400, 30);
-            pagination1.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
-            pagination1.IndicatorSize = new Size(26, 26);
-            pagination1.IndicatorImageURL = new Selector<string>()
+            // Root layout.
+            layout[0] = new View()
             {
-                Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
-                Selected = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_sel.png",
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
-            pagination1.IndicatorSpacing = 8;
-            pagination1.IndicatorCount = PAGE_COUNT;
-            pagination1.SelectedIndex = 0;
-            window.Add(pagination1);
+            layout[0].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.Center,
+                CellPadding = new Size(20, 50)
+            };
+            window.Add(layout[0]);
+            window.KeyEvent += Window_KeyEvent;
+
+            // A pagination sample created by properties will be added to this layout.
+            layout[1]= new View()
+            {
+                Size = new Size(700, 70),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    CellPadding = new Size(20, 50)
+                }
+            };
+            layout[0].Add(layout[1]);
+
+            // A pagination sample created by attributes will be added to this layout.
+            layout[2] = new View()
+            {
+                Size = new Size(700, 70),
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    LinearAlignment = LinearLayout.Alignment.Center,
+                    CellPadding = new Size(20, 50)
+                }
+            };
+            layout[0].Add(layout[2]);
+
+            createBorads();
+
+            ///////////////////////////////////////////////Create by Properties//////////////////////////////////////////////////////////
+            pagination[0] = new Pagination();
+            var indicatorImageUrlStyle = new PaginationStyle()
+            {
+                IndicatorSize = new Size(26, 26),
+                IndicatorSpacing = 8,
+                IndicatorImageURL = new Selector<string>
+                {
+                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
+                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_sel.png"
+                }
+            };
+            pagination[0].ApplyStyle(indicatorImageUrlStyle);
+            pagination[0].Name = "Pagination1";
+            pagination[0].Size = new Size(300, 50);
+            pagination[0].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+            pagination[0].IndicatorCount = PAGE_COUNT;
+            pagination[0].SelectedIndex = 0;
+            layout[1].Add(pagination[0]);
 
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
-            PaginationStyle style = new PaginationStyle();
-            style.IndicatorSize = new Size(15, 15);
-            style.IndicatorImageURL = new Selector<string>()
+            PaginationStyle style = new PaginationStyle()
             {
-                Normal = CommonResource.GetTVResourcePath() + "component/c_pagination/c_paganation_medium_dot_normal.png",
-                Selected = CommonResource.GetTVResourcePath() + "component/c_pagination/c_paganation_medium_dot_focus.png",
+                IndicatorSize = new Size(15, 15),
+                IndicatorSpacing = 20,
+                IndicatorImageURL = new Selector<string>
+                {
+                    Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
+                    Selected = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_sel.png"
+                }
             };
-            style.IndicatorSpacing = 14;
-            pagination2 = new Pagination(style);
-            pagination2.Name = "Pagination2";
-            pagination2.Position2D = new Position2D(500, 500);
-            pagination2.Size2D = new Size2D(400, 30);
-            pagination2.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
-            pagination2.IndicatorCount = PAGE_COUNT;
-            pagination2.SelectedIndex = 0;
-            window.Add(pagination2);
+            pagination[1] = new Pagination(style);
+            pagination[1].Name = "Pagination2";
+            pagination[1].Size = new Size(300, 50);
+            pagination[1].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+            pagination[1].IndicatorCount = PAGE_COUNT;
+            pagination[1].SelectedIndex = 0;
+            layout[2].Add(pagination[1]);
+        }
 
-            window.KeyEvent += Window_KeyEvent;
+        void createBorads()
+        {
+            board[0] = new TextLabel();
+            board[0].Size = new Size(300, 50);
+            board[0].PointSize = 15;
+            board[0].HorizontalAlignment = HorizontalAlignment.Center;
+            board[0].VerticalAlignment = VerticalAlignment.Center;
+            board[0].BackgroundColor = Color.Magenta;
+            board[0].Text = "Property construction";
+            layout[1].Add(board[0]);
+
+            board[1] = new TextLabel();
+            board[1].Size = new Size(300, 50);
+            board[1].PointSize = 15;
+            board[1].HorizontalAlignment = HorizontalAlignment.Center;
+            board[1].VerticalAlignment = VerticalAlignment.Center;
+            board[1].BackgroundColor = Color.Magenta;
+            board[1].Text = "Attribute construction";
+            layout[2].Add(board[1]);
         }
 
         private void Window_KeyEvent(object sender, Window.KeyEventArgs e)
@@ -58,24 +125,24 @@ namespace Tizen.NUI.Samples
             {
                 if (e.Key.KeyPressedName == "Left")
                 {
-                    if (pagination1.SelectedIndex > 0)
+                    if (pagination[0].SelectedIndex > 0)
                     {
-                        pagination1.SelectedIndex = pagination1.SelectedIndex - 1;
+                        pagination[0].SelectedIndex = pagination[0].SelectedIndex - 1;
                     }
-                    if (pagination2.SelectedIndex > 0)
+                    if (pagination[1].SelectedIndex > 0)
                     {
-                        pagination2.SelectedIndex = pagination2.SelectedIndex - 1;
+                        pagination[1].SelectedIndex = pagination[1].SelectedIndex - 1;
                     }
                 }
                 else if (e.Key.KeyPressedName == "Right")
                 {
-                    if (pagination1.SelectedIndex < pagination1.IndicatorCount - 1)
+                    if (pagination[0].SelectedIndex < pagination[0].IndicatorCount - 1)
                     {
-                        pagination1.SelectedIndex = pagination1.SelectedIndex + 1;
+                        pagination[0].SelectedIndex = pagination[0].SelectedIndex + 1;
                     }
-                    if (pagination2.SelectedIndex < pagination2.IndicatorCount - 1)
+                    if (pagination[1].SelectedIndex < pagination[1].IndicatorCount - 1)
                     {
-                        pagination2.SelectedIndex = pagination2.SelectedIndex + 1;
+                        pagination[1].SelectedIndex = pagination[1].SelectedIndex + 1;
                     }
                 }
             }
@@ -85,11 +152,37 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
             window.KeyEvent -= Window_KeyEvent;
-            window.Remove(pagination1);
-            window.Remove(pagination2);
 
-            pagination1.Dispose();
-            pagination2.Dispose();
+            if (layout[0] != null)
+            {
+                layout[1].Remove(board[0]);
+                board[0].Dispose();
+                board[0] = null;
+
+                layout[1].Remove(pagination[0]);
+                pagination[0].Dispose();
+                pagination[0] = null;
+
+                layout[0].Remove(layout[1]);
+                layout[1].Dispose();
+                layout[1] = null;
+
+                layout[2].Remove(board[1]);
+                board[1].Dispose();
+                board[1] = null;
+
+                layout[2].Remove(pagination[1]);
+                pagination[1].Dispose();
+                pagination[1] = null;
+
+                layout[0].Remove(layout[2]);
+                layout[2].Dispose();
+                layout[2] = null;
+
+                window.Remove(layout[0]);
+                layout[0].Dispose();
+                layout[0] = null;
+            }
         }
     }
 }

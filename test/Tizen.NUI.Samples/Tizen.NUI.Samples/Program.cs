@@ -23,7 +23,7 @@ namespace Tizen.NUI.Samples
         [STAThread]
         static void Main(string[] args)
         {
-            new DaliDemo(CommonResource.GetDaliResourcePath() + @"../../style/demo-theme.json").Run(args);
+            new DaliDemo("").Run(args);
         }
     }
 }

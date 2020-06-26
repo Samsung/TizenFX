@@ -84,7 +84,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox GetItem(int index)
         {
-            return itemGroup[index] as CheckBox;
+            return ItemGroup[index] as CheckBox;
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Tizen.NUI.Components
         public int[] GetCheckedIndices()
         {
             List<int> selectedItemsList = new List<int>();
-            for (int i = 0; i < itemGroup.Count; i++)
+            for (int i = 0; i < ItemGroup.Count; i++)
             {
-                if (itemGroup[i].IsSelected)
+                if (ItemGroup[i].IsSelected)
                 {
                     selectedItemsList.Add(i);
                 }
@@ -120,7 +120,7 @@ namespace Tizen.NUI.Components
         {
             List<CheckBox> selectedList = new List<CheckBox>();
 
-            foreach (CheckBox check in itemGroup)
+            foreach (CheckBox check in ItemGroup)
             {
                 if (check.IsSelected)
                 {
@@ -140,7 +140,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsCheckedAll()
         {
-            foreach (CheckBox cb in itemGroup)
+            foreach (CheckBox cb in ItemGroup)
             {
                 if (!cb.IsSelected)
                 {
@@ -159,7 +159,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void CheckAll(bool state)
         {
-            foreach (CheckBox cb in itemGroup)
+            foreach (CheckBox cb in ItemGroup)
             {
                 cb.IsSelected = state;
             }

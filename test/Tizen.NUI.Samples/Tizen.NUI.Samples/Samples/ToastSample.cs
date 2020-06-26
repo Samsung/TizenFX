@@ -6,10 +6,11 @@ namespace Tizen.NUI.Samples
 {
     public class ToastSample : IExample
     {
-        private TextLabel board1, board2, board;
-        private Button button1, button2;
+        private TextLabel[] text = new TextLabel[3];
+        private Button[] button = new Button[2];
         private Toast toast1_1, toast2_1;  //1-null para 2-attributes; X_1-color; X_2 image track
         private View root;
+        private View[] parentView = new View[3];
 
         public void Activate()
         {
@@ -18,120 +19,136 @@ namespace Tizen.NUI.Samples
             root = new View()
             {
                 Size = new Size(1920, 1080),
-                BackgroundColor = new Color(0.8f, 0.8f, 0.8f, 0.6f),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            root.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
+            window.Add(root);
 
-            CreateBoardAndButtons();
+            CreateTextView();
+            CreateToastView();
+            CreateLogPadView();
+        }
 
-            toast1_1 = Toast.FromText("null parameter construction", 1000);
-            toast1_1.Size = new Size(500, 132);
-            toast1_1.Post(window);
+        private void CreateTextView()
+        {
+            // Init parent of TextView
+            parentView[0] = new View();
+            parentView[0].Size = new Size(1920, 200);
+            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(300, 0) };
+            root.Add(parentView[0]);
+
+            for (int i = 0; i < 2; i++)
+            {
+                text[i] = new TextLabel();
+                text[i].Size = new Size(400, 70);
+                text[i].PointSize = 20.0f;
+                text[i].BackgroundColor = Color.Magenta;
+                text[i].HorizontalAlignment = HorizontalAlignment.Center;
+                text[i].VerticalAlignment = VerticalAlignment.Center;
+                text[i].Focusable = true;
+                text[i].FocusGained += Board_FocusGained;
+                text[i].FocusLost += Board_FocusLost;
+                parentView[0].Add(text[i]);
+            }
+
+            // Text of "Create Switch just by properties"
+            text[0].Text = "Null Style construction";
+
+            // Text of "Create Switch just by Style"
+            text[1].Text = "Style construction";
+        }
+
+        private void CreateToastView()
+        {
+            // Init parent of ToastView
+            parentView[1] = new View();
+            parentView[1].Size = new Size(1920, 500);
+            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(300, 0) };
+            root.Add(parentView[1]);
+
+            // Create Toasts
+            toast1_1 = Toast.FromText("Null parameter construction", 1000);
+            toast1_1.Size = new Size(700, 132);
+            toast1_1.Post(NUIApplication.GetDefaultWindow());
 
             ToastStyle attr = new ToastStyle
             {
-                Size = new Size(512, 132),
+                Size = new Size(712, 132),
                 BackgroundImage = CommonResource.GetFHResourcePath() + "12. Toast Popup/toast_background.png",
                 BackgroundImageBorder = new Rectangle(64, 64, 4, 4),
                 Duration = 3000
             };
-        
+
             toast2_1 = new Toast(attr);
-            toast2_1.Message = "attibute parameter construction";
-            toast2_1.Post(window);
-            //root.Add(toast2_1);
+            toast2_1.Message = "Style parameter construction";
+            toast2_1.Post(NUIApplication.GetDefaultWindow());
 
+            // Create Buttons
+            CreateBoardAndButtons();
+        }
 
-            board.UpFocusableView = button1;
-            window.Add(root);
+        private void CreateLogPadView()
+        {
+            // Init parent of LogPadView
+            parentView[2] = new View();
+            parentView[2].Size = new Size(1920, 380);
+            parentView[2].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center};
+            root.Add(parentView[2]);
 
-            FocusManager.Instance.SetCurrentFocusView(button1);
+            // Create log pad
+            text[2] = new TextLabel();
+            text[2].Size = new Size(1000, 100);
+            text[2].PointSize = 30.0f;
+            text[2].HorizontalAlignment = HorizontalAlignment.Center;
+            text[2].VerticalAlignment = VerticalAlignment.Center;
+            text[2].BackgroundColor = Color.Magenta;
+            text[2].Text = "log pad";
+            text[2].Focusable = true;
+            text[2].FocusGained += Board_FocusGained;
+            text[2].FocusLost += Board_FocusLost;
+            text[2].UpFocusableView = button[0];
+            parentView[2].Add(text[2]);
         }
 
         void CreateBoardAndButtons()
         {
-            board = new TextLabel();
-            board.Size = new Size(1000, 100);
-            board.Position = new Position(430, 900);
-            board.PointSize = 30;
-            board.HorizontalAlignment = HorizontalAlignment.Center;
-            board.VerticalAlignment = VerticalAlignment.Center;
-            board.BackgroundColor = Color.Magenta;
-            board.Text = "log pad";
-            root.Add(board);
-            board.Focusable = true;
-            board.FocusGained += Board_FocusGained;
-            board.FocusLost += Board_FocusLost;
+            for (int i = 0; i < 2; i++)
+            {
+                button[i] = new Button();
+                button[i].BackgroundColor = Color.Green;
+                button[i].Size = new Size(200, 50);
+                button[i].Focusable = true;
+                parentView[1].Add(button[i]);
+            }
+            button[0].Text = "toast1_1 Show";
+            button[0].ClickEvent += toast1_1Show;
+            button[1].Text = "toast2_1 Show";
+            button[1].ClickEvent += toast2_1Show;
 
-            board1 = new TextLabel();
-            board1.Size = new Size(300, 70);
-            board1.Position = new Position(50, 200);
-            board1.PointSize = 20;
-            board1.HorizontalAlignment = HorizontalAlignment.Center;
-            board1.VerticalAlignment = VerticalAlignment.Center;
-            board1.BackgroundColor = Color.Magenta;
-            board1.Text = "NULL parameter construction";
-            root.Add(board1);
-            board1.Focusable = true;
-            board1.FocusGained += Board_FocusGained;
-            board1.FocusLost += Board_FocusLost;
-
-            board2 = new TextLabel();
-            board2.Size = new Size(300, 70);
-            board2.Position = new Position(650, 200);
-            board2.PointSize = 20;
-            board2.HorizontalAlignment = HorizontalAlignment.Center;
-            board2.VerticalAlignment = VerticalAlignment.Center;
-            board2.BackgroundColor = Color.Magenta;
-            board2.Text = "Attribute construction";
-            root.Add(board2);
-            board2.Focusable = true;
-            board2.FocusGained += Board_FocusGained;
-            board2.FocusLost += Board_FocusLost;
-
-            button1 = new Button();
-            button1.BackgroundColor = Color.Green;
-            button1.Position = new Position(80, 600);
-            button1.Size = new Size(200, 50);
-            button1.Style.Text.Text = "toast1_1 Show";
-            root.Add(button1);
-            button1.Focusable = true;
-            button1.ClickEvent += toast1_1Show;
-
-            button2 = new Button();
-            button2.BackgroundColor = Color.Green;
-            button2.Position = new Position(700, 600);
-            button2.Size = new Size(100, 50);
-            button2.Style.Text.Text = "toast2_1 Show";
-            root.Add(button2);
-            button2.Focusable = true;
-            button2.ClickEvent += toast2_1Show;
+            // Set init focus
+            FocusManager.Instance.SetCurrentFocusView(button[0]);
         }
 
         private void Board_FocusLost(object sender, global::System.EventArgs e)
         {
-            board.BackgroundColor = Color.Magenta;
+            text[2].BackgroundColor = Color.Magenta;
         }
 
         private void Board_FocusGained(object sender, global::System.EventArgs e)
         {
-            board.BackgroundColor = Color.Cyan;
+            text[2].BackgroundColor = Color.Cyan;
         }
 
         private void toast1_1Show(object sender, global::System.EventArgs e)
         {
-            board.Text = "toast1_1 show: ";
+            text[2].Text = "toast1_1 show: ";
             toast1_1.Show();
         }
 
         private void toast2_1Show(object sender, global::System.EventArgs e)
         {
-            board.Text = "toast2_1 show: ";
+            text[2].Text = "toast2_1 show: ";
             toast2_1.Show();
-        }
-
-        private void toast1FPSMinus(object sender, global::System.EventArgs e)
-        {
-            //board.Text = "toast1_1 FPS: " + toast1_1.FPS.ToString();
         }
 
         public void Deactivate()
@@ -139,7 +156,37 @@ namespace Tizen.NUI.Samples
             if (root != null)
             {
                 NUIApplication.GetDefaultWindow().Remove(root);
+
+                if (toast1_1 != null)
+                {
+                    NUIApplication.GetDefaultWindow().Remove(toast1_1);
+                    toast1_1.Dispose();
+                    toast1_1 = null;
+                }
+
+                if (toast2_1 != null)
+                {
+                    NUIApplication.GetDefaultWindow().Remove(toast2_1);
+                    toast2_1.Dispose();
+                    toast2_1 = null;
+                }
+
+                int i = 0;
+                for (; i < 2; i++)
+                {
+                    button[i].Dispose();
+                    button[i] = null;
+                }
+
+                for (i = 0; i < 3; i++)
+                {
+                    text[i].Dispose();
+                    text[i] = null;
+                    parentView[i].Dispose();
+                    parentView[i] = null;
+                }
                 root.Dispose();
+                root = null;
             }
         }
     }

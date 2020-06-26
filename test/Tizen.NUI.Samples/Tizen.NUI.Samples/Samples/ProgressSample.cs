@@ -6,48 +6,154 @@ namespace Tizen.NUI.Samples
 {
     public class ProgressSample : IExample
     {
-        private TextLabel board1, board2, board;
-        private Button button1, button2, button3, button4, button5;
-        int status = 0;
-        private Progress progressBar1_1, progressBar1_2, progressBar2_1, progressBar2_2; //1-null para 2-attributes; X_1-color; X_2 image track
-        private View root;
+        private TextLabel[] board = new TextLabel[3];
+        private Button[] button = new Button[2];
+        private Progress[] progressBar = new Progress[3];
+        private View[] layout = new View[4];
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
-            root = new View()
+            // Root layout.
+            layout[0] = new View()
             {
-                Size2D = new Size2D(1920, 1080),
+                Size = new Size(1920, 1080),
+                BackgroundColor = new Color(0.7f, 0.9f, 0.8f, 1.0f),
             };
+            layout[0].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            window.Add(layout[0]);
 
-            CreateBoardAndButtons();
+            // Layout for progress parent layout.
+            layout[1] = new View()
+            {
+                Size = new Size(1000, 730)
+            };
+            layout[1].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center
+            };
+            layout[0].Add(layout[1]);
 
-            //button1.ClickEvent += bar1Add;   
-            //button2.ClickEvent += bar1Minus;         
-            //button3.ClickEvent += circle1Add;    
-            //button4.ClickEvent += circle1Minus;          
-            //button5.ClickEvent += circleStatusChanged;
+            // Layout for progress layout which is created by properties.
+            layout[2] = new View()
+            {
+                Size = new Size(450, 630)
+            };
+            layout[2].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size2D(50, 100)
+            };
+            layout[1].Add(layout[2]);
 
-            progressBar1_1 = new Progress();
-            progressBar1_1.Position2D = new Position2D(80, 350);
-            progressBar1_1.Size2D = new Size2D(140, 4);
-            progressBar1_1.MaxValue = 100;
-            progressBar1_1.MinValue = 0;
-            progressBar1_1.CurrentValue = 45;
-            progressBar1_1.Style.Track.BackgroundColor = Color.Green;
-            progressBar1_1.Style.Progress.BackgroundColor = Color.Black;
-            root.Add(progressBar1_1);
+            // Layout for progress layout which is created by attributes.
+            layout[3] = new View()
+            {
+                Size = new Size(450, 630)
+            };
+            layout[3].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                CellPadding = new Size2D(50, 100)
+            };
+            layout[1].Add(layout[3]);
 
-            progressBar1_2 = new Progress();
-            progressBar1_2.Position2D = new Position2D(80, 420);
-            progressBar1_2.Size2D = new Size2D(140, 4);
-            progressBar1_2.MaxValue = 100;
-            progressBar1_2.MinValue = 0;
-            progressBar1_2.CurrentValue = 15;
-            progressBar1_2.Style.Track.BackgroundColor = Color.Green;
-            progressBar1_2.Style.Progress.BackgroundColor = Color.Black;
+            CreatePropElements();
+            CreateAttrElements();
+            layout[1].Add(layout[2]);
+            layout[1].Add(layout[3]);
 
-            root.Add(progressBar1_2);
+            board[0] = new TextLabel();
+            board[0].WidthSpecification = 900;
+            board[0].HeightSpecification = 100;
+            board[0].PointSize = 30;
+            board[0].HorizontalAlignment = HorizontalAlignment.Center;
+            board[0].VerticalAlignment = VerticalAlignment.Center;
+            board[0].BackgroundColor = Color.Magenta;
+            board[0].Text = "log pad";
+            layout[0].Add(board[0]);
+            board[0].Focusable = true;
+            board[0].FocusGained += Board_FocusGained;
+            board[0].FocusLost += Board_FocusLost;
+            board[0].UpFocusableView = button[0];
+            FocusManager.Instance.SetCurrentFocusView(button[0]);
+        }
+
+        void CreatePropElements()
+        {
+            ///////////////////////////////////////////////Create by Properties//////////////////////////////////////////////////////////
+            board[1] = new TextLabel();
+            board[1].WidthSpecification = 380;
+            board[1].HeightSpecification = 70;
+            board[1].PointSize = 20;
+            board[1].HorizontalAlignment = HorizontalAlignment.Center;
+            board[1].VerticalAlignment = VerticalAlignment.Center;
+            board[1].BackgroundColor = Color.Magenta;
+            board[1].Text = "Property construction";
+            layout[2].Add(board[1]);
+            board[1].Focusable = true;
+            board[1].FocusGained += Board_FocusGained;
+            board[1].FocusLost += Board_FocusLost;
+
+            progressBar[0] = new Progress();
+            progressBar[0].WidthSpecification = 240;
+            progressBar[0].HeightSpecification = 4;
+            progressBar[0].MaxValue = 100;
+            progressBar[0].MinValue = 0;
+            progressBar[0].CurrentValue = 45;
+            layout[2].Add(progressBar[0]);
+
+            progressBar[1] = new Progress();
+            progressBar[1].WidthSpecification = 240;
+            progressBar[1].HeightSpecification = 4;
+            progressBar[1].MaxValue = 100;
+            progressBar[1].MinValue = 0;
+            progressBar[1].CurrentValue = 30;
+            progressBar[1].TrackColor = Color.Yellow;
+            progressBar[1].ProgressColor = Color.Black;
+            layout[2].Add(progressBar[1]);
+
+            button[0] = new Button();
+            button[0].WidthSpecification = 140;
+            button[0].HeightSpecification = 50;
+            button[0].Text = "+";
+            button[0].BackgroundColor = Color.Green;
+            layout[2].Add(button[0]);
+            button[0].Focusable = true;
+            button[0].ClickEvent += ProgressAdd;
+
+            button[1] = new Button();
+            button[1].WidthSpecification = 140;
+            button[1].HeightSpecification = 50;
+            button[1].Text = "-";
+            button[1].BackgroundColor = Color.Green;
+            layout[2].Add(button[1]);
+            button[1].Focusable = true;
+            button[1].ClickEvent += ProgressMinus;
+        }
+
+        private void CreateAttrElements()
+        {
+            ///////////////////////////////////////////////Create by attributes//////////////////////////////////////////////////////////
+            board[2] = new TextLabel();
+            board[2].WidthSpecification = 380;
+            board[2].HeightSpecification = 70;
+            board[2].PointSize = 20;
+            board[2].HorizontalAlignment = HorizontalAlignment.Center;
+            board[2].VerticalAlignment = VerticalAlignment.Center;
+            board[2].BackgroundColor = Color.Magenta;
+            board[2].Text = "Attribute construction";
+            layout[3].Add(board[2]);
+            board[2].Focusable = true;
+            board[2].FocusGained += Board_FocusGained;
+            board[2].FocusLost += Board_FocusLost;
 
             ProgressStyle attr = new ProgressStyle
             {
@@ -55,172 +161,110 @@ namespace Tizen.NUI.Samples
                 {
                     BackgroundColor = new Selector<Color>
                     {
-                        All = Color.Cyan,
+                        All = Color.Cyan
                     }
                 },
                 Progress = new ImageViewStyle
                 {
                     BackgroundColor = new Selector<Color>
                     {
-                        All = Color.Black,
+                        All = Color.Red
                     }
                 },
-
+                Buffer = new ImageViewStyle
+                {
+                    BackgroundColor = new Selector<Color>
+                    {
+                        All = Color.Green
+                    }
+                }
             };
-
-            progressBar2_1 = new Progress(attr);
-            progressBar2_1.Position2D = new Position2D(380, 350);
-            progressBar2_1.Size2D = new Size2D(140, 4);
-            progressBar2_1.MaxValue = 100;
-            progressBar2_1.MinValue = 0;
-            progressBar2_1.CurrentValue = 30;
-            root.Add(progressBar2_1);
-
-            //progressBar2_2 = new Progress(att);
-            //progressBar2_2.Position2D = new Position2D(80, 560);
-            //progressBar2_2.Size2D = new Size2D(140, 4);
-            //progressBar2_2.MaxValue = 100;
-            //progressBar2_2.MinValue = 0;
-            //progressBar2_2.CurrentValue = 75;
-            //progressBar2_2.UpdateValue();
-            //progressBar2_2.Direction = Progress.DirectionType.Horizontal;
-            //root.Add(progressBar2_2);
-
-            board.UpFocusableView = button1;
-            window.Add(root);
-            FocusManager.Instance.SetCurrentFocusView(button1);
-
-        }
-
-        void CreateBoardAndButtons()
-        {
-            board = new TextLabel();
-            board.Size2D = new Size2D(1000, 100);
-            board.Position2D = new Position2D(430, 900);
-            board.PointSize = 30;
-            board.HorizontalAlignment = HorizontalAlignment.Center;
-            board.VerticalAlignment = VerticalAlignment.Center;
-            board.BackgroundColor = Color.Magenta;
-            board.Text = "log pad";
-            root.Add(board);
-            board.Focusable = true;
-            board.FocusGained += Board_FocusGained;
-            board.FocusLost += Board_FocusLost;
-
-            board1 = new TextLabel();
-            board1.Size2D = new Size2D(300, 70);
-            board1.Position2D = new Position2D(50, 200);
-            board1.PointSize = 20;
-            board1.HorizontalAlignment = HorizontalAlignment.Center;
-            board1.VerticalAlignment = VerticalAlignment.Center;
-            board1.BackgroundColor = Color.Magenta;
-            board1.Text = "NULL parameter construction";
-            root.Add(board1);
-            board1.Focusable = true;
-            board1.FocusGained += Board_FocusGained;
-            board1.FocusLost += Board_FocusLost;
-
-            board2 = new TextLabel();
-            board2.Size2D = new Size2D(300, 70);
-            board2.Position2D = new Position2D(400, 200);
-            board2.PointSize = 20;
-            board2.HorizontalAlignment = HorizontalAlignment.Center;
-            board2.VerticalAlignment = VerticalAlignment.Center;
-            board2.BackgroundColor = Color.Magenta;
-            board2.Text = "Attribute construction";
-            root.Add(board2);
-            board2.Focusable = true;
-            board2.FocusGained += Board_FocusGained;
-            board2.FocusLost += Board_FocusLost;
-
-            button1 = new Button();
-            button1.BackgroundColor = Color.Green;
-            button1.Position2D = new Position2D(100, 700);
-            button1.Size2D = new Size2D(80, 50);
-            button1.Style.Text.Text = "+";
-            root.Add(button1);
-            button1.Focusable = true;
-            button1.ClickEvent += bar1Add;
-
-            button2 = new Button();
-            button2.BackgroundColor = Color.Green;
-            button2.Position2D = new Position2D(200, 700);
-            button2.Size2D = new Size2D(80, 50);
-            button2.Style.Text.Text = "-";
-            root.Add(button2);
-            button2.Focusable = true;
-            button2.ClickEvent += bar1Minus;
-
-            //button3 = new Button();
-            //button3.BackgroundColor = Color.Green;
-            //button3.Position2D = new Position2D(450, 700);
-            //button3.Size2D = new Size2D(80, 50);
-            //button3.Text = "+";
-            //root.Add(button3);
-            //button3.Focusable = true;
-            //button3.ClickEvent += Scroll2Add;
-
-            //button4 = new Button();
-            //button4.BackgroundColor = Color.Green;
-            //button4.Position2D = new Position2D(550, 700);
-            //button4.Size2D = new Size2D(80, 50);
-            //button4.Text = "-";
-            //root.Add(button4);
-            //button4.Focusable = true;
-            //button4.ClickEvent += Scroll2Minus;
+            progressBar[2] = new Progress(attr);
+            progressBar[2].WidthSpecification = 240;
+            progressBar[2].HeightSpecification = 4;
+            progressBar[2].MaxValue = 100;
+            progressBar[2].MinValue = 0;
+            progressBar[2].CurrentValue = 30;
+            layout[3].Add(progressBar[2]);
         }
 
         private void Board_FocusLost(object sender, global::System.EventArgs e)
         {
-            board.BackgroundColor = Color.Magenta;
+            board[0].BackgroundColor = Color.Magenta;
         }
 
         private void Board_FocusGained(object sender, global::System.EventArgs e)
         {
-            board.BackgroundColor = Color.Cyan;
+            board[0].BackgroundColor = Color.Cyan;
         }
 
-        private void bar1Add(object sender, global::System.EventArgs e)
+        private void ProgressAdd(object sender, global::System.EventArgs e)
         {
-            board.Text = "+";
-            progressBar1_1.CurrentValue++;
-        }
-        private void bar1Minus(object sender, global::System.EventArgs e)
-        {
-            board.Text = "-";
-            progressBar1_1.CurrentValue--;
-        }
-
-        private void circleStatusChanged(object sender, global::System.EventArgs e)
-        {
-            global::System.Console.WriteLine("----------------");
-
-            status++;
-            if (status > 2)
-                status = 0;
-            if (status == 0)
+            if (progressBar[0].CurrentValue == 100)
             {
-                button5.Style.Text.Text = "Buffer";
-                //progressCircle1.ProgressState = Progress.ProgressStatusType.Buffering;
+                board[0].Text = "Current value is: 100";
             }
-            if (status == 1)
+            else
             {
-                button5.Style.Text.Text = "Deter";
-                //progressCircle1.ProgressState = Progress.ProgressStatusType.Determinate;
+                board[0].Text = "Current value is: " + ++progressBar[0].CurrentValue;
             }
-            if (status == 2)
+        }
+        private void ProgressMinus(object sender, global::System.EventArgs e)
+        {
+            if (progressBar[0].CurrentValue == 0)
             {
-                button5.Style.Text.Text = "indeter";
-                //progressCircle1.ProgressState = Progress.ProgressStatusType.Indeterminate;
+                board[0].Text = "Current value is: 0";
+            }
+            else
+            {
+                board[0].Text = "Current value is: " + --progressBar[0].CurrentValue;
             }
         }
 
         public void Deactivate()
         {
-            if (root != null)
+            if (layout[0] != null)
             {
-                NUIApplication.GetDefaultWindow().Remove(root);
-                root.Dispose();
+                layout[2].Remove(board[1]);
+                board[1].Dispose();
+                board[1] = null;
+                layout[2].Remove(progressBar[0]);
+                progressBar[0].Dispose();
+                progressBar[0] = null;
+                layout[2].Remove(progressBar[1]);
+                progressBar[1].Dispose();
+                progressBar[1] = null;
+                layout[2].Remove(button[0]);
+                button[0].Dispose();
+                button[0] = null;
+                layout[2].Remove(button[1]);
+                button[1].Dispose();
+                button[1] = null;
+
+                layout[3].Remove(board[2]);
+                board[2].Dispose();
+                board[2] = null;
+                layout[3].Remove(progressBar[2]);
+                progressBar[2].Dispose();
+                progressBar[2] = null;
+
+                layout[1].Remove(layout[2]);
+                layout[2].Dispose();
+                layout[2] = null;
+                layout[1].Remove(layout[3]);
+                layout[3].Dispose();
+                layout[3] = null;
+
+                layout[0].Remove(layout[1]);
+                layout[1].Dispose();
+                layout[1] = null;
+                layout[0].Remove(board[0]);
+                board[0].Dispose();
+                board[0] = null;
+
+                NUIApplication.GetDefaultWindow().Remove(layout[0]);
+                layout[0].Dispose();
+                layout[0] = null;
             }
         }
     }

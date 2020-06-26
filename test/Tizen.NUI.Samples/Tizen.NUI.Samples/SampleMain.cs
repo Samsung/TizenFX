@@ -10,17 +10,17 @@ namespace Tizen.NUI.Samples
     {
         public static string GetDaliResourcePath()
         {
-            return @"/opt/usr/globalapps/org.tizen.example.Tizen.NUI.Samples/res/images/Dali/";
+            return Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/Dali/";
         }
 
         public static string GetFHResourcePath()
         {
-            return @"/opt/usr/globalapps/org.tizen.example.Tizen.NUI.Samples/res/images/FH3/";
+            return Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/FH3/";
         }
 
         public static string GetTVResourcePath()
         {
-            return @"/opt/usr/globalapps/org.tizen.example.Tizen.NUI.Samples/res/images/VD/";
+            return Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/VD/";
         }
     }
 }

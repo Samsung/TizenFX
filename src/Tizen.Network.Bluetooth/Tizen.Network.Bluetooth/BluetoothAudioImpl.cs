@@ -51,10 +51,7 @@ namespace Tizen.Network.Bluetooth
         {
             _audioConnectionChangedCallback = (int result, bool connected, string deviceAddress, int profileType, IntPtr userData) =>
             {
-                if (_audioConnectionChanged != null)
-                {
-                    _audioConnectionChanged(null, new AudioConnectionStateChangedEventArgs(result, connected, deviceAddress, (BluetoothAudioProfileType)profileType));
-                }
+                _audioConnectionChanged?.Invoke(this, new AudioConnectionStateChangedEventArgs(result, connected, deviceAddress, (BluetoothAudioProfileType)profileType));
             };
             int ret = Interop.Bluetooth.SetAudioConnectionStateChangedCallback(_audioConnectionChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)

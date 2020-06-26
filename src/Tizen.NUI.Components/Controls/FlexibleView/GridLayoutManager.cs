@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GridLayoutManager : LinearLayoutManager
     {
-        private static readonly int DEFAULT_SPAN_COUNT = -1;
+        private const int DEFAULT_SPAN_COUNT = -1;
 
         private int mSpanCount = DEFAULT_SPAN_COUNT;
 
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
             mSpanCount = spanCount;
         }
 
-        internal override void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
+        internal override void EnsureAnchorReady(FlexibleViewRecycler recycler, AnchorInfo anchorInfo, int itemDirection)
         {
             bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ITEM_DIRECTION_TAIL);
             int span = anchorInfo.Position % mSpanCount;
@@ -84,34 +84,33 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="position">The anchor adapter position</param>
         /// <param name="direction">The direction.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction)
+        protected override int GetNextPosition(int position, FlexibleViewLayoutManager.Direction direction)
         {
             if (mOrientation == HORIZONTAL)
             {
                 switch (direction)
                 {
-                    case FlexibleView.LayoutManager.Direction.Left:
+                    case FlexibleViewLayoutManager.Direction.Left:
                         if (position >= mSpanCount)
                         {
                             return position - mSpanCount;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Right:
+                    case FlexibleViewLayoutManager.Direction.Right:
                         if (position < ItemCount - mSpanCount)
                         {
                             return position + mSpanCount;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Up:
+                    case FlexibleViewLayoutManager.Direction.Up:
                         if (position % mSpanCount > 0)
                         {
                             return position - 1;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Down:
+                    case FlexibleViewLayoutManager.Direction.Down:
                         if (position < ItemCount - 1 && (position % mSpanCount < mSpanCount - 1))
                         {
                             return position + 1;
@@ -123,25 +122,25 @@ namespace Tizen.NUI.Components
             {
                 switch (direction)
                 {
-                    case FlexibleView.LayoutManager.Direction.Left:
+                    case FlexibleViewLayoutManager.Direction.Left:
                         if (position % mSpanCount > 0)
                         {
                             return position - 1;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Right:
+                    case FlexibleViewLayoutManager.Direction.Right:
                         if (position < ItemCount - 1 && (position % mSpanCount < mSpanCount - 1))
                         {
                             return position + 1;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Up:
+                    case FlexibleViewLayoutManager.Direction.Up:
                         if (position >= mSpanCount)
                         {
                             return position - mSpanCount;
                         }
                         break;
-                    case FlexibleView.LayoutManager.Direction.Down:
+                    case FlexibleViewLayoutManager.Direction.Down:
                         if (position < ItemCount - mSpanCount)
                         {
                             return position + mSpanCount;
@@ -153,7 +152,7 @@ namespace Tizen.NUI.Components
             return NO_POSITION;
         }
 
-        internal override void LayoutChunk(FlexibleView.Recycler recycler,
+        internal override void LayoutChunk(FlexibleViewRecycler recycler,
             LayoutState layoutState, LayoutChunkResult result)
         {
             bool layingOutInPrimaryDirection =
@@ -162,7 +161,7 @@ namespace Tizen.NUI.Components
             int count = mSpanCount;
             for (int i = 0; i < count; i++)
             {
-                FlexibleView.ViewHolder holder = layoutState.Next(recycler);
+                FlexibleViewViewHolder holder = layoutState.Next(recycler);
                 if (holder == null)
                 {
                     result.Finished = true;

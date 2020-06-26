@@ -22,7 +22,7 @@ namespace Tizen.NUI.Wearable
     /// <summary>
     /// [Draft] This class implements a fish eye layout
     /// </summary>
-    internal class FishEyeLayoutManager : LayoutManager
+    internal class FishEyeLayoutManager : RecycleLayoutManager
     {
         public int CurrentFocusedIndex { get; set; } = 0;
         public int FocusedIndex { get; set; } = 0;
@@ -64,6 +64,12 @@ namespace Tizen.NUI.Wearable
 
             result = isBack ? result1 : result4;
             return (float)(center + result);
+        }
+
+
+        public override float CalculateLayoutOrientationSize()
+        {
+            return mStepSize * (DataCount-1);
         }
 
         public override void Layout(float scrollPosition)
@@ -173,6 +179,7 @@ namespace Tizen.NUI.Wearable
                     mStepSize = Container.Children[0].Size.Height / 2.0f + Container.Children[1].Size.Height * Container.Children[1].Scale.X / 2.0f;
                 }
 
+                mStepSize = float.IsNaN(mStepSize)?0:mStepSize;
             }
         }
 

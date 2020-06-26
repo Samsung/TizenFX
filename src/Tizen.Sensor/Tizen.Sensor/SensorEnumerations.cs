@@ -371,7 +371,7 @@ namespace Tizen.Sensor
     public enum HeartRateMonitorBatchState
     {
         /// <summary>
-        /// Flush but there was no batched data
+        /// Flush but there is no batched data
         /// </summary>
         SENSOR_HRM_BATCH_STATE_NODATA_FLUSH = -99,
 
@@ -386,22 +386,22 @@ namespace Tizen.Sensor
         SENSOR_HRM_BATCH_STATE_LOW_RELIABILITY = -8,
 
         /// <summary>
-        /// Device detachment was detected during auto measurement
+        /// Device detachment is detected during auto measurement
         /// </summary>
         SENSOR_HRM_BATCH_STATE_DETACHED_AUTO = -5,
 
         /// <summary>
-        /// Device detachment was detected
+        /// Device detachment is detected
         /// </summary>
         SENSOR_HRM_BATCH_STATE_DETACHED = -3,
 
         /// <summary>
-        /// The Movement was detected during on-demand measurement
+        /// The Movement is detected during on-demand measurement
         /// </summary>
         SENSOR_HRM_BATCH_STATE_DETECT_MOVE = -2,
 
         /// <summary>
-        /// Device attachment was detected
+        /// Device attachment is detected
         /// </summary>
         SENSOR_HRM_BATCH_STATE_ATTACHED = -1,
 

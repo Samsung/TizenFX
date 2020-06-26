@@ -724,7 +724,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default popup style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
         }
@@ -737,7 +737,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
+            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(StyleName) as PopupStyle;
             if (popupStyle != null)
             {
                 string strSaveTitleText = TitleText;

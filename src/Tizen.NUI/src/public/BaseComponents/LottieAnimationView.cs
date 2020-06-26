@@ -39,7 +39,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="scale">The factor of scaling image, default : 1.0f</param>
         /// <param name="shown">false : not displayed (hidden), true : displayed (shown), default : true</param>
         /// <remarks>
-        /// If shown parameter is false, it is not visible even the LottieAnimationView instance is created.
+        /// If the shown parameter is false, the animation is not visible even if the LottieAnimationView instance is created.
         /// </remarks>
         /// <example>
         /// <code>
@@ -153,7 +153,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get playing state
+        /// Gets the playing state
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public PlayStateType PlayState
@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the number of total frame
+        /// Get the number of total frames
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public int TotalFrame
@@ -212,13 +212,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get current frame. When setting a specific frame, it is displayed as a still image.
+        /// Set or get the current frame. When setting a specific frame, it is displayed as a still image.
         /// </summary>
         /// <remarks>
-        /// Giving user set value when getting. If the out ranged frame is set, it is reset as minimum frame or maximum frame.
+        /// Gets the value set by a user. If the setting value is out-ranged, it is reset as a minimum frame or a maximum frame.
         /// </remarks>
         /// <example>
-        /// Let's say myLottie.json file has 100 frames originally, then it will have 0 ~ 99 range of frame index.
+        /// We assume that the animation in myLottie.json file has 100 frames originally. If so, its frame index will be 0 - 99.
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
@@ -260,7 +260,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get looping mode of Lottie animation.
+        /// Sets or gets the looping mode of Lottie animation.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public LoopingModeType LoopingMode
@@ -303,10 +303,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get loop count. 
+        /// Sets or gets the loop count. 
         /// </summary>
         /// <remarks>
-        /// Minus value means infinite loop count.
+        /// The minus value means the infinite loop count.
         /// </remarks>
         /// <example>
         /// <code>
@@ -360,7 +360,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get stop behavior.
+        /// Sets or gets the stop behavior.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
@@ -406,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
 
         #region Method
         /// <summary>
-        /// Set minimum and maximum frame.
+        /// Set the minimum and the maximum frame.
         /// </summary>
         /// <param name="minFrame">minimum frame</param>
         /// <param name="maxFrame">maximum frame</param>
@@ -466,7 +466,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the list of layers' information (start frame, end frame) in Lottie file.
+        /// Get the list of layers' information such as the start frame and the end frame in the Lottie file.
         /// </summary>
         /// <returns>List of Tuple (string of layer name, integer of start frame, integer of end frame)</returns>
         /// <since_tizen> 7 </since_tizen>

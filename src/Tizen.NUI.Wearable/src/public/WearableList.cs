@@ -37,27 +37,52 @@ namespace Tizen.NUI.Wearable
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WearableList(RecycleAdapter adapter) : base(adapter, new FishEyeLayoutManager())
+        public WearableList() : base(new RecycleAdapter(), new FishEyeLayoutManager())
         {
             ScrollingDirection = ScrollableBase.Direction.Vertical;
 
-            ScrollDragStartEvent += OnScrollDragStart;
-            ScrollAnimationEndEvent += OnAnimationEnd;
+            ScrollDragStarted += OnScrollDragStarted;
+            ScrollAnimationEnded += OnAnimationEnded;
 
-            foreach (View child in mContainer.Children)
-            {
-                child.PositionUsesPivotPoint = true;
-                child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
-            }
+            ContentContainer.PositionUsesPivotPoint = true;
+            ContentContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            ContentContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
+            NoticeAnimationEndBeforePosition = 50;
 
-            mContainer.PositionUsesPivotPoint = true;
-            mContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
-            mContainer.PivotPoint = ScrollingDirection == Direction.Vertical ? Tizen.NUI.PivotPoint.TopCenter : Tizen.NUI.PivotPoint.CenterLeft;
-            ScrollAvailableArea = new Vector2( 0,ListLayoutManager.StepSize * (mAdapter.Data.Count - 1) );
-
-            noticeAnimationEndBeforePosition = 50;
+            ScrollAvailableArea = new Vector2(0, ContentContainer.SizeHeight);
 
             SetFocus(0, false);
+
+            Scrollbar = new CircularScrollbar();
+        }
+
+        protected override void SetScrollbar()
+        {
+            if(LayoutManager != null)
+            {
+                Scrollbar.Initialize(ContentContainer.Size.Height, LayoutManager.StepSize, ContentContainer.CurrentPosition.Y, false);
+            }
+        }
+
+        public new RecycleAdapter Adapter
+        {
+            get
+            {
+                return base.Adapter;
+            }
+
+            set
+            {
+                base.Adapter = value;
+
+                foreach (View child in Children)
+                {
+                    child.PositionUsesPivotPoint = true;
+                    child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
+                }
+
+                ScrollAvailableArea = new Vector2( 0, ContentContainer.SizeHeight );
+            }
         }
 
         /// <summary>
@@ -69,7 +94,7 @@ namespace Tizen.NUI.Wearable
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public void SetFocus(int dataIndex, bool animated)
         {
-            foreach (RecycleItem item in mContainer.Children)
+            foreach (RecycleItem item in Children)
             {
                 if (item.DataIndex == dataIndex)
                 {
@@ -83,7 +108,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private void OnAnimationEnd(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnAnimationEnded(object source, ScrollEventArgs args)
         {
         }
 
@@ -97,9 +122,9 @@ namespace Tizen.NUI.Wearable
         {
             int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / mLayoutManager.StepSize);
 
-            for (int i = 0; i < mContainer.Children.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
-                RecycleItem item = mContainer.Children[i] as RecycleItem;
+                RecycleItem item = Children[i] as RecycleItem;
 
                 if (targetDataIndex == item.DataIndex)
                 {
@@ -110,9 +135,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private float dragStartPosition = 0.0f;
-
-        private void OnScrollDragStart(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnScrollDragStarted(object source, ScrollEventArgs args)
         {
             RecycleItem prevFocusedItem = FocusedItem;
             prevFocusedItem?.OnFocusLost();

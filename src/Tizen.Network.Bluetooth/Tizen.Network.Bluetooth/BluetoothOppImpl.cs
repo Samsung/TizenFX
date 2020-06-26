@@ -20,58 +20,19 @@ namespace Tizen.Network.Bluetooth
 {
     internal class BluetoothOppServerImpl
     {
-        private event EventHandler<ConnectionRequestedEventArgs> _ConnectionRequested;
-        private Interop.Bluetooth.ConnectionRequestedCallback _ConnectionRequestedCallback;
-
-        private event EventHandler<TransferProgressEventArgs> _TransferProgress;
-        private Interop.Bluetooth.TransferProgressCallback _TransferProgressCallback;
-
-        private event EventHandler<TransferFinishedEventArgs> _TransferFinished;
-        private Interop.Bluetooth.TransferFinishedCallback _TransferFinishedCallback;
-
         private static readonly BluetoothOppServerImpl _instance = new BluetoothOppServerImpl();
 
-        internal event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested
-        {
-            add
-            {
-                _ConnectionRequested += value;
-            }
-            remove
-            {
-                _ConnectionRequested -= value;
-            }
-        }
+        internal event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested;
 
-        internal event EventHandler<TransferProgressEventArgs> TransferProgress
-        {
-            add
-            {
-                _TransferProgress += value;
-            }
-            remove
-            {
-                _TransferProgress -= value;
-            }
-        }
+        internal event EventHandler<TransferProgressEventArgs> TransferProgress;
 
-        internal event EventHandler<TransferFinishedEventArgs> TransferFinished
-        {
-            add
-            {
-                _TransferFinished += value;
-            }
-            remove
-            {
-                _TransferFinished -= value;
-            }
-        }
+        internal event EventHandler<TransferFinishedEventArgs> TransferFinished;
 
         internal int StartServer(string filePath)
         {
-            _ConnectionRequestedCallback = (string devAddress, IntPtr userData) =>
+            Interop.Bluetooth.ConnectionRequestedCallback _ConnectionRequestedCallback = (string devAddress, IntPtr userData) =>
             {
-                _ConnectionRequested?.Invoke(null, new ConnectionRequestedEventArgs(devAddress));
+                ConnectionRequested?.Invoke(this, new ConnectionRequestedEventArgs(devAddress));
             };
 
             int ret = Interop.Bluetooth.InitializeOppServerCustom(filePath, _ConnectionRequestedCallback, IntPtr.Zero);
@@ -105,14 +66,14 @@ namespace Tizen.Network.Bluetooth
             _transferId = -1;
             if (Globals.IsOppServerInitialized)
             {
-                _TransferProgressCallback = (string file, long size, int percent, IntPtr userData) =>
+                Interop.Bluetooth.TransferProgressCallback _TransferProgressCallback = (string file, long size, int percent, IntPtr userData) =>
                 {
-                    _TransferProgress?.Invoke(null, new TransferProgressEventArgs(file, size, percent));
+                    TransferProgress?.Invoke(this, new TransferProgressEventArgs(file, size, percent));
                 };
 
-                _TransferFinishedCallback = (int result, string file, long size, IntPtr userData) =>
+                Interop.Bluetooth.TransferFinishedCallback _TransferFinishedCallback = (int result, string file, long size, IntPtr userData) =>
                 {
-                    _TransferFinished?.Invoke(null, new TransferFinishedEventArgs(result, file, size));
+                    TransferFinished?.Invoke(this, new TransferFinishedEventArgs(result, file, size));
                 };
 
                 int ret = Interop.Bluetooth.OppServerAcceptPush(_TransferProgressCallback, _TransferFinishedCallback, name, IntPtr.Zero, out _transferId);
@@ -178,52 +139,13 @@ namespace Tizen.Network.Bluetooth
 
     internal class BluetoothOppClientImpl
     {
-        private event EventHandler<PushRespondedEventArgs> _PushResponded;
-        private Interop.Bluetooth.PushRespondedCallback _PushRespondedCallback;
-
-        private event EventHandler<PushProgressEventArgs> _PushProgress;
-        private Interop.Bluetooth.PushProgressCallback _PushProgressCallback;
-
-        private event EventHandler<PushFinishedEventArgs> _PushFinished;
-        private Interop.Bluetooth.PushFinishedCallback _PushFinishedCallback;
-
         private static readonly BluetoothOppClientImpl _instance = new BluetoothOppClientImpl();
 
-        internal event EventHandler<PushRespondedEventArgs> PushResponded
-        {
-            add
-            {
-                _PushResponded += value;
-            }
-            remove
-            {
-                _PushResponded -= value;
-            }
-        }
+        internal event EventHandler<PushRespondedEventArgs> PushResponded;
 
-        internal event EventHandler<PushProgressEventArgs> PushProgress
-        {
-            add
-            {
-                _PushProgress += value;
-            }
-            remove
-            {
-                _PushProgress -= value;
-            }
-        }
+        internal event EventHandler<PushProgressEventArgs> PushProgress;
 
-        internal event EventHandler<PushFinishedEventArgs> PushFinished
-        {
-            add
-            {
-                _PushFinished += value;
-            }
-            remove
-            {
-                _PushFinished -= value;
-            }
-        }
+        internal event EventHandler<PushFinishedEventArgs> PushFinished;
 
         private BluetoothOppClientImpl()
         {
@@ -286,19 +208,19 @@ namespace Tizen.Network.Bluetooth
 
             if (Globals.IsOppClientInitialized)
             {
-                _PushRespondedCallback = (int result, string address, IntPtr userData) =>
+                Interop.Bluetooth.PushRespondedCallback _PushRespondedCallback = (int result, string address, IntPtr userData) =>
                 {
-                    _PushResponded?.Invoke(null, new PushRespondedEventArgs(result, address));
+                    PushResponded?.Invoke(this, new PushRespondedEventArgs(result, address));
                 };
 
-                _PushProgressCallback = (string file, long size, int percent, IntPtr userData) =>
+                Interop.Bluetooth.PushProgressCallback _PushProgressCallback = (string file, long size, int percent, IntPtr userData) =>
                 {
-                    _PushProgress?.Invoke(null, new PushProgressEventArgs(file, size, percent));
+                    PushProgress?.Invoke(this, new PushProgressEventArgs(file, size, percent));
                 };
 
-                _PushFinishedCallback = (int result, string address, IntPtr userData) =>
+                Interop.Bluetooth.PushFinishedCallback _PushFinishedCallback = (int result, string address, IntPtr userData) =>
                 {
-                    _PushFinished?.Invoke(null, new PushFinishedEventArgs(result, address));
+                    PushFinished?.Invoke(this, new PushFinishedEventArgs(result, address));
                 };
 
                 int ret = Interop.Bluetooth.OppClientPushFile(Destination, _PushRespondedCallback, _PushProgressCallback, _PushFinishedCallback, IntPtr.Zero);

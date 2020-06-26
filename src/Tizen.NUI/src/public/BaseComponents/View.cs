@@ -69,8 +69,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Style instance binded with this View.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ViewStyle viewStyle;
+        private ViewStyle viewStyle;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -185,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return controlStates;
             }
-            set
+            protected set
             {
                 if (controlStates == value)
                 {
@@ -2307,8 +2306,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        // TODO: It should be deprecated. please use CreateViewStyle instead.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ViewStyle GetViewStyle()
+        {
+            return CreateViewStyle();
+        }
+
+        /// <summary>
+        /// Create Style, it is abstract function and must be override.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ViewStyle CreateViewStyle()
         {
             return new ViewStyle();
         }

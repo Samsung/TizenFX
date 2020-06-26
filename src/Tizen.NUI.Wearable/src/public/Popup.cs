@@ -430,7 +430,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>The default popup style.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
         }
@@ -548,10 +548,8 @@ namespace Tizen.NUI.Wearable
         private TextLabel title;
         private ScrollableBase scroll;
         private Dictionary<string, View> scrollList;
-        private EventHandler buttonClick;
         private Timer timer;
         private PopupStyle popupStyle;
-        private bool wrapContent = false;
         private View buttonContainer;
         private string firstButtonIndex;
         private View titleContentContainer;
