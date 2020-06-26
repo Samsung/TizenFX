@@ -78,7 +78,7 @@ namespace Tizen.NUI.Components
                 ApplyStyle(viewStyle);
             }
 
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(ControlStyle style) : base(style)
         {
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Tizen.NUI.Components
             ApplyStyle(viewStyle);
             this.StyleName = styleSheet;
 
-            Initialize(StyleName);
+            Initialize();
         }
 
         /// Internal used.
@@ -302,7 +302,7 @@ namespace Tizen.NUI.Components
             return new ControlStyle();
         }
 
-        private void Initialize(string style)
+        private void Initialize()
         {
             ControlState = ControlStates.Normal;
 

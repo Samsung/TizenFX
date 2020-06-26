@@ -1090,12 +1090,12 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            string temp;
+            int temp;
             if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.DRAW_MODE).Get(out temp) == false)
             {
                 NUILog.Error("DrawMode get error!");
             }
-            return temp.GetValueByDescription<DrawModeType>();
+            return (DrawModeType)temp;
         });
 
         /// <summary>
@@ -1225,12 +1225,12 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            string temp;
+            int temp;
             if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
             {
                 NUILog.Error("SizeScalePolicy get error!");
             }
-            return temp.GetValueByDescription<SizeScalePolicyType>();
+            return (SizeScalePolicyType)temp;
         });
 
         /// <summary>

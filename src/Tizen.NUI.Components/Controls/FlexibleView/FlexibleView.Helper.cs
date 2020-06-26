@@ -11,19 +11,19 @@ namespace Tizen.NUI.Components
             private FlexibleView mFlexibleView;
 
             private int mMaxTypeCount = 10;
-            private List<ViewHolder>[] mScrap;
+            private List<FlexibleViewViewHolder>[] mScrap;
 
             public RecycledViewPool(FlexibleView flexibleView)
             {
                 mFlexibleView = flexibleView;
-                mScrap = new List<ViewHolder>[mMaxTypeCount];
+                mScrap = new List<FlexibleViewViewHolder>[mMaxTypeCount];
             }
 
             //public void SetViewTypeCount(int typeCount)
             //{
             //}
 
-            public ViewHolder GetRecycledView(int viewType)
+            public FlexibleViewViewHolder GetRecycledView(int viewType)
             {
                 if (viewType >= mMaxTypeCount || mScrap[viewType] == null)
                 {
@@ -35,13 +35,13 @@ namespace Tizen.NUI.Components
                 {
                     return null;
                 }
-                ViewHolder recycledView = mScrap[viewType][index];
+                FlexibleViewViewHolder recycledView = mScrap[viewType][index];
                 mScrap[viewType].RemoveAt(index);
 
                 return recycledView;
             }
 
-            public void PutRecycledView(ViewHolder view)
+            public void PutRecycledView(FlexibleViewViewHolder view)
             {
                 int viewType = view.ItemViewType;
                 if (viewType >= mMaxTypeCount)
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
                 }
                 if (mScrap[viewType] == null)
                 {
-                    mScrap[viewType] = new List<ViewHolder>();
+                    mScrap[viewType] = new List<FlexibleViewViewHolder>();
                 }
                 view.IsBound = false;
                 mScrap[viewType].Add(view);
@@ -73,15 +73,15 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private class ChildHelper
+        internal class ChildHelper : Disposable
         {
             private FlexibleView mFlexibleView;
 
-            private List<ViewHolder> mViewList = new List<ViewHolder>();
+            private List<FlexibleViewViewHolder> mViewList = new List<FlexibleViewViewHolder>();
 
-            //private List<ViewHolder> mRemovePendingViews;
+            //private List<FlexibleViewViewHolder> mRemovePendingViews;
 
-            private Dictionary<uint, ViewHolder> itemViewTable = new Dictionary<uint, ViewHolder>();
+            private Dictionary<uint, FlexibleViewViewHolder> itemViewTable = new Dictionary<uint, FlexibleViewViewHolder>();
             private TapGestureDetector mTapGestureDetector;
 
             public ChildHelper(FlexibleView owner)
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
 
             public void Clear()
             {
-                foreach (ViewHolder holder in mViewList)
+                foreach (FlexibleViewViewHolder holder in mViewList)
                 {
                     mFlexibleView.Remove(holder.ItemView);
 
@@ -103,10 +103,10 @@ namespace Tizen.NUI.Components
                 mViewList.Clear();
             }
 
-            public void ScrapViews(Recycler recycler)
+            public void ScrapViews(FlexibleViewRecycler recycler)
             {
                 recycler.Clear();
-                foreach (ViewHolder itemView in mViewList)
+                foreach (FlexibleViewViewHolder itemView in mViewList)
                 {
                     recycler.ScrapView(itemView);
                 }
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Components
                 mViewList.Clear();
             }
 
-            public void AttachView(ViewHolder holder, int index)
+            public void AttachView(FlexibleViewViewHolder holder, int index)
             {
                 if (index == -1)
                 {
@@ -132,7 +132,7 @@ namespace Tizen.NUI.Components
                 itemViewTable[holder.ItemView.ID] = holder;
             }
 
-            public void AddView(ViewHolder holder, int index)
+            public void AddView(FlexibleViewViewHolder holder, int index)
             {
                 mFlexibleView.Add(holder.ItemView);
 
@@ -141,7 +141,7 @@ namespace Tizen.NUI.Components
                 AttachView(holder, index);
             }
 
-            public bool RemoveView(ViewHolder holder)
+            public bool RemoveView(FlexibleViewViewHolder holder)
             {
                 mFlexibleView.Remove(holder.ItemView);
 
@@ -152,7 +152,7 @@ namespace Tizen.NUI.Components
 
             public bool RemoveViewAt(int index)
             {
-                ViewHolder itemView = mViewList[index];
+                FlexibleViewViewHolder itemView = mViewList[index];
                 return RemoveView(itemView);
             }
 
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Components
             {
                 for (int i = index; i < index + count; i++)
                 {
-                    ViewHolder holder = mViewList[i];
+                    FlexibleViewViewHolder holder = mViewList[i];
                     mFlexibleView.Remove(holder.ItemView);
                 }
                 mViewList.RemoveRange(index, count);
@@ -172,13 +172,34 @@ namespace Tizen.NUI.Components
                 return mViewList.Count;
             }
 
-            public ViewHolder GetChildAt(int index)
+            public FlexibleViewViewHolder GetChildAt(int index)
             {
                 if (index < 0 || index >= mViewList.Count)
                 {
                     return null;
                 }
                 return mViewList[index];
+            }
+
+            protected override void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    Clear();
+
+                    if (mTapGestureDetector != null)
+                    {
+                        mTapGestureDetector.Detected -= OnTapGestureDetected;
+                        mTapGestureDetector.Dispose();
+                        mTapGestureDetector = null;
+                    }
+                }
+                base.Dispose(type);
             }
 
             private void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
@@ -190,19 +211,19 @@ namespace Tizen.NUI.Components
                 }
                 if (itemViewTable.ContainsKey(itemView.ID))
                 {
-                    ViewHolder holder = itemViewTable[itemView.ID];
+                    FlexibleViewViewHolder holder = itemViewTable[itemView.ID];
                     mFlexibleView.FocusedItemIndex = holder.AdapterPosition;
 
                     mFlexibleView.DispatchItemClicked(holder);
                 }
             }
 
-            private bool OnTouchEvent(object source, TouchEventArgs e)
+            private bool OnTouchEvent(object source, View.TouchEventArgs e)
             {
                 View itemView = source as View;
                 if (itemView != null && itemViewTable.ContainsKey(itemView.ID))
                 {
-                    ViewHolder holder = itemViewTable[itemView.ID];
+                    FlexibleViewViewHolder holder = itemViewTable[itemView.ID];
 
                     mFlexibleView.DispatchItemTouched(holder, e.Touch);
                     return true;
@@ -358,6 +379,5 @@ namespace Tizen.NUI.Components
                 set;
             }
         }
-
     }
 }

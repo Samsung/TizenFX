@@ -271,6 +271,26 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Dispose SliderStyle and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                trackPadding?.Dispose();
+            }
+
+            base.Dispose(type);
+        }
+
         private void InitSubStyle()
         {
             Track = new ImageViewStyle();

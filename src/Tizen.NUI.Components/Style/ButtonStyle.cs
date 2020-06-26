@@ -270,6 +270,27 @@ namespace Tizen.NUI.Components
             return null;
         }
 
+        /// <summary>
+        /// Dispose ButtonStyle and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                iconPadding?.Dispose();
+                textPadding?.Dispose();
+            }
+
+            base.Dispose(type);
+        }
+
         private void InitSubStyle()
         {
             Overlay = new ImageViewStyle()

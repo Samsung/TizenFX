@@ -104,27 +104,13 @@ namespace Tizen.NUI
                         // Add LayoutItem to the transition stack so can animate it out.
                         NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
                     }
-                    else
-                    {
-                        if(childLayout.Owner != null)
-                        {
-                            View parent = childLayout.Owner.GetParent() as View;
-
-                            if(parent != null)
-                            {
-                                parent.RemoveChild(childLayout.Owner);
-                            }
-                            else
-                            {
-                                NUIApplication.GetDefaultWindow().Remove(childLayout.Owner);
-                            }
-                        }
-                    }
 
                     // Reset condition for animation ready for next transition when required.
                     // SetFrame usually would do this but this LayoutItem is being removed.
                     childLayout.ConditionForAnimation = TransitionCondition.Unspecified;
                     childRemoved = true;
+
+                    break;
                 }
             }
 
@@ -463,6 +449,17 @@ namespace Tizen.NUI
             Owner.ChildAdded += OnChildAddedToOwner;
 
             // Removing Child from the owners View will directly call the LayoutGroup removal API.
+        }
+
+        /// <summary>
+        /// Virtual method to allow derived classes to remove any children before it is removed from
+        /// its parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnUnparent()
+        {
+            // Disconnect to owner ChildAdded signal.
+            Owner.ChildAdded -= OnChildAddedToOwner;
         }
 
         // Virtual Methods that can be overridden by derived classes.

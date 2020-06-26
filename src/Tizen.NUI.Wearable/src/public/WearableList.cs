@@ -41,26 +41,28 @@ namespace Tizen.NUI.Wearable
         {
             ScrollingDirection = ScrollableBase.Direction.Vertical;
 
-            ScrollDragStartEvent += OnScrollDragStart;
-            ScrollAnimationEndEvent += OnAnimationEnd;
+            ScrollDragStarted += OnScrollDragStarted;
+            ScrollAnimationEnded += OnAnimationEnded;
 
-            mContainer.PositionUsesPivotPoint = true;
-            mContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
-            mContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
+            ContentContainer.PositionUsesPivotPoint = true;
+            ContentContainer.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            ContentContainer.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
             NoticeAnimationEndBeforePosition = 50;
 
-            ScrollAvailableArea = new Vector2(0, mContainer.SizeHeight);
+            ScrollAvailableArea = new Vector2(0, ContentContainer.SizeHeight);
 
             SetFocus(0, false);
 
             Scrollbar = new CircularScrollbar();
+            DecelerationThreshold = 60.0f;
+            DecelerationRate = 0.991f;
         }
 
         protected override void SetScrollbar()
         {
-            if(mContainer != null && LayoutManager != null)
+            if(LayoutManager != null)
             {
-                Scrollbar.Initialize(mContainer.Size.Height, LayoutManager.StepSize, mContainer.CurrentPosition.Y, false);
+                Scrollbar.Initialize(ContentContainer.Size.Height, LayoutManager.StepSize, ContentContainer.CurrentPosition.Y, false);
             }
         }
 
@@ -75,13 +77,13 @@ namespace Tizen.NUI.Wearable
             {
                 base.Adapter = value;
 
-                foreach (View child in mContainer.Children)
+                foreach (View child in Children)
                 {
                     child.PositionUsesPivotPoint = true;
                     child.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
                 }
 
-                ScrollAvailableArea = new Vector2( 0, mContainer.SizeHeight );
+                ScrollAvailableArea = new Vector2( 0, ContentContainer.SizeHeight );
             }
         }
 
@@ -94,7 +96,7 @@ namespace Tizen.NUI.Wearable
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public void SetFocus(int dataIndex, bool animated)
         {
-            foreach (RecycleItem item in mContainer.Children)
+            foreach (RecycleItem item in Children)
             {
                 if (item.DataIndex == dataIndex)
                 {
@@ -108,7 +110,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private void OnAnimationEnd(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnAnimationEnded(object source, ScrollEventArgs args)
         {
         }
 
@@ -122,9 +124,9 @@ namespace Tizen.NUI.Wearable
         {
             int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / mLayoutManager.StepSize);
 
-            for (int i = 0; i < mContainer.Children.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
-                RecycleItem item = mContainer.Children[i] as RecycleItem;
+                RecycleItem item = Children[i] as RecycleItem;
 
                 if (targetDataIndex == item.DataIndex)
                 {
@@ -135,7 +137,7 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-        private void OnScrollDragStart(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnScrollDragStarted(object source, ScrollEventArgs args)
         {
             RecycleItem prevFocusedItem = FocusedItem;
             prevFocusedItem?.OnFocusLost();
