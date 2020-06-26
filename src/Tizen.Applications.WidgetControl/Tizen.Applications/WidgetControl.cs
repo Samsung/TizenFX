@@ -467,7 +467,6 @@ namespace Tizen.Applications
                         throw new InvalidOperationException("Failed to access DB");
 
                     case Interop.WidgetService.ErrorCode.Fault:
-
                         throw new InvalidOperationException("Failed to access DB");
 
                     case Interop.WidgetService.ErrorCode.NotExist:
