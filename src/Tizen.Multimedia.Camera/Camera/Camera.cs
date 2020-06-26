@@ -464,7 +464,7 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(_disposed == false);
 
-            return CameraDisplay.SetEcoreDisplay(Handle, windowHandle);
+            return CameraDisplay.SetEcoreDisplay(GetHandle(), windowHandle);
         }
 
         /// <summary>
