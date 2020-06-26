@@ -449,7 +449,7 @@ namespace Tizen.NUI.Components
                 if (mLayout != null)
                 {
                     mLayout.StopScroll(false);
-                    mLayout.Dispose();
+                    mLayout.ClearRecyclerView();
                     mLayout = null;
                 }
 
