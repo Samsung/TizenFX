@@ -56,6 +56,6 @@ internal static partial class Interop
         internal static extern CameraError SetDisplay(IntPtr handle, DisplayType displayType, IntPtr displayHandle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_ecore_wl_display")]
-        internal static extern CameraError SetEcoreDisplay(IntPtr player, IntPtr ecoreWindow);
+        internal static extern CameraError SetEcoreDisplay(IntPtr handle, IntPtr ecoreWindow);
     }
 }
