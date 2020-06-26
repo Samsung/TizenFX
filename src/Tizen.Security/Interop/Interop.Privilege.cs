@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016-2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,8 +39,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_display_name")]
             internal static extern int GetPrivacyDisplayName(string privilege, out string displayName);
-
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_privilege_status")]
-            internal static extern int GetPrivacyPrivilegeStatus(string privilege, out bool status);
     }
 }

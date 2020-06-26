@@ -69,21 +69,20 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return itemGroup as RadioButtonGroup;
+                return base.ItemGroup as RadioButtonGroup;
             }
             internal set
             {
-                itemGroup = value;
+                base.ItemGroup = value;
             }
         }
 
         /// <summary>
         /// Set CheckState to true after selecting RadioButton.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnSelected()
+        protected override void OnSelectedChanged()
         {
             if (!IsSelected)
             {

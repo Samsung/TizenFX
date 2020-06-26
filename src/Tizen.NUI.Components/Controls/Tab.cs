@@ -468,7 +468,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(style) as TabStyle;
+            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleName) as TabStyle;
             if (tabStyle != null)
             {
                 Style.CopyFrom(tabStyle);
@@ -599,7 +599,7 @@ namespace Tizen.NUI.Components
             LayoutChild();
             if (itemList != null && curIndex >= 0 && curIndex < itemList.Count)
             {
-                itemList[curIndex].ControlState = ControlStates.Selected;
+                itemList[curIndex].IsSelected = true;
                 UpdateUnderLinePos();
             }
             else
@@ -665,9 +665,9 @@ namespace Tizen.NUI.Components
             };
             ItemChangedEvent?.Invoke(this, e);
 
-            itemList[curIndex].ControlState = ControlStates.Normal;
+            itemList[curIndex].IsSelected = false;
             curIndex = item.Index;
-            itemList[curIndex].ControlState = ControlStates.Selected;
+            itemList[curIndex].IsSelected = true;
 
             UpdateUnderLinePos();
         }
@@ -690,6 +690,8 @@ namespace Tizen.NUI.Components
 
         internal class TabItem : View
         {
+            private bool isSelected = false;
+
             public TabItem() : base()
             {
                 TextItem = new TextLabel()
@@ -729,6 +731,19 @@ namespace Tizen.NUI.Components
             {
                 get;
                 set;
+            }
+
+            internal bool IsSelected
+            {
+                get
+                {
+                    return isSelected;
+                }
+                set
+                {
+                    ControlState = value ? ControlStates.Selected : ControlStates.Normal;
+                    isSelected = value;
+                }
             }
         }
 

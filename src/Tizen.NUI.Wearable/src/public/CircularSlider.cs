@@ -23,6 +23,25 @@ using System.ComponentModel;
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
+    /// Value Changed event data.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CircularSliderValueChangedEventArgs : EventArgs
+    {
+        private float currentValue = 0.0f;
+
+        /// <summary>
+        /// Current value
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CurrentValue
+        {
+            get { return currentValue; }
+            set { currentValue = value; }
+        }
+    }
+
+    /// <summary>
     /// The CircularSlider class of Wearable is used to let users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// CircularSlider shows the current value with the length of the line.
     /// </summary>
@@ -43,7 +62,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.Thickness;
+            return ((CircularSlider)bindable).Style.Thickness;
         });
 
         /// <summary>Bindable property of MaxValue</summary>
@@ -113,7 +132,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.TrackColor;
+            return ((CircularSlider)bindable).Style.TrackColor;
         });
 
         /// <summary>Bindable property of ProgressColor</summary>
@@ -128,7 +147,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.ProgressColor;
+            return ((CircularSlider)bindable).Style.ProgressColor;
         });
 
         /// <summary>Bindable property of ThumbSize</summary>
@@ -160,7 +179,7 @@ namespace Tizen.NUI.Wearable
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSliderStyle)((CircularSlider)bindable).viewStyle)?.ThumbColor;
+            return ((CircularSlider)bindable).Style.ThumbColor;
         });
 
         /// <summary>Bindable property of IsEnabled</summary>
@@ -197,31 +216,6 @@ namespace Tizen.NUI.Wearable
         private Animation sweepAngleAnimation;
         private Animation thumbAnimation;
 
-        /// <summary>
-        /// Get style of progress.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new CircularSliderStyle Style => ViewStyle as CircularSliderStyle;
-
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ValueChangedEventArgs : EventArgs
-        {
-            private float currentValue = 0.0f;
-
-            /// <summary>
-            /// Current value
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public float CurrentValue
-            {
-                get { return currentValue; }
-                set { currentValue = value; }
-            }
-        }
-
         #endregion Fields
 
 
@@ -255,11 +249,21 @@ namespace Tizen.NUI.Wearable
         /// The value changed event handler.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ValueChangedEventArgs> ValueChanged;
+        public event EventHandler<CircularSliderValueChangedEventArgs> ValueChanged;
 
         #endregion Events
 
         #region Properties
+
+        /// <summary>
+        /// Return a copied Style instance of CircularSlider
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the CircularSlider.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new CircularSliderStyle Style => ViewStyle as CircularSliderStyle;
 
         /// <summary>
         /// The thickness of the track and progress.
@@ -612,7 +616,7 @@ namespace Tizen.NUI.Wearable
                 thumbAnimation.Play();
             }
 
-            ValueChanged?.Invoke(this, new ValueChangedEventArgs() { CurrentValue = currentValue });
+            ValueChanged?.Invoke(this, new CircularSliderValueChangedEventArgs() { CurrentValue = currentValue });
         }
 
         private void UpdateTrackVisualColor(Color trackColor)

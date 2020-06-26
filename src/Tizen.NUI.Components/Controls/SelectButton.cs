@@ -21,6 +21,19 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
+    /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SelectedChangedEventArgs : EventArgs
+    {
+        /// <summary> Select state of SelectButton </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsSelected { get; set; }
+    }
+
+    /// <summary>
     /// SelectButton is base class of CheckBox and RadioButton.
     /// It can be used as selector and add into group for single-choice or multiple-choice .
     /// User can handle Navigation by adding/inserting/deleting NavigationItem.
@@ -30,13 +43,16 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SelectButton : Button
     {
+        private SelectGroup itemGroup = null;
+
         /// <summary>
         /// Item group which is used to manager all SelectButton in it.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected SelectGroup itemGroup = null;
+        protected SelectGroup ItemGroup { get => itemGroup; set => itemGroup = value; }
+
         static SelectButton() { }
 
         /// <summary>
@@ -77,10 +93,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<SelectEventArgs> SelectedEvent;
+        public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
 
         /// <summary>
         /// Index of selection in selection group. If selection is not in the group, return -1;
@@ -92,9 +107,9 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (itemGroup != null)
+                if (ItemGroup != null)
                 {
-                    return itemGroup.GetIndex(this);
+                    return ItemGroup.GetIndex(this);
                 }
 
                 return -1;
@@ -180,10 +195,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Overrides this method if want to handle behavior after pressing return key by user.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnSelected()
+        protected virtual void OnSelectedChanged()
         {
         }
 
@@ -195,29 +209,14 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {    
-            OnSelected();
+            OnSelectedChanged();
 
-            if (SelectedEvent != null)
+            if (SelectedChanged != null)
             {
-                SelectEventArgs eventArgs = new SelectEventArgs();
+                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
                 eventArgs.IsSelected = IsSelected;
-                SelectedEvent(this, eventArgs);
+                SelectedChanged(this, eventArgs);
             }
-        }
-
-        /// <summary>
-        /// SelectEventArgs is a class to record item selected arguments which will sent to user.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class SelectEventArgs : EventArgs
-        {
-            /// <summary> Select state of SelectButton </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool IsSelected;
         }
     }
 }

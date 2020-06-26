@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         protected int mTotalItemCount = 15;
         private List<PropertyNotification> notifications = new List<PropertyNotification>();
 
-        public RecyclerView()
+        public RecyclerView() : base()
         {
             Initialize(new RecycleAdapter(), new RecycleLayoutManager());
         }
@@ -53,26 +53,13 @@ namespace Tizen.NUI.Components
 
         private void Initialize(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
         {
-            Name = "[List]";
-            mContainer = new View()
-            {
-                WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
-                HeightSpecification = ScrollingDirection == Direction.Horizontal ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
-                Layout = new AbsoluteLayout()
-                {
-                    SetPositionByLayout = false,
-                },
-                Name = "Container",
-            };
-
-            Add(mContainer);
-            ScrollEvent += OnScroll;
+            Scrolling += OnScrolling;
 
             mAdapter = adapter;
             mAdapter.OnDataChanged += OnAdapterDataChanged;
 
             mLayoutManager = layoutManager;
-            mLayoutManager.Container = mContainer;
+            mLayoutManager.Container = ContentContainer;
             mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
             mLayoutManager.DataCount = mAdapter.Data.Count;
 
@@ -81,7 +68,7 @@ namespace Tizen.NUI.Components
 
         private void OnItemSizeChanged(object source, PropertyNotification.NotifyEventArgs args)
         {
-            mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? mContainer.CurrentPosition.X : mContainer.CurrentPosition.Y);
+            mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
         }
         
         public int TotalItemCount 
@@ -99,9 +86,9 @@ namespace Tizen.NUI.Components
 
         private void InitializeItems()
         {
-            for(int i = mContainer.Children.Count -1 ; i > -1 ; i--)
+            for(int i = Children.Count -1 ; i > -1 ; i--)
             {
-                mContainer.Children[i].Unparent();
+                Children[i].Unparent();
                 notifications[i].Notified -= OnItemSizeChanged;
                 notifications.RemoveAt(i);
             }
@@ -116,7 +103,7 @@ namespace Tizen.NUI.Components
                 {
                     mAdapter.BindData(item);
                 }
-                mContainer.Add(item);
+                Add(item);
 
                 PropertyNotification noti = item.AddPropertyNotification("size", PropertyCondition.Step(0.1f));
                 noti.Notified += OnItemSizeChanged;
@@ -127,11 +114,11 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                mContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
+                ContentContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
             }
             else
             {
-                mContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
+                ContentContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
             }
         }
 
@@ -148,11 +135,11 @@ namespace Tizen.NUI.Components
 
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    mContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
+                    ContentContainer.SizeWidth = mLayoutManager.CalculateLayoutOrientationSize();
                 }
                 else
                 {
-                    mContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
+                    ContentContainer.SizeHeight = mLayoutManager.CalculateLayoutOrientationSize();
                 }
             }
         }
@@ -199,14 +186,14 @@ namespace Tizen.NUI.Components
             set
             {
                 mLayoutManager = value;
-                mLayoutManager.Container = mContainer;
+                mLayoutManager.Container = ContentContainer;
                 mLayoutManager.ItemSize = mAdapter.CreateRecycleItem().Size;
                 mLayoutManager.DataCount = mAdapter.Data.Count;
                 InitializeItems();
             }
         }
 
-        private void OnScroll(object source, ScrollableBase.ScrollEventArgs args)
+        private void OnScrolling(object source, ScrollEventArgs args)
         {
             mLayoutManager.Layout(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
             List<RecycleItem> recycledItemList = mLayoutManager.Recycle(ScrollingDirection == Direction.Horizontal ? args.Position.X : args.Position.Y);
@@ -217,7 +204,7 @@ namespace Tizen.NUI.Components
         {
             List<RecycleItem> changedData = new List<RecycleItem>();
 
-            foreach (RecycleItem item in mContainer.Children)
+            foreach (RecycleItem item in Children)
             {
                 changedData.Add(item);
             }

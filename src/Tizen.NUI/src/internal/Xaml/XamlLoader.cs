@@ -463,6 +463,7 @@ namespace Tizen.NUI.Xaml
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.Layer")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
                 // View
@@ -470,9 +471,11 @@ namespace Tizen.NUI.Xaml
                 regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.BaseComponents.View")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
 
+                reader.Dispose();
                 throw new XamlParseException(string.Format("Can't find type {0}", "Tizen.NUI.XamlMainPage nor View nor Layer"), new XmlLineInfo());
             }
             return null;

@@ -39,11 +39,11 @@ namespace Tizen.NUI.Samples
             // Null style construction
             slider_null_style[0] = CreateByProperty(800, 50, 20, Slider.DirectionType.Horizontal);
             slider_null_style[1] = CreateByProperty(800, 50, 30, Slider.DirectionType.Horizontal);
-            slider_null_style[1].LowIndicatorText.Text = "SubText";
+            slider_null_style[1].LowIndicatorTextContent = "SubText";
             slider_null_style[1].LowIndicatorSize = new Size(100, 40);
             slider_null_style[2] = CreateByProperty(50, 400, 20, Slider.DirectionType.Vertical);
             slider_null_style[3] = CreateByProperty(50, 400, 30, Slider.DirectionType.Vertical);
-            slider_null_style[3].LowIndicatorText.Text = "SubText";
+            slider_null_style[3].LowIndicatorTextContent = "SubText";
             slider_null_style[3].LowIndicatorSize = new Size(100, 40);
 
             // Style construction
@@ -83,11 +83,11 @@ namespace Tizen.NUI.Samples
             };
             slider_style[0] = CreateByStyle(st, 800, 50, 20, Slider.DirectionType.Horizontal);
             slider_style[1] = CreateByStyle(st, 800, 50, 30, Slider.DirectionType.Horizontal);
-            slider_style[1].LowIndicatorText.Text = "SubText";
+            slider_style[1].LowIndicatorTextContent = "SubText";
             slider_style[1].LowIndicatorSize = new Size(100, 40);
             slider_style[2] = CreateByStyle(st, 50, 400, 20, Slider.DirectionType.Vertical);
             slider_style[3] = CreateByStyle(st, 50, 400, 30, Slider.DirectionType.Vertical);
-            slider_style[3].LowIndicatorText.Text = "SubText";
+            slider_style[3].LowIndicatorTextContent = "SubText";
             slider_style[3].LowIndicatorSize = new Size(100, 40);
         }
 

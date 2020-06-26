@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
 .*
 .* Licensed under the Apache License, Version 2.0 (the "License");
 .* you may not use this file except in compliance with the License.
@@ -16,16 +16,71 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// [Draft] This class implements a grid layout
     /// </summary>
-    public class GridLayout : LayoutGroup
+    public partial class GridLayout : LayoutGroup
     {
+        /// <summary>
+        /// ColumnProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// ColumnSpanProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColumnSpanProperty = BindableProperty.CreateAttached("ColumnSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// RowProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// RowSpanProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RowSpanProperty = BindableProperty.CreateAttached("RowSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// HorizontalStretchProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// VerticalStretchProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// HorizontalAlignmentProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// VerticalAlignmentProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+
+        private const int CellUndefined = int.MinValue;
+        private Orientation gridOrientation = Orientation.Vertical;
+        private int columns = 1;
+        private int rows = 1;
+        private float columnSpacing = 0;
+        private float rowSpacing = 0;
+
         /// <summary>
         /// [Draft] Enumeration for the direction in which the content is laid out
         /// </summary>
@@ -43,18 +98,185 @@ namespace Tizen.NUI
             Vertical
         }
 
-        private Orientation _GridOrientation = Orientation.Vertical;
-        const int AUTO_FIT = -1;
-        private int _columns = 1;
-        private int _rows = 1;
-        private int _totalWidth;
-        private int _totalHeight;
-        private int _requestedColumnWidth = 1;
-        private int _numberOfRequestedColumns;
-        private int _requestedRowHeight = 1;
-        private int _numberOfRequestedRows;
-        internal GridLocations _locations;
+        /// <summary>
+        /// Get the column index.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetColumn(View view)
+        {
+            return (int)view.GetValue(ColumnProperty);
+        }
 
+        /// <summary>
+        /// Get the column span.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetColumnSpan(View view)
+        {
+            return (int)view.GetValue(ColumnSpanProperty);
+        }
+
+        /// <summary>
+        /// Get the row index.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetRow(View view)
+        {
+            return (int)view.GetValue(RowProperty);
+        }
+
+        /// <summary>
+        /// Get the row span.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetRowSpan(View view)
+        {
+            return (int)view.GetValue(RowSpanProperty);
+        }
+
+        /// <summary>
+        /// Get the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StretchFlags GetHorizontalStretch(View view)
+        {
+            return (StretchFlags)view.GetValue(HorizontalStretchProperty);
+        }
+
+        /// <summary>
+        /// Get the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StretchFlags GetVerticalStretch(View view)
+        {
+            return (StretchFlags)view.GetValue(VerticalStretchProperty);
+        }
+
+        /// <summary>
+        /// Get the horizontal alignment of this child.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Alignment GetHorizontalAlignment(View view)
+        {
+            return (Alignment)view.GetValue(HorizontalAlignmentProperty);
+        }
+
+        /// <summary>
+        /// Get the vertical alignment of this child.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Alignment GetVerticalAlignment(View view)
+        {
+            return (Alignment)view.GetValue(VerticalAlignmentProperty);
+        }
+
+        /// <summary>
+        /// Set the column index.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetColumn(View view, int value)
+        {
+            SetChildValue(view, ColumnProperty, value);
+        }
+
+        /// <summary>
+        /// Set the column span.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetColumnSpan(View view, int value)
+        {
+            SetChildValue(view, ColumnSpanProperty, value);
+        }
+
+        /// <summary>
+        /// Set the row index.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetRow(View view, int value)
+        {
+            SetChildValue(view, RowProperty, value);
+        }
+
+        /// <summary>
+        /// Set the row span.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetRowSpan(View view, int value)
+        {
+            SetChildValue(view, RowSpanProperty, value);
+        }
+
+        /// <summary>
+        /// Set the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetHorizontalStretch(View view, StretchFlags value)
+        {
+            SetChildValue(view, HorizontalStretchProperty, value);
+        }
+
+        /// <summary>
+        /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetVerticalStretch(View view, StretchFlags value)
+        {
+            SetChildValue(view, VerticalStretchProperty, value);
+        }
+
+        /// <summary>
+        /// Set the horizontal alignment of this child inside the cells.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetHorizontalAlignment(View view, Alignment value)
+        {
+            SetChildValue(view, HorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// Set the vertical alignment of this child inside the cells.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetVerticalAlignment(View view, Alignment value)
+        {
+            SetChildValue(view, VerticalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// [Draft] The Distance between Column
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColumnSpacing
+        {
+            get => columnSpacing;
+            set
+            {
+                if (columnSpacing == value) return;
+                if (columnSpacing < 0) columnSpacing = 0;
+                columnSpacing = value;
+
+                RequestLayout();
+            }
+        }
+
+        /// <summary>
+        /// [Draft] The Distance between Rows
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RowSpacing
+        {
+            get => rowSpacing;
+            set
+            {
+                if (rowSpacing == value) return;
+                if (rowSpacing < 0) rowSpacing = 0;
+                rowSpacing = value;
+
+                RequestLayout();
+            }
+        }
 
         /// <summary>
         /// [Draft] Get/Set the orientation in the layout
@@ -63,13 +285,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Orientation GridOrientation
         {
-            get
-            {
-                return _GridOrientation;
-            }
+            get => gridOrientation;
             set
             {
-                _GridOrientation = value;
+                if (gridOrientation == value) return;
+                gridOrientation = value;
                 RequestLayout();
             }
         }
@@ -81,47 +301,23 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public GridLayout()
         {
-            _locations = new GridLocations();
         }
 
         /// <summary>
-        /// [Draft] Get/Set the number of columns in the grid
+        /// [Draft] Get/Set the number of columns in the GridLayout should have.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Columns
         {
-            get
-            {
-                return GetColumns();
-            }
+            get => columns;
             set
             {
-                SetColumns(value);
-            }
-        }
+                if (value == columns) return;
 
-        /// <summary>
-        /// [draft ] Sets the number of columns the GridLayout should have. />
-        /// </summary>
-        /// <param name="columns">The number of columns.</param>
-        internal void SetColumns(int columns)
-        {
-            _numberOfRequestedColumns = columns;
-            if (columns != _columns)
-            {
-                _columns = Math.Max(1, _columns);
-                _columns = columns;
+                if (value < 1) value = 1;
+                columns = value;
                 RequestLayout();
             }
-        }
-
-        /// <summary>
-        /// [draft ] Gets the number of columns in the Grid />
-        /// </summary>
-        /// <returns>The number of columns in the Grid.</returns>
-        internal int GetColumns()
-        {
-            return _columns;
         }
 
         /// <summary>
@@ -131,61 +327,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Rows
         {
-            get
-            {
-                return GetRows();
-            }
+            get => rows;
             set
             {
-                SetRows(value);
-            }
-        }
+                if (value == rows) return;
 
-        /// <summary>
-        /// [draft ] Sets the number of rows the GridLayout should have. />
-        /// </summary>
-        /// <param name="rows">The number of rows.</param>
-        internal void SetRows(int rows)
-        {
-            _numberOfRequestedRows = rows;
-            if (rows != _rows)
-            {
-                _rows = Math.Max(1, _rows);
-                _rows = rows;
+                if (value < 1) value = 1;
+                rows = value;
                 RequestLayout();
-            }
-        }
-
-        /// <summary>
-        /// [draft ] Gets the number of rows in the Grid />
-        /// </summary>
-        /// <returns>The number of rows in the Grid.</returns>
-        internal int GetRows()
-        {
-            return _rows;
-        }
-
-        void DetermineNumberOfColumns(int availableSpace)
-        {
-            if (_numberOfRequestedColumns == AUTO_FIT)
-            {
-                if (availableSpace > 0)
-                {
-                    // Can only calculate number of columns if a column width has been set
-                    _columns = (_requestedColumnWidth > 0) ? (availableSpace / _requestedColumnWidth) : 1;
-                }
-            }
-        }
-
-        void DetermineNumberOfRows(int availableSpace)
-        {
-            if (_numberOfRequestedRows == AUTO_FIT)
-            {
-                if (availableSpace > 0)
-                {
-                    // Can only calculate number of rows if a rows height has been set
-                    _rows = (_requestedRowHeight > 0) ? (availableSpace / _requestedRowHeight) : 1;
-                }
             }
         }
 
@@ -197,51 +346,22 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            var gridWidthMode = widthMeasureSpec.Mode;
-            var gridHeightMode = heightMeasureSpec.Mode;
+            int widthSize;
+            int heightSize;
+            var widthMode = widthMeasureSpec.Mode;
+            var heightMode = heightMeasureSpec.Mode;
 
-            int widthSize = (int)widthMeasureSpec.Size.AsRoundedValue();
-            int heightSize = (int)heightMeasureSpec.Size.AsRoundedValue();
+            InitChildren(widthMeasureSpec, heightMeasureSpec);
 
-            var childCount = LayoutChildren.Count;
-
-            if (childCount > 0)
-            {
-                foreach (LayoutItem childLayout in LayoutChildren)
-                {
-                    if (childLayout != null)
-                    {
-                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-                    }
-                }
-
-                if (_GridOrientation == Orientation.Horizontal)
-                {
-                    widthSize = CalculateHorizontalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
-                    heightSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
-                                    heightSize:
-                                    (int)(LayoutChildren[0].MeasuredHeight.Size.AsDecimal() + LayoutChildren[0].Margin.Top + LayoutChildren[0].Margin.Bottom)*Rows;
-                }
-                else
-                {
-                    widthSize = gridWidthMode == MeasureSpecification.ModeType.Exactly?
-                                    heightSize:
-                                    (int)(LayoutChildren[0].MeasuredWidth.Size.AsDecimal() + LayoutChildren[0].Margin.Start + LayoutChildren[0].Margin.End)*Columns;
-                    heightSize = CalculateVerticalSize(gridWidthMode, gridHeightMode, widthSize, heightSize);
-                }
-
-            } // Children exists
+            if (widthMode == MeasureSpecification.ModeType.Exactly)
+                widthSize = (int)widthMeasureSpec.Size.AsRoundedValue();
             else
-            {
-                if (_GridOrientation == Orientation.Horizontal)
-                {
-                    widthSize = (gridWidthMode == MeasureSpecification.ModeType.Unspecified)?0:widthSize;
-                }
-                else
-                {
-                    heightSize = (gridHeightMode == MeasureSpecification.ModeType.Unspecified)?0:heightSize;
-                }
-            }
+                widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
+
+            if (heightMode == MeasureSpecification.ModeType.Exactly)
+                heightSize = (int)heightMeasureSpec.Size.AsRoundedValue();
+            else
+                heightSize = (int)(vLocations[maxRowCount] - vLocations[0] - rowSpacing);
 
             LayoutLength widthLength = new LayoutLength(widthSize + Padding.Start + Padding.End);
             LayoutLength heightLenght = new LayoutLength(heightSize + Padding.Top + Padding.Bottom);
@@ -250,162 +370,6 @@ namespace Tizen.NUI
             MeasuredSize heightMeasuredSize = ResolveSizeAndState(heightLenght, heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
 
             SetMeasuredDimensions(widthMeasuredSize, heightMeasuredSize);
-        }
-
-        private int CalculateHorizontalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
-        {
-            int availableContentWidth;
-            int availableContentHeight;
-
-            int desiredChildHeight;
-            int desiredChildWidth;
-
-            Extents gridLayoutPadding = Padding;
-            var childCount = LayoutChildren.Count;
-
-            // Use first child's dimensions for layout measurement
-            View childOwner = LayoutChildren[0].Owner;
-
-            desiredChildHeight = (int)LayoutChildren[0].MeasuredHeight.Size.AsRoundedValue();
-            desiredChildWidth = (int)LayoutChildren[0].MeasuredWidth.Size.AsRoundedValue();
-
-            // If child has a margin then add it to desired size
-            Extents childMargin = LayoutChildren[0].Margin;
-            desiredChildHeight += childMargin.Top + childMargin.Bottom;
-            desiredChildWidth += childMargin.Start + childMargin.End;
-            _totalHeight = desiredChildHeight * _rows;
-            _totalHeight += gridLayoutPadding.Top + gridLayoutPadding.Bottom;
-            _totalHeight = Math.Max(_totalHeight, (int)SuggestedMinimumHeight.AsRoundedValue());
-
-            if (gridHeightMode == MeasureSpecification.ModeType.Exactly || gridHeightMode == MeasureSpecification.ModeType.AtMost)
-            {
-                _totalHeight = Math.Min(_totalHeight, heightSize);
-            }
-
-            availableContentHeight = _totalHeight - gridLayoutPadding.Top - gridLayoutPadding.Bottom;
-            heightSize = _totalHeight;
-
-            if (gridWidthMode == MeasureSpecification.ModeType.Exactly || gridWidthMode == MeasureSpecification.ModeType.AtMost)
-            {
-                if (childCount > 0)
-                {
-                    _totalWidth = gridLayoutPadding.Start + gridLayoutPadding.End;
-
-                    for (int i = 0; i < childCount; i += _rows)
-                    {
-                        _totalWidth += desiredChildWidth;
-                    }
-
-                    _totalWidth = Math.Min(_totalWidth, widthSize);
-                    _totalWidth = Math.Max(_totalWidth, (int)SuggestedMinimumWidth.AsRoundedValue());
-
-                    widthSize = _totalWidth;
-                } // Child exists
-
-                // In the case of AT_MOST, availableContentHeight is the max limit.
-                availableContentWidth = widthSize - gridLayoutPadding.Start - gridLayoutPadding.End;
-            }
-            else
-            {
-                _rows = (_rows > 0) ? _rows : 1;
-                _columns = childCount / _rows;
-                _columns += (childCount % _rows > 0) ? 1 : 0;
-
-                widthSize = desiredChildWidth * _columns + gridLayoutPadding.Start + gridLayoutPadding.End;
-                availableContentWidth = widthSize - gridLayoutPadding.Start - gridLayoutPadding.End;
-            }
-
-            // If number of rows not defined
-            DetermineNumberOfRows(availableContentHeight);
-
-            _locations.CalculateLocationsRow(_rows, availableContentWidth, availableContentHeight, childCount);
-
-            return availableContentWidth;
-        }
-
-        private int CalculateVerticalSize(MeasureSpecification.ModeType gridWidthMode, MeasureSpecification.ModeType gridHeightMode, int widthSize, int heightSize)
-        {
-            int availableContentWidth;
-            int availableContentHeight;
-
-            int desiredChildHeight;
-            int desiredChildWidth;
-
-            Extents gridLayoutPadding = Padding;
-            var childCount = LayoutChildren.Count;
-
-            // Use first child's dimensions for layout measurement
-            View childOwner = LayoutChildren[0].Owner;
-
-            desiredChildHeight = (int)LayoutChildren[0].MeasuredHeight.Size.AsRoundedValue();
-            desiredChildWidth = (int)LayoutChildren[0].MeasuredWidth.Size.AsRoundedValue();
-
-            // If child has a margin then add it to desired size
-            Extents childMargin = LayoutChildren[0].Margin;
-            desiredChildHeight += childMargin.Top + childMargin.Bottom;
-            desiredChildWidth += childMargin.Start + childMargin.End;
-
-            _totalWidth = desiredChildWidth * _columns;
-
-            // Include padding for max and min checks
-            _totalWidth += gridLayoutPadding.Start + gridLayoutPadding.End;
-
-            // Ensure width does not exceed specified at most width or less than mininum width
-            _totalWidth = Math.Max(_totalWidth, (int)SuggestedMinimumWidth.AsRoundedValue());
-
-            // widthMode EXACTLY so grid must be the given width
-            if (gridWidthMode == MeasureSpecification.ModeType.Exactly || gridWidthMode == MeasureSpecification.ModeType.AtMost)
-            {
-                // In the case of AT_MOST, widthSize is the max limit.
-                _totalWidth = Math.Min(_totalWidth, widthSize);
-            }
-
-            availableContentWidth = _totalWidth - gridLayoutPadding.Start - gridLayoutPadding.End;
-            widthSize = _totalWidth;
-
-            // HEIGHT SPECIFICATIONS
-            // heightMode EXACTLY so grid must be the given height
-            if (gridHeightMode == MeasureSpecification.ModeType.Exactly || gridHeightMode == MeasureSpecification.ModeType.AtMost)
-            {
-                if (childCount > 0)
-                {
-                    _totalHeight = gridLayoutPadding.Top + gridLayoutPadding.Bottom;
-
-                    for (int i = 0; i < childCount; i += _columns)
-                    {
-                        _totalHeight += desiredChildHeight;
-                    }
-
-                    // Ensure ourHeight does not exceed specified at most height
-                    _totalHeight = Math.Min(_totalHeight, heightSize);
-                    _totalHeight = Math.Max(_totalHeight, (int)SuggestedMinimumHeight.AsRoundedValue());
-
-                    heightSize = _totalHeight;
-                } // Child exists
-
-                // In the case of AT_MOST, availableContentHeight is the max limit.
-                availableContentHeight = heightSize - gridLayoutPadding.Top - gridLayoutPadding.Bottom;
-            }
-            else
-            {
-                // Grid expands to fit content
-                // If number of columns AUTO_FIT then set to 1 column.
-                _columns = (_columns > 0) ? _columns : 1;
-                // Calculate numbers of rows, round down result as later check for remainder.
-                _rows = childCount / _columns;
-                // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
-                _rows += (childCount % _columns > 0) ? 1 : 0;
-
-                heightSize = desiredChildHeight * _rows + gridLayoutPadding.Top + gridLayoutPadding.Bottom;
-                availableContentHeight = heightSize - gridLayoutPadding.Top - gridLayoutPadding.Bottom;
-            }
-            // If number of columns not defined
-            DetermineNumberOfColumns(availableContentWidth);
-
-            // Locations define the start, end,top and bottom of each cell.
-            _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
-
-            return availableContentHeight;
         }
 
         /// <summary>
@@ -419,49 +383,102 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            List<GridLocations.Cell> locations = _locations.GetLocations();
+            InitChildrenWithExpand(MeasuredWidth.Size - Padding.Start - Padding.End, MeasuredHeight.Size - Padding.Top - Padding.Bottom);
 
-            Extents gridLayoutPadding = Padding;
-            Extents childMargins = new Extents();
-
-            // Margin for all children dependant on if set on first child
-            if (LayoutChildren.Count > 0)
+            for (int i = 0; i < gridChildren.Length; i++)
             {
-                childMargins = LayoutChildren[0]?.Margin;
-            }
+                GridChild child = gridChildren[i];
+                View view = child.LayoutItem?.Owner;
 
-            int index = 0;
-            foreach (LayoutItem childLayout in LayoutChildren)
-            {
-                // for each child
-                if (childLayout != null)
+                if (view == null) continue;
+
+                Alignment halign = GetHorizontalAlignment(view);
+                Alignment valign = GetVerticalAlignment(view);
+
+                int column = child.Column.Start;
+                int row = child.Row.Start;
+                int columnEnd = child.Column.End;
+                int rowEnd = child.Row.End;
+                float l = hLocations[column] + left.AsDecimal() + Padding.Start;
+                float t = vLocations[row] + top.AsDecimal() + Padding.Top;
+                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing;
+                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing;
+
+                if (!child.Column.Stretch.HasFlag(StretchFlags.Fill))
                 {
-                    // Get start and end position of child x1,x2
-                    int x1 = locations[index].Start;
-                    int x2 = locations[index].End;
-
-                    // Get top and bottom position of child y1,y2
-                    int y1 = locations[index].Top;
-                    int y2 = locations[index].Bottom;
-
-                    // Offset children by the grids padding if present
-                    x1 += gridLayoutPadding.Start;
-                    x2 += gridLayoutPadding.Start;
-                    y1 += gridLayoutPadding.Top;
-                    y2 += gridLayoutPadding.Top;
-
-                    // Offset children by the margin of the first child ( if required ).
-                    x1 += childMargins.Start;
-                    x2 -= childMargins.End;
-                    y1 += childMargins.Top;
-                    y2 -= childMargins.Bottom;
-
-                    childLayout.Layout(new LayoutLength(x1), new LayoutLength(y1),
-                                        new LayoutLength(x2), new LayoutLength(y2));
-                    index++;
-                    //childLayout.Owner.RaiseToTop();
+                    l += (width - child.LayoutItem.MeasuredWidth.Size.AsDecimal()) * halign.ToFloat();
+                    width = child.LayoutItem.MeasuredWidth.Size.AsDecimal();
                 }
+
+                if (!child.Row.Stretch.HasFlag(StretchFlags.Fill))
+                {
+                    t += (height - child.LayoutItem.MeasuredHeight.Size.AsDecimal()) * valign.ToFloat();
+                    height = child.LayoutItem.MeasuredHeight.Size.AsDecimal();
+                }
+
+                child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));
             }
+        }
+
+        /// <summary>
+        /// The value how child is resized within its space.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Flags]
+        public enum StretchFlags
+        {
+            /// <summary>
+            /// Respect mesured size of the child.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Resize to completely fill the space.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Fill = 1,
+            /// <summary>
+            /// Expand to share available space in GridLayout.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Expand = 2,
+            /// <summary>
+            /// Expand to share available space in GridLayout and fill the space.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ExpandAndFill = Fill + Expand,
+        }
+
+        /// <summary>
+        /// The alignment of the grid layout child.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Alignment
+        {
+            /// <summary>
+            /// At the start of the container.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Start = 0,
+            /// <summary>
+            /// At the center of the container
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Center = 1,
+            /// <summary>
+            /// At the end of the container.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            End = 2,
+        }
+    }
+
+    // Extension Method of GridLayout.Alignment.
+    internal static class AlignmentExtension
+    {
+        public static float ToFloat(this GridLayout.Alignment align)
+        {
+            return 0.5f * (float)align;
         }
     }
 }

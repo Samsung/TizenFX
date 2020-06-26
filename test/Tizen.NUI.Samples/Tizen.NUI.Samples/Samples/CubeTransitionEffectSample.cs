@@ -161,9 +161,9 @@ namespace Tizen.NUI.Samples
             radioStyle = radios[2].Style;
             radioStyle.Icon.BackgroundImage = new Selector<string>() { Normal = EFFECT_FOLD_IMAGE, Selected = EFFECT_FOLD_IMAGE_SELECTED };
             radios[2].ApplyStyle(radioStyle);
-            radios[0].SelectedEvent += OnWaveClicked;
-            radios[1].SelectedEvent += OnCrossClicked;
-            radios[2].SelectedEvent += OnFoldClicked;
+            radios[0].SelectedChanged += OnWaveClicked;
+            radios[1].SelectedChanged += OnCrossClicked;
+            radios[2].SelectedChanged += OnFoldClicked;
             radios[0].IsSelected = true;
             // load image
             mCurrentTexture = LoadStageFillingTexture(IMAGES[mIndex]);
@@ -251,9 +251,9 @@ namespace Tizen.NUI.Samples
                 {
                     if (radios[i])
                     {
-                        if ( 0 == i) radios[0].SelectedEvent -= OnWaveClicked;
-                        if ( 1 == i) radios[1].SelectedEvent -= OnCrossClicked;
-                        if ( 2 == i) radios[2].SelectedEvent -= OnFoldClicked;
+                        if ( 0 == i) radios[0].SelectedChanged -= OnWaveClicked;
+                        if ( 1 == i) radios[1].SelectedChanged -= OnCrossClicked;
+                        if ( 2 == i) radios[2].SelectedChanged -= OnFoldClicked;
                         radiosParent.Remove(radios[i]);
                         radios[i].Dispose();
                         radios[i] = null;

@@ -20,7 +20,7 @@ namespace Tizen.NUI
 
     class NDalicPINVOKE
     {
-        public const string Lib = "libdali-csharp-binder.so";
+        public const string Lib = "libdali2-csharp-binder.so";
         protected class SWIGExceptionHelper
 		{
 			/// <since_tizen> 3 </since_tizen>
