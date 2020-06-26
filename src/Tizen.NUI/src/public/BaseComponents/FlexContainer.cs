@@ -30,6 +30,7 @@ namespace Tizen.NUI.BaseComponents
     [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
     public class FlexContainer : View
     {
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create("ContentDirection", typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -46,6 +47,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.CONTENT_DIRECTION).Get(out temp);
             return (ContentDirectionType)temp;
         });
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create("FlexDirection", typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,6 +64,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_DIRECTION).Get(out temp);
             return (FlexDirectionType)temp;
         });
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create("FlexWrap", typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -78,6 +81,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_WRAP).Get(out temp);
             return (WrapType)temp;
         });
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create("JustifyContent", typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -94,6 +98,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.JUSTIFY_CONTENT).Get(out temp);
             return (Justification)temp;
         });
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create("AlignItems", typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -110,6 +115,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_ITEMS).Get(out temp);
             return (Alignment)temp;
         });
+        /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignContentProperty = BindableProperty.Create("AlignContent", typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
