@@ -88,7 +88,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override int GetNextPosition(int position, FlexibleViewLayoutManager.Direction direction)
         {
-            if (mOrientation == HORIZONTAL)
+            if (Orientation == HORIZONTAL)
             {
                 switch (direction)
                 {
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Components
                 result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
 
                 float left, top, width, height;
-                if (mOrientation == VERTICAL)
+                if (Orientation == VERTICAL)
                 {
                     width = (Width - PaddingLeft - PaddingRight) / count;
                     height = result.Consumed;

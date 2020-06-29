@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Wearable
                     FocusedItem = item;
                     FocusedItem.OnFocusGained();
 
-                    ScrollTo(item.DataIndex * mLayoutManager.StepSize, animated);
+                    ScrollTo(item.DataIndex * LayoutManager.StepSize, animated);
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Tizen.NUI.Wearable
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         protected override void OnPreReachedTargetPosition(float targetPosition)
         {
-            int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / mLayoutManager.StepSize);
+            int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / LayoutManager.StepSize);
 
             for (int i = 0; i < Children.Count; i++)
             {
