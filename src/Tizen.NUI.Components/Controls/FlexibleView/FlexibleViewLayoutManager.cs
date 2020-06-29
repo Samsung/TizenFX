@@ -739,6 +739,12 @@ namespace Tizen.NUI.Components
             mChildHelper = recyclerView.GetChildHelper();
         }
 
+        internal void ClearRecyclerView()
+        {
+            mFlexibleView = null;
+            mChildHelper = null;
+        }
+
         internal void StopScroll(bool doSomethingAfterAnimationStopped)
         {
             if (mScrollAni != null && mScrollAni.State == Animation.States.Playing)

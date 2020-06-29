@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
 
                 if (Container != null)
                 {
-                    Layout(mPrevScrollPosition);
+                    Layout(PrevScrollPosition);
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Components
 
                 if (Container != null)
                 {
-                    Layout(mPrevScrollPosition);
+                    Layout(PrevScrollPosition);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace Tizen.NUI.Components
         public override float CalculateLayoutOrientationSize()
         {
             float orientationFactor = LayoutOrientation == Orientation.Horizontal ? Rows : Columns;
-            return mStepSize * (int)Math.Ceiling((double)DataCount / (double)orientationFactor);
+            return StepSize * (int)Math.Ceiling((double)DataCount / (double)orientationFactor);
         }
 
 
@@ -173,9 +173,9 @@ namespace Tizen.NUI.Components
                 previousItem = item;
             }
 
-            if (mStepSize == 0)
+            if (StepSize == 0)
             {
-                mStepSize = LayoutOrientation == Orientation.Horizontal ? ItemSize.Width : ItemSize.Height;
+                StepSize = LayoutOrientation == Orientation.Horizontal ? ItemSize.Width : ItemSize.Height;
             }
         }
 
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
         public override List<RecycleItem> Recycle(float scrollPosition)
         {
             List<RecycleItem> result = new List<RecycleItem>();
-            bool checkFront = (mPrevScrollPosition - scrollPosition) > 0;
+            bool checkFront = (PrevScrollPosition - scrollPosition) > 0;
 
             int itemInGroup = LayoutOrientation == Orientation.Horizontal ? Rows : Columns;
 
@@ -235,7 +235,7 @@ namespace Tizen.NUI.Components
             }
 
 
-            mPrevScrollPosition = scrollPosition;
+            PrevScrollPosition = scrollPosition;
 
             return result;
         }
