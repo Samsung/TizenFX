@@ -28,9 +28,7 @@ namespace Tizen.NUI.Components
     /// radio.Text = "RadioButton";
     /// radio.Focusable = true;
     /// </code>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class RadioButton : SelectButton
     {
         static RadioButton() { }
@@ -38,25 +36,19 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a RadioButton.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public RadioButton() : base() { }
         /// <summary>
         /// Creates a new instance of a RadioButton with style.
         /// </summary>
         /// <param name="style"></param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public RadioButton(string style) : base(style) { }
         /// <summary>
         /// Creates a new instance of a RadioButton with style.
         /// </summary>
         /// <param name="buttonStyle"></param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public RadioButton(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
