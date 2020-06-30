@@ -335,7 +335,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
