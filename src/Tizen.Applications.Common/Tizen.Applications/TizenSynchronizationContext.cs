@@ -120,10 +120,8 @@ namespace Tizen.Applications
             private static bool Handler(IntPtr userData)
             {
                 int key = (int)userData;
-                if (_handlerMap.ContainsKey(key))
+                if (_handlerMap.TryRemove(key, out Action action))
                 {
-                    Action action;
-                    _handlerMap.TryRemove(key, out action);
                     action?.Invoke();
                 }
                 return false;
