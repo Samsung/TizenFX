@@ -42,12 +42,17 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// ML Single API of NNStreamer backend type
         /// </summary>
+        /// <remarks>
+        /// Should be set <see cref="InferenceTargetDevice"/> to <see cref="InferenceTargetDevice.Custom"/>.
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
         MLApi,
 
         /// <summary>
         /// On-device Neural Engine backend type
         /// </summary>
+        /// Should be set <see cref="InferenceTargetDevice"/> to <see cref="InferenceTargetDevice.CPU"/> or
+        /// <see cref="InferenceTargetDevice.GPU"/>.
         /// <since_tizen> 8 </since_tizen>
         One
     }
