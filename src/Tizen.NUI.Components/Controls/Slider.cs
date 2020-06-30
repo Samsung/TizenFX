@@ -140,6 +140,7 @@ namespace Tizen.NUI.Components
         /// The state changed event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent")]
         public event EventHandler<StateChangedArgs> StateChangedEvent
         {
             add
@@ -999,12 +1000,14 @@ namespace Tizen.NUI.Components
         /// State Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
             /// Curent state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }
     }

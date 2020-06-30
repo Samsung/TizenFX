@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// PopupStyle is a class which saves Popup's ux data.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
         static PopupStyle() { }
@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
             InitSubStyle();
@@ -41,7 +41,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a PopupStyle with style.
         /// </summary>
         /// <param name="style">Create PopupStyle by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
             InitSubStyle();
@@ -51,20 +51,20 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Title Text's style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle Title { get; set; }
 
         /// <summary>
         /// Popup button's style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ButtonStyle Buttons { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
