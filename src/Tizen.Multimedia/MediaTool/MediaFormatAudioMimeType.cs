@@ -108,7 +108,7 @@ namespace Tizen.Multimedia
         Dts = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10C1),
 
         /// <summary>
-        /// Windows Media Audio Lossless.
+        /// OPUS.
         /// </summary>
         Opus = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10D1),
 
