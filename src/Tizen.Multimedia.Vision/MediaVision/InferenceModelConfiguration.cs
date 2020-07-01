@@ -60,6 +60,8 @@ namespace Tizen.Multimedia.Vision
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
         private const string _backendTypeArmNN = "armnn";
+        private const string _backendTypeMLApi = "mlapi";
+        private const string _backendTypeOne = "one";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -156,6 +158,12 @@ namespace Tizen.Multimedia.Vision
                             break;
                         case _backendTypeArmNN:
                             supportedBackend.Add(InferenceBackendType.ArmNN);
+                            break;
+                        case _backendTypeMLApi:
+                            supportedBackend.Add(InferenceBackendType.MLApi);
+                            break;
+                        case _backendTypeOne:
+                            supportedBackend.Add(InferenceBackendType.One);
                             break;
                     }
                 }
