@@ -363,13 +363,6 @@ namespace Tizen.NUI.Components
                 isEnabled = stateEnabled;
             }
 
-            var stateSelected = (controlStateChangedInfo.CurrentState & ControlStates.Selected) == ControlStates.Selected;
-
-            if (isSelected != stateSelected)
-            {
-                isSelected = stateSelected;
-            }
-
             var statePressed = (controlStateChangedInfo.CurrentState & ControlStates.Pressed) == ControlStates.Pressed;
 
             if (isPressed != statePressed)
