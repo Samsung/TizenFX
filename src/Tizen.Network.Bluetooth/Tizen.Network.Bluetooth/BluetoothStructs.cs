@@ -103,8 +103,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The manufacturer data.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string ManufacturerData;
+        internal IntPtr ManufacturerData;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -131,8 +130,7 @@ namespace Tizen.Network.Bluetooth
 
         internal int ManufacturerDataLength;
 
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string ManufacturerData;
+        internal IntPtr ManufacturerData;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -246,7 +244,9 @@ namespace Tizen.Network.Bluetooth
             resultDevice.RemoteDeviceService = uuidList;
             resultDevice.RemoteDeviceCount = device.ServiceCount;
             resultDevice.RemoteManufLength = device.ManufacturerDataLength;
-            resultDevice.RemoteManufData = device.ManufacturerData;
+
+            if (device.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(device.ManufacturerData, device.ManufacturerDataLength);
 
             return resultDevice;
         }
@@ -283,8 +283,11 @@ namespace Tizen.Network.Bluetooth
             }
 
             resultDevice.RemotePaired = structDevice.IsPaired;
-            resultDevice.RemoteManufData = structDevice.ManufacturerData;
             resultDevice.RemoteManufLength = structDevice.ManufacturerDataLength;
+
+            if (structDevice.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(structDevice.ManufacturerData, structDevice.ManufacturerDataLength);
+
             return resultDevice;
         }
 
