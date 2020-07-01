@@ -56,13 +56,8 @@ namespace Tizen.Multimedia.Remoting
             AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
 
             EncodedSeason = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
-            Season = DecodeSeason(EncodedSeason);
-
             EncodedEpisode = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
-            Episode = DecodeEpisode(EncodedEpisode);
-
             EncodedResolution = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
-            Resolution = DecodeResolution(EncodedResolution);
         }
 
         /// <summary>
