@@ -109,22 +109,14 @@ namespace Tizen.NUI.Components
 
             if (isEnabled)
             {
-                if (isPressed)
-                {
-                    // Pressed
-                    targetState = ControlStates.Pressed;
-                }
-                else
-                {
-                    // Normal
-                    targetState = ControlStates.Normal;
+                // Normal
+                targetState = ControlStates.Normal;
 
-                    // Selected
-                    targetState |= (IsSelected ? ControlStates.Selected : 0);
+                // Selected
+                targetState |= (IsSelected ? ControlStates.Selected : 0);
 
-                    // Focused, SelectedFocused
-                    targetState |= (IsFocused ? ControlStates.Focused : 0);
-                }
+                // Pressed, PressedSelected, Focused, SelectedFocused
+                targetState |= (isPressed ? ControlStates.Pressed : (IsFocused ? ControlStates.Focused : 0));
             }
             else
             {
