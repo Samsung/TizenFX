@@ -83,7 +83,7 @@ namespace Tizen.Multimedia.Vision
     }
 
     /// <summary>
-    /// Specifies the device of target. It's used for running inference backend.
+    /// Specifies the target device which is used for running <see cref="InferenceModelConfiguration.Backend"/>.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public enum InferenceTargetDevice
