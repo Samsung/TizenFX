@@ -90,6 +90,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// AOMedia Video 1.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         Av1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20E0),
 
         /// <summary>
@@ -165,6 +166,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Y8.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         Y8 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25F0),
     }
 }
