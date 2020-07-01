@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -117,7 +117,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the artist of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Artist
         {
@@ -136,7 +142,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the title of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Title
         {
@@ -155,7 +167,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the album name of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Album
         {
@@ -174,7 +192,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the genre of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Genre
         {
@@ -193,7 +217,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the author of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Author
         {
@@ -212,7 +242,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the copyright of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Copyright
         {
@@ -235,7 +271,13 @@ namespace Tizen.Multimedia
         /// If the media contains the ID3 tag, this refers to the recorded date.
         /// If the media is a mp4 format, this refers to the year, and the value to set will be converted into integer.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Date
         {
@@ -254,7 +296,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the description of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Description
         {
@@ -273,7 +321,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the comment of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Comment
         {
@@ -292,7 +346,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the track number of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string TrackNumber
         {
@@ -321,7 +381,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the conductor of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Conductor
         {
@@ -340,7 +406,13 @@ namespace Tizen.Multimedia
         /// Gets or sets the unsynchronized lyrics of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">The file is read-only.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string UnsyncLyrics
         {
@@ -359,9 +431,9 @@ namespace Tizen.Multimedia
         /// Writes the modified metadata to the media file.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     An internal error occurs.<br/>
-        ///     -or-<br/>
-        ///     The file is read-only.
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// Internal error.<br/>
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -440,10 +512,11 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <param name="path">The path of the picture for adding to the metadata.</param>
         /// <exception cref="InvalidOperationException">
-        ///     An internal error occurs.<br/>
-        ///     -or-<br/>
-        ///     The media file is read-only.
-        /// </exception>
+        /// The file is read-only.<br/>
+        /// -or-<br/>
+        /// The malformed file which cannot be updatable.
+        /// -or-<br/>
+        /// Internal error.<br/>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException">The file does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
