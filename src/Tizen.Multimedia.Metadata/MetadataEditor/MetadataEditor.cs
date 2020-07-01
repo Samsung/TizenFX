@@ -517,6 +517,7 @@ namespace Tizen.Multimedia
         /// The malformed file which cannot be updatable.
         /// -or-<br/>
         /// Internal error.<br/>
+        /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException">The file does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
