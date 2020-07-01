@@ -64,7 +64,7 @@ namespace Tizen.NUI.Samples
             {
                 IndicatorSize = new Size(26, 26),
                 IndicatorSpacing = 8,
-                IndicatorImageURL = new Selector<string>
+                IndicatorImageUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_sel.png"
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Samples
             {
                 IndicatorSize = new Size(15, 15),
                 IndicatorSpacing = 20,
-                IndicatorImageURL = new Selector<string>
+                IndicatorImageUrl = new Selector<string>
                 {
                     Normal = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_nor.png",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/pagination_ic_sel.png"

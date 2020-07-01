@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// PaginationStyle used to config the pagination represent.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class PaginationStyle : ControlStyle
     {
         static PaginationStyle() { }
@@ -33,17 +31,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a PaginationStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public PaginationStyle() : base() { }
 
         /// <summary>
         /// Creates a new instance of a PaginationStyle using style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="style">Create PaginationStyle by style customized by user.</param>
+        /// <since_tizen> 8 </since_tizen>
         public PaginationStyle(PaginationStyle style) : base(style)
         {
             if (null == style) return;
@@ -54,33 +49,26 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets the size of the indicator.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Size IndicatorSize { get; set; }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> IndicatorImageURL { get; set; } = new Selector<string>();
+        /// <since_tizen> 8 </since_tizen>
+        public Selector<string> IndicatorImageUrl { get; set; } = new Selector<string>();
 
         /// <summary>
         /// Gets or sets the space of the indicator.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public int IndicatorSpacing { get; set; }
 
         /// <summary>
         /// Retrieves a copy of PaginationStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
@@ -92,9 +80,9 @@ namespace Tizen.NUI.Components
                 {
                     IndicatorSize = new Size(paginationStyle.IndicatorSize.Width, paginationStyle.IndicatorSize.Height);
                 }
-                if (null != paginationStyle.IndicatorImageURL)
+                if (null != paginationStyle.IndicatorImageUrl)
                 {
-                    IndicatorImageURL?.Clone(paginationStyle.IndicatorImageURL);
+                    IndicatorImageUrl?.Clone(paginationStyle.IndicatorImageUrl);
                 }
                 IndicatorSpacing = paginationStyle.IndicatorSpacing;
             }
