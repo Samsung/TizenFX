@@ -523,24 +523,5 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.TEXT_FIT).Get(temp);
             return temp;
         });
-
-        /// Only for XAML. No need of public API. Make hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.MIN_LINE_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.MIN_LINE_SIZE).Get(out temp);
-            return temp;
-        });
-
     }
 }
