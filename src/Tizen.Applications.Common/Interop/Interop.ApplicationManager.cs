@@ -188,6 +188,14 @@ internal static partial class Interop
         internal static extern ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
         //int app_manager_get_app_context_by_instance_id (const char *app_id, const char *instance_id, app_context_h *app_context);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window")]
+        internal static extern ErrorCode AppManagerAttachWindow(string parentAppId, string childAppId);
+        //int app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_detach_window")]
+        internal static extern ErrorCode AppManagerDetachWindow(string applicationId);
+        //int app_manager_detach_window(const char *app_id);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
         //int app_context_destroy(app_context_h app_context)
