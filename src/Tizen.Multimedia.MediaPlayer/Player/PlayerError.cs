@@ -192,7 +192,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// The exception that is thrown when there it is not supported format.
+    /// The exception that is thrown when it is not supported format.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class NotSupportedFormatException : Exception
