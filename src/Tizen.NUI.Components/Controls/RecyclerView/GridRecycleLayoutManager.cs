@@ -88,12 +88,12 @@ namespace Tizen.NUI.Components
             View list = Container.GetParent() as View;
 
             Vector2 visibleArea = new Vector2(Math.Abs(scrollPosition),
-                Math.Abs(scrollPosition) + (LayoutOrientation == Orientation.Horizontal ?
+                Math.Abs(scrollPosition) + (LayoutOrientation == Orientation.Vertical ?
                                                 list.Size.Width : list.Size.Height)
             );
 
-            float firstCheckPoint = LayoutOrientation == Orientation.Horizontal ? item.Position.X : item.Position.Y;
-            float secondCheckPoint = LayoutOrientation == Orientation.Horizontal ?
+            float firstCheckPoint = LayoutOrientation == Orientation.Vertical ? item.Position.X : item.Position.Y;
+            float secondCheckPoint = LayoutOrientation == Orientation.Vertical ?
                                         firstCheckPoint + item.Size.Width :
                                         firstCheckPoint + item.Size.Height;
 
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float CalculateLayoutOrientationSize()
         {
-            float orientationFactor = LayoutOrientation == Orientation.Horizontal ? Rows : Columns;
+            float orientationFactor = LayoutOrientation == Orientation.Vertical ? Rows : Columns;
             return StepSize * (int)Math.Ceiling((double)DataCount / (double)orientationFactor);
         }
 
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public override void Layout(float scrollPosition)
         {
-            int itemInGroup = LayoutOrientation == Orientation.Horizontal ? Rows : Columns;
+            int itemInGroup = LayoutOrientation == Orientation.Vertical ? Rows : Columns;
             firstVisibleItemIndex = -1;
             lastVisibleItemIndex = -1;
 
@@ -135,7 +135,7 @@ namespace Tizen.NUI.Components
 
                 if (previousItem != null)
                 {
-                    item.Position = LayoutOrientation == Orientation.Horizontal ?
+                    item.Position = LayoutOrientation == Orientation.Vertical ?
                         new Position(
                             (i % itemInGroup == 0 ?
                             previousItem.Position.X + (previousItem.CurrentSize.Width != 0 ?
@@ -175,7 +175,7 @@ namespace Tizen.NUI.Components
 
             if (StepSize == 0)
             {
-                StepSize = LayoutOrientation == Orientation.Horizontal ? ItemSize.Width : ItemSize.Height;
+                StepSize = LayoutOrientation == Orientation.Vertical ? ItemSize.Width : ItemSize.Height;
             }
         }
 
@@ -192,7 +192,7 @@ namespace Tizen.NUI.Components
             List<RecycleItem> result = new List<RecycleItem>();
             bool checkFront = (PrevScrollPosition - scrollPosition) > 0;
 
-            int itemInGroup = LayoutOrientation == Orientation.Horizontal ? Rows : Columns;
+            int itemInGroup = LayoutOrientation == Orientation.Vertical ? Rows : Columns;
 
             if (checkFront)
             {
@@ -223,8 +223,8 @@ namespace Tizen.NUI.Components
 
                         RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
                         target.Position = new Position(
-                            LayoutOrientation == Orientation.Horizontal ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
-                            LayoutOrientation == Orientation.Horizontal ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
+                            LayoutOrientation == Orientation.Vertical ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
+                            LayoutOrientation == Orientation.Vertical ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
                         );
                         target.DataIndex = target.DataIndex - Container.Children.Count;
                         target.SiblingOrder = 0;
