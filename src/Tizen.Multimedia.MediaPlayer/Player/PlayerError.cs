@@ -132,6 +132,9 @@ namespace Tizen.Multimedia
                 case PlayerErrorCode.NotSupportedVideoCodec:
                     throw new CodecNotSupportedException(CodecKind.Video);
 
+                case PlayerErrorCode.NotSupportedFormat:
+                    throw new NotSupportedFormatException(msg);
+
                 case PlayerErrorCode.NotAvailable:
                     throw new NotAvailableException(msg);
             }
@@ -173,7 +176,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// The exception that is thrown when there it is not available.
+    /// The exception that is thrown when it is not available.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class NotAvailableException : Exception
@@ -184,6 +187,22 @@ namespace Tizen.Multimedia
         /// <param name="message">Error description.</param>
         /// <since_tizen> 6 </since_tizen>
         public NotAvailableException(string message) : base(message)
+        {
+        }
+    }
+
+    /// <summary>
+    /// The exception that is thrown when there it is not supported format.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class NotSupportedFormatException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the NotSupportedFormatException class with a specified error message.
+        /// </summary>
+        /// <param name="message">Error description.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public NotSupportedFormatException(string message) : base(message)
         {
         }
     }
