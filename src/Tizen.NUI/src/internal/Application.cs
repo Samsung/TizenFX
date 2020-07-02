@@ -148,30 +148,6 @@ namespace Tizen.NUI
     }
 
     /**
-      * @brief Event arguments that passed via NUIApplicationResize signal
-      *
-      */
-    internal class NUIApplicationResizedEventArgs : EventArgs
-    {
-        private Application _application;
-        /**
-          * @brief Application - is the application that is being Resized
-          *
-          */
-        public Application Application
-        {
-            get
-            {
-                return _application;
-            }
-            set
-            {
-                _application = value;
-            }
-        }
-    }
-
-    /**
       * @brief Event arguments that passed via NUIApplicationLanguageChanged signal
       *
       */
@@ -501,11 +477,6 @@ namespace Tizen.NUI
                 this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
             }
 
-            if (_applicationResizeEventCallbackDelegate != null)
-            {
-                this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
-            }
-
             if (_applicationLanguageChangedEventCallbackDelegate != null)
             {
                 this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
@@ -580,11 +551,6 @@ namespace Tizen.NUI
         private delegate void NUIApplicationResetEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationResetEventArgs> _applicationResetEventHandler;
         private NUIApplicationResetEventCallbackDelegate _applicationResetEventCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void NUIApplicationResizeEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationResizedEventArgs> _applicationResizeEventHandler;
-        private NUIApplicationResizeEventCallbackDelegate _applicationResizeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationLanguageChangedEventCallbackDelegate(IntPtr application);
@@ -849,52 +815,6 @@ namespace Tizen.NUI
                 NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
                 e.Application = this;
                 _applicationResetEventHandler.Invoke(this, e);
-            }
-        }
-
-        /**
-          * @brief Event for Resized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Resized signal is emitted when application is resized
-          */
-        public event DaliEventHandler<object, NUIApplicationResizedEventArgs> Resized
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_applicationResizeEventHandler == null)
-                    {
-                        _applicationResizeEventHandler += value;
-
-                        _applicationResizeEventCallbackDelegate = new NUIApplicationResizeEventCallbackDelegate(OnNUIApplicationResize);
-                        this.ResizeSignal().Connect(_applicationResizeEventCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_applicationResizeEventHandler != null)
-                    {
-                        this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
-                    }
-
-                    _applicationResizeEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for Application ResizeSignal
-        private void OnNUIApplicationResize(IntPtr data)
-        {
-            if (_applicationResizeEventHandler != null)
-            {
-                NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
-                e.Application = this;
-                _applicationResizeEventHandler.Invoke(this, e);
             }
         }
 
@@ -1361,12 +1281,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void ReplaceWindow(Rectangle windowPosition, string name)
-        {
-            Interop.Application.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public static string GetResourcePath()
         {
             string ret = Interop.Application.Application_GetResourcePath();
@@ -1438,13 +1352,6 @@ namespace Tizen.NUI
         internal ApplicationSignal ResetSignal()
         {
             ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResetSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ApplicationSignal ResizeSignal()
-        {
-            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResizeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
