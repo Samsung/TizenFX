@@ -698,19 +698,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // static constructor registers the control type
-        static ScrollableBase()
-        {
-            // ViewRegistry registers control type with DALi type registry
-            // also uses introspection to find any properties that need to be registered with type registry
-            CustomViewRegistry.Instance.Register(CreateInstance, typeof(ScrollableBase));
-        }
-
-        internal static CustomView CreateInstance()
-        {
-            return new ScrollableBase();
-        }
-
         private void AnimateChildTo(int duration, float axisPosition)
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "AnimationTo Animation Duration:" + duration + " Destination:" + axisPosition);
