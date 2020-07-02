@@ -102,7 +102,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Switch's track part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
             get
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Switch's thumb part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView Thumb
         {
             get
@@ -270,9 +270,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override bool OnKey(Key key)
         {
             if (!IsEnabled || null == key) return false;
@@ -295,9 +293,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
             if(!IsEnabled || null == touch) return false;
@@ -335,7 +331,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;

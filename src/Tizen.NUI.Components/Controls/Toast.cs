@@ -27,6 +27,7 @@ namespace Tizen.NUI.Components
     /// A toast will automatically disappear after a certain time.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated in API8; Will be removed in API10")]
     public class Toast : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -84,7 +85,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get style of toast.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new ToastStyle Style => ViewStyle as ToastStyle;
         static Toast() { }
 
@@ -92,6 +93,7 @@ namespace Tizen.NUI.Components
         /// Construct Toast with null.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Toast() : base()
         {
             Initialize();
@@ -101,7 +103,7 @@ namespace Tizen.NUI.Components
         /// The constructor of the Toast class with specific Style.
         /// </summary>
         /// <param name="toastStyle">Construct Style</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
             Initialize();
@@ -111,7 +113,7 @@ namespace Tizen.NUI.Components
         /// Constructor of the Toast class with special style.
         /// </summary>
         /// <param name="style"> style name </param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(string style) : base(style)
         {
             Initialize();
@@ -121,6 +123,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string[] TextArray
         {
             get;
@@ -131,6 +134,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets text point size in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float PointSize
         {
             get
@@ -150,6 +154,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets text font family in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string FontFamily
         {
             get
@@ -169,6 +174,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets text color in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TextColor
         {
             get
@@ -188,6 +194,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets text horizontal alignment in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment TextAlignment
         {
             get
@@ -236,6 +243,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets text padding in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Extents TextPadding
         {
             get
@@ -255,18 +263,21 @@ namespace Tizen.NUI.Components
         /// Gets or sets text line height in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public uint TextLineHeight { get; set; }
 
         /// <summary>
         /// Gets or sets text line space in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public uint TextLineSpace { get; set; }
 
         /// <summary>
         /// Gets or sets duration of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public uint Duration
         {
             get
@@ -283,7 +294,7 @@ namespace Tizen.NUI.Components
         /// Apply style to toast.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-		/// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -306,6 +317,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -336,7 +348,7 @@ namespace Tizen.NUI.Components
         /// Get Toast style.
         /// </summary>
         /// <returns>The default toast style.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new ToastStyle();

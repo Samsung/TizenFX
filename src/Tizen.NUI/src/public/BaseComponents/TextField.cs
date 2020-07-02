@@ -1412,7 +1412,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextField.TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int ENABLE_GRAB_HANDLE = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_get();
             internal static readonly int ENABLE_GRAB_HANDLE_POPUP = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
-            internal static readonly int SELECTED_TEXT = Interop.TextField.TextField_Property_SELECTED_TEXT_get();
         }
 
         internal class InputStyle

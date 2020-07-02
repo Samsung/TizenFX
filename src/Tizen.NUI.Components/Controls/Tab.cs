@@ -26,6 +26,7 @@ namespace Tizen.NUI.Components
     /// User can handle Tab by adding/inserting/deleting TabItem.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated in API8; Will be removed in API10")]
     public class Tab : Control
     {
         private const int aniTime = 100; // will be defined in const file later
@@ -41,6 +42,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Tab() : base()
         {
             Initialize();
@@ -50,7 +52,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Tab with style.
         /// </summary>
         /// <param name="style">Create Tab by special style defined in UX.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tab(string style) : base(style)
         {
             Initialize();
@@ -60,7 +62,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Tab with style.
         /// </summary>
         /// <param name="tabStyle">Create Tab by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tab(TabStyle tabStyle) : base(tabStyle)
         {
             Initialize();
@@ -70,6 +72,7 @@ namespace Tizen.NUI.Components
         /// An event for the item changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
         /// <summary>
@@ -105,6 +108,7 @@ namespace Tizen.NUI.Components
         /// Selected item's index in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int SelectedItemIndex
         {
             get
@@ -125,6 +129,7 @@ namespace Tizen.NUI.Components
         /// If true, TabItem's width will be equal as text's natural width, if false, it will be decided by Tab's width and tab item count.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public bool UseTextNaturalSize
         {
             get
@@ -145,6 +150,7 @@ namespace Tizen.NUI.Components
         /// Gap between items.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ItemSpace
         {
             get
@@ -165,6 +171,7 @@ namespace Tizen.NUI.Components
         /// Space in Tab. Sequence as Left, Right, Top, Bottom
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Extents Space
         {
             get
@@ -220,6 +227,7 @@ namespace Tizen.NUI.Components
         /// UnderLine view's size in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Size UnderLineSize
         {
             get
@@ -239,6 +247,7 @@ namespace Tizen.NUI.Components
         /// UnderLine view's background in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color UnderLineBackgroundColor
         {
             get
@@ -258,6 +267,7 @@ namespace Tizen.NUI.Components
         /// Text point size in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float PointSize
         {
             get
@@ -277,6 +287,7 @@ namespace Tizen.NUI.Components
         /// Text font family in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string FontFamily
         {
             get
@@ -296,6 +307,7 @@ namespace Tizen.NUI.Components
         /// Text color in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TextColor
         {
             get
@@ -316,6 +328,7 @@ namespace Tizen.NUI.Components
         /// Text color selector in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public ColorSelector TextColorSelector
         {
             get
@@ -341,6 +354,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="itemData">Item data which will apply to tab item view.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void AddItem(TabItemData itemData)
         {
             AddItemByIndex(itemData, itemList.Count);
@@ -352,6 +366,7 @@ namespace Tizen.NUI.Components
         /// <param name="itemData">Item data which will apply to tab item view.</param>
         /// <param name="index">Position index where will be inserted.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void InsertItem(TabItemData itemData, int index)
         {
             AddItemByIndex(itemData, index);
@@ -362,6 +377,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="itemIndex">Position index where will be deleted.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void DeleteItem(int itemIndex)
         {
             if(itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
@@ -385,7 +401,7 @@ namespace Tizen.NUI.Components
         /// Apply style to tab.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -404,6 +420,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -454,7 +471,7 @@ namespace Tizen.NUI.Components
         /// Get Tab style.
         /// </summary>
         /// <returns>The default tab style.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new TabStyle();
@@ -465,7 +482,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleName) as TabStyle;
@@ -751,12 +768,14 @@ namespace Tizen.NUI.Components
         /// TabItemData is a class to record all data which will be applied to Tab item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public class TabItemData
         {
             /// <summary>
             /// Text string in tab item view.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public string Text
             {
                 get;
@@ -768,13 +787,16 @@ namespace Tizen.NUI.Components
         /// ItemChangedEventArgs is a class to record item change event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public class ItemChangedEventArgs : EventArgs
         {
             /// <summary> Previous selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int PreviousIndex;
             /// <summary> Current selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int CurrentIndex;
         }
     }

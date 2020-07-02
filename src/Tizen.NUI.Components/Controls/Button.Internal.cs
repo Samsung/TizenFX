@@ -306,7 +306,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(StyleName) as ButtonStyle;
@@ -361,13 +361,6 @@ namespace Tizen.NUI.Components
             if (isEnabled != stateEnabled)
             {
                 isEnabled = stateEnabled;
-            }
-
-            var stateSelected = (controlStateChangedInfo.CurrentState & ControlStates.Selected) == ControlStates.Selected;
-
-            if (isSelected != stateSelected)
-            {
-                isSelected = stateSelected;
             }
 
             var statePressed = (controlStateChangedInfo.CurrentState & ControlStates.Pressed) == ControlStates.Pressed;

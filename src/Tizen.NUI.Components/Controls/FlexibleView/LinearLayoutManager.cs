@@ -57,14 +57,6 @@ namespace Tizen.NUI.Components
 
         private const float MAX_SCROLL_FACTOR = 1 / 3f;
 
-        /// <summary>
-        /// Current orientation.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int mOrientation;
-
         internal OrientationHelper mOrientationHelper;
 
         private LayoutState mLayoutState;
@@ -92,12 +84,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LinearLayoutManager(int orientation)
         {
-            mOrientation = orientation;
-            mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, mOrientation);
+            Orientation = orientation;
+            mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, Orientation);
 
             mLayoutState = new LayoutState();
             mLayoutState.Offset = mOrientationHelper.GetStartAfterPadding();
         }
+
+        /// <summary>
+        /// Current orientation.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int Orientation { get; set; }
 
         /// <summary>
         /// Retrieves the first visible item position.
@@ -167,7 +167,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool CanScrollHorizontally()
         {
-            return mOrientation == HORIZONTAL;
+            return Orientation == HORIZONTAL;
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool CanScrollVertically()
         {
-            return mOrientation == VERTICAL;
+            return Orientation == VERTICAL;
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollHorizontallyBy(float dx, FlexibleViewRecycler recycler, bool immediate)
         {
-            if (mOrientation == VERTICAL)
+            if (Orientation == VERTICAL)
             {
                 return 0;
             }
@@ -266,7 +266,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollVerticallyBy(float dy, FlexibleViewRecycler recycler, bool immediate)
         {
-            if (mOrientation == HORIZONTAL)
+            if (Orientation == HORIZONTAL)
             {
                 return 0;
             }
@@ -406,7 +406,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override int GetNextPosition(int position, FlexibleViewLayoutManager.Direction direction)
         {
-            if (mOrientation == HORIZONTAL)
+            if (Orientation == HORIZONTAL)
             {
                 switch (direction)
                 {

@@ -236,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.frame = value;
                 tlog.Fatal(tag, $"<[{GetId()}]SET frame={currentStates.frame}>");
-                DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
             {
@@ -273,7 +273,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -373,7 +373,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -425,7 +425,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             tlog.Fatal(tag, $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
@@ -539,7 +539,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             tlog.Fatal(tag, $"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
         }
 
@@ -783,7 +783,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private const string tag = "NUITEST";
-        private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()

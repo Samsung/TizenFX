@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecycleLayoutManager
     {
-        protected float mPrevScrollPosition = 0.0f;
-        protected int mPrevFirstDataIndex = 0;
-        protected float mStepSize = 0.0f;
-
         /// <summary>
         /// Enumeration for the direction in which the content is laid out
         /// </summary>
@@ -86,12 +82,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float StepSize{
-            get
-            {
-                return mStepSize;
-            }
-        }
+        public float StepSize { get; protected set; }
 
         /// <summary>
         /// How far can you reach the next item.
@@ -100,6 +91,13 @@ namespace Tizen.NUI.Components
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DataCount{get; set;}
+
+        /// <summary>
+        /// The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected float PrevScrollPosition { get; set; }
 
         /// <summary>
         /// This is called to find out where items are lain out according to current scroll position.

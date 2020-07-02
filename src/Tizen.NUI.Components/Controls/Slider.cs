@@ -140,6 +140,7 @@ namespace Tizen.NUI.Components
         /// The state changed event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent")]
         public event EventHandler<StateChangedArgs> StateChangedEvent
         {
             add
@@ -631,9 +632,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Focus gained callback.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override void OnFocusGained()
         {
             //State = ControlStates.Focused;
@@ -644,9 +643,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Focus Lost callback.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override void OnFocusLost()
         {
             //State = ControlStates.Normal;
@@ -770,7 +767,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(StyleName) as SliderStyle;
@@ -1003,12 +1000,14 @@ namespace Tizen.NUI.Components
         /// State Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
             /// Curent state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }
     }

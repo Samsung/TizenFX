@@ -24,9 +24,8 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Notification helps to raise a notification window with a content View.
     /// </summary>
-    /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Notification
+    /// <since_tizen> 8 </since_tizen>
+    public class Notification : Disposable
     {
         private static HashSet<Notification> instanceSet;
 
@@ -49,16 +48,12 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Create a notification with a content View.
         /// </summary>
+        /// <param name="contentView">The content view instance to display in the notification window.</param>
         /// <exception cref="ArgumentException">Thrown when a given contentView is invalid.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Notification(View contentView)
+        /// <since_tizen> 8 </since_tizen>
+        public Notification(View contentView) : base()
         {
-            if (contentView == null)
-            {
-                throw (new ArgumentException("Input contentView should not be null."));
-            }
-
-            ContentView = contentView;
+            ContentView = contentView ?? throw new ArgumentException("Input contentView should not be null.");
         }
 
         private enum NotificationState
@@ -71,7 +66,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The content view received in a constructor.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public View ContentView { get; private set; }
 
         private Window NotificationWindow
@@ -80,8 +75,10 @@ namespace Tizen.NUI.Components
             {
                 if (notificationWindow == null)
                 {
-                    notificationWindow = new Window(null, true);
-                    notificationWindow.Type = WindowType.Notification;
+                    notificationWindow = new Window(null, true)
+                    {
+                        Type = WindowType.Notification,
+                    };
                     notificationWindow.Show();
                 }
 
@@ -108,6 +105,11 @@ namespace Tizen.NUI.Components
                 {
                     timer.Stop();
                     timer.Tick -= OnTimeOut;
+
+                    if (value == null)
+                    {
+                        timer.Dispose();
+                    }
                 }
 
                 timer = value;
@@ -119,7 +121,9 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="duration">Dismiss the notification window after given time. The value 0 won't dismiss the notification.</param>
         /// <returns>The current Notification instance.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privilege.</exception>
+        /// <since_tizen> 8 </since_tizen>
         public void Post(uint duration = 0)
         {
             if (state != NotificationState.Ready)
@@ -127,9 +131,10 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            var window = NotificationWindow;
-
-            ApplyLevel(level);
+            if (!ApplyLevel(level))
+            {
+                throw new UnauthorizedAccessException("Cannot post a Notification: Permission Denied");
+            }
 
             ApplyPositionSize(positionSize);
 
@@ -151,17 +156,20 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Sets a priority level for the specified notification window.
+        /// The default level is NotificationLevel.Base.
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>The current Notification instance.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privilege.</exception>
+        /// <since_tizen> 8 </since_tizen>
         public Notification SetLevel(NotificationLevel level)
         {
             this.level = level;
 
-            if (state == NotificationState.Post)
+            if (state == NotificationState.Post && !ApplyLevel(level))
             {
-                ApplyLevel(level);
+                throw new UnauthorizedAccessException("Cannot set notification level: Permission Denied");
             }
 
             return this;
@@ -173,15 +181,10 @@ namespace Tizen.NUI.Components
         /// <param name="positionSize">The position and size information in rectangle.</param>
         /// <returns>The current Notification instance.</returns>
         /// <exception cref="ArgumentException">Thrown when a given positionSize is invalid.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Notification SetPositionSize(Rectangle positionSize)
         {
-            if (positionSize == null)
-            {
-                throw (new ArgumentException("Input positionSize should not be null."));
-            }
-
-            this.positionSize = positionSize;
+            this.positionSize = positionSize ?? throw (new ArgumentException("Input positionSize should not be null."));
 
             if (state == NotificationState.Post || state == NotificationState.Dismiss)
             {
@@ -219,7 +222,7 @@ namespace Tizen.NUI.Components
         /// The Notification will play the given animation right after the notification window pops up.
         /// </summary>
         /// <param name="animation">The animation to play.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Notification SetAnimationOnPost(Animation animation)
         {
             this.onPostAnimation = animation;
@@ -232,7 +235,7 @@ namespace Tizen.NUI.Components
         /// On dismiss, the given animation is played, and after the playback is completed the notification window is undisplayed.
         /// </summary>
         /// <param name="animation">The animation to play.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Notification SetAnimationOnDismiss(Animation animation)
         {
             this.onDismissAnimation = animation;
@@ -243,7 +246,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Dismiss the notification window.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void Dismiss()
         {
             if (state != NotificationState.Post)
@@ -272,7 +275,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Dismiss the notification window directly without waiting the onDismissAnimation finished.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void ForceQuit()
         {
             if (state != NotificationState.Post && state != NotificationState.Dismiss)
@@ -281,6 +284,27 @@ namespace Tizen.NUI.Components
             }
 
             ClearAll();
+        }
+
+        /// <inheritdoc/>
+        /// <since_tizen> 8 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                ClearAll();
+
+                positionSize?.Dispose();
+                onPostAnimation?.Dispose();
+                onDismissAnimation?.Dispose();
+            }
+
+            base.Dispose(type);
         }
 
         private static void RegisterInstance(Notification instance)
@@ -317,9 +341,9 @@ namespace Tizen.NUI.Components
             notificationWindow = null;
         }
 
-        private void ApplyLevel(NotificationLevel level)
+        private bool ApplyLevel(NotificationLevel level)
         {
-            NotificationWindow.SetNotificationLevel(level);
+            return NotificationWindow.SetNotificationLevel(level);
         }
 
         private void ApplyPositionSize(Rectangle positionSize)

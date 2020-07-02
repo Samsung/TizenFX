@@ -169,6 +169,7 @@ namespace Tizen.NUI.Components
         /// An event for the button state changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent")]
         public event EventHandler<StateChangedEventArgs> StateChangedEvent
         {
             add
@@ -212,7 +213,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Button's icon part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView Icon
         {
             get
@@ -238,7 +239,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Button's overlay image part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView OverlayImage
         {
             get
@@ -265,7 +266,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Button's text part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public TextLabel TextLabel
         {
             get
@@ -603,9 +604,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Icon relative orientation in Button, work only when show icon and text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public IconOrientation? IconRelativeOrientation
         {
             get
@@ -685,9 +684,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override void OnFocusGained()
         {
             base.OnFocusGained();
@@ -697,9 +694,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override void OnFocusLost()
         {
             base.OnFocusLost();
@@ -712,9 +707,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
             if (null == touch) return false;
@@ -804,13 +797,16 @@ namespace Tizen.NUI.Components
         /// StateChangeEventArgs is a class to record button state change event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary> previous state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates PreviousState;
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }
 

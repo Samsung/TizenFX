@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
             result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
 
             float left, top, width, height;
-            if (mOrientation == VERTICAL)
+            if (Orientation == VERTICAL)
             {
                 width = Width - PaddingLeft - PaddingRight;
                 height = result.Consumed;
@@ -180,16 +180,16 @@ namespace Tizen.NUI.Components
             switch (focusDirection)
             {
                 case FlexibleViewLayoutManager.Direction.Up:
-                    return mOrientation == VERTICAL ? LayoutState.LAYOUT_START
+                    return Orientation == VERTICAL ? LayoutState.LAYOUT_START
                             : LayoutState.INVALID_LAYOUT;
                 case FlexibleViewLayoutManager.Direction.Down:
-                    return mOrientation == VERTICAL ? LayoutState.LAYOUT_END
+                    return Orientation == VERTICAL ? LayoutState.LAYOUT_END
                             : LayoutState.INVALID_LAYOUT;
                 case FlexibleViewLayoutManager.Direction.Left:
-                    return mOrientation == HORIZONTAL ? LayoutState.LAYOUT_START
+                    return Orientation == HORIZONTAL ? LayoutState.LAYOUT_START
                             : LayoutState.INVALID_LAYOUT;
                 case FlexibleViewLayoutManager.Direction.Right:
-                    return mOrientation == HORIZONTAL ? LayoutState.LAYOUT_END
+                    return Orientation == HORIZONTAL ? LayoutState.LAYOUT_END
                             : LayoutState.INVALID_LAYOUT;
                 default:
                     return LayoutState.INVALID_LAYOUT;
