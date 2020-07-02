@@ -49,6 +49,7 @@ namespace Tizen.Multimedia
         NotSupportedAudioCodec = PlayerErrorClass | 0x0e,
         NotSupportedVideoCodec = PlayerErrorClass | 0x0f,
         NotSupportedSubtitle = PlayerErrorClass | 0x10,
+        NotSupportedFormat = PlayerErrorClass | 0x11,
         NotAvailable = PlayerErrorClass | 0x12
     }
 
