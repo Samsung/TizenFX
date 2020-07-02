@@ -113,5 +113,11 @@ internal static partial class Interop
         internal static extern int DeviceAddCallback(Tizen.System.EventType type, deviceCallback cb, IntPtr data);
         [DllImport(Libraries.Device, EntryPoint = "device_remove_callback", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DeviceRemoveCallback(Tizen.System.EventType type, deviceCallback cb);
+
+        //PmQos
+        [DllImport(Libraries.Device, EntryPoint = "device_pmqos_app_launch_home", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePmQosAppLaunchHome(int timeout);
+        [DllImport(Libraries.Device, EntryPoint = "device_pmqos_homescreen", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePmQosHomeScreen(int timeout);
     }
 }
