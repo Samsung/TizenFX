@@ -87,13 +87,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal VisualBase CreateVisual(Image image)
-        {
-            VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
 
 }

@@ -271,11 +271,5 @@ namespace Tizen.NUI
             Interop.GaussianBlurView.GaussianBlurView_SetUserImageAndOutputRenderTarget(swigCPtr, Texture.getCPtr(inputTexture), FrameBuffer.getCPtr(outputRenderTarget));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal FrameBufferImage GetBlurredRenderTarget()
-        {
-            FrameBufferImage ret = new FrameBufferImage(Interop.GaussianBlurView.GaussianBlurView_GetBlurredRenderTarget(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
     }
 }
