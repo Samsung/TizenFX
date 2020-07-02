@@ -182,12 +182,12 @@ namespace Tizen.NUI.Components
             {
                 return layoutManager;
             }
-            protected set
+            set
             {
-                LayoutManager = value;
-                LayoutManager.Container = ContentContainer;
-                LayoutManager.ItemSize = Adapter.CreateRecycleItem().Size;
-                LayoutManager.DataCount = Adapter.Data.Count;
+                layoutManager = value;
+                layoutManager.Container = ContentContainer;
+                layoutManager.ItemSize = adapter.CreateRecycleItem().Size;
+                layoutManager.DataCount = adapter.Data.Count;
                 InitializeItems();
             }
         }
