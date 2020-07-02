@@ -27,6 +27,7 @@ namespace Tizen.NUI.Components
     /// User can handle Popup button count, head title and content area.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated in API8; Will be removed in API10")]
     public class Popup : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -206,6 +207,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Popup() : base()
         {
             Initialize();
@@ -215,7 +217,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="style">Create Popup by special style defined in UX.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup(string style) : base(style)
         {
             Initialize();
@@ -225,7 +227,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="popupStyle">Create Popup by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup(PopupStyle popupStyle) : base(popupStyle)
         {
             Initialize();
@@ -277,7 +279,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Add button by style's name.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButton(string buttonText, string style)
         {
             AddButton(buttonText);
@@ -286,7 +288,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Add button by style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButton(string buttonText, ButtonStyle style)
         {
             if (Style.Buttons != null && style != null)
@@ -325,12 +327,13 @@ namespace Tizen.NUI.Components
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
         /// <summary>
         /// Get style of popup.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new PopupStyle Style => ViewStyle as PopupStyle;
 
         /// <summary>
@@ -358,6 +361,7 @@ namespace Tizen.NUI.Components
         /// Title text string in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string TitleText
         {
             get
@@ -380,6 +384,7 @@ namespace Tizen.NUI.Components
         /// Title text point size in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float TitlePointSize
         {
             get
@@ -399,6 +404,7 @@ namespace Tizen.NUI.Components
         /// Title text color in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TitleTextColor
         {
             get
@@ -418,6 +424,7 @@ namespace Tizen.NUI.Components
         /// Title text horizontal alignment in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment TitleTextHorizontalAlignment
         {
             get
@@ -434,6 +441,7 @@ namespace Tizen.NUI.Components
         /// Title text's position in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Position TitleTextPosition
         {
             get
@@ -450,6 +458,7 @@ namespace Tizen.NUI.Components
         /// Title text's height in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int TitleHeight
         {
             get
@@ -469,6 +478,7 @@ namespace Tizen.NUI.Components
         /// Content view in Popup, only can be gotten.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public View ContentView
         {
             get;
@@ -479,6 +489,7 @@ namespace Tizen.NUI.Components
         /// Button count in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ButtonCount
         {
             get;
@@ -489,6 +500,7 @@ namespace Tizen.NUI.Components
         /// Button height in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ButtonHeight
         {
             get
@@ -505,6 +517,7 @@ namespace Tizen.NUI.Components
         /// Button text point size in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float ButtonTextPointSize
         {
             get
@@ -521,6 +534,7 @@ namespace Tizen.NUI.Components
         /// Button text font family in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string ButtonFontFamily
         {
             get
@@ -537,6 +551,7 @@ namespace Tizen.NUI.Components
         /// Button text color in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color ButtonTextColor
         {
             get
@@ -571,6 +586,7 @@ namespace Tizen.NUI.Components
         /// Button text horizontal alignment in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment ButtonTextAlignment
         {
             get
@@ -639,6 +655,7 @@ namespace Tizen.NUI.Components
         /// <param name="index">Button index.</param>
         /// <param name="text">Button text string.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void SetButtonText(int index, string text)
         {
             AddButton(text);
@@ -649,6 +666,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -707,7 +725,7 @@ namespace Tizen.NUI.Components
         /// Apply style to popup.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
@@ -723,7 +741,7 @@ namespace Tizen.NUI.Components
         /// Get Popup style.
         /// </summary>
         /// <returns>The default popup style.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
@@ -840,10 +858,12 @@ namespace Tizen.NUI.Components
         /// ButtonClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public class ButtonClickEventArgs : EventArgs
         {
             /// <summary> Button index which is clicked in Popup </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int ButtonIndex;
         }
     }

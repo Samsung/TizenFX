@@ -540,12 +540,56 @@ namespace Tizen.NUI.Xaml
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = propertyInfo;
 
-            object convertedValue = value.ConvertTo(propertyInfo.PropertyType, () => propertyInfo, serviceProvider);
-            if (convertedValue != null && !propertyInfo.PropertyType.IsInstanceOfType(convertedValue))
-                return false;
+            object convertedValue = GetConvertedValue(propertyInfo.PropertyType, value, () => propertyInfo, serviceProvider);
 
-            setter.Invoke(element, new object [] { convertedValue });
+            if (null == convertedValue)
+            {
+                var methods = propertyInfo.PropertyType.GetMethods().Where(a => a.Name == "op_Implicit");
+
+                foreach (var method in methods)
+                {
+                    var paramType = method.GetParameters()[0].ParameterType;
+                    convertedValue = GetConvertedValue(paramType, value, () => propertyInfo, serviceProvider);
+
+                    if (null != convertedValue)
+                    {
+                        var realValue = Activator.CreateInstance(propertyInfo.PropertyType);
+                        convertedValue = method.Invoke(realValue, new object[] { convertedValue });
+
+                        if (null != convertedValue)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (null == convertedValue)
+            {
+                return false;
+            }
+
+            setter.Invoke(element, new object[] { convertedValue });
             return true;
+        }
+
+        static private object GetConvertedValue(Type valueType, object value, Func<MemberInfo> minfoRetriever, XamlServiceProvider serviceProvider)
+        {
+            try
+            {
+                object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
+
+                if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
+                {
+                    return null;
+                }
+
+                return convertedValue;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         static bool TryGetProperty(object element, string localName, out object value, IXmlLineInfo lineInfo, HydrationContext context, out Exception exception, out object targetProperty)
