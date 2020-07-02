@@ -194,14 +194,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when there it is not supported format.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     public class NotSupportedFormatException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the NotSupportedFormatException class with a specified error message.
         /// </summary>
         /// <param name="message">Error description.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public NotSupportedFormatException(string message) : base(message)
         {
         }
