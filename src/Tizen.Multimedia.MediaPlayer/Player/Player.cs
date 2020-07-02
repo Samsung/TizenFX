@@ -548,7 +548,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
-        /// <exception cref="PermissionDenied">Thrown when the permission is denied.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="NotSupportedFormatException">The format is not supported. (Since tizen 5.5, C# API8)</exception>
         /// <seealso cref="PrepareAsync()"/>
         /// <seealso cref="PrepareAsync(CancellationToken)"/>
