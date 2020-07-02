@@ -97,7 +97,7 @@ namespace Tizen.NUI.Components
         /// It returns copied Style instance and changing it does not effect to the Toast.
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new ToastStyle Style
         {
             get
