@@ -142,7 +142,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp = (string)GetValue(TranslatableTextProperty);
                 return textLabelSid;
             }
             set

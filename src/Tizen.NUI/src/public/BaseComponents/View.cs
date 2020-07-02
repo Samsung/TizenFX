@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
         {
-            this.ViewStyle.CopyFrom(viewStyle);
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         /// <summary>
@@ -127,14 +127,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            if (this.viewStyle == null)
-            {
-                ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
-            }
-            else
-            {
-                this.viewStyle.CopyFrom(viewStyle);
-            }
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -274,10 +267,7 @@ namespace Tizen.NUI.BaseComponents
                     viewStyle.BackgroundImage = null;
                     viewStyle.BackgroundColor = value;
                 }
-                else
-                {
-                    SetValue(BackgroundColorProperty, value);
-                }
+                SetValue(BackgroundColorProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -300,10 +290,7 @@ namespace Tizen.NUI.BaseComponents
                     viewStyle.BackgroundColor = null;
                     viewStyle.BackgroundImage = value;
                 }
-                else
-                {
-                    SetValue(BackgroundImageProperty, value);
-                }
+                SetValue(BackgroundImageProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -326,10 +313,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.BackgroundImageBorder = value;
                 }
-                else
-                {
-                    SetValue(BackgroundImageBorderProperty, value);
-                }
+                SetValue(BackgroundImageBorderProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -806,10 +790,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.Opacity = value;
                 }
-                else
-                {
-                    SetValue(OpacityProperty, value);
-                }
+                SetValue(OpacityProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -2107,10 +2088,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.Color = value;
                 }
-                else
-                {
-                    SetValue(ColorProperty, value);
-                }
+                SetValue(ColorProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -2451,20 +2429,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (null == viewStyle)
-            {
-                return;
-            }
-
-            if (this.viewStyle == viewStyle)
-            {
-                return;
-            }
-
-            if (null != this.viewStyle)
-            {
-                simpleBinding.Clear();
-            }
+            if (null == viewStyle || this.viewStyle == viewStyle) return;
 
             this.viewStyle = viewStyle;
 
@@ -2492,15 +2457,9 @@ namespace Tizen.NUI.BaseComponents
                         {
                             SetValue(viewProperty, value);
                         }
-
-                        simpleBinding.Bind(viewStyle, keyValuePair.Value, this, viewProperty, BindingDirection.TwoWay);
                     }
                 }
             }
         }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private BundledPipe simpleBinding = new BundledPipe();
     }
 }

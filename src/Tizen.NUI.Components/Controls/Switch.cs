@@ -69,10 +69,20 @@ namespace Tizen.NUI.Components
         public event EventHandler<SelectEventArgs> SelectedEvent;
 
         /// <summary>
-        /// Get style of switch.
+        /// Return a copied Style instance of Switch
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Switch.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style => ViewStyle as SwitchStyle;
+        public new SwitchStyle Style
+        {
+            get
+            {
+                return new SwitchStyle(ViewStyle as SwitchStyle);
+            }
+        }
 
         /// <summary>
         /// Apply style to switch.
@@ -167,6 +177,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private StringSelector switchBackgroundImageURLSelector = new StringSelector();
         /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
@@ -175,15 +186,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Track?.ResourceUrl);
-                return strSl;
+                return switchBackgroundImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Track)
+                if (null != value && null != switchBackgroundImageURLSelector)
                 {
-                    Style.Track.ResourceUrl = value;
+                    switchBackgroundImageURLSelector.Clone(value);
+                    Track.ResourceUrl = value.All;
                 }
             }
         }
@@ -196,17 +206,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.ResourceUrl?.All;
+                return Thumb.ResourceUrl;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
+                Thumb.ResourceUrl = value;
             }
         }
 
+        private StringSelector switchHandlerImageURLSelector = new StringSelector();
         /// <summary>
         /// Handler image's resource url selector in Switch.
         /// </summary>
@@ -215,15 +223,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Thumb?.ResourceUrl);
-                return strSl;
+                return switchHandlerImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
+                if (null != value && null != switchHandlerImageURLSelector)
                 {
-                    Style.Thumb.ResourceUrl = value;
+                    switchHandlerImageURLSelector.Clone(value);
+                    Thumb.ResourceUrl = value.All;
                 }
             }
         }
@@ -236,14 +243,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return Thumb.Size;
             }
             set
             {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                }
+                Thumb.Size = value;
             }
         }
 
@@ -319,7 +323,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            Style.IsSelectable = true;
+            IsSelectable = true;
         }
 
         /// <summary>
@@ -333,7 +337,7 @@ namespace Tizen.NUI.Components
             SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
             if (null != switchStyle)
             {
-                Style.CopyFrom(switchStyle);
+                ApplyStyle(switchStyle);
             }
         }
 

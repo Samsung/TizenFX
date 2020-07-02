@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => ViewStyle as ControlStyle;
+        public ControlStyle Style => new ControlStyle(ViewStyle as ControlStyle);
 
         static Control() { }
 
@@ -293,10 +293,6 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void RegisterDetectionOfSubstyleChanges() { }
-
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new ControlStyle();
@@ -305,8 +301,6 @@ namespace Tizen.NUI.Components
         private void Initialize()
         {
             ControlState = ControlState.Normal;
-
-            RegisterDetectionOfSubstyleChanges();
 
             LeaveRequired = true;
 
