@@ -444,6 +444,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float DecelerationThreshold { get; set; } = 0.1f;
 
+        /// <summary>
+        /// Page will be changed when velocity of panning is over threshold.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PageFlickThreshold { get; set; } = 0.4f;
+
+        /// <summary>
+        /// Alphafunction for scroll animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction ScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+
         private bool hideScrollbar = true;
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
@@ -454,11 +466,7 @@ namespace Tizen.NUI.Components
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
         private Size previousContainerSize = new Size();
-
-        // If false then can only flick pages when the current animation/scroll as ended.
-        private bool flickWhenAnimating = false;
         private PropertyNotification propertyNotification;
-
         private float noticeAnimationEndBeforePosition = 0.0f;
         private bool readyToNotice = false;
         // Let's consider more whether this needs to be set as protected.
@@ -478,7 +486,6 @@ namespace Tizen.NUI.Components
         private float panAnimationDelta = 0.0f;
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
-
 
         /// <summary>
         /// [Draft] Constructor
@@ -713,7 +720,7 @@ namespace Tizen.NUI.Components
 
             scrollAnimation.Duration = duration;
             scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
-            scrollAnimation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", axisPosition);
+            scrollAnimation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", axisPosition, ScrollAlphaFunction);
             scrolling = true;
             OnScrollAnimationStarted();
             scrollAnimation.Play();
@@ -851,7 +858,7 @@ namespace Tizen.NUI.Components
             return Math.Max(scrollingChildLength - scrollerLength, 0);
         }
 
-        private void PageSnap()
+        private void PageSnap(float velocity)
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
                                                                 " currentPage[" + CurrentPage + "]");
@@ -860,6 +867,17 @@ namespace Tizen.NUI.Components
             if (Math.Abs(totalDisplacementForPan) > (mPageWidth * ratioOfScreenWidthToCompleteScroll))
             {
                 if (totalDisplacementForPan < 0)
+                {
+                    CurrentPage = Math.Min(Math.Max(Children.Count - 1, 0), ++CurrentPage);
+                }
+                else
+                {
+                    CurrentPage = Math.Max(0, --CurrentPage);
+                }
+            }
+            else if (Math.Abs(velocity) > PageFlickThreshold)
+            {
+                if (velocity < 0)
                 {
                     CurrentPage = Math.Min(Math.Max(Children.Count - 1, 0), ++CurrentPage);
                 }
@@ -877,6 +895,11 @@ namespace Tizen.NUI.Components
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
+            {
+                return;
+            }
+
             if (e.PanGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
@@ -916,7 +939,7 @@ namespace Tizen.NUI.Components
 
                 if (SnapToPage)
                 {
-                    PageSnap();
+                    PageSnap((ScrollingDirection == Direction.Horizontal) ? e.PanGesture.Velocity.X : e.PanGesture.Velocity.Y);
                 }
                 else
                 {
