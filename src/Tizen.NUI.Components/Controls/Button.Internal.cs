@@ -104,47 +104,48 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
-            ControlStates sourceState = ControlState;
-            ControlStates targetState;
+            ControlState sourceState = ControlState;
+            ControlState targetState;
 
             if (isEnabled)
             {
                 if (isPressed)
                 {
                     // Pressed
-                    targetState = ControlStates.Pressed;
+                    targetState = ControlState.Pressed;
                 }
                 else
                 {
                     // Normal
-                    targetState = ControlStates.Normal;
+                    targetState = ControlState.Normal;
 
                     // Selected
-                    targetState |= (IsSelected ? ControlStates.Selected : 0);
+                    if (IsSelected) targetState += ControlState.Selected;
 
                     // Focused, SelectedFocused
-                    targetState |= (IsFocused ? ControlStates.Focused : 0);
+                    if (IsFocused) targetState += ControlState.Focused;
                 }
             }
             else
             {
                 // Disabled
-                targetState = ControlStates.Disabled;
+                targetState = ControlState.Disabled;
 
-                // DisabledSelected, DisabledFocused
-                targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
+                // DisabledSelected
+                if (IsSelected) targetState += ControlState.Selected;
+                // DisabledFocused
+                else if (IsFocused) targetState += ControlState.Focused;
             }
 
             if (sourceState != targetState)
             {
                 ControlState = targetState;
-
                 OnUpdate();
 
                 StateChangedEventArgs e = new StateChangedEventArgs
                 {
-                    PreviousState = sourceState,
-                    CurrentState = targetState
+                    PreviousState = ControlStatesExtension.FromControlStateClass(sourceState),
+                    CurrentState = ControlStatesExtension.FromControlStateClass(targetState)
                 };
                 stateChangeHander?.Invoke(this, e);
 
@@ -356,14 +357,14 @@ namespace Tizen.NUI.Components
         {
             base.OnControlStateChanged(controlStateChangedInfo);
 
-            var stateEnabled = !((controlStateChangedInfo.CurrentState & ControlStates.Disabled) == ControlStates.Disabled);
+            var stateEnabled = !controlStateChangedInfo.CurrentState.Contains(ControlState.Disabled);
 
             if (isEnabled != stateEnabled)
             {
                 isEnabled = stateEnabled;
             }
 
-            var statePressed = (controlStateChangedInfo.CurrentState & ControlStates.Pressed) == ControlStates.Pressed;
+            var statePressed = controlStateChangedInfo.CurrentState.Contains(ControlState.Pressed);
 
             if (isPressed != statePressed)
             {
