@@ -256,13 +256,13 @@ namespace Tizen.NUI.Components
             switch(state)
             {
                 case PointStateType.Down:
-                    ControlState = ControlStates.Pressed;
+                    ControlState = ControlState.Pressed;
                     break;
                 case PointStateType.Interrupted:
                 case PointStateType.Up:
-                    if (ControlState == ControlStates.Pressed)
+                    if (ControlState == ControlState.Pressed)
                     {
-                        ControlState = ControlStates.Normal;
+                        ControlState = ControlState.Normal;
                     }
                     break;
                 default:
@@ -304,7 +304,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            ControlState = ControlStates.Normal;
+            ControlState = ControlState.Normal;
 
             RegisterDetectionOfSubstyleChanges();
 

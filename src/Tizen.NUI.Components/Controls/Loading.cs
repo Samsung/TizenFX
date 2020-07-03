@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                ((View)bindable).Size = size;
+                ((View)bindable).ViewStyle.Size = size;
                 if (null != instance.imageVisual)
                 {
                     instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);

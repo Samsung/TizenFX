@@ -273,18 +273,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override bool OnKey(Key key)
         {
-            if (!IsEnabled || null == key) return false;
-
-            bool ret = base.OnKey(key);
-            if (key.State == Key.StateType.Up)
-            {
-                if (key.KeyPressedName == "Return")
-                {
-                    OnSelect();
-                }
-            }
-
-            return ret;
+            return base.OnKey(key);
         }
 
         /// <summary>
@@ -296,19 +285,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
-            if(!IsEnabled || null == touch) return false;
-
-            PointStateType state = touch.GetState(0);
-            bool ret = base.OnTouch(touch);
-            switch (state)
-            {
-                case PointStateType.Up:
-                    OnSelect();
-                    break;
-                default:
-                    break;
-            }
-            return ret;
+            return base.OnTouch(touch);
         }
 
         /// <summary>
@@ -319,6 +296,25 @@ namespace Tizen.NUI.Components
         protected override ViewStyle CreateViewStyle()
         {
             return new SwitchStyle();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
+        {
+            base.OnControlStateChanged(controlStateChangedInfo);
+
+            if (!IsSelectable)
+            {
+                return;
+            }
+
+            bool previousSelected = controlStateChangedInfo.PreviousState.Contains(ControlState.Selected);
+
+            if (previousSelected != IsSelected)
+            {
+                OnSelect();
+            }
         }
 
         private void Initialize()
@@ -343,6 +339,8 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
+            ((SwitchExtension)Extension)?.OnSelectedChanged(this);
+
             if (SelectedEvent != null)
             {
                 SelectEventArgs eventArgs = new SelectEventArgs();
@@ -360,34 +358,6 @@ namespace Tizen.NUI.Components
             /// <summary> Select state of Switch </summary>
             /// <since_tizen> 6 </since_tizen>
             public bool IsSelected;
-        }
-
-        /// <summary>
-        /// Get current track part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's track part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentTrack(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Track : null;
-        }
-
-         /// <summary>
-        /// Get current thumb part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's thumb part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentThumb(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Thumb : null;
         }
     }
 }

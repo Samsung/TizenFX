@@ -25,12 +25,6 @@ namespace Tizen.NUI.Components
         private StringSelector iconURLSelector = new StringSelector();
 
         /// <summary>
-        /// The last touch information triggering selected state change.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected Touch SelectionChangedByTouch { get; set; }
-
-        /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -104,47 +98,30 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
-            ControlStates sourceState = ControlState;
-            ControlStates targetState;
+            ControlState sourceState = ControlState;
+            ControlState targetState;
 
-            if (isEnabled)
-            {
-                if (isPressed)
-                {
-                    // Pressed
-                    targetState = ControlStates.Pressed;
-                }
-                else
-                {
-                    // Normal
-                    targetState = ControlStates.Normal;
+            // Normal, Disabled
+            targetState = IsEnabled ? ControlState.Normal : ControlState.Disabled;
 
-                    // Selected
-                    targetState |= (IsSelected ? ControlStates.Selected : 0);
+            // Selected, DisabledSelected
+            if (IsSelected) targetState += ControlState.Selected;
 
-                    // Focused, SelectedFocused
-                    targetState |= (IsFocused ? ControlStates.Focused : 0);
-                }
-            }
-            else
-            {
-                // Disabled
-                targetState = ControlStates.Disabled;
+            // Pressed, PressedSelected
+            if (isPressed) targetState += ControlState.Pressed;
 
-                // DisabledSelected, DisabledFocused
-                targetState |= (IsSelected ? ControlStates.Selected : (IsFocused ? ControlStates.Focused : 0));
-            }
+            // Focused, FocusedPressed, FocusedPressedSelected, DisabledFocused, DisabledSelectedFocused
+            if (IsFocused) targetState += ControlState.Focused;
 
             if (sourceState != targetState)
             {
                 ControlState = targetState;
-
                 OnUpdate();
 
                 StateChangedEventArgs e = new StateChangedEventArgs
                 {
-                    PreviousState = sourceState,
-                    CurrentState = targetState
+                    PreviousState = ControlStatesExtension.FromControlStateClass(sourceState),
+                    CurrentState = ControlStatesExtension.FromControlStateClass(targetState)
                 };
                 stateChangeHander?.Invoke(this, e);
 
@@ -356,14 +333,14 @@ namespace Tizen.NUI.Components
         {
             base.OnControlStateChanged(controlStateChangedInfo);
 
-            var stateEnabled = !((controlStateChangedInfo.CurrentState & ControlStates.Disabled) == ControlStates.Disabled);
+            var stateEnabled = !controlStateChangedInfo.CurrentState.Contains(ControlState.Disabled);
 
             if (isEnabled != stateEnabled)
             {
                 isEnabled = stateEnabled;
             }
 
-            var statePressed = (controlStateChangedInfo.CurrentState & ControlStates.Pressed) == ControlStates.Pressed;
+            var statePressed = controlStateChangedInfo.CurrentState.Contains(ControlState.Pressed);
 
             if (isPressed != statePressed)
             {

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -104,7 +104,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnControlStateChanged(Button button, View.ControlStateChangedEventArgs args)
         {
-            if (button.ControlState != ControlStates.Pressed)
+            if (button.ControlState != ControlState.Pressed)
             {
                 return;
             }

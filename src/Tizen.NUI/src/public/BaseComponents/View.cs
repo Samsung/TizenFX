@@ -171,14 +171,13 @@ namespace Tizen.NUI.BaseComponents
 
         internal event EventHandler<ControlStateChangedEventArgs> ControlStateChangeEventInternal;
 
-        private ControlStates controlStates;
+        private ControlState controlStates = ControlState.Normal;
         /// <summary>
         /// Get/Set the control state.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStates ControlState
+        public ControlState ControlState
         {
             get
             {
@@ -856,7 +855,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Determines whether the pivot point should be used to determine the position of the view.
-        /// This is true by default.
+        /// This is false by default.
         /// </summary>
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the pivot point without affecting the view's position.
