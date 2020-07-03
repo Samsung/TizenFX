@@ -52,5 +52,14 @@ namespace Tizen.NUI.Components.Extension
         {
             return thumb;
         }
+
+        /// <summary>
+        /// Called when the Switch's selection has changed.
+        /// </summary>
+        /// <param name="switchButton">The Switch instance that the extension currently applied to.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnSelectedChanged(Switch switchButton)
+        {
+        }
     }
 }

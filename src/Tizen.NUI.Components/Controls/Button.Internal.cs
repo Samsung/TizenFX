@@ -25,12 +25,6 @@ namespace Tizen.NUI.Components
         private StringSelector iconURLSelector = new StringSelector();
 
         /// <summary>
-        /// The last touch information triggering selected state change.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected Touch SelectionChangedByTouch { get; set; }
-
-        /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -107,35 +101,17 @@ namespace Tizen.NUI.Components
             ControlState sourceState = ControlState;
             ControlState targetState;
 
-            if (isEnabled)
-            {
-                if (isPressed)
-                {
-                    // Pressed
-                    targetState = ControlState.Pressed;
-                }
-                else
-                {
-                    // Normal
-                    targetState = ControlState.Normal;
+            // Normal, Disabled
+            targetState = IsEnabled ? ControlState.Normal : ControlState.Disabled;
 
-                    // Selected
-                    if (IsSelected) targetState += ControlState.Selected;
+            // Selected, DisabledSelected
+            if (IsSelected) targetState += ControlState.Selected;
 
-                    // Focused, SelectedFocused
-                    if (IsFocused) targetState += ControlState.Focused;
-                }
-            }
-            else
-            {
-                // Disabled
-                targetState = ControlState.Disabled;
+            // Pressed, PressedSelected
+            if (isPressed) targetState += ControlState.Pressed;
 
-                // DisabledSelected
-                if (IsSelected) targetState += ControlState.Selected;
-                // DisabledFocused
-                else if (IsFocused) targetState += ControlState.Focused;
-            }
+            // Focused, FocusedPressed, FocusedPressedSelected, DisabledFocused, DisabledSelectedFocused
+            if (IsFocused) targetState += ControlState.Focused;
 
             if (sourceState != targetState)
             {

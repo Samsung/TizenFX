@@ -169,42 +169,29 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T GetValue(ControlState state)
         {
-            if(All != null)
+            if (All != null)
             {
                 return All;
             }
-            switch(state)
-            {
-                case null:
-                case var s when s == ControlState.Normal:
-                    return Normal != null? Normal : Other;
-                case var s when s == ControlState.Focused:
-                    return Focused != null? Focused : Other;
-                case var s when s == ControlState.Pressed:
-                    return Pressed != null? Pressed : Other;
-                case var s when s == ControlState.Disabled:
-                    return Disabled != null? Disabled : Other;
-                case var s when s == ControlState.Selected:
-                   return Selected != null? Selected : Other;
-                case var s when s == ControlState.DisabledFocused:
-                    return DisabledFocused != null? DisabledFocused : (Disabled != null ? Disabled : Other);
-                case var s when s == ControlState.DisabledSelected:
-                    return DisabledSelected != null ? DisabledSelected : (Disabled != null ? Disabled : Other);
-                case var s when s == ControlState.SelectedFocused:
-                    return SelectedFocused != null ? SelectedFocused : (Selected != null ? Selected : Other);
-                default:
-                {
-                    StateValuePair<T> value = Find(x => x.State == state);
-                    if (value.Value != null)
-                        return value.Value;
 
-                    value = Find(x => state.Contains(x.State));
-                    if (value.Value != null)
-                        return value.Value;
-                    return Other;
+            StateValuePair<T> value = Find(x => x.State == state);
+            if (value.Value != null)
+            {
+                return value.Value;
+            }
+
+            if (state.IsCombined)
+            {
+                value = Find(x => state.Contains(x.State));
+                if (value.Value != null)
+                {
+                    return value.Value;
                 }
             }
+
+            return Other;
         }
+
         /// <summary>
         /// Clone function.
         /// </summary>
