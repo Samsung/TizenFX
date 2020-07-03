@@ -855,7 +855,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Determines whether the pivot point should be used to determine the position of the view.
-        /// This is true by default.
+        /// This is false by default.
         /// </summary>
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the pivot point without affecting the view's position.
