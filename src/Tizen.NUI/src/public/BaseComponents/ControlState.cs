@@ -149,6 +149,11 @@ namespace Tizen.NUI.BaseComponents
 
             newState.stateList = newState.stateList.Distinct().ToList();
 
+            if (newState.stateList.Count == 1)
+            {
+                return newState.stateList[0];
+            }
+
             return newState;
         }
 
