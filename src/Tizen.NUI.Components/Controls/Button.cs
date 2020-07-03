@@ -645,7 +645,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public override bool OnKey(Key key)
         {
-            if (null == key) return false;
+            if (!IsEnabled || null == key)
+            {
+                return false;
+            }
+
             if (key.State == Key.StateType.Down)
             {
                 if (key.KeyPressedName == "Return")
@@ -710,7 +714,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
-            if (null == touch) return false;
+            if (!IsEnabled || null == touch)
+            {
+                return false;
+            }
+
             PointStateType state = touch.GetState(0);
 
             switch (state)
