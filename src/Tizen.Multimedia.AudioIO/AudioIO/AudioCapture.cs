@@ -215,6 +215,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
+        /// <returns>The buffer size of audio data captured.</returns>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int GetBufferSize()
