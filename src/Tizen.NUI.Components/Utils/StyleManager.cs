@@ -94,9 +94,9 @@ namespace Tizen.NUI.Components
 
             set
             {
-                if (currentThemeName != value)
+                if (value != null && currentThemeName != value)
                 {
-                    currentThemeName = value.ToLower();
+                    currentThemeName = value.ToUpperInvariant();
                     themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
 
                     UpdateTheme();
@@ -131,6 +131,8 @@ namespace Tizen.NUI.Components
                 }
                 return;
             }
+
+            theme = theme.ToUpperInvariant();
 
             if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
             {
