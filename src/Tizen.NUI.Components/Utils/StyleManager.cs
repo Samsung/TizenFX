@@ -30,8 +30,8 @@ namespace Tizen.NUI.Components
         internal const float PointSizeNormal = 12;
         internal const float PointSizeTitle = 16;
 
-        private const string defaultThemeName = "default";
-        private const string wearableThemeName = "wearable";
+        private const string defaultThemeName = "DEFAULT"; //"default";
+        private const string wearableThemeName = "WEARABLE"; //"wearable";
         
         private string currentThemeName = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
