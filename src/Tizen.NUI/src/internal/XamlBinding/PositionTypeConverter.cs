@@ -59,6 +59,12 @@ namespace Tizen.NUI.Binding
                     int z = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[2].Trim());
                     return new Position(x, y, z);
                 }
+                else if (parts.Length == 2)
+                {
+                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
+                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
+                    return new Position(x, y);
+                }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position)}");
