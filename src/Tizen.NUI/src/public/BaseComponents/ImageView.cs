@@ -885,7 +885,27 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Gets or sets ReleasePolicy for image.<br />
+        /// If not supplied, the default is ReleasePolicyType.Detached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReleasePolicyType ReleasePolicy
+        {
+            get
+            {
+                int ret = (int)ReleasePolicyType.Detached;
+                PropertyMap imageMap = new PropertyMap();
+                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+                imageMap?.Find(ImageVisualProperty.ReleasePolicy)?.Get(out ret);
+                return (ReleasePolicyType)ret;
+            }
+            set
+            {
+                UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
+            }
+        }
+ 
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />

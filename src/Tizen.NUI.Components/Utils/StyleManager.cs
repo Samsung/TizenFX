@@ -30,8 +30,8 @@ namespace Tizen.NUI.Components
         internal const float PointSizeNormal = 12;
         internal const float PointSizeTitle = 16;
 
-        private const string defaultThemeName = "default";
-        private const string wearableThemeName = "wearable";
+        private const string defaultThemeName = "DEFAULT"; //"default";
+        private const string wearableThemeName = "WEARABLE"; //"wearable";
         
         private string currentThemeName = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
@@ -94,9 +94,9 @@ namespace Tizen.NUI.Components
 
             set
             {
-                if (currentThemeName != value)
+                if (value != null && currentThemeName != value)
                 {
-                    currentThemeName = value.ToLower();
+                    currentThemeName = value.ToUpperInvariant();
                     themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
 
                     UpdateTheme();
@@ -131,6 +131,8 @@ namespace Tizen.NUI.Components
                 }
                 return;
             }
+
+            theme = theme.ToUpperInvariant();
 
             if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
             {
