@@ -63,6 +63,7 @@ namespace Tizen.Multimedia.MediaCodec
             {
                 case SupportedCodecType.Opus:
                     ret = (int)MediaFormatAudioMimeType.Opus & CodecTypeMask;
+                    break;
             }
 
             return ret;
@@ -75,6 +76,7 @@ namespace Tizen.Multimedia.MediaCodec
             {
                 case MediaFormatAudioMimeType.Opus:
                     ret = (int)SupportedCodecType.Opus;
+                    break;
             }
 
             return ret;
