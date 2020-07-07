@@ -62,7 +62,7 @@ namespace Tizen.Multimedia.MediaCodec
             switch (type)
             {
                 case SupportedCodecType.Opus:
-                    return ret = (int)MediaFormatAudioMimeType.Opus & CodecTypeMask;
+                    ret = (int)MediaFormatAudioMimeType.Opus & CodecTypeMask;
             }
 
             return ret;
@@ -70,13 +70,14 @@ namespace Tizen.Multimedia.MediaCodec
 
         internal static int ToNative(MediaFormatAudioMimeType type)
         {
+            int ret = (int)type & CodecTypeMask;
             switch (type)
             {
                 case MediaFormatAudioMimeType.Opus:
-                    return (int)SupportedCodecType.Opus;
+                    ret = (int)SupportedCodecType.Opus;
             }
 
-            return (int)type & CodecTypeMask;
+            return ret;
         }
 
         internal static int ToNative(MediaFormatVideoMimeType type)
