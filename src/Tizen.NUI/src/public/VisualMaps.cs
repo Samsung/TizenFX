@@ -661,7 +661,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
+            if (null == _outputVisualMap)
+            {
+                _outputVisualMap = new PropertyMap();
+            }
 
             if (_shader != null) { _outputVisualMap.Add(Visual.Property.Shader, new PropertyValue(_shader)); }
             if (_premultipliedAlpha != null) { _outputVisualMap.Add(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
@@ -669,13 +672,6 @@ namespace Tizen.NUI
             if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
             if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             if (_cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)_cornerRadius)); }
-
-            var transformMap = OutputTransformMap;
-
-            if (!transformMap.Empty())
-            {
-                _outputVisualMap.Add(Visual.Property.Transform, new PropertyValue(transformMap));
-            }
         }
 
         private void ComposingTransformMap()
