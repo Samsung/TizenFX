@@ -128,7 +128,7 @@ namespace Tizen.NUI.Samples
             style.PivotPoint = PivotPoint.TopLeft;
             style.Size = new Size(58, 58);
             mSlideshowButton = new Button(style);
-            mSlideshowButton.ClickEvent += OnPushButtonClicked;
+            mSlideshowButton.Clicked += OnPushButtonClicked;
 
             mSlideshowButton.RaiseToTop();
 
@@ -240,7 +240,7 @@ namespace Tizen.NUI.Samples
             if (mSlideshowButton)
             {
                 tool_bar.Remove(mSlideshowButton);
-                mSlideshowButton.ClickEvent -= OnPushButtonClicked;
+                mSlideshowButton.Clicked -= OnPushButtonClicked;
                 mSlideshowButton.Dispose();
                 mSlideshowButton = null;
             }
