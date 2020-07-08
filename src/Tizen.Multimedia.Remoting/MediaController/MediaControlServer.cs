@@ -830,6 +830,51 @@ namespace Tizen.Multimedia.Remoting
         /// Sends the result of each command.
         /// </summary>
         /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result, Bundle bundle)
+        {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
+            command.Response(Handle, result, bundle);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result)
+        {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
+            command.Response(Handle, result, null);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
         /// <param name="result">The <see cref="MediaControlResult"/> of <paramref name="command"/>.</param>
         /// <param name="bundle">The extra data.</param>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
@@ -869,53 +914,6 @@ namespace Tizen.Multimedia.Remoting
             }
 
             command.Response(Handle, (int)result, null);
-        }
-
-        /// <summary>
-        /// Sends the result of each command.
-        /// </summary>
-        /// <param name="command">The command that return to client.</param>
-        /// <param name="result">The result of <paramref name="command"/>.</param>
-        /// <param name="bundle">The extra data.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Response(Command, MediaControlResult, Bundle) instead.")]
-        public static void Response(Command command, int result, Bundle bundle)
-        {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
-
-            command.Response(Handle, result, bundle);
-        }
-
-        /// <summary>
-        /// Sends the result of each command.
-        /// </summary>
-        /// <param name="command">The command that return to client.</param>
-        /// <param name="result">The result of <paramref name="command"/>.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Response(Command, MediaControlResult) instead.")]
-        public static void Response(Command command, int result)
-        {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
-
-            command.Response(Handle, result, null);
         }
         #endregion Command
     }
