@@ -14,13 +14,7 @@ namespace Tizen.NUI.Components
         private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
         private bool isPressed = false;
-
-        private StringSelector textSelector = new StringSelector();
-        private StringSelector translatableTextSelector = new StringSelector();
-        private ColorSelector textColorSelector = new ColorSelector();
-        private FloatSelector pointSizeSelector = new FloatSelector();
-
-        private StringSelector iconURLSelector = new StringSelector();
+        private bool styleApplied = false;
 
         /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
@@ -96,6 +90,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
+            if (!styleApplied) return;
+
             ControlState sourceState = ControlState;
             ControlState targetState;
 

@@ -304,7 +304,18 @@ namespace Tizen.NUI.Components
         /// </remarks>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new DropDownStyle Style => new DropDownStyle(ViewStyle as DropDownStyle);
+        public new DropDownStyle Style
+        {
+            get
+            {
+                var result = new DropDownStyle(dropDownStyle);
+                result.CopyPropertiesFromView(this);
+                result.Button.CopyPropertiesFromView(Button);
+                result.HeaderText.CopyPropertiesFromView(HeaderText);
+                result.ListBackgroundImage.CopyPropertiesFromView(ListBackgroundImage);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Space between button text and button icon in DropDown.

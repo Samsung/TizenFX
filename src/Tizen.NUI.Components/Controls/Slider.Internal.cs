@@ -49,8 +49,6 @@ namespace Tizen.NUI.Components
         bool isFocused = false;
         bool isPressed = false;
 
-        private StringSelector thumbImageURLSelector = new StringSelector();
-
         private void Initialize()
         {
             currentSlidedOffset = 0;

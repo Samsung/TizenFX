@@ -88,7 +88,7 @@ namespace Tizen.NUI.Components
         private string strText = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
-        private new ToastStyle toastStyle => ViewStyle as ToastStyle;
+        private ToastStyle toastStyle => ViewStyle as ToastStyle;
 
         /// <summary>
         /// Return a copied Style instance of Toast
@@ -102,7 +102,10 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return new ToastStyle(ViewStyle as ToastStyle);
+                var result = new ToastStyle(toastStyle);
+                result.CopyPropertiesFromView(this);
+                result.Text.CopyPropertiesFromView(textLabel);
+                return result;
             }
         }
         static Toast() { }

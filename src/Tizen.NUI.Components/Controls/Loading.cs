@@ -128,7 +128,15 @@ namespace Tizen.NUI.Components
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>>
         /// <since_tizen> 8 </since_tizen>
-        public new LoadingStyle Style => new LoadingStyle(ViewStyle as LoadingStyle);
+        public new LoadingStyle Style
+        {
+            get
+            {
+                var result = new LoadingStyle(loadingStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading image resource array.

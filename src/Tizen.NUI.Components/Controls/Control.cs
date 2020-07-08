@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => new ControlStyle(ViewStyle as ControlStyle);
+        public new ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
         static Control() { }
 
@@ -300,8 +300,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            ControlState = ControlState.Normal;
-
             LeaveRequired = true;
 
             StateFocusableOnTouchMode = false;

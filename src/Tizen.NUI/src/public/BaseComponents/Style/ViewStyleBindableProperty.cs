@@ -38,8 +38,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.backgroundImageSelector) viewStyle.backgroundImageSelector = new Selector<string>();
-            viewStyle.backgroundImageSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+
+            if (newValue == null)
+            {
+                viewStyle.backgroundImageSelector = null;
+            }
+            else
+            {
+                viewStyle.backgroundImageSelector = ((Selector<string>)newValue).Clone();
+                viewStyle.backgroundColorSelector = null;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -231,20 +239,18 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.size2D = (Size2D)newValue;
+            viewStyle.size = newValue == null ? null : new Size((Size2D)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            return viewStyle.size2D;
+            return viewStyle.size == null ? null : (Size2D)viewStyle.size;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.opacitySelector) viewStyle.opacitySelector = new Selector<float?>();
-            viewStyle.opacitySelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
+            ((ViewStyle)bindable).opacitySelector = ((Selector<float?>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -256,12 +262,12 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.position2D = (Position2D)newValue;
+            viewStyle.position = newValue == null ? null : new Position((Position2D)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            return viewStyle.position2D;
+            return viewStyle.position == null ? null : new Position2D(viewStyle.position);
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -316,24 +322,36 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.sizeWidth = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.size == null)
+                {
+                    viewStyle.size = new Size();
+                }
+                viewStyle.size.Width = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.sizeWidth;
+            return ((ViewStyle)bindable).size?.Width;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.sizeHeight = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.size == null)
+                {
+                    viewStyle.size = new Size();
+                }
+                viewStyle.size.Height = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.sizeHeight;
+            return ((ViewStyle)bindable).size?.Height;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -352,36 +370,54 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.positionX = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.position == null)
+                {
+                    viewStyle.position = new Position();
+                }
+                viewStyle.position.X = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.positionX;
+            return ((ViewStyle)bindable).position?.X;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.positionY = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.position == null)
+                {
+                    viewStyle.position = new Position();
+                }
+                viewStyle.position.Y = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.positionY;
+            return ((ViewStyle)bindable).position?.Y;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.positionZ = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.position == null)
+                {
+                    viewStyle.position = new Position();
+                }
+                viewStyle.position.Z = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.positionZ;
+            return ((ViewStyle)bindable).position?.Z;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -412,36 +448,54 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.scaleX = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.scale == null)
+                {
+                    viewStyle.scale = new Vector3();
+                }
+                viewStyle.scale.X = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.scaleX;
+            return ((ViewStyle)bindable).scale?.X;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.scaleY = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.scale == null)
+                {
+                    viewStyle.scale = new Vector3();
+                }
+                viewStyle.scale.Y = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.scaleY;
+            return ((ViewStyle)bindable).scale?.Y;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.scaleZ = (float?)newValue;
+            if (newValue != null)
+            {
+                if (viewStyle.scale == null)
+                {
+                    viewStyle.scale = new Vector3();
+                }
+                viewStyle.scale.Z = (float)newValue;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.scaleZ;
+            return ((ViewStyle)bindable).scale?.Z;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -714,8 +768,17 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.backgroundColorSelector) viewStyle.backgroundColorSelector = new Selector<Color>();
-            viewStyle.backgroundColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
+            
+            if (newValue == null)
+            {
+                viewStyle.backgroundColorSelector = null;
+            }
+            else
+            {
+                viewStyle.backgroundColorSelector = ((Selector<Color>)newValue).Clone();
+                viewStyle.backgroundImageSelector = null;
+            }
+            
         },
         defaultValueCreator: (bindable) =>
         {
@@ -726,9 +789,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.colorSelector) viewStyle.colorSelector = new Selector<Color>();
-            viewStyle.colorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
+            ((ViewStyle)bindable).colorSelector = ((Selector<Color>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -740,10 +801,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.backgroundImageBorderSelector) viewStyle.backgroundImageBorderSelector = new Selector<Rectangle>();
-
-            viewStyle.backgroundImageBorderSelector.Clone(newValue == null ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
+            ((ViewStyle)bindable).backgroundImageBorderSelector = ((Selector<Rectangle>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -757,8 +815,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
 
-            viewStyle.imageShadow = (Selector<ImageShadow>)newValue;
-
+            viewStyle.imageShadow = ((Selector<ImageShadow>)newValue)?.Clone();
             viewStyle.boxShadow = null;
         },
         defaultValueCreator: (bindable) =>
@@ -773,8 +830,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
 
-            viewStyle.boxShadow = (Selector<Shadow>)newValue;
-
+            viewStyle.boxShadow = ((Selector<Shadow>)newValue)?.Clone();
             viewStyle.imageShadow = null;
         },
         defaultValueCreator: (bindable) =>
@@ -787,8 +843,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create("CornerRadiusSelector", typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            viewStyle.cornerRadius = (Selector<float?>)(newValue);
+            ((ViewStyle)bindable).cornerRadius = ((Selector<float?>)(newValue))?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {

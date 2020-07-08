@@ -207,11 +207,11 @@ namespace Tizen.NUI.Wearable
                         leftButton.PositionUsesPivotPoint = true;
                         leftButton.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         leftButton.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        leftButton.Style.Overlay.SiblingOrder = 100;
+                        leftButton.OverlayImage.SiblingOrder = 100;
                         button.PositionUsesPivotPoint = true;
                         button.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         button.PivotPoint = NUI.PivotPoint.CenterRight;
-                        button.Style.Overlay.SiblingOrder = 100;
+                        button.OverlayImage.SiblingOrder = 100;
                     }
                 }
                 else
@@ -220,7 +220,7 @@ namespace Tizen.NUI.Wearable
                     buttonList.Add(index, button);
                     Add(button);
                     button.RaiseToTop();
-                    button.Style.Overlay.SiblingOrder = 100; //will be fixed.
+                    button.OverlayImage.SiblingOrder = 100; //will be fixed.
                     if (position == ButtonPosition.Left)
                     {
                         button.PositionUsesPivotPoint = true;

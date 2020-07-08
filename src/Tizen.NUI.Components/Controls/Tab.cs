@@ -36,7 +36,7 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
-        private new TabStyle tabStyle => ViewStyle as TabStyle;
+        private TabStyle tabStyle => ViewStyle as TabStyle;
 
         static Tab() { }
 
@@ -89,7 +89,10 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return new TabStyle(ViewStyle as TabStyle);
+                var result = new TabStyle(tabStyle);
+                result.CopyPropertiesFromView(this);
+                result.UnderLine.CopyPropertiesFromView(underline);
+                return result;
             }
         }
 

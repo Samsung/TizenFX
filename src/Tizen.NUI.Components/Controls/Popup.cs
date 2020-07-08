@@ -336,7 +336,16 @@ namespace Tizen.NUI.Components
         /// Get style of popup.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new PopupStyle Style => new PopupStyle(ViewStyle as PopupStyle);
+        public new PopupStyle Style
+        {
+            get
+            {
+                var result = new PopupStyle(popupStyle);
+                result.CopyPropertiesFromView(this);
+                result.Title.CopyPropertiesFromView(titleText);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Popup Title.

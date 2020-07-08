@@ -203,14 +203,23 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return new SliderStyle(ViewStyle as SliderStyle);
+                var result = new SliderStyle(sliderStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(bgTrackImage);
+                result.Progress.CopyPropertiesFromView(slidedTrackImage);
+                result.Thumb.CopyPropertiesFromView(thumbImage);
+                result.LowIndicatorImage.CopyPropertiesFromView(lowIndicatorImage);
+                result.HighIndicatorImage.CopyPropertiesFromView(highIndicatorImage);
+                result.LowIndicator.CopyPropertiesFromView(lowIndicatorText);
+                result.HighIndicator.CopyPropertiesFromView(highIndicatorText);
+                return result;
             }
         }
 
         /// <summary>
         /// Return a copied Style instance of Slider
         /// </summary>
-        private new SliderStyle sliderStyle => ViewStyle as SliderStyle;
+        private SliderStyle sliderStyle => ViewStyle as SliderStyle;
 
         /// <summary>
         /// Gets or sets the direction type of slider.
@@ -345,26 +354,13 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets or sets the resource url selector of the thumb image object.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector ThumbImageURLSelector
         {
-            get
-            {
-                return thumbImageURLSelector;
-            }
-            set
-            {
-                if (value == null || thumbImageURLSelector == null)
-                {
-                    Tizen.Log.Fatal("NUI", "[Exception] Slider.ThumbImageURLSelector is null");
-                    throw new NullReferenceException("Slider.ThumbImageURLSelector is null");
-                }
-                else
-                {
-                    thumbImageURLSelector.Clone(value);
-                }
-            }
+            get => thumbImage == null ? null : new StringSelector((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => thumbImage?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>

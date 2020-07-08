@@ -44,10 +44,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
-            if (buttonStyle.IsSelectable != null && buttonStyle.IsSelectable == true)
-            {
-                buttonStyle.isSelected = (bool?)newValue;
-            }
+            buttonStyle.isSelected = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {

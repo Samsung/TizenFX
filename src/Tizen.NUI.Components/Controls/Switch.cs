@@ -80,7 +80,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return new SwitchStyle(ViewStyle as SwitchStyle);
+                var result = new SwitchStyle(ViewStyle as SwitchStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(Track);
+                result.Thumb.CopyPropertiesFromView(Thumb);
+                return result;
             }
         }
 
@@ -177,25 +181,14 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector switchBackgroundImageURLSelector = new StringSelector();
         /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get
-            {
-                return switchBackgroundImageURLSelector;
-            }
-            set
-            {
-                if (null != value && null != switchBackgroundImageURLSelector)
-                {
-                    switchBackgroundImageURLSelector.Clone(value);
-                    Track.ResourceUrl = value.All;
-                }
-            }
+            get => track == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -214,25 +207,15 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector switchHandlerImageURLSelector = new StringSelector();
         /// <summary>
         /// Handler image's resource url selector in Switch.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
-            get
-            {
-                return switchHandlerImageURLSelector;
-            }
-            set
-            {
-                if (null != value && null != switchHandlerImageURLSelector)
-                {
-                    switchHandlerImageURLSelector.Clone(value);
-                    Thumb.ResourceUrl = value.All;
-                }
-            }
+            get => thumb == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => thumb?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>

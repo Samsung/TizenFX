@@ -36,12 +36,17 @@ namespace Tizen.NUI.BaseComponents
 
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
+        private TextLabelSelectorData selectorData;
 
-        private CloneableViewSelector<TextShadow> textShadow;
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Return a copied Style instance of the TextLabel.
+        /// </summary>
+        /// <remarks>
+        /// It returns copied style instance so that changing it does not effect to the view.
+        /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Style => ViewStyle as TextLabelStyle;
+        public new TextLabelStyle Style => new TextLabelStyle(this);
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -136,6 +141,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatableTextProperty, value);
+                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
             }
         }
         private string translatableText
@@ -184,6 +190,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
+                selectorData?.Text.UpdateIfNeeds(this, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -202,6 +209,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
+                selectorData?.FontFamily.UpdateIfNeeds(this, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -238,6 +246,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
+                selectorData?.PointSize.UpdateIfNeeds(this, value);
                 NotifyPropertyChangedAndRequestLayout();
             }
         }
@@ -316,6 +325,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
+                selectorData?.TextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -627,12 +637,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var value = (TextShadow)GetValue(TextShadowProperty);
-                return value == null ? null : new TextShadow(value, OnTextShadowChanged);
+                return (TextShadow)GetValue(TextShadowProperty);
             }
             set
             {
                 SetValue(TextShadowProperty, value);
+                selectorData?.TextShadow.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -871,6 +881,18 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private TextLabelSelectorData SelectorData
+        {
+            get
+            {
+                if (selectorData == null)
+                {
+                    selectorData = new TextLabelSelectorData();
+                }
+                return selectorData;
+            }
+        }
+
         /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
@@ -890,6 +912,26 @@ namespace Tizen.NUI.BaseComponents
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                selectorData?.Reset(this);
+            }
+
+            base.Dispose(type);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
@@ -913,122 +955,6 @@ namespace Tizen.NUI.BaseComponents
         protected override ViewStyle GetViewStyle()
         {
             return new TextLabelStyle();
-        }
-
-        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.TranslatableTextSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.TranslatableTextSelector;
-        });
-        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.textSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.textSelector;
-        });
-        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.fontFamilySelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.fontFamilySelector;
-        });
-        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.pointSizeSelector.Clone((Selector<float?>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.pointSizeSelector;
-        });
-        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            textLabel.textColorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            return textLabel.textColorSelector;
-        });
-
-        private TriggerableSelector<string> translatableTextSelector;
-        private TriggerableSelector<string> TranslatableTextSelector
-        {
-            get
-            {
-                if (null == translatableTextSelector)
-                {
-                    translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
-                }
-                return translatableTextSelector;
-            }
-        }
-
-        private TriggerableSelector<string> _textSelector;
-        private TriggerableSelector<string> textSelector
-        {
-            get
-            {
-                if (null == _textSelector)
-                {
-                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
-                }
-                return _textSelector;
-            }
-        }
-
-        private TriggerableSelector<string> _fontFamilySelector;
-        private TriggerableSelector<string> fontFamilySelector
-        {
-            get
-            {
-                if (null == _fontFamilySelector)
-                {
-                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
-                }
-                return _fontFamilySelector;
-            }
-        }
-
-        private TriggerableSelector<Color> _textColorSelector;
-        private TriggerableSelector<Color> textColorSelector
-        {
-            get
-            {
-                if (null == _textColorSelector)
-                {
-                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
-                }
-                return _textColorSelector;
-            }
-        }
-
-        private TriggerableSelector<float?> _pointSizeSelector;
-        private TriggerableSelector<float?> pointSizeSelector
-        {
-            get
-            {
-                if (null == _pointSizeSelector)
-                {
-                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
-                }
-                return _pointSizeSelector;
-            }
         }
 
         /// <summary>
@@ -1098,22 +1024,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnUnderlineColorChanged(float x, float y, float z, float w)
         {
             UnderlineColor = new Vector4(x, y, z, w);
-        }
-
-        private void OnTextShadowChanged(TextShadow instance)
-        {
-            TextShadow = instance;
-        }
-
-        private void OnControlStateChangedForShadow(object obj, ControlStateChangedEventArgs controlStateChangedInfo)
-        {
-            UpdateTextShadowVisual();
-        }
-
-        private void UpdateTextShadowVisual()
-        {
-            TextShadow shadow = (textShadow != null && !textShadow.IsEmpty()) ? textShadow.GetValue() : textShadow?.GetValue();
-            Object.SetProperty(swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(shadow));
         }
     }
 }

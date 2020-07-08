@@ -192,7 +192,18 @@ namespace Tizen.NUI.Components
         /// Get style of progress.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public new ProgressStyle Style => new ProgressStyle(ViewStyle as ProgressStyle);
+        public new ProgressStyle Style
+        {
+            get
+            {
+                var result = new ProgressStyle(progressStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(trackImage);
+                result.Progress.CopyPropertiesFromView(progressImage);
+                result.Buffer.CopyPropertiesFromView(bufferImage);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The property to get/set Track image object URL of the Progress.

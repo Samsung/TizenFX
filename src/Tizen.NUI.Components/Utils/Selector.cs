@@ -33,11 +33,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IntSelector Clone()
+        public new IntSelector Clone()
         {
-            IntSelector selector = new IntSelector();
-            selector.Clone(this);
-            return selector;
+            return (IntSelector)base.Clone();
         }
     }
 
@@ -50,16 +48,30 @@ namespace Tizen.NUI.Components
     public class FloatSelector : Selector<float?>
     {
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FloatSelector() : base()
+        {
+        }
+
+        /// <summary>
+        /// Constructor with base class object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FloatSelector(Selector<float?> selector) : base(selector)
+        {
+        }
+
+        /// <summary>
         /// Float selector clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FloatSelector Clone()
+        public new FloatSelector Clone()
         {
-            FloatSelector selector = new FloatSelector();
-            selector.Clone(this);
-            return selector;
+            return (FloatSelector)base.Clone();
         }
     }
     /// <summary>
@@ -74,11 +86,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public BoolSelector Clone()
+        public new BoolSelector Clone()
         {
-            BoolSelector selector = new BoolSelector();
-            selector.Clone(this);
-            return selector;
+            return (BoolSelector)base.Clone();
         }
     }
     /// <summary>
@@ -90,16 +100,30 @@ namespace Tizen.NUI.Components
     public class StringSelector : Selector<string>
     {
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StringSelector() : base()
+        {
+        }
+
+        /// <summary>
+        /// Constructor with base class object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StringSelector(Selector<string> selector) : base(selector)
+        {
+        }
+
+        /// <summary>
         /// String selector clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector Clone()
+        public new StringSelector Clone()
         {
-            StringSelector selector = new StringSelector();
-            selector.Clone(this);
-            return selector; 
+            return (StringSelector)base.Clone();
         }
     }
 
@@ -112,16 +136,30 @@ namespace Tizen.NUI.Components
     public class ColorSelector : Selector<Color>
     {
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ColorSelector() : base()
+        {
+        }
+
+        /// <summary>
+        /// Constructor with base class object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ColorSelector(Selector<Color> selector) : base(selector)
+        {
+        }
+
+        /// <summary>
         /// Color selector clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ColorSelector Clone()
+        public new ColorSelector Clone()
         {
-            ColorSelector selector = new ColorSelector();
-            selector.Clone(this);
-            return selector;
+            return (ColorSelector)base.Clone();
         }
     }
 
@@ -137,11 +175,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2DSelector Clone()
+        public new Size2DSelector Clone()
         {
-            Size2DSelector selector = new Size2DSelector();
-            selector.Clone(this);
-            return selector;
+            return (Size2DSelector)base.Clone();
         }
     }
     /// <summary>
@@ -156,11 +192,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Position2DSelector Clone()
+        public new Position2DSelector Clone()
         {
-            Position2DSelector selector = new Position2DSelector();
-            selector.Clone(this);
-            return selector;
+            return (Position2DSelector)base.Clone();
         }
     }
 
@@ -176,11 +210,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PositionSelector Clone()
+        public new PositionSelector Clone()
         {
-            PositionSelector selector = new PositionSelector();
-            selector.Clone(this);
-            return selector;
+            return (PositionSelector)base.Clone();
         }
     }
 
@@ -198,11 +230,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2Selector Clone()
+        public new Vector2Selector Clone()
         {
-            Vector2Selector selector = new Vector2Selector();
-            selector.Clone(this);
-            return selector;
+            return (Vector2Selector)base.Clone();
         }
     }
 
@@ -218,11 +248,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector3Selector Clone()
+        public new Vector3Selector Clone()
         {
-            Vector3Selector selector = new Vector3Selector();
-            selector.Clone(this);
-            return selector;
+            return (Vector3Selector)base.Clone();
         }
     }
 
@@ -240,11 +268,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RectangleSelector Clone()
+        public new RectangleSelector Clone()
         {
-            RectangleSelector selector = new RectangleSelector();
-            selector.Clone(this);
-            return selector;
+            return (RectangleSelector)base.Clone();
         }
     }
 
@@ -260,11 +286,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public HorizontalAlignmentSelector Clone()
+        public new HorizontalAlignmentSelector Clone()
         {
-            HorizontalAlignmentSelector selector = new HorizontalAlignmentSelector();
-            selector.Clone(this);
-            return selector;
+            return (HorizontalAlignmentSelector)base.Clone();
         }
     }
     /// <summary>
@@ -279,11 +303,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VerticalAlignmentSelector Clone()
+        public new VerticalAlignmentSelector Clone()
         {
-            VerticalAlignmentSelector selector = new VerticalAlignmentSelector();
-            selector.Clone(this);
-            return selector;
+            return (VerticalAlignmentSelector)base.Clone();
         }
     }
 
@@ -299,11 +321,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AutoScrollStopModeSelector Clone()
+        public new AutoScrollStopModeSelector Clone()
         {
-            AutoScrollStopModeSelector selector = new AutoScrollStopModeSelector();
-            selector.Clone(this);
-            return selector;
+            return (AutoScrollStopModeSelector)base.Clone();
         }
     }
 
@@ -319,11 +339,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResizePolicyTypeSelector Clone()
+        public new ResizePolicyTypeSelector Clone()
         {
-            ResizePolicyTypeSelector selector = new ResizePolicyTypeSelector();
-            selector.Clone(this);
-            return selector;
+            return (ResizePolicyTypeSelector)base.Clone();
         }
     }
 

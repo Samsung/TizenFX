@@ -50,7 +50,9 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            InitSubStyle();
+            IsSelectable = true;
+            Track = new ImageViewStyle();
+            Thumb = new ImageViewStyle();
 
             this.CopyFrom(style);
         }
@@ -101,6 +103,7 @@ namespace Tizen.NUI.Components
 
         private void InitSubStyle()
         {
+            IsSelectable = true;
             Track = new ImageViewStyle()
             {
                 PositionUsesPivotPoint = true,

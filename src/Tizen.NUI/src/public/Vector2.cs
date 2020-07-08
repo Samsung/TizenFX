@@ -59,6 +59,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="other">The copy target.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2(Vector2 other) : this(other.X, other.Y)
+        {
+        }
+
+        /// <summary>
         /// The constructor.
         /// </summary>
         /// <param name="vec3">Vector3 to create this vector from.</param>

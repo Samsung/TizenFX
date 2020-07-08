@@ -78,7 +78,16 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
-        public TextLabelStyle Style => ViewStyle as TextLabelStyle;
+        /// <summary>
+        /// Return a copied Style instance of the Title.
+        /// </summary>
+        /// <remarks>
+        /// It returns copied style instance so that changing it does not effect to the view.
+        /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new TextLabelStyle Style => ViewStyle as TextLabelStyle;
+
         /// <summary>
         /// The constructor of the Title class with specific Style.
         /// </summary>

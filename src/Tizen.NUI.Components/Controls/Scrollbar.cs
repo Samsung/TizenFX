@@ -110,7 +110,8 @@ namespace Tizen.NUI.Components
         private Animation thumbSizeAnimation;
         private Calculator calculator;
         private Size containerSize = new Size(0, 0);
-        private new ScrollbarStyle scrollbarStyle => ViewStyle as ScrollbarStyle;
+        private ScrollbarStyle scrollbarStyle => ViewStyle as ScrollbarStyle;
+
         #endregion Fields
 
 
@@ -168,7 +169,9 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return new ScrollbarStyle(ViewStyle as ScrollbarStyle);
+                var result = new ScrollbarStyle(scrollbarStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
             }
         }
 
