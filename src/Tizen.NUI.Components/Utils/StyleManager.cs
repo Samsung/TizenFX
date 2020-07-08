@@ -47,7 +47,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         private Dictionary<string, Theme> themeMap = new Dictionary<string, Theme>();
 
-        private EventHandler<ThemeChangeEventArgs> themeChangeHander;
+        private EventHandler<ThemeChangeEventArgs> themeChangeHandler;
 
         private Theme currentTheme;
 
@@ -67,11 +67,11 @@ namespace Tizen.NUI.Components
         {
             add
             {
-                themeChangeHander += value;
+                themeChangeHandler += value;
             }
             remove
             {
-                themeChangeHander -= value;
+                themeChangeHandler -= value;
             }
         }
 
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Components
                 if (value != null && currentThemeName != value)
                 {
                     currentThemeName = value.ToUpperInvariant();
-                    themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
+                    themeChangeHandler?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
 
                     UpdateTheme();
                 }

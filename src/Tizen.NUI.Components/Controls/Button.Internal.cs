@@ -11,7 +11,7 @@ namespace Tizen.NUI.Components
         private TextLabel buttonText;
         private ImageView buttonIcon;
 
-        private EventHandler<StateChangedEventArgs> stateChangeHander;
+        private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
         private bool isSelected = false;
         private bool isEnabled = true;
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
                     PreviousState = ControlStatesExtension.FromControlStateClass(sourceState),
                     CurrentState = ControlStatesExtension.FromControlStateClass(targetState)
                 };
-                stateChangeHander?.Invoke(this, e);
+                stateChangeHandler?.Invoke(this, e);
 
                 Extension?.OnControlStateChanged(this, new ControlStateChangedEventArgs(sourceState, targetState));
             }
