@@ -63,6 +63,12 @@ internal static partial class Interop
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_read")]
             internal static extern AudioIOError Read(IntPtr handle, byte[] buffer, int length);
 
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_peek")]
+            internal static extern AudioIOError Peek(IntPtr handle, out IntPtr buffer, ref uint length);
+
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_drop")]
+            internal static extern AudioIOError Drop(IntPtr handle);
+
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_get_buffer_size")]
             internal static extern AudioIOError GetBufferSize(IntPtr handle, out int size);
 
@@ -75,11 +81,11 @@ internal static partial class Interop
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_get_sample_type")]
             internal static extern AudioIOError GetSampleType(IntPtr handle, out int sampleType);
 
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_peek")]
-            internal static extern AudioIOError Peek(IntPtr handle, out IntPtr buffer, ref uint length);
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_get_volume")]
+            internal static extern AudioIOError GetVolume(IntPtr handle, out double volume);
 
-            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_drop")]
-            internal static extern AudioIOError Drop(IntPtr handle);
+            [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_volume")]
+            internal static extern AudioIOError SetVolume(IntPtr handle, double volume);
         }
         internal static partial class AudioOutput
         {
