@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,7 +21,8 @@ using System.Runtime.InteropServices;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides a means to edit the metadata of the media file.
+    /// Provides a means to edit the metadata of MP3 and MP4 files.
+    /// Since 6.0, WAV, FLAC, OGG files are supported as well.
     /// </summary>
     /// <privilege>
     /// If you want to access only an internal storage,
