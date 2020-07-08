@@ -825,12 +825,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public void Response(Command command, int result)
         {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
-
-            command.Response(Manager.Handle, result, null);
+            Response(command, result, null);
         }
 
         /// <summary>
@@ -848,12 +843,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 8 </since_tizen>
         public void Response(Command command, MediaControlResult result, Bundle bundle)
         {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
-
-            command.Response(Manager.Handle, (int)result, bundle);
+            Response(command, (int)result, bundle);
         }
 
         /// <summary>
@@ -870,12 +860,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 8 </since_tizen>
         public void Response(Command command, MediaControlResult result)
         {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
-
-            command.Response(Manager.Handle, (int)result, null);
+            Response(command, (int)result, null);
         }
 
         /// <summary>
