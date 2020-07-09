@@ -313,7 +313,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// The command or the event is aborted by some external event (e.g. aborted play command by incoming call).
         /// </summary>
-        Aboarted = 300,
+        Aborted = 300,
 
         /// <summary>
         /// The command or the event is denied due to application policy (e.g. cannot rewind in recording).
