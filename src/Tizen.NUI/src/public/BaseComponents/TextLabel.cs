@@ -1053,7 +1053,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextLabel.TextLabel_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextLabel.TextLabel_Property_TEXT_get();
             internal static readonly int FONT_FAMILY = Interop.TextLabel.TextLabel_Property_FONT_FAMILY_get();
             internal static readonly int FONT_STYLE = Interop.TextLabel.TextLabel_Property_FONT_STYLE_get();

@@ -732,15 +732,6 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.EmitFocusSignal(focusGained);
         }
 
-
-        private void OnControlChildAdd(View child)
-        {
-        }
-
-        private void OnControlChildRemove(View child)
-        {
-        }
-
         private void Initialize()
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
@@ -765,8 +756,6 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.RelayoutDependentOnChildren = new ViewWrapperImpl.RelayoutDependentOnChildrenDelegate(RelayoutDependentOnChildren);
             viewWrapperImpl.OnCalculateRelayoutSize = new ViewWrapperImpl.OnCalculateRelayoutSizeDelegate(OnCalculateRelayoutSize);
             viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
-            viewWrapperImpl.OnControlChildAdd = new ViewWrapperImpl.OnControlChildAddDelegate(OnControlChildAdd);
-            viewWrapperImpl.OnControlChildRemove = new ViewWrapperImpl.OnControlChildRemoveDelegate(OnControlChildRemove);
             viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
             viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
             viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
