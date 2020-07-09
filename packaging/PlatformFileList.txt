@@ -120,6 +120,7 @@ Tizen.Uix.Tts.dll                                  #common #mobile #mobile-emul 
 Tizen.Uix.TtsEngine.dll                            #common #mobile #mobile-emul #tv #wearable
 Tizen.Uix.VoiceControl.dll                         #common #mobile #mobile-emul #tv #wearable
 Tizen.Uix.VoiceControlWidget.dll                   #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.VoiceControlManager.dll                  #common #mobile #mobile-emul #tv #wearable
 Tizen.WebView.dll                                  #common #mobile #mobile-emul #tv #wearable
 30.ElmSharp.preload                                #common #mobile #mobile-emul #tv #wearable
 30.ElmSharp.Wearable.preload                       #wearable
