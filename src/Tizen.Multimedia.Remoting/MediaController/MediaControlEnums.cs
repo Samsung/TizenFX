@@ -361,17 +361,17 @@ namespace Tizen.Multimedia.Remoting
         NetworkFailed = 500,
 
         /// <summary>
-        /// Cropped full screen
+        /// The application does not have account.
         /// </summary>
         NoAccount = 600,
 
         /// <summary>
-        /// Cropped full screen
+        /// The application could not log in.
         /// </summary>
         LoginFailed,
 
         /// <summary>
-        /// Cropped full screen
+        /// Unknown error.
         /// </summary>
         Unknown = Int32.MaxValue
     }
