@@ -1191,7 +1191,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextEditor.TextEditor_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextEditor.TextEditor_Property_TEXT_get();
             internal static readonly int TEXT_COLOR = Interop.TextEditor.TextEditor_Property_TEXT_COLOR_get();
             internal static readonly int FONT_FAMILY = Interop.TextEditor.TextEditor_Property_FONT_FAMILY_get();

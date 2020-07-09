@@ -253,9 +253,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_ResetSignal")]
         public static extern global::System.IntPtr Application_ResetSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_ResizeSignal")]
-        public static extern global::System.IntPtr Application_ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_AppControlSignal")]
         public static extern global::System.IntPtr Application_AppControlSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 

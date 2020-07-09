@@ -11,15 +11,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PushButton_SWIGUpcast")]
             public static extern global::System.IntPtr PushButton_SWIGUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PushButton_Property_UNSELECTED_ICON_get")]
-            public static extern int PushButton_Property_UNSELECTED_ICON_get();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PushButton_Property_SELECTED_ICON_get")]
-            public static extern int PushButton_Property_SELECTED_ICON_get();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PushButton_Property_ICON_ALIGNMENT_get")]
-            public static extern int PushButton_Property_ICON_ALIGNMENT_get();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PushButton_Property_LABEL_PADDING_get")]
             public static extern int PushButton_Property_LABEL_PADDING_get();
 

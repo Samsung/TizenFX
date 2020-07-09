@@ -399,8 +399,8 @@ namespace Tizen.NUI
                 int row = child.Row.Start;
                 int columnEnd = child.Column.End;
                 int rowEnd = child.Row.End;
-                float l = hLocations[column] + left.AsDecimal() + Padding.Start;
-                float t = vLocations[row] + top.AsDecimal() + Padding.Top;
+                float l = hLocations[column] + Padding.Start;
+                float t = vLocations[row] + Padding.Top;
                 float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing;
                 float height = vLocations[rowEnd] - vLocations[row] - RowSpacing;
 
