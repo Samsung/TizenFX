@@ -28,7 +28,7 @@ $(function () {
 
   function registerMonikerChangedEvent(obj) {
     obj.change(function(event) {
-      window.location.href = '/' + event.target.value + '/api/';
+      window.location.href = '../../' + event.target.value + '/api/';
     });
   }
 
