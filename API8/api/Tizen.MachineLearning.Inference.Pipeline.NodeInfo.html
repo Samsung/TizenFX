@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Pipeline.NodeInfo
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Pipeline.NodeInfo
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API8">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo">
+  
+  
+  <h1 id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo" class="text-break">Class Pipeline.NodeInfo
+  </h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.MachineLearning.Inference.html">Tizen.MachineLearning.Inference</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.MachineLearning.Inference.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>8</span></dd></dl>
+  
+  <div class="markdown level0 summary"><p>NodeInfo class for node information in pipeline.
+Note that, node is depend on the pipeline. If the pipeline is closed, all the node information is invalid.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class NodeInfo</code></pre>
+  </div>
+
+  
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div><span class="xref">Pipeline.NodeInfo</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.SinkNode.html">Pipeline.SinkNode</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.SourceNode.html">Pipeline.SourceNode</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.SwitchNode.html">Pipeline.SwitchNode</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.ValveNode.html">Pipeline.ValveNode</a></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/Pipeline.cs/#L576">View Source</a>
+  </span>
+  <a id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo__ctor_" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.#ctor*"></a>
+  <h4 id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo__ctor_Tizen_MachineLearning_Inference_Pipeline_NodeType_System_String_Tizen_MachineLearning_Inference_Pipeline_" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.#ctor(Tizen.MachineLearning.Inference.Pipeline.NodeType,System.String,Tizen.MachineLearning.Inference.Pipeline)">NodeInfo(Pipeline.NodeType, String, Pipeline)</h4>
+  <div class="markdown level1 summary"><p>Creates a new NodeInfo instance with the given node information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected NodeInfo(Pipeline.NodeType type, string name, Pipeline pipe)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.NodeType.html">Pipeline.NodeType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The node type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The node name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.html">Pipeline</a></td>
+        <td><span class="parametername">pipe</span></td>
+        <td><p>The Pipeline instance the node included.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/machine_learning.inference</span></span></h6>
+  
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/Pipeline.cs/#L598">View Source</a>
+  </span>
+  <a id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Name_" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Name*"></a>
+  <h4 id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Name" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The node name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/Pipeline.cs/#L592">View Source</a>
+  </span>
+  <a id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Type_" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Type*"></a>
+  <h4 id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Type" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Type">Type</h4>
+  <div class="markdown level1 summary"><p>The node type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pipeline.NodeType Type { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.MachineLearning.Inference.Pipeline.NodeType.html">Pipeline.NodeType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/Pipeline.cs/#L604">View Source</a>
+  </span>
+  <a id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Valid_" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Valid*"></a>
+  <h4 id="Tizen_MachineLearning_Inference_Pipeline_NodeInfo_Valid" data-uid="Tizen.MachineLearning.Inference.Pipeline.NodeInfo.Valid">Valid</h4>
+  <div class="markdown level1 summary"><p>The flag to indicate valid state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Valid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/Pipeline.cs/#L566" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright &copy; 2016-2020 Samsung <br> Generated by <strong>DocFX</strong></span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
