@@ -1,3 +1,0 @@
-index.json filter=lfs diff=lfs merge=lfs -text
-index-prebuilt.json filter=lfs diff=lfs merge=lfs -text
-index*.json filter=lfs diff=lfs merge=lfs -text
