@@ -29,6 +29,8 @@ namespace ElmSharp
         private SmartEvent _pressed;
         private SmartEvent _released;
 
+        private int _notUsedForTest;
+
         /// <summary>
         /// Creates and initializes a new instance of the Button class.
         /// </summary>
@@ -87,6 +89,8 @@ namespace ElmSharp
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Released;
+
+        public bool NoCommentForTest { get; set; }
 
         /// <summary>
         /// Sets or gets the autorepeat feature of a given Bbutton.
