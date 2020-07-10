@@ -15,6 +15,7 @@
  *
  */
 
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -305,6 +306,17 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        /// <summary>TooltipTextProperty</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TooltipTextProperty = BindableProperty.Create("TooltipText", typeof(string), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.TOOLTIP, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        });
+
         /// <summary>
         /// FlexProperty
         /// </summary>
@@ -489,14 +501,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                view.Weight = (float)newValue;
+                view._weight = (float)newValue;
+                view._layout?.RequestLayout();
             }
         },
-
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.Weight;
+            return view._weight;
         });
 
         /// <summary>
@@ -1628,11 +1640,219 @@ namespace Tizen.NUI.BaseComponents
 
             return view.viewStyle?.CornerRadius;
         });
+        /// <summary>WidthSpecification Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WidthSpecificationProperty = BindableProperty.Create("WidthSpecification", typeof(int), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view._widthPolicy = (int)newValue;
+            if (view._oldWidthPolicy != view._widthPolicy)
+            {
+                if (view._widthPolicy >= 0)
+                {
+                    view._measureSpecificationWidth = new MeasureSpecification(new LayoutLength((int)newValue), MeasureSpecification.ModeType.Exactly);
+
+                    if (view._heightPolicy >= 0) // Policy an exact value
+                    {
+                        view.Size2D.Width = view._widthPolicy;
+                    }
+                    else
+                    {
+                        // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        view.Size2D = new Size2D(view._widthPolicy, view._heightPolicy);
+                    }
+                }
+                view._layout?.RequestLayout();
+                view._oldWidthPolicy = view._widthPolicy;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view._widthPolicy;
+        });
+
+        /// <summary>HeightSpecification Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty HeightSpecificationProperty = BindableProperty.Create("HeightSpecification", typeof(int), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view._heightPolicy = (int)newValue;
+            if (view._oldHeightPolicy != view._heightPolicy)
+            {
+                if (view._heightPolicy >= 0)
+                {
+                    view._measureSpecificationHeight = new MeasureSpecification(new LayoutLength((int)newValue), MeasureSpecification.ModeType.Exactly);
+
+                    if (view._widthPolicy >= 0) // Policy an exact value
+                    {
+                        view.Size2D.Height = view._heightPolicy;
+                    }
+                    else
+                    {
+                        // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        view.Size2D = new Size2D(view._widthPolicy, view._heightPolicy);
+                    }
+                }
+                view._layout?.RequestLayout();
+                view._oldHeightPolicy = view._heightPolicy;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view._heightPolicy;
+        });
+
+        /// <summary>LayoutTransition Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LayoutTransitionProperty = BindableProperty.Create("LayoutTransition", typeof(LayoutTransition), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            LayoutTransition layoutTransition = (LayoutTransition)newValue;
+            if (view._layoutTransitions == null)
+            {
+                view._layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+            }
+            LayoutTransitionsHelper.AddTransitionForCondition(view._layoutTransitions, layoutTransition.Condition, layoutTransition, true);
+
+            view.AttachTransitionsToChildren(layoutTransition);
+        });
+        /// <summary>Layout Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LayoutProperty = BindableProperty.Create("Layout", typeof(LayoutItem), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.UpdateLayout((LayoutItem)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view._layout;
+        });
+
+        /// <summary>BackgroundImageSynchronosLoading Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundImageSynchronosLoadingProperty = BindableProperty.Create("BackgroundImageSynchronosLoading", typeof(bool), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view._backgroundImageSynchronosLoading = (bool)newValue;
+            string bgUrl = "";
+            int visualType = 0;
+            view.Background.Find(Visual.Property.Type)?.Get(out visualType);
+            if (visualType == (int)Visual.Type.Image)
+            {
+                view.Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+            }
+
+            if (bgUrl.Length != 0)
+            {
+                PropertyMap bgMap = view.Background;
+                bgMap.Add("synchronousLoading", new PropertyValue((bool)newValue));
+                view.Background = bgMap;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view._backgroundImageSynchronosLoading;
+        });
+
+        /// <summary>TransitionNames Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionNamesProperty = BindableProperty.Create("TransitionNames", typeof(string[]), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.transitionNames = (string[])newValue;
+            view.LoadTransitions();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.transitionNames;
+        });
+
+        /// <summary>EnableControlStatePropagation Property</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableControlStatePropagationProperty = BindableProperty.Create("EnableControlStatePropagation", typeof(bool), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.controlStatePropagation = (bool)newValue;
+
+            foreach (View child in view.Children)
+            {
+                child.EnableControlStatePropagation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.controlStatePropagation;
+        });
 
         /// <summary>
         /// XamlStyleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
+
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageSelector;
+        });
+
+        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundColorSelector;
+        });
+
+        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.colorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.colorSelector;
+        });
+
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorderSelector;
+        });
+
+        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.opacitySelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.opacitySelector;
+        });
     }
 }

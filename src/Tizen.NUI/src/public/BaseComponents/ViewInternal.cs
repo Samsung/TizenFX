@@ -1378,5 +1378,77 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(map));
             }
         }
+
+        private void UpdateLayout(LayoutItem layoutItem)
+        {
+            // Do nothing if layout provided is already set on this View.
+            if (layoutItem == _layout) return;
+
+            Log.Info("NUI", "Setting Layout on:" + Name + "\n");
+            layoutingDisabled = false;
+            layoutSet = true;
+
+            // If new layout being set already has a owner then that owner receives a replacement default layout.
+            // First check if the layout to be set already has a owner.
+            if (layoutItem?.Owner != null)
+            {
+                // Previous owner of the layout gets a default layout as a replacement.
+                layoutItem.Owner.Layout = new AbsoluteLayout();
+
+                // Copy Margin and Padding to replacement LayoutGroup.
+                layoutItem.Owner.Layout.Margin = layoutItem.Margin;
+                layoutItem.Owner.Layout.Padding = layoutItem.Padding;
+            }
+
+            // Copy Margin and Padding to new layout being set or restore padding and margin back to
+            // View if no replacement. Previously margin and padding values would have been moved from
+            // the View to the layout.
+            if (_layout != null) // Existing layout
+            {
+                if (layoutItem != null)
+                {
+                    // Existing layout being replaced so copy over margin and padding values.
+                    layoutItem.Margin = _layout.Margin;
+                    layoutItem.Padding = _layout.Padding;
+                }
+                else
+                {
+                    // Layout not being replaced so restore margin and padding to View.
+                    SetValue(MarginProperty, _layout.Margin);
+                    SetValue(PaddingProperty, _layout.Padding);
+                    NotifyPropertyChanged();
+                }
+            }
+            else
+            {
+                // First Layout to be added to the View hence copy
+
+                // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
+                if (layoutItem != null)
+                {
+                    if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
+                    {
+                        // If View already has a margin set then store it in Layout instead.
+                        layoutItem.Margin = Margin;
+                        SetValue(MarginProperty, new Extents(0, 0, 0, 0));
+                        NotifyPropertyChanged();
+                    }
+
+                    if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
+                    {
+                        // If View already has a padding set then store it in Layout instead.
+                        layoutItem.Padding = Padding;
+                        SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+
+            // Remove existing layout from it's parent layout group.
+            _layout?.Unparent();
+
+            // Set layout to this view
+            SetLayout(layoutItem);
+        }
     }
 }

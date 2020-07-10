@@ -274,10 +274,7 @@ namespace Tizen.NUI.BaseComponents
                     viewStyle.BackgroundImage = null;
                     viewStyle.BackgroundColor = value;
                 }
-                else
-                {
-                    SetValue(BackgroundColorProperty, value);
-                }
+                SetValue(BackgroundColorProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -300,10 +297,7 @@ namespace Tizen.NUI.BaseComponents
                     viewStyle.BackgroundColor = null;
                     viewStyle.BackgroundImage = value;
                 }
-                else
-                {
-                    SetValue(BackgroundImageProperty, value);
-                }
+                SetValue(BackgroundImageProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -326,10 +320,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.BackgroundImageBorder = value;
                 }
-                else
-                {
-                    SetValue(BackgroundImageBorderProperty, value);
-                }
+                SetValue(BackgroundImageBorderProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -478,7 +469,7 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
+                SetValue(TooltipTextProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -806,10 +797,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.Opacity = value;
                 }
-                else
-                {
-                    SetValue(OpacityProperty, value);
-                }
+                SetValue(OpacityProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -1937,35 +1925,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public int WidthSpecification
         {
-            get
-            {
-                return _widthPolicy;
-            }
-            set
-            {
-                _widthPolicy = value;
-                if( _oldWidthPolicy != _widthPolicy )
-                {
-                    if (_widthPolicy >= 0)
-                    {
-                        _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-
-                        if(_heightPolicy>=0) // Policy an exact value
-                        {
-                            Size2D.Width = _widthPolicy;
-                        }
-                        else
-                        {
-                            // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
-                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
-                        }
-                    }
-                    _layout?.RequestLayout();
-                    _oldWidthPolicy = _widthPolicy;
-                }
-            }
+            get => (int)GetValue(WidthSpecificationProperty);
+            set => SetValue(WidthSpecificationProperty, value);
         }
 
         ///<summary>
@@ -1974,36 +1935,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public int HeightSpecification
         {
-            get
-            {
-                return _heightPolicy;
-            }
-            set
-            {
-                _heightPolicy = value;
-                if( _oldHeightPolicy != _heightPolicy )
-                {
-                    if (_heightPolicy >= 0)
-                    {
-                        _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-
-                        if(_widthPolicy>=0) // Policy an exact value
-                        {
-                            Size2D.Height = _heightPolicy;
-                        }
-                        else
-                        {
-                            // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
-                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
-                        }
-
-                    }
-                    _layout?.RequestLayout();
-                    _oldHeightPolicy = _heightPolicy;
-                }
-            }
+            get => (int)GetValue(HeightSpecificationProperty);
+            set => SetValue(HeightSpecificationProperty, value);
         }
 
         ///<summary>
@@ -2031,16 +1964,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public LayoutTransition LayoutTransition
         {
-            set
-            {
-                if (_layoutTransitions == null)
-                {
-                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
-                }
-                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
-
-                AttachTransitionsToChildren(value);
-            }
+            set => SetValue(LayoutTransitionProperty, value);
         }
 
         /// <summary>
@@ -2107,10 +2031,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     viewStyle.Color = value;
                 }
-                else
-                {
-                    SetValue(ColorProperty, value);
-                }
+                SetValue(ColorProperty, value);
 
                 NotifyPropertyChanged();
             }
@@ -2122,84 +2043,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem Layout
         {
-            get
-            {
-                return _layout;
-            }
-            set
-            {
-                // Do nothing if layout provided is already set on this View.
-                if (value == _layout)
-                {
-                    return;
-                }
-
-                Log.Info("NUI", "Setting Layout on:" + Name + "\n");
-                layoutingDisabled = false;
-                layoutSet = true;
-
-                // If new layout being set already has a owner then that owner receives a replacement default layout.
-                // First check if the layout to be set already has a owner.
-                if (value?.Owner != null)
-                {
-                    // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new AbsoluteLayout();
-
-                    // Copy Margin and Padding to replacement LayoutGroup.
-                    value.Owner.Layout.Margin = value.Margin;
-                    value.Owner.Layout.Padding = value.Padding;
-                }
-
-                // Copy Margin and Padding to new layout being set or restore padding and margin back to
-                // View if no replacement. Previously margin and padding values would have been moved from
-                // the View to the layout.
-                if (_layout != null ) // Existing layout
-                {
-                    if (value != null)
-                    {
-                        // Existing layout being replaced so copy over margin and padding values.
-                        value.Margin = _layout.Margin;
-                        value.Padding = _layout.Padding;
-                    }
-                    else
-                    {
-                      // Layout not being replaced so restore margin and padding to View.
-                      SetValue(MarginProperty, _layout.Margin);
-                      SetValue(PaddingProperty, _layout.Padding);
-                      NotifyPropertyChanged();
-                    }
-                }
-                else
-                {
-                    // First Layout to be added to the View hence copy
-
-                    // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
-                    if (value !=null)
-                    {
-                        if (Margin.Top != 0 || Margin.Bottom !=0 || Margin.Start !=0 || Margin.End != 0)
-                        {
-                            // If View already has a margin set then store it in Layout instead.
-                            value.Margin = Margin;
-                            SetValue(MarginProperty, new Extents(0,0,0,0));
-                            NotifyPropertyChanged();
-                        }
-
-                        if (Padding.Top != 0 || Padding.Bottom !=0 || Padding.Start !=0 || Padding.End != 0)
-                        {
-                            // If View already has a padding set then store it in Layout instead.
-                            value.Padding = Padding;
-                            SetValue(PaddingProperty, new Extents(0,0,0,0));
-                            NotifyPropertyChanged();
-                        }
-                    }
-                }
-
-                // Remove existing layout from it's parent layout group.
-                _layout?.Unparent();
-
-                // Set layout to this view
-                SetLayout(value);
-            }
+            get => (LayoutItem)GetValue(LayoutProperty);
+            set => SetValue(LayoutProperty, value);
         }
 
         /// <summary>
@@ -2208,15 +2053,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public float Weight
         {
-            get
-            {
-                return _weight;
-            }
-            set
-            {
-                _weight = value;
-                _layout?.RequestLayout();
-            }
+            get => (float)GetValue(WeightProperty);
+            set => SetValue(WeightProperty, value);
         }
 
         /// <summary>
@@ -2228,28 +2066,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackgroundImageSynchronosLoading
         {
-            get
-            {
-                return _backgroundImageSynchronosLoading;
-            }
-            set
-            {
-                _backgroundImageSynchronosLoading = value;
-                string bgUrl = "";
-                int visualType = 0;
-                Background.Find(Visual.Property.Type)?.Get(out visualType);
-                if (visualType == (int)Visual.Type.Image)
-                {
-                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                }
-
-                if (bgUrl.Length != 0)
-                {
-                    PropertyMap bgMap = this.Background;
-                    bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
-                    Background = bgMap;
-                }
-            }
+            get => (bool)GetValue(BackgroundImageSynchronosLoadingProperty);
+            set => SetValue(BackgroundImageSynchronosLoadingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2271,15 +2089,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] TransitionNames
         {
-            get
-            {
-                return transitionNames;
-            }
-            set
-            {
-                transitionNames = value;
-                LoadTransitions();
-            }
+            get => (string[])GetValue(TransitionNamesProperty);
+            set => SetValue(TransitionNamesProperty, value);
         }
 
         /// <summary>
@@ -2291,16 +2102,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableControlStatePropagation
         {
-            get => controlStatePropagation;
-            set
-            {
-                controlStatePropagation = value;
-
-                foreach (View child in Children)
-                {
-                    child.EnableControlStatePropagation = value;
-                }
-            }
+            get => (bool)GetValue(EnableControlStatePropagationProperty);
+            set => SetValue(EnableControlStatePropagationProperty, value);
         }
 
         /// <summary>
@@ -2333,16 +2136,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundImageSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundImageSelector;
-        });
         private TriggerableSelector<string> _backgroundImageSelector;
         private TriggerableSelector<string> backgroundImageSelector
         {
@@ -2355,16 +2148,7 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundImageSelector;
             }
         }
-        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundColorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundColorSelector;
-        });
+
         private TriggerableSelector<Color> _backgroundColorSelector;
         private TriggerableSelector<Color> backgroundColorSelector
         {
@@ -2377,17 +2161,6 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
-
-        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.colorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.colorSelector;
-        });
 
         private TriggerableSelector<Color> _colorSelector;
         private TriggerableSelector<Color> colorSelector
@@ -2402,16 +2175,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundImageBorderSelector;
-        });
         private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
         private TriggerableSelector<Rectangle> backgroundImageBorderSelector
         {
@@ -2424,16 +2187,7 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundImageBorderSelector;
             }
         }
-        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.opacitySelector.Clone((Selector<float?>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.opacitySelector;
-        });
+
         private TriggerableSelector<float?> _opacitySelector;
         private TriggerableSelector<float?> opacitySelector
         {
