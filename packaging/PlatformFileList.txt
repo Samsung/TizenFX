@@ -92,6 +92,7 @@ Tizen.Nlp.dll                                      #mobile #mobile-emul
 Tizen.NUI.dll                                      #common #mobile #mobile-emul #tv #wearable
 Tizen.NUI.Components.dll                           #common #mobile #mobile-emul #tv #wearable
 Tizen.NUI.Wearable.dll                             #wearable
+Tizen.NUI.WindowSystem.dll                         #common #mobile #mobile-emul #wearable
 Tizen.PhonenumberUtils.dll                         #mobile #mobile-emul #wearable
 Tizen.Pims.Calendar.dll                            #common #mobile #mobile-emul #tv #wearable
 Tizen.Pims.Contacts.dll                            #mobile #mobile-emul #wearable
