@@ -17,7 +17,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    
     - name: Build
+      if: ${{ github.event_name == 'pull_request' }}
       run: ./build.sh full /p:BuildWithAnalyzer=True
+    - name: Build
+      if: ${{ github.event_name == 'push' }}
+      run: ./build.sh full
     - name: Pack
       run: ./build.sh pack
