@@ -1,8 +1,8 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 8
-%define TIZEN_NET_RPM_VERSION 8.0.0.15385+nui21916
-%define TIZEN_NET_NUGET_VERSION 8.0.0.15385
+%define TIZEN_NET_RPM_VERSION 8.0.0.15387+nui21916
+%define TIZEN_NET_NUGET_VERSION 8.0.0.15387
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -11,7 +11,7 @@
 %define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define TIZEN_NET_RUNTIME_IDENTIFIERS -arm64:4.0.0:5.0.0:5.5.0:6.0.0:6.0.0-arm64
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
