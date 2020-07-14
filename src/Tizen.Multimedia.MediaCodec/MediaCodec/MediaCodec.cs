@@ -172,6 +172,7 @@ namespace Tizen.Multimedia.MediaCodec
 
             Native.SupportedCodecCallback cb = (codecType, _) =>
             {
+                codecType = TypeConverter.ToPublic((SupportedCodecType)codecType);
                 if ((codecType & CodecKindMask) == CodecKindVideo)
                 {
                     MediaFormatVideoMimeType mimeType = 0;
@@ -278,7 +279,7 @@ namespace Tizen.Multimedia.MediaCodec
         private void ConfigureAudio(AudioMediaFormat format, bool encoder,
             MediaCodecTypes supportType)
         {
-            int codecType = (int)format.MimeType & CodecTypeMask;
+            int codecType = TypeConverter.ToNative(format.MimeType);
 
             if (!Enum.IsDefined(typeof(SupportedCodecType), codecType))
             {
@@ -303,7 +304,7 @@ namespace Tizen.Multimedia.MediaCodec
         private void ConfigureVideo(VideoMediaFormat format, bool encoder,
             MediaCodecTypes supportType)
         {
-            int codecType = (int)format.MimeType & CodecTypeMask;
+            int codecType = TypeConverter.ToNative(format.MimeType);
 
             if (!Enum.IsDefined(typeof(SupportedCodecType), codecType))
             {
@@ -387,12 +388,12 @@ namespace Tizen.Multimedia.MediaCodec
         {
             ValidateNotDisposed();
 
-            if (CheckMimeType(typeof(MediaFormatVideoMimeType), (int)type) == false)
+            if (CheckMimeType(typeof(MediaFormatVideoMimeType), type) == false)
             {
                 return 0;
             }
 
-            return GetCodecType((int)type, encoder);
+            return GetCodecType(type, typeof(MediaFormatVideoMimeType), encoder);
         }
 
         /// <summary>
@@ -409,17 +410,18 @@ namespace Tizen.Multimedia.MediaCodec
         {
             ValidateNotDisposed();
 
-            if (CheckMimeType(typeof(MediaFormatAudioMimeType), (int)type) == false)
+            if (CheckMimeType(typeof(MediaFormatAudioMimeType), type) == false)
             {
                 return 0;
             }
 
-            return GetCodecType((int)type, encoder);
+            return GetCodecType(type, typeof(MediaFormatAudioMimeType), encoder);
         }
 
-        private MediaCodecTypes GetCodecType(int mimeType, bool isEncoder)
+        private MediaCodecTypes GetCodecType<T>(T mimeType, Type type, bool isEncoder)
         {
-            int codecType = mimeType & CodecTypeMask;
+            dynamic changedType = Convert.ChangeType(mimeType, type);
+            int codecType = TypeConverter.ToNative(changedType);
 
             Native.GetSupportedType(_handle, codecType, isEncoder, out int value).
                 ThrowIfFailed("Failed to get supported media codec type.");
@@ -427,14 +429,15 @@ namespace Tizen.Multimedia.MediaCodec
             return (MediaCodecTypes)value;
         }
 
-        private bool CheckMimeType(Type type, int value)
+        private bool CheckMimeType<T>(Type mimeType, T value)
         {
-            int codecType = value & CodecTypeMask;
-
-            if (!Enum.IsDefined(type, value))
+            if (!Enum.IsDefined(mimeType, value))
             {
                 throw new ArgumentException($"The mime type value is invalid : { value }.");
             }
+
+            dynamic changedType = Convert.ChangeType(value, mimeType);
+            var codecType = TypeConverter.ToNative(changedType);
 
             return Enum.IsDefined(typeof(SupportedCodecType), codecType);
         }
