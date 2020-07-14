@@ -348,7 +348,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's device.
+        /// Gets or sets the processor type for inference models.
         /// </summary>
         /// <remarks>
         /// The default device is <see cref="InferenceTargetDevice.CPU"/>.<br/>
@@ -442,11 +442,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's input data type.
+        /// Gets or sets the type of data used for inference model.
         /// </summary>
         /// <remarks>
-        /// For example, for a model data supporting float32 this value should be set to <see cref="InferenceDataType.Float32"/>.<br/>
-        /// <see cref="InferenceDataType.Float32"/> will be used internally unless a user doesn't set the value.
+        /// For example, this value should be set to <see cref="InferenceDataType.Float32"/> for a model data supporting float32.<br/>
+        /// <see cref="InferenceDataType.Float32"/> will be used internally if a user doesn't set the value.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 8 </since_tizen>

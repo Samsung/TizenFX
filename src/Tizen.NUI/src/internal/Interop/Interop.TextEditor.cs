@@ -8,9 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextEditor
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_RENDERING_BACKEND_get")]
-            public static extern int TextEditor_Property_RENDERING_BACKEND_get();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_TEXT_get")]
             public static extern int TextEditor_Property_TEXT_get();
 

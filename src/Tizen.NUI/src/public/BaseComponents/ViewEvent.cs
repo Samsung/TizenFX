@@ -1068,7 +1068,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="previousState">The previous control state.</param>
             /// <param name="currentState">The current control state.</param>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStateChangedEventArgs(ControlStates previousState, ControlStates currentState)
+            public ControlStateChangedEventArgs(ControlState previousState, ControlState currentState)
             {
                 PreviousState = previousState;
                 CurrentState = currentState;
@@ -1078,13 +1078,13 @@ namespace Tizen.NUI.BaseComponents
             /// The previous control state.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStates PreviousState { get; }
+            public ControlState PreviousState { get; }
 
             /// <summary>
             /// The current control state.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStates CurrentState { get; }
+            public ControlState CurrentState { get; }
         }
 
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;

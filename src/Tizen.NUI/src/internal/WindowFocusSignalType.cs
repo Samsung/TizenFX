@@ -62,9 +62,9 @@ namespace Tizen.NUI
             }
         }
 
-        public void Emit(bool arg)
+        public void Emit(Window window, bool focusIn)
         {
-            Interop.WindowFocusSignalType.WindowFocusSignalType_Emit(swigCPtr, arg);
+            Interop.WindowFocusSignalType.WindowFocusSignalType_Emit(swigCPtr, Window.getCPtr(window), focusIn);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

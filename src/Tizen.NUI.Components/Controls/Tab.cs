@@ -758,7 +758,7 @@ namespace Tizen.NUI.Components
                 }
                 set
                 {
-                    ControlState = value ? ControlStates.Selected : ControlStates.Normal;
+                    ControlState = value ? ControlState.Selected : ControlState.Normal;
                     isSelected = value;
                 }
             }

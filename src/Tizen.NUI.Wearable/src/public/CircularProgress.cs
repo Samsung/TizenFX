@@ -345,13 +345,13 @@ namespace Tizen.NUI.Wearable
                 isEnabled = value;
                 if (isEnabled)
                 {
-                    ControlState = ControlStates.Normal;
+                    ControlState = ControlState.Normal;
 
                     UpdateTrackVisualColor(new Color(0.0f, 0.16f, 0.30f, 1.0f)); // #002A4D
                 }
                 else
                 {
-                    ControlState = ControlStates.Disabled;
+                    ControlState = ControlState.Disabled;
 
                     UpdateTrackVisualColor(new Color(0.25f, 0.25f, 0.25f, 1.0f)); // #404040
                 }
@@ -421,7 +421,7 @@ namespace Tizen.NUI.Wearable
         {
             base.OnControlStateChanged(controlStateChangedInfo);
 
-            var stateEnabled = !((controlStateChangedInfo.CurrentState & ControlStates.Disabled) == ControlStates.Disabled);
+            var stateEnabled = !controlStateChangedInfo.CurrentState.Contains(ControlState.Disabled);
 
             if (isEnabled != stateEnabled)
             {

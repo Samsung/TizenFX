@@ -876,7 +876,7 @@ namespace Tizen.NUI.Components
 
             if (!isFocused && !isPressed)
             {
-                ControlState = ControlStates.Normal;
+                ControlState = ControlState.Normal;
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
@@ -886,7 +886,7 @@ namespace Tizen.NUI.Components
             }
             else if (isPressed)
             {
-                ControlState = ControlStates.Pressed;
+                ControlState = ControlState.Pressed;
 
                 if (stateChangedHandler != null)
                 {
@@ -897,7 +897,7 @@ namespace Tizen.NUI.Components
             }
             else if (!isPressed && isFocused)
             {
-                ControlState = ControlStates.Focused;
+                ControlState = ControlState.Focused;
 
                 if (stateChangedHandler != null)
                 {

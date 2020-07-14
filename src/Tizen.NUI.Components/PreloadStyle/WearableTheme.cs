@@ -135,7 +135,7 @@ namespace Tizen.NUI.Components
         {
             return new PaginationStyle
             {
-                IndicatorImageURL = new Selector<string>()
+                IndicatorImageUrl = new Selector<string>()
                 {
                     Normal = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_normal_dot.png"),
                     Selected = StyleManager.GetFrameworkResourcePath("nui_component_default_pagination_focus_dot.png"),

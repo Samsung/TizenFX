@@ -29,38 +29,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageInterface_RequiresBlending")]
             public static extern bool NativeImageInterface_RequiresBlending(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_NativeImage__SWIG_0")]
-            public static extern global::System.IntPtr new_NativeImage__SWIG_0();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_NativeImage")]
-            public static extern void delete_NativeImage(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_NativeImage__SWIG_1")]
-            public static extern global::System.IntPtr new_NativeImage__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_Assign")]
-            public static extern global::System.IntPtr NativeImage_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_CreateGlTexture")]
-            public static extern void NativeImage_CreateGlTexture(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_New")]
-            public static extern global::System.IntPtr NativeImage_New(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_DownCast")]
-            public static extern global::System.IntPtr NativeImage_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_GetCustomFragmentPreFix")]
-            public static extern string NativeImage_GetCustomFragmentPreFix(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_GetCustomSamplerTypename")]
-            public static extern string NativeImage_GetCustomSamplerTypename(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageInterface_SWIGUpcast")]
             public static extern global::System.IntPtr NativeImageInterface_SWIGUpcast(global::System.IntPtr jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImage_SWIGUpcast")]
-            public static extern global::System.IntPtr NativeImage_SWIGUpcast(global::System.IntPtr jarg1);
         }
     }
 }

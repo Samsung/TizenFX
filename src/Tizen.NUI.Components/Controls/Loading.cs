@@ -61,8 +61,8 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Loading)bindable;
-            return instance.Style.Size;
+            var instance = (View)bindable;
+            return instance.Size;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

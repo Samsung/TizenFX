@@ -24,12 +24,12 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class is used to send commands from the control device (For example, headset) to the target device (For example, media player).
     /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
+    /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
     /// <remarks>
     /// This class can be obtained from BluetoothDevice.GetProfile method.
     /// </remarks>
-    /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
-    /// <feature> http://tizen.org/feature/network.bluetooth.audio.controller </feature>
-    /// <since_tizen> 8 </since_tizen>
     public class BluetoothAvrcpControl : BluetoothProfile
     {
         private TaskCompletionSource<bool> _taskForConnection;
@@ -125,9 +125,11 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Asynchronously connects the remote device
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         public Task ConnectAsync()
         {
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
@@ -143,9 +145,11 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Asynchronously disconnects the remote device
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails</exception>
         public Task DisconnectAsync()
         {
             if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
@@ -160,14 +164,16 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property for the equalizer mode of target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
-        /// or when notifying the repeat mode state to the remote device fails.
+        /// or when notifying the equalizer state to the remote device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public EqualizerState EqualizerState
         {
             get
@@ -193,14 +199,16 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property for the repeat mode of target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the repeat mode state to the remote device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public RepeatMode RepeatMode
         {
             get
@@ -226,14 +234,16 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property for the suffle mode of target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
-        /// or if retrieving scan mode of the remote device fails.
+        /// or if retrieving shuffle mode of the remote device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public ShuffleMode ShuffleMode
         {
             get
@@ -259,14 +269,16 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property for the scan mode of target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or if retrieving scan mode of the remote device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public ScanMode ScanMode
         {
             get
@@ -292,15 +304,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Gets position of the track being played on the target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
         /// <returns> Play position of the track being played on the target device </returns>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or if there is an error retrieving the position of the track that is currently being played.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public uint GetPosition()
         {
             if (_isConnected == true)
@@ -317,15 +331,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Gets player state of the target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
         /// <returns> Play status of the target device </returns>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or if there happens to be an error while retrieving the player state of the target device.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public PlayerState GetPlayStatus()
         {
             if (_isConnected == true)
@@ -342,15 +358,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Gets info of the track being played on the target device.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
         /// <returns> Info of the track being played on the target device </returns>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or if there happens to be an error while retrieving info of the track being played on the target.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public Track GetTrackInfo()
         {
             if (_isConnected == true)
@@ -367,15 +385,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sends a particular play command to the target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="command">Command to be sent</param>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when sending command to the target device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         public void SendPlayerCommand(PlayerCommand command)
         {
             if (_isConnected == true)
@@ -391,16 +411,19 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sends a play command to a particular target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="command">Command to be sent</param>
         /// <param name="remoteAddress">Address of the device to send command</param>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when sending command to the target device fails.
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendPlayerCommandTo(PlayerCommand command, string remoteAddress)
         {
@@ -417,15 +440,18 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sets absolute volume of target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
         /// <param name="volume">The volume level to be set</param>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when setting absolute volume of the target device fails
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAbsoluteVolume(uint volume)
         {
@@ -442,14 +468,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Increases volume of target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when increasing volume of the target device fails
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void IncreaseVolume()
         {
@@ -466,14 +495,17 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Decreases volume of target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when decreasing volume of the target device fails
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DecreaseVolume()
         {
@@ -490,15 +522,18 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sends delay report to the target device
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.controller</feature>
         /// <remarks>
         /// The remote device must be connected
         /// </remarks>
         /// <param name="delay">Delay to be sent to target</param>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when sending delay to the target device fails
         /// </exception>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDelayReport(uint delay)
         {
