@@ -34,10 +34,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="result"/> is not vailid.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="requestId"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
-        internal CommandCompletedEventArgs(string requestId, MediaControllerError result)
+        internal CommandCompletedEventArgs(string requestId, int result)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControllerError), result, nameof(result));
-
             RequestId = requestId ?? throw new ArgumentNullException(nameof(requestId));
             Result = result;
         }
@@ -49,7 +47,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="result">The result of commands.</param>
         /// <param name="bundle">The extra data.</param>
         /// <since_tizen> 5 </since_tizen>
-        internal CommandCompletedEventArgs(string requestId, MediaControllerError result, Bundle bundle)
+        internal CommandCompletedEventArgs(string requestId, int result, Bundle bundle)
             : this(requestId, result)
         {
             Bundle = bundle;
@@ -65,7 +63,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the result code for matched commands.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal MediaControllerError Result { get; }
+        internal int Result { get; }
 
         /// <summary>
         /// Gets the extra data.
