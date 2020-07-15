@@ -129,9 +129,6 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int UNSELECTED_ICON = Interop.PushButton.PushButton_Property_UNSELECTED_ICON_get();
-            internal static readonly int SELECTED_ICON = Interop.PushButton.PushButton_Property_SELECTED_ICON_get();
-            internal static readonly int ICON_ALIGNMENT = Interop.PushButton.PushButton_Property_ICON_ALIGNMENT_get();
             internal static readonly int LABEL_PADDING = Interop.PushButton.PushButton_Property_LABEL_PADDING_get();
             internal static readonly int ICON_PADDING = Interop.PushButton.PushButton_Property_ICON_PADDING_get();
         }

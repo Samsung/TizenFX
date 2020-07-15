@@ -21,7 +21,7 @@ namespace Tizen.NUI
             public static extern void WindowFocusSignalType_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Emit")]
-            public static extern void WindowFocusSignalType_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            public static extern void WindowFocusSignalType_Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, bool focusIn);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowFocusSignalType")]
             public static extern global::System.IntPtr new_WindowFocusSignalType();

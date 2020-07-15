@@ -155,6 +155,24 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         MovingToPrevious,
+
+        /// <summary>
+        /// Connecting.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Connecting,
+
+        /// <summary>
+        /// Buffering.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Buffering,
+
+        /// <summary>
+        /// Error while playback.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Error
     }
 
     /// <summary>
@@ -276,6 +294,88 @@ namespace Tizen.Multimedia.Remoting
         CroppedFull
     }
 
+    /// <summary>
+    /// Specifies the code which represents the result of commnunication between client and server.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum MediaControlResult
+    {
+        /// <summary>
+        /// The command or the event has been successfully completed.
+        /// </summary>
+        Success,
+
+        /// <summary>
+        /// The command or the event had already been completed.
+        /// </summary>
+        AlreadyDone = 200,
+
+        /// <summary>
+        /// The command or the event is aborted by some external event (e.g. aborted play command by incoming call).
+        /// </summary>
+        Aborted = 300,
+
+        /// <summary>
+        /// The command or the event is denied due to application policy (e.g. cannot rewind in recording).
+        /// </summary>
+        ActionDenied,
+
+        /// <summary>
+        /// The command or the event is not supported.
+        /// </summary>
+        NotSupported,
+
+        /// <summary>
+        /// The command or the event is out of supported range or the limit is reached.
+        /// </summary>
+        Invalid,
+
+        /// <summary>
+        /// Timeout has occurred.
+        /// </summary>
+        Timeout = 400,
+
+        /// <summary>
+        /// The application has failed.
+        /// </summary>
+        ApplicationFailed,
+
+        /// <summary>
+        /// The command or the event has failed because the application has no media.
+        /// </summary>
+        NoMedia,
+
+        /// <summary>
+        /// The command or the event has failed because there is no audio output device.
+        /// </summary>
+        NoAudioOutputDevice,
+
+        /// <summary>
+        /// The command or the event has failed because there is no peer.
+        /// </summary>
+        NoPeer,
+
+        /// <summary>
+        /// The network has failed.
+        /// </summary>
+        NetworkFailed = 500,
+
+        /// <summary>
+        /// The application does not have account.
+        /// </summary>
+        NoAccount = 600,
+
+        /// <summary>
+        /// The application could not log in.
+        /// </summary>
+        LoginFailed,
+
+        /// <summary>
+        /// Unknown error.
+        /// </summary>
+        Unknown = Int32.MaxValue
+    }
+
     internal static class EnumExtensions
     {
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
@@ -294,6 +394,9 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerNativePlaybackState.FastForwarding: return MediaControlPlaybackState.FastForwarding;
                 case MediaControllerNativePlaybackState.Rewind:
                 case MediaControllerNativePlaybackState.Rewinding: return MediaControlPlaybackState.Rewinding;
+                case MediaControllerNativePlaybackState.Connecting: return MediaControlPlaybackState.Connecting;
+                case MediaControllerNativePlaybackState.Buffering: return MediaControlPlaybackState.Buffering;
+                case MediaControllerNativePlaybackState.Error: return MediaControlPlaybackState.Error;
             }
 
             Debug.Fail($"Not supported code for playback state{nativeState}.");
@@ -311,6 +414,9 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlPlaybackState.MovingToPrevious: return MediaControllerNativePlaybackState.MovingToPrev;
                 case MediaControlPlaybackState.FastForwarding: return MediaControllerNativePlaybackState.FastForwarding;
                 case MediaControlPlaybackState.Rewinding: return MediaControllerNativePlaybackState.Rewinding;
+                case MediaControlPlaybackState.Connecting: return MediaControllerNativePlaybackState.Connecting;
+                case MediaControlPlaybackState.Buffering: return MediaControllerNativePlaybackState.Buffering;
+                case MediaControlPlaybackState.Error: return MediaControllerNativePlaybackState.Error;
             }
             return MediaControllerNativePlaybackState.None;
         }

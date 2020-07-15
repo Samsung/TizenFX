@@ -1358,7 +1358,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextField.TextField_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextField.TextField_Property_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT_FOCUSED = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();

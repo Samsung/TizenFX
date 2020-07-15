@@ -203,26 +203,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for opacity of the indicator.
-        /// </summary>
-        internal enum IndicatorBackgroundOpacity
-        {
-            Opaque = 100,
-            Translucent = 50,
-            Transparent = 0
-        }
-
-        /// <summary>
-        /// Enumeration for visible mode of the indicator.
-        /// </summary>
-        internal enum IndicatorVisibleMode
-        {
-            Invisible = 0,
-            Visible = 1,
-            Auto = 2
-        }
-
-        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -1047,24 +1027,6 @@ namespace Tizen.NUI
             bool ret = Interop.Stage.Stage_IsInstalled();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
-        {
-            Interop.WindowInternal.Window_ShowIndicator(swigCPtr, (int)visibleMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetIndicatorBackgroundOpacity(Window.IndicatorBackgroundOpacity opacity)
-        {
-            Interop.WindowInternal.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void RotateIndicator(Window.WindowOrientation orientation)
-        {
-            Interop.WindowInternal.Window_RotateIndicator(swigCPtr, (int)orientation);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

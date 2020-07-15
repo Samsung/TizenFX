@@ -8,9 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextField
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_RENDERING_BACKEND_get")]
-            public static extern int TextField_Property_RENDERING_BACKEND_get();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_get")]
             public static extern int TextField_Property_TEXT_get();
 

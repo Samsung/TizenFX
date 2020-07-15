@@ -289,9 +289,6 @@ namespace Tizen.NUI
     
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WrapActorConstraint")]
             public static extern void WrapActorConstraint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-           
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DEFAULT_RENDERING_BACKEND_get")]
-            public static extern uint DEFAULT_RENDERING_BACKEND_get();
         }
     }
 }
