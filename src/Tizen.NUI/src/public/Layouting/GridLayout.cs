@@ -399,10 +399,10 @@ namespace Tizen.NUI
                 int row = child.Row.Start;
                 int columnEnd = child.Column.End;
                 int rowEnd = child.Row.End;
-                float l = hLocations[column] + Padding.Start;
-                float t = vLocations[row] + Padding.Top;
-                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing;
-                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing;
+                float l = hLocations[column] + Padding.Start + view.Margin.Start;
+                float t = vLocations[row] + Padding.Top + view.Margin.Top;
+                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
+                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
 
                 if (!child.Column.Stretch.HasFlag(StretchFlags.Fill))
                 {
