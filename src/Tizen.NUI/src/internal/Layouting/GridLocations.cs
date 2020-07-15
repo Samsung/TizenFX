@@ -176,12 +176,12 @@ namespace Tizen.NUI
                 verticalStretch = GetVerticalStretch(view);
                 horizontalStretch = GetHorizontalStretch(view);
 
-                if (column + columnSpan > Columns || row + rowSpan > Rows)
+                if (column + columnSpan > maxColumnConut || row + rowSpan > maxRowCount)
                 {
-                    if (column + columnSpan > Columns)
-                        Tizen.Log.Error("NUI", "Column + ColumnSapn exceeds Grid Columns. Column + ColumnSpan (" + column + " + " + columnSpan + ") > Grid Columns(" + Columns + ")");
+                    if (column + columnSpan > maxColumnConut)
+                        Tizen.Log.Error("NUI", "Column + ColumnSapn exceeds Grid Columns. Column + ColumnSpan (" + column + " + " + columnSpan + ") > Grid Columns(" + maxColumnConut + ")");
                     else
-                        Tizen.Log.Error("NUI", "Row + RowSapn exceeds Grid Rows. Row + RowSapn (" + row + " + " + rowSpan + ") > Grid Rows(" + Rows + ")");
+                        Tizen.Log.Error("NUI", "Row + RowSapn exceeds Grid Rows. Row + RowSapn (" + row + " + " + rowSpan + ") > Grid Rows(" + maxRowCount + ")");
 
                     gridChildren[i] = new GridChild(null, new Node(0, 1, 0, 0), new Node(0, 1, 0, 0));
 
