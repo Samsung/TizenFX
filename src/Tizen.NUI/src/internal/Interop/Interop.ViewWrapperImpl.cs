@@ -36,7 +36,6 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_16 delegate16, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_17 delegate17,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_18 delegate18, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_19 delegate19,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_20 delegate20, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_21 delegate21,
-                Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_22 delegate22, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_23 delegate23,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_24 delegate24, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_25 delegate25,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_26 delegate26, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_27 delegate27,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_28 delegate28, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_29 delegate29,

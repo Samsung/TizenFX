@@ -1113,7 +1113,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 string temp;
                 GetProperty(TextField.Property.SELECTED_TEXT).Get(out temp);
-                return (string)temp;
+                return temp;
             }
         }
 
@@ -1266,7 +1266,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void TextField_SelectNone()
+        public void SelectNone()
         {
             Interop.TextField.TextField_SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1358,7 +1358,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextField.TextField_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextField.TextField_Property_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT_FOCUSED = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();

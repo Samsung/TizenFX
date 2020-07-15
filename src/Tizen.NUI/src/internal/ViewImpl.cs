@@ -371,18 +371,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public virtual void OnControlChildAdd(View child)
-        {
-            if (SwigDerivedClassHasMethod("OnControlChildAdd", swigMethodTypes22)) Interop.ViewImplSignal.ViewImpl_OnControlChildAddSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else Interop.ViewImplSignal.ViewImpl_OnControlChildAdd(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public virtual void OnControlChildRemove(View child)
-        {
-            if (SwigDerivedClassHasMethod("OnControlChildRemove", swigMethodTypes23)) Interop.ViewImplSignal.ViewImpl_OnControlChildRemoveSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else Interop.ViewImplSignal.ViewImpl_OnControlChildRemove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
             if (SwigDerivedClassHasMethod("OnStyleChange", swigMethodTypes24)) Interop.ViewImplSignal.ViewImpl_OnStyleChangeSwigExplicitViewImpl(swigCPtr, StyleManager.getCPtr(styleManager), (int)change); else Interop.ViewImplSignal.ViewImpl_OnStyleChange(swigCPtr, StyleManager.getCPtr(styleManager), (int)change);
@@ -538,10 +526,6 @@ namespace Tizen.NUI
                 swigDelegate20 = new SwigDelegateViewImpl_20(SwigDirectorOnLayoutNegotiated);
             if (SwigDerivedClassHasMethod("OnInitialize", swigMethodTypes21))
                 swigDelegate21 = new SwigDelegateViewImpl_21(SwigDirectorOnInitialize);
-            if (SwigDerivedClassHasMethod("OnControlChildAdd", swigMethodTypes22))
-                swigDelegate22 = new SwigDelegateViewImpl_22(SwigDirectorOnControlChildAdd);
-            if (SwigDerivedClassHasMethod("OnControlChildRemove", swigMethodTypes23))
-                swigDelegate23 = new SwigDelegateViewImpl_23(SwigDirectorOnControlChildRemove);
             if (SwigDerivedClassHasMethod("OnStyleChange", swigMethodTypes24))
                 swigDelegate24 = new SwigDelegateViewImpl_24(SwigDirectorOnStyleChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25))
@@ -713,24 +697,6 @@ namespace Tizen.NUI
         private void SwigDirectorOnInitialize()
         {
             OnInitialize();
-        }
-
-        private void SwigDirectorOnControlChildAdd(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildAdd(view);
-            }
-        }
-
-        private void SwigDirectorOnControlChildRemove(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
         }
 
         private void SwigDirectorOnStyleChange(global::System.IntPtr styleManager, int change)

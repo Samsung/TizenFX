@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 Size size = (Size)newValue;
-                ((View)bindable).ViewStyle.Size = size;
+                ((View)bindable).Size = size;
                 if (null != instance.imageVisual)
                 {
                     instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
@@ -61,8 +61,8 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Loading)bindable;
-            return instance.Style.Size;
+            var instance = (View)bindable;
+            return instance.Size;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
