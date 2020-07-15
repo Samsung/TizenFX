@@ -1000,6 +1000,18 @@ namespace Tizen.NUI.BaseComponents
             Interop.TextUtils.TextUtils_UpdateBuffer(PixelBuffer.getCPtr(src), PixelBuffer.getCPtr(dst), x, y, blend);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Splits the text in pages of the size given in @p textParameters
+        /// @note The returned indices are indices to utf32 characters. The input text is encoded in utf8.
+        /// <returns> An array with the indices of the last character of each page
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.PropertyArray GetLastCharacterIndex(RendererParameters textParameters)
+        {
+            Tizen.NUI.PropertyArray ret = new Tizen.NUI.PropertyArray(Interop.TextUtils.TextUtils_GetLastCharacterIndex(RendererParameters.getCPtr(textParameters)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 
 }
