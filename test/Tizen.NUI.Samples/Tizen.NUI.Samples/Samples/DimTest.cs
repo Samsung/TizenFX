@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Tizen.NUI.BaseComponents;
+using NUnit.Framework;
 
 namespace Tizen.NUI.Samples
 {
@@ -63,6 +64,9 @@ namespace Tizen.NUI.Samples
         View filter;
         public void Activate()
         {
+
+            Assert.IsFalse(true, "TDD test, Exception throw");
+
             win = Window.Instance;
             win.BackgroundColor = Color.Green;
             win.KeyEvent += Window_KeyEvent;
