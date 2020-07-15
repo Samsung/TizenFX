@@ -174,11 +174,11 @@ namespace Tizen.NUI.Components
         {
             add
             {
-                stateChangeHander += value;
+                stateChangeHandler += value;
             }
             remove
             {
-                stateChangeHander -= value;
+                stateChangeHandler -= value;
             }
         }
 
@@ -822,7 +822,7 @@ namespace Tizen.NUI.Components
         /// Get current text part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's text part.</return>
@@ -836,7 +836,7 @@ namespace Tizen.NUI.Components
         /// Get current icon part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's icon part.</return>
@@ -850,7 +850,7 @@ namespace Tizen.NUI.Components
         /// Get current overlay image part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's overlay image part.</return>
