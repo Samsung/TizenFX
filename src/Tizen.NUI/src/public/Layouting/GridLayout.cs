@@ -75,7 +75,7 @@ namespace Tizen.NUI
         public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
 
         private const int CellUndefined = int.MinValue;
-        private Orientation gridOrientation = Orientation.Vertical;
+        private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
         private float columnSpacing = 0;
