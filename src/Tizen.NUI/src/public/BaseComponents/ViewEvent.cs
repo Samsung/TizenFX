@@ -462,6 +462,38 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private EventHandler _backKeyPressed;
+
+        /// <summary>
+        /// An event for getting notice when physical back key is pressed.<br />
+        /// This event is emitted BackKey is up.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler BackKeyPressed
+        {
+            add
+            {
+                _backKeyPressed += value;
+                BackKeyManager.Instance.Subscriber.Add(this);
+            }
+
+            remove
+            {
+                BackKeyManager.Instance.Subscriber.Remove(this);
+                _backKeyPressed -= value;
+            }
+        }
+
+        /// <summary>
+        /// Function for emitting BackKeyPressed event outside of View instance
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void EmitBackKeyPressed()
+        {
+            _backKeyPressed.Invoke(this,null);
+        }
+
+
         internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
         {
             add
