@@ -137,5 +137,10 @@ namespace Tizen.NUI
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
         }
+
+        internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
+        {
+            get => swigCPtr;
+        }
     }
 }

@@ -260,7 +260,7 @@ namespace Tizen.NUI
                 }
                 if (trans)
                 {
-                    transDictionary.Add(trans.Name, trans);
+                    transDictionary?.Add(trans.Name, trans);
                 }
             }
         }

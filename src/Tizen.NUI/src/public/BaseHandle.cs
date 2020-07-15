@@ -520,6 +520,11 @@ namespace Tizen.NUI
             /// </summary>
             public bool Result { get; set; }
         }
+
+        internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
+        {
+            get => swigCPtr;
+        }
     }
 
 }

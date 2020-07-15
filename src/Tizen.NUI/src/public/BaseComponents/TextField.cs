@@ -1113,7 +1113,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 string temp;
                 GetProperty(TextField.Property.SELECTED_TEXT).Get(out temp);
-                return (string)temp;
+                return temp;
             }
         }
 
@@ -1266,7 +1266,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void TextField_SelectNone()
+        public void SelectNone()
         {
             Interop.TextField.TextField_SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

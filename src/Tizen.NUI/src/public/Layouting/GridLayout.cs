@@ -54,13 +54,13 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
 
         private const int CellUndefined = int.MinValue;
-        private Orientation gridOrientation = Orientation.Vertical;
+        private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
         private float columnSpacing = 0;
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// Get the value how child is resized within its horizontal space.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StretchFlags GetHorizontalStretch(View view)
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// Get the value how child is resized within its vertical space.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StretchFlags GetVerticalStretch(View view)
@@ -399,10 +399,10 @@ namespace Tizen.NUI
                 int row = child.Row.Start;
                 int columnEnd = child.Column.End;
                 int rowEnd = child.Row.End;
-                float l = hLocations[column] + Padding.Start;
-                float t = vLocations[row] + Padding.Top;
-                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing;
-                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing;
+                float l = hLocations[column] + Padding.Start + view.Margin.Start;
+                float t = vLocations[row] + Padding.Top + view.Margin.Top;
+                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
+                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
 
                 if (!child.Column.Stretch.HasFlag(StretchFlags.Fill))
                 {
