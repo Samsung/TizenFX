@@ -54,13 +54,13 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), StretchFlags.Fill, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// Get the value how child is resized within its horizontal space.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StretchFlags GetHorizontalStretch(View view)
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// Get the value how child is resized within its vertical space.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StretchFlags GetVerticalStretch(View view)
