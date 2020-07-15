@@ -1073,6 +1073,31 @@ namespace Tizen.NUI.Components
             return position;
         }
 
+        /// <summary>
+        /// Scroll position given to ScrollTo.
+        /// This is the position in the opposite direction to the position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.Position);
+            }
+        }
+
+        /// <summary>
+        /// Current scroll position in the middle of ScrollTo animation.
+        /// This is the position in the opposite direction to the current position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollCurrentPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.CurrentPosition);
+            }
+        }
     }
 
 } // namespace
