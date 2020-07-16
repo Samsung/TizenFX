@@ -135,7 +135,7 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab__ctor_" data-uid="Tizen.NUI.Components.Tab.#ctor*"></a>
   <h4 id="Tizen_NUI_Components_Tab__ctor" data-uid="Tizen.NUI.Components.Tab.#ctor">Tab()</h4>
@@ -153,7 +153,7 @@ public Tab()</code></pre>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L290">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L308">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_FontFamily_" data-uid="Tizen.NUI.Components.Tab.FontFamily*"></a>
   <h4 id="Tizen_NUI_Components_Tab_FontFamily" data-uid="Tizen.NUI.Components.Tab.FontFamily">FontFamily</h4>
@@ -184,7 +184,7 @@ public string FontFamily { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L153">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L168">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_ItemSpace_" data-uid="Tizen.NUI.Components.Tab.ItemSpace*"></a>
   <h4 id="Tizen_NUI_Components_Tab_ItemSpace" data-uid="Tizen.NUI.Components.Tab.ItemSpace">ItemSpace</h4>
@@ -215,7 +215,7 @@ public int ItemSpace { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L270">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L287">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_PointSize_" data-uid="Tizen.NUI.Components.Tab.PointSize*"></a>
   <h4 id="Tizen_NUI_Components_Tab_PointSize" data-uid="Tizen.NUI.Components.Tab.PointSize">PointSize</h4>
@@ -246,7 +246,7 @@ public float PointSize { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L111">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L126">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_SelectedItemIndex_" data-uid="Tizen.NUI.Components.Tab.SelectedItemIndex*"></a>
   <h4 id="Tizen_NUI_Components_Tab_SelectedItemIndex" data-uid="Tizen.NUI.Components.Tab.SelectedItemIndex">SelectedItemIndex</h4>
@@ -277,7 +277,7 @@ public int SelectedItemIndex { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L174">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L189">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_Space_" data-uid="Tizen.NUI.Components.Tab.Space*"></a>
   <h4 id="Tizen_NUI_Components_Tab_Space" data-uid="Tizen.NUI.Components.Tab.Space">Space</h4>
@@ -308,11 +308,11 @@ public Extents Space { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L82">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L88">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_Style_" data-uid="Tizen.NUI.Components.Tab.Style*"></a>
   <h4 id="Tizen_NUI_Components_Tab_Style" data-uid="Tizen.NUI.Components.Tab.Style">Style</h4>
-  <div class="markdown level1 summary"><p>Get style of tab.</p>
+  <div class="markdown level1 summary"><p>Return a copied Style instance of Tab</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -334,11 +334,15 @@ public Extents Space { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Components_Tab_Style_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It returns copied Style instance and changing it does not effect to the Tab.
+Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)</p>
+</div>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L310">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L329">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_TextColor_" data-uid="Tizen.NUI.Components.Tab.TextColor*"></a>
   <h4 id="Tizen_NUI_Components_Tab_TextColor" data-uid="Tizen.NUI.Components.Tab.TextColor">TextColor</h4>
@@ -369,7 +373,7 @@ public Color TextColor { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L331">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L351">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_TextColorSelector_" data-uid="Tizen.NUI.Components.Tab.TextColorSelector*"></a>
   <h4 id="Tizen_NUI_Components_Tab_TextColorSelector" data-uid="Tizen.NUI.Components.Tab.TextColorSelector">TextColorSelector</h4>
@@ -400,7 +404,7 @@ public ColorSelector TextColorSelector { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L250">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L266">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_UnderLineBackgroundColor_" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColor*"></a>
   <h4 id="Tizen_NUI_Components_Tab_UnderLineBackgroundColor" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColor">UnderLineBackgroundColor</h4>
@@ -431,7 +435,7 @@ public Color UnderLineBackgroundColor { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L230">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L245">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_UnderLineSize_" data-uid="Tizen.NUI.Components.Tab.UnderLineSize*"></a>
   <h4 id="Tizen_NUI_Components_Tab_UnderLineSize" data-uid="Tizen.NUI.Components.Tab.UnderLineSize">UnderLineSize</h4>
@@ -462,7 +466,7 @@ public Size UnderLineSize { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L132">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_UseTextNaturalSize_" data-uid="Tizen.NUI.Components.Tab.UseTextNaturalSize*"></a>
   <h4 id="Tizen_NUI_Components_Tab_UseTextNaturalSize" data-uid="Tizen.NUI.Components.Tab.UseTextNaturalSize">UseTextNaturalSize</h4>
@@ -496,7 +500,7 @@ public bool UseTextNaturalSize { get; set; }</code></pre>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L357">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L377">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_AddItem_" data-uid="Tizen.NUI.Components.Tab.AddItem*"></a>
   <h4 id="Tizen_NUI_Components_Tab_AddItem_Tizen_NUI_Components_Tab_TabItemData_" data-uid="Tizen.NUI.Components.Tab.AddItem(Tizen.NUI.Components.Tab.TabItemData)">AddItem(Tab.TabItemData)</h4>
@@ -530,7 +534,7 @@ public void AddItem(Tab.TabItemData itemData)</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L380">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L400">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_DeleteItem_" data-uid="Tizen.NUI.Components.Tab.DeleteItem*"></a>
   <h4 id="Tizen_NUI_Components_Tab_DeleteItem_System_Int32_" data-uid="Tizen.NUI.Components.Tab.DeleteItem(System.Int32)">DeleteItem(Int32)</h4>
@@ -564,7 +568,7 @@ public void DeleteItem(int itemIndex)</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L423">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L443">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_Dispose_" data-uid="Tizen.NUI.Components.Tab.Dispose*"></a>
   <h4 id="Tizen_NUI_Components_Tab_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Tab.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
@@ -600,7 +604,7 @@ protected override void Dispose(DisposeTypes type)</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L369">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L389">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Tab_InsertItem_" data-uid="Tizen.NUI.Components.Tab.InsertItem*"></a>
   <h4 id="Tizen_NUI_Components_Tab_InsertItem_Tizen_NUI_Components_Tab_TabItemData_System_Int32_" data-uid="Tizen.NUI.Components.Tab.InsertItem(Tizen.NUI.Components.Tab.TabItemData,System.Int32)">InsertItem(Tab.TabItemData, Int32)</h4>
@@ -642,7 +646,7 @@ public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
   <h3 id="events">Events
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L76">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L78">View Source</a>
   </span>
   <h4 id="Tizen_NUI_Components_Tab_ItemChangedEvent" data-uid="Tizen.NUI.Components.Tab.ItemChangedEvent">ItemChangedEvent</h4>
   <div class="markdown level1 summary"><p>An event for the item changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br></p>
