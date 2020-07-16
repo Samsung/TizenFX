@@ -50,6 +50,10 @@ namespace Tizen.NUI.Components.Extension
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual ImageView OnCreateThumb(Switch switchButton, ImageView thumb)
         {
+            if (switchButton.IsSelected)
+            {
+                OnSelectedChanged(switchButton);
+            }
             return thumb;
         }
 

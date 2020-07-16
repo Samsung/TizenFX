@@ -50,6 +50,7 @@ namespace Tizen.NUI.Components
             InitSubstyle();
         }
 
+
         /// <summary>
         /// Creates a new instance of a ControlStyle with style.
         /// </summary>

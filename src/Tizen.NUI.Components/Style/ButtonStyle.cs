@@ -44,10 +44,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
-            if (buttonStyle.IsSelectable != null && buttonStyle.IsSelectable == true)
-            {
-                buttonStyle.isSelected = (bool?)newValue;
-            }
+            buttonStyle.isSelected = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -252,9 +249,6 @@ namespace Tizen.NUI.Components
                 {
                     Icon?.CopyFrom(buttonStyle.Icon);
                 }
-
-                IsSelectable = buttonStyle.IsSelectable;
-                IconRelativeOrientation = buttonStyle.IconRelativeOrientation;
             }
         }
 
@@ -301,7 +295,6 @@ namespace Tizen.NUI.Components
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent
             };
-            Overlay.PropertyChanged += SubStyleCalledEvent;
 
             Text = new TextLabelStyle()
             {
@@ -313,7 +306,6 @@ namespace Tizen.NUI.Components
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            Text.PropertyChanged += SubStyleCalledEvent;
 
             Icon = new ImageViewStyle()
             {
@@ -321,14 +313,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
             };
-            Icon.PropertyChanged += SubStyleCalledEvent;
 
             IconRelativeOrientation = Button.IconOrientation.Left;
-        }
-
-        private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
-        {
-            OnPropertyChanged();
         }
 
         private void OnIconPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)

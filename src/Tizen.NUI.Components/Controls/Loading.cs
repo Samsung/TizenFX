@@ -35,14 +35,14 @@ namespace Tizen.NUI.Components
             var instance = (Loading)bindable;
             if (newValue != null)
             {
-                instance.Style.Images = (string[])newValue;
+                instance.loadingStyle.Images = (string[])newValue;
                 instance.imageVisual.URLS = new List<string>((string[])newValue);
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.Style.Images;
+            return instance.loadingStyle.Images;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Components
                 int frameRate = (int)newValue;
                 if (0 != frameRate) //It will crash if 0
                 {
-                    instance.Style.FrameRate.All = frameRate;
+                    instance.loadingStyle.FrameRate.All = frameRate;
                     instance.imageVisual.FrameDelay = 1000.0f / frameRate;
                 }
             }
@@ -82,10 +82,11 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.Style.FrameRate?.All ?? (int)(1000/16.6f);
+            return instance.loadingStyle.FrameRate?.All ?? (int)(1000/16.6f);
         });
 
         private AnimatedImageVisual imageVisual = null;
+        private LoadingStyle loadingStyle => ViewStyle as LoadingStyle;
 
         static Loading() { }
 
@@ -120,9 +121,22 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Get style of loading.
+        /// Return a copied Style instance of Loading
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Loading.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>>
         /// <since_tizen> 8 </since_tizen>
-        public new LoadingStyle Style => ViewStyle as LoadingStyle;
+        public new LoadingStyle Style
+        {
+            get
+            {
+                var result = new LoadingStyle(loadingStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading image resource array.
@@ -225,17 +239,17 @@ namespace Tizen.NUI.Components
 
         private void UpdateVisual()
         {
-            if (null != Style.Images)
+            if (null != loadingStyle.Images)
             {
-                imageVisual.URLS = new List<string>(Style.Images);
+                imageVisual.URLS = new List<string>(loadingStyle.Images);
             }
-            if (null != Style.FrameRate?.All && 0 != Style.FrameRate.All.Value)
+            if (null != loadingStyle.FrameRate?.All && 0 != loadingStyle.FrameRate.All.Value)
             {
-                imageVisual.FrameDelay = 1000.0f / (float)Style.FrameRate.All.Value;
+                imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
             }
-            if (null != Style.LoadingSize)
+            if (null != loadingStyle.LoadingSize)
             {
-                this.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
+                this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
             }
         }
     }

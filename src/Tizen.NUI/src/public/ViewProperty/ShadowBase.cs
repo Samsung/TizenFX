@@ -45,8 +45,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase(Vector2 offset, Vector2 extents)
         {
-            Offset = offset;
-            Extents = extents;
+            Offset = new Vector2(offset);
+            Extents = new Vector2(extents);
         }
 
         /// <summary></summary>

@@ -131,6 +131,7 @@ namespace Tizen.NUI.Components
         private float minValue = 0;
         private float currentValue = 0;
         private float bufferValue = 0;
+        private ProgressStyle progressStyle => ViewStyle as ProgressStyle;
 
         static Progress() { }
         /// <summary>
@@ -191,7 +192,18 @@ namespace Tizen.NUI.Components
         /// Get style of progress.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public new ProgressStyle Style => ViewStyle as ProgressStyle;
+        public new ProgressStyle Style
+        {
+            get
+            {
+                var result = new ProgressStyle(progressStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(trackImage);
+                result.Progress.CopyPropertiesFromView(progressImage);
+                result.Buffer.CopyPropertiesFromView(bufferImage);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The property to get/set Track image object URL of the Progress.
@@ -201,13 +213,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.ResourceUrl?.All;
+                return progressStyle?.Track?.ResourceUrl?.All;
             }
             set
             {
-                if (null != Style?.Track)
+                if (null != progressStyle?.Track)
                 {
-                    Style.Track.ResourceUrl = value;
+                    progressStyle.Track.ResourceUrl = value;
                 }
             }
         }
@@ -220,13 +232,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Progress?.ResourceUrl?.All;
+                return progressStyle?.Progress?.ResourceUrl?.All;
             }
             set
             {
-                if (null != Style?.Progress)
+                if (null != progressStyle?.Progress)
                 {
-                    Style.Progress.ResourceUrl = value;
+                    progressStyle.Progress.ResourceUrl = value;
                 }
             }
         }
@@ -239,13 +251,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Buffer?.ResourceUrl?.All;
+                return progressStyle?.Buffer?.ResourceUrl?.All;
             }
             set
             {
-                if (null != Style?.Buffer)
+                if (null != progressStyle?.Buffer)
                 {
-                    Style.Buffer.ResourceUrl = value;
+                    progressStyle.Buffer.ResourceUrl = value;
                     RelayoutRequest();
                 }
             }
@@ -259,13 +271,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.BackgroundColor?.All;
+                return progressStyle?.Track?.BackgroundColor?.All;
             }
             set
             {
-                if (null != Style?.Track)
+                if (null != progressStyle?.Track)
                 {
-                    Style.Track.BackgroundColor = value;
+                    progressStyle.Track.BackgroundColor = value;
                 }
             }
         }
@@ -278,13 +290,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Progress?.BackgroundColor?.All;
+                return progressStyle?.Progress?.BackgroundColor?.All;
             }
             set
             {
-                if (null != Style?.Progress)
+                if (null != progressStyle?.Progress)
                 {
-                    Style.Progress.BackgroundColor = value;
+                    progressStyle.Progress.BackgroundColor = value;
                 }
             }
         }
@@ -297,13 +309,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Buffer?.BackgroundColor?.All;
+                return progressStyle?.Buffer?.BackgroundColor?.All;
             }
             set
             {
-                if (null != Style?.Buffer)
+                if (null != progressStyle?.Buffer)
                 {
-                    Style.Buffer.BackgroundColor = value;
+                    progressStyle.Buffer.BackgroundColor = value;
                 }
             }
         }
@@ -425,7 +437,7 @@ namespace Tizen.NUI.Components
             ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ProgressStyle;
             if (null != tempStyle)
             {
-                Style.CopyFrom(tempStyle);
+                progressStyle.CopyFrom(tempStyle);
                 RelayoutRequest();
             }
         }
@@ -533,7 +545,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = NUI.PivotPoint.TopLeft
                 };
                 Add(trackImage);
-                trackImage.ApplyStyle(Style.Track);
+                trackImage.ApplyStyle(progressStyle.Track);
             }
         }
 
@@ -550,7 +562,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
                 Add(progressImage);
-                progressImage.ApplyStyle(Style.Progress);
+                progressImage.ApplyStyle(progressStyle.Progress);
             }
         }
 
@@ -567,7 +579,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
                 Add(bufferImage);
-                bufferImage.ApplyStyle(Style.Buffer);
+                bufferImage.ApplyStyle(progressStyle.Buffer);
             }
         }
     }

@@ -13,16 +13,8 @@ namespace Tizen.NUI.Components
 
         private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
-        private bool isSelected = false;
-        private bool isEnabled = true;
         private bool isPressed = false;
-
-        private StringSelector textSelector = new StringSelector();
-        private StringSelector translatableTextSelector = new StringSelector();
-        private ColorSelector textColorSelector = new ColorSelector();
-        private FloatSelector pointSizeSelector = new FloatSelector();
-
-        private StringSelector iconURLSelector = new StringSelector();
+        private bool styleApplied = false;
 
         /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
@@ -98,6 +90,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
+            if (!styleApplied) return;
+
             ControlState sourceState = ControlState;
             ControlState targetState;
 
@@ -137,21 +131,21 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (Style.IconRelativeOrientation == null || Icon == null || TextLabel == null)
+            if (Icon == null || TextLabel == null)
             {
                 return;
             }
             TextLabel.WidthResizePolicy = ResizePolicyType.Fixed;
             TextLabel.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingStart = Style.TextPadding.Start;
-            int textPaddingEnd = Style.TextPadding.End;
-            int textPaddingTop = Style.TextPadding.Top;
-            int textPaddingBottom = Style.TextPadding.Bottom;
+            int textPaddingStart = buttonStyle.TextPadding.Start;
+            int textPaddingEnd = buttonStyle.TextPadding.End;
+            int textPaddingTop = buttonStyle.TextPadding.Top;
+            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
 
-            int iconPaddingStart = Style.IconPadding.Start;
-            int iconPaddingEnd = Style.IconPadding.End;
-            int iconPaddingTop = Style.IconPadding.Top;
-            int iconPaddingBottom = Style.IconPadding.Bottom;
+            int iconPaddingStart = buttonStyle.IconPadding.Start;
+            int iconPaddingEnd = buttonStyle.IconPadding.End;
+            int iconPaddingTop = buttonStyle.IconPadding.Top;
+            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
@@ -173,7 +167,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (Style.IconRelativeOrientation == null || Icon == null || TextLabel == null)
+            if (Icon == null || TextLabel == null)
             {
                 return;
             }
@@ -181,15 +175,15 @@ namespace Tizen.NUI.Components
             var buttonIcon = Icon;
             var buttonText = TextLabel;
 
-            int textPaddingStart = Style.TextPadding.Start;
-            int textPaddingEnd = Style.TextPadding.End;
-            int textPaddingTop = Style.TextPadding.Top;
-            int textPaddingBottom = Style.TextPadding.Bottom;
+            int textPaddingStart = buttonStyle.TextPadding.Start;
+            int textPaddingEnd = buttonStyle.TextPadding.End;
+            int textPaddingTop = buttonStyle.TextPadding.Top;
+            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
 
-            int iconPaddingStart = Style.IconPadding.Start;
-            int iconPaddingEnd = Style.IconPadding.End;
-            int iconPaddingTop = Style.IconPadding.Top;
-            int iconPaddingBottom = Style.IconPadding.Bottom;
+            int iconPaddingStart = buttonStyle.IconPadding.Start;
+            int iconPaddingEnd = buttonStyle.IconPadding.End;
+            int iconPaddingTop = buttonStyle.IconPadding.Top;
+            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
 
             switch (IconRelativeOrientation)
             {
@@ -289,7 +283,7 @@ namespace Tizen.NUI.Components
             ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(StyleName) as ButtonStyle;
             if (buttonStyle != null)
             {
-                Style.CopyFrom(buttonStyle);
+                ApplyStyle(buttonStyle);
                 UpdateUIContent();
             }
         }
@@ -335,9 +329,9 @@ namespace Tizen.NUI.Components
 
             var stateEnabled = !controlStateChangedInfo.CurrentState.Contains(ControlState.Disabled);
 
-            if (isEnabled != stateEnabled)
+            if (IsEnabled != stateEnabled)
             {
-                isEnabled = stateEnabled;
+                IsEnabled = stateEnabled;
             }
 
             var statePressed = controlStateChangedInfo.CurrentState.Contains(ControlState.Pressed);
@@ -354,7 +348,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
-            var style = (ButtonStyle)Style;
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
@@ -365,7 +358,7 @@ namespace Tizen.NUI.Components
             MeasureText();
             LayoutChild();
 
-            Sensitive = isEnabled;
+            Sensitive = IsEnabled;
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
