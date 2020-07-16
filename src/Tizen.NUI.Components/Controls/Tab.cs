@@ -36,6 +36,8 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
+        private TabStyle tabStyle => ViewStyle as TabStyle;
+
         static Tab() { }
 
         /// <summary>
@@ -76,10 +78,23 @@ namespace Tizen.NUI.Components
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
         /// <summary>
-        /// Get style of tab.
+        /// Return a copied Style instance of Tab
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Tab.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new TabStyle Style => ViewStyle as TabStyle;
+        public new TabStyle Style
+        {
+            get
+            {
+                var result = new TabStyle(tabStyle);
+                result.CopyPropertiesFromView(this);
+                result.UnderLine.CopyPropertiesFromView(underline);
+                return result;
+            }
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Underline
@@ -134,13 +149,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UseTextNaturalSize ?? false;
+                return tabStyle?.UseTextNaturalSize ?? false;
             }
             set
             {
-                if (null != Style)
+                if (null != tabStyle)
                 {
-                    Style.UseTextNaturalSize = value;
+                    tabStyle.UseTextNaturalSize = value;
                     RelayoutRequest();
                 }
             }
@@ -155,13 +170,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.ItemSpace ?? 0;
+                return tabStyle?.ItemSpace ?? 0;
             }
             set
             {
-                if (null != Style)
+                if (null != tabStyle)
                 {
-                    Style.ItemSpace = value;
+                    tabStyle.ItemSpace = value;
                     RelayoutRequest();
                 }
             }
@@ -198,18 +213,18 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != value && null != Style?.ItemPadding)
+                if(null != value && null != tabStyle?.ItemPadding)
                 {
-                    Style.ItemPadding.CopyFrom(value);
+                    tabStyle.ItemPadding.CopyFrom(value);
 
                     if (null == space)
                     {
                         space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                         {
-                            Style.ItemPadding.Start = start;
-                            Style.ItemPadding.End = end;
-                            Style.ItemPadding.Top = top;
-                            Style.ItemPadding.Bottom = bottom;
+                            tabStyle.ItemPadding.Start = start;
+                            tabStyle.ItemPadding.End = end;
+                            tabStyle.ItemPadding.Top = top;
+                            tabStyle.ItemPadding.Bottom = bottom;
                             RelayoutRequest();
                         }, value.Start, value.End, value.Top, value.Bottom);
                     }
@@ -232,14 +247,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UnderLine?.Size;
+                return Underline.Size;
             }
             set
             {
-                if (null != Style?.UnderLine)
+                if (null != tabStyle?.UnderLine)
                 {
-                    Style.UnderLine.Size = value;
+                    tabStyle.UnderLine.Size = value;
                 }
+                Underline.Size = value;
             }
         }
 
@@ -252,14 +268,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.UnderLine?.BackgroundColor?.All;
+                return Underline.BackgroundColor;
             }
             set
             {
-                if (null != Style?.UnderLine)
+                if (null != tabStyle?.BackgroundColor)
                 {
-                    Style.UnderLine.BackgroundColor = value;
+                    tabStyle.UnderLine.BackgroundColor = value;
                 }
+                Underline.BackgroundColor = value;
             }
         }
 
@@ -272,13 +289,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.PointSize?.All ?? 0;
+                return tabStyle?.Text?.PointSize?.All ?? 0;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != tabStyle?.Text)
                 {
-                    Style.Text.PointSize = value;
+                    tabStyle.Text.PointSize = value;
+                    RelayoutRequest();
                 }
             }
         }
@@ -292,13 +310,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.FontFamily?.All;
+                return tabStyle?.Text?.FontFamily?.All;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != tabStyle?.Text)
                 {
-                    Style.Text.FontFamily = value;
+                    tabStyle.Text.FontFamily = value;
+					RelayoutRequest();
                 }
             }
         }
@@ -312,13 +331,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TextColor?.All;
+                return tabStyle?.Text?.TextColor?.All;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != tabStyle?.Text)
                 {
-                    Style.Text.TextColor = value;
+                    tabStyle.Text.TextColor = value;
+					RelayoutRequest();
                 }
             }
         }
@@ -488,7 +508,7 @@ namespace Tizen.NUI.Components
             TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleName) as TabStyle;
             if (tabStyle != null)
             {
-                Style.CopyFrom(tabStyle);
+                ApplyStyle(tabStyle);
             }
         }
 
@@ -511,13 +531,13 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int preX = (int)Style.ItemPadding.Start;
+            int preX = (int)tabStyle?.ItemPadding.Start;
             int preW = 0;
-            int itemSpace = Style.ItemSpace;
+            int itemSpace = (null != tabStyle) ? tabStyle.ItemSpace : 0;
 
             if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
-                if (Style.UseTextNaturalSize == true)
+                if (tabStyle?.UseTextNaturalSize == true)
                 {
                     for (int i = 0; i < totalNum; i++)
                     {
@@ -530,7 +550,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
+                    preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
                         itemList[i].Position2D.X = preX;
@@ -542,8 +562,8 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                preX = (int)Style.ItemPadding.End;
-                if (Style.UseTextNaturalSize == true)
+                preX = (int)tabStyle?.ItemPadding.End;
+                if (tabStyle?.UseTextNaturalSize == true)
                 {
                     int w = Size2D.Width;
                     for (int i = 0; i < totalNum; i++)
@@ -557,7 +577,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
+                    preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
                         itemList[i].Position2D.X = preX;
@@ -582,16 +602,16 @@ namespace Tizen.NUI.Components
 
         private void AddItemByIndex(TabItemData itemData, int index)
         {
-            if (null == itemData) return;
+            if (null == itemData || null == tabStyle) return;
             int h = 0;
-            int topSpace = (int)Style.ItemPadding.Top;
-            if (Style.UnderLine != null && Style.UnderLine.Size != null)
+            int topSpace = (int)tabStyle.ItemPadding.Top;
+            if (Underline.Size != null)
             {
-                h = (int)Style.UnderLine.Size.Height;
+                h = (int)Underline.Size.Height;
             }
 
             Tab.TabItem item = new TabItem();
-            item.TextItem.ApplyStyle(Style.Text);
+            item.TextItem.ApplyStyle(tabStyle.Text);
 
             item.Text = itemData.Text;
             item.Size2D.Height = Size2D.Height - h - topSpace;
@@ -638,16 +658,15 @@ namespace Tizen.NUI.Components
         
         private void UpdateUnderLinePos()
         {
-            if (underline == null || Style.UnderLine == null || Style.UnderLine.Size == null
-                || itemList == null || itemList.Count <= 0)
+            if (underline == null || Underline.Size == null || itemList == null || itemList.Count <= 0)
             {
                 return;
             }
 
-            Style.UnderLine.Size.Width = itemList[curIndex].Size2D.Width;
+            Underline.Size.Width = itemList[curIndex].Size2D.Width;
 
-            underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Style.UnderLine.Size.Height);
-            underline.BackgroundColor = Style.UnderLine.BackgroundColor.All;
+            underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Underline.Size.Height);
+            underline.BackgroundColor = tabStyle.UnderLine.BackgroundColor.All;
             if (isNeedAnimation)
             {
                 CreateUnderLineAnimation();

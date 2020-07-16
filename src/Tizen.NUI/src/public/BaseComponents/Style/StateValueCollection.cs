@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Clear() => StateValueList.Clear();
+        public virtual void Clear() => StateValueList.Clear();
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -89,5 +89,12 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>The first element that matches the conditions defined by the specified predicate,
         /// if found; otherwise, the default value for type <see cref="StateValuePair{T}"/>.</returns>
         public StateValuePair<T> Find(Predicate<StateValuePair<T>> match) => StateValueList.Find(match);
+
+        /// <summary>
+        /// Add a <see cref="StateValuePair{T}"/> without duplication check.
+        /// </summary>
+        /// <param name="item">The StateValuePair item to add.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void AddWithoutCheck(StateValuePair<T> item) => StateValueList.Add(item);
     }
 }

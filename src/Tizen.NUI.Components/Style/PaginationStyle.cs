@@ -41,7 +41,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public PaginationStyle(PaginationStyle style) : base(style)
         {
-            if (null == style) return;
+            if (null == style) return;            
 
             this.CopyFrom(style);
         }

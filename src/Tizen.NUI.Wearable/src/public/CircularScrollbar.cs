@@ -36,14 +36,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var thickness = (float?)newValue;
-
-            instance.Style.Thickness = thickness;
-            instance.UpdateVisualThickness(thickness ?? 0);
+            instance.UpdateVisualThickness((float?)newValue ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.Thickness ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.trackVisual == null ? 0 : instance.trackVisual.Thickness;
         });
 
         /// <summary>Bindable property of TrackSweepAngle</summary>
@@ -51,14 +49,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackSweepAngleProperty = BindableProperty.Create(nameof(TrackSweepAngle), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var angle = (float?)newValue;
-
-            instance.Style.TrackSweepAngle = angle;
-            instance.UpdateTrackVisualSweepAngle(angle ?? 0);
+            instance.UpdateTrackVisualSweepAngle((float?)newValue ?? 0);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.TrackSweepAngle ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.trackVisual == null ? 0 : instance.trackVisual.SweepAngle;
         });
 
         /// <summary>Bindable property of TrackColor</summary>
@@ -66,14 +62,11 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.Style.TrackColor = color;
-            instance.UpdateTrackVisualColor(color);
+            instance.UpdateTrackVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.TrackColor;
+            return ((CircularScrollbar)bindable).trackVisual?.MixColor;
         });
 
         /// <summary>Bindable property of ThumbColor</summary>
@@ -81,14 +74,11 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.Style.ThumbColor = color;
-            instance.UpdateThumbVisualColor(color);
+            instance.UpdateThumbVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.ThumbColor;
+            return ((CircularScrollbar)bindable).thumbVisual?.MixColor;
         });
 
         private ArcVisual trackVisual;
@@ -154,7 +144,15 @@ namespace Tizen.NUI.Wearable
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new CircularScrollbarStyle Style => ViewStyle as CircularScrollbarStyle;
+        public new CircularScrollbarStyle Style
+        {
+            get
+            {
+                var result = new CircularScrollbarStyle(ViewStyle as CircularScrollbarStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The thickness of the scrollbar and track.

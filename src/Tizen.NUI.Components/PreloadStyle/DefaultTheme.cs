@@ -181,7 +181,6 @@ namespace Tizen.NUI.Components
                 {
                     Url = StyleManager.GetFrameworkResourcePath("nui_component_default_popup_shadow.png"),
                     Border = new Rectangle(24, 24, 24, 24),
-                    Offset = new Vector2(-24, -24),
                     Extents = new Vector2(48, 48),
                 },
                 Title = new TextLabelStyle
@@ -335,6 +334,8 @@ namespace Tizen.NUI.Components
                 Track = new ImageViewStyle
                 {
                     Size = new Size(96, 60),
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
                     ResourceUrl = new Selector<string>
                     {
                         Normal = StyleManager.GetFrameworkResourcePath("nui_component_default_switch_track_n.png"),

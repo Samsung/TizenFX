@@ -192,10 +192,34 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get style of slider.
+        /// Return a copied Style instance of Slider
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Slider.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new SliderStyle Style => ViewStyle as SliderStyle;
+        public new SliderStyle Style
+        {
+            get
+            {
+                var result = new SliderStyle(sliderStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(bgTrackImage);
+                result.Progress.CopyPropertiesFromView(slidedTrackImage);
+                result.Thumb.CopyPropertiesFromView(thumbImage);
+                result.LowIndicatorImage.CopyPropertiesFromView(lowIndicatorImage);
+                result.HighIndicatorImage.CopyPropertiesFromView(highIndicatorImage);
+                result.LowIndicator.CopyPropertiesFromView(lowIndicatorText);
+                result.HighIndicator.CopyPropertiesFromView(highIndicatorText);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Return a copied Style instance of Slider
+        /// </summary>
+        private SliderStyle sliderStyle => ViewStyle as SliderStyle;
 
         /// <summary>
         /// Gets or sets the direction type of slider.
@@ -296,11 +320,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb?.Size;
+                return thumbImage?.Size;
             }
             set
             {
-                Style.Thumb.Size = value;
+                if (null != thumbImage)
+                {
+                    thumbImage.Size = value;
+                    sliderStyle.Thumb.Size = value;
+                }
             }
         }
 
@@ -312,39 +340,27 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.ResourceUrl?.All;
+                return thumbImage?.ResourceUrl;
             }
             set
             {
-                if (null != Style?.Thumb)
+                if (null != thumbImage)
                 {
-                    Style.Thumb.ResourceUrl = value; 
+                    thumbImage.ResourceUrl = value;
+                    sliderStyle.Thumb.ResourceUrl = value;
                 }
             }
         }
 
         /// <summary>
         /// Gets or sets the resource url selector of the thumb image object.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector ThumbImageURLSelector
         {
-            get
-            {
-                return thumbImageURLSelector;
-            }
-            set
-            {
-                if (value == null || thumbImageURLSelector == null)
-                {
-                    Tizen.Log.Fatal("NUI", "[Exception] Slider.ThumbImageURLSelector is null");
-                    throw new NullReferenceException("Slider.ThumbImageURLSelector is null");
-                }
-                else
-                {
-                    thumbImageURLSelector.Clone(value);
-                }
-            }
+            get => thumbImage == null ? null : new StringSelector((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => thumbImage?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -355,13 +371,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.BackgroundColor?.All;
+                return bgTrackImage?.BackgroundColor;
             }
             set
             {
-                if (null != Style?.Track)
+                if (null != bgTrackImage)
                 {
-                    Style.Track.BackgroundColor = value;
+                    bgTrackImage.BackgroundColor = value;
+                    sliderStyle.Track.BackgroundColor = value;
                 }
             }
         }
@@ -374,13 +391,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Progress?.BackgroundColor?.All;
+                return slidedTrackImage?.BackgroundColor;
             }
             set
             {
-                if (null != Style?.Progress)
+                if (null != slidedTrackImage)
                 {
-                    Style.Progress.BackgroundColor = value;
+                    slidedTrackImage.BackgroundColor = value;
+                    sliderStyle.Progress.BackgroundColor = value;
                 }
             }
         }
@@ -409,13 +427,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.LowIndicatorImage?.ResourceUrl?.All;
+                return lowIndicatorImage?.ResourceUrl;
             }
             set
             {
-                if (null != Style?.LowIndicatorImage)
+                if (null != lowIndicatorImage)
                 {
-                    Style.LowIndicatorImage.ResourceUrl = value;
+                    lowIndicatorImage.ResourceUrl = value;
+                    sliderStyle.LowIndicatorImage.ResourceUrl = value;
                 }
             }
         }
@@ -428,13 +447,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.HighIndicatorImage?.ResourceUrl?.All;
+                return highIndicatorImage?.ResourceUrl;
             }
             set
             {
-                if (null != Style?.HighIndicatorImage)
+                if (null != highIndicatorImage)
                 {
-                    Style.HighIndicatorImage.ResourceUrl = value;
+                    highIndicatorImage.ResourceUrl = value;
+                    sliderStyle.HighIndicatorImage.ResourceUrl = value;
                 }
             }
         }
@@ -447,13 +467,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.LowIndicator?.Text?.All;
+                return lowIndicatorText?.Text;
             }
             set
             {
-                if (null != Style?.LowIndicator)
+                if (null != lowIndicatorText)
                 {
-                    Style.LowIndicator.Text= value;
+                    lowIndicatorText.Text= value;
+                    sliderStyle.LowIndicator.Text= value;
                 }
             }
         }
@@ -466,13 +487,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.HighIndicator?.Text?.All;
+                return highIndicatorText?.Text;
             }
             set
             {
-                if (null != Style?.HighIndicator)
+                if (null != highIndicatorText)
                 {
-                    Style.HighIndicator.Text = value;
+                    highIndicatorText.Text = value;
+                    sliderStyle.HighIndicator.Text = value;
                 }
             }
         }
@@ -505,11 +527,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.HighIndicator.Size;
+                return highIndicatorText?.Size;
             }
             set
             {
-                Style.HighIndicator.Size = value;
+                if (null != highIndicatorText)
+                {
+                    highIndicatorText.Size = value;
+                    sliderStyle.HighIndicator.Size = value;
+                }
             }
         }
 
@@ -773,7 +799,7 @@ namespace Tizen.NUI.Components
             SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(StyleName) as SliderStyle;
             if (sliderStyle != null)
             {
-                Style?.CopyFrom(sliderStyle);
+                ApplyStyle(sliderStyle);
                 RelayoutRequest();
             }
         }

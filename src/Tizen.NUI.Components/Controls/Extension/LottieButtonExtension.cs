@@ -70,12 +70,19 @@ namespace Tizen.NUI.Components.Extension
             var lottieStyle = (ILottieButtonStyle)button.Style;
             lottieView.URL = lottieStyle.LottieUrl;
             lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
-            lottieStyle.PlayRange?.GetValue(ControlState.Normal)?.Show(lottieView, true);
+            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(ControlState.Normal, out var result))
+            {
+                result.Show(lottieView, true);
+            }
         }
 
         internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
         {
-            ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, !previousState.Contains(ControlState.Pressed));
+            var lottieStyle = ((ILottieButtonStyle)button.Style);
+            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
+            {
+                result.Show(lottieView, !previousState.Contains(ControlState.Pressed));
+            }
         }
     }
 }

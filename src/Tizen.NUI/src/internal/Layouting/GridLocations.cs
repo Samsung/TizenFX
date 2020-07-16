@@ -105,7 +105,7 @@ namespace Tizen.NUI
             Node[] edgeList = isHorizontal ? hEdgeList : vEdgeList;
             int maxIndex = isHorizontal ? maxColumnConut : maxRowCount;
             float space = isHorizontal ? ColumnSpacing : RowSpacing;
-            float totalExpand = isHorizontal ? totalVerticalExpand : totalHorizontalExpand;
+            float totalExpand = isHorizontal ? totalHorizontalExpand : totalVerticalExpand;
 
             float parentDecimalSize = parentSize.AsDecimal();
             float maxExpandedSize = parentDecimalSize * LayoutChildren.Count;
