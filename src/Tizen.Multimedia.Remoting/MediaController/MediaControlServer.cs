@@ -766,9 +766,8 @@ namespace Tizen.Multimedia.Remoting
 
         #region Command
         /// <summary>
-        /// Requests commands to the client and server receives the result of each request(command).
+        /// Requests command to the client and server receives the result of each request(command).
         /// </summary>
-        /// <remarks></remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <param name="clientId">The client Id to send command.</param>
         /// <returns>
