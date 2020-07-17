@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{5252674B-22C9-408E-8581-E8E888DEDE4D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ComponentBased", "..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj", "{4A50758C-6F2B-4BD4-A609-69EE503E7EE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{5252674B-22C9-408E-8581-E8E888DEDE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5252674B-22C9-408E-8581-E8E888DEDE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5252674B-22C9-408E-8581-E8E888DEDE4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A50758C-6F2B-4BD4-A609-69EE503E7EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A50758C-6F2B-4BD4-A609-69EE503E7EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A50758C-6F2B-4BD4-A609-69EE503E7EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A50758C-6F2B-4BD4-A609-69EE503E7EE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
