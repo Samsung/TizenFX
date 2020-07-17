@@ -111,6 +111,7 @@ namespace Tizen.NUI.Components
         private Calculator calculator;
         private Size containerSize = new Size(0, 0);
         private ScrollbarStyle scrollbarStyle => ViewStyle as ScrollbarStyle;
+        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -341,6 +342,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
+            if (mScrollEnabled == false)
+            {
+                return;
+            }
+
             if (calculator == null)
             {
                 return;
@@ -480,6 +486,23 @@ namespace Tizen.NUI.Components
 
             trackVisual.UpdateVisual(true);
             thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                }
+            }
         }
 
         #endregion Methods
