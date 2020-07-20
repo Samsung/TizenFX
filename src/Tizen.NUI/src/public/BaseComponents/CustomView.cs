@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public virtual bool OnTouch(Touch touch)
         {
-            return false; // Do not consume
+            return OnTouchInternal(touch);
         }
 
         /// <summary>
@@ -779,6 +779,9 @@ namespace Tizen.NUI.BaseComponents
             // We have to do this because the StyleManager on Native side can't workout it out
             // This will also ensure that the style of views/visuals initialized above are applied by the style manager.
             SetStyleName(this.GetType().Name);
+
+            // Set CustomViewOnTouchSupported to true. From the CustomView, OnTouch method is supported from DALi.
+            CustomViewOnTouchSupported = true;
         }
     }
 }

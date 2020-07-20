@@ -140,6 +140,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            _touchDataCallback = OnTouch;
+            TouchSignal().Connect(_touchDataCallback);
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
@@ -2270,6 +2273,7 @@ namespace Tizen.NUI.BaseComponents
                 foreach (View child in Children)
                 {
                     child.EnableControlStatePropagation = value;
+                    child.ListenTouchForControlState = !value;
                 }
             }
         }

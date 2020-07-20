@@ -253,6 +253,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Indicates that this View should listen Touch signal or not to handle its ControlState.
+        /// </summary>
+        internal bool ListenTouchForControlState { get; set; } = true;
+
+        /// <summary>
+        /// Indicates that this View uses OnTouch provided in CustomView.
+        /// </summary>
+        internal bool CustomViewOnTouchSupported { get; set; } = false;
+
         private int LeftFocusableViewId
         {
             get
@@ -1099,6 +1109,36 @@ namespace Tizen.NUI.BaseComponents
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.View.delete_View(swigCPtr);
+        }
+
+        /// <summary>
+        /// Internal use only.
+        /// Note that this is called in TouchSignal in View.
+        /// But it will be called in CustomView.OnTouch in CustomView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool OnTouchInternal(Touch touch)
+        {
+            if (ListenTouchForControlState)
+            {
+                switch(touch.GetState(0))
+                {
+                    case PointStateType.Down:
+                        ControlState = ControlState.Pressed;
+                        break;
+                    case PointStateType.Interrupted:
+                    case PointStateType.Up:
+                        if (ControlState == ControlState.Pressed)
+                        {
+                            ControlState = ControlState.Normal;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            return false;
         }
 
         private void DisConnectFromSignals()
