@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new TextLabelStyle Style => new TextLabelStyle(this);
+        public TextLabelStyle Style => new TextLabelStyle(this);
 
         /// <summary>
         /// Creates the TextLabel control.

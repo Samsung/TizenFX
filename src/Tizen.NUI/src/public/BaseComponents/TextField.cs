@@ -40,7 +40,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new TextFieldStyle Style => new TextFieldStyle(this);
+        public TextFieldStyle Style => new TextFieldStyle(this);
 
         /// <summary>
         /// Creates the TextField control.
