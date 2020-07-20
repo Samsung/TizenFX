@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ControlStyle Style => (ControlStyle)ViewStyle.Clone();
+        public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
         static Control() { }
 

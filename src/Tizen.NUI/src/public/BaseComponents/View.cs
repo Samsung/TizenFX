@@ -67,16 +67,6 @@ namespace Tizen.NUI.BaseComponents
 
         static View() {}
 
-
-        /// <summary>
-        /// Return a copied Style instance of View.
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the View.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle Style => new ViewStyle(this);
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle ViewStyle
