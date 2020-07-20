@@ -130,3 +130,4 @@ Tizen.WebView.dll                                  #common #mobile #mobile-emul 
 30.Tizen.Log.preload                               #common #mobile #mobile-emul #tv #wearable
 20.Tizen.preload                                   #common #mobile #mobile-emul #tv #wearable
 30.Tizen.System.Information.preload                #common #mobile #mobile-emul #tv #wearable
+30.Tizen.NUI.preload                               #common #mobile #mobile-emul #tv #wearable
