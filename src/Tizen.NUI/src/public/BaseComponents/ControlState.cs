@@ -245,6 +245,37 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>The <see cref="ControlState"/> containing the result of the addition.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState operator +(ControlState lhs, ControlState rhs) => Create(lhs, rhs);
+
+        /// <summary>
+        /// The substraction operator.
+        /// </summary>
+        /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
+        /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
+        /// <returns>The <see cref="ControlState"/> containing the result of the substraction.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ControlState operator -(ControlState lhs, ControlState rhs)
+        {
+            if (!lhs.IsCombined)
+            {
+                return ReferenceEquals(lhs, rhs) ? Normal : lhs;
+            }
+            
+            var rest = lhs.stateList.Except(rhs.stateList);
+
+            if (rest.Count() == 0)
+            {
+                return Normal;
+            }
+
+            if (rest.Count() == 1)
+            {
+                return rest.First();
+            }
+
+            ControlState newState = new ControlState();
+            newState.stateList.AddRange(rest);
+            return newState;
+        }
     }
 
     /// <summary>

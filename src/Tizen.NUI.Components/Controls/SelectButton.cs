@@ -174,13 +174,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnTouch(Touch touch)
         {
+            return base.OnTouch(touch);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
             if (false == IsEnabled)
             {
                 return false;
             }
 
             PointStateType state = touch.GetState(0);
-            bool ret = base.OnTouch(touch);
+            bool ret = base.HandleControlStateOnTouch(touch);
             switch (state)
             {
                 case PointStateType.Up:
