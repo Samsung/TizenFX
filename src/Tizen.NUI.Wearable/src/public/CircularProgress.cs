@@ -36,12 +36,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularProgress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularProgress)bindable);
+            instance.CurrentStyle.Thickness = (float)newValue;
             instance.UpdateVisualThickness((float)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (CircularProgress)bindable;
-            return instance.trackVisual == null ? 0 : instance.trackVisual.Thickness;
+            return ((CircularProgress)bindable).CurrentStyle.Thickness;
         });
 
         /// <summary>Bindable property of MaxValue</summary>
@@ -104,11 +104,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularProgress)bindable;
+            instance.CurrentStyle.TrackColor = (Color)newValue;
             instance.UpdateTrackVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularProgress)bindable).trackVisual?.MixColor;
+            return ((CircularProgress)bindable).CurrentStyle.TrackColor;
         });
 
         /// <summary>Bindable property of ProgressColor</summary>
@@ -116,11 +117,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgress), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularProgress)bindable;
+            instance.CurrentStyle.ProgressColor = (Color)newValue;
             instance.UpdateProgressVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularProgress)bindable).progressVisual?.MixColor;
+            return ((CircularProgress)bindable).CurrentStyle.ProgressColor;
         });
 
         /// <summary>Bindable property of IsEnabled</summary>
@@ -357,6 +359,8 @@ namespace Tizen.NUI.Wearable
                 }
             }
         }
+
+        private CircularProgressStyle CurrentStyle => ViewStyle as CircularProgressStyle;
 
         #endregion Properties
 
