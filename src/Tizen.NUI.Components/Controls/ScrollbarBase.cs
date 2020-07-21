@@ -26,6 +26,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ScrollbarBase : Control
     {
+        private bool mScrollEnabled = true;
+
         #region Constructors
 
         /// <summary>
@@ -83,6 +85,12 @@ namespace Tizen.NUI.Components
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
+
+        /// <summary>
+        /// Enable or disable scrolling.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract bool ScrollEnabled { get; set; }
 
         #endregion Methods
     }

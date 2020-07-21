@@ -90,6 +90,7 @@ namespace Tizen.NUI.Wearable
         private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
+        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -313,6 +314,11 @@ namespace Tizen.NUI.Wearable
         {
             currentPosition = position;
 
+            if (mScrollEnabled == false)
+            {
+                return;
+            }
+
             if (thumbVisual == null)
             {
                 return;
@@ -449,6 +455,23 @@ namespace Tizen.NUI.Wearable
 
             thumbVisual.MixColor = thumbColor;
             thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                }
+            }
         }
 
         #endregion Methods
