@@ -1311,6 +1311,60 @@ namespace Tizen.NUI
             Interop.Window.delete_Window(swigCPtr);
         }
 
+        private static Dictionary<int, internalHookCallbackType> frameCallbackList = new Dictionary<int, internalHookCallbackType>();
+
+        private static readonly object locker = new object();
+
+        private static int key = 0;
+
+        private static FrameCallbackType internalHookFrameCallback = OnInternalHookFrameCallback;
+
+        private struct internalHookCallbackType
+        {
+            public FrameCallbackType userCallback;
+            public int frameId;
+        }
+
+        private static void OnInternalHookFrameCallback(int id)
+        {
+            lock (locker)
+            {
+                if (frameCallbackList.ContainsKey(id))
+                {
+                    if (frameCallbackList[id].userCallback != null)
+                    {
+                        frameCallbackList[id].userCallback.Invoke(frameCallbackList[id].frameId);
+                        frameCallbackList.Remove(id);
+                    }
+                    else
+                    {
+                        NUILog.Error($"found userCallback is NULL");
+                        frameCallbackList.Remove(id);
+                    }
+                }
+            }
+        }
+
+        private int AddInterHookCallback(FrameCallbackType callback, int frameId)
+        {
+            if (null == callback)
+            {
+                throw new ArgumentNullException(nameof(callback), "FrameCallbackType should not be null");
+            }
+            var assignedKey = 0;
+            lock (locker)
+            {
+                key++;
+                assignedKey = key;
+                frameCallbackList.Add(assignedKey, new internalHookCallbackType()
+                {
+                    userCallback = callback,
+                    frameId = frameId,
+                });
+            }
+            return assignedKey;
+        }
+
         /// <summary>
         /// Type of callback which is called when the frame rendering is done by graphics driver or when the frame is displayed on display.
         /// </summary>
@@ -1335,14 +1389,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameRenderedCallback(FrameCallbackType callback, int frameId)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
-
-            if (IntPtr.Zero == ip)
-            {
-                throw new ArgumentNullException(nameof(callback), "FrameCallbackType should not be null");
-            }
-
-            Interop.WindowInternal.AddFrameRenderedCallback(swigCPtr, new HandleRef(this, ip), frameId);
+            var assignedKey = AddInterHookCallback(callback, frameId);
+            Interop.WindowInternal.AddFrameRenderedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1364,14 +1412,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFramePresentedCallback(FrameCallbackType callback, int frameId)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
-
-            if (IntPtr.Zero == ip)
-            {
-                throw new ArgumentNullException(nameof(callback), "FrameCallbackType should not be null");
-            }
-
-            Interop.WindowInternal.AddFramePresentedCallback(swigCPtr, new HandleRef(this, ip), frameId);
+            var assignedKey = AddInterHookCallback(callback, frameId);
+            Interop.WindowInternal.AddFramePresentedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

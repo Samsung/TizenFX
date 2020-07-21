@@ -51,7 +51,7 @@ namespace Tizen.NUI.Samples
             //checkCaptureNew();
         }
 
-        private void onCaptureFinished(object sender, CaptureFinishStateEventArgs e)
+        private void onCaptureFinished(object sender, CaptureFinishedEventArgs e)
         {
             log.Debug(tag, $"onCaptureFinished() statue={e.Success} \n");
 
