@@ -22,13 +22,18 @@ namespace Tizen.NUI.Samples
 
         Window win;
         Window.FrameCallbackType cb;
+        TextLabel tl;
+        View view;
         void test()
         {
+            tlog.Fatal(tag, $"test start");
             win = NUIApplication.GetDefaultWindow();
             win.TouchEvent += WinTouchEvent;
-            View view = new View();
+            view = new View();
             view.Size = new Size(100, 100);
             view.BackgroundColor = Color.Blue;
+            view.Focusable = true;
+            view.KeyEvent += View_KeyEvent;
             win.Add(view);
 
             cb = testCallback;
@@ -38,6 +43,14 @@ namespace Tizen.NUI.Samples
             Timer timer = new Timer(5000);
             timer.Tick += testOnTick;
             timer.Start();
+
+            tl = new TextLabel("frameId");
+            tl.Size = new Size(500, 200);
+            tl.Position = new Position(10, 200);
+            tl.BackgroundColor = Color.White;
+            win.Add(tl);
+
+            FocusManager.Instance.SetCurrentFocusView(view);
         }
 
         private void WinTouchEvent(object sender, Window.TouchEventArgs e)
@@ -60,7 +73,49 @@ namespace Tizen.NUI.Samples
 
         void testCallback(int id)
         {
-            Console.WriteLine($"testCallback() id={id}");
+            tlog.Fatal(tag, $"testCallback() id={id}");
+            tl.Text = $"frameId={id}";
+        }
+
+        private bool View_KeyEvent(object source, View.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "1")
+                {
+                    cb = testCallback;
+                    win.AddFrameRenderedCallback(cb, cnt++);
+                    tlog.Fatal(tag, $"1) testOnTick() AddFrameRenderedCallback() send id={cnt}");
+                }
+                else if (e.Key.KeyPressedName == "2")
+                {
+                    cb = testCallback;
+                    win.AddFramePresentedCallback(cb, cnt++);
+                    tlog.Fatal(tag, $"2) testOnTick() AddFramePresentedCallback() send id={cnt}");
+                }
+                else if (e.Key.KeyPressedName == "3")
+                {
+                    cb = testCallback;
+                    win.AddFramePresentedCallback(cb, cnt++);
+                    cb = null;
+                    tlog.Fatal(tag, $"3) testOnTick() AddFramePresentedCallback() send id={cnt}");
+                }
+                else if (e.Key.KeyPressedName == "4")
+                {
+                    win.AddFrameRenderedCallback((int id) =>
+                    {
+                        tlog.Fatal(tag, $"testCallback() id={id}");
+                        tl.Text = $"frameId={id}";
+                    }, cnt++);
+                    tlog.Fatal(tag, $"4) testOnTick() AddFrameRenderedCallback() send id={cnt}");
+                }
+                else if (e.Key.KeyPressedName == "Return")
+                {
+                    Random rand = new Random();
+                    view.BackgroundColor = new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), 1);
+                }
+            }
+            return true;
         }
 
 

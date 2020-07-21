@@ -23,6 +23,14 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// ClickedEventArgs is a class to record button click event arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class ClickedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
     /// Button is one kind of common component, a button clearly describes what action will occur when the user selects it.
     /// Button may contain text or an icon.
     /// </summary>
@@ -172,7 +180,14 @@ namespace Tizen.NUI.Components
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use Clicked event instead.")]
         public event EventHandler<ClickEventArgs> ClickEvent;
+
+        /// <summary>
+        /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ClickedEventArgs> Clicked;
 
         /// <summary>
         /// An event for the button state changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -613,8 +628,8 @@ namespace Tizen.NUI.Components
 
                     if (clicked)
                     {
-                        ClickEventArgs eventArgs = new ClickEventArgs();
-                        OnClickInternal(eventArgs);
+                        ClickedEventArgs eventArgs = new ClickedEventArgs();
+                        OnClickedInternal(eventArgs);
                     }
                 }
             }
@@ -687,8 +702,8 @@ namespace Tizen.NUI.Components
 
                         if (clicked)
                         {
-                            ClickEventArgs eventArgs = new ClickEventArgs();
-                            OnClickInternal(eventArgs);
+                            ClickedEventArgs eventArgs = new ClickedEventArgs();
+                            OnClickedInternal(eventArgs);
                         }
 
                         return true;
@@ -736,6 +751,7 @@ namespace Tizen.NUI.Components
         /// ClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use ClickedEventArgs instead.")]
         public class ClickEventArgs : EventArgs
         {
         }

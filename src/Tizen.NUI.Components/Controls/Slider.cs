@@ -22,6 +22,32 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// Slider value changed event data.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SliderValueChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Current Slider value
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public float CurrentValue { get; set; }
+    }
+
+    /// <summary>
+    /// Slider sliding finished event data.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SliderSlidingFinishedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Current Slider value
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public float CurrentValue { get; set; }
+    }
+
+    /// <summary>
     /// A slider lets users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
@@ -108,6 +134,7 @@ namespace Tizen.NUI.Components
         /// The value changed event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use ValueChanged event instead.")]
         public event EventHandler<ValueChangedArgs> ValueChangedEvent
         {
             add
@@ -124,6 +151,7 @@ namespace Tizen.NUI.Components
         /// The sliding finished event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SlidingFinished event instead.")]
         public event EventHandler<SlidingFinishedArgs> SlidingFinishedEvent
         {
             add
@@ -133,6 +161,38 @@ namespace Tizen.NUI.Components
             remove
             {
                 slidingFinishedHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The value changed event handler.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<SliderValueChangedEventArgs> ValueChanged
+        {
+            add
+            {
+                sliderValueChangedHandler += value;
+            }
+            remove
+            {
+                sliderValueChangedHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The sliding finished event handler.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<SliderSlidingFinishedEventArgs> SlidingFinished
+        {
+            add
+            {
+                sliderSlidingFinishedHandler += value;
+            }
+            remove
+            {
+                sliderSlidingFinishedHandler -= value;
             }
         }
 
@@ -830,6 +890,13 @@ namespace Tizen.NUI.Components
                 args.CurrentValue = curValue;
                 valueChangedHandler(this, args);
             }
+
+            if (sliderValueChangedHandler != null)
+            {
+                SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
+                args.CurrentValue = curValue;
+                sliderValueChangedHandler(this, args);
+            }
         }
 
         private bool OnTouchEventForBgTrack(object source, TouchEventArgs e)
@@ -845,6 +912,13 @@ namespace Tizen.NUI.Components
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
                     args.CurrentValue = curValue;
                     slidingFinishedHandler(this, args);
+                }
+
+                if (null !=sliderSlidingFinishedHandler)
+                {
+                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
+                    args.CurrentValue = curValue;
+                    sliderSlidingFinishedHandler(this, args);
                 }
             }
             return false;
@@ -883,6 +957,13 @@ namespace Tizen.NUI.Components
                     ValueChangedArgs args = new ValueChangedArgs();
                     args.CurrentValue = curValue;
                     valueChangedHandler(this, args);
+                }
+
+                if (null != sliderValueChangedHandler)
+                {
+                    SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
+                    args.CurrentValue = curValue;
+                    sliderValueChangedHandler(this, args);
                 }
             }
         }
@@ -1000,12 +1081,14 @@ namespace Tizen.NUI.Components
         /// Value Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs instead.")]
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs.CurrentValue instead.")]
             public float CurrentValue;
         }
 
@@ -1013,12 +1096,14 @@ namespace Tizen.NUI.Components
         /// Value Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs instead.")]
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs.CurrentValue instead.")]
             public float CurrentValue;
         }
 

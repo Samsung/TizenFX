@@ -225,7 +225,7 @@ namespace Tizen.NUI.Samples
             button.WidthSpecification = 580;
             button.HeightSpecification = 80;
             button.TextLabel.Text = "LayoutDirection is left to right";
-            button.ClickEvent += ButtonClickEvent;
+            button.Clicked += ButtonClicked;
 
             parent1.Add(parent2);
             parent1.Add(button);
@@ -278,7 +278,7 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
+        private void ButtonClicked(object sender, ClickedEventArgs e)
         {
             if (popup.LayoutDirection == ViewLayoutDirectionType.LTR)
             {

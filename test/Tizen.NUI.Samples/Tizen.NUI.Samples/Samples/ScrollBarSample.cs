@@ -144,16 +144,16 @@ namespace Tizen.NUI.Samples
             }
 
             button[0].Text = "+";
-            button[0].ClickEvent += Scroll1Add;
+            button[0].Clicked += Scroll1Add;
 
             button[1].Text = "-";
-            button[1].ClickEvent += Scroll1Minus;
+            button[1].Clicked += Scroll1Minus;
 
             button[2].Text = "+ / - 4";
-            button[2].ClickEvent += Scroll1_2move;
+            button[2].Clicked += Scroll1_2move;
 
             button[3].Text = "change direction";
-            button[3].ClickEvent += Scroll1_2Changed;
+            button[3].Clicked += Scroll1_2Changed;
             button[3].Size = new Size(180, 50);
 
             // Set focus to Add Button

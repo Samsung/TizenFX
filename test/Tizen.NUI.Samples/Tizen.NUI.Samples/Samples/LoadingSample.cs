@@ -115,7 +115,7 @@ namespace Tizen.NUI.Samples
             button[0].BackgroundColor = Color.Green;
             layout[0].Add(button[0]);
             button[0].Focusable = true;
-            button[0].ClickEvent += propFpsAdd;
+            button[0].Clicked += propFpsAdd;
             FocusManager.Instance.SetCurrentFocusView(button[0]);
 
             button[1] = new Button();
@@ -125,7 +125,7 @@ namespace Tizen.NUI.Samples
             button[1].BackgroundColor = Color.Green;
             layout[0].Add(button[1]);
             button[1].Focusable = true;
-            button[1].ClickEvent += propFpsMinus;
+            button[1].Clicked += propFpsMinus;
             FocusManager.Instance.SetCurrentFocusView(button[1]);
 
             gridLayout.Add(layout[0]);

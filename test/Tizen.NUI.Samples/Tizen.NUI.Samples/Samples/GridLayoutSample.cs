@@ -118,8 +118,8 @@ namespace Tizen.NUI.Samples
                 Size = new Size(100, 50),
                 Margin = 10,
             };
-            btn_1.ClickEvent += Btn1_ClickEvent;
-            btn_2.ClickEvent += Btn2_ClickEvent;
+            btn_1.Clicked += Btn1_Clicked;
+            btn_2.Clicked += Btn2_Clicked;
 
             bottomView.Add(btn_1);
             bottomView.Add(btn_2);
@@ -149,14 +149,14 @@ namespace Tizen.NUI.Samples
                 Size = new Size(50, 50),
                 Margin = 10,
             };
-            btn_5.ClickEvent += Btn5_ClickEvent;
-            btn_6.ClickEvent += Btn6_ClickEvent;
+            btn_5.Clicked += Btn5_Clicked;
+            btn_6.Clicked += Btn6_Clicked;
 
             bottomView_2.Add(btn_5);
             bottomView_2.Add(btn_6);
         }
 
-        private void Btn1_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void Btn1_Clicked(object sender, ClickedEventArgs e)
         {
             GridLayout layout = new GridLayout();
             layout.Columns = 5;
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Samples
             layout.LayoutWithTransition = true;
         }
 
-        private void Btn2_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void Btn2_Clicked(object sender, ClickedEventArgs e)
         {
             GridLayout layout = new GridLayout();
             layout.LayoutWithTransition = true;
@@ -177,12 +177,12 @@ namespace Tizen.NUI.Samples
             layoutOption = 2;
         }
 
-        private void Btn5_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void Btn5_Clicked(object sender, ClickedEventArgs e)
         {
             ObjectProcess(true);
         }
 
-        private void Btn6_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void Btn6_Clicked(object sender, ClickedEventArgs e)
         {
             ObjectProcess(false);
         }
