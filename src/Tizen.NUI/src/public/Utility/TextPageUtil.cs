@@ -1,15 +1,36 @@
-using System.Collections.Generic;
+/*
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Components;
-using Tizen.NUI.Wearable;
 
-namespace Tizen.NUI.Samples
+namespace Tizen.NUI.Utility
 {
+
+  /// <summary>
+  /// This is a class for stroing the text of a page.
+  /// </summary>
+  [EditorBrowsable(EditorBrowsableState.Never)]
   class PageData
   {
     public string previousTag  {get; set;}
@@ -18,6 +39,10 @@ namespace Tizen.NUI.Samples
     public int endOffset {get; set;}
   }
 
+  /// <summary>
+  /// This is a class that stores information when parsing markup text.
+  /// </summary>
+  [EditorBrowsable(EditorBrowsableState.Never)]
   class TagData
   {
     public string tagName {get; set;}
@@ -25,6 +50,10 @@ namespace Tizen.NUI.Samples
     public bool isEndTag {get; set;}
   }
 
+  /// <summary>
+  /// This is utility class for paging very long text.
+  /// </summary>
+  [EditorBrowsable(EditorBrowsableState.Never)]
   public class TextPageUtil
   {
     private static char LESS_THAN      = '<';
@@ -50,7 +79,11 @@ namespace Tizen.NUI.Samples
     private List<char> characterList;
     private string pageString;
 
-
+    /// <summary>
+    /// When text is inputed, the text is paging in the TextLabe size unit.
+    /// <returns>The total number of pages.</returns>
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public int SetText(TextLabel label, string str)
     {
       if(str == null) return 0;
@@ -125,6 +158,11 @@ namespace Tizen.NUI.Samples
       return totalPageCnt;
     }
 
+    /// <summary>
+    /// Input the page number returns the text of the page.
+    /// <returns>The text of the page.</returns>
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public string GetText(int pageNum)
     {
       if( pageNum > totalPageCnt || pageNum < 1 ) {
