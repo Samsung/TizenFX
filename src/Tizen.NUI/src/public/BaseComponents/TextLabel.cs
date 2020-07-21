@@ -24,7 +24,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
-
     /// <summary>
     /// A control which renders a short text string.<br />
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
@@ -32,6 +31,49 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel : View
     {
+        private class TextLayout : LayoutItem
+        {
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                // Padding will be automatically applied by DALi TextLabel.
+                float totalWidth = widthMeasureSpec.Size.AsDecimal();
+                float totalHeight = heightMeasureSpec.Size.AsDecimal();
+
+                if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                {
+                    if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                    {
+                        totalHeight = Owner.GetHeightForWidth(totalWidth);
+                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+                    }
+                }
+                else
+                {
+                    if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                    {
+                        // GetWidthForHeight is not implemented.
+                        totalWidth = Owner.GetNaturalSize().Width;
+                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                    }
+                    else
+                    {
+                        Vector3 naturalSize = Owner.GetNaturalSize();
+                        totalWidth = naturalSize.Width;
+                        totalHeight = naturalSize.Height;
+
+                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                    }
+                }
+
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
+                                       ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+            }
+        }
+
         static TextLabel() { }
 
         private string textLabelSid = null;
@@ -55,12 +97,14 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true, viewStyle)
         {
+            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -72,6 +116,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -83,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -95,6 +141,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Layout = new TextLayout();
             SetVisible(shown);
         }
 
