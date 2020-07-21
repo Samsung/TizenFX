@@ -188,14 +188,14 @@ namespace Tizen.NUI.Samples
             button = new Button(buttonStyle);
             button.Size = new Size(500, 80);
             button.TextLabel.Text = mode[index];
-            button.ClickEvent += ButtonClickEvent;
+            button.Clicked += ButtonClicked;
             parentView[2].Add(button);
 
             // Button of LayoutDirection
             button2 = new Button(buttonStyle);
             button2.Size = new Size(500, 80);
             button2.TextLabel.Text = "LayoutDirection is left to right";
-            button2.ClickEvent += ButtonClickEvent2;
+            button2.Clicked += ButtonClicked2;
             parentView[2].Add(button2);
         }
 
@@ -264,7 +264,7 @@ namespace Tizen.NUI.Samples
             createText[1].Text = "Create Tab just by Style, Selected index from " + e.PreviousIndex + " to " + e.CurrentIndex;
         }
 
-        private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
+        private void ButtonClicked(object sender, ClickedEventArgs e)
         {
             index = (index + 1) % 4;
             button.TextLabel.Text = mode[index];
@@ -282,7 +282,7 @@ namespace Tizen.NUI.Samples
             };
         }
 
-        private void ButtonClickEvent2(object sender, Button.ClickEventArgs e)
+        private void ButtonClicked2(object sender, ClickedEventArgs e)
         {
             if (tab.LayoutDirection == ViewLayoutDirectionType.LTR)
             {

@@ -81,7 +81,7 @@ namespace Tizen.NUI.Samples
             iconButton.Size = new Size(80, 80);
             iconButton.Icon.ResourceUrl = CommonResource.GetTVResourcePath() + "component/c_radiobutton/c_radiobutton_white_check.png";
             parent2.Add(iconButton);
-            iconButton.ClickEvent += (ojb, e) => {
+            iconButton.Clicked += (ojb, e) => {
                 var btn = iconButton.Icon.GetParent() as Button;
                 string name = btn.Name;
             };

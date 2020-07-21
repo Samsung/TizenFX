@@ -57,7 +57,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="eventArgs">The click information.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnClick(ClickEventArgs eventArgs)
+        protected virtual void OnClicked(ClickedEventArgs eventArgs)
         {
         }
 
@@ -367,12 +367,15 @@ namespace Tizen.NUI.Components
             LayoutChild();
         }
 
-        private void OnClickInternal(ClickEventArgs eventArgs)
+        private void OnClickedInternal(ClickedEventArgs eventArgs)
         {
             Command?.Execute(CommandParameter);
-            OnClick(eventArgs);
-            Extension?.OnClick(this, eventArgs);
-            ClickEvent?.Invoke(this, eventArgs);
+            OnClicked(eventArgs);
+            Extension?.OnClicked(this, eventArgs);
+
+            ClickEventArgs nestedEventArgs = new ClickEventArgs();
+            ClickEvent?.Invoke(this, nestedEventArgs);
+            Clicked?.Invoke(this, eventArgs);
         }
 
         private void OnIconRelayout(object sender, EventArgs e)
