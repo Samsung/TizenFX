@@ -766,14 +766,14 @@ namespace Tizen.Multimedia.Remoting
 
         #region Command
         /// <summary>
-        /// Requests command to the client and server receives the result of each request(command).
+        /// Requests a command to the client and server receives the result of each request(command).
         /// </summary>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <param name="clientId">The client Id to send command.</param>
         /// <returns>
         /// The type of return value is Tuple.<br/>
         /// First item of Tuple represents the <see cref="Bundle"/> and it represents the extra data from client. It can be null.<br/>
-        /// Second item of Tuple represents the result of each requst(command).
+        /// Second item of Tuple represents the result of each request(command).
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="command"/> or <paramref name="clientId"/> is null.
