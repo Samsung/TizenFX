@@ -1,7 +1,6 @@
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Components;
-using Tizen.NUI.Wearable;
+using Tizen.NUI.Utility;
 
 using System;
 using System.IO;
@@ -33,19 +32,10 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
-            TextLabelStyle attr = new TextLabelStyle
-            {
-
-                BackgroundColor = Color.Yellow,
-                TextColor = Color.Blue,
-            };
-
-
-            label = new TextLabel(attr);
+            label = new TextLabel();
             label.Size = new Size(300, 700);
             label.PointSize = 11.0f;
             label.MultiLine = true;
-
 
             TextPageUtil util = new TextPageUtil();
             int pageCount = util.SetText( label, LoadTerms() );
