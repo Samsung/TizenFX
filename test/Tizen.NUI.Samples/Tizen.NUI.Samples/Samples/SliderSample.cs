@@ -249,8 +249,8 @@ namespace Tizen.NUI.Samples
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
-            source.ValueChangedEvent += OnValueChanged;
-            source.SlidingFinishedEvent += OnSlidingFinished;
+            source.ValueChanged += OnValueChanged;
+            source.SlidingFinished += OnSlidingFinished;
             source.Size = new Size(w, h);
             source.CurrentValue = curValue;
             return source;
@@ -266,14 +266,14 @@ namespace Tizen.NUI.Samples
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
-            source.ValueChangedEvent += OnValueChanged;
-            source.SlidingFinishedEvent += OnSlidingFinished;
+            source.ValueChanged += OnValueChanged;
+            source.SlidingFinished += OnSlidingFinished;
             source.Size = new Size(w, h);
             source.CurrentValue = curValue;
             return source;
         }
 
-        private void OnValueChanged(object sender, Slider.ValueChangedArgs args)
+        private void OnValueChanged(object sender, SliderValueChangedEventArgs args)
         {
             Slider source = sender as Slider;
             if (source != null)
@@ -289,7 +289,7 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private void OnSlidingFinished(object sender, Slider.SlidingFinishedArgs args)
+        private void OnSlidingFinished(object sender, SliderSlidingFinishedEventArgs args)
         {
             Slider source = sender as Slider;
             if (source != null)

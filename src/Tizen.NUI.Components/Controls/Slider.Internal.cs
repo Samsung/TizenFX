@@ -44,6 +44,8 @@ namespace Tizen.NUI.Components
         private float currentSlidedOffset;
         private EventHandler<ValueChangedArgs> valueChangedHandler;
         private EventHandler<SlidingFinishedArgs> slidingFinishedHandler;
+        private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
+        private EventHandler<SliderSlidingFinishedEventArgs> sliderSlidingFinishedHandler;
         private EventHandler<StateChangedArgs> stateChangedHandler;
 
         bool isFocused = false;
@@ -202,6 +204,13 @@ namespace Tizen.NUI.Components
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
                     args.CurrentValue = curValue;
                     slidingFinishedHandler(this, args);
+                }
+
+                if (null != sliderSlidingFinishedHandler)
+                {
+                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
+                    args.CurrentValue = curValue;
+                    sliderSlidingFinishedHandler(this, args);
                 }
 
                 UpdateState(isFocused, false);
