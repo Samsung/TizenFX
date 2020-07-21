@@ -45,6 +45,9 @@ namespace Tizen.Network.Nfc
         /// </summary>
         public NfcTag()
         {
+            // A method is need to convert delegate to pass unmanaged layer through Interop call
+            // If we do not convert explicitly it, implicitly convert was occurred
+            // and temporal delegate was created. and it could be released by GC
             _nativeTransceiveCallback = TransceiveCompletedCallback;
             _nativeVoidCallback = VoidCallback;
             _nativeTagReadCallback = ReadNdefCallback;
@@ -126,6 +129,9 @@ namespace Tizen.Network.Nfc
         internal NfcTag(IntPtr handle)
         {
             _tagHandle = handle;
+            _nativeTransceiveCallback = TransceiveCompletedCallback;
+            _nativeVoidCallback = VoidCallback;
+            _nativeTagReadCallback = ReadNdefCallback;
         }
 
         /// <summary>
