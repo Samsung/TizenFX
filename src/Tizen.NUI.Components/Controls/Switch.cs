@@ -66,7 +66,14 @@ namespace Tizen.NUI.Components
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead.")]
         public event EventHandler<SelectEventArgs> SelectedEvent;
+
+        /// <summary>
+        /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
 
         /// <summary>
         /// Return a copied Style instance of Switch
@@ -334,12 +341,20 @@ namespace Tizen.NUI.Components
                 eventArgs.IsSelected = IsSelected;
                 SelectedEvent(this, eventArgs);
             }
+
+            if (SelectedChanged != null)
+            {
+                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
+                eventArgs.IsSelected = IsSelected;
+                SelectedChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
         public class SelectEventArgs : EventArgs
         {
             /// <summary> Select state of Switch </summary>
