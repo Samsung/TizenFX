@@ -194,7 +194,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get => track == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
+            get => track == null ? null : new StringSelector((Selector<string>)track.GetValue(ImageView.ResourceUrlSelectorProperty));
             set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 

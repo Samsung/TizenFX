@@ -420,7 +420,17 @@ namespace Tizen.NUI.Components
         public StringSelector ThumbImageURLSelector
         {
             get => thumbImage == null ? null : new StringSelector((Selector<string>)thumbImage.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => thumbImage?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            set
+            {
+                if (value == null || thumbImage == null)
+                {
+                    throw new NullReferenceException("Slider.ThumbImageURLSelector is null");
+                }
+                else
+                {
+                    thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>
@@ -491,11 +501,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != lowIndicatorImage)
-                {
-                    lowIndicatorImage.ResourceUrl = value;
-                    sliderStyle.LowIndicatorImage.ResourceUrl = value;
-                }
+                if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
+                lowIndicatorImage.ResourceUrl = value;
+                sliderStyle.LowIndicatorImage.ResourceUrl = value;
             }
         }
 
@@ -511,11 +519,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != highIndicatorImage)
-                {
-                    highIndicatorImage.ResourceUrl = value;
-                    sliderStyle.HighIndicatorImage.ResourceUrl = value;
-                }
+                if (null == highIndicatorImage) highIndicatorImage = new ImageView();
+                highIndicatorImage.ResourceUrl = value;
+                sliderStyle.HighIndicatorImage.ResourceUrl = value;
             }
         }
 
