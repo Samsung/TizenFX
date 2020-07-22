@@ -51,15 +51,30 @@ namespace Tizen.NUI.BaseComponents
         /// Constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
+        public VisualView() : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VisualView(ViewStyle viewStyle) : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
+        public VisualView(ViewStyle viewStyle) : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
         {
 
+        }
+
+        /// <summary>Create a VisualView with specified behaviour.</summary>
+        /// <param name="behaviour">CustomView behaviour</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(CustomViewBehaviour behaviour) : base(typeof(VisualView).FullName, behaviour)
+        {
+        }
+
+        /// <summary>Create a VisualView with specified behaviour and a style.</summary>
+        /// <param name="behaviour">CustomView behaviour</param>
+        /// <param name="viewStyle">The ViewStyle.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeof(VisualView).FullName, behaviour, viewStyle)
+        {
         }
 
         // static constructor registers the control type (for user can add kinds of visuals to it)
