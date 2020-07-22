@@ -416,6 +416,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url selector of the thumb image object.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector ThumbImageURLSelector
         {
