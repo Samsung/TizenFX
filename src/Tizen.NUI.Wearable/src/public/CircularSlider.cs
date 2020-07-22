@@ -55,12 +55,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularSlider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularSlider)bindable);
+            instance.CurrentStyle.Thickness = (float)newValue;
             instance.UpdateVisualThickness((float)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (CircularSlider)bindable;
-            return instance.trackVisual == null ? 0 : instance.trackVisual.Thickness;
+            return ((CircularSlider)bindable).CurrentStyle.Thickness;
         });
 
         /// <summary>Bindable property of MaxValue</summary>
@@ -123,11 +123,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
+            instance.CurrentStyle.TrackColor = (Color)newValue;
             instance.UpdateTrackVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSlider)bindable).trackVisual?.MixColor;
+            return ((CircularSlider)bindable).CurrentStyle.TrackColor;
         });
 
         /// <summary>Bindable property of ProgressColor</summary>
@@ -135,11 +136,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
+            instance.CurrentStyle.ProgressColor = (Color)newValue;
             instance.UpdateProgressVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSlider)bindable).progressVisual?.MixColor;
+            return ((CircularSlider)bindable).CurrentStyle.ProgressColor;
         });
 
         /// <summary>Bindable property of ThumbSize</summary>
@@ -164,11 +166,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularSlider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
+            instance.CurrentStyle.ThumbColor = (Color)newValue;
             instance.UpdateThumbVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularSlider)bindable).thumbVisual?.MixColor;
+            return ((CircularSlider)bindable).CurrentStyle.ThumbColor;
         });
 
         /// <summary>Bindable property of IsEnabled</summary>
@@ -436,6 +439,8 @@ namespace Tizen.NUI.Wearable
                 }
             }
         }
+
+        private CircularSliderStyle CurrentStyle => ViewStyle as CircularSliderStyle;
 
         #endregion Properties
 
