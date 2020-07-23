@@ -766,15 +766,15 @@ namespace Tizen.Multimedia.Remoting
 
         #region Command
         /// <summary>
-        /// Requests commands to the client.
+        /// Requests a command to the client and server receives the result of each request(command).
         /// </summary>
-        /// <remarks>
-        /// The client can request the command to execute <see cref="Command"/>, <br/>
-        /// and then, the server receive the result of each request(command).
-        /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <param name="clientId">The client Id to send command.</param>
-        /// <returns><see cref="Bundle"/> represents the extra data from client and it can be null.</returns>
+        /// <returns>
+        /// The type of return value is Tuple.<br/>
+        /// First item of Tuple represents the <see cref="Bundle"/> and it represents the extra data from client. It can be null.<br/>
+        /// Second item of Tuple represents the result of each request(command).
+        /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="command"/> or <paramref name="clientId"/> is null.
         /// </exception>
@@ -783,8 +783,10 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static async Task<Bundle> RequestAsync(Command command, string clientId)
+        /// <exception cref="NotImplementedException">The command which is not supported is used.</exception>
+        /// <seealso cref="CustomCommand"/>
+        /// <since_tizen> 8 </since_tizen>
+        public static async Task<(Bundle bundle, int result)> RequestCommandAsync(Command command, string clientId)
         {
             if (command == null)
             {
@@ -797,7 +799,7 @@ namespace Tizen.Multimedia.Remoting
 
             command.SetRequestInformation(clientId);
 
-            var tcs = new TaskCompletionSource<MediaControllerError>();
+            var tcs = new TaskCompletionSource<int>();
             string reqeustId = null;
             Bundle bundle = null;
 
@@ -816,7 +818,66 @@ namespace Tizen.Multimedia.Remoting
 
                 reqeustId = command.Request(Handle);
 
-                (await tcs.Task).ThrowIfError("Failed to request event.");
+                var result = await tcs.Task;
+
+                return (bundle, result);
+            }
+            finally
+            {
+                CommandCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
+        /// Requests commands to the client.
+        /// </summary>
+        /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <param name="clientId">The client Id to send command.</param>
+        /// <returns><see cref="Bundle"/> represents the extra data from client and it can be null.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="command"/> or <paramref name="clientId"/> is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <seealso cref="CustomCommand"/>
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead.")]
+        public static async Task<Bundle> RequestAsync(Command command, string clientId)
+        {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
+
+            command.SetRequestInformation(clientId);
+
+            var tcs = new TaskCompletionSource<int>();
+            string reqeustId = null;
+            Bundle bundle = null;
+
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    bundle = e.Bundle;
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                CommandCompleted += eventHandler;
+
+                reqeustId = command.Request(Handle);
+
+                ((MediaControllerError)await tcs.Task).ThrowIfError("Failed to request event.");
 
                 return bundle;
             }
