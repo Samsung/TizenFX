@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Tizen.Applications.ComponentBased.Common;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
@@ -18,6 +21,19 @@ namespace Tizen.NUI.WindowSystem.Samples
         Shell.QuickPanelService qpService;
         Shell.TizenRegion qpRegion;
         Button BtnService;
+        Timer _timer;
+
+        Shell.SoftkeyClient softkeyClient;
+        Button BtnSoftkeyClient;
+        TextLabel textSoftkeyClientVisible;
+        TextLabel textSoftkeyClientExpand;
+        TextLabel textSoftkeyClientOpacity;
+
+        Shell.SoftkeyService softkeyService;
+        Button BtnSoftkeyService;
+        TextLabel textSoftkeyServiceVisible;
+        TextLabel textSoftkeyServiceExpand;
+        TextLabel textSoftkeyServiceOpacity;
 
         protected override void OnCreate()
         {
@@ -43,15 +59,35 @@ namespace Tizen.NUI.WindowSystem.Samples
             {
                 Text = "QuickPanelService",
                 Size = new Size(400, 100),
-                Position = new Position(100, 500),
+                Position = new Position(100, 400),
+                Margin = 10,
+            };
+
+            BtnSoftkeyClient = new Button()
+            {
+                Text = "SoftkeyClient",
+                Size = new Size(400, 100),
+                Position = new Position(100, 600),
+                Margin = 10,
+            };
+
+            BtnSoftkeyService = new Button()
+            {
+                Text = "SoftkeyService",
+                Size = new Size(400, 100),
+                Position = new Position(100, 800),
                 Margin = 10,
             };
 
             window.Add(BtnClient);
             window.Add(BtnService);
+            window.Add(BtnSoftkeyClient);
+            window.Add(BtnSoftkeyService);
 
             BtnClient.ClickEvent += BtnClient_ClickEvent;
             BtnService.ClickEvent += BtnService_ClickEvent;
+            BtnSoftkeyClient.ClickEvent += BtnSoftkeyClient_ClickEvent;
+            BtnSoftkeyService.ClickEvent += BtnSoftkeyService_ClickEvent;
 
             tzShell = new Shell.TizenShell();
 
@@ -85,6 +121,8 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
+            window.Remove(BtnSoftkeyService);
+            window.Remove(BtnSoftkeyClient);
             qpClient = new Shell.QuickPanelClient(tzShell, window, Shell.QuickPanelClient.Types.SystemDefault);
 
             qpClient.VisibleChanged += OnVisibleEvent;
@@ -195,10 +233,15 @@ namespace Tizen.NUI.WindowSystem.Samples
         private void BtnService_ClickEvent(object sender, Button.ClickEventArgs e)
         {
             Window window = NUIApplication.GetDefaultWindow();
+            Shell.QuickPanelService.Types type = Shell.QuickPanelService.Types.AppsMenu;
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
-            qpService = new Shell.QuickPanelService(tzShell, window, Shell.QuickPanelService.Types.SystemDefault);
+            window.Remove(BtnSoftkeyService);
+            window.Remove(BtnSoftkeyClient);
+            qpService = new Shell.QuickPanelService(tzShell, window, type);
+            //if ((type == Shell.QuickPanelService.Types.ContextMenu) || (type == Shell.QuickPanelService.Types.AppsMenu))
+                //window.AddAuxiliaryHint("wm.policy.win.user.geometry", "1");
 
             TextLabel textServiceType = new TextLabel($"Type: {qpService.ServiceType}");
             textServiceType.Position = new Position(0, -300);
@@ -261,6 +304,13 @@ namespace Tizen.NUI.WindowSystem.Samples
                 Position = new Position(400, 1000),
                 Margin = 10,
             };
+            Button BtnTimerStop = new Button()
+            {
+                Text = "TimerStop",
+                Size = new Size(300, 80),
+                Position = new Position(50, 50),
+                Margin = 10,
+            };
 
             BtnShow.ClickEvent += BtnServiceShow_ClickEvent;
             BtnHide.ClickEvent += BtnServiceHide_ClickEvent;
@@ -272,6 +322,8 @@ namespace Tizen.NUI.WindowSystem.Samples
             BtnLockTrue.ClickEvent += BtnLockTrue_ClickEvent;
             BtnLockFalse.ClickEvent += BtnLockFalse_ClickEvent;
 
+            BtnTimerStop.ClickEvent += BtnTimerStop_ClickEvent;
+
             window.Add(BtnShow);
             window.Add(BtnHide);
 
@@ -282,6 +334,8 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Add(BtnLockTrue);
             window.Add(BtnLockFalse);
 
+            window.Add(BtnTimerStop);
+
             qpRegion = new Shell.TizenRegion(tzShell);
             qpRegion.Add(window.WindowPosition.X, window.WindowPosition.Y, window.WindowSize.Width, window.WindowSize.Height - 50);
             qpService.SetContentRegion(0, qpRegion);
@@ -291,6 +345,27 @@ namespace Tizen.NUI.WindowSystem.Samples
             qpRegion.Add(window.WindowPosition.X, window.WindowPosition.Y + window.WindowSize.Height - 50, window.WindowSize.Width, 50);
             qpService.SetHandlerRegion(0, qpRegion);
             qpRegion.Dispose();
+
+            _timer = new Timer(2000);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        bool _cnt = true;
+
+        private bool Timer_Tick(object source, Timer.TickEventArgs e)
+        {
+            if (_cnt)
+            {
+                qpService.Show();
+            }
+            else
+            {
+                qpService.Hide();
+            }
+            _cnt = !_cnt;
+            return true;
+
         }
 
         private void BtnServiceShow_ClickEvent(object sender, Button.ClickEventArgs e)
@@ -321,6 +396,254 @@ namespace Tizen.NUI.WindowSystem.Samples
         private void BtnLockFalse_ClickEvent(object sender, Button.ClickEventArgs e)
         {
             qpService.LockScroll(false);
+        }
+        private void BtnTimerStop_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            _timer.Stop();
+        }
+
+        private void BtnSoftkeyClient_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            Window window = NUIApplication.GetDefaultWindow();
+
+            window.Remove(BtnService);
+            window.Remove(BtnClient);
+            window.Remove(BtnSoftkeyService);
+            window.Remove(BtnSoftkeyClient);
+            softkeyClient = new Shell.SoftkeyClient(tzShell, window);
+
+            textSoftkeyClientVisible = new TextLabel($"Visible: {softkeyClient.Visible}");
+            textSoftkeyClientVisible.Position = new Position(0, -100);
+            textSoftkeyClientVisible.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyClientVisible.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyClientVisible.TextColor = Color.Blue;
+            textSoftkeyClientVisible.PointSize = 12.0f;
+            textSoftkeyClientVisible.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyClientVisible.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyClientVisible);
+
+            textSoftkeyClientExpand = new TextLabel($"Expand: {softkeyClient.Expand}");
+            textSoftkeyClientExpand.Position = new Position(0, 0);
+            textSoftkeyClientExpand.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyClientExpand.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyClientExpand.TextColor = Color.Blue;
+            textSoftkeyClientExpand.PointSize = 12.0f;
+            textSoftkeyClientExpand.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyClientExpand.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyClientExpand);
+
+            textSoftkeyClientOpacity = new TextLabel($"Opacity: {softkeyClient.Opacity}");
+            textSoftkeyClientOpacity.Position = new Position(0, 100);
+            textSoftkeyClientOpacity.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyClientOpacity.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyClientOpacity.TextColor = Color.Blue;
+            textSoftkeyClientOpacity.PointSize = 12.0f;
+            textSoftkeyClientOpacity.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyClientOpacity.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyClientOpacity);
+
+            Button BtnExpandSetOn = new Button()
+            {
+                Text = "Expand On",
+                Size = new Size(300, 100),
+                Position = new Position(50, 800),
+                Margin = 10,
+            };
+            Button BtnExpandSetOff = new Button()
+            {
+                Text = "Expand Off",
+                Size = new Size(300, 100),
+                Position = new Position(400, 800),
+                Margin = 10,
+            };
+            Button BtnOpacitySetOpaque = new Button()
+            {
+                Text = "Opacity Opaque",
+                Size = new Size(300, 100),
+                Position = new Position(50, 1000),
+                Margin = 10,
+            };
+            Button BtnOpacitySetTransparent = new Button()
+            {
+                Text = "Opacity Transparent",
+                Size = new Size(300, 100),
+                Position = new Position(400, 1000),
+                Margin = 10,
+            };
+            Button BtnShow = new Button()
+            {
+                Text = "Show",
+                Size = new Size(200, 100),
+                Position = new Position(50, 1100),
+                Margin = 10,
+            };
+            Button BtnHide = new Button()
+            {
+                Text = "Hide",
+                Size = new Size(200, 100),
+                Position = new Position(410, 1100),
+                Margin = 10,
+            };
+
+            BtnExpandSetOn.ClickEvent += BtnExpandSetOn_ClickEvent;
+            BtnExpandSetOff.ClickEvent += BtnExpandSetOff_ClickEvent;
+            BtnOpacitySetOpaque.ClickEvent += BtnOpacitySetOpaque_ClickEvent;
+            BtnOpacitySetTransparent.ClickEvent += BtnOpacitySetTransparent_ClickEvent;
+            BtnShow.ClickEvent += BtnSoftkeyClientShow_ClickEvent;
+            BtnHide.ClickEvent += BtnSoftkeyClientHide_ClickEvent;
+
+            window.Add(BtnExpandSetOn);
+            window.Add(BtnExpandSetOff);
+            window.Add(BtnOpacitySetOpaque);
+            window.Add(BtnOpacitySetTransparent);
+            window.Add(BtnShow);
+            window.Add(BtnHide);
+        }
+
+        private void BtnExpandSetOn_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyClient.Expand = Shell.SoftkeyExpandState.On;
+            textSoftkeyClientExpand.Text = $"Expand: {softkeyClient.Expand}";
+        }
+
+        private void BtnExpandSetOff_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyClient.Expand = Shell.SoftkeyExpandState.Off;
+            textSoftkeyClientExpand.Text = $"Expand: {softkeyClient.Expand}";
+        }
+
+        private void BtnOpacitySetOpaque_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyClient.Opacity = Shell.SoftkeyOpacityState.Opaque;
+            textSoftkeyClientOpacity.Text = $"Opacity: {softkeyClient.Opacity}";
+        }
+
+        private void BtnOpacitySetTransparent_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyClient.Opacity = Shell.SoftkeyOpacityState.Transparent;
+            textSoftkeyClientOpacity.Text = $"Opacity: {softkeyClient.Opacity}";
+        }
+
+        private async Task ControlSoftKeyVisible(bool visible)
+        {
+            if (visible)
+                softkeyClient.Show();
+            else
+                softkeyClient.Hide();
+            await Task.Delay(50);
+            textSoftkeyClientVisible.Text = $"Visible: {softkeyClient.Visible}";
+        }
+
+        private void BtnSoftkeyClientShow_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            _ = ControlSoftKeyVisible(true);
+        }
+
+        private void BtnSoftkeyClientHide_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            _ = ControlSoftKeyVisible(false);
+        }
+
+        private void BtnSoftkeyService_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            Window window = NUIApplication.GetDefaultWindow();
+            window.WindowSize = new Size(500, 500);
+            window.WindowPosition = new Position(0, 700);
+
+            window.Remove(BtnService);
+            window.Remove(BtnClient);
+            window.Remove(BtnSoftkeyService);
+            window.Remove(BtnSoftkeyClient);
+            softkeyService = new Shell.SoftkeyService(tzShell, window);
+
+            textSoftkeyServiceVisible = new TextLabel($"Visible: None");
+            textSoftkeyServiceVisible.Position = new Position(0, -100);
+            textSoftkeyServiceVisible.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyServiceVisible.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyServiceVisible.TextColor = Color.Blue;
+            textSoftkeyServiceVisible.PointSize = 12.0f;
+            textSoftkeyServiceVisible.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyServiceVisible.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyServiceVisible);
+
+            textSoftkeyServiceExpand = new TextLabel($"Expand: None");
+            textSoftkeyServiceExpand.Position = new Position(0, 0);
+            textSoftkeyServiceExpand.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyServiceExpand.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyServiceExpand.TextColor = Color.Blue;
+            textSoftkeyServiceExpand.PointSize = 12.0f;
+            textSoftkeyServiceExpand.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyServiceExpand.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyServiceExpand);
+
+            textSoftkeyServiceOpacity = new TextLabel($"Opacity: None");
+            textSoftkeyServiceOpacity.Position = new Position(0, 100);
+            textSoftkeyServiceOpacity.HorizontalAlignment = HorizontalAlignment.Center;
+            textSoftkeyServiceOpacity.VerticalAlignment = VerticalAlignment.Center;
+            textSoftkeyServiceOpacity.TextColor = Color.Blue;
+            textSoftkeyServiceOpacity.PointSize = 12.0f;
+            textSoftkeyServiceOpacity.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textSoftkeyServiceOpacity.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textSoftkeyServiceOpacity);
+
+            Button BtnShow = new Button()
+            {
+                Text = "Show",
+                Size = new Size(200, 100),
+                Position = new Position(50, 800),
+                Margin = 10,
+            };
+            Button BtnHide = new Button()
+            {
+                Text = "Hide",
+                Size = new Size(200, 100),
+                Position = new Position(410, 800),
+                Margin = 10,
+            };
+
+            window.Add(BtnShow);
+            window.Add(BtnHide);
+
+            BtnShow.ClickEvent += BtnSoftkeyServiceShow_ClickEvent;
+            BtnHide.ClickEvent += BtnSoftkeyServiceHide_ClickEvent;
+
+            softkeyService.VisibleChanged += OnSoftkeyServiceVisibleEvent;
+            softkeyService.ExpandChanged += OnSoftkeyServiceExpandEvent;
+            softkeyService.OpacityChanged += OnSoftkeyServiceOpacityEvent;
+        }
+
+        public void OnSoftkeyServiceVisibleEvent(object sender, Shell.SoftkeyVisibleState state)
+        {
+            Shell.SoftkeyService obj = (Shell.SoftkeyService)sender;
+            textSoftkeyServiceVisible.Text = $"Visible: {state}";
+            if (state == Shell.SoftkeyVisibleState.Shown)
+            {
+                obj.Show();
+            }
+            else
+            {
+                obj.Hide();
+            }
+        }
+
+        public void OnSoftkeyServiceExpandEvent(object sender, Shell.SoftkeyExpandState state)
+        {
+            textSoftkeyServiceExpand.Text = $"Expand: {state}";
+        }
+
+        public void OnSoftkeyServiceOpacityEvent(object sender, Shell.SoftkeyOpacityState state)
+        {
+            textSoftkeyServiceOpacity.Text = $"Opacity: {state}";
+        }
+
+        private void BtnSoftkeyServiceShow_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyService.Show();
+        }
+
+        private void BtnSoftkeyServiceHide_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            softkeyService.Hide();
         }
 
         static void Main(string[] args)

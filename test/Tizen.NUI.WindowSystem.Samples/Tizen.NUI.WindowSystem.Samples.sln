@@ -21,13 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Components", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\..\src\Tizen.System.Information\Tizen.System.Information.csproj", "{1C93CF1D-452C-4EF8-BE4F-01023FC7318A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Tests", "..\..\..\charp_api\tct-suite-vs\Tizen.NUI.Tests\Tizen.NUI.Tests.csproj", "{1F9B16FA-115C-4592-9EE2-18F011BBDEA1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nunit.framework", "..\..\..\charp_api\tct-suite-vs\nunit.framework\nunit.framework.csproj", "{37B85E87-6F6B-410A-9471-0774C3263033}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nunitlite", "..\..\..\charp_api\tct-suite-vs\nunitlite\nunitlite.csproj", "{5E92B3C2-BF09-4C15-943C-8E251D0A7B58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.NUI.WindowSystem", "..\..\src\Tizen.NUI.WindowSystem\Tizen.NUI.WindowSystem.csproj", "{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.WindowSystem", "..\..\src\Tizen.NUI.WindowSystem\Tizen.NUI.WindowSystem.csproj", "{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Samples", "..\Tizen.NUI.Samples\Tizen.NUI.Samples\Tizen.NUI.Samples.csproj", "{E43F3735-04C1-4BC6-84E1-7316D22AA488}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,6 @@ Global
 		{1C93CF1D-452C-4EF8-BE4F-01023FC7318A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C93CF1D-452C-4EF8-BE4F-01023FC7318A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C93CF1D-452C-4EF8-BE4F-01023FC7318A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F9B16FA-115C-4592-9EE2-18F011BBDEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F9B16FA-115C-4592-9EE2-18F011BBDEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F9B16FA-115C-4592-9EE2-18F011BBDEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F9B16FA-115C-4592-9EE2-18F011BBDEA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37B85E87-6F6B-410A-9471-0774C3263033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37B85E87-6F6B-410A-9471-0774C3263033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37B85E87-6F6B-410A-9471-0774C3263033}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43F3735-04C1-4BC6-84E1-7316D22AA488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43F3735-04C1-4BC6-84E1-7316D22AA488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43F3735-04C1-4BC6-84E1-7316D22AA488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43F3735-04C1-4BC6-84E1-7316D22AA488}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
