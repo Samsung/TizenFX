@@ -466,56 +466,111 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Text string selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TextSelector
         {
             get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TextSelectorProperty));
-            set => buttonText?.SetValue(TextLabel.TextSelectorProperty, value);
+            set
+            {
+                if (value == null || buttonText == null)
+                {
+                    throw new NullReferenceException("Button.TextSelector is null");
+                }
+                else
+                {
+                    buttonText.SetValue(TextLabel.TextSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>
         /// Translateable text string selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TranslatableTextSelector
         {
             get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TranslatableTextSelectorProperty));
-            set => buttonText?.SetValue(TextLabel.TranslatableTextSelectorProperty, value);
+            set
+            {
+                if (value == null || buttonText == null)
+                {
+                    throw new NullReferenceException("Button.TranslatableTextSelector is null");
+                }
+                else
+                {
+                    buttonText.SetValue(TextLabel.TranslatableTextSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>
         /// Text color selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public ColorSelector TextColorSelector
         {
             get => buttonText == null ? null : new ColorSelector((Selector<Color>)buttonText.GetValue(TextLabel.TextColorSelectorProperty));
-            set => buttonText?.SetValue(TextLabel.TextColorSelectorProperty, value);
+            set
+            {
+                if (value == null || buttonText == null)
+                {
+                    throw new NullReferenceException("Button.TextColorSelectorProperty is null");
+                }
+                else
+                {
+                    buttonText.SetValue(TextLabel.TextColorSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>
         /// Text font size selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public FloatSelector PointSizeSelector
         {
             get => buttonText == null ? null : new FloatSelector((Selector<float?>)buttonText.GetValue(TextLabel.PointSizeSelectorProperty));
-            set => buttonText?.SetValue(TextLabel.PointSizeSelectorProperty, value);
+            set
+            {
+                if (value == null || buttonText == null)
+                {
+                    throw new NullReferenceException("Button.PointSizeSelector is null");
+                }
+                else
+                {
+                    buttonText.SetValue(TextLabel.PointSizeSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>
         /// Icon image's resource url selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector IconURLSelector
         {
-            get => buttonIcon == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(ImageView.ResourceUrlSelectorProperty));
-            set => buttonIcon?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+            get => buttonIcon == null ? null : new StringSelector((Selector<string>)buttonIcon.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set
+            {
+                if (value == null || buttonIcon == null)
+                {
+                    throw new NullReferenceException("Button.IconURLSelector is null");
+                }
+                else
+                {
+                    buttonIcon.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                }
+            }
         }
 
         /// <summary>

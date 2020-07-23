@@ -46,7 +46,7 @@ namespace Tizen.NUI
         private WindowTransitionEffectSignal transitionEffectSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowFocusChangedEventCallbackType(bool focusGained);
+        private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
+        private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
 
@@ -541,8 +541,14 @@ namespace Tizen.NUI
             return transitionEffectSignal;
         }
 
-        private void OnWindowFocusedChanged(bool focusGained)
+        private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
+                return;
+            }
+
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;
@@ -654,8 +660,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnWindowFocusedChanged2(bool focusGained)
+        private void OnWindowFocusedChanged2(IntPtr window, bool focusGained)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
+                return;
+            }
+
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;

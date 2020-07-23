@@ -330,7 +330,7 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="RepeatModeCommand"/> class.
         /// </summary>
         /// <param name="mode">The <see cref="MediaControlRepeatMode"/>.</param>
-        /// <exception cref="ArgumentException"><paramref name="mode"/> is not vailid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is not valid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public RepeatModeCommand(MediaControlRepeatMode mode)
         {
