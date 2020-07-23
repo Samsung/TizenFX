@@ -262,7 +262,7 @@ An internal error occurs.</p>
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L787">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L847">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestAsync*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_Tizen_Multimedia_Remoting_Command_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestAsync(Tizen.Multimedia.Remoting.Command,System.String)">RequestAsync(Command, String)</h4>
@@ -271,7 +271,8 @@ An internal error occurs.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead.&quot;)]
+public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -313,10 +314,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_Tizen_Multimedia_Remoting_Command_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The client can request the command to execute <a class="xref" href="Tizen.Multimedia.Remoting.Command.html">Command</a>, <br>
-and then, the server receive the result of each request(command).</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -340,11 +337,104 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_Tizen_Multimedia_Remoting_Command_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.CustomCommand.html">CustomCommand</a></div>
+  </div>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L864">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L789">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_RequestCommandAsync_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestCommandAsync*"></a>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestCommandAsync_Tizen_Multimedia_Remoting_Command_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestCommandAsync(Tizen.Multimedia.Remoting.Command,System.String)">RequestCommandAsync(Command, String)</h4>
+  <div class="markdown level1 summary"><p>Requests a command to the client and server receives the result of each request(command).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;(Bundle bundle, int result)&gt; RequestCommandAsync(Command command, string clientId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.Command.html">Command</a></td>
+        <td><span class="parametername">command</span></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.Remoting.Command.html">Command</a> class.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">clientId</span></td>
+        <td><p>The client Id to send command.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</td>
+        <td><p>The type of return value is Tuple.<br>
+First item of Tuple represents the <a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> and it represents the extra data from client. It can be null.<br>
+Second item of Tuple represents the result of each request(command).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> or <code data-dev-comment-type="paramref" class="paramref">clientId</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The server has already been stopped.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.notimplementedexception">NotImplementedException</a></td>
+        <td><p>The command which is not supported is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestCommandAsync_Tizen_Multimedia_Remoting_Command_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.CustomCommand.html">CustomCommand</a></div>
+  </div>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L925">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32)">Response(Command, Int32)</h4>
@@ -406,7 +496,7 @@ An internal error occurs.</p>
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L842">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L903">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32,Tizen.Applications.Bundle)">Response(Command, Int32, Bundle)</h4>
@@ -474,7 +564,7 @@ An internal error occurs.</p>
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L899">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L960">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult)">Response(Command, MediaControlResult)</h4>
@@ -536,7 +626,7 @@ An internal error occurs.</p>
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L882">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L943">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult,Tizen.Applications.Bundle)">Response(Command, MediaControlResult, Bundle)</h4>
