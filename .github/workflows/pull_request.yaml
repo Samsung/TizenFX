@@ -1,0 +1,124 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+    - master
+    - API*
+
+env:
+  LATEST_LEVEL: API8
+
+jobs:
+  check-api-level:
+    runs-on: ubuntu-latest
+    outputs:
+      level: ${{ steps.get-level.outputs.level }}
+    steps:
+    - name: Get API Level
+      id: get-level
+      run: |
+        getLevel() {
+          if [[ $GITHUB_BASE_REF == master ]]; then
+            echo $LATEST_LEVEL
+          elif [[ $GITHUB_BASE_REF =~ ^API[0-9]+$ ]]; then
+             echo $GITHUB_BASE_REF
+          fi
+        }
+        echo "::set-output name=level::$(getLevel)"
+
+    - name: Add Label for API Level
+      uses: actions/github-script@v2
+      id: add-label
+      if: ${{ steps.get-level.outputs.level }}
+      env:
+        API_LEVEL: ${{ steps.get-level.outputs.level }}
+      with:
+        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        result-encoding: string
+        script: |
+          github.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: [process.env.API_LEVEL]
+          })
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - uses: lots0logs/gh-action-get-changed-files@2.1.4
+      id: getChangedFiles
+      with:
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+
+    - name: Build
+      id: build
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@v1
+      with:
+        run: ./build.sh full /p:BuildWithAnalyzer=True
+        files: ${{ steps.getChangedFiles.outputs.all }}
+
+    - name: Report Errors
+      uses: actions/github-script@v2
+      if: ${{ failure() && steps.build.outputs.errors }}
+      with:
+        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        script: |
+          var errors = ${{ steps.build.outputs.errors }}
+          var errorsStr = errors.join('\n').replace(new RegExp('${{ github.workspace }}/', 'g'), '')
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '## Build Error:\n```' + errorsStr + '```'
+          })
+
+    - name: Pack
+      run: ./build.sh pack 1.0.0-testing
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: Artifacts/**
+
+  check-api:
+    needs: [check-api-level, build]
+    runs-on: ubuntu-latest
+    if: ${{ needs.check-api-level.outputs.level }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: TizenAPI/APITool
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: Artifacts
+        path: Artifacts
+
+    - name: Extract API
+      run: |
+        dotnet run print --format=json --include-hidden -o api.json Artifacts/bin/public/
+
+    - name: Compare with APIDB
+      uses: TizenAPI/tizenfx-build-actions/apidb@v1
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      with:
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        operation: compare
+        category: ${{ needs.check-api-level.outputs.level }}
+        path: api.json
