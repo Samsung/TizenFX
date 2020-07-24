@@ -18,7 +18,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string AppCommon = "libcapi-appfw-app-common.so.0";
+        public const string AppCommon = "capi-appfw-app-common";
         public const string AppCoreWatch = "libappcore-watch.so.1";
     }
 }

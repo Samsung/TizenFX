@@ -18,7 +18,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string AppCommon = "libcapi-appfw-app-common.so.0";
+        public const string AppCommon = "capi-appfw-app-common";
         public const string AppcoreWidget = "libcapi-appfw-widget-application.so.1";
         public const string WidgetService = "libwidget_service.so.1";
     }
