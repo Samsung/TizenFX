@@ -81,6 +81,59 @@ namespace Tizen.NUI.Components
             Extension?.OnRelayout(this);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
+            if (!IsEnabled || null == touch)
+            {
+                return false;
+            }
+
+            PointStateType state = touch.GetState(0);
+
+            switch (state)
+            {
+                case PointStateType.Down:
+                    isPressed = true;
+                    Extension?.SetTouchInfo(touch);
+                    UpdateState();
+                    return true;
+                case PointStateType.Interrupted:
+                    isPressed = false;
+                    UpdateState();
+                    return true;
+                case PointStateType.Up:
+                    {
+                        bool clicked = isPressed && IsEnabled;
+
+                        isPressed = false;
+
+                        if (IsSelectable)
+                        {
+                            Extension?.SetTouchInfo(touch);
+                            IsSelected = !IsSelected;
+                        }
+                        else
+                        {
+                            Extension?.SetTouchInfo(touch);
+                            UpdateState();
+                        }
+
+                        if (clicked)
+                        {
+                            ClickedEventArgs eventArgs = new ClickedEventArgs();
+                            OnClickedInternal(eventArgs);
+                        }
+
+                        return true;
+                    }
+                default:
+                    break;
+            }
+            return base.HandleControlStateOnTouch(touch);
+        }
+
         /// <summary>
         /// Update Button State.
         /// </summary>

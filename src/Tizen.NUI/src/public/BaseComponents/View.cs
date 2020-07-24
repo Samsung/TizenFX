@@ -2274,6 +2274,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// If this property is set to true, the View can have a touch related ControlState (such as Pressed) when touch.
+        /// By default, it is false in View, true in Control.
+        /// Note that if the value is true, the View will be a touch receptor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlState
+        {
+            get
+            {
+                return (bool)GetValue(EnableControlStateProperty);
+            }
+            set
+            {
+                SetValue(EnableControlStateProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
