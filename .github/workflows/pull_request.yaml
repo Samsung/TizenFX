@@ -34,7 +34,7 @@ jobs:
       env:
         API_LEVEL: ${{ steps.get-level.outputs.level }}
       with:
-        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         result-encoding: string
         script: |
           github.issues.addLabels({
@@ -57,7 +57,7 @@ jobs:
     - uses: lots0logs/gh-action-get-changed-files@2.1.4
       id: getChangedFiles
       with:
-        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       id: build
@@ -70,7 +70,7 @@ jobs:
       uses: actions/github-script@v2
       if: ${{ failure() && steps.build.outputs.errors }}
       with:
-        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           var errors = ${{ steps.build.outputs.errors }}
           var errorsStr = errors.join('\n').replace(new RegExp('${{ github.workspace }}/', 'g'), '')
@@ -118,7 +118,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       with:
-        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         operation: compare
         category: ${{ needs.check-api-level.outputs.level }}
         path: api.json
