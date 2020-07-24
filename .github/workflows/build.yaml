@@ -1,10 +1,20 @@
-name: Pull Request
+name: Build Test
 
 on:
   pull_request:
     branches:
     - master
     - API*
+
+  push:
+    branches:
+    - master
+    - API*
+    paths:
+    - 'build/**'
+    - 'internals/**'
+    - 'src/**'
+    - 'tools/**'
 
 jobs:
   build:
@@ -23,7 +33,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
-      id: build
       uses: TizenAPI/tizenfx-build-actions/problem-filter@v1
       with:
         run: ./build.sh full /p:BuildWithAnalyzer=True
