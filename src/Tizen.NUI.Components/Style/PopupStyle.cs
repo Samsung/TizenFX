@@ -23,8 +23,6 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// PopupStyle is a class which saves Popup's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
@@ -33,8 +31,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
@@ -45,52 +41,46 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a PopupStyle with style.
         /// </summary>
         /// <param name="style">Create PopupStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
-            InitSubStyle();
+            Title = new TextLabelStyle();
+            Buttons = new ButtonStyle();
             this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Title Text's Style.
+        /// Title Text's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle Title { get; set; }
 
         /// <summary>
-        /// Popup button's attributes.
+        /// Popup button's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ButtonStyle Buttons { get; set; }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="bindableObject">The style that need to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            PopupStyle popupAttributes = bindableObject as PopupStyle;
-            if (popupAttributes != null)
+            PopupStyle popupStyle = bindableObject as PopupStyle;
+            if (popupStyle != null)
             {
-                if (popupAttributes.Title != null)
+                if (popupStyle.Title != null)
                 {
-                    Title.CopyFrom(popupAttributes.Title);
+                    Title?.CopyFrom(popupStyle.Title);
                 }
 
-                if (popupAttributes.Buttons != null)
+                if (popupStyle.Buttons != null)
                 {
-                    Buttons.CopyFrom(popupAttributes.Buttons);
+                    Buttons?.CopyFrom(popupStyle.Buttons);
                 }
             }
         }
@@ -100,12 +90,12 @@ namespace Tizen.NUI.Components
             // TODO Apply proper shadow as a default for a Popup
             BoxShadow = new Shadow()
             {
+                BlurRadius = 5,
                 Offset = new Vector2(5, 5),
             };
 
             Title = new TextLabelStyle()
             {
-                Size = new Size(0, 0),
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                 PivotPoint = Tizen.NUI.PivotPoint.TopLeft,

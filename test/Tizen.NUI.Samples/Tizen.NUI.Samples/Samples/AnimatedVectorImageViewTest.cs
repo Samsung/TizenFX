@@ -11,7 +11,7 @@ namespace Tizen.NUI.Samples
         public void Activate()
         {
             Tizen.Log.Fatal("NUITEST", $"###Activate()");
-            win = Window.Instance;
+            win = NUIApplication.GetDefaultWindow();
             win.BackgroundColor = Color.Green;
             win.KeyEvent += Win_KeyEvent;
 
@@ -21,7 +21,7 @@ namespace Tizen.NUI.Samples
             avi.BackgroundColor = Color.White;
             avi.Position2D = new Position2D(50, 10);
             avi.Size2D = new Size2D(500, 500);
-            Window.Instance.GetDefaultLayer().Add(avi);
+            win.GetDefaultLayer().Add(avi);
             avi.Play();
 
             avi2 = new AnimatedVectorImageView();
@@ -31,7 +31,7 @@ namespace Tizen.NUI.Samples
             avi2.Position2D = new Position2D(600, 10);
             avi2.Size2D = new Size2D(500, 500);
             avi2.SetMinMaxFrameByMarker("first");
-            Window.Instance.GetDefaultLayer().Add(avi2);
+            win.GetDefaultLayer().Add(avi2);
             avi2.Play();
 
             avi3 = new AnimatedVectorImageView();
@@ -41,7 +41,7 @@ namespace Tizen.NUI.Samples
             avi3.Position2D = new Position2D(1150, 10);
             avi3.Size2D = new Size2D(500, 500);
             avi3.SetMinMaxFrameByMarker("second", "third");
-            Window.Instance.GetDefaultLayer().Add(avi3);
+            win.GetDefaultLayer().Add(avi3);
             avi3.Play();
 
             avi4 = new AnimatedVectorImageView();
@@ -51,7 +51,7 @@ namespace Tizen.NUI.Samples
             avi4.Position2D = new Position2D(50, 550);
             avi4.Size2D = new Size2D(500, 500);
             avi4.SetMinMaxFrameByMarker("second");
-            Window.Instance.GetDefaultLayer().Add(avi4);
+            win.GetDefaultLayer().Add(avi4);
             avi4.Play();
 
             avi5 = new AnimatedVectorImageView();
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Samples
             avi5.Position2D = new Position2D(600, 550);
             avi5.Size2D = new Size2D(500, 500);
             avi5.SetMinMaxFrameByMarker("third");
-            Window.Instance.GetDefaultLayer().Add(avi5);
+            win.GetDefaultLayer().Add(avi5);
             avi5.Play();
 
             avi6 = new AnimatedVectorImageView();
@@ -71,7 +71,7 @@ namespace Tizen.NUI.Samples
             avi6.Position2D = new Position2D(1150, 550);
             avi6.Size2D = new Size2D(500, 500);
             avi6.SetMinMaxFrameByMarker("third", "first");
-            Window.Instance.GetDefaultLayer().Add(avi6);
+            win.GetDefaultLayer().Add(avi6);
             avi6.Play();
 
         }
@@ -79,12 +79,12 @@ namespace Tizen.NUI.Samples
         {
             win.KeyEvent -= Win_KeyEvent;
 
-            Window.Instance.GetDefaultLayer().Remove(avi);
-            Window.Instance.GetDefaultLayer().Remove(avi2);
-            Window.Instance.GetDefaultLayer().Remove(avi3);
-            Window.Instance.GetDefaultLayer().Remove(avi4);
-            Window.Instance.GetDefaultLayer().Remove(avi5);
-            Window.Instance.GetDefaultLayer().Remove(avi6);
+            win.GetDefaultLayer().Remove(avi);
+            win.GetDefaultLayer().Remove(avi2);
+            win.GetDefaultLayer().Remove(avi3);
+            win.GetDefaultLayer().Remove(avi4);
+            win.GetDefaultLayer().Remove(avi5);
+            win.GetDefaultLayer().Remove(avi6);
         }
 
         private void Win_KeyEvent(object sender, Window.KeyEventArgs e)

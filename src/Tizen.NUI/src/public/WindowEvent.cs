@@ -46,7 +46,7 @@ namespace Tizen.NUI
         private WindowTransitionEffectSignal transitionEffectSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowFocusChangedEventCallbackType(bool focusGained);
+        private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
+        private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
             remove
             {
                 _rootLayerTouchDataEventHandler -= value;
-                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false)
+                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false && _rootLayerTouchDataCallback != null)
                 {
                     this.TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
                 }
@@ -124,16 +124,29 @@ namespace Tizen.NUI
                 if (_stageWheelHandler == null)
                 {
                     _wheelEventCallback = OnStageWheel;
-                    this.StageWheelEventSignal().Connect(_wheelEventCallback);
+                    WheelEventSignal().Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
+
+                if (DetentEventHandler == null)
+                {
+                    DetentEventCallback = OnDetentEvent;
+                    StageWheelEventSignal().Connect(DetentEventCallback);
+                }
+                DetentEventHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && StageWheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
                 {
-                    this.StageWheelEventSignal().Disconnect(_wheelEventCallback);
+                    WheelEventSignal().Disconnect(_wheelEventCallback);
+                }
+
+                DetentEventHandler -= value;
+                if(DetentEventHandler ==  null && StageWheelEventSignal().Empty() == false)
+                {
+                    StageWheelEventSignal().Disconnect(DetentEventCallback);
                 }
             }
         }
@@ -198,7 +211,7 @@ namespace Tizen.NUI
         /// Instead please use FocusChanged.
         [Obsolete("Please do not use! This will be deprecated! Please use FocusChanged instead! " +
             "Like: " +
-            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FocusChangedEventArgs> WindowFocusChanged
@@ -451,7 +464,12 @@ namespace Tizen.NUI
 
             if (_wheelEventCallback != null)
             {
-                StageWheelEventSignal().Disconnect(_wheelEventCallback);
+                WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if(DetentEventCallback != null)
+            {
+                StageWheelEventSignal().Disconnect(DetentEventCallback);
             }
 
             if (_stageKeyCallbackDelegate != null)
@@ -495,14 +513,14 @@ namespace Tizen.NUI
             }
         }
 
-        private StageWheelSignal WheelEventSignal()
+        private StageWheelSignal StageWheelEventSignal()
         {
             StageWheelSignal ret = new StageWheelSignal(Interop.StageSignal.Stage_WheelEventSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private WheelSignal StageWheelEventSignal()
+        private WheelSignal WheelEventSignal()
         {
             WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -523,8 +541,14 @@ namespace Tizen.NUI
             return transitionEffectSignal;
         }
 
-        private void OnWindowFocusedChanged(bool focusGained)
+        private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
+                return;
+            }
+
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;
@@ -636,8 +660,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnWindowFocusedChanged2(bool focusGained)
+        private void OnWindowFocusedChanged2(IntPtr window, bool focusGained)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
+                return;
+            }
+
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;
@@ -797,7 +827,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use FocusChangedEventArgs instead! " +
             "Like: " +
-            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class WindowFocusChangedEventArgs : EventArgs
@@ -825,7 +855,7 @@ namespace Tizen.NUI
             /// <since_tizen> 4 </since_tizen>
             public SafeNativeWindowHandle() : base(IntPtr.Zero, false)
             {
-                SetHandle(Tizen.NUI.Window.Instance.GetNativeWindowHandler());
+                SetHandle(NUIApplication.GetDefaultWindow().GetNativeWindowHandler());
             }
             /// <summary>
             /// Null check if the handle is valid or not.
@@ -889,5 +919,114 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        private EventHandler<WheelEventArgs> DetentEventHandler;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void DetentEventCallbackType(IntPtr arg1);
+
+        private DetentEventCallbackType DetentEventCallback;
+
+        private void OnDetentEvent(IntPtr wheelEvent)
+        {
+            WheelEventArgs e = new WheelEventArgs();
+
+            if (wheelEvent != global::System.IntPtr.Zero)
+            {
+                e.Wheel = Wheel.GetWheelFromPtr(wheelEvent);
+            }
+
+            DetentEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// VisibilityChangedArgs
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class VisibilityChangedArgs : EventArgs
+        {
+            private bool visibility;
+            /// <summary>
+            /// Visibility
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Visibility
+            {
+                get => visibility;
+                set {
+                    visibility = value;
+                }
+            }
+        }
+
+        private void OnVisibilityChanged(IntPtr window, bool visibility)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("[ERR] OnVisibilityChanged() window is null");
+                return;
+            }
+
+            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            e.Visibility = visibility;
+            if (VisibilityChangedEventHandler != null)
+            {
+                VisibilityChangedEventHandler.Invoke(this, e);
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
+        private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
+        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
+
+        /// <summary>
+        /// EffectStart
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        {
+            add
+            {
+                if (VisibilityChangedEventHandler == null)
+                {
+                    VisibilityChangedEventCallback = OnVisibilityChanged;
+                    VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
+                    VisibilityChangedEventSignal.Connect(VisibilityChangedEventCallback);
+                }
+                VisibilityChangedEventHandler += value;
+            }
+            remove
+            {
+                VisibilityChangedEventHandler -= value;
+                if (VisibilityChangedEventHandler == null)
+                {
+                    if(VisibilityChangedEventSignal != null)
+                    {
+                        if(VisibilityChangedEventSignal.Empty() == false)
+                        {
+                            VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// VisibiltyChangedSignalEmit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void VisibiltyChangedSignalEmit(bool visibility)
+        {
+            if(VisibilityChangedEventSignal == null)
+            {
+                VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
+            }
+            VisibilityChangedEventSignal.Emit(this, visibility);
+        }
+
+
+
     }
 }

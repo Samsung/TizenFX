@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
@@ -26,15 +27,15 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Selector<T> : BindableObject
+    public class Selector<T> : StateValueCollection<T>
     {
+        private readonly bool cloneable = typeof(T).IsAssignableFrom(typeof(ICloneable));
+
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public static implicit operator Selector<T>(T value)
         {
-            Selector<T> selector = new Selector<T>();
-            selector.All = value;
-            return selector;
+            return new Selector<T>(value);
         }
 
         /// Default Contructor
@@ -47,8 +48,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
-            All = value;
+            All = cloneable ? (T)((ICloneable)value)?.Clone() : value;
         }
+
+        /// Copy constructor
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector(Selector<T> value) : this()
+        {
+            Clone(value);
+        }
+
 
         /// <summary>
         /// All State.
@@ -69,8 +78,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Normal).Value;
+            set => Add(ControlState.Normal, value);
         }
         /// <summary>
         /// Pressed State.
@@ -80,8 +89,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Pressed).Value;
+            set => Add(ControlState.Pressed, value);
         }
         /// <summary>
         /// Focused State.
@@ -91,8 +100,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Focused).Value;
+            set => Add(ControlState.Focused, value);
         }
         /// <summary>
         /// Selected State.
@@ -102,8 +111,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Selected).Value;
+            set => Add(ControlState.Selected, value);
         }
         /// <summary>
         /// Disabled State.
@@ -113,8 +122,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Disabled).Value;
+            set => Add(ControlState.Disabled, value);
         }
         /// <summary>
         /// DisabledFocused State.
@@ -124,8 +133,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.DisabledFocused).Value;
+            set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
         /// SelectedFocused State.
@@ -134,8 +143,8 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public T SelectedFocused
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.SelectedFocused).Value;
+            set => Add(ControlState.SelectedFocused, value);
         }
         /// <summary>
         /// DisabledSelected State.
@@ -145,9 +154,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.DisabledSelected).Value;
+            set => Add(ControlState.DisabledSelected, value);
         }
+
         /// <summary>
         /// Other State.
         /// </summary>
@@ -156,238 +166,245 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get;
-            set;
+            get => Find(x => x.State == ControlState.Other).Value;
+            set => Add(ControlState.Other, value);
         }
         /// <summary>
         /// Get value by State.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <returns>True if the selector has a given state value, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public T GetValue(ControlStates state)
+        public bool GetValue(ControlState state, out T result)
         {
-            if(All != null)
+            if (All != null)
             {
-                return All;
+                result = All;
+
+                return true;
             }
-            switch(state)
+
+            result = default;
+
+            int index = StateValueList.FindIndex(x => x.State == state);
+            if (index >= 0)
             {
-                case ControlStates.Normal:
-                    return Normal != null? Normal : Other;
-                case ControlStates.Focused:
-                    return Focused != null? Focused : Other;
-                case ControlStates.Pressed:
-                    return Pressed != null? Pressed : Other;
-                case ControlStates.Disabled:
-                    return Disabled != null? Disabled : Other;
-                case ControlStates.Selected:
-                    return Selected != null? Selected : Other;
-                case ControlStates.DisabledFocused:
-                    return DisabledFocused != null? DisabledFocused : Other;
-                case ControlStates.DisabledSelected:
-                    return DisabledSelected != null? DisabledSelected : Other;
-                case ControlStates.SelectedFocused:
-                    return SelectedFocused != null ? SelectedFocused : Other;
-                default:
-                    return Other;
+                result = StateValueList[index].Value;
+                return true;
             }
+
+            if (state.IsCombined)
+            {
+                index = StateValueList.FindIndex(x => state.Contains(x.State));
+                if (index >= 0)
+                {
+                    result = StateValueList[index].Value;
+                    return true;
+                }
+            }
+
+            index = StateValueList.FindIndex(x => x.State == ControlState.Other);
+            if (index >= 0)
+            {
+                result = StateValueList[index].Value;
+                return true;
+            }
+
+            return false;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Clear()
+        {
+            All = default;
+            base.Clear();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString()
+        {
+            string result = $"[All, {All}]";
+
+            foreach (var item in StateValueList)
+            {
+                result += $", {item}";
+            }
+
+            return result;
+        }
+
         /// <summary>
-        /// Clone function.
+        /// Clone itself.
+        /// If type T implements ICloneable, it calls Clone() method to clone values, otherwise use operator=.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Clone(Selector<T> selector)
+        public Selector<T> Clone()
         {
-            All = selector.All;
-            Normal = selector.Normal;
-            Focused = selector.Focused;
-            Pressed = selector.Pressed;
-            Disabled = selector.Disabled;
-            Selected = selector.Selected;
-            DisabledSelected = selector.DisabledSelected;
-            DisabledFocused = selector.DisabledFocused;
-            SelectedFocused = selector.SelectedFocused;
-            Other = selector.Other;
-        }
-
-        internal void Clone<U>(Selector<U> other) where U : T, Tizen.NUI.Internal.ICloneable
-        {
-            // TODO Apply constraint to the Selector (not to Clone method)
-
-            All = (T)(other.All)?.Clone();
-            Normal = (T)(other.Normal)?.Clone();
-            Focused = (T)(other.Focused)?.Clone();
-            Pressed = (T)(other.Pressed)?.Clone();
-            Disabled = (T)(other.Disabled)?.Clone();
-            Selected = (T)(other.Selected)?.Clone();
-            DisabledSelected = (T)(other.DisabledSelected)?.Clone();
-            DisabledFocused = (T)(other.DisabledFocused)?.Clone();
-            SelectedFocused = (T)(other.SelectedFocused)?.Clone();
-            Other = (T)(other.Other)?.Clone();
-        }
-    }
-
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TriggerableSelector<T> : Selector<T>
-    {
-        public TriggerableSelector(View view, BindableProperty bindableProperty)
-        {
-            targetView = view;
-            targetBindableProperty = bindableProperty;
-            view.ControlStateChangeEvent += OnViewControlState;
+            var cloned = new Selector<T>();
+            cloned.Clone(this);
+            return cloned;
         }
 
         /// <summary>
-        /// Clone function.
+        /// Copy values from other selector.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new void Clone(Selector<T> selector)
+        public void Clone(Selector<T> other)
         {
-            base.Clone(selector);
+            Clear();
 
-            if (null != targetView && null != GetValue(targetView.ControlState))
+            if (cloneable)
             {
-                targetView.SetValue(targetBindableProperty, GetValue(targetView.ControlState));
-            }
-        }
-
-        private void OnViewControlState(View obj, ControlStates state)
-        {
-            if (null != obj && null != GetValue(state))
-            {
-                obj.SetValue(targetBindableProperty, GetValue(state));
-            }
-        }
-
-        private View targetView;
-        private BindableProperty targetBindableProperty;
-    }
-
-    /// <summary>
-    /// A class that helps binding a non-selector property in View to selector property in ViewStyle.
-    /// </summary>
-    internal class ViewSelector<T> where T : class, Tizen.NUI.Internal.ICloneable
-    {
-        private Selector<T> selector;
-        private View view;
-        private View.ControlStateChangesDelegate controlStateChanged;
-
-        internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
-        {
-            if (view == null || controlStateChanged == null)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-            this.view = view;
-            this.controlStateChanged = controlStateChanged;
-            this.selector = null;
-        }
-
-        internal T GetValue()
-        {
-            return selector == null ? null : selector.GetValue(view.ControlState);
-        }
-
-        internal void Clone(object value)
-        {
-            bool hadMultiValue = HasMultiValue();
-            var type = value?.GetType();
-
-            if (type == typeof(T))
-            {
-                selector = new Selector<T>();
-                selector.All = (T)((T)value).Clone();
-            }
-            else if (type == typeof(Selector<T>))
-            {
-                selector = new Selector<T>();
-                selector.Clone<T>((Selector<T>)value);
+                All = (T)((ICloneable)other.All)?.Clone();
+                foreach (var item in other.StateValueList)
+                {
+                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ICloneable)item.Value)?.Clone()));
+                }
             }
             else
             {
-                selector = null;
-            }
-
-            if (hadMultiValue != HasMultiValue())
-            {
-                if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
-                else view.ControlStateChangeEvent += controlStateChanged;
+                All = other.All;
+                foreach (var item in other.StateValueList)
+                {
+                    AddWithoutCheck(item);
+                }
             }
         }
 
-        internal void Clear()
+        internal bool HasMultiValue()
         {
-            if (HasMultiValue())
-            {
-                view.ControlStateChangeEvent -= controlStateChanged;
-            }
-            selector = null;
-        }
-
-        internal bool IsEmpty()
-        {
-            return selector == null;
-        }
-
-        private bool HasMultiValue()
-        {
-            return (selector != null && selector.All == null);
+            return StateValueList.Count > 1;
         }
     }
 
-    internal static class SelectorHelper<T> where T : class, Tizen.NUI.Internal.ICloneable
+    /// <summary>
+    /// This will be attached to a View to detect ControlState change.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TriggerableSelector<T>
     {
         /// <summary>
-        /// For the object type of T or Selector T, convert it to Selector T and return the cloned one.
-        /// Otherwise, return null. <br/>
+        /// Create an TriggerableSelector.
         /// </summary>
-        static internal Selector<T> Clone(object value)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate T ValueGetter(View view);
+
+        private readonly BindableProperty targetBindableProperty;
+        private readonly ValueGetter propertyGetter;
+        private bool dirty = true;
+        private Selector<T> selector;
+
+        /// <summary>
+        /// Create an TriggerableSelector.
+        /// </summary>
+        /// <param name="targetBindableProperty">The TriggerableSelector will change this bindable property value when the view's ControlState has changed.</param>
+        /// <param name="propertyGetter">It is optional value in case the target bindable property getter is not proper to use.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TriggerableSelector(BindableProperty targetBindableProperty, ValueGetter propertyGetter = null)
         {
-            var type = value?.GetType();
-
-            if (type == typeof(Selector<T>))
-            {
-                var result = new Selector<T>();
-                result.Clone<T>((Selector<T>)value);
-                return result;
-            }
-
-            if (type == typeof(T))
-            {
-                return new Selector<T>((T)((T)value).Clone());
-            }
-
-            return null;
+            this.targetBindableProperty = targetBindableProperty;
+            this.propertyGetter = propertyGetter;
         }
 
         /// <summary>
-        /// For the object type of T or Selector T, convert it to T and return the cloned one.
-        /// Otherwise, return null. <br/>
+        /// Return the containing selector. It can be null.
         /// </summary>
-        static internal T Clone(object value, View view)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<T> Get(View view)
         {
-            var type = value?.GetType();
+            if (!dirty) return selector;
 
-            if (type == typeof(T))
+            T value = default;
+
+            if (propertyGetter != null)
             {
-                return (T)((T)value).Clone();
+                value = propertyGetter(view);
+            }
+            else
+            {
+                value = (T)view.GetValue(targetBindableProperty);
             }
 
-            if (type == typeof(Selector<T>) && view != null && value != null)
-            {
-                Selector<T> selector = (Selector<T>)value;
-                T valueInState = selector.GetValue(view.ControlState);
+            Selector<T> converted = value == null ? null : new Selector<T>(value);
+            Update(view, converted);
 
-                return (T)valueInState?.Clone();
+            return selector;
+        }
+
+        /// <summary>
+        /// Update containing selector from the other selector.
+        /// </summary>
+        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
+        /// <param name="otherSelector">The copy target.</param>
+        /// <param name="updateView">Whether it updates the target view after update the selector or not.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Update(View view, Selector<T> otherSelector, bool updateView = false)
+        {
+            Reset(view);
+
+            if (otherSelector == null)
+            {
+                return;   
             }
 
-            return null;
+            selector = otherSelector.Clone();
+
+            if (otherSelector.HasMultiValue())
+            {
+                view.ControlStateChangeEventInternal += OnViewControlState;
+            }
+
+            if (updateView && otherSelector.GetValue(view.ControlState, out var value))
+            {
+                view.SetValue(targetBindableProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Update containing selector value from a single value.
+        /// Note that, it updates lazily if possible.
+        /// If you need to udpate directly, please use <seealso cref="Update" />.
+        /// </summary>
+        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
+        /// <param name="value">The copy target.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateIfNeeds(View view, T value)
+        {
+            if (selector != null && selector.HasMultiValue())
+            {
+                Selector<T> converted = value == null ? null : new Selector<T>(value);
+                Update(view, converted);
+                return;
+            }
+
+            dirty = true;
+        }
+
+        /// <summary>
+        /// Reset selector and listeners.
+        /// </summary>
+        /// <param name="view">The View that is affected by this TriggerableSelector.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Reset(View view)
+        {
+            view.ControlStateChangeEventInternal -= OnViewControlState;
+            selector?.Clear();
+            selector = null;
+            dirty = false;
+        }
+
+        private void OnViewControlState(object obj, View.ControlStateChangedEventArgs controlStateChangedInfo)
+        {
+            View view = obj as View;
+            if (null != view && selector.GetValue(controlStateChangedInfo.CurrentState, out var value))
+            {
+                view.SetValue(targetBindableProperty, value);
+            }
         }
     }
 }

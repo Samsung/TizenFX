@@ -16,15 +16,16 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Examples
 {
-    public class ScrollBarTestPage : ContentPage
+    public partial class ScrollBarTestPage : ContentPage
     {
 
         public ScrollBarTestPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()

@@ -17,15 +17,14 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
     /// SwitchStyle is a class which saves Switch's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class SwitchStyle : ButtonStyle
     {
         static SwitchStyle() { }
@@ -33,9 +32,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a SwitchStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public SwitchStyle() : base()
         {
             InitSubStyle();
@@ -45,9 +42,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a SwitchStyle with style.
         /// </summary>
         /// <param name="style">Create SwitchStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public SwitchStyle(SwitchStyle style) : base(style)
         {
             if(null == style)
@@ -55,7 +50,9 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            InitSubStyle();
+            IsSelectable = true;
+            Track = new ImageViewStyle();
+            Thumb = new ImageViewStyle();
 
             this.CopyFrom(style);
         }
@@ -63,25 +60,20 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Thumb image's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Track image's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
@@ -92,18 +84,26 @@ namespace Tizen.NUI.Components
             {
                 if (null != switchStyle.Track)
                 {
-                    Track.CopyFrom(switchStyle.Track);
+                    Track?.CopyFrom(switchStyle.Track);
                 }
 
                 if (null != switchStyle.Thumb)
                 {
-                    Thumb.CopyFrom(switchStyle.Thumb);
+                    Thumb?.CopyFrom(switchStyle.Thumb);
                 }
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override ButtonExtension CreateExtension()
+        {
+            return new SlidingSwitchExtension();
+        }
+
         private void InitSubStyle()
         {
+            IsSelectable = true;
             Track = new ImageViewStyle()
             {
                 PositionUsesPivotPoint = true,

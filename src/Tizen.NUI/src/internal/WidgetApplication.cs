@@ -107,6 +107,19 @@ namespace Tizen.NUI
             _widgetInfo = widgetInfo;
         }
 
+        public void AddWidgetInfo(Dictionary<Type, string> newWidgetInfo)
+        {
+            foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo )
+            {
+                if ( _widgetInfo.ContainsKey(widgetInfo.Key) == false )
+                {
+                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value );
+                    string widgetName = widgetInfo.Value;
+                    RegisterWidgetCreatingFunction(ref widgetName);
+                }
+            }
+        }
+
         public static System.IntPtr WidgetCreateFunction(ref string widgetName)
         {
             Dictionary<System.Type, string> widgetInfo = (Instance as WidgetApplication).WidgetInfo;

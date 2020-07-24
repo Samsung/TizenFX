@@ -1,6 +1,6 @@
 ﻿
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
@@ -73,8 +73,10 @@ namespace Tizen.NUI.Samples
         private TextLabel mTitle;
         private Layer content_layer;
         private View mContent;
-        private ToggleButton toggle_button;
-        private PushButton mSlideshowButton;
+        private View radiosParent;
+        private RadioButtonGroup toggle;
+        private RadioButton[] radios = new RadioButton[3];
+        private Button mSlideshowButton;
 
         private Texture mCurrentTexture;
         private Texture mNextTexture;
@@ -99,13 +101,13 @@ namespace Tizen.NUI.Samples
             // tool bar
             tool_bar = new View();
             tool_bar.BackgroundColor = Color.White;
-            tool_bar.Size2D = new Size2D(Window.Instance.WindowSize.Width, 100);
+            tool_bar.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, 100);
             tool_bar.PositionUsesPivotPoint = true;
             tool_bar.ParentOrigin = ParentOrigin.TopLeft;
             tool_bar.PivotPoint = PivotPoint.TopLeft;
 
-            Window.Instance.GetDefaultLayer().Add(tool_bar);
-            Window.Instance.GetDefaultLayer().RaiseToTop();
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(tool_bar);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().RaiseToTop();
 
             // title of tool bar
             mTitle = new TextLabel();
@@ -119,20 +121,13 @@ namespace Tizen.NUI.Samples
             tool_bar.Add(mTitle);
 
             // push button of tool bar
-            mSlideshowButton = new PushButton();
-            PropertyMap unselected_bg_map = new PropertyMap();
-            unselected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            unselected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_START_ICON));
-            mSlideshowButton.UnselectedBackgroundVisual = unselected_bg_map;
-
-            PropertyMap selected_bg_map = new PropertyMap();
-            selected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            selected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_START_ICON_SELECTED));
-            mSlideshowButton.SelectedBackgroundVisual = selected_bg_map;
-
-            mSlideshowButton.ParentOrigin = ParentOrigin.TopLeft;
-            mSlideshowButton.PivotPoint = PivotPoint.TopLeft;
-            mSlideshowButton.Position2D = new Position2D(800, 32);
+            var style = new ButtonStyle();
+            style.Icon.ResourceUrl = new Selector<string>() { Normal = SLIDE_SHOW_START_ICON, Pressed = SLIDE_SHOW_START_ICON_SELECTED };
+            style.Position = new Position(800, 32);
+            style.ParentOrigin = ParentOrigin.TopLeft;
+            style.PivotPoint = PivotPoint.TopLeft;
+            style.Size = new Size(58, 58);
+            mSlideshowButton = new Button(style);
             mSlideshowButton.Clicked += OnPushButtonClicked;
 
             mSlideshowButton.RaiseToTop();
@@ -140,29 +135,43 @@ namespace Tizen.NUI.Samples
             tool_bar.Add(mSlideshowButton);
 
             // toggle button of tool bar
-            toggle_button = new ToggleButton();
-            PropertyArray array = new PropertyArray();
-            array.Add(new PropertyValue(EFFECT_WAVE_IMAGE));
-            array.Add(new PropertyValue(EFFECT_CROSS_IMAGE));
-            array.Add(new PropertyValue(EFFECT_FOLD_IMAGE));
-            toggle_button.StateVisuals = array;
+            radiosParent = new View();
+            radiosParent.Size = new Size(200, 40);
+            radiosParent.Position = new Position(900, 42);
+            var layout = new LinearLayout();
+            layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            layout.CellPadding = new Size(30, 30);
+            radiosParent.Layout = layout;
+            tool_bar.Add(radiosParent);
 
-            toggle_button.ParentOrigin = ParentOrigin.TopLeft;
-            toggle_button.PivotPoint = PivotPoint.TopLeft;
-            toggle_button.CellHorizontalAlignment = HorizontalAlignmentType.Right;
-            toggle_button.Position2D = new Position2D(900, 42);
-
-            toggle_button.Clicked += OnToggleButtonClicked;
-
-            tool_bar.Add(toggle_button);
-
+            toggle = new RadioButtonGroup();
+            for (int i = 0; i < 3; i++)
+            {
+                radios[i] = new RadioButton();
+                radios[i].Size = new Size(37, 34);
+                toggle.Add(radios[i]);
+                radiosParent.Add(radios[i]);
+            }
+            var radioStyle = radios[0].Style;
+            radioStyle.Icon.BackgroundImage = new Selector<string>() { Normal = EFFECT_WAVE_IMAGE, Selected = EFFECT_WAVE_IMAGE_SELECTED };
+            radios[0].ApplyStyle(radioStyle);
+            radioStyle = radios[1].Style;
+            radioStyle.Icon.BackgroundImage = new Selector<string>() { Normal = EFFECT_CROSS_IMAGE, Selected = EFFECT_CROSS_IMAGE_SELECTED };
+            radios[1].ApplyStyle(radioStyle);
+            radioStyle = radios[2].Style;
+            radioStyle.Icon.BackgroundImage = new Selector<string>() { Normal = EFFECT_FOLD_IMAGE, Selected = EFFECT_FOLD_IMAGE_SELECTED };
+            radios[2].ApplyStyle(radioStyle);
+            radios[0].SelectedChanged += OnWaveClicked;
+            radios[1].SelectedChanged += OnCrossClicked;
+            radios[2].SelectedChanged += OnFoldClicked;
+            radios[0].IsSelected = true;
             // load image
             mCurrentTexture = LoadStageFillingTexture(IMAGES[mIndex]);
 
             // content layer is 3D.
             content_layer = new Layer();
             content_layer.Behavior = Layer.LayerBehavior.Layer3D;
-            Window.Instance.AddLayer(content_layer);
+            NUIApplication.GetDefaultWindow().AddLayer(content_layer);
 
             //use small cubes
             mCubeWaveEffect = new CubeTransitionWaveEffect(NUM_ROWS_WAVE, NUM_COLUMNS_WAVE);
@@ -171,7 +180,7 @@ namespace Tizen.NUI.Samples
             mCubeWaveEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeWaveEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeWaveEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeWaveEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeWaveEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeWaveEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeWaveEffect.SetCurrentTexture(mCurrentTexture);
@@ -183,7 +192,7 @@ namespace Tizen.NUI.Samples
             mCubeCrossEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeCrossEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeCrossEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeCrossEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeCrossEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeCrossEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeCrossEffect.SetCurrentTexture(mCurrentTexture);
@@ -193,7 +202,7 @@ namespace Tizen.NUI.Samples
             mCubeFoldEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeFoldEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeFoldEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeFoldEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeFoldEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeFoldEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeFoldEffect.SetCurrentTexture(mCurrentTexture);
@@ -205,7 +214,7 @@ namespace Tizen.NUI.Samples
             mCurrentEffect = mCubeWaveEffect;
 
             mContent = new View();
-            mContent.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mContent.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mContent.ParentOrigin = ParentOrigin.TopLeft;
             mContent.PositionUsesPivotPoint = true;
             mContent.PivotPoint = PivotPoint.TopLeft;
@@ -236,17 +245,28 @@ namespace Tizen.NUI.Samples
                 mSlideshowButton = null;
             }
 
-            if (toggle_button)
+            if (radiosParent)
             {
-                tool_bar.Remove(toggle_button);
-                toggle_button.Clicked -= OnToggleButtonClicked;
-                toggle_button.Dispose();
-                toggle_button = null;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (radios[i])
+                    {
+                        if ( 0 == i) radios[0].SelectedChanged -= OnWaveClicked;
+                        if ( 1 == i) radios[1].SelectedChanged -= OnCrossClicked;
+                        if ( 2 == i) radios[2].SelectedChanged -= OnFoldClicked;
+                        radiosParent.Remove(radios[i]);
+                        radios[i].Dispose();
+                        radios[i] = null;
+                    }
+                }
+                tool_bar.Remove(radiosParent);
+                radiosParent.Dispose();
+                radiosParent = null;
             }
 
             if (tool_bar)
             {
-                Window.Instance.GetDefaultLayer().Remove(tool_bar);
+                NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(tool_bar);
                 tool_bar.Dispose();
                 tool_bar = null;
             }
@@ -304,7 +324,7 @@ namespace Tizen.NUI.Samples
 
             if (content_layer)
             {
-                Window.Instance.RemoveLayer(content_layer);
+                NUIApplication.GetDefaultWindow().RemoveLayer(content_layer);
                 content_layer.Dispose();
                 content_layer = null;
             }
@@ -369,7 +389,7 @@ namespace Tizen.NUI.Samples
 
         private Texture LoadStageFillingTexture(string filepath)
         {
-            Size2D dimensions = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height);
+            Size2D dimensions = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height);
             PixelBuffer pb = ImageLoading.LoadImageFromFile(filepath, dimensions, FittingModeType.ScaleToFill);
             PixelData pd = PixelBuffer.Convert(pb);
 
@@ -405,24 +425,54 @@ namespace Tizen.NUI.Samples
             return true;
         }
 
-        private bool OnPushButtonClicked(object sender, global::System.EventArgs args)
+        private void OnWaveClicked(object sender, global::System.EventArgs args)
+        {
+            mContent.Remove(mCurrentEffect);
+            mCurrentEffect = mCubeWaveEffect;
+            mTitle.Text = APPLICATION_TITLE_WAVE;
+            mContent.Add(mCurrentEffect);
+
+            // Set the current image to cube transition effect
+            // only need to set at beginning or change from another effect
+            mCurrentEffect.SetCurrentTexture(mCurrentTexture);
+        }
+
+        private void OnCrossClicked(object sender, global::System.EventArgs args)
+        {
+            mContent.Remove(mCurrentEffect);
+            mCurrentEffect = mCubeCrossEffect;
+            mTitle.Text = APPLICATION_TITLE_CROSS;
+            mContent.Add(mCurrentEffect);
+
+            // Set the current image to cube transition effect
+            // only need to set at beginning or change from another effect
+            mCurrentEffect.SetCurrentTexture(mCurrentTexture);
+        }
+
+        private void OnFoldClicked(object sender, global::System.EventArgs args)
+        {
+            mContent.Remove(mCurrentEffect);
+            mCurrentEffect = mCubeFoldEffect;
+            mTitle.Text = APPLICATION_TITLE_FOLD;
+            mContent.Add(mCurrentEffect);
+
+            // Set the current image to cube transition effect
+            // only need to set at beginning or change from another effect
+            mCurrentEffect.SetCurrentTexture(mCurrentTexture);
+        }
+
+        private void OnPushButtonClicked(object sender, global::System.EventArgs args)
         {
             mSlideshow = !mSlideshow;
             if (mSlideshow)
             {
                 mPanGestureDetector.Detach(mContent);
 
-                PropertyMap unselected_bg_map = new PropertyMap();
-                unselected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                unselected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_STOP_ICON));
-                mSlideshowButton.UnselectedBackgroundVisual = unselected_bg_map;
+                var style = mSlideshowButton.Style;
+                style.Icon.ResourceUrl = new Selector<string>() { Normal = SLIDE_SHOW_STOP_ICON, Pressed = SLIDE_SHOW_STOP_ICON_SELECTED };
+                mSlideshowButton.ApplyStyle(style);
 
-                PropertyMap selected_bg_map = new PropertyMap();
-                selected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                selected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_STOP_ICON_SELECTED));
-                mSlideshowButton.SelectedBackgroundVisual = selected_bg_map;
-
-                mPanPosition = new Vector2(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Width * 0.5f);
+                mPanPosition = new Vector2(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Width * 0.5f);
                 mPanDisplacement = new Vector2(-10.0f, 0.0f);
 
                 mViewTimer.Start();
@@ -430,20 +480,11 @@ namespace Tizen.NUI.Samples
             else
             {
                 mPanGestureDetector.Attach(mContent);
-
-                PropertyMap unselected_bg_map = new PropertyMap();
-                unselected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                unselected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_START_ICON));
-                mSlideshowButton.UnselectedBackgroundVisual = unselected_bg_map;
-
-                PropertyMap selected_bg_map = new PropertyMap();
-                selected_bg_map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                selected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_START_ICON_SELECTED));
-                mSlideshowButton.SelectedBackgroundVisual = selected_bg_map;
-
+                var style = mSlideshowButton.Style;
+                style.Icon.ResourceUrl = new Selector<string>() { Normal = SLIDE_SHOW_START_ICON, Pressed = SLIDE_SHOW_START_ICON_SELECTED };
+                mSlideshowButton.ApplyStyle(style);
                 mViewTimer.Stop();
             }
-            return true;
         }
     }
 }

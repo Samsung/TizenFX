@@ -66,6 +66,14 @@ namespace Tizen.Applications.ComponentBased.Common
                 throw new ArgumentException("Already exist type");
             }
 
+            foreach (var stateManager in _componentFactories)
+            {
+                if (stateManager.Value.ComponentId == compId)
+                {
+                    throw new ArgumentException("Already exist component ID(" + compId + ")");
+                }
+            }
+
             if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add frame component");

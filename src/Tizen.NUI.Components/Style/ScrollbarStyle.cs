@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,123 +21,194 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ScrollBarStyle is a class which saves Scrollbar's ux data.
+    /// ScrollbarStyle is a class which saves Scrollbar's style data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollBarStyle : ControlStyle
+    public class ScrollbarStyle : ViewStyle
     {
-        static ScrollBarStyle() { }
+        #region Fields
+
+        /// <summary>Bindable property of TrackThickness</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).trackThickness = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).trackThickness;
+        });
+
+        /// <summary>Bindable property of ThumbThickness</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbThickness = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbThickness;
+        });
+
+        /// <summary>Bindable property of TrackColor</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).trackColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).trackColor;
+        });
+
+        /// <summary>Bindable property of ThumbColor</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbColor;
+        });
+
+        /// <summary>Bindable property of TrackPadding</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).trackPadding = (Extents)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).trackPadding;
+        });
+
+        private float? trackThickness;
+        private float? thumbThickness;
+        private Color trackColor;
+        private Color thumbColor;
+        private Extents trackPadding;
+
+        #endregion Fields
+
+
+        #region Constructors
 
         /// <summary>
-        /// Creates a new instance of a ScrollBarStyle.
+        /// Creates a new instance of a ScrollbarStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBarStyle() : base()
+        public ScrollbarStyle() : base()
         {
-            InitSubStyle();
-            Direction = ScrollBar.DirectionType.Horizontal;
+            Initialize();
         }
 
         /// <summary>
-        /// Creates a new instance of a ScrollBarStyle with style.
+        /// Copy constructor.
         /// </summary>
-        /// <param name="style">Create ScrollBarStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="style">Create ScrollbarStyle by style customized by user.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBarStyle(ScrollBarStyle style) : base(style)
+        public ScrollbarStyle(ScrollbarStyle style) : base(style)
         {
-            if (null == style) return;
-
-            InitSubStyle();
-
             this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Get or set track image style
+        /// Static constructor to initialize bindable properties when loading.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Track { get; set; }
+        static ScrollbarStyle()
+        {
+        }
+
+        #endregion Constructors
+
+
+        #region Properties
 
         /// <summary>
-        /// Get or set thumb image style
+        /// The thickness of the track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Thumb { get; set; }
+        public float? TrackThickness
+        {
+            get => (float?)GetValue(TrackThicknessProperty);
+            set => SetValue(TrackThicknessProperty, value);
+        }
 
         /// <summary>
-        /// Get or set direction type
+        /// The thickness of the thumb.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBar.DirectionType? Direction { get; set; }
+        public float? ThumbThickness
+        {
+            get => (float?)GetValue(ThumbThicknessProperty);
+            set => SetValue(ThumbThicknessProperty, value);
+        }
 
         /// <summary>
-        /// Get or set duration
+        /// The color of the track part.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint Duration { get; set; }
+        public Color TrackColor
+        {
+            get => (Color)GetValue(TrackColorProperty);
+            set => SetValue(TrackColorProperty, value);
+        }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// The color of the thumb part.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ThumbColor
+        {
+            get => (Color)GetValue(ThumbColorProperty);
+            set => SetValue(ThumbColorProperty, value);
+        }
+
+        /// <summary>
+        /// The padding value of the track.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents TrackPadding
+        {
+            get => (Extents)GetValue(TrackPaddingProperty);
+            set => SetValue(TrackPaddingProperty, value);
+        }
+
+        #endregion Properties
+
+
+        #region Methods
+
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            ScrollBarStyle scrollBarStyle = bindableObject as ScrollBarStyle;
+            var style = bindableObject as ScrollbarStyle;
 
-            if (null != scrollBarStyle)
+            if (null != style)
             {
-                if (null != scrollBarStyle.Track)
-                {
-                    Track.CopyFrom(scrollBarStyle.Track);
-                }
-
-                if (null != scrollBarStyle.Thumb)
-                {
-                    Thumb.CopyFrom(scrollBarStyle.Thumb);
-                }
-
-                Direction = scrollBarStyle.Direction;
-                Duration = scrollBarStyle.Duration;
+                TrackThickness = style.TrackThickness;
+                ThumbThickness = style.ThumbThickness;
+                TrackColor = style.TrackColor;
+                ThumbColor = style.ThumbColor;
+                TrackPadding = style.TrackPadding;
             }
         }
 
-        private void InitSubStyle()
+        private void Initialize()
         {
-            Track = new ImageViewStyle()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
-            };
-
-            Thumb = new ImageViewStyle()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                WidthResizePolicy = ResizePolicyType.Fixed,
-                HeightResizePolicy = ResizePolicyType.Fixed
-            };
+            TrackThickness = 6.0f;
+            ThumbThickness = 6.0f;
+            TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
+            ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
+            TrackPadding = 4;
+            WidthResizePolicy = ResizePolicyType.FillToParent;
+            HeightResizePolicy = ResizePolicyType.FillToParent;
         }
+
+        #endregion Methods
     }
 }

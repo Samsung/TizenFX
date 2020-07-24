@@ -56,9 +56,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBlurStrengthPropertyIndex")]
             public static extern int GaussianBlurView_GetBlurStrengthPropertyIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBlurredRenderTarget")]
-            public static extern global::System.IntPtr GaussianBlurView_GetBlurredRenderTarget(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_SetBackgroundColor")]
             public static extern void GaussianBlurView_SetBackgroundColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

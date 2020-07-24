@@ -23,8 +23,6 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ToastStyle is a class which saves Toast's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
@@ -33,8 +31,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ToastStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle() : base()
         {
@@ -45,8 +41,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ToastStyle with Style.
         /// </summary>
         /// <param name="style">Create ToastStyle by Style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle(ToastStyle style) : base(style)
         {
@@ -57,24 +51,19 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets toast show duration time.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? Duration { get; set; }
 
         /// <summary>
         /// Text's Style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="bindableObject">The style that need to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
@@ -84,7 +73,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != toastStyle.Text)
                 {
-                    Text.CopyFrom(toastStyle.Text);
+                    Text?.CopyFrom(toastStyle.Text);
                 }
                 Duration = toastStyle.Duration;
             }
@@ -97,11 +86,11 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                TextColor = Color.White
+                TextColor = Tizen.NUI.Color.White,
             };
         }
     }

@@ -55,7 +55,19 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue((Color)newValue));
+                if (view.backgroundExtraData == null)
+                {
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue((Color)newValue));
+                    return;
+                }
+
+                PropertyMap map = new PropertyMap();
+
+                map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
+                   .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue))
+                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius));
+
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -74,6 +86,26 @@ namespace Tizen.NUI.BaseComponents
             return backgroundColor;
         });
 
+        /// <summary>
+        /// ColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorProperty = BindableProperty.Create("Color", typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                view.SetColor((Color)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
+            return color;
+        });
+
         /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
@@ -83,19 +115,38 @@ namespace Tizen.NUI.BaseComponents
             {
                 string url = (string)newValue;
 
-                if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
+                if (string.IsNullOrEmpty(url))
+                {
+                    // Clear background
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue());
+                    return;
+                }
+
+                if (view.backgroundExtraData == null)
                 {
                     Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+                    view.BackgroundImageSynchronosLoading = view._backgroundImageSynchronosLoading;
+
+                    return;
+                }
+
+                PropertyMap map = new PropertyMap();
+
+                map.Add(ImageVisualProperty.URL, new PropertyValue(url))
+                   .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
+                   .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view._backgroundImageSynchronosLoading));
+                
+                if (view.backgroundExtraData.BackgroundImageBorder != null)
+                {
+                    map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch))
+                       .Add(NpatchImageVisualProperty.Border, new PropertyValue(view.backgroundExtraData.BackgroundImageBorder));
                 }
                 else
                 {
-                    var visual = new NPatchVisual();
-                    visual.URL = url;
-                    visual.Border = view.backgroundImageBorder;
-                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(visual.OutputVisualMap));
+                    map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
                 }
 
-                view.BackgroundImageSynchronosLoading = view._backgroundImageSynchronosLoading;
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -118,30 +169,44 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            string url = view.BackgroundImage;
-            view.backgroundImageBorder = (Rectangle)newValue;
 
-            if (string.IsNullOrEmpty(url))
+            bool isEmptyValue = Rectangle.IsNullOrZero((Rectangle)newValue);
+
+            var backgroundImageBorder = isEmptyValue ? null : (Rectangle)newValue;
+
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BackgroundImageBorder = backgroundImageBorder;
+
+            if (isEmptyValue)
             {
                 return;
             }
 
-            if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
+            PropertyMap map = view.Background;
+
+            if (map.Empty())
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+                return;
             }
-            else
+
+            map[NpatchImageVisualProperty.Border] = new PropertyValue(backgroundImageBorder);
+
+            int visualType = 0;
+
+            map.Find(Visual.Property.Type)?.Get(out visualType);
+
+            if (visualType == (int)Visual.Type.Image)
             {
-                var visual = new NPatchVisual();
-                visual.URL = url;
-                visual.Border = view.backgroundImageBorder;
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(visual.OutputVisualMap));
+                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
             }
+
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
+
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.backgroundImageBorder == null ? new Rectangle(view.OnBackgroundImageBorderChanged) : new Rectangle(view.OnBackgroundImageBorderChanged, view.backgroundImageBorder);
+
+            return view.backgroundExtraData?.BackgroundImageBorder;
         });
         /// <summary>
         /// BackgroundProperty
@@ -153,6 +218,8 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+
+                view.backgroundExtraData = null;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -542,6 +609,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty OpacityProperty = BindableProperty.Create("Opacity", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
+
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.OPACITY, new Tizen.NUI.PropertyValue((float)newValue));
@@ -695,6 +763,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)newValue));
+                view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -715,6 +784,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+                view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1020,12 +1090,12 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            string temp;
+            int temp;
             if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.DRAW_MODE).Get(out temp) == false)
             {
                 NUILog.Error("DrawMode get error!");
             }
-            return temp.GetValueByDescription<DrawModeType>();
+            return (DrawModeType)temp;
         });
 
         /// <summary>
@@ -1058,6 +1128,28 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch ((ResizePolicyType)newValue)
+                {
+                    case ResizePolicyType.UseNaturalSize:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    case ResizePolicyType.FillToParent:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.MatchParent;
+                            break;
+                        }
+                    case ResizePolicyType.FitToChildren:
+                        {
+                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1081,6 +1173,28 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch ((ResizePolicyType)newValue)
+                {
+                    case ResizePolicyType.UseNaturalSize:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    case ResizePolicyType.FillToParent:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.MatchParent;
+                            break;
+                        }
+                    case ResizePolicyType.FitToChildren:
+                        {
+                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1111,12 +1225,12 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            string temp;
+            int temp;
             if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
             {
                 NUILog.Error("SizeScalePolicy get error!");
             }
-            return temp.GetValueByDescription<SizeScalePolicyType>();
+            return (SizeScalePolicyType)temp;
         });
 
         /// <summary>
@@ -1188,7 +1302,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue((Size)newValue));
+                Size size = (Size)newValue;
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
+                view.WidthSpecification = (int)System.Math.Ceiling(size.Width);
+                view.HeightSpecification = (int)System.Math.Ceiling(size.Height);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1382,19 +1501,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            var shadow = (ImageShadow)newValue;
             var view = (View)bindable;
-            bool hadShadowExtents = view.HasShadowExtents();
-
-            (view.imageShadow ?? (view.imageShadow = new ViewSelector<ImageShadow>(view, view.OnControlStateChangedForShadow))).Clone(newValue);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow.GetValue(), view));
-
-            view.boxShadow?.Clear();
-            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SHADOW, shadow == null ? new PropertyValue() : shadow.ToPropertyValue(view));
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.imageShadow?.GetValue();
+
+            PropertyMap map = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SHADOW).Get(map);
+
+            var shadow = new ImageShadow(map);
+            return shadow.IsEmpty() ? null : shadow;
         });
 
         /// <summary>
@@ -1403,19 +1522,34 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            var shadow = (Shadow)newValue;
             var view = (View)bindable;
-            bool hadShadowExtents = view.HasShadowExtents();
-
-            (view.boxShadow ?? (view.boxShadow = new ViewSelector<Shadow>(view, view.OnControlStateChangedForShadow))).Clone(newValue);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow.GetValue(), view));
-
-            view.imageShadow?.Clear();
-            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SHADOW, shadow == null ? new PropertyValue() : shadow.ToPropertyValue(view));
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.boxShadow?.GetValue();
+
+            PropertyMap map = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SHADOW).Get(map);
+
+            var shadow = new Shadow(map);
+            return shadow.IsEmpty() ? null : shadow;
+        });
+
+        /// <summary>
+        /// CornerRadius Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.UpdateCornerRadius((float)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
         });
 
         /// <summary>
@@ -1423,5 +1557,134 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
+
+        /// <summary>
+        /// EnableControlState property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableControlStateProperty = BindableProperty.Create(nameof(EnableControlState), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            bool prev = view.enableControlState;
+            view.enableControlState = (bool)newValue;
+
+            if (prev != view.enableControlState)
+            {
+                if (prev)
+                {
+                    view.TouchEvent -= view.EmptyOnTouch;
+                }
+                else
+                {
+                    view.TouchEvent += view.EmptyOnTouch;
+                }
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((View)bindable).enableControlState;
+        });
+
+        #region Selectors
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.BackgroundImage.Update(view, (Selector<string>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.BackgroundImage.Get(view);
+        });
+
+        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.BackgroundColor.Update(view, (Selector<Color>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.BackgroundColor.Get(view);
+        });
+
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.BackgroundImageBorder.Update(view, (Selector<Rectangle>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.BackgroundImageBorder.Get(view);
+        });
+
+        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.Color.Update(view, (Selector<Color>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.Color.Get(view);
+        });
+
+        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.Opacity.Update(view, (Selector<float?>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.Opacity.Get(view);
+        });
+
+        /// <summary>
+        /// ImageShadow Selector Property for binding to ViewStyle
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageShadowSelectorProperty = BindableProperty.Create("ImageShadowSelector", typeof(Selector<ImageShadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.ImageShadow.Update(view, (Selector<ImageShadow>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.ImageShadow.Get(view);
+        });
+
+        /// <summary>
+        /// BoxShadow Selector Property for binding to ViewStyle
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BoxShadowSelectorProperty = BindableProperty.Create("BoxShadowSelector", typeof(Selector<Shadow>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.BoxShadow.Update(view, (Selector<Shadow>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.BoxShadow.Get(view);
+        });
+
+        /// <summary>
+        /// CornerRadius Selector Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusSelectorProperty = BindableProperty.Create("CornerRadiusSelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.SelectorData.CornerRadius.Update(view, (Selector<float?>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.SelectorData.CornerRadius.Get(view);
+        });
+        #endregion
     }
 }

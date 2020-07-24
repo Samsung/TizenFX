@@ -42,7 +42,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
         private static readonly object s_pkgEventLock = new object();
-        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
+        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
         private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
         private static int s_callbackId = 0;
@@ -1170,7 +1170,6 @@ namespace Tizen.Applications
                 return;
 
             var err = Interop.PackageManager.ErrorCode.None;
-            s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
             if (!Handle.IsInvalid)
             {
@@ -1194,33 +1193,43 @@ namespace Tizen.Applications
 
         private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
         {
+            PackageManagerEventArgs args;
             try
             {
-                if (eventType == Interop.PackageManager.EventType.Install)
-                {
-                    s_installEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Uninstall)
-                {
-                    s_uninstallEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Update)
-                {
-                    s_updateEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.Move)
-                {
-                    s_moveEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
-                else if (eventType == Interop.PackageManager.EventType.ClearData)
-                {
-                    s_clearDataEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
-                }
+                args = new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress);
             }
             catch (Exception e)
             {
                 Log.Warn(LogTag, e.Message);
+                return;
             }
+
+            EventHandler<PackageManagerEventArgs> handlers = null;
+            lock (s_pkgEventLock)
+            {
+                if (eventType == Interop.PackageManager.EventType.Install)
+                {
+                    handlers = s_installEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Uninstall)
+                {
+                    handlers = s_uninstallEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Update)
+                {
+                    handlers = s_updateEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.Move)
+                {
+                    handlers = s_moveEventHandler;
+                }
+                else if (eventType == Interop.PackageManager.EventType.ClearData)
+                {
+                    handlers = s_clearDataEventHandler;
+                }
+            }
+
+            handlers?.Invoke(null, args);
         }
 
         private static void UnregisterPackageManagerEventIfNeeded()
@@ -1229,8 +1238,6 @@ namespace Tizen.Applications
             {
                 return;
             }
-
-            s_packageManagerEventCallback = null;
 
             lock (Handle)
             {

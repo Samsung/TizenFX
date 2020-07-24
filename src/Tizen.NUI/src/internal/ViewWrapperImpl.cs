@@ -64,10 +64,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLayoutNegotiatedDelegate(float size, DimensionType dimension);
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnControlChildAddDelegate(View child);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate void OnControlChildRemoveDelegate(View child);
-        /// <since_tizen> 3 </since_tizen>
         public delegate void OnStyleChangeDelegate(StyleManager styleManager, StyleChangeType change);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
@@ -119,8 +115,6 @@ namespace Tizen.NUI
         public new RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
         public new OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
         public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
-        public new OnControlChildAddDelegate OnControlChildAdd;
-        public new OnControlChildRemoveDelegate OnControlChildRemove;
         public new OnStyleChangeDelegate OnStyleChange;
         public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
         public new OnAccessibilityPanDelegate OnAccessibilityPan;
@@ -287,8 +281,6 @@ namespace Tizen.NUI
             Delegate19 = new DelegateViewWrapperImpl_19(DirectorOnCalculateRelayoutSize);
             Delegate20 = new DelegateViewWrapperImpl_20(DirectorOnLayoutNegotiated);
             Delegate21 = new DelegateViewWrapperImpl_21(DirectorOnInitialize);
-            Delegate22 = new DelegateViewWrapperImpl_22(DirectorOnControlChildAdd);
-            Delegate23 = new DelegateViewWrapperImpl_23(DirectorOnControlChildRemove);
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
             Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
@@ -304,7 +296,7 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate22, Delegate23, Delegate24, Delegate25, Delegate26, Delegate27, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate27, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
         private void DirectorOnStageConnection(int depth)
@@ -443,27 +435,6 @@ namespace Tizen.NUI
 
         private void DirectorOnInitialize()
         {
-        }
-
-        private void DirectorOnControlChildAdd(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                if (null != OnControlChildAdd)
-                {
-                    OnControlChildAdd(view);
-                }
-            }
-        }
-
-        private void DirectorOnControlChildRemove(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
         }
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)

@@ -34,23 +34,18 @@ namespace Tizen.Network.Bluetooth
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
+            _impl._notificationSent += (s, e) =>
+            {
+                e.Server = this;
+                NotificationSent?.Invoke(this, e);
+            };
         }
 
         /// <summary>
         /// (event) This event is called when the indication acknowledgement is received for each notified client.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<NotificationSentEventArg> NotificationSent
-        {
-            add
-            {
-                _impl._notificationSent += value;
-            }
-            remove
-            {
-                _impl._notificationSent -= value;
-            }
-        }
+        public event EventHandler<NotificationSentEventArg> NotificationSent;
 
         /// <summary>
         /// Creates the Bluetooth GATT server.
@@ -331,7 +326,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
+        internal static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
         {
             add
             {
@@ -364,7 +359,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
 
@@ -374,7 +368,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset gatt connection state changed callback, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
 

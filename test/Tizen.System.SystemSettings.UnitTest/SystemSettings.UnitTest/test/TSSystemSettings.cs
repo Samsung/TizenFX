@@ -1,8 +1,8 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
+using Tizen.NUI.Components;
 using Tizen.System;
-using Tizen;
 // /opt/usr/data/settings/Ringtones/ringtone_sdk.mp3
 namespace SystemSettingsUnitTest
 {
@@ -132,7 +132,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void IncomingCallRingtone_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.IncomingCallRingtone, "IncomingCallRingtone_READ_WRITE: IncomingCallRingtone not an instance of string");
@@ -144,7 +145,9 @@ namespace SystemSettingsUnitTest
                 Assert.IsTrue(setValue.CompareTo(getValue) == 0, "IncomingCallRingtone_READ_WRITE: Set value and get value of the property should be same.");
                 Tizen.System.SystemSettings.IncomingCallRingtone = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -154,7 +157,8 @@ namespace SystemSettingsUnitTest
         }
 
         private static bool s_incomingCallRingtoneCallbackCalled = false;
-        private static readonly string s_incomingCallRingtoneValue = SystemSettingsTestInput.GetStringValue((int) Tizen.System.SystemSettingsKeys.IncomingCallRingtone);
+        private static TaskCompletionSource<bool> s_tcsIncomingCallRingtone;
+        private static readonly string s_incomingCallRingtoneValue = SystemSettingsTestInput.GetStringValue((int)Tizen.System.SystemSettingsKeys.IncomingCallRingtone);
         ////[Test]
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:IncomingCallRingtoneChanged event is called")]
@@ -164,22 +168,26 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task IncomingCallRingtoneChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
+                s_tcsIncomingCallRingtone = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.IncomingCallRingtoneChanged += OnIncomingCallRingtoneChanged;
                 string preValue = Tizen.System.SystemSettings.IncomingCallRingtone;
                 Tizen.System.SystemSettings.IncomingCallRingtone = s_incomingCallRingtoneValue;
-                await Task.Delay(2000);
+                await s_tcsIncomingCallRingtone.Task;
                 Assert.IsTrue(s_incomingCallRingtoneCallbackCalled, "IncomingCallRingtoneChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_incomingCallRingtoneCallbackCalled = false;
                 Tizen.System.SystemSettings.IncomingCallRingtoneChanged -= OnIncomingCallRingtoneChanged;
                 Tizen.System.SystemSettings.IncomingCallRingtone = s_incomingCallRingtoneValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_incomingCallRingtoneCallbackCalled, "IncomingCallRingtoneChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.IncomingCallRingtone = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -189,6 +197,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnIncomingCallRingtoneChanged(object sender, Tizen.System.IncomingCallRingtoneChangedEventArgs e)
         {
+            s_tcsIncomingCallRingtone.SetResult(true);
             s_incomingCallRingtoneCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnIncomingCallRingtoneChanged: IncomingCallRingtone not an instance of string");
             Assert.IsTrue(s_incomingCallRingtoneValue.CompareTo(e.Value) == 0, "OnIncomingCallRingtoneChanged: The callback should receive the latest value for the property.");
@@ -204,7 +213,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void WallpaperHomeScreen_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.WallpaperHomeScreen, "WallpaperHomeScreen_READ_WRITE: WallpaperHomeScreen not an instance of string");
@@ -221,7 +231,9 @@ namespace SystemSettingsUnitTest
                     Tizen.System.SystemSettings.WallpaperHomeScreen = preValue;
 
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.home_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -229,8 +241,9 @@ namespace SystemSettingsUnitTest
                 LogUtils.NotSupport();
             }
         }
-        
+
         private static bool s_wallpaperHomeScreenCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsWallpaperHomeScreen;
         private static readonly string s_wallpaperHomeScreenValue = SystemSettingsTestInput.GetStringValue((int)Tizen.System.SystemSettingsKeys.WallpaperHomeScreen);
         ////[Test]
         //[Category("P1")]
@@ -241,18 +254,20 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task WallpaperHomeScreenChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
+                s_tcsWallpaperHomeScreen = new TaskCompletionSource<bool>();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.WallpaperHomeScreenChanged += OnWallpaperHomeScreenChanged;
                 string preValue = Tizen.System.SystemSettings.WallpaperHomeScreen;
                 Tizen.System.SystemSettings.WallpaperHomeScreen = s_wallpaperHomeScreenValue;
-                await Task.Delay(2000);
+                await s_tcsWallpaperHomeScreen.Task;
                 Assert.IsTrue(s_wallpaperHomeScreenCallbackCalled, "WallpaperHomeScreenChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_wallpaperHomeScreenCallbackCalled = false;
                 Tizen.System.SystemSettings.WallpaperHomeScreenChanged -= OnWallpaperHomeScreenChanged;
                 Tizen.System.SystemSettings.WallpaperHomeScreen = s_wallpaperHomeScreenValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_wallpaperHomeScreenCallbackCalled, "WallpaperHomeScreenChanged_CHECK_EVENT: EventHandler removed. Still getting called");
 
                 string strProfile;
@@ -260,7 +275,9 @@ namespace SystemSettingsUnitTest
                 if (string.Compare(strProfile, "mobile") == 0)
                     Tizen.System.SystemSettings.WallpaperHomeScreen = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.home_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -270,6 +287,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnWallpaperHomeScreenChanged(object sender, Tizen.System.WallpaperHomeScreenChangedEventArgs e)
         {
+            s_tcsWallpaperHomeScreen.SetResult(true);
             s_wallpaperHomeScreenCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnWallpaperHomeScreenChanged: WallpaperHomeScreen not an instance of string");
             Assert.IsTrue(s_wallpaperHomeScreenValue.CompareTo(e.Value) == 0, "OnWallpaperHomeScreenChanged: The callback should receive the latest value for the property.");
@@ -285,7 +303,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void WallpaperLockScreen_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.WallpaperLockScreen, "WallpaperLockScreen_READ_WRITE: WallpaperLockScreen not an instance of string");
@@ -302,7 +321,9 @@ namespace SystemSettingsUnitTest
 
 
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.lock_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -312,6 +333,7 @@ namespace SystemSettingsUnitTest
         }
 
         private static bool s_wallpaperLockScreenCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsWallpaperLockScreen;
         private static readonly string s_wallpaperLockScreenValue = SystemSettingsTestInput.GetStringValue((int)Tizen.System.SystemSettingsKeys.WallpaperLockScreen);
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:WallpaperLockScreenChanged event is called")]
@@ -321,18 +343,20 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task WallpaperLockScreenChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
+                s_tcsWallpaperLockScreen = new TaskCompletionSource<bool>();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.WallpaperLockScreenChanged += OnWallpaperLockScreenChanged;
                 string preValue = Tizen.System.SystemSettings.WallpaperLockScreen;
                 Tizen.System.SystemSettings.WallpaperLockScreen = s_wallpaperLockScreenValue;
-                await Task.Delay(2000);
+                await s_tcsWallpaperLockScreen.Task;
                 Assert.IsTrue(s_wallpaperLockScreenCallbackCalled, "WallpaperLockScreenChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_wallpaperLockScreenCallbackCalled = false;
                 Tizen.System.SystemSettings.WallpaperLockScreenChanged -= OnWallpaperLockScreenChanged;
                 Tizen.System.SystemSettings.WallpaperLockScreen = s_wallpaperLockScreenValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_wallpaperLockScreenCallbackCalled, "WallpaperLockScreenChanged_CHECK_EVENT: EventHandler removed. Still getting called");
 
                 string strProfile;
@@ -341,7 +365,9 @@ namespace SystemSettingsUnitTest
                     Tizen.System.SystemSettings.WallpaperLockScreen = preValue;
 
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.lock_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -351,6 +377,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnWallpaperLockScreenChanged(object sender, Tizen.System.WallpaperLockScreenChangedEventArgs e)
         {
+            s_tcsWallpaperLockScreen.SetResult(true);
             s_wallpaperLockScreenCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnWallpaperLockScreenChanged: WallpaperLockScreen not an instance of string");
             Assert.IsTrue(s_wallpaperLockScreenValue.CompareTo(e.Value) == 0, "OnWallpaperLockScreenChanged: The callback should receive the latest value for the property.");
@@ -399,6 +426,7 @@ namespace SystemSettingsUnitTest
         }
 
         private static bool s_fontSizeSmallCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsFontSizeSmall;
         private static SystemSettingsFontSize preFontValue;
         ////[Test]
         //[Category("P1")]
@@ -410,12 +438,13 @@ namespace SystemSettingsUnitTest
         public static async Task FontSizeChanged_CHECK_EVENT_SMALL()
         {
             LogUtils.StartTest();
+            s_tcsFontSizeSmall = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontSizeChanged += OnFontSizeChangedSmall;
             //SystemSettingsFontSize preValue = Tizen.System.SystemSettings.FontSize;
             preFontValue = Tizen.System.SystemSettings.FontSize;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Small;
-            await Task.Delay(2000);
+            await s_tcsFontSizeSmall.Task;
             Tizen.System.SystemSettings.FontSizeChanged -= OnFontSizeChangedSmall;
             Assert.IsTrue(s_fontSizeSmallCallbackCalled, "FontSizeChanged_CHECK_EVENT_SMALL: EventHandler added. Not getting called");
             s_fontSizeSmallCallbackCalled = false;
@@ -427,12 +456,14 @@ namespace SystemSettingsUnitTest
         }
         private static void OnFontSizeChangedSmall(object sender, Tizen.System.FontSizeChangedEventArgs e)
         {
+            s_tcsFontSizeSmall.SetResult(true);
             s_fontSizeSmallCallbackCalled = true;
             Assert.IsInstanceOf<Tizen.System.SystemSettingsFontSize>(e.Value, "OnFontSizeChangedSmall: FontSize not an instance of SystemSettingsFontSize");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsFontSize.Small, "OnFontSizeChangedSmall: The callback should receive the latest value for the property.");
         }
 
         private static bool s_fontSizeNormalCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsFontSizeNormal;
         ////[Test]
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:FontSizeChanged event is called")]
@@ -443,14 +474,14 @@ namespace SystemSettingsUnitTest
         public static async Task FontSizeChanged_CHECK_EVENT_NORMAL()
         {
             LogUtils.StartTest();
+            s_tcsFontSizeNormal = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontSizeChanged += OnFontSizeChangedNormal;
-            await Task.Delay(2000);
             //SystemSettingsFontSize preValue = Tizen.System.SystemSettings.FontSize;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Normal;
-            await Task.Delay(2000);
+            await s_tcsFontSizeNormal.Task;
             Tizen.System.SystemSettings.FontSizeChanged -= OnFontSizeChangedNormal;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsTrue(s_fontSizeNormalCallbackCalled, "FontSizeChanged_CHECK_EVENT_NORMAL: EventHandler added. Not getting called");
             s_fontSizeNormalCallbackCalled = false;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Normal;
@@ -462,14 +493,16 @@ namespace SystemSettingsUnitTest
         private static void OnFontSizeChangedNormal(object sender, Tizen.System.FontSizeChangedEventArgs e)
         {
             s_fontSizeNormalCallbackCalled = true;
-         //   string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
-         //   Tizen.Log.Debug("CS-SYSTEM-SETTINGS", format);
+            s_tcsFontSizeNormal.SetResult(true);
+            //   string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
+            //   Tizen.Log.Debug("CS-SYSTEM-SETTINGS", format);
 
             Assert.IsInstanceOf<Tizen.System.SystemSettingsFontSize>(e.Value, "OnFontSizeChangedNormal: FontSize not an instance of SystemSettingsFontSize");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsFontSize.Normal, "OnFontSizeChangedNormal: The callback should receive the latest value for the property.");
         }
 
         private static bool s_fontSizeLargeCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsFontSizeLarge;
         ////[Test]
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:FontSizeChanged event is called")]
@@ -480,14 +513,14 @@ namespace SystemSettingsUnitTest
         public static async Task FontSizeChanged_CHECK_EVENT_LARGE()
         {
             LogUtils.StartTest();
+            s_tcsFontSizeLarge = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontSizeChanged += OnFontSizeChangedLarge;
-            await Task.Delay(2000);
             //SystemSettingsFontSize preValue = Tizen.System.SystemSettings.FontSize;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Large;
-            await Task.Delay(2000);
+            await s_tcsFontSizeLarge.Task;
             Tizen.System.SystemSettings.FontSizeChanged -= OnFontSizeChangedLarge;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsTrue(s_fontSizeLargeCallbackCalled, "FontSizeChanged_CHECK_EVENT_LARGE: EventHandler added. Not getting called");
             s_fontSizeLargeCallbackCalled = false;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Large;
@@ -498,14 +531,16 @@ namespace SystemSettingsUnitTest
         }
         private static void OnFontSizeChangedLarge(object sender, Tizen.System.FontSizeChangedEventArgs e)
         {
+            s_tcsFontSizeLarge.SetResult(true);
             s_fontSizeLargeCallbackCalled = true;
-           //string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
-           //Tizen.Log.Debug("CS-SYSTEM-SETTINGS", format);
+            //string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
+            //Tizen.Log.Debug("CS-SYSTEM-SETTINGS", format);
 
             Assert.IsInstanceOf<Tizen.System.SystemSettingsFontSize>(e.Value, "OnFontSizeChangedLarge: FontSizeChanged not an instance of SystemSettingsFontSize");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsFontSize.Large, "OnFontSizeChangedLarge: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsFontSizeHuge;
         private static bool s_fontSizeHugeCallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -517,14 +552,14 @@ namespace SystemSettingsUnitTest
         public static async Task FontSizeChanged_CHECK_EVENT_HUGE()
         {
             LogUtils.StartTest();
+            s_tcsFontSizeHuge = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontSizeChanged += OnFontSizeChangedHuge;
-            await Task.Delay(2000);
             //SystemSettingsFontSize preValue = Tizen.System.SystemSettings.FontSize;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Huge;
-            await Task.Delay(2000);
+            await s_tcsFontSizeHuge.Task;
             Tizen.System.SystemSettings.FontSizeChanged -= OnFontSizeChangedHuge;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsTrue(s_fontSizeHugeCallbackCalled, "FontSizeChanged_CHECK_EVENT_HUGE: EventHandler added. Not getting called");
             s_fontSizeHugeCallbackCalled = false;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Huge;
@@ -535,6 +570,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnFontSizeChangedHuge(object sender, Tizen.System.FontSizeChangedEventArgs e)
         {
+            s_tcsFontSizeHuge.SetResult(true);
             s_fontSizeHugeCallbackCalled = true;
             //string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
             //Tizen.Log.Debug("CS-SYSTEM-SETTINSG", format);
@@ -543,6 +579,7 @@ namespace SystemSettingsUnitTest
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsFontSize.Huge, "OnFontSizeChangedHuge: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsFontSizeGiant;
         private static bool s_fontSizeGiantCallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -553,15 +590,15 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task FontSizeChanged_CHECK_EVENT_GIANT()
         {
+            s_tcsFontSizeGiant = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontSizeChanged += OnFontSizeChangedGiant;
-            await Task.Delay(2000);
             //SystemSettingsFontSize preValue = Tizen.System.SystemSettings.FontSize;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Giant;
-            await Task.Delay(2000);
+            await s_tcsFontSizeGiant.Task;
             Tizen.System.SystemSettings.FontSizeChanged -= OnFontSizeChangedGiant;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsTrue(s_fontSizeGiantCallbackCalled, "FontSizeChanged_CHECK_EVENT_GIANT: EventHandler added. Not getting called");
             s_fontSizeGiantCallbackCalled = false;
             Tizen.System.SystemSettings.FontSize = Tizen.System.SystemSettingsFontSize.Giant;
@@ -573,6 +610,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnFontSizeChangedGiant(object sender, Tizen.System.FontSizeChangedEventArgs e)
         {
+            s_tcsFontSizeGiant.SetResult(true);
             s_fontSizeGiantCallbackCalled = true;
             //string format = string.Format("Current Tizen.System.SystemSettings.FontSize : {0} , actual value {1}", Tizen.System.SystemSettings.FontSize, e.Value);
             //Tizen.Log.Debug("CS-SYSTEM-SETTINGS", format);
@@ -589,25 +627,27 @@ namespace SystemSettingsUnitTest
         //[Property("SPEC_URL", "-")]
         //[Property("CRITERIA", "PRW")]
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
-        public static void FontType_READ_WRITE()
+        public static async Task FontType_READ_WRITE()
         {
             LogUtils.StartTest();
             /* TEST CODE */
             Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.FontType, "FontType_READ_WRITE: FontType not an instance of string");
-            string setValue = "BreezeSans";
+            //string setValue = "BreezeSans";
+//            string setValue = "SamsungOneUI";
+            string setValue = Tizen.System.SystemSettings.DefaultFontType;
             string preValue = Tizen.System.SystemSettings.FontType;
-
-            Thread.Sleep(3000);
+            Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>>>>>>>>> Default Font set : " + setValue);
             Tizen.System.SystemSettings.FontType = setValue;
             var getValue = Tizen.System.SystemSettings.FontType;
             Assert.IsTrue(getValue.CompareTo(setValue) == 0, "FontType_READ_WRITE: Set value and get value of the property should be same.");
-            Thread.Sleep(1000);
+            await Task.Delay(2000);
 
             LogUtils.WriteOK();
         }
 
         private static bool s_fontTypeCallbackCalled = false;
-        private static readonly string s_fontTypeValue = "BreezeSans";
+        private static readonly string s_fontTypeValue = Tizen.System.SystemSettings.DefaultFontType;
+        private static TaskCompletionSource<bool> s_tcsFontType;
         ////[Test]
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:FontTypeChanged event is called")]
@@ -617,23 +657,25 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task FontTypeChanged_CHECK_EVENT()
         {
+            s_tcsFontType = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.FontTypeChanged += OnFontTypeChanged;
             string preValue = Tizen.System.SystemSettings.FontType;
             Tizen.System.SystemSettings.FontType = s_fontTypeValue;
-            await Task.Delay(2000);
+            await s_tcsFontType.Task;
             Assert.IsTrue(s_fontTypeCallbackCalled, "FontTypeChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_fontTypeCallbackCalled = false;
             Tizen.System.SystemSettings.FontTypeChanged -= OnFontTypeChanged;
             Tizen.System.SystemSettings.FontType = s_fontTypeValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_fontTypeCallbackCalled, "FontTypeChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.FontType = preValue;
             LogUtils.WriteOK();
         }
         private static void OnFontTypeChanged(object sender, Tizen.System.FontTypeChangedEventArgs e)
         {
+            s_tcsFontType.SetResult(true);
             s_fontTypeCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnFontTypeChanged: FontType not an instance of string");
             Assert.IsTrue(s_fontTypeValue.CompareTo(e.Value) == 0, "OnFontTypeChanged: The callback should receive the latest value for the property.");
@@ -662,6 +704,7 @@ namespace SystemSettingsUnitTest
         }
 
         private static bool s_motionActivationCallbackCalled = false;
+        private static TaskCompletionSource<bool> s_tcsMotionActivation;
         private static bool s_motionActivationValue = !Tizen.System.SystemSettings.MotionActivationEnabled;
         ////[Test]
         //[Category("P1")]
@@ -673,28 +716,31 @@ namespace SystemSettingsUnitTest
         public static async Task MotionActivationSettingChanged_CHECK_EVENT()
         {
             LogUtils.StartTest();
+            s_tcsMotionActivation = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.MotionActivationSettingChanged += OnMotionActivationChanged;
             bool preValue = Tizen.System.SystemSettings.MotionActivationEnabled;
             Tizen.System.SystemSettings.MotionActivationEnabled = s_motionActivationValue;
-            await Task.Delay(2000);
+            await s_tcsMotionActivation.Task;
+
             Assert.IsTrue(s_motionActivationCallbackCalled, "MotionActivationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_motionActivationCallbackCalled = false;
             s_motionActivationValue = !s_motionActivationValue;
             Tizen.System.SystemSettings.MotionActivationEnabled = s_motionActivationValue;
-            await Task.Delay(2000);
+            await s_tcsMotionActivation.Task;
             Assert.IsTrue(s_motionActivationCallbackCalled, "MotionActivationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_motionActivationCallbackCalled = false;
 
             Tizen.System.SystemSettings.MotionActivationSettingChanged -= OnMotionActivationChanged;
             Tizen.System.SystemSettings.MotionActivationEnabled = s_motionActivationValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_motionActivationCallbackCalled, "MotionActivationSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.MotionActivationEnabled = preValue;
             LogUtils.WriteOK();
         }
         private static void OnMotionActivationChanged(object sender, Tizen.System.MotionActivationSettingChangedEventArgs e)
         {
+            s_tcsMotionActivation.SetResult(true);
             s_motionActivationCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnMotionActivationChanged: MotionActivationEnabled not an instance of bool");
             Assert.IsTrue(e.Value == s_motionActivationValue, "OnMotionActivationChanged: The callback should receive the latest value for the property.");
@@ -710,7 +756,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void EmailAlertRingtone_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.EmailAlertRingtone, "EmailAlertRingtone_READ_WRITE: EmailAlertRingtone not an instance of string");
@@ -721,7 +768,9 @@ namespace SystemSettingsUnitTest
                 Assert.IsTrue(setValue.CompareTo(getValue) == 0, "EmailAlertRingtone_READ_WRITE: Set value and get value of the property should be same.");
                 Tizen.System.SystemSettings.EmailAlertRingtone = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.notification_email", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -731,6 +780,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsEmailAlertRingtone;
         private static bool s_emailAlertRingtoneCallbackCalled = false;
         private static readonly string s_emailAlertRingtoneValue = SystemSettingsTestInput.GetStringValue((int)Tizen.System.SystemSettingsKeys.EmailAlertRingtone);
         ////[Test]
@@ -742,22 +792,26 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task EmailAlertRingtoneChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
+				s_tcsEmailAlertRingtone = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.EmailAlertRingtoneChanged += OnEmailAlertRingtoneChanged;
                 string preValue = Tizen.System.SystemSettings.EmailAlertRingtone;
                 Tizen.System.SystemSettings.EmailAlertRingtone = s_emailAlertRingtoneValue;
-                await Task.Delay(2000);
+				await s_tcsEmailAlertRingtone.Task;
                 Assert.IsTrue(s_emailAlertRingtoneCallbackCalled, "EmailAlertRingtoneChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_emailAlertRingtoneCallbackCalled = false;
                 Tizen.System.SystemSettings.EmailAlertRingtoneChanged -= OnEmailAlertRingtoneChanged;
                 Tizen.System.SystemSettings.EmailAlertRingtone = s_emailAlertRingtoneValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_emailAlertRingtoneCallbackCalled, "EmailAlertRingtoneChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.EmailAlertRingtone = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.notification_email", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -767,6 +821,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnEmailAlertRingtoneChanged(object sender, Tizen.System.EmailAlertRingtoneChangedEventArgs e)
         {
+            s_tcsEmailAlertRingtone.SetResult(true);
             s_emailAlertRingtoneCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnEmailAlertRingtoneChanged: EmailAlertRingtone not an instance of string");
             Assert.IsTrue(s_emailAlertRingtoneValue.CompareTo(e.Value) == 0, "OnEmailAlertRingtoneChanged: The callback should receive the latest value for the property.");
@@ -794,6 +849,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsData3GNetwork;
         private static bool s_data3GNetworkCallbackCalled = false;
         private static bool s_data3GNetworkSettingValue = !Tizen.System.SystemSettings.Data3GNetworkEnabled;
         ////[Test]
@@ -806,29 +862,31 @@ namespace SystemSettingsUnitTest
         public static async Task Data3GNetworkSettingChanged_CHECK_EVENT()
         {
             LogUtils.StartTest();
+            s_tcsData3GNetwork = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.Data3GNetworkSettingChanged += OnData3GNetworkSettingChanged;
             bool preValue = Tizen.System.SystemSettings.Data3GNetworkEnabled;
             Tizen.System.SystemSettings.Data3GNetworkEnabled = s_data3GNetworkSettingValue;
-            await Task.Delay(2000);
+            await s_tcsData3GNetwork.Task;
             Assert.IsTrue(s_data3GNetworkCallbackCalled, "Data3GNetworkSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
 
             s_data3GNetworkSettingValue = !s_data3GNetworkSettingValue;
             s_data3GNetworkCallbackCalled = false;
             Tizen.System.SystemSettings.Data3GNetworkEnabled = s_data3GNetworkSettingValue;
-            await Task.Delay(2000);
+            await s_tcsData3GNetwork.Task;
             Assert.IsTrue(s_data3GNetworkCallbackCalled, "Data3GNetworkSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_data3GNetworkCallbackCalled = false;
 
             Tizen.System.SystemSettings.Data3GNetworkSettingChanged -= OnData3GNetworkSettingChanged;
             Tizen.System.SystemSettings.Data3GNetworkEnabled = s_data3GNetworkSettingValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_data3GNetworkCallbackCalled, "Data3GNetworkSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.Data3GNetworkEnabled = preValue;
             LogUtils.WriteOK();
         }
         private static void OnData3GNetworkSettingChanged(object sender, Tizen.System.Data3GNetworkSettingChangedEventArgs e)
         {
+            s_tcsData3GNetwork.SetResult(true);
             s_data3GNetworkCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnData3GNetworkSettingChanged: Data3GNetworkEnabled not an instance of bool");
             Assert.IsTrue(e.Value == s_data3GNetworkSettingValue, "OnData3GNetworkSettingChanged: The callback should receive the latest value for the property.");
@@ -844,7 +902,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void LockscreenApp_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.LockScreenApp, "LockscreenApp_READ_WRITE: LockscreenApp not an instance of string");
@@ -855,7 +914,9 @@ namespace SystemSettingsUnitTest
                 Assert.IsTrue(setValue.CompareTo(getValue) == 0, "LockscreenApp_READ_WRITE: Set value and get value of the property should be same.");
                 Tizen.System.SystemSettings.LockScreenApp = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.lock_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -864,6 +925,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsLockScreenApp;
         private static bool s_lockScreenAppCallbackCalled = false;
         private static readonly string s_lockscreenAppValue = "org.tizen.lockscreen";
         ////[Test]
@@ -875,22 +937,26 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LockscreenAppChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
+				s_tcsLockScreenApp = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.LockScreenAppChanged += OnLockscreenAppChanged;
                 string preValue = Tizen.System.SystemSettings.LockScreenApp;
                 Tizen.System.SystemSettings.LockScreenApp = s_lockscreenAppValue;
-                await Task.Delay(2000);
+				await s_tcsLockScreenApp.Task;
                 Assert.IsTrue(s_lockScreenAppCallbackCalled, "LockscreenAppChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_lockScreenAppCallbackCalled = false;
                 Tizen.System.SystemSettings.LockScreenAppChanged -= OnLockscreenAppChanged;
                 Tizen.System.SystemSettings.LockScreenApp = s_lockscreenAppValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_lockScreenAppCallbackCalled, "LockscreenAppChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.LockScreenApp = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.lock_screen", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -900,6 +966,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnLockscreenAppChanged(object sender, Tizen.System.LockScreenAppChangedEventArgs e)
         {
+            s_tcsLockScreenApp.SetResult(true);
             s_lockScreenAppCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnLockscreenAppChanged: LockscreenApp not an instance of string");
             Assert.IsTrue(s_lockscreenAppValue.CompareTo(e.Value) == 0, "OnLockscreenAppChanged: The callback should receive the latest value for the property.");
@@ -944,6 +1011,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsLocaleCountry;
         private static bool s_localeCountryCallbackCalled = false;
         private static readonly string s_localeCountryValue = "en_US";
         ////[Test]
@@ -956,22 +1024,24 @@ namespace SystemSettingsUnitTest
         public static async Task LocaleCountryChanged_CHECK_EVENT()
         {
             LogUtils.StartTest();
+            s_tcsLocaleCountry = new TaskCompletionSource<bool>();
             /* TEST CODE */
             Tizen.System.SystemSettings.LocaleCountryChanged += OnLocaleCountryChanged;
             string preValue = Tizen.System.SystemSettings.LocaleCountry;
             Tizen.System.SystemSettings.LocaleCountry = s_localeCountryValue;
-            await Task.Delay(2000);
+            await s_tcsLocaleCountry.Task;
             Assert.IsTrue(s_localeCountryCallbackCalled, "LocaleCountryChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_localeCountryCallbackCalled = false;
             Tizen.System.SystemSettings.LocaleCountryChanged -= OnLocaleCountryChanged;
             Tizen.System.SystemSettings.LocaleCountry = s_localeCountryValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_localeCountryCallbackCalled, "LocaleCountryChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.LocaleCountry = preValue;
             LogUtils.WriteOK();
         }
         private static void OnLocaleCountryChanged(object sender, Tizen.System.LocaleCountryChangedEventArgs e)
         {
+            s_tcsLocaleCountry.SetResult(true);
             s_localeCountryCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnLocaleCountryChanged: LocaleCountry not an instance of string");
             Assert.IsTrue(s_localeCountryValue.CompareTo(e.Value) == 0, "OnLocaleCountryChanged: The callback should receive the latest value for the property.");
@@ -999,6 +1069,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsLocaleLanguage;
         private static bool s_localeLanguageCallbackCalled = false;
         private static readonly string s_localeLanguageValue = "en_US";
         ////[Test]
@@ -1010,23 +1081,25 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LocaleLanguageChanged_CHECK_EVENT()
         {
+            s_tcsLocaleLanguage = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LocaleLanguageChanged += OnLocaleLanguageChanged;
             string preValue = Tizen.System.SystemSettings.LocaleLanguage;
             Tizen.System.SystemSettings.LocaleLanguage = s_localeLanguageValue;
-            await Task.Delay(2000);
+            await s_tcsLocaleLanguage.Task;
             Assert.IsTrue(s_localeLanguageCallbackCalled, "LocaleLanguageChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_localeLanguageCallbackCalled = false;
             Tizen.System.SystemSettings.LocaleLanguageChanged -= OnLocaleLanguageChanged;
             Tizen.System.SystemSettings.LocaleLanguage = s_localeLanguageValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_localeLanguageCallbackCalled, "LocaleLanguageChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.LocaleLanguage = preValue;
             LogUtils.WriteOK();
         }
         private static void OnLocaleLanguageChanged(object sender, Tizen.System.LocaleLanguageChangedEventArgs e)
         {
+            s_tcsLocaleLanguage.SetResult(true);
             s_localeLanguageCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnLocaleLanguageChanged: LocaleLanguage not an instance of string");
             Assert.IsTrue(s_localeLanguageValue.CompareTo(e.Value) == 0, "OnLocaleLanguageChanged: The callback should receive the latest value for the property.");
@@ -1054,6 +1127,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsTimeFormat;
         private static bool s_timeFormatCallbackCalled = false;
         private static bool s_localeTimeformat24HourValue = !Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled;
         ////[Test]
@@ -1065,24 +1139,25 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LocaleTimeFormat24HourSettingChanged_CHECK_EVENT()
         {
+            s_tcsTimeFormat = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LocaleTimeFormat24HourSettingChanged += OnLocaleTimeformat24HourChanged;
             bool preValue = Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled;
             Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled = s_localeTimeformat24HourValue;
-            await Task.Delay(2000);
+            await s_tcsTimeFormat.Task;
             Assert.IsTrue(s_timeFormatCallbackCalled, "LocaleTimeFormat24HourSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_timeFormatCallbackCalled = false;
 
             s_localeTimeformat24HourValue = !s_localeTimeformat24HourValue;
             Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled = s_localeTimeformat24HourValue;
-            await Task.Delay(2000);
+            await s_tcsTimeFormat.Task;
             Assert.IsTrue(s_timeFormatCallbackCalled, "LocaleTimeFormat24HourSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_timeFormatCallbackCalled = false;
 
             Tizen.System.SystemSettings.LocaleTimeFormat24HourSettingChanged -= OnLocaleTimeformat24HourChanged;
             Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled = s_localeTimeformat24HourValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_timeFormatCallbackCalled, "LocaleTimeFormat24HourSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled = preValue;
             LogUtils.WriteOK();
@@ -1090,6 +1165,7 @@ namespace SystemSettingsUnitTest
 
         private static void OnLocaleTimeformat24HourChanged(object sender, Tizen.System.LocaleTimeFormat24HourSettingChangedEventArgs e)
         {
+            s_tcsTimeFormat.SetResult(true);
             s_timeFormatCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnLocaleTimeformat24HourChanged: LocaleTimeFormat24HourEnabled not an instance of bool");
             Assert.IsTrue(e.Value == s_localeTimeformat24HourValue, "OnLocaleTimeformat24HourChanged: The callback should receive the latest value for the property.");
@@ -1118,6 +1194,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsLocaleTimeZone;
         private static bool s_localeTimeZoneCallbackCalled = false;
         private static readonly string s_localeTimeZoneValue = "Asia/Seoul";
         ////[Test]
@@ -1129,24 +1206,26 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LocaleTimeZoneChanged_CHECK_EVENT()
         {
+            s_tcsLocaleTimeZone = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LocaleTimeZoneChanged += OnLocaleTimeZoneChanged;
             string preValue = Tizen.System.SystemSettings.LocaleTimeZone;
             Tizen.System.SystemSettings.LocaleTimeZone = s_localeTimeZoneValue;
-            await Task.Delay(2000);
+            await s_tcsLocaleTimeZone.Task;
             Assert.IsTrue(s_localeTimeZoneCallbackCalled, "LocaleTimeZoneChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_localeTimeZoneCallbackCalled = false;
 
             Tizen.System.SystemSettings.LocaleTimeZoneChanged -= OnLocaleTimeZoneChanged;
             Tizen.System.SystemSettings.LocaleTimeZone = s_localeTimeZoneValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_localeTimeZoneCallbackCalled, "LocaleTimeZoneChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.LocaleTimeZone = preValue;
             LogUtils.WriteOK();
         }
         private static void OnLocaleTimeZoneChanged(object sender, Tizen.System.LocaleTimeZoneChangedEventArgs e)
         {
+            s_tcsLocaleTimeZone.SetResult(true);
             s_localeTimeZoneCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnLocaleTimeZoneChanged: LocaleTimeZone not an instance of string");
             Assert.IsTrue(s_localeTimeZoneValue.CompareTo(e.Value) == 0, "OnLocaleTimezoneChanged: The callback should receive the latest value for the property.");
@@ -1266,7 +1345,9 @@ namespace SystemSettingsUnitTest
                 LogUtils.StartTest();
                 Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.NetworkWifiNotificationEnabled, "NetworkWifiNotificationEnabled_READ_ONLY: NetworkWifiNotificationEnabled not an instance of bool");
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/network.wifi", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -1337,6 +1418,8 @@ namespace SystemSettingsUnitTest
             Tizen.System.SystemSettings.ScreenBacklightTime = preValue;
             LogUtils.WriteOK();
         }
+
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime15;
         private static bool s_screenBacklightTime15CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1347,12 +1430,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_15()
         {
+            s_tcsScreenBacklightTime15 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime15Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 15;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime15.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime15Changed;
             Assert.IsTrue(s_screenBacklightTime15CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_15: EventHandler added. Not getting called");
             s_screenBacklightTime15CallbackCalled = false;
@@ -1361,11 +1445,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime15Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime15.SetResult(true);
             s_screenBacklightTime15CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime15Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 15, "OnScreenBacklightTime15Changed: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime30;
         private static bool s_screenBacklightTime30CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1376,12 +1462,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_30()
         {
+            s_tcsScreenBacklightTime30 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime30Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 30;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime30.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime30Changed;
             Assert.IsTrue(s_screenBacklightTime30CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_30: EventHandler added. Not getting called");
             s_screenBacklightTime30CallbackCalled = false;
@@ -1390,11 +1477,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime30Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime30.SetResult(true);
             s_screenBacklightTime30CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime30Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 30, "OnScreenBacklightTime30Changed: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime60;
         private static bool s_screenBacklightTime60CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1405,12 +1494,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_60()
         {
+            s_tcsScreenBacklightTime60 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime60Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 60;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime60.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime60Changed;
             Assert.IsTrue(s_screenBacklightTime60CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_60: EventHandler added. Not getting called");
             s_screenBacklightTime60CallbackCalled = false;
@@ -1419,11 +1509,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime60Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime60.SetResult(true);
             s_screenBacklightTime60CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime60Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 60, "OnScreenBacklightTime60Changed: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime120;
         private static bool s_screenBacklightTime120CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1434,12 +1526,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_120()
         {
+            s_tcsScreenBacklightTime120 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime120Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 120;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime120.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime120Changed;
             Assert.IsTrue(s_screenBacklightTime120CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_120: EventHandler added. Not getting called");
             s_screenBacklightTime120CallbackCalled = false;
@@ -1448,11 +1541,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime120Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime120.SetResult(true);
             s_screenBacklightTime120CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime120Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 120, "OnScreenBacklightTime120Changed: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime300;
         private static bool s_screenBacklightTime300CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1463,12 +1558,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_300()
         {
+            s_tcsScreenBacklightTime300 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime300Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 300;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime300.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime300Changed;
             Assert.IsTrue(s_screenBacklightTime300CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_300: EventHandler added. Not getting called");
             s_screenBacklightTime300CallbackCalled = false;
@@ -1477,11 +1573,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime300Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime300.SetResult(true);
             s_screenBacklightTime300CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime300Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 300, "OnScreenBacklightTime300Changed: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsScreenBacklightTime600;
         private static bool s_screenBacklightTime600CallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1492,12 +1590,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task ScreenBacklightTimeChanged_CHECK_EVENT_600()
         {
+            s_tcsScreenBacklightTime600 = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged += OnScreenBacklightTime600Changed;
             int preValue = Tizen.System.SystemSettings.ScreenBacklightTime;
             Tizen.System.SystemSettings.ScreenBacklightTime = 600;
-            await Task.Delay(2000);
+            await s_tcsScreenBacklightTime600.Task;
             Tizen.System.SystemSettings.ScreenBacklightTimeChanged -= OnScreenBacklightTime600Changed;
             Assert.IsTrue(s_screenBacklightTime600CallbackCalled, "ScreenBacklightTimeChanged_CHECK_EVENT_600: EventHandler added. Not getting called");
             s_screenBacklightTime600CallbackCalled = false;
@@ -1506,6 +1605,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnScreenBacklightTime600Changed(object sender, Tizen.System.ScreenBacklightTimeChangedEventArgs e)
         {
+            s_tcsScreenBacklightTime600.SetResult(true);
             s_screenBacklightTime600CallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnScreenBacklightTime600Changed: ScreenBacklightTime not an instance of int");
             Assert.IsTrue(e.Value == 600, "OnScreenBacklightTime600Changed; The callback should receive the latest value for the property.");
@@ -1521,7 +1621,8 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void SoundNotification_READ_WRITE()
         {
-            try {
+            try
+            {
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.SoundNotification, "SoundNotification_READ_WRITE: SoundNotification not an instance of string");
@@ -1532,7 +1633,9 @@ namespace SystemSettingsUnitTest
                 Assert.IsTrue(setValue.CompareTo(getValue) == 0, "SoundNotification_READ_WRITE: Set value and get value of the property should be same.");
                 Tizen.System.SystemSettings.SoundNotification = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -1541,6 +1644,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsSoundNotification;
         private static bool s_soundNotificationCallbackCalled = false;
         private static readonly string s_soundNotificationValue = SystemSettingsTestInput.GetStringValue((int)Tizen.System.SystemSettingsKeys.SoundNotification);
         ////[Test]
@@ -1552,23 +1656,27 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task SoundNotificationChanged_CHECK_EVENT()
         {
-            try {
+            try
+            {
+				s_tcsSoundNotification = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.SoundNotificationChanged += OnSoundNotificationChanged;
                 string preValue = Tizen.System.SystemSettings.SoundNotification;
                 Tizen.System.SystemSettings.SoundNotification = s_soundNotificationValue;
-                await Task.Delay(2000);
+				await s_tcsSoundNotification.Task;
                 Assert.IsTrue(s_soundNotificationCallbackCalled, "SoundNotificationChanged_CHECK_EVENT: EventHandler added. Not getting called");
 
                 s_soundNotificationCallbackCalled = false;
                 Tizen.System.SystemSettings.SoundNotificationChanged -= OnSoundNotificationChanged;
                 Tizen.System.SystemSettings.SoundNotification = s_soundNotificationValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_soundNotificationCallbackCalled, "SoundNotificationChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.SoundNotification = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -1578,6 +1686,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnSoundNotificationChanged(object sender, Tizen.System.SoundNotificationChangedEventArgs e)
         {
+            s_tcsSoundNotification.SetResult(true);
             s_soundNotificationCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnSoundNotificationChanged: SoundNotification not an instance of string");
             Assert.IsTrue(s_soundNotificationValue.CompareTo(e.Value) == 0, "OnSoundNotificationChanged: The callback should receive the latest value for the property.");
@@ -1605,6 +1714,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsSoundNotificationRepetitionPeriod;
         private static bool s_soundNotificationRepetitionPeriodCallbackCalled = false;
         private static readonly int s_soundNotificationRepetitionPeriodValue = 300;
         ////[Test]
@@ -1616,24 +1726,26 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task SoundNotificationRepetitionPeriodChanged_CHECK_EVENT()
         {
+            s_tcsSoundNotificationRepetitionPeriod = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.SoundNotificationRepetitionPeriodChanged += OnSoundNotificationRepetitionPeriodChanged;
             int preValue = Tizen.System.SystemSettings.SoundNotificationRepetitionPeriod;
             Tizen.System.SystemSettings.SoundNotificationRepetitionPeriod = s_soundNotificationRepetitionPeriodValue;
-            await Task.Delay(2000);
+            await s_tcsSoundNotificationRepetitionPeriod.Task;
             Assert.IsTrue(s_soundNotificationRepetitionPeriodCallbackCalled, "SoundNotificationRepetitionPeriodChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_soundNotificationRepetitionPeriodCallbackCalled = false;
 
             Tizen.System.SystemSettings.SoundNotificationRepetitionPeriodChanged -= OnSoundNotificationRepetitionPeriodChanged;
             Tizen.System.SystemSettings.SoundNotificationRepetitionPeriod = s_soundNotificationRepetitionPeriodValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_soundNotificationRepetitionPeriodCallbackCalled, "SoundNotificationRepetitionPeriodChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.SoundNotificationRepetitionPeriod = preValue;
             LogUtils.WriteOK();
         }
         private static void OnSoundNotificationRepetitionPeriodChanged(object sender, Tizen.System.SoundNotificationRepetitionPeriodChangedEventArgs e)
         {
+            s_tcsSoundNotificationRepetitionPeriod.SetResult(true);
             s_soundNotificationRepetitionPeriodCallbackCalled = true;
             Assert.IsInstanceOf<int>(e.Value, "OnSoundNotificationRepetitionPeriodChanged: SoundNotificationRepetitionPeriod not an instance of int");
             Assert.IsTrue(s_soundNotificationRepetitionPeriodValue.CompareTo(e.Value) == 0, "OnSoundNotificationRepetitionPeriodChanged: The callback should receive the latest value for the property.");
@@ -1671,6 +1783,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsLockStateLock;
         private static bool s_lockStateLockCallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1681,12 +1794,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LockStateChanged_CHECK_EVENT_LOCK()
         {
+            s_tcsLockStateLock = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LockStateChanged += OnLockStateChangedLock;
             SystemSettingsIdleLockState preValue = Tizen.System.SystemSettings.LockState;
             Tizen.System.SystemSettings.LockState = Tizen.System.SystemSettingsIdleLockState.Lock;
-            await Task.Delay(2000);
+            await s_tcsLockStateLock.Task;
             Assert.IsTrue(s_lockStateLockCallbackCalled, "LockStateChanged_CHECK_EVENT_LOCK: EventHandler added. Not getting called");
             Tizen.System.SystemSettings.LockStateChanged -= OnLockStateChangedLock;
             s_lockStateLockCallbackCalled = false;
@@ -1695,11 +1809,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnLockStateChangedLock(object sender, Tizen.System.LockStateChangedEventArgs e)
         {
+            s_tcsLockStateLock.SetResult(true);
             s_lockStateLockCallbackCalled = true;
             Assert.IsInstanceOf<Tizen.System.SystemSettingsIdleLockState>(e.Value, "OnLockStateChangedLock: LockState not an instance of SystemSettingsIdleLockState");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsIdleLockState.Lock, "OnLockStateChangedLock: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsLockStateUnlock;
         private static bool s_lockStateUnlockCallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1710,12 +1826,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LockStateChanged_CHECK_EVENT_UNLOCK()
         {
+            s_tcsLockStateUnlock = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LockStateChanged += OnLockStateChangedUnlock;
             SystemSettingsIdleLockState preValue = Tizen.System.SystemSettings.LockState;
             Tizen.System.SystemSettings.LockState = Tizen.System.SystemSettingsIdleLockState.Unlock;
-            await Task.Delay(2000);
+            await s_tcsLockStateUnlock.Task;
             Tizen.System.SystemSettings.LockStateChanged -= OnLockStateChangedUnlock;
             Assert.IsTrue(s_lockStateUnlockCallbackCalled, "LockStateChanged_CHECK_EVENT_UNLOCK: EventHandler added. Not getting called");
             s_lockStateLockCallbackCalled = false;
@@ -1724,11 +1841,13 @@ namespace SystemSettingsUnitTest
         }
         private static void OnLockStateChangedUnlock(object sender, Tizen.System.LockStateChangedEventArgs e)
         {
+            s_tcsLockStateUnlock.SetResult(true);
             s_lockStateUnlockCallbackCalled = true;
             Assert.IsInstanceOf<Tizen.System.SystemSettingsIdleLockState>(e.Value, "OnLockStateChangedUnlock: LockState not an instance of SystemSettingsIdleLockState");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsIdleLockState.Unlock, "OnLockStateChangedUnlock: The callback should receive the latest value for the property.");
         }
 
+        private static TaskCompletionSource<bool> s_tcsLockStateLaunchingLock;
         private static bool s_lockStateLaunchingLockCallbackCalled = false;
         ////[Test]
         //[Category("P1")]
@@ -1739,12 +1858,13 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task LockStateChanged_CHECK_EVENT_LAUNCHING_LOCK()
         {
+            s_tcsLockStateLaunchingLock = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.LockStateChanged += OnLockStateChangedLaunchingLock;
             SystemSettingsIdleLockState preValue = Tizen.System.SystemSettings.LockState;
             Tizen.System.SystemSettings.LockState = Tizen.System.SystemSettingsIdleLockState.LaunchingLock;
-            await Task.Delay(2000);
+            await s_tcsLockStateLaunchingLock.Task;
             Tizen.System.SystemSettings.LockStateChanged -= OnLockStateChangedLaunchingLock;
             Assert.IsTrue(s_lockStateLaunchingLockCallbackCalled, "LockStateChanged_CHECK_EVENT_LAUNCHING_LOCK: EventHandler added. Not getting called");
             s_lockStateLockCallbackCalled = false;
@@ -1753,6 +1873,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnLockStateChangedLaunchingLock(object sender, Tizen.System.LockStateChangedEventArgs e)
         {
+            s_tcsLockStateLaunchingLock.SetResult(true);
             s_lockStateLaunchingLockCallbackCalled = true;
             Assert.IsInstanceOf<Tizen.System.SystemSettingsIdleLockState>(e.Value, "OnLockStateChangedLaunchingLock: LockState not an instance of SystemSettingsIdleLockState");
             Assert.IsTrue(e.Value == Tizen.System.SystemSettingsIdleLockState.LaunchingLock, "OnLockStateChangedLaunchingLock: The callback should receive the latest value for the property.");
@@ -1832,6 +1953,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsAdsId;
         private static bool s_adsIdCallbackCalled = false;
         private static readonly string s_adsIdValue = "00000215-0156-0133-0034-000000000102";
         ////[Test]
@@ -1845,17 +1967,18 @@ namespace SystemSettingsUnitTest
         {
             try
             {
+				s_tcsAdsId = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.AdsIdChanged += OnAdsIdChanged;
                 string preValue = Tizen.System.SystemSettings.AdsId;
                 Tizen.System.SystemSettings.AdsId = s_adsIdValue;
-                await Task.Delay(2000);
+				await s_tcsAdsId.Task;
                 Assert.IsTrue(s_adsIdCallbackCalled, "AdsIdChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_adsIdCallbackCalled = false;
                 Tizen.System.SystemSettings.AdsIdChanged -= OnAdsIdChanged;
                 Tizen.System.SystemSettings.AdsId = s_adsIdValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_adsIdCallbackCalled, "AdsIdChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.AdsId = preValue;
                 LogUtils.WriteOK();
@@ -1871,6 +1994,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnAdsIdChanged(object sender, Tizen.System.AdsIdChangedEventArgs e)
         {
+            s_tcsAdsId.SetResult(true);
             s_adsIdCallbackCalled = true;
             Assert.IsInstanceOf<string>(e.Value, "OnAdsIdChanged: AdsId not an instance of string");
             Assert.IsTrue(s_adsIdValue.CompareTo(e.Value) == 0, "OnAdsIdChanged: The callback should receive the latest value for the property.");
@@ -1894,7 +2018,9 @@ namespace SystemSettingsUnitTest
                 var readValue = Tizen.System.SystemSettings.UltraDataSave;
                 Assert.NotNull(readValue, "Should be readable");
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -1926,6 +2052,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsAccessibilityTts;
         private static bool s_accessibilityTtsCallbackCalled = false;
         private static bool s_accessibilityTtsValue = !Tizen.System.SystemSettings.AccessibilityTtsEnabled;
         ////[Test]
@@ -1937,29 +2064,31 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task AccessibilityTtsSettingChanged_CHECK_EVENT()
         {
+            s_tcsAccessibilityTts = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.AccessibilityTtsSettingChanged += OnAccessibilityTtsChanged;
             bool preValue = Tizen.System.SystemSettings.AccessibilityTtsEnabled;
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
-            await Task.Delay(2000);
+            await s_tcsAccessibilityTts.Task;
             Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_accessibilityTtsCallbackCalled = false;
             s_accessibilityTtsValue = !s_accessibilityTtsValue;
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
-            await Task.Delay(2000);
+            await s_tcsAccessibilityTts.Task;
             Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_accessibilityTtsCallbackCalled = false;
 
             Tizen.System.SystemSettings.AccessibilityTtsSettingChanged -= OnAccessibilityTtsChanged;
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.AccessibilityTtsEnabled = preValue;
             LogUtils.WriteOK();
         }
         private static void OnAccessibilityTtsChanged(object sender, Tizen.System.AccessibilityTtsSettingChangedEventArgs e)
         {
+            s_tcsAccessibilityTts.SetResult(true);
             s_accessibilityTtsCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityTtsChanged: AccessibilityTtsEnabled not an instance of bool");
             Assert.IsTrue(e.Value == s_accessibilityTtsValue, "OnAccessibilityTtsChanged: The callback should receive the latest value for the property.");
@@ -1987,6 +2116,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsVibration;
         private static bool s_vibrationCallbackCalled = false;
         private static bool s_vibrationValue = !Tizen.System.SystemSettings.Vibration;
         ////[Test]
@@ -1998,29 +2128,31 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task VibrationSettingChanged_CHECK_EVENT()
         {
+            s_tcsVibration = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.VibrationChanged += OnVibrationChanged;
             bool preValue = Tizen.System.SystemSettings.Vibration;
             Tizen.System.SystemSettings.Vibration = s_vibrationValue;
-            await Task.Delay(2000);
+            await s_tcsVibration.Task;
             Assert.IsTrue(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_vibrationCallbackCalled = false;
             s_vibrationValue = !s_vibrationValue;
             Tizen.System.SystemSettings.Vibration = s_vibrationValue;
-            await Task.Delay(2000);
+            await s_tcsVibration.Task;
             Assert.IsTrue(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_vibrationCallbackCalled = false;
 
             Tizen.System.SystemSettings.VibrationChanged -= OnVibrationChanged;
             Tizen.System.SystemSettings.Vibration = s_vibrationValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.Vibration = preValue;
             LogUtils.WriteOK();
         }
         private static void OnVibrationChanged(object sender, Tizen.System.VibrationChangedEventArgs e)
         {
+            s_tcsVibration.SetResult(true);
             s_vibrationCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnVibrationChanged: Vibration not an instance of bool");
             Assert.IsTrue(e.Value == s_vibrationValue, "OnVibrationChanged: The callback should receive the latest value for the property.");
@@ -2048,7 +2180,9 @@ namespace SystemSettingsUnitTest
                 Assert.IsFalse(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -2057,6 +2191,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsAutomaticTimeUpdate;
         private static bool s_automaticTimeUpdateCallbackCalled = false;
         private static bool s_automaticTimeUpdateValue = false;
         ////[Test]
@@ -2070,28 +2205,30 @@ namespace SystemSettingsUnitTest
         {
             try
             {
+				s_tcsAutomaticTimeUpdate = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 s_automaticTimeUpdateValue = !Tizen.System.SystemSettings.AutomaticTimeUpdate;
                 Tizen.System.SystemSettings.AutomaticTimeUpdateChanged += OnAutomaticTimeUpdateChanged;
                 bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-                await Task.Delay(2000);
+				await s_tcsAutomaticTimeUpdate.Task;
                 Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_automaticTimeUpdateCallbackCalled = false;
                 s_automaticTimeUpdateValue = !s_automaticTimeUpdateValue;
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-                await Task.Delay(2000);
                 Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_automaticTimeUpdateCallbackCalled = false;
 
                 Tizen.System.SystemSettings.AutomaticTimeUpdateChanged -= OnAutomaticTimeUpdateChanged;
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
                 LogUtils.WriteOK();
-            } catch (NotSupportedException) {
+            }
+            catch (NotSupportedException)
+            {
                 bool isSupport = true;
                 Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
@@ -2101,6 +2238,7 @@ namespace SystemSettingsUnitTest
         }
         private static void OnAutomaticTimeUpdateChanged(object sender, Tizen.System.AutomaticTimeUpdateChangedEventArgs e)
         {
+            s_tcsAutomaticTimeUpdate.SetResult(true);
             s_automaticTimeUpdateCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnAutomaticTimeUpdateChanged: AutomaticTimeUpdate not an instance of bool");
             Assert.IsTrue(e.Value == s_automaticTimeUpdateValue, "OnAutomaticTimeUpdateChanged: The callback should receive the latest value for the property.");
@@ -2128,6 +2266,7 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+        private static TaskCompletionSource<bool> s_tcsDeveloperOptionState;
         private static bool s_developerOptionStateCallbackCalled = false;
         private static bool s_developerOptionStateValue = !Tizen.System.SystemSettings.DeveloperOptionState;
         ////[Test]
@@ -2139,29 +2278,31 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task DeveloperOptionStateSettingChanged_CHECK_EVENT()
         {
+            s_tcsDeveloperOptionState = new TaskCompletionSource<bool>();
             LogUtils.StartTest();
             /* TEST CODE */
             Tizen.System.SystemSettings.DeveloperOptionStateChanged += OnDeveloperOptionStateChanged;
             bool preValue = Tizen.System.SystemSettings.DeveloperOptionState;
             Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
-            await Task.Delay(2000);
+            await s_tcsDeveloperOptionState.Task;
             Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_developerOptionStateCallbackCalled = false;
             s_developerOptionStateValue = !s_developerOptionStateValue;
             Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
-            await Task.Delay(2000);
+            await s_tcsDeveloperOptionState.Task;
             Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
             s_developerOptionStateCallbackCalled = false;
 
             Tizen.System.SystemSettings.DeveloperOptionStateChanged -= OnDeveloperOptionStateChanged;
             Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
-            await Task.Delay(2000);
+            await Task.Delay(100);
             Assert.IsFalse(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
             Tizen.System.SystemSettings.DeveloperOptionState = preValue;
             LogUtils.WriteOK();
         }
         private static void OnDeveloperOptionStateChanged(object sender, Tizen.System.DeveloperOptionStateChangedEventArgs e)
         {
+            s_tcsDeveloperOptionState.SetResult(true);
             s_developerOptionStateCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnDeveloperOptionStateChanged: DeveloperOptionState not an instance of bool");
             Assert.IsTrue(e.Value == s_developerOptionStateValue, "OnDeveloperOptionStateChanged: The callback should receive the latest value for the property.");
@@ -2201,6 +2342,7 @@ namespace SystemSettingsUnitTest
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsAccessibilityGrayscale;
         private static bool s_accessibilityGrayscaleCallbackCalled = false;
         private static bool s_accessibilityGrayscaleValue = false;
         ////[Test]
@@ -2214,18 +2356,19 @@ namespace SystemSettingsUnitTest
         {
             try
             {
+				s_tcsAccessibilityGrayscale = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.AccessibilityGrayscaleChanged += OnAccessibilityGrayscaleChanged;
                 bool preValue = Tizen.System.SystemSettings.AccessibilityGrayscale;
                 s_accessibilityGrayscaleValue = !preValue;
                 Tizen.System.SystemSettings.AccessibilityGrayscale = s_accessibilityGrayscaleValue;
-                await Task.Delay(2000);
+				await s_tcsAccessibilityGrayscale.Task;
                 Assert.IsTrue(s_accessibilityGrayscaleCallbackCalled, "AccessibilityGrayscaleChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_accessibilityGrayscaleCallbackCalled = false;
                 Tizen.System.SystemSettings.AccessibilityGrayscaleChanged -= OnAccessibilityGrayscaleChanged;
                 Tizen.System.SystemSettings.AccessibilityGrayscale = !s_accessibilityGrayscaleValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_accessibilityGrayscaleCallbackCalled, "AccessibilityGrayscaleChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.AccessibilityGrayscale = preValue;
                 LogUtils.WriteOK();
@@ -2233,9 +2376,9 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
                 LogUtils.NotSupport();
             }
         }
@@ -2273,13 +2416,14 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.negative", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.negative)");
                 LogUtils.NotSupport();
             }
         }
 
+        private static TaskCompletionSource<bool> s_tcsAccessibilityNegativeColor;
         private static bool s_accessibilityNegativeColorCallbackCalled = false;
         private static bool s_accessibilityNegativeColorValue = false;
         ////[Test]
@@ -2293,18 +2437,19 @@ namespace SystemSettingsUnitTest
         {
             try
             {
+				s_tcsAccessibilityNegativeColor = new TaskCompletionSource<bool>();
                 LogUtils.StartTest();
                 /* TEST CODE */
                 Tizen.System.SystemSettings.AccessibilityNegativeColorChanged += OnAccessibilityNegativeColorChanged;
                 bool preValue = Tizen.System.SystemSettings.AccessibilityNegativeColor;
                 s_accessibilityNegativeColorValue = !preValue;
                 Tizen.System.SystemSettings.AccessibilityNegativeColor = s_accessibilityNegativeColorValue;
-                await Task.Delay(2000);
+				await s_tcsAccessibilityNegativeColor.Task;
                 Assert.IsTrue(s_accessibilityNegativeColorCallbackCalled, "AccessibilityNegativeColorChanged_CHECK_EVENT: EventHandler added. Not getting called");
                 s_accessibilityNegativeColorCallbackCalled = false;
                 Tizen.System.SystemSettings.AccessibilityNegativeColorChanged -= OnAccessibilityNegativeColorChanged;
                 Tizen.System.SystemSettings.AccessibilityNegativeColor = !s_accessibilityNegativeColorValue;
-                await Task.Delay(2000);
+                await Task.Delay(100);
                 Assert.IsFalse(s_accessibilityNegativeColorCallbackCalled, "AccessibilityNegativeColorChanged_CHECK_EVENT: EventHandler removed. Still getting called");
                 Tizen.System.SystemSettings.AccessibilityNegativeColor = preValue;
                 LogUtils.WriteOK();
@@ -2312,14 +2457,15 @@ namespace SystemSettingsUnitTest
             catch (NotSupportedException)
             {
                 bool isSupport = true;
-                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.negative", out isSupport);
                 Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
-                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.negative)");
                 LogUtils.NotSupport();
             }
         }
         private static void OnAccessibilityNegativeColorChanged(object sender, Tizen.System.AccessibilityNegativeColorChangedEventArgs e)
         {
+            s_tcsAccessibilityNegativeColor.SetResult(true);
             s_accessibilityNegativeColorCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityNegativeColorChanged: AccessibilityNegativeColor not an instance of string");
             Assert.IsTrue(s_accessibilityNegativeColorValue == e.Value, "OnAccessibilityNegativeColorChanged: The callback should receive the latest value for the property.");
@@ -2335,19 +2481,31 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void RotaryEventEnabled_READ_WRITE()
         {
-            LogUtils.StartTest();
-            /* TEST CODE */
-            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.RotaryEventEnabled, "RotaryEventEnabled_READ_WRITE: RotaryEventEnabled not an instance of string");
-            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            var setValue = !preValue;
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.RotaryEventEnabled, "RotaryEventEnabled_READ_WRITE: RotaryEventEnabled not an instance of string");
+                bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                var setValue = !preValue;
 
-            Tizen.System.SystemSettings.RotaryEventEnabled = setValue;
-            var getValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            Assert.IsTrue(getValue == setValue, "RotaryEventEnabled_READ_WRITE: Set value and get value of the property should be same.");
-            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
-            LogUtils.WriteOK();
+                Tizen.System.SystemSettings.RotaryEventEnabled = setValue;
+                var getValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                Assert.IsTrue(getValue == setValue, "RotaryEventEnabled_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/input.rotating_bezel", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/input.rotating_bezel)");
+                LogUtils.NotSupport();
+            }
         }
 
+        private static TaskCompletionSource<bool> s_tcsRotaryEventEnabled;
         private static bool s_rotaryEventEnabledCallbackCalled = false;
         private static bool s_rotaryEventEnabledValue = false;
         ////[Test]
@@ -2359,33 +2517,44 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task RotaryEventEnabledChanged_CHECK_EVENT()
         {
-            LogUtils.StartTest();
-            /* TEST CODE */
-            Tizen.System.SystemSettings.RotaryEventEnabledChanged += OnRotaryEventEnabledChanged;
-            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
-            s_rotaryEventEnabledValue = !preValue;
-            Tizen.System.SystemSettings.RotaryEventEnabled = s_rotaryEventEnabledValue;
-            await Task.Delay(2000);
-            Assert.IsTrue(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler added. Not getting called");
-            s_rotaryEventEnabledCallbackCalled = false;
-            Tizen.System.SystemSettings.RotaryEventEnabledChanged -= OnRotaryEventEnabledChanged;
-            Tizen.System.SystemSettings.RotaryEventEnabled = !s_rotaryEventEnabledValue;
-            await Task.Delay(2000);
-            Assert.IsFalse(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler removed. Still getting called");
-            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
-            LogUtils.WriteOK();
+            try
+            {
+                s_tcsRotaryEventEnabled = new TaskCompletionSource<bool>();
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Tizen.System.SystemSettings.RotaryEventEnabledChanged += OnRotaryEventEnabledChanged;
+                bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+                s_rotaryEventEnabledValue = !preValue;
+                Tizen.System.SystemSettings.RotaryEventEnabled = s_rotaryEventEnabledValue;
+                await s_tcsRotaryEventEnabled.Task;
+                Assert.IsTrue(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_rotaryEventEnabledCallbackCalled = false;
+                Tizen.System.SystemSettings.RotaryEventEnabledChanged -= OnRotaryEventEnabledChanged;
+                Tizen.System.SystemSettings.RotaryEventEnabled = !s_rotaryEventEnabledValue;
+                await Task.Delay(100);
+                Assert.IsFalse(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/input.rotating_bezel", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/input.rotating_bezel)");
+                LogUtils.NotSupport();
+            }
         }
         private static void OnRotaryEventEnabledChanged(object sender, Tizen.System.RotaryEventEnabledChangedEventArgs e)
         {
+            s_tcsRotaryEventEnabled.SetResult(true);
             s_rotaryEventEnabledCallbackCalled = true;
             Assert.IsInstanceOf<bool>(e.Value, "OnRotaryEventEnabledChanged: RotaryEventEnabled not an instance of string");
             Assert.IsTrue(s_rotaryEventEnabledValue == e.Value, "OnRotaryEventEnabledChanged: The callback should receive the latest value for the property.");
         }
 
-
         public static async void TestAllAsync()
         {
-
             LogUtils.initWriteResult();
             IncomingCallRingtone_READ_WRITE();
             await IncomingCallRingtoneChanged_CHECK_EVENT();
@@ -2399,7 +2568,7 @@ namespace SystemSettingsUnitTest
             await FontSizeChanged_CHECK_EVENT_LARGE();
             await FontSizeChanged_CHECK_EVENT_HUGE();
             await FontSizeChanged_CHECK_EVENT_GIANT();
-            FontType_READ_WRITE();
+            await FontType_READ_WRITE();
             await FontTypeChanged_CHECK_EVENT();
             MotionActivationEnabled_READ_WRITE();
             await MotionActivationSettingChanged_CHECK_EVENT();

@@ -16,113 +16,294 @@
  */
 
 using System;
-using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    /// <summary>
-    /// [Draft] This internal class houses the algorithm for computing the locations and size of cells.
-    /// </summary>
-    internal class GridLocations
+    public partial class GridLayout
     {
+        private Node[] hEdgeList;
+        private Node[] vEdgeList;
+
+        private int maxRowCount;
+        private int maxColumnConut;
+        private float[] hLocations;
+        private float[] vLocations;
+        private int totalHorizontalExpand = 0;
+        private int totalVerticalExpand = 0;
+
+        private GridChild[] gridChildren;
+
         /// <summary>
-        /// A struct holding the 4 points which make up a cell.
+        /// The nested class to represent a node of DAG.
         /// </summary>
-        public struct Cell
+        private class Node
         {
-            public int Start;
-            public int End;
-            public int Top;
-            public int Bottom;
+            /// <summary>The start vertex with the same value as <c>Column/Row</c> child property.</summary>
+            public int Start { get; }
 
-            /// <summary>
-            /// Initialize a cell with the given points.
-            /// </summary>
-            /// <param name="start">The start x coordinate.</param>
-            /// <param name="end">The end x coordinate.</param>
-            /// <param name="top">The top y coordinate.</param>
-            /// <param name="bottom">The bottom y coordinate.</param>
+            /// <summary>The end vertex with the same value as <c>Column+ColumnSpan/Row+RowSpan</c>.</summary>
+            public int End { get; }
 
-            public Cell( int start, int end, int top, int bottom)
+            /// <summary>The edge with the same value as measured width/height of child.</summary>
+            public float Edge { get; }
+
+            /// <summary>The stretch with the same value as <c>HorizontalStretch/VerticalStretch</c>.</summary>
+            public StretchFlags Stretch { get; }
+
+            /// <summary>The expanded size. It can be updated by expand calculation.</summary>
+            public float ExpandedSize { get; set; }
+
+            public Node(int vertex, int span, float edge, StretchFlags stretch)
             {
-                Start = start;
-                End = end;
-                Top = top;
-                Bottom = bottom;
+                Start = vertex;
+                End = vertex + span;
+                Edge = edge;
+                Stretch = stretch;
+                ExpandedSize = 0;
             }
-        };
-
-        private List<Cell> _locationsVector;
-
-        /// <summary>
-        /// [Draft]Constructor
-        /// </summary>
-        public GridLocations()
+        }
+        private class GridChild
         {
-            _locationsVector = new List<Cell>();
+            public LayoutItem LayoutItem { get; }
+            public Node Column { get; }
+            public Node Row { get; }
+            public GridChild(LayoutItem layoutItem, Node column, Node row)
+            {
+                LayoutItem = layoutItem;
+                Column = column;
+                Row = row;
+            }
         }
 
-        /// <summary>
-        /// Get locations vector with position of each cell and cell size.
-        /// </summary>
-        public List<Cell> GetLocations()
+        private void InitChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            return _locationsVector;
+            InitChildrenData(widthMeasureSpec, heightMeasureSpec);
+
+            InitEdgeList(ref hEdgeList);
+            InitLocations(ref hLocations);
+
+            InitEdgeList(ref vEdgeList);
+            InitLocations(ref vLocations);
         }
 
-        /// <summary>
-        /// [Draft] Uses the given parameters to calculate the x,y coordinates of each cell and cell size.
-        /// </summary>
-        public void CalculateLocations( int numberOfColumns, int availableWidth,
-                                        int availableHeight, int numberOfCells)
+        private void InitChildrenWithExpand(LayoutLength width, LayoutLength height)
         {
-            numberOfColumns = Math.Max( numberOfColumns, 1 );
-            _locationsVector.Clear();
-
-            // Calculate width and height of columns and rows.
-
-            // Calculate numbers of rows, round down result as later check for remainder.
-            int remainder = 0;
-            int numberOfRows = Math.DivRem(numberOfCells,numberOfColumns, out remainder);
-            // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
-            numberOfRows += (remainder > 0) ? 1:0;
-
-            // Rounding on column widths performed here,
-            // if visually noticeable then can divide the space explicitly between columns.
-            int columnWidth = availableWidth / numberOfColumns;
-
-            int rowHeight = availableHeight;
-
-            if( numberOfRows > 0 )
+            if (totalHorizontalExpand > 0)
             {
-                // Column height supplied so use this unless exceeds available height.
-                rowHeight = (availableHeight / numberOfRows);
+                ReInitLocationsWithExpand(ref hLocations, width);
             }
-
-            int  y1 = 0;
-            int  y2 = y1 + rowHeight;
-
-            // Calculate start, end, top and bottom coordinate of each cell.
-
-            // Iterate rows
-            for( var i = 0u; i < numberOfRows; i++ )
+            if (totalVerticalExpand > 0)
             {
-                int x1 = 0;
-                int x2 = x1 + columnWidth;
+                ReInitLocationsWithExpand(ref vLocations, height);
+            }
+        }
 
-                // Iterate columns
-                for( var j = 0; j < numberOfColumns; j++ )
+        private void ReInitLocationsWithExpand(ref float[] locations, LayoutLength parentSize)
+        {
+            bool isHorizontal = (locations == hLocations);
+            Node[] edgeList = isHorizontal ? hEdgeList : vEdgeList;
+            int maxIndex = isHorizontal ? maxColumnConut : maxRowCount;
+            float space = isHorizontal ? ColumnSpacing : RowSpacing;
+            float totalExpand = isHorizontal ? totalHorizontalExpand : totalVerticalExpand;
+
+            float parentDecimalSize = parentSize.AsDecimal();
+            float maxExpandedSize = parentDecimalSize * LayoutChildren.Count;
+            float minExpandedSize = 0;
+            float newChildrenSize = locations[maxIndex] - locations[0] - space;
+
+            // No available sapce
+            if (newChildrenSize > parentDecimalSize)
+                return;
+
+            // binary search for finding maximum expanded size.
+            while ((int)(newChildrenSize + 0.5) != (int)parentDecimalSize)
+            {
+                float curExpandedSize = (maxExpandedSize + minExpandedSize) / 2;
+                for (int i = 0; i < edgeList.Length; i++)
                 {
-                    Cell cell = new Cell( x1, x2, y1, y2 );
-                    _locationsVector.Add( cell );
-                    // Calculate starting x and ending x position of each column
-                    x1 = x2;
-                    x2 = x2 + columnWidth;
+                    Node node = edgeList[i];
+                    // update expanded size.
+                    if (node.Stretch.HasFlag(StretchFlags.Expand))
+                        node.ExpandedSize = curExpandedSize / totalExpand;
                 }
 
-                // Calculate top y and bottom y position of each row.
-                y1 = y2;
-                y2 = y2 + rowHeight;
+                // re-init locations based on updated expanded size.
+                InitLocations(ref locations);
+                newChildrenSize = locations[maxIndex] - locations[0] - space;
+
+                // internal child size cannot exceed the Gridlayout size.
+                if (newChildrenSize > parentDecimalSize)
+                {
+                    maxExpandedSize = curExpandedSize;
+                }
+                else
+                {
+                    minExpandedSize = curExpandedSize;
+                }
+            }
+        }
+
+        private void InitChildrenData(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        {
+            int childCount = LayoutChildren.Count;
+            bool isHorizontal = (GridOrientation == Orientation.Horizontal);
+            int mainPivot = 0, subPivot = 0;
+            int[] pivotStack = new int[isHorizontal ? Columns : Rows];
+
+            vLocations = hLocations = null;
+            vEdgeList = hEdgeList = null;
+            gridChildren = new GridChild[childCount];
+            maxColumnConut = Columns;
+            maxRowCount = Rows;
+
+            totalVerticalExpand = 0;
+            totalHorizontalExpand = 0;
+
+            for (int i = 0; i < childCount; i++)
+            {
+                LayoutItem item = LayoutChildren[i];
+                View view = item?.Owner;
+                if (view == null) continue;
+
+                int column, columnSpan, row, rowSpan;
+                StretchFlags verticalStretch, horizontalStretch;
+
+                column = GetColumn(view);
+                columnSpan = GetColumnSpan(view);
+                row = GetRow(view);
+                rowSpan = GetRowSpan(view);
+                verticalStretch = GetVerticalStretch(view);
+                horizontalStretch = GetHorizontalStretch(view);
+
+                if (column + columnSpan > maxColumnConut || row + rowSpan > maxRowCount)
+                {
+                    if (column + columnSpan > maxColumnConut)
+                        Tizen.Log.Error("NUI", "Column + ColumnSapn exceeds Grid Columns. Column + ColumnSpan (" + column + " + " + columnSpan + ") > Grid Columns(" + maxColumnConut + ")");
+                    else
+                        Tizen.Log.Error("NUI", "Row + RowSapn exceeds Grid Rows. Row + RowSapn (" + row + " + " + rowSpan + ") > Grid Rows(" + maxRowCount + ")");
+
+                    gridChildren[i] = new GridChild(null, new Node(0, 1, 0, 0), new Node(0, 1, 0, 0));
+
+                    continue;
+                }
+
+                if (horizontalStretch.HasFlag(StretchFlags.Expand))
+                    totalHorizontalExpand++;
+
+                if (verticalStretch.HasFlag(StretchFlags.Expand))
+                    totalVerticalExpand++;
+
+                // assign column/row depending on GridOrientation. The main axis count(Columns on Horizontal, Rows otherwise) won't be exceeded
+                // explicit column(row) count which is assigned by Columns(Rows). but, cross axis count(Rows(Columns)) can be increased by sub axis count.
+                if (column == CellUndefined || row == CellUndefined)
+                {
+                    (int point, int span) mainAxis = isHorizontal ? (column, columnSpan) : (row, rowSpan);
+                    (int point, int span) subAxis = isHorizontal ? (row, rowSpan) : (column, columnSpan);
+
+                    if (subAxis.point != CellUndefined)
+                        subPivot = subAxis.point;
+                    if (mainAxis.point != CellUndefined)
+                        mainPivot = mainAxis.point;
+
+                    if (mainPivot + mainAxis.span > pivotStack.Length)
+                    {
+                        mainPivot = 0;
+                        subPivot++;
+                    }
+
+                    for (int n = mainPivot + mainAxis.span - 1; n >= mainPivot; n--)
+                    {
+                        if (pivotStack[n] > subPivot)
+                        {
+                            mainPivot = n + 1;
+                            n = mainPivot + mainAxis.span;
+
+                            if (n > pivotStack.Length)
+                            {
+                                if (mainAxis.point != CellUndefined)
+                                    mainPivot = mainAxis.point;
+                                else
+                                    mainPivot = 0;
+
+                                n = mainPivot + mainAxis.span;
+                                subPivot++;
+                            }
+                        }
+                    }
+
+                    if (isHorizontal)
+                    {
+                        column = mainPivot;
+                        row = subPivot;
+                    }
+                    else
+                    {
+                        column = subPivot;
+                        row = mainPivot;
+                    }
+
+                    for (int start = mainPivot, end = mainPivot + mainAxis.span; start < end; start++)
+                    {
+                        pivotStack[start] = subPivot + subAxis.span;
+                    }
+
+                    mainPivot += mainAxis.span;
+                }
+
+                if (maxColumnConut < column + columnSpan)
+                    maxColumnConut = column + columnSpan;
+                if (maxRowCount < row + rowSpan)
+                    maxRowCount = row + rowSpan;
+
+                MeasureChildWithMargins(item, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                gridChildren[i] = new GridChild(item,
+                                                new Node(column, columnSpan, item.MeasuredWidth.Size.AsDecimal() + item.Owner.Margin.Start + item.Owner.Margin.End, horizontalStretch),
+                                                new Node(row, rowSpan, item.MeasuredHeight.Size.AsDecimal() + item.Owner.Margin.Top + item.Owner.Margin.Bottom, verticalStretch));
+            }
+        }
+
+        /// <summary> Initialize the edge list sorted by start vetex. </summary>
+        private void InitEdgeList(ref Node[] edgeList)
+        {
+            bool isHorizontal = (edgeList == hEdgeList);
+            int axisCount = isHorizontal ? Columns : Rows;
+
+            edgeList = new Node[gridChildren.Length + axisCount];
+
+            for (int i = 0; i < gridChildren.Length; i++)
+                edgeList[i] = isHorizontal ? gridChildren[i].Column : gridChildren[i].Row;
+
+            // Add virtual edge that have no edge for connecting adjacent cells.
+            for (int i = LayoutChildren.Count, end = LayoutChildren.Count + axisCount, v = 0; i < end; i++, v++)
+                edgeList[i] = new Node(v, 1, 0, 0);
+
+            Array.Sort(edgeList, (a, b) => a.Start.CompareTo(b.Start));
+        }
+
+        /// <summary>
+        /// Locations are longest path from zero-vertex. that means 'locations[MAX] - locations[0]' is maximun size of children.
+        /// Since GridLayout is Directed Acyclic Graph(DAG) which have no negative cycles, longest path can be found in linear time.
+        /// </summary>
+        private void InitLocations(ref float[] locations)
+        {
+            bool isHorizontal = (locations == hLocations);
+            int maxAxisCount = isHorizontal ? maxColumnConut : maxRowCount;
+            Node[] edgeList = isHorizontal ? hEdgeList : vEdgeList;
+            float space = isHorizontal ? ColumnSpacing : RowSpacing;
+
+            locations = new float[maxAxisCount + 1];
+
+            for (int i = 0; i < edgeList.Length; i++)
+            {
+                float newLocation = locations[edgeList[i].Start] + edgeList[i].Edge + edgeList[i].ExpandedSize;
+                if (edgeList[i].Edge + edgeList[i].ExpandedSize > 0)
+                    newLocation += space;
+
+                if (locations[edgeList[i].End] < newLocation)
+                {
+                    locations[edgeList[i].End] = newLocation;
+                }
             }
         }
     }

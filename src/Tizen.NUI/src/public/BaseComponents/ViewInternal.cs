@@ -32,6 +32,8 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         private MergedStyle mergedStyle = null;
+        private ViewSelectorData selectorData;
+
         internal MergedStyle _mergedStyle
         {
             get
@@ -251,6 +253,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Indicates that this View should listen Touch event to handle its ControlState.
+        /// </summary>
+        private bool enableControlState = false;
+
         private int LeftFocusableViewId
         {
             get
@@ -304,6 +311,18 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        private ViewSelectorData SelectorData
+        {
+            get
+            {
+                if (selectorData == null)
+                {
+                    selectorData = new ViewSelectorData();
+                }
+                return selectorData;
             }
         }
 
@@ -552,6 +571,14 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             Size2D size = new Size2D((int)ret.Width, (int)ret.Height);
             return size;
+        }
+
+        internal Size2D GetCurrentSizeFloat()
+        {
+            Size ret = new Size(Interop.Actor.Actor_GetCurrentSize(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal Vector3 GetNaturalSize()
@@ -1005,6 +1032,25 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
         }
 
+        internal virtual void UpdateCornerRadius(float value)
+        {
+            if (value != 0)
+            {
+                (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = value;
+            }
+
+            Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
+
+            if (!backgroundMap.Empty())
+            {
+                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
+            }
+
+            UpdateShadowCornerRadius(value);
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1018,6 +1064,14 @@ namespace Tizen.NUI.BaseComponents
             }
 
             //_mergedStyle = null;
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                selectorData?.Reset(this);
+            }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -1042,11 +1096,6 @@ namespace Tizen.NUI.BaseComponents
                 view.InternalParent = null;
             }
 
-            simpleBinding.Dispose();
-            simpleBinding = null;
-
-            viewStyle = null;
-
             base.Dispose(type);
         }
 
@@ -1055,6 +1104,32 @@ namespace Tizen.NUI.BaseComponents
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.View.delete_View(swigCPtr);
+        }
+
+        /// <summary>
+        /// The touch event handler for ControlState.
+        /// Please change ControlState value by touch state if needed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool HandleControlStateOnTouch(Touch touch)
+        {
+            switch(touch.GetState(0))
+            {
+                case PointStateType.Down:
+                    ControlState += ControlState.Pressed;
+                    break;
+                case PointStateType.Interrupted:
+                case PointStateType.Up:
+                    if (ControlState.Contains(ControlState.Pressed))
+                    {
+                        ControlState -= ControlState.Pressed;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return false;
         }
 
         private void DisConnectFromSignals()
@@ -1083,6 +1158,11 @@ namespace Tizen.NUI.BaseComponents
             if (_wheelEventCallback != null)
             {
                 this.WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if (WindowWheelEventHandler != null)
+            {
+                NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
             }
 
             if (_hoverEventCallback != null)
@@ -1254,41 +1334,22 @@ namespace Tizen.NUI.BaseComponents
             SizeModeFactor = new Vector3(x, y, z);
         }
 
-        private bool HasShadowExtents()
+        private void UpdateShadowCornerRadius(float value)
         {
-            bool verifyImageShadow = imageShadow?.GetValue()?.HasValidSizeExtents() ?? false;
-            bool verifyBoxShadow = boxShadow?.GetValue()?.HasValidSizeExtents() ?? false;
-            return verifyImageShadow || verifyBoxShadow;
-        }
+            // TODO Update corner radius property only whe DALi supports visual property update.
+            PropertyMap map = new PropertyMap();
 
-        private void UpdateRelayoutCallbackForShadow(bool hadShadowExtents)
-        {
-            bool hasShadowExtents = HasShadowExtents();
+            if (Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW).Get(map) && !map.Empty())
+            {
+                map[Visual.Property.CornerRadius] = new PropertyValue(value);
 
-            if (!hadShadowExtents && hasShadowExtents)
-            {
-                Relayout += OnRelayoutForShadow;
-            }
-            else if (hadShadowExtents && !hasShadowExtents)
-            {
-                Relayout -= OnRelayoutForShadow;
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(map));
             }
         }
 
-        private void OnRelayoutForShadow(object sender, global::System.EventArgs e)
+        private bool EmptyOnTouch(object target, TouchEventArgs args)
         {
-            UpdateShadowVisual();
-        }
-
-        private void OnControlStateChangedForShadow(View obj, NUI.Components.ControlStates state)
-        {
-            UpdateShadowVisual();
-        }
-
-        private void UpdateShadowVisual()
-        {
-            ShadowBase shadow = (boxShadow != null && !boxShadow.IsEmpty()) ? (ShadowBase)boxShadow.GetValue() : (ShadowBase)imageShadow?.GetValue();
-            Tizen.NUI.Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ShadowBase.ToPropertyValue(shadow, this));
+            return false;
         }
     }
 }

@@ -1,7 +1,4 @@
 using System.Threading.Tasks;
-using System;
-using System.Threading;
-using Tizen.System;
 
 
 namespace SystemSettingsUnitTest
@@ -11,7 +8,7 @@ namespace SystemSettingsUnitTest
     public static class FontTypeChangedEventArgsTests
     {
         private static bool s_fontTypeCallbackCalled = false;
-        private static readonly string s_fontTypeValue = "BreezeSans";
+        private static readonly string s_fontTypeValue = Tizen.System.SystemSettings.DefaultFontType;
         ////[Test]
         //[Category("P1")]
         //[Description("Check FontTypeChangedEventArgs Value property")]

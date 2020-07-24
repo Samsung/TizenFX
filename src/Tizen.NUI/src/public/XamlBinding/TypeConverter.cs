@@ -42,5 +42,11 @@ namespace Tizen.NUI.Binding
             return ConvertFrom(CultureInfo.InvariantCulture, value);
 #pragma warning restore
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual string ConvertToString(object value)
+        {
+            return null;
+        }
     }
 }

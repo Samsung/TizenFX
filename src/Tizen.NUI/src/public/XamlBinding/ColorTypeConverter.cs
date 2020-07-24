@@ -135,5 +135,13 @@ namespace Tizen.NUI.Binding
                     return Color.Black;
             }
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ConvertToString(object value)
+        {
+            Color color = (Color)value;
+            return color.R.ToString() + " " + color.G.ToString() + " " + color.B.ToString() + " " + color.A.ToString();
+        }
     }
 }

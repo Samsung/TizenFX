@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Tizen.NUI;
 
 
 namespace SystemSettingsUnitTest
@@ -116,7 +117,7 @@ namespace SystemSettingsUnitTest
 
         static public void IsNotEmpty(IEnumerable collection, string message)
         {
-            foreach(object item in collection)
+            foreach (object item in collection)
             {
                 Pass();
                 return;
@@ -178,8 +179,15 @@ namespace SystemSettingsUnitTest
         static public void StartTest()
         {
             chk_cnt++;
+            int check_progress = (chk_cnt * 100) / 85;
+            if (check_progress < 100)
+            {
+                Program.testProgress.CurrentValue = check_progress;
+                string output = "Test progress " + check_progress + "%";
+                Program.text.Text = output;
+            }
         }
-
+        
         static public void NotSupport()
         {
             not_support_cnt++;
@@ -187,12 +195,16 @@ namespace SystemSettingsUnitTest
 
         static public void WriteOK([CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            Tizen.Log.Debug(TAG, "ok",file, func, line);
+            Tizen.Log.Debug(TAG, "ok", file, func, line);
             ok_cnt++;
         }
         static public void WriteResult()
         {
-            Tizen.Log.Debug(TAG, "Result : " + ok_cnt + " Pass / " + not_support_cnt + " Not Support / " + (chk_cnt - (ok_cnt + not_support_cnt)) + " Failed");
+            Program.testProgress.CurrentValue = 100;
+            string output = "Result : " + ok_cnt + " Pass / " + not_support_cnt + " Not Support / " + (chk_cnt - (ok_cnt + not_support_cnt)) + " Failed";
+            string output_display = ok_cnt + " Pass / " + not_support_cnt + " NS / " + (chk_cnt - (ok_cnt + not_support_cnt)) + " Failed";
+            Tizen.Log.Debug(TAG, output);
+            Program.text.Text = output_display;
         }
 
     }

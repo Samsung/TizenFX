@@ -15,9 +15,14 @@
  *
  */
 
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    internal class Camera : Animatable
+    /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Camera : View
     {
 
         internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CameraActor.CameraActor_SWIGUpcast(cPtr), cMemoryOwn)

@@ -279,6 +279,12 @@ namespace Tizen.NUI.Xaml
             {
                 var array = new object[1];
                 array[0] = Values[elementNode];
+
+                if (array[0].GetType().IsClass)
+                {
+                    elementNode.Accept(new ApplyPropertiesVisitor(Context, true), null);
+                }
+
                 return array;
             }
 

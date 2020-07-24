@@ -391,10 +391,13 @@ namespace Tizen.NUI
 
         void OnToolbarItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            if (args.Action != NotifyCollectionChangedAction.Add)
-                return;
-            foreach (IElement item in args.NewItems)
-                item.Parent = this;
+            if (null != args)
+            {
+                if (args.Action != NotifyCollectionChangedAction.Add)
+                    return;
+                foreach (IElement item in args.NewItems)
+                    item.Parent = this;
+            }
         }
 
         bool ShouldLayoutChildren()

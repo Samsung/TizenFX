@@ -310,7 +310,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnCreate(string contentInfo, global::System.IntPtr window)
         {
-            OnCreate(contentInfo, new Window(window, true));
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(window) as Window;
+            if (ret == null)
+            {
+                ret = new Window(window, true);
+            }
+            OnCreate(contentInfo, ret);
         }
 
         private void SwigDirectorOnTerminate(string contentInfo, int type)
@@ -330,7 +335,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnResize(global::System.IntPtr window)
         {
-            OnResize(new Window(window, true));
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(window) as Window;
+            if (ret == null)
+            {
+                ret = new Window(window, true);
+            }
+            OnResize(ret);
         }
 
         private void SwigDirectorOnUpdate(string contentInfo, int force)

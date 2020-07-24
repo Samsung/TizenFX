@@ -11,12 +11,12 @@ namespace Tizen.NUI.Samples
             lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "a.json";
             lav.LoopCount = -1;
             lav.BackgroundColor = Color.White;
-            Window.Instance.GetDefaultLayer().Add(lav);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(lav);
             lav.Play();
         }
         public void Deactivate()
         {
-            Window.Instance.GetDefaultLayer().Remove(lav);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(lav);
         }
     }
 }

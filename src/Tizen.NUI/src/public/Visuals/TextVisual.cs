@@ -23,10 +23,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TextVisual : VisualMap
     {
+        static private float defaultPointSize = 18;
         private string _text = null;
         private string _fontFamily = null;
         private PropertyMap _fontStyle = null;
-        private float? _pointSize = null;
+        private float _pointSize = defaultPointSize;
         private bool? _multiLine = null;
         private string _horizontalAlignment = null;
         private string _verticalAlignment = null;
@@ -108,7 +109,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _pointSize ?? (0.0f);
+                return _pointSize;
             }
             set
             {
@@ -348,9 +349,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (_text != null && _pointSize != null)
+            _outputVisualMap = new PropertyMap();
+
+            if (_text != null)
             {
-                _outputVisualMap = new PropertyMap();
                 _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
                 _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
                 _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize));

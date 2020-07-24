@@ -38,7 +38,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.SizeHeight = (float)newValue;
+                    btn.SizeHeight = (float)newValue;
                 }
                 btGroup.itemheight = (float)newValue;
             }
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.PointSize = (float)newValue;
+                    btn.TextLabel.PointSize = (float)newValue;
                 }
                 btGroup.itemPointSize = (float)newValue;
             }
@@ -78,7 +78,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.FontFamily = (string)newValue;
+                    btn.TextLabel.FontFamily = (string)newValue;
                 }
                 btGroup.itemFontFamily = (string)newValue;
             }
@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.TextColor = (Color)newValue;
+                    btn.TextLabel.TextColor = (Color)newValue;
                 }
                 btGroup.itemTextColor = (Color)newValue;
             }
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Text.HorizontalAlignment = (HorizontalAlignment)newValue;
+                    btn.TextLabel.HorizontalAlignment = (HorizontalAlignment)newValue;
                 }
                 btGroup.itemTextAlignment = (HorizontalAlignment)newValue;
             }
@@ -138,7 +138,7 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.Overlay.BackgroundColor = (Selector<Color>)newValue;
+                    btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
                 }
                 btGroup.overLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
@@ -157,12 +157,8 @@ namespace Tizen.NUI.Components
             if (btGroup.itemGroup != null && newValue != null)
             {
                 foreach (Button btn in btGroup.itemGroup)
-                {
-                    if (btn.Style.BackgroundImage == null)
-                    {
-                        btn.Style.BackgroundImage = new Selector<string>();
-                    }              
-                    btn.Style.BackgroundImage = (string)newValue;
+                {   
+                    btn.BackgroundImage = (string)newValue;
                 }
                 btGroup.itemBackgroundImageUrl = (string)newValue;
             }
@@ -203,9 +199,9 @@ namespace Tizen.NUI.Components
                 var shadow = (ImageShadow)newValue;
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.Style.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+                    btn.ImageShadow = new ImageShadow(shadow);
                 }
-                btGroup.itemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+                btGroup.itemImageShadow = new ImageShadow(shadow);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -352,7 +348,7 @@ namespace Tizen.NUI.Components
             if (Count == 0) return;
 
             int buttonWidth = (int)root.Size.Width / Count;
-            int buttonHeight = (int)itemheight;
+            int buttonHeight = btStyle.Size.Height > itemheight ? (int)btStyle.Size.Height : (int)itemheight;
             foreach (Button btnTemp in itemGroup)
             {
                 btnTemp.Size = new Size(buttonWidth, buttonHeight);
@@ -363,7 +359,7 @@ namespace Tizen.NUI.Components
             {
                 for (int i = Count - 1; i >= 0; i--)
                 {
-                    itemGroup[i].Style.PositionX = pos;
+                    itemGroup[i].PositionX = pos;
                     pos += (int)(itemGroup[i].Size.Width);
                 }
             }
@@ -371,7 +367,7 @@ namespace Tizen.NUI.Components
             {
                 for (int i = 0; i < Count; i++)
                 {
-                    itemGroup[i].Style.PositionX = pos;
+                    itemGroup[i].PositionX = pos;
                     pos += (int)(itemGroup[i].Size.Width);
                 }
             }

@@ -15,38 +15,33 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class CheckBox : SelectButton
     {
         static CheckBox() { }
         /// <summary>
         /// Creates a new instance of a CheckBox.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public CheckBox() : base() { }
 
         /// <summary>
         /// Creates a new instance of a CheckBox with style.
         /// </summary>
         /// <param name="style"></param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public CheckBox(string style) : base(style) { }
 
         /// <summary>
-        /// Creates a new instance of a CheckBox with attributes.
+        /// Creates a new instance of a CheckBox with style.
         /// </summary>
-        /// <param name="attrs"></param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(ButtonStyle attrs) : base(attrs) { }
+        /// <param name="buttonStyle"></param>
+        /// <since_tizen> 8 </since_tizen>
+        public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.
@@ -58,11 +53,26 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return itemGroup as CheckBoxGroup;
+                return base.ItemGroup as CheckBoxGroup;
             }
             internal set
             {
-                itemGroup = value;
+                base.ItemGroup = value;
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (viewStyle is ButtonStyle buttonStyle)
+            {
+                if (buttonStyle.IsSelectable == null)
+                {
+                    buttonStyle.IsSelectable = true;
+                }
+
+                base.ApplyStyle(buttonStyle);
             }
         }
     }

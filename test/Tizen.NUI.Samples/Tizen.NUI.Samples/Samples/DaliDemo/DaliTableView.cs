@@ -118,9 +118,9 @@ namespace Tizen.NUI.Samples
 
         public void Initialize()
         {
-            Window.Instance.KeyEvent += OnKeyEvent;
+            NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;
 
-            Size2D stageSize = Window.Instance.WindowSize;
+            Size2D stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             // Background
             mRootActor = CreateBackground("LauncherBackground");
@@ -133,14 +133,16 @@ namespace Tizen.NUI.Samples
             logo.ParentOrigin = new Position(0.5f, 0.1f, 0.5f);
             logo.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             logo.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+            float logoScale = (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
+            logo.Scale = new Vector3(logoScale, logoScale, 0);
 
             //// The logo should appear on top of everything.
             mRootActor.Add(logo);
 
             // Show version in a popup when log is tapped
-            mLogoTapDetector = new TapGestureDetector();
-            mLogoTapDetector.Attach(logo);
-            mLogoTapDetector.Detected += OnLogoTapped;
+            //mLogoTapDetector = new TapGestureDetector();
+            //mLogoTapDetector.Attach(logo);
+            //mLogoTapDetector.Detected += OnLogoTapped;
 
             // Scrollview occupying the majority of the screen
             mScrollView = new ScrollView();
@@ -285,7 +287,7 @@ namespace Tizen.NUI.Samples
                     mVersionPopup.PivotPoint = PivotPoint.Center;
                     mVersionPopup.ParentOrigin = ParentOrigin.Center;
 
-                    Window.Instance.Add(mVersionPopup);
+                    NUIApplication.GetDefaultWindow().Add(mVersionPopup);
                 }
 
                 mVersionPopup.SetDisplayState(Popup.DisplayStateType.Shown);
@@ -305,7 +307,7 @@ namespace Tizen.NUI.Samples
         private View CreateBackground(string stylename)
         {
             View background = new View();
-            Window.Instance.Add(background);
+            NUIApplication.GetDefaultWindow().Add(background);
             background.SetStyleName(stylename);
             background.Name = "BACKGROUND";
             background.PositionUsesPivotPoint = true;
@@ -356,6 +358,10 @@ namespace Tizen.NUI.Samples
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
             label.HeightResizePolicy = ResizePolicyType.FillToParent;
+            //var fit = new PropertyMap();
+            //fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(3.0f)).Add("maxSize", new PropertyValue(50.0f));
+            //label.TextFit = fit;
+            label.PointSize = 11.0f * (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
 
             // Pad around the label as its size is the same as the 9-patch border. It will overlap it without padding.
             label.SetPadding(new PaddingType((int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING));
@@ -432,7 +438,7 @@ namespace Tizen.NUI.Samples
 
         private void Populate()
         {
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             mTotalPages = (uint)((mExampleList.Count() + EXAMPLES_PER_PAGE - 1) / EXAMPLES_PER_PAGE);
 
@@ -715,7 +721,7 @@ namespace Tizen.NUI.Samples
 
         private void SetupInnerPageCubeEffect()
         {
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             Path path = new Path();
             PropertyArray points = new PropertyArray();
@@ -751,7 +757,7 @@ namespace Tizen.NUI.Samples
         void Rotate(uint degrees)
         {
             // Resize the root actor
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
             Vector3 targetSize = new Vector3(stageSize.X, stageSize.Y, 1.0f);
 
             if (degrees == 90 || degrees == 270)

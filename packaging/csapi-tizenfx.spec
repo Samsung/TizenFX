@@ -1,14 +1,17 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 8
-%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui550
+%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui21916
 %define TIZEN_NET_NUGET_VERSION 8.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
+%define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
+
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
@@ -26,6 +29,39 @@ AutoReqProv: no
 
 BuildRequires: dotnet-build-tools
 Requires(post): /usr/bin/vconftool
+
+# BuildRequires for StructValidator
+%if %{defined enable_struct_test}
+BuildRequires: coregl
+BuildRequires: pkgconfig(elementary)
+BuildRequires: pkgconfig(efl-extension)
+BuildRequires: pkgconfig(capi-media-camera)
+BuildRequires: pkgconfig(rua)
+BuildRequires: pkgconfig(component-based-core-base)
+BuildRequires: pkgconfig(notification)
+BuildRequires: pkgconfig(capi-appfw-service-application)
+BuildRequires: pkgconfig(capi-appfw-application)
+BuildRequires: pkgconfig(capi-appfw-widget-application)
+BuildRequires: pkgconfig(data-control)
+BuildRequires: pkgconfig(capi-location-manager)
+BuildRequires: pkgconfig(capi-media-vision)
+BuildRequires: pkgconfig(capi-network-bluetooth)
+BuildRequires: pkgconfig(capi-network-wifi-direct)
+BuildRequires: pkgconfig(key-manager)
+BuildRequires: pkgconfig(capi-system-sensor)
+BuildRequires: pkgconfig(capi-system-runtime-info)
+BuildRequires: pkgconfig(capi-ui-inputmethod)
+BuildRequires: pkgconfig(stt-engine)
+BuildRequires: pkgconfig(tts-engine)
+BuildRequires: pkgconfig(chromium-efl)
+%if "%{profile}" == "tv"
+BuildRequires: pkgconfig(trustzone-nwd)
+%else
+BuildRequires: pkgconfig(capi-appfw-watch-application)
+BuildRequires: pkgconfig(capi-telephony)
+BuildRequires: pkgconfig(tef-libteec)
+%endif
+%endif
 
 %description
 %{summary}
@@ -129,15 +165,36 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
 %define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
+%if %{defined profile}
+%{build_cmd} --full /p:BuildProfile=%{profile}
+%else
 %{build_cmd} --full
+%endif
 %{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
+%if %{defined enable_struct_test}
+dotnet validate-struct %{_tizenfx_bin_path}/bin/public || echo "
+    #######################################################
+    ##################### W A R N I N G ###################
+    #######################################################
+    # The sturct size mismatches MUST BE FIXED.           #
+    # It will make building errors later                  #
+    #######################################################
+"
+%endif
+
+# Generate filelist for rpm packaging
 GetFileList() {
   PROFILE=$1
-  cat packaging/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
-  for f in $(cat packaging/PlatformFileList.txt | grep -v -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1); do
+  cat packaging/PlatformFileList.txt | grep -v "\.preload" | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
+  for f in $(cat packaging/PlatformFileList.txt | grep -v -E "#$PROFILE[[:space:]]|#$PROFILE$|\.preload" | cut -d# -f1); do
     if [ -f %{_tizenfx_bin_path}/bin/dummy/$f ]; then
       echo "%{DOTNET_ASSEMBLY_PATH}/ref/$f"
+    fi
+  done
+  for f in $(cat packaging/PlatformFileList.txt | grep "\.preload" | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1); do
+    if [ -f packaging/preload/$f ]; then
+      echo "%{DOTNET_PRELOAD_PATH}/$f"
     fi
   done
 }
@@ -154,6 +211,7 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
 mkdir -p %{buildroot}%{DOTNET_TOOLS_PATH}
+mkdir -p %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install Runtime Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -179,9 +237,13 @@ install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 # Install Tools
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 
+# Install Preload
+install -p -m 644 packaging/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
+
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
+/usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 
 %files
 %license LICENSE
@@ -203,6 +265,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
+%manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
 %files common -f common.filelist

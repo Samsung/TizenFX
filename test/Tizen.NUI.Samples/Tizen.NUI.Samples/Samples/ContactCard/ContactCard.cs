@@ -56,7 +56,7 @@ namespace Tizen.NUI.Samples
             mClippedImagePropertyIndex = -1;
             mFolded = true;
 
-            //Window.Instance.KeyEvent += OnKeyEvent;
+            //NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;
 
             // Create a View which will be used for the background and to clip the contents
             mContactCard = new View();
@@ -69,7 +69,7 @@ namespace Tizen.NUI.Samples
             mContactCard.Size2D = new Size2D((int)mContactCardLayoutInfo.foldedSize.Width, (int)mContactCardLayoutInfo.foldedSize.Height);
             mContactCard.KeyEvent += OnKeyEvent;
 
-            Window.Instance.GetDefaultLayer().Add(mContactCard);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(mContactCard);
             rootView.Add(mContactCard);
 
             // Create the header which will be shown only when the contact is unfolded

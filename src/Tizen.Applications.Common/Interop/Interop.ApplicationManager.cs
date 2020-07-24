@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class ApplicationManager
@@ -186,6 +188,14 @@ internal static partial class Interop
         internal static extern ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
         //int app_manager_get_app_context_by_instance_id (const char *app_id, const char *instance_id, app_context_h *app_context);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window")]
+        internal static extern ErrorCode AppManagerAttachWindow(string parentAppId, string childAppId);
+        //int app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_detach_window")]
+        internal static extern ErrorCode AppManagerDetachWindow(string applicationId);
+        //int app_manager_detach_window(const char *app_id);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
         //int app_context_destroy(app_context_h app_context)
@@ -334,6 +344,7 @@ internal static partial class Interop
         internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
 
+        [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct RuaRec
         {

@@ -161,9 +161,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            var imageView = (ImageView)bindable;
             if(newValue != null)
             {
-                var imageView = (ImageView)bindable;
                 imageView._border = (Rectangle)newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
             }
@@ -233,6 +233,28 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         });
 
+        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.resourceUrlSelector.Update(imageView, (Selector<string>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.resourceUrlSelector.Get(imageView);
+        });
+
+        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.borderSelector.Update(imageView, (Selector<Rectangle>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.borderSelector.Get(imageView);
+        });
+
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
@@ -242,10 +264,14 @@ namespace Tizen.NUI.BaseComponents
         private string _resourceUrl = "";
         private bool _synchronosLoading = false;
         private string _alphaMaskUrl = null;
+        private int _desired_width = -1;
+        private int _desired_height = -1;
+        private readonly TriggerableSelector<string> resourceUrlSelector = new TriggerableSelector<string>(ResourceUrlProperty);
+        private readonly TriggerableSelector<Rectangle> borderSelector = new TriggerableSelector<Rectangle>(BorderProperty);
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Style => ViewStyle as ImageViewStyle;
+        public ImageViewStyle Style => new ImageViewStyle(this);
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -424,6 +450,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ResourceUrlProperty, value);
+                resourceUrlSelector.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();       
             }
         }
@@ -554,6 +581,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderProperty, value);
+                borderSelector.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -764,10 +792,51 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
+        {
+            switch(value)
+            {
+                case FittingModeType.ShrinkToFit:
+                    return VisualFittingModeType.FitKeepAspectRatio;
+                case FittingModeType.ScaleToFill:
+                    return VisualFittingModeType.OverFitKeepAspectRatio;
+                case FittingModeType.Center:
+                    return VisualFittingModeType.Center;
+                case FittingModeType.Fill:
+                    return VisualFittingModeType.Fill;
+                case FittingModeType.FitHeight:
+                    return VisualFittingModeType.FitHeight;
+                case FittingModeType.FitWidth:
+                    return VisualFittingModeType.FitHeight;
+                default:
+                    return VisualFittingModeType.Fill;
+            }
+        }
+
+        internal FittingModeType ConvertVisualFittingModetoFittingMode(VisualFittingModeType value)
+        {
+            switch(value)
+            {
+                case VisualFittingModeType.FitKeepAspectRatio:
+                    return FittingModeType.ShrinkToFit;
+                case VisualFittingModeType.OverFitKeepAspectRatio:
+                    return FittingModeType.ScaleToFill;
+                case VisualFittingModeType.Center:
+                    return FittingModeType.Center;
+                case VisualFittingModeType.Fill:
+                    return FittingModeType.Fill;
+                case VisualFittingModeType.FitHeight:
+                    return FittingModeType.FitHeight;
+                case VisualFittingModeType.FitWidth:
+                    return FittingModeType.FitHeight;
+                default:
+                    return FittingModeType.ShrinkToFit;
+            }
+        }
 
         /// <summary>
-        /// Gets or sets fitting options used when resizing images to fit the desired dimensions.<br />
-        /// If not supplied, the default is FittingModeType.ShrinkToFit.<br />
+        /// Gets or sets fitting options used when resizing images to fit.<br />
+        /// If not supplied, the default is FittingModeType.Fill.<br />
         /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
@@ -777,16 +846,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)FittingModeType.ShrinkToFit;
+                int ret = (int)VisualFittingModeType.Fill;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.FittingMode)?.Get(out ret);
-
-                return (FittingModeType)ret;
+                imageMap?.Find(Visual.Property.VisualFittingMode)?.Get(out ret);
+                return ConvertVisualFittingModetoFittingMode((VisualFittingModeType)ret);
             }
             set
             {
-                UpdateImage(ImageVisualProperty.FittingMode, new PropertyValue((int)value));
+                VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
+                UpdateImage(Visual.Property.VisualFittingMode, new PropertyValue((int) ret));
             }
         }
 
@@ -804,16 +873,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = -1;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredWidth)?.Get(out ret);
+                imageMap?.Find(ImageVisualProperty.DesiredWidth)?.Get(out _desired_width);
 
-                return ret;
+                return _desired_width;
             }
             set
             {
                 UpdateImage(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
+                _desired_width = value;
             }
         }
 
@@ -829,20 +898,40 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = -1;
                 PropertyMap imageMap = new PropertyMap();
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredHeight)?.Get(out ret);
+                imageMap?.Find(ImageVisualProperty.DesiredHeight)?.Get(out _desired_height);
 
-                return ret;
+                return _desired_height;
             }
             set
             {
                 UpdateImage(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
+                _desired_height = value;
             }
         }
 
-
+        /// <summary>
+        /// Gets or sets ReleasePolicy for image.<br />
+        /// If not supplied, the default is ReleasePolicyType.Detached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReleasePolicyType ReleasePolicy
+        {
+            get
+            {
+                int ret = (int)ReleasePolicyType.Detached;
+                PropertyMap imageMap = new PropertyMap();
+                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+                imageMap?.Find(ImageVisualProperty.ReleasePolicy)?.Get(out ret);
+                return (ReleasePolicyType)ret;
+            }
+            set
+            {
+                UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
+            }
+        }
+ 
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
@@ -928,55 +1017,16 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override void UpdateCornerRadius(float value)
+        {
+            base.UpdateCornerRadius(value);
+
+            UpdateImage(0, null);
+        }
+
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
-        }
-
-        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.resourceUrlSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.resourceUrlSelector;
-        });
-        private TriggerableSelector<string> _resourceUrlSelector;
-        private TriggerableSelector<string> resourceUrlSelector
-        {
-            get
-            {
-                if (null == _resourceUrlSelector)
-                {
-                    _resourceUrlSelector = new TriggerableSelector<string>(this, ResourceUrlProperty);
-                }
-                return _resourceUrlSelector;
-            }
-        }
-
-        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.borderSelector.Clone((Selector<Rectangle>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.borderSelector;
-        });
-        private TriggerableSelector<Rectangle> _borderSelector;
-        private TriggerableSelector<Rectangle> borderSelector
-        {
-            get
-            {
-                if (null == _borderSelector)
-                {
-                    _borderSelector = new TriggerableSelector<Rectangle>(this, BorderProperty);
-                }
-                return _borderSelector;
-            }
         }
 
         /// <summary>
@@ -998,6 +1048,8 @@ namespace Tizen.NUI.BaseComponents
                 //You should release all of your own disposable objects here.
                 _border?.Dispose();
                 _border = null;
+                borderSelector.Reset(this);
+                resourceUrlSelector.Reset(this);
             }
 
             base.Dispose(type);
@@ -1062,9 +1114,39 @@ namespace Tizen.NUI.BaseComponents
 
             temp.Insert(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronosLoading));
 
+            if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
+            {
+                temp.Insert(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius));
+            }
+
             if (value != null)
             {
                 temp.Insert(key, value);
+            }
+
+            // Do Fitting Buffer when desired dimension is set
+            if( _desired_width != -1 && _desired_height != -1)
+            {
+                if(_resourceUrl != null)
+                {
+                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
+
+                  int ret_width,ret_height;
+                  if( imageSize.Width > imageSize.Height)
+                  {
+                      ret_width = _desired_width;
+                      ret_height = imageSize.Height * _desired_height /(imageSize.Width);
+                  }
+                  else
+                  {
+                      ret_width = imageSize.Width*_desired_width/(imageSize.Height);
+                      ret_height = _desired_height;
+
+                  }
+                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
+                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
+                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ShrinkToFit));
+                }
             }
 
             UpdateImageMap(temp);

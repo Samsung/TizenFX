@@ -15,8 +15,8 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -24,68 +24,82 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// StyleManager is a class to manager all style.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
     {
-        private string theme = "default";
+        internal const float PointSizeNormal = 12;
+        internal const float PointSizeTitle = 16;
+
+        private const string defaultThemeName = "DEFAULT"; //"default";
+        private const string wearableThemeName = "WEARABLE"; //"wearable";
+        
+        private string currentThemeName = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
         private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
-        private EventHandler<ThemeChangeEventArgs> themeChangeHander;
+
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
+        private Dictionary<string, Dictionary<Type, StyleBase>> componentStyleByTheme = new Dictionary<string, Dictionary<Type, StyleBase>>();
+        
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
+        private Dictionary<string, Theme> themeMap = new Dictionary<string, Theme>();
+
+        private EventHandler<ThemeChangeEventArgs> themeChangeHandler;
+
+        private Theme currentTheme;
 
         /// <summary>
         /// StyleManager construct.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         private StyleManager()
         {
+            SetInitialThemeByDeviceProfile();
         }
+
         /// <summary>
         /// An event for the theme changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ThemeChangeEventArgs> ThemeChangedEvent
         {
             add
             {
-                themeChangeHander += value;
+                themeChangeHandler += value;
             }
             remove
             {
-                themeChangeHander -= value;
+                themeChangeHandler -= value;
             }
         }
 
         /// <summary>
         /// StyleManager static instance.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleManager Instance { get; } = new StyleManager();
 
         /// <summary>
         /// Style theme.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Theme
         {
             get
             {
-                return theme;
+                return currentThemeName;
             }
 
             set
             {
-                if (theme != value)
+                if (value != null && currentThemeName != value)
                 {
-                    theme = value;
-                    themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = theme });
+                    currentThemeName = value.ToUpperInvariant();
+                    themeChangeHandler?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
+
+                    UpdateTheme();
                 }
             }
         }
@@ -97,8 +111,6 @@ namespace Tizen.NUI.Components
         /// <param name="theme">Theme.</param>
         /// <param name="styleType">Style type.</param>
         /// <param name="bDefault">Flag to decide if it is default style.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterStyle(string style, string theme, Type styleType, bool bDefault = false)
         {
@@ -120,6 +132,8 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            theme = theme.ToUpperInvariant();
+
             if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
             {
                 throw new InvalidOperationException($"{style}] already be used");
@@ -134,11 +148,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get attributes by style.
+        /// Get style.
         /// </summary>
         /// <param name="style">Style name.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <returns>The style corresponding to style name .</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetViewStyle(string style)
         {
@@ -149,21 +162,70 @@ namespace Tizen.NUI.Components
 
             if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(Theme))
             {
-                return (themeStyleSet[style][Theme])?.GetAttributes();
+                return (themeStyleSet[style][Theme])?.GetViewStyle();
             }
             else if (defaultStyleSet.ContainsKey(style))
             {
-                return (defaultStyleSet[style])?.GetAttributes();
+                return (defaultStyleSet[style])?.GetViewStyle();
             }
 
             return null;
         }
 
         /// <summary>
+        /// Register a style for a component to theme.
+        /// </summary>
+        /// <param name="targetTheme">The target theme name to register a component style. It theme should be a known one.</param>
+        /// <param name="component">The type of ComponentStyle</param>
+        /// <param name="style">The derived class of StyleBase</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterComponentStyle(string targetTheme, Type component, Type style)
+        {
+            if (targetTheme == null || component == null || style == null)
+            {
+                throw new ArgumentException("The argument targetTheme must be specified");
+            }
+
+            if (!themeMap.ContainsKey(targetTheme))
+            {
+                Tizen.Log.Error("NUI", "The theme name should be a known one.");
+                return;
+            }
+
+            if (!componentStyleByTheme.ContainsKey(targetTheme))
+            {
+                componentStyleByTheme.Add(targetTheme, new Dictionary<Type, StyleBase>());
+            }
+
+            if (componentStyleByTheme[targetTheme].ContainsKey(component))
+            {
+                componentStyleByTheme[targetTheme][component] = Activator.CreateInstance(style) as StyleBase;
+            }
+            else
+            {
+                componentStyleByTheme[targetTheme].Add(component, Activator.CreateInstance(style) as StyleBase);
+            }
+        }
+
+        /// <summary>
+        /// Get components style in the current theme.
+        /// </summary>
+        /// <param name="component">The type of component</param>
+        /// <returns>The style of the component.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle GetComponentStyle(Type component)
+        {
+            if (componentStyleByTheme.ContainsKey(currentThemeName) && componentStyleByTheme[currentThemeName].ContainsKey(component))
+            {
+                return componentStyleByTheme[currentThemeName][component].GetViewStyle();
+            }
+
+            return currentTheme.GetComponentStyle(component);
+        }
+
+        /// <summary>
         /// ThemeChangeEventArgs is a class to record theme change event arguments which will sent to user.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ThemeChangeEventArgs : EventArgs
         {
@@ -172,6 +234,53 @@ namespace Tizen.NUI.Components
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string CurrentTheme;
+        }
+
+        internal static string GetFrameworkResourcePath(string resourceFileName)
+        {
+            return "/usr/share/dotnet.tizen/framework/res/" + resourceFileName;
+        }
+
+        private void SetInitialThemeByDeviceProfile()
+        {
+            Theme wearableTheme = WearableTheme.Instance;
+            Theme defaultTheme = DefaultTheme.Instance;
+            themeMap.Add(wearableThemeName, wearableTheme);
+            themeMap.Add(defaultThemeName, defaultTheme);
+
+            currentThemeName = defaultThemeName;
+            currentTheme = defaultTheme;
+
+            string currentProfile;
+
+            try
+            {
+                System.Information.TryGetValue<string>("tizen.org/feature/profile", out currentProfile);
+                Tizen.Log.Info("NUI", "Profile for initial theme found : " + currentProfile);
+            }
+            catch
+            {
+                Tizen.Log.Error("NUI", "Unknown device profile\n");
+                return;
+            }
+
+            if (string.Equals(currentProfile, wearableThemeName))
+            {
+                currentThemeName = wearableThemeName;
+                currentTheme = wearableTheme;
+            }
+        }
+
+        private void UpdateTheme()
+        {
+            if (themeMap.ContainsKey(currentThemeName))
+            {
+                currentTheme = themeMap[currentThemeName];
+            }
+            else
+            {
+                currentTheme = DefaultTheme.Instance;
+            }
         }
     }
 }

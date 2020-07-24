@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.System;
 
 internal static partial class Interop
@@ -24,6 +25,7 @@ internal static partial class Interop
     {
         public delegate void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData);
 
+        [NativeStruct("runtime_memory_info_s", Include="runtime_info.h", PkgConfig="capi-system-runtime-info")]
         [StructLayout(LayoutKind.Sequential)]
         public struct MemoryInfo
         {
@@ -34,6 +36,7 @@ internal static partial class Interop
             public readonly int Swap;
         }
 
+        [NativeStruct("process_memory_info_s", Include="runtime_info.h", PkgConfig="capi-system-runtime-info")]
         [StructLayout(LayoutKind.Sequential)]
         public struct ProcessMemoryInfo
         {
@@ -46,6 +49,7 @@ internal static partial class Interop
             public readonly int PrivateDirty;
         }
 
+        [NativeStruct("runtime_cpu_usage_s", Include="runtime_info.h", PkgConfig="capi-system-runtime-info")]
         [StructLayout(LayoutKind.Sequential)]
         public struct CpuUsage
         {
@@ -55,6 +59,7 @@ internal static partial class Interop
             public readonly double IoWait;
         }
 
+        [NativeStruct("process_cpu_usage_s", Include="runtime_info.h", PkgConfig="capi-system-runtime-info")]
         [StructLayout(LayoutKind.Sequential)]
         public struct ProcessCpuUsage
         {

@@ -470,7 +470,7 @@ namespace Tizen.Network.Bluetooth
         /// If this succeeds, the DiscoveryStateChanged event will be invoked.
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or 
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or
         /// the discovery process is not is progress. </exception>
         /// <since_tizen> 3 </since_tizen>
         static public void StopDiscovery()
@@ -628,6 +628,36 @@ namespace Tizen.Network.Bluetooth
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to in start the le scan operation, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
+        /// Starts the Bluetooth LE scan operation with scan mode.
+        /// </summary>
+        /// <remarks>
+        /// The Bluetooth must be enabled.
+        /// </remarks>The result of the operation StartLeScan.
+        /// <param name="mode">The LE scan mode.</param>
+        /// <since_tizen> 7 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// or the Start LE scan is failed.</exception>
+        static public void StartLeScan(BluetoothLeScanMode mode)
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                BluetoothLeImplAdapter.Instance.SetScanMode(mode);
+                int ret = BluetoothLeImplAdapter.Instance.StartScan();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to start the le scan operation, Error - " + (BluetoothError)ret);
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

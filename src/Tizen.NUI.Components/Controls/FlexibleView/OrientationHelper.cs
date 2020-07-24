@@ -23,20 +23,20 @@ namespace Tizen.NUI.Components
     // can also be used to abstract calls around view bounds and child measurements with margins and
     // decorations.
     //
-    // @see #createHorizontalHelper(RecyclerView.LayoutManager)
-    // @see #createVerticalHelper(RecyclerView.LayoutManager)
+    // @see #createHorizontalHelper(FlexibleViewRecyclerView.LayoutManager)
+    // @see #createVerticalHelper(FlexibleViewRecyclerView.LayoutManager)
     internal abstract class OrientationHelper
     {
-        public static readonly int HORIZONTAL = 0;
-        public static readonly int VERTICAL = 1;
+        public const int HORIZONTAL = 0;
+        public const int VERTICAL = 1;
 
-        private static readonly int INVALID_SIZE = -1;
+        private const int INVALID_SIZE = -1;
 
-        protected FlexibleView.LayoutManager mLayoutManager;
+        protected FlexibleViewLayoutManager mLayoutManager;
 
         private float mLastTotalSpace = INVALID_SIZE;
 
-        public OrientationHelper(FlexibleView.LayoutManager layoutManager)
+        public OrientationHelper(FlexibleViewLayoutManager layoutManager)
         {
             mLayoutManager = layoutManager;
         }
@@ -51,8 +51,8 @@ namespace Tizen.NUI.Components
 
          // Returns the layout space change between the previous layout pass and current layout pass.
          // Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
-         // {@link RecyclerView.LayoutManager#onLayoutChildren(RecyclerView.Recycler,
-         // RecyclerView.State)} method.
+         // {@link FlexibleViewRecyclerView.LayoutManager#onLayoutChildren(FlexibleViewRecyclerView.Recycler,
+         // FlexibleViewRecyclerView.State)} method.
          //
          // @return The difference between the current total space and previous layout's total space.
          // @see #onLayoutComplete()
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Components
          // @param view The view element to check
          // @return The first pixel of the element
          // @see #getDecoratedEnd(android.view.View)
-        public abstract float GetViewHolderStart(FlexibleView.ViewHolder holder);
+        public abstract float GetViewHolderStart(FlexibleViewViewHolder holder);
 
          // Returns the end of the view including its decoration and margin.
          // For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Components
          // @param view The view element to check
          // @return The last pixel of the element
          // @see #getDecoratedStart(android.view.View)
-        public abstract float GetViewHolderEnd(FlexibleView.ViewHolder holder);
+        public abstract float GetViewHolderEnd(FlexibleViewViewHolder holder);
 
         // Returns the space occupied by this View in the current orientation including decorations and
         // margins.
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
         // @return Total space occupied by this view
         // @see #getDecoratedMeasurementInOther(View)
 
-        public abstract float GetViewHolderMeasurement(FlexibleView.ViewHolder holder);
+        public abstract float GetViewHolderMeasurement(FlexibleViewViewHolder holder);
 
         // Returns the space occupied by this View in the perpendicular orientation including
         // decorations and margins.
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
         // @param view The view element to check
         // @return Total space occupied by this view in the perpendicular orientation to current one
         // @see #getDecoratedMeasurement(View)
-        public abstract float GetViewHolderMeasurementInOther(FlexibleView.ViewHolder holder);
+        public abstract float GetViewHolderMeasurementInOther(FlexibleViewViewHolder holder);
 
         // Returns the start position of the layout after the start padding is added.
         //
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Components
         //
         // @param view   View to offset
         // @param offset offset amount
-        internal abstract void OffsetChild(FlexibleView.ViewHolder holder, int offset);
+        internal abstract void OffsetChild(FlexibleViewViewHolder holder, int offset);
 
         // Returns the padding at the end of the layout. For horizontal helper, this is the right
         // padding and for vertical helper, this is the bottom padding. This method does not check
@@ -141,7 +141,7 @@ namespace Tizen.NUI.Components
         // @param orientation   Desired orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}
         // @return A new OrientationHelper
         public static OrientationHelper CreateOrientationHelper(
-                FlexibleView.LayoutManager layoutManager, int orientation)
+                FlexibleViewLayoutManager layoutManager, int orientation)
         {
             if (orientation == HORIZONTAL)
             {
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Components
         //
         // @param layoutManager The LayoutManager to attach to.
         // @return A new OrientationHelper
-        public static OrientationHelper CreateHorizontalHelper(FlexibleView.LayoutManager layoutManager)
+        public static OrientationHelper CreateHorizontalHelper(FlexibleViewLayoutManager layoutManager)
         {
             return new HorizontalHelper(layoutManager);
 
@@ -170,7 +170,7 @@ namespace Tizen.NUI.Components
        //
        // @param layoutManager The LayoutManager to attach to.
        // @return A new OrientationHelper
-        public static OrientationHelper CreateVerticalHelper(FlexibleView.LayoutManager layoutManager)
+        public static OrientationHelper CreateVerticalHelper(FlexibleViewLayoutManager layoutManager)
         {
             return new VerticalHelper(layoutManager);
         }
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
 
     internal class HorizontalHelper : OrientationHelper
     {
-        public HorizontalHelper(FlexibleView.LayoutManager layoutManager): base(layoutManager)
+        public HorizontalHelper(FlexibleViewLayoutManager layoutManager): base(layoutManager)
         {
 
         }
@@ -204,22 +204,22 @@ namespace Tizen.NUI.Components
             return mLayoutManager.PaddingLeft;
         }
 
-        public override float GetViewHolderMeasurement(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderMeasurement(FlexibleViewViewHolder holder)
         {
             return holder.Right - holder.Left;
         }
 
-        public override float GetViewHolderMeasurementInOther(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderMeasurementInOther(FlexibleViewViewHolder holder)
         {
             return holder.Bottom - holder.Top;
         }
 
-        public override float GetViewHolderEnd(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderEnd(FlexibleViewViewHolder holder)
         {
             return holder.Right;
         }
 
-        public override float GetViewHolderStart(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderStart(FlexibleViewViewHolder holder)
         {
             return holder.Left;
         }
@@ -230,7 +230,7 @@ namespace Tizen.NUI.Components
                     - mLayoutManager.PaddingRight;
         }
 
-        internal override void OffsetChild(FlexibleView.ViewHolder holder, int offset)
+        internal override void OffsetChild(FlexibleViewViewHolder holder, int offset)
         {
             //holder.offsetLeftAndRight(offset);
         }
@@ -244,7 +244,7 @@ namespace Tizen.NUI.Components
 
     internal class VerticalHelper : OrientationHelper
     {
-        public VerticalHelper(FlexibleView.LayoutManager layoutManager) : base(layoutManager)
+        public VerticalHelper(FlexibleViewLayoutManager layoutManager) : base(layoutManager)
         {
 
         }
@@ -269,22 +269,22 @@ namespace Tizen.NUI.Components
             return mLayoutManager.PaddingTop;
         }
 
-        public override float GetViewHolderMeasurement(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderMeasurement(FlexibleViewViewHolder holder)
         {
             return holder.Bottom - holder.Top;
         }
 
-        public override float GetViewHolderMeasurementInOther(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderMeasurementInOther(FlexibleViewViewHolder holder)
         {
             return holder.Right - holder.Left;
         }
 
-        public override float GetViewHolderEnd(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderEnd(FlexibleViewViewHolder holder)
         {
             return holder.Bottom;
         }
 
-        public override float GetViewHolderStart(FlexibleView.ViewHolder holder)
+        public override float GetViewHolderStart(FlexibleViewViewHolder holder)
         {
             return holder.Top;
         }
@@ -295,7 +295,7 @@ namespace Tizen.NUI.Components
                     - mLayoutManager.PaddingBottom;
         }
 
-        internal override void OffsetChild(FlexibleView.ViewHolder holder, int offset)
+        internal override void OffsetChild(FlexibleViewViewHolder holder, int offset)
         {
             //holder.offsetTopAndBottom(offset);
         }

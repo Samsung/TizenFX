@@ -62,16 +62,31 @@ namespace Tizen.NUI.Xaml
         {
             Func<object> getConverter = () =>
             {
-                MemberInfo memberInfo;
+                string converterTypeName = null;
+                Type realType = toType;
 
-                var converterTypeName = toType.GetTypeInfo().CustomAttributes.GetTypeConverterTypeName();
-                if (minfoRetriever != null && (memberInfo = minfoRetriever()) != null)
-                    converterTypeName = memberInfo.CustomAttributes.GetTypeConverterTypeName() ?? converterTypeName;
+                if (true == realType.IsGenericType && typeof(Nullable<>) == realType.GetGenericTypeDefinition())
+                {
+                    realType = realType.GetGenericArguments()[0];
+                }
+
+                converterTypeName = realType.CustomAttributes.GetTypeConverterTypeName();
+
                 if (converterTypeName == null)
-                    return null;
+                {
+                    converterTypeName = toType.FullName + "TypeConverter";
+                }
 
                 var convertertype = Type.GetType(converterTypeName);
-                return Activator.CreateInstance(convertertype);
+
+                if (null == convertertype)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Activator.CreateInstance(convertertype);
+                }
             };
 
             return ConvertTo(value, toType, getConverter, serviceProvider);

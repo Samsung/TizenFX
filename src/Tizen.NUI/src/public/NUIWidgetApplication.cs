@@ -18,6 +18,7 @@ using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System;
 
 namespace Tizen.NUI
 {
@@ -42,11 +43,17 @@ namespace Tizen.NUI
         /// The constructor for multi widget class and instance.
         /// </summary>
         /// <param name="widgetTypes">List of derived widget class type.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
         {
-            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
-            core?.RegisterWidgetInfo(widgetTypes);
+            if( widgetTypes == null )
+            {
+              throw new InvalidOperationException("Dictionary is null");
+            }
+            else
+            {
+                NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+                core?.RegisterWidgetInfo(widgetTypes);
+            }
         }
 
         /// <summary>
@@ -60,6 +67,28 @@ namespace Tizen.NUI
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetType">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( System.Type widgetType )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetTypes">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( Dictionary<System.Type, string> widgetTypes )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(widgetTypes);
         }
 
         internal WidgetApplication ApplicationHandle

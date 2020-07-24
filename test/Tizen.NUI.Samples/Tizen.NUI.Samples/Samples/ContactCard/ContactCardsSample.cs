@@ -19,8 +19,8 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window.Instance.BackgroundColor = WINDOW_COLOR;
-            //Window.Instance.KeyEvent += OnKeyEvent;
+            NUIApplication.GetDefaultWindow().BackgroundColor = WINDOW_COLOR;
+            //NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;
 
             mContactCardLayouter = new ContactCardLayouter();
 
@@ -32,7 +32,10 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-
+            if (null != mContactCardLayouter)
+            {
+                mContactCardLayouter.Clear();
+            }
         }
 
         //private void OnKeyEvent(object sender, Window.KeyEventArgs e)

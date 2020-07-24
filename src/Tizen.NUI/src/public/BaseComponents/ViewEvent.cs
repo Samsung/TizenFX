@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -58,7 +60,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
-            Window.Instance?.SendViewAdded(this);
+            NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -242,7 +244,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
-
             }
         }
 
@@ -290,19 +291,28 @@ namespace Tizen.NUI.BaseComponents
                     _wheelEventCallback = OnWheelEvent;
                     this.WheelEventSignal().Connect(_wheelEventCallback);
                 }
-
                 _wheelEventHandler += value;
+
+                if (WindowWheelEventHandler == null)
+                {
+                    NUIApplication.GetDefaultWindow().WheelEvent += OnWindowWheelEvent;
+                }
+                WindowWheelEventHandler += value;
             }
 
             remove
             {
                 _wheelEventHandler -= value;
-
                 if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
                 {
                     this.WheelEventSignal().Disconnect(_wheelEventCallback);
                 }
 
+                WindowWheelEventHandler -= value;
+                if (WindowWheelEventHandler == null)
+                {
+                    NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
+                }
             }
         }
 
@@ -450,6 +460,38 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        private EventHandler _backKeyPressed;
+
+        /// <summary>
+        /// An event for getting notice when physical back key is pressed.<br />
+        /// This event is emitted BackKey is up.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler BackKeyPressed
+        {
+            add
+            {
+                _backKeyPressed += value;
+                BackKeyManager.Instance.Subscriber.Add(this);
+            }
+
+            remove
+            {
+                BackKeyManager.Instance.Subscriber.Remove(this);
+                _backKeyPressed -= value;
+            }
+        }
+
+        /// <summary>
+        /// Function for emitting BackKeyPressed event outside of View instance
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void EmitBackKeyPressed()
+        {
+            _backKeyPressed.Invoke(this,null);
+        }
+
 
         internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
         {
@@ -685,11 +727,19 @@ namespace Tizen.NUI.BaseComponents
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
+            bool consumed = false;
+
             if (_touchDataEventHandler != null)
             {
-                return _touchDataEventHandler(this, e);
+                consumed = _touchDataEventHandler(this, e);
             }
-            return false;
+
+            if (enableControlState && !consumed)
+            {
+                consumed = HandleControlStateOnTouch(e.Touch);
+            }
+
+            return consumed;
         }
 
         // Callback for View Hover signal
@@ -1044,5 +1094,53 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        /// <summary>
+        /// The class represents the information of the situation where the View's control state changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ControlStateChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Create an instance with mandatory fields.
+            /// </summary>
+            /// <param name="previousState">The previous control state.</param>
+            /// <param name="currentState">The current control state.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlStateChangedEventArgs(ControlState previousState, ControlState currentState)
+            {
+                PreviousState = previousState;
+                CurrentState = currentState;
+            }
+
+            /// <summary>
+            /// The previous control state.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlState PreviousState { get; }
+
+            /// <summary>
+            /// The current control state.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ControlState CurrentState { get; }
+        }
+
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
+        private void OnWindowWheelEvent(object sender, Window.WheelEventArgs e)
+        {
+            if(e != null)
+            {
+                if(e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                {
+                    var arg = new WheelEventArgs()
+                    {
+                        Wheel = e.Wheel,
+                    };
+                    WindowWheelEventHandler?.Invoke(this, arg);
+                }
+            }
+        }
+
     }
 }

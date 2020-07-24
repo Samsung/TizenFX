@@ -977,6 +977,42 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the player command.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum PlayerCommand
+    {
+        /// <summary>
+        /// Play current track
+        /// </summary>
+        Play = 1,
+        /// <summary>
+        /// Pause current track
+        /// </summary>
+        Pause,
+        /// <summary>
+        /// Stop playing track
+        /// </summary>
+        Stop,
+        /// <summary>
+        /// Go to the next track
+        /// </summary>
+        Next,
+        /// <summary>
+        /// Go to the previous track
+        /// </summary>
+        Previous,
+        /// <summary>
+        /// Fast-forward current track
+        /// </summary>
+        FastForward,
+        /// <summary>
+        /// Rewind current track
+        /// </summary>
+        Rewind
+    }
+
+    /// <summary>
     /// Enumeration for the Bluetooth LE device address types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1058,6 +1094,26 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth LE advertising started.
         /// </summary>
         BluetoothLeAdvertisingStarted
+    }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth LE scan mode.
+    /// </summary>
+    /// <since_tizen> 7 </since_tizen>
+    public enum BluetoothLeScanMode
+    {
+        /// <summary>
+        /// Balanced mode of power consumption and connection latency
+        /// </summary>
+        Balanced,
+        /// <summary>
+        /// Low connection latency but high power consumption
+        /// </summary>
+        LowLatency,
+        /// <summary>
+        /// Low power consumption but high connection latency
+        /// </summary>
+        LowEnergy
     }
 
     /// <summary>

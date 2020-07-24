@@ -7,11 +7,12 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Examples
 {
-    class BixbyWidgetPage : ContentPage
+    partial class BixbyWidgetPage : ContentPage
     {
         private ImageView widget = null;
         public BixbyWidgetPage(Window win) : base(win)
         {
+            InitializeComponent();
         }
 
         /// <summary>

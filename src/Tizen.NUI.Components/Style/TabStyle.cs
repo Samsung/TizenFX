@@ -23,8 +23,6 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// TabStyle is a class which saves Tab's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TabStyle : ControlStyle
     {
@@ -33,8 +31,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a TabStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TabStyle() : base()
         {
@@ -50,8 +46,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a TabStyle with style.
         /// </summary>
         /// <param name="style">Create TabStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TabStyle(TabStyle style) : base(style)
         {
@@ -65,12 +59,12 @@ namespace Tizen.NUI.Components
 
             if (style.UnderLine != null)
             {
-                UnderLine.CopyFrom(style.UnderLine);
+                UnderLine?.CopyFrom(style.UnderLine);
             }
 
             if (style.Text != null)
             {
-                Text.CopyFrom(style.Text);
+                Text?.CopyFrom(style.Text);
             }
 
             if (style.ItemPadding != null)
@@ -83,63 +77,42 @@ namespace Tizen.NUI.Components
             }
             ItemSpace = style.ItemSpace;
             UseTextNaturalSize = style.UseTextNaturalSize;
-
-            if (null != style.UnderLine)
-            {
-                UnderLine.CopyFrom(style.UnderLine);
-            }
-
-            if (null != style.Text)
-            {
-                Text.CopyFrom(style.Text);
-            }
         }
 
         /// <summary>
-        /// UnderLine's attributes.
+        /// UnderLine's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle UnderLine { get; set; }
 
         /// <summary>
-        /// Text's attributes.
+        /// Text's style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Flag to decide if item is fill with item text's natural width.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UseTextNaturalSize { get; set; }
 
         /// <summary>
         /// Gap between items.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ItemSpace { get; set; }
 
         /// <summary>
         /// Space in Tab.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ItemPadding { get; set; }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="bindableObject">The style that need to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
@@ -150,7 +123,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != tabStyle.ItemPadding)
                 {
-                    ItemPadding.CopyFrom(tabStyle.ItemPadding);
+                    ItemPadding?.CopyFrom(tabStyle.ItemPadding);
                 }
 
                 ItemSpace = tabStyle.ItemSpace;
@@ -158,12 +131,12 @@ namespace Tizen.NUI.Components
 
                 if (null != tabStyle.UnderLine)
                 {
-                    UnderLine.CopyFrom(tabStyle.UnderLine);
+                    UnderLine?.CopyFrom(tabStyle.UnderLine);
                 }
 
                 if (null != tabStyle.Text)
                 {
-                    Text.CopyFrom(tabStyle.Text);
+                    Text?.CopyFrom(tabStyle.Text);
                 }
             }
         }

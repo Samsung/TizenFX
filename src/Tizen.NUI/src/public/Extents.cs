@@ -48,6 +48,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The type cast operator, ushort to Extents.
+        /// </summary>
+        /// <param name="value">A value of ushort type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Extents(ushort value)
+        {
+            return new Extents(value, value, value, value);
+        }
+
+        /// <summary>
         /// Constructor.
         /// <param name="start">Start extent.</param>
         /// <param name="end">End extent.</param>

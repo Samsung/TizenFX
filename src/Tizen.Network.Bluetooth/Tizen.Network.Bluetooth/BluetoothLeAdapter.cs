@@ -131,17 +131,7 @@ namespace Tizen.Network.Bluetooth {
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API level 6. Please use ConnectionStateChanged event on BluetoothGattClient.")]
-        public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged
-        {
-            add
-            {
-                BluetoothLeImplAdapter.Instance.LeGattConnectionStateChanged += value;
-            }
-            remove
-            {
-                BluetoothLeImplAdapter.Instance.LeGattConnectionStateChanged -= value;
-            }
-        }
+        public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged;
 
         internal BluetoothLeDevice(BluetoothLeScanData scanData)
         {
@@ -170,17 +160,11 @@ namespace Tizen.Network.Bluetooth {
                 _scanDataValue = new byte[_scanData.ScanDataLength];
                 scanData.ScanData.CopyTo(_scanDataValue, 0);
             }
-        }
 
-        /// <summary>
-        /// BluetoothLeDevice destructor.
-        /// </summary>
-        ~BluetoothLeDevice()
-        {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            BluetoothGattClient.StaticConnectionStateChanged += (s, e) =>
             {
-                BluetoothLeImplAdapter.Instance.FreeServiceDataList();
-            }
+                GattConnectionStateChanged?.Invoke(this, e);
+            };
         }
 
         /// <summary>

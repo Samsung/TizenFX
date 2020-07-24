@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Remoting
 
         // Command
         private Native.CommandCompletedCallback _commandCompletedCallback;
-        private Native.CustomCommandReceivedCallback _customCommandReceivedCallback;
+        private Native.CustomCommandReceivedCallback _customEventReceivedCallback;
 
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterCustomCommandReceivedEvent()
         {
-            _customCommandReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
+            _customEventReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
             {
                 CustomCommand command = null;
                 if (bundleHandle != IntPtr.Zero)
@@ -245,7 +245,7 @@ namespace Tizen.Multimedia.Remoting
                 GetController(serverName)?.RaiseCustomCommandReceivedEvent(command);
             };
 
-            Native.SetCustomEventCb(Handle, _customCommandReceivedCallback).
+            Native.SetCustomEventCb(Handle, _customEventReceivedCallback).
                 ThrowIfError("Failed to register CustomCommandReceived event.");
         }
         #endregion

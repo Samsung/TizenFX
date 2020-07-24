@@ -136,10 +136,7 @@ namespace Tizen.Applications
                     s_replyCallbackMaps[requestId](new AppControl(launchHandle), new AppControl(replyHandle), (AppControlReplyResult)result);
                     if (result != Interop.AppControl.AppStartedStatus)
                     {
-                        lock (s_replyCallbackMaps)
-                        {
-                            s_replyCallbackMaps.Remove(requestId);
-                        }
+                        s_replyCallbackMaps.Remove(requestId);
                     }
                 }
             }

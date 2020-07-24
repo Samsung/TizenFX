@@ -97,6 +97,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoViewSignal")]
             public static extern void delete_VideoViewSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetNativePlayerHandle")]
+            public static extern global::System.IntPtr GetNativePlayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         }
     }
 }

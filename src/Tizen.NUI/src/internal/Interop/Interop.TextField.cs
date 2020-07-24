@@ -8,9 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextField
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_RENDERING_BACKEND_get")]
-            public static extern int TextField_Property_RENDERING_BACKEND_get();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_get")]
             public static extern int TextField_Property_TEXT_get();
 
@@ -230,14 +227,20 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_get")]
             public static extern int TextField_Property_ELLIPSIS_get();
 			
-            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
             public static extern void TextField_SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
     		
-            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
             public static extern int TextField_Property_ENABLE_GRAB_HANDLE_get();
     
-            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
             public static extern int TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_get")]
+            public static extern int TextField_Property_SELECTED_TEXT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone")]
+            public static extern int TextField_SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

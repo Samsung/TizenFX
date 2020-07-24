@@ -49,7 +49,19 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <param name="data">The data to be sent.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 7. Please use SendData(byte[] data) method.")]
         int SendData(string data);
+
+        /// <summary>
+        /// Method to send data over bluetooth socket
+        /// </summary>
+        /// <returns>The number of bytes written (zero indicates nothing was written).</returns>
+        /// <remarks>
+        /// The connection must be established.
+        /// </remarks>
+        /// <param name="data">The data to be sent.</param>
+        /// <since_tizen> 7 </since_tizen>
+        int SendData(byte[] data);
     }
 
     /// <summary>
@@ -241,7 +253,29 @@ namespace Tizen.Network.Bluetooth
         /// <param name="data">The data to be sent.</param>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the remote device is not connected, or the send data procedure fails.</exception>
+        [Obsolete("Deprecated since API level 7. Please use SendData(byte[] data) method.")]
         public int SendData(string data)
+        {
+            int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);
+            if (ret < 0)
+            {
+                Log.Error(Globals.LogTag, "Failed to send data, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Sends data to the connected device.
+        /// </summary>
+        /// <returns>The number of bytes written (zero indicates nothing was written).</returns>
+        /// <remarks>
+        /// The connection must be established.
+        /// </remarks>
+        /// <param name="data">The data to be sent.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the remote device is not connected, or the send data procedure fails.</exception>
+        public int SendData(byte[] data)
         {
             int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);
             if (ret < 0)

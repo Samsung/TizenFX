@@ -46,9 +46,11 @@ namespace Tizen.Multimedia.Vision
         private const string _keyModelStdValue = "MV_INFERENCE_MODEL_STD_VALUE";
         private const string _keyBackendType = "MV_INFERENCE_BACKEND_TYPE";
         private const string _keyTargetType = "MV_INFERENCE_TARGET_TYPE";
+        private const string _keyTargetDeviceType = "MV_INFERENCE_TARGET_DEVICE_TYPE";
         private const string _keyInputTensorWidth = "MV_INFERENCE_INPUT_TENSOR_WIDTH";
         private const string _keyInputTensorHeight = "MV_INFERENCE_INPUT_TENSOR_HEIGHT";
         private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS";
+        private const string _keyDataType = "MV_INFERENCE_INPUT_DATA_TYPE";
         private const string _keyInputNodeName = "MV_INFERENCE_INPUT_NODE_NAME";
         private const string _keyOutputNodeNames = "MV_INFERENCE_OUTPUT_NODE_NAMES";
         private const string _keyOutputMaxNumber = "MV_INFERENCE_OUTPUT_MAX_NUMBER";
@@ -57,6 +59,9 @@ namespace Tizen.Multimedia.Vision
         // The following strings are fixed in native and will not be changed.
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
+        private const string _backendTypeArmNN = "armnn";
+        private const string _backendTypeMLApi = "mlapi";
+        private const string _backendTypeOne = "one";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -150,6 +155,15 @@ namespace Tizen.Multimedia.Vision
                             break;
                         case _backendTypeTFLite:
                             supportedBackend.Add(InferenceBackendType.TFLite);
+                            break;
+                        case _backendTypeArmNN:
+                            supportedBackend.Add(InferenceBackendType.ArmNN);
+                            break;
+                        case _backendTypeMLApi:
+                            supportedBackend.Add(InferenceBackendType.MLApi);
+                            break;
+                        case _backendTypeOne:
+                            supportedBackend.Add(InferenceBackendType.One);
                             break;
                     }
                 }
@@ -318,6 +332,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Device instead.")]
         public InferenceTargetType Target
         {
             get
@@ -329,6 +344,30 @@ namespace Tizen.Multimedia.Vision
                 ValidationUtil.ValidateEnum(typeof(InferenceTargetType), value, nameof(Target));
 
                 Set(_keyTargetType, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the processor type for inference models.
+        /// </summary>
+        /// <remarks>
+        /// The default device is <see cref="InferenceTargetDevice.CPU"/>.<br/>
+        /// If a device doesn't support <see cref="InferenceTargetDevice.GPU"/> and <see cref="InferenceTargetDevice.Custom"/>,
+        /// <see cref="InferenceTargetDevice.CPU"/> will be used internally, despite the user's choice.
+        /// </remarks>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public InferenceTargetDevice Device
+        {
+            get
+            {
+                return (InferenceTargetDevice)GetInt(_keyTargetDeviceType);
+            }
+            set
+            {
+                ValidationUtil.ValidateEnum(typeof(InferenceTargetDevice), value, nameof(Device));
+
+                Set(_keyTargetDeviceType, (int)value);
             }
         }
 
@@ -399,6 +438,29 @@ namespace Tizen.Multimedia.Vision
                 }
 
                 Set(_keyInputTensorChannels, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type of data used for inference model.
+        /// </summary>
+        /// <remarks>
+        /// For example, this value should be set to <see cref="InferenceDataType.Float32"/> for a model data supporting float32.<br/>
+        /// <see cref="InferenceDataType.Float32"/> will be used internally if a user doesn't set the value.
+        /// </remarks>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public InferenceDataType DataType
+        {
+            get
+            {
+                return (InferenceDataType)GetInt(_keyDataType);
+            }
+            set
+            {
+                ValidationUtil.ValidateEnum(typeof(InferenceDataType), value, nameof(DataType));
+
+                Set(_keyDataType, (int)value);
             }
         }
 

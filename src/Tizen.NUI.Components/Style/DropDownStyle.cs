@@ -223,14 +223,14 @@ namespace Tizen.NUI.Components
 
             if (null != dropDownStyle)
             {
-                Button.CopyFrom(dropDownStyle.Button);
-                HeaderText.CopyFrom(dropDownStyle.HeaderText);
-                ListBackgroundImage.CopyFrom(dropDownStyle.ListBackgroundImage);
+                Button?.CopyFrom(dropDownStyle.Button);
+                HeaderText?.CopyFrom(dropDownStyle.HeaderText);
+                ListBackgroundImage?.CopyFrom(dropDownStyle.ListBackgroundImage);
                 SpaceBetweenButtonTextAndIcon = dropDownStyle.SpaceBetweenButtonTextAndIcon;
                 ListRelativeOrientation = dropDownStyle.ListRelativeOrientation;
-                ListMargin.CopyFrom(dropDownStyle.ListMargin);
+                ListMargin?.CopyFrom(dropDownStyle.ListMargin);
                 SelectedItemIndex = dropDownStyle.SelectedItemIndex;
-                ListPadding.CopyFrom(dropDownStyle.ListPadding);
+                ListPadding?.CopyFrom(dropDownStyle.ListPadding);
             }
         }
 
@@ -325,9 +325,9 @@ namespace Tizen.NUI.Components
 
             if (null != dropDownItemStyle)
             {
-                Text.CopyFrom(dropDownItemStyle.Text);
-                Icon.CopyFrom(dropDownItemStyle.Icon);
-                CheckImage.CopyFrom(dropDownItemStyle.CheckImage);
+                Text?.CopyFrom(dropDownItemStyle.Text);
+                Icon?.CopyFrom(dropDownItemStyle.Icon);
+                CheckImage?.CopyFrom(dropDownItemStyle.CheckImage);
                 CheckImageGapToBoundary = dropDownItemStyle.CheckImageGapToBoundary;
                 IsSelected = dropDownItemStyle.IsSelected;
             }

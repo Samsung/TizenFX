@@ -30,7 +30,10 @@ namespace Tizen.Multimedia.Remoting
         MovingToNext,   // Since 4.0
         MovingToPrev,   // Since 4.0
         FastForwarding, // Since 4.0
-        Rewinding       // Since 4.0
+        Rewinding,      // Since 4.0
+        Connecting,     // Since 6.0(API8)
+        Buffering,      // Since 6.0(API8)
+        Error           // Since 6.0(API8)
     }
 
     internal enum MediaControllerNativePlaybackAction

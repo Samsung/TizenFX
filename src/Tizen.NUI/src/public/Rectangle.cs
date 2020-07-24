@@ -48,6 +48,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal Rectangle(Rectangle other) : this(other.x, other.y, other.width, other.height)
+        {
+        }
+
         internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -64,6 +68,17 @@ namespace Tizen.NUI
 
         internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)
         {
+        }
+
+        /// <summary>
+        /// The type cast operator, int to Rectangle.
+        /// </summary>
+        /// <param name="value">A value of int type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Rectangle(int value)
+        {
+            return new Rectangle(value, value, value, value);
         }
 
         internal delegate void RectangleChangedCallback(int x, int y, int width, int height);

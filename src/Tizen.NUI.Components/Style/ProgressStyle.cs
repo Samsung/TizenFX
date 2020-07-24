@@ -23,9 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ProgressStyle is a class which saves Progress's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
     public class ProgressStyle : ControlStyle
     {
         static ProgressStyle() { }
@@ -33,9 +31,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ProgressStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ProgressStyle() : base()
         {
             InitSubStyle();
@@ -45,9 +41,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ProgressStyle with style.
         /// </summary>
         /// <param name="style">Create ProgressStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ProgressStyle(ProgressStyle style) : base(style)
         {
             if (null == style) return;
@@ -60,33 +54,26 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set track image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set progress image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set buffer image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
-        /// Clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
@@ -97,17 +84,17 @@ namespace Tizen.NUI.Components
             {
                 if (null != progressStyle.Track)
                 {
-                    Track.CopyFrom(progressStyle.Track);
+                    Track?.CopyFrom(progressStyle.Track);
                 }
 
                 if (null != progressStyle.Progress)
                 {
-                    Progress.CopyFrom(progressStyle.Progress);
+                    Progress?.CopyFrom(progressStyle.Progress);
                 }
 
                 if (null != progressStyle.Buffer)
                 {
-                    Buffer.CopyFrom(progressStyle.Buffer);
+                    Buffer?.CopyFrom(progressStyle.Buffer);
                 }
             }
         }

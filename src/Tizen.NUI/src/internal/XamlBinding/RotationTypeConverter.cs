@@ -54,5 +54,11 @@ namespace Tizen.NUI.Binding
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Rotation)}");
         }
+
+        public override string ConvertToString(object value)
+        {
+            Rotation rotation = (Rotation)value;
+            return rotation.ToString();
+        }
     }
 }

@@ -363,8 +363,23 @@ namespace Tizen.NUI.Xaml
             Type type = null;
             foreach (var asm in lookupAssemblies) {
                 foreach (var name in lookupNames)
+                {
                     if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
                         break;
+
+                    if ('?' == name.Last())
+                    {
+                        string nameOfNotNull = name.Substring(0, name.Length - 1);
+                        Type typeofNotNull = Type.GetType($"{asm.ClrNamespace}.{nameOfNotNull}, {asm.AssemblyName}");
+
+                        if (null != typeofNotNull)
+                        {
+                            type = typeof(Nullable<>).MakeGenericType(new Type[] { typeofNotNull });
+                            break;
+                        }
+                    }
+                }
+
                 if (type != null)
                     break;
             }

@@ -15,11 +15,13 @@
  *
  */
 
-using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class FrameBuffer : BaseHandle
+    /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class FrameBuffer : BaseHandle
     {
 
         internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBuffer.FrameBuffer_SWIGUpcast(cPtr), cMemoryOwn)

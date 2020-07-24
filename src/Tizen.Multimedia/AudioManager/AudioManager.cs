@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -166,6 +167,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API level 5. Please use the DeviceRunningStateChanged property instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add

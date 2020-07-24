@@ -238,8 +238,8 @@ namespace Tizen.NUI.Xaml
             string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
             Tizen.Log.Fatal("NUI", "the resource path: " + resource);
-            int windowWidth = Window.Instance.Size.Width;
-            int windowHeight = Window.Instance.Size.Height;
+            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
+            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
 
             string likelyResourcePath = resource + "layout/" + windowWidth.ToString() + "x" + windowHeight.ToString() + "/" + resourceName;
             Tizen.Log.Fatal("NUI", "the resource path: " + likelyResourcePath);
@@ -268,8 +268,33 @@ namespace Tizen.NUI.Xaml
                     throw new XamlParseException(string.Format("Can't find type {0}", type.FullName), new XmlLineInfo());
                 }
             }
+            else
+            {
+                Assembly assembly = type.Assembly;
 
-            return null;
+                var resourceId = XamlResourceIdAttribute.GetResourceIdForType(type);
+                if (null == resourceId)
+                {
+                    throw new XamlParseException(string.Format("Can't find type {0} in embedded resource", type.FullName), new XmlLineInfo());
+                }
+                else
+                {
+                    Stream stream = assembly.GetManifestResourceStream(resourceId);
+
+                    if (null != stream)
+                    {
+                        Byte[] buffer = new byte[stream.Length];
+                        stream.Read(buffer, 0, (int)stream.Length);
+
+                        string ret = System.Text.Encoding.Default.GetString(buffer);
+                        return ret;
+                    }
+                    else
+                    {
+                        throw new XamlParseException(string.Format("Can't get xaml stream {0} in embedded resource", type.FullName), new XmlLineInfo());
+                    }
+                }
+            }
         }
 
         //if the assembly was generated using a version of XamlG that doesn't outputs XamlResourceIdAttributes, we still need to find the resource, and load it
@@ -402,8 +427,8 @@ namespace Tizen.NUI.Xaml
 
             NUILog.Debug($"resource=({resource})");
 
-            int windowWidth = Window.Instance.Size.Width;
-            int windowHeight = Window.Instance.Size.Height;
+            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
+            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
 
             string likelyResourcePath = resource + "layout/" + windowWidth.ToString() + "x" + windowHeight.ToString() + "/" + resourceName;
 
@@ -428,6 +453,7 @@ namespace Tizen.NUI.Xaml
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.Layer")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
                 // View
@@ -435,9 +461,11 @@ namespace Tizen.NUI.Xaml
                 regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.BaseComponents.View")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
 
+                reader.Dispose();
                 throw new XamlParseException(string.Format("Can't find type {0}", "Tizen.NUI.XamlMainPage nor View nor Layer"), new XmlLineInfo());
             }
             return null;
