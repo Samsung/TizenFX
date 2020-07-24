@@ -77,7 +77,7 @@ namespace Tizen.Security.SecureRepository
         /// The alias argument is null.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Indicates failure to communicate with the Keystore. Check the errorcode for details
+        /// Failed to determine the alias existence. Check the errorcode for details
         /// </exception>
         static public bool AliasExists(string alias)
         {
