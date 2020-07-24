@@ -244,7 +244,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
-
             }
         }
 
@@ -728,11 +727,19 @@ namespace Tizen.NUI.BaseComponents
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
+            bool consumed = false;
+
             if (_touchDataEventHandler != null)
             {
-                return _touchDataEventHandler(this, e);
+                consumed = _touchDataEventHandler(this, e);
             }
-            return false;
+
+            if (enableControlState && !consumed)
+            {
+                consumed = HandleControlStateOnTouch(e.Touch);
+            }
+
+            return consumed;
         }
 
         // Callback for View Hover signal

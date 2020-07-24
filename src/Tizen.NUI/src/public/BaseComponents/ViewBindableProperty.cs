@@ -1558,6 +1558,32 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
+        /// <summary>
+        /// EnableControlState property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableControlStateProperty = BindableProperty.Create(nameof(EnableControlState), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            bool prev = view.enableControlState;
+            view.enableControlState = (bool)newValue;
+
+            if (prev != view.enableControlState)
+            {
+                if (prev)
+                {
+                    view.TouchEvent -= view.EmptyOnTouch;
+                }
+                else
+                {
+                    view.TouchEvent += view.EmptyOnTouch;
+                }
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((View)bindable).enableControlState;
+        });
 
         #region Selectors
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>

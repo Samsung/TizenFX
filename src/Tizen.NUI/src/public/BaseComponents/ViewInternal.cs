@@ -253,6 +253,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Indicates that this View should listen Touch event to handle its ControlState.
+        /// </summary>
+        private bool enableControlState = false;
+
         private int LeftFocusableViewId
         {
             get
@@ -1101,6 +1106,32 @@ namespace Tizen.NUI.BaseComponents
             Interop.View.delete_View(swigCPtr);
         }
 
+        /// <summary>
+        /// The touch event handler for ControlState.
+        /// Please change ControlState value by touch state if needed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool HandleControlStateOnTouch(Touch touch)
+        {
+            switch(touch.GetState(0))
+            {
+                case PointStateType.Down:
+                    ControlState += ControlState.Pressed;
+                    break;
+                case PointStateType.Interrupted:
+                case PointStateType.Up:
+                    if (ControlState.Contains(ControlState.Pressed))
+                    {
+                        ControlState -= ControlState.Pressed;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return false;
+        }
+
         private void DisConnectFromSignals()
         {
             // Save current CPtr.
@@ -1314,6 +1345,11 @@ namespace Tizen.NUI.BaseComponents
 
                 Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(map));
             }
+        }
+
+        private bool EmptyOnTouch(object target, TouchEventArgs args)
+        {
+            return false;
         }
     }
 }

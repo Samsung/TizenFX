@@ -73,6 +73,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewLayoutDirectionType? layoutDirection;
         private Extents margin;
         private float? weight;
+        private bool? enableControlState;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -658,6 +659,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<float?>)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        /// <summary>
+        /// The EnableControlState value of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? EnableControlState
+        {
+            get => (bool?)GetValue(EnableControlStateProperty);
+            set => SetValue(EnableControlStateProperty, value);
         }
 
         /// <summary>

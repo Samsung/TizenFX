@@ -850,5 +850,18 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.cornerRadius;
         });
+
+        /// <summary>
+        /// EnableControlState property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableControlStateProperty = BindableProperty.Create("EnableControlState", typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).enableControlState = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ViewStyle)bindable).enableControlState;
+        });
     }
 }
