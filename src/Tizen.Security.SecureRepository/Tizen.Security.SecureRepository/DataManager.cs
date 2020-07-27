@@ -71,8 +71,8 @@ namespace Tizen.Security.SecureRepository
         /// Checks for alias existence
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// <param name="alias">The name of a certificate to retrieve.</param>
-        /// <returns>Boolean indicating the exitsance of the alias.</returns>
+        /// <param name="alias">The name of a data to retrieve.</param>
+        /// <returns>Boolean indicating the existence of the alias.</returns>
         /// <exception cref="ArgumentNullException">
         /// The alias argument is null.
         /// </exception>
