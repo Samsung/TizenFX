@@ -44,7 +44,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
-            InitSubStyle();
+            Title = new TextLabelStyle();
+            Buttons = new ButtonStyle();
             this.CopyFrom(style);
         }
 
@@ -95,7 +96,6 @@ namespace Tizen.NUI.Components
 
             Title = new TextLabelStyle()
             {
-                Size = new Size(0, 0),
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                 PivotPoint = Tizen.NUI.PivotPoint.TopLeft,

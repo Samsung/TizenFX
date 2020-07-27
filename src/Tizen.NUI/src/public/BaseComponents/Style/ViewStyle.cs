@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -28,7 +29,6 @@ namespace Tizen.NUI.BaseComponents
     public partial class ViewStyle : BindableObject
     {
         private string styleName;
-        private string backgroundImage;
         private View.States? state;
         private View.States? subState;
         private float? flex;
@@ -44,23 +44,13 @@ namespace Tizen.NUI.BaseComponents
         private View upFocusableView;
         private View downFocusableView;
         private bool? focusable;
-        private Size2D size2D;
-        private Position2D position2D;
         private bool? positionUsesPivotPoint;
         private int? siblingOrder;
         private Position parentOrigin;
         private Position pivotPoint;
-        private float? sizeWidth;
-        private float? sizeHeight;
         private Position position;
-        private float? positionX;
-        private float? positionY;
-        private float? positionZ;
         private Rotation orientation;
         private Vector3 scale;
-        private float? scaleX;
-        private float? scaleY;
-        private float? scaleZ;
         private string name;
         private bool? sensitive;
         private bool? leaveRequired;
@@ -83,6 +73,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewLayoutDirectionType? layoutDirection;
         private Extents margin;
         private float? weight;
+        private bool? enableControlState;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -107,6 +98,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 this.CopyFrom(viewAttributes);
             }
+        }
+
+        /// <summary>
+        /// Create an instance and set properties from the given view.
+        /// </summary>
+        /// <param name="view">The View that includes property data.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle(View view)
+        {
+            CopyPropertiesFromView(view);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -660,9 +661,44 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(CornerRadiusProperty, value);
         }
 
+        /// <summary>
+        /// The EnableControlState value of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? EnableControlState
+        {
+            get => (bool?)GetValue(EnableControlStateProperty);
+            set => SetValue(EnableControlStateProperty, value);
+        }
+
+        /// <summary>
+        /// Set style's bindable properties from the view.
+        /// </summary>
+        /// <param name="view">The view that includes property data.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void CopyPropertiesFromView(View view)
+        {
+            if (view == null) return;
+
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);            
+            BindableProperty.GetBindablePropertysOfType(view.GetType(), out var viewProperties);
+            
+
+            if (styleProperties == null || viewProperties == null) return;
+
+            foreach (var stylePropertyItem in styleProperties)
+            {
+                viewProperties.TryGetValue(stylePropertyItem.Key, out var viewProperty);
+
+                if (viewProperty == null) continue;
+
+                SetValue(stylePropertyItem.Value, view.GetValue(viewProperty));
+            }
+        }
+
         internal ViewStyle CreateInstance()
         {
-            return (ViewStyle)Activator.CreateInstance(GetType());;
+            return (ViewStyle)Activator.CreateInstance(GetType());
         }
 
         internal ViewStyle Clone()

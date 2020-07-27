@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => ViewStyle as ControlStyle;
+        public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
         static Control() { }
 
@@ -241,37 +241,6 @@ namespace Tizen.NUI.Components
         protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e) { }
 
         /// <summary>
-        /// Called after a touch event is received by the owning view.<br />
-        /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
-        /// </summary>
-        /// <param name="touch">The touch event.</param>
-        /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool OnTouch(Touch touch)
-        {
-            // Handle Normal and Pressed states
-            PointStateType state = touch.GetState(0);
-            switch(state)
-            {
-                case PointStateType.Down:
-                    ControlState = ControlState.Pressed;
-                    break;
-                case PointStateType.Interrupted:
-                case PointStateType.Up:
-                    if (ControlState == ControlState.Pressed)
-                    {
-                        ControlState = ControlState.Normal;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Update by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -293,10 +262,6 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void RegisterDetectionOfSubstyleChanges() { }
-
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new ControlStyle();
@@ -304,16 +269,14 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            ControlState = ControlState.Normal;
-
-            RegisterDetectionOfSubstyleChanges();
-
             LeaveRequired = true;
 
             StateFocusableOnTouchMode = false;
 
             tapGestureDetector.Attach(this);
             tapGestureDetector.Detected += OnTapGestureDetected;
+
+            EnableControlState = true;
 
             StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
         }

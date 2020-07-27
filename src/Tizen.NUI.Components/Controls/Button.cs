@@ -23,6 +23,14 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     /// <summary>
+    /// ClickedEventArgs is a class to record button click event arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class ClickedEventArgs : EventArgs
+    {
+    }
+
+    /// <summary>
     /// Button is one kind of common component, a button clearly describes what action will occur when the user selects it.
     /// Button may contain text or an icon.
     /// </summary>
@@ -36,9 +44,9 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.Style != null && instance.Style.IconRelativeOrientation != (IconOrientation?)newValue)
+                if (instance.buttonStyle != null && instance.buttonStyle.IconRelativeOrientation != (IconOrientation?)newValue)
                 {
-                    instance.Style.IconRelativeOrientation = (IconOrientation?)newValue;
+                    instance.buttonStyle.IconRelativeOrientation = (IconOrientation?)newValue;
                     instance.UpdateUIContent();
                 }
             }
@@ -46,7 +54,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.IconRelativeOrientation;
+            return instance.buttonStyle?.IconRelativeOrientation;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -55,14 +63,17 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.isEnabled = (bool)newValue;
-                instance.UpdateState();
+                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsEnabled != (bool)newValue))
+                {
+                    instance.buttonStyle.IsEnabled = (bool)newValue;
+                    instance.UpdateState();
+                }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.isEnabled;
+            return instance.buttonStyle?.IsEnabled ?? true;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -71,14 +82,17 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.isSelected = (bool)newValue;
-                instance.UpdateState();
+                if (instance.buttonStyle != null && instance.IsSelectable && (!instance.styleApplied || instance.buttonStyle.IsSelected != (bool)newValue))
+                {
+                    instance.buttonStyle.IsSelected = (bool)newValue;
+                    instance.UpdateState();
+                }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.isSelected;
+            return instance.IsSelectable && (instance.buttonStyle.IsSelected ?? false);
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -87,45 +101,48 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                instance.Style.IsSelectable = (bool)newValue;
+                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsSelectable != (bool)newValue))
+                {
+                    instance.buttonStyle.IsSelectable = (bool)newValue;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.IsSelectable ?? false;
+            return instance.buttonStyle?.IsSelectable ?? false;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.Style?.IconPadding)
+            if (null != newValue && null != instance.buttonStyle?.IconPadding)
             {
-                instance.Style.IconPadding.CopyFrom((Extents)newValue);
+                instance.buttonStyle.IconPadding.CopyFrom((Extents)newValue);
                 instance.UpdateUIContent();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.IconPadding;
+            return instance.buttonStyle?.IconPadding;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.Style?.TextPadding)
+            if (null != newValue && null != instance.buttonStyle?.TextPadding)
             {
-                instance.Style.TextPadding.CopyFrom((Extents)newValue);
+                instance.buttonStyle.TextPadding.CopyFrom((Extents)newValue);
                 instance.UpdateUIContent();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.Style?.TextPadding;
+            return instance.buttonStyle?.TextPadding;
         });
 
         static Button() { }
@@ -163,7 +180,14 @@ namespace Tizen.NUI.Components
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use Clicked event instead.")]
         public event EventHandler<ClickEventArgs> ClickEvent;
+
+        /// <summary>
+        /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ClickedEventArgs> Clicked;
 
         /// <summary>
         /// An event for the button state changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -174,11 +198,11 @@ namespace Tizen.NUI.Components
         {
             add
             {
-                stateChangeHander += value;
+                stateChangeHandler += value;
             }
             remove
             {
-                stateChangeHander -= value;
+                stateChangeHandler -= value;
             }
         }
 
@@ -298,7 +322,18 @@ namespace Tizen.NUI.Components
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new ButtonStyle Style => ViewStyle as ButtonStyle;
+        public new ButtonStyle Style
+        {
+            get
+            {
+                var result = (ButtonStyle)ViewStyle.Clone();
+                result.CopyPropertiesFromView(this);
+                result.Text.CopyPropertiesFromView(TextLabel);
+                result.Icon.CopyPropertiesFromView(Icon);
+                result.Overlay.CopyPropertiesFromView(OverlayImage);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The text of Button.
@@ -308,14 +343,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.Text?.GetValue(ControlState);
+                return TextLabel.Text;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.Text = value;
-                }
+                TextLabel.Text = value;
             }
         }
 
@@ -343,14 +375,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TranslatableText?.All;
+                return TextLabel.TranslatableText;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.TranslatableText = value;
-                }
+                TextLabel.TranslatableText = value;
             }
         }
 
@@ -362,14 +391,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.PointSize?.All ?? 0;
+                return TextLabel.PointSize;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.PointSize = value;
-                }
+                TextLabel.PointSize = value;
             }
         }
 
@@ -381,14 +407,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.FontFamily.All;
+                return TextLabel.FontFamily;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.FontFamily = value;
-                }
+                TextLabel.FontFamily = value;
             }
         }
 
@@ -400,14 +423,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TextColor?.All;
+                return TextLabel.TextColor;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.TextColor = value;
-                }
+                TextLabel.TextColor = value;
             }
         }
 
@@ -419,14 +439,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return TextLabel.HorizontalAlignment;
             }
             set
             {
-                if (null != Style?.Text)
-                {
-                    Style.Text.HorizontalAlignment = value;
-                }
+                TextLabel.HorizontalAlignment = value;
             }
         }
 
@@ -438,133 +455,120 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Icon?.ResourceUrl?.All;
+                return Icon.ResourceUrl;
             }
             set
             {
-                if (null != Style?.Icon)
-                {
-                    Style.Icon.ResourceUrl = value;
-                }
+                Icon.ResourceUrl = value;
             }
         }
 
         /// <summary>
         /// Text string selector in Button.
+        /// Getter returns copied selector value if exist, null otherwise.
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TextSelector
         {
-            get
-            {
-                return textSelector;
-            }
+            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TextSelectorProperty));
             set
             {
-                if (value == null || textSelector == null)
+                if (value == null || buttonText == null)
                 {
-                    Tizen.Log.Fatal("NUI", "[Exception] Button.TextSelector is null");
                     throw new NullReferenceException("Button.TextSelector is null");
                 }
                 else
                 {
-                    textSelector.Clone(value);
+                    buttonText.SetValue(TextLabel.TextSelectorProperty, value);
                 }
             }
         }
 
         /// <summary>
         /// Translateable text string selector in Button.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TranslatableTextSelector
         {
-            get
-            {
-                return translatableTextSelector;
-            }
+            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TranslatableTextSelectorProperty));
             set
             {
-                if (value == null || translatableTextSelector == null)
+                if (value == null || buttonText == null)
                 {
-                    Tizen.Log.Fatal("NUI", "[Exception] Button.TranslatableTextSelector is null");
                     throw new NullReferenceException("Button.TranslatableTextSelector is null");
                 }
                 else
                 {
-                    translatableTextSelector.Clone(value);
+                    buttonText.SetValue(TextLabel.TranslatableTextSelectorProperty, value);
                 }
             }
         }
 
         /// <summary>
         /// Text color selector in Button.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public ColorSelector TextColorSelector
         {
-            get
-            {
-                return textColorSelector;
-            }
+            get => buttonText == null ? null : new ColorSelector((Selector<Color>)buttonText.GetValue(TextLabel.TextColorSelectorProperty));
             set
             {
-                if (value == null || textColorSelector == null)
+                if (value == null || buttonText == null)
                 {
-                    Tizen.Log.Fatal("NUI", "[Exception] Button.textColorSelector is null");
-                    throw new NullReferenceException("Button.textColorSelector is null");
+                    throw new NullReferenceException("Button.TextColorSelectorProperty is null");
                 }
                 else
                 {
-                    textColorSelector.Clone(value);
+                    buttonText.SetValue(TextLabel.TextColorSelectorProperty, value);
                 }
             }
         }
 
         /// <summary>
         /// Text font size selector in Button.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public FloatSelector PointSizeSelector
         {
-            get
-            {
-                return pointSizeSelector;
-            }
+            get => buttonText == null ? null : new FloatSelector((Selector<float?>)buttonText.GetValue(TextLabel.PointSizeSelectorProperty));
             set
             {
-                if (value == null || pointSizeSelector == null)
+                if (value == null || buttonText == null)
                 {
-                    Tizen.Log.Fatal("NUI", "[Exception] Button.pointSizeSelector is null");
-                    throw new NullReferenceException("Button.pointSizeSelector is null");
+                    throw new NullReferenceException("Button.PointSizeSelector is null");
                 }
                 else
                 {
-                    pointSizeSelector.Clone(value);
+                    buttonText.SetValue(TextLabel.PointSizeSelectorProperty, value);
                 }
             }
         }
 
         /// <summary>
         /// Icon image's resource url selector in Button.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
+        /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector IconURLSelector
         {
-            get
-            {
-                return iconURLSelector;
-            }
+            get => buttonIcon == null ? null : new StringSelector((Selector<string>)buttonIcon.GetValue(ImageView.ResourceUrlSelectorProperty));
             set
             {
-                if (value == null || iconURLSelector == null)
+                if (value == null || buttonIcon == null)
                 {
-                    Tizen.Log.Fatal("NUI", "[Exception] Button.iconURLSelector is null");
-                    throw new NullReferenceException("Button.iconURLSelector is null");
+                    throw new NullReferenceException("Button.IconURLSelector is null");
                 }
                 else
                 {
-                    iconURLSelector.Clone(value);
+                    buttonIcon.SetValue(ImageView.ResourceUrlSelectorProperty, value);
                 }
             }
         }
@@ -637,6 +641,8 @@ namespace Tizen.NUI.Components
             set => SetValue(TextPaddingProperty, value);
         }
 
+        private ButtonStyle buttonStyle => ViewStyle as ButtonStyle;
+
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
         /// </summary>
@@ -662,11 +668,11 @@ namespace Tizen.NUI.Components
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    bool clicked = isPressed && isEnabled;
+                    bool clicked = isPressed && IsEnabled;
 
                     isPressed = false;
 
-                    if (Style.IsSelectable != null && Style.IsSelectable == true)
+                    if (IsSelectable)
                     {
                         IsSelected = !IsSelected;
                     }
@@ -677,8 +683,8 @@ namespace Tizen.NUI.Components
 
                     if (clicked)
                     {
-                        ClickEventArgs eventArgs = new ClickEventArgs();
-                        OnClickInternal(eventArgs);
+                        ClickedEventArgs eventArgs = new ClickedEventArgs();
+                        OnClickedInternal(eventArgs);
                     }
                 }
             }
@@ -714,52 +720,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
-            if (!IsEnabled || null == touch)
-            {
-                return false;
-            }
-
-            PointStateType state = touch.GetState(0);
-
-            switch (state)
-            {
-                case PointStateType.Down:
-                    isPressed = true;
-                    Extension?.SetTouchInfo(touch);
-                    UpdateState();
-                    return true;
-                case PointStateType.Interrupted:
-                    isPressed = false;
-                    UpdateState();
-                    return true;
-                case PointStateType.Up:
-                    {
-                        bool clicked = isPressed && isEnabled;
-
-                        isPressed = false;
-
-                        if (Style.IsSelectable != null && Style.IsSelectable == true)
-                        {
-                            Extension?.SetTouchInfo(touch);
-                            IsSelected = !IsSelected;
-                        }
-                        else
-                        {
-                            Extension?.SetTouchInfo(touch);
-                            UpdateState();
-                        }
-
-                        if (clicked)
-                        {
-                            ClickEventArgs eventArgs = new ClickEventArgs();
-                            OnClickInternal(eventArgs);
-                        }
-
-                        return true;
-                    }
-                default:
-                    break;
-            }
             return base.OnTouch(touch);
         }
 
@@ -770,9 +730,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            styleApplied = false;
+
             base.ApplyStyle(viewStyle);
 
-            ButtonStyle buttonStyle = viewStyle as ButtonStyle;
             if (null != buttonStyle)
             {
                 Extension = buttonStyle.CreateExtension();
@@ -791,12 +752,15 @@ namespace Tizen.NUI.Components
                     Icon?.ApplyStyle(buttonStyle.Icon);
                 }
             }
+
+            styleApplied = true;
         }
 
         /// <summary>
         /// ClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use ClickedEventArgs instead.")]
         public class ClickEventArgs : EventArgs
         {
         }
@@ -822,7 +786,7 @@ namespace Tizen.NUI.Components
         /// Get current text part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's text part.</return>
@@ -836,7 +800,7 @@ namespace Tizen.NUI.Components
         /// Get current icon part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's icon part.</return>
@@ -850,7 +814,7 @@ namespace Tizen.NUI.Components
         /// Get current overlay image part to the attached ButtonExtension.
         /// </summary>
         /// <remarks>
-        /// It returns null if the passed extension is invaild.
+        /// It returns null if the passed extension is invalid.
         /// </remarks>
         /// <param name="extension">The extension instance that is currently attached to this Button.</param>
         /// <return>The button's overlay image part.</return>

@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -66,6 +67,21 @@ namespace Tizen.NUI.Components
             internal set
             {
                 base.ItemGroup = value;
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (viewStyle is ButtonStyle buttonStyle)
+            {
+                if (buttonStyle.IsSelectable == null)
+                {
+                    buttonStyle.IsSelectable = true;
+                }
+
+                base.ApplyStyle(buttonStyle);
             }
         }
 

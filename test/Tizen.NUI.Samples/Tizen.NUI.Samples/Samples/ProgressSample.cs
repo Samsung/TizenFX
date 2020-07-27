@@ -127,7 +127,7 @@ namespace Tizen.NUI.Samples
             button[0].BackgroundColor = Color.Green;
             layout[2].Add(button[0]);
             button[0].Focusable = true;
-            button[0].ClickEvent += ProgressAdd;
+            button[0].Clicked += ProgressAdd;
 
             button[1] = new Button();
             button[1].WidthSpecification = 140;
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Samples
             button[1].BackgroundColor = Color.Green;
             layout[2].Add(button[1]);
             button[1].Focusable = true;
-            button[1].ClickEvent += ProgressMinus;
+            button[1].Clicked += ProgressMinus;
         }
 
         private void CreateAttrElements()

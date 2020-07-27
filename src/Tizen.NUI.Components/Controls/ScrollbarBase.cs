@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -24,22 +25,24 @@ namespace Tizen.NUI.Components
     /// This only contains non-graphical functionalities of basic scrollbar.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class ScrollbarBase : Control
+    public abstract class ScrollbarBase : VisualView
     {
+        private bool mScrollEnabled = true;
+
         #region Constructors
 
         /// <summary>
         /// Create an empty ScrollbarBase.
         /// </summary>
-        public ScrollbarBase() : base()
+        public ScrollbarBase() : base(CustomViewBehaviour.ViewBehaviourDefault)
         {
         }
 
         /// <summary>
-        /// Create an empty Scrollbar with a ControlStyle instance to set style properties.
+        /// Create an empty Scrollbar with a ViewStyle instance to set style properties.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollbarBase(ControlStyle style) : base(style)
+        public ScrollbarBase(ViewStyle style) : base(CustomViewBehaviour.ViewBehaviourDefault, style)
         {
         }
 
@@ -83,6 +86,12 @@ namespace Tizen.NUI.Components
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
+
+        /// <summary>
+        /// Enable or disable scrolling.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract bool ScrollEnabled { get; set; }
 
         #endregion Methods
     }

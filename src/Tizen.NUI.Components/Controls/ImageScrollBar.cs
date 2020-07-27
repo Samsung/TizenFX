@@ -438,7 +438,7 @@ namespace Tizen.NUI.Components
             {
                 //TNLog.E("Current value is less than the Min value, or greater than the Max value. currentValue = " + currentValue + ";");
 #pragma warning disable CA2208 // Instantiate argument exceptions correctly
-                throw new ArgumentOutOfRangeException("Wrong Current value. It shoud be greater than the Min value, and less than the Max value!");
+                throw new ArgumentOutOfRangeException("Wrong Current value. It should be greater than the Min value, and less than the Max value!");
 #pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
 

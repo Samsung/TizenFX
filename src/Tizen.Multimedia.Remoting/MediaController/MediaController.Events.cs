@@ -292,7 +292,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         internal event EventHandler<CommandCompletedEventArgs> CommandCompleted;
 
-        internal void RaiseCommandCompletedEvent(string requestId, MediaControllerError result, IntPtr bundleHandle)
+        internal void RaiseCommandCompletedEvent(string requestId, int result, IntPtr bundleHandle)
         {
             if (bundleHandle != IntPtr.Zero)
             {

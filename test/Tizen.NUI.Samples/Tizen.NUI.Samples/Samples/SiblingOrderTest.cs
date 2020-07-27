@@ -32,7 +32,7 @@ namespace Tizen.NUI.Samples
                 Position = new Position(10, H1 + 20),
                 Text = "add new child",
             };
-            b1.ClickEvent += B1_ClickEvent;
+            b1.Clicked += B1_Clicked;
             win.Add(b1);
 
             b2 = new Button()
@@ -41,7 +41,7 @@ namespace Tizen.NUI.Samples
                 Position = new Position(10, H1 + 20 + 120),
                 Text = "refresh sibling order",
             };
-            b2.ClickEvent += B2_ClickEvent;
+            b2.Clicked += B2_Clicked;
             win.Add(b2);
 
             b3 = new Button()
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Samples
                 Position = new Position(10, H1 + 20 + 120 + 120),
                 Text = "place children to fit parent",
             };
-            b3.ClickEvent += B3_ClickEvent;
+            b3.Clicked += B3_Clicked;
             win.Add(b3);
 
             text = new TextLabel()
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Samples
             win.Add(text);
         }
 
-        private void B1_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void B1_Clicked(object sender, ClickedEventArgs e)
         {
             string n = "CH" + (v.ChildCount + 1);
             var ch = new TextLabel();
@@ -93,7 +93,7 @@ namespace Tizen.NUI.Samples
             a.Finished += A_Finished;
         }
 
-        private void B2_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void B2_Clicked(object sender, ClickedEventArgs e)
         {
             for(int i=0; i < v.ChildCount; i++)
             {
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private void B3_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void B3_Clicked(object sender, ClickedEventArgs e)
         {
             for (int i = 0; i < v.ChildCount; i++)
             {
@@ -135,9 +135,9 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            b1.ClickEvent -= B1_ClickEvent;
-            b2.ClickEvent -= B2_ClickEvent;
-            b3.ClickEvent -= B3_ClickEvent;
+            b1.Clicked -= B1_Clicked;
+            b2.Clicked -= B2_Clicked;
+            b3.Clicked -= B3_Clicked;
 
             b1.Unparent();
             b2.Unparent();

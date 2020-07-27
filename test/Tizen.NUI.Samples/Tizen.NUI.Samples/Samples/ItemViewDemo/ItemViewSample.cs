@@ -488,7 +488,7 @@ namespace Tizen.NUI.Samples
             mEditButton.IsSelectable = true;
             mEditButton.Size = new Size(34, 34);
             mEditButton.LeaveRequired = true;
-            mEditButton.ClickEvent += (obj, e) =>
+            mEditButton.Clicked += (obj, e) =>
             {
                 SwitchToNextMode();
             };
@@ -522,7 +522,7 @@ namespace Tizen.NUI.Samples
             mLayoutButton.IsSelectable = true;
             mLayoutButton.Size = new Size(34, 34);
             mLayoutButton.LeaveRequired = true;
-            mLayoutButton.ClickEvent += (obj, e) =>
+            mLayoutButton.Clicked += (obj, e) =>
             {
                 mCurrentLayout = (mCurrentLayout + 1) % (int)mItemView.GetLayoutCount();
                 ChangeLayout();
@@ -573,7 +573,7 @@ namespace Tizen.NUI.Samples
             mDeleteButton.Size = new Size(50, 50);
             mDeleteButton.LeaveRequired = true;
             mDeleteButton.Hide();
-            mDeleteButton.ClickEvent += (obj, e) =>
+            mDeleteButton.Clicked += (obj, e) =>
             {
                 ItemIdContainer removeList = new ItemIdContainer();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
@@ -616,7 +616,7 @@ namespace Tizen.NUI.Samples
             mInsertButton.Size = new Size(50, 50);
             mInsertButton.LeaveRequired = true;
             mInsertButton.Hide();
-            mInsertButton.ClickEvent += (obj, e) =>
+            mInsertButton.Clicked += (obj, e) =>
             {
                 ItemContainer insertList = new ItemContainer();
                 Random random = new Random();
@@ -659,7 +659,7 @@ namespace Tizen.NUI.Samples
             mReplaceButton.Size = new Size(50, 50);
             mReplaceButton.LeaveRequired = true;
             mReplaceButton.Hide();
-            mReplaceButton.ClickEvent += (obj, e) =>
+            mReplaceButton.Clicked += (obj, e) =>
             {
                 ItemContainer replaceList = new ItemContainer();
                 Random random = new Random();

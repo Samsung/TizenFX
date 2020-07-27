@@ -295,7 +295,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies the code which represents the result of commnunication between client and server.
+    /// Specifies the code which represents the result of communication between client and server.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public enum MediaControlResult

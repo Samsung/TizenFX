@@ -38,7 +38,10 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 instance.strText = (string)(newValue);
-                instance.Style.Text.Text = instance.strText;
+                if (null != instance.textLabel)
+                {
+                    instance.textLabel.Text = instance.strText;
+                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -54,14 +57,18 @@ namespace Tizen.NUI.Components
             var instance = (Toast)bindable;
             if (newValue != null)
             {
-                instance.Style.Duration = (uint)newValue;
+                instance.toastStyle.Duration = (uint)newValue;
+                if (instance.timer == null)
+                {
+                    instance.timer = new Timer(instance.duration);
+                }
                 instance.timer.Interval = (uint)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Toast)bindable;
-            return instance.Style.Duration ?? instance.duration;
+            return instance.toastStyle.Duration ?? instance.duration;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -81,12 +88,26 @@ namespace Tizen.NUI.Components
         private string strText = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
+        private ToastStyle toastStyle => ViewStyle as ToastStyle;
 
         /// <summary>
-        /// Get style of toast.
+        /// Return a copied Style instance of Toast
         /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Toast.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ToastStyle Style => ViewStyle as ToastStyle;
+        public new ToastStyle Style
+        {
+            get
+            {
+                var result = new ToastStyle(toastStyle);
+                result.CopyPropertiesFromView(this);
+                result.Text.CopyPropertiesFromView(textLabel);
+                return result;
+            }
+        }
         static Toast() { }
 
         /// <summary>
@@ -139,13 +160,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)Style?.Text?.PointSize?.All;
+                return (float)textLabel?.PointSize;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != textLabel)
                 {
-                    Style.Text.PointSize = value;
+                    textLabel.PointSize = value;
                 }
             }
         }
@@ -159,13 +180,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.FontFamily?.All;
+                return textLabel?.FontFamily;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != textLabel)
                 {
-                    Style.Text.FontFamily = value;
+                    textLabel.FontFamily = value;
                 }
             }
         }
@@ -179,13 +200,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.TextColor?.All;
+                return textLabel?.TextColor;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != textLabel)
                 {
-                    Style.Text.TextColor = value;
+                    textLabel.TextColor = value;
                 }
             }
         }
@@ -199,13 +220,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return textLabel?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                if (null != Style?.Text)
+                if (null != textLabel)
                 {
-                    Style.Text.HorizontalAlignment = value;
+                    textLabel.HorizontalAlignment = value;
                 }
             }
         }
@@ -248,13 +269,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text.Padding;
+                return textLabel?.Padding;
             }
             set
             {
-                if (null != value && null != Style.Text)
+                if (null != value && null != textLabel)
                 {
-                    Style.Text.Padding.CopyFrom(value);
+                    textLabel.Padding.CopyFrom(value);
                 }
             }
         }
@@ -363,7 +384,7 @@ namespace Tizen.NUI.Components
             }
 
             this.VisibilityChanged += OnVisibilityChanged;
-            timer = new Timer(Style.Duration ?? duration);
+            timer = new Timer(toastStyle.Duration ?? duration);
             timer.Tick += OnTick;
         }
 

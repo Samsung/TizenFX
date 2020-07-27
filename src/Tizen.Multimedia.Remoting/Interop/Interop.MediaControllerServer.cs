@@ -73,7 +73,7 @@ internal static partial class Interop
 
         // Command callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CommandCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
+        internal delegate void CommandCompletedCallback(string clientName, string requestId, int result, IntPtr bundleHandle,
             IntPtr userData = default(IntPtr));
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

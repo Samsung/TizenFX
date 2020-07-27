@@ -141,6 +141,15 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="other">The copy target.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(Color other) : this(other.R, other.G, other.B, other.A)
+        {
+        }
+
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 			hashDummy = false;

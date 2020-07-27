@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -23,7 +24,7 @@ namespace Tizen.NUI.Components
     /// ScrollbarStyle is a class which saves Scrollbar's style data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollbarStyle : ControlStyle
+    public class ScrollbarStyle : ViewStyle
     {
         #region Fields
 

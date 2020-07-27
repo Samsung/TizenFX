@@ -36,14 +36,14 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var thickness = (float?)newValue;
-
-            instance.Style.Thickness = thickness;
-            instance.UpdateVisualThickness(thickness ?? 0);
+            float value = (float?)newValue ?? 0;
+            instance.CurrentStyle.Thickness = value;
+            instance.UpdateVisualThickness(value);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.Thickness ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.CurrentStyle.Thickness ?? 0;
         });
 
         /// <summary>Bindable property of TrackSweepAngle</summary>
@@ -51,14 +51,14 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackSweepAngleProperty = BindableProperty.Create(nameof(TrackSweepAngle), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var angle = (float?)newValue;
-
-            instance.Style.TrackSweepAngle = angle;
-            instance.UpdateTrackVisualSweepAngle(angle ?? 0);
+            float value = (float?)newValue ?? 0;
+            instance.CurrentStyle.TrackSweepAngle = value;
+            instance.UpdateTrackVisualSweepAngle(value);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.TrackSweepAngle ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.CurrentStyle.TrackSweepAngle ?? 0;
         });
 
         /// <summary>Bindable property of TrackColor</summary>
@@ -66,14 +66,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.Style.TrackColor = color;
-            instance.UpdateTrackVisualColor(color);
+            instance.CurrentStyle.TrackColor = (Color)newValue;
+            instance.UpdateTrackVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.TrackColor;
+            return ((CircularScrollbar)bindable).CurrentStyle.TrackColor;
         });
 
         /// <summary>Bindable property of ThumbColor</summary>
@@ -81,14 +79,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            instance.Style.ThumbColor = color;
-            instance.UpdateThumbVisualColor(color);
+            instance.CurrentStyle.ThumbColor = (Color)newValue;
+            instance.UpdateThumbVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbar)bindable).Style.ThumbColor;
+            return ((CircularScrollbar)bindable).CurrentStyle.ThumbColor;
         });
 
         private ArcVisual trackVisual;
@@ -100,6 +96,7 @@ namespace Tizen.NUI.Wearable
         private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
+        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -154,7 +151,15 @@ namespace Tizen.NUI.Wearable
         /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new CircularScrollbarStyle Style => ViewStyle as CircularScrollbarStyle;
+        public CircularScrollbarStyle Style
+        {
+            get
+            {
+                var result = new CircularScrollbarStyle(ViewStyle as CircularScrollbarStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The thickness of the scrollbar and track.
@@ -199,6 +204,8 @@ namespace Tizen.NUI.Wearable
             get => (Color)GetValue(ThumbColorProperty);
             set => SetValue(ThumbColorProperty, value);
         }
+
+        private CircularScrollbarStyle CurrentStyle => ViewStyle as CircularScrollbarStyle;
 
         #endregion Properties
 
@@ -314,6 +321,11 @@ namespace Tizen.NUI.Wearable
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
             currentPosition = position;
+
+            if (mScrollEnabled == false)
+            {
+                return;
+            }
 
             if (thumbVisual == null)
             {
@@ -451,6 +463,23 @@ namespace Tizen.NUI.Wearable
 
             thumbVisual.MixColor = thumbColor;
             thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                }
+            }
         }
 
         #endregion Methods

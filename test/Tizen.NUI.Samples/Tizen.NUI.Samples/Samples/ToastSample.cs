@@ -121,9 +121,9 @@ namespace Tizen.NUI.Samples
                 parentView[1].Add(button[i]);
             }
             button[0].Text = "toast1_1 Show";
-            button[0].ClickEvent += toast1_1Show;
+            button[0].Clicked += toast1_1Show;
             button[1].Text = "toast2_1 Show";
-            button[1].ClickEvent += toast2_1Show;
+            button[1].Clicked += toast2_1Show;
 
             // Set init focus
             FocusManager.Instance.SetCurrentFocusView(button[0]);

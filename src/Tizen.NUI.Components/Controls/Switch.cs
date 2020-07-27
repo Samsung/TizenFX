@@ -66,13 +66,34 @@ namespace Tizen.NUI.Components
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead.")]
         public event EventHandler<SelectEventArgs> SelectedEvent;
 
         /// <summary>
-        /// Get style of switch.
+        /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style => ViewStyle as SwitchStyle;
+        public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
+
+        /// <summary>
+        /// Return a copied Style instance of Switch
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Switch.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        /// <since_tizen> 8 </since_tizen>
+        public new SwitchStyle Style
+        {
+            get
+            {
+                var result = new SwitchStyle(ViewStyle as SwitchStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(Track);
+                result.Thumb.CopyPropertiesFromView(Thumb);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Apply style to switch.
@@ -173,19 +194,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get
-            {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Track?.ResourceUrl);
-                return strSl;
-            }
-            set
-            {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                }
-            }
+            get => track == null ? null : new StringSelector((Selector<string>)track.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -196,36 +206,23 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.ResourceUrl?.All;
+                return Thumb.ResourceUrl;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
+                Thumb.ResourceUrl = value;
             }
         }
 
         /// <summary>
         /// Handler image's resource url selector in Switch.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
-            get
-            {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Thumb?.ResourceUrl);
-                return strSl;
-            }
-            set
-            {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
-            }
+            get => thumb == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => thumb?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -236,14 +233,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return Thumb.Size;
             }
             set
             {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                }
+                Thumb.Size = value;
             }
         }
 
@@ -319,7 +313,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            Style.IsSelectable = true;
+            IsSelectable = true;
         }
 
         /// <summary>
@@ -333,7 +327,7 @@ namespace Tizen.NUI.Components
             SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
             if (null != switchStyle)
             {
-                Style.CopyFrom(switchStyle);
+                ApplyStyle(switchStyle);
             }
         }
 
@@ -347,12 +341,20 @@ namespace Tizen.NUI.Components
                 eventArgs.IsSelected = IsSelected;
                 SelectedEvent(this, eventArgs);
             }
+
+            if (SelectedChanged != null)
+            {
+                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
+                eventArgs.IsSelected = IsSelected;
+                SelectedChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
         public class SelectEventArgs : EventArgs
         {
             /// <summary> Select state of Switch </summary>

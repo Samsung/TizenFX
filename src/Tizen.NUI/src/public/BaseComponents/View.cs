@@ -60,16 +60,12 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
         private bool controlStatePropagation = false;
+        private ViewStyle viewStyle;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
 
         static View() {}
-
-        /// <summary>
-        /// The Style instance binded with this View.
-        /// </summary>
-        private ViewStyle viewStyle;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -99,7 +95,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
         {
-            this.ViewStyle.CopyFrom(viewStyle);
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         /// <summary>
@@ -127,14 +123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            if (this.viewStyle == null)
-            {
-                ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
-            }
-            else
-            {
-                this.viewStyle.CopyFrom(viewStyle);
-            }
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -269,16 +258,12 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (viewStyle != null)
+                SetValue(BackgroundColorProperty, value);
+                if (selectorData != null)
                 {
-                    viewStyle.BackgroundImage = null;
-                    viewStyle.BackgroundColor = value;
+                    selectorData.BackgroundImage.Reset(this);
+                    selectorData.BackgroundColor.UpdateIfNeeds(this, value);
                 }
-                else
-                {
-                    SetValue(BackgroundColorProperty, value);
-                }
-
                 NotifyPropertyChanged();
             }
         }
@@ -295,16 +280,12 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (viewStyle != null)
+                SetValue(BackgroundImageProperty, value);
+                if (selectorData != null)
                 {
-                    viewStyle.BackgroundColor = null;
-                    viewStyle.BackgroundImage = value;
+                    selectorData.BackgroundColor.Reset(this);
+                    selectorData.BackgroundImage.UpdateIfNeeds(this, value);
                 }
-                else
-                {
-                    SetValue(BackgroundImageProperty, value);
-                }
-
                 NotifyPropertyChanged();
             }
         }
@@ -322,15 +303,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (viewStyle != null)
-                {
-                    viewStyle.BackgroundImageBorder = value;
-                }
-                else
-                {
-                    SetValue(BackgroundImageBorderProperty, value);
-                }
-
+                SetValue(BackgroundImageBorderProperty, value);
+                selectorData?.BackgroundImageBorder.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -357,7 +331,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is null by default.
         /// </summary>
         /// <remarks>
-        /// Gettter returns copied instance of current shadow.
+        /// Getter returns copied instance of current shadow.
         /// </remarks>
         /// <remarks>
         /// The mutually exclusive with "BoxShadow".
@@ -372,6 +346,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ImageShadowProperty, value);
+                if (selectorData != null)
+                {
+                    selectorData.BoxShadow.Reset(this);
+                    selectorData.ImageShadow.UpdateIfNeeds(this, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -396,6 +375,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BoxShadowProperty, value);
+                if (selectorData != null)
+                {
+                    selectorData.ImageShadow.Reset(this);
+                    selectorData.BoxShadow.UpdateIfNeeds(this, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -415,6 +399,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(CornerRadiusProperty, value);
+                selectorData?.CornerRadius.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -802,15 +787,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (viewStyle != null)
-                {
-                    viewStyle.Opacity = value;
-                }
-                else
-                {
-                    SetValue(OpacityProperty, value);
-                }
-
+                SetValue(OpacityProperty, value);
+                selectorData?.Opacity.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1634,7 +1612,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 Extents padding = value;
-                if (Layout !=null)
+                if (Layout != null)
                 {
                     // Layout set so store Padding in LayoutItem instead of in View.
                     // If View stores the Padding value then Legacy Size Negotiation will overwrite
@@ -1642,15 +1620,14 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Padding = value;
                     // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                     // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                    if( Layout.GetType() != typeof(LayoutItem)) // If a Layout container of some kind.
+                    if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType())) // If a Layout container of some kind.
                     {
-                        padding =  new Extents(0,0,0,0); // Reset value stored in View.
+                        padding = new Extents(0, 0, 0, 0); // Reset value stored in View.
                     }
-                    _layout?.RequestLayout();
                 }
+
                 SetValue(PaddingProperty, padding);
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
             }
         }
 
@@ -2103,15 +2080,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (viewStyle != null)
-                {
-                    viewStyle.Color = value;
-                }
-                else
-                {
-                    SetValue(ColorProperty, value);
-                }
-
+                SetValue(ColorProperty, value);
+                selectorData?.Color.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2304,6 +2274,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// If this property is set to true, the View can have a touch related ControlState (such as Pressed) when touch.
+        /// By default, it is false in View, true in Control.
+        /// Note that if the value is true, the View will be a touch receptor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlState
+        {
+            get
+            {
+                return (bool)GetValue(EnableControlStateProperty);
+            }
+            set
+            {
+                SetValue(EnableControlStateProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -2333,138 +2321,11 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundImageSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundImageSelector;
-        });
-        private TriggerableSelector<string> _backgroundImageSelector;
-        private TriggerableSelector<string> backgroundImageSelector
-        {
-            get
-            {
-                if (null == _backgroundImageSelector)
-                {
-                    _backgroundImageSelector = new TriggerableSelector<string>(this, BackgroundImageProperty);
-                }
-                return _backgroundImageSelector;
-            }
-        }
-        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundColorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundColorSelector;
-        });
-        private TriggerableSelector<Color> _backgroundColorSelector;
-        private TriggerableSelector<Color> backgroundColorSelector
-        {
-            get
-            {
-                if (null == _backgroundColorSelector)
-                {
-                    _backgroundColorSelector = new TriggerableSelector<Color>(this, BackgroundColorProperty);
-                }
-                return _backgroundColorSelector;
-            }
-        }
-
-        internal static readonly BindableProperty ColorSelectorProperty = BindableProperty.Create("ColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.colorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.colorSelector;
-        });
-
-        private TriggerableSelector<Color> _colorSelector;
-        private TriggerableSelector<Color> colorSelector
-        {
-            get
-            {
-                if (null == _colorSelector)
-                {
-                    _colorSelector = new TriggerableSelector<Color>(this, ColorProperty);
-                }
-                return _colorSelector;
-            }
-        }
-
-        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundImageBorderSelector;
-        });
-        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
-        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
-        {
-            get
-            {
-                if (null == _backgroundImageBorderSelector)
-                {
-                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundImageBorderProperty);
-                }
-                return _backgroundImageBorderSelector;
-            }
-        }
-        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            view.opacitySelector.Clone((Selector<float?>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.opacitySelector;
-        });
-        private TriggerableSelector<float?> _opacitySelector;
-        private TriggerableSelector<float?> opacitySelector
-        {
-            get
-            {
-                if (null == _opacitySelector)
-                {
-                    _opacitySelector = new TriggerableSelector<float?>(this, OpacityProperty);
-                }
-                return _opacitySelector;
-            }
-        }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (null == viewStyle)
-            {
-                return;
-            }
-
-            if (this.viewStyle == viewStyle)
-            {
-                return;
-            }
-
-            if (null != this.viewStyle)
-            {
-                simpleBinding.Clear();
-            }
+            if (null == viewStyle || this.viewStyle == viewStyle) return;
 
             this.viewStyle = viewStyle;
 
@@ -2492,15 +2353,9 @@ namespace Tizen.NUI.BaseComponents
                         {
                             SetValue(viewProperty, value);
                         }
-
-                        simpleBinding.Bind(viewStyle, keyValuePair.Value, this, viewProperty, BindingDirection.TwoWay);
                     }
                 }
             }
         }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private BundledPipe simpleBinding = new BundledPipe();
     }
 }

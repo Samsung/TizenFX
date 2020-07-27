@@ -90,8 +90,8 @@ namespace Tizen.NUI.Samples
             myContent1.ParentOrigin = ParentOrigin.Center;
             myContent1.PivotPoint = PivotPoint.Center;
             myPopup1.AppendContent("ContentText", myContent1);
-            leftButton.ClickEvent += LeftButton_ClickEvent;
-            rightButton.ClickEvent += RightButton_ClickEvent;
+            leftButton.Clicked += LeftButton_Clicked;
+            rightButton.Clicked += RightButton_Clicked;
             myPopup1.OutsideClicked += Mp_OutsideClicked;
 
             myPopup1.ContentContainer.WidthResizePolicy = ResizePolicyType.FitToChildren;
@@ -114,12 +114,12 @@ namespace Tizen.NUI.Samples
             NUIApplication.GetDefaultWindow().Add(t1);
         }
 
-        private void RightButton_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void RightButton_Clicked(object sender, ClickedEventArgs e)
         {
             myPopup1.Dismiss();
         }
 
-        private void LeftButton_ClickEvent(object sender, Button.ClickEventArgs e)
+        private void LeftButton_Clicked(object sender, ClickedEventArgs e)
         {
             myContent1.TextColor = Color.Yellow;
         }

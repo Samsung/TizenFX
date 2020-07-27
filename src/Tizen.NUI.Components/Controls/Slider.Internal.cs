@@ -44,12 +44,12 @@ namespace Tizen.NUI.Components
         private float currentSlidedOffset;
         private EventHandler<ValueChangedArgs> valueChangedHandler;
         private EventHandler<SlidingFinishedArgs> slidingFinishedHandler;
+        private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
+        private EventHandler<SliderSlidingFinishedEventArgs> sliderSlidingFinishedHandler;
         private EventHandler<StateChangedArgs> stateChangedHandler;
 
         bool isFocused = false;
         bool isPressed = false;
-
-        private StringSelector thumbImageURLSelector = new StringSelector();
 
         private void Initialize()
         {
@@ -204,6 +204,13 @@ namespace Tizen.NUI.Components
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
                     args.CurrentValue = curValue;
                     slidingFinishedHandler(this, args);
+                }
+
+                if (null != sliderSlidingFinishedHandler)
+                {
+                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
+                    args.CurrentValue = curValue;
+                    sliderSlidingFinishedHandler(this, args);
                 }
 
                 UpdateState(isFocused, false);
@@ -379,13 +386,13 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (lowIndicatorImage != null && Style != null && Style.LowIndicatorImage != null && Style.LowIndicatorImage.Size != null)
+                if (lowIndicatorImage != null && lowIndicatorImage != null && lowIndicatorImage.Size != null)
                 {
-                    lowIndicatorImage.Size = Style.LowIndicatorImage.Size;
+                    lowIndicatorImage.Size = sliderStyle.LowIndicatorImage.Size;
                 }
-                if (lowIndicatorText != null && Style != null && Style.LowIndicator != null && Style.LowIndicator.Size != null)
+                if (lowIndicatorText != null && lowIndicatorText != null && lowIndicatorText.Size != null)
                 {
-                    lowIndicatorText.Size = Style.LowIndicator.Size;
+                    lowIndicatorText.Size = sliderStyle.LowIndicator.Size;
                 }
             }
         }
@@ -499,9 +506,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.TrackThickness != null)
+                if (sliderStyle != null && sliderStyle.TrackThickness != null)
                 {
-                    curTrackThickness = Style.TrackThickness.Value;
+                    curTrackThickness = sliderStyle.TrackThickness.Value;
                 }
             }
             return curTrackThickness;
@@ -516,9 +523,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.TrackPadding != null)
+                if (sliderStyle != null && sliderStyle.TrackPadding != null)
                 {
-                    curSpace = Style.TrackPadding.Start;
+                    curSpace = sliderStyle.TrackPadding.Start;
                 }
             }
             return curSpace;
@@ -527,9 +534,9 @@ namespace Tizen.NUI.Components
         private IndicatorType CurrentIndicatorType()
         {
             IndicatorType type = IndicatorType.None;
-            if (Style != null)
+            if (sliderStyle != null)
             {
-                type = (IndicatorType)Style.IndicatorType;
+                type = (IndicatorType)sliderStyle.IndicatorType;
             }
             return type;
         }
@@ -543,9 +550,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.LowIndicatorImage != null && Style.LowIndicatorImage.Size != null)
+                if (sliderStyle != null && sliderStyle.LowIndicatorImage != null && sliderStyle.LowIndicatorImage.Size != null)
                 {
-                    size = Style.LowIndicatorImage.Size;
+                    size = sliderStyle.LowIndicatorImage.Size;
                 }
             }
             return size;
@@ -560,9 +567,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.HighIndicatorImage != null && Style.HighIndicatorImage.Size != null)
+                if (sliderStyle != null && sliderStyle.HighIndicatorImage != null && sliderStyle.HighIndicatorImage.Size != null)
                 {
-                    size = Style.HighIndicatorImage.Size;
+                    size = sliderStyle.HighIndicatorImage.Size;
                 }
             }
             return size;
@@ -577,9 +584,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.LowIndicator != null && Style.LowIndicator.Size != null)
+                if (sliderStyle != null && sliderStyle.LowIndicator != null && sliderStyle.LowIndicator.Size != null)
                 {
-                    size = Style.LowIndicator.Size;
+                    size = sliderStyle.LowIndicator.Size;
                 }
             }
             return size;
@@ -594,9 +601,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (Style != null && Style.HighIndicator != null && Style.HighIndicator.Size != null)
+                if (sliderStyle != null && sliderStyle.HighIndicator != null && sliderStyle.HighIndicator.Size != null)
                 {
-                    size = Style.HighIndicator.Size;
+                    size = sliderStyle.HighIndicator.Size;
                 }
             }
             return size;

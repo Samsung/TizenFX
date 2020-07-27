@@ -392,11 +392,11 @@ namespace Tizen.NUI.Components
                 }
 
                 // save position before animation clear.
-                float[] childrenPositon = new float[childCount];
+                float[] childrenPosition = new float[childCount];
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
-                    childrenPositon[i] = v.ItemView.PositionX;
+                    childrenPosition[i] = v.ItemView.PositionX;
                 }
 
                 mScrollAni.Clear();
@@ -406,7 +406,7 @@ namespace Tizen.NUI.Components
                 {
                     FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
                     // set position again because position might be changed after animation clear.
-                    v.ItemView.PositionX = childrenPositon[i];
+                    v.ItemView.PositionX = childrenPosition[i];
                     mScrollAni.AnimateTo(v.ItemView, "PositionX", v.ItemView.PositionX + dx);
                 }
                 mScrollAni.Play();
@@ -474,11 +474,11 @@ namespace Tizen.NUI.Components
                 }
 
                 // save position before animation clear.
-                float[] childPositon = new float[childCount];
+                float[] childPosition = new float[childCount];
                 for (int i = childCount - 1; i >= 0; i--)
                 {
                     FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
-                    childPositon[i] = v.ItemView.PositionY;
+                    childPosition[i] = v.ItemView.PositionY;
                 }
 
                 mScrollAni.Clear();
@@ -488,7 +488,7 @@ namespace Tizen.NUI.Components
                 {
                     FlexibleViewViewHolder v = mChildHelper.GetChildAt(i);
                     // set position again because position might be changed after animation clear.
-                    v.ItemView.PositionY = childPositon[i];
+                    v.ItemView.PositionY = childPosition[i];
                     mScrollAni.AnimateTo(v.ItemView, "PositionY", v.ItemView.PositionY + dy);
                 }
                 mScrollAni.Play();

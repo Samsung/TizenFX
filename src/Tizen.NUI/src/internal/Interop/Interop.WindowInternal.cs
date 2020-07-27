@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Tizen.NUI
 {
+    using global::System;
+    using global::System.Runtime.InteropServices;
+
     internal static partial class Interop
     {
         internal static partial class WindowInternal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
-            public static extern global::System.IntPtr Window_GetNativeHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
+            public static extern IntPtr Window_GetNativeHandle(HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFrameRenderedCallback")]
+            public static extern void AddFrameRenderedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFramePresentedCallback")]
+            public static extern void AddFramePresentedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
         }
     }
 }

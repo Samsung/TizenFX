@@ -234,6 +234,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextUtils_UpdateBuffer")]
             public static extern void TextUtils_UpdateBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, uint jarg4, bool jarg5);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextUtils_GetLastCharacterIndex")]
+            public static extern global::System.IntPtr TextUtils_GetLastCharacterIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         }
     }
 }

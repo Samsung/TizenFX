@@ -244,7 +244,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
-
             }
         }
 
@@ -461,6 +460,38 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        private EventHandler _backKeyPressed;
+
+        /// <summary>
+        /// An event for getting notice when physical back key is pressed.<br />
+        /// This event is emitted BackKey is up.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler BackKeyPressed
+        {
+            add
+            {
+                _backKeyPressed += value;
+                BackKeyManager.Instance.Subscriber.Add(this);
+            }
+
+            remove
+            {
+                BackKeyManager.Instance.Subscriber.Remove(this);
+                _backKeyPressed -= value;
+            }
+        }
+
+        /// <summary>
+        /// Function for emitting BackKeyPressed event outside of View instance
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void EmitBackKeyPressed()
+        {
+            _backKeyPressed.Invoke(this,null);
+        }
+
 
         internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
         {
@@ -696,11 +727,19 @@ namespace Tizen.NUI.BaseComponents
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
+            bool consumed = false;
+
             if (_touchDataEventHandler != null)
             {
-                return _touchDataEventHandler(this, e);
+                consumed = _touchDataEventHandler(this, e);
             }
-            return false;
+
+            if (enableControlState && !consumed)
+            {
+                consumed = HandleControlStateOnTouch(e.Touch);
+            }
+
+            return consumed;
         }
 
         // Callback for View Hover signal

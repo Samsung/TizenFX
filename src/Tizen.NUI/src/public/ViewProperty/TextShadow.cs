@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -23,12 +24,11 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : Internal.ICloneable
+    public class TextShadow : ICloneable
     {
-        private PropertyMap propertyMap = null;
+        private readonly PropertyMap propertyMap = null;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
-        internal PropertyChangedCallback OnPropertyChanged = null;
 
         /// <summary>
         /// Constructor
@@ -85,7 +85,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float BlurRadius { get; } = 0.0f;
 
-        internal TextShadow(TextShadow other, PropertyChangedCallback callback = null)
+        internal TextShadow(PropertyMap propertyMap)
+        {
+            this.propertyMap = new PropertyMap(propertyMap);
+        }
+
+        internal TextShadow(TextShadow other)
         {
             propertyMap = new PropertyMap();
 
@@ -97,8 +102,6 @@ namespace Tizen.NUI
 
             BlurRadius = other.BlurRadius;
             propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
-
-            OnPropertyChanged = callback;
         }
 
         static internal PropertyValue ToPropertyValue(TextShadow instance)
