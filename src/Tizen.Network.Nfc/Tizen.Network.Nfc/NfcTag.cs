@@ -129,6 +129,9 @@ namespace Tizen.Network.Nfc
         internal NfcTag(IntPtr handle)
         {
             _tagHandle = handle;
+            _nativeTransceiveCallback = TransceiveCompletedCallback;
+            _nativeVoidCallback = VoidCallback;
+            _nativeTagReadCallback = ReadNdefCallback;
         }
 
         /// <summary>

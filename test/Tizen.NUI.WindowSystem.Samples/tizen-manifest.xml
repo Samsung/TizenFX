@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.Tizen.NUI.WindowSystem.Samples" version="1.0.0">
-  <profile name="common" />
-  <ui-application appid="org.tizen.example.Tizen.NUI.WindowSystem.Samples"
-					exec="Tizen.NUI.WindowSystem.Samples.dll"
-					type="dotnet"
-					multiple="false"
-					taskmanage="true"
-					nodisplay="false"
-					launch_mode="single"
-					api-version="6">
-    <label>Tizen.NUI.WindowSystem.Samples</label>
-    <icon>Tizen.NUI.WindowSystem.Samples.png</icon>
-    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-  </ui-application>
+<manifest package="org.tizen.example.Tizen.NUI.WindowSystem.Samples" version="1.0.0" api-version="5.5" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.Tizen.NUI.WindowSystem.Samples" exec="Tizen.NUI.WindowSystem.Samples.dll" multiple="false" nodisplay="false" taskmanage="true" api-version="6" type="dotnet" launch_mode="single">
+        <label>Tizen.NUI.WindowSystem.Samples</label>
+        <icon>Tizen.NUI.WindowSystem.Samples.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/windowsystem.admin</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
 </manifest>

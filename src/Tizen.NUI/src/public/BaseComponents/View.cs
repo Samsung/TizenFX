@@ -1612,7 +1612,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 Extents padding = value;
-                if (Layout !=null)
+                if (Layout != null)
                 {
                     // Layout set so store Padding in LayoutItem instead of in View.
                     // If View stores the Padding value then Legacy Size Negotiation will overwrite
@@ -1620,15 +1620,14 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Padding = value;
                     // If Layout is a LayoutItem then it could be a View that handles it's own padding.
                     // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                    if( Layout.GetType() != typeof(LayoutItem)) // If a Layout container of some kind.
+                    if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType())) // If a Layout container of some kind.
                     {
-                        padding =  new Extents(0,0,0,0); // Reset value stored in View.
+                        padding = new Extents(0, 0, 0, 0); // Reset value stored in View.
                     }
-                    _layout?.RequestLayout();
                 }
+
                 SetValue(PaddingProperty, padding);
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
             }
         }
 
@@ -2271,6 +2270,24 @@ namespace Tizen.NUI.BaseComponents
                 {
                     child.EnableControlStatePropagation = value;
                 }
+            }
+        }
+
+        /// <summary>
+        /// If this property is set to true, the View can have a touch related ControlState (such as Pressed) when touch.
+        /// By default, it is false in View, true in Control.
+        /// Note that if the value is true, the View will be a touch receptor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlState
+        {
+            get
+            {
+                return (bool)GetValue(EnableControlStateProperty);
+            }
+            set
+            {
+                SetValue(EnableControlStateProperty, value);
             }
         }
 

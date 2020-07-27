@@ -731,15 +731,14 @@ namespace Tizen.Multimedia.Remoting
 
         #region Command
         /// <summary>
-        /// Requests command to the server.
+        /// Requests a command to the server and client receives the result of each request(command).
         /// </summary>
-        /// <remarks>
-        /// The client can request the server to execute <see cref="PlaybackCommand"/> or <see cref="ShuffleModeCommand"/> or
-        /// <see cref="RepeatModeCommand"/> or <see cref="CustomCommand"/>, <br/>
-        /// and then, the client receive the result of each request(command).
-        /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
-        /// <returns><see cref="Bundle"/> represents the extra data from server and it can be null.</returns>
+        /// <returns>
+        /// The type of return value is Tuple.<br/>
+        /// First item of Tuple represents the <see cref="Bundle"/> and it represents the extra data from client. It can be null.<br/>
+        /// Second item of Tuple represents the result of each request(command).
+        /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
@@ -747,8 +746,19 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public async Task<Bundle> RequestAsync(Command command)
+        /// <seealso cref="PlaybackCommand"/>
+        /// <seealso cref="PlaybackPositionCommand"/>
+        /// <seealso cref="PlaylistCommand"/>
+        /// <seealso cref="ShuffleModeCommand"/>
+        /// <seealso cref="RepeatModeCommand"/>
+        /// <seealso cref="SubtitleModeCommand"/>
+        /// <seealso cref="Mode360Command"/>
+        /// <seealso cref="DisplayModeCommand"/>
+        /// <seealso cref="DisplayRotationCommand"/>
+        /// <seealso cref="CustomCommand"/>
+        /// <seealso cref="SearchCommand"/>
+        /// <since_tizen> 8 </since_tizen>
+        public async Task<(Bundle bundle, int result)> RequestCommandAsync(Command command)
         {
             if (command == null)
             {
@@ -759,7 +769,7 @@ namespace Tizen.Multimedia.Remoting
 
             command.SetRequestInformation(ServerAppId);
 
-            var tcs = new TaskCompletionSource<MediaControllerError>();
+            var tcs = new TaskCompletionSource<int>();
             string reqeustId = null;
             Bundle bundle = null;
 
@@ -778,7 +788,72 @@ namespace Tizen.Multimedia.Remoting
 
                 reqeustId = command.Request(Manager.Handle);
 
-                (await tcs.Task).ThrowIfError("Failed to request command");
+                var result = await tcs.Task;
+
+                return (bundle, result);
+            }
+            finally
+            {
+                CommandCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
+        /// Requests command to the server.
+        /// </summary>
+        /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <returns><see cref="Bundle"/> represents the extra data from server and it can be null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <seealso cref="PlaybackCommand"/>
+        /// <seealso cref="PlaybackPositionCommand"/>
+        /// <seealso cref="PlaylistCommand"/>
+        /// <seealso cref="ShuffleModeCommand"/>
+        /// <seealso cref="RepeatModeCommand"/>
+        /// <seealso cref="SubtitleModeCommand"/>
+        /// <seealso cref="Mode360Command"/>
+        /// <seealso cref="DisplayModeCommand"/>
+        /// <seealso cref="DisplayRotationCommand"/>
+        /// <seealso cref="CustomCommand"/>
+        /// <seealso cref="SearchCommand"/>
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead.")]
+        public async Task<Bundle> RequestAsync(Command command)
+        {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
+            ThrowIfStopped();
+
+            command.SetRequestInformation(ServerAppId);
+
+            var tcs = new TaskCompletionSource<int>();
+            string reqeustId = null;
+            Bundle bundle = null;
+
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    bundle = e.Bundle;
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                CommandCompleted += eventHandler;
+
+                reqeustId = command.Request(Manager.Handle);
+
+                ((MediaControllerError)await tcs.Task).ThrowIfError("Failed to request command");
 
                 return bundle;
             }
