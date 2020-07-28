@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,8 @@ namespace Tizen.NUI
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
         private WindowTransitionEffectSignal transitionEffectSignal;
+        private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
+        private KeyboardRepeatSettingsChangedSignal keyboardRepeatSettingsChangedSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -57,6 +59,8 @@ namespace Tizen.NUI
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
 
         /// <summary>
         /// FocusChanged event.
@@ -263,6 +267,31 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Keyboard Repeat Settings Changed
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler KeyboardRepeatSettingsChanged
+        {
+            add
+            {
+                if (keyboardRepeatSettingsChangedHandler == null)
+                {
+                    keyboardRepeatSettingsChangedEventCallback = OnKeyboardRepeatSettingsChanged;
+                    KeyboardRepeatSettingsChangedEventSignal().Connect(keyboardRepeatSettingsChangedEventCallback);
+                }
+                keyboardRepeatSettingsChangedHandler += value;
+            }
+            remove
+            {
+                keyboardRepeatSettingsChangedHandler -= value;
+                if (keyboardRepeatSettingsChangedHandler == null && KeyboardRepeatSettingsChangedEventSignal().Empty() == false)
+                {
+                    KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// ViewAdded will be triggered when the view added on Window
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -277,6 +306,7 @@ namespace Tizen.NUI
         private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
+        private event EventHandler keyboardRepeatSettingsChangedHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -511,6 +541,11 @@ namespace Tizen.NUI
             {
                 TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
             }
+
+            if (keyboardRepeatSettingsChangedSignal != null)
+            {
+                KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+            }
         }
 
         private StageWheelSignal StageWheelEventSignal()
@@ -539,6 +574,17 @@ namespace Tizen.NUI
                 //Tizen.Log.Fatal("NUITEST", $"transitionEffectSignal is null, new here!");
             }
             return transitionEffectSignal;
+        }
+
+        private KeyboardRepeatSettingsChangedSignal KeyboardRepeatSettingsChangedEventSignal()
+        {
+            if (keyboardRepeatSettingsChangedSignal == null)
+            {
+                keyboardRepeatSettingsChangedSignal = new KeyboardRepeatSettingsChangedSignal(this);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return keyboardRepeatSettingsChangedSignal;
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -699,6 +745,15 @@ namespace Tizen.NUI
             {
                 //Tizen.Log.Fatal("NUITEST", $"Execute transitionEffectHandler(this, e)!!!");
                 transitionEffectHandler(this, e);
+            }
+            return;
+        }
+
+        private void OnKeyboardRepeatSettingsChanged()
+        {
+            if (keyboardRepeatSettingsChangedHandler != null)
+            {
+                keyboardRepeatSettingsChangedHandler(this, null);
             }
             return;
         }
