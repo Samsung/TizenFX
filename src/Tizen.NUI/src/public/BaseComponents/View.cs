@@ -2116,8 +2116,11 @@ namespace Tizen.NUI.BaseComponents
                     value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
-                    value.Owner.Layout.Margin = value.Margin;
-                    value.Owner.Layout.Padding = value.Padding;
+                    if (value.Owner.Layout != null) 
+                    {
+                        value.Owner.Layout.Margin = value.Margin;
+                        value.Owner.Layout.Padding = value.Padding;
+                    }
                 }
 
                 // Copy Margin and Padding to new layout being set or restore padding and margin back to
