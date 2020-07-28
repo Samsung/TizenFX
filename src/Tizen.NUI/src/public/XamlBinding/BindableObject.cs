@@ -85,69 +85,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal void ListenPropertyChange(BindableProperty bindableProperty, PropertyChangedEventHandler eventHandler)
-        {
-            PropertyChangedListener propertyChangedListener;
-            BindablePropertyChangedEventDict.TryGetValue(bindableProperty.PropertyName, out propertyChangedListener);
-
-            if (null == propertyChangedListener)
-            {
-                propertyChangedListener = new PropertyChangedListener();
-                BindablePropertyChangedEventDict.Add(bindableProperty.PropertyName, propertyChangedListener);
-            }
-
-            propertyChangedListener.RegisterListnerHandler(eventHandler);
-        }
-
-        internal void RemovePropertyChangeListener(BindableProperty bindableProperty, PropertyChangedEventHandler propertyChangedEventHandler)
-        {
-            PropertyChangedListener propertyChangedListener;
-            BindablePropertyChangedEventDict.TryGetValue(bindableProperty.PropertyName, out propertyChangedListener);
-
-            if (null != propertyChangedListener)
-            {
-                propertyChangedListener.UnRegisterListnerHandler(propertyChangedEventHandler);
-
-                if (0 == propertyChangedListener.ListenerCount)
-                {
-                    BindablePropertyChangedEventDict.Remove(bindableProperty.PropertyName);
-                }
-            }
-        }
-
-        private class PropertyChangedListener
-        {
-            internal void PropertyHasChanged(string propertyName)
-            {
-                PropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
-            }
-
-            internal void RegisterListnerHandler(PropertyChangedEventHandler propertyChangedEventHandler)
-            {
-                PropertyChanged += propertyChangedEventHandler;
-                listenerCount++;
-            }
-
-            internal void UnRegisterListnerHandler(PropertyChangedEventHandler propertyChangedEventHandler)
-            {
-                PropertyChanged -= propertyChangedEventHandler;
-                listenerCount--;
-            }
-
-            private int listenerCount = 0;
-            internal int ListenerCount
-            {
-                get
-                {
-                    return listenerCount;
-                }
-            }
-
-            private event PropertyChangedEventHandler PropertyChanged;
-        }
-
-        private Dictionary<string, PropertyChangedListener> BindablePropertyChangedEventDict = new Dictionary<string, PropertyChangedListener>();
-
         /// <summary>
         /// Raised whenever the BindingContext property changes.
         /// </summary>
@@ -284,11 +221,6 @@ namespace Tizen.NUI.Binding
                 property.PropertyChanged?.Invoke(this, null, value);
 
                 OnPropertyChanged(property.PropertyName);
-
-                if (BindablePropertyChangedEventDict.ContainsKey(property.PropertyName))
-                {
-                    BindablePropertyChangedEventDict[property.PropertyName].PropertyHasChanged(property.PropertyName);
-                }
             }
         }
 
