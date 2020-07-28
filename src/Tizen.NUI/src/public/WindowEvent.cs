@@ -650,9 +650,14 @@ namespace Tizen.NUI
         private void OnResized(IntPtr windowSize)
         {
             ResizedEventArgs e = new ResizedEventArgs();
-            var val = new Uint16Pair(windowSize, false);
-            e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
-            val.Dispose();
+            // var val = new Uint16Pair(windowSize, false);
+            // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
+            // val.Dispose();
+
+            // Workaround : windowSize should be valid pointer from dali, 
+            // but currenlty it is fixed and is not Uint16Pair class.
+            // will be fixed later.
+            e.WindowSize = this.WindowSize;
 
             if (_windowResizedEventHandler != null)
             {
