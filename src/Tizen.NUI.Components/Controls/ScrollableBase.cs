@@ -924,22 +924,30 @@ namespace Tizen.NUI.Components
 
                 float panVelocity = (ScrollingDirection == Direction.Horizontal) ? e.PanGesture.Velocity.X : e.PanGesture.Velocity.Y;
 
-                if(panVelocity != 0 || SnapToPage)
+                if (SnapToPage)
                 {
-                    if (SnapToPage)
+                    PageSnap(panVelocity);
+                }
+                else
+                {
+                    if(panVelocity == 0)
                     {
-                        PageSnap(panVelocity);
+                        float currentScrollPosition = (ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+                        scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+                        scrollAnimation.Duration = 0;
+                        scrollAnimation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", currentScrollPosition);
+                        scrollAnimation.Play();
                     }
                     else
                     {
                         Decelerating(panVelocity, scrollAnimation);
                     }
-
-                    totalDisplacementForPan = 0;
-                    scrolling = true;
-                    readyToNotice = true;
-                    OnScrollAnimationStarted();
                 }
+
+                totalDisplacementForPan = 0;
+                scrolling = true;
+                readyToNotice = true;
+                OnScrollAnimationStarted();
             }
         }
 
