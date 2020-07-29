@@ -36,9 +36,11 @@ $(function () {
     var items = $('#affix ul .bs-docs-sidenav a');
     if (items.length > 0) {
       clearInterval(readyForAffix);
-      var obsoleteIds = $.map($('div .obsolete'), item => '#' + $(item).data('id'));
-      $.each(items, (idx, item) => {
-        if (obsoleteIds.includes(item.hash)) {
+      var obsoleteIds = $.map($('div .obsolete'), function(item) {
+        return '#' + $(item).data('id');
+      });
+      $.each(items, function(idx, item) {
+        if (obsoleteIds.indexOf(item.hash) >= 0) {
           $(item).css("text-decoration", 'line-through')
         }
       });
