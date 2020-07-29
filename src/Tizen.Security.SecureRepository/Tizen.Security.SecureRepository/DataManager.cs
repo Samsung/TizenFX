@@ -73,7 +73,7 @@ namespace Tizen.Security.SecureRepository
         /// <since_tizen> 3 </since_tizen>
         /// <returns>All aliases of data, which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
-        static public IReadOnlyCollection<string> GetAliases()
+        static public IEnumerable<string> GetAliases()
         {
             IntPtr ptr = IntPtr.Zero;
 
