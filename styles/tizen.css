@@ -109,8 +109,7 @@ dl.attribute-list dd {
 
 .pdl-holder .pdl:after {
   color: #5e5e5e;
-  content: "arrow_forward";
-  font-family: Material Icons;
+  content: ">";
   font-size: 14px;
   padding-left: 6px;
   padding-right: 6px;
