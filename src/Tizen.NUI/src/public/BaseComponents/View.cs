@@ -2291,26 +2291,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-         /// <summary>
-        /// Whether the actor grab all touches even if touch leaves its boundary.
-        /// </summary>
-        /// <returns>true, if it grab all touch after start</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool GrabTouchAfterLeave
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(View.Property.CaptureAllTouchAfterStart).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.CaptureAllTouchAfterStart, new Tizen.NUI.PropertyValue(value));
-                NotifyPropertyChanged();
-            }
-        }
-
         /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>

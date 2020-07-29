@@ -185,9 +185,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_CLIPPING_MODE_get")]
             public static extern int Actor_Property_CLIPPING_MODE_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_CAPTURE_ALL_TOUCH_AFTER_START_get")]
-            public static extern int ActorPropertyCaptureAllTouchAfterStartGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Actor_Property")]
             public static extern global::System.IntPtr new_Actor_Property();
 
