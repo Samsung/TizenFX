@@ -206,7 +206,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MARGIN = Interop.ViewProperty.View_Property_MARGIN_get();
             internal static readonly int PADDING = Interop.ViewProperty.View_Property_PADDING_get();
             internal static readonly int SHADOW = Interop.ViewProperty.View_Property_SHADOW_get();
-            internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.ActorPropertyCaptureAllTouchAfterStartGet();
         }
     }
 }
