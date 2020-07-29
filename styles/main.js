@@ -32,4 +32,17 @@ $(function () {
     });
   }
 
+  var readyForAffix = setInterval(function() {
+    var items = $('#affix ul .bs-docs-sidenav a');
+    if (items.length > 0) {
+      clearInterval(readyForAffix);
+      var obsoleteIds = $.map($('div .obsolete'), item => '#' + $(item).data('id'));
+      $.each(items, (idx, item) => {
+        if (obsoleteIds.includes(item.hash)) {
+          $(item).css("text-decoration", 'line-through')
+        }
+      });
+    }
+  }, 10);
+
 });
