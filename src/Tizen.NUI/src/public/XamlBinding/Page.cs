@@ -395,8 +395,11 @@ namespace Tizen.NUI
             {
                 if (args.Action != NotifyCollectionChangedAction.Add)
                     return;
-                foreach (IElement item in args.NewItems)
-                    item.Parent = this;
+                if (args.NewItems != null)
+                {
+                    foreach (IElement item in args.NewItems)
+                        item.Parent = this;
+                }
             }
         }
 
