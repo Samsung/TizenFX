@@ -47,6 +47,8 @@ namespace Tizen.NUI.Xaml
             XamlParseException xpe;
             var type = XamlParser.GetElementType(node.XmlType, node, Context.RootElement?.GetType().GetTypeInfo().Assembly,
                 out xpe);
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
             if (xpe != null)
                 throw xpe;
 
