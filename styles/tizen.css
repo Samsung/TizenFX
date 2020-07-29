@@ -134,3 +134,14 @@ dl.attribute-list dd {
 .affix > ul.level1 {
   overflow: inherit;
 }
+
+.obsolete {
+  background-color: palevioletred;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.obsolete-affix {
+    text-decoration: line-through;
+}
