@@ -146,5 +146,20 @@ namespace Tizen.NUI.Components
         {
             return scrollPosition;
         }
+
+        /// <summary>
+        /// Gets the next keyboard focusable view in this control towards the given direction.<br />
+        /// A control needs to override this function in order to support two dimensional keyboard navigation.<br />
+        /// </summary>
+        /// <param name="currentFocusedView">The current focused view.</param>
+        /// <param name="direction">The direction to move the focus towards.</param>
+        /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
+        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual View RequestNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            return null;
+        }
+
     }
 }
