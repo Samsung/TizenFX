@@ -161,10 +161,14 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, int period, AppControl appControl)
         {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
             Alarm alarm = null;
             int alarmId;
-            SafeAppControlHandle handle = (appControl == null) ? null : appControl.SafeAppControlHandle;
-            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmAfterDelay(handle, delay, period, out alarmId);
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmAfterDelay(appControl.SafeAppControlHandle, delay, period, out alarmId);
             alarm = new Alarm(alarmId);
             if (ret != AlarmError.None)
             {
@@ -188,6 +192,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, AppControl appControl)
         {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
             Alarm alarm = null;
             int alarmId;
             AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmOnceAfterDelay(appControl.SafeAppControlHandle, delay, out alarmId);
@@ -215,6 +224,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime value, AppControl appControl)
         {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
             Alarm alarm = null;
             int alarmId;
             Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
@@ -246,6 +260,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime value, AlarmWeekFlag weekFlag, AppControl appControl)
         {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
             Alarm alarm = null;
             int alarmId;
             Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
