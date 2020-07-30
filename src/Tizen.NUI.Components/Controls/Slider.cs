@@ -435,6 +435,26 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets or sets the color of the thumb image object.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Color ThumbColor
+        {
+            get
+            {
+                return thumbImage?.Color;
+            }
+            set
+            {
+                if (null != thumbImage)
+                {
+                    thumbImage.Color = value;
+                    sliderStyle.Thumb.Color = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the color of the background track image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
