@@ -315,6 +315,7 @@ namespace Tizen.NUI.Components
                 Thumb = new ImageViewStyle
                 {
                     Size = new Size(50, 50),
+                    Color = new Color("0ea1e6"),
                     ResourceUrl = StyleManager.GetFrameworkResourcePath("nui_component_default_slider_thumb_n.png"),
                     BackgroundImage = new Selector<string>
                     {
