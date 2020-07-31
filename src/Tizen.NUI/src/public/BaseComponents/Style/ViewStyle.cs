@@ -545,7 +545,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Size tmp = (Size)GetValue(SizeProperty);
-                return (null != tmp) ? tmp : size = new Size((float width, float height, float depth) => { Size = new Size(width, height, depth); }, 0, 0, 0);
+                return (null != tmp) ? tmp : size = new Size((float? width, float? height, float? depth) => { Size = new Size((float)width, (float)height, (float)depth); }, 0, 0, 0);
             }
             set => SetValue(SizeProperty, value);
         }
