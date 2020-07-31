@@ -207,6 +207,10 @@ internal static partial class Interop
             //int rpc_port_proxy_get_port(rpc_port_proxy_h h, rpc_port_port_type_e type, rpc_port_h* port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
             internal static extern ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
+
+            //int rpc_port_proxy_connect_sync(rpc_port_proxy_h h, const char* appid, const char* port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect_sync")]
+            internal static extern ErrorCode ConnectSync(IntPtr handle, string appId, string port);
         }
 
         internal static partial class Stub
