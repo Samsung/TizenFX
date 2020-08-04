@@ -35,6 +35,10 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void NewDataCallback(IntPtr data, IntPtr info, IntPtr user_data);
 
+        /* typedef int (*ml_custom_easy_invoke_cb) (const ml_tensors_data_h in, ml_tensors_data_h out, void *user_data); */
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CustomEasyInvokeCallback(IntPtr in_data, IntPtr out_data, IntPtr user_data);
+
         /* int ml_pipeline_construct (const char *pipeline_description, ml_pipeline_state_cb cb, void *user_data, ml_pipeline_h *pipe); */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_construct", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError Construct(string pipeline_description, StateChangedCallback callback, IntPtr user_data, out IntPtr pipeline_handle);
@@ -98,6 +102,14 @@ internal static partial class Interop
         /* int ml_pipeline_switch_select (ml_pipeline_switch_h switch_handle, const char *pad_name); */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_switch_select", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError SelectSwitchPad(IntPtr switch_handle, string pad_name);
+
+        /* int ml_pipeline_custom_easy_filter_register (const char *name, const ml_tensors_info_h in, const ml_tensors_info_h out, ml_custom_easy_invoke_cb cb, void *user_data, ml_custom_easy_filter_h *custom); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_custom_easy_filter_register", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError RegisterCustomFilter(string name, IntPtr input_info, IntPtr output_info, CustomEasyInvokeCallback callback, IntPtr user_data, out IntPtr custom_handle);
+
+        /* int ml_pipeline_custom_easy_filter_unregister (ml_custom_easy_filter_h custom); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_custom_easy_filter_unregister", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError UnregisterCustomFilter(IntPtr custom_handle);
     }
 
     internal static partial class SingleShot
