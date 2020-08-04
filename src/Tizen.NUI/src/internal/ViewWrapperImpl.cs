@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ namespace Tizen.NUI
     internal sealed class ViewWrapperImpl : ViewImpl
     {
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnStageConnectionDelegate(int depth);
+        public delegate void OnSceneConnectionDelegate(int depth);
         /// <since_tizen> 3 </since_tizen>
-        public delegate void OnStageDisconnectionDelegate();
+        public delegate void OnSceneDisconnectionDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnChildAddDelegate(View view);
         /// <since_tizen> 3 </since_tizen>
@@ -94,8 +94,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
 
-        public new OnStageConnectionDelegate OnStageConnection;
-        public new OnStageDisconnectionDelegate OnStageDisconnection;
+        public new OnSceneConnectionDelegate OnSceneConnection;
+        public new OnSceneDisconnectionDelegate OnSceneDisconnection;
         public new OnChildAddDelegate OnChildAdd;
         public new OnChildRemoveDelegate OnChildRemove;
         public new OnPropertySetDelegate OnPropertySet;
@@ -259,8 +259,8 @@ namespace Tizen.NUI
 
         private void DirectorConnect()
         {
-            Delegate0 = new DelegateViewWrapperImpl_0(DirectorOnStageConnection);
-            Delegate1 = new DelegateViewWrapperImpl_1(DirectorOnStageDisconnection);
+            Delegate0 = new DelegateViewWrapperImpl_0(DirectorOnSceneConnection);
+            Delegate1 = new DelegateViewWrapperImpl_1(DirectorOnSceneDisconnection);
             Delegate2 = new DelegateViewWrapperImpl_2(DirectorOnChildAdd);
             Delegate3 = new DelegateViewWrapperImpl_3(DirectorOnChildRemove);
             Delegate4 = new DelegateViewWrapperImpl_4(DirectorOnPropertySet);
@@ -299,14 +299,14 @@ namespace Tizen.NUI
             Interop.ViewWrapperImpl.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate27, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
-        private void DirectorOnStageConnection(int depth)
+        private void DirectorOnSceneConnection(int depth)
         {
-            OnStageConnection(depth);
+            OnSceneConnection(depth);
         }
 
-        private void DirectorOnStageDisconnection()
+        private void DirectorOnSceneDisconnection()
         {
-            OnStageDisconnection();
+            OnSceneDisconnection();
         }
 
         private void DirectorOnChildAdd(global::System.IntPtr child)
