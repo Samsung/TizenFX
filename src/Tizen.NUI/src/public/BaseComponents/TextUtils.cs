@@ -585,6 +585,26 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Minimum size of line.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            set
+            {
+                Interop.RendererParameters.RendererParameters_minLineSize_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = Interop.RendererParameters.RendererParameters_minLineSize_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
 
     /// <summary>

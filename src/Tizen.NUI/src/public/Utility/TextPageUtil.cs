@@ -124,6 +124,7 @@ namespace Tizen.NUI.Utility
       textParameters.TextHeight = (uint)label.Size.Height;
       textParameters.EllipsisEnabled = true;
       textParameters.MarkupEnabled = previousMarkup;
+      textParameters.MinLineSize = label.MinLineSize;
 
 
       Tizen.NUI.PropertyArray cutOffIndexArray = TextUtils.GetLastCharacterIndex( textParameters );
