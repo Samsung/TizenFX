@@ -20,7 +20,6 @@ namespace Tizen.NUI.Samples
 {
     public class Application
     {
-        [STAThread]
         static void Main(string[] args)
         {
             new DaliDemo("").Run(args);
