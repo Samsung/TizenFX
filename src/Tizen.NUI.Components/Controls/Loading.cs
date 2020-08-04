@@ -88,6 +88,13 @@ namespace Tizen.NUI.Components
         private AnimatedImageVisual imageVisual = null;
         private LoadingStyle loadingStyle => ViewStyle as LoadingStyle;
 
+        internal new class Property
+        {
+            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
+            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
+            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+        }
+
         static Loading() { }
 
         /// <summary>
@@ -251,6 +258,36 @@ namespace Tizen.NUI.Components
             {
                 this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
             }
+        }
+
+        /// <summary>
+        /// Play Loading Animation.
+        /// </summary>
+        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Play()
+        {
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Pause Loading Animation.
+        /// </summary>
+        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Pause()
+        {
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Stop Loading Animation.
+        /// </summary>
+        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Stop()
+        {
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
         }
     }
 }
