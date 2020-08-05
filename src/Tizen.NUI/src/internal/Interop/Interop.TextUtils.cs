@@ -126,6 +126,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RendererParameters_isTextColorSet_get")]
             public static extern bool RendererParameters_isTextColorSet_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RendererParameters_minLineSize_set")]
+            public static extern void RendererParameters_minLineSize_set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RendererParameters_minLineSize_get")]
+            public static extern float RendererParameters_minLineSize_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RendererParameters")]
             public static extern void delete_RendererParameters(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

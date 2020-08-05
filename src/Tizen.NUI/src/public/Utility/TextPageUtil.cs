@@ -54,22 +54,20 @@ namespace Tizen.NUI.Utility
   /// This is utility class for paging very long text.
   /// </summary>
   [EditorBrowsable(EditorBrowsableState.Never)]
-  public class TextPageUtil
+  public class TextPageUtil : Disposable
   {
     private static char LESS_THAN      = '<';
     private static char GREATER_THAN   = '>';
     private static char EQUAL          = '=';
     private static char QUOTATION_MARK = '\'';
     private static char SLASH          = '/';
-    private static char BACK_SLASH     = '\\';
-    private static char AMPERSAND      = '&';
-    private static char HASH           = '#';
-    private static char SEMI_COLON     = ';';
-    private static char CHAR_ARRAY_END = '\0';
-    private static char HEX_CODE       = 'x';
+    // private static char BACK_SLASH     = '\\';
+    // private static char AMPERSAND      = '&';
+    // private static char HASH           = '#';
+    // private static char SEMI_COLON     = ';';
+    // private static char CHAR_ARRAY_END = '\0';
+    // private static char HEX_CODE       = 'x';
     private static byte WHITE_SPACE    = 0x20;
-
-    private static int TEXTPAGE_TEXT_CHUNK = 20000;
 
     private int totalPageCnt;
 
@@ -86,7 +84,7 @@ namespace Tizen.NUI.Utility
     [EditorBrowsable(EditorBrowsableState.Never)]
     public int SetText(TextLabel label, string str)
     {
-      if(str == null) return 0;
+      if(label == null || str == null) return 0;
 
       // perform this operation to match the utf32 character used in native Dali.
       bool previousMarkup = label.EnableMarkup;
@@ -124,6 +122,7 @@ namespace Tizen.NUI.Utility
       textParameters.TextHeight = (uint)label.Size.Height;
       textParameters.EllipsisEnabled = true;
       textParameters.MarkupEnabled = previousMarkup;
+      textParameters.MinLineSize = label.MinLineSize;
 
 
       Tizen.NUI.PropertyArray cutOffIndexArray = TextUtils.GetLastCharacterIndex( textParameters );
@@ -154,6 +153,8 @@ namespace Tizen.NUI.Utility
           if(offset <= 0 ) break;
       }
 
+      textParameters.Dispose();
+      cutOffIndexArray.Dispose();
       stream = null;
       return totalPageCnt;
     }
@@ -286,9 +287,6 @@ namespace Tizen.NUI.Utility
       PageData pageData = new PageData();
 
       pageData.startOffset = offset;
-
-      bool isPreviousLessThan = false;
-      bool isPreviousSlash = false;
 
       // If the markup was previously open, the markup tag should be attached to the front.
       string tag ="";
