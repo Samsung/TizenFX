@@ -32,6 +32,10 @@ namespace Tizen.NUI
         public PropertyMap() : this(Interop.PropertyMap.new_Property_Map__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            
+            // workaround : when do "new PropertyMap().Add(xxx, xxx).Add(xxx, xxx)", it has garbage values sometimes.
+            // this will be fixed later.
+            Clear();
         }
 
         /// <summary>
