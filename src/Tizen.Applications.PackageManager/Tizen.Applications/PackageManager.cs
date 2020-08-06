@@ -62,7 +62,9 @@ namespace Tizen.Applications
         private static Dictionary<int, SafePackageManagerRequestHandle> RequestHandles = new Dictionary<int, SafePackageManagerRequestHandle>();
 
         private delegate Interop.PackageManager.ErrorCode InstallMethodWithCallback(SafePackageManagerRequestHandle requestHandle, string pkgPath, Interop.PackageManager.PackageManagerRequestEventCallback requestCallback, IntPtr userData, out int requestID);
+        private delegate Interop.PackageManager.ErrorCode InstallPackagesMethodWithCallback(SafePackageManagerRequestHandle requestHandle, string[] pkgPaths, int pathsCount, Interop.PackageManager.PackageManagerRequestEventCallback requestCallback, IntPtr userData, out int requestId);
         private delegate Interop.PackageManager.ErrorCode InstallMethod(SafePackageManagerRequestHandle requestHandle, string pkgPath, out int requestID);
+        private delegate Interop.PackageManager.ErrorCode InstallPackagesMethod(SafePackageManagerRequestHandle requestHandle, string[] pkgPaths, int pathsCount, out int requestID);
 
         /// <summary>
         /// InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.
@@ -599,11 +601,59 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
+            return InstallInternal(new List<string>{ packagePath }, expansionPackagePath, type, eventCallback, installMode);
+        }
+
+        /// <summary>
+        /// Installs the packages located at the given path.
+        /// </summary>
+        /// <param name="packagePaths">Absolute paths for the package to be installed.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
+        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <since_tizen> 8 </since_tizen>
+        public static bool Install(List<string> packagePaths, InstallationMode installMode = InstallationMode.Normal)
+        {
+            return InstallInternal(packagePaths, null, PackageType.UNKNOWN, null, installMode);
+        }
+
+        /// <summary>
+        /// Installs the packages located at the given path.
+        /// </summary>
+        /// <param name="packagePaths">Absolute paths for the package to be installed.</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
+        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <remarks>
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <since_tizen> 8 </since_tizen>
+        public static bool Install(List<string> packagePaths, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
+        {
+            return InstallInternal(packagePaths, null, PackageType.UNKNOWN, eventCallback, installMode);
+        }
+
+        private static bool InstallInternal(List<string> packagePaths, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode)
+        {
+            if (packagePaths == null)
+            {
+                Log.Warn(LogTag, string.Format("Invalid argument"));
+                return false;
+            }
+
             SafePackageManagerRequestHandle RequestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in creating package manager request handle. err = {1}", packagePath, err));
+                Log.Warn(LogTag, string.Format("Failed to install packages. Error in creating package manager request handle. err = {0}", err));
                 return false;
             }
 
@@ -614,7 +664,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in setting request package type. err = {1}", packagePath, err));
+                        Log.Warn(LogTag, string.Format("Failed to install packages. Error in setting request package type. err = {0}", err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -625,7 +675,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package {0}. Error in setting request package mode. err = {1}", packagePath, err));
+                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -634,46 +684,98 @@ namespace Tizen.Applications
                 int requestId;
                 if (eventCallback != null)
                 {
-                    InstallMethodWithCallback install;
-                    if (installMode == InstallationMode.Mount)
+                    if (packagePaths.Count > 1)
                     {
-                        install = Interop.PackageManager.PackageManagerRequestMountInstallWithCB;
+                        InstallPackagesMethodWithCallback installPackages;
+                        if (installMode == InstallationMode.Mount)
+                        {
+                            installPackages = Interop.PackageManager.PackageManagerRequestMountInstallPackagesWithCb;
+                        }
+                        else
+                        {
+                            installPackages = Interop.PackageManager.PackageManagerRequestInstallPackagesWithCb;
+                        }
+                        err = installPackages(RequestHandle, packagePaths.ToArray(), packagePaths.Count, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                        if (err == Interop.PackageManager.ErrorCode.None)
+                        {
+                            RequestCallbacks.Add(requestId, eventCallback);
+                            RequestHandles.Add(requestId, RequestHandle);
+                        }
+                        else
+                        {
+                            Log.Warn(LogTag, string.Format("Failed to install packages. err = {0}",  err));
+                            RequestHandle.Dispose();
+                            return false;
+                        }
                     }
                     else
                     {
-                        install = Interop.PackageManager.PackageManagerRequestInstallWithCB;
+                        InstallMethodWithCallback install;
+                        if (installMode == InstallationMode.Mount)
+                        {
+                            install = Interop.PackageManager.PackageManagerRequestMountInstallWithCB;
+                        }
+                        else
+                        {
+                            install = Interop.PackageManager.PackageManagerRequestInstallWithCB;
+                        }
+                        err = install(RequestHandle, packagePaths[0], internalRequestEventCallback, IntPtr.Zero, out requestId);
+                        if (err == Interop.PackageManager.ErrorCode.None)
+                        {
+                            RequestCallbacks.Add(requestId, eventCallback);
+                            RequestHandles.Add(requestId, RequestHandle);
+                        }
+                        else
+                        {
+                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            RequestHandle.Dispose();
+                            return false;
+                        }
+
                     }
-                    err = install(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
-                    if (err == Interop.PackageManager.ErrorCode.None)
-                    {
-                        RequestCallbacks.Add(requestId, eventCallback);
-                        RequestHandles.Add(requestId, RequestHandle);
-                    }
-                    else
-                    {
-                        Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePath, err));
-                        RequestHandle.Dispose();
-                        return false;
-                    }
+
                 }
                 else
                 {
-                    InstallMethod install;
-                    if (installMode == InstallationMode.Mount)
+                    if (packagePaths.Count > 1)
                     {
-                        install = Interop.PackageManager.PackageManagerRequestMountInstall;
+                        InstallPackagesMethod installPackages;
+                        if (installMode == InstallationMode.Mount)
+                        {
+                            installPackages = Interop.PackageManager.PackageManagerRequestMountInstallPackages;
+                        }
+                        else
+                        {
+                            installPackages = Interop.PackageManager.PackageManagerRequestInstallPackages;
+                        }
+                        err = installPackages(RequestHandle, packagePaths.ToArray(), packagePaths.Count, out requestId);
+                        if (err != Interop.PackageManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            RequestHandle.Dispose();
+                            return false;
+                        }
                     }
                     else
                     {
-                        install = Interop.PackageManager.PackageManagerRequestInstall;
+                        InstallMethod install;
+                        if (installMode == InstallationMode.Mount)
+                        {
+                            install = Interop.PackageManager.PackageManagerRequestMountInstall;
+                        }
+                        else
+                        {
+                            install = Interop.PackageManager.PackageManagerRequestInstall;
+                        }
+                        err = install(RequestHandle, packagePaths[0], out requestId);
+                        if (err != Interop.PackageManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            RequestHandle.Dispose();
+                            return false;
+                        }
                     }
-                    err = install(RequestHandle, packagePath, out requestId);
-                    if (err != Interop.PackageManager.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePath, err));
-                        RequestHandle.Dispose();
-                        return false;
-                    }
+
                     // RequestHandle isn't necessary when this method is called without 'eventCallback' parameter.
                     RequestHandle.Dispose();
                 }
