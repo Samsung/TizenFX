@@ -57,7 +57,7 @@ namespace Tizen.Applications.RPCPort
         /// <param name="paths">The file paths to be shared.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurrs.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public void ShareFile(IEnumerable<string > paths)
+        public void ShareFile(IEnumerable<string> paths)
         {
             if (paths == null)
                 throw new InvalidIOException();
