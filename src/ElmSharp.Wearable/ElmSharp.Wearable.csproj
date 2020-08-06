@@ -4,6 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SupportedProfiles>wearable</SupportedProfiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TizenPreloadFile Include="ElmSharp.Wearable.preload" Sequence="30" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ElmSharp\ElmSharp.csproj" />
   </ItemGroup>
