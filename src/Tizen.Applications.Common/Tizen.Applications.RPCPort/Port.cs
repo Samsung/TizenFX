@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -55,12 +57,13 @@ namespace Tizen.Applications.RPCPort
         /// <param name="paths">The file paths to be shared.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurrs.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public void ShareFile(string[] paths)
+        public void ShareFile(IEnumerable<string > paths)
         {
             if (paths == null)
                 throw new InvalidIOException();
 
-            Interop.LibRPCPort.ErrorCode err = Interop.LibRPCPort.Port.SetPrivateSharingArray(Handle, paths, (uint)paths.Length);
+            string[] pathArray = paths.ToArray<string>();
+            Interop.LibRPCPort.ErrorCode err = Interop.LibRPCPort.Port.SetPrivateSharingArray(Handle, pathArray, (uint)pathArray.Length);
             if (err != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
         }
@@ -68,7 +71,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Shares the private file with other applications.
         /// </summary>
-        /// <seealso cref="ShareFile(string[])"/>
+        /// <seealso cref="ShareFile(IEnumerable{string})"/>
         /// <param name="path">The file path to be shared.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurrs.</exception>
         /// <since_tizen> 8 </since_tizen>
