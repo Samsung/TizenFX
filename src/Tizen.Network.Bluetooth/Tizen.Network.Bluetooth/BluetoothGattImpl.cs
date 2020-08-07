@@ -130,27 +130,6 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
-        {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            int requestId = 0;
-
-            lock (this)
-            {
-                requestId = _requestId++;
-                _sendIndicationTaskSource[requestId] = task;
-            }
-
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), _sendIndicationCallback, clientAddress, IntPtr.Zero);
-            if (err.IsFailed())
-            {
-                GattUtil.Error(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
-                task.SetResult(false);
-                _sendIndicationTaskSource.Remove(requestId);
-                BluetoothErrorFactory.ThrowBluetoothException(err);
-            }
-        }
-
         internal Task<bool> SendIndicationAsync(BluetoothGattServer server, BluetoothGattCharacteristic characteristic, string clientAddress)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();

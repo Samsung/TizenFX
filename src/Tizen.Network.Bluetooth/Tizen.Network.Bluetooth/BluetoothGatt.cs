@@ -188,7 +188,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 3 </since_tizen>
         public void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            _impl.SendNotification(characteristic, clientAddress);
+            _ = _impl.SendIndicationAsync(this, characteristic, clientAddress);
         }
 
         /// <summary>
