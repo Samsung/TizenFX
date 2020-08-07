@@ -1278,15 +1278,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameCallback(FrameCallbackInterface frameCallback)
         {
-            frameCallback.AddFrameCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+            frameCallback?.AddFrameCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
         }
 
         /// <summary>
         /// Remove FrameCallback
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveFrameCallback(FrameCallbackInterface frameCallback)
         {
-            frameCallback.RemoveFrameCallback(stageCPtr);
+            frameCallback?.RemoveFrameCallback(stageCPtr);
         }
 
         /// <summary>
