@@ -112,12 +112,6 @@ namespace Tizen.Network.Bluetooth
             GattUtil.ThrowForError(err, string.Format("Failed to send response for request Id {0}", requestId));
         }
 
-        internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
-        {
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), null, clientAddress, IntPtr.Zero);
-            GattUtil.ThrowForError(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
-        }
-
         void SendIndicationCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData)
         {
             int requestId = (int)userData;
@@ -133,6 +127,27 @@ namespace Tizen.Network.Bluetooth
                     _sendIndicationTaskSource[requestId].SetResult(false);
                 }
                 _sendIndicationTaskSource.Remove(requestId);
+            }
+        }
+
+        internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            int requestId = 0;
+
+            lock (this)
+            {
+                requestId = _requestId++;
+                _sendIndicationTaskSource[requestId] = task;
+            }
+
+            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), _sendIndicationCallback, clientAddress, IntPtr.Zero);
+            if (err.IsFailed())
+            {
+                GattUtil.Error(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
+                task.SetResult(false);
+                _sendIndicationTaskSource.Remove(requestId);
+                BluetoothErrorFactory.ThrowBluetoothException(err);
             }
         }
 

@@ -1126,7 +1126,9 @@ namespace Tizen.Network.Bluetooth
                 {
                     _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, response_needed, offset, valueToWrite, len, userData) =>
                     {
-                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
+                        byte[] writeValue = new byte[len];
+                        Marshal.Copy(valueToWrite, writeValue, 0, len);
+                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, writeValue, offset, response_needed));
                     };
                     Impl.SetWriteValueRequestedEventCallback(_writeValueRequestedCallback);
                 }
