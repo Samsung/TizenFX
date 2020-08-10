@@ -30,6 +30,8 @@
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)version.props" />
+
+
   <Import Project="$(MSBuildThisFileDirectory)analyzers.props"
           Condition="'$(BuildWithAnalyzer)' == 'True' Or '$(BuildingInsideVisualStudio)' == 'True'" />
 
