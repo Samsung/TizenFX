@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace Tizen.Applications
 {
@@ -643,7 +644,7 @@ namespace Tizen.Applications
 
         private static bool InstallInternal(List<string> packagePaths, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode)
         {
-            if (packagePaths == null)
+            if (packagePaths == null || !packagePaths.Any())
             {
                 Log.Warn(LogTag, string.Format("Invalid argument"));
                 return false;
