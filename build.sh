@@ -62,9 +62,9 @@ clean() {
 
 restore() {
   if [ -d /nuget ]; then
-    dotnet restore -s /nuget $1
+    dotnet restore -s /nuget $@
   else
-    dotnet restore $1
+    dotnet restore $@
   fi
 }
 
@@ -126,7 +126,7 @@ cmd_module_build() {
 cmd_full_build() {
   clean
   prepare_solution full
-  restore $SLN_FILE
+  restore $SLN_FILE $@
   build $SLN_FILE $@
   cleanup_solution
   build_artifacts
