@@ -1,17 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- Property Group for Tizen Project -->
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <TizenCreateTpkOnBuild>false</TizenCreateTpkOnBuild>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>portable</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>None</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,8 +14,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-
-  <!-- Include Nuget Package for Tizen Project building -->
 
 </Project>
