@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <ProjectRootDir>$(MSBuildThisFileDirectory)..\</ProjectRootDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AllTizenProfiles>mobile;tv;wearable</AllTizenProfiles>
+    <SupportedProfiles Condition="'$(SupportedProfiles)' == ''">$(AllTizenProfiles)</SupportedProfiles>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <DefineConstants Condition="'$(BuildProfile)' == 'tv'">$(DefineConstants);PROFILE_TV</DefineConstants>
     <DefineConstants Condition="'$(BuildProfile)' == 'wearable'">$(DefineConstants);PROFILE_WEARABLE</DefineConstants>
     <DefineConstants Condition="'$(BuildProfile)' == 'mobile'">$(DefineConstants);PROFILE_MOBILE</DefineConstants>
@@ -21,7 +30,7 @@
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)version.props" />
-
-  <Import Project="$(MSBuildThisFileDirectory)analyzers.props" Condition="'$(BuildWithAnalyzer)' == 'True' Or '$(BuildingInsideVisualStudio)' == 'True'" />
+  <Import Project="$(MSBuildThisFileDirectory)analyzers.props"
+          Condition="'$(BuildWithAnalyzer)' == 'True' Or '$(BuildingInsideVisualStudio)' == 'True'" />
 
 </Project>

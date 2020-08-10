@@ -26,4 +26,4 @@ sed -i -e "s/@rpm_version@/$RPM_VERSION/g" $RPMSPEC
 sed -i -e "s/@nuget_version@/$NUGET_VERSION/g" $RPMSPEC
 
 # Update RID
-$SCRIPT_DIR/makerid.py
+python $SCRIPT_DIR/makerid.py
