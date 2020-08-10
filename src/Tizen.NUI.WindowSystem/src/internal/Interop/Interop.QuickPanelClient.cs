@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.WindowSystem.Shell
 {
     internal static partial class Interop
     {
