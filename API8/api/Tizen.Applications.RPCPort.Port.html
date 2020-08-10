@@ -112,6 +112,153 @@
   
   
   
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications.RPCPort/Port.cs/#L60">View Source</a>
+  </span>
+  <a id="Tizen_Applications_RPCPort_Port_ShareFile_" data-uid="Tizen.Applications.RPCPort.Port.ShareFile*"></a>
+  <h4 id="Tizen_Applications_RPCPort_Port_ShareFile_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Applications.RPCPort.Port.ShareFile(System.Collections.Generic.IEnumerable{System.String})">ShareFile(IEnumerable&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Shares private files with other applications.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ShareFile(IEnumerable&lt;string&gt; paths)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">paths</span></td>
+        <td><p>The file paths to be shared.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_RPCPort_Port_ShareFile_System_Collections_Generic_IEnumerable_System_String___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If all added paths are under the caller application&apos;s data path which can be obtained, those will be shared to the target application.
+Platform will grant a temporary permission to the target application for those files and revoke it when the target application is terminated or UnshareFile() is called.
+Paths should be regular files. The target application can just read them.
+Note that the target application doesn&apos;t have read permission of the directory that is obtained by caller&apos;s data path. You should open the file path with read only mode directly.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.RPCPort.InvalidIOException.html">InvalidIOException</a></td>
+        <td><p>Thrown when an internal IO error occurrs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>5</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications.RPCPort/Port.cs/#L78">View Source</a>
+  </span>
+  <a id="Tizen_Applications_RPCPort_Port_ShareFile_" data-uid="Tizen.Applications.RPCPort.Port.ShareFile*"></a>
+  <h4 id="Tizen_Applications_RPCPort_Port_ShareFile_System_String_" data-uid="Tizen.Applications.RPCPort.Port.ShareFile(System.String)">ShareFile(String)</h4>
+  <div class="markdown level1 summary"><p>Shares the private file with other applications.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ShareFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path to be shared.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.RPCPort.InvalidIOException.html">InvalidIOException</a></td>
+        <td><p>Thrown when an internal IO error occurrs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_RPCPort_Port_ShareFile_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Applications.RPCPort.Port.html#Tizen_Applications_RPCPort_Port_ShareFile_System_Collections_Generic_IEnumerable_System_String__">ShareFile(IEnumerable&lt;String&gt;)</a></div>
+  </div>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications.RPCPort/Port.cs/#L93">View Source</a>
+  </span>
+  <a id="Tizen_Applications_RPCPort_Port_UnshareFile_" data-uid="Tizen.Applications.RPCPort.Port.UnshareFile*"></a>
+  <h4 id="Tizen_Applications_RPCPort_Port_UnshareFile" data-uid="Tizen.Applications.RPCPort.Port.UnshareFile">UnshareFile()</h4>
+  <div class="markdown level1 summary"><p>Unshares the private file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnshareFile()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.RPCPort.InvalidIOException.html">InvalidIOException</a></td>
+        <td><p>Thrown when an internal IO error occurrs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
 </article>
           </div>
           
@@ -120,7 +267,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications.RPCPort/Port.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications.RPCPort/Port.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
