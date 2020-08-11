@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -735,8 +735,8 @@ namespace Tizen.NUI.BaseComponents
         private void Initialize()
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
-            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);
-            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnStageDisconnectionDelegate(OnStageDisconnection);
+            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
+            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
             viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
             viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);

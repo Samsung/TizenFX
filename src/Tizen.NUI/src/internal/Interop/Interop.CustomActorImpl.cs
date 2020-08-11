@@ -11,11 +11,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_Self")]
             public static extern global::System.IntPtr CustomActorImpl_Self(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_OnStageConnection")]
-            public static extern void CustomActorImpl_OnStageConnection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_OnSceneConnection")]
+            public static extern void CustomActorImpl_OnSceneConnection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_OnStageDisconnection")]
-            public static extern void CustomActorImpl_OnStageDisconnection(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_OnSceneDisconnection")]
+            public static extern void CustomActorImpl_OnSceneDisconnection(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_OnChildAdd")]
             public static extern void CustomActorImpl_OnChildAdd(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
