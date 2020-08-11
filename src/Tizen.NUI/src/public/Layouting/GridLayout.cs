@@ -251,8 +251,7 @@ namespace Tizen.NUI
             set
             {
                 if (columnSpacing == value) return;
-                if (columnSpacing < 0) columnSpacing = 0;
-                columnSpacing = value;
+                columnSpacing = value > 0 ? value : 0;
 
                 RequestLayout();
             }
@@ -268,8 +267,7 @@ namespace Tizen.NUI
             set
             {
                 if (rowSpacing == value) return;
-                if (rowSpacing < 0) rowSpacing = 0;
-                rowSpacing = value;
+                rowSpacing = value > 0 ? value : 0;
 
                 RequestLayout();
             }
