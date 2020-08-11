@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -229,15 +229,15 @@ namespace Tizen.NUI
             return ret;
         }
 
-        protected virtual new void OnStageConnection(int depth)
+        protected virtual new void OnSceneConnection(int depth)
         {
-            if (SwigDerivedClassHasMethod("OnStageConnection", swigMethodTypes0)) Interop.ViewImplSignal.ViewImpl_OnStageConnectionSwigExplicitViewImpl(swigCPtr, depth); else Interop.ViewImplSignal.ViewImpl_OnStageConnection(swigCPtr, depth);
+            if (SwigDerivedClassHasMethod("OnSceneConnection", swigMethodTypes0)) Interop.ViewImplSignal.ViewImpl_OnSceneConnectionSwigExplicitViewImpl(swigCPtr, depth); else Interop.ViewImplSignal.ViewImpl_OnSceneConnection(swigCPtr, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        protected virtual new void OnStageDisconnection()
+        protected virtual new void OnSceneDisconnection()
         {
-            if (SwigDerivedClassHasMethod("OnStageDisconnection", swigMethodTypes1)) Interop.ViewImplSignal.ViewImpl_OnStageDisconnectionSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnStageDisconnection(swigCPtr);
+            if (SwigDerivedClassHasMethod("OnSceneDisconnection", swigMethodTypes1)) Interop.ViewImplSignal.ViewImpl_OnSceneDisconnectionSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnSceneDisconnection(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -482,10 +482,10 @@ namespace Tizen.NUI
 
         private void SwigDirectorConnect()
         {
-            if (SwigDerivedClassHasMethod("OnStageConnection", swigMethodTypes0))
-                swigDelegate0 = new SwigDelegateViewImpl_0(SwigDirectorOnStageConnection);
-            if (SwigDerivedClassHasMethod("OnStageDisconnection", swigMethodTypes1))
-                swigDelegate1 = new SwigDelegateViewImpl_1(SwigDirectorOnStageDisconnection);
+            if (SwigDerivedClassHasMethod("OnSceneConnection", swigMethodTypes0))
+                swigDelegate0 = new SwigDelegateViewImpl_0(SwigDirectorOnSceneConnection);
+            if (SwigDerivedClassHasMethod("OnSceneDisconnection", swigMethodTypes1))
+                swigDelegate1 = new SwigDelegateViewImpl_1(SwigDirectorOnSceneDisconnection);
             if (SwigDerivedClassHasMethod("OnChildAdd", swigMethodTypes2))
                 swigDelegate2 = new SwigDelegateViewImpl_2(SwigDirectorOnChildAdd);
             if (SwigDerivedClassHasMethod("OnChildRemove", swigMethodTypes3))
@@ -574,14 +574,14 @@ namespace Tizen.NUI
             return hasDerivedMethod && (methodInfo != null);
         }
 
-        private void SwigDirectorOnStageConnection(int depth)
+        private void SwigDirectorOnSceneConnection(int depth)
         {
-            OnStageConnection(depth);
+            OnSceneConnection(depth);
         }
 
-        private void SwigDirectorOnStageDisconnection()
+        private void SwigDirectorOnSceneDisconnection()
         {
-            OnStageDisconnection();
+            OnSceneDisconnection();
         }
 
         private void SwigDirectorOnChildAdd(global::System.IntPtr child)
