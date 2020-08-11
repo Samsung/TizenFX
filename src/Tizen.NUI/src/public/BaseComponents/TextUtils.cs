@@ -38,6 +38,9 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.RendererParameters.delete_RendererParameters(swigCPtr);
@@ -585,6 +588,26 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Minimum size of line.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            set
+            {
+                Interop.RendererParameters.RendererParameters_minLineSize_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = Interop.RendererParameters.RendererParameters_minLineSize_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
 
     /// <summary>
@@ -604,6 +627,9 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.EmbeddedItemInfo.delete_EmbeddedItemInfo(swigCPtr);
@@ -777,6 +803,9 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ShadowParameters.delete_ShadowParameters(swigCPtr);
@@ -893,6 +922,8 @@ namespace Tizen.NUI.BaseComponents
         }
     }
 
+    /// <summary>
+    /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static partial class TextUtils
@@ -1004,7 +1035,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Splits the text in pages of the size given in @p textParameters
         /// @note The returned indices are indices to utf32 characters. The input text is encoded in utf8.
-        /// <returns> An array with the indices of the last character of each page
+        /// <returns> An array with the indices of the last character of each page </returns>
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Tizen.NUI.PropertyArray GetLastCharacterIndex(RendererParameters textParameters)
         {
