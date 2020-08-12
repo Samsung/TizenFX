@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
@@ -32,11 +33,17 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ScrollStateChangedEventArgs> _textEditorScrollStateChangedEventHandler;
         private ScrollStateChangedCallbackDelegate _textEditorScrollStateChangedCallbackDelegate;
 
+        private EventHandler<MaxLengthReachedEventArgs> _textEditorMaxLengthReachedEventHandler;
+        private MaxLengthReachedCallbackDelegate _textEditorMaxLengthReachedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -90,6 +97,32 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The MaxLengthReached event.
+        /// </summary>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
+        {
+            add
+            {
+                if (_textEditorMaxLengthReachedEventHandler == null)
+                {
+                    _textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    MaxLengthReachedSignal().Connect(_textEditorMaxLengthReachedCallbackDelegate);
+                }
+                _textEditorMaxLengthReachedEventHandler += value;
+            }
+            remove
+            {
+                if (_textEditorMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                }
+                _textEditorMaxLengthReachedEventHandler -= value;
+            }
+        }
+
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_TextChangedSignal(swigCPtr), false);
@@ -100,6 +133,13 @@ namespace Tizen.NUI.BaseComponents
         internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
         {
             ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal MaxLengthReachedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_MaxLengthReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -133,6 +173,20 @@ namespace Tizen.NUI.BaseComponents
             {
                 //here we send all data to user event handlers
                 _textEditorScrollStateChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnMaxLengthReached(IntPtr textEditor)
+        {
+            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
+
+            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
+            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+
+            if (_textEditorMaxLengthReachedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _textEditorMaxLengthReachedEventHandler(this, e);
             }
         }
 
@@ -199,6 +253,33 @@ namespace Tizen.NUI.BaseComponents
                 set
                 {
                     _scrollState = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The MaxLengthReached event arguments.
+        /// </summary>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MaxLengthReachedEventArgs : EventArgs
+        {
+            private TextEditor _textEditor;
+
+            /// <summary>
+            /// TextEditor.
+            /// </summary>
+            /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public TextEditor TextEditor
+            {
+                get
+                {
+                    return _textEditor;
+                }
+                set
+                {
+                    _textEditor = value;
                 }
             }
         }
