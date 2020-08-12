@@ -82,6 +82,14 @@ AutoReqProv: no
 %description tools
 Tools for TizenFX
 
+%package dummy
+Summary:   not used package
+Group:     Development/Libraries
+AutoReqProv: no
+
+%description dummy
+not used package
+
 %package full
 Summary:   All Tizen .NET assemblies
 Group:     Development/Libraries
@@ -213,6 +221,8 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 %files tools
 %manifest %{name}.manifest
 %{DOTNET_TOOLS_PATH}/*
+
+%files dummy
 
 %files full
 %manifest %{name}.manifest
