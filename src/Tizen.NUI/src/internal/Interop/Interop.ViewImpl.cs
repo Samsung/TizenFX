@@ -122,7 +122,7 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_0 delegate0, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_1 delegate1,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_2 delegate2, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_3 delegate3,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_4 delegate4, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_5 delegate5,
-                Tizen.NUI.ViewImpl.SwigDelegateViewImpl_6 delegate6, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_7 delegate7,
+                Tizen.NUI.ViewImpl.SwigDelegateViewImpl_6 delegate6,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_8 delegate8, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_9 delegate9,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_10 delegate10, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_11 delegate11,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_12 delegate12, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_13 delegate13,
