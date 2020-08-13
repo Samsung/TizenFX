@@ -112,6 +112,7 @@ namespace Tizen.NUI.Components
         private Size containerSize = new Size(0, 0);
         private ScrollbarStyle scrollbarStyle => ViewStyle as ScrollbarStyle;
         private bool mScrollEnabled = true;
+        private float previousPosition;
 
         #endregion Fields
 
@@ -312,6 +313,7 @@ namespace Tizen.NUI.Components
             }
 
             calculator.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
+            previousPosition = calculator.currentPosition;
             calculator.currentPosition = position;
 
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
@@ -352,6 +354,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            previousPosition = calculator.currentPosition;
             calculator.currentPosition = position;
             thumbVisual.Position = calculator.CalculateThumbScrollPosition(trackVisual.Size, thumbVisual.Position, TrackPadding);
 
@@ -501,6 +504,62 @@ namespace Tizen.NUI.Components
                 if (value != mScrollEnabled)
                 {
                     mScrollEnabled = value;
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollPosition
+        {
+            get
+            {
+                if (calculator == null)
+                {
+                    return new Position(0.0f, 0.0f);
+                }
+
+                float length = Math.Min(Math.Max(calculator.currentPosition, 0.0f), calculator.contentLength - calculator.visibleLength);
+
+                if (calculator is HorizontalCalculator)
+                {
+                    return new Position(length, 0.0f);
+                }
+                else
+                {
+                    return new Position(0.0f, length);
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollCurrentPosition
+        {
+            get
+            {
+                if (calculator == null)
+                {
+                    return new Position(0.0f, 0.0f);
+                }
+
+                float length = Math.Min(Math.Max(calculator.currentPosition, 0.0f), calculator.contentLength - calculator.visibleLength);
+
+                if (thumbPositionAnimation != null)
+                {
+                    float progress = thumbPositionAnimation.CurrentProgress;
+                    float previousLength = Math.Min(Math.Max(previousPosition, 0.0f), calculator.contentLength - calculator.visibleLength);
+
+                    length = ((1.0f - progress) * previousLength) + (progress * length);
+                }
+
+                if (calculator is HorizontalCalculator)
+                {
+                    return new Position(length, 0.0f);
+                }
+                else
+                {
+                    return new Position(0.0f, length);
                 }
             }
         }
