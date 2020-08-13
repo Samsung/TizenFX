@@ -95,14 +95,11 @@ namespace Tizen.Network.Connection
             }
         }
 
-        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
-        {
-            Log.Info(Globals.LogTag, "In threadlocal delegate");
-            return new HandleHolder();
-        });
+        private HandleHolder _handleHolder;
 
         private ConnectionInternalManager()
         {
+            _handleHolder = new HandleHolder();
             Log.Info(Globals.LogTag, "ConnectionInternalManager constructor");
         }
 
@@ -113,7 +110,7 @@ namespace Tizen.Network.Connection
 
         internal IntPtr GetHandle()
         {
-            return s_threadName.Value.GetHandle();
+            return _handleHolder.GetHandle();
         }
 
         internal event EventHandler<ConnectionTypeEventArgs> ConnectionTypeChanged
