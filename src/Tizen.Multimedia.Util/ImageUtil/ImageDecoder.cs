@@ -394,4 +394,24 @@ namespace Tizen.Multimedia.Util
 
         internal override byte[] Header => _header;
     }
+
+    /// <summary>
+    /// Provides the ability to decode the WebP (Lossless and lossy compression for images on the web) encoded images.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class WebPDecoder : ImageDecoder
+    {
+        private static readonly byte[] _header = { 0x57, 0x45, 0x42, 0x50 };
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebPDecoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.WebP"/>.</remarks>
+        /// <since_tizen> 8 </since_tizen>
+        public WebPDecoder() : base(ImageFormat.WebP)
+        {
+        }
+
+        internal override byte[] Header => _header;
+    }
 }

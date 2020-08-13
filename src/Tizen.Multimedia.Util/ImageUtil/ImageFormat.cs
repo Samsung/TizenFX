@@ -38,5 +38,10 @@ namespace Tizen.Multimedia.Util
         /// The Bitmap format.
         /// </summary>
         Bmp,
+        /// <summary>
+        /// The WebP format.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        WebP,
     }
 }
