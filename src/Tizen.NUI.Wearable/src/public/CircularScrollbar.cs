@@ -91,6 +91,7 @@ namespace Tizen.NUI.Wearable
         private ArcVisual thumbVisual;
         private float contentLength;
         private float visibleLength;
+        private float previousPosition;
         private float currentPosition;
         private float directionAlpha;
         private Size containerSize = new Size(0, 0);
@@ -285,6 +286,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
+            this.previousPosition = this.currentPosition;
             this.currentPosition = position;
             this.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
 
@@ -320,6 +322,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
+            previousPosition = currentPosition;
             currentPosition = position;
 
             if (mScrollEnabled == false)
@@ -479,6 +482,40 @@ namespace Tizen.NUI.Wearable
                 {
                     mScrollEnabled = value;
                 }
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollPosition
+        {
+            get
+            {
+                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
+                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+
+                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollCurrentPosition
+        {
+            get
+            {
+                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
+                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+
+                if (thumbStartAngleAnimation != null)
+                {
+                    float progress = thumbStartAngleAnimation.CurrentProgress;
+                    float previousLength = Math.Min(Math.Max(previousPosition, 0.0f), contentLength - visibleLength);
+
+                    length = ((1.0f - progress) * previousLength) + (progress * length);
+                }
+
+                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
             }
         }
 
