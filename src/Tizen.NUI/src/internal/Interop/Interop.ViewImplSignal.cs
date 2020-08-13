@@ -122,12 +122,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityPanSwigExplicitViewImpl")]
             public static extern bool ViewImpl_OnAccessibilityPanSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityTouch")]
-            public static extern bool ViewImpl_OnAccessibilityTouch(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl")]
-            public static extern bool ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityValueChange")]
             public static extern bool ViewImpl_OnAccessibilityValueChange(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
