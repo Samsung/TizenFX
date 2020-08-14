@@ -478,16 +478,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="touch">The touch gesture.</param>
-        /// <returns>True if the touch event has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityTouch(Touch touch)
-        {
-            return false;
-        }
-
-        /// <summary>
         /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
         /// </summary>
         /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
@@ -759,7 +749,6 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
             viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
             viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
-            viewWrapperImpl.OnAccessibilityTouch = new ViewWrapperImpl.OnAccessibilityTouchDelegate(OnAccessibilityTouch);
             viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
             viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);

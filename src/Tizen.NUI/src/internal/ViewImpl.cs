@@ -391,13 +391,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal virtual bool OnAccessibilityTouch(SWIGTYPE_p_Dali__TouchEvent touchEvent)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityTouch", swigMethodTypes27) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(touchEvent)) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityTouch(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(touchEvent)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public virtual bool OnAccessibilityValueChange(bool isIncrease)
         {
             bool ret = (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityValueChangeSwigExplicitViewImpl(swigCPtr, isIncrease) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityValueChange(swigCPtr, isIncrease));
@@ -532,8 +525,6 @@ namespace Tizen.NUI
                 swigDelegate25 = new SwigDelegateViewImpl_25(SwigDirectorOnAccessibilityActivated);
             if (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26))
                 swigDelegate26 = new SwigDelegateViewImpl_26(SwigDirectorOnAccessibilityPan);
-            if (SwigDerivedClassHasMethod("OnAccessibilityTouch", swigMethodTypes27))
-                swigDelegate27 = new SwigDelegateViewImpl_27(SwigDirectorOnAccessibilityTouch);
             if (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28))
                 swigDelegate28 = new SwigDelegateViewImpl_28(SwigDirectorOnAccessibilityValueChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29))
@@ -560,7 +551,7 @@ namespace Tizen.NUI
                 swigDelegate39 = new SwigDelegateViewImpl_39(SwigDirectorSignalConnected);
             if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40))
                 swigDelegate40 = new SwigDelegateViewImpl_40(SwigDirectorSignalDisconnected);
-            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate27, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
+            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, null, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
 
@@ -716,11 +707,6 @@ namespace Tizen.NUI
         private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
             return OnAccessibilityPan(new PanGesture(gesture, true));
-        }
-
-        private bool SwigDirectorOnAccessibilityTouch(global::System.IntPtr touchEvent)
-        {
-            return OnAccessibilityTouch(new SWIGTYPE_p_Dali__TouchEvent(touchEvent, false));
         }
 
         private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
@@ -898,7 +884,6 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_24 swigDelegate24;
         private SwigDelegateViewImpl_25 swigDelegate25;
         private SwigDelegateViewImpl_26 swigDelegate26;
-        private SwigDelegateViewImpl_27 swigDelegate27;
         private SwigDelegateViewImpl_28 swigDelegate28;
         private SwigDelegateViewImpl_29 swigDelegate29;
         private SwigDelegateViewImpl_30 swigDelegate30;

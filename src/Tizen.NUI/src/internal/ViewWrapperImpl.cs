@@ -70,8 +70,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityTouchDelegate(Touch touch);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityZoomDelegate();
@@ -118,7 +116,6 @@ namespace Tizen.NUI
         public new OnStyleChangeDelegate OnStyleChange;
         public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
         public new OnAccessibilityPanDelegate OnAccessibilityPan;
-        public new OnAccessibilityTouchDelegate OnAccessibilityTouch;
         public new OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
         public new OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnFocusGainedDelegate OnFocusGained;
@@ -284,7 +281,6 @@ namespace Tizen.NUI
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
             Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
-            Delegate27 = new DelegateViewWrapperImpl_27(DirectorOnAccessibilityTouch);
             Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
             Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
             Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
@@ -296,7 +292,7 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate27, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.ViewWrapperImpl_director_connect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate7, Delegate8, Delegate9, Delegate10, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, null, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
         private void DirectorOnSceneConnection(int depth)
@@ -453,11 +449,6 @@ namespace Tizen.NUI
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
             return OnAccessibilityPan(new PanGesture(gesture, false));
-        }
-
-        private bool DirectorOnAccessibilityTouch(global::System.IntPtr touch)
-        {
-            return OnAccessibilityTouch(new Touch(touch, false));
         }
 
         private bool DirectorOnAccessibilityValueChange(bool isIncrease)
@@ -633,7 +624,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_24 Delegate24;
         private DelegateViewWrapperImpl_25 Delegate25;
         private DelegateViewWrapperImpl_26 Delegate26;
-        private DelegateViewWrapperImpl_27 Delegate27;
         private DelegateViewWrapperImpl_28 Delegate28;
         private DelegateViewWrapperImpl_29 Delegate29;
         private DelegateViewWrapperImpl_30 Delegate30;
