@@ -250,7 +250,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    mLayout.RequestChildRectangleOnScreen(this, nextFocusView, mRecycler, true);
+                    mLayout.GetRectOfVisibleChild(this, nextFocusView, mRecycler, true);
                     DispatchFocusChanged(value);
                 }
             }
