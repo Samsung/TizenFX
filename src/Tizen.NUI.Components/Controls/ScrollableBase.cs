@@ -62,7 +62,9 @@ namespace Tizen.NUI.Components
         static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
+        private int mScrollDuration = 125;
         private int mPageWidth = 0;
+        private float mPageFlickThreshold = 0.4f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -262,7 +264,17 @@ namespace Tizen.NUI.Components
         /// Default value is 125ms.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public int ScrollDuration { set; get; } = 125;
+        public int ScrollDuration
+        {
+            set
+            {
+                mScrollDuration = value >= 0 ? value : mScrollDuration;
+            }
+            get
+            {
+                return mScrollDuration;
+            }
+        }
 
         /// <summary>
         /// Scroll Available area.
@@ -417,7 +429,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                decelerationRate = value;
+                decelerationRate = (value < 1 && value > 0) ? value : decelerationRate;
                 logValueOfDeceleration = (float)Math.Log(value);
             }
         }
@@ -433,7 +445,17 @@ namespace Tizen.NUI.Components
         /// The unit of threshold is pixel per milisec.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public float PageFlickThreshold { get; set; } = 0.4f;
+        public float PageFlickThreshold
+        {
+            get
+            {
+                return mPageFlickThreshold;
+            }
+            set
+            {
+                mPageFlickThreshold = value >= 0f ? value : mPageFlickThreshold;
+            }
+        }
 
         /// <summary>
         /// Alphafunction for scroll animation.
@@ -930,7 +952,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    if(panVelocity == 0)
+                    if (panVelocity == 0)
                     {
                         float currentScrollPosition = (ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
                         scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
