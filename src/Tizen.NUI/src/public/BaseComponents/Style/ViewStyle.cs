@@ -545,7 +545,24 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Size tmp = (Size)GetValue(SizeProperty);
-                return (null != tmp) ? tmp : size = new Size((float? width, float? height, float? depth) => { Size = new Size((float)width, (float)height, (float)depth); }, 0, 0, 0);
+                return (null != tmp) ? tmp : size = new Size((float? width, float? height, float? depth) =>
+                    {
+                        float targetWidth = 0;
+                        float targetHeight = 0;
+                        float targetDepth = 0;
+
+                        if (size != null)
+                        {
+                            targetWidth = size.Width;
+                            targetHeight = size.Height;
+                            targetDepth = size.Depth;
+                        }
+                        if (width != null) { targetWidth = (float)width; }
+                        if (height != null) { targetHeight = (float)height; }
+                        if (depth != null) { targetDepth = (float)depth; }
+
+                        Size = new Size(targetWidth, targetHeight, targetDepth);
+                    }, 0, 0, 0);
             }
             set => SetValue(SizeProperty, value);
         }
