@@ -271,13 +271,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal virtual new bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnTouchEvent", swigMethodTypes7) ? Interop.ViewImplSignal.ViewImpl_OnTouchEventSwigExplicitViewImpl(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         protected virtual new bool OnHoverEvent(Hover arg0)
         {
             bool ret = (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8) ? Interop.ViewImplSignal.ViewImpl_OnHoverEventSwigExplicitViewImpl(swigCPtr, Hover.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0)));
@@ -489,8 +482,6 @@ namespace Tizen.NUI
                 swigDelegate5 = new SwigDelegateViewImpl_5(SwigDirectorOnSizeSet);
             if (SwigDerivedClassHasMethod("OnSizeAnimation", swigMethodTypes6))
                 swigDelegate6 = new SwigDelegateViewImpl_6(SwigDirectorOnSizeAnimation);
-            if (SwigDerivedClassHasMethod("OnTouchEvent", swigMethodTypes7))
-                swigDelegate7 = new SwigDelegateViewImpl_7(SwigDirectorOnTouchEvent);
             if (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8))
                 swigDelegate8 = new SwigDelegateViewImpl_8(SwigDirectorOnHoverEvent);
             if (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9))
@@ -551,7 +542,7 @@ namespace Tizen.NUI
                 swigDelegate39 = new SwigDelegateViewImpl_39(SwigDirectorSignalConnected);
             if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40))
                 swigDelegate40 = new SwigDelegateViewImpl_40(SwigDirectorSignalDisconnected);
-            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, null, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
+            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, null, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
 
@@ -608,11 +599,6 @@ namespace Tizen.NUI
         private void SwigDirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
             OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
-        }
-
-        private bool SwigDirectorOnTouchEvent(global::System.IntPtr arg0)
-        {
-            return OnTouchEvent(new SWIGTYPE_p_Dali__TouchEvent(arg0, false));
         }
 
         private bool SwigDirectorOnHoverEvent(global::System.IntPtr arg0)
@@ -789,8 +775,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_7(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_8(global::System.IntPtr arg0);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_9(global::System.IntPtr arg0);
@@ -864,7 +848,6 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_4 swigDelegate4;
         private SwigDelegateViewImpl_5 swigDelegate5;
         private SwigDelegateViewImpl_6 swigDelegate6;
-        private SwigDelegateViewImpl_7 swigDelegate7;
         private SwigDelegateViewImpl_8 swigDelegate8;
         private SwigDelegateViewImpl_9 swigDelegate9;
         private SwigDelegateViewImpl_10 swigDelegate10;
@@ -905,7 +888,6 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(int), typeof(PropertyValue) };
         private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(Vector3) };
         private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(Animation), typeof(Vector3) };
-        private static global::System.Type[] swigMethodTypes7 = new global::System.Type[] { typeof(SWIGTYPE_p_Dali__TouchEvent) };
         private static global::System.Type[] swigMethodTypes8 = new global::System.Type[] { typeof(Hover) };
         private static global::System.Type[] swigMethodTypes9 = new global::System.Type[] { typeof(Key) };
         private static global::System.Type[] swigMethodTypes10 = new global::System.Type[] { typeof(Wheel) };
@@ -925,7 +907,7 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes24 = new global::System.Type[] { typeof(StyleManager), typeof(StyleChangeType) };
         private static global::System.Type[] swigMethodTypes25 = new global::System.Type[] { };
         private static global::System.Type[] swigMethodTypes26 = new global::System.Type[] { typeof(PanGesture) };
-        private static global::System.Type[] swigMethodTypes27 = new global::System.Type[] { typeof(SWIGTYPE_p_Dali__TouchEvent) };
+        private static global::System.Type[] swigMethodTypes27 = new global::System.Type[] { typeof(Touch) };
         private static global::System.Type[] swigMethodTypes28 = new global::System.Type[] { typeof(bool) };
         private static global::System.Type[] swigMethodTypes29 = new global::System.Type[] { };
         private static global::System.Type[] swigMethodTypes30 = new global::System.Type[] { };
