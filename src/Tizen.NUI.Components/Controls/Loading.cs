@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -242,6 +243,8 @@ namespace Tizen.NUI.Components
             UpdateVisual();
 
             this.AddVisual("loadingImageVisual", imageVisual);
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
         }
 
         private void UpdateVisual()

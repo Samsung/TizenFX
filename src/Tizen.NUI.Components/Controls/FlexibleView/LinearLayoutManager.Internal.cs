@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
                 return null;
             }
             int maxScroll = (int)(MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace());
-            UpdateLayoutState(layoutDir, maxScroll, false);
+            UpdateLayout(layoutDir, maxScroll, false);
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
             mLayoutState.Recycle = false;
             Fill(recycler, mLayoutState, true, true);
@@ -396,7 +396,7 @@ namespace Tizen.NUI.Components
             int layoutDirection = dy < 0 ? LayoutState.LAYOUT_END : LayoutState.LAYOUT_START;
             float absDy = Math.Abs(dy);
 
-            UpdateLayoutState(layoutDirection, absDy, true);
+            UpdateLayout(layoutDirection, absDy, true);
 
             float consumed = mLayoutState.ScrollingOffset
                 + Fill(recycler, mLayoutState, false, immediate);
@@ -414,49 +414,9 @@ namespace Tizen.NUI.Components
             return scrolled;
         }
 
-        private void UpdateLayoutState(int layoutDirection, float requiredSpace, bool canUseExistingSpace)
+        private void UpdateLayout(int direction, float space, bool canUseExistingSpace)
         {
-            mLayoutState.Extra = 0;
-            mLayoutState.LayoutDirection = layoutDirection;
-            float scrollingOffset = 0.0f;
-            if (layoutDirection == LayoutState.LAYOUT_END)
-            {
-                mLayoutState.Extra += mOrientationHelper.GetEndPadding();
-                // get the first child in the direction we are going
-                FlexibleViewViewHolder child = GetChildClosestToEnd();
-                if (child != null)
-                {
-                    // the direction in which we are traversing children
-                    mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD
-                            : LayoutState.ITEM_DIRECTION_TAIL;
-                    mLayoutState.CurrentPosition = child.LayoutPosition + mLayoutState.ItemDirection;
-                    mLayoutState.Offset = mOrientationHelper.GetViewHolderEnd(child);
-                    // calculate how much we can scroll without adding new children (independent of layout)
-                    scrollingOffset = mOrientationHelper.GetViewHolderEnd(child)
-                            - mOrientationHelper.GetEndAfterPadding();
-                }
-
-            }
-            else
-            {
-                mLayoutState.Extra += mOrientationHelper.GetStartAfterPadding();
-                FlexibleViewViewHolder child = GetChildClosestToStart();
-                if (child != null)
-                {
-                    mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL
-                            : LayoutState.ITEM_DIRECTION_HEAD;
-                    mLayoutState.CurrentPosition = child.LayoutPosition + mLayoutState.ItemDirection;
-                    mLayoutState.Offset = mOrientationHelper.GetViewHolderStart(child);
-                    scrollingOffset = -mOrientationHelper.GetViewHolderStart(child)
-                            + mOrientationHelper.GetStartAfterPadding();
-                }
-            }
-            mLayoutState.Available = requiredSpace;
-            if (canUseExistingSpace)
-            {
-                mLayoutState.Available -= scrollingOffset;
-            }
-            mLayoutState.ScrollingOffset = scrollingOffset;
+            mLayoutState.ResetLayout(direction, canUseExistingSpace, space, mOrientationHelper, this);
         }
 
         // Convenience method to find the child closes to start. Caller should check it has enough
@@ -621,6 +581,50 @@ namespace Tizen.NUI.Components
                 CurrentPosition += ItemDirection;
 
                 return itemView;
+            }
+
+            public void ResetLayout(int direction, bool canUseExistingSpace, float space, OrientationHelper orientationHelper, LinearLayoutManager linearLayoutManager)
+            {
+                this.Extra = 0;
+                this.LayoutDirection = direction;
+
+                float scrollingOffset = 0.0f;
+                if (direction == LayoutState.LAYOUT_END)
+                {
+                    this.Extra += orientationHelper.GetEndPadding();
+                    FlexibleViewViewHolder endChild = linearLayoutManager.GetChildClosestToEnd();
+                    if (endChild != null)
+                    {
+                        // the direction in which we are traversing children
+                        this.ItemDirection = linearLayoutManager.mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD
+                                : LayoutState.ITEM_DIRECTION_TAIL;
+                        this.CurrentPosition = endChild.LayoutPosition + linearLayoutManager.mLayoutState.ItemDirection;
+                        this.Offset = orientationHelper.GetViewHolderEnd(endChild);
+                        scrollingOffset = orientationHelper.GetViewHolderEnd(endChild) - orientationHelper.GetEndAfterPadding();
+                    }
+
+                }
+                else
+                {
+                    this.Extra += orientationHelper.GetStartAfterPadding();
+                    FlexibleViewViewHolder startChild = linearLayoutManager.GetChildClosestToStart();
+                    if (startChild != null)
+                    {
+                        this.ItemDirection = linearLayoutManager.mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL
+                                : LayoutState.ITEM_DIRECTION_HEAD;
+                        this.CurrentPosition = startChild.LayoutPosition + linearLayoutManager.mLayoutState.ItemDirection;
+                        this.Offset = orientationHelper.GetViewHolderStart(startChild);
+                        scrollingOffset = -orientationHelper.GetViewHolderStart(startChild) + orientationHelper.GetStartAfterPadding();
+                    }
+                }
+
+                this.Available = space;
+
+                if (canUseExistingSpace)
+                {
+                    this.Available -= scrollingOffset;
+                }
+                this.ScrollingOffset = scrollingOffset;
             }
         }
 
