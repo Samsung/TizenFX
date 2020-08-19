@@ -437,5 +437,37 @@ namespace Tizen.NUI.Components
             LayoutChild();
         }
 
+        internal override bool OnAccessibilityActivated()
+        {
+            if (!IsEnabled)
+            {
+                return false;
+            }
+
+            // Touch Down
+            isPressed = true;
+            UpdateState();
+
+            // Touch Up
+            bool clicked = isPressed && IsEnabled;
+            isPressed = false;
+
+            if (IsSelectable)
+            {
+                IsSelected = !IsSelected;
+            }
+            else
+            {
+                UpdateState();
+            }
+
+            if (clicked)
+            {
+                ClickedEventArgs eventArgs = new ClickedEventArgs();
+                OnClickedInternal(eventArgs);
+            }
+            return true;
+        }
+
     }
 }

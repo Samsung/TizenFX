@@ -596,7 +596,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase. 
+        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase.
         /// Set the composition that will go into the ScrollableBase according to your ScrollableBase.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -902,12 +902,17 @@ namespace Tizen.NUI.Components
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            OnPanGesture(e.PanGesture);
+        }
+
+        private void OnPanGesture(PanGesture panGesture)
+        {
             if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
                 return;
             }
 
-            if (e.PanGesture.State == Gesture.StateType.Started)
+            if (panGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
@@ -919,21 +924,21 @@ namespace Tizen.NUI.Components
                 totalDisplacementForPan = 0.0f;
                 OnScrollDragStarted();
             }
-            else if (e.PanGesture.State == Gesture.StateType.Continuing)
+            else if (panGesture.State == Gesture.StateType.Continuing)
             {
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    ScrollBy(e.PanGesture.Displacement.X, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.X;
+                    ScrollBy(panGesture.Displacement.X, false);
+                    totalDisplacementForPan += panGesture.Displacement.X;
                 }
                 else
                 {
-                    ScrollBy(e.PanGesture.Displacement.Y, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.Y;
+                    ScrollBy(panGesture.Displacement.Y, false);
+                    totalDisplacementForPan += panGesture.Displacement.Y;
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (e.PanGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished)
             {
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
@@ -944,7 +949,7 @@ namespace Tizen.NUI.Components
                     scrollAnimation.Finished += ScrollAnimationFinished;
                 }
 
-                float panVelocity = (ScrollingDirection == Direction.Horizontal) ? e.PanGesture.Velocity.X : e.PanGesture.Velocity.Y;
+                float panVelocity = (ScrollingDirection == Direction.Horizontal) ? panGesture.Velocity.X : panGesture.Velocity.Y;
 
                 if (SnapToPage)
                 {
@@ -971,6 +976,17 @@ namespace Tizen.NUI.Components
                 readyToNotice = true;
                 OnScrollAnimationStarted();
             }
+        }
+
+        internal override bool OnAccessibilityPan(PanGesture gestures)
+        {
+            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
+            {
+                return false;
+            }
+
+            OnPanGesture(gestures);
+            return true;
         }
 
         private float CustomScrollAlphaFunction(float progress)
@@ -1013,7 +1029,7 @@ namespace Tizen.NUI.Components
             // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
             //
             // Because of final T is tending to inifity, we should use threshold value to finish.
-            // Final T = log(-threshold * log d / |V0| ) / log d; 
+            // Final T = log(-threshold * log d / |V0| ) / log d;
 
             velocityOfLastPan = Math.Abs(velocity);
 
