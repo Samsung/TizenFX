@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -534,6 +535,8 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
 
         private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -596,7 +599,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase. 
+        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase.
         /// Set the composition that will go into the ScrollableBase according to your ScrollableBase.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -1013,7 +1016,7 @@ namespace Tizen.NUI.Components
             // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
             //
             // Because of final T is tending to inifity, we should use threshold value to finish.
-            // Final T = log(-threshold * log d / |V0| ) / log d; 
+            // Final T = log(-threshold * log d / |V0| ) / log d;
 
             velocityOfLastPan = Math.Abs(velocity);
 
