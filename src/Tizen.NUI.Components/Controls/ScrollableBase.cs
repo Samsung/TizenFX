@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -534,6 +535,8 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
 
         private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
+using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
@@ -404,6 +405,8 @@ namespace Tizen.NUI.Components
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
         }
 
         private void UpdateUIContent()

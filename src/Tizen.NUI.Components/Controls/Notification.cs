@@ -358,7 +358,7 @@ namespace Tizen.NUI.Components
         {
             if (dismissOnTouch)
             {
-                NotificationWindow.TouchEvent += OnWindowTouch;                    
+                NotificationWindow.TouchEvent += OnWindowTouch;
             }
             else
             {

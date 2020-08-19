@@ -19,6 +19,7 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components.Extension;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -311,6 +312,7 @@ namespace Tizen.NUI.Components
             internal set
             {
                 buttonText = value;
+                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, buttonText.Text);
             }
         }
 
