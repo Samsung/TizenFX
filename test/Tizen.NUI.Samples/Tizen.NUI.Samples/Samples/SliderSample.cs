@@ -250,6 +250,7 @@ namespace Tizen.NUI.Samples
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
             source.ValueChanged += OnValueChanged;
+            source.SlidingStarted += OnSlidingStarted;
             source.SlidingFinished += OnSlidingFinished;
             source.Size = new Size(w, h);
             source.CurrentValue = curValue;
@@ -267,6 +268,7 @@ namespace Tizen.NUI.Samples
             source.MaxValue = MAX_VALUE;
             source.StateChangedEvent += OnStateChanged;
             source.ValueChanged += OnValueChanged;
+            source.SlidingStarted += OnSlidingStarted;
             source.SlidingFinished += OnSlidingFinished;
             source.Size = new Size(w, h);
             source.CurrentValue = curValue;
@@ -285,6 +287,22 @@ namespace Tizen.NUI.Samples
                 else
                 {
                     inforText[0].Text = "currentValue = " + args.CurrentValue;
+                }
+            }
+        }
+
+        private void OnSlidingStarted(object sender, SliderSlidingStartedEventArgs args)
+        {
+            Slider source = sender as Slider;
+            if (source != null)
+            {
+                if (source == slider_style[0] || source == slider_style[1] || source == slider_style[2] || source == slider_style[3])
+                {
+                    inforText[1].Text = "Started currentValue = " + args.CurrentValue;
+                }
+                else
+                {
+                    inforText[0].Text = "Started currentValue = " + args.CurrentValue;
                 }
             }
         }
