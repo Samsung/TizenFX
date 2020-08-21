@@ -26,6 +26,19 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
+        /// <summary>The Duration bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ToastStyle)bindable).duration = (uint?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ToastStyle)bindable).duration;
+        });
+
+        private uint? duration;
+
         static ToastStyle() { }
 
         /// <summary>
@@ -52,7 +65,11 @@ namespace Tizen.NUI.Components
         /// Gets or sets toast show duration time.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint? Duration { get; set; }
+        public uint? Duration
+        {
+            get => (uint?)GetValue(DurationProperty);
+            set => SetValue(DurationProperty, value);
+        }
 
         /// <summary>
         /// Text's Style.
@@ -75,7 +92,6 @@ namespace Tizen.NUI.Components
                 {
                     Text?.CopyFrom(toastStyle.Text);
                 }
-                Duration = toastStyle.Duration;
             }
         }
 
