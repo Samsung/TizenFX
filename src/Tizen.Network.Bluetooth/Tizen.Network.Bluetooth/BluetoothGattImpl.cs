@@ -112,12 +112,6 @@ namespace Tizen.Network.Bluetooth
             GattUtil.ThrowForError(err, string.Format("Failed to send response for request Id {0}", requestId));
         }
 
-        internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
-        {
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), null, clientAddress, IntPtr.Zero);
-            GattUtil.ThrowForError(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
-        }
-
         void SendIndicationCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData)
         {
             int requestId = (int)userData;

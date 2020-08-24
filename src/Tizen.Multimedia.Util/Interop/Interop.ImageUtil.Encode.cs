@@ -64,6 +64,9 @@ internal static partial class Interop
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run")]
             internal static extern ImageUtilError Run(ImageEncoderHandle handle, out ulong size);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_webp_lossless")]
+            internal static extern ImageUtilError SetWebPLossless(ImageEncoderHandle handle, bool lossless);
         }
     }
 

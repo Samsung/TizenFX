@@ -134,44 +134,49 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// Custom filter (Independent shared object).
         /// </summary>
-        CustomFilter,
+        CustomFilter = 1,
         /// <summary>
         /// Tensorflow-lite (.tflite).
         /// </summary>
-        TensorflowLite,
+        TensorflowLite = 2,
         /// <summary>
         /// Tensorflow (.pb).
         /// </summary>
-        Tensorflow,
+        Tensorflow = 3,
         /// <summary>
         /// Neural Network Inference framework, which is developed by SR (Samsung Research).
         /// </summary>
-        NNFW,
+        NNFW = 4,
         /// <summary>
         /// Intel Movidius Neural Compute SDK (libmvnc).
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        MVNC,
+        MVNC = 5,
         /// <summary>
         /// Intel OpenVINO.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        OpenVINO,
+        OpenVINO = 6,
         /// <summary>
         /// VeriSilicon's Vivante.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        Vivante,
+        Vivante = 7,
         /// <summary>
         /// Google Coral Edge TPU (USB).
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        EdgeTPU,
+        EdgeTPU = 8,
         /// <summary>
         /// Arm Neural Network framework (support for caffe and tensorflow-lite).
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        ArmNN,
+        ArmNN = 9,
+        /// <summary>
+        /// Qualcomm SNPE (Snapdgragon Neural Processing Engine (.dlc)
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        SNPE = 10,
     }
 
     /// <summary>
@@ -193,10 +198,15 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         CPU = 0x1000,
         /// <summary>
+        /// SIMD in CPU if possible.
+        /// <since_tizen> 8 </since_tizen>
+        /// </summary>
+        CPUSIMD = 0x1100,
+        /// <summary>
         /// NEON in CPU.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        CPUNeon = 0x1100,
+        CPUNeon = CPUSIMD,
         /// <summary>
         /// Any GPU if possible.
         /// </summary>

@@ -58,6 +58,24 @@ namespace Tizen.NUI.BaseComponents
             Clone(value);
         }
 
+        internal Selector(SelectorChangedCallback<T> cb) : this()
+        {
+            callback = cb;
+        }
+
+        internal Selector(SelectorChangedCallback<T> cb, T value) : this(value)
+        {
+            callback = cb;
+        }
+
+        internal Selector(SelectorChangedCallback<T> cb, Selector<T> value) : this(value)
+        {
+            callback = cb;
+        }
+
+        internal delegate void SelectorChangedCallback<T>(Selector<T> value);
+        private SelectorChangedCallback<T> callback = null;
+
 
         /// <summary>
         /// All State.
@@ -78,8 +96,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get => Find(x => x.State == ControlState.Normal).Value;
-            set => Add(ControlState.Normal, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Normal).Value;
+            }
+            set
+            {
+                Add(ControlState.Normal, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// Pressed State.
@@ -89,8 +114,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get => Find(x => x.State == ControlState.Pressed).Value;
-            set => Add(ControlState.Pressed, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Pressed).Value;
+            }
+            set
+            {
+                Add(ControlState.Pressed, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// Focused State.
@@ -100,8 +132,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get => Find(x => x.State == ControlState.Focused).Value;
-            set => Add(ControlState.Focused, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Focused).Value;
+            }
+            set
+            {
+                Add(ControlState.Focused, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// Selected State.
@@ -111,8 +150,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get => Find(x => x.State == ControlState.Selected).Value;
-            set => Add(ControlState.Selected, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Selected).Value;
+            }
+            set
+            {
+                Add(ControlState.Selected, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// Disabled State.
@@ -122,8 +168,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get => Find(x => x.State == ControlState.Disabled).Value;
-            set => Add(ControlState.Disabled, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Disabled).Value;
+            }
+            set
+            {
+                Add(ControlState.Disabled, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// DisabledFocused State.
@@ -133,8 +186,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get => Find(x => x.State == ControlState.DisabledFocused).Value;
-            set => Add(ControlState.DisabledFocused, value);
+            get
+            {
+                return Find(x => x.State == ControlState.DisabledFocused).Value;
+            }
+            set
+            {
+                Add(ControlState.DisabledFocused, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// SelectedFocused State.
@@ -143,8 +203,15 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public T SelectedFocused
         {
-            get => Find(x => x.State == ControlState.SelectedFocused).Value;
-            set => Add(ControlState.SelectedFocused, value);
+            get
+            {
+                return Find(x => x.State == ControlState.SelectedFocused).Value;
+            }
+            set
+            {
+                Add(ControlState.SelectedFocused, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// DisabledSelected State.
@@ -154,8 +221,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get => Find(x => x.State == ControlState.DisabledSelected).Value;
-            set => Add(ControlState.DisabledSelected, value);
+            get
+            {
+                return Find(x => x.State == ControlState.DisabledSelected).Value;
+            }
+            set
+            {
+                Add(ControlState.DisabledSelected, value);
+                callback?.Invoke(this);
+            }
         }
 
         /// <summary>
@@ -166,8 +240,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get => Find(x => x.State == ControlState.Other).Value;
-            set => Add(ControlState.Other, value);
+            get
+            {
+                return Find(x => x.State == ControlState.Other).Value;
+            }
+            set
+            {
+                Add(ControlState.Other, value);
+                callback?.Invoke(this);
+            }
         }
         /// <summary>
         /// Get value by State.

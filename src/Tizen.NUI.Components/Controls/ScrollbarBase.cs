@@ -93,6 +93,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract bool ScrollEnabled { get; set; }
 
+        /// <summary>
+        /// Scroll position given to ScrollTo or Update.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract Position ScrollPosition { get; }
+
+        /// <summary>
+        /// Current scroll position in the middle of ScrollTo or Update animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract Position ScrollCurrentPosition { get; }
+
         #endregion Methods
     }
 }

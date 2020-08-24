@@ -35,6 +35,9 @@ namespace Tizen.NUI.Components
         private int selectedIndex = -1;
         private PaginationStyle paginationStyle => ViewStyle as PaginationStyle;
 
+        private Color indicatorColor;
+        private Color selectedIndicatorColor;
+
         static Pagination() { }
 
         /// <summary>
@@ -185,6 +188,108 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private void OnIndicatorColorChanged(float r, float g, float b, float a)
+        {
+            IndicatorColor = new Color(r, g, b, a);
+        }
+
+        /// <summary>
+        /// Color of the indicator.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Color IndicatorColor
+        {
+            get
+            {
+                return new Color(OnIndicatorColorChanged, indicatorColor);
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                if (indicatorColor == null)
+                {
+                    indicatorColor = new Color((Color)value);
+                }
+                else
+                {
+                    if (indicatorColor == value)
+                    {
+                        return;
+                    }
+
+                    indicatorColor = value;
+                }
+
+                if (indicatorCount == 0)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < indicatorCount; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        continue;
+                    }
+
+                    ImageVisual indicator = indicatorList[i];
+                    indicator.MixColor = indicatorColor;
+                    indicator.Opacity = indicatorColor.A;
+                }
+            }
+        }
+
+        private void OnSelectedIndicatorColorChanged(float r, float g, float b, float a)
+        {
+            SelectedIndicatorColor = new Color(r, g, b, a);
+        }
+
+        /// <summary>
+        /// Color of the selected indicator.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Color SelectedIndicatorColor
+        {
+            get
+            {
+                return new Color(OnSelectedIndicatorColorChanged, selectedIndicatorColor);
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                if (selectedIndicatorColor == null)
+                {
+                    selectedIndicatorColor = new Color((Color)value);
+                }
+                else
+                {
+                    if (selectedIndicatorColor == value)
+                    {
+                        return;
+                    }
+
+                    selectedIndicatorColor = value;
+                }
+
+                if (selectedIndex == -1)
+                {
+                    return;
+                }
+
+                ImageVisual indicator = indicatorList[selectedIndex];
+                indicator.MixColor = selectedIndicatorColor;
+                indicator.Opacity = selectedIndicatorColor.A;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the index of the select indicator.
         /// </summary>
@@ -237,7 +342,18 @@ namespace Tizen.NUI.Components
         {
             if (!(selectOutIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle?.IndicatorImageUrl.Normal;
-            visual.Opacity = 0.5f;
+
+            if (indicatorColor == null)
+            {
+                //TODO: Apply color properties from PaginationStyle class.
+                visual.MixColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                visual.Opacity = 0.5f;
+            }
+            else
+            {
+                visual.MixColor = indicatorColor;
+                visual.Opacity = indicatorColor.A;
+            }
         }
 
         /// <summary>
@@ -249,7 +365,18 @@ namespace Tizen.NUI.Components
         {
             if (!(selectInIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle?.IndicatorImageUrl.Selected;
-            visual.Opacity = 1.0f;
+
+            if (selectedIndicatorColor == null)
+            {
+                //TODO: Apply color properties from PaginationStyle class.
+                visual.MixColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                visual.Opacity = 1.0f;
+            }
+            else
+            {
+                visual.MixColor = selectedIndicatorColor;
+                visual.Opacity = selectedIndicatorColor.A;
+            }
         }
 
         /// <summary>
@@ -297,6 +424,10 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
             };
             this.Add(container);
+
+            //TODO: Apply color properties from PaginationStyle class.
+			indicatorColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+			selectedIndicatorColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
         private void CreateIndicator()
@@ -309,7 +440,9 @@ namespace Tizen.NUI.Components
             {
                 URL = paginationStyle.IndicatorImageUrl.Normal,
                 Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height),
-                Opacity = 0.5f,
+                //TODO: Apply color properties from PaginationStyle class.
+                MixColor = (indicatorColor == null) ? new Color(1.0f, 1.0f, 1.0f, 0.5f) : indicatorColor,
+                Opacity = (indicatorColor == null) ? 0.5f : indicatorColor.A
             };
             indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);

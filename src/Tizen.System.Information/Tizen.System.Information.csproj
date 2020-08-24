@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <TizenPreloadFile Include="Tizen.System.Information.preload" Sequence="30" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>

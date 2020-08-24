@@ -35,6 +35,10 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void NewDataCallback(IntPtr data, IntPtr info, IntPtr user_data);
 
+        /* typedef int (*ml_custom_easy_invoke_cb) (const ml_tensors_data_h in, ml_tensors_data_h out, void *user_data); */
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CustomEasyInvokeCallback(IntPtr in_data, IntPtr out_data, IntPtr user_data);
+
         /* int ml_pipeline_construct (const char *pipeline_description, ml_pipeline_state_cb cb, void *user_data, ml_pipeline_h *pipe); */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_construct", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError Construct(string pipeline_description, StateChangedCallback callback, IntPtr user_data, out IntPtr pipeline_handle);
@@ -98,6 +102,86 @@ internal static partial class Interop
         /* int ml_pipeline_switch_select (ml_pipeline_switch_h switch_handle, const char *pad_name); */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_switch_select", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError SelectSwitchPad(IntPtr switch_handle, string pad_name);
+
+        /* int ml_pipeline_custom_easy_filter_register (const char *name, const ml_tensors_info_h in, const ml_tensors_info_h out, ml_custom_easy_invoke_cb cb, void *user_data, ml_custom_easy_filter_h *custom); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_custom_easy_filter_register", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError RegisterCustomFilter(string name, IntPtr input_info, IntPtr output_info, CustomEasyInvokeCallback callback, IntPtr user_data, out IntPtr custom_handle);
+
+        /* int ml_pipeline_custom_easy_filter_unregister (ml_custom_easy_filter_h custom); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_custom_easy_filter_unregister", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError UnregisterCustomFilter(IntPtr custom_handle);
+
+        /* int ml_pipeline_element_get_handle (ml_pipeline_h pipe, const char *element_name, ml_pipeline_element_h *elem_h); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetElementHandle(IntPtr pipeline_handle, string element_name, out IntPtr element_handle);
+
+        /* int ml_pipeline_element_release_handle (ml_pipeline_element_h elem_h); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_release_handle", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError ReleaseElementHandle(IntPtr element_handle);
+
+        /* int ml_pipeline_element_set_property_bool (ml_pipeline_element_h elem_h, const char *property_name, const int32_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_bool", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyBool(IntPtr element_handle, string property_name, int value);
+
+        /* int ml_pipeline_element_set_property_string (ml_pipeline_element_h elem_h, const char *property_name, const char *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_string", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyString(IntPtr element_handle, string property_name, string value);
+
+        /* int ml_pipeline_element_set_property_int32 (ml_pipeline_element_h elem_h, const char *property_name, const int32_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_int32", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyInt32(IntPtr element_handle, string property_name, int value);
+
+        /* int ml_pipeline_element_set_property_int64 (ml_pipeline_element_h elem_h, const char *property_name, const int64_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_int64", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyInt64(IntPtr element_handle, string property_name, long value);
+
+        /* int ml_pipeline_element_set_property_uint32 (ml_pipeline_element_h elem_h, const char *property_name, const uint32_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_uint32", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyUInt32(IntPtr element_handle, string property_name, uint value);
+
+        /* int ml_pipeline_element_set_property_uint64 (ml_pipeline_element_h elem_h, const char *property_name, const uint64_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_uint64", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyUInt64(IntPtr element_handle, string property_name, ulong value);
+
+        /* int ml_pipeline_element_set_property_double (ml_pipeline_element_h elem_h, const char *property_name, const double value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_double", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyDouble(IntPtr element_handle, string property_name, double value);
+
+        /* int ml_pipeline_element_set_property_enum (ml_pipeline_element_h elem_h, const char *property_name, const uint32_t value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_set_property_enum", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetPropertyEnum(IntPtr element_handle, string property_name, uint value);
+
+        /* int ml_pipeline_element_get_property_bool (ml_pipeline_element_h elem_h, const char *property_name, int32_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_bool", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyBool(IntPtr element_handle, string property_name, out int value);
+
+        /* int ml_pipeline_element_get_property_string (ml_pipeline_element_h elem_h, const char *property_name, char **value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_string", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyString(IntPtr element_handle, string property_name, out string value);
+
+        /* int ml_pipeline_element_get_property_int32 (ml_pipeline_element_h elem_h, const char *property_name, int32_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_int32", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyInt32(IntPtr element_handle, string property_name, out int value);
+
+        /* int ml_pipeline_element_get_property_int64 (ml_pipeline_element_h elem_h, const char *property_name, int64_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_int64", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyInt64(IntPtr element_handle, string property_name, out long value);
+
+        /* int ml_pipeline_element_get_property_uint32 (ml_pipeline_element_h elem_h, const char *property_name, uint32_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_uint32", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyUInt32(IntPtr element_handle, string property_name, out uint value);
+
+        /* int ml_pipeline_element_get_property_uint64 (ml_pipeline_element_h elem_h, const char *property_name, uint64_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_uint64", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyUInt64(IntPtr element_handle, string property_name, out ulong value);
+
+        /* int ml_pipeline_element_get_property_double (ml_pipeline_element_h elem_h, const char *property_name, double *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_double", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyDouble(IntPtr element_handle, string property_name, out double value);
+
+        /* int ml_pipeline_element_get_property_enum (ml_pipeline_element_h elem_h, const char *property_name, uint32_t *value); */
+        [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_pipeline_element_get_property_enum", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetPropertyEnum(IntPtr element_handle, string property_name, out uint value);
     }
 
     internal static partial class SingleShot

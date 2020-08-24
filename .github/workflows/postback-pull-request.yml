@@ -1,0 +1,66 @@
+name: "Postback Pull Request"
+
+on:
+  workflow_run:
+    workflows: ["Build Pull Request"]
+    types:
+      - completed
+
+jobs:
+  postback:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download Artifacts from Build
+      uses: TizenAPI/tizenfx-build-actions/download-workflow-artifacts@master
+      with:
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        run-id: ${{ github.event.workflow_run.id }}
+        name: reports
+        path: Artifacts
+
+    - name: Find Pull Request
+      id: pull_request
+      uses: actions/github-script@v2
+      env:
+        WORKFLOW_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+      with:
+        script: |
+          const res = await github.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open'
+          });
+          if (res.status === 200) {
+            const pr = res.data.find(d => d.head.sha == process.env.WORKFLOW_HEAD_SHA);
+            if (pr) {
+              core.setOutput('number', pr.number);
+              core.setOutput('base_ref', pr.base.ref);
+            }
+          }
+
+    - name: Report Error if Failure
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      uses: actions/github-script@v2
+      env:
+        PR_NUMBER: ${{ steps.pull_request.outputs.number }}
+      with:
+        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const json = fs.readFileSync('Artifacts/errors.json', 'utf8');
+          const errors = JSON.parse(json).join('\n');
+          github.issues.createComment({
+            issue_number: process.env.PR_NUMBER,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '## Build Error:\n```\n' + errors + '\n```'
+          });
+
+    - name: Report API comparison result
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      uses: TizenAPI/tizenfx-build-actions/apidb-report@master
+      with:
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        issue-number: ${{ steps.pull_request.outputs.number }}
+        path: Artifacts/api-comp.json

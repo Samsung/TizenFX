@@ -745,6 +745,13 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Size2D temp = (Size2D)GetValue(Size2DProperty);
+
+                if (this.Layout == null)
+                {
+                    if (temp.Width < 0) { temp.Width = 0; }
+                    if (temp.Height < 0) { temp.Height = 0; }
+                }
+
                 return new Size2D(OnSize2DChanged, temp.Width, temp.Height);
             }
             set
@@ -2291,6 +2298,26 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(EnableControlStateProperty, value);
+            }
+        }
+
+         /// <summary>
+        /// Whether the actor grab all touches even if touch leaves its boundary.
+        /// </summary>
+        /// <returns>true, if it grab all touch after start</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GrabTouchAfterLeave
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.CaptureAllTouchAfterStart).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.CaptureAllTouchAfterStart, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
