@@ -151,6 +151,14 @@ namespace Tizen.NUI.Components
         {
         }
 
+        internal ColorSelector(SelectorChangedCallback<Color> cb) : base(cb)
+        {
+        }
+
+        internal ColorSelector(SelectorChangedCallback<Color> cb, Selector<Color> selector) : base(cb, selector)
+        {
+        }
+
         /// <summary>
         /// Color selector clone function.
         /// </summary>

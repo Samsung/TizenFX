@@ -52,6 +52,8 @@ namespace Tizen.NUI.Components
 
         private void Initialize(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
         {
+            FocusGroup = true;
+            SetKeyboardNavigationSupport(true);
             Scrolling += OnScrolling;
 
             this.adapter = adapter;
@@ -69,8 +71,8 @@ namespace Tizen.NUI.Components
         {
             layoutManager.Layout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
         }
-        
-        public int TotalItemCount 
+
+        public int TotalItemCount
         {
             get
             {
@@ -85,7 +87,7 @@ namespace Tizen.NUI.Components
 
         private void InitializeItems()
         {
-            for(int i = Children.Count -1 ; i > -1 ; i--)
+            for (int i = Children.Count - 1; i > -1; i--)
             {
                 Children[i].Unparent();
                 notifications[i].Notified -= OnItemSizeChanged;
@@ -218,7 +220,7 @@ namespace Tizen.NUI.Components
                 if (item.DataIndex > -1 && item.DataIndex < adapter.Data.Count)
                 {
                     item.Show();
-                    item.Name = "["+item.DataIndex+"]";
+                    item.Name = "[" + item.DataIndex + "]";
                     adapter.BindData(item);
                 }
                 else
@@ -242,6 +244,122 @@ namespace Tizen.NUI.Components
             // Destination is depending on implementation of layout manager.
             // Get destination from layout manager.
             return layoutManager.CalculateCandidateScrollPosition(position);
+        }
+
+        private View focusedView;
+        private int prevFocusedDataIndex = 0;
+
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            View nextFocusedView = null;
+
+            if (!focusedView)
+            {
+                // If focusedView is null, find child which has previous data index
+                if (Children.Count > 0 && Adapter.Data.Count > 0)
+                {
+                    for (int i = 0; i < Children.Count; i++)
+                    {
+                        RecycleItem item = Children[i] as RecycleItem;
+                        if (item.DataIndex == prevFocusedDataIndex)
+                        {
+                            nextFocusedView = item;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // If this is not first focus, request next focus to LayoutManager
+                nextFocusedView = LayoutManager.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
+            }
+
+            if (nextFocusedView)
+            {
+                // Check next focused view is inside of visible area.
+                // If it is not, move scroll position to make it visible.
+                Position scrollPosition = ContentContainer.CurrentPosition;
+                float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
+
+                float left = nextFocusedView.Position.X;
+                float right = nextFocusedView.Position.X + nextFocusedView.Size.Width;
+                float top = nextFocusedView.Position.Y;
+                float bottom = nextFocusedView.Position.Y + nextFocusedView.Size.Height;
+
+                float visibleRectangleLeft = -scrollPosition.X;
+                float visibleRectangleRight = -scrollPosition.X + Size.Width;
+                float visibleRectangleTop = -scrollPosition.Y;
+                float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
+
+                if (ScrollingDirection == Direction.Horizontal)
+                {
+                    if ((direction == View.FocusDirection.Left || direction == View.FocusDirection.Up) && left < visibleRectangleLeft)
+                    {
+                        targetPosition = left;
+                    }
+                    else if ((direction == View.FocusDirection.Right || direction == View.FocusDirection.Down) && right > visibleRectangleRight)
+                    {
+                        targetPosition = right - Size.Width;
+                    }
+                }
+                else
+                {
+                    if ((direction == View.FocusDirection.Up || direction == View.FocusDirection.Left) && top < visibleRectangleTop)
+                    {
+                        targetPosition = top;
+                    }
+                    else if ((direction == View.FocusDirection.Down || direction == View.FocusDirection.Right) && bottom > visibleRectangleBottom)
+                    {
+                        targetPosition = bottom - Size.Height;
+                    }
+                }
+
+                focusedView = nextFocusedView;
+                prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
+
+                ScrollTo(targetPosition, true);
+            }
+            else
+            {
+                // If nextView is null, it means that we should move focus to outside of Control.
+                // Return FocusableView depending on direction.
+                switch (direction)
+                {
+                    case View.FocusDirection.Left:
+                    {
+                        nextFocusedView = LeftFocusableView;
+                        break;
+                    }
+                    case View.FocusDirection.Right:
+                    {
+                        nextFocusedView = RightFocusableView;
+                        break;
+                    }
+                    case View.FocusDirection.Up:
+                    {
+                        nextFocusedView = UpFocusableView;
+                        break;
+                    }
+                    case View.FocusDirection.Down:
+                    {
+                        nextFocusedView = DownFocusableView;
+                        break;
+                    }
+                }
+
+                if(nextFocusedView)
+                {
+                    focusedView = null;
+                }
+                else
+                {
+                    //If FocusableView doesn't exist, not move focus.
+                    nextFocusedView = focusedView;
+                }
+            }
+
+            return nextFocusedView;
         }
     }
 }

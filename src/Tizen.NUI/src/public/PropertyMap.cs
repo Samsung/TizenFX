@@ -146,9 +146,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(string key, PropertyValue value)
         {
-            PropertyMap ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value)), false);
+            Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this;
         }
 
         /// <summary>
@@ -161,9 +161,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(int key, PropertyValue value)
         {
-            PropertyMap ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value)), false);
+            Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return this;
         }
 
         /// <summary>
@@ -174,18 +174,17 @@ namespace Tizen.NUI
         /// <returns>Returns a reference to this object.</returns>
         public PropertyMap Add(KeyValue keyValue)
         {
-            PropertyMap ret = new PropertyMap();
-            if ( keyValue.KeyInt != null )
+            if (keyValue.KeyInt != null)
             {
-                ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue)), false);
+                Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue));
             }
-            else if ( keyValue.KeyString != null )
+            else if (keyValue.KeyString != null)
             {
-                ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue)), false);
+                Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            return ret;
+            return this;
         }
 
         /// <summary>

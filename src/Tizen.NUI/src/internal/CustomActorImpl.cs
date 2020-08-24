@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,15 +42,15 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public virtual void OnStageConnection(int depth)
+        public virtual void OnSceneConnection(int depth)
         {
-            Interop.CustomActorImpl.CustomActorImpl_OnStageConnection(swigCPtr, depth);
+            Interop.CustomActorImpl.CustomActorImpl_OnSceneConnection(swigCPtr, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public virtual void OnStageDisconnection()
+        public virtual void OnSceneDisconnection()
         {
-            Interop.CustomActorImpl.CustomActorImpl_OnStageDisconnection(swigCPtr);
+            Interop.CustomActorImpl.CustomActorImpl_OnSceneDisconnection(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -82,13 +82,6 @@ namespace Tizen.NUI
         {
             Interop.CustomActorImpl.CustomActorImpl_OnSizeAnimation(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0)
-        {
-            bool ret = Interop.CustomActorImpl.CustomActorImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public virtual bool OnHoverEvent(Hover arg0)

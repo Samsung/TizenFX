@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -138,7 +139,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown() : base() { }
+        public DropDown() : base()
+        {
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
+        }
 
         /// <summary>
         /// Creates a new instance of a DropDown with style.
@@ -147,7 +151,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown(string style) : base(style) { }
+        public DropDown(string style) : base(style)
+        {
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
+        }
 
         /// <summary>
         /// Creates a new instance of a DropDown with style.
@@ -158,6 +165,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDown(DropDownStyle dropDownStyle) : base(dropDownStyle)
         {
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "DropDown");
         }
 
         /// <summary>

@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
+using System.Reflection;
 
 internal static partial class Interop
 {
@@ -195,6 +196,10 @@ internal static partial class Interop
             //int rpc_port_proxy_get_port(rpc_port_proxy_h h, rpc_port_port_type_e type, rpc_port_h* port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
             internal static extern ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
+
+            //int rpc_port_proxy_connect_sync(rpc_port_proxy_h h, const char* appid, const char* port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect_sync")]
+            internal static extern ErrorCode ConnectSync(IntPtr handle, string appId, string port);
         }
 
         internal static partial class Stub
@@ -246,6 +251,21 @@ internal static partial class Interop
             //int rpc_port_stub_get_port(rpc_port_stub_h h, rpc_port_port_type_e type, const char* instance, rpc_port_h *port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_get_port")]
             internal static extern ErrorCode GetPort(IntPtr handle, PortType t, string instance, out IntPtr port);
+        }
+
+        internal static partial class Port
+        {
+            //int rpc_port_set_private_sharing_array(rpc_port_h port, const char* paths[], unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array")]
+            internal static extern ErrorCode SetPrivateSharingArray(IntPtr handle, string[] paths, uint size);
+
+            //int rpc_port_set_private_sharing(rpc_port_h port, const char* path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array")]
+            internal static extern ErrorCode SetPrivateSharing(IntPtr handle, string path);
+
+            //int rpc_port_unset_private_sharing(rpc_port_h port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_unset_private_sharing")]
+            internal static extern ErrorCode UnsetPrivateSharing(IntPtr handle);
         }
     }
 }

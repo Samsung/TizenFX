@@ -44,6 +44,9 @@ namespace Tizen.NUI
     ///   else { //capture failure, do something. }
     /// }
     /// </code>
+    /// suppose that we want to capture View 'A'. And, the View 'A' is overlapped by another View 'B' that is not a child of 'A'.
+    /// in this case, if source is root of scene, the captured image includes a part of View 'B' on the 'A'.
+    /// however, if source is just View 'A', the result includes only 'A'.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Capture : BaseHandle
@@ -93,7 +96,77 @@ namespace Tizen.NUI
         /// <summary>
         /// Start capture and save the image as a file.
         /// </summary>
-        /// <param name="source">source View or Layer to be used for capture.</param>
+        /// <param name="source">source View or Layer to be used for capture.
+        /// This source must be added on the window in advance.</param>
+        /// <param name="position">top-left position of area to be captured.
+        /// this position is defined in the window.</param>
+        /// <param name="size">captured size.</param>
+        /// <param name="path">image file path to be saved as a file.
+        /// If path is empty string, the captured result is not be saved as a file.</param>
+        /// <param name="color">background color of captured scene.</param>
+        /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
+        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Start(Container source, Position position, Size size, string path, Color color )
+        {
+            if (size.Width <= 0 || size.Height <=0)
+            {
+                throw new InvalidOperationException("size should larger than zero");
+            }
+            else if (null == path)
+            {
+                throw new ArgumentNullException("path should not be null");
+            }
+
+            if (source is View || source is Layer)
+            {
+                Interop.Capture.Start4(swigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Start capture and save the image as a file.
+        /// </summary>
+        /// <param name="source">source View or Layer to be used for capture.
+        /// This source must be added on the window in advance.</param>
+        /// <param name="size">captured size.</param>
+        /// <param name="path">image file path to be saved as a file.
+        /// If path is empty string, the captured result is not be saved as a file.</param>
+        /// <param name="color">background color of captured scene.</param>
+        /// <param name="quality">The value to control image quality for jpeg file format in the range [1, 100].</param>
+        /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
+        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Start(Container source, Size size, string path, Color color, uint quality )
+        {
+            if (size.Width <= 0 || size.Height <=0)
+            {
+                throw new InvalidOperationException("size should larger than zero");
+            }
+            else if (null == path)
+            {
+                throw new ArgumentNullException("path should not be null");
+            }
+            else if (quality > 100)
+            {
+                throw new InvalidOperationException("quality should between 0 to 100");
+            }
+
+            if (source is View || source is Layer)
+            {
+                Interop.Capture.Start3(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Start capture and save the image as a file.
+        /// </summary>
+        /// <param name="source">source View or Layer to be used for capture.
+        /// This source must be added on the window in advance.</param>
         /// <param name="size">captured size.</param>
         /// <param name="path">image file path to be saved as a file.
         /// If path is empty string, the captured result is not be saved as a file.</param>
@@ -126,7 +199,8 @@ namespace Tizen.NUI
         /// <remarks>
         /// Background color of captured scene is transparent.
         /// </remarks>
-        /// <param name="source">source View or Layer to be used for capture.</param>
+        /// <param name="source">source View or Layer to be used for capture.
+        /// This source must be added on the window in advance.</param>
         /// <param name="size">captured size.</param>
         /// <param name="path">image file path to be saved as a file.
         /// If path is empty string, the captured result is not be saved as a file.</param>
@@ -150,6 +224,22 @@ namespace Tizen.NUI
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+        }
+
+        /// <summary>
+        /// Set result image quality in case of jpeg.
+        /// </summary>
+        /// <param name="quality">quality The value to control image quality for jpeg file format in the range [1, 100]</param>
+        /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when quality is lower than zero or over than 100.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetImageQuality(uint quality)
+        {
+            if (quality < 0 || quality > 100)
+            {
+                throw new InvalidOperationException("quality should between zero to 100");
+            }
+            
+            Interop.Capture.SetImageQuality(swigCPtr, quality);
         }
 
         private void onFinished(IntPtr data, int state)

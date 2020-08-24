@@ -4,6 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SupportedProfiles>mobile;wearable</SupportedProfiles>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
   </ItemGroup>

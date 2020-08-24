@@ -209,31 +209,17 @@ namespace Tizen.NUI.Components
 
             if (nextFocusChild != null)
             {
-                RequestChildRectangleOnScreen(mFlexibleView, nextFocusChild, recycler, false);
+                GetRectOfVisibleChild(mFlexibleView, nextFocusChild, recycler, false);
 
                 ChangeFocus(nextFocusPosition);
             }
         }
 
-        /**
-         * Requests that the given child of the FlexibleViewRecyclerView be positioned onto the screen. This
-         * method can be called for both unfocusable and focusable child views. For unfocusable
-         * child views, focusedChildVisible is typically true in which case, layout manager
-         * makes the child view visible only if the currently focused child stays in-bounds of RV.
-         * @param parent The parent FlexibleViewRecyclerView.
-         * @param child The direct child making the request.
-         * @param rect The rectangle in the child's coordinates the child
-         *              wishes to be on the screen.
-         * @param immediate True to forbid animated or delayed scrolling,
-         *                  false otherwise
-         * @param focusedChildVisible Whether the currently focused view must stay visible.
-         * @return Whether the group scrolled to handle the operation
-         */
-        internal bool RequestChildRectangleOnScreen(FlexibleView parent, FlexibleViewViewHolder child, FlexibleViewRecycler recycler, bool immediate)
+        internal bool GetRectOfVisibleChild(FlexibleView parent, FlexibleViewViewHolder child, FlexibleViewRecycler recycler, bool immediate)
         {
-            Vector2 scrollAmount = GetChildRectangleOnScreenScrollAmount(parent, child);
-            float dx = scrollAmount[0];
-            float dy = scrollAmount[1];
+            Vector2 amounts = GetRectOfVisibleChildScrollAmount(parent, child);
+            float dx = amounts[0];
+            float dy = amounts[1];
             if (dx != 0 || dy != 0)
             {
                 if (dx != 0 && CanScrollHorizontally())
@@ -771,7 +757,7 @@ namespace Tizen.NUI.Components
          * @return The array containing the scroll amount in x and y directions that brings the
          * given rect into RV's padded area.
          */
-        private Vector2 GetChildRectangleOnScreenScrollAmount(FlexibleView parent, FlexibleViewViewHolder child)
+        private Vector2 GetRectOfVisibleChildScrollAmount(FlexibleView parent, FlexibleViewViewHolder child)
         {
             Vector2 ret = new Vector2(0, 0);
             int parentLeft = PaddingLeft;
@@ -783,21 +769,14 @@ namespace Tizen.NUI.Components
             int childRight = (int)child.Right;
             int childBottom = (int)child.Bottom;
 
-            int offScreenLeft = Math.Min(0, childLeft - parentLeft);
-            int offScreenTop = Math.Min(0, childTop - parentTop);
-            int offScreenRight = Math.Max(0, childRight - parentRight);
-            int offScreenBottom = Math.Max(0, childBottom - parentBottom);
+            Extents offset = new Extents((ushort)Math.Min(0, childLeft - parentLeft),
+                                         (ushort)Math.Max(0, childRight - parentRight),
+                                         (ushort)Math.Min(0, childTop - parentTop),
+                                         (ushort)Math.Max(0, childBottom - parentBottom));
 
-            // Favor the "start" layout direction over the end when bringing one side or the other
-            // of a large rect into view. If we decide to bring in end because start is already
-            // visible, limit the scroll such that start won't go out of bounds.
-            int dx = offScreenLeft != 0 ? offScreenLeft
-                        : Math.Min(childLeft - parentLeft, offScreenRight);
+            int dx = offset.Start != 0 ? offset.Start : Math.Min(childLeft - parentLeft, offset.End);
 
-            // Favor bringing the top into view over the bottom. If top is already visible and
-            // we should scroll to make bottom visible, make sure top does not go out of bounds.
-            int dy = offScreenTop != 0 ? offScreenTop
-                    : Math.Min(childTop - parentTop, offScreenBottom);
+            int dy = offset.Top != 0 ? offset.Top : Math.Min(childTop - parentTop, offset.Bottom);
 
             ret.X = -dx;
             ret.Y = -dy;

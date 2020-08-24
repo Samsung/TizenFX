@@ -20,8 +20,13 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// The class storing extra data for a TextField to optimize size of it.
     /// </summary>
-    internal class TextFieldSelectorData : TextLabelSelectorData
+    internal class TextFieldSelectorData
     {
+        public TriggerableSelector<string> TranslatableText { get; } = new TriggerableSelector<string>(TextField.TranslatableTextProperty);
+        public TriggerableSelector<string> Text { get; } = new TriggerableSelector<string>(TextField.TextProperty);
+        public TriggerableSelector<string> FontFamily { get; } = new TriggerableSelector<string>(TextField.FontFamilyProperty);
+        public TriggerableSelector<Color> TextColor { get; } = new TriggerableSelector<Color>(TextField.TextColorProperty, GetTextColor);
+        public TriggerableSelector<float?> PointSize { get; } = new TriggerableSelector<float?>(TextField.PointSizeProperty);
         public TriggerableSelector<string> TranslatablePlaceholderText { get; } = new TriggerableSelector<string>(TextField.TranslatablePlaceholderTextProperty);
         public TriggerableSelector<Vector4> PlaceholderTextColor { get; } = new TriggerableSelector<Vector4>(TextField.PlaceholderTextColorProperty, delegate (View view)
         {
@@ -43,13 +48,26 @@ namespace Tizen.NUI.BaseComponents
             return null;
         });
 
-        public override void Reset(View view)
+        public void Reset(View view)
         {
+            TranslatableText.Reset(view);
+            Text.Reset(view);
+            FontFamily.Reset(view);
+            TextColor.Reset(view);
+            PointSize.Reset(view);
             TranslatablePlaceholderText.Reset(view);
             PlaceholderTextColor.Reset(view);
             PrimaryCursorColor.Reset(view);
+        }
 
-            base.Reset(view);
+        private static Color GetTextColor(View view)
+        {
+            Color color = new Color();
+            if (view.GetProperty(TextField.Property.TEXT_COLOR).Get(color))
+            {
+                return color;
+            }
+            return null;
         }
     }
 }

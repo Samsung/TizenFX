@@ -22,7 +22,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a grid layout
+    /// GridLayout is a 2D grid pattern layout that consists of a set of rows and columns.
     /// </summary>
     public partial class GridLayout : LayoutGroup
     {
@@ -82,10 +82,9 @@ namespace Tizen.NUI
         private float rowSpacing = 0;
 
         /// <summary>
-        /// [Draft] Enumeration for the direction in which the content is laid out
+        /// Enumeration for the direction in which the content is laid out
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public enum Orientation
         {
             /// <summary>
@@ -101,7 +100,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the column index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static int GetColumn(View view)
         {
             return (int)view.GetValue(ColumnProperty);
@@ -110,7 +109,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the column span.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static int GetColumnSpan(View view)
         {
             return (int)view.GetValue(ColumnSpanProperty);
@@ -119,7 +118,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the row index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static int GetRow(View view)
         {
             return (int)view.GetValue(RowProperty);
@@ -128,7 +127,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the row span.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static int GetRowSpan(View view)
         {
             return (int)view.GetValue(RowSpanProperty);
@@ -137,7 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the value how child is resized within its horizontal space.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static StretchFlags GetHorizontalStretch(View view)
         {
             return (StretchFlags)view.GetValue(HorizontalStretchProperty);
@@ -146,7 +145,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the value how child is resized within its vertical space.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static StretchFlags GetVerticalStretch(View view)
         {
             return (StretchFlags)view.GetValue(VerticalStretchProperty);
@@ -155,7 +154,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the horizontal alignment of this child.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static Alignment GetHorizontalAlignment(View view)
         {
             return (Alignment)view.GetValue(HorizontalAlignmentProperty);
@@ -164,7 +163,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the vertical alignment of this child.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static Alignment GetVerticalAlignment(View view)
         {
             return (Alignment)view.GetValue(VerticalAlignmentProperty);
@@ -173,7 +172,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the column index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetColumn(View view, int value)
         {
             SetChildValue(view, ColumnProperty, value);
@@ -182,7 +181,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the column span.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetColumnSpan(View view, int value)
         {
             SetChildValue(view, ColumnSpanProperty, value);
@@ -191,7 +190,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the row index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetRow(View view, int value)
         {
             SetChildValue(view, RowProperty, value);
@@ -200,7 +199,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the row span.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetRowSpan(View view, int value)
         {
             SetChildValue(view, RowSpanProperty, value);
@@ -209,7 +208,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetHorizontalStretch(View view, StretchFlags value)
         {
             SetChildValue(view, HorizontalStretchProperty, value);
@@ -218,7 +217,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetVerticalStretch(View view, StretchFlags value)
         {
             SetChildValue(view, VerticalStretchProperty, value);
@@ -227,7 +226,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the horizontal alignment of this child inside the cells.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetHorizontalAlignment(View view, Alignment value)
         {
             SetChildValue(view, HorizontalAlignmentProperty, value);
@@ -236,53 +235,48 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the vertical alignment of this child inside the cells.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public static void SetVerticalAlignment(View view, Alignment value)
         {
             SetChildValue(view, VerticalAlignmentProperty, value);
         }
 
         /// <summary>
-        /// [Draft] The Distance between Column
+        /// The distance between columns.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public float ColumnSpacing
         {
             get => columnSpacing;
             set
             {
                 if (columnSpacing == value) return;
-                if (columnSpacing < 0) columnSpacing = 0;
-                columnSpacing = value;
+                columnSpacing = value > 0 ? value : 0;
 
                 RequestLayout();
             }
         }
 
         /// <summary>
-        /// [Draft] The Distance between Rows
+        /// The distance between rows.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public float RowSpacing
         {
             get => rowSpacing;
             set
             {
                 if (rowSpacing == value) return;
-                if (rowSpacing < 0) rowSpacing = 0;
-                rowSpacing = value;
+                rowSpacing = value > 0 ? value : 0;
 
                 RequestLayout();
             }
         }
 
         /// <summary>
-        /// [Draft] Get/Set the orientation in the layout
+        /// Get/Set the orientation in the layout
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Orientation GridOrientation
         {
             get => gridOrientation;
@@ -295,7 +289,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [draft] GridLayout Constructor/>
+        /// GridLayout Constructor.
         /// </summary>
         /// <returns> New Grid object.</returns>
         /// <since_tizen> 6 </since_tizen>
@@ -304,7 +298,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the number of columns in the GridLayout should have.
+        /// Gets or Sets the number of columns in the grid.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Columns
@@ -321,10 +315,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [draft ]Get/Set the number of rows in the grid
+        /// Gets or Sets the number of rows in the grid.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public int Rows
         {
             get => rows;
@@ -423,52 +416,52 @@ namespace Tizen.NUI
         /// <summary>
         /// The value how child is resized within its space.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         [Flags]
         public enum StretchFlags
         {
             /// <summary>
             /// Respect mesured size of the child.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             None = 0,
             /// <summary>
             /// Resize to completely fill the space.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             Fill = 1,
             /// <summary>
             /// Expand to share available space in GridLayout.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             Expand = 2,
             /// <summary>
             /// Expand to share available space in GridLayout and fill the space.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             ExpandAndFill = Fill + Expand,
         }
 
         /// <summary>
         /// The alignment of the grid layout child.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public enum Alignment
         {
             /// <summary>
             /// At the start of the container.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             Start = 0,
             /// <summary>
             /// At the center of the container
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             Center = 1,
             /// <summary>
             /// At the end of the container.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 8 </since_tizen>
             End = 2,
         }
     }
