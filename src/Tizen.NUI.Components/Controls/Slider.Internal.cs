@@ -45,6 +45,7 @@ namespace Tizen.NUI.Components
         private EventHandler<ValueChangedArgs> valueChangedHandler;
         private EventHandler<SlidingFinishedArgs> slidingFinishedHandler;
         private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
+        private EventHandler<SliderSlidingStartedEventArgs> sliderSlidingStartedHandler;
         private EventHandler<SliderSlidingFinishedEventArgs> sliderSlidingFinishedHandler;
         private EventHandler<StateChangedArgs> stateChangedHandler;
 
@@ -180,6 +181,12 @@ namespace Tizen.NUI.Components
                 else if (direction == DirectionType.Vertical)
                 {
                     currentSlidedOffset = slidedTrackImage.SizeHeight;
+                }
+                if (null != sliderSlidingStartedHandler)
+                {
+                    SliderSlidingStartedEventArgs args = new SliderSlidingStartedEventArgs();
+                    args.CurrentValue = curValue;
+                    sliderSlidingStartedHandler(this, args);
                 }
                 UpdateState(isFocused, true);
             }
