@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -542,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -550,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OffWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -606,19 +606,56 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        private void OnSize2DChanged(int width, int height)
+        private void OnSize2DChanged(int? width, int? height)
         {
-            Size2D = new Size2D(width, height);
+            if (width != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+            }
+            if (height != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+            }
         }
 
-        private void OnMinimumSizeChanged(int width, int height)
+        private void OnMinimumSizeChanged(int? width, int? height)
         {
-            MinimumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MinimumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MinimumSize = new Size2D((int)width, (int)this.GetMinimumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MinimumSize = new Size2D((int)this.GetMinimumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
-        private void OnMaximumSizeChanged(int width, int height)
+        private void OnMaximumSizeChanged(int? width, int? height)
         {
-            MaximumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MaximumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MaximumSize = new Size2D((int)width, (int)this.GetMaximumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MaximumSize = new Size2D((int)this.GetMaximumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
         private void OnPosition2DChanged(int x, int y)
@@ -626,9 +663,20 @@ namespace Tizen.NUI.BaseComponents
             Position2D = new Position2D(x, y);
         }
 
-        private void OnSizeChanged(float width, float height, float depth)
+        private void OnSizeChanged(float? width, float? height, float? depth)
         {
-            Size = new Size(width, height, depth);
+            if (width != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+            }
+            if (height != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+            }
+            if (depth != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue((float)depth));
+            }
         }
 
         private void OnPositionChanged(float x, float y, float z)

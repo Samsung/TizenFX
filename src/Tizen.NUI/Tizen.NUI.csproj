@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <TizenPreloadFile Include="Tizen.NUI.preload" Sequence="30" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />

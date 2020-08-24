@@ -918,5 +918,22 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(textEditor.swigCPtr, TextEditor.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION).Get(out temp);
             return (bool)temp;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(TextEditor), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textEditor.swigCPtr, TextEditor.Property.MAX_LENGTH, new Tizen.NUI.PropertyValue((int)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            int temp = 0;
+            Tizen.NUI.Object.GetProperty(textEditor.swigCPtr, TextEditor.Property.MAX_LENGTH).Get(out temp);
+            return temp;
+        });
     }
 }
