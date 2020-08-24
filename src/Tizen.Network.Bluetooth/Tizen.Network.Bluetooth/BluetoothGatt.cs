@@ -188,7 +188,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 3 </since_tizen>
         public void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            _impl.SendNotification(characteristic, clientAddress);
+            _ = _impl.SendIndicationAsync(this, characteristic, clientAddress);
         }
 
         /// <summary>
@@ -824,6 +824,7 @@ namespace Tizen.Network.Bluetooth
         /// The NotificationStateChanged event is called when the client enables or disables the Notification/Indication for particular characteristics.
         /// </summary>
         /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
         /// Adding event handle on the characteristic on the client side will not have any effect.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1080,6 +1081,9 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when the client request to read the value of a characteristic or a descriptor.
         /// </summary>
+        /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the set read value requested callback procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ReadRequestedEventArgs> ReadRequested
@@ -1108,6 +1112,9 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when a value of a characteristic or a descriptor has been changed by a client.
         /// </summary>
+        /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the set write value requested callback procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WriteRequestedEventArgs> WriteRequested
@@ -1119,7 +1126,9 @@ namespace Tizen.Network.Bluetooth
                 {
                     _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, response_needed, offset, valueToWrite, len, userData) =>
                     {
-                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
+                        byte[] writeValue = new byte[len];
+                        Marshal.Copy(valueToWrite, writeValue, 0, len);
+                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, writeValue, offset, response_needed));
                     };
                     Impl.SetWriteValueRequestedEventCallback(_writeValueRequestedCallback);
                 }

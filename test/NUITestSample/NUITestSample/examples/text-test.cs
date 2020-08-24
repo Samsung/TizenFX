@@ -152,6 +152,7 @@ namespace TextTest
             editor.EnableSelection = true;
             editor.Focusable = true;
             editor.Placeholder = propertyMap;
+            editor.MaxLength = 10;
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
                 Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
@@ -159,6 +160,9 @@ namespace TextTest
 
             editor.ScrollStateChanged += (obj, e)=> {
                 Tizen.Log.Debug("NUI", "editor scroll state:" + e.ScrollState);
+            };
+            editor.MaxLengthReached += (obj, e)=> {
+                Tizen.Log.Debug("NUI", "editor max length: "+ e.TextEditor.MaxLength);
             };
 
             Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);

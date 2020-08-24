@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
+using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
@@ -404,6 +405,8 @@ namespace Tizen.NUI.Components
             EnableControlStatePropagation = true;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
         }
 
         private void UpdateUIContent()
@@ -435,6 +438,38 @@ namespace Tizen.NUI.Components
         {
             MeasureText();
             LayoutChild();
+        }
+
+        internal override bool OnAccessibilityActivated()
+        {
+            if (!IsEnabled)
+            {
+                return false;
+            }
+
+            // Touch Down
+            isPressed = true;
+            UpdateState();
+
+            // Touch Up
+            bool clicked = isPressed && IsEnabled;
+            isPressed = false;
+
+            if (IsSelectable)
+            {
+                IsSelected = !IsSelected;
+            }
+            else
+            {
+                UpdateState();
+            }
+
+            if (clicked)
+            {
+                ClickedEventArgs eventArgs = new ClickedEventArgs();
+                OnClickedInternal(eventArgs);
+            }
+            return true;
         }
 
     }

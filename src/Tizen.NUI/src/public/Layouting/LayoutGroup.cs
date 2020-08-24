@@ -278,19 +278,14 @@ namespace Tizen.NUI
                 {
                     if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
                     {
-                        // Child wants to be our size. So be it.
                         resultMode = MeasureSpecification.ModeType.Exactly;
                     }
                     else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
                     {
-                        // Child wants to determine its own size. It can't be
-                        // bigger than us.
-                        // Don't need parent's size. Size of this child will be determined by its children.
                         resultMode = MeasureSpecification.ModeType.AtMost;
                     }
                     else
                     {
-                        // Child has its own size.
                         resultSize = childDimension;
                         resultMode = MeasureSpecification.ModeType.Exactly;
                     }

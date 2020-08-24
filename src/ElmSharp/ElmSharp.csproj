@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TizenPreloadFile Include="ElmSharp.preload" Sequence="30" />
+  </ItemGroup>
+
 </Project>

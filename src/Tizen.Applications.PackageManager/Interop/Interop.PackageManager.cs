@@ -227,5 +227,18 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move_with_cb")]
         internal static extern ErrorCode PackageManagerRequestMoveWithCB(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages")]
+        internal static extern ErrorCode PackageManagerRequestInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages")]
+        internal static extern ErrorCode PackageManagerRequestMountInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestMountInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
     }
 }

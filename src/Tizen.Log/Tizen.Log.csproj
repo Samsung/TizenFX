@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <TizenPreloadFile Include="Tizen.Log.preload" Sequence="30" />
+  </ItemGroup>
+
 </Project>

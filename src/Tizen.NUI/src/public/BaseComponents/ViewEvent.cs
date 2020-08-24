@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -542,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -550,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OffWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

@@ -62,6 +62,7 @@ namespace Tizen.NUI.Xaml
         {
             Func<object> getConverter = () =>
             {
+                MemberInfo memberInfo;
                 string converterTypeName = null;
                 Type realType = toType;
 
@@ -71,6 +72,8 @@ namespace Tizen.NUI.Xaml
                 }
 
                 converterTypeName = realType.CustomAttributes.GetTypeConverterTypeName();
+                if (minfoRetriever != null && (memberInfo = minfoRetriever()) != null)
+                    converterTypeName = memberInfo.CustomAttributes.GetTypeConverterTypeName() ?? converterTypeName;
 
                 if (converterTypeName == null)
                 {

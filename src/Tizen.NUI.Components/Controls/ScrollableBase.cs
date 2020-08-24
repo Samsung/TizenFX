@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -62,7 +63,9 @@ namespace Tizen.NUI.Components
         static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
+        private int mScrollDuration = 125;
         private int mPageWidth = 0;
+        private float mPageFlickThreshold = 0.4f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -262,7 +265,17 @@ namespace Tizen.NUI.Components
         /// Default value is 125ms.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public int ScrollDuration { set; get; } = 125;
+        public int ScrollDuration
+        {
+            set
+            {
+                mScrollDuration = value >= 0 ? value : mScrollDuration;
+            }
+            get
+            {
+                return mScrollDuration;
+            }
+        }
 
         /// <summary>
         /// Scroll Available area.
@@ -417,7 +430,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                decelerationRate = value;
+                decelerationRate = (value < 1 && value > 0) ? value : decelerationRate;
                 logValueOfDeceleration = (float)Math.Log(value);
             }
         }
@@ -433,7 +446,17 @@ namespace Tizen.NUI.Components
         /// The unit of threshold is pixel per milisec.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public float PageFlickThreshold { get; set; } = 0.4f;
+        public float PageFlickThreshold
+        {
+            get
+            {
+                return mPageFlickThreshold;
+            }
+            set
+            {
+                mPageFlickThreshold = value >= 0f ? value : mPageFlickThreshold;
+            }
+        }
 
         /// <summary>
         /// Alphafunction for scroll animation.
@@ -512,6 +535,8 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
 
         private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -574,7 +599,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase. 
+        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase.
         /// Set the composition that will go into the ScrollableBase according to your ScrollableBase.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -880,12 +905,17 @@ namespace Tizen.NUI.Components
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            OnPanGesture(e.PanGesture);
+        }
+
+        private void OnPanGesture(PanGesture panGesture)
+        {
             if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
                 return;
             }
 
-            if (e.PanGesture.State == Gesture.StateType.Started)
+            if (panGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
@@ -897,21 +927,21 @@ namespace Tizen.NUI.Components
                 totalDisplacementForPan = 0.0f;
                 OnScrollDragStarted();
             }
-            else if (e.PanGesture.State == Gesture.StateType.Continuing)
+            else if (panGesture.State == Gesture.StateType.Continuing)
             {
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    ScrollBy(e.PanGesture.Displacement.X, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.X;
+                    ScrollBy(panGesture.Displacement.X, false);
+                    totalDisplacementForPan += panGesture.Displacement.X;
                 }
                 else
                 {
-                    ScrollBy(e.PanGesture.Displacement.Y, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.Y;
+                    ScrollBy(panGesture.Displacement.Y, false);
+                    totalDisplacementForPan += panGesture.Displacement.Y;
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (e.PanGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished)
             {
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
@@ -922,7 +952,7 @@ namespace Tizen.NUI.Components
                     scrollAnimation.Finished += ScrollAnimationFinished;
                 }
 
-                float panVelocity = (ScrollingDirection == Direction.Horizontal) ? e.PanGesture.Velocity.X : e.PanGesture.Velocity.Y;
+                float panVelocity = (ScrollingDirection == Direction.Horizontal) ? panGesture.Velocity.X : panGesture.Velocity.Y;
 
                 if (SnapToPage)
                 {
@@ -930,7 +960,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    if(panVelocity == 0)
+                    if (panVelocity == 0)
                     {
                         float currentScrollPosition = (ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
                         scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
@@ -949,6 +979,17 @@ namespace Tizen.NUI.Components
                 readyToNotice = true;
                 OnScrollAnimationStarted();
             }
+        }
+
+        internal override bool OnAccessibilityPan(PanGesture gestures)
+        {
+            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
+            {
+                return false;
+            }
+
+            OnPanGesture(gestures);
+            return true;
         }
 
         private float CustomScrollAlphaFunction(float progress)
@@ -991,7 +1032,7 @@ namespace Tizen.NUI.Components
             // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
             //
             // Because of final T is tending to inifity, we should use threshold value to finish.
-            // Final T = log(-threshold * log d / |V0| ) / log d; 
+            // Final T = log(-threshold * log d / |V0| ) / log d;
 
             velocityOfLastPan = Math.Abs(velocity);
 
@@ -1081,6 +1122,31 @@ namespace Tizen.NUI.Components
             return position;
         }
 
+        /// <summary>
+        /// Scroll position given to ScrollTo.
+        /// This is the position in the opposite direction to the position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.Position);
+            }
+        }
+
+        /// <summary>
+        /// Current scroll position in the middle of ScrollTo animation.
+        /// This is the position in the opposite direction to the current position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollCurrentPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.CurrentPosition);
+            }
+        }
     }
 
 } // namespace

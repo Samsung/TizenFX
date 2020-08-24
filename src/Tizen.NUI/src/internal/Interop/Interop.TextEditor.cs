@@ -164,6 +164,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_InputStyleChangedSignal")]
             public static extern global::System.IntPtr TextEditor_InputStyleChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_MaxLengthReachedSignal")]
+            public static extern global::System.IntPtr TextEditor_MaxLengthReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditorSignal_Empty")]
             public static extern bool TextEditorSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -184,7 +187,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextEditorSignal")]
             public static extern void delete_TextEditorSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SWIGUpcast")]
             public static extern global::System.IntPtr TextEditor_SWIGUpcast(global::System.IntPtr jarg1);
 
@@ -229,6 +232,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextEditor_Property_SCROLL_BAR_FADE_DURATION_get")]
             public static extern int TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_MAX_LENGTH_get")]
+            public static extern int TextEditor_Property_MAX_LENGTH_get();
 
             //manual pinvoke for text-editor ScrollStateChangedSignal
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_ScrollStateChangedSignal")]
