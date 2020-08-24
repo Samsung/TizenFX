@@ -38,6 +38,19 @@ namespace Tizen.NUI.Components
     /// Slider sliding finished event data.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    public class SliderSlidingStartedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Current Slider value
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public float CurrentValue { get; set; }
+    }
+
+    /// <summary>
+    /// Slider sliding finished event data.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public class SliderSlidingFinishedEventArgs : EventArgs
     {
         /// <summary>
@@ -177,6 +190,22 @@ namespace Tizen.NUI.Components
             remove
             {
                 sliderValueChangedHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The sliding finished event handler.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<SliderSlidingStartedEventArgs> SlidingStarted
+        {
+            add
+            {
+                sliderSlidingStartedHandler += value;
+            }
+            remove
+            {
+                sliderSlidingStartedHandler -= value;
             }
         }
 
@@ -430,6 +459,26 @@ namespace Tizen.NUI.Components
                 else
                 {
                     thumbImage.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the color of the thumb image object.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Color ThumbColor
+        {
+            get
+            {
+                return thumbImage?.Color;
+            }
+            set
+            {
+                if (null != thumbImage)
+                {
+                    thumbImage.Color = value;
+                    sliderStyle.Thumb.Color = value;
                 }
             }
         }
