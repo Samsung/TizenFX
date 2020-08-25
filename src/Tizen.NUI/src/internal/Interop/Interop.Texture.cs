@@ -46,6 +46,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Texture_GetHeight")]
             public static extern uint Texture_GetHeight(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Texture_TbmSurface")]
+            public static extern global::System.IntPtr Texture_New__TbmSurface(IntPtr jarg1);
         }
     }
 }
