@@ -227,6 +227,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The StyleName, type string.
+        /// The value indicates DALi style name defined in json theme file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string StyleName

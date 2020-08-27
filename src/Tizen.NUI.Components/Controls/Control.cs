@@ -94,22 +94,22 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Construct with styleSheet
+        /// Construct with style name
         /// </summary>
-        /// <param name="styleSheet">StyleSheet to be applied</param>
+        /// <param name="styleName">The name of style in the current theme to be applied</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string styleSheet) : base()
+        public Control(string styleName) : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleSheet);
+            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleName);
             if (viewStyle == null)
             {
-                throw new InvalidOperationException($"There is no style {styleSheet}");
+                throw new InvalidOperationException($"There is no style {styleName}");
             }
 
             ApplyStyle(viewStyle);
-            this.StyleName = styleSheet;
+            this.StyleName = styleName;
 
             Initialize();
         }

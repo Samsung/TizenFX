@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         /// <summary>
-        /// StyleNameProperty
+        /// StyleNameProperty (DALi json)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create("StyleName", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
