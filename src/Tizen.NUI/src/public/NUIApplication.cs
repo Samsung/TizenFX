@@ -40,6 +40,9 @@ namespace Tizen.NUI
         private Size2D _windowSize2D = null;
         private Position2D _windowPosition2D = null;
 
+        private FrameProvider frameProvider;
+        private FrameBrokerBase frameBroker;
+
         /// <summary>
         /// The default constructor.
         /// </summary>
@@ -374,7 +377,6 @@ namespace Tizen.NUI
         {
             base.OnCreate();
         }
-
         /// <summary>
         /// This is used to improve application launch performance.
         /// </summary>
@@ -383,6 +385,50 @@ namespace Tizen.NUI
         {
             Interop.Application.Application_PreInitialize();
             Application.NewApplication("", Application.WindowMode.Opaque);
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFrameProvider(EventHandler shown = null, EventHandler hidden = null)
+        {
+            frameProvider = new FrameProvider(GetDefaultWindow());
+            if (shown != null)
+            {
+                frameProvider.Shown += shown;
+            }
+            if (hidden != null)
+            {
+                frameProvider.Hidden += hidden;
+            }
+
+            frameProvider.Shown += FrameProvider_Shown;
+            frameProvider.Hidden += FrameProvider_Hidden;
+        }
+
+        private void FrameProvider_Shown(object sender, EventArgs e)
+        {
+            Bundle bundle = new Bundle();
+            frameProvider.NotifyShowStatus(bundle);
+        }
+
+        private void FrameProvider_Hidden(object sender, EventArgs e)
+        {
+            Bundle bundle = new Bundle();
+            frameProvider.NotifyHideStatus(bundle);
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFramerBroker(FrameBrokerBase framerBroker)
+        {
+            this.frameBroker = framerBroker;
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendLaunchRequest(AppControl appControl, bool toProvider)
+        {
+            this.frameBroker.SendLaunchRequest(appControl, toProvider);
         }
     }
 
