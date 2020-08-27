@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         /// <summary>
-        /// StyleNameProperty
+        /// StyleNameProperty (DALi json)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create("StyleName", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -155,12 +155,7 @@ namespace Tizen.NUI.BaseComponents
             string backgroundImage = "";
 
             Tizen.NUI.PropertyMap background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
-            if ((visualType == (int)Visual.Type.Image) || (visualType == (int)Visual.Type.NPatch))
-            {
-                background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-            }
+            background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
 
             return backgroundImage;
         });
