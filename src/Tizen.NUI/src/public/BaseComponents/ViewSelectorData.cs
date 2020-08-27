@@ -38,17 +38,9 @@ namespace Tizen.NUI.BaseComponents
         });
         public TriggerableSelector<string> BackgroundImage { get; } = new TriggerableSelector<string>(View.BackgroundImageProperty, delegate(View view)
         {
-            var background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
-
-            if ((visualType == (int)Visual.Type.Image) || (visualType == (int)Visual.Type.NPatch))
-            {
-                string backgroundImage = "";
-                background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-                return backgroundImage;
-            }
-            return null;
+            string backgroundImage = null;
+            view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
+            return backgroundImage;
         });
         public TriggerableSelector<Rectangle> BackgroundImageBorder { get; } = new TriggerableSelector<Rectangle>(View.BackgroundImageBorderProperty);
         public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate(View view)
