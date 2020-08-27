@@ -2216,15 +2216,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _backgroundImageSynchronosLoading = value;
-                string bgUrl = "";
-                int visualType = 0;
-                Background.Find(Visual.Property.Type)?.Get(out visualType);
-                if (visualType == (int)Visual.Type.Image)
-                {
-                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                }
 
-                if (bgUrl.Length != 0)
+                string bgUrl = null;
+                Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+
+                if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
                     bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));

@@ -155,12 +155,7 @@ namespace Tizen.NUI.BaseComponents
             string backgroundImage = "";
 
             Tizen.NUI.PropertyMap background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
-            if ((visualType == (int)Visual.Type.Image) || (visualType == (int)Visual.Type.NPatch))
-            {
-                background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-            }
+            background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
 
             return backgroundImage;
         });
