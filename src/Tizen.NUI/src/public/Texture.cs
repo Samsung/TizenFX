@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -44,6 +45,11 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+        }
+
+        internal Texture(IntPtr tbmSurface) : this(Interop.Texture.Texture_New__TbmSurface(tbmSurface), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Texture.Texture_SWIGUpcast(cPtr), cMemoryOwn)

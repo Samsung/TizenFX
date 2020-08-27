@@ -309,7 +309,7 @@ namespace Tizen.Network.Connection
         /// <param name="hostAddress">The IP address of the host.</param>
         /// <param name="gateway">The gateway address.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.route</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
@@ -334,7 +334,7 @@ namespace Tizen.Network.Connection
         /// <param name="hostAddress">The IP address of the host.</param>
         /// <param name="gateway">The gateway address.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.route</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
