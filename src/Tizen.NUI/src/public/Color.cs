@@ -142,6 +142,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The conversion constructor from an System.Drawing.Color instance.
+        /// </summary>
+        /// <param name="color">System.Drawing.Color instance</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(global::System.Drawing.Color color) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        {
+            R = color.R / 255.0f;
+            G = color.G / 255.0f;
+            B = color.B / 255.0f;
+            A = color.A / 255.0f;
+        }
+
+        /// <summary>
         /// The copy constructor.
         /// </summary>
         /// <param name="other">The copy target.</param>
