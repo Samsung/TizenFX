@@ -12,13 +12,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr new_Wheel__SWIG_0();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Wheel__SWIG_1")]
-            public static extern global::System.IntPtr new_Wheel__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_Assign")]
-            public static extern global::System.IntPtr Wheel_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_New")]
-            public static extern global::System.IntPtr Wheel_New(int jarg1, int jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5, uint jarg6);
+            public static extern global::System.IntPtr new_Wheel__SWIG_1(int jarg1, int jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5, uint jarg6);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Wheel")]
             public static extern void delete_Wheel(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -32,20 +26,38 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_IsAltModifier")]
             public static extern bool Wheel_IsAltModifier(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_type_set")]
+            public static extern void Wheel_type_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_type_get")]
             public static extern int Wheel_type_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_direction_set")]
+            public static extern void Wheel_direction_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_direction_get")]
             public static extern int Wheel_direction_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_modifiers_set")]
+            public static extern void Wheel_modifiers_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_modifiers_get")]
             public static extern uint Wheel_modifiers_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_point_set")]
+            public static extern void Wheel_point_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_point_get")]
             public static extern global::System.IntPtr Wheel_point_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_delta_get")]
-            public static extern int Wheel_delta_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_z_set")]
+            public static extern void Wheel_z_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_z_get")]
+            public static extern int Wheel_z_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_timeStamp_set")]
+            public static extern void Wheel_timeStamp_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_timeStamp_get")]
             public static extern uint Wheel_timeStamp_get(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -70,9 +82,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_StageWheelSignal")]
             public static extern void delete_StageWheelSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_SWIGUpcast")]
-            public static extern global::System.IntPtr Wheel_SWIGUpcast(global::System.IntPtr jarg1);
         }
     }
 }
