@@ -16,11 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\*.json">
+    <None Update="res\nui\images\360x360\*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TizenProfile>wearable</TizenProfile>
     </None>
-    <None Update="res\*.png">
+    <None Update="res\nui\images\360x360\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TizenProfile>wearable</TizenProfile>
     </None>
   </ItemGroup>
 

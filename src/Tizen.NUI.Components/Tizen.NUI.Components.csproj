@@ -4,6 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SupportedProfiles>mobile;tv;wearable</SupportedProfiles>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
@@ -11,8 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\*.png">
+    <None Update="res\nui\images\common\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="res\nui\images\1920x1080\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TizenProfile>tv</TizenProfile>
     </None>
   </ItemGroup>
 

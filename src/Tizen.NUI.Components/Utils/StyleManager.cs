@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         private const string defaultThemeName = "DEFAULT"; //"default";
         private const string wearableThemeName = "WEARABLE"; //"wearable";
         
-        private string currentThemeName = defaultThemeName;
+        private static string currentThemeName = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
         private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
 
@@ -238,7 +238,11 @@ namespace Tizen.NUI.Components
 
         internal static string GetFrameworkResourcePath(string resourceFileName)
         {
-            return "/usr/share/dotnet.tizen/framework/res/" + resourceFileName;
+            if (string.Equals(currentThemeName, wearableThemeName))
+            {
+                return "/usr/share/dotnet.tizen/framework/res/nui/images/360x360/" + resourceFileName;
+            }
+            return "/usr/share/dotnet.tizen/framework/res/nui/images/common/" + resourceFileName;
         }
 
         private void SetInitialThemeByDeviceProfile()
