@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -48,7 +47,7 @@ namespace Tizen.NUI
         /// <param name="z">The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).</param>
         /// <param name="timeStamp">The time the wheel is being rolled.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(Interop.Wheel.Wheel_New((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
+        public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(Interop.Wheel.new_Wheel__SWIG_1((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -150,6 +149,11 @@ namespace Tizen.NUI
 
         private Wheel.WheelType type
         {
+            set
+            {
+                Interop.Wheel.Wheel_type_set(swigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
                 Wheel.WheelType ret = (Wheel.WheelType)Interop.Wheel.Wheel_type_get(swigCPtr);
@@ -160,6 +164,11 @@ namespace Tizen.NUI
 
         private int direction
         {
+            set
+            {
+                Interop.Wheel.Wheel_direction_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
                 int ret = Interop.Wheel.Wheel_direction_get(swigCPtr);
@@ -170,6 +179,11 @@ namespace Tizen.NUI
 
         private uint modifiers
         {
+            set
+            {
+                Interop.Wheel.Wheel_modifiers_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
                 uint ret = Interop.Wheel.Wheel_modifiers_get(swigCPtr);
@@ -180,6 +194,11 @@ namespace Tizen.NUI
 
         private Vector2 point
         {
+            set
+            {
+                Interop.Wheel.Wheel_point_set(swigCPtr, Vector2.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
                 global::System.IntPtr cPtr = Interop.Wheel.Wheel_point_get(swigCPtr);
@@ -191,9 +210,14 @@ namespace Tizen.NUI
 
         private int z
         {
+            set
+            {
+                Interop.Wheel.Wheel_z_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
-                int ret = Interop.Wheel.Wheel_delta_get(swigCPtr);
+                int ret = Interop.Wheel.Wheel_z_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -201,6 +225,11 @@ namespace Tizen.NUI
 
         private uint timeStamp
         {
+            set
+            {
+                Interop.Wheel.Wheel_timeStamp_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             get
             {
                 uint ret = Interop.Wheel.Wheel_timeStamp_get(swigCPtr);
