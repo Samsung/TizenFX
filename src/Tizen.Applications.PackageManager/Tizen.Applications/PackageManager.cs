@@ -61,6 +61,7 @@ namespace Tizen.Applications
 
         private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
         private static Dictionary<int, SafePackageManagerRequestHandle> RequestHandles = new Dictionary<int, SafePackageManagerRequestHandle>();
+        private static Dictionary<int, int> RequestPackageCount = new Dictionary<int, int>();
 
         private delegate Interop.PackageManager.ErrorCode InstallMethodWithCallback(SafePackageManagerRequestHandle requestHandle, string pkgPath, Interop.PackageManager.PackageManagerRequestEventCallback requestCallback, IntPtr userData, out int requestID);
         private delegate Interop.PackageManager.ErrorCode InstallPackagesMethodWithCallback(SafePackageManagerRequestHandle requestHandle, string[] pkgPaths, int pathsCount, Interop.PackageManager.PackageManagerRequestEventCallback requestCallback, IntPtr userData, out int requestId);
@@ -222,10 +223,15 @@ namespace Tizen.Applications
                     RequestCallbacks[id](packageType, packageId, (PackageEventType)eventType, (PackageEventState)eventState, progress);
                     if (eventState == Interop.PackageManager.PackageEventState.Completed || eventState == Interop.PackageManager.PackageEventState.Failed)
                     {
-                        Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
-                        RequestHandles[id].Dispose();
-                        RequestHandles.Remove(id);
-                        RequestCallbacks.Remove(id);
+                        RequestPackageCount[id] -= 1;
+                        if (RequestPackageCount[id] < 1)
+                        {
+                            Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
+                            RequestHandles[id].Dispose();
+                            RequestHandles.Remove(id);
+                            RequestCallbacks.Remove(id);
+                            RequestPackageCount.Remove(id);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -234,6 +240,7 @@ namespace Tizen.Applications
                     RequestHandles[id].Dispose();
                     RequestHandles.Remove(id);
                     RequestCallbacks.Remove(id);
+                    RequestPackageCount.Remove(id);
                 }
             }
         };
@@ -701,6 +708,7 @@ namespace Tizen.Applications
                         {
                             RequestCallbacks.Add(requestId, eventCallback);
                             RequestHandles.Add(requestId, RequestHandle);
+                            RequestPackageCount.Add(requestId, packagePaths.Count);
                         }
                         else
                         {
@@ -725,6 +733,8 @@ namespace Tizen.Applications
                         {
                             RequestCallbacks.Add(requestId, eventCallback);
                             RequestHandles.Add(requestId, RequestHandle);
+                            RequestPackageCount.Add(requestId, packagePaths.Count);
+
                         }
                         else
                         {
@@ -885,6 +895,7 @@ namespace Tizen.Applications
                     {
                         RequestCallbacks.Add(requestId, eventCallback);
                         RequestHandles.Add(requestId, RequestHandle);
+                        RequestPackageCount.Add(requestId, 1);
                     }
                     else
                     {
@@ -1015,6 +1026,7 @@ namespace Tizen.Applications
                     {
                         RequestCallbacks.Add(requestId, eventCallback);
                         RequestHandles.Add(requestId, RequestHandle);
+                        RequestPackageCount.Add(requestId, 1);
                     }
                     else
                     {
