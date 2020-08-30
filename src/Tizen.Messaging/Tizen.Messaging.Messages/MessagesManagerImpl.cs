@@ -102,13 +102,18 @@ namespace Tizen.Messaging.Messages
 
         internal Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
-            var task = new TaskCompletionSource<SentResult>();
+            SentResult response;
+            TaskCompletionSource<SentResult> task = new TaskCompletionSource<SentResult>();
 
-            _messageSentCallback = (int result, IntPtr data) =>
+            lock (this)
             {
-                task.SetResult((SentResult)result);
+                _messageSentCallback = async (int result, IntPtr data) =>
+                {
+                    response = (SentResult)result;
+                    await task.Task.ConfigureAwait(false);
+                    task.SetResult(response);
+                };
             };
-
             message.FillHandle();
 
             int ret;
