@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
-    public class Position2D : Disposable, ISelectorItem
+    public class Position2D : Disposable, ICloneable
     {
         private Position2DChangedCallback callback = null;
 
