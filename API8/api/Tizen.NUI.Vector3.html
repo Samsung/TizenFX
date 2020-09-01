@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Vector3 : Disposable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Vector3 : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
   
@@ -116,13 +116,14 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
     </dd>
   </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L34">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L35">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3__ctor_" data-uid="Tizen.NUI.Vector3.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector3__ctor" data-uid="Tizen.NUI.Vector3.#ctor">Vector3()</h4>
@@ -139,7 +140,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3__ctor_" data-uid="Tizen.NUI.Vector3.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector3__ctor_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.Vector3.#ctor(System.Single,System.Single,System.Single)">Vector3(Single, Single, Single)</h4>
@@ -186,7 +187,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L56">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L57">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3__ctor_" data-uid="Tizen.NUI.Vector3.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector3__ctor_System_Single___" data-uid="Tizen.NUI.Vector3.#ctor(System.Single[])">Vector3(Single[])</h4>
@@ -221,7 +222,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L66">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L67">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3__ctor_" data-uid="Tizen.NUI.Vector3.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector3__ctor_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.Vector3.#ctor(Tizen.NUI.Vector2)">Vector3(Vector2)</h4>
@@ -256,7 +257,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L76">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3__ctor_" data-uid="Tizen.NUI.Vector3.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector3__ctor_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector3.#ctor(Tizen.NUI.Vector4)">Vector3(Vector4)</h4>
@@ -293,7 +294,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L385">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L386">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_B_" data-uid="Tizen.NUI.Vector3.B*"></a>
   <h4 id="Tizen_NUI_Vector3_B" data-uid="Tizen.NUI.Vector3.B">B</h4>
@@ -325,7 +326,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L364">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L365">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Depth_" data-uid="Tizen.NUI.Vector3.Depth*"></a>
   <h4 id="Tizen_NUI_Vector3_Depth" data-uid="Tizen.NUI.Vector3.Depth">Depth</h4>
@@ -357,7 +358,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L322">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L323">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_G_" data-uid="Tizen.NUI.Vector3.G*"></a>
   <h4 id="Tizen_NUI_Vector3_G" data-uid="Tizen.NUI.Vector3.G">G</h4>
@@ -389,7 +390,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L301">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L302">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Height_" data-uid="Tizen.NUI.Vector3.Height*"></a>
   <h4 id="Tizen_NUI_Vector3_Height" data-uid="Tizen.NUI.Vector3.Height">Height</h4>
@@ -421,7 +422,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L408">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L409">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Item_" data-uid="Tizen.NUI.Vector3.Item*"></a>
   <h4 id="Tizen_NUI_Vector3_Item_System_UInt32_" data-uid="Tizen.NUI.Vector3.Item(System.UInt32)">Item[UInt32]</h4>
@@ -472,7 +473,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L157">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L158">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_NegativeXAxis_" data-uid="Tizen.NUI.Vector3.NegativeXAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_NegativeXAxis" data-uid="Tizen.NUI.Vector3.NegativeXAxis">NegativeXAxis</h4>
@@ -504,7 +505,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L172">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L173">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_NegativeYAxis_" data-uid="Tizen.NUI.Vector3.NegativeYAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_NegativeYAxis" data-uid="Tizen.NUI.Vector3.NegativeYAxis">NegativeYAxis</h4>
@@ -536,7 +537,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L187">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L188">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_NegativeZAxis_" data-uid="Tizen.NUI.Vector3.NegativeZAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_NegativeZAxis" data-uid="Tizen.NUI.Vector3.NegativeZAxis">NegativeZAxis</h4>
@@ -568,7 +569,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L97">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L98">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_One_" data-uid="Tizen.NUI.Vector3.One*"></a>
   <h4 id="Tizen_NUI_Vector3_One" data-uid="Tizen.NUI.Vector3.One">One</h4>
@@ -600,7 +601,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L259">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L260">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_R_" data-uid="Tizen.NUI.Vector3.R*"></a>
   <h4 id="Tizen_NUI_Vector3_R" data-uid="Tizen.NUI.Vector3.R">R</h4>
@@ -632,7 +633,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L238">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L239">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Width_" data-uid="Tizen.NUI.Vector3.Width*"></a>
   <h4 id="Tizen_NUI_Vector3_Width" data-uid="Tizen.NUI.Vector3.Width">Width</h4>
@@ -664,7 +665,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L217">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L218">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_X_" data-uid="Tizen.NUI.Vector3.X*"></a>
   <h4 id="Tizen_NUI_Vector3_X" data-uid="Tizen.NUI.Vector3.X">X</h4>
@@ -696,7 +697,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L112">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L113">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_XAxis_" data-uid="Tizen.NUI.Vector3.XAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_XAxis" data-uid="Tizen.NUI.Vector3.XAxis">XAxis</h4>
@@ -728,7 +729,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L280">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L281">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Y_" data-uid="Tizen.NUI.Vector3.Y*"></a>
   <h4 id="Tizen_NUI_Vector3_Y" data-uid="Tizen.NUI.Vector3.Y">Y</h4>
@@ -760,7 +761,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L127">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L128">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_YAxis_" data-uid="Tizen.NUI.Vector3.YAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_YAxis" data-uid="Tizen.NUI.Vector3.YAxis">YAxis</h4>
@@ -792,7 +793,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L343">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L344">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Z_" data-uid="Tizen.NUI.Vector3.Z*"></a>
   <h4 id="Tizen_NUI_Vector3_Z" data-uid="Tizen.NUI.Vector3.Z">Z</h4>
@@ -824,7 +825,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L142">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L143">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_ZAxis_" data-uid="Tizen.NUI.Vector3.ZAxis*"></a>
   <h4 id="Tizen_NUI_Vector3_ZAxis" data-uid="Tizen.NUI.Vector3.ZAxis">ZAxis</h4>
@@ -856,7 +857,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L202">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L203">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Zero_" data-uid="Tizen.NUI.Vector3.Zero*"></a>
   <h4 id="Tizen_NUI_Vector3_Zero" data-uid="Tizen.NUI.Vector3.Zero">Zero</h4>
@@ -890,7 +891,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L567">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L568">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Clamp_" data-uid="Tizen.NUI.Vector3.Clamp*"></a>
   <h4 id="Tizen_NUI_Vector3_Clamp_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.Clamp(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Clamp(Vector3, Vector3)</h4>
@@ -931,7 +932,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L504">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L505">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Equals_" data-uid="Tizen.NUI.Vector3.Equals*"></a>
   <h4 id="Tizen_NUI_Vector3_Equals_Tizen_System_Object_" data-uid="Tizen.NUI.Vector3.Equals(Tizen.System.Object)">Equals(Object)</h4>
@@ -981,7 +982,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L520">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L521">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_GetHashCode_" data-uid="Tizen.NUI.Vector3.GetHashCode*"></a>
   <h4 id="Tizen_NUI_Vector3_GetHashCode" data-uid="Tizen.NUI.Vector3.GetHashCode">GetHashCode()</h4>
@@ -1016,7 +1017,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L578">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L579">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_GetVectorXY_" data-uid="Tizen.NUI.Vector3.GetVectorXY*"></a>
   <h4 id="Tizen_NUI_Vector3_GetVectorXY" data-uid="Tizen.NUI.Vector3.GetVectorXY">GetVectorXY()</h4>
@@ -1049,7 +1050,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L590">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L591">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_GetVectorYZ_" data-uid="Tizen.NUI.Vector3.GetVectorYZ*"></a>
   <h4 id="Tizen_NUI_Vector3_GetVectorYZ" data-uid="Tizen.NUI.Vector3.GetVectorYZ">GetVectorYZ()</h4>
@@ -1082,7 +1083,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L530">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L531">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Length_" data-uid="Tizen.NUI.Vector3.Length*"></a>
   <h4 id="Tizen_NUI_Vector3_Length" data-uid="Tizen.NUI.Vector3.Length">Length()</h4>
@@ -1115,7 +1116,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L544">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L545">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_LengthSquared_" data-uid="Tizen.NUI.Vector3.LengthSquared*"></a>
   <h4 id="Tizen_NUI_Vector3_LengthSquared" data-uid="Tizen.NUI.Vector3.LengthSquared">LengthSquared()</h4>
@@ -1150,7 +1151,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L555">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L556">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_Normalize_" data-uid="Tizen.NUI.Vector3.Normalize*"></a>
   <h4 id="Tizen_NUI_Vector3_Normalize" data-uid="Tizen.NUI.Vector3.Normalize">Normalize()</h4>
@@ -1169,7 +1170,7 @@ testing as it avoids the use of a square root.<br></p>
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L423">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L424">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Addition_" data-uid="Tizen.NUI.Vector3.op_Addition*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Addition_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.op_Addition(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Addition(Vector3, Vector3)</h4>
@@ -1226,7 +1227,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L494">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L495">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Division_" data-uid="Tizen.NUI.Vector3.op_Division*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Division_Tizen_NUI_Vector3_System_Single_" data-uid="Tizen.NUI.Vector3.op_Division(Tizen.NUI.Vector3,System.Single)">Division(Vector3, Single)</h4>
@@ -1283,7 +1284,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L482">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L483">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Division_" data-uid="Tizen.NUI.Vector3.op_Division*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Division_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.op_Division(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Division(Vector3, Vector3)</h4>
@@ -1340,7 +1341,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L470">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L471">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Multiply_" data-uid="Tizen.NUI.Vector3.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Multiply_Tizen_NUI_Vector3_System_Single_" data-uid="Tizen.NUI.Vector3.op_Multiply(Tizen.NUI.Vector3,System.Single)">Multiply(Vector3, Single)</h4>
@@ -1397,7 +1398,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L458">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L459">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Multiply_" data-uid="Tizen.NUI.Vector3.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Multiply_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.op_Multiply(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Multiply(Vector3, Vector3)</h4>
@@ -1454,7 +1455,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L435">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L436">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_Subtraction_" data-uid="Tizen.NUI.Vector3.op_Subtraction*"></a>
   <h4 id="Tizen_NUI_Vector3_op_Subtraction_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.op_Subtraction(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Subtraction(Vector3, Vector3)</h4>
@@ -1511,7 +1512,7 @@ testing as it avoids the use of a square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L446">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L447">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector3_op_UnaryNegation_" data-uid="Tizen.NUI.Vector3.op_UnaryNegation*"></a>
   <h4 id="Tizen_NUI_Vector3_op_UnaryNegation_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector3.op_UnaryNegation(Tizen.NUI.Vector3)">UnaryNegation(Vector3)</h4>
@@ -1565,6 +1566,9 @@ testing as it avoids the use of a square root.<br></p>
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">System.ICloneable</a>
+  </div>
 </article>
           </div>
           
@@ -1573,7 +1577,7 @@ testing as it avoids the use of a square root.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Vector3.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
