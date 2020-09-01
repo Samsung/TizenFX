@@ -106,7 +106,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public int IndicatorSpacing
         {
-            get => ((int?)GetValue(IndicatorSpacingProperty)) ?? 0;
+            get => (int)GetValue(IndicatorSpacingProperty);
             set => SetValue(IndicatorSpacingProperty, value);
         }
 

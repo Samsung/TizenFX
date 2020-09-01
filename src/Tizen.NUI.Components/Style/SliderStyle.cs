@@ -186,7 +186,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
-            get => ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
+            get => (Extents)GetValue(TrackPaddingProperty);
             set => SetValue(TrackPaddingProperty, value);
         }
 

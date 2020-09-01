@@ -171,7 +171,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListMargin
         {
-            get => ((Extents)GetValue(ListMarginProperty)) ?? (listMargin = new Extents(0, 0, 0, 0));
+            get => (Extents)GetValue(ListMarginProperty);
             set => SetValue(ListMarginProperty, value);
         }
 
@@ -191,7 +191,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListPadding
         {
-            get => ((Extents)GetValue(ListPaddingProperty)) ?? (listPadding = new Extents(0, 0, 0, 0));
+            get => (Extents)GetValue(ListPaddingProperty);
             set => SetValue(ListPaddingProperty, value);
         }
 
