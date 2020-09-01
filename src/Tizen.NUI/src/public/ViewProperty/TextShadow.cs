@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : ISelectorItem
+    public class TextShadow : ICloneable
     {
         private readonly PropertyMap propertyMap = null;
 
