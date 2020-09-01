@@ -32,8 +32,8 @@ namespace Tizen.NUI
     {
         private string LogTag = "Tizen.NUI";
         private readonly SafeFrameBrokerHandle _handle;
-        private static Dictionary<int, Interop.FrameBroker.AppControlResultCallback> _resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
-        private static int _resultId = 0;
+        private Dictionary<int, Interop.FrameBroker.AppControlResultCallback> _resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
+        private int _resultId = 0;
         private Interop.FrameBroker.FrameContextLifecycleCallbacks _callbacks;
         private IntPtr _context = IntPtr.Zero;
         private bool _disposed = false;
