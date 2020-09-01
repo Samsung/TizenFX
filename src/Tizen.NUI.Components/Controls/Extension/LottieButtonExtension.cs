@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,6 +48,10 @@ namespace Tizen.NUI.Components.Extension
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ImageView OnCreateIcon(Button button, ImageView icon)
         {
+            LottieView.PositionUsesPivotPoint = true;
+            LottieView.ParentOrigin = NUI.ParentOrigin.Center;
+            LottieView.PivotPoint = NUI.PivotPoint.Center;
+
             InitializeLottieView(button, LottieView);
 
             return LottieView;
@@ -70,12 +74,19 @@ namespace Tizen.NUI.Components.Extension
             var lottieStyle = (ILottieButtonStyle)button.Style;
             lottieView.URL = lottieStyle.LottieUrl;
             lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
-            lottieStyle.PlayRange?.GetValue(ControlStates.Normal)?.Show(lottieView, true);
+            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(ControlState.Normal, out var result))
+            {
+                result.Show(lottieView, true);
+            }
         }
 
-        internal static void UpdateLottieView(Button button, ControlStates previousState, LottieAnimationView lottieView)
+        internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
         {
-            ((ILottieButtonStyle)button.Style).PlayRange?.GetValue(button.ControlState)?.Show(lottieView, ((int)previousState & (int)ControlStates.Pressed) == 0);
+            var lottieStyle = ((ILottieButtonStyle)button.Style);
+            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
+            {
+                result.Show(lottieView, !previousState.Contains(ControlState.Pressed));
+            }
         }
     }
 }

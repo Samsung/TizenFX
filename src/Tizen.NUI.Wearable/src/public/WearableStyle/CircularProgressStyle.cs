@@ -62,7 +62,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of CurrentValue</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("currentValue", typeof(float), typeof(CircularProgressStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(CircularProgressStyle), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).currentValue = (float)newValue;
         },
@@ -73,9 +73,9 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create("trackColor", typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).trackColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -84,9 +84,9 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ProgressColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create("progressColor", typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).progressColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).progressColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -130,8 +130,6 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgressStyle(CircularProgressStyle style) : base(style)
         {
-            if (null == style) return;
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -247,26 +245,24 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <summary>
-        /// Style's clone function.
+        /// Dispose CircularProgressStyle and all children on it.
         /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <param name="type">Dispose type.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
+        protected override void Dispose(DisposeTypes type)
         {
-            base.CopyFrom(bindableObject);
-
-            CircularProgressStyle progressStyle = bindableObject as CircularProgressStyle;
-
-            if (null != progressStyle)
+            if (disposed)
             {
-                isEnabled = progressStyle.isEnabled;
-                thickness = progressStyle.Thickness;
-                maxValue = progressStyle.maxValue;
-                minValue = progressStyle.minValue;
-                currentValue = progressStyle.currentValue;
-                trackColor = progressStyle.trackColor;
-                progressColor = progressStyle.progressColor;
+                return;
             }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                trackColor?.Dispose();
+                progressColor?.Dispose();
+            }
+
+            base.Dispose(type);
         }
 
         private void Initialize()

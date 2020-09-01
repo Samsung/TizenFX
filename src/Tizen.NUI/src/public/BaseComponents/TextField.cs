@@ -34,12 +34,13 @@ namespace Tizen.NUI.BaseComponents
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
+        private TextFieldSelectorData selectorData;
 
         static TextField() { }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle Style => ViewStyle as TextFieldStyle;
+        public TextFieldStyle Style => new TextFieldStyle(this);
 
         /// <summary>
         /// Creates the TextField control.
@@ -83,6 +84,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            ApplyStyle(ThemeManager.GetStyle(nameof(TextField)));
+
             if (!shown)
             {
                 SetVisible(false);
@@ -121,6 +124,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
                 SetValue(TranslatableTextProperty, value);
             }
         }
@@ -159,6 +163,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatablePlaceholderTextProperty, value);
+                selectorData?.TranslatablePlaceholderText.UpdateIfNeeds(this, value);
             }
         }
         private string translatablePlaceholderText
@@ -192,6 +197,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValueAndForceSendChangeSignal(TextProperty, value);
+                selectorData?.Text.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -243,6 +249,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
+                selectorData?.FontFamily.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -277,6 +284,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
+                selectorData?.PointSize.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -367,6 +375,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
+                selectorData?.TextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -388,6 +397,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PlaceholderTextColorProperty, value);
+                selectorData?.PlaceholderTextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -465,6 +475,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PrimaryCursorColorProperty, value);
+                selectorData?.PrimaryCursorColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1102,6 +1113,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Selected Text property.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SelectedText
+        {
+            get
+            {
+                string temp;
+                GetProperty(TextField.Property.SELECTED_TEXT).Get(out temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1216,6 +1243,18 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private TextFieldSelectorData SelectorData
+        {
+            get
+            {
+                if (selectorData == null)
+                {
+                    selectorData = new TextFieldSelectorData();
+                }
+                return selectorData;
+            }
+        }
+
         /// <summary>
         /// Get the InputMethodContext instance.
         /// </summary>
@@ -1244,6 +1283,18 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Clear selection of the text.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectNone()
+        {
+            Interop.TextField.TextField_SelectNone(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -1266,6 +1317,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 DisposeQueue.Instance.Add(this);
                 return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                selectorData?.Reset(this);
             }
 
             //Release your own unmanaged resources here.
@@ -1330,7 +1389,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextField.TextField_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextField.TextField_Property_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_get();
             internal static readonly int PLACEHOLDER_TEXT_FOCUSED = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();
@@ -1384,6 +1442,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextField.TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int ENABLE_GRAB_HANDLE = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_get();
             internal static readonly int ENABLE_GRAB_HANDLE_POPUP = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
+            internal static readonly int SELECTED_TEXT = Interop.TextField.TextField_Property_SELECTED_TEXT_get();
         }
 
         internal class InputStyle
@@ -1399,191 +1458,6 @@ namespace Tizen.NUI.BaseComponents
                 Shadow = 0x0020,
                 Emboss = 0x0040,
                 Outline = 0x0080
-            }
-        }
-
-        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.translatableTextSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.translatableTextSelector;
-        });
-        internal static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.translatablePlaceholderTextSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.translatablePlaceholderTextSelector;
-        });
-        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.textSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.textSelector;
-        });
-        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.fontFamilySelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.fontFamilySelector;
-        });
-        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.pointSizeSelector.Clone((Selector<float?>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.pointSizeSelector;
-        });
-        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.textColorSelector.Clone((Selector<Color>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.textColorSelector;
-        });
-        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.placeholderTextColorSelector.Clone((Selector<Vector4>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.placeholderTextColorSelector;
-        });
-        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            textField.primaryCursorColorSelector.Clone((Selector<Vector4>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textField = (TextField)bindable;
-            return textField.primaryCursorColorSelector;
-        });
-
-        private TriggerableSelector<string> _translatableTextSelector;
-        private TriggerableSelector<string> translatableTextSelector
-        {
-            get
-            {
-                if (null == _translatableTextSelector)
-                {
-                    _translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
-                }
-                return _translatableTextSelector;
-            }
-        }
-
-        private TriggerableSelector<string> _translatablePlaceholderTextSelector;
-        private TriggerableSelector<string> translatablePlaceholderTextSelector
-        {
-            get
-            {
-                if (null == _translatablePlaceholderTextSelector)
-                {
-                    _translatablePlaceholderTextSelector = new TriggerableSelector<string>(this, TranslatablePlaceholderTextProperty);
-                }
-                return _translatablePlaceholderTextSelector;
-            }
-        }
-
-        private TriggerableSelector<string> _textSelector;
-        private TriggerableSelector<string> textSelector
-        {
-            get
-            {
-                if (null == _textSelector)
-                {
-                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
-                }
-                return _textSelector;
-            }
-        }
-
-        private TriggerableSelector<string> _fontFamilySelector;
-        private TriggerableSelector<string> fontFamilySelector
-        {
-            get
-            {
-                if (null == _fontFamilySelector)
-                {
-                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
-                }
-                return _fontFamilySelector;
-            }
-        }
-
-        private TriggerableSelector<Color> _textColorSelector;
-        private TriggerableSelector<Color> textColorSelector
-        {
-            get
-            {
-                if (null == _textColorSelector)
-                {
-                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
-                }
-                return _textColorSelector;
-            }
-        }
-
-        private TriggerableSelector<float?> _pointSizeSelector;
-        private TriggerableSelector<float?> pointSizeSelector
-        {
-            get
-            {
-                if (null == _pointSizeSelector)
-                {
-                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
-                }
-                return _pointSizeSelector;
-            }
-        }
-
-        private TriggerableSelector<Vector4> _placeholderTextColorSelector;
-        private TriggerableSelector<Vector4> placeholderTextColorSelector
-        {
-            get
-            {
-                if (null == _placeholderTextColorSelector)
-                {
-                    _placeholderTextColorSelector = new TriggerableSelector<Vector4>(this, PlaceholderTextColorProperty);
-                }
-                return _placeholderTextColorSelector;
-            }
-        }
-
-        private TriggerableSelector<Vector4> _primaryCursorColorSelector;
-        private TriggerableSelector<Vector4> primaryCursorColorSelector
-        {
-            get
-            {
-                if (null == _primaryCursorColorSelector)
-                {
-                    _primaryCursorColorSelector = new TriggerableSelector<Vector4>(this, PrimaryCursorColorProperty);
-                }
-                return _primaryCursorColorSelector;
             }
         }
 

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector2TypeConverter))]
-    public class Vector2 : Disposable
+    public class Vector2 : Disposable, ISelectorItem
     {
 
         /// <summary>
@@ -56,6 +56,15 @@ namespace Tizen.NUI
         public Vector2(float[] array) : this(Interop.Vector2.new_Vector2__SWIG_2(array), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="other">The copy target.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2(Vector2 other) : this(other.X, other.Y)
+        {
         }
 
         /// <summary>
@@ -427,6 +436,10 @@ namespace Tizen.NUI
             Interop.Vector2.Vector2_Normalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Vector2(this);
 
         /// <summary>
         /// Clamps the vector between minimum and maximum vectors.

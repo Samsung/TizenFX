@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import json
 import os
 
@@ -16,7 +14,9 @@ with open(runtime_dir) as json_file:
 
     for key in key_list:
         key = key.replace("-armel", "")
+        key = key.replace("-arm64", "")
         key = key.replace("-x86", "")
+        key = key.replace("-x64", "")
         key = key.replace("tizen.", "")
         key = key.replace("tizen", "")
         if key.strip():
@@ -24,7 +24,7 @@ with open(runtime_dir) as json_file:
 
     rid_list = list(set(rid_list))
     rid_list.sort()
-    
+
     f = open(spec_dir,'r')
     origin_data = f.read()
     f.close()

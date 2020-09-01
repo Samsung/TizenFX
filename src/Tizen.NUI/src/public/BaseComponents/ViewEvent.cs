@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -244,7 +244,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TouchSignal().Disconnect(_touchDataCallback);
                 }
-
             }
         }
 
@@ -462,6 +461,38 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private EventHandler _backKeyPressed;
+
+        /// <summary>
+        /// An event for getting notice when physical back key is pressed.<br />
+        /// This event is emitted BackKey is up.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler BackKeyPressed
+        {
+            add
+            {
+                _backKeyPressed += value;
+                BackKeyManager.Instance.Subscriber.Add(this);
+            }
+
+            remove
+            {
+                BackKeyManager.Instance.Subscriber.Remove(this);
+                _backKeyPressed -= value;
+            }
+        }
+
+        /// <summary>
+        /// Function for emitting BackKeyPressed event outside of View instance
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void EmitBackKeyPressed()
+        {
+            _backKeyPressed.Invoke(this,null);
+        }
+
+
         internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
         {
             add
@@ -511,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -519,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OffWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffStageSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -575,19 +606,56 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        private void OnSize2DChanged(int width, int height)
+        private void OnSize2DChanged(int? width, int? height)
         {
-            Size2D = new Size2D(width, height);
+            if (width != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+            }
+            if (height != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+            }
         }
 
-        private void OnMinimumSizeChanged(int width, int height)
+        private void OnMinimumSizeChanged(int? width, int? height)
         {
-            MinimumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MinimumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MinimumSize = new Size2D((int)width, (int)this.GetMinimumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MinimumSize = new Size2D((int)this.GetMinimumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
-        private void OnMaximumSizeChanged(int width, int height)
+        private void OnMaximumSizeChanged(int? width, int? height)
         {
-            MaximumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MaximumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MaximumSize = new Size2D((int)width, (int)this.GetMaximumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MaximumSize = new Size2D((int)this.GetMaximumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
         private void OnPosition2DChanged(int x, int y)
@@ -595,9 +663,20 @@ namespace Tizen.NUI.BaseComponents
             Position2D = new Position2D(x, y);
         }
 
-        private void OnSizeChanged(float width, float height, float depth)
+        private void OnSizeChanged(float? width, float? height, float? depth)
         {
-            Size = new Size(width, height, depth);
+            if (width != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+            }
+            if (height != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+            }
+            if (depth != null)
+            {
+                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue((float)depth));
+            }
         }
 
         private void OnPositionChanged(float x, float y, float z)
@@ -696,11 +775,19 @@ namespace Tizen.NUI.BaseComponents
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
+            bool consumed = false;
+
             if (_touchDataEventHandler != null)
             {
-                return _touchDataEventHandler(this, e);
+                consumed = _touchDataEventHandler(this, e);
             }
-            return false;
+
+            if (enableControlState && !consumed)
+            {
+                consumed = HandleControlStateOnTouch(e.Touch);
+            }
+
+            return consumed;
         }
 
         // Callback for View Hover signal
@@ -1068,7 +1155,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="previousState">The previous control state.</param>
             /// <param name="currentState">The current control state.</param>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStateChangedEventArgs(ControlStates previousState, ControlStates currentState)
+            public ControlStateChangedEventArgs(ControlState previousState, ControlState currentState)
             {
                 PreviousState = previousState;
                 CurrentState = currentState;
@@ -1078,13 +1165,13 @@ namespace Tizen.NUI.BaseComponents
             /// The previous control state.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStates PreviousState { get; }
+            public ControlState PreviousState { get; }
 
             /// <summary>
             /// The current control state.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ControlStates CurrentState { get; }
+            public ControlState CurrentState { get; }
         }
 
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;

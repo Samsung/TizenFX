@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     [Binding.TypeConverter(typeof(ExtentsTypeConverter))]
-    public class Extents : Disposable
+    public class Extents : Disposable, ISelectorItem
     {
 
 
@@ -226,6 +226,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Extents(this);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Extents obj)
         {

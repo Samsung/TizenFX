@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components.Extension
         /// <param name="button">The Button instance that the extension currently applied to.</param>
         /// <param name="eventArgs">The click event information.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnClick(Button button, Button.ClickEventArgs eventArgs)
+        public virtual void OnClicked(Button button, ClickedEventArgs eventArgs)
         {
         }
 

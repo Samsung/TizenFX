@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.SttEngine;
 using static Tizen.Uix.SttEngine.Engine;
 
@@ -104,6 +105,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataRequestedCb(string key, out string data);
 
+        [NativeStruct("stte_request_callback_s", Include="stte.h", PkgConfig="stt-engine")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct RequestCallbackStruct
         {

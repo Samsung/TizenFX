@@ -18,6 +18,7 @@ namespace NUIXAMLTestSample
             // new TestAmbient().Run(args);
             // new TestDetailApps().Run(args);
             // new TestMyContents().Run(args);
+            // new CommandDemoApplication().Run(args);
 
             /* For UTC codes */
             // new TestButton().Run(args);

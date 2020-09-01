@@ -213,19 +213,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void SetTargetFrameBuffer(FrameBufferImage frameBuffer)
-        {
-            Interop.RenderTask.RenderTask_SetTargetFrameBuffer(swigCPtr, FrameBufferImage.getCPtr(frameBuffer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal FrameBufferImage GetTargetFrameBuffer()
-        {
-            FrameBufferImage ret = new FrameBufferImage(Interop.RenderTask.RenderTask_GetTargetFrameBuffer(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetFrameBuffer(FrameBuffer frameBuffer)
         {
             Interop.RenderTask.RenderTask_SetFrameBuffer(swigCPtr, FrameBuffer.getCPtr(frameBuffer));

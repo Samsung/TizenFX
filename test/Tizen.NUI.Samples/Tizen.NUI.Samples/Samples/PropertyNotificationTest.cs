@@ -41,7 +41,7 @@ namespace Tizen.NUI.Samples
                 Name = "test button",
             };
 
-            button.ClickEvent += (object source, Button.ClickEventArgs args) =>
+            button.Clicked += (object source, ClickedEventArgs args) =>
             {
                 if (++cnt % 2 == 0)
                 {

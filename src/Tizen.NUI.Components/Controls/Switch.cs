@@ -66,13 +66,34 @@ namespace Tizen.NUI.Components
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead.")]
         public event EventHandler<SelectEventArgs> SelectedEvent;
 
         /// <summary>
-        /// Get style of switch.
+        /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public new SwitchStyle Style => ViewStyle as SwitchStyle;
+        public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
+
+        /// <summary>
+        /// Return a copied Style instance of Switch
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the Switch.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        /// <since_tizen> 8 </since_tizen>
+        public new SwitchStyle Style
+        {
+            get
+            {
+                var result = new SwitchStyle(ViewStyle as SwitchStyle);
+                result.CopyPropertiesFromView(this);
+                result.Track.CopyPropertiesFromView(Track);
+                result.Thumb.CopyPropertiesFromView(Thumb);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Apply style to switch.
@@ -102,7 +123,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Switch's track part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView Track
         {
             get
@@ -136,7 +157,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Switch's thumb part.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ImageView Thumb
         {
             get
@@ -168,45 +189,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Switch's track part.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string SwitchBackgroundImageURL
-        {
-            get
-            {
-                return Style?.Track?.ResourceUrl?.All;
-            }
-            set
-            {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                }
-            }
-        }
-
-        /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get
-            {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Track?.ResourceUrl);
-                return strSl;
-            }
-            set
-            {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value;
-                }
-            }
+            get => track == null ? null : new StringSelector((Selector<string>)track.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => track?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -217,36 +206,23 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.ResourceUrl?.All;
+                return Thumb.ResourceUrl;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
+                Thumb.ResourceUrl = value;
             }
         }
 
         /// <summary>
         /// Handler image's resource url selector in Switch.
+        /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
-            get
-            {
-                StringSelector strSl = new StringSelector();
-                strSl.Clone(Style?.Thumb?.ResourceUrl);
-                return strSl;
-            }
-            set
-            {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value;
-                }
-            }
+            get => thumb == null ? null : new StringSelector((Selector<string>)thumb.GetValue(ImageView.ResourceUrlSelectorProperty));
+            set => thumb?.SetValue(ImageView.ResourceUrlSelectorProperty, value);
         }
 
         /// <summary>
@@ -257,14 +233,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return Thumb.Size;
             }
             set
             {
-                if (null != Style?.Thumb)
-                {
-                    Style.Thumb.Size = value;
-                }
+                Thumb.Size = value;
             }
         }
 
@@ -291,23 +264,10 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override bool OnKey(Key key)
         {
-            if (!IsEnabled || null == key) return false;
-
-            bool ret = base.OnKey(key);
-            if (key.State == Key.StateType.Up)
-            {
-                if (key.KeyPressedName == "Return")
-                {
-                    OnSelect();
-                }
-            }
-
-            return ret;
+            return base.OnKey(key);
         }
 
         /// <summary>
@@ -316,24 +276,10 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public override bool OnTouch(Touch touch)
         {
-            if(!IsEnabled || null == touch) return false;
-
-            PointStateType state = touch.GetState(0);
-            bool ret = base.OnTouch(touch);
-            switch (state)
-            {
-                case PointStateType.Up:
-                    OnSelect();
-                    break;
-                default:
-                    break;
-            }
-            return ret;
+            return base.OnTouch(touch);
         }
 
         /// <summary>
@@ -341,38 +287,51 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <returns>The default switch style.</returns>
         /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new SwitchStyle();
         }
 
-        private void Initialize()
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
-            Style.IsSelectable = true;
+            base.OnControlStateChanged(controlStateChangedInfo);
+
+            if (!IsSelectable)
+            {
+                return;
+            }
+
+            bool previousSelected = controlStateChangedInfo.PreviousState.Contains(ControlState.Selected);
+
+            if (previousSelected != IsSelected)
+            {
+                OnSelect();
+            }
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        private void Initialize()
         {
-            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
-            if (null != switchStyle)
-            {
-                Style.CopyFrom(switchStyle);
-            }
+            IsSelectable = true;
         }
 
         private void OnSelect()
         {
+            ((SwitchExtension)Extension)?.OnSelectedChanged(this);
+
             if (SelectedEvent != null)
             {
                 SelectEventArgs eventArgs = new SelectEventArgs();
                 eventArgs.IsSelected = IsSelected;
                 SelectedEvent(this, eventArgs);
+            }
+
+            if (SelectedChanged != null)
+            {
+                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
+                eventArgs.IsSelected = IsSelected;
+                SelectedChanged(this, eventArgs);
             }
         }
 
@@ -380,39 +339,12 @@ namespace Tizen.NUI.Components
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
         public class SelectEventArgs : EventArgs
         {
             /// <summary> Select state of Switch </summary>
             /// <since_tizen> 6 </since_tizen>
             public bool IsSelected;
-        }
-
-        /// <summary>
-        /// Get current track part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's track part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentTrack(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Track : null;
-        }
-
-         /// <summary>
-        /// Get current thumb part to the attached SwitchExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invaild.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Switch.</param>
-        /// <return>The switch's thumb part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentThumb(SwitchExtension extension)
-        {
-            return (extension == Extension) ? Thumb : null;
         }
     }
 }

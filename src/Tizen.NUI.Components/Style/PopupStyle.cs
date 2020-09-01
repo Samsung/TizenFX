@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// PopupStyle is a class which saves Popup's ux data.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
         static PopupStyle() { }
@@ -31,104 +31,43 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
-            InitSubStyle();
         }
 
         /// <summary>
         /// Creates a new instance of a PopupStyle with style.
         /// </summary>
         /// <param name="style">Create PopupStyle by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
-            InitSubStyle();
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Title Text's style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle Title { get; set; }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle Title { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Popup button's style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public ButtonStyle Buttons { get; set; }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ButtonStyle Buttons { get; set; } = new ButtonStyle();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 8 </since_tizen>
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            PopupStyle popupStyle = bindableObject as PopupStyle;
-            if (popupStyle != null)
+            if (bindableObject is PopupStyle popupStyle)
             {
-                if (popupStyle.Title != null)
-                {
-                    Title?.CopyFrom(popupStyle.Title);
-                }
-
-                if (popupStyle.Buttons != null)
-                {
-                    Buttons?.CopyFrom(popupStyle.Buttons);
-                }
+                Title.CopyFrom(popupStyle.Title);
+                Buttons.CopyFrom(popupStyle.Buttons);
             }
-        }
-
-        private void InitSubStyle()
-        {
-            // TODO Apply proper shadow as a default for a Popup
-            BoxShadow = new Shadow()
-            {
-                BlurRadius = 5,
-                Offset = new Vector2(5, 5),
-            };
-
-            Title = new TextLabelStyle()
-            {
-                Size = new Size(0, 0),
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                HorizontalAlignment = HorizontalAlignment.Begin,
-                VerticalAlignment = VerticalAlignment.Bottom
-            };
-
-            Buttons = new ButtonStyle()
-            {
-                Size = new Size(0, 0),
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                Overlay = new ImageViewStyle()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent
-                },
-
-                Text = new TextLabelStyle()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
-                }
-            };
         }
     }
 }

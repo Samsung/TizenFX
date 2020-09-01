@@ -20,10 +20,9 @@ namespace Tizen.NUI.Samples
 {
     public class Application
     {
-        [STAThread]
         static void Main(string[] args)
         {
-            new DaliDemo(CommonResource.GetDaliResourcePath() + @"../../style/demo-theme.json").Run(args);
+            new DaliDemo("").Run(args);
         }
     }
 }

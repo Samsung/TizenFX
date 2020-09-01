@@ -21,6 +21,10 @@ namespace Tizen.NUI.Binding
                                        ushort.Parse(parts[2].Trim(), CultureInfo.InvariantCulture), 
                                        ushort.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                 }
+                else if (parts.Length == 1)
+                {
+                    return new Extents(ushort.Parse(parts[0].Trim(), CultureInfo.InvariantCulture));
+                }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Extents)}");

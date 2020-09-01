@@ -32,7 +32,10 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-
+            if (null != mContactCardLayouter)
+            {
+                mContactCardLayouter.Clear();
+            }
         }
 
         //private void OnKeyEvent(object sender, Window.KeyEventArgs e)

@@ -39,7 +39,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="scale">The factor of scaling image, default : 1.0f</param>
         /// <param name="shown">false : not displayed (hidden), true : displayed (shown), default : true</param>
         /// <remarks>
-        /// If shown parameter is false, it is not visible even the LottieAnimationView instance is created.
+        /// If the shown parameter is false, the animation is not visible even if the LottieAnimationView instance is created.
         /// </remarks>
         /// <example>
         /// <code>
@@ -153,7 +153,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get playing state
+        /// Gets the playing state
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public PlayStateType PlayState
@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the number of total frame
+        /// Get the number of total frames
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public int TotalFrame
@@ -212,13 +212,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get current frame. When setting a specific frame, it is displayed as a still image.
+        /// Set or get the current frame. When setting a specific frame, it is displayed as a still image.
         /// </summary>
         /// <remarks>
-        /// Giving user set value when getting. If the out ranged frame is set, it is reset as minimum frame or maximum frame.
+        /// Gets the value set by a user. If the setting value is out-ranged, it is reset as a minimum frame or a maximum frame.
         /// </remarks>
         /// <example>
-        /// Let's say myLottie.json file has 100 frames originally, then it will have 0 ~ 99 range of frame index.
+        /// We assume that the animation in myLottie.json file has 100 frames originally. If so, its frame index will be 0 - 99.
         /// <code>
         /// LottieAnimationView myLottie = new LottieAnimationView();
         /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
@@ -236,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.frame = value;
                 tlog.Fatal(tag, $"<[{GetId()}]SET frame={currentStates.frame}>");
-                DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
             {
@@ -260,7 +260,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get looping mode of Lottie animation.
+        /// Sets or gets the looping mode of Lottie animation.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public LoopingModeType LoopingMode
@@ -273,7 +273,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -303,10 +303,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get loop count. 
+        /// Sets or gets the loop count. 
         /// </summary>
         /// <remarks>
-        /// Minus value means infinite loop count.
+        /// The minus value means the infinite loop count.
         /// </remarks>
         /// <example>
         /// <code>
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -360,7 +360,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set or Get stop behavior.
+        /// Sets or gets the stop behavior.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
@@ -373,7 +373,7 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
@@ -406,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
 
         #region Method
         /// <summary>
-        /// Set minimum and maximum frame.
+        /// Set the minimum and the maximum frame.
         /// </summary>
         /// <param name="minFrame">minimum frame</param>
         /// <param name="maxFrame">maximum frame</param>
@@ -425,7 +425,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             tlog.Fatal(tag, $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
@@ -466,7 +466,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the list of layers' information (start frame, end frame) in Lottie file.
+        /// Get the list of layers' information such as the start frame and the end frame in the Lottie file.
         /// </summary>
         /// <returns>List of Tuple (string of layer name, integer of start frame, integer of end frame)</returns>
         /// <since_tizen> 7 </since_tizen>
@@ -539,7 +539,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
             tlog.Fatal(tag, $"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
         }
 
@@ -783,7 +783,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private const string tag = "NUITEST";
-        private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()
@@ -836,7 +835,7 @@ namespace Tizen.NUI.BaseComponents
     /// A class containing frame informations for a LottieAnimationView.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LottieFrameInfo
+    public class LottieFrameInfo : ISelectorItem
     {
         /// <summary>
         /// Creates a new instance with a playing range.
@@ -872,6 +871,31 @@ namespace Tizen.NUI.BaseComponents
         public static implicit operator LottieFrameInfo(int stillImageFrame)
         {
             return new LottieFrameInfo(stillImageFrame);
+        }
+
+        /// <summary>
+        /// Create a new instance from string.
+        /// Possible input : "0, 10", "10"
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator LottieFrameInfo(string pair)
+        {
+            if (pair == null)
+            {
+                return null;
+            }
+
+            string[] parts = pair.Split(',');
+            if (parts.Length == 1)
+            {
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()));
+            }
+            else if (parts.Length == 2)
+            {
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()), Int32.Parse(parts[1].Trim()));
+            }
+
+            throw new InvalidCastException($"Can not convert string {pair} to LottieFrameInfo");
         }
 
         /// <summary>
@@ -940,6 +964,10 @@ namespace Tizen.NUI.BaseComponents
                 lottieView.Play();
             }
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new LottieFrameInfo(StartFrame, EndFrame);
 
         private bool BeReadyToShow(LottieAnimationView lottieView)
         {

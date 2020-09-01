@@ -36,14 +36,14 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var thickness = (float?)newValue;
-
-            ((CircularScrollbarStyle)instance.viewStyle).Thickness = thickness;
-            instance.UpdateVisualThickness(thickness ?? 0);
+            float value = (float?)newValue ?? 0;
+            instance.CurrentStyle.Thickness = value;
+            instance.UpdateVisualThickness(value);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbarStyle)((CircularScrollbar)bindable).viewStyle)?.Thickness ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.CurrentStyle.Thickness ?? 0;
         });
 
         /// <summary>Bindable property of TrackSweepAngle</summary>
@@ -51,14 +51,14 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackSweepAngleProperty = BindableProperty.Create(nameof(TrackSweepAngle), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var angle = (float?)newValue;
-
-            ((CircularScrollbarStyle)instance.viewStyle).TrackSweepAngle = angle;
-            instance.UpdateTrackVisualSweepAngle(angle ?? 0);
+            float value = (float?)newValue ?? 0;
+            instance.CurrentStyle.TrackSweepAngle = value;
+            instance.UpdateTrackVisualSweepAngle(value);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbarStyle)((CircularScrollbar)bindable).viewStyle)?.TrackSweepAngle ?? 0;
+            var instance = (CircularScrollbar)bindable;
+            return instance.CurrentStyle.TrackSweepAngle ?? 0;
         });
 
         /// <summary>Bindable property of TrackColor</summary>
@@ -66,14 +66,12 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            ((CircularScrollbarStyle)instance.viewStyle).TrackColor = color;
-            instance.UpdateTrackVisualColor(color);
+            instance.CurrentStyle.TrackColor = (Color)newValue;
+            instance.UpdateTrackVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbarStyle)((CircularScrollbar)bindable).viewStyle)?.TrackColor;
+            return ((CircularScrollbar)bindable).CurrentStyle.TrackColor;
         });
 
         /// <summary>Bindable property of ThumbColor</summary>
@@ -81,25 +79,25 @@ namespace Tizen.NUI.Wearable
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularScrollbar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = ((CircularScrollbar)bindable);
-            var color = (Color)newValue;
-
-            ((CircularScrollbarStyle)instance.viewStyle).ThumbColor = color;
-            instance.UpdateThumbVisualColor(color);
+            instance.CurrentStyle.ThumbColor = (Color)newValue;
+            instance.UpdateThumbVisualColor((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((CircularScrollbarStyle)((CircularScrollbar)bindable).viewStyle)?.ThumbColor;
+            return ((CircularScrollbar)bindable).CurrentStyle.ThumbColor;
         });
 
         private ArcVisual trackVisual;
         private ArcVisual thumbVisual;
         private float contentLength;
         private float visibleLength;
+        private float previousPosition;
         private float currentPosition;
         private float directionAlpha;
         private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
+        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -109,7 +107,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar.
         /// </summary>
-        public CircularScrollbar() : base(new CircularScrollbarStyle())
+        public CircularScrollbar() : base()
         {
         }
 
@@ -121,7 +119,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new CircularScrollbarStyle())
+        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(ThemeManager.GetStyle(typeof(CircularScrollbar)))
         {
             Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
@@ -145,6 +143,24 @@ namespace Tizen.NUI.Wearable
 
 
         #region Properties
+
+        /// <summary>
+        /// Return a copied Style instance of CircularScrollbar
+        /// </summary>
+        /// <remarks>
+        /// It returns copied Style instance and changing it does not effect to the CircularScrollbar.
+        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CircularScrollbarStyle Style
+        {
+            get
+            {
+                var result = new CircularScrollbarStyle(ViewStyle as CircularScrollbarStyle);
+                result.CopyPropertiesFromView(this);
+                return result;
+            }
+        }
 
         /// <summary>
         /// The thickness of the scrollbar and track.
@@ -189,6 +205,8 @@ namespace Tizen.NUI.Wearable
             get => (Color)GetValue(ThumbColorProperty);
             set => SetValue(ThumbColorProperty, value);
         }
+
+        private CircularScrollbarStyle CurrentStyle => ViewStyle as CircularScrollbarStyle;
 
         #endregion Properties
 
@@ -268,6 +286,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
+            this.previousPosition = this.currentPosition;
             this.currentPosition = position;
             this.contentLength = contentLength > 0.0f ? contentLength : 0.0f;
 
@@ -303,7 +322,13 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
+            previousPosition = currentPosition;
             currentPosition = position;
+
+            if (mScrollEnabled == false)
+            {
+                return;
+            }
 
             if (thumbVisual == null)
             {
@@ -356,7 +381,18 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (viewStyle == null) return;
+            if (viewStyle.WidthResizePolicy == null) viewStyle.WidthResizePolicy = ResizePolicyType.FillToParent;
+            if (viewStyle.HeightResizePolicy == null) viewStyle.HeightResizePolicy = ResizePolicyType.FillToParent;
+
+            base.ApplyStyle(viewStyle);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
         {
             return new CircularScrollbarStyle();
         }
@@ -441,6 +477,57 @@ namespace Tizen.NUI.Wearable
 
             thumbVisual.MixColor = thumbColor;
             thumbVisual.UpdateVisual(true);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollPosition
+        {
+            get
+            {
+                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
+                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+
+                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position ScrollCurrentPosition
+        {
+            get
+            {
+                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
+                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
+
+                if (thumbStartAngleAnimation != null)
+                {
+                    float progress = thumbStartAngleAnimation.CurrentProgress;
+                    float previousLength = Math.Min(Math.Max(previousPosition, 0.0f), contentLength - visibleLength);
+
+                    length = ((1.0f - progress) * previousLength) + (progress * length);
+                }
+
+                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
+            }
         }
 
         #endregion Methods

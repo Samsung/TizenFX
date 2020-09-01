@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -478,16 +478,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="touch">The touch gesture.</param>
-        /// <returns>True if the touch event has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityTouch(Touch touch)
-        {
-            return false;
-        }
-
-        /// <summary>
         /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
         /// </summary>
         /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
@@ -732,20 +722,11 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.EmitFocusSignal(focusGained);
         }
 
-
-        private void OnControlChildAdd(View child)
-        {
-        }
-
-        private void OnControlChildRemove(View child)
-        {
-        }
-
         private void Initialize()
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
-            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);
-            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnStageDisconnectionDelegate(OnStageDisconnection);
+            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
+            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
             viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
             viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);
@@ -765,12 +746,9 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.RelayoutDependentOnChildren = new ViewWrapperImpl.RelayoutDependentOnChildrenDelegate(RelayoutDependentOnChildren);
             viewWrapperImpl.OnCalculateRelayoutSize = new ViewWrapperImpl.OnCalculateRelayoutSizeDelegate(OnCalculateRelayoutSize);
             viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
-            viewWrapperImpl.OnControlChildAdd = new ViewWrapperImpl.OnControlChildAddDelegate(OnControlChildAdd);
-            viewWrapperImpl.OnControlChildRemove = new ViewWrapperImpl.OnControlChildRemoveDelegate(OnControlChildRemove);
             viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
             viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
             viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
-            viewWrapperImpl.OnAccessibilityTouch = new ViewWrapperImpl.OnAccessibilityTouchDelegate(OnAccessibilityTouch);
             viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
             viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);

@@ -172,7 +172,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// The exception that is thrown when there it is not available.
+    /// The exception that is thrown when it is not available.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class NotAvailableException : Exception

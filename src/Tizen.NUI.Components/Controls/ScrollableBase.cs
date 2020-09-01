@@ -15,22 +15,58 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
+    /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
     /// </summary>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 8 </since_tizen>
+    public class ScrollEventArgs : EventArgs
+    {
+        private Position position;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="position">Current scroll position</param>
+        /// <since_tizen> 8 </since_tizen>
+        public ScrollEventArgs(Position position)
+        {
+            this.position = position;
+        }
+
+        /// <summary>
+        /// Current position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position Position
+        {
+            get
+            {
+                return position;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public class ScrollableBase : Control
     {
         static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
+        private int mScrollDuration = 125;
         private int mPageWidth = 0;
+        private float mPageFlickThreshold = 0.4f;
+        private float mScrollingEventThreshold = 0.00001f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -62,11 +98,11 @@ namespace Tizen.NUI.Components
 
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureChild(childLayout, widthMeasureSpec, unrestrictedMeasureSpec);  // Height unrestricted by parent
+                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0));  // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureChild(childLayout, unrestrictedMeasureSpec, heightMeasureSpec);  // Width unrestricted by parent
+                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));  // Width unrestricted by parent
                         }
 
                         float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
@@ -87,7 +123,7 @@ namespace Tizen.NUI.Components
                         {
                             childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                         }
-                        if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                        if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                         {
                             childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                         }
@@ -139,57 +175,27 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The direction axis to scroll.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public enum Direction
         {
             /// <summary>
             /// Horizontal axis.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
+            /// <since_tizen> 8 </since_tizen>
             Horizontal,
 
             /// <summary>
             /// Vertical axis.
             /// </summary>
-            /// <since_tizen> 6 </since_tizen>
+            /// <since_tizen> 8 </since_tizen>
             Vertical
         }
 
         /// <summary>
-        /// [Draft] Configurable speed threshold that register the gestures as a flick.
-        /// If the flick speed less than the threshold then will not be considered a flick.
-        /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float FlickThreshold { get; set; } = 0.2f;
-
-        /// <summary>
-        /// [Draft] Configurable duration modifer for the flick animation.
-        /// Determines the speed of the scroll, large value results in a longer flick animation. Range (0.1 - 1.0)
-        /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float FlickAnimationSpeed { get; set; } = 0.4f;
-
-        /// <summary>
-        /// [Draft] Configurable modifer for the distance to be scrolled when flicked detected.
-        /// It a ratio of the ScrollableBase's length. (not child's length).
-        /// First value is the ratio of the distance to scroll with the weakest flick.
-        /// Second value is the ratio of the distance to scroll with the strongest flick.
-        /// Second > First.
-        /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 FlickDistanceMultiplierRange { get; set; } = new Vector2(0.6f, 1.8f);
-
-        /// <summary>
-        /// [Draft] Scrolling direction mode.
+        /// Scrolling direction mode.
         /// Default is Vertical scrolling.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Direction ScrollingDirection
         {
             get
@@ -201,17 +207,23 @@ namespace Tizen.NUI.Components
                 if (value != mScrollingDirection)
                 {
                     mScrollingDirection = value;
-                    mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
-                    mPanGestureDetector.AddDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
+                    mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ?
+                        PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
+                    mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
+                        PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
+
+                    ContentContainer.WidthSpecification = mScrollingDirection == Direction.Vertical ?
+                        LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
+                    ContentContainer.HeightSpecification = mScrollingDirection == Direction.Vertical ?
+                        LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
                 }
             }
         }
 
         /// <summary>
-        /// [Draft] Enable or disable scrolling.
+        /// Enable or disable scrolling.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public bool ScrollEnabled
         {
             get
@@ -226,178 +238,341 @@ namespace Tizen.NUI.Components
                     if (mScrollEnabled)
                     {
                         mPanGestureDetector.Detected += OnPanGestureDetected;
-                        mTapGestureDetector.Detected += OnTapGestureDetected;
                     }
                     else
                     {
                         mPanGestureDetector.Detected -= OnPanGestureDetected;
-                        mTapGestureDetector.Detected -= OnTapGestureDetected;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// [Draft] Pages mode, enables moving to the next or return to current page depending on pan displacement.
+        /// Pages mode, enables moving to the next or return to current page depending on pan displacement.
         /// Default is false.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public bool SnapToPage { set; get; } = false;
 
         /// <summary>
-        /// [Draft] Get current page.
-        /// Working propery with SnapToPage property.
+        /// Get current page.
+        /// Working property with SnapToPage property.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public int CurrentPage { get; private set; } = 0;
 
         /// <summary>
-        /// [Draft] Duration of scroll animation.
+        /// Duration of scroll animation.
+        /// Default value is 125ms.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-
-        public int ScrollDuration { set; get; } = 125;
-        /// <summary>
-        /// [Draft] Scroll Available area.
-        /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 ScrollAvailableArea { set; get; }
-
-        /// <summary>
-        /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ScrollEventArgs : EventArgs
+        /// <since_tizen> 8 </since_tizen>
+        public int ScrollDuration
         {
-            Position position;
-
-            /// <summary>
-            /// Default constructor.
-            /// </summary>
-            /// <param name="position">Current scroll position</param>
-            /// <since_tizen> 6 </since_tizen>
-            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-            public ScrollEventArgs(Position position)
+            set
             {
-                this.position = position;
+                mScrollDuration = value >= 0 ? value : mScrollDuration;
             }
-
-            /// <summary>
-            /// [Draft] Current scroll position.
-            /// </summary>
-            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position Position
+            get
             {
-                get
-                {
-                    return position;
-                }
+                return mScrollDuration;
             }
         }
 
         /// <summary>
+        /// Scroll Available area.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Vector2 ScrollAvailableArea { set; get; }
+
+        /// <summary>
         /// An event emitted when user starts dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollDragStartEvent;
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ScrollEventArgs> ScrollDragStarted;
 
         /// <summary>
         /// An event emitted when user stops dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollDragEndEvent;
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ScrollEventArgs> ScrollDragEnded;
 
 
         /// <summary>
         /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollAnimationStartEvent;
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ScrollEventArgs> ScrollAnimationStarted;
 
         /// <summary>
         /// An event emitted when the scrolling slide animation ends, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollAnimationEndEvent;
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ScrollEventArgs> ScrollAnimationEnded;
 
 
         /// <summary>
         /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollEvent;
+        /// <since_tizen> 8 </since_tizen>
+        public event EventHandler<ScrollEventArgs> Scrolling;
 
-        private Animation scrollAnimation;
+
+        /// <summary>
+        /// Scrollbar for ScrollableBase.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public ScrollbarBase Scrollbar
+        {
+            get
+            {
+                return scrollBar;
+            }
+            set
+            {
+                if (scrollBar)
+                {
+                    scrollBar.Unparent();
+                }
+
+                scrollBar = value;
+                scrollBar.Name = "ScrollBar";
+                base.Add(scrollBar);
+
+                if (hideScrollbar)
+                {
+                    scrollBar.Hide();
+                }
+                else
+                {
+                    scrollBar.Show();
+                }
+
+                SetScrollbar();
+            }
+        }
+
+        /// <summary>
+        /// Always hide Scrollbar.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool HideScrollbar
+        {
+            get
+            {
+                return hideScrollbar;
+            }
+            set
+            {
+                hideScrollbar = value;
+
+                if (scrollBar)
+                {
+                    if (value)
+                    {
+                        scrollBar.Hide();
+                    }
+                    else
+                    {
+                        scrollBar.Show();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Container which has content of ScrollableBase.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public View ContentContainer { get; private set; }
+
+        /// <summary>
+        /// Set the layout on this View. Replaces any existing Layout.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public new LayoutItem Layout
+        {
+            get
+            {
+                return ContentContainer.Layout;
+            }
+            set
+            {
+                ContentContainer.Layout = value;
+                if (ContentContainer.Layout != null)
+                {
+                    ContentContainer.Layout.SetPositionByLayout = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// List of children of Container.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public new List<View> Children
+        {
+            get
+            {
+                return ContentContainer.Children;
+            }
+        }
+
+        /// <summary>
+        /// Deceleration rate of scrolling by finger.
+        /// Rate should be bigger than 0 and smaller than 1.
+        /// Default value is 0.998f;
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public float DecelerationRate
+        {
+            get
+            {
+                return decelerationRate;
+            }
+            set
+            {
+                decelerationRate = (value < 1 && value > 0) ? value : decelerationRate;
+                logValueOfDeceleration = (float)Math.Log(value);
+            }
+        }
+
+        /// <summary>
+        /// Threashold not to go infinit at the end of scrolling animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float DecelerationThreshold { get; set; } = 0.1f;
+
+        /// <summary>
+        /// Scrolling event will be thrown when this amount of scroll positino is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScrollingEventThreshold
+        {
+            get
+            {
+                return mScrollingEventThreshold;
+            }
+            set
+            {
+                if (mScrollingEventThreshold != value && value > 0)
+                {
+                    ContentContainer.RemovePropertyNotification(propertyNotification);
+                    propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(value));
+                    propertyNotification.Notified += OnPropertyChanged;
+                    mScrollingEventThreshold = value;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Page will be changed when velocity of panning is over threshold.
+        /// The unit of threshold is pixel per milisec.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public float PageFlickThreshold
+        {
+            get
+            {
+                return mPageFlickThreshold;
+            }
+            set
+            {
+                mPageFlickThreshold = value >= 0f ? value : mPageFlickThreshold;
+            }
+        }
+
+        /// <summary>
+        /// Alphafunction for scroll animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction ScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+
+        private bool hideScrollbar = true;
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
         private PanGestureDetector mPanGestureDetector;
-        private TapGestureDetector mTapGestureDetector;
-        private View mScrollingChild;
         private View mInterruptTouchingChild;
-        private float multiplier = 1.0f;
+        private ScrollbarBase scrollBar;
         private bool scrolling = false;
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
-
-        // If false then can only flick pages when the current animation/scroll as ended.
-        private bool flickWhenAnimating = false;
+        private Size previousContainerSize = new Size();
         private PropertyNotification propertyNotification;
-        protected float finalTargetPosition;
+        private float noticeAnimationEndBeforePosition = 0.0f;
+        private bool readyToNotice = false;
 
         /// <summary>
-        /// [Draft] Constructor
+        /// Notice before animation is finished.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // Let's consider more whether this needs to be set as protected.
+        public float NoticeAnimationEndBeforePosition { get => noticeAnimationEndBeforePosition; set => noticeAnimationEndBeforePosition = value; }
+
+        // Let's consider more whether this needs to be set as protected.
+        private float finalTargetPosition;
+
+        private Animation scrollAnimation;
+        // Declare user alpha function delegate
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate float UserAlphaFunctionDelegate(float progress);
+        private UserAlphaFunctionDelegate customScrollAlphaFunction;
+        private float velocityOfLastPan = 0.0f;
+        private float panAnimationDuration = 0.0f;
+        private float panAnimationDelta = 0.0f;
+        private float logValueOfDeceleration = 0.0f;
+        private float decelerationRate = 0.0f;
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public ScrollableBase() : base()
         {
+            DecelerationRate = 0.998f;
+
+            base.Layout = new ScrollableBaseCustomLayout();
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
-            mTapGestureDetector = new TapGestureDetector();
-            mTapGestureDetector.Attach(this);
-            mTapGestureDetector.Detected += OnTapGestureDetected;
+            ClippingMode = ClippingModeType.ClipChildren;
 
+            //Default Scrolling child
+            ContentContainer = new View()
+            {
+                WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
+                HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
+                Layout = new AbsoluteLayout() { SetPositionByLayout = false },
+            };
+            ContentContainer.Relayout += OnScrollingChildRelayout;
+            propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
+            propertyNotification.Notified += OnPropertyChanged;
+            base.Add(ContentContainer);
 
-            ClippingMode = ClippingModeType.ClipToBoundingBox;
-
-            mScrollingChild = new View();
-            mScrollingChild.Name = "DefaultScrollingChild";
-
-            //Interrupt touching when panning is started;
+            //Interrupt touching when panning is started
             mInterruptTouchingChild = new View()
             {
-                Name = "InterruptTouchingChild",
                 Size = new Size(Window.Instance.WindowSize),
                 BackgroundColor = Color.Transparent,
             };
+            mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
+            Scrollbar = new Scrollbar();
 
-            mInterruptTouchingChild.TouchEvent += (object source, View.TouchEventArgs args) =>
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
+        }
+
+        private bool OnIterruptTouchingChildTouched(object source, View.TouchEventArgs args)
+        {
+            if (args.Touch.GetState(0) == PointStateType.Down)
             {
-                return true;
-            };
-
-            Layout = new ScrollableBaseCustomLayout();
+                if (scrolling && !SnapToPage)
+                {
+                    StopScroll();
+                }
+            }
+            return true;
         }
 
         private void OnPropertyChanged(object source, PropertyNotification.NotifyEventArgs args)
@@ -409,40 +584,59 @@ namespace Tizen.NUI.Components
         /// Called after a child has been added to the owning view.
         /// </summary>
         /// <param name="view">The child which has been added.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnChildAdd(View view)
+        /// <since_tizen> 8 </since_tizen>
+        public override void Add(View view)
         {
-            if (view.Name != "InterruptTouchingChild")
-            {
-                if (mScrollingChild.Name != "DefaultScrollingChild")
-                {
-                    propertyNotification.Notified -= OnPropertyChanged;
-                    mScrollingChild.RemovePropertyNotification(propertyNotification);
-                }
-
-                mScrollingChild = view;
-                propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
-                propertyNotification.Notified += OnPropertyChanged;
-            }
+            ContentContainer.Add(view);
         }
 
         /// <summary>
         /// Called after a child has been removed from the owning view.
         /// </summary>
         /// <param name="view">The child which has been removed.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnChildRemove(View view)
+        /// <since_tizen> 8 </since_tizen>
+        public override void Remove(View view)
         {
-            if (view.Name != "InterruptTouchingChild")
+            if (SnapToPage && CurrentPage == Children.IndexOf(view) && CurrentPage == Children.Count - 1)
             {
-                propertyNotification.Notified -= OnPropertyChanged;
-                mScrollingChild.RemovePropertyNotification(propertyNotification);
+                // Target View is current page and also last child.
+                // CurrentPage should be changed to previous page.
+                CurrentPage = Math.Max(0, CurrentPage - 1);
+                ScrollToIndex(CurrentPage);
+            }
 
-                mScrollingChild = new View();
+            ContentContainer.Remove(view);
+        }
+
+        private void OnScrollingChildRelayout(object source, EventArgs args)
+        {
+            // Size is changed. Calculate maxScrollDistance.
+            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height;
+
+            if (isSizeChanged)
+            {
+                maxScrollDistance = CalculateMaximumScrollDistance();
+                SetScrollbar();
+            }
+
+            previousContainerSize = ContentContainer.Size;
+        }
+
+        /// <summary>
+        /// The composition of a Scrollbar can vary depending on how you use ScrollableBase.
+        /// Set the composition that will go into the ScrollableBase according to your ScrollableBase.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void SetScrollbar()
+        {
+            if (Scrollbar)
+            {
+                bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+                float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
+                float viewportLength = isHorizontal ? Size.Width : Size.Height;
+                float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+                Scrollbar.Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
             }
         }
 
@@ -450,12 +644,10 @@ namespace Tizen.NUI.Components
         /// Scrolls to the item at the specified index.
         /// </summary>
         /// <param name="index">Index of item.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void ScrollToIndex(int index)
         {
-            if (mScrollingChild.ChildCount - 1 < index || index < 0)
+            if (ContentContainer.ChildCount - 1 < index || index < 0)
             {
                 return;
             }
@@ -465,45 +657,47 @@ namespace Tizen.NUI.Components
                 CurrentPage = index;
             }
 
-            maxScrollDistance = CalculateMaximumScrollDistance();
-
-            float targetPosition = Math.Min(ScrollingDirection == Direction.Vertical ? mScrollingChild.Children[index].Position.Y : mScrollingChild.Children[index].Position.X, maxScrollDistance);
+            float targetPosition = Math.Min(ScrollingDirection == Direction.Vertical ? Children[index].Position.Y : Children[index].Position.X, maxScrollDistance);
             AnimateChildTo(ScrollDuration, -targetPosition);
         }
 
-        private void OnScrollDragStart()
+        private void OnScrollDragStarted()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
-            ScrollDragStartEvent?.Invoke(this, eventArgs);
+            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollDragStarted?.Invoke(this, eventArgs);
         }
 
-        private void OnScrollDragEnd()
+        private void OnScrollDragEnded()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
-            ScrollDragEndEvent?.Invoke(this, eventArgs);
+            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollDragEnded?.Invoke(this, eventArgs);
         }
 
-        private void OnScrollAnimationStart()
+        private void OnScrollAnimationStarted()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
-            ScrollAnimationStartEvent?.Invoke(this, eventArgs);
+            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollAnimationStarted?.Invoke(this, eventArgs);
         }
 
-        private void OnScrollAnimationEnd()
+        private void OnScrollAnimationEnded()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
-            ScrollAnimationEndEvent?.Invoke(this, eventArgs);
+            scrolling = false;
+            base.Remove(mInterruptTouchingChild);
+
+            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollAnimationEnded?.Invoke(this, eventArgs);
         }
-
-        private bool readyToNotice = false;
-
-        protected float noticeAnimationEndBeforePosition = 0.0f;
 
         private void OnScroll()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
-            ScrollEvent?.Invoke(this, eventArgs);
+            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            Scrolling?.Invoke(this, eventArgs);
 
+            bool isHorizontal = ScrollingDirection == Direction.Horizontal;
+            float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
+            float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
+
+            scrollBar.Update(contentLength, Math.Abs(currentPosition));
             CheckPreReachedTargetPosition();
         }
 
@@ -511,8 +705,8 @@ namespace Tizen.NUI.Components
         {
             // Check whether we reached pre-reached target position
             if (readyToNotice &&
-                mScrollingChild.CurrentPosition.Y <= finalTargetPosition + noticeAnimationEndBeforePosition &&
-                mScrollingChild.CurrentPosition.Y >= finalTargetPosition - noticeAnimationEndBeforePosition)
+                ContentContainer.CurrentPosition.Y <= finalTargetPosition + NoticeAnimationEndBeforePosition &&
+                ContentContainer.CurrentPosition.Y >= finalTargetPosition - NoticeAnimationEndBeforePosition)
             {
                 //Notice first
                 readyToNotice = false;
@@ -524,7 +718,6 @@ namespace Tizen.NUI.Components
         /// This helps developer who wants to know before scroll is reaching target position.
         /// </summary>
         /// <param name="targetPosition">Index of item.</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPreReachedTargetPosition(float targetPosition)
@@ -540,23 +733,10 @@ namespace Tizen.NUI.Components
                 {
                     Debug.WriteLineIf(LayoutDebugScrollableBase, "StopScroll Animation Playing");
                     scrollAnimation.Stop(Animation.EndActions.Cancel);
-                    OnScrollAnimationEnd();
+                    OnScrollAnimationEnded();
                 }
                 scrollAnimation.Clear();
             }
-        }
-
-        // static constructor registers the control type
-        static ScrollableBase()
-        {
-            // ViewRegistry registers control type with DALi type registry
-            // also uses introspection to find any properties that need to be registered with type registry
-            CustomViewRegistry.Instance.Register(CreateInstance, typeof(ScrollableBase));
-        }
-
-        internal static CustomView CreateInstance()
-        {
-            return new ScrollableBase();
         }
 
         private void AnimateChildTo(int duration, float axisPosition)
@@ -573,10 +753,10 @@ namespace Tizen.NUI.Components
             }
 
             scrollAnimation.Duration = duration;
-            scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
-            scrollAnimation.AnimateTo(mScrollingChild, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", axisPosition);
+            scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+            scrollAnimation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", axisPosition, ScrollAlphaFunction);
             scrolling = true;
-            OnScrollAnimationStart();
+            OnScrollAnimationStarted();
             scrollAnimation.Play();
         }
 
@@ -585,13 +765,15 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="position">Destination.</param>
         /// <param name="animate">Scroll with or without animation</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public void ScrollTo(float position, bool animate)
         {
-            float currentPositionX = mScrollingChild.CurrentPosition.X != 0 ? mScrollingChild.CurrentPosition.X : mScrollingChild.Position.X;
-            float currentPositionY = mScrollingChild.CurrentPosition.Y != 0 ? mScrollingChild.CurrentPosition.Y : mScrollingChild.Position.Y;
+            float currentPositionX = ContentContainer.CurrentPosition.X != 0 ? ContentContainer.CurrentPosition.X : ContentContainer.Position.X;
+            float currentPositionY = ContentContainer.CurrentPosition.Y != 0 ? ContentContainer.CurrentPosition.Y : ContentContainer.Position.Y;
             float delta = ScrollingDirection == Direction.Horizontal ? currentPositionX : currentPositionY;
-            delta -= position;
+            // The argument position is the new pan position. So the new position of ScrollableBase becomes (-position).
+            // To move ScrollableBase's position to (-position), it moves by (-position - currentPosition).
+            delta = -position - delta;
 
             ScrollBy(delta, animate);
         }
@@ -622,7 +804,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? mScrollingChild.PositionX : mScrollingChild.PositionY;
+            float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy childCurrentPosition:" + childCurrentPosition +
                                                    " displacement:" + displacement,
@@ -637,12 +819,9 @@ namespace Tizen.NUI.Components
             {
                 // Calculate scroll animaton duration
                 float scrollDistance = Math.Abs(displacement);
-                int duration = (int)((320 * FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
-                Debug.WriteLineIf(LayoutDebugScrollableBase, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
-
                 readyToNotice = true;
 
-                AnimateChildTo(duration, BoundScrollPosition(AdjustTargetPositionOfScrollAnimation(BoundScrollPosition(childTargetPosition))));
+                AnimateChildTo(ScrollDuration, BoundScrollPosition(AdjustTargetPositionOfScrollAnimation(BoundScrollPosition(childTargetPosition))));
             }
             else
             {
@@ -651,11 +830,11 @@ namespace Tizen.NUI.Components
                 // Set position of scrolling child without an animation
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    mScrollingChild.PositionX = finalTargetPosition;
+                    ContentContainer.PositionX = finalTargetPosition;
                 }
                 else
                 {
-                    mScrollingChild.PositionY = finalTargetPosition;
+                    ContentContainer.PositionY = finalTargetPosition;
                 }
 
             }
@@ -665,7 +844,6 @@ namespace Tizen.NUI.Components
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -686,63 +864,27 @@ namespace Tizen.NUI.Components
                     mPanGestureDetector = null;
                 }
 
-                if (mTapGestureDetector != null)
-                {
-                    mTapGestureDetector.Detected -= OnTapGestureDetected;
-                    mTapGestureDetector.Dispose();
-                    mTapGestureDetector = null;
-                }
+                propertyNotification.Dispose();
             }
             base.Dispose(type);
         }
 
-        private float CalculateDisplacementFromVelocity(float axisVelocity)
-        {
-            // Map: flick speed of range (2.0 - 6.0) to flick multiplier of range (0.7 - 1.6)
-            float speedMinimum = FlickThreshold;
-            float speedMaximum = FlickThreshold + 6.0f;
-            float multiplierMinimum = FlickDistanceMultiplierRange.X;
-            float multiplierMaximum = FlickDistanceMultiplierRange.Y;
-
-            float flickDisplacement = 0.0f;
-
-            float speed = Math.Min(4.0f, Math.Abs(axisVelocity));
-
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollableBase Candidate Flick speed:" + speed);
-
-            if (speed > FlickThreshold)
-            {
-                // Flick length is the length of the ScrollableBase.
-                float flickLength = (ScrollingDirection == Direction.Horizontal) ? CurrentSize.Width : CurrentSize.Height;
-
-                // Calculate multiplier by mapping speed between the multiplier minimum and maximum.
-                multiplier = ((speed - speedMinimum) / ((speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum))) + multiplierMinimum;
-
-                // flick displacement is the product of the flick length and multiplier
-                flickDisplacement = ((flickLength * multiplier) * speed) / axisVelocity;  // *speed and /velocity to perserve sign.
-
-                Debug.WriteLineIf(LayoutDebugScrollableBase, "Calculated FlickDisplacement[" + flickDisplacement + "] from speed[" + speed + "] multiplier:"
-                                                        + multiplier);
-            }
-            return flickDisplacement;
-        }
-
         private float CalculateMaximumScrollDistance()
         {
-            int scrollingChildLength = 0;
-            int scrollerLength = 0;
+            float scrollingChildLength = 0;
+            float scrollerLength = 0;
             if (ScrollingDirection == Direction.Horizontal)
             {
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Horizontal");
 
-                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredWidth.Size.AsRoundedValue();
-                scrollerLength = CurrentSize.Width;
+                scrollingChildLength = ContentContainer.Size.Width;
+                scrollerLength = Size.Width;
             }
             else
             {
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Vertical");
-                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue();
-                scrollerLength = CurrentSize.Height;
+                scrollingChildLength = ContentContainer.Size.Height;
+                scrollerLength = Size.Height;
             }
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy maxScrollDistance:" + (scrollingChildLength - scrollerLength) +
@@ -752,7 +894,7 @@ namespace Tizen.NUI.Components
             return Math.Max(scrollingChildLength - scrollerLength, 0);
         }
 
-        private void PageSnap()
+        private void PageSnap(float velocity)
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
                                                                 " currentPage[" + CurrentPage + "]");
@@ -762,7 +904,18 @@ namespace Tizen.NUI.Components
             {
                 if (totalDisplacementForPan < 0)
                 {
-                    CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1, 0), ++CurrentPage);
+                    CurrentPage = Math.Min(Math.Max(Children.Count - 1, 0), ++CurrentPage);
+                }
+                else
+                {
+                    CurrentPage = Math.Max(0, --CurrentPage);
+                }
+            }
+            else if (Math.Abs(velocity) > PageFlickThreshold)
+            {
+                if (velocity < 0)
+                {
+                    CurrentPage = Math.Min(Math.Max(Children.Count - 1, 0), ++CurrentPage);
                 }
                 else
                 {
@@ -771,122 +924,223 @@ namespace Tizen.NUI.Components
             }
 
             // Animate to new page or reposition to current page
-            float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + mScrollingChild.PositionX);
+            float destinationX = -(Children[CurrentPage].Position.X + Children[CurrentPage].CurrentSize.Width / 2 - CurrentSize.Width / 2); // set to middle of current page
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + ContentContainer.PositionX);
             AnimateChildTo(ScrollDuration, destinationX);
-        }
-
-        private void Flick(float flickDisplacement)
-        {
-            if (SnapToPage)
-            {
-                if ((flickWhenAnimating && scrolling == true) || (scrolling == false))
-                {
-                    if (flickDisplacement < 0)
-                    {
-                        CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1, 0), CurrentPage + 1);
-                        Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap - to page:" + CurrentPage);
-                    }
-                    else
-                    {
-                        CurrentPage = Math.Max(0, CurrentPage - 1);
-                        Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + CurrentPage);
-                    }
-
-                    float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width / 2.0f - CurrentSize.Width / 2.0f); // set to middle of current page
-                    Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + destinationX);
-                    AnimateChildTo(ScrollDuration, destinationX);
-                }
-            }
-            else
-            {
-                ScrollBy(flickDisplacement, true); // Animate flickDisplacement.
-            }
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            if (e.PanGesture.State == Gesture.StateType.Started)
+            OnPanGesture(e.PanGesture);
+        }
+
+        private void OnPanGesture(PanGesture panGesture)
+        {
+            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                Add(mInterruptTouchingChild);
+                return;
+            }
+
+            if (panGesture.State == Gesture.StateType.Started)
+            {
+                readyToNotice = false;
+                base.Add(mInterruptTouchingChild);
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
                     StopScroll();
                 }
-                maxScrollDistance = CalculateMaximumScrollDistance();
                 totalDisplacementForPan = 0.0f;
-                OnScrollDragStart();
+                OnScrollDragStarted();
             }
-            else if (e.PanGesture.State == Gesture.StateType.Continuing)
+            else if (panGesture.State == Gesture.StateType.Continuing)
             {
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    ScrollBy(e.PanGesture.Displacement.X, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.X;
+                    ScrollBy(panGesture.Displacement.X, false);
+                    totalDisplacementForPan += panGesture.Displacement.X;
                 }
                 else
                 {
-                    ScrollBy(e.PanGesture.Displacement.Y, false);
-                    totalDisplacementForPan += e.PanGesture.Displacement.Y;
+                    ScrollBy(panGesture.Displacement.Y, false);
+                    totalDisplacementForPan += panGesture.Displacement.Y;
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (e.PanGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished)
             {
-                float axisVelocity = (ScrollingDirection == Direction.Horizontal) ? e.PanGesture.Velocity.X : e.PanGesture.Velocity.Y;
-                float flickDisplacement = CalculateDisplacementFromVelocity(axisVelocity);
+                OnScrollDragEnded();
+                StopScroll(); // Will replace previous animation so will stop existing one.
 
-                Debug.WriteLineIf(LayoutDebugScrollableBase, "FlickDisplacement:" + flickDisplacement + "TotalDisplacementForPan:" + totalDisplacementForPan);
-                OnScrollDragEnd();
-
-                if (flickDisplacement > 0 | flickDisplacement < 0)// Flick detected
+                if (scrollAnimation == null)
                 {
-                    Flick(flickDisplacement);
+                    scrollAnimation = new Animation();
+                    scrollAnimation.Finished += ScrollAnimationFinished;
+                }
+
+                float panVelocity = (ScrollingDirection == Direction.Horizontal) ? panGesture.Velocity.X : panGesture.Velocity.Y;
+
+                if (SnapToPage)
+                {
+                    PageSnap(panVelocity);
                 }
                 else
                 {
-                    // End of panning gesture but was not a flick
-                    if (SnapToPage)
+                    if (panVelocity == 0)
                     {
-                        PageSnap();
+                        float currentScrollPosition = (ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+                        scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+                        scrollAnimation.Duration = 0;
+                        scrollAnimation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", currentScrollPosition);
+                        scrollAnimation.Play();
                     }
                     else
                     {
-                        ScrollBy(0, true);
+                        Decelerating(panVelocity, scrollAnimation);
                     }
                 }
-                totalDisplacementForPan = 0;
 
-                Remove(mInterruptTouchingChild);
+                totalDisplacementForPan = 0;
+                scrolling = true;
+                readyToNotice = true;
+                OnScrollAnimationStarted();
             }
         }
 
-        private new void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
+        internal override bool OnAccessibilityPan(PanGesture gestures)
         {
-            if (e.TapGesture.Type == Gesture.GestureType.Tap)
+            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                // Stop scrolling if tap detected (press then relase).
-                // Unless in Pages mode, do not want a page change to stop part way.
-                if (scrolling && !SnapToPage)
-                {
-                    StopScroll();
-                }
+                return false;
             }
+
+            OnPanGesture(gestures);
+            return true;
+        }
+
+        private float CustomScrollAlphaFunction(float progress)
+        {
+            if (panAnimationDelta == 0)
+            {
+                return 1.0f;
+            }
+            else
+            {
+                // Parameter "progress" is normalized value. We need to multiply target duration to calculate distance.
+                // Can get real distance using equation of deceleration (check Decelerating function)
+                // After get real distance, normalize it
+                float realDuration = progress * panAnimationDuration;
+                float realDistance = velocityOfLastPan * ((float)Math.Pow(decelerationRate, realDuration) - 1) / logValueOfDeceleration;
+                float result = Math.Min(realDistance / Math.Abs(panAnimationDelta), 1.0f);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// you can override it to custom your decelerating
+        /// </summary>
+        /// <param name="velocity">Velocity of current pan.</param>
+        /// <param name="animation">Scroll animation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Decelerating(float velocity, Animation animation)
+        {
+            // Decelerating using deceleration equation ===========
+            //
+            // V   : velocity (pixel per milisecond)
+            // V0  : initial velocity
+            // d   : deceleration rate,
+            // t   : time
+            // X   : final position after decelerating
+            // log : natural logarithm
+            //
+            // V(t) = V0 * d pow t;
+            // X(t) = V0 * (d pow t - 1) / log d;  <-- Integrate the velocity function
+            // X(∞) = V0 * d / (1 - d); <-- Result using inifit T can be final position because T is tending to infinity.
+            //
+            // Because of final T is tending to inifity, we should use threshold value to finish.
+            // Final T = log(-threshold * log d / |V0| ) / log d;
+
+            velocityOfLastPan = Math.Abs(velocity);
+
+            float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+            panAnimationDelta = (velocityOfLastPan * decelerationRate) / (1 - decelerationRate);
+            panAnimationDelta = velocity > 0 ? -panAnimationDelta : panAnimationDelta;
+
+            float destination = -(panAnimationDelta + currentScrollPosition);
+            float adjustDestination = AdjustTargetPositionOfScrollAnimation(destination);
+            float maxPosition = ScrollAvailableArea != null ? ScrollAvailableArea.Y : maxScrollDistance;
+            float minPosition = ScrollAvailableArea != null ? ScrollAvailableArea.X : 0;
+
+            if (destination < -maxPosition || destination > minPosition)
+            {
+                panAnimationDelta = velocity > 0 ? (currentScrollPosition - minPosition) : (maxPosition - currentScrollPosition);
+                destination = velocity > 0 ? minPosition : -maxPosition;
+
+                if (panAnimationDelta == 0)
+                {
+                    panAnimationDuration = 0.0f;
+                }
+                else
+                {
+                    panAnimationDuration = (float)Math.Log((panAnimationDelta * logValueOfDeceleration / velocityOfLastPan + 1), decelerationRate);
+                }
+
+                Debug.WriteLineIf(LayoutDebugScrollableBase, "\n" +
+                    "OverRange======================= \n" +
+                    "[decelerationRate] " + decelerationRate + "\n" +
+                    "[logValueOfDeceleration] " + logValueOfDeceleration + "\n" +
+                    "[Velocity] " + velocityOfLastPan + "\n" +
+                    "[CurrentPosition] " + currentScrollPosition + "\n" +
+                    "[CandidateDelta] " + panAnimationDelta + "\n" +
+                    "[Destination] " + destination + "\n" +
+                    "[Duration] " + panAnimationDuration + "\n" +
+                    "================================ \n"
+                );
+            }
+            else
+            {
+                panAnimationDuration = (float)Math.Log(-DecelerationThreshold * logValueOfDeceleration / velocityOfLastPan) / logValueOfDeceleration;
+
+                if (adjustDestination != destination)
+                {
+                    destination = adjustDestination;
+                    panAnimationDelta = destination + currentScrollPosition;
+                    velocityOfLastPan = Math.Abs(panAnimationDelta * logValueOfDeceleration / ((float)Math.Pow(decelerationRate, panAnimationDuration) - 1));
+                    panAnimationDuration = (float)Math.Log(-DecelerationThreshold * logValueOfDeceleration / velocityOfLastPan) / logValueOfDeceleration;
+                }
+
+                Debug.WriteLineIf(LayoutDebugScrollableBase, "\n" +
+                    "================================ \n" +
+                    "[decelerationRate] " + decelerationRate + "\n" +
+                    "[logValueOfDeceleration] " + logValueOfDeceleration + "\n" +
+                    "[Velocity] " + velocityOfLastPan + "\n" +
+                    "[CurrentPosition] " + currentScrollPosition + "\n" +
+                    "[CandidateDelta] " + panAnimationDelta + "\n" +
+                    "[Destination] " + destination + "\n" +
+                    "[Duration] " + panAnimationDuration + "\n" +
+                    "================================ \n"
+                );
+            }
+
+            finalTargetPosition = destination;
+
+            customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
+            animation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
+            GC.KeepAlive(customScrollAlphaFunction);
+            animation.Duration = (int)panAnimationDuration;
+            animation.AnimateTo(ContentContainer, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", destination);
+            animation.Play();
         }
 
         private void ScrollAnimationFinished(object sender, EventArgs e)
         {
-            scrolling = false;
-            CheckPreReachedTargetPosition();
-            OnScrollAnimationEnd();
+            OnScrollAnimationEnded();
         }
 
         /// <summary>
         /// Adjust scrolling position by own scrolling rules.
         /// Override this function when developer wants to change destination of flicking.(e.g. always snap to center of item)
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual float AdjustTargetPositionOfScrollAnimation(float position)
@@ -894,6 +1148,31 @@ namespace Tizen.NUI.Components
             return position;
         }
 
+        /// <summary>
+        /// Scroll position given to ScrollTo.
+        /// This is the position in the opposite direction to the position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.Position);
+            }
+        }
+
+        /// <summary>
+        /// Current scroll position in the middle of ScrollTo animation.
+        /// This is the position in the opposite direction to the current position of ContentContainer.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Position ScrollCurrentPosition
+        {
+            get
+            {
+                return new Position(-ContentContainer.CurrentPosition);
+            }
+        }
     }
 
 } // namespace

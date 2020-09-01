@@ -32,8 +32,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            if (null == imageViewStyle.resourceUrlSelector) imageViewStyle.resourceUrlSelector = new Selector<string>();
-            imageViewStyle.resourceUrlSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            imageViewStyle.resourceUrlSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -69,8 +68,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            if (null == imageViewStyle.borderSelector) imageViewStyle.borderSelector = new Selector<Rectangle>();
-            imageViewStyle.borderSelector.Clone(null == newValue ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
+            imageViewStyle.borderSelector = ((Selector<Rectangle>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -123,6 +121,23 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Rectangle> borderSelector;
 
         static ImageViewStyle() { }
+
+        /// <summary>
+        /// Create an empty instance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle() : base()
+        {
+        }
+
+        /// <summary>
+        /// Create an instance and set properties from the given ImageView.
+        /// </summary>
+        /// <param name="imageView">The ImageView instance that includes property data.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle(ImageView imageView) : base(imageView)
+        {
+        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -38,7 +38,7 @@ namespace Tizen.NUI.Wearable
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Popup() : base()
+        public Popup() : base(ThemeManager.GetStyle("WearablePopup") as ControlStyle)
         {
             initialize();
         }
@@ -207,11 +207,11 @@ namespace Tizen.NUI.Wearable
                         leftButton.PositionUsesPivotPoint = true;
                         leftButton.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         leftButton.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        leftButton.Style.Overlay.SiblingOrder = 100;
+                        leftButton.OverlayImage.SiblingOrder = 100;
                         button.PositionUsesPivotPoint = true;
                         button.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         button.PivotPoint = NUI.PivotPoint.CenterRight;
-                        button.Style.Overlay.SiblingOrder = 100;
+                        button.OverlayImage.SiblingOrder = 100;
                     }
                 }
                 else
@@ -220,7 +220,7 @@ namespace Tizen.NUI.Wearable
                     buttonList.Add(index, button);
                     Add(button);
                     button.RaiseToTop();
-                    button.Style.Overlay.SiblingOrder = 100; //will be fixed.
+                    button.OverlayImage.SiblingOrder = 100; //will be fixed.
                     if (position == ButtonPosition.Left)
                     {
                         button.PositionUsesPivotPoint = true;
@@ -430,14 +430,14 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>The default popup style.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
         }
 
         private void initialize()
         {
-            popupStyle = Style as PopupStyle;
+            popupStyle = ViewStyle as PopupStyle;
             if (popupStyle == null)
             {
                 throw new Exception("Popup style is null.");
@@ -548,10 +548,8 @@ namespace Tizen.NUI.Wearable
         private TextLabel title;
         private ScrollableBase scroll;
         private Dictionary<string, View> scrollList;
-        private EventHandler buttonClick;
         private Timer timer;
         private PopupStyle popupStyle;
-        private bool wrapContent = false;
         private View buttonContainer;
         private string firstButtonIndex;
         private View titleContentContainer;

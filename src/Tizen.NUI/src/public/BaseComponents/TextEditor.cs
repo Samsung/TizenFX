@@ -1075,6 +1075,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The MaxLength property.
+        /// </summary>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int MaxLength
+        {
+            get
+            {
+                return (int)GetValue(MaxLengthProperty);
+            }
+            set
+            {
+                SetValue(MaxLengthProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsCreateByXaml
@@ -1140,9 +1158,17 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (this.HasBody() && _textEditorTextChangedCallbackDelegate != null)
+            if (this.HasBody())
             {
-                TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                if(_textEditorTextChangedCallbackDelegate != null)
+                {
+                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                }
+
+                if(_textEditorMaxLengthReachedCallbackDelegate != null)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                }
             }
 
             base.Dispose(type);
@@ -1191,7 +1217,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = Interop.TextEditor.TextEditor_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = Interop.TextEditor.TextEditor_Property_TEXT_get();
             internal static readonly int TEXT_COLOR = Interop.TextEditor.TextEditor_Property_TEXT_COLOR_get();
             internal static readonly int FONT_FAMILY = Interop.TextEditor.TextEditor_Property_FONT_FAMILY_get();
@@ -1245,6 +1270,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PLACEHOLDER_TEXT_COLOR = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
             internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextEditor.TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int MAX_LENGTH = Interop.TextEditor.TextEditor_Property_MAX_LENGTH_get();
         }
 
         internal class InputStyle

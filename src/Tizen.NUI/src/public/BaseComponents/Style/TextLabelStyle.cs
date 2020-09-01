@@ -31,66 +31,51 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            if (null == textFieldStyle.translatableTextSelector) textFieldStyle.translatableTextSelector = new Selector<string>();
-            textFieldStyle.translatableTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            ((TextLabelStyle)bindable).translatableTextSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.translatableTextSelector;
+            return ((TextLabelStyle)bindable).translatableTextSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            if (null == textFieldStyle.textSelector) textFieldStyle.textSelector = new Selector<string>();
-            textFieldStyle.textSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            ((TextLabelStyle)bindable).textSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.textSelector;
+            return ((TextLabelStyle)bindable).textSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            if (null == textFieldStyle.fontFamilySelector) textFieldStyle.fontFamilySelector = new Selector<string>();
-            textFieldStyle.fontFamilySelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            ((TextLabelStyle)bindable).fontFamilySelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.fontFamilySelector;
+            return ((TextLabelStyle)bindable).fontFamilySelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            if (null == textFieldStyle.pointSizeSelector) textFieldStyle.pointSizeSelector = new Selector<float?>();
-            textFieldStyle.pointSizeSelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
+            ((TextLabelStyle)bindable).pointSizeSelector = ((Selector<float?>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.pointSizeSelector;
+            return ((TextLabelStyle)bindable).pointSizeSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            if (null == textFieldStyle.textColorSelector) textFieldStyle.textColorSelector = new Selector<Color>();
-            textFieldStyle.textColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
+            ((TextLabelStyle)bindable).textColorSelector = ((Selector<Color>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.textColorSelector;
+            return ((TextLabelStyle)bindable).textColorSelector;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -299,15 +284,13 @@ namespace Tizen.NUI.BaseComponents
         });
         /// A BindableProperty for ImageShadow
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(Selector<TextShadow>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create("TextShadowSelector", typeof(Selector<TextShadow>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textLabelStyle = (TextLabelStyle)bindable;
-            textLabelStyle.textShadow = SelectorHelper.CopyCloneable<TextShadow>(newValue);
+            ((TextLabelStyle)bindable).textShadow = ((Selector<TextShadow>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textLabelStyle = (TextLabelStyle)bindable;
-            return textLabelStyle.textShadow;
+            return ((TextLabelStyle)bindable).textShadow;
         });
 
         private bool? multiLine;
@@ -335,6 +318,23 @@ namespace Tizen.NUI.BaseComponents
         private Selector<TextShadow> textShadow;
 
         static TextLabelStyle() { }
+
+        /// <summary>
+        /// Create an empty instance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle() : base()
+        {
+        }
+
+        /// <summary>
+        /// Create an instance and set properties from the given TextLabel.
+        /// </summary>
+        /// <param name="textLabel">The TextLabel instance that includes property data.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle(TextLabel textLabel) : base(textLabel)
+        {
+        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

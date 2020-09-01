@@ -5,6 +5,10 @@
     <RootNamespace>Tizen.NUI</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SupportedProfiles>wearable</SupportedProfiles>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
@@ -12,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\*.json">
+    <None Update="res\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

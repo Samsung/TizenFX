@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using System.Windows.Input;
 
 namespace Tizen.NUI.Components
 {
@@ -30,17 +31,28 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Control : VisualView
     {
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
+            propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
+
+        private bool onThemeChangedEventOverrideChecker;
+
         /// <summary> Control style. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected string style;
+        protected string StyleName { get; set; }
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlStyle Style => ViewStyle as ControlStyle;
+        public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
         static Control() { }
 
@@ -52,14 +64,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control() : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetComponentStyle(this.GetType());
+            ViewStyle viewStyle = ThemeManager.GetStyle(GetType());
 
             if (viewStyle != null)
             {
                 ApplyStyle(viewStyle);
             }
 
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
@@ -71,33 +83,45 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(ControlStyle style) : base(style)
         {
-            Initialize(null);
+            Initialize();
         }
 
         /// <summary>
-        /// Construct with styleSheet
+        /// Construct with style name
         /// </summary>
-        /// <param name="styleSheet">StyleSheet to be applied</param>
+        /// <param name="styleName">The name of style in the current theme to be applied</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string styleSheet) : base()
+        public Control(string styleName) : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleSheet);
+            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleName);
             if (viewStyle == null)
             {
-                throw new InvalidOperationException($"There is no style {styleSheet}");
+                throw new InvalidOperationException($"There is no style {styleName}");
             }
 
             ApplyStyle(viewStyle);
-            this.style = styleSheet;
+            this.StyleName = styleName;
+            ThemeChangeSensitive = true;
 
-            Initialize(style);
+            Initialize();
         }
 
-        internal void ApplyAttributes(View view, ViewStyle viewStyle)
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ICommand Command
         {
-            view.CopyFrom(viewStyle);
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        /// Internal used.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
         /// <summary>
@@ -107,6 +131,22 @@ namespace Tizen.NUI.Components
         internal bool StateFocusableOnTouchMode { get; set; }
 
         internal bool IsFocused { get; set; } = false;
+
+        internal void CommandCanExecuteChanged(object sender, EventArgs eventArgs)
+        {
+            ICommand cmd = Command;
+            if (cmd != null)
+                cmd.CanExecute(CommandParameter);
+        }
+
+        internal void OnCommandChanged()
+        {
+            if (Command != null)
+            {
+                Command.CanExecuteChanged += CommandCanExecuteChanged;
+                CommandCanExecuteChanged(this, EventArgs.Empty);
+            }
+        }
 
         /// <summary>
         /// Dispose Control and all children on it.
@@ -124,7 +164,6 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                StyleManager.Instance.ThemeChangedEvent -= OnThemeChangedEvent;
                 tapGestureDetector.Detected -= OnTapGestureDetected;
                 tapGestureDetector.Detach(this);
             }
@@ -195,37 +234,6 @@ namespace Tizen.NUI.Components
         protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e) { }
 
         /// <summary>
-        /// Called after a touch event is received by the owning view.<br />
-        /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
-        /// </summary>
-        /// <param name="touch">The touch event.</param>
-        /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool OnTouch(Touch touch)
-        {
-            // Handle Normal and Pressed states
-            PointStateType state = touch.GetState(0);
-            switch(state)
-            {
-                case PointStateType.Down:
-                    ControlState = ControlStates.Pressed;
-                    break;
-                case PointStateType.Interrupted:
-                case PointStateType.Up:
-                    if (ControlState == ControlStates.Pressed)
-                    {
-                        ControlState = ControlStates.Normal;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Update by style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -237,31 +245,53 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
+        /// Note that it is deprecated API.Please use OnThemeChanged instead.
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e) { }
+        protected virtual void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            onThemeChangedEventOverrideChecker = false;
+        }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void RegisterDetectionOfSubstyleChanges() { }
-
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new ControlStyle();
         }
 
-        private void Initialize(string style)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
-            ControlState = ControlStates.Normal;
+            // TODO Remove checker after update Tizen.FH.NUI.
+            onThemeChangedEventOverrideChecker = true;
 
-            RegisterDetectionOfSubstyleChanges();
+            OnThemeChangedEvent(sender, new StyleManager.ThemeChangeEventArgs { CurrentTheme = e.ThemeId });
 
+            if (onThemeChangedEventOverrideChecker) return;
+
+            // If the OnThemeChangedEvent is not implemented, ApplyStyle()
+            if (string.IsNullOrEmpty(StyleName))
+            {
+                base.OnThemeChanged(sender, e);
+                return;
+            }
+
+            ViewStyle newStyle = ThemeManager.GetStyle(StyleName);
+
+            if (newStyle != null)
+            {
+                ApplyStyle(newStyle);
+            }
+        }
+
+        private void Initialize()
+        {
             LeaveRequired = true;
 
             StateFocusableOnTouchMode = false;
@@ -269,7 +299,7 @@ namespace Tizen.NUI.Components
             tapGestureDetector.Attach(this);
             tapGestureDetector.Detected += OnTapGestureDetected;
 
-            StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
+            EnableControlState = true;
         }
     }
 }

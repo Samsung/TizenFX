@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The HeartRateMonitorLEDGreenBatch class is used for registering callbacks for the HRMLEDGreen batch and getting the HRMLEDGreen batch data.
+    /// The HeartRateMonitorLEDGreenBatch class registers callbacks for the HRMLEDGreen batch and provides batch data of HRMLEDGreen batch.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public sealed class HeartRateMonitorLEDGreenBatch : BatchSensor<HeartRateMonitorLEDGreenBatchData>
@@ -149,7 +149,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read HeartRateMonitorLEDGreenBatch data synchronously.
+        /// Reads HeartRateMonitorLEDGreenBatch data synchronously.
         /// </summary>
         internal override void ReadData()
         {

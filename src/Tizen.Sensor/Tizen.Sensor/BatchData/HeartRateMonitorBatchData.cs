@@ -5,7 +5,7 @@ using System.Text;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The HeartRateMonitorBatchData class is used for storing value of HeartRateMonitorBatch sensor.
+    /// The HeartRateMonitorBatchData class stores the value of HeartRateMonitorBatch sensor.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class HeartRateMonitorBatchData : BatchData
@@ -41,7 +41,7 @@ namespace Tizen.Sensor
         public int HeartRate { get; }
 
         /// <summary>
-        /// Gets the value R wave-to-R wave interval(RRI) from ECG sensor(Unit is millisecond).
+        /// Gets the value of R wave-to-R wave interval(RRI) from ECG sensor. The unit of the interval is millisecond.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <value> RRInterval </value>

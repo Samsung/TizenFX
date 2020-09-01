@@ -161,10 +161,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            var imageView = (ImageView)bindable;
             if(newValue != null)
             {
-                var imageView = (ImageView)bindable;
-                imageView._border = (Rectangle)newValue;
+                imageView._border = new Rectangle((Rectangle)newValue);
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
             }
         },
@@ -233,6 +233,28 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         });
 
+        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.resourceUrlSelector.Update(imageView, (Selector<string>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.resourceUrlSelector.Get(imageView);
+        });
+
+        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.borderSelector.Update(imageView, (Selector<Rectangle>)newValue, true);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.borderSelector.Get(imageView);
+        });
+
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
@@ -244,10 +266,12 @@ namespace Tizen.NUI.BaseComponents
         private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
+        private readonly TriggerableSelector<string> resourceUrlSelector = new TriggerableSelector<string>(ResourceUrlProperty);
+        private readonly TriggerableSelector<Rectangle> borderSelector = new TriggerableSelector<Rectangle>(BorderProperty);
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Style => ViewStyle as ImageViewStyle;
+        public ImageViewStyle Style => new ImageViewStyle(this);
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -324,6 +348,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            ApplyStyle(ThemeManager.GetStyle(nameof(ImageView)));
+
             if (!shown)
             {
                 SetVisible(false);
@@ -426,6 +452,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ResourceUrlProperty, value);
+                resourceUrlSelector.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();       
             }
         }
@@ -556,6 +583,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderProperty, value);
+                borderSelector.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -885,7 +913,27 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Gets or sets ReleasePolicy for image.<br />
+        /// If not supplied, the default is ReleasePolicyType.Detached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReleasePolicyType ReleasePolicy
+        {
+            get
+            {
+                int ret = (int)ReleasePolicyType.Detached;
+                PropertyMap imageMap = new PropertyMap();
+                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+                imageMap?.Find(ImageVisualProperty.ReleasePolicy)?.Get(out ret);
+                return (ReleasePolicyType)ret;
+            }
+            set
+            {
+                UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
+            }
+        }
+ 
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
@@ -971,9 +1019,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override void UpdateCornerRadius(float value, bool needToListenStateChanged)
+        internal override void UpdateCornerRadius(float value)
         {
-            base.UpdateCornerRadius(value, needToListenStateChanged);
+            base.UpdateCornerRadius(value);
 
             UpdateImage(0, null);
         }
@@ -981,52 +1029,6 @@ namespace Tizen.NUI.BaseComponents
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
-        }
-
-        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.resourceUrlSelector.Clone((Selector<string>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.resourceUrlSelector;
-        });
-        private TriggerableSelector<string> _resourceUrlSelector;
-        private TriggerableSelector<string> resourceUrlSelector
-        {
-            get
-            {
-                if (null == _resourceUrlSelector)
-                {
-                    _resourceUrlSelector = new TriggerableSelector<string>(this, ResourceUrlProperty);
-                }
-                return _resourceUrlSelector;
-            }
-        }
-
-        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.borderSelector.Clone((Selector<Rectangle>)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView.borderSelector;
-        });
-        private TriggerableSelector<Rectangle> _borderSelector;
-        private TriggerableSelector<Rectangle> borderSelector
-        {
-            get
-            {
-                if (null == _borderSelector)
-                {
-                    _borderSelector = new TriggerableSelector<Rectangle>(this, BorderProperty);
-                }
-                return _borderSelector;
-            }
         }
 
         /// <summary>
@@ -1048,6 +1050,8 @@ namespace Tizen.NUI.BaseComponents
                 //You should release all of your own disposable objects here.
                 _border?.Dispose();
                 _border = null;
+                borderSelector.Reset(this);
+                resourceUrlSelector.Reset(this);
             }
 
             base.Dispose(type);

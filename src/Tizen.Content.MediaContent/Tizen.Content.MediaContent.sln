@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{4FCA7B32-660F-46BF-820F-EBA7C039733F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{5DC1DFF0-66E9-4FC7-AF13-51148389C8A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ComponentBased", "..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj", "{640B45A8-110D-4185-857E-B11F5E292973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5DC1DFF0-66E9-4FC7-AF13-51148389C8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC1DFF0-66E9-4FC7-AF13-51148389C8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC1DFF0-66E9-4FC7-AF13-51148389C8A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640B45A8-110D-4185-857E-B11F5E292973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640B45A8-110D-4185-857E-B11F5E292973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640B45A8-110D-4185-857E-B11F5E292973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640B45A8-110D-4185-857E-B11F5E292973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

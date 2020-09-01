@@ -15,7 +15,8 @@
  *
  */
 
- using System.ComponentModel;
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,7 +25,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase
+    public class ImageShadow : ShadowBase, ISelectorItem
     {
         private static readonly Rectangle noBorder = new Rectangle();
 
@@ -34,7 +35,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow() : base()
         {
-            Border = noBorder;
+            Border = new Rectangle(noBorder);
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Tizen.NUI
         public ImageShadow(string url, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
         {
             Url = url;
-            Border = border;
+            Border = border == null ? null : new Rectangle(border);
         }
 
         /// <summary>
@@ -120,6 +121,10 @@ namespace Tizen.NUI
                 return hash;
             }
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new ImageShadow(this);
 
         internal override bool IsEmpty()
         {

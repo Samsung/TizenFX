@@ -32,11 +32,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.translatableTextSelector)
-            {
-                textFieldStyle.translatableTextSelector = new Selector<string>();
-            }
-            textFieldStyle.translatableTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            textFieldStyle.translatableTextSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -48,11 +44,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.translatablePlaceholderTextSelector)
-            {
-                textFieldStyle.translatablePlaceholderTextSelector = new Selector<string>();
-            }
-            textFieldStyle.translatablePlaceholderTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            textFieldStyle.translatablePlaceholderTextSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -61,14 +53,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create(nameof(Text), typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.textSelector)
-            {
-                textFieldStyle.textSelector = new Selector<string>();
-            }
-            textFieldStyle.textSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            textFieldStyle.textSelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -80,11 +68,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.fontFamilySelector)
-            {
-                textFieldStyle.fontFamilySelector = new Selector<string>();
-            }
-            textFieldStyle.fontFamilySelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
+            textFieldStyle.fontFamilySelector = ((Selector<string>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -96,11 +80,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.pointSizeSelector)
-            {
-                textFieldStyle.pointSizeSelector = new Selector<float?>();
-            }
-            textFieldStyle.pointSizeSelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
+            textFieldStyle.pointSizeSelector = ((Selector<float?>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -112,11 +92,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.textColorSelector)
-            {
-                textFieldStyle.textColorSelector = new Selector<Color>();
-            }
-            textFieldStyle.textColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
+            textFieldStyle.textColorSelector = ((Selector<Color>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -128,11 +104,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.placeholderTextColorSelector)
-            {
-                textFieldStyle.placeholderTextColorSelector = new Selector<Vector4>();
-            }
-            textFieldStyle.placeholderTextColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
+            textFieldStyle.placeholderTextColorSelector = ((Selector<Vector4>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -144,11 +116,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
-            if (null == textFieldStyle.primaryCursorColorSelector)
-            {
-                textFieldStyle.primaryCursorColorSelector = new Selector<Vector4>();
-            }
-            textFieldStyle.primaryCursorColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
+            textFieldStyle.primaryCursorColorSelector = ((Selector<Vector4>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -557,6 +525,23 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Vector4> primaryCursorColorSelector;
 
         static TextFieldStyle() { }
+
+        /// <summary>
+        /// Create an empty instance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFieldStyle() : base()
+        {
+        }
+
+        /// <summary>
+        /// Create an instance and set properties from the given TextField.
+        /// </summary>
+        /// <param name="textField">The TextField instance that includes property data.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFieldStyle(TextField textField) : base(textField)
+        {
+        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -14,10 +14,13 @@
  * limitations under the License.
  *
  */
-using System;
+
+extern alias TizenSystemInformation;
+using TizenSystemInformation.Tizen.System;
+using global::System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -36,6 +39,13 @@ namespace Tizen.NUI
         private List<Layer> _childLayers = new List<Layer>();
         private LayoutController localController;
 
+        private bool IsSupportedMultiWindow()
+        {
+            bool isSupported = false;
+            Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            return isSupported;
+        }
+
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
             if (Interop.Stage.Stage_IsInstalled())
@@ -43,10 +53,10 @@ namespace Tizen.NUI
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Stage.Stage_GetCurrent());
 
                 localController = new LayoutController(this);
-                NUILog.Debug("layoutController id:" + localController.GetId() );
+                NUILog.Debug("layoutController id:" + localController.GetId());
             }
         }
-		
+
         /// <summary>
         /// Creates a new Window.<br />
         /// This creates an extra window in addition to the default main window<br />
@@ -55,8 +65,14 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
-        public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        public Window(Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,8 +85,14 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             this._windowTitle = name;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -181,26 +203,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for opacity of the indicator.
-        /// </summary>
-        internal enum IndicatorBackgroundOpacity
-        {
-            Opaque = 100,
-            Translucent = 50,
-            Transparent = 0
-        }
-
-        /// <summary>
-        /// Enumeration for visible mode of the indicator.
-        /// </summary>
-        internal enum IndicatorVisibleMode
-        {
-            Invisible = 0,
-            Visible = 1,
-            Auto = 2
-        }
-
-        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -210,19 +212,6 @@ namespace Tizen.NUI
             get
             {
                 return instance;
-            }
-        }
-
-        /// <summary>
-        /// Get Resource ID of window
-        /// </summary>
-        internal int ResourceID
-        {
-            get
-            {
-                int ret = Interop.Window.GetResouceID(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
             }
         }
 
@@ -970,8 +959,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="parent">The parent window.</param>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void SetParent(Window parent)
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -981,8 +976,14 @@ namespace Tizen.NUI
         /// After unsetting, the window is disconnected his parent window.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void Unparent()
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("Fail to create window. because this device does not support opengles.surfaceless_context.");
+            }
             Interop.Window.Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -992,8 +993,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The parent window of the window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Window GetParent()
         {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
             Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(swigCPtr)) as Window;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1020,24 +1027,6 @@ namespace Tizen.NUI
             bool ret = Interop.Stage.Stage_IsInstalled();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
-        {
-            Interop.WindowInternal.Window_ShowIndicator(swigCPtr, (int)visibleMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetIndicatorBackgroundOpacity(Window.IndicatorBackgroundOpacity opacity)
-        {
-            Interop.WindowInternal.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void RotateIndicator(Window.WindowOrientation orientation)
-        {
-            Interop.WindowInternal.Window_RotateIndicator(swigCPtr, (int)orientation);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1105,12 +1094,12 @@ namespace Tizen.NUI
         /// <param name="orientations">The list of orientations.</param>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAvailableOrientations( List<Window.WindowOrientation> orientations )
+        public void SetAvailableOrientations(List<Window.WindowOrientation> orientations)
         {
             PropertyArray orientationArray = new PropertyArray();
-            for( int i = 0; i < orientations.Count; i++ )
+            for (int i = 0; i < orientations.Count; i++)
             {
-              orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                orientationArray.PushBack(new PropertyValue((int)orientations[i]));
             }
 
             Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
@@ -1179,7 +1168,7 @@ namespace Tizen.NUI
             if (LayersChildren == null || LayersChildren.Count < 0)
                 return 0;
 
-            return (uint) LayersChildren.Count;
+            return (uint)LayersChildren.Count;
         }
 
         internal Layer GetRootLayer()
@@ -1284,6 +1273,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Add FrameCallback
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddFrameCallback(FrameCallbackInterface frameCallback)
+        {
+            frameCallback?.AddFrameCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+        }
+
+        /// <summary>
+        /// Remove FrameCallback
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveFrameCallback(FrameCallbackInterface frameCallback)
+        {
+            frameCallback?.RemoveFrameCallback(stageCPtr);
+        }
+
+        /// <summary>
         /// Dispose for Window
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1303,7 +1310,7 @@ namespace Tizen.NUI
                 _rootLayer.Dispose();
                 localController.Dispose();
 
-                foreach(var layer in _childLayers)
+                foreach (var layer in _childLayers)
                 {
                     layer.Dispose();
                 }
@@ -1320,6 +1327,113 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Window.delete_Window(swigCPtr);
+        }
+
+        private static Dictionary<int, internalHookCallbackType> frameCallbackList = new Dictionary<int, internalHookCallbackType>();
+
+        private static readonly object locker = new object();
+
+        private static int key = 0;
+
+        private static FrameCallbackType internalHookFrameCallback = OnInternalHookFrameCallback;
+
+        private struct internalHookCallbackType
+        {
+            public FrameCallbackType userCallback;
+            public int frameId;
+        }
+
+        private static void OnInternalHookFrameCallback(int id)
+        {
+            lock (locker)
+            {
+                if (frameCallbackList.ContainsKey(id))
+                {
+                    if (frameCallbackList[id].userCallback != null)
+                    {
+                        frameCallbackList[id].userCallback.Invoke(frameCallbackList[id].frameId);
+                        frameCallbackList.Remove(id);
+                    }
+                    else
+                    {
+                        NUILog.Error($"found userCallback is NULL");
+                        frameCallbackList.Remove(id);
+                    }
+                }
+            }
+        }
+
+        private int AddInterHookCallback(FrameCallbackType callback, int frameId)
+        {
+            if (null == callback)
+            {
+                throw new ArgumentNullException(nameof(callback), "FrameCallbackType should not be null");
+            }
+            var assignedKey = 0;
+            lock (locker)
+            {
+                key++;
+                assignedKey = key;
+                frameCallbackList.Add(assignedKey, new internalHookCallbackType()
+                {
+                    userCallback = callback,
+                    frameId = frameId,
+                });
+            }
+            return assignedKey;
+        }
+
+        /// <summary>
+        /// Type of callback which is called when the frame rendering is done by graphics driver or when the frame is displayed on display.
+        /// </summary>
+        /// <param name="frameId">The Id to specify the frame. It will be passed when the callback is called.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void FrameCallbackType(int frameId);
+
+        /// <summary>
+        /// Adds a callback that is called when the frame rendering is done by the graphics driver.
+        /// A callback of the following type may be used:
+        /// <code>
+        /// void MyFunction( int frameId )
+        /// </code>
+        /// This callback will be deleted once it is called. 
+        /// <remarks>
+        /// Ownership of the callback is passed onto this class
+        /// </remarks>
+        /// </summary>
+        /// <param name="callback">The function to call</param>
+        /// <param name="frameId">The Id to specify the frame. It will be passed when the callback is called.</param>
+        /// <exception cref="ArgumentNullException">This exception can occur by the callback is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddFrameRenderedCallback(FrameCallbackType callback, int frameId)
+        {
+            var assignedKey = AddInterHookCallback(callback, frameId);
+            Interop.WindowInternal.AddFrameRenderedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Adds a callback that is called when the frame is displayed on the display.
+        /// A callback of the following type may be used:
+        /// <code>
+        /// void MyFunction( int frameId )
+        /// </code>
+        /// This callback will be deleted once it is called. 
+        /// <remarks>
+        /// Ownership of the callback is passed onto this class
+        /// </remarks>
+        /// </summary>
+        /// <param name="callback">The function to call</param>
+        /// <param name="frameId">The Id to specify the frame. It will be passed when the callback is called.</param>
+        /// <exception cref="ArgumentNullException">This exception can occur by the callback is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddFramePresentedCallback(FrameCallbackType callback, int frameId)
+        {
+            var assignedKey = AddInterHookCallback(callback, frameId);
+            Interop.WindowInternal.AddFramePresentedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

@@ -36,16 +36,11 @@ namespace Tizen.NUI.Components.Extension
             slidingAnimation = new Animation(100);
         }
 
-        public override void OnClick(Button button, Button.ClickEventArgs eventArgs)
+        /// <inheritdoc/>
+        public override void OnSelectedChanged(Switch switchButton)
         {
-            if (button as Switch == null)
-            {
-                throw new Exception("SlidingSwitchExtension must be used within a SwitchStyle or derived class.");
-            }
-
-            var switchButton = (Switch)button;
-            var track = switchButton.GetCurrentTrack(this);
-            var thumb = switchButton.GetCurrentThumb(this);
+            var track = switchButton.Track;
+            var thumb = switchButton.Thumb;
 
             if (track == null || thumb == null || null == slidingAnimation)
             {

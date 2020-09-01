@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Tizen.MachineLearning.Inference
 {
@@ -335,6 +336,40 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
+        /// Gets the normal node instance with given node name.
+        /// </summary>
+        /// <param name="name">The name of normal node.</param>
+        /// <returns>The normal node instance</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public Node GetNormal(string name)
+        {
+            NNStreamer.CheckNNStreamerSupport();
+
+            /* Check the parameter */
+            if (string.IsNullOrEmpty(name))
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "Node name is invalid");
+
+            Node node;
+            if (_nodeList.ContainsKey(name))
+            {
+                if (_nodeList[name].Type != NodeType.Normal)
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, name + " is not a normal node");
+
+                node = (Node)_nodeList[name];
+            }
+            else
+            {
+                node = new Node(name, this);
+                _nodeList.Add(name, node);
+            }
+            return node;
+        }
+
+
+        /// <summary>
         /// SwitchNode class to handle the switch node.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -535,6 +570,23 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
+        /// Node class to handle the properties of NNStreamer pipelines.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public class Node : NodeInfo
+        {
+            internal Node(string name, Pipeline pipe) : base(NodeType.Normal, name, pipe)
+            {
+                IntPtr handle = IntPtr.Zero;
+
+                NNStreamerError ret = Interop.Pipeline.GetElementHandle(pipe.GetHandle(), name, out handle);
+                NNStreamer.CheckException(ret, "Failed to get the pipeline node handle: " + name);
+
+                Handle = handle;
+            }
+        }
+
+        /// <summary>
         /// Node type of NNStreamer pipeline.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -556,6 +608,10 @@ namespace Tizen.MachineLearning.Inference
             /// The switch node.
             /// </summary>
             Switch = 3,
+            /// <summary>
+            /// The normal node of the pipeline.
+            /// </summary>
+            Normal = 4,
         }
 
         /// <summary>
@@ -602,6 +658,339 @@ namespace Tizen.MachineLearning.Inference
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
             public bool Valid { get; internal set; }
+
+            private void CheckGetParam(string propertyName)
+            {
+                NNStreamer.CheckNNStreamerSupport();
+
+                if (string.IsNullOrEmpty(propertyName))
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "Property name is invalid");
+            }
+
+            private void CheckSetParam(string propertyName, object value)
+            {
+                NNStreamer.CheckNNStreamerSupport();
+
+                if (string.IsNullOrEmpty(propertyName))
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "Property name is invalid");
+
+                if (value is null)
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "Value is invalid");
+            }
+
+            /// <summary>
+            /// Gets the boolean of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a boolean value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out bool retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyBool(Handle, propertyName, out int value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value == 0 ? false : true;
+            }
+
+            /// <summary>
+            /// Gets the string of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a string value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out string retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyString(Handle, propertyName, out string value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Gets the integer (i.e. System.Int32) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a integer value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out int retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyInt32(Handle, propertyName, out int value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Gets the long integer (i.e. System.Int64) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a long integer value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out long retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyInt64(Handle, propertyName, out long value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Gets the unsigned integer (i.e. System.UInt32) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a unsigned integer value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out uint retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyUInt32(Handle, propertyName, out uint value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Gets the unsigned long integer (i.e. System.UInt64) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a unsigned long integer value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out ulong retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyUInt64(Handle, propertyName, out ulong value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Gets the floating-point value of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="retValue">On return, a floating-point value.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void GetValue(string propertyName, out double retValue)
+            {
+                CheckGetParam(propertyName);
+
+                NNStreamerError ret = Interop.Pipeline.GetPropertyDouble(Handle, propertyName, out double value);
+                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                retValue = value;
+            }
+
+            /// <summary>
+            /// Get the value of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <typeparam name="T">The value type of given property.</typeparam>
+            /// <param name="propertyName">The property name.</param>
+            /// <returns>The value of given property.</returns>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public T GetValue<T>(string propertyName)
+            {
+                NNStreamerError ret;
+                CheckGetParam(propertyName);
+
+                if (typeof(bool).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyBool(Handle, propertyName, out int value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value == 0 ? false : true, typeof(T));
+                }
+                else if (typeof(string).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyString(Handle, propertyName, out string value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(int).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyInt32(Handle, propertyName, out int value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(long).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyInt64(Handle, propertyName, out long value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(uint).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyUInt32(Handle, propertyName, out uint value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(ulong).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyUInt64(Handle, propertyName, out ulong value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+
+                throw new ArgumentException("The Input data type is not valid.");
+            }
+
+            /// <summary>
+            /// Sets the boolean of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The boolean value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, bool value)
+            {
+                CheckSetParam(propertyName, value);
+                int setValue = value ? 1 : 0;
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyBool(Handle, propertyName, setValue);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Sets the string of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The string of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, string value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyString(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Sets the integer (i.e. System.Int32) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The integer value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, int value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyInt32(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Sets the long integer (i.e. System.Int64) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The long integer value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, long value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyInt64(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Sets the unsigned integer (i.e. System.UInt32) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The unsigned integer value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, uint value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyUInt32(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Sets the unsigned long integer (i.e. System.UInt64) of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The unsigned long integer value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, ulong value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyUInt64(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
+
+            /// <summary>
+            /// Gets the floating-point value of node's property in NNStreamer pipelines.
+            /// </summary>
+            /// <param name="propertyName">The property name.</param>
+            /// <param name="value">The floating-point value of given property.</param>
+            /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+            /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+            /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+            /// <since_tizen> 8 </since_tizen>
+            public void SetValue(string propertyName, double value)
+            {
+                CheckSetParam(propertyName, value);
+
+                NNStreamerError ret = Interop.Pipeline.SetPropertyDouble(Handle, propertyName, value);
+                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+            }
         }
     }
 }

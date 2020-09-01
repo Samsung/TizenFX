@@ -27,6 +27,7 @@ namespace Tizen.NUI.Components
     /// User can handle Popup button count, head title and content area.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated in API8; Will be removed in API10")]
     public class Popup : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -34,9 +35,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create(nameof(ButtonHeight), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if (newValue != null && instance?.Style?.Buttons?.Size != null )
+            if (newValue != null && instance?.popupStyle?.Buttons?.Size != null )
             {
-                instance.Style.Buttons.Size.Height = (int)newValue;
+                instance.popupStyle.Buttons.Size.Height = (int)newValue;
                 instance.btGroup.Itemheight = (int)newValue;
                 instance.UpdateView();
             }
@@ -44,7 +45,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return (int)(instance.Style?.Buttons?.Size?.Height ?? 0);
+            return (int)(instance.popupStyle?.Buttons?.Size?.Height ?? 0);
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -54,9 +55,9 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style?.Buttons?.Text != null)
+                if (instance.popupStyle?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.PointSize = (float)newValue;
+                    instance.popupStyle.Buttons.Text.PointSize = (float)newValue;
                 }
                 instance.btGroup.ItemPointSize = (float)newValue;
             }
@@ -64,7 +65,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Text?.PointSize?.All ?? 0;
+            return instance.popupStyle?.Buttons?.Text?.PointSize?.All ?? 0;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -74,14 +75,14 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                instance.Style.Buttons.Text.FontFamily = (string)newValue;
+                instance.popupStyle.Buttons.Text.FontFamily = (string)newValue;
                 instance.btGroup.ItemFontFamily = (string)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Text?.FontFamily.All;
+            return instance.popupStyle?.Buttons?.Text?.FontFamily.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -91,9 +92,9 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {  
-                if (instance.Style?.Buttons?.Text != null)
+                if (instance.popupStyle?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.TextColor = (Color)newValue;
+                    instance.popupStyle.Buttons.Text.TextColor = (Color)newValue;
                 }
                 instance.btGroup.ItemTextColor = (Color)newValue;
             }
@@ -101,7 +102,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Text?.TextColor?.All;
+            return instance.popupStyle?.Buttons?.Text?.TextColor?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -111,14 +112,14 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                instance.Style.Buttons.Overlay.BackgroundColor = (Selector<Color>)newValue;
+                instance.popupStyle.Buttons.Overlay.BackgroundColor = (Selector<Color>)newValue;
                 instance.btGroup.OverLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Overlay?.BackgroundColor;
+            return instance.popupStyle?.Buttons?.Overlay?.BackgroundColor;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -128,14 +129,14 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                instance.Style.Buttons.Text.HorizontalAlignment = (HorizontalAlignment)newValue;
+                instance.popupStyle.Buttons.Text.HorizontalAlignment = (HorizontalAlignment)newValue;
                 instance.btGroup.ItemTextAlignment = (HorizontalAlignment)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+            return instance.popupStyle?.Buttons?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -145,18 +146,19 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.BackgroundImage == null)
+                if (instance.popupStyle.Buttons.BackgroundImage == null)
                 {
-                    instance.Style.Buttons.BackgroundImage = new Selector<string>();
+                    instance.popupStyle.Buttons.BackgroundImage = new Selector<string>();
                 }
+                instance.popupStyle.Buttons.BackgroundColor = new Selector<Color>();
+                instance.popupStyle.Buttons.BackgroundImage = (string)newValue;
                 instance.btGroup.ItemBackgroundImageUrl = (string)newValue;
-                instance.Style.Buttons.BackgroundImage = (string)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.BackgroundImage?.All;
+            return instance.popupStyle?.Buttons?.BackgroundImage?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -166,18 +168,18 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.BackgroundImageBorder == null)
+                if (instance.popupStyle.Buttons.BackgroundImageBorder == null)
                 {
-                    instance.Style.Buttons.BackgroundImageBorder = new Selector<Rectangle>();
+                    instance.popupStyle.Buttons.BackgroundImageBorder = new Selector<Rectangle>();
                 }
-                instance.Style.Buttons.BackgroundImageBorder = (Rectangle)newValue;
+                instance.popupStyle.Buttons.BackgroundImageBorder = (Rectangle)newValue;
                 instance.btGroup.ItemBackgroundBorder = (Rectangle)newValue;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.BackgroundImageBorder?.All;
+            return instance.popupStyle?.Buttons?.BackgroundImageBorder?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -187,15 +189,16 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             ImageShadow shadow = (ImageShadow)newValue;
             instance.btGroup.ItemImageShadow = new ImageShadow(shadow);
-            instance.Style.Buttons.ImageShadow = new ImageShadow(shadow);
+            instance.popupStyle.Buttons.ImageShadow = new ImageShadow(shadow);
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.ImageShadow?.All;
+            return instance.popupStyle?.Buttons?.ImageShadow?.All;
         });
 
 
+        private PopupStyle popupStyle => ViewStyle as PopupStyle;
         private TextLabel titleText;
         private ButtonGroup btGroup = null;
         private Window window = null;
@@ -206,6 +209,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Popup() : base()
         {
             Initialize();
@@ -215,7 +219,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="style">Create Popup by special style defined in UX.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup(string style) : base(style)
         {
             Initialize();
@@ -225,7 +229,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a Popup with style.
         /// </summary>
         /// <param name="popupStyle">Create Popup by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup(PopupStyle popupStyle) : base(popupStyle)
         {
             Initialize();
@@ -264,10 +268,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButton(string buttonText)
         {
-            if (Style.Buttons != null)
+            if (popupStyle.Buttons != null)
             {
-                Button btn = new Button(Style.Buttons);
-                btn.Style.Text.Text = buttonText;
+                Button btn = new Button(popupStyle.Buttons);
+                btn.Text = buttonText;
                 btn.ClickEvent += ButtonClickEvent;
                 btGroup.AddItem(btn);
                 UpdateView();
@@ -277,7 +281,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Add button by style's name.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButton(string buttonText, string style)
         {
             AddButton(buttonText);
@@ -286,12 +290,12 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Add button by style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButton(string buttonText, ButtonStyle style)
         {
-            if (Style.Buttons != null && style != null)
+            if (popupStyle.Buttons != null && style != null)
             {
-                Style.Buttons.CopyFrom(style);
+                popupStyle.Buttons.CopyFrom(style);
                 AddButton(buttonText);
             }
         }
@@ -325,13 +329,23 @@ namespace Tizen.NUI.Components
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
         /// <summary>
         /// Get style of popup.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public new PopupStyle Style => ViewStyle as PopupStyle;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new PopupStyle Style
+        {
+            get
+            {
+                var result = new PopupStyle(popupStyle);
+                result.CopyPropertiesFromView(this);
+                result.Title.CopyPropertiesFromView(titleText);
+                return result;
+            }
+        }
 
         /// <summary>
         /// Popup Title.
@@ -343,7 +357,14 @@ namespace Tizen.NUI.Components
             {
                 if (null == titleText)
                 {
-                    titleText = new TextLabel();
+                    titleText = new TextLabel
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        HorizontalAlignment = HorizontalAlignment.Begin,
+                        VerticalAlignment = VerticalAlignment.Bottom
+                    };
                     Add(titleText);
                 }
                 return titleText;
@@ -358,19 +379,20 @@ namespace Tizen.NUI.Components
         /// Title text string in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string TitleText
         {
             get
             {
-                return Style?.Title?.Text?.All;
+                return popupStyle?.Title?.Text?.All;
             }
             set
             {
                 if (value != null)
                 {
-                    if (Style?.Title != null)
+                    if (popupStyle?.Title != null)
                     {
-                        Style.Title.Text = value;
+                        popupStyle.Title.Text = value;
                     }
                 }
             }
@@ -380,17 +402,18 @@ namespace Tizen.NUI.Components
         /// Title text point size in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float TitlePointSize
         {
             get
             {
-                return Style?.Title?.PointSize?.All ?? 0;
+                return popupStyle?.Title?.PointSize?.All ?? 0;
             }
             set
             {
-                if (Style?.Title != null)
+                if (popupStyle?.Title != null)
                 {
-                    Style.Title.PointSize = value;
+                    popupStyle.Title.PointSize = value;
                 }
             }
         }
@@ -399,17 +422,18 @@ namespace Tizen.NUI.Components
         /// Title text color in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TitleTextColor
         {
             get
             {
-                return Style?.Title?.TextColor?.All;
+                return popupStyle?.Title?.TextColor?.All;
             }
             set
             {
-                if (Style?.Title != null)
+                if (popupStyle?.Title != null)
                 {
-                    Style.Title.TextColor = value;
+                    popupStyle.Title.TextColor = value;
                 }
             }
         }
@@ -418,15 +442,16 @@ namespace Tizen.NUI.Components
         /// Title text horizontal alignment in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment TitleTextHorizontalAlignment
         {
             get
             {
-                return Style?.Title?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return popupStyle?.Title?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                Style.Title.HorizontalAlignment = value;
+                popupStyle.Title.HorizontalAlignment = value;
             }
         }
 
@@ -434,15 +459,16 @@ namespace Tizen.NUI.Components
         /// Title text's position in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Position TitleTextPosition
         {
             get
             {
-                return Style?.Title?.Position ?? new Position(0, 0, 0);
+                return popupStyle?.Title?.Position ?? new Position(0, 0, 0);
             }
             set
             {
-                Style.Title.Position = value;
+                popupStyle.Title.Position = value;
             }
         }
 
@@ -450,17 +476,18 @@ namespace Tizen.NUI.Components
         /// Title text's height in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int TitleHeight
         {
             get
             {
-                return (int)(Style?.Title?.Size?.Height ?? 0);
+                return (int)(popupStyle?.Title?.Size?.Height ?? 0);
             }
             set
             {
-                if (Style?.Title?.Size != null)
+                if (popupStyle?.Title?.Size != null)
                 {
-                     Style.Title.Size.Height = value;
+                    popupStyle.Title.Size.Height = value;
                 }
             }
         }
@@ -469,6 +496,7 @@ namespace Tizen.NUI.Components
         /// Content view in Popup, only can be gotten.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public View ContentView
         {
             get;
@@ -479,6 +507,7 @@ namespace Tizen.NUI.Components
         /// Button count in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ButtonCount
         {
             get;
@@ -489,6 +518,7 @@ namespace Tizen.NUI.Components
         /// Button height in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ButtonHeight
         {
             get
@@ -505,6 +535,7 @@ namespace Tizen.NUI.Components
         /// Button text point size in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float ButtonTextPointSize
         {
             get
@@ -521,6 +552,7 @@ namespace Tizen.NUI.Components
         /// Button text font family in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string ButtonFontFamily
         {
             get
@@ -537,6 +569,7 @@ namespace Tizen.NUI.Components
         /// Button text color in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color ButtonTextColor
         {
             get
@@ -571,6 +604,7 @@ namespace Tizen.NUI.Components
         /// Button text horizontal alignment in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment ButtonTextAlignment
         {
             get
@@ -639,6 +673,7 @@ namespace Tizen.NUI.Components
         /// <param name="index">Button index.</param>
         /// <param name="text">Button text string.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void SetButtonText(int index, string text)
         {
             AddButton(text);
@@ -649,6 +684,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -707,13 +743,19 @@ namespace Tizen.NUI.Components
         /// Apply style to popup.
         /// </summary>
         /// <param name="viewStyle">The style to apply.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
             PopupStyle ppStyle = viewStyle as PopupStyle;
             if (null != ppStyle)
             {
+                if (ppStyle.Buttons != null)
+                {
+                    if (ppStyle.Buttons.PositionUsesPivotPoint == null) ppStyle.Buttons.PositionUsesPivotPoint = true;
+                    if (ppStyle.Buttons.ParentOrigin == null) ppStyle.Buttons.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
+                    if (ppStyle.Buttons.PivotPoint == null) ppStyle.Buttons.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+                }
                 Title.ApplyStyle(ppStyle.Title);
                 Title.RaiseToTop();
             }
@@ -723,28 +765,18 @@ namespace Tizen.NUI.Components
         /// Get Popup style.
         /// </summary>
         /// <returns>The default popup style.</returns>
-        /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
         {
             return new PopupStyle();
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnUpdate()
         {
-            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
-            if (popupStyle != null)
-            {
-                string strSaveTitleText = TitleText;
-                Style.CopyFrom(popupStyle);
-                Style.Title.Text = strSaveTitleText;
-                UpdateView();
-            }
+            base.OnUpdate();
+            UpdateView();
         }
 
         private void Initialize()
@@ -772,7 +804,8 @@ namespace Tizen.NUI.Components
 
         private void UpdateView()
         {
-            btGroup.UpdateButton(Style.Buttons);
+            if (popupStyle == null) return;
+            btGroup.UpdateButton(popupStyle.Buttons);
             UpdateContentView();
             UpdateTitle();
         }
@@ -798,7 +831,7 @@ namespace Tizen.NUI.Components
         {
             if (e.PropertyName.Equals("LayoutDirection"))
             {
-                btGroup.UpdateButton(Style.Buttons);
+                btGroup.UpdateButton(popupStyle.Buttons);
             }
         }
 
@@ -808,21 +841,21 @@ namespace Tizen.NUI.Components
             int titleY = 0;
             int titleH = 0;
             int buttonH = 0;
-            string strText = Style.Title.Text.All;
-            if (!string.IsNullOrEmpty(strText) && Style.Title.Size != null)
+            string strText = Title.Text;
+            if (!string.IsNullOrEmpty(strText) && Title.Size != null)
             {
                 titleH = (int)titleText.Size.Height;
             }
 
-            if (!string.IsNullOrEmpty(strText) && Style.Title.Position != null)
+            if (!string.IsNullOrEmpty(strText) && Title.Position != null)
             {
-                titleX = (int)Style.Title.Position.X;
-                titleY = (int)Style.Title.Position.Y;
+                titleX = (int)Title.Position.X;
+                titleY = (int)Title.Position.Y;
             }
 
-            if (btGroup.Count != 0 && Style?.Buttons?.Size != null )
+            if (btGroup.Count != 0 && popupStyle?.Buttons?.Size != null )
             {
-                buttonH = (int)Style.Buttons.Size.Height;
+                buttonH = (int)popupStyle.Buttons.Size.Height;
             }
             ContentView.Size = new Size(Size.Width - titleX * 2, Size.Height - titleY - titleH - buttonH);
             ContentView.Position = new Position(titleX, titleY + titleH);
@@ -831,7 +864,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateTitle()
         {
-            if (titleText != null && string.IsNullOrEmpty(Style.Title.Text.All) && Style.Title.Size != null)
+            if (titleText != null && string.IsNullOrEmpty(popupStyle.Title.Text.All) && popupStyle.Title.Size != null)
             {
                 titleText.RaiseToTop();
             }
@@ -840,10 +873,12 @@ namespace Tizen.NUI.Components
         /// ButtonClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public class ButtonClickEventArgs : EventArgs
         {
             /// <summary> Button index which is clicked in Popup </summary>
             /// <since_tizen> 6 </since_tizen>
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int ButtonIndex;
         }
     }

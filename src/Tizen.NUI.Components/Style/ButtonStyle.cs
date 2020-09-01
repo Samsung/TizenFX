@@ -44,10 +44,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
-            if (buttonStyle.IsSelectable != null && buttonStyle.IsSelectable == true)
-            {
-                buttonStyle.isSelected = (bool?)newValue;
-            }
+            buttonStyle.isSelected = (bool?)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -82,9 +79,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var buttonStyle = (ButtonStyle)bindable;
-            if (null == buttonStyle.iconPadding) buttonStyle.iconPadding = new Extents(buttonStyle.OnIconPaddingChanged, 0, 0, 0, 0);
-            buttonStyle.iconPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
+            ((ButtonStyle)bindable).iconPadding = null == newValue ? null : new Extents((Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -95,9 +90,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var buttonStyle = (ButtonStyle)bindable;
-            if (null == buttonStyle.textPadding) buttonStyle.textPadding = new Extents(buttonStyle.OnTextPaddingChanged, 0, 0, 0, 0);
-            buttonStyle.textPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
+            ((ButtonStyle)bindable).textPadding = null == newValue ? null : new Extents((Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -108,7 +101,7 @@ namespace Tizen.NUI.Components
         private bool? isSelectable;
         private bool? isSelected;
         private bool? isEnabled;
-        private Button.IconOrientation? iconRelativeOrientation;
+        private Button.IconOrientation? iconRelativeOrientation = Button.IconOrientation.Left;
         private Extents iconPadding;
         private Extents textPadding;
 
@@ -120,7 +113,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ButtonStyle() : base()
         {
-            InitSubStyle();
         }
 
         /// <summary>
@@ -130,32 +122,25 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ButtonStyle(ButtonStyle style) : base(style)
         {
-            if(style == null)
-            {
-                return;
-            }
-
-            InitSubStyle();
-
-            this.CopyFrom(style);
         }
+
         /// <summary>
         /// Overlay image's Style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Overlay { get; set; }
+        public ImageViewStyle Overlay { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Text's Style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle Text { get; set; }
+        public TextLabelStyle Text { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Icon's Style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Icon { get; set; }
+        public ImageViewStyle Icon { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Flag to decide Button can be selected or not.
@@ -203,11 +188,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents IconPadding
         {
-            get
-            {
-                Extents padding = (Extents)GetValue(IconPaddingProperty);
-                return (null != padding) ? padding : iconPadding = new Extents(OnIconPaddingChanged, 0, 0, 0, 0);
-            }
+            get => ((Extents)GetValue(IconPaddingProperty)) ?? (iconPadding = new Extents());
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -217,11 +198,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
-            get
-            {
-                Extents padding = (Extents)GetValue(TextPaddingProperty);
-                return (null != padding) ? padding : textPadding = new Extents(OnTextPaddingChanged, 0, 0, 0, 0);
-            }
+            get  => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -234,27 +211,11 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            ButtonStyle buttonStyle = bindableObject as ButtonStyle;
-
-            if (null != buttonStyle)
+            if (bindableObject is ButtonStyle buttonStyle)
             {
-                if (null != buttonStyle.Overlay)
-                {
-                    Overlay?.CopyFrom(buttonStyle.Overlay);
-                }
-
-                if (null != buttonStyle.Text)
-                {
-                    Text?.CopyFrom(buttonStyle.Text);
-                }
-
-                if (null != buttonStyle.Icon)
-                {
-                    Icon?.CopyFrom(buttonStyle.Icon);
-                }
-
-                IsSelectable = buttonStyle.IsSelectable;
-                IconRelativeOrientation = buttonStyle.IconRelativeOrientation;
+                Overlay.CopyFrom(buttonStyle.Overlay);
+                Text.CopyFrom(buttonStyle.Text);
+                Icon.CopyFrom(buttonStyle.Icon);
             }
         }
 
@@ -270,54 +231,25 @@ namespace Tizen.NUI.Components
             return null;
         }
 
-        private void InitSubStyle()
+        /// <summary>
+        /// Dispose ButtonStyle and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
         {
-            Overlay = new ImageViewStyle()
+            if (disposed)
             {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
-            };
-            Overlay.PropertyChanged += SubStyleCalledEvent;
+                return;
+            }
 
-            Text = new TextLabelStyle()
+            if (type == DisposeTypes.Explicit)
             {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Text.PropertyChanged += SubStyleCalledEvent;
+                iconPadding?.Dispose();
+                textPadding?.Dispose();
+            }
 
-            Icon = new ImageViewStyle()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center,
-            };
-            Icon.PropertyChanged += SubStyleCalledEvent;
-
-            IconRelativeOrientation = Button.IconOrientation.Left;
-        }
-
-        private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
-        {
-            OnPropertyChanged();
-        }
-
-        private void OnIconPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
-        {
-            IconPadding = new Extents(start, end, top, bottom);
-        }
-
-        private void OnTextPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
-        {
-            TextPadding = new Extents(start, end, top, bottom);
+            base.Dispose(type);
         }
     }
 }

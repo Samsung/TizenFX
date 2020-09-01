@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -30,9 +31,49 @@ namespace Tizen.NUI
     /// </summary>
     public class FlexLayout : LayoutGroup,  global::System.IDisposable
     {
+        /// <summary>
+        /// FlexItemProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty FlexItemProperty = BindableProperty.CreateAttached("FlexItem", typeof(HandleRef), typeof(FlexLayout), default(HandleRef));
+
+        /// <summary>
+        /// FlexAlignmentSelfProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// FlexPositionTypeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// AspectRatioProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexAspectRatioProperty = BindableProperty.CreateAttached("FlexAspectRatio", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value > 0, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// FlexBasisProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexBasisProperty = BindableProperty.CreateAttached("FlexBasis", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// FlexShrinkProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexShrinkProperty = BindableProperty.CreateAttached("FlexShrink", typeof(float), typeof(FlexLayout), 1.0f, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+
+        /// <summary>
+        /// FlexGrowProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+
         private static bool LayoutDebugFlex = false; // Debug flag
-        float Flex{ get; set;}
-        int AlignSelf{get; set;}
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;
@@ -56,6 +97,114 @@ namespace Tizen.NUI
           float width;
           float height;
         };
+
+        /// <summary>
+        /// Get the alignment self of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AlignmentType GetFlexAlignmentSelf(View view)
+        {
+            return (AlignmentType)view.GetValue(FlexAlignmentSelfProperty);
+        }
+
+        /// <summary>
+        /// Get the position type of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PositionType GetFlexPositionType(View view)
+        {
+            return (PositionType)view.GetValue(FlexPositionTypeProperty);
+        }
+
+        /// <summary>
+        /// Get the aspect ratio of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float GetFlexAspectRatio(View view)
+        {
+            return (float)view.GetValue(FlexAspectRatioProperty);
+        }
+
+        /// <summary>
+        /// Get the basis of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float GetFlexBasis(View view)
+        {
+            return (float)view.GetValue(FlexBasisProperty);
+        }
+
+        /// <summary>
+        /// Get the shrink of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float GetFlexShrink(View view)
+        {
+            return (float)view.GetValue(FlexShrinkProperty);
+        }
+
+        /// <summary>
+        /// Get the grow of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float GetFlexGrow(View view)
+        {
+            return (float)view.GetValue(FlexGrowProperty);
+        }
+
+        /// <summary>
+        /// Set the alignment self of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexAlignmentSelf(View view, AlignmentType value)
+        {
+            SetChildValue(view, FlexAlignmentSelfProperty, value);
+        }
+
+        /// <summary>
+        /// Set the position type of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexPositionType(View view, PositionType value)
+        {
+            SetChildValue(view, FlexPositionTypeProperty, value);
+        }
+
+        /// <summary>
+        /// Set the aspect ratio of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexAspectRatio(View view, float value)
+        {
+            SetChildValue(view, FlexAspectRatioProperty, value);
+        }
+
+        /// <summary>
+        /// Set the basis of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexBasis(View view, float value)
+        {
+            SetChildValue(view, FlexBasisProperty, value);
+        }
+
+        /// <summary>
+        /// Set the shrink of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexShrink(View view, float value)
+        {
+            SetChildValue(view, FlexShrinkProperty, value);
+        }
+
+        /// <summary>
+        /// Set the grow of the layout items.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetFlexGrow(View view, float value)
+        {
+            SetChildValue(view, FlexGrowProperty, value);
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate MeasuredSize ChildMeasureCallback( global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight );
@@ -400,6 +549,23 @@ namespace Tizen.NUI
             /// </summary>
             Stretch
         }
+        /// <summary>
+        /// Enumeration for the position type of the flex item how it is positioned within its parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum PositionType
+        {
+            /// <summary>
+            /// Flex items laid out relatively.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Relative,
+            /// <summary>
+            /// Flex items laid out absolutely.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Absolute
+        }
 
         private MeasuredSize measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight)
         {
@@ -410,14 +576,14 @@ namespace Tizen.NUI
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (Padding.Start + Padding.End + child.Margin.Start + child.Margin.End)),
+                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (child.Margin.Start + child.Margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
-                                    new LayoutLength(child.Padding.Start + child.Padding.End),
+                                    new LayoutLength(Padding.Start + Padding.End),
                                     new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (Padding.Top + Padding.Bottom + child.Margin.Top + child.Margin.Bottom)),
+                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (child.Margin.Top + child.Margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
@@ -430,7 +596,9 @@ namespace Tizen.NUI
         void InsertChild( LayoutItem child )
         {
             // Store created node for child
-            Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count-1);
+            IntPtr childPtr = Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count-1);
+            HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
+            SetChildValue(child.Owner, FlexItemProperty, childHandleRef);
         }
 
         /// <summary>
@@ -489,6 +657,30 @@ namespace Tizen.NUI
             // because measurChild function is called by native callback.
             parentMeasureSpecificationWidth = widthMeasureSpec;
             parentMeasureSpecificationHeight = heightMeasureSpec;
+
+            // Assign child properties
+            for (int i = 0; i < LayoutChildren.Count; i++)
+            {
+                LayoutItem layoutItem = LayoutChildren[i];
+                View Child = layoutItem?.Owner;
+                HandleRef childHandleRef = (HandleRef)Child.GetValue(FlexItemProperty);
+                if (childHandleRef.Handle == IntPtr.Zero || Child == null)
+                    continue;
+
+                AlignmentType flexAlignemnt = GetFlexAlignmentSelf(Child);
+                PositionType flexPosition = GetFlexPositionType(Child);
+                float flexAspectRatio = GetFlexAspectRatio(Child);
+                float flexBasis = GetFlexBasis(Child);
+                float flexShrink = GetFlexShrink(Child);
+                float flexGrow = GetFlexGrow(Child);
+
+                Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
+                Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)flexPosition);
+                Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
+                Interop.FlexLayout.FlexLayout_SetFlexBasis(childHandleRef, flexBasis);
+                Interop.FlexLayout.FlexLayout_SetFlexShrink(childHandleRef, flexShrink);
+                Interop.FlexLayout.FlexLayout_SetFlexGrow(childHandleRef, flexGrow);
+            }
 
             Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width, height, isLayoutRtl );
 

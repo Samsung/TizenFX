@@ -17,6 +17,7 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
 using Tizen.Applications;
 
 internal static partial class Interop
@@ -127,14 +128,16 @@ internal static partial class Interop
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format")]
         internal static extern Tizen.Internals.Errors.ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [NativeStruct("widget_app_lifecycle_callback_s", Include="widget_app.h", PkgConfig="capi-appfw-widget-application")]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct WidgetAppLifecycleCallbacks
         {
             public WidgetAppCreateCallback OnCreate;
             public WidgetAppTerminateCallback OnTerminate;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [NativeStruct("widget_instance_lifecycle_callback_s", Include="widget_app.h", PkgConfig="capi-appfw-widget-application")]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct WidgetiInstanceLifecycleCallbacks
         {
             public WidgetInstanceCreateCallback OnCreate;

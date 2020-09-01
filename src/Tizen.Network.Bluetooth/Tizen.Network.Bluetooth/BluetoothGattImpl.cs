@@ -27,9 +27,14 @@ namespace Tizen.Network.Bluetooth
     {
         private BluetoothGattServerHandle _handle;
         internal event EventHandler<NotificationSentEventArg> _notificationSent;
+        int _requestId = 0;
+        Dictionary<int, TaskCompletionSource<bool>> _sendIndicationTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
+        Interop.Bluetooth.BtGattServerNotificationSentCallback _sendIndicationCallback;
 
         internal BluetoothGattServerImpl()
         {
+            _sendIndicationCallback = SendIndicationCallback;
+
             int err = Interop.Bluetooth.BtGattServerInitialize();
             GattUtil.ThrowForError(err, "Failed to initialize server");
 
@@ -107,28 +112,44 @@ namespace Tizen.Network.Bluetooth
             GattUtil.ThrowForError(err, string.Format("Failed to send response for request Id {0}", requestId));
         }
 
-        internal void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
+        void SendIndicationCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData)
         {
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), null, clientAddress, IntPtr.Zero);
-            GattUtil.ThrowForError(err, string.Format("Failed to send value changed notification for characteristic uuid {0}", characteristic.Uuid));
+            int requestId = (int)userData;
+            if (_sendIndicationTaskSource.ContainsKey(requestId))
+            {
+                _notificationSent?.Invoke(this, new NotificationSentEventArg(null, clientAddress, result, completed));
+                if (completed)
+                {
+                    _sendIndicationTaskSource[requestId].SetResult(true);
+                }
+                else
+                {
+                    _sendIndicationTaskSource[requestId].SetResult(false);
+                }
+                _sendIndicationTaskSource.Remove(requestId);
+            }
         }
 
         internal Task<bool> SendIndicationAsync(BluetoothGattServer server, BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Interop.Bluetooth.BtGattServerNotificationSentCallback cb = (result, address, serverHandle, characteristicHandle, completed, userData) =>
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            int requestId = 0;
+
+            lock (this)
             {
-                _notificationSent?.Invoke(characteristic, new NotificationSentEventArg(server, address, result, completed));
-                if (completed)
-                {
-                    tcs.SetResult(true);
-                }
-            };
+                requestId = _requestId++;
+                _sendIndicationTaskSource[requestId] = task;
+            }
 
-            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), cb, clientAddress, IntPtr.Zero);
-            GattUtil.ThrowForError(err, string.Format("Failed to send value changed indication for characteristic uuid {0}", characteristic.Uuid));
-
-            return tcs.Task;
+            int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), _sendIndicationCallback, clientAddress, (IntPtr)requestId);
+            if (err.IsFailed())
+            {
+                GattUtil.Error(err, string.Format("Failed to send value changed indication for characteristic uuid {0}", characteristic.Uuid));
+                task.SetResult(false);
+                _sendIndicationTaskSource.Remove(requestId);
+                BluetoothErrorFactory.ThrowBluetoothException(err);
+            }
+            return task.Task;
         }
 
         internal BluetoothGattServerHandle GetHandle()
@@ -140,9 +161,17 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothGattClientImpl
     {
         private BluetoothGattClientHandle _handle;
+        int _requestId = 0;
+        Dictionary<int, TaskCompletionSource<bool>> _readValueTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
+        Interop.Bluetooth.BtGattClientRequestCompletedCallback _readValueCallback;
+        Dictionary<int, TaskCompletionSource<bool>> _writeValueTaskSource = new Dictionary<int, TaskCompletionSource<bool>>();
+        Interop.Bluetooth.BtGattClientRequestCompletedCallback _writeValueCallback;
 
         internal BluetoothGattClientImpl(string remoteAddress)
         {
+            _readValueCallback = ReadValueCallback;
+            _writeValueCallback = WriteValueCallback;
+
             if (BluetoothAdapter.IsBluetoothEnabled)
             {
                 int err = Interop.Bluetooth.BtGattClientCreate(remoteAddress, out _handle);
@@ -211,46 +240,82 @@ namespace Tizen.Network.Bluetooth
             return attribututeList;
         }
 
-        internal Task<bool> ReadValueAsyncTask(BluetoothGattAttributeHandle handle)
+        void ReadValueCallback(int result, IntPtr requestHandle, IntPtr userData)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Interop.Bluetooth.BtGattClientRequestCompletedCallback cb = (result, requestHandle, userData) =>
+            int requestId = (int)userData;
+            if (_readValueTaskSource.ContainsKey(requestId))
             {
                 if (result == (int)BluetoothError.None)
-                    tcs.SetResult(true);
+                {
+                    _readValueTaskSource[requestId].SetResult(true);
+                }
                 else
-                    tcs.SetResult(false);
-            };
+                {
+                    _readValueTaskSource[requestId].SetResult(false);
+                }
+            }
+            _readValueTaskSource.Remove(requestId);
+        }
 
-            int err = Interop.Bluetooth.BtGattClientReadValue(handle, cb, IntPtr.Zero);
+        internal Task<bool> ReadValueAsyncTask(BluetoothGattAttributeHandle handle)
+        {
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            int requestId = 0;
+
+            lock (this)
+            {
+                requestId = _requestId++;
+                _readValueTaskSource[requestId] = task;
+            }
+
+            int err = Interop.Bluetooth.BtGattClientReadValue(handle, _readValueCallback, (IntPtr)requestId);
             if (err.IsFailed())
             {
                 GattUtil.Error(err, "Failed to read value from remote device");
-                tcs.SetResult(false);
+                task.SetResult(false);
+                _readValueTaskSource.Remove(requestId);
                 BluetoothErrorFactory.ThrowBluetoothException(err);
             }
-            return tcs.Task;
+            return task.Task;
+        }
+
+        void WriteValueCallback(int result, IntPtr requestHandle, IntPtr userData)
+        {
+            int requestId = (int)userData;
+            if (_writeValueTaskSource.ContainsKey(requestId))
+            {
+                if (result == (int)BluetoothError.None)
+                {
+                    _writeValueTaskSource[requestId].SetResult(true);
+                }
+                else
+                {
+                    _writeValueTaskSource[requestId].SetResult(false);
+                }
+            }
+            _writeValueTaskSource.Remove(requestId);
         }
 
         internal Task<bool> WriteValueAsyncTask(BluetoothGattAttributeHandle handle)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Interop.Bluetooth.BtGattClientRequestCompletedCallback cb = (result, requestHandle, userData) =>
-            {
-                if (result == (int)BluetoothError.None)
-                    tcs.SetResult(true);
-                else
-                    tcs.SetResult(false);
-            };
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            int requestId = 0;
 
-            int err = Interop.Bluetooth.BtGattClientWriteValue(handle, cb, IntPtr.Zero);
+            lock (this)
+            {
+                requestId = _requestId++;
+                _writeValueTaskSource[requestId] = task;
+            }
+
+            int err = Interop.Bluetooth.BtGattClientWriteValue(handle, _writeValueCallback, (IntPtr)requestId);
             if (err.IsFailed())
             {
                 GattUtil.Error(err, "Failed to write value to remote device");
-                tcs.SetResult(false);
+                task.SetResult(false);
+                _writeValueTaskSource.Remove(requestId);
                 BluetoothErrorFactory.ThrowBluetoothException(err);
             }
-            return tcs.Task;
+            return task.Task;
         }
 
         internal BluetoothGattClientHandle GetHandle()

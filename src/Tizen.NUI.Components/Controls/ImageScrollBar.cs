@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     /// Please note that this class will be replaced with Scrollbar class in the near future.
     /// </remarks>
     /// <since_tizen> 6 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API8; Will be removed in API10")]
     public class ScrollBar : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -138,6 +140,8 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public ScrollBar() : base()
         {
             Initialize();
@@ -147,7 +151,7 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar with specific style.
         /// </summary>
         /// <param name="style">style name</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar(string style) : base(style)
         {
             Initialize();
@@ -157,7 +161,7 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar with specific style.
         /// </summary>
         /// <param name="scrollBarStyle">The style object to initialize the ScrollBar.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar(ScrollBarStyle scrollBarStyle) : base(scrollBarStyle)
         {
             Initialize();
@@ -167,18 +171,24 @@ namespace Tizen.NUI.Components
         /// The direction type of the Scroll.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public enum DirectionType
         {
             /// <summary>
             /// The Horizontal type.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             Horizontal,
 
             /// <summary>
             /// The Vertical type.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API8; Will be removed in API10")]
             Vertical
         }
 
@@ -186,13 +196,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get style of scrollbar.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
 
         /// <summary>
         /// The property to get/set the direction of the ScrollBar.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public DirectionType Direction
         {
             get
@@ -223,6 +235,8 @@ namespace Tizen.NUI.Components
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Size ThumbSize
         {
             get
@@ -243,6 +257,8 @@ namespace Tizen.NUI.Components
         /// The property to get/set the image URL of the track object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string TrackImageURL
         {
             get
@@ -263,6 +279,8 @@ namespace Tizen.NUI.Components
         /// The property to get/set the color of the track object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TrackColor
         {
             get
@@ -283,6 +301,8 @@ namespace Tizen.NUI.Components
         /// The property to get/set the color of the thumb object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color ThumbColor
         {
             get
@@ -303,6 +323,8 @@ namespace Tizen.NUI.Components
         /// The property to get/set the max value of the ScrollBar.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int MaxValue
         {
             get
@@ -319,6 +341,8 @@ namespace Tizen.NUI.Components
         /// The property to get/set the min value of the ScrollBar.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int MinValue
         {
             get
@@ -351,6 +375,8 @@ namespace Tizen.NUI.Components
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int CurrentValue
         {
             get
@@ -367,6 +393,8 @@ namespace Tizen.NUI.Components
         /// Property to set/get animation duration.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public uint Duration
         {
             get
@@ -402,13 +430,15 @@ namespace Tizen.NUI.Components
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void SetCurrentValue(int currentValue, bool enableAnimation = true)
         {
             if (currentValue < minValue || currentValue > maxValue)
             {
                 //TNLog.E("Current value is less than the Min value, or greater than the Max value. currentValue = " + currentValue + ";");
 #pragma warning disable CA2208 // Instantiate argument exceptions correctly
-                throw new ArgumentOutOfRangeException("Wrong Current value. It shoud be greater than the Min value, and less than the Max value!");
+                throw new ArgumentOutOfRangeException("Wrong Current value. It should be greater than the Min value, and less than the Max value!");
 #pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
 
@@ -421,6 +451,8 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">The DisposeTypes value.</param>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -459,26 +491,10 @@ namespace Tizen.NUI.Components
         /// Get Scrollbar style.
         /// </summary>
         /// <returns>The default scrollbar style.</returns>
-        /// <since_tizen> 8 </since_tizen>
-        protected override ViewStyle GetViewStyle()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
         {
             return new ScrollBarStyle();
-        }
-
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        /// <since_tizen> 8 </since_tizen>
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
-            if (tempStyle != null)
-            {
-                Style.CopyFrom(tempStyle);
-                UpdateValue();
-            }
         }
 
         private void Initialize()

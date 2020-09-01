@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
@@ -23,83 +24,76 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// StyleManager is a class to manager all style.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
-    {
-        internal const float PointSizeNormal = 12;
-        internal const float PointSizeTitle = 16;
-
-        private const string defaultThemeName = "default";
-        private const string wearableThemeName = "wearable";
-        
-        private string currentThemeName = defaultThemeName;
-        private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
-        private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
-
+    {   
         /// <summary>
         /// (Theme name, Theme instance)
         /// </summary>
-        private Dictionary<string, Dictionary<Type, StyleBase>> componentStyleByTheme = new Dictionary<string, Dictionary<Type, StyleBase>>();
-        
-        /// <summary>
-        /// (Theme name, Theme instance)
-        /// </summary>
-        private Dictionary<string, Theme> themeMap = new Dictionary<string, Theme>();
-
-        private EventHandler<ThemeChangeEventArgs> themeChangeHander;
-
-        private Theme currentTheme;
+        private Dictionary<string, Theme> themeMap;
 
         /// <summary>
         /// StyleManager construct.
         /// </summary>
         private StyleManager()
         {
-            SetInitialThemeByDeviceProfile();
+            ThemeManager.ThemeChanged += OnThemeChanged;
         }
 
         /// <summary>
         /// An event for the theme changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<ThemeChangeEventArgs> ThemeChangedEvent
-        {
-            add
-            {
-                themeChangeHander += value;
-            }
-            remove
-            {
-                themeChangeHander -= value;
-            }
-        }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ThemeChangeEventArgs> ThemeChangedEvent;
 
         /// <summary>
         /// StyleManager static instance.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleManager Instance { get; } = new StyleManager();
 
         /// <summary>
         /// Style theme.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Theme
         {
             get
             {
-                return currentThemeName;
+                return ThemeManager.CurrentTheme.Id;
             }
-
             set
             {
-                if (currentThemeName != value)
-                {
-                    currentThemeName = value.ToLower();
-                    themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = currentThemeName });
+                if (value == null) return;
 
-                    UpdateTheme();
+                var key = value.ToUpperInvariant();
+
+                if (key == Theme.ToUpperInvariant()) return;
+
+                if (!ThemeMap.ContainsKey(key))
+                {
+                    ThemeMap[key] = new Theme()
+                    {
+                        Id = value
+                    };
                 }
+
+                ThemeManager.CurrentTheme = ThemeMap[key];
+            }
+        }
+
+        private Dictionary<string, Theme> ThemeMap
+        {
+            get
+            {
+                if (themeMap == null)
+                {
+                    themeMap = new Dictionary<string, Theme>()
+                    {
+                        ["DEFAULT"] = ThemeManager.DefaultTheme
+                    };
+                }
+                return themeMap;
             }
         }
 
@@ -107,10 +101,10 @@ namespace Tizen.NUI.Components
         /// Register style in StyleManager.
         /// </summary>
         /// <param name="style">Style name.</param>
-        /// <param name="theme">Theme.</param>
+        /// <param name="theme">Theme id.</param>
         /// <param name="styleType">Style type.</param>
         /// <param name="bDefault">Flag to decide if it is default style.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterStyle(string style, string theme, Type styleType, bool bDefault = false)
         {
             if (style == null)
@@ -118,30 +112,30 @@ namespace Tizen.NUI.Components
                 throw new InvalidOperationException($"style can't be null");
             }
 
-            if (theme == null || bDefault == true)
+            if (Activator.CreateInstance(styleType) is StyleBase styleBase)
             {
-                if (defaultStyleSet.ContainsKey(style))
+                var key = "DEFAULT";
+
+                if (theme != null)
                 {
-                    throw new InvalidOperationException($"{style}] already be used");
+                    key = theme.ToUpperInvariant();
+
+                    if (!ThemeMap.ContainsKey(key))
+                    {
+                        ThemeMap[key] = new Theme()
+                        {
+                            Id = theme
+                        };
+                    }
                 }
-                else
+
+                if (ThemeMap[key].HasStyle(style))
                 {
-                    defaultStyleSet.Add(style, Activator.CreateInstance(styleType) as StyleBase);
+                    throw new InvalidOperationException($"{style} already be used");
                 }
-                return;
-            }
 
-            if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
-            {
-                throw new InvalidOperationException($"{style}] already be used");
+                ThemeMap[key][style] = styleBase.GetViewStyle();
             }
-
-            if (!themeStyleSet.ContainsKey(style))
-            {
-                themeStyleSet.Add(style, new Dictionary<string, StyleBase>());
-            }
-
-            themeStyleSet[style].Add(theme, Activator.CreateInstance(styleType) as StyleBase);
         }
 
         /// <summary>
@@ -149,7 +143,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Style name.</param>
         /// <returns>The style corresponding to style name .</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetViewStyle(string style)
         {
             if (style == null)
@@ -157,16 +151,7 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(Theme))
-            {
-                return (themeStyleSet[style][Theme])?.GetViewStyle();
-            }
-            else if (defaultStyleSet.ContainsKey(style))
-            {
-                return (defaultStyleSet[style])?.GetViewStyle();
-            }
-
-            return null;
+            return (ThemeManager.CurrentTheme.GetStyle(style) ?? ThemeManager.DefaultTheme.GetStyle(style))?.Clone();
         }
 
         /// <summary>
@@ -175,7 +160,7 @@ namespace Tizen.NUI.Components
         /// <param name="targetTheme">The target theme name to register a component style. It theme should be a known one.</param>
         /// <param name="component">The type of ComponentStyle</param>
         /// <param name="style">The derived class of StyleBase</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterComponentStyle(string targetTheme, Type component, Type style)
         {
             if (targetTheme == null || component == null || style == null)
@@ -183,25 +168,15 @@ namespace Tizen.NUI.Components
                 throw new ArgumentException("The argument targetTheme must be specified");
             }
 
-            if (!themeMap.ContainsKey(targetTheme))
+            var key = targetTheme.ToUpperInvariant();
+
+            if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
             {
                 Tizen.Log.Error("NUI", "The theme name should be a known one.");
                 return;
             }
 
-            if (!componentStyleByTheme.ContainsKey(targetTheme))
-            {
-                componentStyleByTheme.Add(targetTheme, new Dictionary<Type, StyleBase>());
-            }
-
-            if (componentStyleByTheme[targetTheme].ContainsKey(component))
-            {
-                componentStyleByTheme[targetTheme][component] = Activator.CreateInstance(style) as StyleBase;
-            }
-            else
-            {
-                componentStyleByTheme[targetTheme].Add(component, Activator.CreateInstance(style) as StyleBase);
-            }
+            ThemeMap[key][component.Name] = (Activator.CreateInstance(style) as StyleBase).GetViewStyle();
         }
 
         /// <summary>
@@ -209,73 +184,28 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="component">The type of component</param>
         /// <returns>The style of the component.</returns>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetComponentStyle(Type component)
         {
-            if (componentStyleByTheme.ContainsKey(currentThemeName) && componentStyleByTheme[currentThemeName].ContainsKey(component))
-            {
-                return componentStyleByTheme[currentThemeName][component].GetViewStyle();
-            }
+            return ThemeManager.GetStyle(component.Name);
+        }
 
-            return currentTheme.GetComponentStyle(component);
+        private void OnThemeChanged(object target, ThemeChangedEventArgs args)
+        {
+            ThemeChangedEvent?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = args.ThemeId });
         }
 
         /// <summary>
         /// ThemeChangeEventArgs is a class to record theme change event arguments which will sent to user.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ThemeChangeEventArgs : EventArgs
         {
             /// <summary>
             /// CurrentTheme
             /// </summary>
-            /// <since_tizen> 8 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string CurrentTheme;
-        }
-
-        internal static string GetFrameworkResourcePath(string resourceFileName)
-        {
-            return "/usr/share/dotnet.tizen/framework/res/" + resourceFileName;
-        }
-
-        private void SetInitialThemeByDeviceProfile()
-        {
-            themeMap.Add(wearableThemeName, WearableTheme.Instance);
-            themeMap.Add(defaultThemeName, DefaultTheme.Instance);
-
-            currentThemeName = defaultThemeName;
-            currentTheme = DefaultTheme.Instance;
-
-            string currentProfile;
-
-            try
-            {
-                System.Information.TryGetValue<string>("tizen.org/feature/profile", out currentProfile);
-                Tizen.Log.Info("NUI", "Profile for initial theme found : " + currentProfile);
-            }
-            catch
-            {
-                Tizen.Log.Error("NUI", "Unknown device profile\n");
-                return;
-            }
-
-            if (string.Equals(currentProfile, wearableThemeName))
-            {
-                currentThemeName = wearableThemeName;
-                currentTheme = WearableTheme.Instance;
-            }
-        }
-
-        private void UpdateTheme()
-        {
-            if (themeMap.ContainsKey(currentThemeName))
-            {
-                currentTheme = themeMap[currentThemeName];
-            }
-            else
-            {
-                currentTheme = DefaultTheme.Instance;
-            }
         }
     }
 }

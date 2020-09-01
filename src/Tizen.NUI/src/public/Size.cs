@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
-    public class Size : Disposable
+    public class Size : Disposable, ISelectorItem
     {
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Tizen.NUI
                 Interop.Vector3.Vector3_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, Height, Depth);
+                callback?.Invoke(value, null, null);
             }
             get
             {
@@ -123,7 +123,7 @@ namespace Tizen.NUI
                 Interop.Vector3.Vector3_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, Height, Depth);
+                callback?.Invoke(null, value, null);
             }
             get
             {
@@ -144,7 +144,7 @@ namespace Tizen.NUI
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, Height, Depth);
+                callback?.Invoke(null, null, value);
             }
             get
             {
@@ -305,6 +305,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Size(Width, Height, Depth);
+
         /// <summary>
         /// The type cast operator, Size to Vector3.
         /// </summary>
@@ -417,7 +421,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal delegate void SizeChangedCallback(float width, float height, float depth);
+        internal delegate void SizeChangedCallback(float? width, float? height, float? depth);
 
         internal Size(SizeChangedCallback cb, float w, float h, float d) : this(Interop.Vector3.new_Vector3__SWIG_1(w, h, d), true)
         {

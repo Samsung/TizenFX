@@ -8,17 +8,17 @@ namespace Tizen.NUI
     {
         internal static partial class ViewImplSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnStageConnection")]
-            public static extern void ViewImpl_OnStageConnection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnSceneConnection")]
+            public static extern void ViewImpl_OnSceneConnection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnStageConnectionSwigExplicitViewImpl")]
-            public static extern void ViewImpl_OnStageConnectionSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnSceneConnectionSwigExplicitViewImpl")]
+            public static extern void ViewImpl_OnSceneConnectionSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnStageDisconnection")]
-            public static extern void ViewImpl_OnStageDisconnection(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnSceneDisconnection")]
+            public static extern void ViewImpl_OnSceneDisconnection(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnStageDisconnectionSwigExplicitViewImpl")]
-            public static extern void ViewImpl_OnStageDisconnectionSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnSceneDisconnectionSwigExplicitViewImpl")]
+            public static extern void ViewImpl_OnSceneDisconnectionSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnChildAdd")]
             public static extern void ViewImpl_OnChildAdd(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -49,12 +49,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnSizeAnimationSwigExplicitViewImpl")]
             public static extern void ViewImpl_OnSizeAnimationSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnTouchEvent")]
-            public static extern bool ViewImpl_OnTouchEvent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnTouchEventSwigExplicitViewImpl")]
-            public static extern bool ViewImpl_OnTouchEventSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnHoverEvent")]
             public static extern bool ViewImpl_OnHoverEvent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -104,18 +98,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnInitializeSwigExplicitViewImpl")]
             public static extern void ViewImpl_OnInitializeSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnControlChildAdd")]
-            public static extern void ViewImpl_OnControlChildAdd(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnControlChildAddSwigExplicitViewImpl")]
-            public static extern void ViewImpl_OnControlChildAddSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnControlChildRemove")]
-            public static extern void ViewImpl_OnControlChildRemove(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnControlChildRemoveSwigExplicitViewImpl")]
-            public static extern void ViewImpl_OnControlChildRemoveSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnStyleChange")]
             public static extern void ViewImpl_OnStyleChange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
 
@@ -133,12 +115,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityPanSwigExplicitViewImpl")]
             public static extern bool ViewImpl_OnAccessibilityPanSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityTouch")]
-            public static extern bool ViewImpl_OnAccessibilityTouch(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl")]
-            public static extern bool ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_OnAccessibilityValueChange")]
             public static extern bool ViewImpl_OnAccessibilityValueChange(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);

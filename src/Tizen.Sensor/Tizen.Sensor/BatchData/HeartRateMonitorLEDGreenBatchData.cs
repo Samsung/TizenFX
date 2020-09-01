@@ -5,7 +5,7 @@ using System.Text;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// The HeartRateMonitorLEDGreenBatchData class is used for storing value of HeartRateMonitorLEDGreenBatch sensor.
+    /// The HeartRateMonitorLEDGreenBatchData class stores the value of HeartRateMonitorLEDGreenBatch sensor.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class HeartRateMonitorLEDGreenBatchData : BatchData
@@ -31,7 +31,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Gets the value of the Green LED ADC Value. (0 ~ 4194304)
+        /// Gets the value of the Green LED ADC Value, between 0 and 4194304.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <value> Green </value>

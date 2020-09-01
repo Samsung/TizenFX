@@ -16,6 +16,7 @@
  */
 
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -84,4 +85,32 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         DisabledSelected = Disabled | Selected,
     }
+
+    //FIXME: Please remove this Extension class when ControlStates is removed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal static class ControlStatesExtension
+    {
+        public static ControlStates FromControlStateClass(ControlState controlState)
+        {
+            if (controlState == ControlState.Normal)
+                return ControlStates.Normal;
+            if (controlState == ControlState.Focused)
+                return ControlStates.Focused;
+            if (controlState == ControlState.Disabled)
+                return ControlStates.Disabled;
+            if (controlState == ControlState.Selected)
+                return ControlStates.Selected;
+            if (controlState == ControlState.Pressed)
+                return ControlStates.Pressed;
+            if (controlState == ControlState.DisabledFocused)
+                return ControlStates.DisabledFocused;
+            if (controlState == ControlState.SelectedFocused)
+                return ControlStates.SelectedFocused;
+            if (controlState == ControlState.DisabledSelected)
+                return ControlStates.DisabledSelected;
+
+            return ControlStates.Normal;
+        }
+    }
 }
+

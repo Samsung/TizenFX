@@ -47,6 +47,8 @@ namespace Tizen.NUI.Xaml
             XamlParseException xpe;
             var type = XamlParser.GetElementType(node.XmlType, node, Context.RootElement?.GetType().GetTypeInfo().Assembly,
                 out xpe);
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
             if (xpe != null)
                 throw xpe;
 
@@ -279,6 +281,12 @@ namespace Tizen.NUI.Xaml
             {
                 var array = new object[1];
                 array[0] = Values[elementNode];
+
+                if (array[0].GetType().IsClass)
+                {
+                    elementNode.Accept(new ApplyPropertiesVisitor(Context, true), null);
+                }
+
                 return array;
             }
 

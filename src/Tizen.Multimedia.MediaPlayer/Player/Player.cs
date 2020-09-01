@@ -548,6 +548,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <seealso cref="PrepareAsync()"/>
         /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <since_tizen> 3 </since_tizen>

@@ -64,7 +64,7 @@ namespace Tizen.NUI.Binding
             foreach (var onPlat in onPlatform.Platforms) {
                 if (onPlat.Platform == null)
                     continue;
-                if (!onPlat.Platform.Contains(Device.RuntimePlatform))
+                if (null != Device.RuntimePlatform && !onPlat.Platform.Contains(Device.RuntimePlatform))
                     continue;
                 if (s_valueConverter == null)
                     continue;

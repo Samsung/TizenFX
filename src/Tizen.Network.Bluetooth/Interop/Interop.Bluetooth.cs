@@ -90,6 +90,15 @@ internal static partial class Interop
         internal delegate void ScanModeChangedCallback(int scan, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AvrcpControlConnectionChangedCallback(bool connected, string remoteAddress, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PositionChangedCallback(uint position, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlayStatusChangedCallback(int play_status, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TrackInfoChangedCallback([MarshalAs(UnmanagedType.Struct)]ref TrackInfoStruct track, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ConnectionChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, string value, int len, IntPtr userData);
@@ -512,6 +521,92 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_unset_scan_mode_changed_cb")]
         internal static extern int UnsetScanModeChangedCallback();
 
+        // Bluetooth AVRCP Control
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_initialize")]
+        internal static extern int AvrcpControlInitialize(AvrcpControlConnectionChangedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_deinitialize")]
+        internal static extern int AvrcpControlDeinitialize();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_connect")]
+        internal static extern int AvrcpControlConnect(string address);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_disconnect")]
+        internal static extern int AvrcpControlDisconnect(string address);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_equalizer_state")]
+        internal static extern int SetEqualizerState(EqualizerState state);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_equalizer_state")]
+        internal static extern int GetEqualizerState(out EqualizerState state);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_repeat_mode")]
+        internal static extern int SetRepeatMode(RepeatMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_repeat_mode")]
+        internal static extern int GetRepeatMode(out RepeatMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_shuffle_mode")]
+        internal static extern int SetShuffleMode(ShuffleMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_shuffle_mode")]
+        internal static extern int GetShuffleMode(out ShuffleMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_scan_mode")]
+        internal static extern int SetScanMode(ScanMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_scan_mode")]
+        internal static extern int GetScanMode(out ScanMode mode);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_position")]
+        internal static extern int GetPosition(out uint position);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_play_status")]
+        internal static extern int GetPlayStatus(out PlayerState state);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_get_track_info")]
+        internal static extern int GetTrackInfo(out IntPtr infoptr);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_free_track_info")]
+        internal static extern int FreeTrackInfo(IntPtr infoptr);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_send_player_command")]
+        internal static extern int SendPlayerCommand(PlayerCommand command);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_send_player_command_to")]
+        internal static extern int SendPlayerCommandTo(PlayerCommand command, string remoteAddress);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_set_absolute_volume")]
+        internal static extern int SetAbsoluteVolume(uint volume);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_increase_volume")]
+        internal static extern int IncreaseVolume();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_decrease_volume")]
+        internal static extern int DecreaseVolume();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_control_send_delay_report")]
+        internal static extern int SendDelayReport(uint value);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_set_position_changed_cb")]
+        internal static extern int SetPositionChangedCallback(PositionChangedCallback PositionChangedCb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_unset_position_changed_cb")]
+        internal static extern int UnsetPositionChangedCallback();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_set_play_status_changed_cb")]
+        internal static extern int SetPlayStatusChangedCallback(PlayStatusChangedCallback PlayStatusChangedCb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_unset_play_status_changed_cb")]
+        internal static extern int UnsetPlayStatusChangedCallback();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_set_track_info_changed_cb")]
+        internal static extern int SetTrackInfoChangedCallback(TrackInfoChangedCallback TrackInfoChangedCb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_unset_track_info_changed_cb")]
+        internal static extern int UnsetTrackInfoChangedCallback();
+
         // Bluetooth GATT
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
@@ -521,7 +616,7 @@ internal static partial class Interop
         internal delegate void BtGattServerReadValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, bool response_needed, int offset, byte[] value, int len, IntPtr userData);
+        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, bool response_needed, int offset, IntPtr value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, IntPtr value, int len, IntPtr userData);

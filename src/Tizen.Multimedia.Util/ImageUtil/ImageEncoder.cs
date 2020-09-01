@@ -476,4 +476,51 @@ namespace Tizen.Multimedia.Util
         }
     }
 
+    /// <summary>
+    /// Provides the ability to encode the WebP (Lossless and lossy compression for images on the web) format images.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class WebPEncoder : ImageEncoder
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebPEncoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.WebP"/>.</remarks>
+        /// <since_tizen> 8 </since_tizen>
+        public WebPEncoder() :
+            base(ImageFormat.WebP)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebPEncoder"/> class with the information for lossless or lossy compression.
+        /// </summary>
+        /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.WebP"/>.</remarks>
+        /// <param name="lossless">
+        /// The flag determining whether the compression is lossless or lossy: true for lossless, false for lossy.<br/>
+        /// The default value is false.
+        /// </param>
+        /// <since_tizen> 8 </since_tizen>
+        public WebPEncoder(bool lossless) :
+            base(ImageFormat.WebP)
+        {
+            Lossless = lossless;
+        }
+
+        /// <summary>
+        /// Gets or sets the lossless or lossy WebP compression.
+        /// </summary>
+        /// <value>
+        /// The property determining whether the WebP compression is lossless or lossy.<br/>
+        /// The default is false(lossy).</value>
+        /// <since_tizen> 8 </since_tizen>
+        public bool Lossless { get; set; }
+
+        internal override void Configure(ImageEncoderHandle handle)
+        {
+            NativeEncoder.SetWebPLossless(handle, Lossless).
+                ThrowIfFailed("Failed to configure encoder; Lossless");
+        }
+    }
+
 }

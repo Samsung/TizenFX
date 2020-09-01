@@ -60,6 +60,8 @@ namespace Tizen.Multimedia.Vision
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
         private const string _backendTypeArmNN = "armnn";
+        private const string _backendTypeMLApi = "mlapi";
+        private const string _backendTypeOne = "one";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -156,6 +158,12 @@ namespace Tizen.Multimedia.Vision
                             break;
                         case _backendTypeArmNN:
                             supportedBackend.Add(InferenceBackendType.ArmNN);
+                            break;
+                        case _backendTypeMLApi:
+                            supportedBackend.Add(InferenceBackendType.MLApi);
+                            break;
+                        case _backendTypeOne:
+                            supportedBackend.Add(InferenceBackendType.One);
                             break;
                     }
                 }
@@ -340,7 +348,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's device.
+        /// Gets or sets the processor type for inference models.
         /// </summary>
         /// <remarks>
         /// The default device is <see cref="InferenceTargetDevice.CPU"/>.<br/>
@@ -434,11 +442,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's input data type.
+        /// Gets or sets the type of data used for inference model.
         /// </summary>
         /// <remarks>
-        /// For example, for a model data supporting float32 this value should be set to <see cref="InferenceDataType.Float32"/>.<br/>
-        /// <see cref="InferenceDataType.Float32"/> will be used internally unless a user doesn't set the value.
+        /// For example, this value should be set to <see cref="InferenceDataType.Float32"/> for a model data supporting float32.<br/>
+        /// <see cref="InferenceDataType.Float32"/> will be used internally if a user doesn't set the value.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 8 </since_tizen>

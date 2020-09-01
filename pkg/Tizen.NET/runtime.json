@@ -17,6 +17,12 @@
         "linux-x86"
       ]
     },
+    "tizen-arm64": {
+      "#import": [
+        "tizen",
+        "linux-arm64"
+      ]
+    },
     "tizen.4.0.0": {
       "#import": [
         "tizen"
@@ -83,6 +89,12 @@
       "#import": [
         "tizen.6.0.0",
         "tizen.5.5.0-x86"
+      ]
+    },
+    "tizen.6.0.0-arm64": {
+      "#import": [
+        "tizen.6.0.0",
+        "tizen-arm64"
       ]
     }
   }

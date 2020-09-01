@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <remarks>
     /// Please note that this class will be replaced with ScrollbarStyle class in the near future.
     /// </remarks>
-    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollBarStyle : ControlStyle
     {
         static ScrollBarStyle() { }
@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ScrollBarStyle.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBarStyle() : base()
         {
             InitSubStyle();
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ScrollBarStyle with style.
         /// </summary>
         /// <param name="style">Create ScrollBarStyle by style customized by user.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBarStyle(ScrollBarStyle style) : base(style)
         {
             if (null == style) return;
@@ -58,32 +58,32 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set track image style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set thumb image style.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set direction type.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar.DirectionType? Direction { get; set; }
 
         /// <summary>
         /// Get or set duration.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Duration { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

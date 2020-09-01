@@ -131,6 +131,14 @@ namespace Tizen.NUI.Xaml
             using (var textReader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textReader))
             {
+                Load(view, reader);
+            }
+        }
+
+        public static void Load(object view, XmlReader reader)
+        {
+            if (reader != null)
+            {
                 while (reader.Read())
                 {
                     //Skip until element
@@ -169,6 +177,16 @@ namespace Tizen.NUI.Xaml
             object inflatedView = null;
             using (var textreader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textreader))
+            {
+                inflatedView = Create(reader, doNotThrow);
+            }
+            return inflatedView;
+        }
+
+        public static object Create(XmlReader reader, bool doNotThrow = false)
+        {
+            object inflatedView = null;
+            if (reader != null)
             {
                 while (reader.Read())
                 {
@@ -272,39 +290,29 @@ namespace Tizen.NUI.Xaml
             {
                 Assembly assembly = type.Assembly;
 
-                Stream stream = null;
-
-                foreach (string str in assembly.GetManifestResourceNames())
-                {
-                    string resourceClassName = str.Substring(0, str.LastIndexOf('.'));
-                    int index = resourceClassName.LastIndexOf('.');
-                    if (0 <= index && index < resourceClassName.Length)
-                    {
-                        resourceClassName = resourceClassName.Substring(index + 1);
-
-                        if (resourceClassName == type.Name)
-                        {
-                            stream = assembly.GetManifestResourceStream(str);
-                            break;
-                        }
-                    }
-                }
-
-                if (null == stream)
+                var resourceId = XamlResourceIdAttribute.GetResourceIdForType(type);
+                if (null == resourceId)
                 {
                     throw new XamlParseException(string.Format("Can't find type {0} in embedded resource", type.FullName), new XmlLineInfo());
                 }
                 else
                 {
-                    Byte[] buffer = new byte[stream.Length];
-                    stream.Read(buffer, 0, (int)stream.Length);
+                    Stream stream = assembly.GetManifestResourceStream(resourceId);
 
-                    string ret = System.Text.Encoding.Default.GetString(buffer);
-                    return ret;
+                    if (null != stream)
+                    {
+                        Byte[] buffer = new byte[stream.Length];
+                        stream.Read(buffer, 0, (int)stream.Length);
+
+                        string ret = System.Text.Encoding.Default.GetString(buffer);
+                        return ret;
+                    }
+                    else
+                    {
+                        throw new XamlParseException(string.Format("Can't get xaml stream {0} in embedded resource", type.FullName), new XmlLineInfo());
+                    }
                 }
             }
-
-            return null;
         }
 
         //if the assembly was generated using a version of XamlG that doesn't outputs XamlResourceIdAttributes, we still need to find the resource, and load it
@@ -463,6 +471,7 @@ namespace Tizen.NUI.Xaml
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.Layer")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
                 // View
@@ -470,9 +479,11 @@ namespace Tizen.NUI.Xaml
                 regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.BaseComponents.View")))
                 {
+                    reader.Dispose();
                     return xaml;
                 }
 
+                reader.Dispose();
                 throw new XamlParseException(string.Format("Can't find type {0}", "Tizen.NUI.XamlMainPage nor View nor Layer"), new XmlLineInfo());
             }
             return null;

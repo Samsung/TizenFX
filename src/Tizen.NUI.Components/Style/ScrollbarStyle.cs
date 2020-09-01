@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -23,7 +24,7 @@ namespace Tizen.NUI.Components
     /// ScrollbarStyle is a class which saves Scrollbar's style data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollbarStyle : ControlStyle
+    public class ScrollbarStyle : ViewStyle
     {
         #region Fields
 
@@ -53,7 +54,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackColor = (Color)newValue;
+            ((ScrollbarStyle)bindable).trackColor = new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -64,7 +65,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).thumbColor = (Color)newValue;
+            ((ScrollbarStyle)bindable).thumbColor = new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -75,7 +76,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackPadding = (Extents)newValue;
+            ((ScrollbarStyle)bindable).trackPadding = new Extents((Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -99,7 +100,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollbarStyle() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -109,7 +109,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollbarStyle(ScrollbarStyle style) : base(style)
         {
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -175,39 +174,5 @@ namespace Tizen.NUI.Components
         }
 
         #endregion Properties
-
-
-        #region Methods
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            var style = bindableObject as ScrollbarStyle;
-
-            if (null != style)
-            {
-                TrackThickness = style.TrackThickness;
-                ThumbThickness = style.ThumbThickness;
-                TrackColor = style.TrackColor;
-                ThumbColor = style.ThumbColor;
-                TrackPadding = style.TrackPadding;
-            }
-        }
-
-        private void Initialize()
-        {
-            TrackThickness = 6.0f;
-            ThumbThickness = 6.0f;
-            TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
-            ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            TrackPadding = 4;
-            WidthResizePolicy = ResizePolicyType.FillToParent;
-            HeightResizePolicy = ResizePolicyType.FillToParent;
-        }
-
-        #endregion Methods
     }
 }
