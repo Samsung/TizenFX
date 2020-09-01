@@ -20,8 +20,8 @@ namespace Tizen.NUI
     {
         internal static partial class Libraries
         {
-            public const string FrameBroker = "libframe-broker.so.1";
-            public const string FrameProvider = "libframe-provider.so.1";
+            internal const string FrameBroker = "libframe-broker.so.1";
+            internal const string FrameProvider = "libframe-provider.so.1";
         }
     }
 }
