@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
-    public class Size : Disposable, ISelectorItem
+    public class Size : Disposable, ICloneable
     {
 
         /// <summary>
