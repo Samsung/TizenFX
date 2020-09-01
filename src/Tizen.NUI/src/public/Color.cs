@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// The Color class.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
-    public class Color : Disposable
+    public class Color : Disposable, ISelectorItem
     {
         /// <summary>
         /// Gets the black colored Color class.
@@ -417,6 +417,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Color(this);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Color obj)
         {

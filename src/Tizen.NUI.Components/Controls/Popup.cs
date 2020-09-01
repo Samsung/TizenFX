@@ -357,7 +357,14 @@ namespace Tizen.NUI.Components
             {
                 if (null == titleText)
                 {
-                    titleText = new TextLabel();
+                    titleText = new TextLabel
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        HorizontalAlignment = HorizontalAlignment.Begin,
+                        VerticalAlignment = VerticalAlignment.Bottom
+                    };
                     Add(titleText);
                 }
                 return titleText;
@@ -743,6 +750,12 @@ namespace Tizen.NUI.Components
             PopupStyle ppStyle = viewStyle as PopupStyle;
             if (null != ppStyle)
             {
+                if (ppStyle.Buttons != null)
+                {
+                    if (ppStyle.Buttons.PositionUsesPivotPoint == null) ppStyle.Buttons.PositionUsesPivotPoint = true;
+                    if (ppStyle.Buttons.ParentOrigin == null) ppStyle.Buttons.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
+                    if (ppStyle.Buttons.PivotPoint == null) ppStyle.Buttons.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+                }
                 Title.ApplyStyle(ppStyle.Title);
                 Title.RaiseToTop();
             }
@@ -758,20 +771,12 @@ namespace Tizen.NUI.Components
             return new PopupStyle();
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        protected override void OnUpdate()
         {
-            PopupStyle ppStyle = StyleManager.Instance.GetViewStyle(StyleName) as PopupStyle;
-            if (ppStyle != null)
-            {
-                ApplyStyle(ppStyle);
-                UpdateView();
-            }
+            base.OnUpdate();
+            UpdateView();
         }
 
         private void Initialize()
@@ -799,6 +804,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateView()
         {
+            if (popupStyle == null) return;
             btGroup.UpdateButton(popupStyle.Buttons);
             UpdateContentView();
             UpdateTitle();
