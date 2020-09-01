@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Selector<T> : StateValueCollection<T>
     {
-        private readonly bool cloneable = typeof(T).IsAssignableFrom(typeof(ICloneable));
+        private readonly bool isSelectorItem = typeof(ISelectorItem).IsAssignableFrom(typeof(T));
 
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
-            All = cloneable ? (T)((ICloneable)value)?.Clone() : value;
+            All = isSelectorItem ? (T)((ISelectorItem)value)?.Clone() : value;
         }
 
         /// Copy constructor
@@ -75,7 +75,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal delegate void SelectorChangedCallback<T>(Selector<T> value);
         private SelectorChangedCallback<T> callback = null;
-
 
         /// <summary>
         /// All State.
@@ -319,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Clone itself.
-        /// If type T implements ICloneable, it calls Clone() method to clone values, otherwise use operator=.
+        /// If type T implements ISelectorItem, it calls Clone() method to clone values, otherwise use operator=.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -339,12 +338,12 @@ namespace Tizen.NUI.BaseComponents
         {
             Clear();
 
-            if (cloneable)
+            if (isSelectorItem)
             {
-                All = (T)((ICloneable)other.All)?.Clone();
+                All = (T)((ISelectorItem)other.All)?.Clone();
                 foreach (var item in other.StateValueList)
                 {
-                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ICloneable)item.Value)?.Clone()));
+                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ISelectorItem)item.Value)?.Clone()));
                 }
             }
             else

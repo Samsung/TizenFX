@@ -835,7 +835,7 @@ namespace Tizen.NUI.BaseComponents
     /// A class containing frame informations for a LottieAnimationView.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LottieFrameInfo
+    public class LottieFrameInfo : ISelectorItem
     {
         /// <summary>
         /// Creates a new instance with a playing range.
@@ -871,6 +871,31 @@ namespace Tizen.NUI.BaseComponents
         public static implicit operator LottieFrameInfo(int stillImageFrame)
         {
             return new LottieFrameInfo(stillImageFrame);
+        }
+
+        /// <summary>
+        /// Create a new instance from string.
+        /// Possible input : "0, 10", "10"
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator LottieFrameInfo(string pair)
+        {
+            if (pair == null)
+            {
+                return null;
+            }
+
+            string[] parts = pair.Split(',');
+            if (parts.Length == 1)
+            {
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()));
+            }
+            else if (parts.Length == 2)
+            {
+                return new LottieFrameInfo(Int32.Parse(parts[0].Trim()), Int32.Parse(parts[1].Trim()));
+            }
+
+            throw new InvalidCastException($"Can not convert string {pair} to LottieFrameInfo");
         }
 
         /// <summary>
@@ -939,6 +964,10 @@ namespace Tizen.NUI.BaseComponents
                 lottieView.Play();
             }
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new LottieFrameInfo(StartFrame, EndFrame);
 
         private bool BeReadyToShow(LottieAnimationView lottieView)
         {
