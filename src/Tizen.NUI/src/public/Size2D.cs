@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
-    public class Size2D : Disposable, ISelectorItem
+    public class Size2D : Disposable, ICloneable
     {
 
         private Size2DChangedCallback callback = null;
