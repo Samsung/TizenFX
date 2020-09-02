@@ -61,6 +61,7 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
+        private bool themeChangeSensitive = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
@@ -93,9 +94,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
+        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true, viewStyle)
         {
-            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle?.Clone());
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -227,6 +227,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The StyleName, type string.
+        /// The value indicates DALi style name defined in json theme file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string StyleName
@@ -2215,15 +2216,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _backgroundImageSynchronosLoading = value;
-                string bgUrl = "";
-                int visualType = 0;
-                Background.Find(Visual.Property.Type)?.Get(out visualType);
-                if (visualType == (int)Visual.Type.Image)
-                {
-                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                }
 
-                if (bgUrl.Length != 0)
+                string bgUrl = null;
+                Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+
+                if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
                     bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
@@ -2322,6 +2319,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// If the value is true, the View will change its style as the theme changes.
+        /// It is false by default, unless it is Control instance created with specified style name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ThemeChangeSensitive
+        {
+            get => (bool)GetValue(ThemeChangeSensitiveProperty);
+            set => SetValue(ThemeChangeSensitiveProperty, value);
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -2349,6 +2357,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            ViewStyle newStyle = ThemeManager.GetStyle(GetType());
+
+            if (newStyle != null)
+            {
+                ApplyStyle(newStyle);
+            }
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

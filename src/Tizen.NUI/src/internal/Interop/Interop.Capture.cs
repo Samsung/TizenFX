@@ -27,10 +27,19 @@ namespace Tizen.NUI
             public static extern IntPtr Assign(HandleRef jarg1, HandleRef jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_1")]
-            public static extern void Start1(HandleRef jarg0, HandleRef jarg1, HandleRef jarg2, string jarg3, HandleRef jarg4);
+            public static extern void Start1(HandleRef capture, HandleRef source, HandleRef size, string path, HandleRef clearColor);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_2")]
             public static extern void Start2(HandleRef capture, HandleRef source, HandleRef size, string path);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_3")]
+            public static extern void Start3(HandleRef capture, HandleRef source, HandleRef size, string path, HandleRef clearColor, uint quality);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_4")]
+            public static extern void Start4(HandleRef capture, HandleRef source, HandleRef position, HandleRef size, string path, HandleRef clearColor);
+            
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetImageQuality")]
+            public static extern void SetImageQuality(HandleRef capture, uint quality);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty")]
             public static extern bool SignalEmpty(HandleRef jarg1);

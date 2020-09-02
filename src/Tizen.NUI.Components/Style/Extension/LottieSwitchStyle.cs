@@ -60,15 +60,11 @@ namespace Tizen.NUI.Components.Extension
         {
             base.CopyFrom(bindableObject);
 
-            LottieSwitchStyle style = bindableObject as LottieSwitchStyle;
-
-            if (style == null)
+            if (bindableObject is LottieSwitchStyle lottieSwitchStyle)
             {
-                return;
+                LottieUrl = lottieSwitchStyle.LottieUrl;
+                PlayRange = lottieSwitchStyle.PlayRange?.Clone();
             }
-
-            LottieUrl = style.LottieUrl;
-            PlayRange = style.PlayRange;
         }
 
         /// <inheritdoc/>
@@ -76,10 +72,6 @@ namespace Tizen.NUI.Components.Extension
         public override ButtonExtension CreateExtension()
         {
             return new LottieSwitchExtension();
-        }
-
-        private void InitSubStyle()
-        {
         }
     }
 }
