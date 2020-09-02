@@ -26,7 +26,12 @@ namespace Tizen.NUI.Components
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
-    {
+    {   
+        /// <summary>
+        /// (Theme name, Theme instance)
+        /// </summary>
+        private Dictionary<string, Theme> themeMap;
+
         /// <summary>
         /// StyleManager construct.
         /// </summary>
@@ -77,10 +82,20 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <summary>
-        /// (Theme name, Theme instance)
-        /// </summary>
-        private Dictionary<string, Theme> ThemeMap { get; } = new Dictionary<string, Theme> { ["DEFAULT"] = ThemeManager.DefaultTheme };
+        private Dictionary<string, Theme> ThemeMap
+        {
+            get
+            {
+                if (themeMap == null)
+                {
+                    themeMap = new Dictionary<string, Theme>()
+                    {
+                        ["DEFAULT"] = ThemeManager.DefaultTheme
+                    };
+                }
+                return themeMap;
+            }
+        }
 
         /// <summary>
         /// Register style in StyleManager.
