@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector4TypeConverter))]
-    public class Vector4 : Disposable, ISelectorItem
+    public class Vector4 : Disposable
     {
 
         /// <summary>
@@ -591,10 +591,6 @@ namespace Tizen.NUI
             Interop.Vector4.Vector4_Clamp(swigCPtr, Vector4.getCPtr(min), Vector4.getCPtr(max));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Vector4(X, Y, Z, W);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector4 obj)
         {

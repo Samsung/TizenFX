@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase, ISelectorItem
+    public class ImageShadow : ShadowBase, ICloneable
     {
         private static readonly Rectangle noBorder = new Rectangle();
 
@@ -45,7 +45,7 @@ namespace Tizen.NUI
         public ImageShadow(string url, Rectangle border, Vector2 offset, Vector2 extents) : base(offset, extents)
         {
             Url = url;
-            Border = border == null ? null : new Rectangle(border);
+            Border = new Rectangle(border);
         }
 
         /// <summary>

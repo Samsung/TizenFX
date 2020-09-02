@@ -323,7 +323,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle() : base()
+        public TextLabelStyle()
         {
         }
 

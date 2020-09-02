@@ -74,7 +74,6 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private float? weight;
         private bool? enableControlState;
-        private bool? themeChangeSensitive;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -95,7 +94,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle(ViewStyle viewAttributes)
         {
-            CopyFrom(viewAttributes);
+            if (null != viewAttributes)
+            {
+                this.CopyFrom(viewAttributes);
+            }
         }
 
         /// <summary>
@@ -687,27 +689,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ThemeChangeSensitive value of the View.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool? ThemeChangeSensitive
-        {
-            get => (bool?)GetValue(ThemeChangeSensitiveProperty);
-            set => SetValue(ThemeChangeSensitiveProperty, value);
-        }
-
-
-        /// <summary>
-        /// Allow null properties when merging it into other Theme.
-        /// If the value is true, the null properties reset target properties of the other ViewStyle with same key when merge.
-        /// It is used in <seealso cref="Theme.Merge(string)"/>, <seealso cref="Theme.Merge(Theme)"/>.
-        /// It is also used in <seealso cref="Theme.GetStyle(string)"/> when the Theme has a parent and needs to merge.
-        /// Please note that it is false by default.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SolidNull { get; set; } = false;
-
-        /// <summary>
         /// Set style's bindable properties from the view.
         /// </summary>
         /// <param name="view">The view that includes property data.</param>
@@ -732,28 +713,17 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>Create a cloned ViewStyle.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle Clone()
+        internal ViewStyle CreateInstance()
+        {
+            return (ViewStyle)Activator.CreateInstance(GetType());
+        }
+
+        internal ViewStyle Clone()
         {
             var cloned = CreateInstance();
             cloned.CopyFrom(this);
 
             return cloned;
-        }
-
-        /// <summary>Create a cloned ViewStyle.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Merge(ViewStyle other)
-        {
-            AllowNullCopy = other?.SolidNull ?? false;
-            CopyFrom(other);
-            AllowNullCopy = false;
-        }
-
-        internal ViewStyle CreateInstance()
-        {
-            return (ViewStyle)Activator.CreateInstance(GetType());
         }
 
         private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)

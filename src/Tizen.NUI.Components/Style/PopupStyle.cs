@@ -34,6 +34,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
+            InitSubStyle();
         }
 
         /// <summary>
@@ -43,31 +44,91 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
+            Title = new TextLabelStyle();
+            Buttons = new ButtonStyle();
+            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Title Text's style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Title { get; set; } = new TextLabelStyle();
+        public TextLabelStyle Title { get; set; }
 
         /// <summary>
         /// Popup button's style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ButtonStyle Buttons { get; set; } = new ButtonStyle();
+        public ButtonStyle Buttons { get; set; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is PopupStyle popupStyle)
+            PopupStyle popupStyle = bindableObject as PopupStyle;
+            if (popupStyle != null)
             {
-                Title.CopyFrom(popupStyle.Title);
-                Buttons.CopyFrom(popupStyle.Buttons);
+                if (popupStyle.Title != null)
+                {
+                    Title?.CopyFrom(popupStyle.Title);
+                }
+
+                if (popupStyle.Buttons != null)
+                {
+                    Buttons?.CopyFrom(popupStyle.Buttons);
+                }
             }
+        }
+
+        private void InitSubStyle()
+        {
+            // TODO Apply proper shadow as a default for a Popup
+            BoxShadow = new Shadow()
+            {
+                BlurRadius = 5,
+                Offset = new Vector2(5, 5),
+            };
+
+            Title = new TextLabelStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                HorizontalAlignment = HorizontalAlignment.Begin,
+                VerticalAlignment = VerticalAlignment.Bottom
+            };
+
+            Buttons = new ButtonStyle()
+            {
+                Size = new Size(0, 0),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
+                Overlay = new ImageViewStyle()
+                {
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent
+                },
+
+                Text = new TextLabelStyle()
+                {
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                }
+            };
         }
     }
 }
