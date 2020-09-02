@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// PropertyBuffer is a handle to an object that contains a buffer of structured properties.<br />
+    /// PropertyBuffer is a handle to an object that contains a buffer of structured data.<br />
     /// PropertyBuffers can be used to provide data to Geometry objects.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyBuffer(PropertyMap bufferFormat) constructor instead!" +
             "IntPtr(native integer pointer) is supposed to be not used in Application!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
