@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -25,7 +24,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(RectangleTypeConverter))]
-    public class Rectangle : Disposable, ICloneable
+    public class Rectangle : Disposable, ISelectorItem
     {
         /// <summary>
         /// The constructor.

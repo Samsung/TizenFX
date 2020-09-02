@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -26,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector3TypeConverter))]
-    public class Vector3 : Disposable, ICloneable
+    public class Vector3 : Disposable, ISelectorItem
     {
         /// <summary>
         /// The constructor.

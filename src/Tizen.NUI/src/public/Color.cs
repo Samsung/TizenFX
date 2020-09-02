@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// The Color class.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
-    public class Color : Disposable, ICloneable
+    public class Color : Disposable, ISelectorItem
     {
         /// <summary>
         /// Gets the black colored Color class.

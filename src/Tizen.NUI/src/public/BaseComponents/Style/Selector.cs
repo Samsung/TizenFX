@@ -24,13 +24,13 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Selector class, which is related by Control State, it is base class for other Selector.
     /// </summary>
-    /// <typeparam name="T">The property type of the selector. if it's reference type, it should be of type <see cref="ICloneable"/> that implement deep copy in <see cref="ICloneable.Clone"/>.</typeparam>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Selector<T> : StateValueCollection<T>
     {
-        private readonly bool isCloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
+        private readonly bool isSelectorItem = typeof(ISelectorItem).IsAssignableFrom(typeof(T));
+
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public static implicit operator Selector<T>(T value)
@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
-            All = isCloneable ? (T)((ICloneable)value)?.Clone() : value;
+            All = isSelectorItem ? (T)((ISelectorItem)value)?.Clone() : value;
         }
 
         /// Copy constructor
@@ -338,12 +338,12 @@ namespace Tizen.NUI.BaseComponents
         {
             Clear();
 
-            if (isCloneable)
+            if (isSelectorItem)
             {
-                All = (T)((ICloneable)other.All)?.Clone();
+                All = (T)((ISelectorItem)other.All)?.Clone();
                 foreach (var item in other.StateValueList)
                 {
-                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ICloneable)item.Value)?.Clone()));
+                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ISelectorItem)item.Value)?.Clone()));
                 }
             }
             else

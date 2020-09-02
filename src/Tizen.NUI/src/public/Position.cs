@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
-    public class Position : Disposable, ICloneable
+    public class Position : Disposable, ISelectorItem
     {
 
         /// <summary>

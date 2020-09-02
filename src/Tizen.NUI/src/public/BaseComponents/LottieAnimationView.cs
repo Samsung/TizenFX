@@ -835,7 +835,7 @@ namespace Tizen.NUI.BaseComponents
     /// A class containing frame informations for a LottieAnimationView.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LottieFrameInfo : ICloneable
+    public class LottieFrameInfo : ISelectorItem
     {
         /// <summary>
         /// Creates a new instance with a playing range.
