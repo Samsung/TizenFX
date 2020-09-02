@@ -260,7 +260,7 @@ internal static partial class Interop
             internal static extern ErrorCode SetPrivateSharingArray(IntPtr handle, string[] paths, uint size);
 
             //int rpc_port_set_private_sharing(rpc_port_h port, const char* path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array")]
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing")]
             internal static extern ErrorCode SetPrivateSharing(IntPtr handle, string path);
 
             //int rpc_port_unset_private_sharing(rpc_port_h port);
