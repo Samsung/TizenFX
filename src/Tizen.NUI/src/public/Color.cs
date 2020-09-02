@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// The Color class.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
-    public class Color : Disposable
+    public class Color : Disposable, ICloneable
     {
         /// <summary>
         /// Gets the black colored Color class.
@@ -139,6 +139,19 @@ namespace Tizen.NUI
             {
                 throw new global::System.ArgumentException("Please check your hex code");
             }
+        }
+
+        /// <summary>
+        /// The conversion constructor from an System.Drawing.Color instance.
+        /// </summary>
+        /// <param name="color">System.Drawing.Color instance</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(global::System.Drawing.Color color) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        {
+            R = color.R / 255.0f;
+            G = color.G / 255.0f;
+            B = color.B / 255.0f;
+            A = color.A / 255.0f;
         }
 
         /// <summary>
@@ -404,6 +417,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Color(this);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Color obj)
         {
