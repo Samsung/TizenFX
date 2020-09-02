@@ -107,7 +107,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar.
         /// </summary>
-        public CircularScrollbar() : base()
+        public CircularScrollbar() : base(new CircularScrollbarStyle())
         {
         }
 
@@ -119,7 +119,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(ThemeManager.GetStyle(typeof(CircularScrollbar)))
+        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new CircularScrollbarStyle())
         {
             Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
@@ -377,17 +377,6 @@ namespace Tizen.NUI.Wearable
             
             trackVisual.UpdateVisual(true);
             thumbVisual.UpdateVisual(true);
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            if (viewStyle == null) return;
-            if (viewStyle.WidthResizePolicy == null) viewStyle.WidthResizePolicy = ResizePolicyType.FillToParent;
-            if (viewStyle.HeightResizePolicy == null) viewStyle.HeightResizePolicy = ResizePolicyType.FillToParent;
-
-            base.ApplyStyle(viewStyle);
         }
 
         /// <inheritdoc/>

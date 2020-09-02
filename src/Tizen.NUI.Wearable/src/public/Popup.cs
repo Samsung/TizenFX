@@ -38,7 +38,7 @@ namespace Tizen.NUI.Wearable
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Popup() : base(ThemeManager.GetStyle("WearablePopup") as ControlStyle)
+        public Popup() : base()
         {
             initialize();
         }
@@ -437,7 +437,7 @@ namespace Tizen.NUI.Wearable
 
         private void initialize()
         {
-            popupStyle = ViewStyle as PopupStyle;
+            popupStyle = Style as PopupStyle;
             if (popupStyle == null)
             {
                 throw new Exception("Popup style is null.");

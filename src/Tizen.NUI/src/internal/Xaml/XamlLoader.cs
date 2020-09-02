@@ -131,14 +131,6 @@ namespace Tizen.NUI.Xaml
             using (var textReader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textReader))
             {
-                Load(view, reader);
-            }
-        }
-
-        public static void Load(object view, XmlReader reader)
-        {
-            if (reader != null)
-            {
                 while (reader.Read())
                 {
                     //Skip until element
@@ -177,16 +169,6 @@ namespace Tizen.NUI.Xaml
             object inflatedView = null;
             using (var textreader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textreader))
-            {
-                inflatedView = Create(reader, doNotThrow);
-            }
-            return inflatedView;
-        }
-
-        public static object Create(XmlReader reader, bool doNotThrow = false)
-        {
-            object inflatedView = null;
-            if (reader != null)
             {
                 while (reader.Read())
                 {
