@@ -1580,6 +1580,29 @@ namespace Tizen.NUI.BaseComponents
             return ((View)bindable).enableControlState;
         });
 
+        /// <summary>
+        /// ThemeChangeSensitive property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.themeChangeSensitive = (bool)newValue;
+
+            if (view.themeChangeSensitive)
+            {
+                ThemeManager.ThemeChanged += view.OnThemeChanged;
+            }
+            else
+            {
+                ThemeManager.ThemeChanged -= view.OnThemeChanged;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((View)bindable).themeChangeSensitive;
+        });
+
         #region Selectors
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {

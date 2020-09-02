@@ -64,18 +64,21 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsEnabled != (bool)newValue))
+                bool newEnabled = (bool)newValue;
+                if (instance.isEnabled != newEnabled)
                 {
-                    instance.buttonStyle.IsEnabled = (bool)newValue;
+                    instance.isEnabled = newEnabled;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsEnabled = newEnabled;
+                    }
+
                     instance.UpdateState();
                 }
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IsEnabled ?? true;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).isEnabled);
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -83,17 +86,27 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && instance.IsSelectable && (!instance.styleApplied || instance.buttonStyle.IsSelected != (bool)newValue))
+                bool newSelected = (bool)newValue;
+                if (instance.isSelected != newSelected)
                 {
-                    instance.buttonStyle.IsSelected = (bool)newValue;
-                    instance.UpdateState();
+                    instance.isSelected = newSelected;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsSelected = newSelected;
+                    }
+
+                    if (instance.isSelectable)
+                    {
+                        instance.UpdateState();
+                    }
                 }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.IsSelectable && (instance.buttonStyle.IsSelected ?? false);
+            return instance.isSelectable && instance.isSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -102,17 +115,22 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsSelectable != (bool)newValue))
+                bool newSelectable = (bool)newValue;
+                if (instance.isSelectable != newSelectable)
                 {
-                    instance.buttonStyle.IsSelectable = (bool)newValue;
+                    instance.isSelectable = newSelectable;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsSelectable = newSelectable;
+                    }
+
+                    instance.UpdateState();
                 }
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IsSelectable ?? false;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).isSelectable);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -145,6 +163,10 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             return instance.buttonStyle?.TextPadding;
         });
+
+        private bool isSelected = false;
+        private bool isSelectable = false;
+        private bool isEnabled = true;
 
         static Button() { }
 
@@ -250,8 +272,11 @@ namespace Tizen.NUI.Components
                     {
                         buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
                     }
-                    Add(buttonIcon);
-                    buttonIcon.Relayout += OnIconRelayout;
+                    if (null != buttonIcon)
+                    {
+                        Add(buttonIcon);
+                        buttonIcon.Relayout += OnIconRelayout;
+                    }
                 }
                 return buttonIcon;
             }
@@ -276,9 +301,10 @@ namespace Tizen.NUI.Components
                     {
                         overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
                     }
-                    overlayImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                    overlayImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                    Add(overlayImage);
+                    if (null != overlayImage)
+                    {
+                        Add(overlayImage);
+                    }
                 }
                 return overlayImage;
             }
@@ -303,9 +329,10 @@ namespace Tizen.NUI.Components
                     {
                         buttonText = Extension.OnCreateText(this, buttonText);
                     }
-                    buttonText.HorizontalAlignment = HorizontalAlignment.Center;
-                    buttonText.VerticalAlignment = VerticalAlignment.Center;
-                    Add(buttonText);
+                    if (null != buttonText)
+                    {
+                        Add(buttonText);
+                    }
                 }
                 return buttonText;
             }
@@ -782,48 +809,6 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
-        }
-
-        /// <summary>
-        /// Get current text part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's text part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel GetCurrentText(ButtonExtension extension)
-        {
-            return (extension == Extension) ? TextLabel : null;
-        }
-
-        /// <summary>
-        /// Get current icon part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentIcon(ButtonExtension extension)
-        {
-            return (extension == Extension) ? Icon : null;
-        }
-
-        /// <summary>
-        /// Get current overlay image part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentOverlayImage(ButtonExtension extension)
-        {
-            return (extension == Extension) ? OverlayImage : null;
         }
     }
 }

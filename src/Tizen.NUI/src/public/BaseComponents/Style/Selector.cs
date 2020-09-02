@@ -24,13 +24,13 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Selector class, which is related by Control State, it is base class for other Selector.
     /// </summary>
+    /// <typeparam name="T">The property type of the selector. if it's reference type, it should be of type <see cref="ICloneable"/> that implement deep copy in <see cref="ICloneable.Clone"/>.</typeparam>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Selector<T> : StateValueCollection<T>
     {
-        private readonly bool cloneable = typeof(T).IsAssignableFrom(typeof(ICloneable));
-
+        private readonly bool isCloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public static implicit operator Selector<T>(T value)
@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector(T value) : this()
         {
-            All = cloneable ? (T)((ICloneable)value)?.Clone() : value;
+            All = isCloneable ? (T)((ICloneable)value)?.Clone() : value;
         }
 
         /// Copy constructor
@@ -75,7 +75,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal delegate void SelectorChangedCallback<T>(Selector<T> value);
         private SelectorChangedCallback<T> callback = null;
-
 
         /// <summary>
         /// All State.
@@ -319,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Clone itself.
-        /// If type T implements ICloneable, it calls Clone() method to clone values, otherwise use operator=.
+        /// If type T implements ISelectorItem, it calls Clone() method to clone values, otherwise use operator=.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -339,7 +338,7 @@ namespace Tizen.NUI.BaseComponents
         {
             Clear();
 
-            if (cloneable)
+            if (isCloneable)
             {
                 All = (T)((ICloneable)other.All)?.Clone();
                 foreach (var item in other.StateValueList)
