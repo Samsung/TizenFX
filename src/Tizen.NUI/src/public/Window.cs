@@ -1307,13 +1307,21 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
-                _rootLayer.Dispose();
-                localController.Dispose();
+                if (_rootLayer != null)
+                {
+                    _rootLayer.Dispose();
+                }
+
+                localController?.Dispose();
 
                 foreach (var layer in _childLayers)
                 {
-                    layer.Dispose();
+                    if (layer != null)
+                    {
+                        layer.Dispose();
+                    }
                 }
+
                 _childLayers.Clear();
             }
 
