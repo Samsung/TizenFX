@@ -49,11 +49,13 @@ namespace Tizen.NUI.Components.Extension
 
             if (slidingAnimation.State == Animation.States.Playing)
             {
+                slidingAnimation.EndAction = Animation.EndActions.StopFinal;
                 slidingAnimation.Stop();
             }
 
             slidingAnimation.Clear();
             slidingAnimation.AnimateTo(thumb, "PositionX", track.Size.Width - thumb.Size.Width - thumb.Position.X);
+            slidingAnimation.EndAction = Animation.EndActions.StopFinal;
             slidingAnimation.Play();
         }
 
