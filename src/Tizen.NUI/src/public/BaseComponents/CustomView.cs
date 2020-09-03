@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -154,6 +155,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 8 and will be removed in API level 10. Please use OnSceneConnection instead!")]
         public virtual void OnStageConnection(int depth)
         {
         }
@@ -164,7 +166,30 @@ namespace Tizen.NUI.BaseComponents
         /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 8 and will be removed in API level 10. Please use OnSceneDisconnection instead!")]
         public virtual void OnStageDisconnection()
+        {
+        }
+
+        /// <summary>
+        /// Called after the view has been connected to the scene.<br />
+        /// When a view is connected, it will be directly or indirectly parented to the root view.<br />
+        /// The root view is provided automatically by Tizen.NUI.Window, and is always considered to be connected.<br />
+        /// When the parent of a set of views is connected to the scene, then all of the children will receive this callback.<br />
+        /// </summary>
+        /// <param name="depth">The depth in the hierarchy for the view.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public virtual void OnSceneConnection(int depth)
+        {
+        }
+
+        /// <summary>
+        /// Called after the view has been disconnected from the scene.<br />
+        /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br />
+        /// When the parent of a set of views is disconnected to the scene, then all of the children will receive this callback, starting with the leaf views.<br />
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public virtual void OnSceneDisconnection()
         {
         }
 
@@ -725,8 +750,10 @@ namespace Tizen.NUI.BaseComponents
         private void Initialize()
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
-            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
-            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
+            viewWrapperImpl.OnSceneConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnSceneConnection);
+            viewWrapperImpl.OnSceneDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnSceneDisconnection);
+            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnSceneConnectionDelegate(OnStageConnection);
+            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnSceneDisconnectionDelegate(OnStageDisconnection);
             viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
             viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);

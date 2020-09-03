@@ -47,6 +47,26 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// KeyInputFocusProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty KeyInputFocusProperty = BindableProperty.Create("KeyInputFocus", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
         /// BackgroundColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -135,7 +155,7 @@ namespace Tizen.NUI.BaseComponents
                 map.Add(ImageVisualProperty.URL, new PropertyValue(url))
                    .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
                    .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view._backgroundImageSynchronosLoading));
-                
+
                 if (view.backgroundExtraData.BackgroundImageBorder != null)
                 {
                     map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch))
