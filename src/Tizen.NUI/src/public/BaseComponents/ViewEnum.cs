@@ -150,6 +150,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int UP_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_UP_FOCUSABLE_ACTOR_ID_get();
             internal static readonly int DOWN_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
             internal static readonly int STYLE_NAME = Interop.ViewProperty.View_Property_STYLE_NAME_get();
+            internal static readonly int KEY_INPUT_FOCUS = Interop.ViewProperty.View_Property_KEY_INPUT_FOCUS_get();
             internal static readonly int BACKGROUND = Interop.ViewProperty.View_Property_BACKGROUND_get();
             internal static readonly int SIBLING_ORDER = Interop.ActorProperty.Actor_Property_SIBLING_ORDER_get();
             internal static readonly int OPACITY = Interop.ActorProperty.Actor_Property_OPACITY_get();

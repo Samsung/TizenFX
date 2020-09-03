@@ -244,6 +244,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The KeyInputFocus, type bool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyInputFocus
+        {
+            get
+            {
+                return (bool)GetValue(KeyInputFocusProperty);
+            }
+            set
+            {
+                SetValue(KeyInputFocusProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
         /// <remarks>
@@ -2124,7 +2141,7 @@ namespace Tizen.NUI.BaseComponents
                     value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
-                    if (value.Owner.Layout != null) 
+                    if (value.Owner.Layout != null)
                     {
                         value.Owner.Layout.Margin = value.Margin;
                         value.Owner.Layout.Padding = value.Padding;
