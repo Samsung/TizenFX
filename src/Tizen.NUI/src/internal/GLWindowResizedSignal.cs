@@ -17,30 +17,28 @@
 
 namespace Tizen.NUI
 {
-
-    internal class ResizeSignal : Disposable
+    internal class GLWindowResizedSignal : Disposable
     {
 
-        internal ResizeSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal GLWindowResizedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ResizeSignal.delete_ResizeSignal(swigCPtr);
+            Interop.GLWindowResizedSignal.GlWindow_delete_ResizedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ResizeSignal.ResizeSignal_Empty(swigCPtr);
+            bool ret = Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ResizeSignal.ResizeSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +47,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ResizeSignal.ResizeSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +56,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ResizeSignal.ResizeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Size2D arg)
         {
-            Interop.ResizeSignal.ResizeSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
+            Interop.GLWindowResizedSignal.GlWindow_ResizedSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ResizeSignal() : this(Interop.ResizeSignal.new_ResizeSignal(), true)
+        public GLWindowResizedSignal() : this(Interop.GLWindowResizedSignal.new_GlWindow_ResizedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
