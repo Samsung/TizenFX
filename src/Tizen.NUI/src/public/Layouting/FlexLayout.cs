@@ -24,12 +24,12 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a flex layout.
+    /// This class implements a flex layout.
     /// The flex layout implementation is based on open source Facebook Yoga layout engine.
     /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
     /// We implement the subset of the API in the class below.
     /// </summary>
-    public class FlexLayout : LayoutGroup,  global::System.IDisposable
+    public class FlexLayout : LayoutGroup, global::System.IDisposable
     {
         /// <summary>
         /// FlexItemProperty
@@ -89,19 +89,21 @@ namespace Tizen.NUI
 
         internal struct MeasuredSize
         {
-          public MeasuredSize(float x, float y)
-          {
-            width = x;
-            height = y;
-          }
-          float width;
-          float height;
+            public MeasuredSize(float x, float y)
+            {
+                width = x;
+                height = y;
+            }
+            float width;
+            float height;
         };
 
         /// <summary>
         /// Get the alignment self of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of alignment self</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static AlignmentType GetFlexAlignmentSelf(View view)
         {
             return (AlignmentType)view.GetValue(FlexAlignmentSelfProperty);
@@ -110,7 +112,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the position type of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of position type</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static PositionType GetFlexPositionType(View view)
         {
             return (PositionType)view.GetValue(FlexPositionTypeProperty);
@@ -119,7 +123,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the aspect ratio of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of aspect ratio</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static float GetFlexAspectRatio(View view)
         {
             return (float)view.GetValue(FlexAspectRatioProperty);
@@ -128,7 +134,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the basis of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of basis</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static float GetFlexBasis(View view)
         {
             return (float)view.GetValue(FlexBasisProperty);
@@ -137,7 +145,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the shrink of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of shrink</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static float GetFlexShrink(View view)
         {
             return (float)view.GetValue(FlexShrinkProperty);
@@ -146,7 +156,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the grow of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <returns> The value of grow</returns>
+        /// <since_tizen> 8 </since_tizen>
         public static float GetFlexGrow(View view)
         {
             return (float)view.GetValue(FlexGrowProperty);
@@ -155,7 +167,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the alignment self of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of alignment self</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAlignmentSelf(View view, AlignmentType value)
         {
             SetChildValue(view, FlexAlignmentSelfProperty, value);
@@ -164,7 +178,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the position type of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of position type</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexPositionType(View view, PositionType value)
         {
             SetChildValue(view, FlexPositionTypeProperty, value);
@@ -173,7 +189,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the aspect ratio of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of aspect ratio</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAspectRatio(View view, float value)
         {
             SetChildValue(view, FlexAspectRatioProperty, value);
@@ -182,7 +200,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the basis of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of basis</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexBasis(View view, float value)
         {
             SetChildValue(view, FlexBasisProperty, value);
@@ -191,7 +211,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the shrink of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of shrink</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexShrink(View view, float value)
         {
             SetChildValue(view, FlexShrinkProperty, value);
@@ -200,14 +222,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Set the grow of the layout items.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="view">The layout item</param>
+        /// <param name="value">The target value of flex</param>
+        /// <since_tizen> 8 </since_tizen>
         public static void SetFlexGrow(View view, float value)
         {
             SetChildValue(view, FlexGrowProperty, value);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate MeasuredSize ChildMeasureCallback( global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight );
+        internal delegate MeasuredSize ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight);
 
         event ChildMeasureCallback measureChildDelegate; // Stores a delegate to the child measure callback. Used for all children of this FlexLayout.
 
@@ -282,7 +306,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Creates a FlexLayout object.
+        /// Creates a FlexLayout object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
@@ -373,7 +397,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the flex direction in the layout.
+        /// Get/Set the flex direction in the layout.
         /// The direction of the main-axis which determines the direction that flex items are laid out.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -390,7 +414,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the justification in the layout.
+        /// Get/Set the justification in the layout.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
@@ -406,7 +430,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the wrap in the layout.
+        /// Get/Set the wrap in the layout.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
@@ -422,7 +446,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the alignment of the layout content.
+        /// Get/Set the alignment of the layout content.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
@@ -438,7 +462,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the alignment of the layout items.
+        /// Get/Set the alignment of the layout items.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
@@ -454,7 +478,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the direction of the main axis in the flex container.
+        /// Enumeration for the direction of the main axis in the flex container.
         /// This determines the direction that flex items are laid out in the flex container.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -479,7 +503,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the alignment of the flex items when the items do not use all available space on the main-axis.
+        /// Enumeration for the alignment of the flex items when the items do not use all available space on the main-axis.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public enum FlexJustification
@@ -507,7 +531,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the wrap type of the flex container when there is no enough room for all the items on one flex line.
+        /// Enumeration for the wrap type of the flex container when there is no enough room for all the items on one flex line.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public enum FlexWrapType
@@ -523,7 +547,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the alignment of the flex items or lines when the items or lines do not use all the available space on the cross-axis.
+        /// Enumeration for the alignment of the flex items or lines when the items or lines do not use all the available space on the cross-axis.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public enum AlignmentType
@@ -552,18 +576,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the position type of the flex item how it is positioned within its parent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public enum PositionType
         {
             /// <summary>
             /// Flex items laid out relatively.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Relative,
             /// <summary>
             /// Flex items laid out absolutely.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Absolute
         }
 
@@ -588,15 +610,15 @@ namespace Tizen.NUI
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
 
-            childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
+            childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            return new MeasuredSize(childLayout.MeasuredWidth.Size.AsRoundedValue(),childLayout.MeasuredHeight.Size.AsRoundedValue());
+            return new MeasuredSize(childLayout.MeasuredWidth.Size.AsRoundedValue(), childLayout.MeasuredHeight.Size.AsRoundedValue());
         }
 
-        void InsertChild( LayoutItem child )
+        void InsertChild(LayoutItem child)
         {
             // Store created node for child
-            IntPtr childPtr = Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count-1);
+            IntPtr childPtr = Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
             HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
             SetChildValue(child.Owner, FlexItemProperty, childHandleRef);
         }
@@ -630,7 +652,7 @@ namespace Tizen.NUI
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         /// <since_tizen> 6 </since_tizen>
-        protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
             Extents padding = Owner.Padding;
@@ -642,12 +664,12 @@ namespace Tizen.NUI
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
             float height = FlexUndefined; // Behaves as WrapContent (Flex Auto)
 
-            if( widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly ||  widthMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost )
+            if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly || widthMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost)
             {
                 width = widthMeasureSpec.Size.AsDecimal();
             }
 
-            if ( heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly || heightMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost )
+            if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly || heightMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost)
             {
                 height = heightMeasureSpec.Size.AsDecimal();
             }
@@ -682,16 +704,16 @@ namespace Tizen.NUI
                 Interop.FlexLayout.FlexLayout_SetFlexGrow(childHandleRef, flexGrow);
             }
 
-            Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width, height, isLayoutRtl );
+            Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width, height, isLayoutRtl);
 
-            LayoutLength flexLayoutWidth =  new LayoutLength( Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr) );
-            LayoutLength flexLayoutHeight = new LayoutLength( Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr) );
+            LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr));
+            LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr));
 
-            Debug.WriteLineIf( LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
-                                                + " height:" + flexLayoutHeight.AsRoundedValue() );
+            Debug.WriteLineIf(LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
+                                                + " height:" + flexLayoutHeight.AsRoundedValue());
 
-            SetMeasuredDimensions( GetDefaultSize(flexLayoutWidth, widthMeasureSpec ),
-                                   GetDefaultSize(flexLayoutHeight, heightMeasureSpec ) );
+            SetMeasuredDimensions(GetDefaultSize(flexLayoutWidth, widthMeasureSpec),
+                                   GetDefaultSize(flexLayoutHeight, heightMeasureSpec));
         }
 
         /// <summary>
@@ -703,7 +725,7 @@ namespace Tizen.NUI
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
         /// <since_tizen> 6 </since_tizen>
-        protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
 
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
@@ -711,17 +733,17 @@ namespace Tizen.NUI
             LayoutLength height = bottom - top;
 
             // Call to FlexLayout implementation to calculate layout values for later retrieval.
-            Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl );
+            Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl);
 
             int count = LayoutChildren.Count;
-            for( int childIndex = 0; childIndex < count; childIndex++)
+            for (int childIndex = 0; childIndex < count; childIndex++)
             {
                 LayoutItem childLayout = LayoutChildren[childIndex];
-                if( childLayout != null )
+                if (childLayout != null)
                 {
                     // Get the frame for the child, start, top, end, bottom.
-                    Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex ), true);
-                    childLayout.Layout( new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W) );
+                    Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
+                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                 }
             }
         }
