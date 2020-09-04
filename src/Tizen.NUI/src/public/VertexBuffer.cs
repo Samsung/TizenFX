@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// VertexBuffer is a handle to an object that contains a buffer of structured data.<br />
     /// VertexBuffers can be used to provide data to Geometry objects.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     public class VertexBuffer : BaseHandle
     {
 
