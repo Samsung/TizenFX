@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         /// <summary>
-        /// StyleNameProperty
+        /// StyleNameProperty (DALi json)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create("StyleName", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -43,6 +43,26 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.STYLE_NAME).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// KeyInputFocusProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty KeyInputFocusProperty = BindableProperty.Create("KeyInputFocus", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS).Get(out temp);
             return temp;
         });
 
@@ -135,7 +155,7 @@ namespace Tizen.NUI.BaseComponents
                 map.Add(ImageVisualProperty.URL, new PropertyValue(url))
                    .Add(Visual.Property.CornerRadius, new PropertyValue(view.backgroundExtraData.CornerRadius))
                    .Add(ImageVisualProperty.SynchronousLoading, new PropertyValue(view._backgroundImageSynchronosLoading));
-                
+
                 if (view.backgroundExtraData.BackgroundImageBorder != null)
                 {
                     map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch))
@@ -155,12 +175,7 @@ namespace Tizen.NUI.BaseComponents
             string backgroundImage = "";
 
             Tizen.NUI.PropertyMap background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
-            if ((visualType == (int)Visual.Type.Image) || (visualType == (int)Visual.Type.NPatch))
-            {
-                background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-            }
+            background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
 
             return backgroundImage;
         });

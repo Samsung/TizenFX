@@ -227,6 +227,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The StyleName, type string.
+        /// The value indicates DALi style name defined in json theme file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string StyleName
@@ -238,6 +239,23 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(StyleNameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The KeyInputFocus, type bool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyInputFocus
+        {
+            get
+            {
+                return (bool)GetValue(KeyInputFocusProperty);
+            }
+            set
+            {
+                SetValue(KeyInputFocusProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2123,7 +2141,7 @@ namespace Tizen.NUI.BaseComponents
                     value.Owner.Layout = new AbsoluteLayout();
 
                     // Copy Margin and Padding to replacement LayoutGroup.
-                    if (value.Owner.Layout != null) 
+                    if (value.Owner.Layout != null)
                     {
                         value.Owner.Layout.Margin = value.Margin;
                         value.Owner.Layout.Padding = value.Padding;
@@ -2215,15 +2233,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _backgroundImageSynchronosLoading = value;
-                string bgUrl = "";
-                int visualType = 0;
-                Background.Find(Visual.Property.Type)?.Get(out visualType);
-                if (visualType == (int)Visual.Type.Image)
-                {
-                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                }
 
-                if (bgUrl.Length != 0)
+                string bgUrl = null;
+                Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+
+                if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
                     bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));

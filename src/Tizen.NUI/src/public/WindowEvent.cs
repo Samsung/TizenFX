@@ -40,7 +40,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType0 _stageContextRegainedEventCallbackDelegate;
         private EventHandler _stageSceneCreatedEventHandler;
         private EventCallbackDelegateType0 _stageSceneCreatedEventCallbackDelegate;
-        private WindowResizedEventCallbackType _windowResizedEventCallback;
+        private WindowResizeEventCallbackType _windowResizeEventCallback;
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
         private WindowTransitionEffectSignal transitionEffectSignal;
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
+        private delegate void WindowResizeEventCallbackType(IntPtr window, IntPtr windowSize);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -188,21 +188,21 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_windowResizedEventHandler == null)
+                if (_windowResizeEventHandler == null)
                 {
-                    _windowResizedEventCallback = OnResized;
-                    ResizedSignal().Connect(_windowResizedEventCallback);
+                    _windowResizeEventCallback = OnResized;
+                    ResizeSignal().Connect(_windowResizeEventCallback);
                 }
 
-                _windowResizedEventHandler += value;
+                _windowResizeEventHandler += value;
             }
             remove
             {
-                _windowResizedEventHandler -= value;
+                _windowResizeEventHandler -= value;
 
-                if (_windowResizedEventHandler == null && ResizedSignal().Empty() == false && _windowResizedEventCallback != null)
+                if (_windowResizeEventHandler == null && ResizeSignal().Empty() == false && _windowResizeEventCallback != null)
                 {
-                    ResizedSignal().Disconnect(_windowResizedEventCallback);
+                    ResizeSignal().Disconnect(_windowResizeEventCallback);
                 }
             }
         }
@@ -303,7 +303,7 @@ namespace Tizen.NUI
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
         private event EventHandler<KeyEventArgs> _stageKeyHandler;
         private event EventHandler _stageEventProcessingFinishedEventHandler;
-        private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
+        private event EventHandler<ResizedEventArgs> _windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
@@ -462,9 +462,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ResizedSignal ResizedSignal()
+        internal ResizeSignal ResizeSignal()
         {
-            ResizedSignal ret = new ResizedSignal(Interop.Window.Window_ResizedSignal(swigCPtr), false);
+            ResizeSignal ret = new ResizeSignal(Interop.Window.Window_ResizeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -527,9 +527,9 @@ namespace Tizen.NUI
                 SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
             }
 
-            if (_windowResizedEventCallback != null)
+            if (_windowResizeEventCallback != null)
             {
-                ResizedSignal().Disconnect(_windowResizedEventCallback);
+                ResizeSignal().Disconnect(_windowResizeEventCallback);
             }
 
             if (_windowFocusChangedEventCallback2 != null)
@@ -693,8 +693,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResized(IntPtr windowSize)
+        private void OnResized(IntPtr window, IntPtr windowSize)
         {
+            if (window == IntPtr.Zero)
+            {
+                NUILog.Error("OnResized() Window is null! Do nothing!");
+                return;
+            }
+
             ResizedEventArgs e = new ResizedEventArgs();
             // var val = new Uint16Pair(windowSize, false);
             // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
@@ -705,9 +711,9 @@ namespace Tizen.NUI
             // will be fixed later.
             e.WindowSize = this.WindowSize;
 
-            if (_windowResizedEventHandler != null)
+            if (_windowResizeEventHandler != null)
             {
-                _windowResizedEventHandler(this, e);
+                _windowResizeEventHandler(this, e);
             }
         }
 
