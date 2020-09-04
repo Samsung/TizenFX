@@ -91,6 +91,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
                 return s_instance.Value;
             }
         }
@@ -99,8 +100,9 @@ namespace Tizen.Network.Connection
 
         private ConnectionInternalManager()
         {
-            _handleHolder = new HandleHolder();
             Log.Info(Globals.LogTag, "ConnectionInternalManager constructor");
+            _handleHolder = new HandleHolder();
+            Log.Info(Globals.LogTag, "Success to get handle");
         }
 
         ~ConnectionInternalManager()
