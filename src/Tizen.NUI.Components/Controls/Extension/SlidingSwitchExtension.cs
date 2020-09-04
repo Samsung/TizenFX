@@ -54,7 +54,7 @@ namespace Tizen.NUI.Components.Extension
             }
 
             slidingAnimation.Clear();
-            slidingAnimation.AnimateTo(thumb, "PositionX", track.Size.Width - thumb.Size.Width - thumb.Position.X);
+            slidingAnimation.AnimateTo(thumb, "PositionX", switchButton.IsSelected ? track.Size.Width - thumb.Size.Width : 0);
             slidingAnimation.EndAction = Animation.EndActions.StopFinal;
             slidingAnimation.Play();
         }
