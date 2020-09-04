@@ -271,23 +271,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        protected virtual new bool OnHoverEvent(Hover arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8) ? Interop.ViewImplSignal.ViewImpl_OnHoverEventSwigExplicitViewImpl(swigCPtr, Hover.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         protected virtual new bool OnKeyEvent(Key arg0)
         {
             bool ret = (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9) ? Interop.ViewImplSignal.ViewImpl_OnKeyEventSwigExplicitViewImpl(swigCPtr, Key.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        protected virtual new bool OnWheelEvent(Wheel arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnWheelEvent", swigMethodTypes10) ? Interop.ViewImplSignal.ViewImpl_OnWheelEventSwigExplicitViewImpl(swigCPtr, Wheel.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnWheelEvent(swigCPtr, Wheel.getCPtr(arg0)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -482,12 +468,8 @@ namespace Tizen.NUI
                 swigDelegate5 = new SwigDelegateViewImpl_5(SwigDirectorOnSizeSet);
             if (SwigDerivedClassHasMethod("OnSizeAnimation", swigMethodTypes6))
                 swigDelegate6 = new SwigDelegateViewImpl_6(SwigDirectorOnSizeAnimation);
-            if (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8))
-                swigDelegate8 = new SwigDelegateViewImpl_8(SwigDirectorOnHoverEvent);
             if (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9))
                 swigDelegate9 = new SwigDelegateViewImpl_9(SwigDirectorOnKeyEvent);
-            if (SwigDerivedClassHasMethod("OnWheelEvent", swigMethodTypes10))
-                swigDelegate10 = new SwigDelegateViewImpl_10(SwigDirectorOnWheelEvent);
             if (SwigDerivedClassHasMethod("OnRelayout", swigMethodTypes11))
                 swigDelegate11 = new SwigDelegateViewImpl_11(SwigDirectorOnRelayout);
             if (SwigDerivedClassHasMethod("OnSetResizePolicy", swigMethodTypes12))
@@ -601,19 +583,9 @@ namespace Tizen.NUI
             OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
         }
 
-        private bool SwigDirectorOnHoverEvent(global::System.IntPtr arg0)
-        {
-            return OnHoverEvent(new Hover(arg0, false));
-        }
-
         private bool SwigDirectorOnKeyEvent(global::System.IntPtr arg0)
         {
             return OnKeyEvent(new Key(arg0, false));
-        }
-
-        private bool SwigDirectorOnWheelEvent(global::System.IntPtr arg0)
-        {
-            return OnWheelEvent(new Wheel(arg0, false));
         }
 
         private void SwigDirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
