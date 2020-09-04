@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vertexBuffer">VertexBuffer to be used as source of geometry vertices.</param>
         /// <returns>Index of the newly added buffer.</returns>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public uint AddVertexBuffer(VertexBuffer vertexBuffer)
         {
             uint ret = Interop.Geometry.Geometry_AddVertexBuffer(swigCPtr, VertexBuffer.getCPtr(vertexBuffer));
