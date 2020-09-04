@@ -66,7 +66,7 @@ namespace Tizen.NUI.Components
         {
             ViewStyle viewStyle = ThemeManager.GetStyle(GetType());
 
-            if (viewStyle != null)
+            if (viewStyle != null && ViewStyle?.GetType() == viewStyle.GetType())
             {
                 ApplyStyle(viewStyle);
             }

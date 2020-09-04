@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return ThemeManager.CurrentTheme.Id;
+                return ThemeManager.CurrentTheme?.Id;
             }
             set
             {
@@ -63,9 +63,9 @@ namespace Tizen.NUI.Components
 
                 var key = value.ToUpperInvariant();
 
-                if (key == Theme.ToUpperInvariant()) return;
+                if (key == Theme?.ToUpperInvariant()) return;
 
-                if (!ThemeMap.ContainsKey(key))
+                if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
                 {
                     ThemeMap[key] = new Theme()
                     {
@@ -104,14 +104,14 @@ namespace Tizen.NUI.Components
                 if (theme != null)
                 {
                     key = theme.ToUpperInvariant();
+                }
 
-                    if (!ThemeMap.ContainsKey(key))
+                if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
+                {
+                    ThemeMap[key] = new Theme()
                     {
-                        ThemeMap[key] = new Theme()
-                        {
-                            Id = theme
-                        };
-                    }
+                        Id = theme ?? key
+                    };
                 }
 
                 if (ThemeMap[key].HasStyle(style))
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            return (ThemeManager.CurrentTheme.GetStyle(style) ?? ThemeManager.DefaultTheme.GetStyle(style))?.Clone();
+            return (ThemeManager.CurrentTheme?.GetStyle(style) ?? ThemeManager.DefaultTheme?.GetStyle(style))?.Clone();
         }
 
         /// <summary>

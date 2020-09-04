@@ -50,7 +50,7 @@ namespace Tizen.NUI
         private static readonly string[] profileDefaultTheme =
         {
             /* Common   */ "Tizen.NUI.Theme.Common",
-            /* Mobile   */ null,
+            /* Mobile   */ "Tizen.NUI.Theme.Common",
             /* TV       */ null,
             /* Wearable */ "Tizen.NUI.Theme.Wearable",
         };
@@ -178,7 +178,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(styleName));
             }
 
-            return CurrentTheme.GetStyle(styleName)?.Clone();
+            return CurrentTheme?.GetStyle(styleName)?.Clone();
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Tizen.NUI
                 resultStyle = GetStyle(currentType.Name)?.Clone();
                 currentType = currentType.BaseType;
             }
-            while (resultStyle == null);
+            while (resultStyle == null && currentType != null);
 
             return resultStyle;
         }
@@ -231,12 +231,12 @@ namespace Tizen.NUI
 
         private static Theme LoadBuiltinTheme(string id)
         {
-            if (string.IsNullOrEmpty(id)) return null;
-
             var loaded = new Theme()
             {
                 Id = id,
             };
+
+            if (string.IsNullOrEmpty(id)) return loaded;
 
             foreach (var project in nuiThemeProjects)
             {
@@ -249,12 +249,12 @@ namespace Tizen.NUI
                 }
                 catch (XamlParseException)
                 {
-                    Tizen.Log.Info("NUI", $"Could not find \"{path}\".\n");
-                    Tizen.Log.Info("NUI", $"The assemblies used in the file may not be included in the project.\n");
+                    Tizen.Log.Error("NUI", $"Could not find \"{path}\".\n");
+                    Tizen.Log.Error("NUI", $"The assemblies used in the file may not be included in the project.\n");
                 }
                 catch (Exception)
                 {
-                    Tizen.Log.Info("NUI", $"Could not load \"{path}\"\n");
+                    Tizen.Log.Error("NUI", $"Could not load \"{path}\"\n");
                 }
             }
 
@@ -263,7 +263,7 @@ namespace Tizen.NUI
 
         private static void NotifyThemeChanged()
         {
-            ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme.Id));
+            ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
         }
     }
 }

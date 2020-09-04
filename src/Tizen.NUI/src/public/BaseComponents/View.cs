@@ -2372,7 +2372,7 @@ namespace Tizen.NUI.BaseComponents
         {
             ViewStyle newStyle = ThemeManager.GetStyle(GetType());
 
-            if (newStyle != null)
+            if (newStyle != null && viewStyle?.GetType() == newStyle.GetType())
             {
                 ApplyStyle(newStyle);
             }
