@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using NativeCapabilities = Interop.CameraCapabilities;
 using NativeSettings = Interop.CameraSettings;
-using Tizen.Multimedia;
 
 namespace Tizen.Multimedia
 {
