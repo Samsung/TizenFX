@@ -156,7 +156,7 @@
   <!--Switch-->
   <c:SwitchStyle x:Key="Switch" Size="96, 60">
     <c:Switch.Track>
-      <b:ImageViewStyle Size="96, 60" WidthResizePolicy="Fixed" HeightResizePolicy="Fixed" Border="30, 30, 30, 30">
+      <b:ImageViewStyle Size="96, 60" WidthResizePolicy="Fixed" HeightResizePolicy="Fixed">
         <b:ImageViewStyle.ResourceUrl>
           <b:Selector x:TypeArguments="x:String" Normal="{nx:NUIResourcePath nui_component_default_switch_track_n.png}" Selected="{nx:NUIResourcePath nui_component_default_switch_track_s.png}" Disabled="{nx:NUIResourcePath nui_component_default_switch_track_d.png}" DisabledSelected="{nx:NUIResourcePath nui_component_default_switch_track_ds.png}" />
         </b:ImageViewStyle.ResourceUrl>

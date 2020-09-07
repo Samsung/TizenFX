@@ -187,8 +187,6 @@ namespace Tizen.NUI.BaseComponents
 
                 ControlStateChangeEventInternal?.Invoke(this, changeInfo);
 
-                OnControlStateChanged(changeInfo);
-
                 if (controlStatePropagation)
                 {
                     foreach (View child in Children)
@@ -196,6 +194,8 @@ namespace Tizen.NUI.BaseComponents
                         child.ControlState = value;
                     }
                 }
+
+                OnControlStateChanged(changeInfo);
 
                 ControlStateChangedEvent?.Invoke(this, changeInfo);
             }
