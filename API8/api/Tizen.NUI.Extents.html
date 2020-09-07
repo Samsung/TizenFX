@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Extents : Disposable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Extents : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
   
@@ -116,13 +116,14 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
     </dd>
   </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L35">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents__ctor_" data-uid="Tizen.NUI.Extents.#ctor*"></a>
   <h4 id="Tizen_NUI_Extents__ctor" data-uid="Tizen.NUI.Extents.#ctor">Extents()</h4>
@@ -139,7 +140,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L70">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents__ctor_" data-uid="Tizen.NUI.Extents.#ctor*"></a>
   <h4 id="Tizen_NUI_Extents__ctor_System_UInt16_System_UInt16_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.Extents.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">Extents(UInt16, UInt16, UInt16, UInt16)</h4>
@@ -192,7 +193,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents__ctor_" data-uid="Tizen.NUI.Extents.#ctor*"></a>
   <h4 id="Tizen_NUI_Extents__ctor_Tizen_NUI_Extents_" data-uid="Tizen.NUI.Extents.#ctor(Tizen.NUI.Extents)">Extents(Extents)</h4>
@@ -227,7 +228,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L87">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L88">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents__ctor_" data-uid="Tizen.NUI.Extents.#ctor*"></a>
   <h4 id="Tizen_NUI_Extents__ctor_Tizen_NUI_Extents_ExtentsChangedCallback_System_UInt16_System_UInt16_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.Extents.#ctor(Tizen.NUI.Extents.ExtentsChangedCallback,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">Extents(Extents.ExtentsChangedCallback, UInt16, UInt16, UInt16, UInt16)</h4>
@@ -283,7 +284,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L187">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L188">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_Bottom_" data-uid="Tizen.NUI.Extents.Bottom*"></a>
   <h4 id="Tizen_NUI_Extents_Bottom" data-uid="Tizen.NUI.Extents.Bottom">Bottom</h4>
@@ -315,7 +316,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L145">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L146">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_End_" data-uid="Tizen.NUI.Extents.End*"></a>
   <h4 id="Tizen_NUI_Extents_End" data-uid="Tizen.NUI.Extents.End">End</h4>
@@ -347,7 +348,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L124">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L125">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_Start_" data-uid="Tizen.NUI.Extents.Start*"></a>
   <h4 id="Tizen_NUI_Extents_Start" data-uid="Tizen.NUI.Extents.Start">Start</h4>
@@ -379,7 +380,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L166">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L167">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_Top_" data-uid="Tizen.NUI.Extents.Top*"></a>
   <h4 id="Tizen_NUI_Extents_Top" data-uid="Tizen.NUI.Extents.Top">Top</h4>
@@ -413,7 +414,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L99">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L100">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_CopyFrom_" data-uid="Tizen.NUI.Extents.CopyFrom*"></a>
   <h4 id="Tizen_NUI_Extents_CopyFrom_Tizen_NUI_Extents_" data-uid="Tizen.NUI.Extents.CopyFrom(Tizen.NUI.Extents)">CopyFrom(Extents)</h4>
@@ -447,7 +448,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L210">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L211">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_EqualTo_" data-uid="Tizen.NUI.Extents.EqualTo*"></a>
   <h4 id="Tizen_NUI_Extents_EqualTo_Tizen_NUI_Extents_" data-uid="Tizen.NUI.Extents.EqualTo(Tizen.NUI.Extents)">EqualTo(Extents)</h4>
@@ -498,7 +499,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L223">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L224">View Source</a>
   </span>
   <a id="Tizen_NUI_Extents_NotEqualTo_" data-uid="Tizen.NUI.Extents.NotEqualTo*"></a>
   <h4 id="Tizen_NUI_Extents_NotEqualTo_Tizen_NUI_Extents_" data-uid="Tizen.NUI.Extents.NotEqualTo(Tizen.NUI.Extents)">NotEqualTo(Extents)</h4>
@@ -552,6 +553,9 @@
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">System.ICloneable</a>
+  </div>
 </article>
           </div>
           
@@ -560,7 +564,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Extents.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
