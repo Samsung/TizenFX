@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -24,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(RectangleTypeConverter))]
-    public class Rectangle : Disposable
+    public class Rectangle : Disposable, ICloneable
     {
         /// <summary>
         /// The constructor.
@@ -456,6 +457,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Rectangle(this);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj)
         {

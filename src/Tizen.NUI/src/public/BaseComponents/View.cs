@@ -61,6 +61,7 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
+        private bool themeChangeSensitive = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
@@ -93,9 +94,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
+        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true, viewStyle)
         {
-            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle.Clone());
+            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle?.Clone());
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -187,8 +187,6 @@ namespace Tizen.NUI.BaseComponents
 
                 ControlStateChangeEventInternal?.Invoke(this, changeInfo);
 
-                OnControlStateChanged(changeInfo);
-
                 if (controlStatePropagation)
                 {
                     foreach (View child in Children)
@@ -196,6 +194,8 @@ namespace Tizen.NUI.BaseComponents
                         child.ControlState = value;
                     }
                 }
+
+                OnControlStateChanged(changeInfo);
 
                 ControlStateChangedEvent?.Invoke(this, changeInfo);
             }
@@ -782,6 +782,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
+                
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -1954,13 +1955,7 @@ namespace Tizen.NUI.BaseComponents
 
                         if(_heightPolicy>=0) // Policy an exact value
                         {
-                            Size2D.Width = _widthPolicy;
-                        }
-                        else
-                        {
-                            // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
+                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
                             Size2D = new Size2D(_widthPolicy,_heightPolicy);
                         }
                     }
@@ -1991,13 +1986,7 @@ namespace Tizen.NUI.BaseComponents
 
                         if(_widthPolicy>=0) // Policy an exact value
                         {
-                            Size2D.Height = _heightPolicy;
-                        }
-                        else
-                        {
-                            // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
+                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
                             Size2D = new Size2D(_widthPolicy,_heightPolicy);
                         }
 
@@ -2336,6 +2325,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// If the value is true, the View will change its style as the theme changes.
+        /// It is false by default, unless it is Control instance created with specified style name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ThemeChangeSensitive
+        {
+            get => (bool)GetValue(ThemeChangeSensitiveProperty);
+            set => SetValue(ThemeChangeSensitiveProperty, value);
+        }
+
+        /// <summary>
         /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -2363,6 +2363,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
+        }
+
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            ViewStyle newStyle = ThemeManager.GetStyle(GetType());
+
+            if (newStyle != null && viewStyle?.GetType() == newStyle.GetType())
+            {
+                ApplyStyle(newStyle);
+            }
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

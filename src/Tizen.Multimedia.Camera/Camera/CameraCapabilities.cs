@@ -192,6 +192,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_previewResolutions == null)
                 {
                     _previewResolutions = GetSupportedPreviewResolutions();
@@ -213,6 +215,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_cameraResolutions == null)
                 {
                     _cameraResolutions = GetSupportedCaptureResolutions();
@@ -234,6 +238,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_captureFormats == null)
                 {
                     _captureFormats = GetSupportedCapturePixelFormats();
@@ -255,6 +261,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_previewFormats == null)
                 {
                     _previewFormats = GetSupportedPreviewPixelFormats();
@@ -276,6 +284,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_fps == null)
                 {
                     _fps = GetSupportedPreviewFps();
@@ -328,6 +338,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_autoFocusModes == null)
                 {
                     _autoFocusModes = GetSupportedAutoFocusModes();
@@ -349,6 +361,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_exposureModes == null)
                 {
                     _exposureModes = GetSupportedExposureModes();
@@ -370,6 +384,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_isoLevels == null)
                 {
                     _isoLevels = GetSupportedIsoLevels();
@@ -391,6 +407,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_theaterModes == null)
                 {
                     _theaterModes = GetSupportedTheaterModes();
@@ -412,6 +430,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_whitebalances == null)
                 {
                     _whitebalances = GetSupportedWhitebalances();
@@ -433,6 +453,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_flashModes == null)
                 {
                     _flashModes = GetSupportedFlashModes();
@@ -454,6 +476,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_sceneModes == null)
                 {
                     _sceneModes = GetSupportedSceneModes();
@@ -475,6 +499,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_effectModes == null)
                 {
                     _effectModes = GetSupportedEffects();
@@ -496,6 +522,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_streamRotations == null)
                 {
                     _streamRotations = GetSupportedStreamRotations();
@@ -517,6 +545,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_streamFlips == null)
                 {
                     _streamFlips = GetSupportedStreamFlips();
@@ -538,6 +568,8 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_ptzTypes == null)
                 {
                     _ptzTypes = GetSupportedPtzTypes();

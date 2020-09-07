@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Hover() : this(Interop.Hover.new_Hover__SWIG_0(), true)
+        public Hover() : this(Interop.Hover.Hover_New(0u), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -41,7 +41,12 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="time">The time the event occurred.</param>
-        internal Hover(uint time) : this(Interop.Hover.new_Hover__SWIG_1(time), true)
+        internal Hover(uint time) : this(Interop.Hover.Hover_New(time), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Hover(Hover other) : this(Interop.Hover.new_Hover__SWIG_1(Hover.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -58,36 +63,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return time;
-            }
-        }
-
-        private TouchPointContainer points
-        {
-            set
-            {
-                Interop.Hover.Hover_points_set(swigCPtr, TouchPointContainer.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Hover.Hover_points_get(swigCPtr);
-                TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private uint time
-        {
-            set
-            {
-                Interop.Hover.Hover_time_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                uint ret = Interop.Hover.Hover_time_get(swigCPtr);
+                uint ret = Interop.Hover.Hover_GetTime(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -97,53 +73,45 @@ namespace Tizen.NUI
         /// Returns the ID of the device used for the point specified.<br />
         /// Each point has a unique device ID which specifies the device used for that
         /// point. This is returned by this method.<br />
+        /// If a point is greater than GetPointCount(), then this method will return -1.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The device ID of this point.</returns>
         /// <since_tizen> 3 </since_tizen>
         public int GetDeviceId(uint point)
         {
-            if (point < points.Count)
-            {
-                return points[(int)point].DeviceId;
-            }
-            return -1;
+            int ret = Interop.Hover.Hover_GetDeviceId(swigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// Retrieves the state of the point specified.
+        /// Retrieves the state of the point specified.<br />
+        /// If a point is greater than GetPointCount(), then this method will return PointState.Finished.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The state of the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public PointStateType GetState(uint point)
         {
-            if (point < points.Count)
-            {
-                return (Tizen.NUI.PointStateType)(points[(int)point].State);
-            }
-            return PointStateType.Finished;
+            PointStateType ret = (PointStateType)Interop.Hover.Hover_GetState(swigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// Retrieves the view that was underneath the point specified.
+        /// Retrieves the view that was underneath the point specified.<br />
+        /// If a point is greater than GetPointCount(), then this method will return an empty handle.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The view that was underneath the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
-            if (point < points.Count)
-            {
-                return points[(int)point].HitView;
-            }
-            else
-            {
-                // Return a native empty handle
-                View view = new View();
-                view.Reset();
-                return view;
-            }
+            global::System.IntPtr cPtr = Interop.Hover.Hover_GetHitActor(swigCPtr, point);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -154,11 +122,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
-            if (point < points.Count)
-            {
-                return points[(int)point].Local;
-            }
-            return new Vector2(0.0f, 0.0f);
+            Vector2 ret = new Vector2(Interop.Hover.Hover_GetLocalPosition(swigCPtr, point), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -169,11 +135,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
         {
-            if (point < points.Count)
-            {
-                return points[(int)point].Screen;
-            }
-            return new Vector2(0.0f, 0.0f);
+            Vector2 ret = new Vector2(Interop.Hover.Hover_GetScreenPosition(swigCPtr, point), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -196,13 +160,6 @@ namespace Tizen.NUI
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
             Hover ret = new Hover(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TouchPoint GetPoint(uint point)
-        {
-            TouchPoint ret = new TouchPoint(Interop.Hover.Hover_GetPoint(swigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

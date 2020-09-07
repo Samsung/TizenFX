@@ -40,6 +40,8 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
             propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
 
+        private bool onThemeChangedEventOverrideChecker;
+
         /// <summary> Control style. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -62,18 +64,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control() : base()
         {
-            var cur_type = this.GetType();
-            ViewStyle viewStyle = null;
+            ViewStyle viewStyle = ThemeManager.GetStyle(GetType());
 
-            do
-            {
-                if (cur_type.Equals(typeof(Tizen.NUI.Components.Control))) break;
-                viewStyle = StyleManager.Instance.GetComponentStyle(cur_type);
-                cur_type = cur_type.BaseType;
-            }
-            while (viewStyle == null);
-
-            if (viewStyle != null)
+            if (viewStyle != null && ViewStyle?.GetType() == viewStyle.GetType())
             {
                 ApplyStyle(viewStyle);
             }
@@ -110,6 +103,7 @@ namespace Tizen.NUI.Components
 
             ApplyStyle(viewStyle);
             this.StyleName = styleName;
+            ThemeChangeSensitive = true;
 
             Initialize();
         }
@@ -170,7 +164,6 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                StyleManager.Instance.ThemeChangedEvent -= OnThemeChangedEvent;
                 tapGestureDetector.Detected -= OnTapGestureDetected;
                 tapGestureDetector.Detach(this);
             }
@@ -252,19 +245,49 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
+        /// Note that it is deprecated API.Please use OnThemeChanged instead.
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event data</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e) { }
+        protected virtual void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            onThemeChangedEventOverrideChecker = false;
+        }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
             return new ControlStyle();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            // TODO Remove checker after update Tizen.FH.NUI.
+            onThemeChangedEventOverrideChecker = true;
+
+            OnThemeChangedEvent(sender, new StyleManager.ThemeChangeEventArgs { CurrentTheme = e.ThemeId });
+
+            if (onThemeChangedEventOverrideChecker) return;
+
+            // If the OnThemeChangedEvent is not implemented, ApplyStyle()
+            if (string.IsNullOrEmpty(StyleName))
+            {
+                base.OnThemeChanged(sender, e);
+                return;
+            }
+
+            ViewStyle newStyle = ThemeManager.GetStyle(StyleName);
+
+            if (newStyle != null)
+            {
+                ApplyStyle(newStyle);
+            }
         }
 
         private void Initialize()
@@ -277,8 +300,6 @@ namespace Tizen.NUI.Components
             tapGestureDetector.Detected += OnTapGestureDetected;
 
             EnableControlState = true;
-
-            StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
         }
     }
 }
