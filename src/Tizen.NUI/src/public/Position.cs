@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
-    public class Position : Disposable
+    public class Position : Disposable, ICloneable
     {
 
         /// <summary>
@@ -825,6 +825,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Position(X, Y, Z);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Position obj)
         {
