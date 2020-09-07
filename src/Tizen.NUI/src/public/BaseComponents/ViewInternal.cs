@@ -1073,7 +1073,15 @@ namespace Tizen.NUI.BaseComponents
                 selectorData?.Reset(this);
                 if (themeChangeSensitive)
                 {
-                    ThemeManager.ThemeChanged -= OnThemeChanged;
+                    if (IsOnWindow) //Unlikely
+                    {
+                        ThemeManager.ThemeChanged -= OnThemeChanged;
+                        RemovedFromWindow -= OnRemovedFromWindowForTheme;
+                    }
+                    else
+                    {
+                        AddedToWindow -= OnAddedToWindowForTheme;
+                    }
                 }
             }
 

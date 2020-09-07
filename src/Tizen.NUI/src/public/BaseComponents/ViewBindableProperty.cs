@@ -1607,15 +1607,34 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
+            bool prevValue = view.themeChangeSensitive;
             view.themeChangeSensitive = (bool)newValue;
 
-            if (view.themeChangeSensitive)
+            if (!prevValue && view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChanged += view.OnThemeChanged;
+                // When set it to true from false,
+                if (view.IsOnWindow)
+                {
+                    ThemeManager.ThemeChanged += view.OnThemeChanged;
+                    view.RemovedFromWindow += view.OnRemovedFromWindowForTheme;
+                }
+                else
+                {
+                    view.AddedToWindow += view.OnAddedToWindowForTheme;
+                }
             }
-            else
+            else if (prevValue && !view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChanged -= view.OnThemeChanged;
+                // When set it to false from true,
+                if (view.IsOnWindow)
+                {
+                    ThemeManager.ThemeChanged -= view.OnThemeChanged;
+                    view.RemovedFromWindow -= view.OnRemovedFromWindowForTheme;
+                }
+                else
+                {
+                    view.AddedToWindow -= view.OnAddedToWindowForTheme;
+                }
             }
         },
         defaultValueCreator: (bindable) =>

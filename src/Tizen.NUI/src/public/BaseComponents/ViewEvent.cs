@@ -900,6 +900,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void OnRemovedFromWindowForTheme(object target, global::System.EventArgs args)
+        {
+            RemovedFromWindow -= OnRemovedFromWindowForTheme;
+            ThemeManager.ThemeChanged -= OnThemeChanged;
+            AddedToWindow += OnAddedToWindowForTheme;
+        }
+
+        private void OnAddedToWindowForTheme(object target, global::System.EventArgs args)
+        {
+            AddedToWindow -= OnAddedToWindowForTheme;
+            ThemeManager.ThemeChanged += OnThemeChanged;
+            RemovedFromWindow += OnRemovedFromWindowForTheme;
+        }
+
         /// <summary>
         /// Event argument passed through the ChildAdded event.
         /// </summary>
