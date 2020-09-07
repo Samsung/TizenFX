@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Rectangle : Disposable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Rectangle : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
   
@@ -116,13 +116,14 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
     </dd>
   </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L33">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L34">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle__ctor_" data-uid="Tizen.NUI.Rectangle.#ctor*"></a>
   <h4 id="Tizen_NUI_Rectangle__ctor" data-uid="Tizen.NUI.Rectangle.#ctor">Rectangle()</h4>
@@ -139,7 +140,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle__ctor_" data-uid="Tizen.NUI.Rectangle.#ctor*"></a>
   <h4 id="Tizen_NUI_Rectangle__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.NUI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">Rectangle(Int32, Int32, Int32, Int32)</h4>
@@ -194,7 +195,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L145">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L146">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Height_" data-uid="Tizen.NUI.Rectangle.Height*"></a>
   <h4 id="Tizen_NUI_Rectangle_Height" data-uid="Tizen.NUI.Rectangle.Height">Height</h4>
@@ -226,7 +227,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L127">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L128">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Width_" data-uid="Tizen.NUI.Rectangle.Width*"></a>
   <h4 id="Tizen_NUI_Rectangle_Width" data-uid="Tizen.NUI.Rectangle.Width">Width</h4>
@@ -258,7 +259,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L91">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L92">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_X_" data-uid="Tizen.NUI.Rectangle.X*"></a>
   <h4 id="Tizen_NUI_Rectangle_X" data-uid="Tizen.NUI.Rectangle.X">X</h4>
@@ -290,7 +291,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L109">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Y_" data-uid="Tizen.NUI.Rectangle.Y*"></a>
   <h4 id="Tizen_NUI_Rectangle_Y" data-uid="Tizen.NUI.Rectangle.Y">Y</h4>
@@ -324,7 +325,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L427">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L428">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Area_" data-uid="Tizen.NUI.Rectangle.Area*"></a>
   <h4 id="Tizen_NUI_Rectangle_Area" data-uid="Tizen.NUI.Rectangle.Area">Area()</h4>
@@ -357,7 +358,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L415">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L416">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Bottom_" data-uid="Tizen.NUI.Rectangle.Bottom*"></a>
   <h4 id="Tizen_NUI_Rectangle_Bottom" data-uid="Tizen.NUI.Rectangle.Bottom">Bottom()</h4>
@@ -390,7 +391,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L453">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L454">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Contains_" data-uid="Tizen.NUI.Rectangle.Contains*"></a>
   <h4 id="Tizen_NUI_Rectangle_Contains_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Rectangle.Contains(Tizen.NUI.Rectangle)">Contains(Rectangle)</h4>
@@ -441,7 +442,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L322">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L323">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Equals_" data-uid="Tizen.NUI.Rectangle.Equals*"></a>
   <h4 id="Tizen_NUI_Rectangle_Equals_System_Object_" data-uid="Tizen.NUI.Rectangle.Equals(System.Object)">Equals(Object)</h4>
@@ -494,7 +495,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L343">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L344">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_GetHashCode_" data-uid="Tizen.NUI.Rectangle.GetHashCode*"></a>
   <h4 id="Tizen_NUI_Rectangle_GetHashCode" data-uid="Tizen.NUI.Rectangle.GetHashCode">GetHashCode()</h4>
@@ -529,7 +530,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L440">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L441">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Intersects_" data-uid="Tizen.NUI.Rectangle.Intersects*"></a>
   <h4 id="Tizen_NUI_Rectangle_Intersects_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Rectangle.Intersects(Tizen.NUI.Rectangle)">Intersects(Rectangle)</h4>
@@ -580,7 +581,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L367">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L368">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_IsEmpty_" data-uid="Tizen.NUI.Rectangle.IsEmpty*"></a>
   <h4 id="Tizen_NUI_Rectangle_IsEmpty" data-uid="Tizen.NUI.Rectangle.IsEmpty">IsEmpty()</h4>
@@ -613,7 +614,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L379">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L380">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Left_" data-uid="Tizen.NUI.Rectangle.Left*"></a>
   <h4 id="Tizen_NUI_Rectangle_Left" data-uid="Tizen.NUI.Rectangle.Left">Left()</h4>
@@ -646,7 +647,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L391">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L392">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Right_" data-uid="Tizen.NUI.Rectangle.Right*"></a>
   <h4 id="Tizen_NUI_Rectangle_Right" data-uid="Tizen.NUI.Rectangle.Right">Right()</h4>
@@ -679,7 +680,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L356">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L357">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Set_" data-uid="Tizen.NUI.Rectangle.Set*"></a>
   <h4 id="Tizen_NUI_Rectangle_Set_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.NUI.Rectangle.Set(System.Int32,System.Int32,System.Int32,System.Int32)">Set(Int32, Int32, Int32, Int32)</h4>
@@ -732,7 +733,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L403">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L404">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_Top_" data-uid="Tizen.NUI.Rectangle.Top*"></a>
   <h4 id="Tizen_NUI_Rectangle_Top" data-uid="Tizen.NUI.Rectangle.Top">Top()</h4>
@@ -767,7 +768,7 @@
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L286">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L287">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_op_Equality_" data-uid="Tizen.NUI.Rectangle.op_Equality*"></a>
   <h4 id="Tizen_NUI_Rectangle_op_Equality_Tizen_NUI_Rectangle_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Rectangle.op_Equality(Tizen.NUI.Rectangle,Tizen.NUI.Rectangle)">Equality(Rectangle, Rectangle)</h4>
@@ -824,7 +825,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L311">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L312">View Source</a>
   </span>
   <a id="Tizen_NUI_Rectangle_op_Inequality_" data-uid="Tizen.NUI.Rectangle.op_Inequality*"></a>
   <h4 id="Tizen_NUI_Rectangle_op_Inequality_Tizen_NUI_Rectangle_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Rectangle.op_Inequality(Tizen.NUI.Rectangle,Tizen.NUI.Rectangle)">Inequality(Rectangle, Rectangle)</h4>
@@ -884,6 +885,9 @@
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">System.ICloneable</a>
+  </div>
 </article>
           </div>
           
@@ -892,7 +896,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rectangle.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
