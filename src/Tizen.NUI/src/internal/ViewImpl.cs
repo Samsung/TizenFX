@@ -524,7 +524,7 @@ namespace Tizen.NUI
                 swigDelegate39 = new SwigDelegateViewImpl_39(SwigDirectorSignalConnected);
             if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40))
                 swigDelegate40 = new SwigDelegateViewImpl_40(SwigDirectorSignalDisconnected);
-            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
+            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate9, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
 
@@ -747,11 +747,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_8(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_9(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_10(global::System.IntPtr arg0);
         /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_11(global::System.IntPtr size, global::System.IntPtr container);
         /// <since_tizen> 3 </since_tizen>
@@ -818,9 +814,7 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_4 swigDelegate4;
         private SwigDelegateViewImpl_5 swigDelegate5;
         private SwigDelegateViewImpl_6 swigDelegate6;
-        private SwigDelegateViewImpl_8 swigDelegate8;
         private SwigDelegateViewImpl_9 swigDelegate9;
-        private SwigDelegateViewImpl_10 swigDelegate10;
         private SwigDelegateViewImpl_11 swigDelegate11;
         private SwigDelegateViewImpl_12 swigDelegate12;
         private SwigDelegateViewImpl_13 swigDelegate13;
@@ -858,9 +852,7 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(int), typeof(PropertyValue) };
         private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(Vector3) };
         private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(Animation), typeof(Vector3) };
-        private static global::System.Type[] swigMethodTypes8 = new global::System.Type[] { typeof(Hover) };
         private static global::System.Type[] swigMethodTypes9 = new global::System.Type[] { typeof(Key) };
-        private static global::System.Type[] swigMethodTypes10 = new global::System.Type[] { typeof(Wheel) };
         private static global::System.Type[] swigMethodTypes11 = new global::System.Type[] { typeof(Vector2), typeof(RelayoutContainer) };
         private static global::System.Type[] swigMethodTypes12 = new global::System.Type[] { typeof(ResizePolicyType), typeof(DimensionType) };
         private static global::System.Type[] swigMethodTypes13 = new global::System.Type[] { };
