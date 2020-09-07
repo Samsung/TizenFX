@@ -782,6 +782,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
+                
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -1954,13 +1955,7 @@ namespace Tizen.NUI.BaseComponents
 
                         if(_heightPolicy>=0) // Policy an exact value
                         {
-                            Size2D.Width = _widthPolicy;
-                        }
-                        else
-                        {
-                            // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
+                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
                             Size2D = new Size2D(_widthPolicy,_heightPolicy);
                         }
                     }
@@ -1991,13 +1986,7 @@ namespace Tizen.NUI.BaseComponents
 
                         if(_widthPolicy>=0) // Policy an exact value
                         {
-                            Size2D.Height = _heightPolicy;
-                        }
-                        else
-                        {
-                            // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                            // Size2D height will store the specification value (negative number) this will then be applied to the
-                            // HeightSpecification when the Size2D callback is invoked.
+                            // Create Size2D only both _widthPolicy and _heightPolicy are set.
                             Size2D = new Size2D(_widthPolicy,_heightPolicy);
                         }
 
