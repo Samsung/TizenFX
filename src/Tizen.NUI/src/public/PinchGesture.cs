@@ -89,7 +89,7 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGesture(Gesture.StateType state) : this(Interop.PinchGesture.new_PinchGesture__SWIG_0((int)state), true)
+        public PinchGesture(Gesture.StateType state) : this(Interop.PinchGesture.PinchGesture_New((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
