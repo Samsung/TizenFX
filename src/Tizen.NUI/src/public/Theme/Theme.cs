@@ -30,7 +30,6 @@ namespace Tizen.NUI
     public class Theme : BindableObject
     {
         private readonly Dictionary<string, ViewStyle> map;
-        private string baseTheme;
 
         /// <summary>Create an empty theme.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -44,9 +43,12 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">Thrown when the given xamlFile is null or empty string.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when there are file IO problems.</exception>
         /// <exception cref="Exception">Thrown when the content of the xaml file is not valid xaml form.</exception>
+        /// <returns>The newly created object by xaml.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Theme(string xamlFile) : this()
+
+        public static Theme CreateFromXaml(string xamlFile)
         {
+            Theme newTheme = null;
             if (string.IsNullOrEmpty(xamlFile))
             {
                 throw new ArgumentNullException("The xaml file path cannot be null or empty string", nameof(xamlFile));
@@ -54,9 +56,9 @@ namespace Tizen.NUI
 
             try
             {
-                using(var reader = XmlReader.Create(xamlFile))
+                using (var reader = XmlReader.Create(xamlFile))
                 {
-                    XamlLoader.Load(this, reader);
+                    newTheme = XamlLoader.Create(reader) as Theme;
                 }
             }
             catch (global::System.IO.IOException e)
@@ -71,6 +73,30 @@ namespace Tizen.NUI
                 Tizen.Log.Info("NUI", "Make sure the type and namespace are correct.\n");
                 throw e;
             }
+
+            return newTheme;
+        }
+        /// <summary>
+        /// Create a new theme with base theme.
+        /// </summary>
+        /// <param name="basedOn">The bulit-in theme id that will be used as base of this.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Theme([Binding.TypeConverter(typeof(ThemeTypeConverter))][Parameter(nameof(BasedOn))] Theme basedOn) : this()
+        {
+            if (basedOn == null)
+                throw new ArgumentNullException(nameof(basedOn));
+
+            BasedOn = basedOn.Id;
+
+            foreach (var item in basedOn)
+            {
+                var baseStyle = item.Value?.Clone();
+                if (map.ContainsKey(item.Key))
+                {
+                    baseStyle.Merge(map[item.Key]);
+                }
+                map[item.Key] = baseStyle;
+            }
         }
 
         /// <summary></summary>
@@ -82,31 +108,7 @@ namespace Tizen.NUI
         /// The bulit-in theme id that will be used as base of this.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BasedOn
-        {
-            get => baseTheme;
-            internal set
-            {
-                baseTheme = value;
-
-                if (string.IsNullOrEmpty(baseTheme)) return;
-
-                var baseThemeInstance = ThemeManager.GetBuiltinTheme(baseTheme);
-
-                if (baseThemeInstance != null)
-                {
-                    foreach (var item in baseThemeInstance)
-                    {
-                        var baseStyle = item.Value?.Clone();
-                        if (map.ContainsKey(item.Key))
-                        {
-                            baseStyle.Merge(map[item.Key]);
-                        }
-                        map[item.Key] = baseStyle;
-                    }
-                }
-            }
-        }
+        public string BasedOn { get; }
 
         /// <summary>Gets the number of steyls contained in the theme.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -198,7 +200,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Merge(string xamlFile)
         {
-            Merge(new Theme(xamlFile));
+            Merge(CreateFromXaml(xamlFile));
         }
 
         /// <summary>Merge other Theme into this.</summary>
@@ -224,6 +226,13 @@ namespace Tizen.NUI
                     map[item.Key] = theme.GetStyle(item.Key).Clone();
                 }
             }
+        }
+    }
+    internal class ThemeTypeConverter : Binding.TypeConverter
+    {
+        public override object ConvertFromInvariantString(string value)
+        {
+            return ThemeManager.GetBuiltinTheme(value);
         }
     }
 }
