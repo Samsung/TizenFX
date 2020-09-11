@@ -26,6 +26,7 @@ namespace Tizen.NUI.BaseComponents
     /// Class for describing the states of the view.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [Binding.TypeConverter(typeof(ControlStateTypeConverter))]
     public class ControlState : IEquatable<ControlState>
     {
         private static readonly Dictionary<string, ControlState> stateDictionary = new Dictionary<string, ControlState>();
@@ -90,12 +91,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsCombined => stateList.Count > 1;
 
-        /// <summary>
-        /// Default Contructor. Please use <see cref="Create(string)"/> or <see cref="Create(ControlState[])"/> instead.
-        /// </summary>
-        // Do not open this constructor. This is only for xaml support.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlState() { }
+        private ControlState() { }
 
         private ControlState(string name) : this() => this.name = name;
 
@@ -275,6 +271,27 @@ namespace Tizen.NUI.BaseComponents
             ControlState newState = new ControlState();
             newState.stateList.AddRange(rest);
             return newState;
+        }
+
+        class ControlStateTypeConverter : Binding.TypeConverter
+        {
+            public override object ConvertFromInvariantString(string value)
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    ControlState convertedState = new ControlState();
+                    string[] parts = value.Split(',');
+                    foreach (string part in parts)
+                    {
+                        convertedState += Create(part);
+                    }
+                    return convertedState;
+                }
+
+                throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(ControlState)}");
+            }
         }
     }
 }
