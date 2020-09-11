@@ -746,7 +746,8 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10.")]
         public override bool OnTouch(Touch touch)
         {
             return base.OnTouch(touch);
