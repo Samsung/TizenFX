@@ -259,7 +259,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return ReferenceEquals(lhs, rhs) ? Normal : lhs;
             }
-            
+
             var rest = lhs.stateList.Except(rhs.stateList);
 
             if (rest.Count() == 0)
@@ -276,76 +276,5 @@ namespace Tizen.NUI.BaseComponents
             newState.stateList.AddRange(rest);
             return newState;
         }
-    }
-
-    /// <summary>
-    /// The Key/Value pair structure. this is mutable to support for xaml.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct StateValuePair<T> : IEquatable<StateValuePair<T>>
-    {
-        /// <summary>
-        /// The constructor with the specified state and value.
-        /// </summary>
-        /// <param name="state">The state</param>
-        /// <param name="value">The value associated with state.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StateValuePair(ControlState state, T value)
-        {
-            State = state;
-            Value = value;
-        }
-
-        /// <summary>
-        /// The state
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlState State { get; set; }
-        /// <summary>
-        /// The value associated with state.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public T Value { get; set; }
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(StateValuePair<T> other) => (Value.Equals(other.Value)) && (State == other.State);
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj)
-        {
-            if (!(obj is StateValuePair<T>))
-                return false;
-
-            return Equals((StateValuePair<T>)obj);
-        }
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => (State.GetHashCode() * 397) ^ Value.GetHashCode();
-
-
-        /// <summary>
-        /// Compares whether the two StateValuePair are different or not.
-        /// </summary>
-        /// <param name="lhs">A <see cref="StateValuePair{T}"/> on the left hand side.</param>
-        /// <param name="rhs">A <see cref="StateValuePair{T}"/> on the right hand side.</param>
-        /// <returns>true if the StateValuePair are equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(StateValuePair<T> lhs, StateValuePair<T> rhs) => lhs.Equals(rhs);
-
-        /// <summary>
-        /// Compares whether the two StateValuePair are same or not.
-        /// </summary>
-        /// <param name="lhs">A <see cref="StateValuePair{T}"/> on the left hand side.</param>
-        /// <param name="rhs">A <see cref="StateValuePair{T}"/> on the right hand side.</param>
-        /// <returns>true if the StateValuePair are not equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(StateValuePair<T> lhs, StateValuePair<T> rhs) => !(lhs == rhs);
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string ToString() => $"[{State}, {Value}]";
     }
 }
