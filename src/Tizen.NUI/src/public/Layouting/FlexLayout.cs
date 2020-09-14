@@ -105,10 +105,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of alignment self.</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static AlignmentType GetFlexAlignmentSelf(View view)
-        {
-            return (AlignmentType)view.GetValue(FlexAlignmentSelfProperty);
-        }
+        public static AlignmentType GetFlexAlignmentSelf(View view) => GetAttachedValue<AlignmentType>(view, FlexAlignmentSelfProperty);
 
         /// <summary>
         /// Gets the position type of the child view.
@@ -117,10 +114,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of position type</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static PositionType GetFlexPositionType(View view)
-        {
-            return (PositionType)view.GetValue(FlexPositionTypeProperty);
-        }
+        public static PositionType GetFlexPositionType(View view) => GetAttachedValue<PositionType>(view, FlexPositionTypeProperty);
 
         /// <summary>
         /// Gets the aspect ratio of the child view.
@@ -129,10 +123,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of aspect ratio</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexAspectRatio(View view)
-        {
-            return (float)view.GetValue(FlexAspectRatioProperty);
-        }
+        public static float GetFlexAspectRatio(View view) => GetAttachedValue<float>(view, FlexAspectRatioProperty);
 
         /// <summary>
         /// Gets the basis of the child view.
@@ -141,10 +132,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of basis</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexBasis(View view)
-        {
-            return (float)view.GetValue(FlexBasisProperty);
-        }
+        public static float GetFlexBasis(View view) => GetAttachedValue<float>(view, FlexBasisProperty);
 
         /// <summary>
         /// Gets the shrink of the child view.
@@ -153,10 +141,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of shrink</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexShrink(View view)
-        {
-            return (float)view.GetValue(FlexShrinkProperty);
-        }
+        public static float GetFlexShrink(View view) => GetAttachedValue<float>(view, FlexShrinkProperty);
 
         /// <summary>
         /// Gets the grow of the child view.
@@ -165,10 +150,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <returns> The value of grow</returns>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexGrow(View view)
-        {
-            return (float)view.GetValue(FlexGrowProperty);
-        }
+        public static float GetFlexGrow(View view) => GetAttachedValue<float>(view, FlexGrowProperty);
 
         /// <summary>
         /// Sets the alignment self of the child view.<br/>
@@ -179,10 +161,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of alignment self.</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexAlignmentSelf(View view, AlignmentType value)
-        {
-            SetChildValue(view, FlexAlignmentSelfProperty, value);
-        }
+        public static void SetFlexAlignmentSelf(View view, AlignmentType value) => SetAttachedValue(view, FlexAlignmentSelfProperty, value);
 
         /// <summary>
         /// Sets the position type of the child view.<br/>
@@ -195,10 +174,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of position type.</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexPositionType(View view, PositionType value)
-        {
-            SetChildValue(view, FlexPositionTypeProperty, value);
-        }
+        public static void SetFlexPositionType(View view, PositionType value) => SetAttachedValue(view, FlexPositionTypeProperty, value);
 
         /// <summary>
         /// Sets the aspect ratio of the child view.
@@ -209,10 +185,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of aspect ratio</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexAspectRatio(View view, float value)
-        {
-            SetChildValue(view, FlexAspectRatioProperty, value);
-        }
+        public static void SetFlexAspectRatio(View view, float value) => SetAttachedValue(view, FlexAspectRatioProperty, value);
 
         /// <summary>
         /// Sets the flex basis of the child view.
@@ -224,10 +197,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of basis</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexBasis(View view, float value)
-        {
-            SetChildValue(view, FlexBasisProperty, value);
-        }
+        public static void SetFlexBasis(View view, float value) => SetAttachedValue(view, FlexBasisProperty, value);
 
         /// <summary>
         /// Sets the flex shrink of the child view.
@@ -239,10 +209,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of shrink</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexShrink(View view, float value)
-        {
-            SetChildValue(view, FlexShrinkProperty, value);
-        }
+        public static void SetFlexShrink(View view, float value) => SetAttachedValue(view, FlexShrinkProperty, value);
 
         /// <summary>
         /// Sets the grow of the child view.
@@ -254,10 +221,7 @@ namespace Tizen.NUI
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of flex</param>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexGrow(View view, float value)
-        {
-            SetChildValue(view, FlexGrowProperty, value);
-        }
+        public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate MeasuredSize ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight);
@@ -659,7 +623,7 @@ namespace Tizen.NUI
             // Store created node for child
             IntPtr childPtr = Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
             HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
-            SetChildValue(child.Owner, FlexItemProperty, childHandleRef);
+            SetAttachedValue(child.Owner, FlexItemProperty, childHandleRef);
         }
 
         /// <summary>
