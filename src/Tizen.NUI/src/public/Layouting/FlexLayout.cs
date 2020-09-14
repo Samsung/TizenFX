@@ -99,10 +99,11 @@ namespace Tizen.NUI
         };
 
         /// <summary>
-        /// Get the alignment self of the layout items.
+        /// Gets the alignment self of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <returns> The value of alignment self</returns>
+        /// <seealso cref="SetFlexAlignmentSelf(View, AlignmentType)"/>
+        /// <param name="view">The child view.</param>
+        /// <returns> The value of alignment self.</returns>
         /// <since_tizen> 8 </since_tizen>
         public static AlignmentType GetFlexAlignmentSelf(View view)
         {
@@ -110,9 +111,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the position type of the layout items.
+        /// Gets the position type of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
+        /// <seealso cref="SetFlexPositionType(View, PositionType)"/>
+        /// <param name="view">The child view.</param>
         /// <returns> The value of position type</returns>
         /// <since_tizen> 8 </since_tizen>
         public static PositionType GetFlexPositionType(View view)
@@ -121,9 +123,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the aspect ratio of the layout items.
+        /// Gets the aspect ratio of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
+        /// <seealso cref="SetFlexAspectRatio(View, float)"/>
+        /// <param name="view">The child view.</param>
         /// <returns> The value of aspect ratio</returns>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexAspectRatio(View view)
@@ -132,9 +135,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the basis of the layout items.
+        /// Gets the basis of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
+        /// <seealso cref="SetFlexBasis(View, float)"/>
+        /// <param name="view">The child view.</param>
         /// <returns> The value of basis</returns>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexBasis(View view)
@@ -143,9 +147,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the shrink of the layout items.
+        /// Gets the shrink of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
+        /// <seealso cref="SetFlexShrink(View, float)"/>
+        /// <param name="view">The child view.</param>
         /// <returns> The value of shrink</returns>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexShrink(View view)
@@ -154,9 +159,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the grow of the layout items.
+        /// Gets the grow of the child view.
         /// </summary>
-        /// <param name="view">The layout item</param>
+        /// <seealso cref="SetFlexGrow(View, float)"/>
+        /// <param name="view">The child view.</param>
         /// <returns> The value of grow</returns>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexGrow(View view)
@@ -165,10 +171,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the alignment self of the layout items.
+        /// Sets the alignment self of the child view.<br/>
+        /// Alignment self has the same options and effect as <see cref="ItemsAlignment"/> but instead of affecting the children within a container,
+        /// you can apply this property to a single child to change its alignment within its parent.<br/>
+        /// Alignment self overrides any option set by the parent with <see cref="ItemsAlignment"/>.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of alignment self</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of alignment self.</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAlignmentSelf(View view, AlignmentType value)
         {
@@ -176,10 +185,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the position type of the layout items.
+        /// Sets the position type of the child view.<br/>
+        /// The position type of an element defines how it is positioned within its parent.
+        /// By default a child is positioned relatively. This means a child is positioned according to the normal flow of the layout,
+        /// and then offset relative to that position based on the values of <see cref="View.Margin"/>.<br/>
+        /// When positioned absolutely an element doesn't take part in the normal layout flow.
+        /// It is instead laid out independent of its siblings. The position is determined based on the <see cref="View.Margin"/>.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of position type</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of position type.</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexPositionType(View view, PositionType value)
         {
@@ -187,10 +201,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the aspect ratio of the layout items.
+        /// Sets the aspect ratio of the child view.
+        /// Aspect ratio Defines as the ratio between the width and the height of a node
+        /// e.g. if a node has an aspect ratio of 2 then its width is twice the size of its height.<br/>
+        /// Aspect ratio accepts any floating point value > 0. this has higher priority than flex grow.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of aspect ratio</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of aspect ratio</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAspectRatio(View view, float value)
         {
@@ -198,10 +215,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the basis of the layout items.
+        /// Sets the flex basis of the child view.
+        /// Flex basis is an axis-independent way of providing the default size of an item along the main axis.<br/>
+        /// Setting the flex basis of a child is similar to setting the width of that child if its parent is a container with <see cref="FlexDirection.Row"/>
+        /// or setting the height of a child if its parent is a container with <see cref="FlexDirection.Column"/>.<br/>
+        /// The flex basis of an item is the default size of that item, the size of the item before any flex grow and flex shrink calculations are performed.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of basis</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of basis</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexBasis(View view, float value)
         {
@@ -209,10 +230,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the shrink of the layout items.
+        /// Sets the flex shrink of the child view.
+        /// Flex shrink describes how to shrink children along the main axis in the case that the total size of the children overflow the size of the container on the main axis.<br/>
+        /// Flex shrink is very similar to flex grow and can be thought of in the same way if any overflowing size is considered to be negative remaining space.
+        /// These two properties also work well together by allowing children to grow and shrink as needed.<br/>
+        /// Flex shrink accepts any floating point value >= 0, with 1 being the default value. A container will shrink its children weighted by the child’s flex shrink value.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of shrink</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of shrink</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexShrink(View view, float value)
         {
@@ -220,10 +245,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the grow of the layout items.
+        /// Sets the grow of the child view.
+        /// Flex grow describes how any space within a container should be distributed among its children along the main axis.
+        /// After laying out its children, a container will distribute any remaining space according to the flex grow values specified by its children.<br/>
+        /// Flex grow accepts any floating point value >= 0, with 0 being the default value.<br/>
+        /// A container will distribute any remaining space among its children weighted by the child’s flex grow value.
         /// </summary>
-        /// <param name="view">The layout item</param>
-        /// <param name="value">The target value of flex</param>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The value of flex</param>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexGrow(View view, float value)
         {
@@ -248,9 +277,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
+        /// <inheritdoc/>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
@@ -271,9 +298,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
+        /// <inheritdoc/>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
@@ -397,7 +422,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get/Set the flex direction in the layout.
+        /// Gets/Sets the flex direction in the layout.
         /// The direction of the main-axis which determines the direction that flex items are laid out.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -414,7 +439,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get/Set the justification in the layout.
+        /// Gets/Sets the justification in the layout.
+        /// Justify content describes how to align children within the main axis of their container.<br/>
+        /// For example, you can use this property to center a child horizontally within a container with <see cref="Direction"/> set to <see cref="FlexDirection.Row"/>
+        /// or vertically within a container with <see cref="Direction"/> set to <see cref="FlexDirection.Column"/>.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
@@ -430,7 +458,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get/Set the wrap in the layout.
+        /// Gets/Sets the wrap in the layout.
+        /// The flex wrap property is set on containers and controls what happens when children overflow the size of the container along the main axis.<br/>
+        /// By default children are forced into a single line (which can shrink elements).<br/>
+        /// If wrapping is allowed items are wrapped into multiple lines along the main axis if needed. wrap reverse behaves the same, but the order of the lines is reversed.<br/>
+        /// When wrapping lines <see cref="Alignment"/> can be used to specify how the lines are placed in the container.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
@@ -446,7 +478,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get/Set the alignment of the layout content.
+        /// Gets/Sets the alignment of the layout content.
+        /// Alignment defines the distribution of lines along the cross-axis.<br/>
+        /// This only has effect when items are wrapped to multiple lines using flex wrap.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
@@ -462,7 +496,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get/Set the alignment of the layout items.
+        /// Gets/Sets the alignment of the layout items.
+        /// Items alignment describes how to align children along the cross axis of their container.<br/>
+        /// Align items is very similar to <see cref="Justification"/> but instead of applying to the main axis, align items applies to the cross axis.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
@@ -509,23 +545,25 @@ namespace Tizen.NUI
         public enum FlexJustification
         {
             /// <summary>
-            /// Items are positioned at the beginning of the container
+            /// Items are positioned at the beginning of the container.
             /// </summary>
             FlexStart,
             /// <summary>
-            /// Items are positioned at the center of the container
+            /// Items are positioned at the center of the container.
             /// </summary>
             Center,
             /// <summary>
-            /// Items are positioned at the end of the container
+            /// Items are positioned at the end of the container.
             /// </summary>
             FlexEnd,
             /// <summary>
-            /// Items are positioned with equal space between the lines
+            /// Items are positioned with equal space between the lines.
             /// </summary>
             SpaceBetween,
             /// <summary>
-            /// Items are positioned with equal space before, between, and after the lines
+            /// Items are positioned with equal space before, between, and after the lines.<br/>
+            /// Compared to <see cref="FlexJustification.SpaceBetween"/> using <see cref="FlexJustification.SpaceAround"/>
+            /// will result in space being distributed to the beginning of the first child and end of the last child.
             /// </summary>
             SpaceAround
         }
@@ -573,6 +611,7 @@ namespace Tizen.NUI
             /// </summary>
             Stretch
         }
+
         /// <summary>
         /// Enumeration for the position type of the flex item how it is positioned within its parent.
         /// </summary>

@@ -326,7 +326,16 @@ namespace Tizen.NUI.Components
             {
                 if (null == textLabel)
                 {
-                    textLabel = new TextLabel();
+                    textLabel = new TextLabel()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                        PivotPoint = Tizen.NUI.PivotPoint.Center,
+                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
                     this.Add(textLabel);
                 }
                 textLabel.ApplyStyle(toastStyle.Text);
@@ -379,7 +388,16 @@ namespace Tizen.NUI.Components
         {
             if (null == textLabel)
             {
-                textLabel = new TextLabel();
+                textLabel = new TextLabel()
+                {
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
                 this.Add(textLabel);
             }
 

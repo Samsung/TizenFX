@@ -11,6 +11,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_LongPressGesture__SWIG_0")]
             public static extern global::System.IntPtr new_LongPressGesture__SWIG_0(int jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGesture_New")]
+            public static extern global::System.IntPtr LongPressGesture_New(int jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_LongPressGesture__SWIG_1")]
             public static extern global::System.IntPtr new_LongPressGesture__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 

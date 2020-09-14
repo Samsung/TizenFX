@@ -75,7 +75,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).trackColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).progressColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).progressColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).thumbColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).thumbColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -154,8 +154,6 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSliderStyle(CircularSliderStyle style) : base(style)
         {
-            if (null == style) return;
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -299,31 +297,6 @@ namespace Tizen.NUI.Wearable
             set
             {
                 SetValue(IsEnabledProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            CircularSliderStyle progressStyle = bindableObject as CircularSliderStyle;
-
-            if (null != progressStyle)
-            {
-                isEnabled = progressStyle.isEnabled;
-                thickness = progressStyle.Thickness;
-                maxValue = progressStyle.maxValue;
-                minValue = progressStyle.minValue;
-                currentValue = progressStyle.currentValue;
-                trackColor = progressStyle.trackColor;
-                progressColor = progressStyle.progressColor;
-                thumbSize = progressStyle.thumbSize;
-                thumbColor = progressStyle.thumbColor;
             }
         }
 

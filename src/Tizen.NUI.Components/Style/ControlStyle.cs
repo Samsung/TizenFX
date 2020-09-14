@@ -47,7 +47,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle() : base()
         {
-            InitSubstyle();
         }
 
 
@@ -60,9 +59,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle(ControlStyle style) : base(style)
         {
-            if(null == style) return;
-
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -120,10 +116,6 @@ namespace Tizen.NUI.Components
             }
 
             disposed = true;
-        }
-
-        private void InitSubstyle()
-        {
         }
 
         private void SubStyleCalledEvent(object sender, global::System.EventArgs e)

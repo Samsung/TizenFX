@@ -14,6 +14,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TapGesture__SWIG_0")]
             public static extern global::System.IntPtr new_TapGesture__SWIG_0();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_New")]
+            public static extern global::System.IntPtr TapGesture_New(int jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TapGesture__SWIG_1")]
             public static extern global::System.IntPtr new_TapGesture__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
