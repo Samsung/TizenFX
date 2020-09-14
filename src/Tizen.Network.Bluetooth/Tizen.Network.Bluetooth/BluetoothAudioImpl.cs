@@ -21,8 +21,10 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothAudioImpl : IDisposable
     {
         private event EventHandler<AudioConnectionStateChangedEventArgs> _audioConnectionChanged;
-        private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
         private Interop.Bluetooth.AudioConnectionStateChangedCallback _audioConnectionChangedCallback;
+
+        private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
+        private Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback;
 
         private static readonly BluetoothAudioImpl _instance = new BluetoothAudioImpl();
         private bool disposed = false;
@@ -159,7 +161,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterAgScoStateChangedEvent()
         {
-            Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
+            _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
             {
                 _agScoStateChanged?.Invoke(null, new AgScoStateChangedEventArgs(opened));
             };
