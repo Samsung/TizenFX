@@ -21,15 +21,15 @@ using System.Runtime.InteropServices;
 namespace Tizen.NUI
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class SafeFrameProviderHandle : SafeHandle
+    internal sealed class SafeFrameProviderHandle : SafeHandle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SafeFrameProviderHandle() : base(IntPtr.Zero, true)
+        internal SafeFrameProviderHandle() : base(IntPtr.Zero, true)
         {
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SafeFrameProviderHandle(IntPtr existingHandleValue, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+        internal SafeFrameProviderHandle(IntPtr existingHandleValue, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
         {
             SetHandle(existingHandleValue);
         }

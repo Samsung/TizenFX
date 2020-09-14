@@ -21,9 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the frame broker result.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum FrameBrokerBaseResult
+    internal enum FrameBrokerBaseResult
     {
         /// <summary>
         /// Successful.

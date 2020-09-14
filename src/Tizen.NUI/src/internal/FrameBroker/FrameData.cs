@@ -25,11 +25,9 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents the Frame Data.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class FrameData
+    internal class FrameData
     {
-        private const string LogTag = "Tizen.NUI";
+        private const string LogTag = "NUI";
         private readonly IntPtr _frame;
         private int _fd = -1;
         private uint _size = 0;
@@ -131,13 +129,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the image view.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView Image
+        internal ImageView Image
         {
-            internal set
-            {
-            }
             get
             {
                 if (_image == null)
@@ -168,9 +161,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks whether the direction of the frame is forward or not.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DirectionForward
+        internal bool DirectionForward
         {
             get
             {
@@ -187,9 +178,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the extra data.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Bundle Extra
+        internal Bundle Extra
         {
             get
             {
@@ -207,7 +196,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the frame type.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal enum FrameType
         {
             /// <summary>
@@ -253,7 +241,6 @@ namespace Tizen.NUI
         /// <value>
         /// The TbmSurface type is tbm_surface_h.
         /// </value>
-        /// <since_tizen> 8 </since_tizen>
         internal IntPtr TbmSurface
         {
             get
@@ -272,7 +259,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the file descriptor of the image file of the remote surface.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal int Fd
         {
             get
@@ -292,7 +278,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the size of the image file of the remote surface.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal uint Size
         {
             get
@@ -312,7 +297,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the file path.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal string FilePath
         {
             get
@@ -330,7 +314,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the file group.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal string FileGroup
         {
             get
@@ -348,7 +331,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the type of the frame.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal FrameType Type
         {
             get
@@ -366,7 +348,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the position X.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal int PositionX
         {
             get
@@ -384,7 +365,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the position Y.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         internal int PositionY
         {
             get

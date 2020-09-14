@@ -86,6 +86,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hide")]
             public static extern void Hide(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetIconified")]
+            public static extern void Iconify(global::System.Runtime.InteropServices.HandleRef jarg1, bool iconified);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsVisible")]
             public static extern bool IsVisible(global::System.Runtime.InteropServices.HandleRef jarg1);
 

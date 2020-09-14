@@ -24,9 +24,9 @@ namespace Tizen.NUI
     /// Represents the Frame Provider.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class FrameProvider : IDisposable
+    internal class FrameProvider : IDisposable
     {
-        private string LogTag = "Tizen.NUI";
+        private string LogTag = "NUI";
         private readonly SafeFrameProviderHandle _handle;
         private Interop.FrameProvider.FrameProviderEventCallbacks _callbacks;
         private bool _disposed = false;
@@ -40,9 +40,8 @@ namespace Tizen.NUI
         /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
         /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FrameProvider(Window window)
+        internal FrameProvider(Window window)
         {
             Interop.FrameProvider.ErrorCode err;
 
@@ -65,17 +64,15 @@ namespace Tizen.NUI
         /// Occurs whenever the window is shown.
         /// </summary>
         /// <remarks>You have to call NotifyShowStatus() to notify that the object is prepared to show.</remarks>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Shown;
+        internal event EventHandler Shown;
 
         /// <summary>
         /// Occurs whenever the window is hidden.
         /// </summary>
         /// <remarks>You have to call NotifyHideStatus() to notify that the object is prepared to hide.</remarks>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Hidden;
+        internal event EventHandler Hidden;
 
         private void OnShowNative(IntPtr handle, IntPtr userData)
         {
@@ -93,9 +90,8 @@ namespace Tizen.NUI
         /// Notifies that the object is prepared to show.
         /// </summary>
         /// <param name="extraData">The extra data.</param>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyShowStatus(Bundle extraData)
+        internal void NotifyShowStatus(Bundle extraData)
         {
             Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyShowStatus(_handle, extraData.SafeBundleHandle);
             if (err != Interop.FrameProvider.ErrorCode.None)
@@ -108,9 +104,8 @@ namespace Tizen.NUI
         /// Notifies that the object is prepared to hide.
         /// </summary>
         /// <param name="extraData">The extra data.</param>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyHideStatus(Bundle extraData)
+        internal void NotifyHideStatus(Bundle extraData)
         {
             Interop.FrameProvider.ErrorCode err = Interop.FrameProvider.NotifyHideStatus(_handle, extraData.SafeBundleHandle);
             if (err != Interop.FrameProvider.ErrorCode.None)

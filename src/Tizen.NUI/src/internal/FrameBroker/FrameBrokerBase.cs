@@ -26,11 +26,9 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents the Frame Broker.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class FrameBrokerBase : IDisposable
+    internal abstract class FrameBrokerBase : IDisposable
     {
-        private string LogTag = "Tizen.NUI";
+        private string LogTag = "NUI";
         private readonly SafeFrameBrokerHandle _handle;
         private Dictionary<int, Interop.FrameBroker.AppControlResultCallback> _resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
         private int _resultId = 0;
@@ -46,9 +44,7 @@ namespace Tizen.NUI
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
         /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public FrameBrokerBase(Window window)
+        internal FrameBrokerBase(Window window)
         {
             Interop.FrameBroker.ErrorCode err;
 
@@ -89,9 +85,7 @@ namespace Tizen.NUI
         /// <exception cref="AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl, bool toProvider)
+        internal Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl, bool toProvider)
         {
             if (appControl == null)
             {
@@ -133,9 +127,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StartAnimation()
+        internal void StartAnimation()
         {
             Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.StartAnimation(_context);
             if (err != Interop.FrameBroker.ErrorCode.None)
@@ -149,9 +141,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
-        /// <since_tizen> 8 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void FinishAnimation()
+        internal void FinishAnimation()
         {
             Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.FinishAnimation(_context);
             if (err != Interop.FrameBroker.ErrorCode.None)
@@ -163,7 +153,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs whenever the frame is created.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen></since>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameCreated()
         {
@@ -179,7 +168,6 @@ namespace Tizen.NUI
         /// The caller can start animations, To notify that the animation is started, the caller should call StartAnimation().
         /// After the animation is finished, the caller should call FinishAnimation() to notify.
         /// </remarks>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameResumed(FrameData frame)
         {
@@ -190,7 +178,6 @@ namespace Tizen.NUI
         /// Occurs Whenever the frame is updated.
         /// </summary>
         /// <param name="frame">The frame data.</param>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameUpdated(FrameData frame)
         {
@@ -200,7 +187,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs Whenever the frame is paused.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFramePaused()
         {
@@ -210,7 +196,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs Whenever the frame is destroyed.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameDestroyed()
         {
@@ -221,7 +206,6 @@ namespace Tizen.NUI
         /// Occurs Whenever the system error is occurred.
         /// </summary>
         /// <param name="error">The frame error.</param>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameErred(FrameError error)
         {
