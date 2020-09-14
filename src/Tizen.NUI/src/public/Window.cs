@@ -473,16 +473,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Iconfiy the Window
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Iconify(bool iconified)
-        {
-            Interop.Window.Iconify(swigCPtr, iconified);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Retrieves whether the window is visible or not.
         /// </summary>
         /// <returns>True if the window is visible.</returns>
