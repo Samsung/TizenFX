@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -137,7 +137,11 @@ namespace Tizen.NUI
 
         internal static RotationGesture GetRotationGestureFromPtr(global::System.IntPtr cPtr)
         {
-            RotationGesture ret = new RotationGesture(cPtr, false);
+            RotationGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RotationGesture;
+            if (ret == null)
+            {
+                ret = new RotationGesture(cPtr, false);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
