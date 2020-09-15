@@ -42,6 +42,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.AuthorizationChangedCallback _authorizationChangedCallback;
         private Interop.Bluetooth.ServiceSearchedCallback _serviceSearchedCallback;
         private Interop.Bluetooth.DeviceConnectionStateChangedCallback _connectionChangedCallback;
+        private Interop.Bluetooth.ConnectedProfileCallback _connectedProfileCallback;
 
         internal string RemoteDeviceAddress;
         internal string RemoteDeviceName;
@@ -619,7 +620,7 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled)
             {
                 List<BluetoothProfileType> profileList = new List<BluetoothProfileType>();
-                Interop.Bluetooth.ConnectedProfileCallback callback = (int profile, IntPtr userData) =>
+                _connectedProfileCallback = (int profile, IntPtr userData) =>
                 {
                     if (!profile.Equals(null))
                     {
@@ -627,7 +628,7 @@ namespace Tizen.Network.Bluetooth
                     }
                     return true;
                 };
-                int ret = Interop.Bluetooth.GetConnectedProfiles(RemoteDeviceAddress, callback, IntPtr.Zero);
+                int ret = Interop.Bluetooth.GetConnectedProfiles(RemoteDeviceAddress, _connectedProfileCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get connected profiles, Error - " + (BluetoothError)ret);
