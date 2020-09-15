@@ -904,6 +904,22 @@ namespace Tizen.NUI.Components
             UpdateValue();
         }
 
+        /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(StyleName) as SliderStyle;
+            if (sliderStyle != null)
+            {
+                ApplyStyle(sliderStyle);
+                RelayoutRequest();
+            }
+        }
+
         private void CalculateCurrentValueByGesture(float offset)
         {
             currentSlidedOffset += offset;
