@@ -391,9 +391,9 @@ namespace Tizen.NUI
         /// This is used to improve application launch performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SendLaunchRequest(AppControl appControl, bool toProvider)
+        public void SendLaunchRequest(AppControl appControl)
         {
-            transitionOptions.SendLaunchRequest(appControl, toProvider);
+            transitionOptions.SendLaunchRequest(appControl);
         }
 
         /// <summary>
