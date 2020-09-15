@@ -30,8 +30,8 @@ namespace Tizen.NUI
                 None = Tizen.Internals.Errors.ErrorCode.None,
                 InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
                 OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
-                AppNotFound = -0x01100000 | 0x21,
-                LaunchRejected = -0x01100000 | 0x23,
+                AppNotFound = AppControlResult.AppNotFound,
+                LaunchRejected = AppControlResult.LaunchRejected,
                 IoError = Tizen.Internals.Errors.ErrorCode.IoError,
                 PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
             }
