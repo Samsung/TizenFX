@@ -201,9 +201,9 @@ namespace Tizen.NUI
             CallerScreenHidden?.Invoke(this, e);
         }
 
-        internal void SendLaunchRequest(AppControl appControl, bool toProvider)
+        internal void SendLaunchRequest(AppControl appControl)
         {
-            this.frameBroker.SendLaunchRequest(appControl, toProvider);
+            this.frameBroker.SendLaunchRequest(appControl, EnableTransition);
         }
     }
 }
