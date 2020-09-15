@@ -29,7 +29,7 @@ namespace Tizen.NUI
     public class TransitionOptions : IDisposable
     {
         private FrameProvider frameProvider;
-        private DefaultAnimationBroker frameBroker;
+        private DefaultFrameBroker frameBroker;
 
         private bool enableTransition = false;
         private Window mainWindow;
@@ -60,7 +60,7 @@ namespace Tizen.NUI
             {
                 if (value)
                 {
-                    frameBroker = new DefaultAnimationBroker(mainWindow);
+                    frameBroker = new DefaultFrameBroker(mainWindow);
                     frameBroker.AnimationInitialized += FrameBroker_TransitionAnimationInitialized;
                     frameBroker.AnimationFinished += FrameBroker_TransitionAnimationFinished;
                     EnableProvider();
