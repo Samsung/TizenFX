@@ -16,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\**">
+    <None Update="res\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="res\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
