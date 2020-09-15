@@ -126,7 +126,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle() : base()
+        public ImageViewStyle()
         {
         }
 
