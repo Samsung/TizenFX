@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// hovered or the points where a hover has stopped.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Hover : Disposable
+    public class Hover : BaseHandle
     {
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Hover.Hover_SWIGUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -159,7 +159,12 @@ namespace Tizen.NUI
 
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
-            Hover ret = new Hover(cPtr, false);
+            Hover ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Hover;
+            if (ret == null)
+            {
+                ret = new Hover(cPtr, false);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
