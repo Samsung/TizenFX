@@ -165,8 +165,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            ApplyStyle(ThemeManager.GetStyle(nameof(TextLabel)));
-
             if (!shown)
             {
                 SetVisible(false);

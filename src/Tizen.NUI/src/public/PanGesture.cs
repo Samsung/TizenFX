@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -326,11 +326,7 @@ namespace Tizen.NUI
 
         internal static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
         {
-            PanGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PanGesture;
-            if (ret == null)
-            {
-                ret = new PanGesture(cPtr, false);
-            }
+            PanGesture ret = new PanGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
