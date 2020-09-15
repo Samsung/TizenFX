@@ -22,7 +22,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class DefaultAnimationBroker : FrameBrokerBase
+    internal class DefaultFrameBroker : FrameBrokerBase
     {
         private Window window;
         private ImageView providerImage;
@@ -31,7 +31,7 @@ namespace Tizen.NUI
         internal event AnimationEventHandler AnimationInitialized;
         internal event AnimationEventHandler AnimationFinished;
 
-        internal DefaultAnimationBroker(Window window) : base(window)
+        internal DefaultFrameBroker(Window window) : base(window)
         {
             this.window = window;
         }
