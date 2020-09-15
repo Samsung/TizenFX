@@ -34,9 +34,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_time_get")]
             public static extern uint Gesture_time_get(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_SWIGUpcast")]
-            public static extern global::System.IntPtr Gesture_SWIGUpcast(global::System.IntPtr jarg1);
         }
     }
 }

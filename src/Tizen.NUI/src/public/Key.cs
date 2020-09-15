@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The key structure is used to store a key press.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Key : BaseHandle
+    public class Key : Disposable
     {
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Key.Key_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -324,11 +324,7 @@ namespace Tizen.NUI
 
         internal static Key GetKeyFromPtr(global::System.IntPtr cPtr)
         {
-            Key ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Key;
-            if (ret == null)
-            {
-                ret = new Key(cPtr, false);
-            }
+            Key ret = new Key(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

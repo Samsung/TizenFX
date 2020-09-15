@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Wheel : BaseHandle
+    public class Wheel : Disposable
     {
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Wheel.Wheel_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -253,11 +253,7 @@ namespace Tizen.NUI
 
         internal static Wheel GetWheelFromPtr(global::System.IntPtr cPtr)
         {
-            Wheel ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Wheel;
-            if (ret == null)
-            {
-                ret = new Wheel(cPtr, false);
-            }
+            Wheel ret = new Wheel(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
