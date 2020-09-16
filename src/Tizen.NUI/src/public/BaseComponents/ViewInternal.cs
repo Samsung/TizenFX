@@ -1277,7 +1277,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
                 }
-                if (trans)
+                if (trans != null)
                 {
                     transDictionary.Add(trans.Name, trans);
                 }
