@@ -37,13 +37,6 @@ namespace Tizen.NUI
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
-        /// Internal use only. Do not open this API.
-        /// This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public readonly static string FrameworkResourcePath = "/usr/share/dotnet.tizen/framework/res/";
-
-        /// <summary>
         /// Creates a StyleManager handle.<br />
         /// This can be initialized with StyleManager::Get().<br />
         /// </summary>

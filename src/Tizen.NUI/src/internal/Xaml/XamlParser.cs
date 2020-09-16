@@ -407,12 +407,7 @@ namespace Tizen.NUI.Xaml
             }
 
             if (type == null)
-            {
-                var message = $"Type {elementName} not found in xmlns {namespaceURI}\n";
-                message += "\n  - Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.";
-                message += "\n  - Make sure the type and namespace are correct.\n";
-                exception = new XamlParseException($"message", xmlInfo);
-            }
+                exception = new XamlParseException($"Type {elementName} not found in xmlns {namespaceURI}", xmlInfo);
 
             return type;
         }

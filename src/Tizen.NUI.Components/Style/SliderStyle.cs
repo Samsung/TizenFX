@@ -76,7 +76,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((SliderStyle)bindable).trackPadding = newValue == null ? null : new Extents((Extents)newValue);
+            var instance = (SliderStyle)bindable;
+            if (newValue != null)
+            {
+                if (null == instance.trackPadding) instance.trackPadding = new Extents(instance.OnTrackPaddingChanged, 0, 0, 0, 0);
+                instance.trackPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -84,7 +89,7 @@ namespace Tizen.NUI.Components
             return instance.trackPadding;
         });
 
-        private IndicatorType? privateIndicatorType = Slider.IndicatorType.None;
+        private IndicatorType? privateIndicatorType;
         private uint? privateTrackThickness;
         private uint? privateSpaceBetweenTrackAndIndicator;
         private Extents trackPadding;
@@ -97,6 +102,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SliderStyle() : base()
         {
+            IndicatorType = Slider.IndicatorType.None;
+            InitSubStyle();
         }
 
         /// <summary>
@@ -106,49 +113,59 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SliderStyle(SliderStyle style) : base(style)
         {
+            if(style == null)
+            {
+                return;
+            }
+
+            InitSubStyle();
+
+            this.CopyFrom(style);
+
+            IndicatorType = style.IndicatorType;
         }
 
         /// <summary>
         /// Get or set background track.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Track { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set slided track.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Progress { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set thumb.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Thumb { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set low indicator image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle LowIndicatorImage { get; set; } = new ImageViewStyle();
+        public ImageViewStyle LowIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set high indicator image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle HighIndicatorImage { get; set; } = new ImageViewStyle();
+        public ImageViewStyle HighIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set low indicator text.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle LowIndicator { get; set; } = new TextLabelStyle();
+        public TextLabelStyle LowIndicator { get; set; }
 
         /// <summary>
         /// Get or set high indicator text.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle HighIndicator { get; set; } = new TextLabelStyle();
+        public TextLabelStyle HighIndicator { get; set; }
 
         /// <summary>
         /// Get or set Indicator type
@@ -186,7 +203,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
-            get => ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
+            get
+            {
+                Extents tmp = (Extents)GetValue(TrackPaddingProperty);
+                return (null != tmp) ? tmp : trackPadding = new Extents(OnTrackPaddingChanged, 0, 0, 0, 0);
+            }
             set => SetValue(TrackPaddingProperty, value);
         }
 
@@ -199,15 +220,54 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is SliderStyle sliderStyle)
+            SliderStyle sliderStyle = bindableObject as SliderStyle;
+
+            if (null != sliderStyle)
             {
-                Track.CopyFrom(sliderStyle.Track);
-                Progress.CopyFrom(sliderStyle.Progress);
-                Thumb.CopyFrom(sliderStyle.Thumb);
-                LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
-                HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
-                LowIndicator.CopyFrom(sliderStyle.LowIndicator);
-                HighIndicator.CopyFrom(sliderStyle.HighIndicator);
+                if (sliderStyle.Track != null)
+                {
+                    Track?.CopyFrom(sliderStyle.Track);
+                }
+
+                if (sliderStyle.Progress != null)
+                {
+                    Progress?.CopyFrom(sliderStyle.Progress);
+                }
+
+                if (sliderStyle.Thumb != null)
+                {
+                    Thumb?.CopyFrom(sliderStyle.Thumb);
+                }
+
+                if (sliderStyle.LowIndicatorImage != null)
+                {
+                    LowIndicatorImage?.CopyFrom(sliderStyle.LowIndicatorImage);
+                }
+
+                if (sliderStyle.HighIndicatorImage != null)
+                {
+                    HighIndicatorImage?.CopyFrom(sliderStyle.HighIndicatorImage);
+                }
+
+                if (sliderStyle.LowIndicator != null)
+                {
+                    LowIndicator?.CopyFrom(sliderStyle.LowIndicator);
+                }
+
+                if (sliderStyle.HighIndicator != null)
+                {
+                    HighIndicator?.CopyFrom(sliderStyle.HighIndicator);
+                }
+
+                if (sliderStyle.TrackThickness != null)
+                {
+                    TrackThickness = sliderStyle.TrackThickness;
+                }
+
+                if (sliderStyle.TrackPadding != null)
+                {
+                    TrackPadding = sliderStyle.TrackPadding;
+                }
             }
         }
 
@@ -229,6 +289,22 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
+        }
+
+        private void InitSubStyle()
+        {
+            Track = new ImageViewStyle();
+            Progress = new ImageViewStyle();
+            Thumb = new ImageViewStyle();
+            LowIndicatorImage = new ImageViewStyle();
+            HighIndicatorImage = new ImageViewStyle();
+            LowIndicator = new TextLabelStyle();
+            HighIndicator = new TextLabelStyle();
+        }
+
+        private void OnTrackPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            TrackPadding = new Extents(start, end, top, bottom);
         }
     }
 }
