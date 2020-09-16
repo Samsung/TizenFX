@@ -35,12 +35,20 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.STYLE_NAME, new Tizen.NUI.PropertyValue((string)newValue));
+                string styleName = (string)newValue;
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.STYLE_NAME, new Tizen.NUI.PropertyValue(styleName));
+
+                view.styleName = styleName;
+                view.UpdateStyle();
+                view.ThemeChangeSensitive = true;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
+
+            if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
+
             string temp;
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.STYLE_NAME).Get(out temp);
             return temp;
@@ -1607,15 +1615,18 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
+
+            if (view.themeChangeSensitive == (bool)newValue) return;
+
             view.themeChangeSensitive = (bool)newValue;
 
             if (view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChanged += view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal += view.OnThemeChanged;
             }
             else
             {
-                ThemeManager.ThemeChanged -= view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal -= view.OnThemeChanged;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1628,6 +1639,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             view.SelectorData.BackgroundImage.Update(view, (Selector<string>)newValue, true);
+            if (newValue != null) view.SelectorData.BackgroundColor.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1639,6 +1651,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             view.SelectorData.BackgroundColor.Update(view, (Selector<Color>)newValue, true);
+            if (newValue != null) view.SelectorData.BackgroundImage.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1687,6 +1700,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             view.SelectorData.ImageShadow.Update(view, (Selector<ImageShadow>)newValue, true);
+            if (newValue != null) view.SelectorData.BoxShadow.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1702,6 +1716,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             view.SelectorData.BoxShadow.Update(view, (Selector<Shadow>)newValue, true);
+            if (newValue != null) view.SelectorData.ImageShadow.Reset(view);
         },
         defaultValueCreator: (bindable) =>
         {

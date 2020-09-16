@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<n:Theme xmlns:n="clr-namespace:Tizen.NUI;assembly=Tizen.NUI" Id="Tizen.NUI.Theme.Wearable" >
-</n:Theme>
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  Id="Tizen.NUI.Theme.Wearable"
+  BasedOn="Tizen.NUI.Theme.Common">
+</Theme>

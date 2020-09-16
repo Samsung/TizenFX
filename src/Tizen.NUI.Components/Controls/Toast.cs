@@ -318,6 +318,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            WidthResizePolicy = ResizePolicyType.FitToChildren;
+            HeightResizePolicy = ResizePolicyType.FitToChildren;
+
             base.ApplyStyle(viewStyle);
 
             ToastStyle toastStyle = viewStyle as ToastStyle;
@@ -335,6 +338,7 @@ namespace Tizen.NUI.Components
                         HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
+                        TextColor = Color.White,
                     };
                     this.Add(textLabel);
                 }
@@ -397,6 +401,7 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
+                    TextColor = Color.White,
                 };
                 this.Add(textLabel);
             }

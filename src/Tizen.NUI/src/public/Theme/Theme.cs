@@ -80,6 +80,7 @@ namespace Tizen.NUI
         /// <summary>
         /// For Xaml use only.
         /// The bulit-in theme id that will be used as base of this.
+        /// View styles with same key are merged.
         /// </summary>
         internal string BasedOn
         {
@@ -117,7 +118,13 @@ namespace Tizen.NUI
             get => map[styleName];
             set
             {
-                if (map.TryGetValue(styleName, out ViewStyle style))
+                if (value == null)
+                {
+                    map.Remove(styleName);
+                    return;
+                }
+
+                if (map.TryGetValue(styleName, out ViewStyle style) && style != null && style.GetType() == value.GetType())
                 {
                     style.Merge(value);
                 }
@@ -128,7 +135,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <inheritdoc/>
+        internal int Count => map.Count;
+
+        /// <summary>
+        /// Get an enumerator of the theme.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerator<KeyValuePair<string, ViewStyle>> GetEnumerator() => map.GetEnumerator();
 
@@ -159,6 +170,28 @@ namespace Tizen.NUI
         /// <returns>Founded style instance.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetStyle(string styleName) => map.ContainsKey(styleName) ? map[styleName] : null;
+
+        /// <summary>
+        /// Gets a style of given view type.
+        /// </summary>
+        /// <param name="viewType">The type of View.</param>
+        /// <returns>Founded style instance.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle GetStyle(Type viewType)
+        {
+            var currentType = viewType;
+            ViewStyle resultStyle = null;
+
+            do
+            {
+                if (currentType.Equals(typeof(View))) break;
+                resultStyle = GetStyle(currentType.FullName);
+                currentType = currentType.BaseType;
+            }
+            while (resultStyle == null && currentType != null);
+
+            return resultStyle;
+        }
 
         /// <summary>
         /// Adds the specified style name and value to the theme.

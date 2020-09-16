@@ -42,12 +42,6 @@ namespace Tizen.NUI.Components
 
         private bool onThemeChangedEventOverrideChecker;
 
-        /// <summary> Control style. </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected string StyleName { get; set; }
-
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -62,16 +56,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control() : base()
+        public Control() : this((ControlStyle)null)
         {
-            ViewStyle viewStyle = ThemeManager.GetStyle(GetType());
-
-            if (viewStyle != null && ViewStyle?.GetType() == viewStyle.GetType())
-            {
-                ApplyStyle(viewStyle);
-            }
-
-            Initialize();
         }
 
         /// <summary>
@@ -93,19 +79,15 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string styleName) : base()
+        public Control(string styleName) : this(ThemeManager.GetStyle(styleName) as ControlStyle)
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleName);
-            if (viewStyle == null)
+            if (ThemeManager.GetStyle(styleName) == null)
             {
                 throw new InvalidOperationException($"There is no style {styleName}");
             }
 
-            ApplyStyle(viewStyle);
-            this.StyleName = styleName;
+            this.styleName = styleName;
             ThemeChangeSensitive = true;
-
-            Initialize();
         }
 
         /// Internal used.
@@ -276,18 +258,7 @@ namespace Tizen.NUI.Components
             if (onThemeChangedEventOverrideChecker) return;
 
             // If the OnThemeChangedEvent is not implemented, ApplyStyle()
-            if (string.IsNullOrEmpty(StyleName))
-            {
-                base.OnThemeChanged(sender, e);
-                return;
-            }
-
-            ViewStyle newStyle = ThemeManager.GetStyle(StyleName);
-
-            if (newStyle != null)
-            {
-                ApplyStyle(newStyle);
-            }
+            base.OnThemeChanged(sender, e);
         }
 
         private void Initialize()

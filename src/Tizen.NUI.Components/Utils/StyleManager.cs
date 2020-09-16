@@ -63,7 +63,10 @@ namespace Tizen.NUI.Components
 
                 var key = value.ToUpperInvariant();
 
-                if (key == Theme?.ToUpperInvariant()) return;
+                // Please note that it does not check "key == Theme" here,
+                // because of the font size issue of the Tizen.NUI.StyleManager.
+                // (There are applications to use NUI.Components.StyleManager.ThemeChangedEvent to fix Tizen.NUI.StyleManager font size issue.)
+                // Please do not check equality until we fix that issue.
 
                 if (!ThemeMap.ContainsKey(key) || ThemeMap[key] == null)
                 {
@@ -100,6 +103,11 @@ namespace Tizen.NUI.Components
             if (Activator.CreateInstance(styleType) is StyleBase styleBase)
             {
                 var key = "DEFAULT";
+
+                if (bDefault && theme != null)
+                {
+                    ThemeMap[key].AddStyleWithoutClone(style, styleBase.GetViewStyle());
+                }
 
                 if (theme != null)
                 {
@@ -161,7 +169,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            ThemeMap[key].AddStyleWithoutClone(component.Name, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
+            ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
         }
 
         /// <summary>
@@ -172,7 +180,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetComponentStyle(Type component)
         {
-            return ThemeManager.GetStyle(component.Name);
+            return ThemeManager.GetStyle(component.FullName);
         }
 
         private void OnThemeChanged(object target, ThemeChangedEventArgs args)

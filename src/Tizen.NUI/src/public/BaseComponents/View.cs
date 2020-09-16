@@ -123,7 +123,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            ApplyStyle((viewStyle == null) ? GetViewStyle() : viewStyle?.Clone());
+            if (!ThemeManager.ThemeApplied) return;
+
+            if (viewStyle == null) UpdateStyle(); // Use style in the current theme
+            else ApplyStyle(viewStyle.Clone());   // Use given style
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -2326,7 +2329,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// If the value is true, the View will change its style as the theme changes.
-        /// It is false by default, unless it is Control instance created with specified style name.
+        /// It is false by default, but turned to true when setting StyleName (by setting property or using specified constructor).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ThemeChangeSensitive
@@ -2370,12 +2373,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
-            ViewStyle newStyle = ThemeManager.GetStyle(GetType());
-
-            if (newStyle != null && viewStyle?.GetType() == newStyle.GetType())
-            {
-                ApplyStyle(newStyle);
-            }
+            UpdateStyle();
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2402,7 +2400,7 @@ namespace Tizen.NUI.BaseComponents
                     BindableProperty viewProperty;
                     bindablePropertyOfView.TryGetValue(keyValuePair.Key, out viewProperty);
 
-                    if (null != viewProperty)
+                    if (null != viewProperty && viewProperty != StyleNameProperty)
                     {
                         object value = viewStyle.GetValue(keyValuePair.Value);
 

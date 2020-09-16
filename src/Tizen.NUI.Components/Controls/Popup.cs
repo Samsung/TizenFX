@@ -363,7 +363,8 @@ namespace Tizen.NUI.Components
                         ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                         PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
                         HorizontalAlignment = HorizontalAlignment.Begin,
-                        VerticalAlignment = VerticalAlignment.Bottom
+                        VerticalAlignment = VerticalAlignment.Bottom,
+                        Text = "Title"
                     };
                     Add(titleText);
                 }
@@ -747,15 +748,26 @@ namespace Tizen.NUI.Components
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
-            PopupStyle ppStyle = viewStyle as PopupStyle;
-            if (null != ppStyle)
+
+            if (viewStyle is PopupStyle ppStyle)
             {
-                if (ppStyle.Buttons != null)
+                if (ppStyle.Buttons == null)
                 {
-                    if (ppStyle.Buttons.PositionUsesPivotPoint == null) ppStyle.Buttons.PositionUsesPivotPoint = true;
-                    if (ppStyle.Buttons.ParentOrigin == null) ppStyle.Buttons.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
-                    if (ppStyle.Buttons.PivotPoint == null) ppStyle.Buttons.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+                    ppStyle.Buttons = new ButtonStyle();
                 }
+
+                if (ppStyle.Buttons.PositionUsesPivotPoint == null) ppStyle.Buttons.PositionUsesPivotPoint = true;
+                if (ppStyle.Buttons.ParentOrigin == null) ppStyle.Buttons.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
+                if (ppStyle.Buttons.PivotPoint == null) ppStyle.Buttons.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+
+                if (btGroup != null)
+                {
+                    for (int i = 0; i < btGroup.Count; i++)
+                    {
+                        GetButton(i)?.ApplyStyle(ppStyle.Buttons);
+                    }
+                }
+
                 Title.ApplyStyle(ppStyle.Title);
                 Title.RaiseToTop();
             }

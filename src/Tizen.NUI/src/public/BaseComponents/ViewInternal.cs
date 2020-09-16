@@ -33,6 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
+        internal string styleName;
 
         internal MergedStyle _mergedStyle
         {
@@ -1049,6 +1050,15 @@ namespace Tizen.NUI.BaseComponents
             }
 
             UpdateShadowCornerRadius(value);
+        }
+
+        internal void UpdateStyle()
+        {
+            ViewStyle newStyle;
+            if (styleName == null) newStyle = ThemeManager.GetStyle(GetType());
+            else newStyle = ThemeManager.GetStyle(styleName);
+
+            if (newStyle != null && (viewStyle == null || viewStyle.GetType() == newStyle.GetType())) ApplyStyle(newStyle);
         }
 
         /// <summary>

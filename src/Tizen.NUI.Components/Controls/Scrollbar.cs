@@ -122,7 +122,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Create an empty Scrollbar.
         /// </summary>
-        public Scrollbar() : base(ThemeManager.GetStyle(typeof(Scrollbar)))
+        public Scrollbar() : base()
         {
         }
 

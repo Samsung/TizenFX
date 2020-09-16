@@ -119,7 +119,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(ThemeManager.GetStyle(typeof(CircularScrollbar)))
+        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base()
         {
             Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }

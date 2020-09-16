@@ -346,10 +346,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn, null)
         {
-            ApplyStyle(ThemeManager.GetStyle(nameof(ImageView)));
-
             if (!shown)
             {
                 SetVisible(false);
