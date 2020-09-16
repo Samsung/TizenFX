@@ -34,6 +34,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ProgressStyle() : base()
         {
+            InitSubStyle();
         }
 
         /// <summary>
@@ -43,25 +44,30 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ProgressStyle(ProgressStyle style) : base(style)
         {
+            if (null == style) return;
+
+            InitSubStyle();
+
+            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Get or set track image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Track { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set progress image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Progress { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set buffer image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Buffer { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
         /// Style's clone function.
@@ -72,12 +78,55 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is ProgressStyle progressStyle)
+            ProgressStyle progressStyle = bindableObject as ProgressStyle;
+
+            if (null != progressStyle)
             {
-                Track.CopyFrom(progressStyle.Track);
-                Progress.CopyFrom(progressStyle.Progress);
-                Buffer.CopyFrom(progressStyle.Buffer);
+                if (null != progressStyle.Track)
+                {
+                    Track?.CopyFrom(progressStyle.Track);
+                }
+
+                if (null != progressStyle.Progress)
+                {
+                    Progress?.CopyFrom(progressStyle.Progress);
+                }
+
+                if (null != progressStyle.Buffer)
+                {
+                    Buffer?.CopyFrom(progressStyle.Buffer);
+                }
             }
+        }
+
+        private void InitSubStyle()
+        {
+            Track = new ImageViewStyle()
+            {
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.TopLeft,
+                PivotPoint = NUI.PivotPoint.TopLeft
+            };
+
+            Progress = new ImageViewStyle()
+            {
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.TopLeft
+            };
+
+            Buffer = new ImageViewStyle()
+            {
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.TopLeft
+            };
         }
     }
 }

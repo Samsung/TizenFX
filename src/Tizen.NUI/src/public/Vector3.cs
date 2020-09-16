@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -26,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector3TypeConverter))]
-    public class Vector3 : Disposable, ICloneable
+    public class Vector3 : Disposable
     {
         /// <summary>
         /// The constructor.
@@ -594,10 +593,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Vector3(X, Y, Z);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector3 obj)
         {

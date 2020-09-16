@@ -315,67 +315,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal FlexLayout Assign(FlexLayout other)
-        {
-            FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_Assign(swigCPtr, FlexLayout.getCPtr(other)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetFlexDirection(FlexLayout.FlexDirection flexDirection)
-        {
-            Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)flexDirection);
-            RequestLayout();
-        }
-
-        internal FlexLayout.FlexDirection GetFlexDirection()
-        {
-            FlexLayout.FlexDirection ret = (FlexLayout.FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
-            return ret;
-
-        }
-
-        internal void SetFlexJustification(FlexLayout.FlexJustification flexJustification)
-        {
-            Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)flexJustification);
-            RequestLayout();
-        }
-
-        internal FlexLayout.FlexJustification GetFlexJustification()
-        {
-            FlexLayout.FlexJustification ret = (FlexLayout.FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
-            return ret;
-        }
-
-        internal void SetFlexWrap(FlexLayout.FlexWrapType flexWrap)
-        {
-            Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)flexWrap);
-            RequestLayout();
-        }
-
-        internal FlexLayout.FlexWrapType GetFlexWrap()
-        {
-            FlexLayout.FlexWrapType ret = (FlexLayout.FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
-            return ret;
-        }
-
-        internal void SetFlexAlignment(FlexLayout.AlignmentType flexAlignment)
-        {
-            Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)flexAlignment);
-            RequestLayout();
-        }
-
         internal FlexLayout.AlignmentType GetFlexAlignment()
         {
             FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexAlignment(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void SetFlexItemsAlignment(FlexLayout.AlignmentType flexAlignment)
-        {
-            Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)flexAlignment);
-            RequestLayout();
         }
 
         internal FlexLayout.AlignmentType GetFlexItemsAlignment()
@@ -392,13 +336,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexDirection Direction
         {
-            get
-            {
-                return GetFlexDirection();
-            }
+            get => (FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
             set
             {
-                SetFlexDirection(value);
+                Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)value);
+                RequestLayout();
             }
         }
 
@@ -411,13 +353,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
         {
-            get
-            {
-                return GetFlexJustification();
-            }
+            get => (FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
             set
             {
-                SetFlexJustification(value);
+                Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)value);
+                RequestLayout();
             }
         }
 
@@ -431,13 +371,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
         {
-            get
-            {
-                return GetFlexWrap();
-            }
+            get => (FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
             set
             {
-                SetFlexWrap(value);
+                Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)value);
+                RequestLayout();
             }
         }
 
@@ -449,13 +387,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
         {
-            get
-            {
-                return GetFlexAlignment();
-            }
+            get => GetFlexAlignment();
             set
             {
-                SetFlexAlignment(value);
+                Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)value);
+                RequestLayout();
             }
         }
 
@@ -467,13 +403,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
         {
-            get
-            {
-                return GetFlexItemsAlignment();
-            }
+            get => GetFlexItemsAlignment();
             set
             {
-                SetFlexItemsAlignment(value);
+                Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)value);
+                RequestLayout();
             }
         }
 

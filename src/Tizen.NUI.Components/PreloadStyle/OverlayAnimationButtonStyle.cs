@@ -109,7 +109,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            var overlayImage = button.OverlayImage;
+            var overlayImage = button.GetCurrentOverlayImage(this);
 
             if (overlayImage == null)
             {

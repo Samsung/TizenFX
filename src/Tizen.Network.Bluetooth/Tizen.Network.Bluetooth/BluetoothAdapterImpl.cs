@@ -43,6 +43,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.VisibilityModeChangedCallback _visibilityChangedCallback;
         private Interop.Bluetooth.VisibilityDurationChangedCallback _visibilitydurationChangedCallback;
         private Interop.Bluetooth.DiscoveryStateChangedCallback _discoveryStateChangedCallback;
+        private Interop.Bluetooth.BondedDeviceCallback _bondedDeviceCallback;
 
         private static readonly BluetoothAdapterImpl _instance = new BluetoothAdapterImpl();
         private bool disposed = false;
@@ -470,7 +471,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothDevice> GetBondedDevices()
         {
             List<BluetoothDevice> deviceList = new List<BluetoothDevice>();
-            Interop.Bluetooth.BondedDeviceCallback callback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
+            _bondedDeviceCallback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Bonded devices cb is called");
                 if(!deviceInfo.Equals(null))
@@ -479,7 +480,7 @@ namespace Tizen.Network.Bluetooth
                 }
                 return true;
             };
-            int ret = Interop.Bluetooth.GetBondedDevices(callback, IntPtr.Zero);
+            int ret = Interop.Bluetooth.GetBondedDevices(_bondedDeviceCallback, IntPtr.Zero);
             if(ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get bonded devices, Error - " + (BluetoothError)ret);
