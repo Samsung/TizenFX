@@ -13,10 +13,19 @@ $(function () {
     var picker = $('.moniker-picker-menu');
     if (picker.length) {
       clearInterval(readyForPicker);
-      registerMonikers(picker);
-      registerMonikerChangedEvent(picker);
+      if (version == 'internals') {
+        hideMonikerPicker();
+      } else {
+        registerMonikers(picker);
+        registerMonikerChangedEvent(picker);
+      }
     }
   }, 10);
+
+  function hideMonikerPicker() {
+    $('.moniker-picker').hide();
+    $('.sidetoc').css("top", "140px");
+  }
 
   function registerMonikers(obj) {
     var levels = Object.keys(monikers).sort().reverse();
