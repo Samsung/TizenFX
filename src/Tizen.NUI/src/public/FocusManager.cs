@@ -492,7 +492,7 @@ namespace Tizen.NUI
                 view = _preFocusChangeEventHandler(this, e);
             }
 
-            if (view)
+            if (view != null)
             {
                 return view.GetPtrfromView();
             }

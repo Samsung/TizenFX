@@ -553,8 +553,34 @@ namespace Tizen.NUI
 
         }
 
-        internal static void SetChildValue(Binding.BindableObject bindable, Binding.BindableProperty property, object value)
+        /// <summary>
+        /// Gets the value that is contained in the attached BindableProperty.
+        /// </summary>
+        /// <typeparam name="T">The return type of property</typeparam>
+        /// <param name="bindable">The bindable object.</param>
+        /// <param name="property">The BindableProperty for which to get the value.</param>
+        /// <returns>The value that is contained in the attached BindableProperty.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T GetAttachedValue<T>(Binding.BindableObject bindable, Binding.BindableProperty property)
         {
+            if (bindable == null)
+                throw new ArgumentNullException(nameof(bindable));
+
+            return (T)bindable.GetValue(property);
+        }
+
+        /// <summary>
+        /// Sets the value of the attached property.
+        /// </summary>
+        /// <param name="bindable">The bindable object.</param>
+        /// <param name="property">The BindableProperty on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetAttachedValue(Binding.BindableObject bindable, Binding.BindableProperty property, object value)
+        {
+            if (bindable == null)
+                throw new ArgumentNullException(nameof(bindable));
+
             bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet, false);
         }
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
