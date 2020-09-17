@@ -228,12 +228,26 @@ namespace Tizen.Network.Bluetooth
         private BluetoothOppClientImpl()
         {
             Log.Info(Globals.LogTag, "Initializing OppClient");
-            Initialize();
+            try
+            {
+                Initialize();
+            }
+            catch
+            {
+                Log.Error(Globals.LogTag, "Failed to initialize OppClient");
+            }
         }
 
         ~BluetoothOppClientImpl()
         {
-            Deinitialize();
+            try
+            {
+                Deinitialize();
+            }
+            catch
+            {
+                Log.Error(Globals.LogTag, "Failed to deinitialize OppClient");
+            }
         }
 
         internal int AddFile(string filePath)
