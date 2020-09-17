@@ -210,7 +210,14 @@ namespace Tizen.Network.Bluetooth
         private BluetoothAudioImpl ()
         {
             Log.Info(Globals.LogTag, "Initializing audio");
-            initialize();
+            try
+            {
+                initialize();
+            }
+            catch
+            {
+                Log.Error(Globals.LogTag, "Failed to initialize Audio");
+            }
         }
 
         ~BluetoothAudioImpl()
