@@ -967,7 +967,7 @@ namespace Tizen.NUI.Components
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (panGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
