@@ -37,6 +37,7 @@ namespace Tizen.NUI.Components
 
         private Color indicatorColor;
         private Color selectedIndicatorColor;
+        private Selector<string> lastIndicatorImageUrl;
 
         static Pagination() { }
 
@@ -127,6 +128,24 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// This is experimental API.
+        /// Make the last indicator has exceptional image, not common image in the Pagination.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<string> LastIndicatorImageUrl
+        {
+            get => lastIndicatorImageUrl;
+            set
+            {
+                lastIndicatorImageUrl = value;
+                if (value != null && indicatorCount > 0)
+                {
+                    indicatorList[LastIndicatorIndex].URL = IsLastSelected ? value.Selected : value.Normal;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the space of the indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -160,8 +179,12 @@ namespace Tizen.NUI.Components
                 {
                     return;
                 }
+
+                int prevLastIndex = -1;
+
                 if (indicatorCount < value)
                 {
+                    prevLastIndex = LastIndicatorIndex;
                     for (int i = indicatorCount; i < value; i++)
                     {
                         CreateIndicator();
@@ -183,6 +206,15 @@ namespace Tizen.NUI.Components
                     }
                 }
                 indicatorCount = value;
+
+                if (lastIndicatorImageUrl != null && paginationStyle != null && indicatorCount > 0)
+                {
+                    if (prevLastIndex >= 0 && paginationStyle.IndicatorImageUrl != null)
+                    {
+                        indicatorList[prevLastIndex].URL = prevLastIndex == selectedIndex ? paginationStyle.IndicatorImageUrl.Selected : paginationStyle.IndicatorImageUrl.Normal;
+                    }
+                    indicatorList[LastIndicatorIndex].URL = IsLastSelected ? lastIndicatorImageUrl.Selected : lastIndicatorImageUrl.Normal;
+                }
 
                 UpdateContainer();
             }
@@ -341,7 +373,7 @@ namespace Tizen.NUI.Components
         protected virtual void SelectOut(VisualMap selectOutIndicator)
         {
             if (!(selectOutIndicator is ImageVisual visual)) return;
-            visual.URL = paginationStyle?.IndicatorImageUrl.Normal;
+            visual.URL = ((IsLastSelected && lastIndicatorImageUrl != null) ? lastIndicatorImageUrl : paginationStyle?.IndicatorImageUrl)?.Normal;
 
             if (indicatorColor == null)
             {
@@ -364,7 +396,7 @@ namespace Tizen.NUI.Components
         protected virtual void SelectIn(VisualMap selectInIndicator)
         {
             if (!(selectInIndicator is ImageVisual visual)) return;
-            visual.URL = paginationStyle?.IndicatorImageUrl.Selected;
+            visual.URL = ((IsLastSelected && lastIndicatorImageUrl != null) ? lastIndicatorImageUrl : paginationStyle?.IndicatorImageUrl)?.Selected;
 
             if (selectedIndicatorColor == null)
             {
@@ -480,6 +512,14 @@ namespace Tizen.NUI.Components
                 indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
                 indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
             }
+
+            if (lastIndicatorImageUrl != null && indicatorCount > 0)
+            {
+                indicatorList[LastIndicatorIndex].URL = lastIndicatorImageUrl.Normal;
+            }
         }
+
+        private int LastIndicatorIndex => IndicatorCount - 1;
+        private bool IsLastSelected => LastIndicatorIndex == selectedIndex;
     }
 }

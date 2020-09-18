@@ -26,7 +26,10 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
         private Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback;
 
-        private static readonly BluetoothAudioImpl _instance = new BluetoothAudioImpl();
+        private static readonly Lazy<BluetoothAudioImpl> _instance = new Lazy<BluetoothAudioImpl>(() =>
+        {
+            return new BluetoothAudioImpl();
+        });
         private bool disposed = false;
 
         internal event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged
@@ -203,7 +206,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
 
