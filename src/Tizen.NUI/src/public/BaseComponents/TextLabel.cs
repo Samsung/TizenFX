@@ -153,6 +153,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            WidthResizePolicy = ResizePolicyType.FillToParent;
         }
 
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
@@ -169,6 +170,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            WidthResizePolicy = ResizePolicyType.FillToParent;
         }
 
         /// <summary>

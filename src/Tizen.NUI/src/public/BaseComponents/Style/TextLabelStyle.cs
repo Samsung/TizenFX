@@ -325,6 +325,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle()
         {
+            WidthResizePolicy = ResizePolicyType.FillToParent;
         }
 
         /// <summary>
