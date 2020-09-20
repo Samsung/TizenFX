@@ -20,6 +20,11 @@ namespace Tizen.Network.Bluetooth
 {
     internal class BluetoothOppServerImpl
     {
+        private static readonly Lazy<BluetoothOppServerImpl> _instance = new Lazy<BluetoothOppServerImpl>(() =>
+        {
+            return new BluetoothOppServerImpl();
+        });
+
         private event EventHandler<ConnectionRequestedEventArgs> _ConnectionRequested;
         private Interop.Bluetooth.ConnectionRequestedCallback _ConnectionRequestedCallback;
 
@@ -28,8 +33,6 @@ namespace Tizen.Network.Bluetooth
 
         private event EventHandler<TransferFinishedEventArgs> _TransferFinished;
         private Interop.Bluetooth.TransferFinishedCallback _TransferFinishedCallback;
-
-        private static readonly BluetoothOppServerImpl _instance = new BluetoothOppServerImpl();
 
         internal event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested
         {
@@ -171,13 +174,18 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
     }
 
     internal class BluetoothOppClientImpl
     {
+        private static readonly Lazy<BluetoothOppClientImpl> _instance = new Lazy<BluetoothOppClientImpl>(() =>
+        {
+            return new BluetoothOppClientImpl();
+        });
+
         private event EventHandler<PushRespondedEventArgs> _PushResponded;
         private Interop.Bluetooth.PushRespondedCallback _PushRespondedCallback;
 
@@ -186,8 +194,6 @@ namespace Tizen.Network.Bluetooth
 
         private event EventHandler<PushFinishedEventArgs> _PushFinished;
         private Interop.Bluetooth.PushFinishedCallback _PushFinishedCallback;
-
-        private static readonly BluetoothOppClientImpl _instance = new BluetoothOppClientImpl();
 
         internal event EventHandler<PushRespondedEventArgs> PushResponded
         {
@@ -355,7 +361,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
     }
