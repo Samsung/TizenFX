@@ -32,10 +32,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.ShuffleModeChangedCallback _shuffleModeChangedCallback;
         private Interop.Bluetooth.ScanModeChangedCallback _scanModeChangedCallback;
 
-        private static Lazy<BluetoothAvrcpImpl> _instance = new Lazy<BluetoothAvrcpImpl>(() =>
-        {
-            return new BluetoothAvrcpImpl();
-        });
+        private static BluetoothAvrcpImpl _instance = new BluetoothAvrcpImpl();
         private bool disposed = false;
 
         internal event EventHandler<TargetConnectionStateChangedEventArgs> TargetConnectionStateChanged
@@ -362,7 +359,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance.Value;
+                return _instance;
             }
         }
 

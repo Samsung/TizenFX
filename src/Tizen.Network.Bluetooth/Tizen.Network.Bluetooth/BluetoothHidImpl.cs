@@ -23,10 +23,7 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<HidConnectionStateChangedEventArgs> _hidConnectionChanged;
         private Interop.Bluetooth.HidConnectionStateChangedCallback _hidConnectionChangedCallback;
 
-        private static readonly Lazy<BluetoothHidImpl> _instance = new Lazy<BluetoothHidImpl>(() =>
-        {
-            return new BluetoothHidImpl();
-        });
+        private static readonly BluetoothHidImpl _instance = new BluetoothHidImpl();
         private bool disposed = false;
 
         internal event EventHandler<HidConnectionStateChangedEventArgs> HidConnectionStateChanged
@@ -71,7 +68,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance.Value;
+                return _instance;
             }
         }
         private BluetoothHidImpl ()

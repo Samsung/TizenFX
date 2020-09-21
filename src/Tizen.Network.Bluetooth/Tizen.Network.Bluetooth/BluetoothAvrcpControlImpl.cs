@@ -30,10 +30,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.TrackInfoChangedCallback _trackInfoChangedCallback;
         private Interop.Bluetooth.AvrcpControlConnectionChangedCallback _connStateChangedCallback;
 
-        private static readonly Lazy<BluetoothAvrcpControlImpl> _instance = new Lazy<BluetoothAvrcpControlImpl>(() =>
-        {
-            return new BluetoothAvrcpControlImpl();
-        });
+        private static BluetoothAvrcpControlImpl _instance = new BluetoothAvrcpControlImpl();
         private bool disposed = false;
 
         internal event EventHandler<AvrcpControlConnectionChangedEventArgs> ConnectionChanged;
@@ -401,7 +398,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance.Value;
+                return _instance;
             }
         }
 
@@ -420,7 +417,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to initialize AVRCP Control, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
 

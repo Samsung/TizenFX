@@ -20,7 +20,6 @@ using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Reflection;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -682,17 +681,10 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 3 </since_tizen>
         public T GetProfile<T>() where T : BluetoothProfile
         {
-            try
-            {
-                // TODO : Need to check capability of supporting profiles
-                var profile = (T)Activator.CreateInstance(typeof(T), true);
-                profile.RemoteAddress = RemoteDeviceAddress;
-                return profile;
-            }
-            catch (TargetInvocationException err)
-            {
-                throw err.InnerException;
-            }
+            // TODO : Need to check capability of supporting profiles
+            var profile = (T)Activator.CreateInstance(typeof(T), true);
+            profile.RemoteAddress = RemoteDeviceAddress;
+            return profile;
         }
 
         /// <summary>
