@@ -20,7 +20,10 @@ namespace Tizen.Network.Bluetooth
 {
     internal class BluetoothOppServerImpl
     {
-        private static readonly BluetoothOppServerImpl _instance = new BluetoothOppServerImpl();
+        private static readonly Lazy<BluetoothOppServerImpl> _instance = new Lazy<BluetoothOppServerImpl>(() =>
+        {
+            return new BluetoothOppServerImpl();
+        });
 
         internal event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested;
         private Interop.Bluetooth.ConnectionRequestedCallback _ConnectionRequestedCallback;
@@ -135,14 +138,17 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
     }
 
     internal class BluetoothOppClientImpl
     {
-        private static readonly BluetoothOppClientImpl _instance = new BluetoothOppClientImpl();
+        private static readonly Lazy<BluetoothOppClientImpl> _instance = new Lazy<BluetoothOppClientImpl>(() =>
+        {
+            return new BluetoothOppClientImpl();
+        });
 
         internal event EventHandler<PushRespondedEventArgs> PushResponded;
         private Interop.Bluetooth.PushRespondedCallback _PushRespondedCallback;
@@ -283,7 +289,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
     }
