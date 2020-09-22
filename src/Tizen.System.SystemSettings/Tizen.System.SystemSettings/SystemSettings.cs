@@ -31,7 +31,7 @@ namespace Tizen.System
         /// <summary>
         /// Lock for EventHandlers.
         /// </summary>
-		private static readonly object LockObj = new object();
+        private static readonly object LockObj = new object();
 
         /// <summary>
         /// The file path of the current ringtone.
@@ -1842,6 +1842,9 @@ namespace Tizen.System
             {
                 lock (LockObj)
                 {
+                    if (null == value)
+                        throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
+
                     if (s_localeLanguageChanged == null)
                     {
                         SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback, IntPtr.Zero);
@@ -1858,6 +1861,9 @@ namespace Tizen.System
             {
                 lock (LockObj)
                 {
+                    if (null == value)
+                        throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
+
                     if (s_localeLanguageChanged == null) {
                         Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
                         return;
