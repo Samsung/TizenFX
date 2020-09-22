@@ -204,8 +204,8 @@ cmd_install() {
   nifile_cnt=$(sdb $SDB_OPTIONS shell find $TARGET_ASSEMBLY_DIR -name '*.ni.dll' | wc -l)
   if [ $nifile_cnt -gt 0 ]; then
     sdb $SDB_OPTIONS shell "rm -f $TARGET_ASSEMBLY_DIR/*.ni.dll"
-    sdb $SDB_OPTIONS shell nitool --system
-    sdb $SDB_OPTIONS shell nitool --regen-all-app
+    sdb $SDB_OPTIONS shell dotnettool --ni-system
+    sdb $SDB_OPTIONS shell dotnettool --ni-regen-all-app
   fi
 
   sdb $SDB_OPTIONS shell chsmack -a '_' $TARGET_ASSEMBLY_DIR/*
