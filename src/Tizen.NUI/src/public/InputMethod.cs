@@ -152,51 +152,51 @@ namespace Tizen.NUI
             /// <summary>
             /// Default action.
             /// </summary>
-            Default,
+            Default = 0,
             /// <summary>
             /// Done.
             /// </summary>
-            Done,
+            Done = 1,
             /// <summary>
             /// Go action.
             /// </summary>
-            Go,
+            Go = 2,
             /// <summary>
             /// Join action.
             /// </summary>
-            Join,
+            Join = 3,
             /// <summary>
             /// Login action.
             /// </summary>
-            Login,
+            Login = 4,
             /// <summary>
             /// Next action.
             /// </summary>
-            Next,
+            Next = 5,
             /// <summary>
             /// Previous action.
             /// </summary>
-            Previous,
+            Previous = 97,
             /// <summary>
             /// Search action.
             /// </summary>
-            Search,
+            Search = 6,
             /// <summary>
             /// Send action.
             /// </summary>
-            Send,
+            Send = 7,
             /// <summary>
             /// Sign in action.
             /// </summary>
-            SignIn,
+            SignIn = 8,
             /// <summary>
             /// Unspecified action.
             /// </summary>
-            Unspecified,
+            Unspecified = 98,
             /// <summary>
             /// Nothing to do.
             /// </summary>
-            None
+            None = 99
         }
 
         /// <summary>
