@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Reflection;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -42,6 +43,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.AuthorizationChangedCallback _authorizationChangedCallback;
         private Interop.Bluetooth.ServiceSearchedCallback _serviceSearchedCallback;
         private Interop.Bluetooth.DeviceConnectionStateChangedCallback _connectionChangedCallback;
+        private Interop.Bluetooth.ConnectedProfileCallback _connectedProfileCallback;
 
         internal string RemoteDeviceAddress;
         internal string RemoteDeviceName;
@@ -619,7 +621,7 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled)
             {
                 List<BluetoothProfileType> profileList = new List<BluetoothProfileType>();
-                Interop.Bluetooth.ConnectedProfileCallback callback = (int profile, IntPtr userData) =>
+                _connectedProfileCallback = (int profile, IntPtr userData) =>
                 {
                     if (!profile.Equals(null))
                     {
@@ -627,7 +629,7 @@ namespace Tizen.Network.Bluetooth
                     }
                     return true;
                 };
-                int ret = Interop.Bluetooth.GetConnectedProfiles(RemoteDeviceAddress, callback, IntPtr.Zero);
+                int ret = Interop.Bluetooth.GetConnectedProfiles(RemoteDeviceAddress, _connectedProfileCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get connected profiles, Error - " + (BluetoothError)ret);
@@ -680,10 +682,17 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 3 </since_tizen>
         public T GetProfile<T>() where T : BluetoothProfile
         {
-            // TODO : Need to check capability of supporting profiles
-            var profile = (T)Activator.CreateInstance(typeof(T), true);
-            profile.RemoteAddress = RemoteDeviceAddress;
-            return profile;
+            try
+            {
+                // TODO : Need to check capability of supporting profiles
+                var profile = (T)Activator.CreateInstance(typeof(T), true);
+                profile.RemoteAddress = RemoteDeviceAddress;
+                return profile;
+            }
+            catch (TargetInvocationException err)
+            {
+                throw err.InnerException;
+            }
         }
 
         /// <summary>

@@ -144,8 +144,8 @@ namespace Tizen.NUI
             public static extern int GetBrightness(global::System.Runtime.InteropServices.HandleRef jarg1);
             
             // For windows resized signal
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_ResizedSignal")]
-            public static extern global::System.IntPtr Window_ResizedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_ResizeSignal")]
+            public static extern global::System.IntPtr Window_ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetSize")]
             public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

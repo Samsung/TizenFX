@@ -100,6 +100,11 @@ namespace Tizen.NUI.Binding
         /// <param name="value">The default value.</param>
         /// <returns>System.Boolean</returns>
         public delegate bool ValidateValueDelegate<in TPropertyType>(BindableObject bindable, TPropertyType value);
+		
+        //To confirm the static dictionary will be created before the constructor is called.
+        static BindableProperty()
+        {
+        }
 
         static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new  Dictionary<Type,TypeConverter>
         {

@@ -60,15 +60,11 @@ namespace Tizen.NUI.Components.Extension
         {
             base.CopyFrom(bindableObject);
 
-            LottieButtonStyle style = bindableObject as LottieButtonStyle;
-
-            if (style == null)
+            if (bindableObject is LottieButtonStyle lottieButtonStyle)
             {
-                return;
+                LottieUrl = lottieButtonStyle.LottieUrl;
+                PlayRange = lottieButtonStyle.PlayRange?.Clone();
             }
-
-            LottieUrl = style.LottieUrl;
-            PlayRange = style.PlayRange;
         }
 
         /// <inheritdoc/>
