@@ -383,7 +383,7 @@ namespace Tizen.NUI
             get => (FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
             set
             {
-                if (value != FlexWrapType.NoWrap || value != FlexWrapType.Wrap)
+                if (value != FlexWrapType.NoWrap && value != FlexWrapType.Wrap)
                     throw new InvalidEnumArgumentException(nameof(WrapType));
 
                 Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)value);
