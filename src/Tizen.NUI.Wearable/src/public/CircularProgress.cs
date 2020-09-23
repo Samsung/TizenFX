@@ -166,7 +166,7 @@ namespace Tizen.NUI.Wearable
         /// User can set its size.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularProgress() : base()
+        public CircularProgress() : base(new CircularProgressStyle())
         {
             Initialize();
         }

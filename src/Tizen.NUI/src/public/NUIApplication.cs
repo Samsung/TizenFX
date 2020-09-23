@@ -39,6 +39,8 @@ namespace Tizen.NUI
         private static System.Resources.ResourceManager resourceManager = null;
         private Size2D _windowSize2D = null;
         private Position2D _windowPosition2D = null;
+        private TransitionOptions transitionOptions;
+
 
         /// <summary>
         /// The default constructor.
@@ -383,6 +385,31 @@ namespace Tizen.NUI
         {
             Interop.Application.Application_PreInitialize();
             Application.NewApplication("", Application.WindowMode.Opaque);
+        }
+
+        /// <summary>
+        /// This is used to improve application launch performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendLaunchRequest(AppControl appControl)
+        {
+            transitionOptions.SendLaunchRequest(appControl);
+        }
+
+        /// <summary>
+        /// This is used to improve application launch performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionOptions TransitionOptions
+        {
+            get
+            {
+                return transitionOptions;
+            }
+            set
+            {
+                transitionOptions = value;
+            }
         }
     }
 

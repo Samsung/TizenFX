@@ -37,6 +37,9 @@ namespace Tizen.NUI.Components
             ItemPadding = new Extents(0, 0, 0, 0);
             UseTextNaturalSize = false;
             ItemSpace = 0;
+
+            UnderLine = new ViewStyle();
+            Text = new TextLabelStyle();
         }
 
         /// <summary>
@@ -46,19 +49,47 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TabStyle(TabStyle style) : base(style)
         {
+            UnderLine = new ViewStyle();
+            Text = new TextLabelStyle();
+
+            if (null == style)
+            {
+                return;
+            }
+
+            if (style.UnderLine != null)
+            {
+                UnderLine?.CopyFrom(style.UnderLine);
+            }
+
+            if (style.Text != null)
+            {
+                Text?.CopyFrom(style.Text);
+            }
+
+            if (style.ItemPadding != null)
+            {
+                ItemPadding = new Extents(style.ItemPadding.Start, style.ItemPadding.End, style.ItemPadding.Top, style.ItemPadding.Bottom);
+            }
+            else
+            {
+                ItemPadding = new Extents(0, 0, 0, 0);
+            }
+            ItemSpace = style.ItemSpace;
+            UseTextNaturalSize = style.UseTextNaturalSize;
         }
 
         /// <summary>
         /// UnderLine's style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle UnderLine { get; set; } = new ViewStyle();
+        public ViewStyle UnderLine { get; set; }
 
         /// <summary>
         /// Text's style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text { get; set; } = new TextLabelStyle();
+        public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Flag to decide if item is fill with item text's natural width.
@@ -78,19 +109,35 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ItemPadding { get; set; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
+            TabStyle tabStyle = bindableObject as TabStyle;
 
-            if (bindableObject is TabStyle tabStyle)
+            if (null != tabStyle)
             {
-                UnderLine.CopyFrom(tabStyle.UnderLine);
-                Text.CopyFrom(tabStyle.Text);
-                ItemPadding = tabStyle.ItemPadding == null ? null : new Extents(tabStyle.ItemPadding);
+                if (null != tabStyle.ItemPadding)
+                {
+                    ItemPadding?.CopyFrom(tabStyle.ItemPadding);
+                }
+
                 ItemSpace = tabStyle.ItemSpace;
                 UseTextNaturalSize = tabStyle.UseTextNaturalSize;
+
+                if (null != tabStyle.UnderLine)
+                {
+                    UnderLine?.CopyFrom(tabStyle.UnderLine);
+                }
+
+                if (null != tabStyle.Text)
+                {
+                    Text?.CopyFrom(tabStyle.Text);
+                }
             }
         }
     }
