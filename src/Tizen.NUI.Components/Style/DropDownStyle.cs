@@ -57,7 +57,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListMarginProperty = BindableProperty.Create(nameof(ListMargin), typeof(Extents), typeof(DropDownStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((DropDownStyle)bindable).listMargin = newValue == null ? null : new Extents((Extents)newValue);
+            var dropDownStyle = (DropDownStyle)bindable;
+            if (null == dropDownStyle.listMargin) dropDownStyle.listMargin = new Extents(dropDownStyle.OnListMarginChanged, 0, 0, 0, 0);
+            dropDownStyle.listMargin.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -80,7 +82,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create(nameof(ListPadding), typeof(Extents), typeof(DropDownStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((DropDownStyle)bindable).listPadding = newValue == null ? null : new Extents((Extents)newValue);
+            var dropDownStyle = (DropDownStyle)bindable;
+            if (null != newValue)
+            {
+                if (null == dropDownStyle.listPadding) dropDownStyle.listPadding = new Extents(dropDownStyle.OnListPaddingChanged, 0, 0, 0, 0);
+                dropDownStyle.listPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -113,6 +120,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownStyle(DropDownStyle style) : base(style)
         {
+            if(null == style) return;
+
+            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -171,7 +181,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListMargin
         {
-            get => ((Extents)GetValue(ListMarginProperty)) ?? (listMargin = new Extents(0, 0, 0, 0));
+            get
+            {
+                Extents tmp = (Extents)GetValue(ListMarginProperty);
+                return (null != tmp) ? tmp : listMargin = new Extents(OnListMarginChanged, 0, 0, 0, 0);
+            }
             set => SetValue(ListMarginProperty, value);
         }
 
@@ -191,22 +205,43 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListPadding
         {
-            get => ((Extents)GetValue(ListPaddingProperty)) ?? (listPadding = new Extents(0, 0, 0, 0));
+            get
+            {
+                Extents tmp = (Extents)GetValue(ListPaddingProperty);
+                return (null != tmp) ? tmp : listPadding = new Extents(OnListPaddingChanged, 0, 0, 0, 0);
+            }
             set => SetValue(ListPaddingProperty, value);
         }
 
-        /// <inheritdoc/>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is DropDownStyle dropDownStyle)
+            DropDownStyle dropDownStyle = bindableObject as DropDownStyle;
+
+            if (null != dropDownStyle)
             {
-                Button.CopyFrom(dropDownStyle.Button);
-                HeaderText.CopyFrom(dropDownStyle.HeaderText);
-                ListBackgroundImage.CopyFrom(dropDownStyle.ListBackgroundImage);
+                Button?.CopyFrom(dropDownStyle.Button);
+                HeaderText?.CopyFrom(dropDownStyle.HeaderText);
+                ListBackgroundImage?.CopyFrom(dropDownStyle.ListBackgroundImage);
+                SpaceBetweenButtonTextAndIcon = dropDownStyle.SpaceBetweenButtonTextAndIcon;
+                ListRelativeOrientation = dropDownStyle.ListRelativeOrientation;
+                ListMargin?.CopyFrom(dropDownStyle.ListMargin);
+                SelectedItemIndex = dropDownStyle.SelectedItemIndex;
+                ListPadding?.CopyFrom(dropDownStyle.ListPadding);
             }
+        }
+
+        private void OnListMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            ListMargin = new Extents(start, end, top, bottom);
+        }
+
+        private void OnListPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            ListPadding = new Extents(start, end, top, bottom);
         }
     }
 
@@ -235,6 +270,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownItemStyle(DropDownItemStyle style) : base(style)
         {
+            if(null == style) return;
+
+            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -277,17 +315,19 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsSelected { get; set; }
 
-        /// <inheritdoc/>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is DropDownItemStyle dropDownItemStyle)
+            DropDownItemStyle dropDownItemStyle = bindableObject as DropDownItemStyle;
+
+            if (null != dropDownItemStyle)
             {
-                Text.CopyFrom(dropDownItemStyle.Text);
-                Icon.CopyFrom(dropDownItemStyle.Icon);
-                CheckImage.CopyFrom(dropDownItemStyle.CheckImage);
+                Text?.CopyFrom(dropDownItemStyle.Text);
+                Icon?.CopyFrom(dropDownItemStyle.Icon);
+                CheckImage?.CopyFrom(dropDownItemStyle.CheckImage);
                 CheckImageGapToBoundary = dropDownItemStyle.CheckImageGapToBoundary;
                 IsSelected = dropDownItemStyle.IsSelected;
             }

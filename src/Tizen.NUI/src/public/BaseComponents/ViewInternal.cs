@@ -1071,10 +1071,6 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 selectorData?.Reset(this);
-                if (themeChangeSensitive)
-                {
-                    ThemeManager.ThemeChanged -= OnThemeChanged;
-                }
             }
 
             //Release your own unmanaged resources here.
@@ -1281,7 +1277,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
                 }
-                if (trans)
+                if (trans != null)
                 {
                     transDictionary.Add(trans.Name, trans);
                 }

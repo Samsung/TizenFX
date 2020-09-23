@@ -225,10 +225,11 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 
 %files full
 %manifest %{name}.manifest
-%attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.dll
-%attr(644,root,root) %{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
-%attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
-%attr(644,root,root) %{DOTNET_PRELOAD_PATH}/*
+%defattr(644,root,root,755)
+%{DOTNET_ASSEMBLY_PATH}/*.dll
+%{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
+%{DOTNET_ASSEMBLY_RES_PATH}/*
+%{DOTNET_PRELOAD_PATH}/*
 
 %files debug
 %manifest %{name}.manifest

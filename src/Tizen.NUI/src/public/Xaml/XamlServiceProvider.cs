@@ -24,7 +24,7 @@ namespace Tizen.NUI.Xaml
             if (node != null)
             {
                 IXamlTypeResolver = new XamlTypeResolver(node.NamespaceResolver, XamlParser.GetElementType,
-                    context?.RootElement.GetType().GetTypeInfo().Assembly);
+                    context?.RootElement?.GetType().GetTypeInfo().Assembly);
 
                 Add(typeof(IReferenceProvider), new ReferenceProvider(node));
             }

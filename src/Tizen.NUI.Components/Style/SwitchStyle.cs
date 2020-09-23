@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SwitchStyle() : base()
         {
+            InitSubStyle();
         }
 
         /// <summary>
@@ -44,19 +45,29 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SwitchStyle(SwitchStyle style) : base(style)
         {
+            if(null == style)
+            {
+                return;
+            }
+
+            IsSelectable = true;
+            Track = new ImageViewStyle();
+            Thumb = new ImageViewStyle();
+
+            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Thumb image's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Thumb { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Track image's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Track { get; set; } = new ImageViewStyle();
+        public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Style's clone function.
@@ -67,10 +78,19 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            if (bindableObject is SwitchStyle switchStyle)
+            SwitchStyle switchStyle = bindableObject as SwitchStyle;
+
+            if (null != switchStyle)
             {
-                Track.CopyFrom(switchStyle.Track);
-                Thumb.CopyFrom(switchStyle.Thumb);
+                if (null != switchStyle.Track)
+                {
+                    Track?.CopyFrom(switchStyle.Track);
+                }
+
+                if (null != switchStyle.Thumb)
+                {
+                    Thumb?.CopyFrom(switchStyle.Thumb);
+                }
             }
         }
 
@@ -79,6 +99,28 @@ namespace Tizen.NUI.Components
         public override ButtonExtension CreateExtension()
         {
             return new SlidingSwitchExtension();
+        }
+
+        private void InitSubStyle()
+        {
+            IsSelectable = true;
+            Track = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent
+            };
+
+            Thumb = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.Fixed,
+                HeightResizePolicy = ResizePolicyType.Fixed
+            };
         }
     }
 }
