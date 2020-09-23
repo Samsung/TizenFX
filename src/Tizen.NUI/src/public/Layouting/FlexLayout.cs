@@ -94,8 +94,8 @@ namespace Tizen.NUI
                 width = x;
                 height = y;
             }
-            float width;
-            float height;
+            public float width;
+            public float height;
         };
 
         /// <summary>
@@ -223,8 +223,8 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate MeasuredSize ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ChildMeasureCallback( global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize );
 
         event ChildMeasureCallback measureChildDelegate; // Stores a delegate to the child measure callback. Used for all children of this FlexLayout.
 
@@ -547,7 +547,7 @@ namespace Tizen.NUI
             Absolute
         }
 
-        private MeasuredSize measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight)
+        private void measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize)
         {
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
@@ -570,7 +570,8 @@ namespace Tizen.NUI
 
             childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            return new MeasuredSize(childLayout.MeasuredWidth.Size.AsRoundedValue(), childLayout.MeasuredHeight.Size.AsRoundedValue());
+            measureSize.width = childLayout.MeasuredWidth.Size.AsRoundedValue();
+            measureSize.height = childLayout.MeasuredHeight.Size.AsRoundedValue();
         }
 
         void InsertChild(LayoutItem child)
