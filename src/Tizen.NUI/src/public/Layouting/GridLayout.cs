@@ -236,7 +236,7 @@ namespace Tizen.NUI
             set
             {
                 if (gridOrientation == value) return;
-                if (value != Orientation.Horizontal || value != Orientation.Vertical)
+                if (value != Orientation.Horizontal && value != Orientation.Vertical)
                     throw new InvalidEnumArgumentException(nameof(GridOrientation));
 
                 gridOrientation = value;
