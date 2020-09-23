@@ -1244,12 +1244,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
-        {
-            Interop.Application.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public void Lower()
         {
             Interop.Application.Application_Lower(swigCPtr);

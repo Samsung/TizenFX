@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PanGesture() : this(Interop.PanGestureDetector.new_PanGesture__SWIG_0(), true)
+        public PanGesture() : this(Interop.PanGestureDetector.PanGesture_New(0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
-        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.new_PanGesture__SWIG_1((int)state), true)
+        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.PanGesture_New((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -326,7 +326,11 @@ namespace Tizen.NUI
 
         internal static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
         {
-            PanGesture ret = new PanGesture(cPtr, false);
+            PanGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PanGesture;
+            if (ret == null)
+            {
+                ret = new PanGesture(cPtr, false);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

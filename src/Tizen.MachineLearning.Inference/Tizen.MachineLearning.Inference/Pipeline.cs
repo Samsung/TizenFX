@@ -868,6 +868,13 @@ namespace Tizen.MachineLearning.Inference
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
+                else if (typeof(double).IsAssignableFrom(typeof(T)))
+                {
+                    ret = Interop.Pipeline.GetPropertyDouble(Handle, propertyName, out double value);
+                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
 
                 throw new ArgumentException("The Input data type is not valid.");
             }
