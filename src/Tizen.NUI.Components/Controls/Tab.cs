@@ -498,6 +498,21 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleName) as TabStyle;
+            if (tabStyle != null)
+            {
+                ApplyStyle(tabStyle);
+            }
+        }
+
+        /// <summary>
         /// Layout child in Tab and it can be override by user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

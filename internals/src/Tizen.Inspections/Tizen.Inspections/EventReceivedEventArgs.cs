@@ -31,7 +31,7 @@ namespace Tizen.Inspections
         }
 
         /// <summary>
-        /// The inspection context, related to specific crash (or potentially other abnormality).
+        /// The instance of InspectionContext.
         /// </summary>
         public InspectionContext Context { get; internal set; }
     }

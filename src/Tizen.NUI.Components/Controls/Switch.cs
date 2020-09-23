@@ -317,6 +317,21 @@ namespace Tizen.NUI.Components
             IsSelectable = true;
         }
 
+        /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(StyleName) as SwitchStyle;
+            if (null != switchStyle)
+            {
+                ApplyStyle(switchStyle);
+            }
+        }
+
         private void OnSelect()
         {
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);

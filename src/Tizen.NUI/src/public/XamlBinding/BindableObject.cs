@@ -50,36 +50,35 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>Whether to allow null value when <seealso cref="CopyFrom"/>.</summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected static bool AllowNullCopy { get; set; } = false;
-
-        /// <summary>Copy properties of other ViewStyle to this.</summary>
-        /// <param name="other">The other BindableProperty merge to this.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void CopyFrom(BindableObject other)
+        public virtual void CopyFrom(BindableObject that)
         {
-            if (null == other) return;
-
-            Type type1 = this.GetType();
-            BindableProperty.GetBindablePropertysOfType(type1, out var nameToBindableProperty1);
-
-            Type type2 = other.GetType();
-            BindableProperty.GetBindablePropertysOfType(type2, out var nameToBindableProperty2);
-
-            if (null != nameToBindableProperty1)
+            if (null != that)
             {
-                foreach (KeyValuePair<string, BindableProperty> keyValuePair in nameToBindableProperty1)
+                Dictionary<string, BindableProperty> nameToBindableProperty1;
+                Type type1 = this.GetType();
+                BindableProperty.GetBindablePropertysOfType(type1, out nameToBindableProperty1);
+
+                Dictionary<string, BindableProperty> nameToBindableProperty2;
+                Type type2 = that.GetType();
+                BindableProperty.GetBindablePropertysOfType(type2, out nameToBindableProperty2);
+
+                if (null != nameToBindableProperty1)
                 {
-                    nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
-
-                    if (null != bindableProperty)
+                    foreach (KeyValuePair<string, BindableProperty> keyValuePair in nameToBindableProperty1)
                     {
-                        object value = other.GetValue(bindableProperty);
+                        BindableProperty bindableProperty;
+                        nameToBindableProperty2.TryGetValue(keyValuePair.Key, out bindableProperty);
 
-                        if (AllowNullCopy || null != value)
+                        if (null != bindableProperty)
                         {
-                            SetValue(keyValuePair.Value, value);
+                            object value = that.GetValue(bindableProperty);
+
+                            if (null != value)
+                            {
+                                SetValue(keyValuePair.Value, value);
+                            }
                         }
                     }
                 }
