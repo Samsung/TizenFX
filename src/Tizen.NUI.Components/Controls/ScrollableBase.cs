@@ -330,25 +330,28 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (scrollBar)
+                if (value != null)
                 {
-                    scrollBar.Unparent();
-                }
+                    if (scrollBar)
+                    {
+                        scrollBar.Unparent();
+                    }
 
-                scrollBar = value;
-                scrollBar.Name = "ScrollBar";
-                base.Add(scrollBar);
+                    scrollBar = value;
+                    scrollBar.Name = "ScrollBar";
+                    base.Add(scrollBar);
 
-                if (hideScrollbar)
-                {
-                    scrollBar.Hide();
-                }
-                else
-                {
-                    scrollBar.Show();
-                }
+                    if (hideScrollbar)
+                    {
+                        scrollBar.Hide();
+                    }
+                    else
+                    {
+                        scrollBar.Show();
+                    }
 
-                SetScrollbar();
+                    SetScrollbar();
+                }
             }
         }
 
