@@ -53,10 +53,19 @@ namespace Tizen.NUI.Components.Extension
                 slidingAnimation.Stop();
             }
 
-            slidingAnimation.Clear();
-            slidingAnimation.AnimateTo(thumb, "PositionX", switchButton.IsSelected ? track.Size.Width - thumb.Size.Width : 0);
-            slidingAnimation.EndAction = Animation.EndActions.StopFinal;
-            slidingAnimation.Play();
+            float destinationPosX = switchButton.IsSelected ? track.Size.Width - thumb.Size.Width : 0;
+
+            if (switchButton.IsOnWindow)
+            {
+                slidingAnimation.Clear();
+                slidingAnimation.AnimateTo(thumb, "PositionX", destinationPosX);
+                slidingAnimation.EndAction = Animation.EndActions.StopFinal;
+                slidingAnimation.Play();
+            }
+            else
+            {
+                thumb.PositionX = destinationPosX;
+            }
         }
 
         public override void OnDispose(Button button)

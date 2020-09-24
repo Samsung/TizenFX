@@ -54,25 +54,25 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         private const int CellUndefined = int.MinValue;
         private Orientation gridOrientation = Orientation.Horizontal;
@@ -228,6 +228,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get/Set the orientation in the layout
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 8 </since_tizen>
         public Orientation GridOrientation
         {
@@ -235,6 +236,9 @@ namespace Tizen.NUI
             set
             {
                 if (gridOrientation == value) return;
+                if (value != Orientation.Horizontal && value != Orientation.Vertical)
+                    throw new InvalidEnumArgumentException(nameof(GridOrientation));
+
                 gridOrientation = value;
                 RequestLayout();
             }

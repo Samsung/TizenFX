@@ -49,6 +49,7 @@ namespace Tizen.NUI
             AddAssemblyAttributes(assembly, new global::System.Windows.Markup.XmlnsDefinitionAttribute("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.BaseComponents"));
             AddAssemblyAttributes(assembly, new global::System.Windows.Markup.XmlnsDefinitionAttribute("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.UIComponents"));
             AddAssemblyAttributes(assembly, new global::System.Windows.Markup.XmlnsDefinitionAttribute("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.Xaml"));
+            AddAssemblyAttributes(assembly, new global::System.Windows.Markup.XmlnsDefinitionAttribute("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.Binding"));
             AddAttributesForTypes();
         }
 
