@@ -31,22 +31,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
         internal string styleName;
-
-        internal MergedStyle _mergedStyle
-        {
-            get
-            {
-                if (null == mergedStyle)
-                {
-                    mergedStyle = new MergedStyle(GetType(), this);
-                }
-
-                return mergedStyle;
-            }
-        }
 
         /// <summary>
         /// The color mode of View.
