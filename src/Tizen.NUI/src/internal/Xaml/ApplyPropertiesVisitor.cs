@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Binding;
-using Tizen.NUI.StyleSheets;
 
 using static System.String;
 
@@ -679,12 +678,8 @@ namespace Tizen.NUI.Xaml
 
             if (xKey != null)
                 resourceDictionary.Add(xKey, value);
-            else if (value is Tizen.NUI.Binding.Style)
-                resourceDictionary.Add((Tizen.NUI.Binding.Style)value);
             else if (value is ResourceDictionary)
                 resourceDictionary.Add((ResourceDictionary)value);
-            else if (value is StyleSheets.StyleSheet)
-                resourceDictionary.Add((StyleSheets.StyleSheet)value);
             else {
                 exception = new XamlParseException("resources in ResourceDictionary require a x:Key attribute", lineInfo);
                 return false;

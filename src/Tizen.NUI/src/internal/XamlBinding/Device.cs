@@ -127,32 +127,5 @@ namespace Tizen.NUI.Binding
         // {
         //     return PlatformServices.GetNamedSize(size, targetElementType, useOldSizes);
         // }
-
-        public static class Styles
-        {
-            public static readonly string TitleStyleKey = "TitleStyle";
-
-            public static readonly string SubtitleStyleKey = "SubtitleStyle";
-
-            public static readonly string BodyStyleKey = "BodyStyle";
-
-            public static readonly string ListItemTextStyleKey = "ListItemTextStyle";
-
-            public static readonly string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
-
-            public static readonly string CaptionStyleKey = "CaptionStyle";
-
-            public static readonly Style TitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
-
-            public static readonly Style SubtitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = SubtitleStyleKey };
-
-            public static readonly Style BodyStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = BodyStyleKey };
-
-            public static readonly Style ListItemTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemTextStyleKey };
-
-            public static readonly Style ListItemDetailTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemDetailTextStyleKey };
-
-            public static readonly Style CaptionStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = CaptionStyleKey };
-        }
     }
 }

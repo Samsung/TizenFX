@@ -48,12 +48,9 @@ namespace Tizen.NUI.Binding
                 object parent = parentValuesProvider.ParentObjects.Skip(1).FirstOrDefault();
                 if (parentValuesProvider.TargetObject is Setter)
                 {
-                    var style = parent as Style;
                     var triggerBase = parent as TriggerBase;
                     var visualState = parent as VisualState;
-                    if (style != null)
-                        type = style.TargetType;
-                    else if (triggerBase != null)
+                    if (triggerBase != null)
                         type = triggerBase.TargetType;
                     else if (visualState != null)
                         type = FindTypeForVisualState(parentValuesProvider, lineinfo);
@@ -144,13 +141,8 @@ namespace Tizen.NUI.Binding
                 throw new XamlParseException($"Expected {nameof(Setter)} but found {parents[4]}.", lineInfo);
             }
 
-            // These must be part of a Style; verify that 
-            if (!(parents[5] is Style style))
-            {
-                throw new XamlParseException($"Expected {nameof(Style)} but found {parents[5]}.", lineInfo);
-            }
+            throw new XamlParseException("NUI doesn't support VisualState", lineInfo);
 
-            return style.TargetType;
         }
     }
 }
