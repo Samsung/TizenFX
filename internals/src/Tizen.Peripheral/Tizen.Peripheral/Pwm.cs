@@ -39,7 +39,7 @@ namespace Tizen.Peripheral.Pwm
     /// The class allows applications to use the platform PWM peripheral.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Pwm : IDisposable
+    public class PwmPin : IDisposable
     {
 
         //TODO provide default values.
@@ -59,7 +59,7 @@ namespace Tizen.Peripheral.Pwm
         /// </summary>
         /// <param name="chip">The PWM chip number.</param>
         /// <param name="pin">The PWM pin (channel) number to control.</param>
-        public Pwm(int chip, int pin)
+        public PwmPin(int chip, int pin)
         {
             var ret = NativePwm.Open(chip, pin, out IntPtr handle);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -71,7 +71,7 @@ namespace Tizen.Peripheral.Pwm
         /// <summary>
         /// Closes the PWM pin.
         /// </summary>
-        ~Pwm()
+        ~PwmPin()
         {
             Dispose(false);
         }

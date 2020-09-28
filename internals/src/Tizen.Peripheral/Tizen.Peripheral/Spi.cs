@@ -68,7 +68,7 @@ namespace Tizen.Peripheral.Spi
     /// The class allows applications to communicate via SPI platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Spi : IDisposable
+    public class SpiDevice : IDisposable
     {
 
         //TODO Provide default values.
@@ -88,7 +88,7 @@ namespace Tizen.Peripheral.Spi
         /// </summary>
         /// <param name="bus">The SPI bus number.</param>
         /// <param name="chip">The SPI chip select number.</param>
-        public Spi(int bus, int chip)
+        public SpiDevice(int bus, int chip)
         {
             var ret = NativeSpi.Open(bus, chip, out IntPtr handle);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -100,7 +100,7 @@ namespace Tizen.Peripheral.Spi
         /// <summary>
         /// Closes the SPI slave device.
         /// </summary>
-        ~Spi()
+        ~SpiDevice()
         {
             Dispose(false);
         }
