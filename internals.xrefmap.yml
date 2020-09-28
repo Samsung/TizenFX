@@ -512,217 +512,95 @@ references:
   isSpec: "True"
   fullName: Tizen.Inspections.Inspector.RequestInspectableData
   nameWithType: Inspector.RequestInspectableData
-- uid: Tizen.Peripheral
-  name: Tizen.Peripheral
-  href: internals/api/Tizen.Peripheral.html
-  commentId: N:Tizen.Peripheral
-  fullName: Tizen.Peripheral
-  nameWithType: Tizen.Peripheral
 - uid: Tizen.Peripheral.Adc
-  name: Adc
+  name: Tizen.Peripheral.Adc
   href: internals/api/Tizen.Peripheral.Adc.html
-  commentId: T:Tizen.Peripheral.Adc
+  commentId: N:Tizen.Peripheral.Adc
   fullName: Tizen.Peripheral.Adc
-  nameWithType: Adc
-- uid: Tizen.Peripheral.Adc.#ctor(System.Int32,System.Int32)
-  name: Adc(Int32, Int32)
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc__ctor_System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.Adc.#ctor(System.Int32,System.Int32)
-  fullName: Tizen.Peripheral.Adc.Adc(System.Int32, System.Int32)
-  nameWithType: Adc.Adc(Int32, Int32)
-- uid: Tizen.Peripheral.Adc.#ctor*
-  name: Adc
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc__ctor_
-  commentId: Overload:Tizen.Peripheral.Adc.#ctor
+  nameWithType: Tizen.Peripheral.Adc
+- uid: Tizen.Peripheral.Adc.AdcChannel
+  name: AdcChannel
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html
+  commentId: T:Tizen.Peripheral.Adc.AdcChannel
+  fullName: Tizen.Peripheral.Adc.AdcChannel
+  nameWithType: AdcChannel
+- uid: Tizen.Peripheral.Adc.AdcChannel.#ctor(System.Int32,System.Int32)
+  name: AdcChannel(Int32, Int32)
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel__ctor_System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.#ctor(System.Int32,System.Int32)
+  fullName: Tizen.Peripheral.Adc.AdcChannel.AdcChannel(System.Int32, System.Int32)
+  nameWithType: AdcChannel.AdcChannel(Int32, Int32)
+- uid: Tizen.Peripheral.Adc.AdcChannel.#ctor*
+  name: AdcChannel
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel__ctor_
+  commentId: Overload:Tizen.Peripheral.Adc.AdcChannel.#ctor
   isSpec: "True"
-  fullName: Tizen.Peripheral.Adc.Adc
-  nameWithType: Adc.Adc
-- uid: Tizen.Peripheral.Adc.Close
+  fullName: Tizen.Peripheral.Adc.AdcChannel.AdcChannel
+  nameWithType: AdcChannel.AdcChannel
+- uid: Tizen.Peripheral.Adc.AdcChannel.Close
   name: Close()
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Close
-  commentId: M:Tizen.Peripheral.Adc.Close
-  fullName: Tizen.Peripheral.Adc.Close()
-  nameWithType: Adc.Close()
-- uid: Tizen.Peripheral.Adc.Close*
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Close
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.Close
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Close()
+  nameWithType: AdcChannel.Close()
+- uid: Tizen.Peripheral.Adc.AdcChannel.Close*
   name: Close
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Close_
-  commentId: Overload:Tizen.Peripheral.Adc.Close
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Close_
+  commentId: Overload:Tizen.Peripheral.Adc.AdcChannel.Close
   isSpec: "True"
-  fullName: Tizen.Peripheral.Adc.Close
-  nameWithType: Adc.Close
-- uid: Tizen.Peripheral.Adc.Dispose
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Close
+  nameWithType: AdcChannel.Close
+- uid: Tizen.Peripheral.Adc.AdcChannel.Dispose
   name: Dispose()
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Dispose
-  commentId: M:Tizen.Peripheral.Adc.Dispose
-  fullName: Tizen.Peripheral.Adc.Dispose()
-  nameWithType: Adc.Dispose()
-- uid: Tizen.Peripheral.Adc.Dispose(System.Boolean)
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Dispose
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.Dispose
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Dispose()
+  nameWithType: AdcChannel.Dispose()
+- uid: Tizen.Peripheral.Adc.AdcChannel.Dispose(System.Boolean)
   name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.Adc.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.Adc.Dispose(System.Boolean)
-  nameWithType: Adc.Dispose(Boolean)
-- uid: Tizen.Peripheral.Adc.Dispose*
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Dispose(System.Boolean)
+  nameWithType: AdcChannel.Dispose(Boolean)
+- uid: Tizen.Peripheral.Adc.AdcChannel.Dispose*
   name: Dispose
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Dispose_
-  commentId: Overload:Tizen.Peripheral.Adc.Dispose
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Dispose_
+  commentId: Overload:Tizen.Peripheral.Adc.AdcChannel.Dispose
   isSpec: "True"
-  fullName: Tizen.Peripheral.Adc.Dispose
-  nameWithType: Adc.Dispose
-- uid: Tizen.Peripheral.Adc.Finalize
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Dispose
+  nameWithType: AdcChannel.Dispose
+- uid: Tizen.Peripheral.Adc.AdcChannel.Finalize
   name: Finalize()
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Finalize
-  commentId: M:Tizen.Peripheral.Adc.Finalize
-  fullName: Tizen.Peripheral.Adc.Finalize()
-  nameWithType: Adc.Finalize()
-- uid: Tizen.Peripheral.Adc.Finalize*
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Finalize
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.Finalize
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Finalize()
+  nameWithType: AdcChannel.Finalize()
+- uid: Tizen.Peripheral.Adc.AdcChannel.Finalize*
   name: Finalize
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_Finalize_
-  commentId: Overload:Tizen.Peripheral.Adc.Finalize
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_Finalize_
+  commentId: Overload:Tizen.Peripheral.Adc.AdcChannel.Finalize
   isSpec: "True"
-  fullName: Tizen.Peripheral.Adc.Finalize
-  nameWithType: Adc.Finalize
-- uid: Tizen.Peripheral.Adc.ReadValue
+  fullName: Tizen.Peripheral.Adc.AdcChannel.Finalize
+  nameWithType: AdcChannel.Finalize
+- uid: Tizen.Peripheral.Adc.AdcChannel.ReadValue
   name: ReadValue()
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_ReadValue
-  commentId: M:Tizen.Peripheral.Adc.ReadValue
-  fullName: Tizen.Peripheral.Adc.ReadValue()
-  nameWithType: Adc.ReadValue()
-- uid: Tizen.Peripheral.Adc.ReadValue*
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_ReadValue
+  commentId: M:Tizen.Peripheral.Adc.AdcChannel.ReadValue
+  fullName: Tizen.Peripheral.Adc.AdcChannel.ReadValue()
+  nameWithType: AdcChannel.ReadValue()
+- uid: Tizen.Peripheral.Adc.AdcChannel.ReadValue*
   name: ReadValue
-  href: internals/api/Tizen.Peripheral.Adc.html#Tizen_Peripheral_Adc_ReadValue_
-  commentId: Overload:Tizen.Peripheral.Adc.ReadValue
+  href: internals/api/Tizen.Peripheral.Adc.AdcChannel.html#Tizen_Peripheral_Adc_AdcChannel_ReadValue_
+  commentId: Overload:Tizen.Peripheral.Adc.AdcChannel.ReadValue
   isSpec: "True"
-  fullName: Tizen.Peripheral.Adc.ReadValue
-  nameWithType: Adc.ReadValue
+  fullName: Tizen.Peripheral.Adc.AdcChannel.ReadValue
+  nameWithType: AdcChannel.ReadValue
 - uid: Tizen.Peripheral.Gpio
   name: Tizen.Peripheral.Gpio
   href: internals/api/Tizen.Peripheral.Gpio.html
   commentId: N:Tizen.Peripheral.Gpio
   fullName: Tizen.Peripheral.Gpio
   nameWithType: Tizen.Peripheral.Gpio
-- uid: Tizen.Peripheral.Gpio.Gpio
-  name: Gpio
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html
-  commentId: T:Tizen.Peripheral.Gpio.Gpio
-  fullName: Tizen.Peripheral.Gpio.Gpio
-  nameWithType: Gpio
-- uid: Tizen.Peripheral.Gpio.Gpio.#ctor(System.Int32,Tizen.Peripheral.Gpio.GpioPinDriveMode)
-  name: Gpio(Int32, GpioPinDriveMode)
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio__ctor_System_Int32_Tizen_Peripheral_Gpio_GpioPinDriveMode_
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.#ctor(System.Int32,Tizen.Peripheral.Gpio.GpioPinDriveMode)
-  fullName: Tizen.Peripheral.Gpio.Gpio.Gpio(System.Int32, Tizen.Peripheral.Gpio.GpioPinDriveMode)
-  nameWithType: Gpio.Gpio(Int32, GpioPinDriveMode)
-- uid: Tizen.Peripheral.Gpio.Gpio.#ctor*
-  name: Gpio
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio__ctor_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.#ctor
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Gpio
-  nameWithType: Gpio.Gpio
-- uid: Tizen.Peripheral.Gpio.Gpio.Close
-  name: Close()
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Close
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Close
-  fullName: Tizen.Peripheral.Gpio.Gpio.Close()
-  nameWithType: Gpio.Close()
-- uid: Tizen.Peripheral.Gpio.Gpio.Close*
-  name: Close
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Close_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Close
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Close
-  nameWithType: Gpio.Close
-- uid: Tizen.Peripheral.Gpio.Gpio.Dispose
-  name: Dispose()
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Dispose
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Dispose
-  fullName: Tizen.Peripheral.Gpio.Gpio.Dispose()
-  nameWithType: Gpio.Dispose()
-- uid: Tizen.Peripheral.Gpio.Gpio.Dispose(System.Boolean)
-  name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.Gpio.Gpio.Dispose(System.Boolean)
-  nameWithType: Gpio.Dispose(Boolean)
-- uid: Tizen.Peripheral.Gpio.Gpio.Dispose*
-  name: Dispose
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Dispose_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Dispose
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Dispose
-  nameWithType: Gpio.Dispose
-- uid: Tizen.Peripheral.Gpio.Gpio.Finalize
-  name: Finalize()
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Finalize
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Finalize
-  fullName: Tizen.Peripheral.Gpio.Gpio.Finalize()
-  nameWithType: Gpio.Finalize()
-- uid: Tizen.Peripheral.Gpio.Gpio.Finalize*
-  name: Finalize
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Finalize_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Finalize
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Finalize
-  nameWithType: Gpio.Finalize
-- uid: Tizen.Peripheral.Gpio.Gpio.PinNumber
-  name: PinNumber
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_PinNumber
-  commentId: P:Tizen.Peripheral.Gpio.Gpio.PinNumber
-  fullName: Tizen.Peripheral.Gpio.Gpio.PinNumber
-  nameWithType: Gpio.PinNumber
-- uid: Tizen.Peripheral.Gpio.Gpio.PinNumber*
-  name: PinNumber
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_PinNumber_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.PinNumber
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.PinNumber
-  nameWithType: Gpio.PinNumber
-- uid: Tizen.Peripheral.Gpio.Gpio.Polarity
-  name: Polarity
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Polarity
-  commentId: P:Tizen.Peripheral.Gpio.Gpio.Polarity
-  fullName: Tizen.Peripheral.Gpio.Gpio.Polarity
-  nameWithType: Gpio.Polarity
-- uid: Tizen.Peripheral.Gpio.Gpio.Polarity*
-  name: Polarity
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Polarity_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Polarity
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Polarity
-  nameWithType: Gpio.Polarity
-- uid: Tizen.Peripheral.Gpio.Gpio.Read
-  name: Read()
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Read
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Read
-  fullName: Tizen.Peripheral.Gpio.Gpio.Read()
-  nameWithType: Gpio.Read()
-- uid: Tizen.Peripheral.Gpio.Gpio.Read*
-  name: Read
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Read_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Read
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Read
-  nameWithType: Gpio.Read
-- uid: Tizen.Peripheral.Gpio.Gpio.ValueChanged
-  name: ValueChanged
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_ValueChanged
-  commentId: E:Tizen.Peripheral.Gpio.Gpio.ValueChanged
-  fullName: Tizen.Peripheral.Gpio.Gpio.ValueChanged
-  nameWithType: Gpio.ValueChanged
-- uid: Tizen.Peripheral.Gpio.Gpio.Write(Tizen.Peripheral.Gpio.GpioPinValue)
-  name: Write(GpioPinValue)
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Write_Tizen_Peripheral_Gpio_GpioPinValue_
-  commentId: M:Tizen.Peripheral.Gpio.Gpio.Write(Tizen.Peripheral.Gpio.GpioPinValue)
-  fullName: Tizen.Peripheral.Gpio.Gpio.Write(Tizen.Peripheral.Gpio.GpioPinValue)
-  nameWithType: Gpio.Write(GpioPinValue)
-- uid: Tizen.Peripheral.Gpio.Gpio.Write*
-  name: Write
-  href: internals/api/Tizen.Peripheral.Gpio.Gpio.html#Tizen_Peripheral_Gpio_Gpio_Write_
-  commentId: Overload:Tizen.Peripheral.Gpio.Gpio.Write
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Gpio.Gpio.Write
-  nameWithType: Gpio.Write
 - uid: Tizen.Peripheral.Gpio.GpioChangePolarity
   name: GpioChangePolarity
   href: internals/api/Tizen.Peripheral.Gpio.GpioChangePolarity.html
@@ -753,6 +631,128 @@ references:
   commentId: F:Tizen.Peripheral.Gpio.GpioChangePolarity.Rising
   fullName: Tizen.Peripheral.Gpio.GpioChangePolarity.Rising
   nameWithType: GpioChangePolarity.Rising
+- uid: Tizen.Peripheral.Gpio.GpioPin
+  name: GpioPin
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html
+  commentId: T:Tizen.Peripheral.Gpio.GpioPin
+  fullName: Tizen.Peripheral.Gpio.GpioPin
+  nameWithType: GpioPin
+- uid: Tizen.Peripheral.Gpio.GpioPin.#ctor(System.Int32,Tizen.Peripheral.Gpio.GpioPinDriveMode)
+  name: GpioPin(Int32, GpioPinDriveMode)
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin__ctor_System_Int32_Tizen_Peripheral_Gpio_GpioPinDriveMode_
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.#ctor(System.Int32,Tizen.Peripheral.Gpio.GpioPinDriveMode)
+  fullName: Tizen.Peripheral.Gpio.GpioPin.GpioPin(System.Int32, Tizen.Peripheral.Gpio.GpioPinDriveMode)
+  nameWithType: GpioPin.GpioPin(Int32, GpioPinDriveMode)
+- uid: Tizen.Peripheral.Gpio.GpioPin.#ctor*
+  name: GpioPin
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin__ctor_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.#ctor
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.GpioPin
+  nameWithType: GpioPin.GpioPin
+- uid: Tizen.Peripheral.Gpio.GpioPin.Close
+  name: Close()
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Close
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Close
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Close()
+  nameWithType: GpioPin.Close()
+- uid: Tizen.Peripheral.Gpio.GpioPin.Close*
+  name: Close
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Close_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Close
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Close
+  nameWithType: GpioPin.Close
+- uid: Tizen.Peripheral.Gpio.GpioPin.Dispose
+  name: Dispose()
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Dispose
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Dispose
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Dispose()
+  nameWithType: GpioPin.Dispose()
+- uid: Tizen.Peripheral.Gpio.GpioPin.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Dispose(System.Boolean)
+  nameWithType: GpioPin.Dispose(Boolean)
+- uid: Tizen.Peripheral.Gpio.GpioPin.Dispose*
+  name: Dispose
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Dispose_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Dispose
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Dispose
+  nameWithType: GpioPin.Dispose
+- uid: Tizen.Peripheral.Gpio.GpioPin.Finalize
+  name: Finalize()
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Finalize
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Finalize
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Finalize()
+  nameWithType: GpioPin.Finalize()
+- uid: Tizen.Peripheral.Gpio.GpioPin.Finalize*
+  name: Finalize
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Finalize_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Finalize
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Finalize
+  nameWithType: GpioPin.Finalize
+- uid: Tizen.Peripheral.Gpio.GpioPin.PinNumber
+  name: PinNumber
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_PinNumber
+  commentId: P:Tizen.Peripheral.Gpio.GpioPin.PinNumber
+  fullName: Tizen.Peripheral.Gpio.GpioPin.PinNumber
+  nameWithType: GpioPin.PinNumber
+- uid: Tizen.Peripheral.Gpio.GpioPin.PinNumber*
+  name: PinNumber
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_PinNumber_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.PinNumber
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.PinNumber
+  nameWithType: GpioPin.PinNumber
+- uid: Tizen.Peripheral.Gpio.GpioPin.Polarity
+  name: Polarity
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Polarity
+  commentId: P:Tizen.Peripheral.Gpio.GpioPin.Polarity
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Polarity
+  nameWithType: GpioPin.Polarity
+- uid: Tizen.Peripheral.Gpio.GpioPin.Polarity*
+  name: Polarity
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Polarity_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Polarity
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Polarity
+  nameWithType: GpioPin.Polarity
+- uid: Tizen.Peripheral.Gpio.GpioPin.Read
+  name: Read()
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Read
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Read
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Read()
+  nameWithType: GpioPin.Read()
+- uid: Tizen.Peripheral.Gpio.GpioPin.Read*
+  name: Read
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Read_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Read
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Read
+  nameWithType: GpioPin.Read
+- uid: Tizen.Peripheral.Gpio.GpioPin.ValueChanged
+  name: ValueChanged
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_ValueChanged
+  commentId: E:Tizen.Peripheral.Gpio.GpioPin.ValueChanged
+  fullName: Tizen.Peripheral.Gpio.GpioPin.ValueChanged
+  nameWithType: GpioPin.ValueChanged
+- uid: Tizen.Peripheral.Gpio.GpioPin.Write(Tizen.Peripheral.Gpio.GpioPinValue)
+  name: Write(GpioPinValue)
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Write_Tizen_Peripheral_Gpio_GpioPinValue_
+  commentId: M:Tizen.Peripheral.Gpio.GpioPin.Write(Tizen.Peripheral.Gpio.GpioPinValue)
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Write(Tizen.Peripheral.Gpio.GpioPinValue)
+  nameWithType: GpioPin.Write(GpioPinValue)
+- uid: Tizen.Peripheral.Gpio.GpioPin.Write*
+  name: Write
+  href: internals/api/Tizen.Peripheral.Gpio.GpioPin.html#Tizen_Peripheral_Gpio_GpioPin_Write_
+  commentId: Overload:Tizen.Peripheral.Gpio.GpioPin.Write
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Gpio.GpioPin.Write
+  nameWithType: GpioPin.Write
 - uid: Tizen.Peripheral.Gpio.GpioPinDriveMode
   name: GpioPinDriveMode
   href: internals/api/Tizen.Peripheral.Gpio.GpioPinDriveMode.html
@@ -841,275 +841,281 @@ references:
   fullName: Tizen.Peripheral.Gpio.PinUpdatedEventArgs.ToString
   nameWithType: PinUpdatedEventArgs.ToString
 - uid: Tizen.Peripheral.I2c
-  name: I2c
+  name: Tizen.Peripheral.I2c
   href: internals/api/Tizen.Peripheral.I2c.html
-  commentId: T:Tizen.Peripheral.I2c
+  commentId: N:Tizen.Peripheral.I2c
   fullName: Tizen.Peripheral.I2c
-  nameWithType: I2c
-- uid: Tizen.Peripheral.I2c.#ctor(System.Int32,System.Int32)
-  name: I2c(Int32, Int32)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c__ctor_System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.I2c.#ctor(System.Int32,System.Int32)
-  fullName: Tizen.Peripheral.I2c.I2c(System.Int32, System.Int32)
-  nameWithType: I2c.I2c(Int32, Int32)
-- uid: Tizen.Peripheral.I2c.#ctor*
-  name: I2c
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c__ctor_
-  commentId: Overload:Tizen.Peripheral.I2c.#ctor
+  nameWithType: Tizen.Peripheral.I2c
+- uid: Tizen.Peripheral.I2c.I2cDevice
+  name: I2cDevice
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html
+  commentId: T:Tizen.Peripheral.I2c.I2cDevice
+  fullName: Tizen.Peripheral.I2c.I2cDevice
+  nameWithType: I2cDevice
+- uid: Tizen.Peripheral.I2c.I2cDevice.#ctor(System.Int32,System.Int32)
+  name: I2cDevice(Int32, Int32)
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice__ctor_System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.#ctor(System.Int32,System.Int32)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.I2cDevice(System.Int32, System.Int32)
+  nameWithType: I2cDevice.I2cDevice(Int32, Int32)
+- uid: Tizen.Peripheral.I2c.I2cDevice.#ctor*
+  name: I2cDevice
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice__ctor_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.#ctor
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.I2c
-  nameWithType: I2c.I2c
-- uid: Tizen.Peripheral.I2c.Close
+  fullName: Tizen.Peripheral.I2c.I2cDevice.I2cDevice
+  nameWithType: I2cDevice.I2cDevice
+- uid: Tizen.Peripheral.I2c.I2cDevice.Close
   name: Close()
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Close
-  commentId: M:Tizen.Peripheral.I2c.Close
-  fullName: Tizen.Peripheral.I2c.Close()
-  nameWithType: I2c.Close()
-- uid: Tizen.Peripheral.I2c.Close*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Close
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Close
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Close()
+  nameWithType: I2cDevice.Close()
+- uid: Tizen.Peripheral.I2c.I2cDevice.Close*
   name: Close
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Close_
-  commentId: Overload:Tizen.Peripheral.I2c.Close
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Close_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.Close
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.Close
-  nameWithType: I2c.Close
-- uid: Tizen.Peripheral.I2c.Dispose
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Close
+  nameWithType: I2cDevice.Close
+- uid: Tizen.Peripheral.I2c.I2cDevice.Dispose
   name: Dispose()
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Dispose
-  commentId: M:Tizen.Peripheral.I2c.Dispose
-  fullName: Tizen.Peripheral.I2c.Dispose()
-  nameWithType: I2c.Dispose()
-- uid: Tizen.Peripheral.I2c.Dispose(System.Boolean)
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Dispose
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Dispose
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Dispose()
+  nameWithType: I2cDevice.Dispose()
+- uid: Tizen.Peripheral.I2c.I2cDevice.Dispose(System.Boolean)
   name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.I2c.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.I2c.Dispose(System.Boolean)
-  nameWithType: I2c.Dispose(Boolean)
-- uid: Tizen.Peripheral.I2c.Dispose*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Dispose(System.Boolean)
+  nameWithType: I2cDevice.Dispose(Boolean)
+- uid: Tizen.Peripheral.I2c.I2cDevice.Dispose*
   name: Dispose
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Dispose_
-  commentId: Overload:Tizen.Peripheral.I2c.Dispose
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Dispose_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.Dispose
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.Dispose
-  nameWithType: I2c.Dispose
-- uid: Tizen.Peripheral.I2c.Finalize
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Dispose
+  nameWithType: I2cDevice.Dispose
+- uid: Tizen.Peripheral.I2c.I2cDevice.Finalize
   name: Finalize()
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Finalize
-  commentId: M:Tizen.Peripheral.I2c.Finalize
-  fullName: Tizen.Peripheral.I2c.Finalize()
-  nameWithType: I2c.Finalize()
-- uid: Tizen.Peripheral.I2c.Finalize*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Finalize
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Finalize
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Finalize()
+  nameWithType: I2cDevice.Finalize()
+- uid: Tizen.Peripheral.I2c.I2cDevice.Finalize*
   name: Finalize
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Finalize_
-  commentId: Overload:Tizen.Peripheral.I2c.Finalize
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Finalize_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.Finalize
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.Finalize
-  nameWithType: I2c.Finalize
-- uid: Tizen.Peripheral.I2c.Read(System.Byte[])
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Finalize
+  nameWithType: I2cDevice.Finalize
+- uid: Tizen.Peripheral.I2c.I2cDevice.Read(System.Byte[])
   name: Read(Byte[])
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Read_System_Byte___
-  commentId: M:Tizen.Peripheral.I2c.Read(System.Byte[])
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Read_System_Byte___
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Read(System.Byte[])
   name.vb: Read(Byte())
-  fullName: Tizen.Peripheral.I2c.Read(System.Byte[])
-  fullName.vb: Tizen.Peripheral.I2c.Read(System.Byte())
-  nameWithType: I2c.Read(Byte[])
-  nameWithType.vb: I2c.Read(Byte())
-- uid: Tizen.Peripheral.I2c.Read*
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Read(System.Byte[])
+  fullName.vb: Tizen.Peripheral.I2c.I2cDevice.Read(System.Byte())
+  nameWithType: I2cDevice.Read(Byte[])
+  nameWithType.vb: I2cDevice.Read(Byte())
+- uid: Tizen.Peripheral.I2c.I2cDevice.Read*
   name: Read
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Read_
-  commentId: Overload:Tizen.Peripheral.I2c.Read
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Read_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.Read
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.Read
-  nameWithType: I2c.Read
-- uid: Tizen.Peripheral.I2c.ReadRegisterByte(System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Read
+  nameWithType: I2cDevice.Read
+- uid: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte(System.Byte)
   name: ReadRegisterByte(Byte)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_ReadRegisterByte_System_Byte_
-  commentId: M:Tizen.Peripheral.I2c.ReadRegisterByte(System.Byte)
-  fullName: Tizen.Peripheral.I2c.ReadRegisterByte(System.Byte)
-  nameWithType: I2c.ReadRegisterByte(Byte)
-- uid: Tizen.Peripheral.I2c.ReadRegisterByte*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_ReadRegisterByte_System_Byte_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte(System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte(System.Byte)
+  nameWithType: I2cDevice.ReadRegisterByte(Byte)
+- uid: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte*
   name: ReadRegisterByte
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_ReadRegisterByte_
-  commentId: Overload:Tizen.Peripheral.I2c.ReadRegisterByte
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_ReadRegisterByte_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.ReadRegisterByte
-  nameWithType: I2c.ReadRegisterByte
-- uid: Tizen.Peripheral.I2c.ReadRegisterWord(System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterByte
+  nameWithType: I2cDevice.ReadRegisterByte
+- uid: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord(System.Byte)
   name: ReadRegisterWord(Byte)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_ReadRegisterWord_System_Byte_
-  commentId: M:Tizen.Peripheral.I2c.ReadRegisterWord(System.Byte)
-  fullName: Tizen.Peripheral.I2c.ReadRegisterWord(System.Byte)
-  nameWithType: I2c.ReadRegisterWord(Byte)
-- uid: Tizen.Peripheral.I2c.ReadRegisterWord*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_ReadRegisterWord_System_Byte_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord(System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord(System.Byte)
+  nameWithType: I2cDevice.ReadRegisterWord(Byte)
+- uid: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord*
   name: ReadRegisterWord
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_ReadRegisterWord_
-  commentId: Overload:Tizen.Peripheral.I2c.ReadRegisterWord
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_ReadRegisterWord_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.ReadRegisterWord
-  nameWithType: I2c.ReadRegisterWord
-- uid: Tizen.Peripheral.I2c.Write(System.Byte[])
+  fullName: Tizen.Peripheral.I2c.I2cDevice.ReadRegisterWord
+  nameWithType: I2cDevice.ReadRegisterWord
+- uid: Tizen.Peripheral.I2c.I2cDevice.Write(System.Byte[])
   name: Write(Byte[])
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Write_System_Byte___
-  commentId: M:Tizen.Peripheral.I2c.Write(System.Byte[])
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Write_System_Byte___
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.Write(System.Byte[])
   name.vb: Write(Byte())
-  fullName: Tizen.Peripheral.I2c.Write(System.Byte[])
-  fullName.vb: Tizen.Peripheral.I2c.Write(System.Byte())
-  nameWithType: I2c.Write(Byte[])
-  nameWithType.vb: I2c.Write(Byte())
-- uid: Tizen.Peripheral.I2c.Write*
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Write(System.Byte[])
+  fullName.vb: Tizen.Peripheral.I2c.I2cDevice.Write(System.Byte())
+  nameWithType: I2cDevice.Write(Byte[])
+  nameWithType.vb: I2cDevice.Write(Byte())
+- uid: Tizen.Peripheral.I2c.I2cDevice.Write*
   name: Write
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_Write_
-  commentId: Overload:Tizen.Peripheral.I2c.Write
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_Write_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.Write
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.Write
-  nameWithType: I2c.Write
-- uid: Tizen.Peripheral.I2c.WriteRegisterByte(System.Byte,System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.Write
+  nameWithType: I2cDevice.Write
+- uid: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte(System.Byte,System.Byte)
   name: WriteRegisterByte(Byte, Byte)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_WriteRegisterByte_System_Byte_System_Byte_
-  commentId: M:Tizen.Peripheral.I2c.WriteRegisterByte(System.Byte,System.Byte)
-  fullName: Tizen.Peripheral.I2c.WriteRegisterByte(System.Byte, System.Byte)
-  nameWithType: I2c.WriteRegisterByte(Byte, Byte)
-- uid: Tizen.Peripheral.I2c.WriteRegisterByte*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_WriteRegisterByte_System_Byte_System_Byte_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte(System.Byte,System.Byte)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte(System.Byte, System.Byte)
+  nameWithType: I2cDevice.WriteRegisterByte(Byte, Byte)
+- uid: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte*
   name: WriteRegisterByte
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_WriteRegisterByte_
-  commentId: Overload:Tizen.Peripheral.I2c.WriteRegisterByte
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_WriteRegisterByte_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.WriteRegisterByte
-  nameWithType: I2c.WriteRegisterByte
-- uid: Tizen.Peripheral.I2c.WriteRegisterWord(System.Byte,System.UInt16)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterByte
+  nameWithType: I2cDevice.WriteRegisterByte
+- uid: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord(System.Byte,System.UInt16)
   name: WriteRegisterWord(Byte, UInt16)
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_WriteRegisterWord_System_Byte_System_UInt16_
-  commentId: M:Tizen.Peripheral.I2c.WriteRegisterWord(System.Byte,System.UInt16)
-  fullName: Tizen.Peripheral.I2c.WriteRegisterWord(System.Byte, System.UInt16)
-  nameWithType: I2c.WriteRegisterWord(Byte, UInt16)
-- uid: Tizen.Peripheral.I2c.WriteRegisterWord*
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_WriteRegisterWord_System_Byte_System_UInt16_
+  commentId: M:Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord(System.Byte,System.UInt16)
+  fullName: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord(System.Byte, System.UInt16)
+  nameWithType: I2cDevice.WriteRegisterWord(Byte, UInt16)
+- uid: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord*
   name: WriteRegisterWord
-  href: internals/api/Tizen.Peripheral.I2c.html#Tizen_Peripheral_I2c_WriteRegisterWord_
-  commentId: Overload:Tizen.Peripheral.I2c.WriteRegisterWord
+  href: internals/api/Tizen.Peripheral.I2c.I2cDevice.html#Tizen_Peripheral_I2c_I2cDevice_WriteRegisterWord_
+  commentId: Overload:Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord
   isSpec: "True"
-  fullName: Tizen.Peripheral.I2c.WriteRegisterWord
-  nameWithType: I2c.WriteRegisterWord
+  fullName: Tizen.Peripheral.I2c.I2cDevice.WriteRegisterWord
+  nameWithType: I2cDevice.WriteRegisterWord
 - uid: Tizen.Peripheral.Pwm
   name: Tizen.Peripheral.Pwm
   href: internals/api/Tizen.Peripheral.Pwm.html
   commentId: N:Tizen.Peripheral.Pwm
   fullName: Tizen.Peripheral.Pwm
   nameWithType: Tizen.Peripheral.Pwm
-- uid: Tizen.Peripheral.Pwm.Pwm
-  name: Pwm
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html
-  commentId: T:Tizen.Peripheral.Pwm.Pwm
-  fullName: Tizen.Peripheral.Pwm.Pwm
-  nameWithType: Pwm
-- uid: Tizen.Peripheral.Pwm.Pwm.#ctor(System.Int32,System.Int32)
-  name: Pwm(Int32, Int32)
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm__ctor_System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.Pwm.Pwm.#ctor(System.Int32,System.Int32)
-  fullName: Tizen.Peripheral.Pwm.Pwm.Pwm(System.Int32, System.Int32)
-  nameWithType: Pwm.Pwm(Int32, Int32)
-- uid: Tizen.Peripheral.Pwm.Pwm.#ctor*
-  name: Pwm
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm__ctor_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.#ctor
+- uid: Tizen.Peripheral.Pwm.PwmPin
+  name: PwmPin
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html
+  commentId: T:Tizen.Peripheral.Pwm.PwmPin
+  fullName: Tizen.Peripheral.Pwm.PwmPin
+  nameWithType: PwmPin
+- uid: Tizen.Peripheral.Pwm.PwmPin.#ctor(System.Int32,System.Int32)
+  name: PwmPin(Int32, Int32)
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin__ctor_System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.Pwm.PwmPin.#ctor(System.Int32,System.Int32)
+  fullName: Tizen.Peripheral.Pwm.PwmPin.PwmPin(System.Int32, System.Int32)
+  nameWithType: PwmPin.PwmPin(Int32, Int32)
+- uid: Tizen.Peripheral.Pwm.PwmPin.#ctor*
+  name: PwmPin
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin__ctor_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.#ctor
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Pwm
-  nameWithType: Pwm.Pwm
-- uid: Tizen.Peripheral.Pwm.Pwm.Close
+  fullName: Tizen.Peripheral.Pwm.PwmPin.PwmPin
+  nameWithType: PwmPin.PwmPin
+- uid: Tizen.Peripheral.Pwm.PwmPin.Close
   name: Close()
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Close
-  commentId: M:Tizen.Peripheral.Pwm.Pwm.Close
-  fullName: Tizen.Peripheral.Pwm.Pwm.Close()
-  nameWithType: Pwm.Close()
-- uid: Tizen.Peripheral.Pwm.Pwm.Close*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Close
+  commentId: M:Tizen.Peripheral.Pwm.PwmPin.Close
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Close()
+  nameWithType: PwmPin.Close()
+- uid: Tizen.Peripheral.Pwm.PwmPin.Close*
   name: Close
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Close_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Close
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Close_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Close
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Close
-  nameWithType: Pwm.Close
-- uid: Tizen.Peripheral.Pwm.Pwm.Dispose
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Close
+  nameWithType: PwmPin.Close
+- uid: Tizen.Peripheral.Pwm.PwmPin.Dispose
   name: Dispose()
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Dispose
-  commentId: M:Tizen.Peripheral.Pwm.Pwm.Dispose
-  fullName: Tizen.Peripheral.Pwm.Pwm.Dispose()
-  nameWithType: Pwm.Dispose()
-- uid: Tizen.Peripheral.Pwm.Pwm.Dispose(System.Boolean)
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Dispose
+  commentId: M:Tizen.Peripheral.Pwm.PwmPin.Dispose
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Dispose()
+  nameWithType: PwmPin.Dispose()
+- uid: Tizen.Peripheral.Pwm.PwmPin.Dispose(System.Boolean)
   name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.Pwm.Pwm.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.Pwm.Pwm.Dispose(System.Boolean)
-  nameWithType: Pwm.Dispose(Boolean)
-- uid: Tizen.Peripheral.Pwm.Pwm.Dispose*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.Pwm.PwmPin.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Dispose(System.Boolean)
+  nameWithType: PwmPin.Dispose(Boolean)
+- uid: Tizen.Peripheral.Pwm.PwmPin.Dispose*
   name: Dispose
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Dispose_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Dispose
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Dispose_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Dispose
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Dispose
-  nameWithType: Pwm.Dispose
-- uid: Tizen.Peripheral.Pwm.Pwm.DutyCycle
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Dispose
+  nameWithType: PwmPin.Dispose
+- uid: Tizen.Peripheral.Pwm.PwmPin.DutyCycle
   name: DutyCycle
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_DutyCycle
-  commentId: P:Tizen.Peripheral.Pwm.Pwm.DutyCycle
-  fullName: Tizen.Peripheral.Pwm.Pwm.DutyCycle
-  nameWithType: Pwm.DutyCycle
-- uid: Tizen.Peripheral.Pwm.Pwm.DutyCycle*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_DutyCycle
+  commentId: P:Tizen.Peripheral.Pwm.PwmPin.DutyCycle
+  fullName: Tizen.Peripheral.Pwm.PwmPin.DutyCycle
+  nameWithType: PwmPin.DutyCycle
+- uid: Tizen.Peripheral.Pwm.PwmPin.DutyCycle*
   name: DutyCycle
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_DutyCycle_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.DutyCycle
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_DutyCycle_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.DutyCycle
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.DutyCycle
-  nameWithType: Pwm.DutyCycle
-- uid: Tizen.Peripheral.Pwm.Pwm.Enabled
+  fullName: Tizen.Peripheral.Pwm.PwmPin.DutyCycle
+  nameWithType: PwmPin.DutyCycle
+- uid: Tizen.Peripheral.Pwm.PwmPin.Enabled
   name: Enabled
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Enabled
-  commentId: P:Tizen.Peripheral.Pwm.Pwm.Enabled
-  fullName: Tizen.Peripheral.Pwm.Pwm.Enabled
-  nameWithType: Pwm.Enabled
-- uid: Tizen.Peripheral.Pwm.Pwm.Enabled*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Enabled
+  commentId: P:Tizen.Peripheral.Pwm.PwmPin.Enabled
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Enabled
+  nameWithType: PwmPin.Enabled
+- uid: Tizen.Peripheral.Pwm.PwmPin.Enabled*
   name: Enabled
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Enabled_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Enabled
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Enabled_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Enabled
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Enabled
-  nameWithType: Pwm.Enabled
-- uid: Tizen.Peripheral.Pwm.Pwm.Finalize
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Enabled
+  nameWithType: PwmPin.Enabled
+- uid: Tizen.Peripheral.Pwm.PwmPin.Finalize
   name: Finalize()
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Finalize
-  commentId: M:Tizen.Peripheral.Pwm.Pwm.Finalize
-  fullName: Tizen.Peripheral.Pwm.Pwm.Finalize()
-  nameWithType: Pwm.Finalize()
-- uid: Tizen.Peripheral.Pwm.Pwm.Finalize*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Finalize
+  commentId: M:Tizen.Peripheral.Pwm.PwmPin.Finalize
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Finalize()
+  nameWithType: PwmPin.Finalize()
+- uid: Tizen.Peripheral.Pwm.PwmPin.Finalize*
   name: Finalize
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Finalize_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Finalize
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Finalize_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Finalize
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Finalize
-  nameWithType: Pwm.Finalize
-- uid: Tizen.Peripheral.Pwm.Pwm.Period
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Finalize
+  nameWithType: PwmPin.Finalize
+- uid: Tizen.Peripheral.Pwm.PwmPin.Period
   name: Period
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Period
-  commentId: P:Tizen.Peripheral.Pwm.Pwm.Period
-  fullName: Tizen.Peripheral.Pwm.Pwm.Period
-  nameWithType: Pwm.Period
-- uid: Tizen.Peripheral.Pwm.Pwm.Period*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Period
+  commentId: P:Tizen.Peripheral.Pwm.PwmPin.Period
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Period
+  nameWithType: PwmPin.Period
+- uid: Tizen.Peripheral.Pwm.PwmPin.Period*
   name: Period
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Period_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Period
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Period_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Period
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Period
-  nameWithType: Pwm.Period
-- uid: Tizen.Peripheral.Pwm.Pwm.Polarity
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Period
+  nameWithType: PwmPin.Period
+- uid: Tizen.Peripheral.Pwm.PwmPin.Polarity
   name: Polarity
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Polarity
-  commentId: P:Tizen.Peripheral.Pwm.Pwm.Polarity
-  fullName: Tizen.Peripheral.Pwm.Pwm.Polarity
-  nameWithType: Pwm.Polarity
-- uid: Tizen.Peripheral.Pwm.Pwm.Polarity*
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Polarity
+  commentId: P:Tizen.Peripheral.Pwm.PwmPin.Polarity
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Polarity
+  nameWithType: PwmPin.Polarity
+- uid: Tizen.Peripheral.Pwm.PwmPin.Polarity*
   name: Polarity
-  href: internals/api/Tizen.Peripheral.Pwm.Pwm.html#Tizen_Peripheral_Pwm_Pwm_Polarity_
-  commentId: Overload:Tizen.Peripheral.Pwm.Pwm.Polarity
+  href: internals/api/Tizen.Peripheral.Pwm.PwmPin.html#Tizen_Peripheral_Pwm_PwmPin_Polarity_
+  commentId: Overload:Tizen.Peripheral.Pwm.PwmPin.Polarity
   isSpec: "True"
-  fullName: Tizen.Peripheral.Pwm.Pwm.Polarity
-  nameWithType: Pwm.Polarity
+  fullName: Tizen.Peripheral.Pwm.PwmPin.Polarity
+  nameWithType: PwmPin.Polarity
 - uid: Tizen.Peripheral.Pwm.PwmPulsePolarity
   name: PwmPulsePolarity
   href: internals/api/Tizen.Peripheral.Pwm.PwmPulsePolarity.html
@@ -1152,170 +1158,170 @@ references:
   commentId: F:Tizen.Peripheral.Spi.BitOrder.MSB
   fullName: Tizen.Peripheral.Spi.BitOrder.MSB
   nameWithType: BitOrder.MSB
-- uid: Tizen.Peripheral.Spi.Spi
-  name: Spi
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html
-  commentId: T:Tizen.Peripheral.Spi.Spi
-  fullName: Tizen.Peripheral.Spi.Spi
-  nameWithType: Spi
-- uid: Tizen.Peripheral.Spi.Spi.#ctor(System.Int32,System.Int32)
-  name: Spi(Int32, Int32)
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi__ctor_System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.Spi.Spi.#ctor(System.Int32,System.Int32)
-  fullName: Tizen.Peripheral.Spi.Spi.Spi(System.Int32, System.Int32)
-  nameWithType: Spi.Spi(Int32, Int32)
-- uid: Tizen.Peripheral.Spi.Spi.#ctor*
-  name: Spi
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi__ctor_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.#ctor
+- uid: Tizen.Peripheral.Spi.SpiDevice
+  name: SpiDevice
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html
+  commentId: T:Tizen.Peripheral.Spi.SpiDevice
+  fullName: Tizen.Peripheral.Spi.SpiDevice
+  nameWithType: SpiDevice
+- uid: Tizen.Peripheral.Spi.SpiDevice.#ctor(System.Int32,System.Int32)
+  name: SpiDevice(Int32, Int32)
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice__ctor_System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.#ctor(System.Int32,System.Int32)
+  fullName: Tizen.Peripheral.Spi.SpiDevice.SpiDevice(System.Int32, System.Int32)
+  nameWithType: SpiDevice.SpiDevice(Int32, Int32)
+- uid: Tizen.Peripheral.Spi.SpiDevice.#ctor*
+  name: SpiDevice
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice__ctor_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.#ctor
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Spi
-  nameWithType: Spi.Spi
-- uid: Tizen.Peripheral.Spi.Spi.BitOrder
+  fullName: Tizen.Peripheral.Spi.SpiDevice.SpiDevice
+  nameWithType: SpiDevice.SpiDevice
+- uid: Tizen.Peripheral.Spi.SpiDevice.BitOrder
   name: BitOrder
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_BitOrder
-  commentId: P:Tizen.Peripheral.Spi.Spi.BitOrder
-  fullName: Tizen.Peripheral.Spi.Spi.BitOrder
-  nameWithType: Spi.BitOrder
-- uid: Tizen.Peripheral.Spi.Spi.BitOrder*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_BitOrder
+  commentId: P:Tizen.Peripheral.Spi.SpiDevice.BitOrder
+  fullName: Tizen.Peripheral.Spi.SpiDevice.BitOrder
+  nameWithType: SpiDevice.BitOrder
+- uid: Tizen.Peripheral.Spi.SpiDevice.BitOrder*
   name: BitOrder
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_BitOrder_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.BitOrder
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_BitOrder_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.BitOrder
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.BitOrder
-  nameWithType: Spi.BitOrder
-- uid: Tizen.Peripheral.Spi.Spi.BitsPerWord
+  fullName: Tizen.Peripheral.Spi.SpiDevice.BitOrder
+  nameWithType: SpiDevice.BitOrder
+- uid: Tizen.Peripheral.Spi.SpiDevice.BitsPerWord
   name: BitsPerWord
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_BitsPerWord
-  commentId: P:Tizen.Peripheral.Spi.Spi.BitsPerWord
-  fullName: Tizen.Peripheral.Spi.Spi.BitsPerWord
-  nameWithType: Spi.BitsPerWord
-- uid: Tizen.Peripheral.Spi.Spi.BitsPerWord*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_BitsPerWord
+  commentId: P:Tizen.Peripheral.Spi.SpiDevice.BitsPerWord
+  fullName: Tizen.Peripheral.Spi.SpiDevice.BitsPerWord
+  nameWithType: SpiDevice.BitsPerWord
+- uid: Tizen.Peripheral.Spi.SpiDevice.BitsPerWord*
   name: BitsPerWord
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_BitsPerWord_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.BitsPerWord
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_BitsPerWord_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.BitsPerWord
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.BitsPerWord
-  nameWithType: Spi.BitsPerWord
-- uid: Tizen.Peripheral.Spi.Spi.ClockFrequency
+  fullName: Tizen.Peripheral.Spi.SpiDevice.BitsPerWord
+  nameWithType: SpiDevice.BitsPerWord
+- uid: Tizen.Peripheral.Spi.SpiDevice.ClockFrequency
   name: ClockFrequency
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_ClockFrequency
-  commentId: P:Tizen.Peripheral.Spi.Spi.ClockFrequency
-  fullName: Tizen.Peripheral.Spi.Spi.ClockFrequency
-  nameWithType: Spi.ClockFrequency
-- uid: Tizen.Peripheral.Spi.Spi.ClockFrequency*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_ClockFrequency
+  commentId: P:Tizen.Peripheral.Spi.SpiDevice.ClockFrequency
+  fullName: Tizen.Peripheral.Spi.SpiDevice.ClockFrequency
+  nameWithType: SpiDevice.ClockFrequency
+- uid: Tizen.Peripheral.Spi.SpiDevice.ClockFrequency*
   name: ClockFrequency
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_ClockFrequency_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.ClockFrequency
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_ClockFrequency_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.ClockFrequency
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.ClockFrequency
-  nameWithType: Spi.ClockFrequency
-- uid: Tizen.Peripheral.Spi.Spi.Close
+  fullName: Tizen.Peripheral.Spi.SpiDevice.ClockFrequency
+  nameWithType: SpiDevice.ClockFrequency
+- uid: Tizen.Peripheral.Spi.SpiDevice.Close
   name: Close()
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Close
-  commentId: M:Tizen.Peripheral.Spi.Spi.Close
-  fullName: Tizen.Peripheral.Spi.Spi.Close()
-  nameWithType: Spi.Close()
-- uid: Tizen.Peripheral.Spi.Spi.Close*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Close
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Close
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Close()
+  nameWithType: SpiDevice.Close()
+- uid: Tizen.Peripheral.Spi.SpiDevice.Close*
   name: Close
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Close_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Close
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Close_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Close
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Close
-  nameWithType: Spi.Close
-- uid: Tizen.Peripheral.Spi.Spi.Dispose
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Close
+  nameWithType: SpiDevice.Close
+- uid: Tizen.Peripheral.Spi.SpiDevice.Dispose
   name: Dispose()
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Dispose
-  commentId: M:Tizen.Peripheral.Spi.Spi.Dispose
-  fullName: Tizen.Peripheral.Spi.Spi.Dispose()
-  nameWithType: Spi.Dispose()
-- uid: Tizen.Peripheral.Spi.Spi.Dispose(System.Boolean)
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Dispose
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Dispose
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Dispose()
+  nameWithType: SpiDevice.Dispose()
+- uid: Tizen.Peripheral.Spi.SpiDevice.Dispose(System.Boolean)
   name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.Spi.Spi.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.Spi.Spi.Dispose(System.Boolean)
-  nameWithType: Spi.Dispose(Boolean)
-- uid: Tizen.Peripheral.Spi.Spi.Dispose*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Dispose(System.Boolean)
+  nameWithType: SpiDevice.Dispose(Boolean)
+- uid: Tizen.Peripheral.Spi.SpiDevice.Dispose*
   name: Dispose
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Dispose_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Dispose
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Dispose_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Dispose
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Dispose
-  nameWithType: Spi.Dispose
-- uid: Tizen.Peripheral.Spi.Spi.Finalize
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Dispose
+  nameWithType: SpiDevice.Dispose
+- uid: Tizen.Peripheral.Spi.SpiDevice.Finalize
   name: Finalize()
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Finalize
-  commentId: M:Tizen.Peripheral.Spi.Spi.Finalize
-  fullName: Tizen.Peripheral.Spi.Spi.Finalize()
-  nameWithType: Spi.Finalize()
-- uid: Tizen.Peripheral.Spi.Spi.Finalize*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Finalize
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Finalize
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Finalize()
+  nameWithType: SpiDevice.Finalize()
+- uid: Tizen.Peripheral.Spi.SpiDevice.Finalize*
   name: Finalize
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Finalize_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Finalize
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Finalize_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Finalize
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Finalize
-  nameWithType: Spi.Finalize
-- uid: Tizen.Peripheral.Spi.Spi.Mode
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Finalize
+  nameWithType: SpiDevice.Finalize
+- uid: Tizen.Peripheral.Spi.SpiDevice.Mode
   name: Mode
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Mode
-  commentId: P:Tizen.Peripheral.Spi.Spi.Mode
-  fullName: Tizen.Peripheral.Spi.Spi.Mode
-  nameWithType: Spi.Mode
-- uid: Tizen.Peripheral.Spi.Spi.Mode*
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Mode
+  commentId: P:Tizen.Peripheral.Spi.SpiDevice.Mode
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Mode
+  nameWithType: SpiDevice.Mode
+- uid: Tizen.Peripheral.Spi.SpiDevice.Mode*
   name: Mode
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Mode_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Mode
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Mode_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Mode
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Mode
-  nameWithType: Spi.Mode
-- uid: Tizen.Peripheral.Spi.Spi.Read(System.Byte[])
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Mode
+  nameWithType: SpiDevice.Mode
+- uid: Tizen.Peripheral.Spi.SpiDevice.Read(System.Byte[])
   name: Read(Byte[])
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Read_System_Byte___
-  commentId: M:Tizen.Peripheral.Spi.Spi.Read(System.Byte[])
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Read_System_Byte___
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Read(System.Byte[])
   name.vb: Read(Byte())
-  fullName: Tizen.Peripheral.Spi.Spi.Read(System.Byte[])
-  fullName.vb: Tizen.Peripheral.Spi.Spi.Read(System.Byte())
-  nameWithType: Spi.Read(Byte[])
-  nameWithType.vb: Spi.Read(Byte())
-- uid: Tizen.Peripheral.Spi.Spi.Read*
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Read(System.Byte[])
+  fullName.vb: Tizen.Peripheral.Spi.SpiDevice.Read(System.Byte())
+  nameWithType: SpiDevice.Read(Byte[])
+  nameWithType.vb: SpiDevice.Read(Byte())
+- uid: Tizen.Peripheral.Spi.SpiDevice.Read*
   name: Read
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Read_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Read
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Read_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Read
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Read
-  nameWithType: Spi.Read
-- uid: Tizen.Peripheral.Spi.Spi.TransferSequential(System.Byte[],System.Byte[])
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Read
+  nameWithType: SpiDevice.Read
+- uid: Tizen.Peripheral.Spi.SpiDevice.TransferSequential(System.Byte[],System.Byte[])
   name: TransferSequential(Byte[], Byte[])
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_TransferSequential_System_Byte___System_Byte___
-  commentId: M:Tizen.Peripheral.Spi.Spi.TransferSequential(System.Byte[],System.Byte[])
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_TransferSequential_System_Byte___System_Byte___
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.TransferSequential(System.Byte[],System.Byte[])
   name.vb: TransferSequential(Byte(), Byte())
-  fullName: Tizen.Peripheral.Spi.Spi.TransferSequential(System.Byte[], System.Byte[])
-  fullName.vb: Tizen.Peripheral.Spi.Spi.TransferSequential(System.Byte(), System.Byte())
-  nameWithType: Spi.TransferSequential(Byte[], Byte[])
-  nameWithType.vb: Spi.TransferSequential(Byte(), Byte())
-- uid: Tizen.Peripheral.Spi.Spi.TransferSequential*
+  fullName: Tizen.Peripheral.Spi.SpiDevice.TransferSequential(System.Byte[], System.Byte[])
+  fullName.vb: Tizen.Peripheral.Spi.SpiDevice.TransferSequential(System.Byte(), System.Byte())
+  nameWithType: SpiDevice.TransferSequential(Byte[], Byte[])
+  nameWithType.vb: SpiDevice.TransferSequential(Byte(), Byte())
+- uid: Tizen.Peripheral.Spi.SpiDevice.TransferSequential*
   name: TransferSequential
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_TransferSequential_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.TransferSequential
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_TransferSequential_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.TransferSequential
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.TransferSequential
-  nameWithType: Spi.TransferSequential
-- uid: Tizen.Peripheral.Spi.Spi.Write(System.Byte[])
+  fullName: Tizen.Peripheral.Spi.SpiDevice.TransferSequential
+  nameWithType: SpiDevice.TransferSequential
+- uid: Tizen.Peripheral.Spi.SpiDevice.Write(System.Byte[])
   name: Write(Byte[])
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Write_System_Byte___
-  commentId: M:Tizen.Peripheral.Spi.Spi.Write(System.Byte[])
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Write_System_Byte___
+  commentId: M:Tizen.Peripheral.Spi.SpiDevice.Write(System.Byte[])
   name.vb: Write(Byte())
-  fullName: Tizen.Peripheral.Spi.Spi.Write(System.Byte[])
-  fullName.vb: Tizen.Peripheral.Spi.Spi.Write(System.Byte())
-  nameWithType: Spi.Write(Byte[])
-  nameWithType.vb: Spi.Write(Byte())
-- uid: Tizen.Peripheral.Spi.Spi.Write*
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Write(System.Byte[])
+  fullName.vb: Tizen.Peripheral.Spi.SpiDevice.Write(System.Byte())
+  nameWithType: SpiDevice.Write(Byte[])
+  nameWithType.vb: SpiDevice.Write(Byte())
+- uid: Tizen.Peripheral.Spi.SpiDevice.Write*
   name: Write
-  href: internals/api/Tizen.Peripheral.Spi.Spi.html#Tizen_Peripheral_Spi_Spi_Write_
-  commentId: Overload:Tizen.Peripheral.Spi.Spi.Write
+  href: internals/api/Tizen.Peripheral.Spi.SpiDevice.html#Tizen_Peripheral_Spi_SpiDevice_Write_
+  commentId: Overload:Tizen.Peripheral.Spi.SpiDevice.Write
   isSpec: "True"
-  fullName: Tizen.Peripheral.Spi.Spi.Write
-  nameWithType: Spi.Write
+  fullName: Tizen.Peripheral.Spi.SpiDevice.Write
+  nameWithType: SpiDevice.Write
 - uid: Tizen.Peripheral.Spi.SpiMode
   name: SpiMode
   href: internals/api/Tizen.Peripheral.Spi.SpiMode.html
@@ -1544,6 +1550,180 @@ references:
   commentId: F:Tizen.Peripheral.Uart.Parity.Odd
   fullName: Tizen.Peripheral.Uart.Parity.Odd
   nameWithType: Parity.Odd
+- uid: Tizen.Peripheral.Uart.SerialPort
+  name: SerialPort
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html
+  commentId: T:Tizen.Peripheral.Uart.SerialPort
+  fullName: Tizen.Peripheral.Uart.SerialPort
+  nameWithType: SerialPort
+- uid: Tizen.Peripheral.Uart.SerialPort.#ctor(System.Int32)
+  name: SerialPort(Int32)
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort__ctor_System_Int32_
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.#ctor(System.Int32)
+  fullName: Tizen.Peripheral.Uart.SerialPort.SerialPort(System.Int32)
+  nameWithType: SerialPort.SerialPort(Int32)
+- uid: Tizen.Peripheral.Uart.SerialPort.#ctor*
+  name: SerialPort
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort__ctor_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.#ctor
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.SerialPort
+  nameWithType: SerialPort.SerialPort
+- uid: Tizen.Peripheral.Uart.SerialPort.BaudRate
+  name: BaudRate
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_BaudRate
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.BaudRate
+  fullName: Tizen.Peripheral.Uart.SerialPort.BaudRate
+  nameWithType: SerialPort.BaudRate
+- uid: Tizen.Peripheral.Uart.SerialPort.BaudRate*
+  name: BaudRate
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_BaudRate_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.BaudRate
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.BaudRate
+  nameWithType: SerialPort.BaudRate
+- uid: Tizen.Peripheral.Uart.SerialPort.Close
+  name: Close()
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Close
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Close
+  fullName: Tizen.Peripheral.Uart.SerialPort.Close()
+  nameWithType: SerialPort.Close()
+- uid: Tizen.Peripheral.Uart.SerialPort.Close*
+  name: Close
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Close_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Close
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Close
+  nameWithType: SerialPort.Close
+- uid: Tizen.Peripheral.Uart.SerialPort.DataBits
+  name: DataBits
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_DataBits
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.DataBits
+  fullName: Tizen.Peripheral.Uart.SerialPort.DataBits
+  nameWithType: SerialPort.DataBits
+- uid: Tizen.Peripheral.Uart.SerialPort.DataBits*
+  name: DataBits
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_DataBits_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.DataBits
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.DataBits
+  nameWithType: SerialPort.DataBits
+- uid: Tizen.Peripheral.Uart.SerialPort.Dispose
+  name: Dispose()
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Dispose
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Dispose
+  fullName: Tizen.Peripheral.Uart.SerialPort.Dispose()
+  nameWithType: SerialPort.Dispose()
+- uid: Tizen.Peripheral.Uart.SerialPort.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Dispose_System_Boolean_
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Dispose(System.Boolean)
+  fullName: Tizen.Peripheral.Uart.SerialPort.Dispose(System.Boolean)
+  nameWithType: SerialPort.Dispose(Boolean)
+- uid: Tizen.Peripheral.Uart.SerialPort.Dispose*
+  name: Dispose
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Dispose_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Dispose
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Dispose
+  nameWithType: SerialPort.Dispose
+- uid: Tizen.Peripheral.Uart.SerialPort.Finalize
+  name: Finalize()
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Finalize
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Finalize
+  fullName: Tizen.Peripheral.Uart.SerialPort.Finalize()
+  nameWithType: SerialPort.Finalize()
+- uid: Tizen.Peripheral.Uart.SerialPort.Finalize*
+  name: Finalize
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Finalize_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Finalize
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Finalize
+  nameWithType: SerialPort.Finalize
+- uid: Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl
+  name: HardwareFlowControl
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_HardwareFlowControl
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl
+  fullName: Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl
+  nameWithType: SerialPort.HardwareFlowControl
+- uid: Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl*
+  name: HardwareFlowControl
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_HardwareFlowControl_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.HardwareFlowControl
+  nameWithType: SerialPort.HardwareFlowControl
+- uid: Tizen.Peripheral.Uart.SerialPort.Parity
+  name: Parity
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Parity
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.Parity
+  fullName: Tizen.Peripheral.Uart.SerialPort.Parity
+  nameWithType: SerialPort.Parity
+- uid: Tizen.Peripheral.Uart.SerialPort.Parity*
+  name: Parity
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Parity_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Parity
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Parity
+  nameWithType: SerialPort.Parity
+- uid: Tizen.Peripheral.Uart.SerialPort.Read(System.Byte[],System.Int32,System.Int32)
+  name: Read(Byte[], Int32, Int32)
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Read_System_Byte___System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Read(System.Byte[],System.Int32,System.Int32)
+  name.vb: Read(Byte(), Int32, Int32)
+  fullName: Tizen.Peripheral.Uart.SerialPort.Read(System.Byte[], System.Int32, System.Int32)
+  fullName.vb: Tizen.Peripheral.Uart.SerialPort.Read(System.Byte(), System.Int32, System.Int32)
+  nameWithType: SerialPort.Read(Byte[], Int32, Int32)
+  nameWithType.vb: SerialPort.Read(Byte(), Int32, Int32)
+- uid: Tizen.Peripheral.Uart.SerialPort.Read*
+  name: Read
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Read_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Read
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Read
+  nameWithType: SerialPort.Read
+- uid: Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl
+  name: SoftwareFlowControl
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_SoftwareFlowControl
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl
+  fullName: Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl
+  nameWithType: SerialPort.SoftwareFlowControl
+- uid: Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl*
+  name: SoftwareFlowControl
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_SoftwareFlowControl_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.SoftwareFlowControl
+  nameWithType: SerialPort.SoftwareFlowControl
+- uid: Tizen.Peripheral.Uart.SerialPort.StopBits
+  name: StopBits
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_StopBits
+  commentId: P:Tizen.Peripheral.Uart.SerialPort.StopBits
+  fullName: Tizen.Peripheral.Uart.SerialPort.StopBits
+  nameWithType: SerialPort.StopBits
+- uid: Tizen.Peripheral.Uart.SerialPort.StopBits*
+  name: StopBits
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_StopBits_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.StopBits
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.StopBits
+  nameWithType: SerialPort.StopBits
+- uid: Tizen.Peripheral.Uart.SerialPort.Write(System.Byte[],System.Int32,System.Int32)
+  name: Write(Byte[], Int32, Int32)
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Write_System_Byte___System_Int32_System_Int32_
+  commentId: M:Tizen.Peripheral.Uart.SerialPort.Write(System.Byte[],System.Int32,System.Int32)
+  name.vb: Write(Byte(), Int32, Int32)
+  fullName: Tizen.Peripheral.Uart.SerialPort.Write(System.Byte[], System.Int32, System.Int32)
+  fullName.vb: Tizen.Peripheral.Uart.SerialPort.Write(System.Byte(), System.Int32, System.Int32)
+  nameWithType: SerialPort.Write(Byte[], Int32, Int32)
+  nameWithType.vb: SerialPort.Write(Byte(), Int32, Int32)
+- uid: Tizen.Peripheral.Uart.SerialPort.Write*
+  name: Write
+  href: internals/api/Tizen.Peripheral.Uart.SerialPort.html#Tizen_Peripheral_Uart_SerialPort_Write_
+  commentId: Overload:Tizen.Peripheral.Uart.SerialPort.Write
+  isSpec: "True"
+  fullName: Tizen.Peripheral.Uart.SerialPort.Write
+  nameWithType: SerialPort.Write
 - uid: Tizen.Peripheral.Uart.SoftwareFlowControl
   name: SoftwareFlowControl
   href: internals/api/Tizen.Peripheral.Uart.SoftwareFlowControl.html
@@ -1580,180 +1760,6 @@ references:
   commentId: F:Tizen.Peripheral.Uart.StopBits.Two
   fullName: Tizen.Peripheral.Uart.StopBits.Two
   nameWithType: StopBits.Two
-- uid: Tizen.Peripheral.Uart.Uart
-  name: Uart
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html
-  commentId: T:Tizen.Peripheral.Uart.Uart
-  fullName: Tizen.Peripheral.Uart.Uart
-  nameWithType: Uart
-- uid: Tizen.Peripheral.Uart.Uart.#ctor(System.Int32)
-  name: Uart(Int32)
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart__ctor_System_Int32_
-  commentId: M:Tizen.Peripheral.Uart.Uart.#ctor(System.Int32)
-  fullName: Tizen.Peripheral.Uart.Uart.Uart(System.Int32)
-  nameWithType: Uart.Uart(Int32)
-- uid: Tizen.Peripheral.Uart.Uart.#ctor*
-  name: Uart
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart__ctor_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.#ctor
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Uart
-  nameWithType: Uart.Uart
-- uid: Tizen.Peripheral.Uart.Uart.BaudRate
-  name: BaudRate
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_BaudRate
-  commentId: P:Tizen.Peripheral.Uart.Uart.BaudRate
-  fullName: Tizen.Peripheral.Uart.Uart.BaudRate
-  nameWithType: Uart.BaudRate
-- uid: Tizen.Peripheral.Uart.Uart.BaudRate*
-  name: BaudRate
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_BaudRate_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.BaudRate
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.BaudRate
-  nameWithType: Uart.BaudRate
-- uid: Tizen.Peripheral.Uart.Uart.Close
-  name: Close()
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Close
-  commentId: M:Tizen.Peripheral.Uart.Uart.Close
-  fullName: Tizen.Peripheral.Uart.Uart.Close()
-  nameWithType: Uart.Close()
-- uid: Tizen.Peripheral.Uart.Uart.Close*
-  name: Close
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Close_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Close
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Close
-  nameWithType: Uart.Close
-- uid: Tizen.Peripheral.Uart.Uart.DataBits
-  name: DataBits
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_DataBits
-  commentId: P:Tizen.Peripheral.Uart.Uart.DataBits
-  fullName: Tizen.Peripheral.Uart.Uart.DataBits
-  nameWithType: Uart.DataBits
-- uid: Tizen.Peripheral.Uart.Uart.DataBits*
-  name: DataBits
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_DataBits_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.DataBits
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.DataBits
-  nameWithType: Uart.DataBits
-- uid: Tizen.Peripheral.Uart.Uart.Dispose
-  name: Dispose()
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Dispose
-  commentId: M:Tizen.Peripheral.Uart.Uart.Dispose
-  fullName: Tizen.Peripheral.Uart.Uart.Dispose()
-  nameWithType: Uart.Dispose()
-- uid: Tizen.Peripheral.Uart.Uart.Dispose(System.Boolean)
-  name: Dispose(Boolean)
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Dispose_System_Boolean_
-  commentId: M:Tizen.Peripheral.Uart.Uart.Dispose(System.Boolean)
-  fullName: Tizen.Peripheral.Uart.Uart.Dispose(System.Boolean)
-  nameWithType: Uart.Dispose(Boolean)
-- uid: Tizen.Peripheral.Uart.Uart.Dispose*
-  name: Dispose
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Dispose_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Dispose
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Dispose
-  nameWithType: Uart.Dispose
-- uid: Tizen.Peripheral.Uart.Uart.Finalize
-  name: Finalize()
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Finalize
-  commentId: M:Tizen.Peripheral.Uart.Uart.Finalize
-  fullName: Tizen.Peripheral.Uart.Uart.Finalize()
-  nameWithType: Uart.Finalize()
-- uid: Tizen.Peripheral.Uart.Uart.Finalize*
-  name: Finalize
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Finalize_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Finalize
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Finalize
-  nameWithType: Uart.Finalize
-- uid: Tizen.Peripheral.Uart.Uart.HardwareFlowControl
-  name: HardwareFlowControl
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_HardwareFlowControl
-  commentId: P:Tizen.Peripheral.Uart.Uart.HardwareFlowControl
-  fullName: Tizen.Peripheral.Uart.Uart.HardwareFlowControl
-  nameWithType: Uart.HardwareFlowControl
-- uid: Tizen.Peripheral.Uart.Uart.HardwareFlowControl*
-  name: HardwareFlowControl
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_HardwareFlowControl_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.HardwareFlowControl
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.HardwareFlowControl
-  nameWithType: Uart.HardwareFlowControl
-- uid: Tizen.Peripheral.Uart.Uart.Parity
-  name: Parity
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Parity
-  commentId: P:Tizen.Peripheral.Uart.Uart.Parity
-  fullName: Tizen.Peripheral.Uart.Uart.Parity
-  nameWithType: Uart.Parity
-- uid: Tizen.Peripheral.Uart.Uart.Parity*
-  name: Parity
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Parity_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Parity
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Parity
-  nameWithType: Uart.Parity
-- uid: Tizen.Peripheral.Uart.Uart.Read(System.Byte[],System.Int32,System.Int32)
-  name: Read(Byte[], Int32, Int32)
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Read_System_Byte___System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.Uart.Uart.Read(System.Byte[],System.Int32,System.Int32)
-  name.vb: Read(Byte(), Int32, Int32)
-  fullName: Tizen.Peripheral.Uart.Uart.Read(System.Byte[], System.Int32, System.Int32)
-  fullName.vb: Tizen.Peripheral.Uart.Uart.Read(System.Byte(), System.Int32, System.Int32)
-  nameWithType: Uart.Read(Byte[], Int32, Int32)
-  nameWithType.vb: Uart.Read(Byte(), Int32, Int32)
-- uid: Tizen.Peripheral.Uart.Uart.Read*
-  name: Read
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Read_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Read
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Read
-  nameWithType: Uart.Read
-- uid: Tizen.Peripheral.Uart.Uart.SoftwareFlowControl
-  name: SoftwareFlowControl
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_SoftwareFlowControl
-  commentId: P:Tizen.Peripheral.Uart.Uart.SoftwareFlowControl
-  fullName: Tizen.Peripheral.Uart.Uart.SoftwareFlowControl
-  nameWithType: Uart.SoftwareFlowControl
-- uid: Tizen.Peripheral.Uart.Uart.SoftwareFlowControl*
-  name: SoftwareFlowControl
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_SoftwareFlowControl_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.SoftwareFlowControl
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.SoftwareFlowControl
-  nameWithType: Uart.SoftwareFlowControl
-- uid: Tizen.Peripheral.Uart.Uart.StopBits
-  name: StopBits
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_StopBits
-  commentId: P:Tizen.Peripheral.Uart.Uart.StopBits
-  fullName: Tizen.Peripheral.Uart.Uart.StopBits
-  nameWithType: Uart.StopBits
-- uid: Tizen.Peripheral.Uart.Uart.StopBits*
-  name: StopBits
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_StopBits_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.StopBits
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.StopBits
-  nameWithType: Uart.StopBits
-- uid: Tizen.Peripheral.Uart.Uart.Write(System.Byte[],System.Int32,System.Int32)
-  name: Write(Byte[], Int32, Int32)
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Write_System_Byte___System_Int32_System_Int32_
-  commentId: M:Tizen.Peripheral.Uart.Uart.Write(System.Byte[],System.Int32,System.Int32)
-  name.vb: Write(Byte(), Int32, Int32)
-  fullName: Tizen.Peripheral.Uart.Uart.Write(System.Byte[], System.Int32, System.Int32)
-  fullName.vb: Tizen.Peripheral.Uart.Uart.Write(System.Byte(), System.Int32, System.Int32)
-  nameWithType: Uart.Write(Byte[], Int32, Int32)
-  nameWithType.vb: Uart.Write(Byte(), Int32, Int32)
-- uid: Tizen.Peripheral.Uart.Uart.Write*
-  name: Write
-  href: internals/api/Tizen.Peripheral.Uart.Uart.html#Tizen_Peripheral_Uart_Uart_Write_
-  commentId: Overload:Tizen.Peripheral.Uart.Uart.Write
-  isSpec: "True"
-  fullName: Tizen.Peripheral.Uart.Uart.Write
-  nameWithType: Uart.Write
 - uid: Tizen.Uix.VoiceControlWidget
   name: Tizen.Uix.VoiceControlWidget
   href: internals/api/Tizen.Uix.VoiceControlWidget.html
