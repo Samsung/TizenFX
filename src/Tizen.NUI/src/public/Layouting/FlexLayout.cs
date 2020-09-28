@@ -41,13 +41,13 @@ namespace Tizen.NUI
         /// FlexAlignmentSelfProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, validateValue: ValidateEnum((int)AlignmentType.Auto, (int)AlignmentType.Stretch), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// FlexPositionTypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, validateValue: ValidateEnum((int)PositionType.Relative, (int)PositionType.Absolute), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// AspectRatioProperty
@@ -94,8 +94,8 @@ namespace Tizen.NUI
                 width = x;
                 height = y;
             }
-            float width;
-            float height;
+            public float width;
+            public float height;
         };
 
         /// <summary>
@@ -223,8 +223,8 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate MeasuredSize ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ChildMeasureCallback( global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize );
 
         event ChildMeasureCallback measureChildDelegate; // Stores a delegate to the child measure callback. Used for all children of this FlexLayout.
 
@@ -333,12 +333,16 @@ namespace Tizen.NUI
         /// Gets/Sets the flex direction in the layout.
         /// The direction of the main-axis which determines the direction that flex items are laid out.
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 6 </since_tizen>
         public FlexDirection Direction
         {
             get => (FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
             set
             {
+                if (value < FlexDirection.Column || value > FlexDirection.RowReverse)
+                    throw new InvalidEnumArgumentException(nameof(Direction));
+
                 Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)value);
                 RequestLayout();
             }
@@ -350,12 +354,16 @@ namespace Tizen.NUI
         /// For example, you can use this property to center a child horizontally within a container with <see cref="Direction"/> set to <see cref="FlexDirection.Row"/>
         /// or vertically within a container with <see cref="Direction"/> set to <see cref="FlexDirection.Column"/>.
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
         {
             get => (FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
             set
             {
+                if (value < FlexJustification.FlexStart || value > FlexJustification.SpaceAround)
+                    throw new InvalidEnumArgumentException(nameof(Justification));
+
                 Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)value);
                 RequestLayout();
             }
@@ -368,14 +376,19 @@ namespace Tizen.NUI
         /// If wrapping is allowed items are wrapped into multiple lines along the main axis if needed. wrap reverse behaves the same, but the order of the lines is reversed.<br/>
         /// When wrapping lines <see cref="Alignment"/> can be used to specify how the lines are placed in the container.
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
         {
             get => (FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
             set
             {
+                if (value != FlexWrapType.NoWrap && value != FlexWrapType.Wrap)
+                    throw new InvalidEnumArgumentException(nameof(WrapType));
+
                 Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)value);
                 RequestLayout();
+
             }
         }
 
@@ -384,12 +397,16 @@ namespace Tizen.NUI
         /// Alignment defines the distribution of lines along the cross-axis.<br/>
         /// This only has effect when items are wrapped to multiple lines using flex wrap.
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
         {
             get => GetFlexAlignment();
             set
             {
+                if (value < AlignmentType.Auto || value > AlignmentType.Stretch)
+                    throw new InvalidEnumArgumentException(nameof(Alignment));
+
                 Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)value);
                 RequestLayout();
             }
@@ -400,12 +417,16 @@ namespace Tizen.NUI
         /// Items alignment describes how to align children along the cross axis of their container.<br/>
         /// Align items is very similar to <see cref="Justification"/> but instead of applying to the main axis, align items applies to the cross axis.
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
         {
             get => GetFlexItemsAlignment();
             set
             {
+                if (value < AlignmentType.Auto || value > AlignmentType.Stretch)
+                    throw new InvalidEnumArgumentException(nameof(ItemsAlignment));
+
                 Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)value);
                 RequestLayout();
             }
@@ -526,7 +547,7 @@ namespace Tizen.NUI
             Absolute
         }
 
-        private MeasuredSize measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight)
+        private void measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize)
         {
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
@@ -549,7 +570,8 @@ namespace Tizen.NUI
 
             childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            return new MeasuredSize(childLayout.MeasuredWidth.Size.AsRoundedValue(), childLayout.MeasuredHeight.Size.AsRoundedValue());
+            measureSize.width = childLayout.MeasuredWidth.Size.AsRoundedValue();
+            measureSize.height = childLayout.MeasuredHeight.Size.AsRoundedValue();
         }
 
         void InsertChild(LayoutItem child)

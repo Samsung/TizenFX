@@ -588,5 +588,15 @@ namespace Tizen.NUI
             View view = bindable as View;
             view?.Layout?.RequestLayout();
         }
+
+        internal static Binding.BindableProperty.ValidateValueDelegate ValidateEnum(int enumMin, int enumMax)
+        {
+
+            return (Binding.BindableObject bindable, object value) =>
+            {
+                int @enum = (int)value;
+                return enumMin <= @enum && @enum <= enumMax;
+            };
+        }
     }
 }
