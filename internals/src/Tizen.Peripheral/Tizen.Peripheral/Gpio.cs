@@ -87,7 +87,7 @@ namespace Tizen.Peripheral.Gpio
     /// The class allows applications to use the platform Digital Pins as Input/Output.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Gpio : IDisposable
+    public class GpioPin : IDisposable
     {
 
         private GpioChangePolarity _polarityType;
@@ -109,7 +109,7 @@ namespace Tizen.Peripheral.Gpio
         /// </summary>
         /// <param name="pinNumber">The GPIO pin number.</param>
         /// <param name="mode">GPIO direction.</param>
-        public Gpio(int pinNumber, GpioPinDriveMode mode)
+        public GpioPin(int pinNumber, GpioPinDriveMode mode)
         {
             var ret = NativeGpio.Open(pinNumber, out IntPtr handle);
             if (ret != ErrorCode.None)
@@ -152,7 +152,7 @@ namespace Tizen.Peripheral.Gpio
         /// <summary>
         /// Closes the GPIO pin.
         /// </summary>
-        ~Gpio()
+        ~GpioPin()
         {
             Dispose(false);
         }

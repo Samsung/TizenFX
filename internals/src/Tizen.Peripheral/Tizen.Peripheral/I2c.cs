@@ -17,13 +17,13 @@
 using System;
 using NativeI2c = Interop.Peripheral.I2c;
 
-namespace Tizen.Peripheral
+namespace Tizen.Peripheral.I2c
 {
     /// <summary>
     /// The class allows applications to communicate via i2c platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class I2c : IDisposable
+    public class I2cDevice : IDisposable
     {
         /// <summary>
         /// Native handle to I2c.
@@ -36,7 +36,7 @@ namespace Tizen.Peripheral
         /// </summary>
         /// <param name="bus">The I2C bus number that the slave device is connected.</param>
         /// <param name="address">The address of the slave device.</param>
-        public I2c(int bus, int address)
+        public I2cDevice(int bus, int address)
         {
             var ret = NativeI2c.Open(bus, address, out IntPtr handle);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -48,7 +48,7 @@ namespace Tizen.Peripheral
         /// <summary>
         /// Closes the connection to the I2C slave device.
         /// </summary>
-        ~I2c()
+        ~I2cDevice()
         {
             Dispose(false);
         }

@@ -17,13 +17,13 @@
 using System;
 using NativeAdc = Interop.Peripheral.Adc;
 
-namespace Tizen.Peripheral
+namespace Tizen.Peripheral.Adc
 {
     /// <summary>
     /// The class allows applications to use the platform ADC peripheral.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Adc : IDisposable
+    public class AdcChannel : IDisposable
     {
         /// <summary>
         /// Native handle to ADC.
@@ -36,7 +36,7 @@ namespace Tizen.Peripheral
         /// </summary>
         /// <param name="device">The ADC device number.</param>
         /// <param name="channel">The ADC channel number to control.</param>
-        public Adc(int device, int channel)
+        public AdcChannel(int device, int channel)
         {
             var ret = NativeAdc.Open(device, channel, out IntPtr handle);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -48,7 +48,7 @@ namespace Tizen.Peripheral
         /// <summary>
         /// Closes the ADC pin.
         /// </summary>
-        ~Adc()
+        ~AdcChannel()
         {
             Dispose(false);
         }
