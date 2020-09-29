@@ -3,7 +3,8 @@ import xml.etree.ElementTree as ET
 
 scrpit_dir = os.path.dirname(os.path.abspath(__file__))
 spec_dir = os.path.join(scrpit_dir, "csapi-tizenfx.spec")
-tree = ET.parse("../pkg/Tizen.NET/Tizen.NET.nuspec")
+nuspec_file = os.path.join(scrpit_dir, "../pkg/Tizen.NET/Tizen.NET.nuspec")
+tree = ET.parse(nuspec_file)
 root = tree.getroot()
 
 tfm_list = []
