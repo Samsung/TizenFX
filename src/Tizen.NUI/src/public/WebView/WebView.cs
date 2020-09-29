@@ -789,6 +789,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. The cache model of the current WebView.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public CacheModel CacheModel
         {
             get
@@ -817,6 +818,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. The cookie acceptance policy.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public CookieAcceptPolicy CookieAcceptPolicy
         {
             get
@@ -862,6 +864,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Whether JavaScript is enabled.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public bool EnableJavaScript
         {
             get
@@ -890,6 +893,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Whether images can be loaded automatically.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public bool LoadImagesAutomatically
         {
             get
@@ -919,6 +923,7 @@ namespace Tizen.NUI.BaseComponents
         /// The default text encoding name.<br />
         /// e.g. "UTF-8"<br />
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public string DefaultTextEncodingName
         {
             get
@@ -947,6 +952,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The default font size in pixel.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public int DefaultFontSize
         {
             get
@@ -1876,6 +1882,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clears the history of current WebView.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public void ClearHistory()
         {
             Interop.WebView.ClearHistory(SwigCPtr);
@@ -2031,6 +2038,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Clears the cache of current WebView.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public void ClearCache()
         {
             Context.ClearCache();
@@ -2039,6 +2047,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Clears all the cookies of current WebView.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public void ClearCookies()
         {
             CookieManager.ClearCookies();
