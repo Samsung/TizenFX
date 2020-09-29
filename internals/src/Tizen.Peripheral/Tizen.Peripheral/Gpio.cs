@@ -142,9 +142,8 @@ namespace Tizen.Peripheral.Gpio
                             throw ExceptionFactory.CreateException(ret);
                         break;
                 }
-            } catch(Exception e) {
+            } finally {
                 Dispose();
-                throw;
             }
         }
 
