@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The load error of current web page.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public WebPageLoadError PageLoadError { get; }
     }
 }
