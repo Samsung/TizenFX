@@ -16,7 +16,6 @@
  */
 using System.ComponentModel;
 using Tizen.NUI.Binding;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
