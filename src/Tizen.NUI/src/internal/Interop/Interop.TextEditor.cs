@@ -239,6 +239,12 @@ namespace Tizen.NUI
             //manual pinvoke for text-editor ScrollStateChangedSignal
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_ScrollStateChangedSignal")]
             public static extern global::System.IntPtr TextEditor_ScrollStateChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTED_TEXT_START_get")]
+            public static extern int TextEditor_Property_SELECTED_TEXT_START_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTED_TEXT_END_get")]
+            public static extern int TextEditor_Property_SELECTED_TEXT_END_get();
         }
     }
 }
