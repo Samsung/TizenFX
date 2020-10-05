@@ -1061,16 +1061,19 @@ namespace Tizen.NUI.BaseComponents
             if (_onRelayoutEventCallback != null)
             {
                 this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                _onRelayoutEventCallback = null;
             }
 
             if (_offWindowEventCallback != null)
             {
                 this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                _offWindowEventCallback = null;
             }
 
             if (_onWindowEventCallback != null)
             {
                 this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                _onWindowEventCallback = null;
             }
 
             if (_wheelEventCallback != null)
@@ -1091,6 +1094,7 @@ namespace Tizen.NUI.BaseComponents
             if (_ResourcesLoadedCallback != null)
             {
                 this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                _ResourcesLoadedCallback = null;
             }
 
             if (_offWindowEventCallback != null)
@@ -1141,6 +1145,7 @@ namespace Tizen.NUI.BaseComponents
             if (_backgroundResourceLoadedCallback != null)
             {
                 this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                _backgroundResourceLoadedCallback = null;
             }
 
             if (_onWindowSendEventCallback != null)
