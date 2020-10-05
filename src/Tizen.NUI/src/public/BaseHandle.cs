@@ -400,11 +400,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool HasBody()
         {
+            if (swigCPtrCopy.Handle == IntPtr.Zero)
+            {
+                global::System.Diagnostics.StackTrace trace = new global::System.Diagnostics.StackTrace();
+                Tizen.Log.Error("NUI", "" + trace);
+                Tizen.Log.Error("NUI", "[ERROR] the native handle is invalid!");
+                return false;
+            }
+
             if (disposed == true)
             {
                 return false;
             }
-
             bool ret = Interop.BaseHandle.BaseHandle_HasBody(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
