@@ -20,7 +20,12 @@ namespace Tizen.NUI
 
     class NDalicPINVOKE
     {
-        public const string Lib = "libdali2-csharp-binder.so";
+        #if NOTIZEN
+            public const string Lib = "dali2-csharp-binder";
+        #else
+            public const string Lib = "libdali2-csharp-binder.so";
+        #endif
+
         protected class SWIGExceptionHelper
 		{
 			/// <since_tizen> 3 </since_tizen>
@@ -41,7 +46,7 @@ namespace Tizen.NUI
 			static ExceptionArgumentDelegate argumentDelegate = new ExceptionArgumentDelegate(SetPendingArgumentException);
 			static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
 			static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
-	
+
 			[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionCallbacks_NDalic")]
 			public static extern void SWIGRegisterExceptionCallbacks_NDalic(
 										ExceptionDelegate applicationDelegate,
@@ -55,7 +60,7 @@ namespace Tizen.NUI
 										ExceptionDelegate outOfMemoryDelegate,
 										ExceptionDelegate overflowDelegate,
 										ExceptionDelegate systemExceptionDelegate);
-	
+
 			[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_NDalic")]
 			public static extern void SWIGRegisterExceptionCallbacksArgument_NDalic(
 										ExceptionArgumentDelegate argumentDelegate,
@@ -105,7 +110,7 @@ namespace Tizen.NUI
 			{
 				SWIGPendingException.Set(new global::System.SystemException(message, SWIGPendingException.Retrieve()));
 			}
-	
+
 			static void SetPendingArgumentException(string message, string paramName)
 			{
 				SWIGPendingException.Set(new global::System.ArgumentException(message, paramName, SWIGPendingException.Retrieve()));
@@ -136,7 +141,7 @@ namespace Tizen.NUI
 										  outOfMemoryDelegate,
 										  overflowDelegate,
 										  systemDelegate);
-	
+
 				SWIGRegisterExceptionCallbacksArgument_NDalic(
 										  argumentDelegate,
 										  argumentNullDelegate,

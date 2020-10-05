@@ -43,9 +43,17 @@ git clone https://github.com/Samsung/TizenFX.git
 cd TizenFX
 ```
 ### How to build
+#### Linux
 ```bash
 ./build.sh full
 ./build.sh pack
+```
+
+#### Windows
+On a `Git bash` shell with `dali-env` seted, run:
+```bash
+./build.sh full -p:DefineConstants=NOTIZEN
+./build.sh pack -p:DefineConstants=NOTIZEN
 ```
 
 ## Tizen Project
