@@ -23,6 +23,10 @@
     <DefineConstants Condition="'$(BuildProfile)' == 'mobile'">$(DefineConstants);PROFILE_MOBILE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(NOTIZEN)'=='true'">
+    <DefineConstants>$(DefineConstants);NOTIZEN</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Open.snk</AssemblyOriginatorKeyFile>

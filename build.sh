@@ -89,7 +89,7 @@ restore() {
 }
 
 build() {
-  dotnet build --no-restore -c $CONFIGURATION /fl $@
+  dotnet build --no-restore -c $CONFIGURATION -fl $@
 }
 
 copy_artifacts() {
@@ -189,8 +189,8 @@ cmd_pack() {
   for nuspec in $nuspecs; do
     dotnet pack --no-restore --no-build --nologo -o $OUTDIR \
            $SCRIPT_DIR/build/pack.csproj \
-           /p:Version=$VERSION \
-           /p:NuspecFile=$(realpath $nuspec)
+           -p:Version=$VERSION \
+           -p:NuspecFile=$(realpath $nuspec)
   done
 }
 

@@ -18,10 +18,15 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string AppCommon = "libcapi-appfw-app-common.so.0";
+        #if NOTIZEN
+            public const string AppCommon = "capi-appfw-app-common";
+            public const string AppManager = "capi-appfw-app-manager";
+        #else
+            public const string AppCommon = "libcapi-appfw-app-common.so.0";
+            public const string AppManager = "libcapi-appfw-app-manager.so.0";
+        #endif
         public const string AppControl = "libcapi-appfw-app-control.so.0";
         public const string AppEvent = "libcapi-appfw-event.so.0";
-        public const string AppManager = "libcapi-appfw-app-manager.so.0";
         public const string Bundle = "libbundle.so.0";
         public const string Rua = "librua.so.0";
         public const string Glib = "libglib-2.0.so.0";
