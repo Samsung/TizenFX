@@ -245,6 +245,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_END_get")]
             public static extern int TextField_Property_SELECTED_TEXT_END_get();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_EDITING_get")]
+            public static extern int TextField_Property_ENABLE_EDITING_get();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone")]
             public static extern int TextField_SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

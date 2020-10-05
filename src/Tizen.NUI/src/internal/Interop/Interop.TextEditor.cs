@@ -245,6 +245,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTED_TEXT_END_get")]
             public static extern int TextEditor_Property_SELECTED_TEXT_END_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_ENABLE_EDITING_get")]
+            public static extern int TextEditor_Property_ENABLE_EDITING_get();
+
         }
     }
 }
