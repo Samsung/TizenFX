@@ -211,6 +211,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
                 {
                     this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                    _onRelayoutEventCallback = null;
                 }
 
             }
@@ -331,6 +332,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
                 {
                     this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                    _onWindowEventCallback = null;
                 }
             }
         }
@@ -360,6 +362,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
                 {
                     this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                    _offWindowEventCallback = null;
                 }
             }
         }
@@ -447,6 +450,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
                     this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                    _ResourcesLoadedCallback = null;
                 }
             }
         }
@@ -470,6 +474,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
                     this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                    _backgroundResourceLoadedCallback = null;
                 }
             }
         }
