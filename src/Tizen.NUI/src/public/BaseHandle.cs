@@ -405,6 +405,11 @@ namespace Tizen.NUI
                 return false;
             }
 
+            if (swigCPtrCopy.Handle == IntPtr.Zero)
+            {
+                return false;
+            }
+
             bool ret = Interop.BaseHandle.BaseHandle_HasBody(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
