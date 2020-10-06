@@ -2118,7 +2118,6 @@ namespace Tizen.NUI.BaseComponents
                     return;
                 }
 
-                Log.Info("NUI", "Setting Layout on:" + Name + "\n");
                 layoutingDisabled = false;
                 layoutSet = true;
 
