@@ -1180,36 +1180,6 @@ namespace Tizen.NUI.BaseComponents
                 this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
             }
 
-            if (_offWindowEventCallback != null)
-            {
-                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
-            }
-
-            if (_onWindowEventCallback != null)
-            {
-                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
-            }
-
-            if (_wheelEventCallback != null)
-            {
-                this.WheelEventSignal().Disconnect(_wheelEventCallback);
-            }
-
-            if (_hoverEventCallback != null)
-            {
-                this.HoveredSignal().Disconnect(_hoverEventCallback);
-            }
-
-            if (_touchDataCallback != null)
-            {
-                this.TouchSignal().Disconnect(_touchDataCallback);
-            }
-
-            if (_onRelayoutEventCallback != null)
-            {
-                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
-            }
-
             if (_keyCallback != null)
             {
                 this.KeyEventSignal().Disconnect(_keyCallback);
