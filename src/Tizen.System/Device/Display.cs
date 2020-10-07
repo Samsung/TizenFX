@@ -22,6 +22,9 @@ namespace Tizen.System
     /// Enumeration for the available display states.
     /// An application cannot put the device into the power off state or the suspend state.
     /// </summary>
+    /// <remarks>
+    /// Dim may not be supported if the DIM state is disabled on the platform.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public enum DisplayState
     {
