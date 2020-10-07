@@ -402,9 +402,6 @@ namespace Tizen.NUI
         {
             if (swigCPtrCopy.Handle == IntPtr.Zero)
             {
-                global::System.Diagnostics.StackTrace trace = new global::System.Diagnostics.StackTrace();
-                Tizen.Log.Error("NUI", "" + trace);
-                Tizen.Log.Error("NUI", "[ERROR] the native handle is invalid!");
                 return false;
             }
 
