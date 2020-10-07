@@ -212,15 +212,18 @@ namespace Tizen.NUI.Components
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingStart = buttonStyle.TextPadding.Start;
-            int textPaddingEnd = buttonStyle.TextPadding.End;
-            int textPaddingTop = buttonStyle.TextPadding.Top;
-            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
 
-            int iconPaddingStart = buttonStyle.IconPadding.Start;
-            int iconPaddingEnd = buttonStyle.IconPadding.End;
-            int iconPaddingTop = buttonStyle.IconPadding.Top;
-            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
+            var textPadding = TextPadding;
+            int textPaddingStart = textPadding.Start;
+            int textPaddingEnd = textPadding.End;
+            int textPaddingTop = textPadding.Top;
+            int textPaddingBottom = textPadding.Bottom;
+
+            var iconPadding = IconPadding;
+            int iconPaddingStart = iconPadding.Start;
+            int iconPaddingEnd = iconPadding.End;
+            int iconPaddingTop = iconPadding.Top;
+            int iconPaddingBottom = iconPadding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
@@ -247,15 +250,17 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int textPaddingStart = buttonStyle.TextPadding.Start;
-            int textPaddingEnd = buttonStyle.TextPadding.End;
-            int textPaddingTop = buttonStyle.TextPadding.Top;
-            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
+            var textPadding = TextPadding;
+            int textPaddingStart = textPadding.Start;
+            int textPaddingEnd = textPadding.End;
+            int textPaddingTop = textPadding.Top;
+            int textPaddingBottom = textPadding.Bottom;
 
-            int iconPaddingStart = buttonStyle.IconPadding.Start;
-            int iconPaddingEnd = buttonStyle.IconPadding.End;
-            int iconPaddingTop = buttonStyle.IconPadding.Top;
-            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
+            var iconPadding = IconPadding;
+            int iconPaddingStart = iconPadding.Start;
+            int iconPaddingEnd = iconPadding.End;
+            int iconPaddingTop = iconPadding.Top;
+            int iconPaddingBottom = iconPadding.Bottom;
 
             switch (IconRelativeOrientation)
             {

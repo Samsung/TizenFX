@@ -54,20 +54,16 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(IconOrientation?), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
+            var newIconOrientation = (IconOrientation?)newValue;
+            if (instance.iconRelativeOrientation != newIconOrientation)
             {
-                if (instance.buttonStyle != null && instance.buttonStyle.IconRelativeOrientation != (IconOrientation?)newValue)
-                {
-                    instance.buttonStyle.IconRelativeOrientation = (IconOrientation?)newValue;
-                    instance.UpdateUIContent();
-                }
+                instance.iconRelativeOrientation = newIconOrientation;
+                instance.UpdateUIContent();
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconRelativeOrientation;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconRelativeOrientation
+        );
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -147,37 +143,27 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.IconPadding)
-            {
-                instance.buttonStyle.IconPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.iconPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.TextPadding)
-            {
-                instance.buttonStyle.TextPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.textPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.TextPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
 
+        private IconOrientation? iconRelativeOrientation;
         private bool isSelected = false;
         private bool isSelectable = false;
         private bool isEnabled = true;
+        private Extents iconPadding;
+        private Extents textPadding;
 
         static Button() { }
 
@@ -653,7 +639,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IconOrientation?)GetValue(IconRelativeOrientationProperty);
+                return (IconOrientation?)GetValue(IconRelativeOrientationProperty) ?? IconOrientation.Left;
             }
             set
             {
@@ -667,7 +653,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
-            get => (Extents)GetValue(IconPaddingProperty);
+            get => (Extents)GetValue(IconPaddingProperty) ?? new Extents();
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -677,7 +663,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents)GetValue(TextPaddingProperty);
+            get => (Extents)GetValue(TextPaddingProperty) ?? new Extents();
             set => SetValue(TextPaddingProperty, value);
         }
 

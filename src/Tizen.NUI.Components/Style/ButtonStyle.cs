@@ -101,7 +101,7 @@ namespace Tizen.NUI.Components
         private bool? isSelectable;
         private bool? isSelected;
         private bool? isEnabled;
-        private Button.IconOrientation? iconRelativeOrientation = Button.IconOrientation.Left;
+        private Button.IconOrientation? iconRelativeOrientation;
         private Extents iconPadding;
         private Extents textPadding;
 
