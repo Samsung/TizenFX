@@ -828,7 +828,7 @@ namespace Tizen.NUI.BaseComponents
                 case VisualFittingModeType.FitHeight:
                     return FittingModeType.FitHeight;
                 case VisualFittingModeType.FitWidth:
-                    return FittingModeType.FitHeight;
+                    return FittingModeType.FitWidth;
                 default:
                     return FittingModeType.ShrinkToFit;
             }

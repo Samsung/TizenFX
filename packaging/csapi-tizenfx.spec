@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 8
-%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui21928
+%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui21932
 %define TIZEN_NET_NUGET_VERSION 8.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
@@ -12,6 +12,7 @@
 %define DOTNET_NUGET_SOURCE /nuget
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen80:tizen70:tizen60:tizen50:tizen40:netstandard2.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
@@ -210,6 +211,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
+/usr/bin/vconftool set -t string db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS} -f
 
 %files
 %license LICENSE

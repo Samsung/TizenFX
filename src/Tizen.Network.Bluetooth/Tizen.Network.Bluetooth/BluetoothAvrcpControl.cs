@@ -547,17 +547,22 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the BluetoothAvrcpControl class.
+        /// </summary>
         ~BluetoothAvrcpControl()
         {
             Dispose(false);
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <inheritdoc/>
         private void Dispose(bool disposing)
         {
             if (disposed)

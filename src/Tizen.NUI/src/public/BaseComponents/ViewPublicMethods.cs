@@ -621,7 +621,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (null != property && property.CanRead)
                     {
-                        Console.WriteLine($"{type.Name} {property.Name} ({property.PropertyType.Name}): {property.GetValueString(this, property.PropertyType)}");
+                        Tizen.Log.Fatal("NUI", $"{type.Name} {property.Name} ({property.PropertyType.Name}): {property.GetValueString(this, property.PropertyType)}");
                     }
                 }
                 return;

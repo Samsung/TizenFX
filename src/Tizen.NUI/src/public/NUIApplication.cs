@@ -384,7 +384,6 @@ namespace Tizen.NUI
         static public void PreLoad()
         {
             Interop.Application.Application_PreInitialize();
-            Application.NewApplication("", Application.WindowMode.Opaque);
         }
 
         /// <summary>
