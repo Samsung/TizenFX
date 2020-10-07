@@ -21,6 +21,9 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for power lock type.
     /// </summary>
+    /// <remarks>
+    /// DisplayDim may not be supported if the DIM state is disabled on the platform.
+    /// </remarks>
     /// <since_tizen> 5 </since_tizen>
     public enum PowerLock
     {
