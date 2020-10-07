@@ -240,7 +240,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Removes all elements from <see cref="StateValueList"./>
+        /// Removes all elements from <see cref="StateValueList"/>.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
@@ -368,7 +368,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (otherSelector == null)
             {
-                return;   
+                return;
             }
 
             selector = otherSelector.Clone();
