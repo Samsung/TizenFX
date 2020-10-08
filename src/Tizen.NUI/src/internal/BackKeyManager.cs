@@ -122,7 +122,7 @@ namespace Tizen.NUI
 
         private void OnWindowKeyEvent(object source, Window.KeyEventArgs args)
         {
-            if(args.Key.State == Key.StateType.Up && args.Key.KeyPressedName == "Back")
+            if(args.Key.State == Key.StateType.Up && (args.Key.KeyPressedName == "Back" || args.Key.KeyPressedName == "XF86Back"))
             {
                 View top = null;
 
