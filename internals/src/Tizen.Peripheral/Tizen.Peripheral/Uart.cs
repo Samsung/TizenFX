@@ -155,7 +155,7 @@ namespace Tizen.Peripheral.Uart
     /// The class allows applications to communicate via UART platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Uart : IDisposable
+    public class SerialPort : IDisposable
     {
         private BaudRate _baudRate;
         private DataBits _dataBits;
@@ -174,7 +174,7 @@ namespace Tizen.Peripheral.Uart
         /// Opens the UART slave device.
         /// </summary>
         /// <param name="port">The UART port number that the slave device is connected.</param>
-        public Uart(int port)
+        public SerialPort(int port)
         {
             var ret = NativeUart.Open(port, out IntPtr handle);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -186,7 +186,7 @@ namespace Tizen.Peripheral.Uart
         /// <summary>
         /// Closes the UART slave device.
         /// </summary>
-        ~Uart()
+        ~SerialPort()
         {
             Dispose(false);
         }

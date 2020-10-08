@@ -30,6 +30,10 @@ namespace Tizen.Sensor
 
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
 
+        /// <summary>
+        /// List of converted HeartRateMonitorBatchData.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         protected override IReadOnlyList<HeartRateMonitorBatchData> ConvertBatchData()
         {
             List<HeartRateMonitorBatchData> list = new List<HeartRateMonitorBatchData>();

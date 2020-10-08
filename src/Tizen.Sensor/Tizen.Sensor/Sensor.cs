@@ -382,7 +382,7 @@ namespace Tizen.Sensor
                 }
                 catch (InvalidOperationException e)
                 {
-                    Log.Error(Globals.LogTag, "Sensor has no data.");
+                    Log.Error(Globals.LogTag, "Sensor has no data : " + e.Message);
                 }
                 EventListenStart();
                 _isSensing = true;
