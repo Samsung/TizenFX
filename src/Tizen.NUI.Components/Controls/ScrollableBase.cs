@@ -1177,6 +1177,40 @@ namespace Tizen.NUI.Components
                 return new Position(-ContentContainer.CurrentPosition);
             }
         }
+
+        /// <summary>
+        /// Remove all children in ContentContainer.
+        /// </summary>
+        /// <param name="dispose">If true, removed child is disposed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllChildren(bool dispose = false)
+        {
+            RecursiveRemoveChildren(ContentContainer, dispose);
+        }
+
+        private void RecursiveRemoveChildren(View parent, bool dispose)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+            int maxChild = (int)parent.GetChildCount();
+            for (int i = maxChild - 1; i >= 0; --i)
+            {
+                View child = parent.GetChildAt((uint)i);
+                if (child == null)
+                {
+                    continue;
+                }
+                RecursiveRemoveChildren(child, dispose);
+                parent.Remove(child);
+                if (dispose)
+                {
+                    child.Dispose();
+                }
+            }
+        }
+
     }
 
 } // namespace

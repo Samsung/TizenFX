@@ -32,6 +32,17 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SelectedChangedEventArgs : EventArgs
+    {
+        /// <summary> Selected state </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool IsSelected { get; set; }
+    }
+
+    /// <summary>
     /// Button is one kind of common component, a button clearly describes what action will occur when the user selects it.
     /// Button may contain text or an icon.
     /// </summary>
