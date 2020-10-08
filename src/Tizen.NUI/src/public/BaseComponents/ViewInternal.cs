@@ -1170,6 +1170,11 @@ namespace Tizen.NUI.BaseComponents
                 this.HoveredSignal().Disconnect(_hoverEventCallback);
             }
 
+            if (_interceptTouchDataCallback != null)
+            {
+                this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
+            }
+
             if (_touchDataCallback != null)
             {
                 this.TouchSignal().Disconnect(_touchDataCallback);
