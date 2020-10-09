@@ -330,14 +330,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (value != null)
+                if (scrollBar)
                 {
-                    if (scrollBar)
-                    {
-                        scrollBar.Unparent();
-                    }
+                    scrollBar.Unparent();
+                }
+                scrollBar = value;
 
-                    scrollBar = value;
+                if (scrollBar != null)
+                {
                     scrollBar.Name = "ScrollBar";
                     base.Add(scrollBar);
 
@@ -704,7 +704,7 @@ namespace Tizen.NUI.Components
             float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
             float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
 
-            scrollBar.Update(contentLength, Math.Abs(currentPosition));
+            scrollBar?.Update(contentLength, Math.Abs(currentPosition));
             CheckPreReachedTargetPosition();
         }
 
