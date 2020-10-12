@@ -156,13 +156,12 @@ namespace Tizen.Network.Bluetooth
                     TrackNum = track_info.number,
                     Duration = track_info.duration
                 }));
-                int ret = Interop.Bluetooth.SetTrackInfoChangedCallback(_trackInfoChangedCallback, IntPtr.Zero);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set track info changed callback, Error - " + (BluetoothError)ret);
-                }
             };
-
+            int ret = Interop.Bluetooth.SetTrackInfoChangedCallback(_trackInfoChangedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set track info changed callback, Error - " + (BluetoothError)ret);
+            }
         }
 
         private void UnregisterTrackInfoChangedEvent()
