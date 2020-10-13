@@ -146,16 +146,24 @@ namespace Tizen.Network.Bluetooth
         {
             _trackInfoChangedCallback = (ref TrackInfoStruct track_info, IntPtr userdata) =>
             {
-                _trackInfoChanged?.Invoke(null, new TrackInfoChangedEventArgs(new Track()
-                {
-                    Album = track_info.Album,
-                    Artist = track_info.Artist,
-                    Genre = track_info.Genre,
-                    Title = track_info.Title,
-                    TotalTracks = track_info.total_tracks,
-                    TrackNum = track_info.number,
-                    Duration = track_info.duration
-                }));
+                Track track = new Track();
+                track.Album = Marshal.PtrToStringAnsi(track_info.Album);
+                track.Artist = Marshal.PtrToStringAnsi(track_info.Artist);
+                track.Genre = Marshal.PtrToStringAnsi(track_info.Genre);
+                track.Title = Marshal.PtrToStringAnsi(track_info.Title);
+                track.TotalTracks = track_info.total_tracks;
+                track.TrackNum = track_info.number;
+                track.Duration = track_info.duration;
+
+                Log.Debug(Globals.LogTag, "Album: " + track.Album
+                    + ", Artist: " + track.Artist
+                    + ", Genre: " + track.Genre
+                    + ", Title: " + track.Title
+                    + ", TotalTracks: " + track.TotalTracks
+                    + ", TrackNum: " + track.TrackNum
+                    + ", Duration: " + track.Duration);
+
+                _trackInfoChanged?.Invoke(null, new TrackInfoChangedEventArgs(track));
             };
             int ret = Interop.Bluetooth.SetTrackInfoChangedCallback(_trackInfoChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
@@ -307,8 +315,8 @@ namespace Tizen.Network.Bluetooth
 
         internal Track GetTrackInfo()
         {
-            Track trackdata = new Track();
-            TrackInfoStruct trackinfo;
+            Track track = new Track();
+            TrackInfoStruct track_info;
             IntPtr infoptr;
 
             int ret = Interop.Bluetooth.GetTrackInfo(out infoptr);
@@ -318,14 +326,22 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
-            trackinfo = (TrackInfoStruct)Marshal.PtrToStructure(infoptr, typeof(TrackInfoStruct));
-            trackdata.Album = trackinfo.Album;
-            trackdata.Artist = trackinfo.Artist;
-            trackdata.Genre = trackinfo.Genre;
-            trackdata.Title = trackinfo.Title;
-            trackdata.TotalTracks = trackinfo.total_tracks;
-            trackdata.TrackNum = trackinfo.number;
-            trackdata.Duration = trackinfo.duration;
+            track_info = (TrackInfoStruct)Marshal.PtrToStructure(infoptr, typeof(TrackInfoStruct));
+            track.Album = Marshal.PtrToStringAnsi(track_info.Album);
+            track.Artist = Marshal.PtrToStringAnsi(track_info.Artist);
+            track.Genre = Marshal.PtrToStringAnsi(track_info.Genre);
+            track.Title = Marshal.PtrToStringAnsi(track_info.Title);
+            track.TotalTracks = track_info.total_tracks;
+            track.TrackNum = track_info.number;
+            track.Duration = track_info.duration;
+
+            Log.Debug(Globals.LogTag, "Album: " + track.Album
+                + ", Artist: " + track.Artist
+                + ", Genre: " + track.Genre
+                + ", Title: " + track.Title
+                + ", TotalTracks: " + track.TotalTracks
+                + ", TrackNum: " + track.TrackNum
+                + ", Duration: " + track.Duration);
 
             ret = Interop.Bluetooth.FreeTrackInfo(infoptr);
             if (ret != (int)BluetoothError.None)
@@ -334,7 +350,7 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
-            return trackdata;
+            return track;
         }
 
         internal void SendPlayerCommand(PlayerCommand command)
