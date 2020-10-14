@@ -37,7 +37,7 @@ namespace Tizen.NUI.Events
       ///  TapGestureDetector event callback.
       /// </summary>
       [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnTap(object sender, TapGestureDetector.DetectedEventArgs e)
+      public virtual void OnTap(object sender, TapGestureDetector.DetectedEventArgs e, object userData)
       {
       }
 
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Events
       ///  LongPressGestureDetector event callback.
       /// </summary>
       [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
+      public virtual void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e, object userData)
       {
       }
 
@@ -53,7 +53,7 @@ namespace Tizen.NUI.Events
       ///  PanGestureDetector event callback.
       /// </summary>
       [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnPan(object sender, PanGestureDetector.DetectedEventArgs e)
+      public virtual void OnPan(object sender, PanGestureDetector.DetectedEventArgs e, object userData)
       {
       }
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Events
       ///  PinchGestureDetector event callback.
       /// </summary>
       [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
+      public virtual void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e, object userData)
       {
       }
     }
@@ -71,6 +71,7 @@ namespace Tizen.NUI.Events
     private LongPressGestureDetector mLongGestureDetector;
     private PinchGestureDetector mPinchGestureDetector;
     private PanGestureDetector mPanGestureDetector;
+    private object mUserData;
 
     /// <summary>
     ///  Creates a GestureDetectorManager with the user listener.
@@ -107,34 +108,49 @@ namespace Tizen.NUI.Events
 
     private void InternalOnTap(object sender, TapGestureDetector.DetectedEventArgs e)
     {
-      mListener.OnTap(sender, e);
+      mListener.OnTap(sender, e, mUserData);
       mTapGestureDetector.Detected -= InternalOnTap;
     }
 
     private void InternalOnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
     {
-      mListener.OnLongPress(sender, e);
+      mListener.OnLongPress(sender, e, mUserData);
       mLongGestureDetector.Detected -= InternalOnLongPress;
     }
 
     private void InternalOnPan(object sender, PanGestureDetector.DetectedEventArgs e)
     {
-      mListener.OnPan(sender, e);
+      mListener.OnPan(sender, e, mUserData);
       mPanGestureDetector.Detected -= InternalOnPan;
     }
 
     private void InternalOnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
     {
-      mListener.OnPinch(sender, e);
+      mListener.OnPinch(sender, e, mUserData);
       mPinchGestureDetector.Detected -= InternalOnPinch;
     }
 
     /// <summary>
     /// Gestures also work only when there is a touch event.
     /// </summary>
+    /// <param name="sender">The actor who delivered the touch event.</param>
+    /// <param name="e">The TouchEventArgs</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public void FeedTouchEvent(object sender, View.TouchEventArgs e)
     {
+      FeedTouchEvent(sender, e, null);
+    }
+
+    /// <summary>
+    /// Gestures also work only when there is a touch event.
+    /// </summary>
+    /// <param name="sender">The actor who delivered the touch event.</param>
+    /// <param name="e">The TouchEventArgs</param>
+    /// <param name="userData">The user data object</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public void FeedTouchEvent(object sender, View.TouchEventArgs e, object userData)
+    {
+      mUserData = userData;
       mTapGestureDetector.Detected -= InternalOnTap;
       mLongGestureDetector.Detected -= InternalOnLongPress;
       mPanGestureDetector.Detected -= InternalOnPan;
