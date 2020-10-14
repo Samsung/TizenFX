@@ -17,6 +17,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_Assign")]
             public static extern global::System.IntPtr Hover_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_New")]
+            public static extern global::System.IntPtr Hover_New(uint jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetTime")]
             public static extern uint Hover_GetTime(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -54,25 +54,25 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         private const int CellUndefined = int.MinValue;
         private Orientation gridOrientation = Orientation.Horizontal;
@@ -101,145 +101,97 @@ namespace Tizen.NUI
         /// Get the column index.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetColumn(View view)
-        {
-            return (int)view.GetValue(ColumnProperty);
-        }
+        public static int GetColumn(View view) => GetAttachedValue<int>(view, ColumnProperty);
 
         /// <summary>
         /// Get the column span.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetColumnSpan(View view)
-        {
-            return (int)view.GetValue(ColumnSpanProperty);
-        }
+        public static int GetColumnSpan(View view) => GetAttachedValue<int>(view, ColumnSpanProperty);
 
         /// <summary>
         /// Get the row index.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetRow(View view)
-        {
-            return (int)view.GetValue(RowProperty);
-        }
+        public static int GetRow(View view) => GetAttachedValue<int>(view, RowProperty);
 
         /// <summary>
         /// Get the row span.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetRowSpan(View view)
-        {
-            return (int)view.GetValue(RowSpanProperty);
-        }
+        public static int GetRowSpan(View view) => GetAttachedValue<int>(view, RowSpanProperty);
 
         /// <summary>
         /// Get the value how child is resized within its horizontal space.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static StretchFlags GetHorizontalStretch(View view)
-        {
-            return (StretchFlags)view.GetValue(HorizontalStretchProperty);
-        }
+        public static StretchFlags GetHorizontalStretch(View view) => GetAttachedValue<StretchFlags>(view, HorizontalStretchProperty);
 
         /// <summary>
         /// Get the value how child is resized within its vertical space.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static StretchFlags GetVerticalStretch(View view)
-        {
-            return (StretchFlags)view.GetValue(VerticalStretchProperty);
-        }
+        public static StretchFlags GetVerticalStretch(View view) => GetAttachedValue<StretchFlags>(view, VerticalStretchProperty);
 
         /// <summary>
         /// Get the horizontal alignment of this child.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static Alignment GetHorizontalAlignment(View view)
-        {
-            return (Alignment)view.GetValue(HorizontalAlignmentProperty);
-        }
+        public static Alignment GetHorizontalAlignment(View view) => GetAttachedValue<Alignment>(view, HorizontalAlignmentProperty);
 
         /// <summary>
         /// Get the vertical alignment of this child.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static Alignment GetVerticalAlignment(View view)
-        {
-            return (Alignment)view.GetValue(VerticalAlignmentProperty);
-        }
+        public static Alignment GetVerticalAlignment(View view) => GetAttachedValue<Alignment>(view, VerticalAlignmentProperty);
 
         /// <summary>
         /// Set the column index.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetColumn(View view, int value)
-        {
-            SetChildValue(view, ColumnProperty, value);
-        }
+        public static void SetColumn(View view, int value) => SetAttachedValue(view, ColumnProperty, value);
 
         /// <summary>
         /// Set the column span.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetColumnSpan(View view, int value)
-        {
-            SetChildValue(view, ColumnSpanProperty, value);
-        }
+        public static void SetColumnSpan(View view, int value) => SetAttachedValue(view, ColumnSpanProperty, value);
 
         /// <summary>
         /// Set the row index.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetRow(View view, int value)
-        {
-            SetChildValue(view, RowProperty, value);
-        }
+        public static void SetRow(View view, int value) => SetAttachedValue(view, RowProperty, value);
 
         /// <summary>
         /// Set the row span.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetRowSpan(View view, int value)
-        {
-            SetChildValue(view, RowSpanProperty, value);
-        }
+        public static void SetRowSpan(View view, int value) => SetAttachedValue(view, RowSpanProperty, value);
 
         /// <summary>
         /// Set the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetHorizontalStretch(View view, StretchFlags value)
-        {
-            SetChildValue(view, HorizontalStretchProperty, value);
-        }
+        public static void SetHorizontalStretch(View view, StretchFlags value) => SetAttachedValue(view, HorizontalStretchProperty, value);
 
         /// <summary>
         /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetVerticalStretch(View view, StretchFlags value)
-        {
-            SetChildValue(view, VerticalStretchProperty, value);
-        }
+        public static void SetVerticalStretch(View view, StretchFlags value) => SetAttachedValue(view, VerticalStretchProperty, value);
 
         /// <summary>
         /// Set the horizontal alignment of this child inside the cells.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetHorizontalAlignment(View view, Alignment value)
-        {
-            SetChildValue(view, HorizontalAlignmentProperty, value);
-        }
+        public static void SetHorizontalAlignment(View view, Alignment value) => SetAttachedValue(view, HorizontalAlignmentProperty, value);
 
         /// <summary>
         /// Set the vertical alignment of this child inside the cells.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetVerticalAlignment(View view, Alignment value)
-        {
-            SetChildValue(view, VerticalAlignmentProperty, value);
-        }
+        public static void SetVerticalAlignment(View view, Alignment value) => SetAttachedValue(view, VerticalAlignmentProperty, value);
 
         /// <summary>
         /// The distance between columns.
@@ -276,6 +228,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get/Set the orientation in the layout
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 8 </since_tizen>
         public Orientation GridOrientation
         {
@@ -283,6 +236,9 @@ namespace Tizen.NUI
             set
             {
                 if (gridOrientation == value) return;
+                if (value != Orientation.Horizontal && value != Orientation.Vertical)
+                    throw new InvalidEnumArgumentException(nameof(GridOrientation));
+
                 gridOrientation = value;
                 RequestLayout();
             }

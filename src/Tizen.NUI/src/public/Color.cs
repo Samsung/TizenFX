@@ -129,16 +129,29 @@ namespace Tizen.NUI
             try
             {
                 hexColor = hexColor.Replace("#", "");
-                
-                R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
-                G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
-                B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
-                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+
+                R = ((float)Convert.ToInt32(hexColor.Substring(0, 2), 16)) / 255.0f;
+                G = ((float)Convert.ToInt32(hexColor.Substring(2, 2), 16)) / 255.0f;
+                B = ((float)Convert.ToInt32(hexColor.Substring(4, 2), 16)) / 255.0f;
+                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6, 2), 16)) / 255.0f : 1.0f;
             }
             catch
             {
                 throw new global::System.ArgumentException("Please check your hex code");
             }
+        }
+
+        /// <summary>
+        /// The conversion constructor from an System.Drawing.Color instance.
+        /// </summary>
+        /// <param name="color">System.Drawing.Color instance</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(global::System.Drawing.Color color) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
+        {
+            R = color.R / 255.0f;
+            G = color.G / 255.0f;
+            B = color.B / 255.0f;
+            A = color.A / 255.0f;
         }
 
         /// <summary>
@@ -152,7 +165,7 @@ namespace Tizen.NUI
 
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-			hashDummy = false;
+            hashDummy = false;
         }
 
         internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
@@ -172,10 +185,12 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float R
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.Vector4_r_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -193,10 +208,12 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float G
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.Vector4_g_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -214,10 +231,12 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float B
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.Vector4_b_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -235,10 +254,12 @@ namespace Tizen.NUI
         /// The alpha component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float A
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor");
                 Interop.Vector4.Vector4_a_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -596,7 +617,7 @@ namespace Tizen.NUI
         private static bool EqualsColorValue(float f1, float f2)
         {
             float EPS = (float)Math.Abs(f1 * .00001);
-            if(Math.Abs(f1 - f2) <= EPS)
+            if (Math.Abs(f1 - f2) <= EPS)
             {
                 return true;
             }

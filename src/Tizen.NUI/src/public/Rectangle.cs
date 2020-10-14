@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -88,10 +89,13 @@ namespace Tizen.NUI
         /// The x position of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
         public int X
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+
                 x = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -106,10 +110,13 @@ namespace Tizen.NUI
         /// The Y position of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
         public int Y
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+
                 y = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -124,10 +131,13 @@ namespace Tizen.NUI
         /// The width of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
         public int Width
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+
                 width = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -142,10 +152,13 @@ namespace Tizen.NUI
         /// The height of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
         public int Height
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+                
                 height = (value);
 
                 callback?.Invoke(X, Y, Width, Height);

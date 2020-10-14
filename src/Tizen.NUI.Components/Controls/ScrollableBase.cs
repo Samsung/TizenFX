@@ -66,6 +66,7 @@ namespace Tizen.NUI.Components
         private int mScrollDuration = 125;
         private int mPageWidth = 0;
         private float mPageFlickThreshold = 0.4f;
+        private float mScrollingEventThreshold = 0.00001f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -147,6 +148,7 @@ namespace Tizen.NUI.Components
 
                 // Size of ScrollableBase is changed. Change Page width too.
                 scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
+                scrollableBase.OnScrollingChildRelayout(null , null);
             }
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
@@ -442,6 +444,29 @@ namespace Tizen.NUI.Components
         public float DecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
+        /// Scrolling event will be thrown when this amount of scroll positino is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScrollingEventThreshold
+        {
+            get
+            {
+                return mScrollingEventThreshold;
+            }
+            set
+            {
+                if (mScrollingEventThreshold != value && value > 0)
+                {
+                    ContentContainer.RemovePropertyNotification(propertyNotification);
+                    propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(value));
+                    propertyNotification.Notified += OnPropertyChanged;
+                    mScrollingEventThreshold = value;
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Page will be changed when velocity of panning is over threshold.
         /// The unit of threshold is pixel per milisec.
         /// </summary>
@@ -474,6 +499,7 @@ namespace Tizen.NUI.Components
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
         private Size previousContainerSize = new Size();
+        private Size previousSize = new Size();
         private PropertyNotification propertyNotification;
         private float noticeAnimationEndBeforePosition = 0.0f;
         private bool readyToNotice = false;
@@ -523,7 +549,7 @@ namespace Tizen.NUI.Components
                 Layout = new AbsoluteLayout() { SetPositionByLayout = false },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
-            propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
+            propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
             propertyNotification.Notified += OnPropertyChanged;
             base.Add(ContentContainer);
 
@@ -587,7 +613,8 @@ namespace Tizen.NUI.Components
         private void OnScrollingChildRelayout(object source, EventArgs args)
         {
             // Size is changed. Calculate maxScrollDistance.
-            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height;
+            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height
+                || previousSize.Width != Size.Width || previousSize.Height != Size.Height;
 
             if (isSizeChanged)
             {
@@ -596,6 +623,7 @@ namespace Tizen.NUI.Components
             }
 
             previousContainerSize = ContentContainer.Size;
+            previousSize = Size;
         }
 
         /// <summary>
@@ -839,6 +867,8 @@ namespace Tizen.NUI.Components
                     mPanGestureDetector.Dispose();
                     mPanGestureDetector = null;
                 }
+
+                propertyNotification.Dispose();
             }
             base.Dispose(type);
         }
@@ -941,7 +971,7 @@ namespace Tizen.NUI.Components
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (panGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
@@ -1147,6 +1177,40 @@ namespace Tizen.NUI.Components
                 return new Position(-ContentContainer.CurrentPosition);
             }
         }
+
+        /// <summary>
+        /// Remove all children in ContentContainer.
+        /// </summary>
+        /// <param name="dispose">If true, removed child is disposed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllChildren(bool dispose = false)
+        {
+            RecursiveRemoveChildren(ContentContainer, dispose);
+        }
+
+        private void RecursiveRemoveChildren(View parent, bool dispose)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+            int maxChild = (int)parent.GetChildCount();
+            for (int i = maxChild - 1; i >= 0; --i)
+            {
+                View child = parent.GetChildAt((uint)i);
+                if (child == null)
+                {
+                    continue;
+                }
+                RecursiveRemoveChildren(child, dispose);
+                parent.Remove(child);
+                if (dispose)
+                {
+                    child.Dispose();
+                }
+            }
+        }
+
     }
 
 } // namespace

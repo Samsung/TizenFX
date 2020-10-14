@@ -12,13 +12,13 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr new_Key__SWIG_0();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Key__SWIG_1")]
-            public static extern global::System.IntPtr new_Key__SWIG_1(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Key__SWIG_2")]
-            public static extern global::System.IntPtr new_Key__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr new_Key__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_Assign")]
             public static extern global::System.IntPtr Key_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New")]
+            public static extern global::System.IntPtr Key_New(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Key")]
             public static extern void delete_Key(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -76,6 +76,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_logicalKey_get")]
             public static extern string Key_logicalKey_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_SWIGUpcast")]
+            public static extern global::System.IntPtr Key_SWIGUpcast(global::System.IntPtr jarg1);
         }
     }
 }
