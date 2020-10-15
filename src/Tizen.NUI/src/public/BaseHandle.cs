@@ -400,11 +400,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool HasBody()
         {
-            if (disposed == true)
+            if (swigCPtrCopy.Handle == IntPtr.Zero)
             {
                 return false;
             }
 
+            if (disposed == true)
+            {
+                return false;
+            }
             bool ret = Interop.BaseHandle.BaseHandle_HasBody(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

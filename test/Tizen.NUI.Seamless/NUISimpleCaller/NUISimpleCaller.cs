@@ -53,7 +53,7 @@ namespace NUISimpleCaller
             {
                 AppControl appControl = new AppControl();
                 appControl.ApplicationId = "org.tizen.example.NUISimpleCallee";
-                SendLaunchRequest(appControl, false);
+                SendLaunchRequest(appControl);
             }
         }
 
