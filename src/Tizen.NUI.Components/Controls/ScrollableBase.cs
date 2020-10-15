@@ -334,21 +334,24 @@ namespace Tizen.NUI.Components
                 {
                     scrollBar.Unparent();
                 }
-
                 scrollBar = value;
-                scrollBar.Name = "ScrollBar";
-                base.Add(scrollBar);
 
-                if (hideScrollbar)
+                if (scrollBar != null)
                 {
-                    scrollBar.Hide();
-                }
-                else
-                {
-                    scrollBar.Show();
-                }
+                    scrollBar.Name = "ScrollBar";
+                    base.Add(scrollBar);
 
-                SetScrollbar();
+                    if (hideScrollbar)
+                    {
+                        scrollBar.Hide();
+                    }
+                    else
+                    {
+                        scrollBar.Show();
+                    }
+
+                    SetScrollbar();
+                }
             }
         }
 
@@ -701,7 +704,7 @@ namespace Tizen.NUI.Components
             float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
             float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
 
-            scrollBar.Update(contentLength, Math.Abs(currentPosition));
+            scrollBar?.Update(contentLength, Math.Abs(currentPosition));
             CheckPreReachedTargetPosition();
         }
 
@@ -1177,6 +1180,40 @@ namespace Tizen.NUI.Components
                 return new Position(-ContentContainer.CurrentPosition);
             }
         }
+
+        /// <summary>
+        /// Remove all children in ContentContainer.
+        /// </summary>
+        /// <param name="dispose">If true, removed child is disposed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllChildren(bool dispose = false)
+        {
+            RecursiveRemoveChildren(ContentContainer, dispose);
+        }
+
+        private void RecursiveRemoveChildren(View parent, bool dispose)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+            int maxChild = (int)parent.GetChildCount();
+            for (int i = maxChild - 1; i >= 0; --i)
+            {
+                View child = parent.GetChildAt((uint)i);
+                if (child == null)
+                {
+                    continue;
+                }
+                RecursiveRemoveChildren(child, dispose);
+                parent.Remove(child);
+                if (dispose)
+                {
+                    child.Dispose();
+                }
+            }
+        }
+
     }
 
 } // namespace

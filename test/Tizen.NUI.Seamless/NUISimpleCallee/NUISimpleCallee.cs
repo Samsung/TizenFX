@@ -34,7 +34,7 @@ namespace NUISimpleCallee
         {
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                Window.Instance.Iconify(true);
+                Exit();
             }
         }
 
