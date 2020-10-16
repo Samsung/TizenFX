@@ -58,8 +58,7 @@ namespace Tizen.NUI
         internal static void Register(BaseHandle baseHandle)
         {
             // We store a pointer to the RefObject for the control
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             RegistryCurrentThreadCheck();
 
@@ -77,8 +76,7 @@ namespace Tizen.NUI
         /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
         internal static void Unregister(BaseHandle baseHandle)
         {
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             RegistryCurrentThreadCheck();
             WeakReference refe;
@@ -92,8 +90,7 @@ namespace Tizen.NUI
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(BaseHandle baseHandle)
         {
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refObjectPtr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
             return GetManagedBaseHandleFromRefObject(refObjectPtr);

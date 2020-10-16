@@ -442,14 +442,6 @@ namespace Tizen.NUI
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        internal RefObject GetObjectPtr()
-        {
-            global::System.IntPtr cPtr = Interop.BaseHandle.BaseHandle_GetObjectPtr(swigCPtrCopy);
-            RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Dispose.
         /// </summary>
