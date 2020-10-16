@@ -430,11 +430,11 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="currentFocusedView">The current focused view.</param>
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
-        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        /// <returns>The next keyboard focusable view in this control or null if no view can be focused.</returns>
         /// <since_tizen> 3 </since_tizen>
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            return new View();
+            return null;
         }
 
         /// <summary>
