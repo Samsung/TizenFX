@@ -573,7 +573,7 @@ namespace Tizen.NUI.Components
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
 
-            //Show vertical shadow when panning down (or up) on the scroll top (or end).
+            //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
             mVerticalTopShadowView = new View
             {
                 BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_top.png"),
@@ -1058,7 +1058,6 @@ namespace Tizen.NUI.Components
             if (mVerticalShadowAnimation == null || mVerticalShadowAnimation.State != Animation.States.Playing)
                 return;
 
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "gesture finished. Stop Vertical Shadow Animation Playing.");
             mVerticalShadowAnimation.Stop(Animation.EndActions.Cancel);
             OnVerticalShadowAnimationFinished(null, null);
             mVerticalShadowAnimation.Clear();
