@@ -528,6 +528,14 @@ namespace Tizen.NUI.Components
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
 
+        private View mVerticalTopShadowView;
+        private View mVerticalBottomShadowView;
+        private const int mVerticalShadowScaleHeightLimit = 64 * 3;
+        private const int mVerticalShadowAnimationDuration = 300;
+        private Animation mVerticalShadowAnimation;
+        private bool isVerticalShadowShown = false;
+        private float mStartShowShadowDisplacement;
+
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -564,6 +572,26 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            //Show vertical shadow when panning down (or up) on the scroll top (or end).
+            mVerticalTopShadowView = new View
+            {
+                BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_top.png"),
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.TopCenter,
+                PivotPoint = NUI.PivotPoint.TopCenter,
+            };
+            mVerticalBottomShadowView = new View
+            {
+                BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_bottom.png"),
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.BottomCenter,
+                PivotPoint = NUI.PivotPoint.BottomCenter,
+            };
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
@@ -843,7 +871,6 @@ namespace Tizen.NUI.Components
                 {
                     ContentContainer.PositionY = finalTargetPosition;
                 }
-
             }
         }
 
@@ -862,6 +889,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                StopVerticalShadowAnimation();
                 StopScroll();
 
                 if (mPanGestureDetector != null)
@@ -936,6 +964,118 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        private void AttachShadowView()
+        {
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            base.Add(mVerticalTopShadowView);
+            base.Add(mVerticalBottomShadowView);
+
+            mVerticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            mVerticalTopShadowView.Opacity = 1.0f;
+
+            mVerticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+            mVerticalBottomShadowView.Opacity = 1.0f;
+
+            // at the beginning, height of vertical shadow is 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
+        private void DragVerticalShadow(float displacement)
+        {
+            if ((int)displacement > 0) // downwards
+            {
+                // check if reaching at the top.
+                if ((int)finalTargetPosition != 0)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    mStartShowShadowDisplacement = displacement;
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = displacement < mStartShowShadowDisplacement ? 0 : displacement - mStartShowShadowDisplacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / mVerticalShadowScaleHeightLimit;
+                mVerticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                mVerticalTopShadowView.SizeHeight = newDisplacement > mVerticalShadowScaleHeightLimit ? mVerticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else if ((int)displacement < 0) // upwards
+            {
+                // check if reaching at the bottom.
+                if (-(int)finalTargetPosition != (int)maxScrollDistance)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    mStartShowShadowDisplacement = displacement;
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = mStartShowShadowDisplacement < displacement ? 0 : mStartShowShadowDisplacement - displacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / mVerticalShadowScaleHeightLimit;
+                mVerticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                mVerticalBottomShadowView.SizeHeight = newDisplacement > mVerticalShadowScaleHeightLimit ? mVerticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else
+            {
+                // if total displacement is 0, shadow would become invisible.
+                isVerticalShadowShown = false;
+            }
+        }
+
+        private void PlayVerticalShadowAnimation()
+        {
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            if (mVerticalShadowAnimation == null)
+            {
+                mVerticalShadowAnimation = new Animation(mVerticalShadowAnimationDuration);
+                mVerticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
+            }
+
+            View targetView = totalDisplacementForPan < 0 ? mVerticalBottomShadowView : mVerticalTopShadowView;
+            mVerticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
+            mVerticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
+            mVerticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            mVerticalShadowAnimation.Play();
+        }
+
+        private void StopVerticalShadowAnimation()
+        {
+            if (mVerticalShadowAnimation == null || mVerticalShadowAnimation.State != Animation.States.Playing)
+                return;
+
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "gesture finished. Stop Vertical Shadow Animation Playing.");
+            mVerticalShadowAnimation.Stop(Animation.EndActions.Cancel);
+            OnVerticalShadowAnimationFinished(null, null);
+            mVerticalShadowAnimation.Clear();
+        }
+
+        private void OnVerticalShadowAnimationFinished(object sender, EventArgs e)
+        {
+            base.Remove(mVerticalTopShadowView);
+            base.Remove(mVerticalBottomShadowView);
+
+            mVerticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            mVerticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+
+            // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             OnPanGesture(e.PanGesture);
@@ -952,6 +1092,7 @@ namespace Tizen.NUI.Components
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
+                AttachShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
@@ -969,13 +1110,19 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    ScrollBy(panGesture.Displacement.Y, false);
+                    // if vertical shadow is shown, does not scroll.
+                    if (!isVerticalShadowShown)
+                    {
+                        ScrollBy(panGesture.Displacement.Y, false);
+                    }
                     totalDisplacementForPan += panGesture.Displacement.Y;
+                    DragVerticalShadow(totalDisplacementForPan);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
+                PlayVerticalShadowAnimation();
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
 
