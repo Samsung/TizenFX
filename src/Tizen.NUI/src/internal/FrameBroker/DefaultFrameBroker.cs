@@ -64,11 +64,7 @@ namespace Tizen.NUI
                 providerImage.Size = window.Size;
                 window.Add(providerImage);
 
-                if (animation is SlideIn)
-                {
-                    SlideIn slideIn = animation as SlideIn;
-                    providerImage.PositionX = slideIn.GetDefaultInitValue();
-                }
+                providerImage.PositionX = animation.GetDefaultInitValue();
 
                 animation.PlayAnimateTo(providerImage);
             }

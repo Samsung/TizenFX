@@ -20,6 +20,11 @@ namespace Tizen.NUI
         {
 
         }
+
+        internal virtual int GetDefaultInitValue()
+        {
+            return 0;
+        }
     }
 
     /// <summary>
@@ -50,7 +55,7 @@ namespace Tizen.NUI
             defaultInitValue = -Window.Instance.GetWindowSize().Width;
         }
 
-        internal int GetDefaultInitValue()
+        internal override int GetDefaultInitValue()
         {
             return defaultInitValue;
         }
@@ -86,7 +91,7 @@ namespace Tizen.NUI
             defaultInitValue = 0;
         }
 
-        internal int GetDefaultInitValue()
+        internal override int GetDefaultInitValue()
         {
             return defaultInitValue;
         }
