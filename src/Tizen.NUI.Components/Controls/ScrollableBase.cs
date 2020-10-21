@@ -528,13 +528,13 @@ namespace Tizen.NUI.Components
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
 
-        private View mVerticalTopShadowView;
-        private View mVerticalBottomShadowView;
-        private const int mVerticalShadowScaleHeightLimit = 64 * 3;
-        private const int mVerticalShadowAnimationDuration = 300;
-        private Animation mVerticalShadowAnimation;
+        private View verticalTopShadowView;
+        private View verticalBottomShadowView;
+        private const int verticalShadowScaleHeightLimit = 64 * 3;
+        private const int verticalShadowAnimationDuration = 300;
+        private Animation verticalShadowAnimation;
         private bool isVerticalShadowShown = false;
-        private float mStartShowShadowDisplacement;
+        private float startShowShadowDisplacement;
 
         /// <summary>
         /// Default Constructor
@@ -574,7 +574,7 @@ namespace Tizen.NUI.Components
             Scrollbar = new Scrollbar();
 
             //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
-            mVerticalTopShadowView = new View
+            verticalTopShadowView = new View
             {
                 BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_top.png"),
                 Opacity = 1.0f,
@@ -583,7 +583,7 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.TopCenter,
                 PivotPoint = NUI.PivotPoint.TopCenter,
             };
-            mVerticalBottomShadowView = new View
+            verticalBottomShadowView = new View
             {
                 BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_bottom.png"),
                 Opacity = 1.0f,
@@ -969,14 +969,14 @@ namespace Tizen.NUI.Components
             // stop animation if necessary.
             StopVerticalShadowAnimation();
 
-            base.Add(mVerticalTopShadowView);
-            base.Add(mVerticalBottomShadowView);
+            base.Add(verticalTopShadowView);
+            base.Add(verticalBottomShadowView);
 
-            mVerticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
-            mVerticalTopShadowView.Opacity = 1.0f;
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalTopShadowView.Opacity = 1.0f;
 
-            mVerticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
-            mVerticalBottomShadowView.Opacity = 1.0f;
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Opacity = 1.0f;
 
             // at the beginning, height of vertical shadow is 0, so it is invisible.
             isVerticalShadowShown = false;
@@ -993,18 +993,18 @@ namespace Tizen.NUI.Components
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
                 {
-                    mStartShowShadowDisplacement = displacement;
+                    startShowShadowDisplacement = displacement;
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = displacement < mStartShowShadowDisplacement ? 0 : displacement - mStartShowShadowDisplacement;
+                float newDisplacement = displacement < startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
 
                 // scale limit of width is 60%.
-                float widthScale = newDisplacement / mVerticalShadowScaleHeightLimit;
-                mVerticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
 
                 // scale limit of height is 300%.
-                mVerticalTopShadowView.SizeHeight = newDisplacement > mVerticalShadowScaleHeightLimit ? mVerticalShadowScaleHeightLimit : newDisplacement;
+                verticalTopShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
             }
             else if ((int)displacement < 0) // upwards
             {
@@ -1015,18 +1015,18 @@ namespace Tizen.NUI.Components
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
                 {
-                    mStartShowShadowDisplacement = displacement;
+                    startShowShadowDisplacement = displacement;
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = mStartShowShadowDisplacement < displacement ? 0 : mStartShowShadowDisplacement - displacement;
+                float newDisplacement = startShowShadowDisplacement < displacement ? 0 : startShowShadowDisplacement - displacement;
 
                 // scale limit of width is 60%.
-                float widthScale = newDisplacement / mVerticalShadowScaleHeightLimit;
-                mVerticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
 
                 // scale limit of height is 300%.
-                mVerticalBottomShadowView.SizeHeight = newDisplacement > mVerticalShadowScaleHeightLimit ? mVerticalShadowScaleHeightLimit : newDisplacement;
+                verticalBottomShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
             }
             else
             {
@@ -1040,36 +1040,36 @@ namespace Tizen.NUI.Components
             // stop animation if necessary.
             StopVerticalShadowAnimation();
 
-            if (mVerticalShadowAnimation == null)
+            if (verticalShadowAnimation == null)
             {
-                mVerticalShadowAnimation = new Animation(mVerticalShadowAnimationDuration);
-                mVerticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
+                verticalShadowAnimation = new Animation(verticalShadowAnimationDuration);
+                verticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
             }
 
-            View targetView = totalDisplacementForPan < 0 ? mVerticalBottomShadowView : mVerticalTopShadowView;
-            mVerticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
-            mVerticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
-            mVerticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
-            mVerticalShadowAnimation.Play();
+            View targetView = totalDisplacementForPan < 0 ? verticalBottomShadowView : verticalTopShadowView;
+            verticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
+            verticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
+            verticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            verticalShadowAnimation.Play();
         }
 
         private void StopVerticalShadowAnimation()
         {
-            if (mVerticalShadowAnimation == null || mVerticalShadowAnimation.State != Animation.States.Playing)
+            if (verticalShadowAnimation == null || verticalShadowAnimation.State != Animation.States.Playing)
                 return;
 
-            mVerticalShadowAnimation.Stop(Animation.EndActions.Cancel);
+            verticalShadowAnimation.Stop(Animation.EndActions.Cancel);
             OnVerticalShadowAnimationFinished(null, null);
-            mVerticalShadowAnimation.Clear();
+            verticalShadowAnimation.Clear();
         }
 
         private void OnVerticalShadowAnimationFinished(object sender, EventArgs e)
         {
-            base.Remove(mVerticalTopShadowView);
-            base.Remove(mVerticalBottomShadowView);
+            base.Remove(verticalTopShadowView);
+            base.Remove(verticalBottomShadowView);
 
-            mVerticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
-            mVerticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
 
             // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
             isVerticalShadowShown = false;
