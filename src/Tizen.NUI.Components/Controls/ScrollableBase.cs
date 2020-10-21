@@ -72,12 +72,14 @@ namespace Tizen.NUI.Components
             /// Top bound.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Top,
 
             /// <summary>
             /// Bottom bound.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Bottom
         }
 
