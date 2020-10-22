@@ -28,8 +28,7 @@ namespace NUIMusicPlayer
 
         public UICreator()
         {
-            //CreateFHubSize();
-            CreateMobileSize();
+            CreateFHubSize();
         }
         public void CreateMobileSize()
         {
