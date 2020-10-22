@@ -42,7 +42,7 @@ namespace NUIBrokerSample
         public UICreator(NUIApplication app)
         {
             application = app;
-            CreateMobileSize();
+            CreateFHubSize();
         }
         private void CreateMobileSize()
         {

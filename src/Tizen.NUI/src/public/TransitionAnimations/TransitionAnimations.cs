@@ -21,10 +21,42 @@ namespace Tizen.NUI
 
         }
 
-        internal virtual int GetDefaultInitValue()
+        /// <summary>
+        /// Return default size of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Size GetDefaultSize()
         {
-            return 0;
+            return new Size(0, 0);
         }
+
+        /// <summary>
+        /// Return default position of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Position GetDefaultPosition()
+        {
+            return new Position(0, 0);
+        }
+
+        /// <summary>
+        /// Return default position of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Position GetDefaultParentOrigin()
+        {
+            return ParentOrigin.Center;
+        }
+
+        /// <summary>
+        /// Return default position of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Position GetDefaultPivotPoint()
+        {
+            return PivotPoint.Center;
+        }
+
     }
 
     /// <summary>
@@ -55,10 +87,24 @@ namespace Tizen.NUI
             defaultInitValue = -Window.Instance.GetWindowSize().Width;
         }
 
-        internal override int GetDefaultInitValue()
+        /// <summary>
+        /// Return default position of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position GetDefaultPosition()
         {
-            return defaultInitValue;
+            return new Position(defaultInitValue, 0);
         }
+
+        /// <summary>
+        /// Return default size of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Size GetDefaultSize()
+        {
+            return Window.Instance.GetWindowSize();
+        }
+
     }
 
 
@@ -91,9 +137,22 @@ namespace Tizen.NUI
             defaultInitValue = 0;
         }
 
-        internal override int GetDefaultInitValue()
+        /// <summary>
+        /// Return default position of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Position GetDefaultPosition()
         {
-            return defaultInitValue;
+            return new Position(defaultInitValue, 0);
+        }
+
+        /// <summary>
+        /// Return default size of main view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual Size GetDefaultSize()
+        {
+            return Window.Instance.GetWindowSize();
         }
     }
 }
