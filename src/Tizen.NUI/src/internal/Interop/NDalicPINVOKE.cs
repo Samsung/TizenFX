@@ -193,6 +193,10 @@ namespace Tizen.NUI
                         }
                     }
                 }
+                if (e == null)
+                {
+                    e = new global::System.ApplicationException($"FATAL: Exception e is null, numExceptionsPending : {numExceptionsPending}");
+                }
                 return e;
             }
         }
