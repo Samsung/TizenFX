@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
-    /// Slider sliding finished event data.
+    /// Slider sliding started event data.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class SliderSlidingStartedEventArgs : EventArgs
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The sliding finished event handler.
+        /// The sliding started event handler.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<SliderSlidingStartedEventArgs> SlidingStarted

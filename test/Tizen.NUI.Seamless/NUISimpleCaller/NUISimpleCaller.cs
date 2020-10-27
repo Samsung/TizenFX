@@ -22,7 +22,7 @@ namespace NUISimpleCaller
             text.HorizontalAlignment = HorizontalAlignment.Center;
             text.VerticalAlignment = VerticalAlignment.Center;
             text.TextColor = Color.Blue;
-            text.PointSize = 12.0f;
+            text.PointSize = 25.0f;
             text.HeightResizePolicy = ResizePolicyType.FillToParent;
             text.WidthResizePolicy = ResizePolicyType.FillToParent;
             Window.Instance.GetDefaultLayer().Add(text);
@@ -30,21 +30,21 @@ namespace NUISimpleCaller
 
             TransitionOptions = new TransitionOptions(GetDefaultWindow());
             TransitionOptions.EnableTransition = true;
-            TransitionOptions.ForwardAnimation = new SlideIn(300);
-            TransitionOptions.BackwardAnimation = new SlideOut(300);
+            TransitionOptions.ForwardAnimation = new SlideIn(1300);
+            TransitionOptions.BackwardAnimation = new SlideOut(1300);
 
-            ////TransitionOptions.AnimationStart += TransitionOptions_AnimationStart;
-            ////TransitionOptions.AnimationFinished += TransitionOptions_AnimationFinished;
+            TransitionOptions.AnimationInitialized += TransitionOptions_AnimationInitialized;
+            TransitionOptions.AnimationFinished += TransitionOptions_AnimationFinished;
         }
 
-        private void TransitionOptions_AnimationFinished()
+        private void TransitionOptions_AnimationInitialized(object sender, EventArgs e)
         {
-            Tizen.Log.Error("MYLOG", "Finish Animation");
+            Tizen.Log.Error("MYLOG", "Animation Initialized");
         }
 
-        private void TransitionOptions_AnimationStart()
+        private void TransitionOptions_AnimationFinished(object sender, EventArgs e)
         {
-            Tizen.Log.Error("MYLOG", "Start Animation");
+            Tizen.Log.Error("MYLOG", "Animation Finished");
         }
 
         private void OnTouchEvent(object sender, Window.TouchEventArgs e)

@@ -1081,16 +1081,6 @@ namespace Tizen.NUI.BaseComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.View.delete_View(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             foreach (View view in Children)
             {
                 view.InternalParent = null;
@@ -1168,6 +1158,11 @@ namespace Tizen.NUI.BaseComponents
             if (_hoverEventCallback != null)
             {
                 this.HoveredSignal().Disconnect(_hoverEventCallback);
+            }
+
+            if (_interceptTouchDataCallback != null)
+            {
+                this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
             }
 
             if (_touchDataCallback != null)
