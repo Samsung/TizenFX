@@ -195,13 +195,13 @@ namespace Tizen.NUI
         {
             var transformMap = new PropertyMap();
 
-            if (!Offset.Equals(noOffset))
+            if (!noOffset.Equals(Offset))
             {
                 transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute));
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
             }
 
-            if (!Extents.Equals(noExtents))
+            if (!noExtents.Equals(Extents))
             {
                 transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
             }
