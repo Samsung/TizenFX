@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,17 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image size.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Size LoadingSize { get; set; }
+        public Size LoadingSize
+        {
+            get
+            {
+                return this.Size;
+            }
+            set
+            {
+                this.Size = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets loading frame per second.

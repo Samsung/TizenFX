@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +54,7 @@ namespace Tizen.NUI.Components
             {
                 Size size = (Size)newValue;
                 ((View)bindable).Size = size;
-                if (null != instance.imageVisual)
-                {
-                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
-                }
+                instance.loadingStyle.LoadingSize = size;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -237,7 +234,9 @@ namespace Tizen.NUI.Components
                 LoopCount = -1,
                 Position = new Vector2(0, 0),
                 Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center
+                AnchorPoint = Visual.AlignType.Center,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Size = new Size2D(1, 1)
             };
 
             UpdateVisual();
@@ -256,10 +255,6 @@ namespace Tizen.NUI.Components
             if (null != loadingStyle.FrameRate?.All && 0 != loadingStyle.FrameRate.All.Value)
             {
                 imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
-            }
-            if (null != loadingStyle.LoadingSize)
-            {
-                this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
             }
         }
 
