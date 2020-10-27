@@ -45,8 +45,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase(Vector2 offset, Vector2 extents)
         {
-            Offset = new Vector2(offset);
-            Extents = new Vector2(extents);
+            Offset = offset == null ? null : new Vector2(offset);
+            Extents = extents == null ? null : new Vector2(extents);
         }
 
         /// <summary></summary>
@@ -195,13 +195,13 @@ namespace Tizen.NUI
         {
             var transformMap = new PropertyMap();
 
-            if (!Offset.Equals(noOffset))
+            if (!noOffset.Equals(Offset))
             {
                 transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute));
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
             }
 
-            if (!Extents.Equals(noExtents))
+            if (!noExtents.Equals(Extents))
             {
                 transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
             }
