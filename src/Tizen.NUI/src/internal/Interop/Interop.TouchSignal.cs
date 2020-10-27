@@ -26,6 +26,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchSignal")]
             public static extern global::System.IntPtr new_TouchSignal();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InterceptTouchSignal")]
+            public static extern global::System.IntPtr new_InterceptTouchSignal();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TouchSignal")]
             public static extern void delete_TouchSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

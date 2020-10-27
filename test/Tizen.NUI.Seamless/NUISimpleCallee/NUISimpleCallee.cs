@@ -16,24 +16,39 @@ namespace NUISimpleCallee
         {
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.TouchEvent += OnTouchEvent;
+            Window.Instance.BackgroundColor = Color.Yellow;
 
             TextLabel text = new TextLabel("Callee");
             text.HorizontalAlignment = HorizontalAlignment.Center;
             text.VerticalAlignment = VerticalAlignment.Center;
             text.TextColor = Color.Red;
-            text.PointSize = 12.0f;
+            text.PointSize = 25.0f;
             text.HeightResizePolicy = ResizePolicyType.FillToParent;
             text.WidthResizePolicy = ResizePolicyType.FillToParent;
             Window.Instance.GetDefaultLayer().Add(text);
 
             TransitionOptions = new TransitionOptions(GetDefaultWindow());
             TransitionOptions.EnableTransition = true;
+
+            TransitionOptions.CallerScreenShown += TransitionOptions_CallerScreenShown;
+            TransitionOptions.CallerScreenHidden += TransitionOptions_CallerScreenHidden;
+        }
+
+        private void TransitionOptions_CallerScreenShown(object sender, EventArgs e)
+        {
+            Tizen.Log.Error("MYLOG", "Shown");
+        }
+
+        private void TransitionOptions_CallerScreenHidden(object sender, EventArgs e)
+        {
+            Tizen.Log.Error("MYLOG", "Hidden");
         }
 
         private void OnTouchEvent(object sender, Window.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
+                //Window.Instance.Hide();
                 Exit();
             }
         }
