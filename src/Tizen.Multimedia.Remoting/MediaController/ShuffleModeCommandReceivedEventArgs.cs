@@ -27,7 +27,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="ShuffleModeCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="command">The playback position command.</param>
+        /// <param name="command">The shuffle mode command.</param>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ShuffleModeCommandReceivedEventArgs(ShuffleModeCommand command)

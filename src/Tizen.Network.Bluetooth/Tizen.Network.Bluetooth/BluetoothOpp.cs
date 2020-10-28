@@ -92,6 +92,7 @@ namespace Tizen.Network.Bluetooth
         /// The device must be bonded with remote device by CreateBond().
         /// If connection request is received from OPP Client, ConnectionRequested event will be invoked.
         /// </remarks>
+        /// <returns>The BluetoothOppServer instance.</returns>
         /// <param name="FilePath"> Path to store the files.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth.opp</feature>
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
@@ -156,6 +157,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Accept File Push request.
         /// </summary>
+        /// <returns>The id of transfer.</returns>
         /// <param name="FileName"> File name to accept.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth.opp</feature>
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>

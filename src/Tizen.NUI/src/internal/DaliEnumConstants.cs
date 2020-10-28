@@ -220,7 +220,7 @@ namespace Tizen.NUI
 
     internal class NUILog
     {
-        [Conditional("DEBUG_ON")]
+        [Conditional("NUI_DEBUG_ON")]
         public static void Debug(string msg,
             [CallerLineNumber] int lineNum = 0,
             [CallerMemberName] string caller = null,
@@ -240,4 +240,12 @@ namespace Tizen.NUI
         }
     }
 
-} // namesapce Dali
+#if !(NUI_DEBUG_ON)
+    internal class tlog
+    {
+        internal static void Fatal(string tag, string msg) { }
+        internal static void Error(string tag, string msg) { }
+    }
+#endif
+
+}

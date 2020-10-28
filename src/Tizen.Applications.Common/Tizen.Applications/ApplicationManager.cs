@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static Interop.ApplicationManager;
 
 namespace Tizen.Applications
 {
@@ -32,10 +33,12 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLaunchedEventArgs> s_launchedHandler;
         private static EventHandler<ApplicationTerminatedEventArgs> s_terminatedHandler;
         private static Interop.ApplicationManager.AppManagerAppContextEventCallback s_applicationChangedEventCallback;
-        private static EventHandler<ApplicationEnabledEventArgs> _enabledHandler;
-        private static EventHandler<ApplicationDisabledEventArgs> _disabledHandler;
-        private static Interop.ApplicationManager.AppManagerEventCallback _eventCallback;
+        private static EventHandler<ApplicationEnabledEventArgs> s_enabledHandler;
+        private static EventHandler<ApplicationDisabledEventArgs> s_disabledHandler;
+        private static Interop.ApplicationManager.AppManagerEventCallback s_eventCallback;
         private static IntPtr _eventHandle = IntPtr.Zero;
+        private static readonly object s_eventLock = new object();
+        private static readonly object s_applicationChangedEventLock = new object();
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -45,18 +48,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (_enabledHandler == null && _disabledHandler == null)
+                lock (s_eventLock)
                 {
-                    RegisterApplicationEvent();
+                    if (s_eventCallback == null)
+                    {
+                        RegisterApplicationEvent();
+                    }
+                    s_enabledHandler += value;
                 }
-                _enabledHandler += value;
             }
             remove
             {
-                _enabledHandler -= value;
-                if (_enabledHandler == null && _disabledHandler == null)
+                lock (s_eventLock)
                 {
-                    UnRegisterApplicationEvent();
+                    s_enabledHandler -= value;
+                    if (s_enabledHandler == null && s_disabledHandler == null && s_eventCallback != null)
+                    {
+                        UnRegisterApplicationEvent();
+                        s_eventCallback = null;
+                    }
                 }
             }
         }
@@ -69,18 +79,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (_disabledHandler == null && _enabledHandler == null)
+                lock (s_eventLock)
                 {
-                    RegisterApplicationEvent();
+                    if (s_eventCallback == null)
+                    {
+                        RegisterApplicationEvent();
+                    }
+                    s_disabledHandler += value;
                 }
-                _disabledHandler += value;
             }
             remove
             {
-                _disabledHandler -= value;
-                if (_disabledHandler == null && _enabledHandler == null)
+                lock (s_eventLock)
                 {
-                    UnRegisterApplicationEvent();
+                    s_disabledHandler -= value;
+                    if (s_enabledHandler == null && s_disabledHandler == null && s_eventCallback != null)
+                    {
+                        UnRegisterApplicationEvent();
+                        s_eventCallback = null;
+                    }
                 }
             }
         }
@@ -93,18 +110,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    RegisterApplicationChangedEvent();
+                    if (s_applicationChangedEventCallback == null)
+                    {
+                        RegisterApplicationChangedEvent();
+                    }
+                    s_launchedHandler += value;
                 }
-                s_launchedHandler += value;
             }
             remove
             {
-                s_launchedHandler -= value;
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    UnRegisterApplicationChangedEvent();
+                    s_launchedHandler -= value;
+                    if (s_launchedHandler == null && s_terminatedHandler == null && s_applicationChangedEventCallback != null)
+                    {
+                        UnRegisterApplicationChangedEvent();
+                        s_applicationChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -117,18 +141,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    RegisterApplicationChangedEvent();
+                    if (s_applicationChangedEventCallback == null)
+                    {
+                        RegisterApplicationChangedEvent();
+                    }
+                    s_terminatedHandler += value;
                 }
-                s_terminatedHandler += value;
             }
             remove
             {
-                s_terminatedHandler -= value;
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    UnRegisterApplicationChangedEvent();
+                    s_terminatedHandler -= value;
+                    if (s_launchedHandler == null && s_terminatedHandler == null && s_applicationChangedEventCallback != null)
+                    {
+                        UnRegisterApplicationChangedEvent();
+                        s_applicationChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -136,6 +167,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the installed applications asynchronously.
         /// </summary>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
@@ -167,13 +199,44 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach the appinfo.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Terminates the application if it is running on background.
+        /// </summary>
+        /// <param name="app">ApplicationRunningContext object</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
+        /// <remarks>
+        /// This function returns after it just sends a request for terminating a background application.
+        /// Platform will decide if the target application could be terminated or not according to the state of the target application.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static void TerminateBackgroundApplication(ApplicationRunningContext app)
+        {
+            ErrorCode err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(app._contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
         }
 
         /// <summary>
         /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
@@ -200,13 +263,14 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
         {
@@ -233,12 +297,13 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the running applications asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
@@ -271,12 +336,13 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the running applications including subapp asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
@@ -309,13 +375,14 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the specified application with the application ID.
         /// </summary>
         /// <param name="applicationId">Application ID.</param>
+        /// <returns>The application info.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
@@ -345,6 +412,24 @@ namespace Tizen.Applications
                 throw ApplicationManagerErrorFactory.GetException(Interop.ApplicationManager.ErrorCode.InvalidParameter, "Invalid parameter");
             }
             return isRunning;
+        }
+
+        /// <summary>
+        /// Returns the application id.
+        /// </summary>
+        /// <param name="processId">The application pid.</param>
+        /// <returns>Returns the application id.</returns>
+        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static string GetAppId(int processId)
+        {
+            string appid;
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "fail to get appid(" + processId + ")");
+            }
+            return appid;
         }
 
         private static void RegisterApplicationChangedEvent()
@@ -401,18 +486,18 @@ namespace Tizen.Applications
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to set the application event");
             }
 
-            _eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
+            s_eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
             {
                 if (eventType == Interop.ApplicationManager.AppManagerEventType.Enable)
                 {
-                    _enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
+                    s_enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
                 }
                 else if (eventType == Interop.ApplicationManager.AppManagerEventType.Disable)
                 {
-                    _disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
+                    s_disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
                 }
             };
-            err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, _eventCallback, IntPtr.Zero);
+            err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, s_eventCallback, IntPtr.Zero);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);

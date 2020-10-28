@@ -17,14 +17,11 @@
 
 namespace Tizen.NUI
 {
-
     internal class BufferImage : Image
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal BufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BufferImage.BufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BufferImage obj)
@@ -32,66 +29,36 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.BufferImage.delete_BufferImage(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.BufferImage.delete_BufferImage(swigCPtr);
         }
-
-
 
         public BufferImage(uint width, uint height, PixelFormat pixelformat) : this(Interop.BufferImage.BufferImage_New__SWIG_0(width, height, (int)pixelformat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public BufferImage(uint width, uint height) : this(Interop.BufferImage.BufferImage_New__SWIG_1(width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public BufferImage(byte[] pixelBuffer, uint width, uint height, PixelFormat pixelFormat, uint stride) : this(Interop.BufferImage.BufferImage_New__SWIG_2(pixelBuffer, width, height, (int)pixelFormat, stride), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public BufferImage(byte[] pixelBuffer, uint width, uint height, PixelFormat pixelFormat) : this(Interop.BufferImage.BufferImage_New__SWIG_3(pixelBuffer, width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public BufferImage(byte[] pixelBuffer, uint width, uint height) : this(Interop.BufferImage.BufferImage_New__SWIG_4(pixelBuffer, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public new static BufferImage DownCast(BaseHandle handle)
         {
             BufferImage ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as BufferImage;
@@ -165,7 +132,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

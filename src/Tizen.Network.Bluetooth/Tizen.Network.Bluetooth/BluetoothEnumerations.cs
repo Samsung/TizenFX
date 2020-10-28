@@ -16,6 +16,7 @@
 
 using System;
 using Tizen.Internals.Errors;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -1060,6 +1061,26 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the Bluetooth LE scan mode.
+    /// </summary>
+    /// <since_tizen> 7 </since_tizen>
+    public enum BluetoothLeScanMode
+    {
+        /// <summary>
+        /// Balanced mode of power consumption and connection latency
+        /// </summary>
+        Balanced,
+        /// <summary>
+        /// Low connection latency but high power consumption
+        /// </summary>
+        LowLatency,
+        /// <summary>
+        /// Low power consumption but high connection latency
+        /// </summary>
+        LowEnergy
+    }
+
+    /// <summary>
     /// Enumeration for the integer type for GATT handle's values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1231,5 +1252,63 @@ namespace Tizen.Network.Bluetooth
         /// Write requested.
         /// </summary>
         Write = 1,
+    }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth HID header type.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum BluetoothHidHeaderType
+    {
+        /// <summary>
+        /// The Bluetooth HID header type: Handshake
+        /// </summary>
+        Handshake,
+        /// <summary>
+        /// The Bluetooth HID header type: HID control
+        /// </summary>
+        HidControl,
+        /// <summary>
+        /// The Bluetooth HID header type: Get report
+        /// </summary>
+        GetReport,
+        /// <summary>
+        /// The Bluetooth HID header type: Set report
+        /// </summary>
+        SetReport,
+        /// <summary>
+        /// The Bluetooth HID header type: Get protocol
+        /// </summary>
+        GetProtocol,
+        /// <summary>
+        /// The Bluetooth HID header type: Set protocol
+        /// </summary>
+        SetProtocol,
+        /// <summary>
+        /// The Bluetooth HID header type: Data
+        /// </summary>
+        Data,
+        /// <summary>
+        /// The Bluetooth HID header type: Unknown
+        /// </summary>
+        Unknown
+    }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth HID parameter type.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum BluetoothHidParamType
+    {
+        /// <summary>
+        /// Parameter type: Input
+        /// </summary>
+        Input,
+        /// <summary>
+        /// Parameter type: Output
+        /// </summary>
+        Output
     }
 }

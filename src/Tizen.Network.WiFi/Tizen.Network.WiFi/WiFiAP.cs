@@ -218,10 +218,12 @@ namespace Tizen.Network.WiFi
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="NowInProgressException">Thrown when the Wi-Fi connection is now in progress.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="InvalidKeyException">Thrown when the key is wrong.</exception>
         public Task ConnectAsync()
         {
             Log.Info(Globals.LogTag, "ConnectAsync HashCode: " + _apHandle.GetHashCode());
@@ -240,7 +242,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                     }
                     else
                     {
@@ -299,6 +301,8 @@ namespace Tizen.Network.WiFi
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NowInProgressException">Thrown when the Wi-Fi connection is now in progress.</exception>
+        /// <exception cref="TimeoutException">Thrown when the timeout of WPS connection is expired.</exception>
         public Task ConnectWpsAsync(WpsInfo info)
         {
             Log.Info(Globals.LogTag, "ConnectWpsAsync");
@@ -320,7 +324,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        wpsTask.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                        wpsTask.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                         Log.Info(Globals.LogTag, "Remove task for ConnectWpsAsync");
                         _wpsTaskMap.Remove(_apHandle);
                     }
@@ -403,6 +407,8 @@ namespace Tizen.Network.WiFi
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NowInProgressException">Thrown when the Wi-Fi connection is now in progress.</exception>
+        /// <exception cref="TimeoutException">Thrown when the timeout of WPS connection is expired.</exception>
         public static Task<WiFiAP> ConnectWpsWithoutSsidAsync(WpsInfo info)
         {
             Log.Info(Globals.LogTag, "ConnectWpsWithoutSsidAsync");
@@ -417,7 +423,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
-                        wpsWithoutSsidTask.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
+                        wpsWithoutSsidTask.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                         wpsWithoutSsidTask = null;
                         Log.Info(Globals.LogTag, "task is null");
                     }

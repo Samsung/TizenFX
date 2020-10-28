@@ -159,7 +159,7 @@ namespace Tizen.NUI
             if (savedApplicationThread == null)
             {
                 Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");
-                throw new global::System.ApplicationException("Error! maybe main thread is created by other process");
+                return;
             }
             int currentId = Thread.CurrentThread.ManagedThreadId;
             int mainThreadId = savedApplicationThread.ManagedThreadId;
@@ -169,7 +169,5 @@ namespace Tizen.NUI
                 Tizen.Log.Fatal("NUI", $"Error! current thread({currentId}) which is NOT main thread({mainThreadId}) utilizes NUI object!");
             }
         }
-
-
     }
 }

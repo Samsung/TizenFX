@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="NuiCommonUiSamples" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="NuiCommonUiSamples" exec="NuiCommonUiSamples.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
+        <label>NuiCommonUiSamples</label>
+        <icon>NuiCommonUiSamples.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="false" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <provides-appdefined-privileges />
+</manifest>

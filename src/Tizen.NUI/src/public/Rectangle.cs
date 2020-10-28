@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -23,26 +23,9 @@ namespace Tizen.NUI
     /// The Rectangle class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RectangleTypeConverter))]
-    public class Rectangle : global::System.IDisposable
+    [Binding.TypeConverter(typeof(RectangleTypeConverter))]
+    public class Rectangle : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -65,24 +48,41 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Rectangle(Rectangle other) : this(other.x, other.y, other.width, other.height)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
+        internal Rectangle(RectangleChangedCallback cb, int x, int y, int width, int height) : this(Interop.Rectangle.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Rectangle(RectangleChangedCallback cb) : this()
+        {
+        }
+
+        internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)
+        {
         }
 
         /// <summary>
-        /// Dispose.
+        /// The type cast operator, int to Rectangle.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Rectangle()
+        /// <param name="value">A value of int type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Rectangle(int value)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            return new Rectangle(value, value, value, value);
         }
+
+        internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
+        private RectangleChangedCallback callback = null;
 
         /// <summary>
         /// The x position of the rectangle.
@@ -93,6 +93,8 @@ namespace Tizen.NUI
             set
             {
                 x = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -109,6 +111,8 @@ namespace Tizen.NUI
             set
             {
                 y = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -125,6 +129,8 @@ namespace Tizen.NUI
             set
             {
                 width = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -141,6 +147,8 @@ namespace Tizen.NUI
             set
             {
                 height = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -306,29 +314,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
         /// Equality operator.
         /// </summary>
         /// <param name="o">The object to compare with the current object.</param>
@@ -477,38 +462,16 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Rectangle.delete_Rectangle(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Rectangle.delete_Rectangle(swigCPtr);
         }
+
+        /// <summary>
+        /// Determines whether the reference is null or the Rectangle has all 0 properties.
+        /// </summary>
+        internal static bool IsNullOrZero(Rectangle rectangle) => (rectangle == null || (rectangle.top == 0 && rectangle.right == 0 && rectangle.bottom == 0 && rectangle.left == 0));
     }
 }

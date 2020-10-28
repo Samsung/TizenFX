@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,25 +24,9 @@ namespace Tizen.NUI
     /// Both values (x and y) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RelativeVector2TypeConverter))]
-    public class RelativeVector2 : global::System.IDisposable
+    [Binding.TypeConverter(typeof(RelativeVector2TypeConverter))]
+    public class RelativeVector2 : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -59,7 +43,7 @@ namespace Tizen.NUI
         /// <param name="x">The x component.</param>
         /// <param name="y">The y component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public RelativeVector2(float x, float y) : this(Interop.Vector2.new_Vector2__SWIG_1(ValueCheck(x), ValueCheck(y)), true)
+        public RelativeVector2(float x, float y) : this(Interop.Vector2.new_Vector2__SWIG_1(x, y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -84,23 +68,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RelativeVector2(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal RelativeVector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~RelativeVector2()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -111,7 +80,7 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector2.Vector2_X_set(swigCPtr, ValueCheck(value));
+                Interop.Vector2.Vector2_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -130,7 +99,7 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector2.Vector2_Y_set(swigCPtr, ValueCheck(value));
+                Interop.Vector2.Vector2_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -156,7 +125,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator +(RelativeVector2 arg1, RelativeVector2 arg2)
         {
             RelativeVector2 result = arg1.Add(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -169,7 +138,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator -(RelativeVector2 arg1, RelativeVector2 arg2)
         {
             RelativeVector2 result = arg1.Subtract(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -182,7 +151,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator *(RelativeVector2 arg1, RelativeVector2 arg2)
         {
             RelativeVector2 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -195,7 +164,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator *(RelativeVector2 arg1, float arg2)
         {
             RelativeVector2 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -208,7 +177,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator /(RelativeVector2 arg1, RelativeVector2 arg2)
         {
             RelativeVector2 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -221,7 +190,7 @@ namespace Tizen.NUI
         public static RelativeVector2 operator /(RelativeVector2 arg1, float arg2)
         {
             RelativeVector2 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -237,30 +206,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector2(Vector2 vec)
         {
-            return new RelativeVector2(ValueCheck(vec.X), ValueCheck(vec.Y));
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
+            return new RelativeVector2(vec.X, vec.Y);
         }
 
         /// <summary>
@@ -338,78 +284,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static RelativeVector2 ValueCheck(RelativeVector2 relativeVector2)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (relativeVector2.X < 0.0f)
-            {
-                relativeVector2.X = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector2.X > 1.0f)
-            {
-                relativeVector2.X = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector2.Y < 0.0f)
-            {
-                relativeVector2.Y = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector2.Y > 1.0f)
-            {
-                relativeVector2.Y = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            return relativeVector2;
-        }
-
-        internal static float ValueCheck(float value)
-        {
-            if (value < 0.0f)
-            {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector2.delete_Vector2(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Vector2.delete_Vector2(swigCPtr);
         }
 
         private RelativeVector2 Add(RelativeVector2 rhs)

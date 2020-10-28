@@ -27,7 +27,7 @@ internal static partial class Interop
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
         public const string Application = "libcapi-appfw-application.so.0";
-        public const string Icuuc = "libicuuc.so";
+        public const string BaseUtilsi18n = "libbase-utils-i18n.so.0";
         public const string RpcPort = "librpc-port.so.1";
     }
 }

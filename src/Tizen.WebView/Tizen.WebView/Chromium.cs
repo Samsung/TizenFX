@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.WebView
 {
     /// <summary>
@@ -40,6 +43,17 @@ namespace Tizen.WebView
         public static int Shutdown()
         {
             return Interop.ChromiumEwk.ewk_shutdown();
+        }
+
+        /// <summary>
+        /// Sets argument count and argument array for Chromium.
+        /// </summary>
+        /// <param name="args">Argument array. The first value of array must be program's name.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetArguments(string[] args)
+        {
+            Interop.ChromiumEwk.ewk_set_arguments(args.Length, args);
         }
     }
 }

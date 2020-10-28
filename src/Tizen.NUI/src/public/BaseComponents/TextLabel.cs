@@ -32,6 +32,25 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class TextLabel : View
     {
+        static TextLabel() { }
+
+        /// <summary>
+        /// StyleNameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                textLabel.translatableText = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.translatableText;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -125,13 +144,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((HorizontalAlignment)newValue)
-                {
-                    case HorizontalAlignment.Begin: { valueToString = "BEGIN"; break; }
-                    case HorizontalAlignment.Center: { valueToString = "CENTER"; break; }
-                    case HorizontalAlignment.End: { valueToString = "END"; break; }
-                    default: { valueToString = "BEGIN"; break; }
-                }
+                valueToString = ((HorizontalAlignment)newValue).GetDescription<HorizontalAlignment>();
                 Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -143,13 +156,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("HorizontalAlignment get error!");
             }
-            switch (temp)
-            {
-                case "BEGIN": return HorizontalAlignment.Begin;
-                case "CENTER": return HorizontalAlignment.Center;
-                case "END": return HorizontalAlignment.End;
-                default: return HorizontalAlignment.Begin;
-            }
+            return temp.GetValueByDescription<HorizontalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -159,13 +166,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((VerticalAlignment)newValue)
-                {
-                    case VerticalAlignment.Top: { valueToString = "TOP"; break; }
-                    case VerticalAlignment.Center: { valueToString = "CENTER"; break; }
-                    case VerticalAlignment.Bottom: { valueToString = "BOTTOM"; break; }
-                    default: { valueToString = "BOTTOM"; break; }
-                }
+                valueToString = ((VerticalAlignment)newValue).GetDescription<VerticalAlignment>();
                 Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -178,13 +179,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("VerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "TOP": return VerticalAlignment.Top;
-                case "CENTER": return VerticalAlignment.Center;
-                case "BOTTOM": return VerticalAlignment.Bottom;
-                default: return VerticalAlignment.Bottom;
-            }
+            return temp.GetValueByDescription<VerticalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -342,6 +337,22 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(TextShadow), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                (textLabel.textShadow ?? (textLabel.textShadow = new CloneableViewSelector<TextShadow>(textLabel, textLabel.OnControlStateChangedForShadow))).Set(newValue);
+                Object.SetProperty(textLabel.swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(textLabel.textShadow.GetValue()));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textShadow?.GetValue();
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
@@ -443,12 +454,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("AutoScrollStopMode get error!");
             }
-            switch (temp)
-            {
-                case "FINISH_LOOP": return AutoScrollStopMode.FinishLoop;
-                case "IMMEDIATE": return AutoScrollStopMode.Immediate;
-                default: return AutoScrollStopMode.FinishLoop;
-            }
+            return temp.GetValueByDescription<AutoScrollStopMode>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -505,9 +511,32 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// Only for XAML. No need of public API. Make hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextFitProperty = BindableProperty.Create(nameof(TextFit), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.TEXT_FIT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            PropertyMap temp = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.TEXT_FIT).Get(temp);
+            return temp;
+        });
+
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
+
+        private CloneableViewSelector<TextShadow> textShadow;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle Style => ViewStyle as TextLabelStyle;
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -516,6 +545,24 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true, viewStyle)
+        {
+        }
+
+        /// <summary>
+        /// Creates the TextLabel with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
         /// <summary>
@@ -528,14 +575,43 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextLabel(TextLabel handle) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
+        /// <summary>
+        /// Creates the TextLabel with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(string text, bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextLabel(TextLabel handle, bool shown = true) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         /// <summary>
@@ -550,6 +626,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+        private string translatableText
+        {
+            get
+            {
+                string temp = (string)GetValue(TranslatableTextProperty);
                 return textLabelSid;
             }
             set
@@ -592,7 +680,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -610,7 +698,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -628,7 +716,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontStyleProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -646,7 +734,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -664,7 +752,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MultiLineProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -710,12 +798,16 @@ namespace Tizen.NUI.BaseComponents
         /// Animation framework can be used to change the color of the text when not using mark up.<br />
         /// Cannot animate the color when text is auto scrolling.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
             {
-                return (Color)GetValue(TextColorProperty);
+                Color temp = (Color)GetValue(TextColorProperty);
+                return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -731,6 +823,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
@@ -739,7 +832,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector2 shadowOffset = new Vector2();
                 Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return shadowOffset;
+                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
             }
             set
             {
@@ -761,6 +854,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
@@ -769,7 +863,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector4 shadowColor = new Vector4();
                 Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
-                return shadowColor;
+                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
             }
             set
             {
@@ -822,6 +916,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.UnderlineColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this UnderlineColor(Deprecated). Please use Underline instead.")]
         public Vector4 UnderlineColor
@@ -830,7 +925,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector4 underlineColor = new Vector4();
                 Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
-                return underlineColor;
+                return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
             }
             set
             {
@@ -979,7 +1074,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(LineSpacingProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -1015,6 +1110,25 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ShadowProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Describes a text shadow for a TextLabel.
+        /// It is null by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextShadow TextShadow
+        {
+            get
+            {
+                var value = (TextShadow)GetValue(TextShadowProperty);
+                return value == null ? null : new TextShadow(value, OnTextShadowChanged);
+            }
+            set
+            {
+                SetValue(TextShadowProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1069,7 +1183,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -1212,6 +1326,30 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The text fit parameters.<br />
+        /// The textFit map contains the following keys :<br />
+        /// - enable (bool type) : True to enable the text fit or false to disable(the default value is false)<br />
+        /// - minSize (float type) : Minimum Size for text fit(the default value is 10.f)<br />
+        /// - maxSize (float type) : Maximum Size for text fit(the default value is 100.f)<br />
+        /// - stepSize (float type) : Step Size for font increase(the default value is 1.f)<br />
+        /// - fontSize (string type) : The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")<br />
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap TextFit
+        {
+            get
+            {
+                return (PropertyMap)GetValue(TextFitProperty);
+            }
+            set
+            {
+                SetValue(TextFitProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
@@ -1237,39 +1375,138 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
+            Interop.TextLabel.delete_TextLabel(swigCPtr);
+        }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new TextLabelStyle();
+        }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.TranslatableTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.TranslatableTextSelector;
+        });
+        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.textSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textSelector;
+        });
+        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.fontFamilySelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.fontFamilySelector;
+        });
+        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.pointSizeSelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.pointSizeSelector;
+        });
+        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.textColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textColorSelector;
+        });
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+        private TriggerableSelector<string> translatableTextSelector;
+        private TriggerableSelector<string> TranslatableTextSelector
+        {
+            get
             {
-                if (swigCMemOwn)
+                if (null == translatableTextSelector)
                 {
-                    swigCMemOwn = false;
-                    Interop.TextLabel.delete_TextLabel(swigCPtr);
+                    translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                return translatableTextSelector;
             }
+        }
 
-            base.Dispose(type);
+        private TriggerableSelector<string> _textSelector;
+        private TriggerableSelector<string> textSelector
+        {
+            get
+            {
+                if (null == _textSelector)
+                {
+                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
+                }
+                return _textSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _fontFamilySelector;
+        private TriggerableSelector<string> fontFamilySelector
+        {
+            get
+            {
+                if (null == _fontFamilySelector)
+                {
+                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
+                }
+                return _fontFamilySelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _textColorSelector;
+        private TriggerableSelector<Color> textColorSelector
+        {
+            get
+            {
+                if (null == _textColorSelector)
+                {
+                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
+                }
+                return _textColorSelector;
+            }
+        }
+
+        private TriggerableSelector<float?> _pointSizeSelector;
+        private TriggerableSelector<float?> pointSizeSelector
+        {
+            get
+            {
+                if (null == _pointSizeSelector)
+                {
+                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
+                }
+                return _pointSizeSelector;
+            }
         }
 
         /// <summary>
@@ -1283,6 +1520,12 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
+        }
+
+        private void  NotifyPropertyChangedAndRequestLayout()
+        {
+            NotifyPropertyChanged();
+            Layout?.RequestLayout();
         }
 
         internal new class Property
@@ -1315,6 +1558,40 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TEXT_DIRECTION = Interop.TextLabel.TextLabel_Property_TEXT_DIRECTION_get();
             internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
+        }
+
+        private void OnShadowColorChanged(float x, float y, float z, float w)
+        {
+            ShadowColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowOffsetChanged(float x, float y)
+        {
+            ShadowOffset = new Vector2(x, y);
+        }
+        private void OnTextColorChanged(float r, float g, float b, float a)
+        {
+            TextColor = new Color(r, g, b, a);
+        }
+        private void OnUnderlineColorChanged(float x, float y, float z, float w)
+        {
+            UnderlineColor = new Vector4(x, y, z, w);
+        }
+
+        private void OnTextShadowChanged(TextShadow instance)
+        {
+            TextShadow = instance;
+        }
+
+        private void OnControlStateChangedForShadow(View obj, ControlStateChangedInfo controlStateChangedInfo)
+        {
+            UpdateTextShadowVisual();
+        }
+
+        private void UpdateTextShadowVisual()
+        {
+            TextShadow shadow = (textShadow != null && !textShadow.IsEmpty()) ? textShadow.GetValue() : textShadow?.GetValue();
+            Object.SetProperty(swigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(shadow));
         }
     }
 }

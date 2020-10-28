@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,39 +15,30 @@
  *
  */
 using System;
-using System.Globalization;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Position2D is a two-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
-    public class Position2D : global::System.IDisposable
+    public class Position2D : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
         private Position2DChangedCallback callback = null;
 
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <remarks>
+        /// Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br />
+        /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position2D() : this(Interop.Vector2.new_Vector2__SWIG_0(), true)
         {
@@ -69,35 +60,26 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="x">x component</param>
         /// <param name="y">y component</param>
+        /// <remarks>
+        /// Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br />
+        /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position2D(int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Position2D(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Position2D(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal Position2D(Position2DChangedCallback cb, int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Position2D()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         internal delegate void Position2DChangedCallback(int x, int y);
@@ -170,7 +152,9 @@ namespace Tizen.NUI
                 string[] parts = value.Split(',');
                 if (parts.Length == 2)
                 {
-                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
+                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
+                    return new Position2D(x, y);
                 }
             }
 
@@ -183,29 +167,6 @@ namespace Tizen.NUI
         public static implicit operator Position2D(System.String value)
         {
             return ConvertFromString(value);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
         }
 
         /// <summary>
@@ -365,6 +326,18 @@ namespace Tizen.NUI
             return new Position2D((int)vec.X, (int)vec.Y);
         }
 
+        /// <summary>
+        /// Implicit type cast operator, Position to Position2D
+        /// </summary>
+        /// <param name="position">The object of Position type.</param>
+        /// <since_tizen> none </since_tizen>
+        /// This will be public opened in tizen_next by ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Position2D(Position position)
+        {
+            return new Position2D((int)position.X, (int)position.Y);
+        }
+
         internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr)
         {
             Position2D ret = new Position2D(cPtr, false);
@@ -377,39 +350,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector2.delete_Vector2(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Vector2.delete_Vector2(swigCPtr);
         }
 
         private Position2D Add(Position2D rhs)
@@ -426,7 +371,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-
         private Position2D Multiply(Position2D rhs)
         {
             Position2D ret = new Position2D(Interop.Vector2.Vector2_Multiply__SWIG_0(swigCPtr, Position2D.getCPtr(rhs)), true);
@@ -440,7 +384,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
 
         private Position2D Divide(Position2D rhs)
         {
@@ -469,8 +412,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }
-

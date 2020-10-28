@@ -35,7 +35,7 @@ internal static partial class Interop
         internal delegate void EosCallback(IntPtr arg);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void BufferStatusCallback(int statusCode, IntPtr arg);
+        internal delegate void BufferStatusCallback(MediaCodecStatus statusCode, IntPtr arg);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedCodecCallback(int codecType, IntPtr arg);

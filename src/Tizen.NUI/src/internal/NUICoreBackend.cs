@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
 
@@ -31,6 +30,8 @@ namespace Tizen.NUI
         protected Application _application;
         private string _stylesheet = "";
         private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
+        private Size2D _windowSize = null;
+        private Position2D _windowPosition = null;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -62,6 +63,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with stylesheet, window mode, window size and window position.
+        /// </summary>
+        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition)
+        {
+            _stylesheet = stylesheet;
+            _windowMode = windowMode;
+            _windowSize = windowSize;
+            _windowPosition = windowPosition;
+        }
+
+        /// <summary>
         /// Adds NUIApplication event to Application.
         /// Puts each type of event callback in Dictionary.
         /// </summary>
@@ -83,7 +95,6 @@ namespace Tizen.NUI
         {
             Handlers.Add(evType, handler);
         }
-
 
         /// <summary>
         /// The Dispose function.
@@ -127,13 +138,32 @@ namespace Tizen.NUI
             NDalicPINVOKE.SWIGStringHelper.RegistCallback();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if ("" == args[0])
+            {
+                args[0] = this.GetType().Assembly.FullName;
+            }
+
             if (args.Length == 1)
             {
-                _application = Application.NewApplication();
+                if (_windowSize != null)
+                {
+                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
+                }
+                else
+                {
+                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode);
+                }
             }
             else if (args.Length > 1)
             {
-                _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+                if (_windowSize != null)
+                {
+                  _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
+                }
+                else
+                {
+                  _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+                }
             }
 
             _application.BatteryLow += OnBatteryLow;
@@ -299,14 +329,12 @@ namespace Tizen.NUI
             handler?.Invoke();
         }
 
-
-	internal Application ApplicationHandle
-	{
-		get
-		{
-			return _application;
-		}
-	}
-
+        internal Application ApplicationHandle
+        {
+            get
+            {
+                return _application;
+            }
+        }
     }
 }

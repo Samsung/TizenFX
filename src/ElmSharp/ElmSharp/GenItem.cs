@@ -69,6 +69,13 @@ namespace ElmSharp
             _tooltipCb = (d, obj, tooltip, item) => { return TooltipContentDelegate(); };
         }
 
+        internal GenItem(object data, GenItemClass itemClass, EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+            Data = data;
+            ItemClass = itemClass;
+            _tooltipCb = (d, obj, tooltip, item) => { return TooltipContentDelegate(); };
+        }
+
         /// <summary>
         /// Gets the item class that defines how to display data. It returns <see cref="GenItemClass"/> type.
         /// </summary>

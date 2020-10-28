@@ -116,6 +116,8 @@ namespace Tizen.Applications.CoreBackend
 
         public void Run(string[] args)
         {
+            TizenSynchronizationContext.Initialize();
+
             Interop.Watch.ErrorCode err = Interop.Watch.ErrorCode.None;
 
             err = Interop.Watch.AddEventHandler(out _lowMemoryEventHandle, Interop.Watch.AppEventType.LowMemory, _lowMemoryCallback, IntPtr.Zero);

@@ -43,9 +43,6 @@ internal static partial class Interop
         internal static extern void elm_ctxpopup_hover_parent_set(IntPtr obj, IntPtr parent);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_ctxpopup_direction_available_get(IntPtr obj, int direction);
-
-        [DllImport(Libraries.Elementary)]
         internal static extern void elm_ctxpopup_direction_priority_set(IntPtr obj, int first, int second, int third, int fourth);
 
         [DllImport(Libraries.Elementary)]

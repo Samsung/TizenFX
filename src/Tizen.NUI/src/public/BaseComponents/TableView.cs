@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,7 +118,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Creates the default TableView view.
@@ -152,7 +151,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TableView.TableView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -278,6 +276,7 @@ namespace Tizen.NUI.BaseComponents
         public bool AddChild(View child, TableView.CellPosition position)
         {
             bool ret = Interop.TableView.TableView_AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            Children.Add(child);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -311,12 +310,11 @@ namespace Tizen.NUI.BaseComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.TableView.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(ret);
+
             return ret;
         }
 
@@ -588,63 +586,19 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.TableView.delete_TableView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.TableView.delete_TableView(swigCPtr);
         }
 
         /// <summary>
         /// Class to specify the layout position for the child view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public class CellPosition : global::System.IDisposable
+        public class CellPosition : Disposable
         {
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-            /// <summary>
-            /// A Flat to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-
             /// <summary>
             /// The constructor.
             /// </summary>
@@ -700,23 +654,8 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            ~CellPosition()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
             }
 
             /// <summary>
@@ -860,70 +799,17 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj)
             {
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
             }
 
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <param name="type">DisposeTypes</param>
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
+            /// This will not be public opened.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
             {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.TableView.delete_TableView_CellPosition(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
+                Interop.TableView.delete_TableView_CellPosition(swigCPtr);
             }
-
         }
 
         internal new class Property

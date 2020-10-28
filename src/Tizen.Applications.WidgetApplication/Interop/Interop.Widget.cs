@@ -107,6 +107,14 @@ internal static partial class Interop
         [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_get_elm_win")]
         internal static extern ErrorCode GetWin(IntPtr handle, out IntPtr win);
 
+        [DllImport(Libraries.AppcoreWidget)]
+        internal static extern IntPtr widget_app_get_id(IntPtr handle);
+
+        internal static string GetId(IntPtr handle)
+        {
+            return Marshal.PtrToStringAnsi(widget_app_get_id(handle));
+        }
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_memory_status")]
         internal static extern Tizen.Internals.Errors.ErrorCode AppEventGetLowMemoryStatus(IntPtr handle, out LowMemoryStatus status);
 

@@ -26,19 +26,28 @@ namespace Tizen.Multimedia
         /// Unsigned 8-bit audio samples.
         /// </summary>
         U8 = 0x70,
+
         /// <summary>
         /// Signed 16-bit audio samples.
         /// </summary>
         S16Le,
+
         /// <summary>
         /// Signed 24-bit audio samples.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         S24Le,
+
         /// <summary>
         /// Signed 24-bit (packed in 32-bit) audio samples.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        S24LePacked
+        S24LePacked,
+
+        /// <summary>
+        /// Signed 32-bit audio samples.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        S32Le
     }
 }

@@ -199,7 +199,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private DaliEventHandler<object, StartedEventArgs> _scrollableStartedEventHandler;
         private StartedCallbackDelegate _scrollableStartedCallbackDelegate;
         private DaliEventHandler<object, UpdatedEventArgs> _scrollableUpdatedEventHandler;
@@ -218,7 +217,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -506,11 +504,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Scrollable obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal ScrollableSignal ScrollStartedSignal()
         {
             ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollStartedSignal(swigCPtr), false);
@@ -544,14 +537,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -560,17 +545,14 @@ namespace Tizen.NUI.BaseComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Scrollable.delete_Scrollable(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Scrollable.delete_Scrollable(swigCPtr);
         }
 
         private void DisConnectFromSignals()
@@ -764,77 +746,107 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of properties belonging to the Scrollable class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
         public new class Property
         {
             /// <summary>
             /// The color of the overshoot effect.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_EFFECT_COLOR = Interop.Scrollable.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
             /// <summary>
             /// The speed of overshoot animation in pixels per second.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_ANIMATION_SPEED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
             /// <summary>
             /// Whether to enables or disable scroll overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_ENABLED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ENABLED_get();
             /// <summary>
             /// The size of the overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_SIZE = Interop.Scrollable.Scrollable_Property_OVERSHOOT_SIZE_get();
             /// <summary>
             /// scrollToAlphaFunction.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_TO_ALPHA_FUNCTION = Interop.Scrollable.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
             /// <summary>
             /// scrollRelativePosition
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_RELATIVE_POSITION = Interop.Scrollable.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
             /// <summary>
             /// scrollPositionMin
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MIN = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_get();
             /// <summary>
             /// scrollPositionMinX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MIN_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
             /// <summary>
             /// scrollPositionMinY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MIN_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
             /// <summary>
             /// scrollPositionMax.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MAX = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_get();
             /// <summary>
             /// scrollPositionMaxX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MAX_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
             /// <summary>
             /// scrollPositionMaxY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_MAX_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
             /// <summary>
             /// canScrollVertical
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int CAN_SCROLL_VERTICAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
             /// <summary>
             /// canScrollHorizontal.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int CAN_SCROLL_HORIZONTAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
         }
     }

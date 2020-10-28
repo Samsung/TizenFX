@@ -17,11 +17,9 @@
 
 namespace Tizen.NUI
 {
-
     internal enum DirectionType
     {
         LEFT_TO_RIGHT = 0,
         RIGHT_TO_LEFT
     }
-
 }

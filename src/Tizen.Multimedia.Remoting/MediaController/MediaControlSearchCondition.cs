@@ -32,6 +32,55 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
         /// </summary>
+        /// <remarks>
+        /// The <see cref="MediaControlSearchCategory"/> will be set internally by <see cref="MediaControlSearchCategory.All"/>.
+        /// </remarks>
+        /// <param name="type" > The search type.</param>
+        /// <param name="keyword">The search keyword.</param>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is not valid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlSearchCondition(MediaControlContentType type, string keyword)
+            : this(type, MediaControlSearchCategory.All, keyword, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
+        /// </summary>
+        /// <param name="type">The search type.</param>
+        /// <param name="category">The search category.</param>
+        /// <param name="keyword">The search keyword.</param>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="type"/> or <paramref name="category"/> is not valid.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlSearchCondition(MediaControlContentType type, MediaControlSearchCategory category, string keyword)
+            : this (type, category, keyword, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="MediaControlSearchCategory"/> will be set internally by <see cref="MediaControlSearchCategory.All"/>.
+        /// </remarks>
+        /// <param name="type" > The search type.</param>
+        /// <param name="keyword">The search keyword.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is not valid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlSearchCondition(MediaControlContentType type, string keyword, Bundle bundle)
+            : this(type, MediaControlSearchCategory.All, keyword, bundle)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
+        /// </summary>
         /// <param name="type">The search type.</param>
         /// <param name="category">The search category.</param>
         /// <param name="keyword">The search keyword.</param>
@@ -43,28 +92,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, MediaControlSearchCategory category,
             string keyword, Bundle bundle)
-            : this (type, keyword, bundle)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlSearchCategory), category, nameof(category));
-
-            Category = category;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
-        /// </summary>
-        /// <remarks>The <see cref="MediaControlSearchCategory"/> will be set internally by <see cref="MediaControlSearchCategory.All"/>.</remarks>
-        /// <param name="type" > The search type.</param>
-        /// <param name="keyword">The search keyword.</param>
-        /// <param name="bundle">The extra data.</param>
-        /// <exception cref="ArgumentException"><paramref name="type"/> is not valid.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlSearchCondition(MediaControlContentType type, string keyword, Bundle bundle)
-        {
             ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
 
-            Category = MediaControlSearchCategory.All;
+            Category = category;
             ContentType = type;
             Keyword = keyword ?? throw new ArgumentNullException(nameof(keyword));
             Bundle = bundle;

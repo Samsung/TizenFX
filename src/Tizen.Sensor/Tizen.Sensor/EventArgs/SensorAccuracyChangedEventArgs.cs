@@ -26,7 +26,13 @@ namespace Tizen.Sensor
     {
         internal SensorAccuracyChangedEventArgs(TimeSpan timespan, SensorDataAccuracy accuracy)
         {
-            TimeSpan = timespan;
+            Accuracy = accuracy;
+            Timestamp = (ulong)timespan.Ticks;
+        }
+
+        internal SensorAccuracyChangedEventArgs(ulong timestamp, SensorDataAccuracy accuracy)
+        {
+            Timestamp = timestamp;
             Accuracy = accuracy;
         }
 
@@ -35,7 +41,20 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The time span. </value>
-        public TimeSpan TimeSpan { get; private set; }
+        public TimeSpan TimeSpan
+        {
+            get
+            {
+                return new TimeSpan((Int64)Timestamp);
+            }
+        }
+
+        /// <summary>
+        /// Gets the time stamp.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <value> Timestamp </value>
+        public ulong Timestamp { get; private set; }
 
         /// <summary>
         /// Gets the accuracy.

@@ -357,6 +357,136 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Provides a means to to send subtitle mode command.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public sealed class SubtitleModeCommand : Command
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubtitleModeCommand"/> class.
+        /// </summary>
+        /// <param name="isEnabled">A value indicating whether subtitle mode is enabled.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public SubtitleModeCommand(bool isEnabled)
+        {
+            IsEnabled = isEnabled;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether subtitle mode is enabled or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsEnabled { get; }
+
+        internal override string Request(NativeClientHandle clientHandle)
+        {
+            NativeClient.SendSubtitleModeCommand(clientHandle, ReceiverId, IsEnabled, out string requestId).
+                ThrowIfError("Failed to send subtitle mode command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to to send 360 mode command.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public sealed class Mode360Command : Command
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Mode360Command"/> class.
+        /// </summary>
+        /// <param name="isEnabled">A value indicating whether 360 mode is enabled or not.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public Mode360Command(bool isEnabled)
+        {
+            IsEnabled = isEnabled;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether 360 mode is enabled or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsEnabled { get; }
+
+        internal override string Request(NativeClientHandle clientHandle)
+        {
+            NativeClient.SendMode360Command(clientHandle, ReceiverId, IsEnabled, out string requestId).
+                ThrowIfError("Failed to send 360 mode command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to to send display mode command.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public sealed class DisplayModeCommand : Command
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisplayModeCommand"/> class.
+        /// </summary>
+        /// <param name="mode">The <see cref="MediaControlDisplayMode"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is not valid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public DisplayModeCommand(MediaControlDisplayMode mode)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlDisplayMode), mode, nameof(mode));
+
+            Mode = mode;
+        }
+
+        /// <summary>
+        /// Gets the display mode.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlDisplayMode Mode { get; }
+
+        internal override string Request(NativeClientHandle clientHandle)
+        {
+            NativeClient.SendDisplayModeCommand(clientHandle, ReceiverId, Mode.ToNative(), out string requestId).
+                ThrowIfError("Failed to send display mode command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to to send display rotation command.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public sealed class DisplayRotationCommand : Command
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisplayRotationCommand"/> class.
+        /// </summary>
+        /// <param name="rotation">The <see cref="Rotation"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="rotation"/> is not valid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public DisplayRotationCommand(Rotation rotation)
+        {
+            ValidationUtil.ValidateEnum(typeof(Rotation), rotation, nameof(rotation));
+
+            Rotation = rotation;
+        }
+
+        /// <summary>
+        /// Gets the display rotation.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public Rotation Rotation { get; }
+
+        internal override string Request(NativeClientHandle clientHandle)
+        {
+            NativeClient.SendDisplayRotationCommand(clientHandle, ReceiverId, Rotation.ToNative(), out string requestId).
+                ThrowIfError("Failed to send display rotation command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
     /// Provides a means to to send custom commands.
     /// </summary>
     /// <remarks>This command can be used by both client and server to send predefined command or data.</remarks>

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// This class emits a signals when a pan gesture occurs.<br />
     /// </summary>
@@ -29,11 +28,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PanGestureDetector : GestureDetector
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
-        private DetectedCallbackDelegate _panGestureCallbackDelegate;
-
         /// <summary>
         /// Creates an initialized PanGestureDetector.
         /// </summary>
@@ -58,12 +52,12 @@ namespace Tizen.NUI
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.PanGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr panGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr panGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pan is detected on the attached view.
@@ -74,29 +68,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_panGestureEventHandler == null)
-                    {
-                        _panGestureEventHandler += value;
-
-                        _panGestureCallbackDelegate = new DetectedCallbackDelegate(OnPanGestureDetected);
-                        this.DetectedSignal().Connect(_panGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnPanGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_panGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_panGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _panGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -526,42 +513,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
+            if (_detectedCallback != null)
             {
-                return;
+                DetectedSignal().Disconnect(_detectedCallback);
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.PanGestureDetector.delete_PanGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.PanGestureDetector.delete_PanGestureDetector(swigCPtr);
         }
 
         private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
@@ -570,14 +531,17 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (PanGestureEventArgs) with real data
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
-
-            if (_panGestureEventHandler != null)
+            if (null == e.View)
             {
-                //here we send all data to user event handlers
-                _panGestureEventHandler(this, e);
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
             }
 
+            e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+
+            if (_detectedEventHandler != null)
+            {
+                _detectedEventHandler(this, e);
+            }
         }
 
         /// <summary>
@@ -628,109 +592,15 @@ namespace Tizen.NUI
             }
         }
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            public static readonly int SCREEN_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_POSITION_get();
-
-            public static readonly int SCREEN_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
-
-            public static readonly int SCREEN_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_VELOCITY_get();
-
-            public static readonly int LOCAL_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_POSITION_get();
-
-            public static readonly int LOCAL_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
-
-            public static readonly int LOCAL_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_VELOCITY_get();
-
-            public static readonly int PANNING = Interop.PanGestureDetector.PanGestureDetector_Property_PANNING_get();
-
-            protected bool swigCMemOwn;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-
-            public Property() : this(Interop.PanGestureDetector.new_PanGestureDetector_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.PanGestureDetector.delete_PanGestureDetector_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-
+            internal static readonly int SCREEN_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_POSITION_get();
+            internal static readonly int SCREEN_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
+            internal static readonly int SCREEN_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_VELOCITY_get();
+            internal static readonly int LOCAL_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_POSITION_get();
+            internal static readonly int LOCAL_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
+            internal static readonly int LOCAL_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_VELOCITY_get();
+            internal static readonly int PANNING = Interop.PanGestureDetector.PanGestureDetector_Property_PANNING_get();
         }
     }
-
 }

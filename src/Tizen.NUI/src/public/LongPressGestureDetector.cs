@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LongPressGestureDetector : GestureDetector
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        private DaliEventHandler<object, DetectedEventArgs> _longPressGestureEventHandler;
-        private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -84,11 +79,12 @@ namespace Tizen.NUI
 
         internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LongPressGestureDetector.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr longPressGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr longPressGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified long press is detected on the attached view.
@@ -99,29 +95,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener.
-                    if (_longPressGestureEventHandler == null)
-                    {
-                        _longPressGestureEventHandler += value;
-
-                        _longPressGestureCallbackDelegate = new DetectedCallbackDelegate(OnLongPressGestureDetected);
-                        this.DetectedSignal().Connect(_longPressGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnLongPressGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_longPressGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_longPressGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _longPressGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -211,42 +200,15 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
+            if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
             {
-                return;
+                DetectedSignal().Disconnect(_detectedCallback);
             }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.LongPressGestureDetector.delete_LongPressGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.LongPressGestureDetector.delete_LongPressGestureDetector(swigCPtr);
         }
 
         private void OnLongPressGestureDetected(IntPtr actor, IntPtr longPressGesture)
@@ -255,12 +217,17 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (LongPressGestureEventArgs) with real data.
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
-            if (_longPressGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _longPressGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 

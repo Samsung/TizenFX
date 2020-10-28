@@ -12,7 +12,6 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-
     internal class DisposeQueue
     {
         private static readonly DisposeQueue _disposableQueue = new DisposeQueue();

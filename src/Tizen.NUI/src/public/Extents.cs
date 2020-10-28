@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Samsung Electronics Co., Ltd.
+* Copyright (c) 2019 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,26 +23,10 @@ namespace Tizen.NUI
     /// Extents class describing the a collection of uint16_t.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [TypeConverter(typeof(ExtentsTypeConverter))]
-    public class Extents : global::System.IDisposable
+    [Binding.TypeConverter(typeof(ExtentsTypeConverter))]
+    public class Extents : Disposable
     {
 
-        /// <summary>
-        /// Extents class
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool swigCMemOwn;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// Constructor.
@@ -64,6 +48,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The type cast operator, ushort to Extents.
+        /// </summary>
+        /// <param name="value">A value of ushort type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Extents(ushort value)
+        {
+            return new Extents(value, value, value, value);
+        }
+
+        /// <summary>
         /// Constructor.
         /// <param name="start">Start extent.</param>
         /// <param name="end">End extent.</param>
@@ -76,24 +71,51 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
-        /// Destructor.
+        /// Constructor
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        ~Extents()
+        /// <param name="cb"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Copy other extents
+        /// </summary>
+        /// <param name="that"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public void CopyFrom(Extents that)
+        {
+            Interop.Extents.Extents_start_set(swigCPtr, that.Start);
+            Interop.Extents.Extents_end_set(swigCPtr, that.End);
+            Interop.Extents.Extents_top_set(swigCPtr, that.Top);
+            Interop.Extents.Extents_bottom_set(swigCPtr, that.Bottom);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);
+        private ExtentsChangedCallback callback = null;
 
         /// <summary>
         /// The Start extent.
@@ -105,6 +127,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -124,6 +148,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -143,6 +169,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_top_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -162,35 +190,14 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_bottom_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
                 ushort ret = Interop.Extents.Extents_bottom_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
-            }
-        }
-
-        /// <summary>
-        /// To make a Extents instance be disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -239,41 +246,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// To make a Extents instance be disposed.
-        /// </summary>
-        /// <param name="type">Extents type</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Extents.delete_Extents(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Extents.delete_Extents(swigCPtr);
         }
-
     }
-
 }
