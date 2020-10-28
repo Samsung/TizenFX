@@ -51,17 +51,5 @@ namespace Tizen.Multimedia.Remoting
         /// Rewinding.
         /// </summary>
         Rewinding,
-
-        /// <summary>
-        /// Skipping to the next item.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        MovingToNext,
-
-        /// <summary>
-        /// Skipping to the previous item.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        MovingToPrevious,
     }
 }

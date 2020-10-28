@@ -922,7 +922,6 @@ namespace Tizen.NUI.BaseComponents
         private string textEditorTextSid = null;
         private string textEditorPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
-        private InputMethodContext inputMethodContext = null;
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -966,7 +965,8 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    inputMethodContext?.Dispose();
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
                     NDalicPINVOKE.delete_TextEditor(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -1249,15 +1249,10 @@ namespace Tizen.NUI.BaseComponents
         /// Get the InputMethodContext instance.
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
-        public InputMethodContext GetInputMethodContext()
-        {
-            if (inputMethodContext == null)
-            {
-                /*Avoid raising InputMethodContext reference count.*/
-                inputMethodContext = new InputMethodContext(NDalicPINVOKE.TextEditor_GetInputMethodContext(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            return inputMethodContext;
+        public InputMethodContext GetInputMethodContext() {
+            InputMethodContext ret = new InputMethodContext(NDalicPINVOKE.TextEditor_GetInputMethodContext(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal TextEditorSignal TextChangedSignal()

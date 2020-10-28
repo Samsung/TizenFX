@@ -16,7 +16,6 @@
 
 using System;
 using Native = Interop.MediaControllerClient;
-using NativePlaylist = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -24,11 +23,9 @@ namespace Tizen.Multimedia.Remoting
     {
         private Native.ServerUpdatedCallback _serverUpdatedCallback;
         private Native.PlaybackUpdatedCallback _playbackUpdatedCallback;
+        private Native.MetadataUpdatedCallback _metadataUpdatedCallback;
         private Native.ShuffleModeUpdatedCallback _shufflemodeUpdatedCallback;
         private Native.RepeatModeUpdatedCallback _repeatmodeUpdatedCallback;
-        private Native.CommandCompletedCallback _commandCompletedCallback;
-        private NativePlaylist.MetadataUpdatedCallback _metadataUpdatedCallback;
-        private NativePlaylist.PlaylistUpdatedCallback _playlistUpdatedCallback;
 
         /// <summary>
         /// Occurs when a server is started.
@@ -49,17 +46,16 @@ namespace Tizen.Multimedia.Remoting
             RegisterMetadataUpdatedEvent();
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
-            RegisterCommandCompletedEvent();
         }
 
-        private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
+        private void RaiseServerChangedEvent(MediaControllerServerState state, MediaController controller)
         {
             if (controller == null)
             {
                 return;
             }
 
-            if (state == MediaControllerNativeServerState.Activated)
+            if (state == MediaControllerServerState.Activated)
             {
                 ServerStarted?.Invoke(this, new MediaControlServerStartedEventArgs(controller));
             }
@@ -98,7 +94,7 @@ namespace Tizen.Multimedia.Remoting
                 GetController(serverName)?.RaiseMetadataUpdatedEvent(metadata);
             };
 
-            NativePlaylist.SetMetadataUpdatedCb(Handle, _metadataUpdatedCallback).ThrowIfError("Failed to init MetadataUpdated event.");
+            Native.SetMetadataUpdatedCb(Handle, _metadataUpdatedCallback).ThrowIfError("Failed to init MetadataUpdated event.");
         }
 
         private void RegisterShuffleModeUpdatedEvent()
@@ -121,30 +117,6 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetRepeatModeUpdatedCb(Handle, _repeatmodeUpdatedCallback).
                 ThrowIfError("Failed to init RepeatModeUpdated event.");
-        }
-
-        private void RegisterPlaylistUpdatedEvent()
-        {
-            _playlistUpdatedCallback = (serverName, playlistMode, name, handle, _) =>
-            {
-                GetController(serverName)?.RaisePlaylistUpdatedEvent(playlistMode, name);
-            };
-
-            NativePlaylist.SetPlaylistModeUpdatedCb(Handle, _playlistUpdatedCallback).
-                ThrowIfError("Failed to init PlaylistUpdated event.");
-        }
-
-        private void RegisterCommandCompletedEvent()
-        {
-            _commandCompletedCallback = (serverName, requestId, result, bundleHandle, _) =>
-            {
-                // SafeHandles cannot be marshaled from unmanaged to managed.
-                // So we use IntPtr type for 'bundleHandle' in native callback.
-                GetController(serverName)?.RaiseCommandCompletedEvent(requestId, result, bundleHandle);
-            };
-
-            Native.SetCommandCompletedCb(Handle, _commandCompletedCallback).
-                ThrowIfError("Failed to init CommandCompleted event.");
         }
     }
 }

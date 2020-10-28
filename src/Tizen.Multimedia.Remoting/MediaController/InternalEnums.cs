@@ -14,26 +14,13 @@
  * limitations under the License.
  */
 
+using System.Diagnostics;
+
 namespace Tizen.Multimedia.Remoting
 {
-    internal enum MediaControllerNativePlaybackState
+    internal enum MediaControllerPlaybackCode
     {
         None,
-        Play,
-        Pause,
-        Stop,
-        Next,           // Deprecated since 4.0
-        Prev,           // Deprecated since 4.0
-        FastForward,    // Deprecated since 4.0
-        Rewind,         // Deprecated since 4.0
-        MovingToNext,   // Since 4.0
-        MovingToPrev,   // Since 4.0
-        FastForwarding, // Since 4.0
-        Rewinding       // Since 4.0
-    }
-
-    internal enum MediaControllerNativePlaybackAction
-    {
         Play,
         Pause,
         Stop,
@@ -41,30 +28,28 @@ namespace Tizen.Multimedia.Remoting
         Prev,
         FastForward,
         Rewind,
-        Toggle
     }
 
-    internal enum MediaControllerNativeServerState
+    internal enum MediaControllerServerState
     {
         None,
         Activated,
         Deactivated,
     }
 
-    internal enum MediaControllerNativeShuffleMode
+    internal enum MediaControllerShuffleMode
     {
         On,
         Off,
     }
 
-    internal enum MediaControllerNativeRepeatMode
+    internal enum NativeRepeatMode
     {
         On,
         Off,
-        OneMedia
     }
 
-    internal enum MediaControllerNativeAttribute
+    internal enum MediaControllerAttribute
     {
         Title,
         Artist,
