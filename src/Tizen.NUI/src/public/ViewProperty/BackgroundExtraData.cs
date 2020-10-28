@@ -20,7 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The class storing Background extra properties such as CornerRadius, ImageBorder.
     /// </summary>
-    internal class BackgroundExtraData
+    internal class BackgroundExtraData : Disposable
     {
         internal BackgroundExtraData()
         {
