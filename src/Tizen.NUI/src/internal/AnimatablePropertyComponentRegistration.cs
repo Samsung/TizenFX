@@ -91,7 +91,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.NDalic.delete_AnimatablePropertyComponentRegistration(swigCPtr);
+                    NDalicPINVOKE.delete_AnimatablePropertyComponentRegistration(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         }
 
 
-        public AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(Interop.NDalic.new_AnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true)
+        public AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(NDalicPINVOKE.new_AnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

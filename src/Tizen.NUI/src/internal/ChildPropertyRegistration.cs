@@ -91,7 +91,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.NDalic.delete_ChildPropertyRegistration(swigCPtr);
+                    NDalicPINVOKE.delete_ChildPropertyRegistration(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         }
 
 
-        public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(Interop.NDalic.new_ChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
+        public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(NDalicPINVOKE.new_ChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

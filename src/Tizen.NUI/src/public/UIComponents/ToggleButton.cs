@@ -43,7 +43,6 @@ namespace Tizen.NUI
             return temp;
         });
 
-        /// Only for XAML property binding. This will be changed as Inhouse API by ACR later.
         public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
@@ -84,12 +83,12 @@ namespace Tizen.NUI
         /// Create an instance for toggleButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ToggleButton() : this(Interop.ToggleButton.ToggleButton_New(), true)
+        public ToggleButton() : this(NDalicPINVOKE.ToggleButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ToggleButton.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -176,7 +175,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ToggleButton.delete_ToggleButton(swigCPtr);
+                    NDalicPINVOKE.delete_ToggleButton(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -194,17 +193,17 @@ namespace Tizen.NUI
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STATE_VISUALS = Interop.ToggleButton.ToggleButton_Property_STATE_VISUALS_get();
+            public static readonly int STATE_VISUALS = NDalicPINVOKE.ToggleButton_Property_STATE_VISUALS_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TOOLTIPS = Interop.ToggleButton.ToggleButton_Property_TOOLTIPS_get();
+            public static readonly int TOOLTIPS = NDalicPINVOKE.ToggleButton_Property_TOOLTIPS_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int CURRENT_STATE_INDEX = Interop.ToggleButton.ToggleButton_Property_CURRENT_STATE_INDEX_get();
+            public static readonly int CURRENT_STATE_INDEX = NDalicPINVOKE.ToggleButton_Property_CURRENT_STATE_INDEX_get();
         }
     }
 }

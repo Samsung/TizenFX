@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.Item.delete_Item(swigCPtr);
+                    NDalicPINVOKE.delete_Item(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,17 +100,17 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public Item() : this(Interop.Item.new_Item__SWIG_0(), true)
+        public Item() : this(NDalicPINVOKE.new_Item__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Item(uint t, View u) : this(Interop.Item.new_Item__SWIG_1(t, View.getCPtr(u)), true)
+        public Item(uint t, View u) : this(NDalicPINVOKE.new_Item__SWIG_1(t, View.getCPtr(u)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Item(Item p) : this(Interop.Item.new_Item__SWIG_2(Item.getCPtr(p)), true)
+        public Item(Item p) : this(NDalicPINVOKE.new_Item__SWIG_2(Item.getCPtr(p)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -119,12 +119,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.Item_first_set(swigCPtr, value);
+                NDalicPINVOKE.Item_first_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.Item.Item_first_get(swigCPtr);
+                uint ret = NDalicPINVOKE.Item_first_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -134,12 +134,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.Item_second_set(swigCPtr, View.getCPtr(value));
+                NDalicPINVOKE.Item_second_set(swigCPtr, View.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.Item.Item_second_get(swigCPtr);
+                global::System.IntPtr cPtr = NDalicPINVOKE.Item_second_get(swigCPtr);
                 View ret = (cPtr == global::System.IntPtr.Zero) ? null : new View(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
