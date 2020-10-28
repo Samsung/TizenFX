@@ -30,19 +30,15 @@ namespace Tizen.NUI.Accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility
+    public class Accessibility : IDisposable
     {
+        private bool disposed = false;
+
         #region Constructor, Distructor, Dispose
         private Accessibility()
         {
             dummy = new View();
             dummy.Name = "dali-atspi-singleton";
-        }
-        /// <summary>
-        /// destructor. This is HiddenAPI. recommended not to use in public.
-        /// </summary>
-        ~Accessibility()
-        {
         }
         #endregion Constructor, Distructor, Dispose
 
@@ -215,6 +211,34 @@ namespace Tizen.NUI.Accessibility
         {
             tlog.Fatal(tag, $"_sayFinishedEventCallback(res={result}) called!");
             _sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
+        }
+
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+            if (disposing)
+            {
+                dummy.Dispose();
+            }
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Dispose the Accessibility resources
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private View dummy;
