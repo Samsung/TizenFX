@@ -826,8 +826,6 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_19 swigDelegate19;
         private SwigDelegateViewImpl_20 swigDelegate20;
         private SwigDelegateViewImpl_21 swigDelegate21;
-        private SwigDelegateViewImpl_22 swigDelegate22;
-        private SwigDelegateViewImpl_23 swigDelegate23;
         private SwigDelegateViewImpl_24 swigDelegate24;
         private SwigDelegateViewImpl_25 swigDelegate25;
         private SwigDelegateViewImpl_26 swigDelegate26;
