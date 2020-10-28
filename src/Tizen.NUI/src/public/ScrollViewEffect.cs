@@ -26,23 +26,14 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ScrollViewEffect() : this(NDalicPINVOKE.new_ScrollViewEffect(), true)
+        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -80,5 +71,16 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ScrollViewEffect() : this(NDalicPINVOKE.new_ScrollViewEffect(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
     }
+
 }

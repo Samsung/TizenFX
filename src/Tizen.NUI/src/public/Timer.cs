@@ -35,28 +35,8 @@ namespace Tizen.NUI
     public class Timer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
         private bool played = false;
-        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
-        private TickCallbackDelegate _timerTickCallbackDelegate;
-
-        private System.IntPtr _timerTickCallbackOfNative;
-
-        /// <summary>
-        /// Creates a tick timer that emits periodic signal.
-        /// </summary>
-        /// <param name="milliSec">Interval in milliseconds.</param>
-        /// <returns>A new timer.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
-        }
-        internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -76,122 +56,9 @@ namespace Tizen.NUI
             NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool TickCallbackDelegate();
-
-        /// <summary>
-        /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
-        /// provided by the user. The ticked signal is emitted after specified time interval.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
-        {
-            add
-            {
-                if (_timerTickEventHandler == null && disposed == false)
-                {
-                    TickSignal().Connect(_timerTickCallbackOfNative);
-                }
-                _timerTickEventHandler += value;
-            }
-            remove
-            {
-                _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
-                {
-                    TickSignal().Disconnect(_timerTickCallbackOfNative);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the interval of the timer.
-        /// </summary>
-        /// <remarks>For setter, this sets a new interval on the timer and starts the timer. <br />
-        /// Cancels the previous timer.
-        /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
-        public uint Interval
-        {
-            get
-            {
-                return GetInterval();
-            }
-            set
-            {
-                SetInterval(value);
-            }
-        }
-
-        /// <summary>
-        /// Starts the timer.<br />
-        /// In case a timer is already running, its time is reset and the timer is restarted.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Start()
-        {
-            played = true;
-            NDalicPINVOKE.Timer_Start(swigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Stops the timer.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop()
-        {
-            played = false;
-            NDalicPINVOKE.Timer_Stop(swigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Tells whether the timer is running.
-        /// </summary>
-        /// <returns>Whether the timer is started or not.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool IsRunning()
-        {
-            bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Sets a new interval on the timer and starts the timer.<br />
-        /// Cancels the previous timer.<br />
-        /// </summary>
-        /// <param name="milliSec">MilliSec interval in milliseconds.</param>
-        internal void SetInterval(uint milliSec)
-        {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
-
-            played = true;
-
-            NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal uint GetInterval()
-        {
-            uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TimerSignalType TickSignal()
-        {
-            TimerSignalType ret = new TimerSignalType(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -237,6 +104,47 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+
+        /// <summary>
+        /// Event arguments that passed via the tick event.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class TickEventArgs : EventArgs
+        {
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool TickCallbackDelegate();
+        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
+        private TickCallbackDelegate _timerTickCallbackDelegate;
+
+        private System.IntPtr _timerTickCallbackOfNative;
+
+        /// <summary>
+        /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The ticked signal is emitted after specified time interval.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
+        {
+            add
+            {
+                if (_timerTickEventHandler == null && disposed == false)
+                {
+                    TickSignal().Connect(_timerTickCallbackOfNative);
+                }
+                _timerTickEventHandler += value;
+            }
+            remove
+            {
+                _timerTickEventHandler -= value;
+                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
+                {
+                    TickSignal().Disconnect(_timerTickCallbackOfNative);
+                }
+            }
+        }
+
         private bool OnTick()
         {
             TickEventArgs e = new TickEventArgs();
@@ -256,12 +164,107 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event arguments that passed via the tick event.
+        /// Creates a tick timer that emits periodic signal.
+        /// </summary>
+        /// <param name="milliSec">Interval in milliseconds.</param>
+        /// <returns>A new timer.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
+        }
+        internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Starts the timer.<br />
+        /// In case a timer is already running, its time is reset and the timer is restarted.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public class TickEventArgs : EventArgs
+        public void Start()
         {
+            played = true;
+            NDalicPINVOKE.Timer_Start(swigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Stops the timer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop()
+        {
+            played = false;
+            NDalicPINVOKE.Timer_Stop(swigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets/Sets the interval of the timer.
+        /// </summary>
+        /// <remarks>For setter, this sets a new interval on the timer and starts the timer. <br />
+        /// Cancels the previous timer.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        public uint Interval
+        {
+            get
+            {
+                return GetInterval();
+            }
+            set
+            {
+                SetInterval(value);
+            }
+        }
+
+        /// <summary>
+        /// Sets a new interval on the timer and starts the timer.<br />
+        /// Cancels the previous timer.<br />
+        /// </summary>
+        /// <param name="milliSec">MilliSec interval in milliseconds.</param>
+        internal void SetInterval(uint milliSec)
+        {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
+
+            played = true;
+
+            NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetInterval()
+        {
+            uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Tells whether the timer is running.
+        /// </summary>
+        /// <returns>Whether the timer is started or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool IsRunning()
+        {
+            bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TimerSignalType TickSignal()
+        {
+            TimerSignalType ret = new TimerSignalType(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
 
 }

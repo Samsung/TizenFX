@@ -32,23 +32,80 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class StyleManager : BaseHandle
     {
-        private static readonly StyleManager instance = StyleManager.Get();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
-        private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
+
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.StyleManager_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        private static readonly StyleManager instance = StyleManager.Get();
 
         /// <summary>
-        /// Creates a StyleManager handle.<br />
-        /// This can be initialized with StyleManager::Get().<br />
+        /// Gets the singleton of the StyleManager object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static StyleManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        /// <summary>
+        /// Style changed event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
+        public class StyleChangedEventArgs : EventArgs
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            private StyleManager _styleManager;
+            private StyleChangeType _styleChange;
+
+            /// <summary>
+            /// StyleManager.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public StyleManager StyleManager
+            {
+                get
+                {
+                    return _styleManager;
+                }
+                set
+                {
+                    _styleManager = value;
+                }
+            }
+
+            /// <summary>
+            /// StyleChange - contains the style change information (default font changed or
+            /// default font size changed or theme has changed).<br />
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public StyleChangeType StyleChange
+            {
+                get
+                {
+                    return _styleChange;
+                }
+                set
+                {
+                    _styleChange = value;
+                }
+            }
+
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void StyleChangedCallbackDelegate(IntPtr styleManager, Tizen.NUI.StyleChangeType styleChange);
+        private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
+        private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
         /// An event for the StyleChanged signal which can be used to subscribe or unsubscribe the
@@ -78,16 +135,30 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Gets the singleton of the StyleManager object.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static StyleManager Instance
+        // Callback for StyleManager StyleChangedsignal
+        private void OnStyleChanged(IntPtr styleManager, StyleChangeType styleChange)
         {
-            get
+            StyleChangedEventArgs e = new StyleChangedEventArgs();
+
+            // Populate all members of "e" (StyleChangedEventArgs) with real data.
+            e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
+            e.StyleChange = styleChange;
+
+            if (_styleManagerStyleChangedEventHandler != null)
             {
-                return instance;
+                //Here we send all data to user event handlers.
+                _styleManagerStyleChangedEventHandler(this, e);
             }
+        }
+
+        /// <summary>
+        /// Creates a StyleManager handle.<br />
+        /// This can be initialized with StyleManager::Get().<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -166,16 +237,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.StyleManager_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
         internal StyleChangedSignal StyleChangedSignal()
         {
             StyleChangedSignal ret = new StyleChangedSignal(NDalicPINVOKE.StyleManager_StyleChangedSignal(swigCPtr), false);
@@ -183,63 +244,5 @@ namespace Tizen.NUI
             return ret;
         }
 
-        // Callback for StyleManager StyleChangedsignal
-        private void OnStyleChanged(IntPtr styleManager, StyleChangeType styleChange)
-        {
-            StyleChangedEventArgs e = new StyleChangedEventArgs();
-
-            // Populate all members of "e" (StyleChangedEventArgs) with real data.
-            e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
-            e.StyleChange = styleChange;
-
-            if (_styleManagerStyleChangedEventHandler != null)
-            {
-                //Here we send all data to user event handlers.
-                _styleManagerStyleChangedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Style changed event arguments.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class StyleChangedEventArgs : EventArgs
-        {
-            private StyleManager _styleManager;
-            private StyleChangeType _styleChange;
-
-            /// <summary>
-            /// StyleManager.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public StyleManager StyleManager
-            {
-                get
-                {
-                    return _styleManager;
-                }
-                set
-                {
-                    _styleManager = value;
-                }
-            }
-
-            /// <summary>
-            /// StyleChange - contains the style change information (default font changed or
-            /// default font size changed or theme has changed).<br />
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public StyleChangeType StyleChange
-            {
-                get
-                {
-                    return _styleChange;
-                }
-                set
-                {
-                    _styleChange = value;
-                }
-            }
-        }
     }
 }

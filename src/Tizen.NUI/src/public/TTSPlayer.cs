@@ -27,105 +27,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TTSPlayer : BaseHandle
     {
-        private static readonly TTSPlayer instance = TTSPlayer.Get();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private StateChangedEventCallbackType _stateChangedEventCallback;
 
         internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.TtsPlayer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal TTSPlayer() : this(NDalicManualPINVOKE.new_TtsPlayer__SWIG_0(), true)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TTSPlayer obj)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal TTSPlayer(TTSPlayer handle) : this(NDalicManualPINVOKE.new_TtsPlayer__SWIG_1(TTSPlayer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void StateChangedEventCallbackType(TTSState prevState, TTSState nextState);
-        private event EventHandler<StateChangedEventArgs> _stateChangedEventHandler;
-
-        /// <summary>
-        /// State changed event.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<StateChangedEventArgs> StateChanged
-        {
-            add
-            {
-                if (_stateChangedEventHandler == null)
-                {
-                    _stateChangedEventCallback = OnStateChanged;
-                    StateChangedSignal().Connect(_stateChangedEventCallback);
-                }
-
-                _stateChangedEventHandler += value;
-            }
-            remove
-            {
-                _stateChangedEventHandler -= value;
-
-                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
-                {
-                    StateChangedSignal().Disconnect(_stateChangedEventCallback);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Enumeration for the instance of TTS mode.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum TTSMode
-        {
-            /// <summary>
-            /// Default mode for normal application.
-            /// </summary>
-            Default = 0,
-            /// <summary>
-            /// Notification mode, such as playing utterance is started or completed.
-            /// </summary>
-            Notification,
-            /// <summary>
-            /// Screen reader mode. <br />
-            /// To help visually impaired users interact with their devices,<br />
-            /// screen reader reads text or graphic elements on the screen using the TTS engine.
-            /// </summary>
-            ScreenReader,
-            /// <summary>
-            /// Number of mode.
-            /// </summary>
-            ModeNum
-        }
-
-        /// <summary>
-        /// Enumeration for the instance of TTS state.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum TTSState
-        {
-            /// <summary>
-            /// Player is not available.
-            /// </summary>
-            Unavailable = 0,
-            /// <summary>
-            /// Player is ready to play.
-            /// </summary>
-            Ready,
-            /// <summary>
-            /// Player is playing.
-            /// </summary>
-            Playing,
-            /// <summary>
-            /// Player is paused.
-            /// </summary>
-            Paused
-        }
+        private static readonly TTSPlayer instance = TTSPlayer.Get();
 
         /// <summary>
         /// Gets the singleton of the TTSPlayer object.
@@ -137,6 +51,11 @@ namespace Tizen.NUI
             {
                 return instance;
             }
+        }
+
+        internal TTSPlayer() : this(NDalicManualPINVOKE.new_TtsPlayer__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -160,6 +79,18 @@ namespace Tizen.NUI
         public static TTSPlayer Get()
         {
             TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Get__SWIG_1(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TTSPlayer(TTSPlayer handle) : this(NDalicManualPINVOKE.new_TtsPlayer__SWIG_1(TTSPlayer.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal TTSPlayer Assign(TTSPlayer rhs)
+        {
+            TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Assign(swigCPtr, TTSPlayer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -222,38 +153,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TTSPlayer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal StateChangedSignalType StateChangedSignal()
-        {
-            StateChangedSignalType ret = new StateChangedSignalType(NDalicManualPINVOKE.TtsPlayer_StateChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TTSPlayer Assign(TTSPlayer rhs)
-        {
-            TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Assign(swigCPtr, TTSPlayer.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private void OnStateChanged(TTSState prevState, TTSState nextState)
-        {
-            StateChangedEventArgs e = new StateChangedEventArgs();
-
-            e.PrevState = prevState;
-            e.NextState = nextState;
-
-            if (_stateChangedEventHandler != null)
-            {
-                _stateChangedEventHandler(this, e);
-            }
-        }
-
         /// <summary>
         /// State changed argument.
         /// </summary>
@@ -280,6 +179,109 @@ namespace Tizen.NUI
                 set;
             }
         }
+
+        private StateChangedEventCallbackType _stateChangedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void StateChangedEventCallbackType(TTSState prevState, TTSState nextState);
+        private event EventHandler<StateChangedEventArgs> _stateChangedEventHandler;
+
+        /// <summary>
+        /// State changed event.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public event EventHandler<StateChangedEventArgs> StateChanged
+        {
+            add
+            {
+                if (_stateChangedEventHandler == null)
+                {
+                    _stateChangedEventCallback = OnStateChanged;
+                    StateChangedSignal().Connect(_stateChangedEventCallback);
+                }
+
+                _stateChangedEventHandler += value;
+            }
+            remove
+            {
+                _stateChangedEventHandler -= value;
+
+                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
+                {
+                    StateChangedSignal().Disconnect(_stateChangedEventCallback);
+                }
+            }
+        }
+
+        private void OnStateChanged(TTSState prevState, TTSState nextState)
+        {
+            StateChangedEventArgs e = new StateChangedEventArgs();
+
+            e.PrevState = prevState;
+            e.NextState = nextState;
+
+            if (_stateChangedEventHandler != null)
+            {
+                _stateChangedEventHandler(this, e);
+            }
+        }
+
+        internal StateChangedSignalType StateChangedSignal()
+        {
+            StateChangedSignalType ret = new StateChangedSignalType(NDalicManualPINVOKE.TtsPlayer_StateChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Enumeration for the instance of TTS mode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum TTSMode
+        {
+            /// <summary>
+            /// Default mode for normal application.
+            /// </summary>
+            Default = 0,
+            /// <summary>
+            /// Notification mode, such as playing utterance is started or completed.
+            /// </summary>
+            Notification,
+            /// <summary>
+            /// Screen reader mode. <br />
+            /// To help visually impaired users interact with their devices,<br />
+            /// screen reader reads text or graphic elements on the screen using the TTS engine.
+            /// </summary>
+            ScreenReader,
+            /// <summary>
+            /// Number of mode.
+            /// </summary>
+            ModeNum
+        }
+
+        /// <summary>
+        /// Enumeration for the instance of TTS state.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum TTSState
+        {
+            /// <summary>
+            /// Player is not available.
+            /// </summary>
+            Unavailable = 0,
+            /// <summary>
+            /// Player is ready to play.
+            /// </summary>
+            Ready,
+            /// <summary>
+            /// Player is playing.
+            /// </summary>
+            Playing,
+            /// <summary>
+            /// Player is paused.
+            /// </summary>
+            Paused
+        }
+
     }
 
 }

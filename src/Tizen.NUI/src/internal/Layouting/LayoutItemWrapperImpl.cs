@@ -258,13 +258,9 @@ namespace Tizen.NUI
         protected void SwigDirectorConnect()
         {
             //swigDelegate0 = new SwigDelegateLayoutItemWrapperImpl_0(SwigDirectorGetParent);
-            swigDelegate0 = null;
-            swigDelegate1 = null;
-            swigDelegate2 = null;
             swigDelegate3 = new SwigDelegateLayoutItemWrapperImpl_3(SwigDirectorOnMeasure);
             swigDelegate4 = new SwigDelegateLayoutItemWrapperImpl_4(SwigDirectorOnLayout);
             swigDelegate5 = new SwigDelegateLayoutItemWrapperImpl_5(SwigDirectorOnSizeChanged);
-            swigDelegate6 = null;
 
             LayoutPINVOKE.LayoutItemWrapperImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6);
         }
