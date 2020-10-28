@@ -17,11 +17,14 @@
 using System;
 using System.Runtime.InteropServices;
 
-internal static partial class Interop
+namespace Tizen.Multimedia.MediaCodec
 {
-    internal static class MediaPacket
+    internal static partial class Interop
     {
-        [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
-        internal static extern int Destroy(IntPtr handle);
+        internal static class MediaPacket
+        {
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
+            internal static extern int Destroy(IntPtr handle);
+        }
     }
 }

@@ -14,8 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,7 +22,6 @@ namespace Tizen.NUI
     /// A four-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -494,22 +491,6 @@ namespace Tizen.NUI
             Vector4 ret = new Vector4(NDalicPINVOKE.Vector4_Cross(swigCPtr, Vector4.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(System.Object obj)
-        {
-            Vector4 vector4 = obj as Vector4;
-            bool equal = false;
-            if (X == vector4?.X && Y == vector4?.Y && Z == vector4?.Z && W == vector4?.W)
-            {
-                equal = true;
-            }
-            return equal;
         }
 
         /// <summary>

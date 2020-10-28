@@ -29,33 +29,13 @@ namespace Tizen.System
             Handler = null;
         }
 
-        private static Interop.RuntimeInfo.RuntimeInformationChangedCallback __callback;
-
         internal event EventHandler<RuntimeFeatureStatusChangedEventArgs> EventHandler
         {
             add
             {
                 if (Handler == null)
                 {
-                    __callback = (RuntimeInfoKey num, IntPtr userData) =>
-                    {
-                        string strKey = "Invalid";
-                        RuntimeInfoKey key = TvProductHelper.ReconvertKeyIfTvProduct(num);
-
-                        if (key > 0 && Information.EnumStringMapping.ContainsKey(key))
-                        {
-                            strKey = Information.EnumStringMapping[key];
-                        }
-
-                        RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
-                        {
-                            Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + strKey
-                        };
-
-                        Handler?.Invoke(null, eventArgs);
-                    };
-
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key), __callback, IntPtr.Zero);
+                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key), RuntimeInformationChangedCallback, IntPtr.Zero);
                     if (ret != InformationError.None)
                     {
                         Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
@@ -77,6 +57,16 @@ namespace Tizen.System
                     }
                 }
             }
+        }
+
+        private void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData)
+        {
+            RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
+            {
+                Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + (Information.EnumStringMapping.ContainsKey(key) ? Information.EnumStringMapping[key] : "Invalid")
+            };
+
+            Handler?.Invoke(null, eventArgs);
         }
     }
 }

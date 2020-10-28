@@ -33,11 +33,11 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool IPv6AddressCallback(IntPtr ipv6, IntPtr userData);
 
-        [DllImport(Libraries.Connection, EntryPoint = "connection_create_cs")]
-        public static extern int Create(int tid, out IntPtr handle);
+        [DllImport(Libraries.Connection, EntryPoint = "connection_create")]
+        public static extern int Create(out IntPtr handle);
 
-        [DllImport(Libraries.Connection, EntryPoint = "connection_destroy_cs")]
-        public static extern int Destroy(int tid, IntPtr handle);
+        [DllImport(Libraries.Connection, EntryPoint = "connection_destroy")]
+        public static extern int Destroy(IntPtr handle);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_get_type")]
         public static extern int GetType(IntPtr handle, out int type);

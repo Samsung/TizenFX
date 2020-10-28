@@ -81,10 +81,8 @@ namespace ElmSharp
         {
             get
             {
-                if (_trackObject == null || Interop.Elementary.elm_object_item_track_get(Handle) == 0)
-                {
+                if (_trackObject == null)
                     _trackObject = new ItemEvasObject(Handle);
-                }
                 return _trackObject;
             }
         }
@@ -394,7 +392,7 @@ namespace ElmSharp
 
         class ItemEvasObject : EvasObject
         {
-            IntPtr _trackHandle = IntPtr.Zero;
+            IntPtr _parent = IntPtr.Zero;
 
             /// <summary>
             /// Creates and initializes a new instance of the ItemEvasObject class.
@@ -402,11 +400,8 @@ namespace ElmSharp
             /// <param name="parent">IntPtr</param>
             public ItemEvasObject(IntPtr parent) : base()
             {
-                _trackHandle = Interop.Elementary.elm_object_item_track(parent);
-                if (_trackHandle != IntPtr.Zero)
-                {
-                    Realize(null);
-                }
+                _parent = parent;
+                Realize(null);
             }
 
             /// <summary>
@@ -416,7 +411,7 @@ namespace ElmSharp
             /// <returns>Handle IntPtr.</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
-                return _trackHandle;
+                return Interop.Elementary.elm_object_item_track(_parent);
             }
         }
     }

@@ -40,6 +40,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public Radio()
         {
+            CompatibilitySupport.DisableSessionBackwardCompatibility();
+
             ValidateFeatureSupported(FeatureFmRadio);
 
             Native.Create(out _handle);

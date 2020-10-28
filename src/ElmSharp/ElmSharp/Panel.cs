@@ -140,7 +140,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
 
             RealHandle = Interop.Elementary.elm_panel_add(handle);

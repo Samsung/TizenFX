@@ -767,20 +767,17 @@ namespace Tizen.Uix.Stt
         public IEnumerable<ResultTime> GetDetailedResult()
         {
             List<ResultTime> list = new List<ResultTime>();
-            lock (thisLock)
+            _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData) =>
             {
-                _resultTimeDelegate = (IntPtr handle, int index, TimeEvent e, IntPtr text, IntPtr startTime, IntPtr endTime, IntPtr userData) =>
-                {
-                    _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), (long)startTime, (long)endTime);
-                    list.Add(_result);
-                    return true;
-                };
-                SttError error = SttForeachDetailedResult(_handle, _resultTimeDelegate, IntPtr.Zero);
-                if (error != SttError.None)
-                {
-                    Log.Error(LogTag, "GetDetailedResult Failed with error " + error);
-                    throw ExceptionFactory.CreateException(error);
-                }
+                _result = new ResultTime(index, e, Marshal.PtrToStringAnsi(text), (long)startTime, (long)endTime);
+                list.Add(_result);
+                return true;
+            };
+            SttError error = SttForeachDetailedResult(_handle, _resultTimeDelegate, IntPtr.Zero);
+            if (error != SttError.None)
+            {
+                Log.Error(LogTag, "GetDetailedResult Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
             }
             return list;
         }

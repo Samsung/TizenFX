@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,292 +14,20 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Runtime.InteropServices;
-using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.UIComponents
 {
+
+    using System;
+    using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
+
     /// <summary>
     /// The slider is a control to enable sliding an indicator between two values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Slider : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LowerBoundProperty = BindableProperty.Create("LowerBound", typeof(float), typeof(Slider), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-            Console.WriteLine("Slider LowerBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create("UpperBound", typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) => 
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-            Console.WriteLine("Slider UpperBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            Console.WriteLine("Slider ValueProperty Changed: oldValue: " + oldValue + ", newValue: " + newValue);
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-            Console.WriteLine("Slider TrackVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-            Console.WriteLine("Slider HandleVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-            Console.WriteLine("Slider ProgressVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-            Console.WriteLine("Slider PopupVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-            Console.WriteLine("Slider PopupArrowVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create("DisabledColor", typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) => 
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-            Console.WriteLine("Slider DisabledColorProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-            Console.WriteLine("Slider ValuePrecisionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-            Console.WriteLine("Slider ShowPopupProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-            Console.WriteLine("Slider ShowValueProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarksProperty = BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARKS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
-            }
-            Console.WriteLine("Slider MarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-            Console.WriteLine("Slider MarkToleranceProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create("SnapToMarks", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
-        {
-            var slider = (Slider)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-            Console.WriteLine("Slider SnapToMarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
-            return temp;
-        });
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Slider_SWIGUpcast(cPtr), cMemoryOwn)
@@ -757,28 +485,8 @@ namespace Tizen.NUI.UIComponents
         public Slider() : this(NDalicPINVOKE.Slider_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
         }
-
-        internal override bool IsCreateByXaml
-        {
-            get
-            {
-                return base.IsCreateByXaml;
-            }
-            set
-            {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.ValueChanged += (obj, e) => {
-                        this.Value = e.SlideValue;
-                        return true;
-                    };
-                }
-            }
-        }
-
         internal Slider(Slider handle) : this(NDalicPINVOKE.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -799,7 +507,7 @@ namespace Tizen.NUI.UIComponents
         /// <param name="handle">The handle to an object.</param>
         /// <returns>The handle to a slider or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public static Slider DownCast(BaseHandle handle)
+        public new static Slider DownCast(BaseHandle handle)
         {
             Slider ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -835,11 +543,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(LowerBoundProperty);
+                float temp = 0.0f;
+                GetProperty(Slider.Property.LOWER_BOUND).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(LowerBoundProperty, value);
+                SetProperty(Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -851,11 +561,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(UpperBoundProperty);
+                float temp = 0.0f;
+                GetProperty(Slider.Property.UPPER_BOUND).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(UpperBoundProperty, value);
+                SetProperty(Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -867,11 +579,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(ValueProperty);
+                float temp = 0.0f;
+                GetProperty(Slider.Property.VALUE).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValueAndForceSendChangeSignal(ValueProperty, value);
+                SetProperty(Slider.Property.VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -883,11 +597,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(TrackVisualProperty);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.TRACK_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(TrackVisualProperty, value);
+                SetProperty(Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -899,11 +615,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(HandleVisualProperty);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.HANDLE_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(HandleVisualProperty, value);
+                SetProperty(Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -915,11 +633,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(ProgressVisualProperty);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.PROGRESS_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(ProgressVisualProperty, value);
+                SetProperty(Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -931,11 +651,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(PopupVisualProperty);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.POPUP_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(PopupVisualProperty, value);
+                SetProperty(Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -947,11 +669,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(PopupArrowVisualProperty);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(PopupArrowVisualProperty, value);
+                SetProperty(Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -963,11 +687,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Vector4)GetValue(DisabledColorProperty);
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Slider.Property.DISABLED_COLOR).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(DisabledColorProperty, value);
+                SetProperty(Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -979,11 +705,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (int)GetValue(ValuePrecisionProperty);
+                int temp = 0;
+                GetProperty(Slider.Property.VALUE_PRECISION).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(ValuePrecisionProperty, value);
+                SetProperty(Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -995,11 +723,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(ShowPopupProperty);
+                bool temp = false;
+                GetProperty(Slider.Property.SHOW_POPUP).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(ShowPopupProperty, value);
+                SetProperty(Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1011,11 +741,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(ShowValueProperty);
+                bool temp = false;
+                GetProperty(Slider.Property.SHOW_VALUE).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(ShowValueProperty, value);
+                SetProperty(Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1027,11 +759,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyArray)GetValue(MarksProperty);
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(Slider.Property.MARKS).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(MarksProperty, value);
+                SetProperty(Slider.Property.MARKS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1043,11 +777,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(SnapToMarksProperty);
+                bool temp = false;
+                GetProperty(Slider.Property.SNAP_TO_MARKS).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(SnapToMarksProperty, value);
+                SetProperty(Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1059,11 +795,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(MarkToleranceProperty);
+                float temp = 0.0f;
+                GetProperty(Slider.Property.MARK_TOLERANCE).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(MarkToleranceProperty, value);
+                SetProperty(Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue(value));
             }
         }
 

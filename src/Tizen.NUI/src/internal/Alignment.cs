@@ -252,7 +252,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static Alignment DownCast(BaseHandle handle)
+        public new static Alignment DownCast(BaseHandle handle)
         {
             Alignment ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Alignment;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
