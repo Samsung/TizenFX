@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : ICloneable
+    public class TextShadow : Disposable, ICloneable
     {
         private readonly PropertyMap propertyMap = null;
 
@@ -46,6 +46,15 @@ namespace Tizen.NUI
 
             BlurRadius = blurRadius;
             propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
+        }
+
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~TextShadow()
+        {
+            Dispose();
         }
 
         /// <summary>
@@ -112,6 +121,26 @@ namespace Tizen.NUI
             }
 
             return new PropertyValue(instance.propertyMap);
+        }
+
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            propertyMap?.Dispose();
+            Color?.Dispose();
+            Offset?.Dispose();
+
+            base.Dispose();
         }
     }
 }
