@@ -28,11 +28,10 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="RepeatModeCommandReceivedEventArgs"/> class.
         /// </summary>
         /// <param name="command">The playback position command.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public RepeatModeCommandReceivedEventArgs(RepeatModeCommand command)
         {
-            Command = command ?? throw new ArgumentNullException(nameof(command));
+            Command = command;
         }
 
         /// <summary>

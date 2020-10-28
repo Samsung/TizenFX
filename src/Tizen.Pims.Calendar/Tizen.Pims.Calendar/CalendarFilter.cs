@@ -178,7 +178,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            IntPtr time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
             error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {
@@ -447,7 +447,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            IntPtr time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
             error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {

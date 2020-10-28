@@ -28,11 +28,10 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="PlaybackActionCommandReceivedEventArgs"/> class.
         /// </summary>
         /// <param name="command">The playback command.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaybackActionCommandReceivedEventArgs(PlaybackCommand command)
         {
-            Command = command ?? throw new ArgumentNullException(nameof(command));
+            Command = command;
         }
 
         /// <summary>

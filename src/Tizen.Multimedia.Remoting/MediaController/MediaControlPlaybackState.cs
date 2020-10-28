@@ -14,34 +14,54 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies the audio channels.
+    /// Specifies playback states.
     /// </summary>
-    /// <seealso cref="AudioCapture"/>
-    /// <seealso cref="AsyncAudioCapture"/>
-    /// <seealso cref="AudioPlayback"/>
-    /// <since_tizen> 3 </since_tizen>
-    public enum AudioChannel
+    /// <since_tizen> 4 </since_tizen>
+    public enum MediaControlPlaybackState
     {
         /// <summary>
-        /// Mono.
+        /// Unknown; no state is set.
         /// </summary>
-        Mono = 0x80,
-        /// <summary>
-        /// Stereo.
-        /// </summary>
-<<<<<<< HEAD:src/Tizen.Multimedia.AudioIO/AudioIO/AudioChannel.cs:src/Tizen.Multimedia.AudioIO/AudioIO/AudioChannel.cs
-        Stereo
-=======
-        On,
+        None,
 
         /// <summary>
-        /// One media.
+        /// Playing.
+        /// </summary>
+        Playing,
+
+        /// <summary>
+        /// Paused.
+        /// </summary>
+        Paused,
+
+        /// <summary>
+        /// Stopped.
+        /// </summary>
+        Stopped,
+
+        /// <summary>
+        /// Fast forwarding.
+        /// </summary>
+        FastForwarding,
+
+        /// <summary>
+        /// Rewinding.
+        /// </summary>
+        Rewinding,
+
+        /// <summary>
+        /// Skipping to the next item.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        OneMedia
->>>>>>> master:src/Tizen.Multimedia.Remoting/MediaController/MediaControllerRepeatMode.cs:src/Tizen.Multimedia.Remoting/MediaController/MediaControllerRepeatMode.cs
+        MovingToNext,
+
+        /// <summary>
+        /// Skipping to the previous item.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        MovingToPrevious,
     }
 }

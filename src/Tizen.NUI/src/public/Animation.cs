@@ -574,6 +574,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] Properties
         {
             get
@@ -591,6 +593,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] DestValue
         {
             get
@@ -608,6 +612,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] StartTime
         {
             get
@@ -625,6 +631,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] EndTime
         {
             get
@@ -641,6 +649,8 @@ namespace Tizen.NUI
         /// Animates one or more properties to a destination value.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void PlayAnimateTo(View target)
         {
             Clear();

@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using NativeClient = Interop.MediaControllerClient;
+using NativeServer = Interop.MediaControllerServer;
 using NativePlaylist = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
@@ -27,40 +29,24 @@ namespace Tizen.Multimedia.Remoting
     public class MediaControlPlaylist : IDisposable
     {
         private IntPtr _handle;
-        private Dictionary<string, MediaControlMetadata> _metadata = new Dictionary<string, MediaControlMetadata>();
+        private Dictionary<string, MediaControlMetadata> _metadata = null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class.
+        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class by server side.
         /// </summary>
         /// <param name="name">The name of this playlist.</param>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlPlaylist(string name)
+        internal MediaControlPlaylist(string name)
         {
             if (name == null)
             {
-                throw new ArgumentNullException(nameof(name));
+                throw new ArgumentNullException("The playlist name is not set.");
             }
 
             NativePlaylist.CreatePlaylist(name, out IntPtr handle).ThrowIfError("Failed to create playlist");
 
             Name = name;
-            _handle = handle;
 
-            MediaControlServer.SavePlaylist(handle);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class.
-        /// </summary>
-        /// <param name="name">The name of this playlist.</param>
-        /// <param name="metadata">The metadata of this playlist.</param>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlPlaylist(string name, Dictionary<string, MediaControlMetadata> metadata)
-            : this(name)
-        {
-            AddMetadata(metadata);
+            UpdateMetadata(handle);
         }
 
         /// <summary>
@@ -71,7 +57,7 @@ namespace Tizen.Multimedia.Remoting
         {
             if (handle == IntPtr.Zero)
             {
-                throw new ArgumentNullException(nameof(handle));
+                throw new ArgumentNullException("The handle is not set.");
             }
 
             // handle will be destroyed in Native FW side.
@@ -118,7 +104,7 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
-                return _metadata?.Count ?? 0;
+                return _metadata != null ? _metadata.Count : 0;
             }
         }
 
@@ -139,7 +125,7 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>The dictionary set of index and <see cref="MediaControlMetadata"/> pair.</returns>
         public Dictionary<string, MediaControlMetadata> GetMetadata()
         {
-            if (TotalCount == 0)
+            if (_metadata == null)
             {
                 UpdateMetadata(Handle);
             }
@@ -150,17 +136,11 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the metadata by index.
         /// </summary>
-        /// <param name="index">The index of media in the playlist.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
+        /// <param name="index"></param>
         /// <returns>A <see cref="MediaControlMetadata"/> instance.</returns>
         public MediaControlMetadata GetMetadata(string index)
         {
-            if (index == null)
-            {
-                throw new ArgumentNullException(nameof(index));
-            }
-
-            if (TotalCount == 0)
+            if (_metadata == null)
             {
                 UpdateMetadata(Handle);
             }
@@ -176,16 +156,10 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the metadata to the playlist.
         /// </summary>
-        /// <param name="metadata">The metadata of media.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="metadata"/> is null.</exception>
+        /// <param name="metadata"></param>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(Dictionary<string, MediaControlMetadata> metadata)
         {
-            if (metadata == null)
-            {
-                throw new ArgumentNullException(nameof(metadata));
-            }
-
             foreach (var data in metadata)
             {
                 AddMetadata(data.Key, data.Value);
@@ -197,23 +171,11 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the metadata to the playlist.
         /// </summary>
-        /// <param name="index">The index of media in the playlist.</param>
-        /// <param name="metadata">The metadata of media.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="index"/> or <paramref name="metadata"/> is null.
-        /// </exception>
+        /// <param name="index"></param>
+        /// <param name="metadata"></param>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(string index, MediaControlMetadata metadata)
         {
-            if (index == null)
-            {
-                throw new ArgumentNullException(nameof(index));
-            }
-            if (metadata == null)
-            {
-                throw new ArgumentNullException(nameof(metadata));
-            }
-
             AddItemToPlaylist(index, metadata);
             _metadata.Add(index, metadata);
 
@@ -271,7 +233,6 @@ namespace Tizen.Multimedia.Remoting
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
