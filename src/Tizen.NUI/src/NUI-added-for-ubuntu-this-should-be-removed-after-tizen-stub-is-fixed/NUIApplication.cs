@@ -238,7 +238,6 @@ namespace Tizen.NUI
             CreateApp();
             _application.Initialized += Initialize;
             _application.MainLoop();
-			_application.Dispose();
         }
 
 
