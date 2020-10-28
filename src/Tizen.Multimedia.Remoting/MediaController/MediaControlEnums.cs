@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Tizen.Multimedia.Remoting
@@ -248,6 +249,33 @@ namespace Tizen.Multimedia.Remoting
         Tpo
     }
 
+    /// <summary>
+    /// Specifies the display mode.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum MediaControlDisplayMode
+    {
+        /// <summary>
+        /// Letter box
+        /// </summary>
+        LetterBox,
+
+        /// <summary>
+        /// Original size
+        /// </summary>
+        OriginSize,
+
+        /// <summary>
+        /// Full screen
+        /// </summary>
+        FullScreen,
+
+        /// <summary>
+        /// Cropped full screen
+        /// </summary>
+        CroppedFull
+    }
+
     internal static class EnumExtensions
     {
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
@@ -335,6 +363,126 @@ namespace Tizen.Multimedia.Remoting
 
             return mode == MediaControlRepeatMode.Off ? MediaControllerNativeRepeatMode.On :
                 (mode == MediaControlRepeatMode.On ? MediaControllerNativeRepeatMode.Off : MediaControllerNativeRepeatMode.OneMedia);
+        }
+
+        internal static MediaControlNativeDisplayMode ToNative(this MediaControlDisplayMode mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlDisplayMode), mode));
+
+            MediaControlNativeDisplayMode nativeMode = MediaControlNativeDisplayMode.LetterBox;
+            switch (mode)
+            {
+                case MediaControlDisplayMode.LetterBox:
+                    nativeMode = MediaControlNativeDisplayMode.LetterBox;
+                    break;
+                case MediaControlDisplayMode.OriginSize:
+                    nativeMode = MediaControlNativeDisplayMode.OriginSize;
+                    break;
+                case MediaControlDisplayMode.FullScreen:
+                    nativeMode = MediaControlNativeDisplayMode.FullScreen;
+                    break;
+                case MediaControlDisplayMode.CroppedFull:
+                    nativeMode = MediaControlNativeDisplayMode.CroppedFull;
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static MediaControlDisplayMode ToPublic(this MediaControlNativeDisplayMode mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlNativeDisplayMode), mode));
+            MediaControlDisplayMode nativeMode = MediaControlDisplayMode.LetterBox;
+            switch (mode)
+            {
+                case MediaControlNativeDisplayMode.LetterBox:
+                    nativeMode = MediaControlDisplayMode.LetterBox;
+                    break;
+                case MediaControlNativeDisplayMode.OriginSize:
+                    nativeMode = MediaControlDisplayMode.OriginSize;
+                    break;
+                case MediaControlNativeDisplayMode.FullScreen:
+                    nativeMode = MediaControlDisplayMode.FullScreen;
+                    break;
+                case MediaControlNativeDisplayMode.CroppedFull:
+                    nativeMode = MediaControlDisplayMode.CroppedFull;
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static IList<MediaControlDisplayMode> ToPublicList(this MediaControlNativeDisplayMode modes)
+        {
+            var supportedModes = new List<MediaControlDisplayMode>();
+
+            foreach (MediaControlNativeDisplayMode mode in Enum.GetValues(typeof(MediaControlNativeDisplayMode)))
+            {
+                if (modes.HasFlag(mode))
+                {
+                    supportedModes.Add(mode.ToPublic());
+                }
+            }
+
+            return supportedModes.AsReadOnly();
+        }
+
+        internal static MediaControlNativeDisplayRotation ToNative(this Rotation mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(Rotation), mode));
+
+            MediaControlNativeDisplayRotation nativeMode = MediaControlNativeDisplayRotation.Rotate0;
+            switch (mode)
+            {
+                case Rotation.Rotate0:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate0;
+                    break;
+                case Rotation.Rotate90:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate90;
+                    break;
+                case Rotation.Rotate180:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate180;
+                    break;
+                case Rotation.Rotate270:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate270;
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static Rotation ToPublic(this MediaControlNativeDisplayRotation mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlNativeDisplayRotation), mode));
+            Rotation nativeMode = Rotation.Rotate0;
+            switch (mode)
+            {
+                case MediaControlNativeDisplayRotation.Rotate0:
+                    nativeMode = Rotation.Rotate0;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate90:
+                    nativeMode = Rotation.Rotate90;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate180:
+                    nativeMode = Rotation.Rotate180;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate270:
+                    nativeMode = Rotation.Rotate270;
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static IList<Rotation> ToPublicList(this MediaControlNativeDisplayRotation modes)
+        {
+            var supportedRotations = new List<Rotation>();
+
+            foreach (MediaControlNativeDisplayRotation mode in Enum.GetValues(typeof(MediaControlNativeDisplayRotation)))
+            {
+                if (modes.HasFlag(mode))
+                {
+                    supportedRotations.Add(mode.ToPublic());
+                }
+            }
+
+            return supportedRotations.AsReadOnly();
         }
     }
 }

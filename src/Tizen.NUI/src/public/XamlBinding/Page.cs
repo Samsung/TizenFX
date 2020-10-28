@@ -32,7 +32,7 @@ namespace Tizen.NUI
     /// </summary>
     // [RenderWith(typeof(_PageRenderer))]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
+    public class Page : BaseHandle, IPageController, IElementConfiguration<Page>
     {
         /// <summary>
         /// For internal use.
@@ -58,35 +58,11 @@ namespace Tizen.NUI
         internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
         /// <summary>
-        /// Identifies the BackgroundImage property.
-        /// </summary>
-        internal static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
-
-        /// <summary>
         /// Identifies the IsBusy property.
         /// </summary>
         internal static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
-        /// <summary>
-        /// Identifies the Padding property.
-        /// </summary>
-        internal static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
-
-        /// <summary>
-        /// Identifies the Title property.
-        /// </summary>
-        internal static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
-
-        /// <summary>
-        /// Identifies the Icon property.
-        /// </summary>
-        internal static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
-
-        readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
-
         Rectangle _containerArea;
-
-        bool _containerAreaSet;
 
         bool _hasAppeared;
 
@@ -99,28 +75,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Page()
         {
-            var toolbarItems = new ObservableCollection<ToolbarItem>();
-            toolbarItems.CollectionChanged += OnToolbarItemsCollectionChanged;
             // ToolbarItems = toolbarItems;
             InternalChildren.CollectionChanged += InternalChildrenOnCollectionChanged;
-            _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Page>>(() => new PlatformConfigurationRegistry<Page>(this));
-        }
-
-        /// <summary>
-        /// Identifies the image used as a background for the Page.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BackgroundImage
-        {
-            get { return (string)GetValue(BackgroundImageProperty); }
-            set { SetValue(BackgroundImageProperty, value); }
-        }
-
-        internal FileImageSource Icon
-        {
-            get { return (FileImageSource)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
         }
 
         /// <summary>
@@ -135,38 +91,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The space between the content of the Page and it's border.
-        /// </summary>
-        internal Thickness Padding
-        {
-            get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }
-            set { SetValue(PaddingElement.PaddingProperty, value); }
-        }
-
-        Thickness IPaddingElement.PaddingDefaultValueCreator()
-        {
-            return default(Thickness);
-        }
-
-        void IPaddingElement.OnPaddingPropertyChanged(Thickness oldValue, Thickness newValue)
-        {
-            UpdateChildrenLayout();
-        }
-
-        /// <summary>
-        /// The Page's title.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Title
-        {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
-        }
-
-        internal IList<ToolbarItem> ToolbarItems { get;/* internal set;*/ }
-
-        /// <summary>
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -177,7 +101,7 @@ namespace Tizen.NUI
             {
                 if (_containerArea == value)
                     return;
-                _containerAreaSet = true;
+
                 _containerArea = value;
                 ForceLayout();
             }
@@ -201,13 +125,6 @@ namespace Tizen.NUI
 
         internal override ReadOnlyCollection<Element> LogicalChildrenInternal =>
             _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
-
-        /// <summary>
-        /// Raised when the layout of the Page has changed.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler LayoutChanged;
 
         /// <summary>
         /// ndicates that the Page is about to appear.
@@ -295,31 +212,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Lays out children Elements into the specified area.
-        /// </summary>
-        /// <param name="x">Left-hand side of layout area.</param>
-        /// <param name="y">Top of layout area.</param>
-        /// <param name="width">Width of layout area.</param>
-        /// <param name="height">Height of layout area.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void LayoutChildren(double x, double y, double width, double height)
-        {
-            var area = new Rectangle((int)x, (int)y, (int)width, (int)height);
-            Rectangle originalArea = area;
-            if (_containerAreaSet)
-            {
-                area = ContainerArea;
-                area.X += (int)Padding.Left;
-                area.Y += (int)Padding.Right;
-                area.Width -= (int)Padding.HorizontalThickness;
-                area.Height -= (int)Padding.VerticalThickness;
-                area.Width = Math.Max(0, area.Width);
-                area.Height = Math.Max(0, area.Height);
-            }
-        }
-
-        /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -340,7 +232,6 @@ namespace Tizen.NUI
 
             var canceled = false;
             EventHandler handler = (sender, args) => { canceled = true; };
-            Navigation.PopModalAsync().ContinueWith(t => { throw t.Exception; }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
 
             return !canceled;
         }
@@ -385,25 +276,6 @@ namespace Tizen.NUI
         protected override void OnParentSet()
         {
             base.OnParentSet();
-        }
-
-        /// <summary>
-        /// Requests that the children Elements of the Page update their layouts.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UpdateChildrenLayout()
-        {
-            if (!ShouldLayoutChildren())
-                return;
-
-            double x = Padding.Left;
-            double y = Padding.Top;
-
-            for (var i = 0; i < LogicalChildren.Count; i++)
-            {
-                LayoutChanged?.Invoke(this, EventArgs.Empty);
-            }
         }
 
         internal virtual void OnChildMeasureInvalidated(BaseHandle child, InvalidationTrigger trigger)
@@ -549,16 +421,6 @@ namespace Tizen.NUI
                 }
             }
             return !any;
-        }
-
-        /// <summary>
-        /// Returns the platform-specific instance of this Page, on which a platform-specific method may be called.
-        /// </summary>
-        /// <typeparam name="T">The platform for which to return an instance.</typeparam>
-        /// <returns>The platform-specific instance of this Page</returns>
-        internal IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
-        {
-            return _platformConfigurationRegistry.Value.On<T>();
         }
     }
 }

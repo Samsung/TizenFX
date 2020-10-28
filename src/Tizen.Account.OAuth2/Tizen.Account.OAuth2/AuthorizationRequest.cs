@@ -23,54 +23,63 @@ namespace Tizen.Account.OAuth2
     /// The request parameters to be sent to authorization end point.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public abstract class AuthorizationRequest
     {
         /// <summary>
         /// The desired response type from the OAuth authorization end point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public abstract string ResponseType { get; }
 
         /// <summary>
         /// Client secret credentials.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public ClientCredentials ClientSecrets { get; set; }
 
         /// <summary>
         /// The scope of the access.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public IEnumerable<string> Scopes { get; set; }
 
         /// <summary>
         /// The authorization end point URL.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public Uri AuthorizationEndpoint { get; set; }
 
         /// <summary>
         /// The redirection endpoint of the auhorization flow.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public Uri RedirectionEndPoint { get; set; }
 
         /// <summary>
         /// The access token end point URL.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public Uri TokenEndpoint { get; set; }
 
         /// <summary>
         /// The client's state which is maintained between request and response.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string State { get; set; }
 
         /// <summary>
         /// Custom key-value parameters to be sent to the server
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public IEnumerable<KeyValuePair<string, string>> CustomData { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Tizen.NUI.Binding
     {
         ////If the base type is one of these, stop registering dynamic resources further
         ////The last one (typeof(Element)) is a safety guard as we might be creating VisualElement directly in internal code
-        static readonly IList<Type> s_stopAtTypes = new List<Type> { typeof(View), typeof(Layout<>), typeof(Element) };
+        static readonly IList<Type> s_stopAtTypes = new List<Type> { typeof(View), typeof(Element) };
 
         IList<BindableProperty> _classStyleProperties;
 

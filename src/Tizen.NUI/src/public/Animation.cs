@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,6 @@ namespace Tizen.NUI
     {
         private static bool? disableAnimation = null;
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
         private System.IntPtr _finishedCallbackOfNative;
@@ -72,7 +71,6 @@ namespace Tizen.NUI
 
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Animation.Animation_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             _animationFinishedEventCallback = OnFinished;
             _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
@@ -509,6 +507,8 @@ namespace Tizen.NUI
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Animation DownCast(BaseHandle handle)
         {
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
@@ -539,18 +539,7 @@ namespace Tizen.NUI
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
-            }
-
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -576,18 +565,7 @@ namespace Tizen.NUI
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
-            }
-
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -613,18 +591,7 @@ namespace Tizen.NUI
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
-            }
-
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -680,18 +647,7 @@ namespace Tizen.NUI
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
-            }
-
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -992,12 +948,6 @@ namespace Tizen.NUI
                     return value;
                 }
             }
-
-            var nativeValueConverterService = DependencyService.Get<INativeValueConverterService>();
-
-            object nativeValue = null;
-            if (nativeValueConverterService != null && nativeValueConverterService.ConvertTo(value, toType, out nativeValue))
-                return nativeValue;
 
             return value;
         }
@@ -1333,56 +1283,37 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if (this != null)
-            {
-                if (_animationFinishedEventCallback != null)
-                {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
-                }
-
-                if (_animationProgressReachedEventCallback != null)
-                {
-
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                }
-            }
-
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
 
-            }
-            else if(type == DisposeTypes.Implicit)
+            if (_animationFinishedEventHandler != null)
             {
-
+                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                _animationFinishedEventHandler = null;
             }
 
-            if (this != null)
+            if (_animationProgressReachedEventCallback != null)
             {
-                this.Clear();
-            }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Animation.delete_Animation(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                _animationProgressReachedEventCallback = null;
             }
 
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            if(swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] Animation ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
+                return;
+            }
+            Interop.Animation.delete_Animation(swigCPtr);
         }
 
         private void OnFinished(IntPtr data)
@@ -1413,6 +1344,19 @@ namespace Tizen.NUI
             return (int)(sec * 1000);
         }
 
+        private object AvoidFloatPropertyHasIntegerValue(View target, Property property, object value)
+        {
+            PropertyType propertyType = target.GetPropertyType(property.propertyIndex);
+            if (propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = value.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)value;
+                    value = (float)num;
+                }
+            }
+            return value;
+        }
     }
-
 }

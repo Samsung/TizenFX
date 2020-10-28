@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,13 @@ namespace Tizen.NUI.UIComponents
     /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Button : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -55,7 +59,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -72,7 +77,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -89,7 +95,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -106,7 +113,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -123,7 +131,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -140,8 +149,9 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
@@ -157,7 +167,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -174,7 +185,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -210,7 +222,8 @@ namespace Tizen.NUI.UIComponents
                 default: return Align.End;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -227,7 +240,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_PADDING).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -244,7 +258,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -261,7 +276,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -278,7 +294,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -295,7 +312,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TogglableProperty = BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -312,7 +330,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.TOGGLABLE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedProperty = BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -329,41 +348,56 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
+                PropertyMap background = new PropertyMap();
+                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
+                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator:(bindable) =>
         {
             var button = (Button)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR).Get(temp);
+            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(map);
+            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
+            value?.Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
+                PropertyMap background = new PropertyMap();
+                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
+                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator:(bindable) =>
         {
             var button = (Button)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR).Get(temp);
+            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(map);
+            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
+            value?.Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelProperty = BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -380,7 +414,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelTextProperty = BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -401,7 +436,6 @@ namespace Tizen.NUI.UIComponents
             return str;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         private ClickedCallbackType _clickedCallback;
         private EventHandlerWithReturnType<object, EventArgs, bool> _pressedEventHandler;
@@ -416,6 +450,9 @@ namespace Tizen.NUI.UIComponents
         /// Only the derived versions can be instantiated.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Button() : this(Interop.Button.new_Button__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -423,7 +460,6 @@ namespace Tizen.NUI.UIComponents
 
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Button_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -439,6 +475,9 @@ namespace Tizen.NUI.UIComponents
         /// The Clicked event will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
             add
@@ -467,6 +506,9 @@ namespace Tizen.NUI.UIComponents
         /// The Pressed event will be triggered when the button is touched.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
             add
@@ -495,6 +537,9 @@ namespace Tizen.NUI.UIComponents
         /// The Released event will be triggered when the button is touched and the touch point leaves the boundary of the button.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
             add
@@ -523,6 +568,9 @@ namespace Tizen.NUI.UIComponents
         /// The StateChanged event will be triggered when the button's state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
             add
@@ -551,6 +599,9 @@ namespace Tizen.NUI.UIComponents
         /// Enumeration for describing the position, the text label can be, in relation to the control (and foreground/icon).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Align
         {
             /// <summary>
@@ -575,6 +626,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the unselected button foreground or icon visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap UnselectedVisual
         {
             get
@@ -591,6 +645,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the selected button foreground or icon visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SelectedVisual
         {
             get
@@ -607,6 +664,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the disabled selected state foreground or icon button visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledSelectedVisual
         {
             get
@@ -623,6 +683,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the disabled unselected state foreground or icon visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledUnselectedVisual
         {
             get
@@ -639,6 +702,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the disabled unselected state background button visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap UnselectedBackgroundVisual
         {
             get
@@ -655,6 +721,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the selected background button visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SelectedBackgroundVisual
         {
             get
@@ -671,6 +740,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the disabled while unselected background button visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledUnselectedBackgroundVisual
         {
             get
@@ -687,6 +759,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the disabled while selected background button visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledSelectedBackgroundVisual
         {
             get
@@ -703,6 +778,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the position of the the label in relation to the foreground or icon, if both present.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Align LabelRelativeAlignment
         {
             get
@@ -719,6 +797,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the padding around the text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 LabelPadding
         {
             get
@@ -735,6 +816,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the padding around the foreground visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ForegroundVisualPadding
         {
             get
@@ -751,6 +835,9 @@ namespace Tizen.NUI.UIComponents
         /// If the autorepeating property is set to true, then the togglable property is set to false.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutoRepeating
         {
             get
@@ -767,6 +854,9 @@ namespace Tizen.NUI.UIComponents
         /// By default, this value is set to 0.15 seconds.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float InitialAutoRepeatingDelay
         {
             get
@@ -783,6 +873,9 @@ namespace Tizen.NUI.UIComponents
         /// By default, this value is set to 0.05 seconds.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float NextAutoRepeatingDelay
         {
             get
@@ -799,6 +892,9 @@ namespace Tizen.NUI.UIComponents
         /// If the togglable property is set to true, then the autorepeating property is set to false.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Togglable
         {
             get
@@ -815,6 +911,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the togglable button as either selected or unselected, togglable property must be set to true.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Selected
         {
             get
@@ -831,6 +930,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the unselected color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color UnselectedColor
         {
             get
@@ -847,6 +949,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the selected color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color SelectedColor
         {
             get
@@ -863,6 +968,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the label.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap Label
         {
             get
@@ -879,6 +987,9 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the text of the label.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LabelText
         {
             get
@@ -928,19 +1039,14 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the button instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -951,17 +1057,14 @@ namespace Tizen.NUI.UIComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Button.delete_Button(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Button.delete_Button(swigCPtr);
         }
 
         private void DisConnectFromSignals()
@@ -1051,8 +1154,6 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int NEXT_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
             internal static readonly int TOGGLABLE = Interop.Button.Button_Property_TOGGLABLE_get();
             internal static readonly int SELECTED = Interop.Button.Button_Property_SELECTED_get();
-            internal static readonly int UNSELECTED_COLOR = Interop.Button.Button_Property_UNSELECTED_COLOR_get();
-            internal static readonly int SELECTED_COLOR = Interop.Button.Button_Property_SELECTED_COLOR_get();
             internal static readonly int LABEL = Interop.Button.Button_Property_LABEL_get();
         }
     }

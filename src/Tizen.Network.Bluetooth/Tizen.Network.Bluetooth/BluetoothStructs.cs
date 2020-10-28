@@ -205,6 +205,17 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceDataLength;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct BluetoothHidDeviceReceivedDataStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal BluetoothHidHeaderType headerType;
+        internal BluetoothHidParamType paramType;
+        internal int dataSize;
+        internal IntPtr data;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
@@ -374,9 +385,16 @@ namespace Tizen.Network.Bluetooth
         internal static SocketData ConvertStructToSocketData(SocketDataStruct structInfo)
         {
             SocketData data = new SocketData();
-            data.Fd = structInfo.SocketFd;
-            data.Size = structInfo.DataSize;
-            data.RecvData = Marshal.PtrToStringAnsi(structInfo.Data);
+            Log.Info(Globals.LogTag, "SocketDataLength" + structInfo.DataSize);
+
+            data._fd = structInfo.SocketFd;
+            if (structInfo.DataSize > 0)
+            {
+                data._dataSize = structInfo.DataSize;
+                data._data = new byte[data._dataSize];
+                Marshal.Copy(structInfo.Data, data._data, 0, data._dataSize);
+                data._recvData = Marshal.PtrToStringAnsi(structInfo.Data, structInfo.DataSize);
+            }
             return data;
         }
 
@@ -386,6 +404,14 @@ namespace Tizen.Network.Bluetooth
             connectionInfo.Fd = structInfo.SocketFd;
             connectionInfo.RemoteAddress = structInfo.Address;
             connectionInfo.Uuid = structInfo.ServiceUuid;
+            connectionInfo.ServerFd = structInfo.ServerFd;
+
+            BluetoothSocket clientSocket = new BluetoothSocket();
+            clientSocket.connectedSocket = structInfo.SocketFd;
+            clientSocket.remoteAddress = structInfo.Address;
+            clientSocket.serviceUuid = structInfo.ServiceUuid;
+            connectionInfo.ClientSocket = (IBluetoothServerSocket)clientSocket;
+
             return connectionInfo;
         }
     }

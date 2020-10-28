@@ -28,6 +28,9 @@ namespace Tizen.Multimedia
         private AudioStreamPolicyHandle _handle;
         private bool _disposed = false;
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
+        private static AudioDevice _inputDevice = null;
+        private static AudioDevice _outputDevice = null;
+        private const string Tag = "Tizen.Multimedia.AudioStreamPolicy";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>.
@@ -239,6 +242,11 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="AddDeviceForStreamRouting(AudioDevice)"/>
         /// <seealso cref="RemoveDeviceForStreamRouting(AudioDevice)"/>
+        /// <exception cref="InvalidOperationException">
+        ///     A device has not been set.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamRouting()
@@ -305,12 +313,122 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets or sets the preferred input device.
+        /// </summary>
+        /// <value>
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for input.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioDevice PreferredInputDevice
+        {
+            get
+            {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
+                    ThrowIfError("Failed to get preferred input device");
+
+                Log.Debug(Tag, $"preferred input device id:{inDeviceId}");
+
+                return _inputDevice;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, value?.Id ?? 0).
+                    ThrowIfError("Failed to set preferred input device");
+
+                _inputDevice = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the preferred output device.
+        /// </summary>
+        /// <value>
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for output.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioDevice PreferredOutputDevice
+        {
+            get
+            {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
+                    ThrowIfError("Failed to get preferred output device");
+
+                Log.Debug(Tag, $"preferred output device id:{outDeviceId}");
+
+                return _outputDevice;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, value?.Id ?? 0).
+                    ThrowIfError("Failed to set preferred output device");
+
+                _outputDevice = value;
+            }
+        }
+
+        /// <summary>
+        /// Checks if any stream from the current AudioStreamPolicy is using the device.
+        /// </summary>
+        /// <returns>true if any audio stream from the current AudioStreamPolicy is using the device; otherwise, false.</returns>
+        /// <param name="device">The device to be checked.</param>
+        /// <remarks>
+        /// The AudioStreamPolicy can be applied to each playback or recording stream via other API set.
+        /// (For example., <see cref="T:Tizen.Multimedia.Player"/>, <see cref="T:Tizen.Multimedia.WavPlayer"/>,
+        /// <see cref="T:Tizen.Multimedia.AudioPlayback"/>, <see cref="T:Tizen.Multimedia.AudioCapture"/>, etc.)
+        /// This method returns true only when the device is used for the stream which meets to the two conditions.
+        /// One is that the current AudioStreamPolicy sets a audio route path to the device and the other is that the playback
+        /// or recording stream from other API set should have already started to prepare or to play.(It depends on the API set.)
+        /// </remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public bool HasStreamOnDevice(AudioDevice device)
+        {
+            if (device == null)
+            {
+                throw new ArgumentNullException(nameof(device));
+            }
+
+            var ret = Interop.AudioStreamPolicy.IsStreamOnDevice(Handle, device.Id, out var isOn);
+            ret.ThrowIfError("Failed to check stream on device");
+
+            return isOn;
+        }
+
+        /// <summary>
         /// Releases all resources used by the <see cref="AudioStreamPolicy"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -320,7 +438,12 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
             {
                 if (_handle != null)
                 {

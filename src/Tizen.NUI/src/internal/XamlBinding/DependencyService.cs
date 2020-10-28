@@ -108,7 +108,7 @@ namespace Tizen.NUI.Binding
                 catch (System.IO.FileNotFoundException)
                 {
                     // Sometimes the previewer doesn't actually have everything required for these loads to work
-                    Console.WriteLine(nameof(Registrar), "Could not load assembly: {0} for Attibute {1} | Some renderers may not be loaded", assembly.FullName, targetAttrType.FullName);
+                    Tizen.Log.Fatal("NUI", "Could not load assembly: {0} for Attibute {1} | Some renderers may not be loaded", assembly.FullName, targetAttrType.FullName);
                     continue;
                 }
                 

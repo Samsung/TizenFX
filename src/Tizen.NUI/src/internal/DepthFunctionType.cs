@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal enum DepthFunctionType
     {
         NEVER,
@@ -29,5 +28,4 @@ namespace Tizen.NUI
         LESS_EQUAL,
         GREATER_EQUAL
     }
-
 }

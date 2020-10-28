@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ConnectionChangedCallback(IntPtr device, bool isConnected, IntPtr userData);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void StateChangedCallback(IntPtr device, AudioDeviceState changedState, IntPtr userData);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void RunningChangedCallback(IntPtr device, bool isRunning, IntPtr userData);
@@ -54,8 +56,10 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_name")]
             internal static extern int GetDeviceName(IntPtr device, out IntPtr name);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state_by_id")]
             internal static extern AudioManagerError GetDeviceState(int deviceId, out AudioDeviceState state);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id")]
             internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);

@@ -24,81 +24,10 @@ namespace Tizen.NUI.Binding
             s_context = SynchronizationContext.Current;
         }
 
-        public class TizenTicker : Ticker
-        {
-            readonly System.Threading.Timer _timer;
-
-            public TizenTicker()
-            {
-                _timer = new System.Threading.Timer((object o) => HandleElapsed(o), this, Timeout.Infinite, Timeout.Infinite);
-            }
-
-            protected override void EnableTimer()
-            {
-                _timer.Change(16, 16);
-            }
-
-            protected override void DisableTimer()
-            {
-                _timer.Change(-1, -1);
-            }
-
-            void HandleElapsed(object state)
-            {
-                s_context.Post((o) => SendSignals(-1), null);
-            }
-        }
         #region IPlatformServices implementation
-
-        // public double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
-        // {
-        //  int pt;
-        //  // Actual font size depends on the target idiom.
-        //  switch (size)
-        //  {
-        //      case NamedSize.Micro:
-        //          pt = Device.Idiom == TargetIdiom.TV || Device.Idiom == TargetIdiom.Watch ? 24 : 19;
-        //          break;
-        //      case NamedSize.Small:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 26 : (Device.Idiom == TargetIdiom.Watch ? 30 : 22);
-        //          break;
-        //      case NamedSize.Default:
-        //      case NamedSize.Medium:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 28 : (Device.Idiom == TargetIdiom.Watch ? 32 : 25);
-        //          break;
-        //      case NamedSize.Large:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 84 : (Device.Idiom == TargetIdiom.Watch ? 36 : 31);
-        //          break;
-        //      default:
-        //          throw new ArgumentOutOfRangeException();
-        //  }
-        //  return Forms.ConvertToDPFont(pt);
-        // }
-
-        // public void OpenUriAction(Uri uri)
-        // {
-        //  if (uri == null || uri.AbsoluteUri == null)
-        //  {
-        //      throw new ArgumentNullException(nameof(uri));
-        //  }
-        //  TAppControl tAppControl = new TAppControl() { Operation = "%", Uri = uri.AbsoluteUri };
-        //  var matchedApplications = TAppControl.GetMatchedApplicationIds(tAppControl);
-        //  if (matchedApplications.Count() > 0)
-        //  {
-        //      TAppControl.SendLaunchRequest(tAppControl);
-        //      return;
-        //  }
-        //  throw new PlatformNotSupportedException();
-        // }
-
         public void BeginInvokeOnMainThread(Action action)
         {
             s_context.Post((o) => action(), null);
-        }
-
-        public Ticker CreateTicker()
-        {
-            return new TizenTicker();
         }
 
         public void StartTimer(TimeSpan interval, Func<bool> callback)

@@ -81,7 +81,6 @@ namespace Tizen.Messaging.Messages
             if (ret != (int)MessagesError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to open service, Error - " + (MessagesError)ret);
-                MessagesErrorFactory.ThrowMessagesException(ret);
             }
         }
 

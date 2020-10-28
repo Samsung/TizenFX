@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,62 +15,24 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-
     internal class Builder : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Builder.Builder_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Builder obj)
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            Interop.Builder.delete_Builder(swigCPtr);
         }
-
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Builder.delete_Builder(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
 
         /// <since_tizen> 3 </since_tizen>
         public class QuitEventArgs : EventArgs
@@ -148,13 +110,11 @@ namespace Tizen.NUI
             }
         }
 
-
-
         public Builder() : this(Interop.Builder.Builder_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public void LoadFromString(string data, Builder.UIFormat format)
         {
             Interop.Builder.Builder_LoadFromString__SWIG_0(swigCPtr, data, (int)format);
@@ -274,13 +234,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal FrameBufferImage GetFrameBufferImage(string name)
-        {
-            FrameBufferImage ret = new FrameBufferImage(Interop.Builder.Builder_GetFrameBufferImage(swigCPtr, name), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public Path GetPath(string name)
         {
             Path ret = new Path(Interop.Builder.Builder_GetPath(swigCPtr, name), true);
@@ -314,7 +267,5 @@ namespace Tizen.NUI
         {
             JSON
         }
-
     }
-
 }

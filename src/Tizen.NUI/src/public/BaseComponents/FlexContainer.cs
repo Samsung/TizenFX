@@ -132,7 +132,6 @@ namespace Tizen.NUI.BaseComponents
             return (Alignment)temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Creates a FlexContainer handle.
@@ -146,7 +145,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FlexContainer.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -391,50 +389,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FlexContainer obj)
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To make the FlexContainer instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.FlexContainer.delete_FlexContainer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.FlexContainer.delete_FlexContainer(swigCPtr);
         }
 
         /// <summary>
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use View.Flex, View.AlignSelf, View.FlexMargin instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
             internal static readonly int FLEX = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_get();

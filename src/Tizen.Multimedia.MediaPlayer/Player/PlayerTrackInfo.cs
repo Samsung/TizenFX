@@ -48,10 +48,15 @@ namespace Tizen.Multimedia
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
+        /// <exception cref="NotAvailableException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
+            _owner.ValidateNotDisposed();
+            _owner.AudioOffload.CheckDisabled();
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.GetTrackCount(_owner.Handle, _streamType, out var count).
@@ -73,22 +78,29 @@ namespace Tizen.Multimedia
         ///     <para>The language codes are defined in ISO 639-1.</para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
+        /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="index"/> is less than zero.<br/>
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>.
         /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public string GetLanguageCode(int index)
         {
-            _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+            _owner.ValidateNotDisposed();
 
             if (index < 0 || GetCount() <= index)
             {
                 throw new ArgumentOutOfRangeException(nameof(index), index,
                     $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
             }
+
+            _owner.AudioOffload.CheckDisabled();
+            _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             IntPtr code = IntPtr.Zero;
 
@@ -122,17 +134,24 @@ namespace Tizen.Multimedia
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The <see cref="Player"/> that this instance belongs to is not in the valid state.
+        /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.<br/>
         ///     -or-<br/>
         ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>.
+        /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public int Selected
         {
             get
             {
+                _owner.ValidateNotDisposed();
+                _owner.AudioOffload.CheckDisabled();
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out var value).
@@ -142,12 +161,15 @@ namespace Tizen.Multimedia
             }
             set
             {
+                _owner.ValidateNotDisposed();
+
                 if (value < 0 || GetCount() <= value)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), value,
                         $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { value }.");
                 }
 
+                _owner.AudioOffload.CheckDisabled();
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.SelectTrack(_owner.Handle, _streamType, value).

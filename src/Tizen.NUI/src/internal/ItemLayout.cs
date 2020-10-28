@@ -16,17 +16,17 @@
  */
 
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    internal class ItemLayout : RefObject
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ItemLayout : RefObject
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ItemLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ItemLayout.ItemLayout_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ItemLayout obj)
@@ -34,45 +34,23 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        /// This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ItemLayout.delete_ItemLayout(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ItemLayout.delete_ItemLayout(swigCPtr);
         }
 
-
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetLayoutProperties(PropertyMap properties)
         {
             Interop.ItemLayout.ItemLayout_SetLayoutProperties(swigCPtr, PropertyMap.getCPtr(properties));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap GetLayoutProperties()
         {
             PropertyMap ret = new PropertyMap(Interop.ItemLayout.ItemLayout_GetLayoutProperties(swigCPtr), true);
@@ -80,18 +58,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetItemSize(uint itemId, Vector3 layoutSize, Vector3 itemSize)
         {
             Interop.ItemLayout.ItemLayout_GetItemSize(swigCPtr, itemId, Vector3.getCPtr(layoutSize), Vector3.getCPtr(itemSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetItemSize(Vector3 itemSize)
         {
             Interop.ItemLayout.ItemLayout_SetItemSize(swigCPtr, Vector3.getCPtr(itemSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetMinimumLayoutPosition(uint numberOfItems, Vector3 layoutSize)
         {
             float ret = Interop.ItemLayout.ItemLayout_GetMinimumLayoutPosition(swigCPtr, numberOfItems, Vector3.getCPtr(layoutSize));
@@ -99,6 +83,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetClosestAnchorPosition(float layoutPosition)
         {
             float ret = Interop.ItemLayout.ItemLayout_GetClosestAnchorPosition(swigCPtr, layoutPosition);
@@ -106,6 +92,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetItemScrollToPosition(uint itemId)
         {
             float ret = Interop.ItemLayout.ItemLayout_GetItemScrollToPosition(swigCPtr, itemId);
@@ -113,6 +101,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual ItemRange GetItemsWithinArea(float firstItemPosition, Vector3 layoutSize)
         {
             ItemRange ret = new ItemRange(Interop.ItemLayout.ItemLayout_GetItemsWithinArea(swigCPtr, firstItemPosition, Vector3.getCPtr(layoutSize)), true);
@@ -120,6 +110,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetClosestOnScreenLayoutPosition(int itemID, float currentLayoutPosition, Vector3 layoutSize)
         {
             float ret = Interop.ItemLayout.ItemLayout_GetClosestOnScreenLayoutPosition(swigCPtr, itemID, currentLayoutPosition, Vector3.getCPtr(layoutSize));
@@ -127,6 +119,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetReserveItemCount(Vector3 layoutSize)
         {
             uint ret = Interop.ItemLayout.ItemLayout_GetReserveItemCount(swigCPtr, Vector3.getCPtr(layoutSize));
@@ -134,12 +128,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void GetDefaultItemSize(uint itemId, Vector3 layoutSize, Vector3 itemSize)
         {
             Interop.ItemLayout.ItemLayout_GetDefaultItemSize(swigCPtr, itemId, Vector3.getCPtr(layoutSize), Vector3.getCPtr(itemSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual Degree GetScrollDirection()
         {
             Degree ret = new Degree(Interop.ItemLayout.ItemLayout_GetScrollDirection(swigCPtr), true);
@@ -147,6 +145,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetScrollSpeedFactor()
         {
             float ret = Interop.ItemLayout.ItemLayout_GetScrollSpeedFactor(swigCPtr);
@@ -154,6 +154,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetMaximumSwipeSpeed()
         {
             float ret = Interop.ItemLayout.ItemLayout_GetMaximumSwipeSpeed(swigCPtr);
@@ -161,6 +163,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetItemFlickAnimationDuration()
         {
             float ret = Interop.ItemLayout.ItemLayout_GetItemFlickAnimationDuration(swigCPtr);
@@ -168,6 +172,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual int GetNextFocusItemID(int itemID, int maxItems, View.FocusDirection direction, bool loopEnabled)
         {
             int ret = Interop.ItemLayout.ItemLayout_GetNextFocusItemID(swigCPtr, itemID, maxItems, (int)direction, loopEnabled);
@@ -175,6 +181,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetFlickSpeedFactor()
         {
             float ret = Interop.ItemLayout.ItemLayout_GetFlickSpeedFactor(swigCPtr);
@@ -182,19 +190,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ApplyConstraints(View view, int itemId, Vector3 layoutSize, View itemView)
         {
             Interop.ItemLayout.ItemLayout_ApplyConstraints(swigCPtr, View.getCPtr(view), itemId, Vector3.getCPtr(layoutSize), View.getCPtr(itemView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual Vector3 GetItemPosition(int itemID, float currentLayoutPosition, Vector3 layoutSize)
         {
             Vector3 ret = new Vector3(Interop.ItemLayout.ItemLayout_GetItemPosition(swigCPtr, itemID, currentLayoutPosition, Vector3.getCPtr(layoutSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

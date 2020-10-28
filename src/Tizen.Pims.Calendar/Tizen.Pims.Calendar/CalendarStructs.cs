@@ -126,7 +126,7 @@ namespace Tizen.Pims.Calendar
         public override bool Equals(object obj)
         {
             var other = obj as CalendarTime;
-            if (_type != other._type)
+            if (other == null || _type != other._type)
             {
                 Log.Error(Globals.LogTag, "Not to compare with different type");
                 return false;

@@ -27,7 +27,6 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public class InputMethodContext : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private ActivatedEventCallbackType _activatedEventCallback;
         private EventReceivedEventCallbackType _eventReceivedEventCallback;
@@ -35,11 +34,14 @@ namespace Tizen.NUI
         private ResizedEventCallbackType _resizedEventCallback;
         private LanguageChangedEventCallbackType _languageChangedEventCallback;
         private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
+        private ContentReceivedCallbackType _contentReceivedEventCallback;
 
         /// <summary>
         /// Constructor.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public InputMethodContext() : this(Interop.InputMethodContext.InputMethodContext_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -48,7 +50,6 @@ namespace Tizen.NUI
 
         internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(Interop.InputMethodContext.InputMethodContext_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -58,6 +59,7 @@ namespace Tizen.NUI
         private delegate void ResizedEventCallbackType(int resized);
         private delegate void LanguageChangedEventCallbackType(int languageChanged);
         private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
+        private delegate void ContentReceivedCallbackType(string content, string description, string mimeType);
 
         private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
         private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> _eventReceivedEventHandler;
@@ -65,6 +67,7 @@ namespace Tizen.NUI
         private event EventHandler<ResizedEventArgs> _resizedEventHandler;
         private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
         private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
+        private event EventHandler<ContentReceivedEventArgs> _contentReceivedEventHandler;
 
         /// <summary>
         /// InputMethodContext activated.
@@ -229,6 +232,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// InputMethodContext content received.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ContentReceivedEventArgs> ContentReceived
+        {
+            add
+            {
+                if (_contentReceivedEventHandler == null)
+                {
+                    _contentReceivedEventCallback = OnContentReceived;
+                    ContentReceivedSignal().Connect(_contentReceivedEventCallback);
+                }
+
+                _contentReceivedEventHandler += value;
+            }
+            remove
+            {
+                _contentReceivedEventHandler -= value;
+
+                if (_contentReceivedEventHandler == null && _contentReceivedEventCallback != null)
+                {
+                    ContentReceivedSignal().Disconnect(_contentReceivedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
         /// The direction of the text.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -329,10 +360,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for the language mode of the input panel.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public enum InputPanelLanguage
+        {
+            /// <summary>
+            /// IME Language automatically set depending on the system display.
+            /// </summary>
+            /// <since_tizen> 8 </since_tizen>
+            Automatic,
+            /// <summary>
+            /// Latin alphabet at all times.
+            /// </summary>
+            /// <since_tizen> 8 </since_tizen>
+            Alphabet
+        }
+
+        /// <summary>
         /// Gets or sets whether the IM context allows to use the text prediction.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public bool TextPrediction
         {
             get
@@ -610,6 +658,53 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the allowed MIME Type to deliver to the input panel. <br/>
+        /// For example, string mimeType = "text/plain,image/png,image/gif,application/pdf";
+        /// </summary>
+        /// <param name="mimeType">The allowed MIME type.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetMIMEType(string mimeType)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetMIMEType(swigCPtr, mimeType);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the x,y coordinates of the input panel.
+        /// </summary>
+        /// <param name="x">The top-left x coordinate of the input panel.</param>
+        /// <param name="y">The top-left y coordinate of the input panel.</param>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetInputPanelPosition(uint x, uint y)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetInputPanelPosition(swigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the language of the input panel.
+        /// </summary>
+        /// <param name="language">The language to be set to the input panel</param>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetInputPanelLanguage(InputMethodContext.InputPanelLanguage language)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetInputPanelLanguage(swigCPtr, (int)language);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the language of the input panel.
+        /// </summary>
+        /// <returns>The language of the input panel</returns>
+        /// <since_tizen> 8 </since_tizen>
+        public InputMethodContext.InputPanelLanguage GetInputPanelLanguage()
+        {
+            InputMethodContext.InputPanelLanguage ret = (InputMethodContext.InputPanelLanguage)Interop.InputMethodContext.InputMethodContext_GetInputPanelLanguage(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
@@ -695,6 +790,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal ContentReceivedSignalType ContentReceivedSignal()
+        {
+            ContentReceivedSignalType ret = new ContentReceivedSignalType(Interop.InputMethodContext.InputMethodContext_ContentReceivedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// You can override it to clean-up your own resources.
         /// </summary>
@@ -710,14 +812,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User.
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
@@ -727,17 +821,14 @@ namespace Tizen.NUI
                 KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.InputMethodContext.delete_InputMethodContext(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.InputMethodContext.delete_InputMethodContext(swigCPtr);
         }
 
         private void OnActivated(IntPtr data)
@@ -830,28 +921,31 @@ namespace Tizen.NUI
             }
         }
 
+        private void OnContentReceived(string content, string description, string mimeType)
+        {
+            ContentReceivedEventArgs e = new ContentReceivedEventArgs();
+            e.Content = content;
+            e.Description = description;
+            e.MimeType = mimeType;
+
+            if (_contentReceivedEventHandler != null)
+            {
+                _contentReceivedEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// This structure is used to pass on data from the IMF regarding predictive text.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public class EventData : global::System.IDisposable
+        public class EventData : Disposable
         {
             /// <summary>
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
-
-            /// <summary>
-            /// A flag to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool disposed = false;
-
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-            //A flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
 
             /// <summary>
             /// The default constructor.
@@ -879,19 +973,6 @@ namespace Tizen.NUI
             {
                 swigCMemOwn = cMemoryOwn;
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            /// <summary>
-            /// Releases the resource.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            ~EventData()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
             }
 
             /// <summary>
@@ -970,29 +1051,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <summary>
-            /// The dispose pattern.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EventData obj)
             {
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
@@ -1009,19 +1067,11 @@ namespace Tizen.NUI
             /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
+            protected override void Dispose(DisposeTypes type)
             {
                 if (disposed)
                 {
                     return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User.
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
                 }
 
                 //Release your own unmanaged resources here.
@@ -1038,7 +1088,7 @@ namespace Tizen.NUI
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
                 }
 
-                disposed = true;
+                base.Dispose(type);
             }
         }
 
@@ -1046,24 +1096,14 @@ namespace Tizen.NUI
         /// Data required by the IMF from the callback.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public class CallbackData : global::System.IDisposable
+        public class CallbackData : Disposable
         {
             /// <summary>
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
-
-            /// <summary>
-            /// A Flag to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool disposed = false;
-
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-            //A flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
 
             /// <summary>
             /// The default constructor.
@@ -1085,19 +1125,6 @@ namespace Tizen.NUI
             public CallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(Interop.InputMethodContext.new_InputMethodContext_CallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// Releases the resource.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            ~CallbackData()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
             }
 
             /// <summary>
@@ -1176,29 +1203,6 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <summary>
-            /// The dispose pattern.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
             internal IntPtr GetCallbackDataPtr()
             {
                 return (IntPtr)swigCPtr;
@@ -1208,11 +1212,6 @@ namespace Tizen.NUI
             {
                 swigCMemOwn = cMemoryOwn;
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallbackData obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
             }
 
             internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
@@ -1226,19 +1225,11 @@ namespace Tizen.NUI
             /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
+            protected override void Dispose(DisposeTypes type)
             {
                 if (disposed)
                 {
                     return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User.
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
                 }
 
                 //Release your own unmanaged resources here.
@@ -1255,7 +1246,7 @@ namespace Tizen.NUI
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
                 }
 
-                disposed = true;
+                base.Dispose(type);
             }
         }
 
@@ -1365,6 +1356,45 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public KeyboardType KeyboardType
+            {
+                get;
+                set;
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext content received event arguments.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ContentReceivedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// The content, such as images, of input method
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Content
+            {
+                get;
+                set;
+            }
+            /// <summary>
+            /// The description of content
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Description
+            {
+                get;
+                set;
+            }
+            /// <summary>
+            /// The mime type of content, such as jpg, png, and so on
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string MimeType
             {
                 get;
                 set;

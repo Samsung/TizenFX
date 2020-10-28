@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -22,73 +24,26 @@ namespace Tizen.NUI
     /// Signal connection class for PropertyNotification
     ///</summary>
     /// <since_tizen> 4 </since_tizen>
-    public class PropertyNotifySignal : global::System.IDisposable
+    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        "Please use PropertyNotification.Notified event instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PropertyNotifySignal : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal() : this(Interop.PropertyNotifySignal.new_PropertyNotifySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyNotifySignal(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal PropertyNotifySignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~PropertyNotifySignal()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
         }
 
         /// <summary>
@@ -96,6 +51,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
             bool ret = Interop.PropertyNotifySignal.PropertyNotifySignal_Empty(swigCPtr);
@@ -108,6 +66,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
             uint ret = Interop.PropertyNotifySignal.PropertyNotifySignal_GetConnectionCount(swigCPtr);
@@ -120,6 +81,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -134,6 +98,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -148,54 +115,21 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(PropertyNotification arg)
         {
             Interop.PropertyNotifySignal.PropertyNotifySignal_Emit(swigCPtr, PropertyNotification.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyNotifySignal obj)
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            Interop.PropertyNotifySignal.delete_PropertyNotifySignal(swigCPtr);
         }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">The dispose type.</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.PropertyNotifySignal.delete_PropertyNotifySignal(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
     }
-
 }

@@ -274,22 +274,8 @@ namespace Tizen.NUI.Xaml
             foreach (var kvp in xmlns) {
                 var prefix = kvp.Key;
 
-                string typeName = null, ns = null, asm = null, targetPlatform = null;
-                XmlnsHelper.ParseXmlns(kvp.Value, out typeName, out ns, out asm, out targetPlatform);
-                if (targetPlatform == null)
-                    continue;
-                try {
-                    if (targetPlatform != Device.RuntimePlatform)
-                    {
-                        // Special case for Windows backward compatibility
-                        if (targetPlatform == "Windows" && Device.RuntimePlatform == Device.UWP)
-                            continue;
-                        
-                        prefixes.Add(prefix);
-                    }
-                } catch (InvalidOperationException) {
-                    prefixes.Add(prefix);
-                }
+                string typeName = null, ns = null, asm = null;
+                XmlnsHelper.ParseXmlns(kvp.Value, out typeName, out ns, out asm);
             }
             return prefixes;
         }
@@ -355,7 +341,7 @@ namespace Tizen.NUI.Xaml
 
             if (lookupAssemblies.Count == 0) {
                 string ns, asmstring, _;
-                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring, out _);
+                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring);
                 lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns) {
                     AssemblyName = asmstring ?? currentAssembly.FullName
                 });
@@ -377,8 +363,23 @@ namespace Tizen.NUI.Xaml
             Type type = null;
             foreach (var asm in lookupAssemblies) {
                 foreach (var name in lookupNames)
+                {
                     if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
                         break;
+
+                    if ('?' == name.Last())
+                    {
+                        string nameOfNotNull = name.Substring(0, name.Length - 1);
+                        Type typeofNotNull = Type.GetType($"{asm.ClrNamespace}.{nameOfNotNull}, {asm.AssemblyName}");
+
+                        if (null != typeofNotNull)
+                        {
+                            type = typeof(Nullable<>).MakeGenericType(new Type[] { typeofNotNull });
+                            break;
+                        }
+                    }
+                }
+
                 if (type != null)
                     break;
             }

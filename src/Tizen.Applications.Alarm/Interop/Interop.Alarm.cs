@@ -95,6 +95,18 @@ internal static partial class Interop
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_with_recurrence_week_flag")]
         internal static extern AlarmError CreateAlarmNotiRecurWeek(NotificationSafeHandle noti, ref DateTime date, int week, out int alarmId);
 
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_delay")]
+        internal static extern AlarmError UpdateDelay(int alarmId, int delay);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_date")]
+        internal static extern AlarmError UpdateDate(int alarmId, ref DateTime date);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_period")]
+        internal static extern AlarmError UpdatePeriod(int alarmId, int period);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_week_flag")]
+        internal static extern AlarmError UpdateWeekFlag(int alarmId, int week);
+
         //callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);

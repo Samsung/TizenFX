@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,8 @@ namespace Tizen.NUI
     /// The Color class.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
-    public class Color : global::System.IDisposable
+    public class Color : Disposable
     {
-
         /// <summary>
         /// Gets the black colored Color class.
         /// </summary>
@@ -83,22 +82,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
         private readonly bool hashDummy;
 
         /// <summary>
@@ -134,25 +117,47 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Color(global::System.IntPtr cPtr, bool cMemoryOwn)
+        /// <summary>
+        /// The conversion constructor from an hexcode of four floats.
+        /// </summary>
+        /// <param name="hexColor">Hex color code</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color(string hexColor) : this(Interop.Vector4.new_Vector4__SWIG_0(), true)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            try
+            {
+                hexColor = hexColor.Replace("#", "");
+                
+                R = ((float)Convert.ToInt32(hexColor.Substring(0,2), 16))/255.0f;
+                G = ((float)Convert.ToInt32(hexColor.Substring(2,2), 16))/255.0f;
+                B = ((float)Convert.ToInt32(hexColor.Substring(4,2), 16))/255.0f;
+                A = hexColor.Length > 6 ? ((float)Convert.ToInt32(hexColor.Substring(6,2), 16))/255.0f : 1.0f;
+            }
+            catch
+            {
+                throw new global::System.ArgumentException("Please check your hex code");
+            }
+        }
+
+        internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
 			hashDummy = false;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Color()
+        internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        internal Color(ColorChangedCallback cb, Color other) : this(cb, other.R, other.G, other.B, other.A)
+        {
+        }
+
+        internal delegate void ColorChangedCallback(float r, float g, float b, float a);
+        private ColorChangedCallback callback = null;
 
         /// <summary>
         /// The red component.
@@ -164,6 +169,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_r_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -183,6 +190,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_g_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -202,6 +211,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_b_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -221,6 +232,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_a_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -355,29 +368,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make a color instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
         /// Checks if two color classes are same.
         /// </summary>
         /// <param name="rhs">A color to be compared.</param>
@@ -496,38 +486,11 @@ namespace Tizen.NUI
             return arr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector4.delete_Vector4(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Vector4.delete_Vector4(swigCPtr);
         }
 
         private Color Add(Color rhs)

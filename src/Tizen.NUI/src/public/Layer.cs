@@ -17,18 +17,17 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Layer : Container
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private Window window;
 
         /// <summary>
         /// Creates a Layer object.
@@ -37,16 +36,12 @@ namespace Tizen.NUI
         public Layer() : this(Interop.Layer.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (Window.Instance != null)
-            {
-                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
-                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
-            }
+            this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
+            this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
         }
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Layer.Layer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -69,9 +64,11 @@ namespace Tizen.NUI
             LayerUI,
 
             /// <summary>
-            /// UI control rendering mode.
+            /// Deprecated in API6; Will be removed in API9. Please use LayerUI instead.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use LayerUI instead.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Layer2D = LayerUI,
 
             /// <summary>
@@ -136,7 +133,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Clipping not enabled so return the window size
-                    Size2D windowSize = Window.Instance.Size;
+                    Size2D windowSize = window?.Size;
                     Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
                     return ret;
                 }
@@ -245,6 +242,20 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+            set
+            {
+                Application.Current.XamlResources = value;
+            }
+        }
+
         /// From the Container base class.
 
         /// <summary>
@@ -267,11 +278,11 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
-
                 Interop.Actor.Actor_Add( swigCPtr , View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -357,13 +368,24 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View FindChildByName(string viewName)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.Actor.Actor_FindChildByName(swigCPtr, viewName);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -373,7 +395,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -392,7 +414,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -411,7 +433,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -429,7 +451,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -439,7 +461,6 @@ namespace Tizen.NUI
                 Interop.Layer.Layer_LowerToBottom(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-
         }
 
         /// <summary>
@@ -471,23 +492,71 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal void SetAnchorPoint(Vector3 anchorPoint)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAnchorPoint(Vector3 anchorPoint)
         {
             Interop.Actor.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSize(float width, float height)
+        {
+            Interop.ActorInternal.Actor_SetSize__SWIG_0(swigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParentOrigin(Vector3 parentOrigin)
+        {
+            Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             Interop.Actor.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Inhouse API.
+        /// This allows the user to specify whether this layer should consume touch (including gestures).
+        /// If set, any layers behind this layer will not be hit-test.
+        /// </summary>
+        /// <param name="consume">Whether the layer should consume touch (including gestures).</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTouchConsumed(bool consume)
+        {
+            Interop.Layer.Layer_SetTouchConsumed(swigCPtr, consume);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Inhouse API.
+        /// This allows the user to specify whether this layer should consume hover.
+        /// If set, any layers behind this layer will not be hit-test.
+        /// </summary>
+        /// <param name="consume">Whether the layer should consume hover</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetHoverConsumed(bool consume)
+        {
+            Interop.Layer.Layer_SetHoverConsumed(swigCPtr, consume);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal uint GetDepth()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int idx = parentChildren.IndexOf(this);
@@ -500,7 +569,7 @@ namespace Tizen.NUI
         }
         internal void RaiseAbove(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
@@ -527,7 +596,7 @@ namespace Tizen.NUI
 
         internal void LowerBelow(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -560,25 +629,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetTouchConsumed(bool consume)
-        {
-            Interop.Layer.Layer_SetTouchConsumed(swigCPtr, consume);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal bool IsTouchConsumed()
         {
             bool ret = Interop.Layer.Layer_IsTouchConsumed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        internal void SetHoverConsumed(bool consume)
-        {
-            Interop.Layer.Layer_SetHoverConsumed(swigCPtr, consume);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal bool IsHoverConsumed()
         {
             bool ret = Interop.Layer.Layer_IsHoverConsumed(swigCPtr);
@@ -611,40 +667,16 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        internal void SetWindow(Window win)
         {
-            if (disposed)
-            {
-                return;
-            }
+            window = win;
+        }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Layer.delete_Layer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Layer.delete_Layer(swigCPtr);
         }
 
         private void SetBehavior(LayerBehavior behavior)

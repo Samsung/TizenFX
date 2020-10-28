@@ -25,9 +25,17 @@ internal static partial class Interop
     {
         internal const int AppStartedStatus = 1;
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool ExtraDataCallback(IntPtr handle, string key, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AppMatchedCallback(IntPtr handle, string applicationId, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
 
         internal enum ErrorCode
         {
@@ -134,5 +142,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_enable_app_started_result_event")]
         internal static extern ErrorCode EnableAppStartedResultEvent(SafeAppControlHandle handle);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_send_launch_request_async")]
+        internal static extern ErrorCode SendLaunchRequestAsync(SafeAppControlHandle handle, ResultCallback resultCallback, ReplyCallback replyCallback, IntPtr userData);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_component_id")]
+        internal static extern ErrorCode SetComponentId(SafeAppControlHandle handle, string componentId);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_component_id")]
+        internal static extern ErrorCode GetComponentId(SafeAppControlHandle handle, out string componentId);
     }
 }

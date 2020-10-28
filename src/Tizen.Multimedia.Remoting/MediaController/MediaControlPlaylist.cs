@@ -190,8 +190,6 @@ namespace Tizen.Multimedia.Remoting
             {
                 AddMetadata(data.Key, data.Value);
             }
-
-            MediaControlServer.SavePlaylist(Handle);
         }
 
         /// <summary>
@@ -241,10 +239,13 @@ namespace Tizen.Multimedia.Remoting
             AddMetadataToNative(index, MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
             AddMetadataToNative(index, MediaControllerNativeAttribute.Title, metadata.Title);
             AddMetadataToNative(index, MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Season, metadata.EncodedSeason);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Episode, metadata.EncodedEpisode);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Resolution, metadata.EncodedResolution);
         }
 
         /// <summary>
-        /// Update the playlist by lastest info.
+        /// Update the playlist by latest info.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Update()
