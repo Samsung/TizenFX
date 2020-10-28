@@ -73,6 +73,9 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_get_package")]
         internal static extern ErrorCode PackageInfoGetPackage(IntPtr handle, out string packageId);
 
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_get_main_app_id")]
+        internal static extern ErrorCode PackageInfoGetMainAppId(IntPtr handle, out string mainAppId);
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_get_label")]
         internal static extern ErrorCode PackageInfoGetLabel(IntPtr handle, out string label);
 

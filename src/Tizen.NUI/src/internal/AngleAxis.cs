@@ -91,7 +91,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.AngleAxis.delete_AngleAxis(swigCPtr);
+                    NDalicPINVOKE.delete_AngleAxis(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,12 +100,12 @@ namespace Tizen.NUI
         }
 
 
-        public AngleAxis() : this(Interop.AngleAxis.new_AngleAxis__SWIG_0(), true)
+        public AngleAxis() : this(NDalicPINVOKE.new_AngleAxis__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public AngleAxis(Radian initialAngle, Vector3 initialAxis) : this(Interop.AngleAxis.new_AngleAxis__SWIG_1(Radian.getCPtr(initialAngle), Vector3.getCPtr(initialAxis)), true)
+        public AngleAxis(Radian initialAngle, Vector3 initialAxis) : this(NDalicPINVOKE.new_AngleAxis__SWIG_1(Radian.getCPtr(initialAngle), Vector3.getCPtr(initialAxis)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -114,12 +114,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleAxis.AngleAxis_angle_set(swigCPtr, Radian.getCPtr(value));
+                NDalicPINVOKE.AngleAxis_angle_set(swigCPtr, Radian.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleAxis.AngleAxis_angle_get(swigCPtr);
+                global::System.IntPtr cPtr = NDalicPINVOKE.AngleAxis_angle_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -130,12 +130,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleAxis.AngleAxis_axis_set(swigCPtr, Vector3.getCPtr(value));
+                NDalicPINVOKE.AngleAxis_axis_set(swigCPtr, Vector3.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleAxis.AngleAxis_axis_get(swigCPtr);
+                global::System.IntPtr cPtr = NDalicPINVOKE.AngleAxis_axis_get(swigCPtr);
                 Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

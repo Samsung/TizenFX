@@ -22,7 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal NativeImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageInterface.NativeImage_SWIGUpcast(cPtr), cMemoryOwn)
+        internal NativeImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NativeImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.NativeImageInterface.delete_NativeImage(swigCPtr);
+                    NDalicPINVOKE.delete_NativeImage(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -65,26 +65,26 @@ namespace Tizen.NUI
         }
 
 
-        public NativeImage(NativeImageInterface nativeImageInterface) : this(Interop.NativeImageInterface.NativeImage_New(NativeImageInterface.getCPtr(nativeImageInterface)), true)
+        public NativeImage(NativeImageInterface nativeImageInterface) : this(NDalicPINVOKE.NativeImage_New(NativeImageInterface.getCPtr(nativeImageInterface)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public NativeImage(NativeImage handle) : this(Interop.NativeImageInterface.new_NativeImage__SWIG_1(NativeImage.getCPtr(handle)), true)
+        public NativeImage(NativeImage handle) : this(NDalicPINVOKE.new_NativeImage__SWIG_1(NativeImage.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public NativeImage Assign(NativeImage rhs)
         {
-            NativeImage ret = new NativeImage(Interop.NativeImageInterface.NativeImage_Assign(swigCPtr, NativeImage.getCPtr(rhs)), false);
+            NativeImage ret = new NativeImage(NDalicPINVOKE.NativeImage_Assign(swigCPtr, NativeImage.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void CreateGlTexture()
         {
-            Interop.NativeImageInterface.NativeImage_CreateGlTexture(swigCPtr);
+            NDalicPINVOKE.NativeImage_CreateGlTexture(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -97,14 +97,14 @@ namespace Tizen.NUI
 
         public string GetCustomFragmentPreFix()
         {
-            string ret = Interop.NativeImageInterface.NativeImage_GetCustomFragmentPreFix(swigCPtr);
+            string ret = NDalicPINVOKE.NativeImage_GetCustomFragmentPreFix(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetCustomSamplerTypename()
         {
-            string ret = Interop.NativeImageInterface.NativeImage_GetCustomSamplerTypename(swigCPtr);
+            string ret = NDalicPINVOKE.NativeImage_GetCustomSamplerTypename(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

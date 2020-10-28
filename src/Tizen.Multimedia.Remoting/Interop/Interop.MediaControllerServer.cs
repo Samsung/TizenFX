@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -101,13 +101,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_repeat_mode")]
         internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, MediaControllerNativeRepeatMode mode);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state_command_received_cb")]
-        internal static extern MediaControllerError SetPlaybackStateCommandReceivedCb(IntPtr handle,
-            PlaybackStateCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
-        internal static extern MediaControllerError UnsetPlaybackStateCmdRecvCb(IntPtr handle);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_action_cmd_received_cb")]
         internal static extern MediaControllerError SetPlaybackActionCommandReceivedCb(IntPtr handle,
             PlaybackActionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
@@ -179,9 +172,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_delete_playlist")]
         internal static extern MediaControllerError DeletePlaylist(IntPtr handle, IntPtr playlist);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_playlist")]
-        internal static extern MediaControllerError ForeachPlaylist(IntPtr handle, PlaylistCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
         internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);

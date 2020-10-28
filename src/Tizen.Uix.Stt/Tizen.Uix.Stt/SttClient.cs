@@ -364,6 +364,14 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
+        /// Destructor to destroy a STT instance.
+        /// </summary>
+        ~SttClient()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Event to be invoked when the recognition is done.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1494,6 +1502,7 @@ namespace Tizen.Uix.Stt
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -1507,19 +1516,20 @@ namespace Tizen.Uix.Stt
         {
             if (!disposedValue)
             {
-                if (disposing)
-                {
-                    lock (thisLock)
-                    {
-                        SttError error = SttDestroy(_handle);
-                        if (error != SttError.None)
-                        {
-                            Log.Error(LogTag, "Destroy Failed with error " + error);
-                        }
-                    }
-                }
+				lock (thisLock)
+				{
+					if (_handle != IntPtr.Zero)
+					{
+						SttError error = SttDestroy(_handle);
+						if (error != SttError.None)
+						{
+							Log.Error(LogTag, "Destroy Failed with error " + error);
+						}
+						_handle = IntPtr.Zero;
+					}
+				}
 
-                disposedValue = true;
+				disposedValue = true;
             }
         }
     }

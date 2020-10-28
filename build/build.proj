@@ -101,16 +101,12 @@
   -->
   <Target Name="Dummy">
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);IsDummyBuild=True"
-             BuildInParallel="true"
-             UseResultsCache="true"
-             Targets="Rebuild" />
+    <PropertyGroup>
+      <APIToolPath>$(MSBuildThisFileDirectory)..\tools\bin\APITool.dll</APIToolPath>
+    </PropertyGroup>
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
-             BuildInParallel="false"
-             Targets="CopyToDummyArtifactsDirectory" />
+    <MakeDir Directories="$(OutputDummyDir)" />
+    <Exec Command="dotnet $([System.IO.Path]::GetFullPath('$(APIToolPath)')) dummy $(OutputPublicDir)ref $(OutputDummyDir) " />
 
   </Target>
 

@@ -109,7 +109,7 @@ internal static partial class Interop
         internal static extern ErrorCode PackageManagerDestroy(IntPtr managerHandle);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_status")]
-        internal static extern ErrorCode PackageManagerSetEvenStatus(SafePackageManagerHandle managerHandle, EventStatus eventStatus);
+        internal static extern ErrorCode PackageManagerSetEventStatus(SafePackageManagerHandle managerHandle, EventStatus eventStatus);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_cb")]
         internal static extern ErrorCode PackageManagerSetEvent(SafePackageManagerHandle managerHandle, PackageManagerEventCallback callback, IntPtr userData);

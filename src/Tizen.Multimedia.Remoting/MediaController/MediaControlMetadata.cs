@@ -49,6 +49,15 @@ namespace Tizen.Multimedia.Remoting
             Description = Native.GetMetadata(handle, MediaControllerNativeAttribute.Description);
             TrackNumber = Native.GetMetadata(handle, MediaControllerNativeAttribute.TrackNumber);
             AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
+
+            EncodedSeason = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
+            Season = DecodeSeason(EncodedSeason);
+
+            EncodedEpisode = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
+            Episode = DecodeEpisode(EncodedEpisode);
+
+            EncodedResolution = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
+            Resolution = DecodeResolution(EncodedResolution);
         }
 
         /// <summary>
@@ -116,5 +125,150 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string AlbumArtPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the season information.
+        /// </summary>
+        /// <seealso cref="SeriesInformation"/>
+        /// <since_tizen> 6 </since_tizen>
+        public SeriesInformation Season
+        {
+            get => DecodeSeason(EncodedSeason);
+            set => EncodedSeason = EncodeSeason(value);
+        }
+
+        /// <summary>
+        /// Gets or sets the episode information.
+        /// </summary>
+        /// <seealso cref="SeriesInformation"/>
+        /// <since_tizen> 6 </since_tizen>
+        public SeriesInformation Episode
+        {
+            get => DecodeEpisode(EncodedEpisode);
+            set => EncodedEpisode = EncodeEpisode(value);
+        }
+
+        /// <summary>
+        /// Gets or sets the content resolution.
+        /// </summary>
+        /// <seealso cref="Size"/>
+        /// <since_tizen> 6 </since_tizen>
+        public Size Resolution
+        {
+            get => DecodeResolution(EncodedResolution);
+            set => EncodedResolution = EncodeResolution(value.Width, value.Height);
+        }
+
+        // Native CAPI used only encoded string to gets or sets Season, Episode, Resolution.
+        // But encoded string is not useful for user, so we don't offer as it is.
+        // It'll be used internally.
+        internal string EncodedSeason { get; private set; }
+
+        internal string EncodedEpisode { get; private set; }
+
+        internal string EncodedResolution { get; private set; }
+
+        private static string EncodeSeason(SeriesInformation information)
+        {
+            Native.EncodeSeason(information.Number, information.Title, out string encodedSeason).
+                ThrowIfError("Failed to encode season");
+
+            return encodedSeason;
+        }
+
+        private static string EncodeEpisode(SeriesInformation information)
+        {
+            Native.EncodeEpisode(information.Number, information.Title, out string encodedEpisode).
+                ThrowIfError("Failed to encode episode");
+
+            return encodedEpisode;
+        }
+
+        private static string EncodeResolution(int width, int height)
+        {
+            Native.EncodeResolution((uint)width, (uint)height, out string encodedResolution).
+                ThrowIfError("Failed to encode resolution");
+
+            return encodedResolution;
+        }
+
+        private static SeriesInformation DecodeSeason(string encodedSeason)
+        {
+            int number = 0;
+            string title = null;
+
+            if (encodedSeason != null)
+            {
+                Native.DecodeSeason(encodedSeason, out number, out title).
+                    ThrowIfError("Failed to decode season");
+            }
+
+            return new SeriesInformation(number, title);
+        }
+
+        private static SeriesInformation DecodeEpisode(string encodedEpisode)
+        {
+            int number = 0;
+            string title = null;
+
+            if (encodedEpisode != null)
+            {
+                Native.DecodeEpisode(encodedEpisode, out number, out title).
+                    ThrowIfError("Failed to decode episode");
+            }
+
+            return new SeriesInformation(number, title);
+        }
+
+        private static Size DecodeResolution(string encodedResolution)
+        {
+            uint width = 0, height = 0;
+
+            if (encodedResolution != null)
+            {
+                Native.DecodeResolution(encodedResolution, out width, out height).
+                    ThrowIfError("Failed to decode resolution");
+            }
+
+            return new Size((int)width, (int)height);
+        }
+    }
+
+    /// <summary>
+    /// Represents properties for the video series information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class SeriesInformation
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeriesInformation"/> class.
+        /// </summary>
+        /// <param name="number">The number of this video of all series.</param>
+        /// <param name="title">The title.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public SeriesInformation(int number, string title)
+        {
+            Number = number;
+            Title = title;
+        }
+
+        /// <summary>
+        /// Gets or sets the number of this video of all series.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Number { get; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Title { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public override string ToString() => $"Number={Number.ToString()}, Title={Title}";
     }
 }

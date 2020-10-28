@@ -77,5 +77,8 @@ namespace Tizen.Multimedia.Remoting
         Description,
         TrackNumber,
         Picture,
+        Season,
+        Episode,
+        Resolution
     }
 }

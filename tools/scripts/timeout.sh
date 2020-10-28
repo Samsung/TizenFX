@@ -1,58 +1,91 @@
-#!/bin/sh
+#!/bin/bash
+#
+# The Bash shell script executes a command with a time-out.
+# Upon time-out expiration SIGTERM (15) is sent to the process. If the signal
+# is blocked, then the subsequent SIGKILL (9) terminates it.
+#
+# Based on the Bash documentation example.
 
-# Execute a command with a timeout
+# Hello Chet,
+# please find attached a "little easier"  :-)  to comprehend
+# time-out example.  If you find it suitable, feel free to include
+# anywhere: the very same logic as in the original examples/scripts, a
+# little more transparent implementation to my taste.
+#
+# Dmitry V Golovashkin <Dmitry.Golovashkin@sas.com>
 
-# License: LGPLv2
-# Author:
-#    http://www.pixelbeat.org/
-# Notes:
-#    Note there is a timeout command packaged with coreutils since v7.0
-#    If the timeout occurs the exit status is 124.
-#    There is an asynchronous (and buggy) equivalent of this
-#    script packaged with bash (under /usr/share/doc/ in my distro),
-#    which I only noticed after writing this.
-#    I noticed later again that there is a C equivalent of this packaged
-#    with satan by Wietse Venema, and copied to forensics by Dan Farmer.
-# Changes:
-#    V1.0, Nov  3 2006, Initial release
-#    V1.1, Nov 20 2007, Brad Greenlee <brad@footle.org>
-#                       Make more portable by using the 'CHLD'
-#                       signal spec rather than 17.
-#    V1.3, Oct 29 2009, Ján Sáreník <jasan@x31.com>
-#                       Even though this runs under dash,ksh etc.
-#                       it doesn't actually timeout. So enforce bash for now.
-#                       Also change exit on timeout from 128 to 124
-#                       to match coreutils.
-#    V2.0, Oct 30 2009, Ján Sáreník <jasan@x31.com>
-#                       Rewritten to cover compatibility with other
-#                       Bourne shell implementations (pdksh, dash)
+scriptName="${0##*/}"
 
-if [ "$#" -lt "2" ]; then
-    echo "Usage:   `basename $0` timeout_in_seconds command" >&2
-    echo "Example: `basename $0` 2 sleep 3 || echo timeout" >&2
+declare -i DEFAULT_TIMEOUT=9
+declare -i DEFAULT_INTERVAL=1
+declare -i DEFAULT_DELAY=1
+
+# Timeout.
+declare -i timeout=DEFAULT_TIMEOUT
+# Interval between checks if the process is still alive.
+declare -i interval=DEFAULT_INTERVAL
+# Delay between posting the SIGTERM signal and destroying the process by SIGKILL.
+declare -i delay=DEFAULT_DELAY
+
+function printUsage() {
+    cat <<EOF
+
+Synopsis
+    $scriptName [-t timeout] [-i interval] [-d delay] command
+    Execute a command with a time-out.
+    Upon time-out expiration SIGTERM (15) is sent to the process. If SIGTERM
+    signal is blocked, then the subsequent SIGKILL (9) terminates it.
+
+    -t timeout
+        Number of seconds to wait for command completion.
+        Default value: $DEFAULT_TIMEOUT seconds.
+
+    -i interval
+        Interval between checks if the process is still alive.
+        Positive integer, default value: $DEFAULT_INTERVAL seconds.
+
+    -d delay
+        Delay between posting the SIGTERM signal and destroying the
+        process by SIGKILL. Default value: $DEFAULT_DELAY seconds.
+
+As of today, Bash does not support floating point arithmetic (sleep does),
+therefore all delay/time values must be integers.
+EOF
+}
+
+# Options.
+while getopts ":t:i:d:" option; do
+    case "$option" in
+        t) timeout=$OPTARG ;;
+        i) interval=$OPTARG ;;
+        d) delay=$OPTARG ;;
+        *) printUsage; exit 1 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+# $# should be at least 1 (the command to execute), however it may be strictly
+# greater than 1 if the command itself has options.
+if (($# == 0 || interval <= 0)); then
+    printUsage
     exit 1
 fi
 
-cleanup()
-{
-    trap - ALRM               #reset handler to default
-    kill -ALRM $a 2>/dev/null #stop timer subshell if running
-    kill $! 2>/dev/null &&    #kill last job
-      exit 124                #exit with 124 if it was running
-}
+# kill -0 pid   Exit code indicates if a signal may be sent to $pid process.
+(
+    ((t = timeout))
 
-watchit()
-{
-    trap "cleanup" ALRM
-    sleep $1& wait
-    kill -ALRM $$
-}
+    while ((t > 0)); do
+        sleep $interval
+        kill -0 $$ || exit 0
+        ((t -= interval))
+    done
 
-watchit $1& a=$!         #start the timeout
-shift                    #first param was timeout for sleep
-trap "cleanup" ALRM INT  #cleanup after timeout
-"$@"& wait $!; RET=$?    #start the job wait for it and save its return value
-kill -ALRM $a            #send ALRM signal to watchit
-wait $a                  #wait for watchit to finish cleanup
-exit $RET                #return the value
+    # Be nice, post SIGTERM first.
+    # The 'exit 0' below will be executed if any preceeding command fails.
+    kill -s SIGTERM $$ && kill -0 $$ || exit 0
+    sleep $delay
+    kill -s SIGKILL $$
+) 2> /dev/null &
 
+exec "$@"

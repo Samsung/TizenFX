@@ -66,6 +66,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The <see cref="StorageType"/> of the storage that the folder exists.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public StorageType StorageType { get; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The storage ID of the storage that the folder exists.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string StorageId { get; }
 
         /// <summary>

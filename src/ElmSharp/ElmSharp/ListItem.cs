@@ -32,6 +32,13 @@ namespace ElmSharp
             LeftIcon = leftIcon;
             RightIcon = rightIcon;
         }
+        
+        internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon, EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+            Text = text;
+            LeftIcon = leftIcon;
+            RightIcon = rightIcon;
+        }
 
         /// <summary>
         /// Gets the text for the list item.

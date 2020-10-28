@@ -57,7 +57,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
+                        NDalicManualPINVOKE.delete_WidgetViewSignal(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.WidgetView.WidgetViewSignal_Empty(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetViewSignal_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.WidgetView.WidgetViewSignal_GetConnectionCount(swigCPtr);
+            uint ret = NDalicManualPINVOKE.WidgetViewSignal_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WidgetView.WidgetViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WidgetViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WidgetView.WidgetViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WidgetViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Emit(WidgetView arg)
         {
-            Interop.WidgetView.WidgetViewSignal_Emit(swigCPtr, WidgetView.getCPtr(arg));
+            NDalicManualPINVOKE.WidgetViewSignal_Emit(swigCPtr, WidgetView.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public WidgetViewSignal() : this(Interop.WidgetView.new_WidgetViewSignal(), true)
+        public WidgetViewSignal() : this(NDalicManualPINVOKE.new_WidgetViewSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

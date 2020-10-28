@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -466,6 +466,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.StorageType"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public static string StorageType => "MEDIA_STORAGE_TYPE";
 
         /// <summary>
@@ -603,6 +604,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Folder.StorageType"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public static string StorageType => "FOLDER_STORAGE_TYPE";
     }
 
@@ -809,6 +811,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="StorageCommand.Count(CountArguments)"/>
     /// <seealso cref="StorageCommand.Select(SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Please do not use! this will be deprecated in level 6")]
     public static class StorageColumns
     {
         /// <summary>
@@ -820,6 +823,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Storage.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public static string Id => "STORAGE_ID";
 
         /// <summary>
@@ -831,6 +835,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Storage.Path"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public static string Path => "STORAGE_PATH";
 
         /// <summary>
@@ -843,6 +848,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Storage.Type"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public static string Type => "MEDIA_STORAGE_TYPE";
     }
 }

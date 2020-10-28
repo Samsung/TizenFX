@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -88,24 +88,22 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         internal static event EventHandler<CommandCompletedEventArgs> CommandCompleted;
 
-        private static void RegisterPlaybackCommandReceivedEvent()
-        {
-            _playbackCommandCallback = (clientName, playbackCode, _) =>
-            {
-                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToPublic()));
-            };
-            Native.SetPlaybackStateCommandReceivedCb(Handle, _playbackCommandCallback).
-                ThrowIfError("Failed to init PlaybackStateCommandReceived event.");
-        }
-
         private static void RegisterPlaybackActionCommandReceivedEvent()
         {
             _playbackActionCommandCallback = (clientName, requestId, playbackCommand, _) =>
             {
-                var command = new PlaybackCommand(playbackCommand.ToPublic());
-                command.SetResponseInformation(clientName, requestId);
+                // SendPlaybackCommand doesn't use requestId. It'll be removed in Level 7.
+                if (requestId == null)
+                {
+                    PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCommand.ToPublic()));
+                }
+                else
+                {
+                    var command = new PlaybackCommand(playbackCommand.ToPublic());
+                    command.SetResponseInformation(clientName, requestId);
 
-                PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(command));
+                    PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(command));
+                }
             };
             Native.SetPlaybackActionCommandReceivedCb(Handle, _playbackActionCommandCallback).
                 ThrowIfError("Failed to init PlaybackActionCommandReceived event.");

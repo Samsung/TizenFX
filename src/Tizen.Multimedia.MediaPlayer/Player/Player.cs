@@ -132,6 +132,7 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -143,7 +144,12 @@ namespace Tizen.Multimedia
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
             {
                 ReplaceDisplay(null);
 
@@ -152,19 +158,19 @@ namespace Tizen.Multimedia
                     try
                     {
                         _source.DetachFrom(this);
+                        _source = null;
                     }
                     catch (Exception e)
                     {
                         Log.Error(PlayerLog.Tag, e.ToString());
                     }
                 }
-                _source = null;
 
                 if (_handle != null)
                 {
                     _handle.Dispose();
+                    _disposed = true;
                 }
-                _disposed = true;
             }
         }
 
@@ -186,7 +192,8 @@ namespace Tizen.Multimedia
         /// Gets the streaming download progress.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
-        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     The player is not streaming.<br/>
         ///     -or-<br/>
@@ -196,7 +203,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public DownloadProgress GetDownloadProgress()
         {
-            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int start = 0;
             int current = 0;
@@ -308,6 +315,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No source is set.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="PlayerState.Preparing"/>
         /// <since_tizen> 3 </since_tizen>
         public virtual Task PrepareAsync()
         {
@@ -586,12 +594,12 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
+                NativeSetPlayPosition(position, accurate, nanoseconds, immediateResult ? null : cb);
+
                 if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
                 }
-
                 await taskCompletionSource.Task;
             }
         }

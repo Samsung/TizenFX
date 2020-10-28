@@ -94,7 +94,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ItemFactory.delete_ItemFactory(swigCPtr);
+                    NDalicPINVOKE.delete_ItemFactory(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -104,25 +104,25 @@ namespace Tizen.NUI
 
         public virtual uint GetNumberOfItems()
         {
-            uint ret = Interop.ItemFactory.ItemFactory_GetNumberOfItems(swigCPtr);
+            uint ret = NDalicPINVOKE.ItemFactory_GetNumberOfItems(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual View NewItem(uint itemId)
         {
-            View ret = new View(Interop.ItemFactory.ItemFactory_NewItem(swigCPtr, itemId), true);
+            View ret = new View(NDalicPINVOKE.ItemFactory_NewItem(swigCPtr, itemId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void ItemReleased(uint itemId, View view)
         {
-            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
+            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) NDalicPINVOKE.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else NDalicPINVOKE.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ItemFactory() : this(Interop.ItemFactory.new_ItemFactory(), true)
+        public ItemFactory() : this(NDalicPINVOKE.new_ItemFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -136,7 +136,7 @@ namespace Tizen.NUI
                 swigDelegate1 = new SwigDelegateItemFactory_1(SwigDirectorNewItem);
             if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2))
                 swigDelegate2 = new SwigDelegateItemFactory_2(SwigDirectorItemReleased);
-            Interop.ItemFactory.ItemFactory_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
+            NDalicPINVOKE.ItemFactory_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

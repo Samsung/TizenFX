@@ -1,0 +1,1 @@
+copy D:\programming\C#\SystemSettings_UnitTest\SystemSettings.UnitTest\bin\Debug\netcoreapp2.0\org.tizen.example.SystemSettings.UnitTest-1.0.0.tpk W:\temp

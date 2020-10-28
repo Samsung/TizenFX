@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -989,11 +989,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_win_urgent_get(Handle);
+                return Interop.Elementary.elm_win_withdrawn_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_win_urgent_set(Handle, value);
+                Interop.Elementary.elm_win_withdrawn_set(Handle, value);
             }
         }
 

@@ -28,7 +28,7 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
         private bool _disposed = false;
-        private IntPtr _contextHandle = IntPtr.Zero;
+        internal IntPtr _contextHandle = IntPtr.Zero;
         private Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
         internal ApplicationRunningContext(IntPtr contextHandle)
@@ -157,6 +157,34 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets whether the application is terminated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsTerminated
+        {
+            get
+            {
+                bool isRunning = false;
+                string appid = string.Empty;
+                err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the application id. err = " + err);
+                }
+                else
+                {
+                    Interop.ApplicationManager.AppManagerIsRunning(appid, out isRunning);
+                    err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get is running. err = " + err);
+                    }
+                }
+                return !isRunning;
+            }
+        }
+
+        /// <summary>
         /// Gets the package ID of the application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -195,6 +223,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the state of the application.
         /// </summary>
+        /// <remarks>
+        /// Note that application's state might be changed after you get app_context. This API just returns the state of application when you get the app_context.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public AppState State
         {

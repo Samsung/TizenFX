@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -335,7 +335,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets content to the particular part of the widget, and the preserve old content will not be unset.
+        /// Sets content to the particular part of the widget, and the preserve old content will be deleted.
         /// </summary>
         /// <param name="part">The name of the particular part.</param>
         /// <param name="content">The content.</param>
@@ -351,7 +351,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of the particular part.</param>
         /// <param name="content">The content.</param>
-        /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
+        /// <param name="preserveOldContent">true, preserve old content will be unset and not be deleted. false, preserve old content will be deleted.</param>
         /// <seealso cref="SetPartContent(string, EvasObject)"/>
         /// <since_tizen> preview </since_tizen>
         public virtual bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
@@ -366,7 +366,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets content to the widget, and the preserve old content will not be unset.
+        /// Sets content to the widget, and the preserve old content will be deleted.
         /// </summary>
         /// <param name="content">The content.</param>
         /// <seealso cref="SetContent(EvasObject, bool)"/>
@@ -380,7 +380,7 @@ namespace ElmSharp
         /// Sets content to the widget.
         /// </summary>
         /// <param name="content">The content.</param>
-        /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
+        /// <param name="preserveOldContent">true, preserve old content will be unset and not be deleted. false, preserve old content will be deleted.</param>
         /// <seealso cref="SetContent(EvasObject)"/>
         /// <since_tizen> preview </since_tizen>
         public void SetContent(EvasObject content, bool preserveOldContent)

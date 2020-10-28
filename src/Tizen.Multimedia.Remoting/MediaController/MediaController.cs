@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -189,12 +189,29 @@ namespace Tizen.Multimedia.Remoting
 
             var playlists = new List<MediaControlPlaylist>();
 
+            Exception caught = null;
+
             NativePlaylist.PlaylistCallback playlistCallback = (handle, _) =>
             {
-                playlists.Add(new MediaControlPlaylist(handle));
+                try
+                {
+                    playlists.Add(new MediaControlPlaylist(handle));
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    caught = e;
+                    return false;
+                }
             };
-            NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
-                .ThrowIfError("Failed to get playlist.");
+
+            NativePlaylist.ForeachPlaylist(ServerAppId, playlistCallback, IntPtr.Zero).
+                ThrowIfError("Failed to get playlist.");
+
+            if (caught != null)
+            {
+                throw caught;
+            }
 
             return playlists.AsReadOnly();
         }
@@ -434,7 +451,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
 
-            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNative()).
+            Native.SendPlaybackActionCommandWithoutReqId(Manager.Handle, ServerAppId, command.ToNative()).
                 ThrowIfError("Failed to send command.");
         }
 
