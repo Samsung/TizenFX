@@ -53,12 +53,17 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PersonAppearanceDetectedEventArgs> Detected;
 
-        private void RegisterEvent()
+        internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
+            IntPtr result, IntPtr _)
         {
-            _eventDetectedCallback = (IntPtr trigger, IntPtr source, int streamId, IntPtr result, IntPtr _) =>
+            try
             {
                 Detected?.Invoke(this, CreatePersonAppearanceChangedEventArgs(result));
-            };
+            }
+            catch (Exception e)
+            {
+                MultimediaLog.Error(MediaVisionLog.Tag, "Failed to invoke Recognized event.", e);
+            }
         }
 
 
@@ -113,7 +118,6 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source, PersonAppearanceDetectionConfiguration config)
         {
-            RegisterEvent();
             InvokeAddSource(source, config);
         }
     }

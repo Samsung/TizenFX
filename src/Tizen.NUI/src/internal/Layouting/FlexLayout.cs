@@ -17,13 +17,9 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    /// <summary>
-    /// [Draft] This class implements a flex layout.
-    /// The flex layout implementation is based on open source Facebook Yoga layout engine.
-    /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
-    /// We implement the subset of the API in the class below.
-    /// </summary>
-    internal class FlexLayout : LayoutGroupWrapper
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class FlexLayout : LayoutGroupWrapper
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -37,6 +33,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -67,15 +66,15 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// [Draft] Creates a FlexLayout object.
-        /// </summary>
+
         public FlexLayout() : this(LayoutPINVOKE.FlexLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static FlexLayout DownCast(BaseHandle handle)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FlexLayout DownCast(BaseHandle handle)
         {
             FlexLayout ret = new FlexLayout(LayoutPINVOKE.FlexLayout_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -171,10 +170,8 @@ namespace Tizen.NUI
             internal static readonly int ALIGN_SELF = LayoutPINVOKE.FlexLayout_ChildProperty_ALIGN_SELF_get();
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the flex direction in the layout.
-        /// The direction of the main-axis which determines the direction that flex items are laid out.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexDirection Direction
         {
             get
@@ -187,9 +184,8 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the justification in the layout.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexJustification Justification
         {
             get
@@ -202,9 +198,8 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the wrap in the layout.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexWrapType WrapType
         {
             get
@@ -217,9 +212,8 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the alignment of the layout content.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlignmentType Alignment
         {
             get
@@ -232,9 +226,8 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the alignment of the layout items.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlignmentType ItemsAlignment
         {
             get
@@ -247,96 +240,43 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Enumeration for the direction of the main axis in the flex container.
-        /// This determines the direction that flex items are laid out in the flex container.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum FlexDirection
         {
-            /// <summary>
-            /// The flexible items are displayed vertically as a column
-            /// </summary>
             Column,
-            /// <summary>
-            /// The flexible items are displayed vertically as a column, but in reverse order
-            /// </summary>
             ColumnReverse,
-            /// <summary>
-            /// The flexible items are displayed horizontally as a row
-            /// </summary>
             Row,
-            /// <summary>
-            /// The flexible items are displayed horizontally as a row, but in reverse order
-            /// </summary>
             RowReverse
         }
 
-        /// <summary>
-        /// [Draft] Enumeration for the alignment of the flex items when the items do not use all available space on the main-axis.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum FlexJustification
         {
-            /// <summary>
-            /// Items are positioned at the beginning of the container
-            /// </summary>
             FlexStart,
-            /// <summary>
-            /// Items are positioned at the center of the container
-            /// </summary>
             Center,
-            /// <summary>
-            /// Items are positioned at the end of the container
-            /// </summary>
             FlexEnd,
-            /// <summary>
-            /// Items are positioned with equal space between the lines
-            /// </summary>
             SpaceBetween,
-            /// <summary>
-            /// Items are positioned with equal space before, between, and after the lines
-            /// </summary>
             SpaceAround
         }
 
-        /// <summary>
-        /// [Draft] Enumeration for the wrap type of the flex container when there is no enough room for all the items on one flex line.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum FlexWrapType
         {
-            /// <summary>
-            /// Flex items laid out in single line (shrunk to fit the flex container along the main axis)
-            /// </summary>
             NoWrap,
-            /// <summary>
-            /// Flex items laid out in multiple lines if needed
-            /// </summary>
             Wrap
         }
 
-        /// <summary>
-        /// [Draft] Enumeration for the alignment of the flex items or lines when the items or lines do not use all the available space on the cross-axis.
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum AlignmentType
         {
-            /// <summary>
-            /// Inherits the same alignment from the parent (only valid for "alignSelf" property)
-            /// </summary>
             Auto,
-            /// <summary>
-            /// At the beginning of the container
-            /// </summary>
             FlexStart,
-            /// <summary>
-            /// At the center of the container
-            /// </summary>
             Center,
-            /// <summary>
-            /// At the end of the container
-            /// </summary>
             FlexEnd,
-            /// <summary>
-            /// Stretch to fit the container
-            /// </summary>
             Stretch
         }
     }

@@ -35,7 +35,6 @@ namespace Tizen.Multimedia.Vision
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
-        internal EventOccurredCallback _eventDetectedCallback;
         /// <summary>
         /// Initializes a new instance of the <see cref="SurveillanceEngine"/> class.
         /// </summary>
@@ -106,6 +105,9 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
+        internal abstract void OnEventDetected(IntPtr trigger, IntPtr source,
+            int streamId, IntPtr eventResult, IntPtr userData);
+
         internal void InvokeAddSource(SurveillanceSource source, SurveillanceEngineConfiguration config)
         {
             if (source == null)
@@ -113,7 +115,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(source));
             }
             SubscribeEventTrigger(Handle, source.StreamId, EngineConfiguration.GetHandle(config),
-                _eventDetectedCallback).Validate("Failed to subscribe trigger");
+                OnEventDetected).Validate("Failed to subscribe trigger");
         }
 
         /// <summary>

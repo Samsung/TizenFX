@@ -17,10 +17,9 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    /// <summary>
-    /// [Draft] This class implements a linear box layout, automatically handling right to left or left to right direction change.
-    /// </summary>
-    internal class LinearLayout : LayoutGroupWrapper
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class LinearLayout : LayoutGroupWrapper
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -34,6 +33,8 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -64,11 +65,15 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LinearLayout() : this(LayoutPINVOKE.LinearLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static LinearLayout DownCast(BaseHandle handle)
         {
             LinearLayout ret = new LinearLayout(LayoutPINVOKE.LinearLayout_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -121,9 +126,8 @@ namespace Tizen.NUI
             CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the orientation in the layout
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LinearLayout.Orientation LinearOrientation
         {
             get
@@ -136,9 +140,8 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Get/Set the padding between cells in the layout
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutSize CellPadding
         {
             get
@@ -151,18 +154,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// [Draft] Enumeration for the direction in which the content is laid out   */
-        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Orientation
         {
-            /// <summary>
-            /// Horizontal (row)
-            /// </summary>
             Horizontal,
-            /// <summary>
-            /// Vertical (column)
-            /// </summary>
             Vertical
         }
 

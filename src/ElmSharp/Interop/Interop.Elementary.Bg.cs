@@ -52,7 +52,8 @@ internal static partial class Interop
 
         internal static string BackgroundFileGet(IntPtr obj)
         {
-            elm_bg_file_get(obj, out IntPtr file, IntPtr.Zero);
+            IntPtr file = IntPtr.Zero;
+            elm_bg_file_get(obj, out file, IntPtr.Zero);
             return Marshal.PtrToStringAnsi(file);
         }
     }

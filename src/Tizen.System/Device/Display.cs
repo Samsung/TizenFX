@@ -29,17 +29,17 @@ namespace Tizen.System
         /// Normal state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        Normal = Interop.Device.DisplayState.Normal,
+        Normal = 0,
         /// <summary>
         /// Screen dim state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        Dim = Interop.Device.DisplayState.ScreenDim,
+        Dim,
         /// <summary>
         /// Screen off state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        Off = Interop.Device.DisplayState.ScreenOff,
+        Off
     }
 
     /// <summary>
@@ -183,21 +183,13 @@ namespace Tizen.System
         {
             get
             {
-                Interop.Device.DisplayState state = 0;
+                int state = 0;
                 DeviceError res = (DeviceError)Interop.Device.DeviceDisplayGetState(out state);
                 if (res != DeviceError.None)
                 {
-                    Log.Warn(DeviceExceptionFactory.LogTag, "Unable to get Display state.");
+                    Log.Warn(DeviceExceptionFactory.LogTag, "unable to get Display state.");
                 }
                 return (DisplayState)state;
-            }
-            set
-            {
-                DeviceError res = (DeviceError)Interop.Device.DeviceDisplayChangeState((Interop.Device.DisplayState)value);
-                if (res != DeviceError.None)
-                {
-                    Log.Warn(DeviceExceptionFactory.LogTag, "Unable to chage display state");
-                }
             }
         }
 

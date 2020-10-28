@@ -88,17 +88,9 @@ namespace Tizen.NUI.Xaml
                     if (value == null)
                     {
                         value = Activator.CreateInstance(type);
-                        if (value is Element)
+                        if (value is BindableObject)
                         {
-                            if (null != Application.Current)
-                            {
-                                Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
-                            }
-
-                            if (value is BindableObject)
-                            {
-                                ((BindableObject)value).IsCreateByXaml = true;
-                            }
+                            ((BindableObject)value).IsCreateByXaml = true;
                         }
                     }
                 }
@@ -208,17 +200,9 @@ namespace Tizen.NUI.Xaml
             {
                 //non-default ctor
                 object ret = Activator.CreateInstance(nodeType, arguments);
-                if (ret is Element)
+                if (ret is BindableObject)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.AddResourceChangedCallback(ret, (ret as Element).OnResourcesChanged);
-                    }
-
-                    if (ret is BindableObject)
-                    {
-                        ((BindableObject)ret).IsCreateByXaml = true;
-                    }
+                    ((BindableObject)ret).IsCreateByXaml = true;
                 }
                 return ret;
             }
@@ -320,17 +304,9 @@ namespace Tizen.NUI.Xaml
             else
             {
                 value = Activator.CreateInstance(nodeType);
-                if (value is Element)
+                if (value is BindableObject)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
-                    }
-
-                    if (value is BindableObject)
-                    {
-                        ((BindableObject)value).IsCreateByXaml = true;
-                    }
+                    ((BindableObject)value).IsCreateByXaml = true;
                 }
             }
 

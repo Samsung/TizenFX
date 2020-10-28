@@ -46,8 +46,6 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public Parcel(Port port)
         {
-            if (port == null)
-                throw new InvalidIOException();
             var r = Interop.LibRPCPort.Parcel.CreateFromPort(out _handle, port.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
@@ -61,8 +59,6 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void Send(Port p)
         {
-            if (p == null)
-                throw new InvalidIOException();
             var r = Interop.LibRPCPort.Parcel.Send(_handle, p.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();

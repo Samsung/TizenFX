@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace GenDummy.Processors
 {
-    /// <summary>
-    /// Represents a rotation and flip for mediatool.
-    /// </summary>
-    internal enum RotationFlip
+    public interface IProcessor
     {
-        Rotate0,
-        Rotate90,
-        Rotate180,
-        Rotate270,
-        HorizontalFlip,
-        VerticalFlip
+        BlockSyntax DummyBlock { get; set; }
+
+        MemberDeclarationSyntax Process(MemberDeclarationSyntax member);
     }
 }

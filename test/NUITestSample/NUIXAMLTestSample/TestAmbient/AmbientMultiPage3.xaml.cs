@@ -25,7 +25,7 @@ namespace Tizen.NUI.Examples
 
         public AmbientMultiPage3(Window win) : base (win)
         {
-            Root.Opacity = 0.0f;
+            Content.Opacity = 0.0f;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI.Examples
         {
             Console.WriteLine("AmbientMulti3Page focused.");
             Animation animation = new Animation(2000);
-            animation.AnimateTo(Root, "Opacity", 1.0f);
+            animation.AnimateTo(Content, "Opacity", 1.0f);
             animation.Finished += (obj, e) => {Console.WriteLine("animation finished.");};
             animation.Play();
         }

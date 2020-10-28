@@ -56,22 +56,16 @@ namespace Tizen.Content.Download
         internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
         {
             DownloadError err = (DownloadError)errorCode;
-            string message;
-
             if (String.IsNullOrEmpty(errorMessage))
             {
-                message = err.ToString();
-            }
-            else
-            {
-                message = errorMessage;
+                errorMessage = err.ToString();
             }
             switch ((DownloadError)errorCode)
             {
                 case DownloadError.InvalidParameter:
                 case DownloadError.InvalidUrl:
                 case DownloadError.InvalidDestination:
-                case DownloadError.InvalidNetworkType: throw new ArgumentException(message, paramName);
+                case DownloadError.InvalidNetworkType: throw new ArgumentException(errorMessage, paramName);
                 case DownloadError.OutOfMemory:
                 case DownloadError.NetworkUnreachable:
                 case DownloadError.ConnectionTimedOut:
@@ -91,9 +85,9 @@ namespace Tizen.Content.Download
                 case DownloadError.SystemDown:
                 case DownloadError.IdNotFound:
                 case DownloadError.NoData:
-                case DownloadError.IoError: throw new InvalidOperationException(message);
-                case DownloadError.NotSupported: throw new NotSupportedException(message);
-                case DownloadError.PermissionDenied: throw new UnauthorizedAccessException(message);
+                case DownloadError.IoError: throw new InvalidOperationException(errorMessage);
+                case DownloadError.NotSupported: throw new NotSupportedException(errorMessage);
+                case DownloadError.PermissionDenied: throw new UnauthorizedAccessException(errorMessage);
             }
         }
     }

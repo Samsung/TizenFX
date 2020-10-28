@@ -48,30 +48,30 @@ namespace Tizen.Network.WiFi
     {
         static internal void ThrowWiFiException(int e, IntPtr handle)
         {
-            ThrowException(e, (handle == IntPtr.Zero), false, "");
+            ThrowExcption(e, (handle == IntPtr.Zero), false, "");
         }
 
         static internal void ThrowWiFiException(int e, IntPtr handle1, IntPtr handle2)
         {
-            ThrowException(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), "");
+            ThrowExcption(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), "");
         }
 
         static internal void ThrowWiFiException(int e, string message)
         {
-            ThrowException(e, false, false, message);
+            ThrowExcption(e, false, false, message);
         }
 
         static internal void ThrowWiFiException(int e, IntPtr handle, string message)
         {
-            ThrowException(e, (handle == IntPtr.Zero), false, message);
+            ThrowExcption(e, (handle == IntPtr.Zero), false, message);
         }
 
         static internal void ThrowWiFiException(int e, IntPtr handle1, IntPtr handle2, string message)
         {
-            ThrowException(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), message);
+            ThrowExcption(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), message);
         }
 
-        static private void ThrowException(int e, bool isHandle1Null, bool isHandle2Null, string message)
+        static private void ThrowExcption(int e, bool isHandle1Null, bool isHandle2Null, string message)
         {
             WiFiError err = (WiFiError)e;
             if (err == WiFiError.NotSupportedError)

@@ -25,9 +25,9 @@ namespace Tizen.NUI.Examples
 
         public AmbientMultiPage(Window win) : base (win)
         {
-            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoboard_img_bg_01.png";
+            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/photoboard_img_bg_01.png";
             ClearEvent += OnClearEvent;
-            Root.Opacity = 0.0f;
+            Content.Opacity = 0.0f;
         }
 
         /// <summary>
@@ -53,13 +53,13 @@ namespace Tizen.NUI.Examples
         {
             Console.WriteLine("AmbientMultiPage focused.");
             Animation animation = new Animation(2000);
-            animation.AnimateTo(Root, "Opacity", 1.0f);
+            animation.AnimateTo(Content, "Opacity", 1.0f);
             animation.Play();
         }
 
         private void OnClearEvent(object obj, EventArgs e)
         {
-            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoboard_img_bg_01.png";
+            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/photoboard_img_bg_01.png";
         }
     }
 }

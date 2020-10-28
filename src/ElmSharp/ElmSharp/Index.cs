@@ -268,5 +268,16 @@ namespace ElmSharp
             SelectedItem?.SendSelected();
             Changed?.Invoke(this, e);
         }
+
+        void AddInternal(IndexItem item)
+        {
+            _children.Add(item);
+            item.Deleted += Item_Deleted;
+        }
+
+        void Item_Deleted(object sender, EventArgs e)
+        {
+            _children.Remove((IndexItem)sender);
+        }
     }
 }

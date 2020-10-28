@@ -88,12 +88,7 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Storage.GetStorageInfoFromDb(storageId, out handle).ThrowIfError("Failed to query");
 
-                return new Storage(handle);
-            }
-            catch (ArgumentException)
-            {
-                // Native FW returns ArgumentException when there's no matched record.
-                return null;
+                return handle == IntPtr.Zero ? null : new Storage(handle);
             }
             finally
             {
