@@ -39,7 +39,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _ConnectionRequested -= value;
+                //nothing to be done
             }
         }
 
@@ -51,7 +51,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _TransferProgress -= value;
+                //nothing to be done
             }
         }
 
@@ -63,7 +63,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _TransferFinished -= value;
+                //nothing to be done
             }
         }
 
@@ -197,7 +197,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _PushResponded -= value;
+                //nothing to be done
             }
         }
 
@@ -209,7 +209,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _PushProgress -= value;
+                //nothing to be done
             }
         }
 
@@ -221,7 +221,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                _PushFinished -= value;
+                //nothing to be done
             }
         }
 

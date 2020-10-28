@@ -87,7 +87,7 @@ namespace CustomLayoutByAbsoluteLayout
             var center = childIncrement / 2;
 
             // Check layout direction
-            var view = Owner;
+            var view = GetOwner();
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             // this is needed, otherwise the child's LayoutItem is garbage collected!
@@ -180,7 +180,7 @@ namespace CustomLayoutByAbsoluteLayout
             }
             var center = childIncrement / 2;
 
-            var view = Owner;
+            var view = GetOwner();
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             for (uint i = 0; i < ChildCount; ++i)

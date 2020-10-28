@@ -33,7 +33,6 @@ namespace Tizen.Applications.Messages
     {
         private static readonly object s_lock = new object();
         private static readonly HashSet<string> s_portMap = new HashSet<string>();
-        private static string LogTag = "MessagePort";
 
         // The name of the local message port
         private readonly string _portName = null;
@@ -157,22 +156,10 @@ namespace Tizen.Applications.Messages
                 }
                 _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
                 {
-                    MessageReceivedEventArgs args = new MessageReceivedEventArgs();
-                    try
+                    MessageReceivedEventArgs args = new MessageReceivedEventArgs()
                     {
-                        args.Message = new Bundle(new SafeBundleHandle(message, false));
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(LogTag, "Exception(" + ex.ToString() + ")");
-                        args.Message = null;
-                    }
-
-                    if (args.Message == null)
-                    {
-                        Log.Error(LogTag, "Failed to create Bundle. message({0})", (message == IntPtr.Zero) ? "null" : message.ToString());
-                        return;
-                    }
+                        Message = new Bundle(new SafeBundleHandle(message, false))
+                    };
 
                     if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
                     {

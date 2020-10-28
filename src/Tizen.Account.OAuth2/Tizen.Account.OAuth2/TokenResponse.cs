@@ -23,7 +23,6 @@ namespace Tizen.Account.OAuth2
     /// The response from authroization server containing access token and an optional refresh token.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete]
     public class TokenResponse
     {
         private bool _disposed = false;
@@ -47,7 +46,6 @@ namespace Tizen.Account.OAuth2
         /// The access token
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public AccessToken AccessToken { get; internal set; }
 
         /// <summary>
@@ -57,7 +55,6 @@ namespace Tizen.Account.OAuth2
         /// <remarks>
         /// The value can be null depending on the server specifications.
         /// </remarks>
-        [Obsolete]
         public string State { get; internal set; }
 
         /// <summary>
@@ -67,7 +64,6 @@ namespace Tizen.Account.OAuth2
         /// <remarks>
         /// Issuing a refresh token is optional at the discretion of the authorization server.
         /// </remarks>
-        [Obsolete]
         public RefreshToken RefreshToken { get; internal set; }
 
         /// <summary>
@@ -76,7 +72,6 @@ namespace Tizen.Account.OAuth2
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The value of respecitve key </returns>
         /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
-        [Obsolete]
         public string GetCustomValue(string key)
         {
             IntPtr value;
@@ -93,7 +88,6 @@ namespace Tizen.Account.OAuth2
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public void Dispose()
         {
             Dispose(true);
@@ -105,7 +99,6 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
-        [Obsolete]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

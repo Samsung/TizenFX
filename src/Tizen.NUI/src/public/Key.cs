@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,24 @@ namespace Tizen.NUI
     /// The key structure is used to store a key press.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Key : Disposable
+    public class Key : global::System.IDisposable
     {
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The default constructor.
@@ -50,8 +66,23 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ~Key()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
         /// <summary>
@@ -132,24 +163,6 @@ namespace Tizen.NUI
             get
             {
                 return keyPressed;
-            }
-        }
-
-        /// <summary>
-        /// Get the actual string returned that should be used for input editors.
-        /// </summary>
-        /// <returns>The key string</returns>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string KeyString
-        {
-            get
-            {
-                return keyString;
-            }
-            set
-            {
-                keyString = value;
             }
         }
 
@@ -275,21 +288,6 @@ namespace Tizen.NUI
             }
         }
 
-        private string keyString
-        {
-            set
-            {
-                Interop.Key.Key_keyString_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                string ret = Interop.Key.Key_keyString_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         private int keyCode
         {
             set
@@ -356,7 +354,30 @@ namespace Tizen.NUI
             {
                 string ret = Interop.Key.Key_logicalKey_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -408,11 +429,39 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            Interop.Key.delete_Key(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if(type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Key.delete_Key(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
     }
 }

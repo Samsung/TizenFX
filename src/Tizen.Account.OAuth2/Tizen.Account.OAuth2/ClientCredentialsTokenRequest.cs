@@ -22,14 +22,12 @@ namespace Tizen.Account.OAuth2
     /// The class contains request parameters for retreiving access token in Client Credentials Grant flow.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete]
     public class ClientCredentialsTokenRequest : TokenRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public ClientCredentialsTokenRequest()
         {
 
@@ -39,7 +37,6 @@ namespace Tizen.Account.OAuth2
         /// The grant type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public override string GrantType { get; } = "client_credentials";
     }
 }

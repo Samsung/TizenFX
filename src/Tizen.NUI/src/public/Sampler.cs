@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,6 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Sampler : BaseHandle
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Create an instance of Sampler.
@@ -32,6 +32,7 @@ namespace Tizen.NUI
         public Sampler() : this(Interop.Sampler.Sampler_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
         }
 
         /// <summary>
@@ -78,13 +79,44 @@ namespace Tizen.NUI
 
         internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.Sampler.delete_Sampler(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Sampler.delete_Sampler(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
     }
 }

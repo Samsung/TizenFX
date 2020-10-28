@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", WindowMode.Opaque, windowSize, windowPosition))
+        public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend())
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
+        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
+        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             _windowSize2D = windowSize;
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         /// InhouseAPI, this could be opend in NextTizen
         [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
+        public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
         {
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
@@ -196,20 +196,8 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetDefaultWindow();
+                return Window.Instance;
             }
-        }
-
-        /// <summary>
-        /// Gets the default window.
-        /// </summary>
-        /// <returns>The default Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Window GetDefaultWindow()
-        {
-            return Window.Instance;
         }
 
         internal Application ApplicationHandle
@@ -260,25 +248,6 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
-        }
-
-        /// <summary>
-        /// Sets the number of frames per render.
-        /// </summary>
-        /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
-        /// <remarks>
-        /// Suggest this is a power of two:
-        /// 1 - render each vsync frame.
-        /// 2 - render every other vsync frame.
-        /// 4 - render every fourth vsync frame.
-        /// 8 - render every eighth vsync frame. <br />
-        /// For example, if an application runs on 60 FPS and SetRenderRefreshRate(2) is called, the frames per second will be changed to 30.
-        ///</remarks>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
-        {
-            Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
         }
 
         /// <summary>
@@ -350,6 +319,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (_windowSize2D != null)
+            {
+                Window.Instance.WindowSize = _windowSize2D;
+            }
+            if (_windowPosition2D != null)
+            {
+                Window.Instance.WindowPosition = _windowPosition2D;
+            }
         }
 
         /// <summary>
@@ -373,17 +350,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
-        }
-
-        /// <summary>
-        /// This is used to improve application launch performance.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void PreLoad()
-        {
-            Interop.Application.Application_PreInitialize();
-            Application.NewApplication("", Application.WindowMode.Opaque);
-            NUIApplication.GetDefaultWindow();
+            Device.PlatformServices = new TizenPlatformServices();
         }
     }
 

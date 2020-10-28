@@ -16,6 +16,7 @@
  */
 namespace Tizen.NUI
 {
+
     internal class SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -35,4 +36,5 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
     }
+
 }

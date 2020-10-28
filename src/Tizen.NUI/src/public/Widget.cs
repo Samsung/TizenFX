@@ -16,7 +16,6 @@
  */
 
 using System;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -27,6 +26,7 @@ namespace Tizen.NUI
     public class Widget : BaseHandle
     {
         internal WidgetImpl widgetImpl;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Creates a Widget handle.
@@ -47,11 +47,12 @@ namespace Tizen.NUI
             widgetImpl.WidgetInstanceResized += OnWidgetInstanceResized;
             widgetImpl.WidgetInstanceUpdated += OnWidgetInstanceUpdated;
 
-            (WidgetApplication.Instance as WidgetApplication)?.AddWidgetInstance(this);
+            WidgetApplication.Instance?.AddWidgetInstance(this);
         }
 
         internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -153,11 +154,36 @@ namespace Tizen.NUI
         {
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.Widget.delete_Widget(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Widget.delete_Widget(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         private void OnWidgetInstanceCreated(object sender, WidgetImpl.WIdgetInstanceOnCreateArgs e)

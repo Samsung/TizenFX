@@ -31,7 +31,7 @@ namespace Tizen.Nlp
     /// This class contains the methods in the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class NaturalLanguageProcess : IDisposable
+    public class NaturalLanguageProcess
     {
         private Message _msg;
         private Message.NotifyCb _noti = new Message.NotifyCb();
@@ -60,10 +60,6 @@ namespace Tizen.Nlp
         /// An construct method  to init local env of NLP .
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/nlp
-        /// </feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public NaturalLanguageProcess()
         {
             _noti.Received += ResultReceived;
@@ -235,7 +231,6 @@ namespace Tizen.Nlp
             GC.SuppressFinalize(this);
         }
 
-        /// <inheritdoc/>
         protected virtual void Dispose(bool disposing)
         {
             if (disposed)

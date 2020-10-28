@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br />
     /// There is a key modifier which relates to keys like Alt, Shift, and Ctrl functions are supplied to check if they have been pressed when the wheel is being rolled.<br />
@@ -25,8 +25,24 @@ namespace Tizen.NUI
     /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Wheel : Disposable
+    public class Wheel : global::System.IDisposable
     {
+        /// <summary>
+        /// swigCMemOwn.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The default constructor.
@@ -52,8 +68,23 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ~Wheel()
+        {
+            if(!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
         /// <summary>
@@ -275,6 +306,29 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Wheel obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -287,11 +341,41 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The type dispose, it could be from user, or called by DisposeQueue.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            Interop.Wheel.delete_Wheel(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Wheel.delete_Wheel(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
+
     }
+
 }

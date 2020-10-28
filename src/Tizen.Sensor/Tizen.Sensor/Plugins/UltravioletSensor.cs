@@ -105,38 +105,20 @@ namespace Tizen.Sensor
             return count;
         }
 
-        /// <summary>
-        /// Read ultraviolet sensor data synchronously.
-        /// </summary>
-        internal override void ReadData()
-        {
-            Interop.SensorEventStruct sensorData;
-            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error reading ultraviolet sensor data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading ultraviolet sensor data failed");
-            }
-
-            Timestamp = sensorData.timestamp;
-            UltravioletIndex = sensorData.values[0];
-        }
-
-        private static Interop.SensorListener.SensorEventsCallback _callback;
+        private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
-                updateBatchEvents(eventPtr, events_count);
-                Interop.SensorEventStruct sensorData = latestEvent();
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
-                Timestamp = sensorData.timestamp;
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 UltravioletIndex = sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new UltravioletSensorDataUpdatedEventArgs(sensorData.values[0]));
             };
 
-            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for ultraviolet sensor");
@@ -146,7 +128,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for ultraviolet sensor");

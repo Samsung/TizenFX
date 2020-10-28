@@ -15,8 +15,7 @@
  */
 
 using System;
-using System.IO;
-using Tizen.System;
+using Tizen;
 
 namespace Tizen.Account.AccountManager
 {
@@ -136,59 +135,59 @@ namespace Tizen.Account.AccountManager
             {
                 case AccountError.InvalidParameter:
                     {
-                        exp = new ArgumentException($"{msg} Invalid Parameters Provided");
+                        exp = new ArgumentException(msg + " Invalid Parameters Provided");
                         break;
                     }
 
                 case AccountError.OutOfMemory:
                     {
-                        exp = new OutOfMemoryException($"{msg} Out Of Memory");
+                        exp = new OutOfMemoryException(msg + " Out Of Memory");
                         break;
                     }
 
                 case AccountError.InvalidOperation:
                     {
-                        exp = new InvalidOperationException($"{msg} Inavlid operation");
+                        exp = new InvalidOperationException(msg + " Inavlid operation");
                         break;
                     }
 
                 case AccountError.NoData:
                     {
-                        exp = new InvalidOperationException($"{msg} Empty Data");
+                        exp = new InvalidOperationException(msg + " Empty Data");
                         break;
                     }
 
                 case AccountError.PermissionDenied:
                     {
-                        exp = new UnauthorizedAccessException($"{msg} Permission Denied");
+                        exp = new UnauthorizedAccessException(msg + " Permission Denied");
                         break;
                     }
 
                 case AccountError.DBFailed:
                     {
-                        exp = new InvalidOperationException($"{msg} DataBase Failed");
+                        exp = new InvalidOperationException(msg + " DataBase Failed");
                         break;
                     }
 
                 case AccountError.DBBusy:
                     {
-                        exp = new InvalidOperationException($"{msg} DataBase Busy");
+                        exp = new InvalidOperationException(msg + " DataBase Busy");
                         break;
                     }
 
                 case AccountError.QuerySyntaxError:
                     {
-                        exp = new InvalidOperationException($"{msg} Network Error");
+                        exp = new InvalidOperationException(msg + " Network Error");
                         break;
                     }
                 case AccountError.XMLFileNotFound:
                     {
-                        exp = new FileNotFoundException($"{msg} XML File not found");
+                        exp = new System.IO.FileNotFoundException(msg + " XML File not found");
                         break;
                     }
                 case AccountError.XMLParseFailed:
                     {
-                        exp = new InvalidDataException($"{msg} XML parse error");
+                        exp = new System.IO.InvalidDataException(msg + " XML parse error");
                         break;
                     }
 
@@ -200,20 +199,6 @@ namespace Tizen.Account.AccountManager
             }
 
             return exp;
-        }
-
-        internal static bool IsAccountFeatureSupported()
-        {
-            return ((Information.TryGetValue("http://tizen.org/feature/account", out bool IsAccountSupported)) && IsAccountSupported);
-        }
-
-        internal static void CheckAccountFeature()
-        {
-            if (IsAccountFeatureSupported() == false)
-            {
-                Log.Warn(AccountErrorFactory.LogTag, "platform account feature is disabled");
-                throw new NotSupportedException("platform account feature is disabled");
-            }
         }
     }
 }

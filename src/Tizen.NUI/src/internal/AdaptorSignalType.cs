@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,43 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class AdaptorSignalType : Disposable
+    /// <summary>
+    /// public class AdaptorSignalType : global::System.IDisposable
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AdaptorSignalType : global::System.IDisposable
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool swigCMemOwn;
 
-        internal AdaptorSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal AdaptorSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AdaptorSignalType obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~AdaptorSignalType()
+        {
+            Dispose();
         }
 
         /// <summary>
@@ -31,9 +63,21 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        public virtual void Dispose()
         {
-            Interop.Adaptor.delete_AdaptorSignalType(swigCPtr);
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        Interop.Adaptor.delete_AdaptorSignalType(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
         }
 
         /// <summary>
@@ -119,5 +163,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
     }
+
 }

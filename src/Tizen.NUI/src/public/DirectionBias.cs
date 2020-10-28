@@ -39,4 +39,5 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         DirectionBiasRight = 1
     }
+
 }

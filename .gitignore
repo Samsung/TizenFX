@@ -7,7 +7,6 @@
 *.suo
 *.user
 *.sln.docstates
-*.pyc
 
 # Build results
 
@@ -145,7 +144,7 @@ UpgradeLog*.htm
 *.txt~
 *.swp
 *.swo
-
+ 
 # svn
 .svn
 
@@ -193,6 +192,10 @@ $RECYCLE.BIN/
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 
+bin/
+obj/
+*.exe
+*.dll
 *.csproj.user
 *.lock.json
 
@@ -206,10 +209,3 @@ warnings.txt
 warn-settings.csharp.txt
 .svace-dir
 CompilationErrors-*.txt
-
-# exceptional allowed binaries
-!tools/bin/
-!packaging/*.nupkg
-
-# external libraries
-externals/libs/

@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+
     internal enum StencilFunctionType
     {
         NEVER,
@@ -28,4 +29,5 @@ namespace Tizen.NUI
         GREATER_EQUAL,
         ALWAYS
     }
+
 }

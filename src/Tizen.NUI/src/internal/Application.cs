@@ -14,18 +14,20 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Runtime.InteropServices;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Tizen.NUI.Binding;
+    using Tizen.NUI.Binding.Internals;
+
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -321,14 +323,32 @@ namespace Tizen.NUI
         }
     }
 
-    internal class Application : BaseHandle, IResourcesProvider, IElementConfiguration<Application>
+    internal class Application : BaseHandle, IResourcesProvider, IApplicationController, IElementConfiguration<Application>
     {
 
         static Application s_current;
+        Task<IDictionary<string, object>> _propertiesTask;
+        readonly Lazy<PlatformConfigurationRegistry<Application>> _platformConfigurationRegistry;
+
+        IAppIndexingProvider _appIndexProvider;
 
         ReadOnlyCollection<Element> _logicalChildren;
 
+        Page _mainPage;
+
         static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
+
+        public IAppLinks AppLinks
+        {
+            get
+            {
+                if (_appIndexProvider == null)
+                    throw new ArgumentException("No IAppIndexingProvider was provided");
+                if (_appIndexProvider.AppLinks == null)
+                    throw new ArgumentException("No AppLinks implementation was found, if in Android make sure you installed the Xamarin.Forms.AppLinks");
+                return _appIndexProvider.AppLinks;
+            }
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetCurrentApplication(Application value) => Current = value;
@@ -346,14 +366,69 @@ namespace Tizen.NUI
             }
         }
 
+        public Page MainPage
+        {
+            get { return _mainPage; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+
+                if (_mainPage == value)
+                    return;
+
+                OnPropertyChanging();
+                if (_mainPage != null)
+                {
+                    InternalChildren.Remove(_mainPage);
+                    _mainPage.Parent = null;
+                }
+
+                _mainPage = value;
+
+                if (_mainPage != null)
+                {
+                    _mainPage.Parent = this;
+                    _mainPage.NavigationProxy.Inner = NavigationProxy;
+                    InternalChildren.Add(_mainPage);
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        public IDictionary<string, object> Properties
+        {
+            get
+            {
+                if (_propertiesTask == null)
+                {
+                    _propertiesTask = GetPropertiesAsync();
+                }
+
+                return _propertiesTask.Result;
+            }
+        }
+
         internal override ReadOnlyCollection<Element> LogicalChildrenInternal
         {
             get { return _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren)); }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new NavigationProxy NavigationProxy { get; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int PanGestureId { get; set; }
+
         internal IResourceDictionary SystemResources { get; }
 
         ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAppIndexingProvider(IAppIndexingProvider provider)
+        {
+            _appIndexProvider = provider;
+        }
 
         ResourceDictionary _resources;
         public bool IsResourcesCreated => _resources != null;
@@ -420,9 +495,86 @@ namespace Tizen.NUI
             }
         }
 
+        public event EventHandler<ModalPoppedEventArgs> ModalPopped;
+
+        public event EventHandler<ModalPoppingEventArgs> ModalPopping;
+
+        public event EventHandler<ModalPushedEventArgs> ModalPushed;
+
+        public event EventHandler<ModalPushingEventArgs> ModalPushing;
+
+        public event EventHandler<Page> PageAppearing;
+
+        public event EventHandler<Page> PageDisappearing;
+
+
+        async void SaveProperties()
+        {
+            try
+            {
+                await SetPropertiesAsync();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(nameof(Application), $"Exception while saving Application Properties: {exc}");
+            }
+        }
+
+        public async Task SavePropertiesAsync()
+        {
+            if (Device.IsInvokeRequired)
+            {
+                Device.BeginInvokeOnMainThread(SaveProperties);
+            }
+            else
+            {
+                await SetPropertiesAsync();
+            }
+        }
+
+        // Don't use this unless there really is no better option
+        internal void SavePropertiesAsFireAndForget()
+        {
+            if (Device.IsInvokeRequired)
+            {
+                Device.BeginInvokeOnMainThread(SaveProperties);
+            }
+            else
+            {
+                SaveProperties();
+            }
+        }
+
+        public IPlatformElementConfiguration<T, Application> On<T>() where T : IConfigPlatform
+        {
+            return _platformConfigurationRegistry.Value.On<T>();
+        }
+
+        protected virtual void OnAppLinkRequestReceived(Uri uri)
+        {
+        }
+
         protected override void OnParentSet()
         {
             throw new InvalidOperationException("Setting a Parent on Application is invalid.");
+        }
+
+        protected virtual void OnResume()
+        {
+        }
+
+        protected virtual void OnSleep()
+        {
+        }
+
+        protected virtual void OnStart()
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ClearCurrent()
+        {
+            s_current = null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -451,13 +603,151 @@ namespace Tizen.NUI
             OnResourcesChanged(changedResources);
         }
 
+        internal event EventHandler PopCanceled;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendOnAppLinkRequestReceived(Uri uri)
+        {
+            OnAppLinkRequestReceived(uri);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendResume()
+        {
+            s_current = this;
+            OnResume();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendSleep()
+        {
+            OnSleep();
+            SavePropertiesAsFireAndForget();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task SendSleepAsync()
+        {
+            OnSleep();
+            return SavePropertiesAsync();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendStart()
+        {
+            OnStart();
+        }
+
+        async Task<IDictionary<string, object>> GetPropertiesAsync()
+        {
+            var deserializer = DependencyService.Get<IDeserializer>();
+            if (deserializer == null)
+            {
+                Console.WriteLine("Startup", "No IDeserialzier was found registered");
+                return new Dictionary<string, object>(4);
+            }
+
+            IDictionary<string, object> properties = await deserializer.DeserializePropertiesAsync().ConfigureAwait(false);
+            if (properties == null)
+                properties = new Dictionary<string, object>(4);
+
+            return properties;
+        }
+
+        internal void OnPageAppearing(Page page)
+            => PageAppearing?.Invoke(this, page);
+
+        internal void OnPageDisappearing(Page page)
+            => PageDisappearing?.Invoke(this, page);
+
+        void OnModalPopped(Page modalPage)
+            => ModalPopped?.Invoke(this, new ModalPoppedEventArgs(modalPage));
+
+        bool OnModalPopping(Page modalPage)
+        {
+            var args = new ModalPoppingEventArgs(modalPage);
+            ModalPopping?.Invoke(this, args);
+            return args.Cancel;
+        }
+
+        void OnModalPushed(Page modalPage)
+            => ModalPushed?.Invoke(this, new ModalPushedEventArgs(modalPage));
+
+        void OnModalPushing(Page modalPage)
+            => ModalPushing?.Invoke(this, new ModalPushingEventArgs(modalPage));
+
+        void OnPopCanceled()
+            => PopCanceled?.Invoke(this, EventArgs.Empty);
+
+        async Task SetPropertiesAsync()
+        {
+            await SaveSemaphore.WaitAsync();
+            try
+            {
+                await DependencyService.Get<IDeserializer>()?.SerializePropertiesAsync(Properties);
+            }
+            finally
+            {
+                SaveSemaphore.Release();
+            }
+
+        }
+
+        class NavigationImpl : NavigationProxy
+        {
+            readonly Application _owner;
+
+            public NavigationImpl(Application owner)
+            {
+                _owner = owner;
+            }
+
+            protected override async Task<Page> OnPopModal(bool animated)
+            {
+                Page modal = ModalStack[ModalStack.Count - 1];
+                if (_owner.OnModalPopping(modal))
+                {
+                    _owner.OnPopCanceled();
+                    return null;
+                }
+                Page result = await base.OnPopModal(animated);
+                result.Parent = null;
+                _owner.OnModalPopped(result);
+                return result;
+            }
+
+            protected override async Task OnPushModal(Page modal, bool animated)
+            {
+                _owner.OnModalPushing(modal);
+
+                modal.Parent = _owner;
+
+                if (modal.NavigationProxy.ModalStack.Count == 0)
+                {
+                    modal.NavigationProxy.Inner = this;
+                    await base.OnPushModal(modal, animated);
+                }
+                else
+                {
+                    await base.OnPushModal(modal, animated);
+                    modal.NavigationProxy.Inner = this;
+                }
+
+                _owner.OnModalPushed(modal);
+            }
+        }
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            NavigationProxy = new NavigationImpl(this);
             SetCurrentApplication(this);
 
+            _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Application>>(() => new PlatformConfigurationRegistry<Application>(this));
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            s_current = this;
+            SendResume();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj)
@@ -470,6 +760,14 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
             }
 
             //Release your own unmanaged resources here.
@@ -531,11 +829,17 @@ namespace Tizen.NUI
                 this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
             }
 
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Application.delete_Application(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
             base.Dispose(type);
-        }
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.Application.delete_Application(swigCPtr);
         }
 
         /// <since_tizen> 4 </since_tizen>
@@ -706,11 +1010,9 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-
-            List<Window> windows = GetWindowList();
-            foreach (Window window in windows)
+            if (Window.Instance)
             {
-                window?.DisconnectNativeSignals();
+                Window.Instance.DisconnectNativeSignals();
             }
         }
 
@@ -1133,7 +1435,7 @@ namespace Tizen.NUI
             }
         }
 
-        protected static Application _instance; // singleton
+        private static Application _instance; // singleton
 
         public static Application Instance
         {
@@ -1169,10 +1471,6 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
-            if(_instance)
-            {
-                return _instance;
-            }
 
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1182,41 +1480,10 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
-        {
-            if (_instance)
-            {
-                return _instance;
-            }
-            Application ret = New(1, stylesheet, windowMode, positionSize);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            // set the singleton
-            _instance = ret;
-            return ret;
-        }
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
-            if (_instance)
-            {
-                return _instance;
-            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            // set the singleton
-            _instance = ret;
-            return _instance;
-        }
-
-        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
-        {
-            if (_instance)
-            {
-                return _instance;
-            }
-            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
@@ -1268,7 +1535,7 @@ namespace Tizen.NUI
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            s_current = ret;
+            ret.SendResume();
             return ret;
         }
 
@@ -1287,16 +1554,6 @@ namespace Tizen.NUI
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
-        {
-            int argc = args.Length;
-            string argvStr = string.Join(" ", args);
-
-            Application ret = new Application(NDalicPINVOKE.Application_New_WithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1383,23 +1640,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static List<Window> GetWindowList()
-        {
-            uint ListSize = Interop.Application.Application_GetWindowsListSize();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            List<Window> WindowList = new List<Window>();
-            for( uint i = 0; i < ListSize; ++i )
-            {
-                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindowsFromList(i)) as Window;
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                if(currWin)
-                {
-                    WindowList.Add(currWin);
-                }
-            }
-            return WindowList;
-        }
 
         internal ApplicationSignal InitSignal()
         {
@@ -1484,5 +1724,7 @@ namespace Tizen.NUI
             Opaque = 0,
             Transparent = 1
         }
+
     }
+
 }

@@ -143,27 +143,8 @@ namespace Tizen.Network.Bluetooth
 
         internal BluetoothGattClientImpl(string remoteAddress)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled)
-            {
-                int err = Interop.Bluetooth.BtGattClientCreate(remoteAddress, out _handle);
-                GattUtil.ThrowForError(err, "Failed to get native client handle");
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
-        }
-
-        internal void Connect(string remoteAddress, bool autoConnect)
-        {
-            int err = Interop.Bluetooth.GattConnect(remoteAddress, autoConnect);
-            GattUtil.ThrowForError(err, "Failed to connect to remote address");
-        }
-
-        internal void Disconnect(string remoteAddress)
-        {
-            int err = Interop.Bluetooth.GattDisconnect(remoteAddress);
-            GattUtil.ThrowForError(err, "Failed to disconnect to remote address");
+            int err = Interop.Bluetooth.BtGattClientCreate(remoteAddress, out _handle);
+            GattUtil.ThrowForError(err, "Failed to get native client handle");
         }
 
         internal string GetRemoteAddress()
@@ -656,22 +637,8 @@ namespace Tizen.Network.Bluetooth
         {
             if (_hasOwnership == true)
             {
-                int err;
-
-                err = Interop.Bluetooth.BtGattServerDestroy(handle);
-                if (err.IsFailed())
-                {
-                    Log.Error(Globals.LogTag, "Failed to destroy the server instance");
-                    return false;
-                }
-
-                err = Interop.Bluetooth.BtGattServerDeinitialize();
-                if (err.IsFailed())
-                {
-                    Log.Error(Globals.LogTag, "Failed to deinitialize");
-                    SetHandle(IntPtr.Zero);
-                    return false;
-                }
+                Interop.Bluetooth.BtGattServerDeinitialize();
+                Interop.Bluetooth.BtGattServerDestroy(handle);
             }
             SetHandle(IntPtr.Zero);
             return true;

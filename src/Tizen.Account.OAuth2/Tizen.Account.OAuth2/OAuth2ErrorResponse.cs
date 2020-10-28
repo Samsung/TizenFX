@@ -22,7 +22,6 @@ namespace Tizen.Account.OAuth2
     /// Exception wrapper for OAuth2 related exception
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete]
     public class OAuth2Exception : Exception
     {
         internal OAuth2Exception()
@@ -33,7 +32,6 @@ namespace Tizen.Account.OAuth2
         /// The error response.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public OAuth2ErrorResponse Error { get; internal set; }
     }
 
@@ -41,7 +39,6 @@ namespace Tizen.Account.OAuth2
     /// Wrapper class contaning OAuth2 related error information
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete]
     public class OAuth2ErrorResponse
     {
         internal OAuth2ErrorResponse ()
@@ -53,28 +50,24 @@ namespace Tizen.Account.OAuth2
         /// The server error code
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public int ServerErrorCode { get; internal set; }
 
         /// <summary>
         /// The platform error cocde
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public int PlatformErrorCode { get; internal set; }
 
         /// <summary>
         /// Error description
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public string Error { get; internal set; }
 
         /// <summary>
         /// URI of the error page.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public string ErrorUri { get; internal set; }
     }
 }

@@ -32,16 +32,6 @@ namespace ElmSharp
 
         NaviItem(IntPtr handle, EvasObject content) : base(handle)
         {
-            InitializeItem(handle, content);
-        }
-
-        NaviItem(IntPtr handle, EvasObject content, EvasObject parent) : base(handle, parent)
-        {
-            InitializeItem(handle, content);
-        }
-
-        void InitializeItem(IntPtr handle, EvasObject content)
-        {
             _isPopped = false;
             _content = content;
             _popped = (d, i) =>
@@ -135,9 +125,9 @@ namespace ElmSharp
                 Popped?.Invoke(this, EventArgs.Empty);
         }
 
-        internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content, EvasObject parent)
+        internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content)
         {
-            return new NaviItem(handle, content, parent);
+            return new NaviItem(handle, content);
         }
     }
 }

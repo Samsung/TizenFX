@@ -22,8 +22,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using static Interop;
-using NativeEncoder = Interop.ImageUtil.Encode;
+using static Interop.ImageUtil;
+using Unmanaged = Interop.ImageUtil.Encode;
 
 namespace Tizen.Multimedia.Util
 {
@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Util
 
         internal ImageEncoder(ImageFormat format)
         {
-            NativeEncoder.Create(format, out _handle).ThrowIfFailed("Failed to create ImageEncoder");
+            Unmanaged.Create(format, out _handle).ThrowIfFailed("Failed to create ImageEncoder");
 
             Debug.Assert(_handle != null);
 
@@ -88,7 +88,7 @@ namespace Tizen.Multimedia.Util
                     "The height of resolution can't be less than or equal to zero.");
             }
 
-            NativeEncoder.SetResolution(Handle, (uint)resolution.Width, (uint)resolution.Height).
+            Unmanaged.SetResolution(Handle, (uint)resolution.Width, (uint)resolution.Height).
                 ThrowIfFailed("Failed to set the resolution");
 
             _hasResolution = true;
@@ -111,7 +111,7 @@ namespace Tizen.Multimedia.Util
                 throw new NotSupportedException($"{colorSpace.ToString()} is not supported for {OutputFormat}.");
             }
 
-            NativeEncoder.SetColorspace(Handle, colorSpace.ToImageColorSpace()).
+            Unmanaged.SetColorspace(Handle, colorSpace.ToImageColorSpace()).
                 ThrowIfFailed("Failed to set the color space");
         }
 
@@ -121,9 +121,9 @@ namespace Tizen.Multimedia.Util
 
             try
             {
-                NativeEncoder.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
+                Unmanaged.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
 
-                NativeEncoder.Run(Handle, out var size).ThrowIfFailed("Failed to encode given image");
+                Unmanaged.Run(Handle, out var size).ThrowIfFailed("Failed to encode given image");
 
                 byte[] buf = new byte[size];
                 Marshal.Copy(outBuffer, buf, 0, (int)size);
@@ -197,7 +197,7 @@ namespace Tizen.Multimedia.Util
 
             return EncodeAsync(handle =>
             {
-                NativeEncoder.SetInputBuffer(handle, inputBuffer).
+                Unmanaged.SetInputBuffer(handle, inputBuffer).
                         ThrowIfFailed("Failed to configure encoder; InputBuffer");
             }, outStream);
         }
@@ -323,7 +323,7 @@ namespace Tizen.Multimedia.Util
         {
             if (_compression.HasValue)
             {
-                NativeEncoder.SetPngCompression(handle, _compression.Value).
+                Unmanaged.SetPngCompression(handle, _compression.Value).
                     ThrowIfFailed("Failed to configure encoder; PngCompression");
             }
         }
@@ -401,7 +401,7 @@ namespace Tizen.Multimedia.Util
         {
             if (_quality.HasValue)
             {
-                NativeEncoder.SetQuality(handle, _quality.Value).
+                Unmanaged.SetQuality(handle, _quality.Value).
                     ThrowIfFailed("Failed to configure encoder; Quality");
             }
         }
@@ -466,10 +466,10 @@ namespace Tizen.Multimedia.Util
                     {
                         throw new ArgumentNullException(nameof(frames));
                     }
-                    NativeEncoder.SetInputBuffer(handle, frame.Buffer).
+                    Unmanaged.SetInputBuffer(handle, frame.Buffer).
                         ThrowIfFailed("Failed to configure encoder; Buffer");
 
-                    NativeEncoder.SetGifFrameDelayTime(handle, (ulong)frame.Delay).
+                    Unmanaged.SetGifFrameDelayTime(handle, (ulong)frame.Delay).
                         ThrowIfFailed("Failed to configure encoder; Delay");
                 }
             }, outStream);

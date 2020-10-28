@@ -431,7 +431,7 @@ namespace ElmSharp
         public bool Load(string file)
         {
             if (file == null)
-                throw new ArgumentNullException(nameof(file));
+                throw new ArgumentNullException("file");
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -447,7 +447,7 @@ namespace ElmSharp
         public bool Load(Uri uri)
         {
             if (uri == null)
-                throw new ArgumentNullException(nameof(uri));
+                throw new ArgumentNullException("uri");
 
             return Load(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri);
         }
@@ -468,7 +468,7 @@ namespace ElmSharp
         public unsafe bool Load(byte* img, long size)
         {
             if (img == null)
-                throw new ArgumentNullException(nameof(img));
+                throw new ArgumentNullException("img");
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -484,7 +484,7 @@ namespace ElmSharp
         public bool Load(Stream stream)
         {
             if (stream == null)
-                throw new ArgumentNullException(nameof(stream));
+                throw new ArgumentNullException("stream");
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, false);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, true);
@@ -507,10 +507,10 @@ namespace ElmSharp
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
-        public async Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (file == null)
-                throw new ArgumentNullException(nameof(file));
+                throw new ArgumentNullException("file");
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, true);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
@@ -528,6 +528,7 @@ namespace ElmSharp
             SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
+                loadReady.Dispose();
                 LoadingCompleted?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -538,6 +539,7 @@ namespace ElmSharp
             SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
+                loadError.Dispose();
                 LoadingFailed?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -545,17 +547,13 @@ namespace ElmSharp
                 }
             };
 
-            using (loadReady)
-            using (loadError)
+            bool ret = Interop.Elementary.elm_image_file_set(RealHandle, file, null);
+            if (!ret)
             {
-                bool ret = Interop.Elementary.elm_image_file_set(RealHandle, file, null);
-                if (!ret)
-                {
-                    throw new InvalidOperationException("Failed to set file to Image");
-                }
-                // it should be return on main thread, because SmartEvent should be disposed on main thread
-                return await tcs.Task.ConfigureAwait(true); 
+                throw new InvalidOperationException("Failed to set file to Image");
             }
+
+            return tcs.Task;
         }
 
         /// <summary>
@@ -568,7 +566,7 @@ namespace ElmSharp
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (uri == null)
-                throw new ArgumentNullException(nameof(uri));
+                throw new ArgumentNullException("uri");
 
             return LoadAsync(uri.IsFile ? uri.LocalPath : uri.AbsoluteUri, cancellationToken);
         }
@@ -583,7 +581,7 @@ namespace ElmSharp
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
-                throw new ArgumentNullException(nameof(stream));
+                throw new ArgumentNullException("stream");
 
             Interop.Elementary.elm_image_async_open_set(RealHandle, true);
             Interop.Elementary.elm_image_preload_disabled_set(RealHandle, false);
@@ -601,6 +599,7 @@ namespace ElmSharp
             SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
+                loadReady.Dispose();
                 LoadingCompleted?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -611,6 +610,7 @@ namespace ElmSharp
             SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
+                loadError.Dispose();
                 LoadingFailed?.Invoke(this, EventArgs.Empty);
                 if (tcs != null && !tcs.Task.IsCompleted)
                 {
@@ -619,10 +619,8 @@ namespace ElmSharp
             };
 
             using (MemoryStream memstream = new MemoryStream())
-            using (loadReady)
-            using (loadError)
             {
-                await stream.CopyToAsync(memstream).ConfigureAwait(true);
+                await stream.CopyToAsync(memstream);
 
                 unsafe
                 {
@@ -636,9 +634,9 @@ namespace ElmSharp
                         }
                     }
                 }
-                // it should be return on main thread, because SmartEvent should be disposed on main thread
-                return await tcs.Task.ConfigureAwait(true);
             }
+
+            return await tcs.Task;
         }
 
         /// <summary>

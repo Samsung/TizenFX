@@ -351,7 +351,7 @@ namespace ElmSharp
             {
                 if (disposing)
                 {
-                    _sender.RemoveFromEventLifeTracker(this);
+                    // Place holder to dispose managed state (managed objects).
                 }
                 if (_handle != IntPtr.Zero)
                 {

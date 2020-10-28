@@ -15,43 +15,65 @@
  *
  */
 
-using System.ComponentModel;
-
 namespace Tizen.NUI
 {
-    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class FixedRuler : Ruler
+
+    internal class FixedRuler : Ruler
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.FixedRuler_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-
-        /// This will be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FixedRuler obj)
         {
-            Interop.Ruler.delete_FixedRuler(swigCPtr);
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Ruler.delete_FixedRuler(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
         public FixedRuler(float spacing) : this(Interop.Ruler.new_FixedRuler__SWIG_0(spacing), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public FixedRuler() : this(Interop.Ruler.new_FixedRuler__SWIG_1(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override float Snap(float x, float bias)
         {
             float ret = Interop.Ruler.FixedRuler_Snap(swigCPtr, x, bias);
@@ -59,8 +81,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
             float ret = Interop.Ruler.FixedRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
@@ -68,8 +88,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetPageFromPosition(float position, bool wrap)
         {
             uint ret = Interop.Ruler.FixedRuler_GetPageFromPosition(swigCPtr, position, wrap);
@@ -77,13 +95,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetTotalPages()
         {
             uint ret = Interop.Ruler.FixedRuler_GetTotalPages(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
     }
+
 }

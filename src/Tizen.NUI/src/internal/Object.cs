@@ -15,6 +15,7 @@
  *
  */
 
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -47,4 +48,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
+
 }

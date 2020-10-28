@@ -82,15 +82,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static void PostAndWakeUp(Action task)
         {
-            if (IsMainThread)
-            {
-                Post(task);
-            }
-            else
-            {
-                int id = RegistHandler(() => { task(); return false; });
-                Interop.Ecore.ecore_main_loop_thread_safe_call_async(_nativeHandler, (IntPtr)id);
-            }
+            int id = RegistHandler(() => { task(); return false; });
+            Interop.Ecore.ecore_main_loop_thread_safe_call_async(_nativeHandler, (IntPtr)id);
         }
 
         /// <summary>

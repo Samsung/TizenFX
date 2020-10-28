@@ -130,6 +130,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
 
@@ -153,29 +154,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Creates an initialized VideoView.<br />
-        /// If the string is empty, VideoView will not display anything.<br />
-        /// </summary>
-        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_2(swCodec), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an initialized VideoView.<br />
-        /// If the string is empty, VideoView will not display anything.<br />
-        /// </summary>
-        /// <param name="url">The URL of the video resource to display.</param>
-        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(string url, bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_3(url, swCodec), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal VideoView(VideoView videoView) : this(Interop.VideoView.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -183,6 +161,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -393,6 +372,13 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -402,14 +388,17 @@ namespace Tizen.NUI.BaseComponents
                 FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
             }
 
-            base.Dispose(type);
-        }
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.VideoView.delete_VideoView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.VideoView.delete_VideoView(swigCPtr);
+            base.Dispose(type);
         }
 
         // Callback for VideoView Finished signal
@@ -459,62 +448,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MUTED = Interop.VideoView.VideoView_Property_MUTED_get();
             internal static readonly int VOLUME = Interop.VideoView.VideoView_Property_VOLUME_get();
             internal static readonly int UNDERLAY = Interop.VideoView.VideoView_Property_UNDERLAY_get();
-        }
-
-        internal System.IntPtr GetNativePlayerHandle()
-        {
-            var ret = Interop.VideoView.GetNativePlayerHandle(swigCPtr);
-            NUILog.Debug($"NativePlayerHandle=0x{ret:X}");
-            return ret;
-        }
-    }
-
-    /// <summary>
-    /// Contains and encapsulates Native Player handle.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SafeNativePlayerHandle : SafeHandle
-    {
-        /// <summary>
-        /// Contructor, null handle is set.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public SafeNativePlayerHandle() : base(global::System.IntPtr.Zero, false)
-        {
-        }
-
-        /// <summary>
-        /// Contructor, Native player handle is set to handle.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
-        {
-            if(videoView != null)
-            {
-                SetHandle(videoView.GetNativePlayerHandle());
-            }
-        }
-
-        /// <summary>
-        /// Null check if the handle is valid or not.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid
-        {
-            get
-            {
-                return handle == global::System.IntPtr.Zero;
-            }
-        }
-        /// <summary>
-        /// Release handle itself.
-        /// </summary>
-        /// <returns>true when released successfully.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle()
-        {
-            SetHandle(global::System.IntPtr.Zero);
-            return true;
         }
     }
 }

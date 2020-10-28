@@ -451,8 +451,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
-            GenGridItem item = new GenGridItem(data, itemClass, this);
-            item.Handle = Interop.Elementary.elm_gengrid_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            GenGridItem item = new GenGridItem(data, itemClass);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -468,8 +469,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenGridItem Prepend(GenItemClass itemClass, object data)
         {
-            GenGridItem item = new GenGridItem(data, itemClass, this);
-            item.Handle = Interop.Elementary.elm_gengrid_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            GenGridItem item = new GenGridItem(data, itemClass);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, null, (IntPtr)item.Id);
+            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -486,8 +488,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertBefore(GenItemClass itemClass, object data, GenGridItem before)
         {
-            GenGridItem item = new GenGridItem(data, itemClass, this);
-            item.Handle = Interop.Elementary.elm_gengrid_item_insert_before(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, before, null, (IntPtr)item.Id);
+            GenGridItem item = new GenGridItem(data, itemClass);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_insert_before(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, before, null, (IntPtr)item.Id);
+            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -504,8 +507,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertAfter(GenItemClass itemClass, object data, GenGridItem after)
         {
-            GenGridItem item = new GenGridItem(data, itemClass, this);
-            item.Handle = Interop.Elementary.elm_gengrid_item_insert_after(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, after, null, (IntPtr)item.Id);
+            GenGridItem item = new GenGridItem(data, itemClass);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_insert_after(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, after, null, (IntPtr)item.Id);
+            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -520,7 +524,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
-            GenGridItem item = new GenGridItem(data, itemClass, this);
+            GenGridItem item = new GenGridItem(data, itemClass);
 
             Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
             {
@@ -529,7 +533,8 @@ namespace ElmSharp
                 return comparison(first.Data, second.Data);
             };
 
-            item.Handle = Interop.Elementary.elm_gengrid_item_sorted_insert(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, compareCallback, null, (IntPtr)item.Id);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_sorted_insert(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, compareCallback, null, (IntPtr)item.Id);
+            item.Handle = handle;
             AddInternal(item);
             return item;
         }

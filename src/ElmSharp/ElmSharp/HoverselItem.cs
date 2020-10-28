@@ -28,10 +28,6 @@ namespace ElmSharp
         {
         }
 
-        internal HoverselItem(EvasObject parent) : base(IntPtr.Zero, parent)
-        {
-        }
-
         /// <summary>
         /// The HoverselItem's label.
         /// </summary>

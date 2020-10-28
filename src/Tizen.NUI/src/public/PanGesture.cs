@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// A PanGesture is emitted when the user moves one or more fingers in a particular direction.<br />
     /// A pan gesture will end in the following ways:<br />
@@ -30,6 +30,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PanGesture : Gesture
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// The default constructor.
@@ -51,6 +52,7 @@ namespace Tizen.NUI
 
         internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.PanGesture_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -331,11 +333,41 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.PanGestureDetector.delete_PanGesture(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.PanGestureDetector.delete_PanGesture(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
+
     }
+
 }

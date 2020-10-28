@@ -29,8 +29,6 @@ namespace Tizen.Multimedia
         {
             Data = new byte[unmanagedData.DataLength];
             Marshal.Copy(unmanagedData.Data, Data, 0, (int)unmanagedData.DataLength);
-
-            IsDeltaFrame = unmanagedData.IsDeltaFrame;
         }
 
         /// <summary>
@@ -38,11 +36,5 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }
-
-        /// <summary>
-        /// The flag indicating whether the current frame is a delta frame or not.
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public bool IsDeltaFrame { get; }
     }
 }

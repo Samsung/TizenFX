@@ -43,7 +43,6 @@ namespace Tizen.Location
         private double _distance = 120.0;
         private bool _isEnableMock = false;
         private bool _disposed = false;
-        private bool _isBatchStarted;
         private IntPtr _handle;
         private LocationType _locationType;
         private Location _location = null;
@@ -322,8 +321,7 @@ namespace Tizen.Location
         public void Start()
         {
             Log.Info(Globals.LogTag, "Starting Location Manager");
-            _isBatchStarted = (_batchPeriod > 0 ) && (_batchPeriod > _batchInterval);
-            if (_isBatchStarted)
+            if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
             {
                 int ret = Interop.Locator.StartBatch(_handle);
                 if (((LocationError)ret != LocationError.None))
@@ -354,25 +352,13 @@ namespace Tizen.Location
         public void Stop()
         {
             Log.Info(Globals.LogTag, "Stopping Location Manager");
-            if (_isBatchStarted)
+            int ret = Interop.Locator.Stop(_handle);
+            if (((LocationError)ret != LocationError.None))
             {
-                int ret = Interop.Locator.StopBatch(_handle);
-                if (((LocationError)ret != LocationError.None))
-                {
-                    Log.Error(Globals.LogTag, "Error Stopping Location Batch mode," + (LocationError)ret);
-                    throw LocationErrorFactory.ThrowLocationException(ret);
-                }
+                Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
             }
-            else
-            {
-                int ret = Interop.Locator.Stop(_handle);
-                if (((LocationError)ret != LocationError.None))
-                {
-                    Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
-                    throw LocationErrorFactory.ThrowLocationException(ret);
-                }
-            } 
-        }
+       }
 
         /// <summary>
         /// Sets a mock location for the given location method.

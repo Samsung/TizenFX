@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Runtime.InteropServices;
-
 namespace Tizen.NUI
 {
+
+    using System;
+    using System.Runtime.InteropServices;
+
     /// <summary>
     /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     /// </summary>
@@ -50,4 +51,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
+
+
 }

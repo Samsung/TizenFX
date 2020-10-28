@@ -109,8 +109,6 @@ namespace Tizen.Applications.CoreBackend
 
         public void Run(string[] args)
         {
-            TizenSynchronizationContext.Initialize();
-
             Interop.Widget.ErrorCode err = Interop.Widget.ErrorCode.None;
             err = Interop.Widget.AddEventHandler(out _lowMemoryEventHandle, Interop.Widget.AppEventType.LowMemory, _lowMemoryCallback, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)

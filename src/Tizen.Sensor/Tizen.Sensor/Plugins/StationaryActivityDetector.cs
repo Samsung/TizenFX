@@ -94,45 +94,26 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read stationary activity detector data synchronously.
-        /// </summary>
-        internal override void ReadData()
-        {
-            Interop.SensorEventStruct sensorData;
-            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error reading stationary activity detector data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading stationary activity detector data failed");
-            }
-
-            Timestamp = sensorData.timestamp;
-            Stationary = (DetectorState)sensorData.values[0];
-            ActivityAccuracy = (SensorDataAccuracy)sensorData.accuracy;
-        }
-
-        /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the stationary activity detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StationaryActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
-        internal static Interop.SensorListener.SensorEventsCallback _callback;
+        internal static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
-                updateBatchEvents(eventPtr, events_count);
-                Interop.SensorEventStruct sensorData = latestEvent();
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
-                Timestamp = sensorData.timestamp;
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 Stationary = (DetectorState)sensorData.values[0];
                 ActivityAccuracy = (SensorDataAccuracy) sensorData.accuracy;
 
                 DataUpdated?.Invoke(this, new StationaryActivityDetectorDataUpdatedEventArgs(sensorData.values[0]));
             };
 
-            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for stationary activity detector");
@@ -142,7 +123,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for stationary activity detector");

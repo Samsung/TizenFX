@@ -17,11 +17,14 @@
 
 namespace Tizen.NUI
 {
+
     internal class AsyncImageLoader : BaseHandle
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal AsyncImageLoader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AsyncImageLoader.AsyncImageLoader_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AsyncImageLoader obj)
@@ -29,9 +32,36 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.AsyncImageLoader.delete_AsyncImageLoader(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.AsyncImageLoader.delete_AsyncImageLoader(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         public AsyncImageLoader() : this(Interop.AsyncImageLoader.AsyncImageLoader_New(), true)
@@ -98,5 +128,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
     }
+
 }

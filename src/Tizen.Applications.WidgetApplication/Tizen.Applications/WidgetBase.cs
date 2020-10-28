@@ -26,6 +26,7 @@ namespace Tizen.Applications
     public abstract class WidgetBase
     {
         internal IntPtr Handle;
+        internal string Id;
         private const string LogTag = "Tizen.Applications.WidgetBase";
 
         /// <summary>
@@ -61,17 +62,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// ID for this widget instance.
-        /// It will be created after OnCreate method is invoked.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public string Id { get; private set; }
-
-        /// <summary>
         /// Sets the content information to the widget.
         /// </summary>
         /// <param name="info">The data set to save.</param>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
@@ -104,7 +97,6 @@ namespace Tizen.Applications
         /// Sends the title to the widget.
         /// </summary>
         /// <param name="title">When an accessibility mode is turned on, this string will be read.</param>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
@@ -135,7 +127,6 @@ namespace Tizen.Applications
         /// <summary>
         /// Finishes the context for the widget instance.
         /// </summary>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         /// <since_tizen> 3 </since_tizen>

@@ -65,11 +65,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Bluetooth voice (SCO).
         /// </summary>
-        BluetoothVoice,
-
-        /// <summary>
-        /// Device for the transmission of audio data over a network
-        /// </summary>
-        Network
+        BluetoothVoice
     }
 }

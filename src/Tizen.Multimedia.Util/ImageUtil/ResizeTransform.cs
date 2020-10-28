@@ -15,8 +15,8 @@
  */
 
 using System;
-using static Interop;
-using NativeTransform = Interop.ImageUtil.Transform;
+using static Interop.ImageUtil;
+using static Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -78,7 +78,7 @@ namespace Tizen.Multimedia.Util
 
         internal override void Configure(TransformHandle handle)
         {
-            NativeTransform.SetResolution(handle, (uint)Size.Width, (uint)Size.Height);
+            SetResolution(handle, (uint)Size.Width, (uint)Size.Height);
         }
     }
 }

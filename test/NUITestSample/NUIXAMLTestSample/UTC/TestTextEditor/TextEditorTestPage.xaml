@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.TextEditorTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+      <TextEditor BackgroundColor="Red" Text="Text1" PositionX="10" PositionY="10" Size2D="460,200" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+      <TextEditor BackgroundColor="Cyan" Text="Text1" TextColor="1.0, 0.0, 0.0, 1.0" PositionX="10" PositionY="220" Size2D="460,300" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+      <TextEditor BackgroundColor="Green" Text="Text1" TextColor="1.0, 0.0, 0.0, 1.0" PositionX="10" PositionY="530" Size2D="460,250" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+
+</ContentPage>

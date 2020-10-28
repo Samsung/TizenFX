@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+
     internal enum RenderModeType
     {
         NONE,
@@ -25,4 +26,5 @@ namespace Tizen.NUI
         STENCIL,
         COLOR_STENCIL
     }
+
 }

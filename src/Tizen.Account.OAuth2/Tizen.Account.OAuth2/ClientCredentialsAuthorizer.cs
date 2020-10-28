@@ -24,14 +24,12 @@ namespace Tizen.Account.OAuth2
     /// The ClientCredentialsAuthorizer is used to obtain access tokens using Client Credentials Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.4
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete]
     public class ClientCredentialsAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete]
         public ClientCredentialsAuthorizer()
         {
 
@@ -42,8 +40,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
-        [Obsolete]
-        public  Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
+        public override Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Authorization is not supported in this flow");
             throw new InvalidOperationException();
@@ -54,7 +51,6 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
-        [Obsolete]
         public override Task<TokenResponse> RefreshAccessTokenAsync(RefreshTokenRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Refreshing access token is not supported in this flow");
@@ -71,8 +67,7 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
-        [Obsolete]
-        public  async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
+        public override async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as ClientCredentialsTokenRequest);
             return await Task.Run(() => GetAccessToken(requestHandle));

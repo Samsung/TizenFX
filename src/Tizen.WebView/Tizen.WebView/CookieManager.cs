@@ -46,7 +46,6 @@ namespace Tizen.WebView
         /// <summary>
         /// Cookies are stored in a text file in the Mozilla "cookies.txt" format.
         /// </summary>
-        [Obsolete("Deprecated since API level 8.")]
         Text,
         /// <summary>
         /// Cookies are stored in a SQLite file in the current Mozilla format.

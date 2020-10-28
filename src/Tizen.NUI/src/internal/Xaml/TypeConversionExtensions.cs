@@ -62,31 +62,16 @@ namespace Tizen.NUI.Xaml
         {
             Func<object> getConverter = () =>
             {
-                string converterTypeName = null;
-                Type realType = toType;
+                MemberInfo memberInfo;
 
-                if (true == realType.IsGenericType && typeof(Nullable<>) == realType.GetGenericTypeDefinition())
-                {
-                    realType = realType.GetGenericArguments()[0];
-                }
-
-                converterTypeName = realType.CustomAttributes.GetTypeConverterTypeName();
-
+                var converterTypeName = toType.GetTypeInfo().CustomAttributes.GetTypeConverterTypeName();
+                if (minfoRetriever != null && (memberInfo = minfoRetriever()) != null)
+                    converterTypeName = memberInfo.CustomAttributes.GetTypeConverterTypeName() ?? converterTypeName;
                 if (converterTypeName == null)
-                {
-                    converterTypeName = toType.FullName + "TypeConverter";
-                }
+                    return null;
 
                 var convertertype = Type.GetType(converterTypeName);
-
-                if (null == convertertype)
-                {
-                    return null;
-                }
-                else
-                {
-                    return Activator.CreateInstance(convertertype);
-                }
+                return Activator.CreateInstance(convertertype);
             };
 
             return ConvertTo(value, toType, getConverter, serviceProvider);
@@ -216,6 +201,12 @@ namespace Tizen.NUI.Xaml
                     return value;
                 }
             }
+
+            var nativeValueConverterService = DependencyService.Get<INativeValueConverterService>();
+
+            object nativeValue = null;
+            if (nativeValueConverterService != null && nativeValueConverterService.ConvertTo(value, toType, out nativeValue))
+                return nativeValue;
 
             return value;
         }

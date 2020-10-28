@@ -69,16 +69,7 @@ namespace Tizen.System
             if (err != Interop.Storage.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to Register changed event callback for external storage. err = {0}", err));
-
-                switch (err)
-                {
-                    case Interop.Storage.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Storage Not Supported");
-                    default:
-                        break;
-                }
             }
-
         }
 
         private static void UnregisterChangedEvent(StorageArea type)
@@ -87,14 +78,6 @@ namespace Tizen.System
             if (err != Interop.Storage.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to Unreegister changed event callback for external storage. err = {0}", err));
-
-                switch (err)
-                {
-                    case Interop.Storage.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Storage Not Supported");
-                    default:
-                        break;
-                }
             }
         }
 
@@ -104,8 +87,6 @@ namespace Tizen.System
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to register.</param>
         /// <since_tizen> 5 </since_tizen>
-        /// <feature> http://tizen.org/feature/storage.external </feature>
-        /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -133,8 +114,6 @@ namespace Tizen.System
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to unregister.</param>
         /// <since_tizen> 5 </since_tizen>
-        /// <feature> http://tizen.org/feature/storage.external </feature>
-        /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)

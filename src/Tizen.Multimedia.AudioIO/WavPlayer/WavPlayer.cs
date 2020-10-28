@@ -95,14 +95,14 @@ namespace Tizen.Multimedia
 
             Native.WavPlayerCompletedCallback cb = (id_, _) => tcs.TrySetResult(true);
 
-            using (var cbKeeper = ObjectKeeper.Get(cb))
+            using (ObjectKeeper.Get(cb))
             {
                 Native.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out var id).
                     Validate("Failed to play.");
 
                 using (RegisterCancellationAction(tcs, cancellationToken, id))
                 {
-                    await tcs.Task.ConfigureAwait(false);
+                    await tcs.Task;
                 }
             }
         }

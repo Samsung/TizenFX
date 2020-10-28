@@ -6,48 +6,31 @@
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <BuildWithAnalyzer Condition="'$(BuildWithAnalyzer)' == ''">False</BuildWithAnalyzer>
-    <BuildDesignAssembly Condition="'$(BuildDesignAssembly)' == ''">False</BuildDesignAssembly>
-    <BuildPublicOnly Condition="'$(BuildPublicOnly)' == ''">False</BuildPublicOnly>
   </PropertyGroup>
 
   <!-- Projects to build -->
   <ItemGroup>
-    <DesignProject Include="$(ProjectSrcDir)**\*.Design.csproj" />
-    <DesignProject Include="$(InternalProjectSrcDir)**\*.Design.csproj" />
-
-    <PublicProject Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
-    <PublicProject Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj"
-                   Condition="'$(Project)' != '' And Exists('$(ProjectSrcDir)\$(Project)\$(Project).csproj') " />
-    <PublicProject Remove="@(DesignProject)" />
-
-    <InternalProject Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == '' " />
-    <InternalProject Include="$(InternalProjectSrcDir)\$(Project)\$(Project).csproj"
-                     Condition="'$(Project)' != ''  And Exists('$(InternalProjectSrcDir)\$(Project)\$(Project).csproj')  " />
-    <InternalProject Remove="@(DesignProject)" />
-
-    <ProjectToBuild Include="@(DesignProject)" Condition="'$(BuildDesignAssembly)' == 'True' " />
-    <ProjectToBuild Include="@(PublicProject)" Condition="'$(BuildDesignAssembly)' != 'True' " />
-    <ProjectToBuild Include="@(InternalProject)" Condition="'$(BuildDesignAssembly)' != 'True' And '$(BuildPublicOnly)' != 'True'" />
+    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
+    <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
   <ItemGroup>
-    <NuspecFiles Include="$(ProjectRootDir)pkg\**\*.nuspec" />
+    <NuspecFiles Include="$(ProjectRootDir)pkg\*.nuspec" />
   </ItemGroup>
 
   <!--
     Target : Clean
     ==============
     Delete all artifacts,
-    including the Artifacts/ directory and the obj and bin directories of all projects.
+    including the Artifacts/ directory and the obj/ directories for all projects.
   -->
   <Target Name="Clean">
 
     <ItemGroup>
-      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\**" />
-      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\bin\**" />
-      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\**" />
-      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\bin\**" />
+      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
+      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\*" />
       <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
     </ItemGroup>
 
@@ -118,12 +101,16 @@
   -->
   <Target Name="Dummy">
 
-    <PropertyGroup>
-      <APIToolPath>$(MSBuildThisFileDirectory)..\tools\bin\APITool.dll</APIToolPath>
-    </PropertyGroup>
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration);IsDummyBuild=True"
+             BuildInParallel="true"
+             UseResultsCache="true"
+             Targets="Rebuild" />
 
-    <MakeDir Directories="$(OutputDummyDir)" />
-    <Exec Command="dotnet $([System.IO.Path]::GetFullPath('$(APIToolPath)')) dummy $(OutputPublicDir)ref $(OutputDummyDir) " />
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration)"
+             BuildInParallel="false"
+             Targets="CopyToDummyArtifactsDirectory" />
 
   </Target>
 

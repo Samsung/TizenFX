@@ -16,8 +16,8 @@
 
 using System;
 using System.Diagnostics;
-using static Interop;
-using NativeTransform = Interop.ImageUtil.Transform;
+using static Interop.ImageUtil;
+using static Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -69,7 +69,7 @@ namespace Tizen.Multimedia.Util
 
         internal override void Configure(TransformHandle handle)
         {
-            NativeTransform.SetRotation(handle, GetImageRotation());
+            SetRotation(handle, GetImageRotation());
         }
 
         private ImageRotation GetImageRotation()

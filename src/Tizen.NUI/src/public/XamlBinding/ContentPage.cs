@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,11 +46,6 @@ namespace Tizen.NUI
             if (newValue != null)
             {
                 self.Root.Add((View)newValue);
-            }
-            var newElement = (Element)newValue;
-            if (newElement != null)
-            {
-                BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
             }
         });
 
@@ -154,7 +149,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if(Root != null) 
             {
-                Root.Unparent();
+                Window.Instance.Remove(Root);
                 Root.Dispose();
                 Root = null;
             }
@@ -184,7 +179,7 @@ namespace Tizen.NUI
             if ( Root != null )
             {
                 //Remove it from the window
-                Root.Unparent();
+                Window.Instance.Remove(Root);
                 Root.Dispose();
                 Root = null;
 
@@ -192,7 +187,7 @@ namespace Tizen.NUI
                 Root = new View();
                 Root.WidthResizePolicy = ResizePolicyType.FillToParent;
                 Root.HeightResizePolicy = ResizePolicyType.FillToParent;
-                NUIApplication.GetDefaultWindow().Add(Root);
+                Window.Instance.Add(Root);
 
                 ClearHandler();
             }
@@ -256,7 +251,7 @@ namespace Tizen.NUI
 
                 if (File.Exists(likelyResourcePath))
                 {
-                    trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
+                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
                 }
                 if (trans)
                 {

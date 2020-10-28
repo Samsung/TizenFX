@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
+
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -25,8 +25,24 @@ namespace Tizen.NUI
     /// hovered or the points where a hover has stopped.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Hover : Disposable
+    public class Hover : global::System.IDisposable
     {
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The default constructor.
@@ -46,8 +62,23 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ~Hover()
+        {
+            if(!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
         /// <summary>
@@ -188,6 +219,29 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hover obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -207,11 +261,38 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            Interop.Hover.delete_Hover(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Hover.delete_Hover(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
     }
 }

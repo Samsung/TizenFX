@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -24,7 +23,6 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Obsolete("Deprecated since API level 5. Please use the AudioDeviceRunningChangedEventArgs class instead.")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AudioDeviceStateChangedEventArgs : EventArgs
     {
         internal AudioDeviceStateChangedEventArgs(AudioDevice device, AudioDeviceState changedState)

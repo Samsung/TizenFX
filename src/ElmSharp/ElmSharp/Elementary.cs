@@ -48,29 +48,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public static class Elementary
     {
-        private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
-
-        /// <summary>
-        /// EvasObjectRealized will be triggered when the EvasObject is realized.
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public static event EventHandler EvasObjectRealized;
-
-        /// <summary>
-        /// ItemObjectRealized will be triggered when the ItemObject is realized.
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public static event EventHandler ItemObjectRealized;
-
-        internal static void SendEvasObjectRealized(EvasObject obj)
-        {
-            EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
-        }
-
-        internal static void SendItemObjectRealized(ItemObject obj)
-        {
-            ItemObjectRealized?.Invoke(obj, EventArgs.Empty);
-        }
+        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
 
         /// <summary>
         /// Gets or sets the configured finger size.
@@ -207,8 +185,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static void Initialize()
         {
-            if (!Window.IsPreloaded)
-                Interop.Elementary.elm_init(0, null);
+            Interop.Elementary.elm_init(0, null);
         }
 
         /// <summary>
@@ -236,7 +213,7 @@ namespace ElmSharp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
-            if (!Window.IsPreloaded && File.Exists(_themeFilePath))
+            if (File.Exists(_themeFilePath))
             {
                 AddThemeOverlay(_themeFilePath);
             }

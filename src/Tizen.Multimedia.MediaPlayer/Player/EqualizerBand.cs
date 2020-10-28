@@ -37,7 +37,15 @@ namespace Tizen.Multimedia
             _owner = owner;
             _index = index;
 
-            Log.Debug(PlayerLog.Tag, "frequency : " + Frequency + ", range : " + FrequencyRange);
+            Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out var frequency).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
+
+            Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out var range).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
+
+            Frequency = frequency;
+            FrequencyRange = range;
+            Log.Debug(PlayerLog.Tag, "frequency : " + frequency + ", range : " + range);
         }
 
         /// <summary>
@@ -48,16 +56,12 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is not inside of <see cref="AudioEffect.BandLevelRange"/>.
         /// </exception>
-        /// <exception cref="NotAvailableException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public int Level
         {
             get
             {
                 _owner.Player.ValidateNotDisposed();
-                _owner.Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out var value).
                     ThrowIfFailed(_owner.Player, "Failed to get the level of the equalizer band");
@@ -68,7 +72,6 @@ namespace Tizen.Multimedia
             set
             {
                 _owner.Player.ValidateNotDisposed();
-                _owner.Player.AudioOffload.CheckDisabled();
 
                 if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
                 {
@@ -85,44 +88,16 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Gets the frequency in dB.
+        /// Gets the frequency in the dB.
         /// </summary>
-        /// <exception cref="NotAvailableException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public int Frequency
-        {
-            get
-            {
-                _owner.Player.AudioOffload.CheckDisabled();
-
-                Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out var frequency).
-                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
-
-                return frequency;
-            }
-        }
+        public int Frequency { get; }
 
         /// <summary>
-        /// Gets the frequency range in dB.
+        /// Gets the frequency range in the dB.
         /// </summary>
-        /// <exception cref="NotAvailableException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public int FrequencyRange
-        {
-            get
-            {
-                _owner.Player.AudioOffload.CheckDisabled();
-
-                Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out var frequencyRange).
-                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
-
-                return frequencyRange;
-            }
-        }
+        public int FrequencyRange { get; }
 
     }
 }

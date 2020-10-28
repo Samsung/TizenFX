@@ -62,14 +62,9 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public Bundle(SafeBundleHandle handle)
         {
-            if (handle == null)
+            if (handle == null || handle.IsInvalid)
             {
                 throw new ArgumentNullException("handle");
-            }
-
-            if (handle.IsInvalid)
-            {
-                throw new ArgumentNullException("handle", "handle is invalid");
             }
 
             _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());

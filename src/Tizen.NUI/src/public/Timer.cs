@@ -18,7 +18,6 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Threading;
-using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -35,6 +34,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Timer : BaseHandle
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool played = false;
         private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
         private TickCallbackDelegate _timerTickCallbackDelegate;
@@ -60,6 +60,7 @@ namespace Tizen.NUI
 
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Timer_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             _timerTickCallbackDelegate = OnTick;
             _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
@@ -129,24 +130,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
-            if (Thread.CurrentThread.ManagedThreadId != 1)
-            {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
-
-                StackTrace st = new StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
-                {
-                    StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
-                }
-            }
-
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
-            {
-                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
-                return;
-            }
-
             played = true;
             Interop.Timer.Timer_Start(swigCPtr);
 
@@ -159,25 +142,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
-            if (Thread.CurrentThread.ManagedThreadId != 1)
-            {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
-
-
-                StackTrace st = new StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
-                {
-                    StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
-                }
-            }
-
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
-            {
-                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
-                return;
-            }
-
             played = false;
             Interop.Timer.Timer_Stop(swigCPtr);
 
@@ -191,24 +155,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsRunning()
         {
-            if (Thread.CurrentThread.ManagedThreadId != 1)
-            {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
-
-                StackTrace st = new StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
-                {
-                    StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
-                }
-            }
-
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
-            {
-                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
-                return false;
-            }
-
             bool ret = Interop.Timer.Timer_IsRunning(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -228,12 +174,6 @@ namespace Tizen.NUI
         {
             NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
 
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
-            {
-                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
-                return;
-            }
-
             played = true;
 
             Interop.Timer.Timer_SetInterval(swigCPtr, milliSec);
@@ -242,12 +182,6 @@ namespace Tizen.NUI
 
         internal uint GetInterval()
         {
-            if(swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
-            {
-                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
-                return 0;
-            }
-
             uint ret = Interop.Timer.Timer_GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -278,15 +212,29 @@ namespace Tizen.NUI
                 return;
             }
 
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Timer.delete_Timer(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
             played = false;
             base.Dispose(type);
-        }
-
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.Timer.delete_Timer(swigCPtr);
         }
 
         private bool OnTick()

@@ -253,7 +253,6 @@ internal static partial class Interop
         {
             internal IntPtr Data;
             internal uint DataLength;
-            internal bool IsDeltaFrame;
         }
 
         [StructLayout(LayoutKind.Sequential)]
