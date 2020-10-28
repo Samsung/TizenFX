@@ -1274,7 +1274,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The direction of the text such as left to right or right to left.
+        /// The text direction.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
@@ -1290,7 +1290,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The vertical line alignment of the text.
+        /// The text vertical line alignment.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.

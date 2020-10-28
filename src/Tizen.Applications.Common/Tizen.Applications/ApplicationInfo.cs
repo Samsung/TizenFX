@@ -207,8 +207,7 @@ namespace Tizen.Applications
                 {
                     if (key.Length != 0)
                     {
-                        if (!metadata.ContainsKey(key))
-                            metadata.Add(key, value);
+                        metadata.Add(key, value);
                     }
                     return true;
                 };

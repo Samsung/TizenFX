@@ -30,7 +30,7 @@ namespace Tizen.NUI
     public class BaseHandle : Element, global::System.IDisposable
     {
         /// <summary>
-        /// Event when a property is set.
+        /// Event which is occurred when a property is set
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -335,7 +335,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the the hash code of this baseHandle.
         /// </summary>
-        /// <returns>The hash code.</returns>
+        /// <returns>The Hash Code.</returns>
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
