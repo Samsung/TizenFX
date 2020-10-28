@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// Create an instance of Sampler.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Sampler() : this(Interop.Sampler.Sampler_New(), true)
+        public Sampler() : this(NDalicPINVOKE.Sampler_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
-            Interop.Sampler.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
+            NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
-            Interop.Sampler.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
+            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
-            Interop.Sampler.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
+            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -77,7 +77,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -111,7 +111,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.Sampler.delete_Sampler(swigCPtr);
+                    NDalicPINVOKE.delete_Sampler(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

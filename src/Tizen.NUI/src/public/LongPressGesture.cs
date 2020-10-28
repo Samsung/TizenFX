@@ -32,12 +32,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         /// <since_tizen> 3 </since_tizen>
-        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.new_LongPressGesture__SWIG_0((int)state), true)
+        public LongPressGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal LongPressGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LongPressGesture.LongPressGesture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal LongPressGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LongPressGesture_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -86,12 +86,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.LongPressGesture.LongPressGesture_numberOfTouches_set(swigCPtr, value);
+                NDalicPINVOKE.LongPressGesture_numberOfTouches_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.LongPressGesture.LongPressGesture_numberOfTouches_get(swigCPtr);
+                uint ret = NDalicPINVOKE.LongPressGesture_numberOfTouches_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -101,12 +101,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.LongPressGesture.LongPressGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
+                NDalicPINVOKE.LongPressGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.LongPressGesture.LongPressGesture_screenPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = NDalicPINVOKE.LongPressGesture_screenPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -117,12 +117,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.LongPressGesture.LongPressGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
+                NDalicPINVOKE.LongPressGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.LongPressGesture.LongPressGesture_localPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = NDalicPINVOKE.LongPressGesture_localPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -168,7 +168,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.LongPressGesture.delete_LongPressGesture(swigCPtr);
+                    NDalicPINVOKE.delete_LongPressGesture(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

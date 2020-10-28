@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.TimePeriod.delete_TimePeriod(swigCPtr);
+                    NDalicPINVOKE.delete_TimePeriod(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,12 +101,12 @@ namespace Tizen.NUI
         }
 
 
-        public TimePeriod(float durationSeconds) : this(Interop.TimePeriod.new_TimePeriod__SWIG_0(durationSeconds), true)
+        public TimePeriod(float durationSeconds) : this(NDalicPINVOKE.new_TimePeriod__SWIG_0(durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TimePeriod(float delaySeconds, float durationSeconds) : this(Interop.TimePeriod.new_TimePeriod__SWIG_1(delaySeconds, durationSeconds), true)
+        public TimePeriod(float delaySeconds, float durationSeconds) : this(NDalicPINVOKE.new_TimePeriod__SWIG_1(delaySeconds, durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -115,12 +115,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.TimePeriod_delaySeconds_set(swigCPtr, value);
+                NDalicPINVOKE.TimePeriod_delaySeconds_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.TimePeriod_delaySeconds_get(swigCPtr);
+                float ret = NDalicPINVOKE.TimePeriod_delaySeconds_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -130,12 +130,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.TimePeriod_durationSeconds_set(swigCPtr, value);
+                NDalicPINVOKE.TimePeriod_durationSeconds_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.TimePeriod_durationSeconds_get(swigCPtr);
+                float ret = NDalicPINVOKE.TimePeriod_durationSeconds_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

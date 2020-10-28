@@ -24,7 +24,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTrackerInterface_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ConnectionTrackerInterface_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -62,7 +62,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ConnectionTracker.delete_ConnectionTrackerInterface(swigCPtr);
+                    NDalicPINVOKE.delete_ConnectionTrackerInterface(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
+            NDalicPINVOKE.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

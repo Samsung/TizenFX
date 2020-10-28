@@ -33,18 +33,18 @@ namespace Tizen.NUI
         /// <param name="width">The width of the texture.</param>
         /// <param name="height">The height of the texture.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(Interop.Texture.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
+        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(NDalicPINVOKE.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal Texture(NativeImageInterface nativeImageInterface) : this(Interop.Texture.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
+        internal Texture(NativeImageInterface nativeImageInterface) : this(NDalicPINVOKE.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Texture.Texture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Texture_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData)
         {
-            bool ret = Interop.Texture.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
+            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -76,7 +76,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
         {
-            bool ret = Interop.Texture.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
+            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GenerateMipmaps()
         {
-            Interop.Texture.Texture_GenerateMipmaps(swigCPtr);
+            NDalicPINVOKE.Texture_GenerateMipmaps(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -99,7 +99,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetWidth()
         {
-            uint ret = Interop.Texture.Texture_GetWidth(swigCPtr);
+            uint ret = NDalicPINVOKE.Texture_GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetHeight()
         {
-            uint ret = Interop.Texture.Texture_GetHeight(swigCPtr);
+            uint ret = NDalicPINVOKE.Texture_GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -149,7 +149,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.Texture.delete_Texture(swigCPtr);
+                    NDalicPINVOKE.delete_Texture(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

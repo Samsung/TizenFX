@@ -244,7 +244,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an initialized ImageView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView() : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
+        public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -255,19 +255,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(Interop.ImageView.ImageView_New__SWIG_2(url), true)
+        public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
         {
             _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal ImageView(string url, Uint16Pair size) : this(Interop.ImageView.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
+        internal ImageView(string url, Uint16Pair size) : this(NDalicPINVOKE.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
         {
             _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -551,7 +551,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (ImageView.LoadingStatusType)Interop.View.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
+                return (ImageView.LoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
             }
         }
 
@@ -582,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
         public void SetImage(string url)
         {
             _url = url;
-            Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
+            NDalicPINVOKE.ImageView_SetImage__SWIG_1(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -594,7 +594,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public new bool IsResourceReady()
         {
-            bool ret = Interop.View.IsResourceReady(swigCPtr);
+            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -644,20 +644,20 @@ namespace Tizen.NUI.BaseComponents
         internal void SetImage(string url, Uint16Pair size)
         {
             _url = url;
-            Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
+            NDalicPINVOKE.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ViewResourceReadySignal ResourceReadySignal(View view)
         {
-            ViewResourceReadySignal ret = new ViewResourceReadySignal(Interop.View.ResourceReadySignal(View.getCPtr(view)), false);
+            ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
         {
-            return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
         }
 
         /// <summary>
@@ -694,7 +694,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ImageView.delete_ImageView(swigCPtr);
+                    NDalicPINVOKE.delete_ImageView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -775,7 +775,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnResourceLoaded(IntPtr view)
         {
             ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
 
             if (_resourceLoadedEventHandler != null)
             {
@@ -826,14 +826,14 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RESOURCE_URL = Interop.ImageView.ImageView_Property_RESOURCE_URL_get();
-            internal static readonly int IMAGE = Interop.ImageView.ImageView_Property_IMAGE_get();
-            internal static readonly int PRE_MULTIPLIED_ALPHA = Interop.ImageView.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
-            internal static readonly int PIXEL_AREA = Interop.ImageView.ImageView_Property_PIXEL_AREA_get();
-            internal static readonly int ACTION_RELOAD = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
-            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+            internal static readonly int RESOURCE_URL = NDalicPINVOKE.ImageView_Property_RESOURCE_URL_get();
+            internal static readonly int IMAGE = NDalicPINVOKE.ImageView_Property_IMAGE_get();
+            internal static readonly int PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
+            internal static readonly int PIXEL_AREA = NDalicPINVOKE.ImageView_Property_PIXEL_AREA_get();
+            internal static readonly int ACTION_RELOAD = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+            internal static readonly int ACTION_PLAY = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
+            internal static readonly int ACTION_PAUSE = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
+            internal static readonly int ACTION_STOP = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
         }
 
         private enum ImageType

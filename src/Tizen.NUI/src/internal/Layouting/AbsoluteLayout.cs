@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
-using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -22,126 +21,94 @@ namespace Tizen.NUI
     /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
     ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
     /// </summary>
-    internal class AbsoluteLayout : LayoutGroup
+    internal class AbsoluteLayout : LayoutGroupWrapper
     {
-        /// <summary>
-        /// Struct to store Measured states of height and width.
-        /// </summary>
-        private struct HeightAndWidthState
-        {
-            public MeasuredSize.StateType widthState;
-            public MeasuredSize.StateType heightState;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-            public HeightAndWidthState( MeasuredSize.StateType width, MeasuredSize.StateType height)
+        internal AbsoluteLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.AbsoluteLayout_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AbsoluteLayout obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-                widthState = width;
-                heightState = height;
+                return;
             }
-        }
 
-        /// <summary>
-        /// [Draft] Constructor
-        /// </summary>
-        public AbsoluteLayout()
-        {
-        }
-
-        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
-        {
-            Log.Info("NUI", "Measuring[" + _children.Count + "] child(ren)\n");
-            float totalHeight = 0.0f;
-            float totalWidth = 0.0f;
-
-            HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
-                                                                     MeasuredSize.StateType.MeasuredSizeOK);
-
-            float minPositionX = 0.0f;
-            float minPositionY = 0.0f;
-            float maxPositionX = 0.0f;
-            float maxPositionY = 0.0f;
-
-            // measure children
-            foreach( LayoutItem childLayout in _children )
+            if (type == DisposeTypes.Explicit)
             {
-                if (childLayout != null)
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
                 {
-                    // Get size of child
-                    MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
-                    float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                    float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
-
-                    // Determine the width and height needed by the children using their given position and size.
-                    // Children could overlap so find the left most and right most child.
-                    Position2D childPosition = childLayout.Owner.Position2D;
-                    float childLeft = childPosition.X;
-                    float childTop = childPosition.Y;
-
-                    minPositionX = Math.Min( minPositionX, childLeft );
-                    maxPositionX = Math.Max( maxPositionX, childLeft + childWidth );
-                    // Children could overlap so find the highest and lowest child.
-                    minPositionY = Math.Min( minPositionY, childTop );
-                    maxPositionY = Math.Max( maxPositionY, childTop + childHeight );
-
-                    // Store current width and height needed to contain all children.
-                    totalWidth = maxPositionX - minPositionX;
-                    totalHeight = maxPositionY - minPositionY;
-                    Log.Info( "NUI" , "AbsoluteLayout::OnMeasure child width(" + childWidth + ") height(" + childHeight + ")\n" );
-
-                    if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
-                    {
-                        childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
-                    }
-                    if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
-                    {
-                        childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
-                    }
+                    swigCMemOwn = false;
+                    LayoutPINVOKE.delete_AbsoluteLayout(swigCPtr);
                 }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-
-            Log.Info( "NUI" , "AbsoluteLayout::OnMeasure total width(" + totalWidth + ") total height(" + totalHeight + ")\n" );
-
-            MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-            MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-            totalWidth = widthSizeAndState.Size.AsDecimal();
-            totalHeight = heightSizeAndState.Size.AsDecimal();
-
-            // Ensure layout respects it's given minimum size
-            totalWidth = Math.Max( totalWidth, SuggestedMinimumWidth.AsDecimal() );
-            totalHeight = Math.Max( totalHeight, SuggestedMinimumHeight.AsDecimal() );
-
-            widthSizeAndState.State = childState.widthState;
-            heightSizeAndState.State = childState.heightState;
-
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), widthMeasureSpec, childState.widthState ),
-                                   ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childState.heightState ) );
+            base.Dispose(type);
         }
 
-        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        /// <summary>
+        /// [Draft] Creates a AbsoluteLayout object.
+        /// </summary>
+        public AbsoluteLayout() : this(LayoutPINVOKE.AbsoluteLayout_New(), true)
         {
-            // Absolute layout positions it's children at their Actor positions.
-            // Children could overlap or spill outside the parent, as is the nature of absolute positions.
-            foreach( LayoutItem childLayout in _children )
-            {
-                if( childLayout != null )
-                {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-
-                    Position2D childPosition = childLayout.Owner.Position2D;
-
-                    LayoutLength childLeft = new LayoutLength(childPosition.X);
-                    LayoutLength childTop = new LayoutLength(childPosition.Y);
-
-                    Log.Info("NUI", "Child View:" + childLayout.Owner.Name
-                                    + " position(" + childLeft.AsRoundedValue() + ", "
-                                    + childTop.AsRoundedValue() + ") width:"
-                                    + childWidth.AsRoundedValue() + " height:"
-                                    + childHeight.AsRoundedValue() + "\n");
-
-                    childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
-                }
-            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// [Draft] Downcasts a handle to a AbsoluteLayout handle.
+        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle.
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">handle to an object</param>
+        /// <returns>Handle to a AbsoluteLayout or an uninitialized handle</returns>
+        internal static AbsoluteLayout DownCast(BaseHandle handle)
+        {
+            AbsoluteLayout ret = new AbsoluteLayout(LayoutPINVOKE.AbsoluteLayout_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// [Draft] Copy constructor
+        /// </summary>
+        /// <param name="other"></param>
+        internal AbsoluteLayout(AbsoluteLayout other) : this(LayoutPINVOKE.new_AbsoluteLayout__SWIG_1(AbsoluteLayout.getCPtr(other)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal AbsoluteLayout Assign(AbsoluteLayout other)
+        {
+            AbsoluteLayout ret = new AbsoluteLayout(LayoutPINVOKE.AbsoluteLayout_Assign(swigCPtr, AbsoluteLayout.getCPtr(other)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal enum PropertyRange
+        {
+            CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
+            CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
+        }
+
     }
 
-} // namespace
+}
