@@ -31,39 +31,107 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
-        private DetectedCallbackDelegate _panGestureCallbackDelegate;
-
-        /// <summary>
-        /// Creates an initialized PanGestureDetector.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PanGestureDetector() : this(NDalicPINVOKE.PanGestureDetector_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// The copy constructor.
-        /// </summary>
-        /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PanGestureDetector(PanGestureDetector handle) : this(NDalicPINVOKE.new_PanGestureDetector__SWIG_1(PanGestureDetector.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PanGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PanGestureDetector obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_PanGestureDetector(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+
+        /// <summary>
+        /// Event arguments that are passed via the PanGestureEvent signal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class DetectedEventArgs : EventArgs
+        {
+            private View _view;
+            private PanGesture _panGesture;
+
+            /// <summary>
+            /// The attached view.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+
+            /// <summary>
+            /// The PanGesture.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public PanGesture PanGesture
+            {
+                get
+                {
+                    return _panGesture;
+                }
+                set
+                {
+                    _panGesture = value;
+                }
+            }
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr panGesture);
+        private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
+        private DetectedCallbackDelegate _panGestureCallbackDelegate;
 
         /// <summary>
         /// This signal is emitted when the specified pan is detected on the attached view.
@@ -99,6 +167,138 @@ namespace Tizen.NUI
                     _panGestureEventHandler -= value;
                 }
             }
+        }
+
+        private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
+        {
+            DetectedEventArgs e = new DetectedEventArgs();
+
+            // Populate all members of "e" (PanGestureEventArgs) with real data
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+
+            if (_panGestureEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _panGestureEventHandler(this, e);
+            }
+
+        }
+
+        internal static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        {
+            PanGestureDetector ret = new PanGestureDetector(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+            protected bool swigCMemOwn;
+
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            private bool isDisposeQueued = false;
+            //A Flat to check if it is already disposed.
+
+            protected bool disposed = false;
+
+
+            ~Property()
+            {
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+
+            public void Dispose()
+            {
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                    System.GC.SuppressFinalize(this);
+                }
+            }
+
+
+            protected virtual void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    //Called by User
+                    //Release your own managed resources here.
+                    //You should release all of your own disposable objects here.
+
+                }
+
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_PanGestureDetector_Property(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+
+                disposed = true;
+            }
+
+
+            public Property() : this(NDalicPINVOKE.new_PanGestureDetector_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+
+            public static readonly int SCREEN_POSITION = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_POSITION_get();
+
+            public static readonly int SCREEN_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
+
+            public static readonly int SCREEN_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_VELOCITY_get();
+
+            public static readonly int LOCAL_POSITION = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_POSITION_get();
+
+            public static readonly int LOCAL_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
+
+            public static readonly int LOCAL_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_VELOCITY_get();
+
+            public static readonly int PANNING = NDalicPINVOKE.PanGestureDetector_Property_PANNING_get();
+
         }
 
         /// <summary>
@@ -214,108 +414,39 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the screen position.
+        /// Creates an initialized PanGestureDetector.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 ScreenPosition
+        public PanGestureDetector() : this(NDalicPINVOKE.PanGestureDetector_New(), true)
         {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_POSITION).Get(temp);
-                return temp;
-            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        internal new static PanGestureDetector DownCast(BaseHandle handle)
+        {
+            PanGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PanGestureDetector;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// Retrieves the screen displacement.
+        /// The copy constructor.
         /// </summary>
+        /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 ScreenDisplacement
+        public PanGestureDetector(PanGestureDetector handle) : this(NDalicPINVOKE.new_PanGestureDetector__SWIG_1(PanGestureDetector.getCPtr(handle)), true)
         {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_DISPLACEMENT).Get(temp);
-                return temp;
-            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Retrieves the screen velocity.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 ScreenVelocity
+        internal PanGestureDetector Assign(PanGestureDetector rhs)
         {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_VELOCITY).Get(temp);
-                return temp;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the local position.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 LocalPosition
-        {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_POSITION).Get(temp);
-                return temp;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the local displacement
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 LocalDisplacement
-        {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_DISPLACEMENT).Get(temp);
-                return temp;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the local velocity.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 LocalVelocity
-        {
-            get
-            {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_VELOCITY).Get(temp);
-                return temp;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the panning flag.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Panning
-        {
-            get
-            {
-                bool temp = false;
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.PANNING).Get(out temp);
-                return temp;
-            }
+            PanGestureDetector ret = new PanGestureDetector(NDalicPINVOKE.PanGestureDetector_Assign(swigCPtr, PanGestureDetector.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -439,6 +570,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal AngleThresholdPair GetAngle(uint index)
+        {
+            AngleThresholdPair ret = new AngleThresholdPair(NDalicPINVOKE.PanGestureDetector_GetAngle(swigCPtr, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Clears any directional angles that are used by the gesture detector.
         /// </summary>
@@ -474,6 +612,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal PanGestureDetectedSignal DetectedSignal()
+        {
+            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(NDalicPINVOKE.PanGestureDetector_DetectedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Allows setting of the pan properties that are returned in constraints.
         /// </summary>
@@ -486,250 +631,109 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        /// <summary>
+        /// Retrieves the screen position.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 ScreenPosition
         {
-            PanGestureDetector ret = new PanGestureDetector(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PanGestureDetector obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal new static PanGestureDetector DownCast(BaseHandle handle)
-        {
-            PanGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PanGestureDetector;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal AngleThresholdPair GetAngle(uint index)
-        {
-            AngleThresholdPair ret = new AngleThresholdPair(NDalicPINVOKE.PanGestureDetector_GetAngle(swigCPtr, index), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal PanGestureDetector Assign(PanGestureDetector rhs)
-        {
-            PanGestureDetector ret = new PanGestureDetector(NDalicPINVOKE.PanGestureDetector_Assign(swigCPtr, PanGestureDetector.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal PanGestureDetectedSignal DetectedSignal()
-        {
-            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(NDalicPINVOKE.PanGestureDetector_DetectedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            get
+            {
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_POSITION).Get(temp);
+                return temp;
+            }
         }
 
         /// <summary>
-        /// Dispose.
+        /// Retrieves the screen displacement.
         /// </summary>
-        /// <param name="type">The dispose type</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        public Vector2 ScreenDisplacement
         {
-            if (disposed)
+            get
             {
-                return;
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_DISPLACEMENT).Get(temp);
+                return temp;
             }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PanGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
-        {
-            DetectedEventArgs e = new DetectedEventArgs();
-
-            // Populate all members of "e" (PanGestureEventArgs) with real data
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
-
-            if (_panGestureEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _panGestureEventHandler(this, e);
-            }
-
         }
 
         /// <summary>
-        /// Event arguments that are passed via the PanGestureEvent signal.
+        /// Retrieves the screen velocity.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class DetectedEventArgs : EventArgs
+        public Vector2 ScreenVelocity
         {
-            private View _view;
-            private PanGesture _panGesture;
-
-            /// <summary>
-            /// The attached view.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public View View
+            get
             {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-
-            /// <summary>
-            /// The PanGesture.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public PanGesture PanGesture
-            {
-                get
-                {
-                    return _panGesture;
-                }
-                set
-                {
-                    _panGesture = value;
-                }
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_VELOCITY).Get(temp);
+                return temp;
             }
         }
 
-        internal class Property : global::System.IDisposable
+        /// <summary>
+        /// Retrieves the local position.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 LocalPosition
         {
-            public static readonly int SCREEN_POSITION = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_POSITION_get();
-
-            public static readonly int SCREEN_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
-
-            public static readonly int SCREEN_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_VELOCITY_get();
-
-            public static readonly int LOCAL_POSITION = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_POSITION_get();
-
-            public static readonly int LOCAL_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
-
-            public static readonly int LOCAL_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_VELOCITY_get();
-
-            public static readonly int PANNING = NDalicPINVOKE.PanGestureDetector_Property_PANNING_get();
-
-            protected bool swigCMemOwn;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-
-            public Property() : this(NDalicPINVOKE.new_PanGestureDetector_Property(), true)
+            get
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_POSITION).Get(temp);
+                return temp;
             }
+        }
 
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+        /// <summary>
+        /// Retrieves the local displacement
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 LocalDisplacement
+        {
+            get
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_DISPLACEMENT).Get(temp);
+                return temp;
             }
+        }
 
-            ~Property()
+        /// <summary>
+        /// Retrieves the local velocity.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 LocalVelocity
+        {
+            get
             {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
+                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_VELOCITY).Get(temp);
+                return temp;
             }
+        }
 
-
-            public void Dispose()
+        /// <summary>
+        /// Retrieves the panning flag.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Panning
+        {
+            get
             {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
+                bool temp = false;
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.PANNING).Get(out temp);
+                return temp;
             }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_PanGestureDetector_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-
         }
     }
 

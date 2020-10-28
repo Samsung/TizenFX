@@ -68,7 +68,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public new class ChildProperty
+        public class ChildProperty
         {
             public static readonly int MARGIN_SPECIFICATION = LayoutPINVOKE.LayoutGroupWrapper_ChildProperty_MARGIN_SPECIFICATION_get();
         }

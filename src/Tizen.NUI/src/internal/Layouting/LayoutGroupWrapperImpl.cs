@@ -28,9 +28,9 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        public new delegate void OnMeasureDelegate(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec);
-        public new delegate void OnLayoutDelegate(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom);
-        public new delegate void OnSizeChangedDelegate(LayoutSize newSize, LayoutSize oldSize);
+        public delegate void OnMeasureDelegate(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec);
+        public delegate void OnLayoutDelegate(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom);
+        public delegate void OnSizeChangedDelegate(LayoutSize newSize, LayoutSize oldSize);
         public delegate void OnChildAddDelegate(LayoutItemWrapperImpl child);
         public delegate void OnChildRemoveDelegate(LayoutItemWrapperImpl child);
         public delegate void DoInitializeDelegate();
@@ -39,9 +39,9 @@ namespace Tizen.NUI
         public delegate void MeasureChildDelegate(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutMeasureSpec parentHeightMeasureSpec);
         public delegate void MeasureChildWithMarginsDelegate(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutLength widthUsed, LayoutMeasureSpec parentHeightMeasureSpec, LayoutLength heightUsed);
 
-        public new OnMeasureDelegate OnMeasure;
-        public new OnLayoutDelegate OnLayout;
-        public new OnSizeChangedDelegate OnSizeChanged;
+        public OnMeasureDelegate OnMeasure;
+        public OnLayoutDelegate OnLayout;
+        public OnSizeChangedDelegate OnSizeChanged;
         public OnChildAddDelegate OnChildAdd;
         public OnChildRemoveDelegate OnChildRemove;
         public DoInitializeDelegate DoInitialize;
@@ -191,21 +191,18 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private new void SwigDirectorConnect()
+        private void SwigDirectorConnect()
         {
             base.SwigDirectorConnect();
 
             //swigDelegate0 = new SwigDelegateLayoutGroupWrapperImpl_0(SwigDirectorGetParent);
-            swigDelegate0 = null;
             swigDelegate3 = new SwigDelegateLayoutGroupWrapperImpl_3(SwigDirectorOnMeasure);
             swigDelegate4 = new SwigDelegateLayoutGroupWrapperImpl_4(SwigDirectorOnLayout);
             swigDelegate5 = new SwigDelegateLayoutGroupWrapperImpl_5(SwigDirectorOnSizeChanged);
-            swigDelegate6 = null;
             swigDelegate7 = new SwigDelegateLayoutGroupWrapperImpl_7(SwigDirectorOnChildAdd);
             swigDelegate8 = new SwigDelegateLayoutGroupWrapperImpl_8(SwigDirectorOnChildRemove);
             swigDelegate9 = new SwigDelegateLayoutGroupWrapperImpl_9(SwigDirectorDoInitialize);
             swigDelegate10 = new SwigDelegateLayoutGroupWrapperImpl_10(SwigDirectorDoRegisterChildProperties);
-            swigDelegate11 = null;
             swigDelegate12 = new SwigDelegateLayoutGroupWrapperImpl_12(SwigDirectorMeasureChildren);
             swigDelegate13 = new SwigDelegateLayoutGroupWrapperImpl_13(SwigDirectorMeasureChild);
             swigDelegate14 = new SwigDelegateLayoutGroupWrapperImpl_14(SwigDirectorMeasureChildWithMargins);
