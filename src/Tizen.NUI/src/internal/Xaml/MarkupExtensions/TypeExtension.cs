@@ -4,7 +4,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Xaml
 {
     [ContentProperty(nameof(TypeName))]
-    [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.TypeExtension")]
+    // [ProvideCompiled("Tizen.NUI.Build.Tasks.TypeExtension")]
     internal class TypeExtension : IMarkupExtension<Type>
     {
         public string TypeName { get; set; }

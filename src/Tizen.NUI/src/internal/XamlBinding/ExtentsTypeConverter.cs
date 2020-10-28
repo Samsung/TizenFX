@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -16,10 +15,7 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 4)
                 {
-                    return new Extents(ushort.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
-                                       ushort.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
-                                       ushort.Parse(parts[2].Trim(), CultureInfo.InvariantCulture), 
-                                       ushort.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
+                    return new Extents(ushort.Parse(parts[0].Trim()), ushort.Parse(parts[1].Trim()), ushort.Parse(parts[2].Trim()), ushort.Parse(parts[3].Trim()));
                 }
             }
 

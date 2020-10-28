@@ -3,7 +3,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    [ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.PassthroughValueProvider")]
+    // [ProvideCompiled("Xamarin.Forms.Core.XamlC.PassthroughValueProvider")]
     [AcceptEmptyServiceProvider]
     internal sealed class BindingCondition : Condition, IValueProvider
     {

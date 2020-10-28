@@ -17,7 +17,6 @@
 
 using System;
 using Tizen.NUI.Binding;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The Color class.
     /// </summary>
-    [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
+    [TypeConverter(typeof(ColorTypeConverter))]
     public class Color : global::System.IDisposable
     {
 
@@ -99,8 +98,6 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
-        private readonly bool hashDummy;
-
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -138,7 +135,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-			hashDummy = false;
         }
 
         /// <summary>
@@ -619,55 +615,6 @@ namespace Tizen.NUI
             Color ret = new Color(NDalicPINVOKE.Vector4_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        private static bool EqualsColorValue(float f1, float f2)
-        {
-            float EPS = (float)Math.Abs(f1 * .00001);
-            if(Math.Abs(f1 - f2) <= EPS)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private static bool EqualsColor(Color c1, Color c2)
-        {
-            return EqualsColorValue(c1.R, c2.R) && EqualsColorValue(c1.G, c2.G)
-                && EqualsColorValue(c1.B, c2.B) && EqualsColorValue(c1.A, c2.A);
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(System.Object obj)
-        {
-            Color color = obj as Color;
-            bool equal = false;
-            if (color == null)
-            {
-                return equal;
-            }
-
-            if (EqualsColor(this, color))
-            {
-                equal = true;
-            }
-            return equal;
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode()
-        {
-            return hashDummy.GetHashCode();
         }
 
         private float ValueOfIndex(uint index)

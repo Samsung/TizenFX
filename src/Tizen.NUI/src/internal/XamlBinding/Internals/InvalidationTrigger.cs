@@ -4,6 +4,7 @@ using System.ComponentModel;
 namespace Tizen.NUI.Binding.Internals
 {
     [Flags]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal enum InvalidationTrigger
     {
         Undefined = 0,

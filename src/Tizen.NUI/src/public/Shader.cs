@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -160,6 +159,5 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
         }
-
     }
 }

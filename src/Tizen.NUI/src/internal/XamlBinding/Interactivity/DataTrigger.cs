@@ -5,7 +5,7 @@ using Tizen.NUI.Xaml;
 namespace Tizen.NUI.Binding
 {
     [ContentProperty("Setters")]
-    [ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.PassthroughValueProvider")]
+    // [ProvideCompiled("Xamarin.Forms.Core.XamlC.PassthroughValueProvider")]
     [AcceptEmptyServiceProvider]
     internal sealed class DataTrigger : TriggerBase, IValueProvider
     {

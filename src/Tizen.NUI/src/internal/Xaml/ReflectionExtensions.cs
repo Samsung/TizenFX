@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace Tizen.NUI.Binding.Internals
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class ReflectionExtensions
     {
         public static FieldInfo GetField(this Type type, Func<FieldInfo, bool> predicate)

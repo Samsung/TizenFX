@@ -15,8 +15,6 @@ namespace Tizen.NUI.Binding
 
         BindingMode _mode = BindingMode.Default;
         string _stringFormat;
-        object _targetNullValue;
-        object _fallbackValue;
 
         internal BindingBase()
         {
@@ -57,24 +55,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-		public object TargetNullValue
-		{
-			get { return _targetNullValue; }
-			set {
-				ThrowIfApplied();
-				_targetNullValue = value;
-			}
-		}
-
-		public object FallbackValue {
-			get => _fallbackValue;
-			set {
-				ThrowIfApplied();
-				_fallbackValue = value;
-			}
-		}
-
-		internal bool AllowChaining { get; set; }
+        internal bool AllowChaining { get; set; }
 
         internal object Context { get; set; }
 
@@ -92,7 +73,7 @@ namespace Tizen.NUI.Binding
             SynchronizedCollections.Remove(collection);
         }
 
-        public static void EnableCollectionSynchronization(IEnumerable collection, object context, CollectionSynchronizationCallback callback)
+        internal static void EnableCollectionSynchronization(IEnumerable collection, object context, CollectionSynchronizationCallback callback)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -125,8 +106,6 @@ namespace Tizen.NUI.Binding
 
         internal virtual object GetSourceValue(object value, Type targetPropertyType)
         {
-            if (value == null && TargetNullValue != null)
-                return TargetNullValue;
             if (StringFormat != null)
                 return string.Format(StringFormat, value);
 

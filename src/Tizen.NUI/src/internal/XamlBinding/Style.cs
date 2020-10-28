@@ -8,7 +8,7 @@ namespace Tizen.NUI.Binding
     [ContentProperty("Setters")]
     internal sealed class Style : IStyle
     {
-        internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
+        internal const string StyleClassPrefix = "Xamarin.Forms.StyleClass.";
 
         readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(Style), typeof(Style), default(Style),
             propertyChanged: OnBasedOnResourceChanged);
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal IList<Behavior> Behaviors
+        public IList<Behavior> Behaviors
         {
             get { return _behaviors ?? (_behaviors = new AttachedCollection<Behavior>()); }
         }
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Binding
 
         public IList<Setter> Setters { get; }
 
-        internal IList<TriggerBase> Triggers
+        public IList<TriggerBase> Triggers
         {
             get { return _triggers ?? (_triggers = new AttachedCollection<TriggerBase>()); }
         }

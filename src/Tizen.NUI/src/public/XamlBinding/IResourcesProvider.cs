@@ -10,7 +10,6 @@ namespace Tizen.NUI.Binding
         /// Check if resources created.
         /// </summary>
         bool IsResourcesCreated { get; }
-
         /// <summary>
         /// Saved xaml resources.
         /// </summary>

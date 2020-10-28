@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// KeyboardTypeSignalType
     /// </summary>
@@ -195,4 +195,5 @@ namespace Tizen.NUI
         }
 
     }
+
 }

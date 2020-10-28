@@ -347,13 +347,8 @@ namespace Tizen.NUI.Binding
         {
             INameScope namescope = GetNameScope();
             if (namescope == null)
-            {
-                return null;
-            }
-            else
-            {
-                return namescope.FindByName(name);
-            }
+                throw new InvalidOperationException("this element is not in a namescope");
+            return namescope.FindByName(name);
         }
 
         void INameScope.RegisterName(string name, object scopedElement)
@@ -605,8 +600,6 @@ namespace Tizen.NUI.Binding
             object value;
             if (this.TryGetResource(key, out value))
                 OnResourceChanged(property, value);
-
-            Tizen.NUI.Application.AddResourceChangedCallback(this, (this as Element).OnResourcesChanged);
         }
 
         internal event EventHandler ParentSet;
