@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// KeyValue class.
     /// </summary>
-    public class KeyValue
+    public class KeyValue : Disposable
     {
         /// <summary>
         /// Int key.
@@ -345,6 +346,23 @@ namespace Tizen.NUI
             {
                 KeyString = Key;
             }
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            TrueValue?.Dispose();
+
+            base.Dispose();
         }
     }
 }
