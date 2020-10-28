@@ -168,10 +168,7 @@ namespace Tizen.Nlp
             } while (true);
         }
 
-        public Message(string appId)
-        {
-            _appId = appId;
-        }
+        public Message(string appId) => _appId = appId;
 
         public void Connect()
         {

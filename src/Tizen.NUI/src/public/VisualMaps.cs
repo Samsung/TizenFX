@@ -621,27 +621,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VisualFittingModeType VisualFittingMode
         {
-            get
-            {
-                if (_visualFittingMode == null)
-                {
-                    if (this is AnimatedImageVisual ||
-                        this is MeshVisual ||
-                        this is PrimitiveVisual ||
-                        this is TextVisual)
-                    {
-                        return VisualFittingModeType.FitKeepAspectRatio;
-                    }
-                    else
-                    {
-                        return VisualFittingModeType.Fill;
-                    }
-                }
-                else
-                {
-                    return (VisualFittingModeType)_visualFittingMode;
-                }
-            }
             set
             {
                 _visualFittingMode = value;

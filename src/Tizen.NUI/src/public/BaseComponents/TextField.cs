@@ -974,7 +974,6 @@ namespace Tizen.NUI.BaseComponents
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
-        private InputMethodContext inputMethodCotext = null;
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -1026,7 +1025,8 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    inputMethodCotext?.Dispose();
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
                     NDalicPINVOKE.delete_TextField(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -1288,15 +1288,10 @@ namespace Tizen.NUI.BaseComponents
         /// Get the InputMethodContext instance.
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
-        public InputMethodContext GetInputMethodContext()
-        {
-            if (inputMethodCotext == null)
-            {
-                /*Avoid raising InputMethodContext reference count.*/
-                inputMethodCotext = new InputMethodContext(NDalicPINVOKE.TextField_GetInputMethodContext(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            return inputMethodCotext;
+        public InputMethodContext GetInputMethodContext() {
+            InputMethodContext ret = new InputMethodContext(NDalicPINVOKE.TextField_GetInputMethodContext(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal TextFieldSignal TextChangedSignal()

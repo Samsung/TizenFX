@@ -32,33 +32,32 @@ namespace Tizen.Multimedia.Remoting
 
     internal static class MediaControllerErrorExtensions
     {
-        internal static void ThrowIfError(this MediaControllerError error, string message)
+        internal static void ThrowIfError(this MediaControllerError error, string errorMessage)
         {
             if (error == MediaControllerError.None)
             {
                 return;
             }
 
-            string msg = $"{ (message ?? "Operation failed") } : { error.ToString() }.";
-
             switch (error)
             {
                 case MediaControllerError.InvalidParameter:
-                    throw new ArgumentException(msg);
+                    throw new ArgumentException(errorMessage);
 
-                // User should not throw System.OutOfMemoryException itself.
                 case MediaControllerError.OutOfMemory:
+                    throw new OutOfMemoryException(errorMessage);
+
                 case MediaControllerError.InvalidOperation:
-                    throw new InvalidOperationException(msg);
+                    throw new InvalidOperationException(errorMessage);
 
                 case MediaControllerError.NoSpaceOnDevice:
-                    throw new IOException($"Not enough storage : {msg}");
+                    throw new IOException($"Not enough storage : {errorMessage}");
 
                 case MediaControllerError.PermissionDenied:
-                    throw new UnauthorizedAccessException(msg);
+                    throw new UnauthorizedAccessException(errorMessage);
             }
 
-            throw new InvalidOperationException($"Unknown error({error}) : {message}");
+            throw new InvalidOperationException($"Unknown error({error}) : {errorMessage}");
         }
     }
 }

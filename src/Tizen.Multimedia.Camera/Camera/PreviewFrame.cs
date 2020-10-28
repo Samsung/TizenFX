@@ -50,10 +50,6 @@ namespace Tizen.Multimedia
                 {
                     return new DepthPlane(unmanagedStruct.Plane.DepthPlane);
                 }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Rgba || unmanagedStruct.Format == CameraPixelFormat.Argb)
-                {
-                    return new RgbPlane(unmanagedStruct.Plane.RgbPlane);
-                }
                 else
                 {
                     return new SinglePlane(unmanagedStruct.Plane.SinglePlane);
@@ -83,10 +79,6 @@ namespace Tizen.Multimedia
                 else if (unmanagedStruct.Format == CameraPixelFormat.Invz)
                 {
                     return PlaneType.DepthPlane;
-                }
-                else if (unmanagedStruct.Format == CameraPixelFormat.Rgba || unmanagedStruct.Format == CameraPixelFormat.Argb)
-                {
-                    return PlaneType.RgbPlane;
                 }
                 else
                 {
