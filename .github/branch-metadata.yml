@@ -27,3 +27,6 @@ API4:
   labels: [ API4 ]
   tizen-branch: tizen_4.0
   version-prefix: 4.0.1
+
+DevelNUI:
+  labels: [ Devel-NUI ]
