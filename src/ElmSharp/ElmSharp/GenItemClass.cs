@@ -217,8 +217,8 @@ namespace ElmSharp
 
         void EvasObjectDeleted(object sender, EventArgs e)
         {
-            if(sender is EvasObject evasObject)
-                s_HandleToEvasObject.Remove(evasObject);
+            IntPtr handle = (sender as EvasObject).Handle;
+            s_HandleToEvasObject.Remove(handle);
         }
 
         IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old)

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -177,9 +177,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks</param>
         /// <since_tizen> 4 </since_tizen>
-        public void Emit(InputMethodContext arg)
+        public void Emit(ImfManager arg)
         {
-            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, InputMethodContext.getCPtr(arg));
+            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

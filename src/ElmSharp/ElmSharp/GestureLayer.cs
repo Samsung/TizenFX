@@ -531,7 +531,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_gesture_layer_add(parent.Handle);
+            return Interop.Elementary.elm_gesture_layer_add(parent);
         }
 
         /// <summary>
@@ -559,14 +559,11 @@ namespace ElmSharp
             // thanks to the fact that we never remove item from _handlers, we don't need a lock here
             if (handlerIndex < 0 || handlerIndex >= _handlers.Count)
                 return;
-
-            var currentHandler = _handlers[handlerIndex];
-            Action<object> action = currentHandler.Action;
+            Action<object> action = _handlers[handlerIndex].Action;
             if (action == null)
                 return;
-
             // the interpretation of the event_info struct pointer depends on the GestureType
-            switch (currentHandler.Type)
+            switch (_handlers[handlerIndex].Type)
             {
                 case GestureType.Tap:
                 case GestureType.LongTap:

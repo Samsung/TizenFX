@@ -20,6 +20,7 @@ using Tizen.Multimedia;
 
 internal static partial class Interop
 {
+
     internal static partial class Recorder
     {
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_audiorecorder")]

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="Tizen.NUI.Examples.AmbientDuoPage"
-  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
-  <ImageView Name="photo00" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/default/picture_d_1.jpg" Position2D="287,260" Size2D="560,560" />
-  <ImageView Name="photo01" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/default/picture_d_2.jpg" Position2D="1073,260" Size2D="560,560" />
-</ContentPage>

@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-using static Interop;
 using System;
-using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using static Interop;
 
 namespace Tizen.Multimedia
 {
@@ -86,8 +88,14 @@ namespace Tizen.Multimedia
         internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamVideoSeekingOccurred;
         private NativePlayer.MediaStreamSeekCallback _mediaStreamVideoSeekCallback;
 
+        private bool _callbackRegistered;
+
         private void RegisterEvents()
         {
+            if (_callbackRegistered)
+            {
+                return;
+            }
             RegisterSubtitleUpdatedCallback();
             RegisterErrorOccurredCallback();
             RegisterPlaybackInterruptedCallback();
@@ -96,6 +104,8 @@ namespace Tizen.Multimedia
             RegisterMediaStreamBufferStatusCallback();
             RegisterMediaStreamSeekCallback();
             RegisterPlaybackCompletedCallback();
+
+            _callbackRegistered = true;
         }
 
         private void RegisterSubtitleUpdatedCallback()
@@ -154,18 +164,6 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetErrorCb(Handle, _playbackErrorCallback).
                 ThrowIfFailed(this, "Failed to set PlaybackError");
-        }
-
-        /// <summary>
-        /// Raises the <see cref="ErrorOccurred"/> event.
-        /// </summary>
-        /// <param name="e">
-        /// An <see cref="PlayerErrorOccurredEventArgs"/> that contains the event data.
-        /// </param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void OnErrorOccurred(PlayerErrorOccurredEventArgs e)
-        {
-            ErrorOccurred?.Invoke(this, e);
         }
 
         #region VideoFrameDecoded event

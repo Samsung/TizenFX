@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Native = Interop.MediaCodec;
 
 namespace Tizen.Multimedia.MediaCodec
 {
@@ -43,7 +42,14 @@ namespace Tizen.Multimedia.MediaCodec
         /// <since_tizen> 3 </since_tizen>
         public MediaCodec()
         {
-            Native.Create(out _handle).ThrowIfFailed("Failed to create media codec.");
+            int ret = Interop.MediaCodec.Create(out _handle);
+
+            if (ret == (int)MediaCodecErrorCode.InvalidOperation)
+            {
+                throw new InvalidOperationException("Not able to initialize a new media codec.");
+            }
+
+            MultimediaDebug.AssertNoError(ret);
 
             RegisterInputProcessed();
             RegisterErrorOccurred();
@@ -65,7 +71,7 @@ namespace Tizen.Multimedia.MediaCodec
             {
                 if (_handle != IntPtr.Zero)
                 {
-                    Native.Destroy(_handle).ThrowIfFailed("Failed to destry media codec.");
+                    Interop.MediaCodec.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
 
@@ -168,7 +174,7 @@ namespace Tizen.Multimedia.MediaCodec
             var videoCodecList = new List<MediaFormatVideoMimeType>();
             var audioCodecList = new List<MediaFormatAudioMimeType>();
 
-            Native.SupportedCodecCallback cb = (codecType, _) =>
+            Interop.MediaCodec.SupportedCodecCallback cb = (codecType, _) =>
             {
                 if ((codecType & CodecKindMask) == CodecKindVideo)
                 {
@@ -190,7 +196,9 @@ namespace Tizen.Multimedia.MediaCodec
                 return true;
             };
 
-            Native.ForeachSupportedCodec(cb, IntPtr.Zero).ThrowIfFailed("Failed to get supported codec.");
+            int ret = Interop.MediaCodec.ForeachSupportedCodec(cb, IntPtr.Zero);
+
+            MultimediaDebug.AssertNoError(ret);
 
             _supportedVideoCodecs = videoCodecList.AsReadOnly();
             _supportedAudioCodecs = audioCodecList.AsReadOnly();
@@ -211,7 +219,18 @@ namespace Tizen.Multimedia.MediaCodec
         {
             ValidateNotDisposed();
 
-            Native.Prepare(_handle).ThrowIfFailed("Failed to prepare media codec.");
+            int ret = Interop.MediaCodec.Prepare(_handle);
+
+            if (ret == (int)MediaCodecErrorCode.NotInitialized)
+            {
+                throw new InvalidOperationException("The codec is not configured.");
+            }
+            if (ret != (int)MediaCodecErrorCode.None)
+            {
+                throw new InvalidOperationException("Operation failed.");
+            }
+
+            MultimediaDebug.AssertNoError(ret);
         }
 
         /// <summary>
@@ -224,7 +243,9 @@ namespace Tizen.Multimedia.MediaCodec
         {
             ValidateNotDisposed();
 
-            Native.Unprepare(_handle).ThrowIfFailed("Failed to unprepare media codec.");
+            int ret = Interop.MediaCodec.Unprepare(_handle);
+
+            MultimediaDebug.AssertNoError(ret);
         }
 
         /// <summary>
@@ -288,13 +309,17 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (encoder)
             {
-                Native.SetAudioEncoderInfo(_handle, format.SampleRate, format.Channel, format.Bit, format.BitRate).
-                    ThrowIfFailed("Failed to set audio encoder information.");
+                int ret = Interop.MediaCodec.SetAudioEncoderInfo(_handle, format.SampleRate,
+                    format.Channel, format.Bit, format.BitRate);
+
+                MultimediaDebug.AssertNoError(ret);
             }
             else
             {
-                Native.SetAudioDecoderInfo(_handle, format.SampleRate, format.Channel, format.Bit).
-                    ThrowIfFailed("Failed to set audio decoder information.");
+                int ret = Interop.MediaCodec.SetAudioDecoderInfo(_handle, format.SampleRate,
+                    format.Channel, format.Bit);
+
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -313,13 +338,16 @@ namespace Tizen.Multimedia.MediaCodec
 
             if (encoder)
             {
-                Native.SetVideoEncoderInfo(_handle, format.Size.Width, format.Size.Height, format.FrameRate, format.BitRate / 1000).
-                    ThrowIfFailed("Failed to set video encoder information.");
+                int ret = Interop.MediaCodec.SetVideoEncoderInfo(_handle, format.Size.Width,
+                    format.Size.Height, format.FrameRate, format.BitRate / 1000);
+
+                MultimediaDebug.AssertNoError(ret);
             }
             else
             {
-                Native.SetVideoDecoderInfo(_handle, format.Size.Width, format.Size.Height).
-                    ThrowIfFailed("Failed to set video decoder information.");
+                int ret = Interop.MediaCodec.SetVideoDecoderInfo(_handle, format.Size.Width, format.Size.Height);
+
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -331,7 +359,13 @@ namespace Tizen.Multimedia.MediaCodec
 
             flags |= (int)supportType;
 
-            Native.Configure(_handle, codecType, flags).ThrowIfFailed("Failed to configure media codec.");
+            int ret = Interop.MediaCodec.Configure(_handle, codecType, flags);
+
+            if (ret == (int)MediaCodecErrorCode.NotSupportedOnDevice)
+            {
+                throw new NotSupportedException("The format is not supported.");
+            }
+            MultimediaDebug.AssertNoError(ret);
         }
 
         /// <summary>
@@ -355,7 +389,14 @@ namespace Tizen.Multimedia.MediaCodec
 
             MediaPacket.Lock packetLock = MediaPacket.Lock.Get(packet);
 
-            Native.Process(_handle, packetLock.GetHandle(), 0).ThrowIfFailed("Failed to process input."); ;
+            int ret = Interop.MediaCodec.Process(_handle, packetLock.GetHandle(), 0);
+
+            if (ret == (int)MediaCodecErrorCode.InvalidState)
+            {
+                throw new InvalidOperationException("The codec is in invalid state.");
+            }
+
+            MultimediaDebug.AssertNoError(ret);
         }
 
         /// <summary>
@@ -368,7 +409,9 @@ namespace Tizen.Multimedia.MediaCodec
         {
             ValidateNotDisposed();
 
-            Native.FlushBuffers(_handle).ThrowIfFailed("Failed to flush buffers.");
+            int ret = Interop.MediaCodec.FlushBuffers(_handle);
+
+            MultimediaDebug.AssertNoError(ret);
         }
 
         /// <summary>
@@ -418,9 +461,11 @@ namespace Tizen.Multimedia.MediaCodec
         private MediaCodecTypes GetCodecType(int mimeType, bool isEncoder)
         {
             int codecType = mimeType & CodecTypeMask;
+            int value = 0;
 
-            Native.GetSupportedType(_handle, codecType, isEncoder, out int value).
-                ThrowIfFailed("Failed to get supported media codec type.");
+            int ret = Interop.MediaCodec.GetSupportedType(_handle, codecType, isEncoder, out value);
+
+            MultimediaDebug.AssertNoError(ret);
 
             return (MediaCodecTypes)value;
         }
@@ -439,7 +484,7 @@ namespace Tizen.Multimedia.MediaCodec
 
         #region OutputAvailable event
         private EventHandler<OutputAvailableEventArgs> _outputAvailable;
-        private Native.OutputBufferAvailableCallback _outputBufferAvailableCb;
+        private Interop.MediaCodec.OutputBufferAvailableCallback _outputBufferAvailableCb;
         private object _outputAvailableLock = new object();
 
         /// <summary>
@@ -484,15 +529,7 @@ namespace Tizen.Multimedia.MediaCodec
             {
                 if (_outputAvailable == null)
                 {
-                    try
-                    {
-                        Native.Destroy(packetHandle).ThrowIfFailed("Failed to destroy packet.");
-                    }
-                    catch (Exception)
-                    {
-                        // Do not throw exception in pinvoke callback.
-                    }
-
+                    Interop.MediaPacket.Destroy(packetHandle);
                     return;
                 }
 
@@ -503,14 +540,7 @@ namespace Tizen.Multimedia.MediaCodec
                 }
                 catch (Exception e)
                 {
-                    try
-                    {
-                        Native.Destroy(packetHandle).ThrowIfFailed("Failed to destroy packet.");
-                    }
-                    catch
-                    {
-                        // Do not throw exception in pinvoke callback.
-                    }
+                    Interop.MediaPacket.Destroy(packetHandle);
 
                     MultimediaLog.Error(typeof(MediaCodec).FullName, "Failed to raise OutputAvailable event", e);
                 }
@@ -521,18 +551,21 @@ namespace Tizen.Multimedia.MediaCodec
                 }
             };
 
-            Native.SetOutputBufferAvailableCb(_handle, _outputBufferAvailableCb).
-                ThrowIfFailed("Failed to set output buffer available callback.");
+            int ret = Interop.MediaCodec.SetOutputBufferAvailableCb(_handle, _outputBufferAvailableCb);
+
+            MultimediaDebug.AssertNoError(ret);
         }
 
         private void UnregisterOutputAvailableCallback()
         {
-            Native.UnsetOutputBufferAvailableCb(_handle).ThrowIfFailed("Failed to unregister output available callback.");
+            int ret = Interop.MediaCodec.UnsetOutputBufferAvailableCb(_handle);
+
+            MultimediaDebug.AssertNoError(ret);
         }
         #endregion
 
         #region InputProcessed event
-        private Native.InputBufferUsedCallback _inputBufferUsedCb;
+        private Interop.MediaCodec.InputBufferUsedCallback _inputBufferUsedCb;
 
         /// <summary>
         /// Occurs when an input packet is processed.
@@ -560,13 +593,14 @@ namespace Tizen.Multimedia.MediaCodec
                 InputProcessed?.Invoke(this, new InputProcessedEventArgs(packet));
             };
 
-            Native.SetInputBufferUsedCb(_handle, _inputBufferUsedCb).
-                ThrowIfFailed("Failed to set input buffer used callback.");
+            int ret = Interop.MediaCodec.SetInputBufferUsedCb(_handle, _inputBufferUsedCb);
+
+            MultimediaDebug.AssertNoError(ret);
         }
         #endregion
 
         #region ErrorOccurred event
-        private Native.ErrorCallback _errorCb;
+        private Interop.MediaCodec.ErrorCallback _errorCb;
 
         /// <summary>
         /// Occurs whenever an error is produced in the codec.
@@ -583,12 +617,14 @@ namespace Tizen.Multimedia.MediaCodec
 
                 ErrorOccurred?.Invoke(this, new MediaCodecErrorOccurredEventArgs(error));
             };
-            Native.SetErrorCb(_handle, _errorCb).ThrowIfFailed("Failed to set error callback.");
+            int ret = Interop.MediaCodec.SetErrorCb(_handle, _errorCb);
+
+            MultimediaDebug.AssertNoError(ret);
         }
         #endregion
 
         #region EosReached event
-        private Native.EosCallback _eosCb;
+        private Interop.MediaCodec.EosCallback _eosCb;
 
         /// <summary>
         /// Occurs when the codec processes all input data.
@@ -600,12 +636,15 @@ namespace Tizen.Multimedia.MediaCodec
         {
             _eosCb = _ => EosReached?.Invoke(this, EventArgs.Empty);
 
-            Native.SetEosCb(_handle, _eosCb).ThrowIfFailed("Failed to set eos callback.");
+            int ret = Interop.MediaCodec.SetEosCb(_handle, _eosCb);
+
+            MultimediaDebug.AssertNoError(ret);
         }
+
         #endregion
 
         #region BufferStatusChanged event
-        private Native.BufferStatusCallback _bufferStatusCb;
+        private Interop.MediaCodec.BufferStatusCallback _bufferStatusCb;
 
         /// <summary>
         /// Occurs when the codec needs more data or has enough data.
@@ -624,8 +663,9 @@ namespace Tizen.Multimedia.MediaCodec
                     new BufferStatusChangedEventArgs((MediaCodecStatus)statusCode));
             };
 
-            Native.SetBufferStatusCb(_handle, _bufferStatusCb).
-                ThrowIfFailed("Failed to set buffer status callback.");
+            int ret = Interop.MediaCodec.SetBufferStatusCb(_handle, _bufferStatusCb);
+
+            MultimediaDebug.AssertNoError(ret);
         }
         #endregion
     }

@@ -16,7 +16,6 @@
  */
 
 using System;
-using Tizen.NUI.Binding;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -26,7 +25,6 @@ namespace Tizen.NUI
     /// Position is a three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
     public class Position : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -319,22 +317,6 @@ namespace Tizen.NUI
             float ret = NDalicPINVOKE.Vector3_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(System.Object obj)
-        {
-            Position position = obj as Position;
-            bool equal = false;
-            if (X == position?.X && Y == position?.Y && Z == position?.Z)
-            {
-                equal = true;
-            }
-            return equal;
         }
 
         /// <summary>

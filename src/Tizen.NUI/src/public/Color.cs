@@ -15,16 +15,15 @@
  *
  */
 
-using System;
-using Tizen.NUI.Binding;
-
 namespace Tizen.NUI
 {
+
+    using System;
 
     /// <summary>
     /// The Color class.
     /// </summary>
-    [TypeConverter(typeof(ColorTypeConverter))]
+    /// <since_tizen> 3 </since_tizen>
     public class Color : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

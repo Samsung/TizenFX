@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
-using Tizen.NUI.Binding;
+
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -26,58 +26,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ToggleButton : Tizen.NUI.UIComponents.Button
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create("StateVisuals", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var toggleButton = (ToggleButton)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX).Get(out temp);
-            return temp;
-        });
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
@@ -168,11 +116,13 @@ namespace Tizen.NUI
         {
             get
             {
-                return (PropertyArray)GetValue(StateVisualsProperty);
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(ToggleButton.Property.STATE_VISUALS).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(StateVisualsProperty, value);
+                SetProperty(ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -184,11 +134,13 @@ namespace Tizen.NUI
         {
             get
             {
-                return (PropertyArray)GetValue(TooltipsProperty);
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                GetProperty(ToggleButton.Property.TOOLTIPS).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(TooltipsProperty, value);
+                SetProperty(ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -200,11 +152,13 @@ namespace Tizen.NUI
         {
             get
             {
-                return (int)GetValue(CurrentStateIndexProperty);
+                int temp = 0;
+                GetProperty(ToggleButton.Property.CURRENT_STATE_INDEX).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(CurrentStateIndexProperty, value);
+                SetProperty(ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue(value));
             }
         }
 

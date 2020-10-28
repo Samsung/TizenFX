@@ -109,61 +109,20 @@ namespace Tizen.Security.TEEC
     /// with the implementation or allocated by it.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public sealed class SharedMemory : IDisposable
+    public sealed class SharedMemory
     {
-        private bool disposed = false;
-        private bool initialized = false;
-        private Context context; // keep reference for correct finalizers order
         internal Interop.TEEC_SharedMemory shm;
         internal IntPtr shmptr;
-        internal SharedMemory(Context context)
+        internal SharedMemory(ref Interop.TEEC_SharedMemory shm)
         {
-            this.context = context;
-            shmptr = Marshal.AllocHGlobal(Marshal.SizeOf<Interop.TEEC_SharedMemory>());
-        }
-        internal void setShm(ref Interop.TEEC_SharedMemory shm)
-        {
-            this.shm = shm;
+            this.shm=shm;
+            shmptr = Marshal.AllocHGlobal(Marshal.SizeOf(shm));
             Marshal.StructureToPtr(shm, shmptr, false);
-            initialized = true;
-            ++context.shmcnt;
         }
-        private void Dispose(bool disposing)
-        {
-            if (disposed) {
-                return ;
-            }
-            if (context == null) {
-                throw new Exception("internal error: context is null");
-            }
-            if (initialized) {
-                Interop.Libteec.ReleaseSharedMemory(ref shm);
-                initialized = false;
-                --context.shmcnt;
-            }
-            Marshal.FreeHGlobal(shmptr);
-            shmptr = IntPtr.Zero;
-            context = null;
-            disposed = true;
-        }
-
-        /// <summary>
-        /// Destructor of the class.
-        /// </summary>
         ~SharedMemory()
         {
-            Dispose(false);
+            Marshal.FreeHGlobal(shmptr);
         }
-
-        /// <summary>
-        /// Disposable interface implememtation.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         /// <summary>
         /// This property represents the shared memory size in bytes.
         /// </summary>
@@ -385,7 +344,8 @@ namespace Tizen.Security.TEEC
             for (int i=0; i < 4; ++i) shm[i] = null;
         }
 
-        private void Dispose(bool disposing)
+        // internal since class is sealed
+        internal void Dispose(bool disposing)
         {
             if (disposed) {
                 return ;
@@ -414,8 +374,7 @@ namespace Tizen.Security.TEEC
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            Close();
         }
 
         internal UInt32 InitParam(ref Interop.TEEC_Parameter32[] dst, int i, Parameter src)
@@ -611,7 +570,7 @@ namespace Tizen.Security.TEEC
 
             for (int i=0; i < 4; ++i) {
                 if (shm[i] != null) {
-                    shm[i].Dispose();
+                    context.ReleaseSharedMemory(shm[i]);
                     shm[i] = null;
                 }
             }
@@ -644,7 +603,7 @@ namespace Tizen.Security.TEEC
 
             for (int i=0; i < 4; ++i) {
                 if (shm[i] != null) {
-                    shm[i].Dispose();
+                    context.ReleaseSharedMemory(shm[i]);
                     shm[i] = null;
                 }
             }
@@ -666,7 +625,8 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void Close() {
-            Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -722,7 +682,7 @@ namespace Tizen.Security.TEEC
 
             for (int i=0; i < 4; ++i) {
                 if (shm[i] != null) {
-                    shm[i].Dispose();
+                    context.ReleaseSharedMemory(shm[i]);
                     shm[i] = null;
                 }
             }
@@ -762,7 +722,6 @@ namespace Tizen.Security.TEEC
         private bool disposed = false;
         private bool initialized = false;
         internal IntPtr context_imp;
-        internal uint shmcnt = 0;
 
         /// <summary>
         /// This function (constructor) initializes a new TEE Context, forming a connection between this client application and the
@@ -784,7 +743,7 @@ namespace Tizen.Security.TEEC
             try {
                 int ret = Interop.Libteec.InitializeContext(name, context_imp);
                 Interop.CheckNThrowException(ret, string.Format("InititalizeContext('{0}')", name));
-                initialized = true;
+				initialized = true;
             }
             catch (global::System.DllNotFoundException e)
             {
@@ -794,14 +753,14 @@ namespace Tizen.Security.TEEC
             }
         }
 
-        private void Dispose(bool disposing)
+        // internal since class is sealed
+        internal void Dispose(bool disposing)
         {
             if (disposed) {
                 return ;
             }
             if (initialized) {
                 Interop.Libteec.FinalizeContext(context_imp);
-                initialized = false;
             }
             Marshal.FreeHGlobal(context_imp);
             context_imp = IntPtr.Zero;
@@ -824,10 +783,6 @@ namespace Tizen.Security.TEEC
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
         public void Dispose() {
-            if (shmcnt != 0) {
-                Tizen.Log.Error("TZ_CLIENTAPI", "Context.Dispose not all shm released yet!");
-                return ;
-            }
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -951,15 +906,13 @@ namespace Tizen.Security.TEEC
         /// <exception cref="ArgumentException">The argument <paramref name="memaddr"/> is wrong.</exception>
         public SharedMemory RegisterSharedMemory(IntPtr memaddr, UInt32 size, SharedMemoryFlags flags)
         {
-            SharedMemory sharedmem =  new SharedMemory(this);
             Interop.TEEC_SharedMemory shm = new Interop.TEEC_SharedMemory();
             shm.buffer = memaddr;
-            shm.size = (UIntPtr)size;
+            shm.size = new UIntPtr(size);
             shm.flags = (UInt32)flags;
             int ret = Interop.Libteec.RegisterSharedMemory(context_imp, ref shm);
             Interop.CheckNThrowException(ret, "RegisterSharedMemory");
-            sharedmem.setShm(ref shm);
-            return sharedmem;
+            return new SharedMemory(ref shm);
         }
 
         /// <summary>
@@ -978,14 +931,12 @@ namespace Tizen.Security.TEEC
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public SharedMemory AllocateSharedMemory(UInt32 size, SharedMemoryFlags flags)
         {
-            SharedMemory sharedmem =  new SharedMemory(this);
             Interop.TEEC_SharedMemory shm = new Interop.TEEC_SharedMemory();
-            shm.size = (UIntPtr)size;
+            shm.size = new UIntPtr(size);
             shm.flags = (UInt32)flags;
             int ret = Interop.Libteec.AllocateSharedMemory(context_imp, ref shm);
             Interop.CheckNThrowException(ret, "AllocateSharedMemory");
-            sharedmem.setShm(ref shm);
-            return sharedmem;
+            return new SharedMemory(ref shm);
         }
 
         /// <summary>
@@ -1011,7 +962,7 @@ namespace Tizen.Security.TEEC
         /// <exception cref="ArgumentException">The argument is wrong.</exception>
         public void ReleaseSharedMemory(SharedMemory shm)
         {
-            shm.Dispose();
+            Interop.Libteec.ReleaseSharedMemory(ref shm.shm);
         }
     };
 

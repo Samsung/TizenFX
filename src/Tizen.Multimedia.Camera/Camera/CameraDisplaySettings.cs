@@ -48,7 +48,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Native.GetMode(_camera.GetHandle(), out var val).ThrowIfFailed("Failed to get camera display mode");
+                CameraErrorFactory.ThrowIfError(Native.GetMode(_camera.GetHandle(), out var val),
+                    "Failed to get camera display mode");
 
                 return val;
             }
@@ -57,7 +58,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraDisplayMode), value, nameof(value));
 
-                Native.SetMode(_camera.GetHandle(), value).ThrowIfFailed("Failed to set camera display mode.");
+                CameraErrorFactory.ThrowIfError(Native.SetMode(_camera.GetHandle(), value),
+                    "Failed to set camera display mode.");
             }
         }
 
@@ -75,14 +77,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Native.GetVisible(_camera.GetHandle(), out bool val).ThrowIfFailed("Failed to get visible value");
+                CameraErrorFactory.ThrowIfError(Native.GetVisible(_camera.GetHandle(), out bool val),
+                    "Failed to get visible value");
 
                 return val;
             }
 
             set
             {
-                Native.SetVisible(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display visible.");
+                CameraErrorFactory.ThrowIfError(Native.SetVisible(_camera.GetHandle(), value),
+                    "Failed to set display visible.");
             }
         }
 
@@ -100,8 +104,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Native.GetRotation(_camera.GetHandle(), out var val).
-                    ThrowIfFailed("Failed to get display rotation");
+                CameraErrorFactory.ThrowIfError(Native.GetRotation(_camera.GetHandle(), out var val),
+                    "Failed to get display rotation");
 
                 return val;
             }
@@ -110,7 +114,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
-                Native.SetRotation(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display rotation.");
+                CameraErrorFactory.ThrowIfError(Native.SetRotation(_camera.GetHandle(), value),
+                    "Failed to set display rotation.");
             }
         }
 
@@ -128,7 +133,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Native.GetFlip(_camera.GetHandle(), out var val).ThrowIfFailed("Failed to get display flip");
+                CameraErrorFactory.ThrowIfError(Native.GetFlip(_camera.GetHandle(), out var val),
+                    "Failed to get display flip");
 
                 return val;
             }
@@ -137,7 +143,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
 
-                Native.SetFlip(_camera.GetHandle(), value).ThrowIfFailed("Failed to set display flip.");
+                CameraErrorFactory.ThrowIfError(Native.SetFlip(_camera.GetHandle(), value),
+                    "Failed to set display flip.");
             }
         }
 
@@ -154,16 +161,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Native.GetRoiArea(_camera.GetHandle(), out int x, out int y, out int width, out int height).
-                    ThrowIfFailed("Failed to get display roi area");
+                CameraErrorFactory.ThrowIfError(Native.GetRoiArea(_camera.GetHandle(),
+                    out int x, out int y, out int width, out int height), "Failed to get display roi area");
 
                 return new Rectangle(x, y, width, height);
             }
 
             set
             {
-                Native.SetRoiArea(_camera.GetHandle(), value.X, value.Y, value.Width, value.Height).
-                    ThrowIfFailed("Failed to set display roi area.");
+                CameraErrorFactory.ThrowIfError(Native.SetRoiArea(_camera.GetHandle(),
+                    value.X, value.Y, value.Width, value.Height), "Failed to set display roi area.");
             }
         }
     }

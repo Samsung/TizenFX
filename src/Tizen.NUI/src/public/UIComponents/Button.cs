@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  */
-using System;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.UIComponents
 {
+
+    using System;
+    using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
+
     /// <summary>
     /// The Button class is a base class for different kinds of buttons.<br />
     /// This class provides the disabled property and the clicked signal.<br />
@@ -36,372 +36,8 @@ namespace Tizen.NUI.UIComponents
     /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("LabelText")]
     public class Button : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            string valueToString = "";
-            if (newValue != null)
-            {
-                switch ((Align)newValue)
-                {
-                    case Align.Begin: { valueToString = "BEGIN"; break; }
-                    case Align.End: { valueToString = "END"; break; }
-                    case Align.Top: { valueToString = "TOP"; break; }
-                    case Align.Bottom: { valueToString = "BOTTOM"; break; }
-                    default: { valueToString = "END";  break; }
-                }
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
-            {
-                NUILog.Error("LabelRelativeAlignment get error!");
-            }
-            switch (temp)
-            {
-                case "BEGIN":  return Align.Begin;
-                case "END": return Align.End;
-                case "TOP": return Align.Top;
-                case "BOTTOM": return Align.Bottom;
-                default: return Align.End;
-            }
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_PADDING).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TogglableProperty = BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.TOGGLABLE, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.TOGGLABLE).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedProperty = BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelProperty = BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelTextProperty = BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var button = (Button)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(map);
-            Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
-            string str = "";
-            value?.Get(out str);
-            return str;
-        });
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Button_SWIGUpcast(cPtr), cMemoryOwn)
@@ -671,11 +307,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(UnselectedVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.UNSELECTED_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(UnselectedVisualProperty, value);
+                SetProperty(Button.Property.UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -687,11 +325,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectedVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.SELECTED_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(SelectedVisualProperty, value);
+                SetProperty(Button.Property.SELECTED_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -703,11 +343,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(DisabledSelectedVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(DisabledSelectedVisualProperty, value);
+                SetProperty(Button.Property.DISABLED_SELECTED_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -719,11 +361,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(DisabledUnselectedVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(DisabledUnselectedVisualProperty, value);
+                SetProperty(Button.Property.DISABLED_UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -735,11 +379,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(UnselectedBackgroundVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(UnselectedBackgroundVisualProperty, value);
+                SetProperty(Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -751,11 +397,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectedBackgroundVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(SelectedBackgroundVisualProperty, value);
+                SetProperty(Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -767,11 +415,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(DisabledUnselectedBackgroundVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(DisabledUnselectedBackgroundVisualProperty, value);
+                SetProperty(Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -783,11 +433,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(DisabledSelectedBackgroundVisualProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(DisabledSelectedBackgroundVisualProperty, value);
+                SetProperty(Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -799,11 +451,57 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Align)GetValue(LabelRelativeAlignmentProperty);
+                string temp;
+                if (GetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
+                {
+                    NUILog.Error("LabelRelativeAlignment get error!");
+                }
+                switch (temp)
+                {
+                    case "BEGIN":
+                        return Align.Begin;
+                    case "END":
+                        return Align.End;
+                    case "TOP":
+                        return Align.Top;
+                    case "BOTTOM":
+                        return Align.Bottom;
+                    default:
+                        return Align.End;
+                }
             }
             set
             {
-                SetValue(LabelRelativeAlignmentProperty, value);
+                string valueToString = "";
+                switch (value)
+                {
+                    case Align.Begin:
+                    {
+                        valueToString = "BEGIN";
+                        break;
+                    }
+                    case Align.End:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                    case Align.Top:
+                    {
+                        valueToString = "TOP";
+                        break;
+                    }
+                    case Align.Bottom:
+                    {
+                        valueToString = "BOTTOM";
+                        break;
+                    }
+                    default:
+                    {
+                        valueToString = "END";
+                        break;
+                    }
+                }
+                SetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
 
@@ -815,11 +513,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Vector4)GetValue(LabelPaddingProperty);
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Button.Property.LABEL_PADDING).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(LabelPaddingProperty, value);
+                SetProperty(Button.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -831,11 +531,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Vector4)GetValue(ForegroundVisualPaddingProperty);
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(ForegroundVisualPaddingProperty, value);
+                SetProperty(Button.Property.FOREGROUND_VISUAL_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -908,11 +610,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(AutoRepeatingProperty);
+                bool temp = false;
+                GetProperty(Button.Property.AUTO_REPEATING).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(AutoRepeatingProperty, value);
+                SetProperty(Button.Property.AUTO_REPEATING, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -924,11 +628,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(InitialAutoRepeatingDelayProperty);
+                float temp = 0.0f;
+                GetProperty(Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(InitialAutoRepeatingDelayProperty, value);
+                SetProperty(Button.Property.INITIAL_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -940,11 +646,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (float)GetValue(NextAutoRepeatingDelayProperty);
+                float temp = 0.0f;
+                GetProperty(Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(NextAutoRepeatingDelayProperty, value);
+                SetProperty(Button.Property.NEXT_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -956,11 +664,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(TogglableProperty);
+                bool temp = false;
+                GetProperty(Button.Property.TOGGLABLE).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(TogglableProperty, value);
+                SetProperty(Button.Property.TOGGLABLE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -972,11 +682,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (bool)GetValue(SelectedProperty);
+                bool temp = false;
+                GetProperty(Button.Property.SELECTED).Get(out temp);
+                return temp;
             }
             set
             {
-                SetValue(SelectedProperty, value);
+                SetProperty(Button.Property.SELECTED, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -988,11 +700,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Color)GetValue(UnselectedColorProperty);
+                Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Button.Property.UNSELECTED_COLOR).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(UnselectedColorProperty, value);
+                SetProperty(Button.Property.UNSELECTED_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1004,11 +718,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (Color)GetValue(SelectedColorProperty);
+                Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Button.Property.SELECTED_COLOR).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(SelectedColorProperty, value);
+                SetProperty(Button.Property.SELECTED_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1020,11 +736,13 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (PropertyMap)GetValue(LabelProperty);
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(Button.Property.LABEL).Get(temp);
+                return temp;
             }
             set
             {
-                SetValue(LabelProperty, value);
+                SetProperty(Button.Property.LABEL, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1036,11 +754,16 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                return (string)GetValue(LabelTextProperty);
+                Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+                GetProperty( Button.Property.LABEL).Get(map);
+                Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
+                string str = "";
+                value?.Get(out str);
+                return str;
             }
             set
             {
-                SetValue(LabelTextProperty, value);
+                SetProperty( Button.Property.LABEL, new Tizen.NUI.PropertyValue( value ) );
             }
         }
 
