@@ -22,12 +22,14 @@ namespace Tizen.Account.OAuth2
     /// Contains client credentials required for authentication in request-body
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class ClientCredentials
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public ClientCredentials()
         {
 
@@ -37,12 +39,14 @@ namespace Tizen.Account.OAuth2
         /// The client identifier
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string Id { get; set; }
 
         /// <summary>
         /// The client secret
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string Secret { get; set; }
     }
 }

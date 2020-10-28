@@ -51,6 +51,12 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_apply_stream_routing")]
             internal static extern AudioManagerError ApplyStreamRouting(AudioStreamPolicyHandle streamInfo);
 
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_stream_preferred_device_id")]
+            internal static extern AudioManagerError SetPreferredDevice(AudioStreamPolicyHandle streamInfo, AudioDeviceIoDirection direction, int deviceId);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_stream_preferred_device")]
+            internal static extern AudioManagerError GetPreferredDevice(AudioStreamPolicyHandle streamInfo, out int inDeviceId, out int outDeviceId);
+
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_acquire_focus")]
             internal static extern AudioManagerError AcquireFocus(AudioStreamPolicyHandle streamInfo,
                 AudioStreamFocusOptions focusMask, AudioStreamBehaviors audioStreamBehavior, string extraInfo);
@@ -81,6 +87,10 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_focus_state_watch_cb")]
             internal static extern int RemoveFocusStateWatchCallback(int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_stream_on_device_by_id")]
+            internal static extern AudioManagerError IsStreamOnDevice(AudioStreamPolicyHandle streamInfo, int deviceId,
+                out bool isOn);
         }
     }
 }

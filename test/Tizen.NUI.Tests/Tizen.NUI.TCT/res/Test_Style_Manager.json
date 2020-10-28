@@ -1,0 +1,34 @@
+{
+  "styles":
+  {
+    "TextLabel":
+    {
+      "pointSize":10,
+      "enableAutoScroll":false,
+      "autoScrollLoopCount":2,
+      "autoScrollGap":50,
+      "autoScrollSpeed":80
+    },
+
+    "TextLabelFontSize0":
+    {
+      "pointSize":10
+    },
+    "TextLabelFontSize1":
+    {
+      "pointSize":10
+    },
+    "TextLabelFontSize2":
+    {
+      "pointSize":10
+    },
+    "TextLabelFontSize3":
+    {
+      "pointSize":10
+    },
+    "TextLabelFontSize4":
+    {
+      "pointSize":10
+    }
+  }
+}

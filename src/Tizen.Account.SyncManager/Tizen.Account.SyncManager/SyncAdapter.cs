@@ -108,7 +108,7 @@ namespace Tizen.Account.SyncManager
         /// Unsets the client (sync adapter) callback functions.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <exception cref="System.Exception"> Thrown when sync manager internal error occurs. </exception>
+        /// <exception cref="Exception"> Thrown when sync manager internal error occurs. </exception>
         public void UnsetSyncEventCallbacks()
         {
             int ret = Interop.Adapter.UnsetCallbacks();

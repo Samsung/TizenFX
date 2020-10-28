@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
 
@@ -101,6 +100,14 @@ namespace Tizen.NUI
         public void RegisterWidgetInfo(Dictionary<System.Type, string> widgetInfo)
         {
             _widgetInfo = widgetInfo;
+        }
+
+        public void AddWidgetInfo(Dictionary<System.Type, string> widgetInfo)
+        {
+            if (_application != null)
+            {
+                _application.AddWidgetInfo( widgetInfo );
+            }
         }
 
         /// <summary>

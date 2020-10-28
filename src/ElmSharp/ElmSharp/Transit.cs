@@ -246,7 +246,16 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void Go(double interval = 0)
         {
-            Interop.Elementary.elm_transit_go_in(_handle, interval);
+            if (interval == 0)
+            {
+                // To start transition immediately, elm_transit_go() is called.
+                Interop.Elementary.elm_transit_go(_handle);
+            }
+            else
+            {
+                // elm_transit_go_in() uses timer so it does not start transition immediately although interval is 0.
+                Interop.Elementary.elm_transit_go_in(_handle, interval);
+            }
         }
 
         /// <summary>
@@ -375,7 +384,7 @@ namespace ElmSharp
         void AddObject(EvasObject obj)
         {
             if (_checker.Contains(obj))
-                throw new Exception("Cannot add the duplicate object.");
+                throw new InvalidOperationException("Cannot add the duplicate object.");
 
             _checker.Add(obj);
             Interop.Elementary.elm_transit_object_add(_handle, obj);
@@ -400,7 +409,7 @@ namespace ElmSharp
         void AddChainedTransit(Transit transit)
         {
             if (_checker.Contains(transit))
-                throw new Exception("Cannot add the duplicate transit.");
+                throw new InvalidOperationException("Cannot add the duplicate transit.");
 
             _checker.Add(transit);
             Interop.Elementary.elm_transit_chain_transit_add(_handle, transit._handle);

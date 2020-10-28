@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--
+    <SupportedProfiles>mobile,wearable</SupportedProfiles>
+    -->
+</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen\Tizen.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -308,6 +308,55 @@ namespace ElmSharp
         /// </summary>
         Fake,
     };
+
+    /// <summary>
+    /// Enumeration of notification window's priority level.
+    /// </summary>
+    /// <since_tizen> preview </since_tizen>
+    public enum NotificationLevel
+    {
+        /// <summary>
+        /// No (reset) notification level. This value makes the window place in normal layer.
+        /// </summary>
+        None = -1,
+
+        /// <summary>
+        /// Default notification level.
+        /// </summary>
+        Default = 10,
+
+        /// <summary>
+        /// Higher notification level than default.
+        /// </summary>
+        Medium = 20,
+
+        /// <summary>
+        /// Higher notification level than medium.
+        /// </summary>
+        High = 30,
+
+        /// <summary>
+        /// The highest notification level.
+        /// </summary>
+        Top = 40,
+    };
+
+    /// <summary>
+    /// Enumeration of screen mode.
+    /// </summary>
+    /// <since_tizen> preview </since_tizen>
+    public enum ScreenMode
+    {
+        /// <summary>
+        /// The mode which turns the screen off after a timeout.
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// The mode which keeps the screen turned on.
+        /// </summary>
+        AlwaysOn,
+    }
 
     /// <summary>
     /// The Window is a container that contains the graphical user interface of a program.
@@ -940,13 +989,97 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_win_urgent_get(Handle);
+                return Interop.Elementary.elm_win_withdrawn_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_win_urgent_set(Handle, value);
+                Interop.Elementary.elm_win_withdrawn_set(Handle, value);
             }
         }
+
+        /// <summary>
+        /// Gets or sets the priority level for the specified notification window.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/window.priority.set
+        /// </privilege>
+        /// /// <remarks>
+        /// This can be used for a notification type window only.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public NotificationLevel NotificationLevel
+        {
+            get
+            {
+                int level;
+                Interop.Eutil.efl_util_get_notification_window_level(Handle, out level);
+                return (NotificationLevel)level;
+            }
+            set
+            {
+                Interop.Eutil.efl_util_set_notification_window_level(Handle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the window's screen mode.
+        /// This API is useful when the application need to keep the display turned on.
+        /// If the application set the mode to ScreenMode.AlwaysOn to its window and the window is shown wholly or partially,
+        /// the window manager requests the display system to keep the display on as long as the window is shown.
+        /// If the window is no longer shown, then the window manger request the display system to go back to normal operation.
+        /// Default screen mode of window is ScreenMode.Default.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/display
+        /// </privilege>
+        /// <remarks>
+        /// This needs the privilege. If the application which is not get the privilege use this API, the window manager generates the permission deny error.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public ScreenMode ScreenMode
+        {
+            get
+            {
+                int mode;
+                Interop.Eutil.efl_util_get_window_screen_mode(Handle, out mode);
+                return (ScreenMode)mode;
+            }
+            set
+            {
+                Interop.Eutil.efl_util_set_window_screen_mode(Handle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user's preferred brightness of the specified window.
+        /// This is useful when the application need to change the brightness of the screen when it is appeared on the screen.
+        /// If the application sets the brightness 0 to 100 to its window and the application window is shown wholly or partially,
+        /// the window manager requests the display system to change the brightness of the screen using user's preferred brightness.
+        /// If the window is no longer shown, then the window manger request the display system to go back to default brightness.
+        /// If the brightness is less than 0, this means to use the default screen brightness.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/display
+        /// </privilege>
+        /// <remarks>
+        /// This needs the privilege. If the application which is not get the privilege use this API, the window manager generates the permission deny error.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public int Brightness
+        {
+            get
+            {
+                int brightness;
+                Interop.Eutil.efl_util_get_window_brightness(Handle, out brightness);
+                return brightness;
+            }
+            set
+            {
+                Interop.Eutil.efl_util_set_window_brightness(Handle, value);
+            }
+        }
+
+        internal static bool IsPreloaded { get; private set; }
 
         /// <summary>
         /// Creates a socket to provide the service for the Plug widget.
@@ -973,6 +1106,28 @@ namespace ElmSharp
                 Interop.Elementary.elm_win_rotation_with_resize_set(RealHandle, degree);
             else
                 Interop.Elementary.elm_win_rotation_set(RealHandle, degree);
+        }
+
+        /// <summary>
+        /// Sets the alpha window's visual state to opaque state.
+        /// This sets the alpha window's visual state to opaque state.
+        /// If the alpha window sets the visual state to the opaque,
+        /// then the window manager could handle it as the opaque window while calculating visibility.
+        /// This will have no effect when used by a non-alpha window.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public void SetOpaqueState()
+        {
+            Interop.Eutil.efl_util_set_window_opaque_state(RealHandle, 1);
+        }
+
+        /// <summary>
+        /// Unsets the alpha window's visual state to opaque state.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public void UnsetOpaqueState()
+        {
+            Interop.Eutil.efl_util_set_window_opaque_state(RealHandle, 0);
         }
 
         /// <summary>
@@ -1099,6 +1254,83 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Creates an auxiliary hint of the window.
+        /// </summary>
+        /// <remarks>
+        /// Support for this depends on the underlying windowing system. 
+        /// </remarks>
+        /// <param name="hint">The auxiliary hint string</param>
+        /// <param name="value">The value string</param>
+        /// <returns>The ID of the created auxiliary hint, otherwise -1 on failure</returns>
+        /// <since_tizen> preview </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int AddAuxiliaryHint(string hint, string value)
+        {
+            return Interop.Elementary.elm_win_aux_hint_add(RealHandle, hint, value);
+        }
+
+        /// <summary>
+        /// Deletes an auxiliary hint of the window.
+        /// </summary>
+        /// <remarks>
+        /// Support for this depends on the underlying windowing system. 
+        /// </remarks>
+        /// <param name="id">The ID of the auxiliary hint</param>
+        /// <returns>If true deletes successful, otherwise false.</returns>
+        /// <since_tizen> preview </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DeleteAuxiliaryHint(int id)
+        {
+            return Interop.Elementary.elm_win_aux_hint_del(RealHandle, id);
+        }
+
+        /// <summary>
+        /// Changes a value of the auxiliary hint.
+        /// </summary>
+        /// <remarks>
+        /// Support for this depends on the underlying windowing system. 
+        /// </remarks>
+        /// <param name="id">The auxiliary hint ID</param>
+        /// <param name="value">The value string to be set</param>
+        /// <returns>If true changes successful, otherwise false.</returns>
+        /// <since_tizen> preview </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetAuxiliaryHintValue(int id, string value)
+        {
+            return Interop.Elementary.elm_win_aux_hint_val_set(RealHandle, id, value);
+        }
+
+        /// <summary>
+        /// Gets a value of the auxiliary hint.
+        /// </summary>
+        /// <remarks>
+        /// Support for this depends on the underlying windowing system. 
+        /// </remarks>
+        /// <param name="id">The auxiliary hint ID</param>
+        /// <returns>The string value of the auxiliary hint ID</returns>
+        /// <since_tizen> preview </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetAuxiliaryHintValue(int id)
+        {
+            return Interop.Elementary.elm_win_aux_hint_val_get(RealHandle, id);
+        }
+
+        /// <summary>
+        /// Gets an ID of the auxiliary hint string.
+        /// </summary>
+        /// <remarks>
+        /// Support for this depends on the underlying windowing system. 
+        /// </remarks>
+        /// <param name="hint">The auxiliary hint string</param>
+        /// <returns>The ID of the auxiliary hint, otherwise -1 on failure</returns>
+        /// <since_tizen> preview </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetAuxiliaryHintId(string hint)
+        {
+            return Interop.Elementary.elm_win_aux_hint_id_get(RealHandle, hint);
+        }
+
+        /// <summary>
         /// Creates a widget handle.
         /// </summary>
         /// <param name="parent">Parent EvasObject.</param>
@@ -1143,5 +1375,18 @@ namespace ElmSharp
             }
             return (DisplayRotation)orientation;
         }
+
+        static void Preload()
+        {
+            Elementary.Initialize();
+            Elementary.ThemeOverlay();
+            _ = new PreloadedWindow();
+            IsPreloaded = true;
+        }
+
+        /// <summary>
+        /// For internal use only
+        /// </summary>
+        internal static Window CreateWindow(string name) => PreloadedWindow.GetInstance() ?? new Window(name);
     }
 }

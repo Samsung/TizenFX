@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,110 +14,279 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// The Rectangle class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Rectangle : global::System.IDisposable
+    [Binding.TypeConverter(typeof(RectangleTypeConverter))]
+    public class Rectangle : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
-        /// swigCMemOwn
+        /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn)
+        public Rectangle() : this(Interop.Rectangle.new_Rectangle__SWIG_0(), true)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Rectangle()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Dispose.
+        /// The constructor.
+        /// </summary>
+        /// <param name="x">The x coordinate (or left).</param>
+        /// <param name="y">The y coordinate (or right).</param>
+        /// <param name="width">The width (or bottom).</param>
+        /// <param name="height">The height (or top).</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Rectangle(int x, int y, int width, int height) : this(Interop.Rectangle.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Rectangle(Rectangle other) : this(other.x, other.y, other.width, other.height)
+        {
+        }
+
+        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
+        internal Rectangle(RectangleChangedCallback cb, int x, int y, int width, int height) : this(Interop.Rectangle.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Rectangle(RectangleChangedCallback cb) : this()
+        {
+        }
+
+        internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)
+        {
+        }
+
+        /// <summary>
+        /// The type cast operator, int to Rectangle.
+        /// </summary>
+        /// <param name="value">A value of int type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Rectangle(int value)
+        {
+            return new Rectangle(value, value, value, value);
+        }
+
+        internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
+        private RectangleChangedCallback callback = null;
+
+        /// <summary>
+        /// The x position of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+        public int X
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            set
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
 
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
+                x = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
-            else
+            get
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                return x;
             }
         }
 
         /// <summary>
-        /// Dispose.
+        /// The Y position of the rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+        public int Y
         {
-            if (disposed)
+            set
             {
-                return;
-            }
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
 
-            if(type == DisposeTypes.Explicit)
+                y = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
+            }
+            get
             {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+                return y;
             }
+        }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+        /// <summary>
+        /// The width of the rectangle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+        public int Width
+        {
+            set
             {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Rectangle(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+
+                width = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
-            disposed = true;
+            get
+            {
+                return width;
+            }
+        }
+
+        /// <summary>
+        /// The height of the rectangle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+        public int Height
+        {
+            set
+            {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
+                
+                height = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
+            }
+            get
+            {
+                return height;
+            }
+        }
+
+        private int x
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_x_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_x_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int left
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_left_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_left_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int y
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_y_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_y_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int right
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_right_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_right_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int width
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_width_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_width_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int bottom
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_bottom_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_bottom_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int height
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_height_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_height_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private int top
+        {
+            set
+            {
+                Interop.Rectangle.Rectangle_top_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                int ret = Interop.Rectangle.Rectangle_top_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
         /// <summary>
@@ -143,6 +312,18 @@ namespace Tizen.NUI
 
             // Return true if the fields match:
             return a.X == b.X && a.Y == b.Y && a.Width == b.Width && a.Height == b.Height;
+        }
+
+        /// <summary>
+        /// Inequality operator.
+        /// </summary>
+        /// <param name="a">The first rectangle.</param>
+        /// <param name="b">The second rectangle.</param>
+        /// <returns>True if the rectangles are not identical.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static bool operator !=(Rectangle a, Rectangle b)
+        {
+            return !(a == b);
         }
 
         /// <summary>
@@ -178,104 +359,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inequality operator.
-        /// </summary>
-        /// <param name="a">The first rectangle.</param>
-        /// <param name="b">The second rectangle.</param>
-        /// <returns>True if the rectangles are not identical.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static bool operator !=(Rectangle a, Rectangle b)
-        {
-            return !(a == b);
-        }
-
-        /// <summary>
-        /// The x position of the rectangle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int X
-        {
-            set
-            {
-                x = ( value );
-            }
-            get
-            {
-                return x;
-            }
-            }
-
-        /// <summary>
-        /// The Y position of the rectangle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Y
-        {
-            set
-            {
-                y = ( value );
-            }
-            get
-            {
-                return y;
-            }
-        }
-
-        /// <summary>
-        /// The width of the rectangle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Width
-        {
-            set
-            {
-                width = ( value );
-            }
-            get
-            {
-                return width;
-            }
-        }
-
-        /// <summary>
-        /// The height of the rectangle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Height
-        {
-            set
-            {
-                height = ( value );
-            }
-            get
-            {
-                return height;
-            }
-        }
-
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Rectangle() : this(NDalicPINVOKE.new_Rectangle__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="x">The x coordinate (or left).</param>
-        /// <param name="y">The y coordinate (or right).</param>
-        /// <param name="width">The width (or bottom).</param>
-        /// <param name="height">The height (or top).</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Rectangle(int x, int y, int width, int height) : this(NDalicPINVOKE.new_Rectangle__SWIG_1(x, y, width, height), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Assignment from individual values.
         /// </summary>
         /// <param name="newX">The x coordinate.</param>
@@ -285,7 +368,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Set(int newX, int newY, int newWidth, int newHeight)
         {
-            NDalicPINVOKE.Rectangle_Set(swigCPtr, newX, newY, newWidth, newHeight);
+            Interop.Rectangle.Rectangle_Set(swigCPtr, newX, newY, newWidth, newHeight);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -296,7 +379,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsEmpty()
         {
-            bool ret = NDalicPINVOKE.Rectangle_IsEmpty(swigCPtr);
+            bool ret = Interop.Rectangle.Rectangle_IsEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -308,7 +391,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Left()
         {
-            int ret = NDalicPINVOKE.Rectangle_Left(swigCPtr);
+            int ret = Interop.Rectangle.Rectangle_Left(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -320,7 +403,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Right()
         {
-            int ret = NDalicPINVOKE.Rectangle_Right(swigCPtr);
+            int ret = Interop.Rectangle.Rectangle_Right(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -332,7 +415,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Top()
         {
-            int ret = NDalicPINVOKE.Rectangle_Top(swigCPtr);
+            int ret = Interop.Rectangle.Rectangle_Top(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -344,7 +427,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Bottom()
         {
-            int ret = NDalicPINVOKE.Rectangle_Bottom(swigCPtr);
+            int ret = Interop.Rectangle.Rectangle_Bottom(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -356,7 +439,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Area()
         {
-            int ret = NDalicPINVOKE.Rectangle_Area(swigCPtr);
+            int ret = Interop.Rectangle.Rectangle_Area(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -369,7 +452,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Intersects(Rectangle other)
         {
-            bool ret = NDalicPINVOKE.Rectangle_Intersects(swigCPtr, Rectangle.getCPtr(other));
+            bool ret = Interop.Rectangle.Rectangle_Intersects(swigCPtr, Rectangle.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -382,131 +465,26 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Contains(Rectangle other)
         {
-            bool ret = NDalicPINVOKE.Rectangle_Contains(swigCPtr, Rectangle.getCPtr(other));
+            bool ret = Interop.Rectangle.Rectangle_Contains(swigCPtr, Rectangle.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private int x
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj)
         {
-            set
-            {
-                NDalicPINVOKE.Rectangle_x_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_x_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        private int left
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            set
-            {
-                NDalicPINVOKE.Rectangle_left_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_left_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
+            Interop.Rectangle.delete_Rectangle(swigCPtr);
         }
 
-        private int y
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_y_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_y_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int right
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_right_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_right_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int width
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_width_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int bottom
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_bottom_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_bottom_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int height
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_height_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private int top
-        {
-            set
-            {
-                NDalicPINVOKE.Rectangle_top_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = NDalicPINVOKE.Rectangle_top_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
+        /// <summary>
+        /// Determines whether the reference is null or the Rectangle has all 0 properties.
+        /// </summary>
+        internal static bool IsNullOrZero(Rectangle rectangle) => (rectangle == null || (rectangle.top == 0 && rectangle.right == 0 && rectangle.bottom == 0 && rectangle.left == 0));
     }
-
 }

@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to directly manage the system audio input devices.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <feature>http://tizen.org/feature/microphone</feature>
     /// <since_tizen> 3 </since_tizen>
     public abstract class AudioCaptureBase : IDisposable
     {
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <seealso cref="SampleRate"/>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MaxSampleRate = 48000;
+        public static readonly int MaxSampleRate = 192000;
 
         internal IntPtr _handle = IntPtr.Zero;
 
@@ -60,8 +61,8 @@ namespace Tizen.Multimedia
             Channel = channel;
             SampleType = sampleType;
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle));
+            AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle)
+                .ThrowIfFailed("Failed to create audio capture instance.");
 
             RegisterStateChangedCallback();
         }
@@ -92,8 +93,8 @@ namespace Tizen.Multimedia
                     new AudioIOStateChangedEventArgs((AudioIOState)previous, _state, byPolicy));
             };
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero));
+            AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to set state changed callback.");
         }
 
         #region Dispose support
@@ -177,15 +178,53 @@ namespace Tizen.Multimedia
         public AudioSampleType SampleType { get; }
 
         /// <summary>
+        /// Gets or sets the volume of the audio input data stream.
+        /// </summary>
+        /// <value>
+        /// The default value is 1.0.<br/>
+        /// The valid range is greater than or equal to 0.0 and less than or equal to 2.0.<br/>
+        /// Note that if the value is less than 0.0, it will be set 0.0 and if the value is greater than 2.0, it will be set 2.0.
+        /// </value>
+        /// <remarks>
+        /// If the value is less than 1.0, the loudness of recorded data will be decreased.<br/>
+        /// If the value is greater than 1.0, the loudness of recorded data will be increased.<br/>
+        /// Note that the volume can be clipped if the value is greater than 1.0 and the loudness of original recorded data is high enough.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The AudioCapture has already been disposed.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public double Volume
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                var ret = AudioInput.GetVolume(_handle, out double volume);
+                MultimediaDebug.AssertNoError((int)ret);
+
+                return volume;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                var ret = AudioInput.SetVolume(_handle, Math.Min(Math.Max(value, 0.0), 2.0));
+                MultimediaDebug.AssertNoError((int)ret);
+            }
+        }
+
+        /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
+        /// <returns>The buffer size of audio data captured.</returns>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int GetBufferSize()
         {
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(AudioInput.GetBufferSize(_handle, out var size));
+            AudioInput.GetBufferSize(_handle, out var size)
+                .ThrowIfFailed("Failed to get buffer size.");
+
             return size;
         }
 
@@ -204,8 +243,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Idle);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Prepare(_handle),
-                "Failed to prepare the AudioCapture");
+            AudioInput.Prepare(_handle).ThrowIfFailed("Failed to prepare the AudioCapture");
         }
 
         /// <summary>
@@ -223,8 +261,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Unprepare(_handle),
-                "Failed to unprepare the AudioCapture");
+            AudioInput.Unprepare(_handle).ThrowIfFailed("Failed to unprepare the AudioCapture");
         }
 
         /// <summary>
@@ -246,7 +283,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Pause(_handle));
+            AudioInput.Pause(_handle).ThrowIfFailed("Failed to pause.");
         }
         /// <summary>
         /// Resumes buffering audio data from the device.
@@ -267,7 +304,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Resume(_handle));
+            AudioInput.Resume(_handle).ThrowIfFailed("Failed to resume.");
         }
 
         /// <summary>
@@ -280,9 +317,8 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = AudioInput.Flush(_handle);
-
-            MultimediaDebug.AssertNoError(ret);
+            var ret = AudioInput.Flush(_handle);
+            MultimediaDebug.AssertNoError((int)ret);
         }
 
         /// <summary>
@@ -307,7 +343,8 @@ namespace Tizen.Multimedia
 
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(AudioInput.SetStreamInfo(_handle, streamPolicy.Handle));
+            AudioInput.SetStreamInfo(_handle, streamPolicy.Handle)
+                .ThrowIfFailed("Failed to apply stream policy.");
         }
     }
 
@@ -315,13 +352,14 @@ namespace Tizen.Multimedia
     /// Provides the ability to record audio from system audio input devices in a synchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <feature>http://tizen.org/feature/microphone</feature>
     /// <since_tizen> 3 </since_tizen>
     public class AudioCapture : AudioCaptureBase
     {
         /// <summary>
         /// Initializes a new instance of the AudioCapture class with the specified sample rate, channel, and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 192000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -362,8 +400,7 @@ namespace Tizen.Multimedia
 
             byte[] buffer = new byte[count];
 
-            AudioIOUtil.ThrowIfError(AudioInput.Read(_handle, buffer, count),
-                "Failed to read");
+            AudioInput.Read(_handle, buffer, count).ThrowIfFailed("Failed to read.");
 
             return buffer;
         }
@@ -373,6 +410,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to record audio from system audio input devices in an asynchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <feature>http://tizen.org/feature/microphone</feature>
     /// <since_tizen> 3 </since_tizen>
     public class AsyncAudioCapture : AudioCaptureBase
     {
@@ -386,7 +424,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the AsyncAudioCapture class with the specified sample rate, channel and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 192000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -407,9 +445,8 @@ namespace Tizen.Multimedia
         {
             _streamCallback = (IntPtr handle, uint length, IntPtr _) => { OnInputDataAvailable(handle, length); };
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero),
-                $"Failed to initialize a { nameof(AsyncAudioCapture) }");
+            AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to create instance.");
         }
 
         private AudioStreamCallback _streamCallback;
@@ -421,10 +458,9 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            IntPtr ptr = IntPtr.Zero;
             try
             {
-                AudioIOUtil.ThrowIfError(AudioInput.Peek(_handle, out ptr, ref length));
+                AudioInput.Peek(_handle, out IntPtr ptr, ref length).ThrowIfFailed("Failed to peek.");
 
                 byte[] buffer = new byte[length];
                 Marshal.Copy(ptr, buffer, 0, (int)length);

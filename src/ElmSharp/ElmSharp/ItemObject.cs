@@ -36,6 +36,12 @@ namespace ElmSharp
         EvasObject _trackObject = null;
 
         /// <summary>
+        /// Gets the parent object for ItemObject.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public EvasObject Parent { get; internal set; }
+
+        /// <summary>
         /// Creates and initializes a new instance of the ItemObject class.
         /// </summary>
         /// <param name="handle">IntPtr</param>
@@ -45,6 +51,22 @@ namespace ElmSharp
             _deleteCallback = DeleteCallbackHandler;
             Id = GetNextId();
             s_IdToItemTable[Id] = this;
+            Parent = null;
+            Handle = handle;
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the ItemObject class with parent object.
+        /// </summary>
+        /// <param name="handle">IntPtr</param>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <since_tizen> preview </since_tizen>
+        protected ItemObject(IntPtr handle, EvasObject parent)
+        {
+            _deleteCallback = DeleteCallbackHandler;
+            Id = GetNextId();
+            s_IdToItemTable[Id] = this;
+            Parent = parent;
             Handle = handle;
         }
 
@@ -81,8 +103,10 @@ namespace ElmSharp
         {
             get
             {
-                if (_trackObject == null)
+                if (_trackObject == null || Interop.Elementary.elm_object_item_track_get(Handle) == 0)
+                {
                     _trackObject = new ItemEvasObject(Handle);
+                }
                 return _trackObject;
             }
         }
@@ -121,6 +145,10 @@ namespace ElmSharp
                 _handle = value;
                 SetDeleteCallback();
                 s_HandleToItemTable[Handle] = this;
+                if (_handle != IntPtr.Zero)
+                {
+                    Elementary.SendItemObjectRealized(this);
+                }
             }
         }
 
@@ -321,6 +349,7 @@ namespace ElmSharp
         void DeleteCallbackHandler(IntPtr data, IntPtr obj, IntPtr info)
         {
             Deleted?.Invoke(this, EventArgs.Empty);
+            Parent = null;
             OnInvalidate();
             if (s_IdToItemTable.ContainsKey(Id))
             {
@@ -350,7 +379,7 @@ namespace ElmSharp
             return s_globalId++;
         }
 
-        class SignalData
+        class SignalData : IEquatable<SignalData>
         {
             public string Emission { get; set; }
             public string Source { get; set; }
@@ -363,22 +392,17 @@ namespace ElmSharp
                 Func = func;
             }
 
-            /// <summary>
-            /// Indicates whether this instance and a specified object are equal.
-            /// </summary>
-            /// <param name="obj">The object to compare with the current instance.</param>
-            /// <returns>
-            /// true if the object and this instance are of the same type and represent the same value,
-            /// otherwise false.
-            /// </returns>
-            public override bool Equals(object obj)
+            public override bool Equals(object other)
             {
-                SignalData s = obj as SignalData;
-                if (s == null)
+                return Equals(other as SignalData);
+            }
+
+            public bool Equals(SignalData other) {
+                if (other == null)
                 {
                     return false;
                 }
-                return (Emission == s.Emission) && (Source == s.Source) && (Func == s.Func);
+                return (Emission == other.Emission) && (Source == other.Source) && (Func == other.Func);
             }
 
             public override int GetHashCode()
@@ -392,26 +416,20 @@ namespace ElmSharp
 
         class ItemEvasObject : EvasObject
         {
-            IntPtr _parent = IntPtr.Zero;
+            IntPtr _trackHandle = IntPtr.Zero;
 
-            /// <summary>
-            /// Creates and initializes a new instance of the ItemEvasObject class.
-            /// </summary>
-            /// <param name="parent">IntPtr</param>
-            public ItemEvasObject(IntPtr parent) : base()
+            public ItemEvasObject(IntPtr parent)
             {
-                _parent = parent;
-                Realize(null);
+                _trackHandle = Interop.Elementary.elm_object_item_track(parent);
+                if (_trackHandle != IntPtr.Zero)
+                {
+                    Realize(null);
+                }
             }
 
-            /// <summary>
-            /// Creates a widget handle.
-            /// </summary>
-            /// <param name="parent">Parent EvasObject.</param>
-            /// <returns>Handle IntPtr.</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
-                return Interop.Elementary.elm_object_item_track(_parent);
+                return _trackHandle;
             }
         }
     }

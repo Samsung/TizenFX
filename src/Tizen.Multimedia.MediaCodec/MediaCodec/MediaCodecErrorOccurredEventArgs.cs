@@ -21,15 +21,12 @@ namespace Tizen.Multimedia.MediaCodec
     /// <summary>
     /// Provides data for the <see cref="MediaCodec.ErrorOccurred"/> event.
     /// </summary>
-    /// <feature>http://tizen.org/feature/multimedia.media_codec</feature>
     /// <since_tizen> 3 </since_tizen>
     public class MediaCodecErrorOccurredEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the ErrorOccurredEventArgs class.
         /// </summary>
-        /// <feature>http://tizen.org/feature/multimedia.media_codec</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <param name="error">The value representing the type of the error.</param>
         /// <since_tizen> 3 </since_tizen>
         public MediaCodecErrorOccurredEventArgs(MediaCodecError error)

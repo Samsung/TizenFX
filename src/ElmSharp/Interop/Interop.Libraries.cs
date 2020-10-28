@@ -27,5 +27,6 @@ internal static partial class Interop
         internal const string EcoreInput = "libecore_input.so.1";
         internal const string Eo = "libeo.so.1";
         internal const string Eext = "libefl-extension.so.0";
+        internal const string Eutil = "libcapi-ui-efl-util.so.0";
     }
 }

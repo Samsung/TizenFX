@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,14 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ConnectionChangedCallback(IntPtr device, bool isConnected, IntPtr userData);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void StateChangedCallback(IntPtr device, AudioDeviceState changedState, IntPtr userData);
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void RunningChangedCallback(IntPtr device, bool isRunning, IntPtr userData);
+
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_list")]
             internal static extern AudioManagerError GetDeviceList(AudioDeviceOptions deviceMask, out IntPtr deviceList);
@@ -50,8 +56,43 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_name")]
             internal static extern int GetDeviceName(IntPtr device, out IntPtr name);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state_by_id")]
             internal static extern AudioManagerError GetDeviceState(int deviceId, out AudioDeviceState state);
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id")]
+            internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_formats_by_id")]
+            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_format_by_id")]
+            internal static extern AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_format_by_id")]
+            internal static extern AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_rates_by_id")]
+            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_rate_by_id")]
+            internal static extern AudioManagerError SetSampleRate(int deviceId, uint rate);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_rate_by_id")]
+            internal static extern AudioManagerError GetSampleRate(int deviceId, out uint rate);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_avoid_resampling_by_id")]
+            internal static extern AudioManagerError SetAvoidResampling(int deviceId, bool enable);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_avoid_resampling_by_id")]
+            internal static extern AudioManagerError GetAvoidResampling(int deviceId, out bool enabled);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_media_stream_only_by_id")]
+            internal static extern AudioManagerError SetMediaStreamOnly(int deviceId, bool enable);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_media_stream_only_by_id")]
+            internal static extern AudioManagerError GetMediaStreamOnly(int deviceId, out bool enabled);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(
@@ -66,6 +107,13 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_state_changed_cb")]
             internal static extern AudioManagerError RemoveDeviceStateChangedCallback(int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_running_changed_cb")]
+            internal static extern AudioManagerError AddDeviceRunningChangedCallback(AudioDeviceOptions deviceMask,
+                RunningChangedCallback callback, IntPtr userData, out int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_running_changed_cb")]
+            internal static extern AudioManagerError RemoveDeviceRunningChangedCallback(int id);
         }
     }
 }

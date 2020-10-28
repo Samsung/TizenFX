@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,73 +15,34 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
-    /// PropertyBuffer is a handle to an object that contains a buffer of structured properties.<br />
+    /// PropertyBuffer is a handle to an object that contains a buffer of structured data.<br />
     /// PropertyBuffers can be used to provide data to Geometry objects.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PropertyBuffer : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyBuffer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
 
         /// <summary>
         /// Creates a PropertyBuffer.
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+        public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyBuffer.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+        }
+
         /// <summary>
         /// Updates the whole buffer information.<br />
         /// This function expects a pointer to an array of structures with the same
@@ -91,9 +52,13 @@ namespace Tizen.NUI
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
+            "Please use PropertyBuffer(PropertyMap bufferFormat) constructor instead!" +
+            "IntPtr(native integer pointer) is supposed to be not used in Application!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
-            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
+            Interop.PropertyBuffer.PropertyBuffer_SetData(swigCPtr, data, size);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -104,11 +69,21 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetSize()
         {
-            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
+            uint ret = Interop.PropertyBuffer.PropertyBuffer_GetSize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.PropertyBuffer.delete_PropertyBuffer(swigCPtr);
+        }
+    }
 }

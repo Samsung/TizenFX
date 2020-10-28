@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Tizen.NUI
@@ -41,11 +43,11 @@ namespace Tizen.NUI
         /// Given a C++ object, the dictionary allows us to find which C# object it belongs to.
         /// By keeping the weak reference only, it will allow the object to be garbage collected.
         /// </summary>
-        private Dictionary<IntPtr, WeakReference> _controlMap;
+        private ConcurrentDictionary<IntPtr, WeakReference> _controlMap;
 
         private Registry()
         {
-            _controlMap = new Dictionary<IntPtr, WeakReference>();
+            _controlMap = new ConcurrentDictionary<IntPtr, WeakReference>();
         }
 
 
@@ -55,16 +57,14 @@ namespace Tizen.NUI
         /// <param name="baseHandle">The instance of BaseHandle (C# base class).</param>
         internal static void Register(BaseHandle baseHandle)
         {
-
             // We store a pointer to the RefObject for the control
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
-            //NUILog.Debug("Storing ref object cptr in control map Hex: {0:X}" + refCptr);
+            RegistryCurrentThreadCheck();
 
-            if (!Instance._controlMap.ContainsKey(refCptr))
+            if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
             {
-                Instance._controlMap.Add(refCptr, new WeakReference(baseHandle, false));
+                NUILog.Debug("refCptr is already exist! OR something wrong!");
             }
 
             return;
@@ -76,12 +76,13 @@ namespace Tizen.NUI
         /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
         internal static void Unregister(BaseHandle baseHandle)
         {
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
-            if (Instance._controlMap.ContainsKey(refCptr))
+            RegistryCurrentThreadCheck();
+            WeakReference refe;
+            if (Instance._controlMap.TryRemove(refCptr, out refe) != true)
             {
-                Instance._controlMap.Remove(refCptr);
+                NUILog.Debug("something wrong when removing refCptr!");
             }
 
             return;
@@ -89,45 +90,44 @@ namespace Tizen.NUI
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(BaseHandle baseHandle)
         {
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
+            IntPtr refObjectPtr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
-            if (refObjectPtr != null)
-            {
-                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-                return GetManagedBaseHandleFromRefObject(refObjectPtr);
-            }
-            else
-            {
-                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
-                return null;
-            }
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
         {
-            IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
+            IntPtr refObjectPtr = Interop.RefObject.GetRefObjectPtr(cPtr);
 
-            if (refObjectPtr != null)
-            {
-                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-                return GetManagedBaseHandleFromRefObject(refObjectPtr);
-            }
-            else
-            {
-                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
-                return null;
-            }
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
         internal static BaseHandle GetManagedBaseHandleFromRefObject(IntPtr refObjectPtr)
         {
+            if (refObjectPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.Debug("Registry refObjectPtr is NULL! This means bind native object is NULL!");
+                //return null;
+            }
+            else
+            {
+                NUILog.Debug($"refObjectPtr=0x{refObjectPtr.ToInt64():X}");
+            }
+
+            RegistryCurrentThreadCheck();
+
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
             WeakReference weakReference;
 
             if (Instance._controlMap.TryGetValue(refObjectPtr, out weakReference))
             {
-                if(weakReference == null) { throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!"); }
+                if (weakReference == null)
+                {
+                    throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!");
+                }
+
                 BaseHandle ret = weakReference.Target as BaseHandle;
                 return ret;
             }
@@ -150,5 +150,21 @@ namespace Tizen.NUI
             }
         }
 
+        private static void RegistryCurrentThreadCheck()
+        {
+            
+            if (savedApplicationThread == null)
+            {
+                Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");
+                return;
+            }
+            int currentId = Thread.CurrentThread.ManagedThreadId;
+            int mainThreadId = savedApplicationThread.ManagedThreadId;
+
+            if (currentId != mainThreadId)
+            {
+                Tizen.Log.Fatal("NUI", $"Error! current thread({currentId}) which is NOT main thread({mainThreadId}) utilizes NUI object!");
+            }
+        }
     }
 }

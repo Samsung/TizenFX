@@ -87,6 +87,13 @@ namespace Tizen.Applications.CoreBackend
         /// <since_tizen> 3 </since_tizen>
         public static readonly EventType DeviceOrientationChanged = "DeviceOrientationChanged";
 
+        /// <summary>
+        /// Pre-defined event type "SuspendedStateChanged".
+        /// The SuspendedStateEventArgs class is an event argument class for this EventType.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static readonly EventType SuspendedStateChanged = "SuspendedStateChanged";
+
         private string _typeName;
 
         /// <summary>

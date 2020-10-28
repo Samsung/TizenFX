@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,98 +17,34 @@
 
 namespace Tizen.NUI
 {
-
-    internal class StringValuePair : global::System.IDisposable
+    internal class StringValuePair : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
 
-        internal StringValuePair(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal StringValuePair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StringValuePair obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
 
-
-        ~StringValuePair()
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            Interop.StringValuePair.delete_StringValuePair(swigCPtr);
         }
 
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_StringValuePair(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-        public StringValuePair() : this(NDalicPINVOKE.new_StringValuePair__SWIG_0(), true)
+        public StringValuePair() : this(Interop.StringValuePair.new_StringValuePair__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public StringValuePair(string t, PropertyValue u) : this(NDalicPINVOKE.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true)
+        public StringValuePair(string t, PropertyValue u) : this(Interop.StringValuePair.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public StringValuePair(StringValuePair p) : this(NDalicPINVOKE.new_StringValuePair__SWIG_2(StringValuePair.getCPtr(p)), true)
+        public StringValuePair(StringValuePair p) : this(Interop.StringValuePair.new_StringValuePair__SWIG_2(StringValuePair.getCPtr(p)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -117,12 +53,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.StringValuePair_first_set(swigCPtr, value);
+                Interop.StringValuePair.StringValuePair_first_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = NDalicPINVOKE.StringValuePair_first_get(swigCPtr);
+                string ret = Interop.StringValuePair.StringValuePair_first_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -132,18 +68,16 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
+                Interop.StringValuePair.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.StringValuePair_second_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.StringValuePair.StringValuePair_second_get(swigCPtr);
                 PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
-
     }
-
 }

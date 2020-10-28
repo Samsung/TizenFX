@@ -29,13 +29,32 @@ namespace Tizen.System
             Handler = null;
         }
 
+        private static Interop.RuntimeInfo.RuntimeInformationChangedCallback __callback;
+
         internal event EventHandler<RuntimeFeatureStatusChangedEventArgs> EventHandler
         {
             add
             {
                 if (Handler == null)
                 {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key), RuntimeInformationChangedCallback, IntPtr.Zero);
+                    __callback = (RuntimeInfoKey num, IntPtr userData) =>
+                    {
+                        string strKey = "Invalid";
+
+                        if (num > 0 && Information.EnumStringMapping.ContainsKey(num))
+                        {
+                            strKey = Information.EnumStringMapping[num];
+                        }
+
+                        RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
+                        {
+                            Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + strKey
+                        };
+
+                        Handler?.Invoke(null, eventArgs);
+                    };
+
+                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(Key, __callback, IntPtr.Zero);
                     if (ret != InformationError.None)
                     {
                         Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
@@ -49,7 +68,7 @@ namespace Tizen.System
                 Handler -= value;
                 if (Handler == null)
                 {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key));
+                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(Key);
                     if (ret != InformationError.None)
                     {
                         Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
@@ -57,16 +76,6 @@ namespace Tizen.System
                     }
                 }
             }
-        }
-
-        private void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData)
-        {
-            RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
-            {
-                Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + (Information.EnumStringMapping.ContainsKey(key) ? Information.EnumStringMapping[key] : "Invalid")
-            };
-
-            Handler?.Invoke(null, eventArgs);
         }
     }
 }

@@ -21,7 +21,7 @@ internal static partial class Interop
 {
     internal static partial class Elementary
     {
-        public delegate void GestureEventCallback(IntPtr data, IntPtr event_info);
+        public delegate int GestureEventCallback(IntPtr data, IntPtr event_info);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_gesture_layer_add(IntPtr parent);

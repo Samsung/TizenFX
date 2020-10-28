@@ -33,7 +33,7 @@ namespace ElmSharp
         internal static HoverselItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             HoverselItem item = ItemObject.GetItemByHandle(info) as HoverselItem;
-            return new HoverselItemEventArgs() { Item = item };
+            return new HoverselItemEventArgs { Item = item };
         }
     }
 
@@ -203,7 +203,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public HoverselItem AddItem(string label)
         {
-            HoverselItem item = new HoverselItem();
+            HoverselItem item = new HoverselItem(this);
             item.Label = label;
             item.Handle = Interop.Elementary.elm_hoversel_item_add(RealHandle, label, null, 0, _onItemSelected, (IntPtr)item.Id);
             return item;

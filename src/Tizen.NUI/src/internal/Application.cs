@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,18 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -127,30 +132,6 @@ namespace Tizen.NUI
         private Application _application;
         /**
           * @brief Application - is the application that is being Reset
-          *
-          */
-        public Application Application
-        {
-            get
-            {
-                return _application;
-            }
-            set
-            {
-                _application = value;
-            }
-        }
-    }
-
-    /**
-      * @brief Event arguments that passed via NUIApplicationResize signal
-      *
-      */
-    internal class NUIApplicationResizedEventArgs : EventArgs
-    {
-        private Application _application;
-        /**
-          * @brief Application - is the application that is being Resized
           *
           */
         public Application Application
@@ -302,13 +283,157 @@ namespace Tizen.NUI
         }
     }
 
-    internal class Application : BaseHandle
+    /// <summary>
+    /// A class to get resources in current application.
+    /// </summary>
+    public class GetResourcesProvider
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// Get resources in current application.
+        /// </summary>
+        static public IResourcesProvider Get()
+        {
+            return Tizen.NUI.Application.Current;
+        }
+    }
+
+    internal class Application : BaseHandle, IResourcesProvider, IElementConfiguration<Application>
+    {
+
+        static Application s_current;
+
+        ReadOnlyCollection<Element> _logicalChildren;
+
+        static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetCurrentApplication(Application value) => Current = value;
+
+        public static Application Current
+        {
+            get { return s_current; }
+            set
+            {
+                if (s_current == value)
+                    return;
+                if (value == null)
+                    s_current = null; //Allow to reset current for unittesting
+                s_current = value;
+            }
+        }
+
+        internal override ReadOnlyCollection<Element> LogicalChildrenInternal
+        {
+            get { return _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren)); }
+        }
+
+        internal IResourceDictionary SystemResources { get; }
+
+        ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
+
+        ResourceDictionary _resources;
+        public bool IsResourcesCreated => _resources != null;
+
+        public delegate void resChangeCb(object sender, ResourcesChangedEventArgs e);
+
+        static private Dictionary<object, Dictionary<resChangeCb, int>> resourceChangeCallbackDict = new Dictionary<object, Dictionary<resChangeCb, int>>();
+        static public void AddResourceChangedCallback(object handle, resChangeCb cb)
+        {
+            Dictionary<resChangeCb, int> cbDict;
+            resourceChangeCallbackDict.TryGetValue(handle, out cbDict);
+
+            if (null == cbDict)
+            {
+                cbDict = new Dictionary<resChangeCb, int>();
+                resourceChangeCallbackDict.Add(handle, cbDict);
+            }
+
+            if (false == cbDict.ContainsKey(cb))
+            {
+                cbDict.Add(cb, 0);
+            }
+        }
+
+        internal override void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
+        {
+            base.OnResourcesChanged(sender, e);
+
+            foreach (KeyValuePair<object, Dictionary<resChangeCb, int>> resourcePair in resourceChangeCallbackDict)
+            {
+                foreach (KeyValuePair<resChangeCb, int> cbPair in resourcePair.Value)
+                {
+                    cbPair.Key(sender, e);
+                }
+            }
+        }
+
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                if (_resources != null)
+                    return _resources;
+
+                _resources = new ResourceDictionary();
+                int hashCode = _resources.GetHashCode();
+                ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+                return _resources;
+            }
+            set
+            {
+                if (_resources == value)
+                    return;
+                OnPropertyChanging();
+
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged -= OnResourcesChanged;
+                _resources = value;
+                OnResourcesChanged(value);
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+
+                OnPropertyChanged();
+            }
+        }
+
+        protected override void OnParentSet()
+        {
+            throw new InvalidOperationException("Setting a Parent on Application is invalid.");
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsApplicationOrNull(Element element)
+        {
+            return element == null || element is Application;
+        }
+
+        internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
+        {
+            if (!((IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
+            {
+                base.OnParentResourcesChanged(values);
+                return;
+            }
+
+            var innerKeys = new HashSet<string>();
+            var changedResources = new List<KeyValuePair<string, object>>();
+            foreach (KeyValuePair<string, object> c in XamlResources)
+                innerKeys.Add(c.Key);
+            foreach (KeyValuePair<string, object> value in values)
+            {
+                if (innerKeys.Add(value.Key))
+                    changedResources.Add(value);
+            }
+            OnResourcesChanged(changedResources);
+        }
+
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            SetCurrentApplication(this);
+
+
+            s_current = this;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj)
@@ -321,14 +446,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -360,11 +477,6 @@ namespace Tizen.NUI
                 this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
             }
 
-            if (_applicationResizeEventCallbackDelegate != null)
-            {
-                this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
-            }
-
             if (_applicationLanguageChangedEventCallbackDelegate != null)
             {
                 this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
@@ -390,17 +502,11 @@ namespace Tizen.NUI
                 this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Application(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Application.delete_Application(swigCPtr);
         }
 
         /// <since_tizen> 4 </since_tizen>
@@ -445,11 +551,6 @@ namespace Tizen.NUI
         private delegate void NUIApplicationResetEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationResetEventArgs> _applicationResetEventHandler;
         private NUIApplicationResetEventCallbackDelegate _applicationResetEventCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void NUIApplicationResizeEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationResizedEventArgs> _applicationResizeEventHandler;
-        private NUIApplicationResizeEventCallbackDelegate _applicationResizeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationLanguageChangedEventCallbackDelegate(IntPtr application);
@@ -518,14 +619,13 @@ namespace Tizen.NUI
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
-            NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
-            // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
             if (_applicationInitEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationInitEventHandler(this, e);
+                NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
+                e.Application = this;
+                _applicationInitEventHandler.Invoke(this, e);
             }
+
         }
 
         /**
@@ -566,15 +666,17 @@ namespace Tizen.NUI
         // Callback for Application TerminateSignal
         private void OnNUIApplicationTerminate(IntPtr data)
         {
-            NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
-
-            // Populate all members of "e" (NUIApplicationTerminateEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationTerminateEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationTerminateEventHandler(this, e);
+                NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
+                e.Application = this;
+                _applicationTerminateEventHandler.Invoke(this, e);
+            }
+
+            List<Window> windows = GetWindowList();
+            foreach (Window window in windows)
+            {
+                window?.DisconnectNativeSignals();
             }
         }
 
@@ -616,15 +718,11 @@ namespace Tizen.NUI
         // Callback for Application PauseSignal
         private void OnNUIApplicationPause(IntPtr data)
         {
-            NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
-
-            // Populate all members of "e" (NUIApplicationPauseEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationPauseEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationPauseEventHandler(this, e);
+                NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
+                e.Application = this;
+                _applicationPauseEventHandler.Invoke(this, e);
             }
         }
 
@@ -666,15 +764,11 @@ namespace Tizen.NUI
         // Callback for Application ResumeSignal
         private void OnNUIApplicationResume(IntPtr data)
         {
-            NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
-
-            // Populate all members of "e" (NUIApplicationResumeEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationResumeEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationResumeEventHandler(this, e);
+                NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
+                e.Application = this;
+                _applicationResumeEventHandler.Invoke(this, e);
             }
         }
 
@@ -716,65 +810,11 @@ namespace Tizen.NUI
         // Callback for Application ResetSignal
         private void OnNUIApplicationReset(IntPtr data)
         {
-            NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
-
-            // Populate all members of "e" (NUIApplicationResetEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationResetEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationResetEventHandler(this, e);
-            }
-        }
-
-        /**
-          * @brief Event for Resized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Resized signal is emitted when application is resized
-          */
-        public event DaliEventHandler<object, NUIApplicationResizedEventArgs> Resized
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_applicationResizeEventHandler == null)
-                    {
-                        _applicationResizeEventHandler += value;
-
-                        _applicationResizeEventCallbackDelegate = new NUIApplicationResizeEventCallbackDelegate(OnNUIApplicationResize);
-                        this.ResizeSignal().Connect(_applicationResizeEventCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_applicationResizeEventHandler != null)
-                    {
-                        this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
-                    }
-
-                    _applicationResizeEventHandler -= value;
-                }
-            }
-        }
-
-        // Callback for Application ResizeSignal
-        private void OnNUIApplicationResize(IntPtr data)
-        {
-            NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
-
-            // Populate all members of "e" (NUIApplicationResizeEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
-            if (_applicationResizeEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _applicationResizeEventHandler(this, e);
+                NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
+                e.Application = this;
+                _applicationResetEventHandler.Invoke(this, e);
             }
         }
 
@@ -816,15 +856,11 @@ namespace Tizen.NUI
         // Callback for Application LanguageChangedSignal
         private void OnNUIApplicationLanguageChanged(IntPtr data)
         {
-            NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
-
-            // Populate all members of "e" (NUIApplicationLanguageChangedEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationLanguageChangedEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationLanguageChangedEventHandler(this, e);
+                NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
+                e.Application = this;
+                _applicationLanguageChangedEventHandler.Invoke(this, e);
             }
         }
 
@@ -866,15 +902,11 @@ namespace Tizen.NUI
         // Callback for Application RegionChangedSignal
         private void OnNUIApplicationRegionChanged(IntPtr data)
         {
-            NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
-
-            // Populate all members of "e" (NUIApplicationRegionChangedEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
-
             if (_applicationRegionChangedEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationRegionChangedEventHandler(this, e);
+                NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
+                e.Application = this;
+                _applicationRegionChangedEventHandler.Invoke(this, e);
             }
         }
 
@@ -916,15 +948,13 @@ namespace Tizen.NUI
         // Callback for Application BatteryLowSignal
         private void OnNUIApplicationBatteryLow(BatteryStatus status)
         {
-            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
-
-            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-            e.BatteryStatus = status;
-
-            if (_applicationBatteryLowEventHandler != null)
+            lock (this)
             {
-                //here we send all data to user event handlers
-                _applicationBatteryLowEventHandler(this, e);
+                NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+
+                // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+                e.BatteryStatus = status;
+                _applicationBatteryLowEventHandler?.Invoke(this, e);
             }
         }
 
@@ -966,15 +996,13 @@ namespace Tizen.NUI
         // Callback for Application MemoryLowSignal
         private void OnNUIApplicationMemoryLow(MemoryStatus status)
         {
-            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
-
-            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-            e.MemoryStatus = status;
-
-            if (_applicationMemoryLowEventHandler != null)
+            lock (this)
             {
-                //here we send all data to user event handlers
-                _applicationMemoryLowEventHandler(this, e);
+                NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+
+                // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+                e.MemoryStatus = status;
+                _applicationMemoryLowEventHandler?.Invoke(this, e);
             }
         }
 
@@ -1016,20 +1044,16 @@ namespace Tizen.NUI
         // Callback for Application AppControlSignal
         private void OnNUIApplicationAppControl(IntPtr application, IntPtr voidp)
         {
-            NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
-
-            // Populate all members of "e" (NUIApplicationAppControlEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(application);
-            e.VoidP = voidp;
-
             if (_applicationAppControlEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _applicationAppControlEventHandler(this, e);
+                NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
+                e.VoidP = voidp;
+                e.Application = this;
+                _applicationAppControlEventHandler.Invoke(this, e);
             }
         }
 
-        private static Application _instance; // singleton
+        protected static Application _instance; // singleton
 
         public static Application Instance
         {
@@ -1041,7 +1065,12 @@ namespace Tizen.NUI
 
         public static Application GetApplicationFromPtr(global::System.IntPtr cPtr)
         {
-            Application ret = new Application(cPtr, false);
+            if (cPtr == global::System.IntPtr.Zero)
+            {
+                return null;
+            }
+
+            Application ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Application;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1060,6 +1089,10 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
+            if(_instance)
+            {
+                return _instance;
+            }
 
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1069,10 +1102,41 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            if (_instance)
+            {
+                return _instance;
+            }
+            Application ret = New(1, stylesheet, windowMode, positionSize);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // set the singleton
+            _instance = ret;
+            return ret;
+        }
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
+            if (_instance)
+            {
+                return _instance;
+            }
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // set the singleton
+            _instance = ret;
+            return _instance;
+        }
+
+        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            if (_instance)
+            {
+                return _instance;
+            }
+            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
@@ -1088,9 +1152,9 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+            System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
 
-            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+            bool ret = Interop.Application.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1101,29 +1165,30 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_1(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_2(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            s_current = ret;
             return ret;
         }
 
@@ -1133,30 +1198,42 @@ namespace Tizen.NUI
             string argvStr = string.Join(" ", args);
 
             Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
+        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            int argc = args.Length;
+            string argvStr = string.Join(" ", args);
+
+            Application ret = new Application(NDalicPINVOKE.Application_New_WithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Application() : this(Interop.Application.new_Application__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Application(Application application) : this(NDalicPINVOKE.new_Application__SWIG_1(Application.getCPtr(application)), true)
+        public Application(Application application) : this(Interop.Application.new_Application__SWIG_1(Application.getCPtr(application)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application Assign(Application application)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
+            Application ret = new Application(Interop.Application.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1167,91 +1244,76 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
-        {
-            NDalicPINVOKE.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public void Lower()
         {
-            NDalicPINVOKE.Application_Lower(swigCPtr);
+            Interop.Application.Application_Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Quit()
         {
-            NDalicPINVOKE.Application_Quit(swigCPtr);
+            Interop.Application.Application_Quit(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            bool ret = Interop.Application.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Window GetWindow()
         {
-            Window ret = new Window(NDalicPINVOKE.Application_GetWindow(swigCPtr), true);
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindow(swigCPtr)) as Window;
+            if(ret == null)
+            {
+                ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public void ReplaceWindow(Rectangle windowPosition, string name)
-        {
-            NDalicPINVOKE.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static string GetResourcePath()
         {
-            string ret = NDalicPINVOKE.Application_GetResourcePath();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetViewMode(ViewMode viewMode)
-        {
-            NDalicPINVOKE.Application_SetViewMode(swigCPtr, (int)viewMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal ViewMode GetViewMode()
-        {
-            ViewMode ret = (ViewMode)NDalicPINVOKE.Application_GetViewMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void SetStereoBase(float stereoBase)
-        {
-            NDalicPINVOKE.Application_SetStereoBase(swigCPtr, stereoBase);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public float GetStereoBase()
-        {
-            float ret = NDalicPINVOKE.Application_GetStereoBase(swigCPtr);
+            string ret = Interop.Application.Application_GetResourcePath();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetLanguage()
         {
-            string ret = NDalicPINVOKE.Application_GetLanguage(swigCPtr);
+            string ret = Interop.Application.Application_GetLanguage(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetRegion()
         {
-            string ret = NDalicPINVOKE.Application_GetRegion(swigCPtr);
+            string ret = Interop.Application.Application_GetRegion(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Window> GetWindowList()
+        {
+            uint ListSize = Interop.Application.Application_GetWindowsListSize();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            List<Window> WindowList = new List<Window>();
+            for( uint i = 0; i < ListSize; ++i )
+            {
+                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindowsFromList(i)) as Window;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if(currWin)
+                {
+                    WindowList.Add(currWin);
+                }
+            }
+            return WindowList;
+        }
 
         internal ApplicationSignal InitSignal()
         {
@@ -1284,13 +1346,6 @@ namespace Tizen.NUI
         internal ApplicationSignal ResetSignal()
         {
             ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResetSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ApplicationSignal ResizeSignal()
-        {
-            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResizeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1336,7 +1391,5 @@ namespace Tizen.NUI
             Opaque = 0,
             Transparent = 1
         }
-
     }
-
 }

@@ -54,5 +54,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.InputMethodManager, EntryPoint = "ime_manager_get_enabled_ime_count")]
         internal static extern int ImeManagerGetEnabledImeCount();
+
+        [DllImport(Libraries.InputMethodManager, EntryPoint = "ime_manager_prelaunch_ime")]
+        internal static extern ErrorCode ImeManagerPrelaunchIme();
     }
 }

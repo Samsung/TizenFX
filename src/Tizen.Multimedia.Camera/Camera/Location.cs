@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
         /// <param name="latitude">The latitude data.</param>
         /// <param name="longitude">The longitude data.</param>
         /// <param name="altitude">The altitude data.</param>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <since_tizen> 3 </since_tizen>
         public Location(double latitude, double longitude, double altitude)
         {

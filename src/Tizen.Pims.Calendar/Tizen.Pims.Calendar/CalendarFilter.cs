@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -178,7 +178,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            IntPtr time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
             error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {
@@ -447,7 +447,7 @@ namespace Tizen.Pims.Calendar
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            IntPtr time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
             error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {

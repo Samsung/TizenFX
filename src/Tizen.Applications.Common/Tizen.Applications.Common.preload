@@ -1,0 +1,10 @@
+###########################################
+## AssemblyName.dll TypeName             ##
+## AssemblyName.dll TypeName.Preload()   ##
+## The methods must not have parameters. ##
+###########################################
+Tizen.Applications.Common.dll Interop
+Tizen.Applications.Common.dll Tizen.Applications.Application
+Tizen.Applications.Common.dll Tizen.Applications.CoreApplication
+Tizen.Applications.Common.dll Tizen.Applications.CoreBackend.EventType
+Tizen.Applications.Common.dll Tizen.Applications.TizenSynchronizationContext

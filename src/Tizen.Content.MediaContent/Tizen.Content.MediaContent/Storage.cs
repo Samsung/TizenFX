@@ -26,6 +26,7 @@ namespace Tizen.Content.MediaContent
     /// in each of the storage by using the storage ID.
     /// </remarks>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Please do not use! this will be deprecated in level 6")]
     public class Storage
     {
         internal Storage(IntPtr handle)

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../src/Tizen.NUI"
+		}
+	],
+	"settings": {}
+}

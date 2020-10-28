@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+using System;
 
 namespace Tizen.NUI
 {
@@ -33,140 +34,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public InputMethod()
         {
-        }
-
-        /// <summary>
-        /// Gets or sets the panel layout.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PanelLayoutType PanelLayout
-        {
-            get
-            {
-                return _panelLayout ?? PanelLayoutType.Normal;
-            }
-            set
-            {
-                _panelLayout = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the action button.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ActionButtonTitleType ActionButton
-        {
-            get
-            {
-                return _actionButton ?? ActionButtonTitleType.Default;
-            }
-            set
-            {
-                _actionButton = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the auto capital.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public AutoCapitalType AutoCapital
-        {
-            get
-            {
-                return _autoCapital ?? AutoCapitalType.None;
-            }
-            set
-            {
-                _autoCapital = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the variation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Variation
-        {
-            get
-            {
-                return _variation ?? 0;
-            }
-            set
-            {
-                _variation = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the variation for normal layout.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public NormalLayoutType NormalVariation
-        {
-            get
-            {
-                return (NormalLayoutType) (_variation ?? 0);
-            }
-            set
-            {
-                _variation = (int)value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the variation for the number only layout.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public NumberOnlyLayoutType NumberOnlyVariation
-        {
-            get
-            {
-                return (NumberOnlyLayoutType) (_variation ?? 0);
-            }
-            set
-            {
-                _variation = (int)value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the variation for the password layout.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PasswordLayoutType PasswordVariation
-        {
-            get
-            {
-                return (PasswordLayoutType) (_variation ?? 0);
-            }
-            set
-            {
-                _variation = (int)value;
-            }
-        }
-
-        private PropertyMap ComposingInputMethodMap()
-        {
-            PropertyMap _outputMap = new PropertyMap();
-            if (_panelLayout != null) { _outputMap.Add("PANEL_LAYOUT", new PropertyValue((int)_panelLayout)); }
-            if (_actionButton != null) { _outputMap.Add("ACTION_BUTTON", new PropertyValue((int)_actionButton)); }
-            if (_autoCapital != null) { _outputMap.Add("AUTO_CAPITALISE", new PropertyValue((int)_autoCapital)); }
-            if (_variation != null) { _outputMap.Add("VARIATION", new PropertyValue((int)_variation)); }
-            return _outputMap;
-        }
-
-        /// <summary>
-        /// Gets the input method map.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyMap OutputMap
-        {
-            get
-            {
-                return ComposingInputMethodMap();
-            }
         }
 
         /// <summary>
@@ -310,6 +177,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Previous action.
             /// </summary>
+            [Obsolete("Deprecated in API8, will be removed in API10.")]
             Previous,
             /// <summary>
             /// Search action.
@@ -326,10 +194,12 @@ namespace Tizen.NUI
             /// <summary>
             /// Unspecified action.
             /// </summary>
+            [Obsolete("Deprecated in API8, will be removed in API10.")]
             Unspecified,
             /// <summary>
             /// Nothing to do.
             /// </summary>
+            [Obsolete("Deprecated in API8, will be removed in API10.")]
             None
         }
 
@@ -393,5 +263,146 @@ namespace Tizen.NUI
             WithNumberOnly
         }
 
+        /// <summary>
+        /// Gets or sets the panel layout.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PanelLayoutType PanelLayout
+        {
+            get
+            {
+                return _panelLayout ?? PanelLayoutType.Normal;
+            }
+            set
+            {
+                _panelLayout = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the action button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ActionButtonTitleType ActionButton
+        {
+            get
+            {
+                return _actionButton ?? ActionButtonTitleType.Default;
+            }
+            set
+            {
+                _actionButton = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the auto capital.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public AutoCapitalType AutoCapital
+        {
+            get
+            {
+                return _autoCapital ?? AutoCapitalType.None;
+            }
+            set
+            {
+                _autoCapital = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the variation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public int Variation
+        {
+            get
+            {
+                return _variation ?? 0;
+            }
+            set
+            {
+                _variation = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the variation for normal layout.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public NormalLayoutType NormalVariation
+        {
+            get
+            {
+                return (NormalLayoutType) (_variation ?? 0);
+            }
+            set
+            {
+                _variation = (int)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the variation for the number only layout.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public NumberOnlyLayoutType NumberOnlyVariation
+        {
+            get
+            {
+                return (NumberOnlyLayoutType) (_variation ?? 0);
+            }
+            set
+            {
+                _variation = (int)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the variation for the password layout.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PasswordLayoutType PasswordVariation
+        {
+            get
+            {
+                return (PasswordLayoutType) (_variation ?? 0);
+            }
+            set
+            {
+                _variation = (int)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the input method map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyMap OutputMap
+        {
+            get
+            {
+                return ComposingInputMethodMap();
+            }
+        }
+
+        private PropertyMap ComposingInputMethodMap()
+        {
+            PropertyMap _outputMap = new PropertyMap();
+            if (_panelLayout != null) { _outputMap.Add("PANEL_LAYOUT", new PropertyValue((int)_panelLayout)); }
+            if (_actionButton != null)
+            {
+                // Temporarily specify the values to match the types of ecore_imf.
+                if (_actionButton == InputMethod.ActionButtonTitleType.Search) _actionButton = (InputMethod.ActionButtonTitleType.Search - 1); // 6
+                else if (_actionButton == InputMethod.ActionButtonTitleType.Send) _actionButton = (InputMethod.ActionButtonTitleType.Send - 1); // 7
+                else if (_actionButton == InputMethod.ActionButtonTitleType.SignIn) _actionButton = (InputMethod.ActionButtonTitleType.SignIn - 1); // 8
+                else if (_actionButton == InputMethod.ActionButtonTitleType.Unspecified || _actionButton == InputMethod.ActionButtonTitleType.None) _actionButton = InputMethod.ActionButtonTitleType.Default;
+                _outputMap.Add("BUTTON_ACTION", new PropertyValue((int)_actionButton));
+            }
+            if (_autoCapital != null) { _outputMap.Add("AUTO_CAPITALIZE", new PropertyValue((int)_autoCapital)); }
+            if (_variation != null) { _outputMap.Add("VARIATION", new PropertyValue((int)_variation)); }
+            return _outputMap;
+        }
     }
 }

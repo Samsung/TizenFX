@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,18 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     internal class ViewImpl : CustomActorImpl
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ViewImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewImpl.ViewImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewImpl obj)
@@ -35,484 +34,430 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    throw new global::System.MethodAccessException("C++ destructor does not have public access");
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
-
 
         public static View New()
         {
-            View ret = new View(NDalicPINVOKE.ViewImpl_New(), true);
+            View ret = new View(Interop.ViewImpl.ViewImpl_New(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetStyleName(string styleName)
         {
-            NDalicPINVOKE.ViewImpl_SetStyleName(swigCPtr, styleName);
+            Interop.ViewImpl.ViewImpl_SetStyleName(swigCPtr, styleName);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public string GetStyleName()
         {
-            string ret = NDalicPINVOKE.ViewImpl_GetStyleName(swigCPtr);
+            string ret = Interop.ViewImpl.ViewImpl_GetStyleName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetBackgroundColor(Vector4 color)
         {
-            NDalicPINVOKE.ViewImpl_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.ViewImpl.ViewImpl_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector4 GetBackgroundColor()
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.ViewImpl_GetBackgroundColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.ViewImpl.ViewImpl_GetBackgroundColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        internal void SetBackgroundImage(Image image)
-        {
-            NDalicPINVOKE.ViewImpl_SetBackgroundImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public void SetBackground(PropertyMap map)
         {
-            NDalicPINVOKE.ViewImpl_SetBackground(swigCPtr, PropertyMap.getCPtr(map));
+            Interop.ViewImpl.ViewImpl_SetBackground(swigCPtr, PropertyMap.getCPtr(map));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ClearBackground()
         {
-            NDalicPINVOKE.ViewImpl_ClearBackground(swigCPtr);
+            Interop.ViewImpl.ViewImpl_ClearBackground(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void EnableGestureDetection(Gesture.GestureType type)
         {
-            NDalicPINVOKE.ViewImpl_EnableGestureDetection(swigCPtr, (int)type);
+            Interop.ViewImpl.ViewImpl_EnableGestureDetection(swigCPtr, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void DisableGestureDetection(Gesture.GestureType type)
         {
-            NDalicPINVOKE.ViewImpl_DisableGestureDetection(swigCPtr, (int)type);
+            Interop.ViewImpl.ViewImpl_DisableGestureDetection(swigCPtr, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PinchGestureDetector GetPinchGestureDetector()
         {
-            PinchGestureDetector ret = new PinchGestureDetector(NDalicPINVOKE.ViewImpl_GetPinchGestureDetector(swigCPtr), true);
+            PinchGestureDetector ret = new PinchGestureDetector(Interop.ViewImpl.ViewImpl_GetPinchGestureDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PanGestureDetector GetPanGestureDetector()
         {
-            PanGestureDetector ret = new PanGestureDetector(NDalicPINVOKE.ViewImpl_GetPanGestureDetector(swigCPtr), true);
+            PanGestureDetector ret = new PanGestureDetector(Interop.ViewImpl.ViewImpl_GetPanGestureDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public TapGestureDetector GetTapGestureDetector()
         {
-            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.ViewImpl_GetTapGestureDetector(swigCPtr), true);
+            TapGestureDetector ret = new TapGestureDetector(Interop.ViewImpl.ViewImpl_GetTapGestureDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public LongPressGestureDetector GetLongPressGestureDetector()
         {
-            LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.ViewImpl_GetLongPressGestureDetector(swigCPtr), true);
+            LongPressGestureDetector ret = new LongPressGestureDetector(Interop.ViewImpl.ViewImpl_GetLongPressGestureDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetKeyboardNavigationSupport(bool isSupported)
         {
-            NDalicPINVOKE.ViewImpl_SetKeyboardNavigationSupport(swigCPtr, isSupported);
+            Interop.ViewImpl.ViewImpl_SetKeyboardNavigationSupport(swigCPtr, isSupported);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsKeyboardNavigationSupported()
         {
-            bool ret = NDalicPINVOKE.ViewImpl_IsKeyboardNavigationSupported(swigCPtr);
+            bool ret = Interop.ViewImpl.ViewImpl_IsKeyboardNavigationSupported(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetKeyInputFocus()
         {
-            NDalicPINVOKE.ViewImpl_SetKeyInputFocus(swigCPtr);
+            Interop.ViewImpl.ViewImpl_SetKeyInputFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool HasKeyInputFocus()
         {
-            bool ret = NDalicPINVOKE.ViewImpl_HasKeyInputFocus(swigCPtr);
+            bool ret = Interop.ViewImpl.ViewImpl_HasKeyInputFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ClearKeyInputFocus()
         {
-            NDalicPINVOKE.ViewImpl_ClearKeyInputFocus(swigCPtr);
+            Interop.ViewImpl.ViewImpl_ClearKeyInputFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetAsFocusGroup(bool isFocusGroup)
         {
-            NDalicPINVOKE.ViewImpl_SetAsKeyboardFocusGroup(swigCPtr, isFocusGroup);
+            Interop.ViewImpl.ViewImpl_SetAsKeyboardFocusGroup(swigCPtr, isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsFocusGroup()
         {
-            bool ret = NDalicPINVOKE.ViewImpl_IsKeyboardFocusGroup(swigCPtr);
+            bool ret = Interop.ViewImpl.ViewImpl_IsKeyboardFocusGroup(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AccessibilityActivate()
         {
-            NDalicPINVOKE.ViewImpl_AccessibilityActivate(swigCPtr);
+            Interop.ViewImpl.ViewImpl_AccessibilityActivate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
         {
-            NDalicPINVOKE.ViewImpl_KeyboardEnter(swigCPtr);
+            Interop.ViewImpl.ViewImpl_KeyboardEnter(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ControlKeySignal KeyEventSignal()
         {
-            ControlKeySignal ret = new ControlKeySignal(NDalicPINVOKE.ViewImpl_KeyEventSignal(swigCPtr), false);
+            ControlKeySignal ret = new ControlKeySignal(Interop.ViewImplSignal.ViewImpl_KeyEventSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyInputFocusSignal KeyInputFocusGainedSignal()
         {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(NDalicPINVOKE.ViewImpl_KeyInputFocusGainedSignal(swigCPtr), false);
+            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewImplSignal.ViewImpl_KeyInputFocusGainedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyInputFocusSignal KeyInputFocusLostSignal()
         {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(NDalicPINVOKE.ViewImpl_KeyInputFocusLostSignal(swigCPtr), false);
+            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewImplSignal.ViewImpl_KeyInputFocusLostSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EmitKeyEventSignal(Key arg0)
         {
-            bool ret = NDalicPINVOKE.ViewImpl_EmitKeyEventSignal(swigCPtr, Key.getCPtr(arg0));
+            bool ret = Interop.ViewImplSignal.ViewImpl_EmitKeyEventSignal(swigCPtr, Key.getCPtr(arg0));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        protected virtual new void OnStageConnection(int depth)
+        protected virtual new void OnSceneConnection(int depth)
         {
-            if (SwigDerivedClassHasMethod("OnStageConnection", swigMethodTypes0)) NDalicPINVOKE.ViewImpl_OnStageConnectionSwigExplicitViewImpl(swigCPtr, depth); else NDalicPINVOKE.ViewImpl_OnStageConnection(swigCPtr, depth);
+            if (SwigDerivedClassHasMethod("OnSceneConnection", swigMethodTypes0)) Interop.ViewImplSignal.ViewImpl_OnSceneConnectionSwigExplicitViewImpl(swigCPtr, depth); else Interop.ViewImplSignal.ViewImpl_OnSceneConnection(swigCPtr, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        protected virtual new void OnStageDisconnection()
+        protected virtual new void OnSceneDisconnection()
         {
-            if (SwigDerivedClassHasMethod("OnStageDisconnection", swigMethodTypes1)) NDalicPINVOKE.ViewImpl_OnStageDisconnectionSwigExplicitViewImpl(swigCPtr); else NDalicPINVOKE.ViewImpl_OnStageDisconnection(swigCPtr);
+            if (SwigDerivedClassHasMethod("OnSceneDisconnection", swigMethodTypes1)) Interop.ViewImplSignal.ViewImpl_OnSceneDisconnectionSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnSceneDisconnection(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnChildAdd(View child)
         {
-            if (SwigDerivedClassHasMethod("OnChildAdd", swigMethodTypes2)) NDalicPINVOKE.ViewImpl_OnChildAddSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else NDalicPINVOKE.ViewImpl_OnChildAdd(swigCPtr, View.getCPtr(child));
+            if (SwigDerivedClassHasMethod("OnChildAdd", swigMethodTypes2)) Interop.ViewImplSignal.ViewImpl_OnChildAddSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else Interop.ViewImplSignal.ViewImpl_OnChildAdd(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnChildRemove(View child)
         {
-            if (SwigDerivedClassHasMethod("OnChildRemove", swigMethodTypes3)) NDalicPINVOKE.ViewImpl_OnChildRemoveSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else NDalicPINVOKE.ViewImpl_OnChildRemove(swigCPtr, View.getCPtr(child));
+            if (SwigDerivedClassHasMethod("OnChildRemove", swigMethodTypes3)) Interop.ViewImplSignal.ViewImpl_OnChildRemoveSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else Interop.ViewImplSignal.ViewImpl_OnChildRemove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnPropertySet(int index, PropertyValue propertyValue)
         {
-            if (SwigDerivedClassHasMethod("OnPropertySet", swigMethodTypes4)) NDalicPINVOKE.ViewImpl_OnPropertySetSwigExplicitViewImpl(swigCPtr, index, PropertyValue.getCPtr(propertyValue)); else NDalicPINVOKE.ViewImpl_OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
+            if (SwigDerivedClassHasMethod("OnPropertySet", swigMethodTypes4)) Interop.ViewImplSignal.ViewImpl_OnPropertySetSwigExplicitViewImpl(swigCPtr, index, PropertyValue.getCPtr(propertyValue)); else Interop.ViewImplSignal.ViewImpl_OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnSizeSet(Vector3 targetSize)
         {
-            if (SwigDerivedClassHasMethod("OnSizeSet", swigMethodTypes5)) NDalicPINVOKE.ViewImpl_OnSizeSetSwigExplicitViewImpl(swigCPtr, Vector3.getCPtr(targetSize)); else NDalicPINVOKE.ViewImpl_OnSizeSet(swigCPtr, Vector3.getCPtr(targetSize));
+            if (SwigDerivedClassHasMethod("OnSizeSet", swigMethodTypes5)) Interop.ViewImplSignal.ViewImpl_OnSizeSetSwigExplicitViewImpl(swigCPtr, Vector3.getCPtr(targetSize)); else Interop.ViewImplSignal.ViewImpl_OnSizeSet(swigCPtr, Vector3.getCPtr(targetSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
-            if (SwigDerivedClassHasMethod("OnSizeAnimation", swigMethodTypes6)) NDalicPINVOKE.ViewImpl_OnSizeAnimationSwigExplicitViewImpl(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize)); else NDalicPINVOKE.ViewImpl_OnSizeAnimation(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize));
+            if (SwigDerivedClassHasMethod("OnSizeAnimation", swigMethodTypes6)) Interop.ViewImplSignal.ViewImpl_OnSizeAnimationSwigExplicitViewImpl(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize)); else Interop.ViewImplSignal.ViewImpl_OnSizeAnimation(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal virtual new bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnTouchEvent", swigMethodTypes7) ? NDalicPINVOKE.ViewImpl_OnTouchEventSwigExplicitViewImpl(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0)) : NDalicPINVOKE.ViewImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        protected virtual new bool OnHoverEvent(Hover arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8) ? NDalicPINVOKE.ViewImpl_OnHoverEventSwigExplicitViewImpl(swigCPtr, Hover.getCPtr(arg0)) : NDalicPINVOKE.ViewImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         protected virtual new bool OnKeyEvent(Key arg0)
         {
-            bool ret = (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9) ? NDalicPINVOKE.ViewImpl_OnKeyEventSwigExplicitViewImpl(swigCPtr, Key.getCPtr(arg0)) : NDalicPINVOKE.ViewImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        protected virtual new bool OnWheelEvent(Wheel arg0)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnWheelEvent", swigMethodTypes10) ? NDalicPINVOKE.ViewImpl_OnWheelEventSwigExplicitViewImpl(swigCPtr, Wheel.getCPtr(arg0)) : NDalicPINVOKE.ViewImpl_OnWheelEvent(swigCPtr, Wheel.getCPtr(arg0)));
+            bool ret = (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9) ? Interop.ViewImplSignal.ViewImpl_OnKeyEventSwigExplicitViewImpl(swigCPtr, Key.getCPtr(arg0)) : Interop.ViewImplSignal.ViewImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            if (SwigDerivedClassHasMethod("OnRelayout", swigMethodTypes11)) NDalicPINVOKE.ViewImpl_OnRelayoutSwigExplicitViewImpl(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container)); else NDalicPINVOKE.ViewImpl_OnRelayout(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container));
+            if (SwigDerivedClassHasMethod("OnRelayout", swigMethodTypes11)) Interop.ViewImplSignal.ViewImpl_OnRelayoutSwigExplicitViewImpl(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container)); else Interop.ViewImplSignal.ViewImpl_OnRelayout(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
-            if (SwigDerivedClassHasMethod("OnSetResizePolicy", swigMethodTypes12)) NDalicPINVOKE.ViewImpl_OnSetResizePolicySwigExplicitViewImpl(swigCPtr, (int)policy, (int)dimension); else NDalicPINVOKE.ViewImpl_OnSetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            if (SwigDerivedClassHasMethod("OnSetResizePolicy", swigMethodTypes12)) Interop.ViewImplSignal.ViewImpl_OnSetResizePolicySwigExplicitViewImpl(swigCPtr, (int)policy, (int)dimension); else Interop.ViewImplSignal.ViewImpl_OnSetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new Vector3 GetNaturalSize()
         {
-            Vector3 ret = new Vector3((SwigDerivedClassHasMethod("GetNaturalSize", swigMethodTypes13) ? NDalicPINVOKE.ViewImpl_GetNaturalSizeSwigExplicitViewImpl(swigCPtr) : NDalicPINVOKE.ViewImpl_GetNaturalSize(swigCPtr)), true);
+            Vector3 ret = new Vector3((SwigDerivedClassHasMethod("GetNaturalSize", swigMethodTypes13) ? Interop.ViewImpl.ViewImpl_GetNaturalSizeSwigExplicitViewImpl(swigCPtr) : Interop.ViewImpl.ViewImpl_GetNaturalSize(swigCPtr)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new float CalculateChildSize(View child, DimensionType dimension)
         {
-            float ret = (SwigDerivedClassHasMethod("CalculateChildSize", swigMethodTypes14) ? NDalicPINVOKE.ViewImpl_CalculateChildSizeSwigExplicitViewImpl(swigCPtr, View.getCPtr(child), (int)dimension) : NDalicPINVOKE.ViewImpl_CalculateChildSize(swigCPtr, View.getCPtr(child), (int)dimension));
+            float ret = (SwigDerivedClassHasMethod("CalculateChildSize", swigMethodTypes14) ? Interop.ViewImpl.ViewImpl_CalculateChildSizeSwigExplicitViewImpl(swigCPtr, View.getCPtr(child), (int)dimension) : Interop.ViewImpl.ViewImpl_CalculateChildSize(swigCPtr, View.getCPtr(child), (int)dimension));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new float GetHeightForWidth(float width)
         {
-            float ret = (SwigDerivedClassHasMethod("GetHeightForWidth", swigMethodTypes15) ? NDalicPINVOKE.ViewImpl_GetHeightForWidthSwigExplicitViewImpl(swigCPtr, width) : NDalicPINVOKE.ViewImpl_GetHeightForWidth(swigCPtr, width));
+            float ret = (SwigDerivedClassHasMethod("GetHeightForWidth", swigMethodTypes15) ? Interop.ViewImpl.ViewImpl_GetHeightForWidthSwigExplicitViewImpl(swigCPtr, width) : Interop.ViewImpl.ViewImpl_GetHeightForWidth(swigCPtr, width));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new float GetWidthForHeight(float height)
         {
-            float ret = (SwigDerivedClassHasMethod("GetWidthForHeight", swigMethodTypes16) ? NDalicPINVOKE.ViewImpl_GetWidthForHeightSwigExplicitViewImpl(swigCPtr, height) : NDalicPINVOKE.ViewImpl_GetWidthForHeight(swigCPtr, height));
+            float ret = (SwigDerivedClassHasMethod("GetWidthForHeight", swigMethodTypes16) ? Interop.ViewImpl.ViewImpl_GetWidthForHeightSwigExplicitViewImpl(swigCPtr, height) : Interop.ViewImpl.ViewImpl_GetWidthForHeight(swigCPtr, height));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new bool RelayoutDependentOnChildren(DimensionType dimension)
         {
-            bool ret = (SwigDerivedClassHasMethod("RelayoutDependentOnChildren", swigMethodTypes17) ? NDalicPINVOKE.ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_0(swigCPtr, (int)dimension) : NDalicPINVOKE.ViewImpl_RelayoutDependentOnChildren__SWIG_0(swigCPtr, (int)dimension));
+            bool ret = (SwigDerivedClassHasMethod("RelayoutDependentOnChildren", swigMethodTypes17) ? Interop.ViewImpl.ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_0(swigCPtr, (int)dimension) : Interop.ViewImpl.ViewImpl_RelayoutDependentOnChildren__SWIG_0(swigCPtr, (int)dimension));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new bool RelayoutDependentOnChildren()
         {
-            bool ret = (SwigDerivedClassHasMethod("RelayoutDependentOnChildren", swigMethodTypes18) ? NDalicPINVOKE.ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_1(swigCPtr) : NDalicPINVOKE.ViewImpl_RelayoutDependentOnChildren__SWIG_1(swigCPtr));
+            bool ret = (SwigDerivedClassHasMethod("RelayoutDependentOnChildren", swigMethodTypes18) ? Interop.ViewImpl.ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_1(swigCPtr) : Interop.ViewImpl.ViewImpl_RelayoutDependentOnChildren__SWIG_1(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         protected virtual new void OnCalculateRelayoutSize(DimensionType dimension)
         {
-            if (SwigDerivedClassHasMethod("OnCalculateRelayoutSize", swigMethodTypes19)) NDalicPINVOKE.ViewImpl_OnCalculateRelayoutSizeSwigExplicitViewImpl(swigCPtr, (int)dimension); else NDalicPINVOKE.ViewImpl_OnCalculateRelayoutSize(swigCPtr, (int)dimension);
+            if (SwigDerivedClassHasMethod("OnCalculateRelayoutSize", swigMethodTypes19)) Interop.ViewImplSignal.ViewImpl_OnCalculateRelayoutSizeSwigExplicitViewImpl(swigCPtr, (int)dimension); else Interop.ViewImplSignal.ViewImpl_OnCalculateRelayoutSize(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         protected virtual new void OnLayoutNegotiated(float size, DimensionType dimension)
         {
-            if (SwigDerivedClassHasMethod("OnLayoutNegotiated", swigMethodTypes20)) NDalicPINVOKE.ViewImpl_OnLayoutNegotiatedSwigExplicitViewImpl(swigCPtr, size, (int)dimension); else NDalicPINVOKE.ViewImpl_OnLayoutNegotiated(swigCPtr, size, (int)dimension);
+            if (SwigDerivedClassHasMethod("OnLayoutNegotiated", swigMethodTypes20)) Interop.ViewImplSignal.ViewImpl_OnLayoutNegotiatedSwigExplicitViewImpl(swigCPtr, size, (int)dimension); else Interop.ViewImplSignal.ViewImpl_OnLayoutNegotiated(swigCPtr, size, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnInitialize()
         {
-            if (SwigDerivedClassHasMethod("OnInitialize", swigMethodTypes21)) NDalicPINVOKE.ViewImpl_OnInitializeSwigExplicitViewImpl(swigCPtr); else NDalicPINVOKE.ViewImpl_OnInitialize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public virtual void OnControlChildAdd(View child)
-        {
-            if (SwigDerivedClassHasMethod("OnControlChildAdd", swigMethodTypes22)) NDalicPINVOKE.ViewImpl_OnControlChildAddSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else NDalicPINVOKE.ViewImpl_OnControlChildAdd(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public virtual void OnControlChildRemove(View child)
-        {
-            if (SwigDerivedClassHasMethod("OnControlChildRemove", swigMethodTypes23)) NDalicPINVOKE.ViewImpl_OnControlChildRemoveSwigExplicitViewImpl(swigCPtr, View.getCPtr(child)); else NDalicPINVOKE.ViewImpl_OnControlChildRemove(swigCPtr, View.getCPtr(child));
+            if (SwigDerivedClassHasMethod("OnInitialize", swigMethodTypes21)) Interop.ViewImplSignal.ViewImpl_OnInitializeSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnInitialize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
-            if (SwigDerivedClassHasMethod("OnStyleChange", swigMethodTypes24)) NDalicPINVOKE.ViewImpl_OnStyleChangeSwigExplicitViewImpl(swigCPtr, StyleManager.getCPtr(styleManager), (int)change); else NDalicPINVOKE.ViewImpl_OnStyleChange(swigCPtr, StyleManager.getCPtr(styleManager), (int)change);
+            if (SwigDerivedClassHasMethod("OnStyleChange", swigMethodTypes24)) Interop.ViewImplSignal.ViewImpl_OnStyleChangeSwigExplicitViewImpl(swigCPtr, StyleManager.getCPtr(styleManager), (int)change); else Interop.ViewImplSignal.ViewImpl_OnStyleChange(swigCPtr, StyleManager.getCPtr(styleManager), (int)change);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual bool OnAccessibilityActivated()
         {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25) ? NDalicPINVOKE.ViewImpl_OnAccessibilityActivatedSwigExplicitViewImpl(swigCPtr) : NDalicPINVOKE.ViewImpl_OnAccessibilityActivated(swigCPtr));
+            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityActivatedSwigExplicitViewImpl(swigCPtr) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityActivated(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool OnAccessibilityPan(PanGesture gesture)
         {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26) ? NDalicPINVOKE.ViewImpl_OnAccessibilityPanSwigExplicitViewImpl(swigCPtr, PanGesture.getCPtr(gesture)) : NDalicPINVOKE.ViewImpl_OnAccessibilityPan(swigCPtr, PanGesture.getCPtr(gesture)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal virtual bool OnAccessibilityTouch(SWIGTYPE_p_Dali__TouchEvent touchEvent)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityTouch", swigMethodTypes27) ? NDalicPINVOKE.ViewImpl_OnAccessibilityTouchSwigExplicitViewImpl(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(touchEvent)) : NDalicPINVOKE.ViewImpl_OnAccessibilityTouch(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(touchEvent)));
+            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityPanSwigExplicitViewImpl(swigCPtr, PanGesture.getCPtr(gesture)) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityPan(swigCPtr, PanGesture.getCPtr(gesture)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool OnAccessibilityValueChange(bool isIncrease)
         {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28) ? NDalicPINVOKE.ViewImpl_OnAccessibilityValueChangeSwigExplicitViewImpl(swigCPtr, isIncrease) : NDalicPINVOKE.ViewImpl_OnAccessibilityValueChange(swigCPtr, isIncrease));
+            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityValueChangeSwigExplicitViewImpl(swigCPtr, isIncrease) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityValueChange(swigCPtr, isIncrease));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool OnAccessibilityZoom()
         {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29) ? NDalicPINVOKE.ViewImpl_OnAccessibilityZoomSwigExplicitViewImpl(swigCPtr) : NDalicPINVOKE.ViewImpl_OnAccessibilityZoom(swigCPtr));
+            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29) ? Interop.ViewImplSignal.ViewImpl_OnAccessibilityZoomSwigExplicitViewImpl(swigCPtr) : Interop.ViewImplSignal.ViewImpl_OnAccessibilityZoom(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void OnKeyInputFocusGained()
         {
-            if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30)) NDalicPINVOKE.ViewImpl_OnKeyInputFocusGainedSwigExplicitViewImpl(swigCPtr); else NDalicPINVOKE.ViewImpl_OnKeyInputFocusGained(swigCPtr);
+            if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30)) Interop.ViewImplSignal.ViewImpl_OnKeyInputFocusGainedSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnKeyInputFocusGained(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnKeyInputFocusLost()
         {
-            if (SwigDerivedClassHasMethod("OnKeyInputFocusLost", swigMethodTypes31)) NDalicPINVOKE.ViewImpl_OnKeyInputFocusLostSwigExplicitViewImpl(swigCPtr); else NDalicPINVOKE.ViewImpl_OnKeyInputFocusLost(swigCPtr);
+            if (SwigDerivedClassHasMethod("OnKeyInputFocusLost", swigMethodTypes31)) Interop.ViewImplSignal.ViewImpl_OnKeyInputFocusLostSwigExplicitViewImpl(swigCPtr); else Interop.ViewImplSignal.ViewImpl_OnKeyInputFocusLost(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            View ret = new View((SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes32) ? NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl(swigCPtr, View.getCPtr(currentFocusedView), (int)direction, loopEnabled) : NDalicPINVOKE.ViewImpl_GetNextKeyboardFocusableActor(swigCPtr, View.getCPtr(currentFocusedView), (int)direction, loopEnabled)), true);
+            View ret = new View((SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes32) ? Interop.ViewImpl.ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl(swigCPtr, View.getCPtr(currentFocusedView), (int)direction, loopEnabled) : Interop.ViewImpl.ViewImpl_GetNextKeyboardFocusableActor(swigCPtr, View.getCPtr(currentFocusedView), (int)direction, loopEnabled)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
-            if (SwigDerivedClassHasMethod("OnFocusChangeCommitted", swigMethodTypes33)) NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommittedSwigExplicitViewImpl(swigCPtr, View.getCPtr(commitedFocusableView)); else NDalicPINVOKE.ViewImpl_OnKeyboardFocusChangeCommitted(swigCPtr, View.getCPtr(commitedFocusableView));
+            if (SwigDerivedClassHasMethod("OnFocusChangeCommitted", swigMethodTypes33)) Interop.ViewImplSignal.ViewImpl_OnKeyboardFocusChangeCommittedSwigExplicitViewImpl(swigCPtr, View.getCPtr(commitedFocusableView)); else Interop.ViewImplSignal.ViewImpl_OnKeyboardFocusChangeCommitted(swigCPtr, View.getCPtr(commitedFocusableView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual bool OnKeyboardEnter()
         {
-            bool ret = (SwigDerivedClassHasMethod("OnKeyboardEnter", swigMethodTypes34) ? NDalicPINVOKE.ViewImpl_OnKeyboardEnterSwigExplicitViewImpl(swigCPtr) : NDalicPINVOKE.ViewImpl_OnKeyboardEnter(swigCPtr));
+            bool ret = (SwigDerivedClassHasMethod("OnKeyboardEnter", swigMethodTypes34) ? Interop.ViewImplSignal.ViewImpl_OnKeyboardEnterSwigExplicitViewImpl(swigCPtr) : Interop.ViewImplSignal.ViewImpl_OnKeyboardEnter(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void OnPinch(PinchGesture pinch)
         {
-            if (SwigDerivedClassHasMethod("OnPinch", swigMethodTypes35)) NDalicPINVOKE.ViewImpl_OnPinchSwigExplicitViewImpl(swigCPtr, PinchGesture.getCPtr(pinch)); else NDalicPINVOKE.ViewImpl_OnPinch(swigCPtr, PinchGesture.getCPtr(pinch));
+            if (SwigDerivedClassHasMethod("OnPinch", swigMethodTypes35)) Interop.ViewImplSignal.ViewImpl_OnPinchSwigExplicitViewImpl(swigCPtr, PinchGesture.getCPtr(pinch)); else Interop.ViewImplSignal.ViewImpl_OnPinch(swigCPtr, PinchGesture.getCPtr(pinch));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnPan(PanGesture pan)
         {
-            if (SwigDerivedClassHasMethod("OnPan", swigMethodTypes36)) NDalicPINVOKE.ViewImpl_OnPanSwigExplicitViewImpl(swigCPtr, PanGesture.getCPtr(pan)); else NDalicPINVOKE.ViewImpl_OnPan(swigCPtr, PanGesture.getCPtr(pan));
+            if (SwigDerivedClassHasMethod("OnPan", swigMethodTypes36)) Interop.ViewImplSignal.ViewImpl_OnPanSwigExplicitViewImpl(swigCPtr, PanGesture.getCPtr(pan)); else Interop.ViewImplSignal.ViewImpl_OnPan(swigCPtr, PanGesture.getCPtr(pan));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnTap(TapGesture tap)
         {
-            if (SwigDerivedClassHasMethod("OnTap", swigMethodTypes37)) NDalicPINVOKE.ViewImpl_OnTapSwigExplicitViewImpl(swigCPtr, TapGesture.getCPtr(tap)); else NDalicPINVOKE.ViewImpl_OnTap(swigCPtr, TapGesture.getCPtr(tap));
+            if (SwigDerivedClassHasMethod("OnTap", swigMethodTypes37)) Interop.ViewImplSignal.ViewImpl_OnTapSwigExplicitViewImpl(swigCPtr, TapGesture.getCPtr(tap)); else Interop.ViewImplSignal.ViewImpl_OnTap(swigCPtr, TapGesture.getCPtr(tap));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnLongPress(LongPressGesture longPress)
         {
-            if (SwigDerivedClassHasMethod("OnLongPress", swigMethodTypes38)) NDalicPINVOKE.ViewImpl_OnLongPressSwigExplicitViewImpl(swigCPtr, LongPressGesture.getCPtr(longPress)); else NDalicPINVOKE.ViewImpl_OnLongPress(swigCPtr, LongPressGesture.getCPtr(longPress));
+            if (SwigDerivedClassHasMethod("OnLongPress", swigMethodTypes38)) Interop.ViewImplSignal.ViewImpl_OnLongPressSwigExplicitViewImpl(swigCPtr, LongPressGesture.getCPtr(longPress)); else Interop.ViewImplSignal.ViewImpl_OnLongPress(swigCPtr, LongPressGesture.getCPtr(longPress));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            if (SwigDerivedClassHasMethod("SignalConnected", swigMethodTypes39)) NDalicPINVOKE.ViewImpl_SignalConnectedSwigExplicitViewImpl(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback)); else NDalicPINVOKE.ViewImpl_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            if (SwigDerivedClassHasMethod("SignalConnected", swigMethodTypes39)) Interop.ViewImplSignal.ViewImpl_SignalConnectedSwigExplicitViewImpl(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback)); else Interop.ViewImplSignal.ViewImpl_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40)) NDalicPINVOKE.ViewImpl_SignalDisconnectedSwigExplicitViewImpl(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback)); else NDalicPINVOKE.ViewImpl_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40)) Interop.ViewImplSignal.ViewImpl_SignalDisconnectedSwigExplicitViewImpl(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback)); else Interop.ViewImplSignal.ViewImpl_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void SwigDirectorConnect()
         {
-            if (SwigDerivedClassHasMethod("OnStageConnection", swigMethodTypes0))
-                swigDelegate0 = new SwigDelegateViewImpl_0(SwigDirectorOnStageConnection);
-            if (SwigDerivedClassHasMethod("OnStageDisconnection", swigMethodTypes1))
-                swigDelegate1 = new SwigDelegateViewImpl_1(SwigDirectorOnStageDisconnection);
+            if (SwigDerivedClassHasMethod("OnSceneConnection", swigMethodTypes0))
+                swigDelegate0 = new SwigDelegateViewImpl_0(SwigDirectorOnSceneConnection);
+            if (SwigDerivedClassHasMethod("OnSceneDisconnection", swigMethodTypes1))
+                swigDelegate1 = new SwigDelegateViewImpl_1(SwigDirectorOnSceneDisconnection);
             if (SwigDerivedClassHasMethod("OnChildAdd", swigMethodTypes2))
                 swigDelegate2 = new SwigDelegateViewImpl_2(SwigDirectorOnChildAdd);
             if (SwigDerivedClassHasMethod("OnChildRemove", swigMethodTypes3))
@@ -523,14 +468,8 @@ namespace Tizen.NUI
                 swigDelegate5 = new SwigDelegateViewImpl_5(SwigDirectorOnSizeSet);
             if (SwigDerivedClassHasMethod("OnSizeAnimation", swigMethodTypes6))
                 swigDelegate6 = new SwigDelegateViewImpl_6(SwigDirectorOnSizeAnimation);
-            if (SwigDerivedClassHasMethod("OnTouchEvent", swigMethodTypes7))
-                swigDelegate7 = new SwigDelegateViewImpl_7(SwigDirectorOnTouchEvent);
-            if (SwigDerivedClassHasMethod("OnHoverEvent", swigMethodTypes8))
-                swigDelegate8 = new SwigDelegateViewImpl_8(SwigDirectorOnHoverEvent);
             if (SwigDerivedClassHasMethod("OnKeyEvent", swigMethodTypes9))
                 swigDelegate9 = new SwigDelegateViewImpl_9(SwigDirectorOnKeyEvent);
-            if (SwigDerivedClassHasMethod("OnWheelEvent", swigMethodTypes10))
-                swigDelegate10 = new SwigDelegateViewImpl_10(SwigDirectorOnWheelEvent);
             if (SwigDerivedClassHasMethod("OnRelayout", swigMethodTypes11))
                 swigDelegate11 = new SwigDelegateViewImpl_11(SwigDirectorOnRelayout);
             if (SwigDerivedClassHasMethod("OnSetResizePolicy", swigMethodTypes12))
@@ -553,18 +492,12 @@ namespace Tizen.NUI
                 swigDelegate20 = new SwigDelegateViewImpl_20(SwigDirectorOnLayoutNegotiated);
             if (SwigDerivedClassHasMethod("OnInitialize", swigMethodTypes21))
                 swigDelegate21 = new SwigDelegateViewImpl_21(SwigDirectorOnInitialize);
-            if (SwigDerivedClassHasMethod("OnControlChildAdd", swigMethodTypes22))
-                swigDelegate22 = new SwigDelegateViewImpl_22(SwigDirectorOnControlChildAdd);
-            if (SwigDerivedClassHasMethod("OnControlChildRemove", swigMethodTypes23))
-                swigDelegate23 = new SwigDelegateViewImpl_23(SwigDirectorOnControlChildRemove);
             if (SwigDerivedClassHasMethod("OnStyleChange", swigMethodTypes24))
                 swigDelegate24 = new SwigDelegateViewImpl_24(SwigDirectorOnStyleChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25))
                 swigDelegate25 = new SwigDelegateViewImpl_25(SwigDirectorOnAccessibilityActivated);
             if (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26))
                 swigDelegate26 = new SwigDelegateViewImpl_26(SwigDirectorOnAccessibilityPan);
-            if (SwigDerivedClassHasMethod("OnAccessibilityTouch", swigMethodTypes27))
-                swigDelegate27 = new SwigDelegateViewImpl_27(SwigDirectorOnAccessibilityTouch);
             if (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28))
                 swigDelegate28 = new SwigDelegateViewImpl_28(SwigDirectorOnAccessibilityValueChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29))
@@ -591,7 +524,7 @@ namespace Tizen.NUI
                 swigDelegate39 = new SwigDelegateViewImpl_39(SwigDirectorSignalConnected);
             if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40))
                 swigDelegate40 = new SwigDelegateViewImpl_40(SwigDirectorSignalDisconnected);
-            NDalicPINVOKE.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate22, swigDelegate23, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate27, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
+            Interop.ViewImpl.ViewImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate9, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
 
@@ -605,14 +538,14 @@ namespace Tizen.NUI
             return hasDerivedMethod && (methodInfo != null);
         }
 
-        private void SwigDirectorOnStageConnection(int depth)
+        private void SwigDirectorOnSceneConnection(int depth)
         {
-            OnStageConnection(depth);
+            OnSceneConnection(depth);
         }
 
-        private void SwigDirectorOnStageDisconnection()
+        private void SwigDirectorOnSceneDisconnection()
         {
-            OnStageDisconnection();
+            OnSceneDisconnection();
         }
 
         private void SwigDirectorOnChildAdd(global::System.IntPtr child)
@@ -650,24 +583,9 @@ namespace Tizen.NUI
             OnSizeAnimation(new Animation(animation, false), new Vector3(targetSize, false));
         }
 
-        private bool SwigDirectorOnTouchEvent(global::System.IntPtr arg0)
-        {
-            return OnTouchEvent(new SWIGTYPE_p_Dali__TouchEvent(arg0, false));
-        }
-
-        private bool SwigDirectorOnHoverEvent(global::System.IntPtr arg0)
-        {
-            return OnHoverEvent(new Hover(arg0, false));
-        }
-
         private bool SwigDirectorOnKeyEvent(global::System.IntPtr arg0)
         {
             return OnKeyEvent(new Key(arg0, false));
-        }
-
-        private bool SwigDirectorOnWheelEvent(global::System.IntPtr arg0)
-        {
-            return OnWheelEvent(new Wheel(arg0, false));
         }
 
         private void SwigDirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
@@ -730,24 +648,6 @@ namespace Tizen.NUI
             OnInitialize();
         }
 
-        private void SwigDirectorOnControlChildAdd(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildAdd(view);
-            }
-        }
-
-        private void SwigDirectorOnControlChildRemove(global::System.IntPtr child)
-        {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
-        }
-
         private void SwigDirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
             StyleManager stManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
@@ -765,11 +665,6 @@ namespace Tizen.NUI
         private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
             return OnAccessibilityPan(new PanGesture(gesture, true));
-        }
-
-        private bool SwigDirectorOnAccessibilityTouch(global::System.IntPtr touchEvent)
-        {
-            return OnAccessibilityTouch(new SWIGTYPE_p_Dali__TouchEvent(touchEvent, false));
         }
 
         private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
@@ -852,13 +747,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_7(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_8(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_9(global::System.IntPtr arg0);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_10(global::System.IntPtr arg0);
         /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateViewImpl_11(global::System.IntPtr size, global::System.IntPtr container);
         /// <since_tizen> 3 </since_tizen>
@@ -891,8 +780,6 @@ namespace Tizen.NUI
         public delegate bool SwigDelegateViewImpl_25();
         /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_26(global::System.IntPtr gesture);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool SwigDelegateViewImpl_27(global::System.IntPtr touchEvent);
         /// <since_tizen> 3 </since_tizen>
         public delegate bool SwigDelegateViewImpl_28(bool isIncrease);
         /// <since_tizen> 3 </since_tizen>
@@ -927,10 +814,7 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_4 swigDelegate4;
         private SwigDelegateViewImpl_5 swigDelegate5;
         private SwigDelegateViewImpl_6 swigDelegate6;
-        private SwigDelegateViewImpl_7 swigDelegate7;
-        private SwigDelegateViewImpl_8 swigDelegate8;
         private SwigDelegateViewImpl_9 swigDelegate9;
-        private SwigDelegateViewImpl_10 swigDelegate10;
         private SwigDelegateViewImpl_11 swigDelegate11;
         private SwigDelegateViewImpl_12 swigDelegate12;
         private SwigDelegateViewImpl_13 swigDelegate13;
@@ -947,7 +831,6 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_24 swigDelegate24;
         private SwigDelegateViewImpl_25 swigDelegate25;
         private SwigDelegateViewImpl_26 swigDelegate26;
-        private SwigDelegateViewImpl_27 swigDelegate27;
         private SwigDelegateViewImpl_28 swigDelegate28;
         private SwigDelegateViewImpl_29 swigDelegate29;
         private SwigDelegateViewImpl_30 swigDelegate30;
@@ -969,10 +852,7 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(int), typeof(PropertyValue) };
         private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(Vector3) };
         private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(Animation), typeof(Vector3) };
-        private static global::System.Type[] swigMethodTypes7 = new global::System.Type[] { typeof(SWIGTYPE_p_Dali__TouchEvent) };
-        private static global::System.Type[] swigMethodTypes8 = new global::System.Type[] { typeof(Hover) };
         private static global::System.Type[] swigMethodTypes9 = new global::System.Type[] { typeof(Key) };
-        private static global::System.Type[] swigMethodTypes10 = new global::System.Type[] { typeof(Wheel) };
         private static global::System.Type[] swigMethodTypes11 = new global::System.Type[] { typeof(Vector2), typeof(RelayoutContainer) };
         private static global::System.Type[] swigMethodTypes12 = new global::System.Type[] { typeof(ResizePolicyType), typeof(DimensionType) };
         private static global::System.Type[] swigMethodTypes13 = new global::System.Type[] { };
@@ -989,7 +869,6 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes24 = new global::System.Type[] { typeof(StyleManager), typeof(StyleChangeType) };
         private static global::System.Type[] swigMethodTypes25 = new global::System.Type[] { };
         private static global::System.Type[] swigMethodTypes26 = new global::System.Type[] { typeof(PanGesture) };
-        private static global::System.Type[] swigMethodTypes27 = new global::System.Type[] { typeof(SWIGTYPE_p_Dali__TouchEvent) };
         private static global::System.Type[] swigMethodTypes28 = new global::System.Type[] { typeof(bool) };
         private static global::System.Type[] swigMethodTypes29 = new global::System.Type[] { };
         private static global::System.Type[] swigMethodTypes30 = new global::System.Type[] { };
@@ -1004,5 +883,4 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes39 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
         private static global::System.Type[] swigMethodTypes40 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
     }
-
 }

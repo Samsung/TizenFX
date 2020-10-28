@@ -69,7 +69,16 @@ namespace Tizen.System
             if (err != Interop.Storage.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to Register changed event callback for external storage. err = {0}", err));
+
+                switch (err)
+                {
+                    case Interop.Storage.ErrorCode.NotSupported:
+                        throw new NotSupportedException("Storage Not Supported");
+                    default:
+                        break;
+                }
             }
+
         }
 
         private static void UnregisterChangedEvent(StorageArea type)
@@ -78,15 +87,25 @@ namespace Tizen.System
             if (err != Interop.Storage.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to Unreegister changed event callback for external storage. err = {0}", err));
+
+                switch (err)
+                {
+                    case Interop.Storage.ErrorCode.NotSupported:
+                        throw new NotSupportedException("Storage Not Supported");
+                    default:
+                        break;
+                }
             }
         }
 
         /// <summary>
-        /// Registers an eventhandler for state chages of specific storage type
+        /// Registers an eventhandler for state changes of specific storage type.
         /// </summary>
-        /// <param name="type">Storage type</param>
-        /// <param name="handler">An eventhandler to register</param>
+        /// <param name="type">The type of the storage.</param>
+        /// <param name="handler">An eventhandler to register.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
+        /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -109,11 +128,13 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Unregisters an eventhandler for state chages of specific storage type
+        /// Unregisters an eventhandler for state changes of specific storage type.
         /// </summary>
-        /// <param name="type">Storage type</param>
-        /// <param name="handler">An eventhandler to unregister</param>
+        /// <param name="type">The type of the storage.</param>
+        /// <param name="handler">An eventhandler to unregister.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
+        /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)

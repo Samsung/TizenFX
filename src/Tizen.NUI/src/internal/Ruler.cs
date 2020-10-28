@@ -15,16 +15,17 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-
-    internal class Ruler : RefObject
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Ruler : RefObject
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Ruler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Ruler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.Ruler_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Ruler obj)
@@ -32,188 +33,206 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        /// This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    throw new global::System.MethodAccessException("C++ destructor does not have public access");
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+           throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float Snap(float x, float bias)
         {
-            float ret = NDalicPINVOKE.Ruler_Snap__SWIG_0(swigCPtr, x, bias);
+            float ret = Interop.Ruler.Ruler_Snap__SWIG_0(swigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float Snap(float x)
         {
-            float ret = NDalicPINVOKE.Ruler_Snap__SWIG_1(swigCPtr, x);
+            float ret = Interop.Ruler.Ruler_Snap__SWIG_1(swigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = NDalicPINVOKE.Ruler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
+            float ret = Interop.Ruler.Ruler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = NDalicPINVOKE.Ruler_GetPageFromPosition(swigCPtr, position, wrap);
+            uint ret = Interop.Ruler.Ruler_GetPageFromPosition(swigCPtr, position, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetTotalPages()
         {
-            uint ret = NDalicPINVOKE.Ruler_GetTotalPages(swigCPtr);
+            uint ret = Interop.Ruler.Ruler_GetTotalPages(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new Ruler.RulerType GetType()
         {
-            Ruler.RulerType ret = (Ruler.RulerType)NDalicPINVOKE.Ruler_GetType(swigCPtr);
+            Ruler.RulerType ret = (Ruler.RulerType)Interop.Ruler.Ruler_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsEnabled()
         {
-            bool ret = NDalicPINVOKE.Ruler_IsEnabled(swigCPtr);
+            bool ret = Interop.Ruler.Ruler_IsEnabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Enable()
         {
-            NDalicPINVOKE.Ruler_Enable(swigCPtr);
+            Interop.Ruler.Ruler_Enable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disable()
         {
-            NDalicPINVOKE.Ruler_Disable(swigCPtr);
+            Interop.Ruler.Ruler_Disable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDomain(RulerDomain domain)
         {
-            NDalicPINVOKE.Ruler_SetDomain(swigCPtr, RulerDomain.getCPtr(domain));
+            Interop.Ruler.Ruler_SetDomain(swigCPtr, RulerDomain.getCPtr(domain));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RulerDomain GetDomain()
         {
-            RulerDomain ret = new RulerDomain(NDalicPINVOKE.Ruler_GetDomain(swigCPtr), false);
+            RulerDomain ret = new RulerDomain(Interop.Ruler.Ruler_GetDomain(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DisableDomain()
         {
-            NDalicPINVOKE.Ruler_DisableDomain(swigCPtr);
+            Interop.Ruler.Ruler_DisableDomain(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length, float scale)
         {
-            float ret = NDalicPINVOKE.Ruler_Clamp__SWIG_0(swigCPtr, x, length, scale);
+            float ret = Interop.Ruler.Ruler_Clamp__SWIG_0(swigCPtr, x, length, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length)
         {
-            float ret = NDalicPINVOKE.Ruler_Clamp__SWIG_1(swigCPtr, x, length);
+            float ret = Interop.Ruler.Ruler_Clamp__SWIG_1(swigCPtr, x, length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x)
         {
-            float ret = NDalicPINVOKE.Ruler_Clamp__SWIG_2(swigCPtr, x);
+            float ret = Interop.Ruler.Ruler_Clamp__SWIG_2(swigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
-            float ret = NDalicPINVOKE.Ruler_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
+            float ret = Interop.Ruler.Ruler_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias, float length, float scale)
         {
-            float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_0(swigCPtr, x, bias, length, scale);
+            float ret = Interop.Ruler.Ruler_SnapAndClamp__SWIG_0(swigCPtr, x, bias, length, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias, float length)
         {
-            float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_1(swigCPtr, x, bias, length);
+            float ret = Interop.Ruler.Ruler_SnapAndClamp__SWIG_1(swigCPtr, x, bias, length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias)
         {
-            float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_2(swigCPtr, x, bias);
+            float ret = Interop.Ruler.Ruler_SnapAndClamp__SWIG_2(swigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x)
         {
-            float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_3(swigCPtr, x);
+            float ret = Interop.Ruler.Ruler_SnapAndClamp__SWIG_3(swigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float SnapAndClamp(float x, float bias, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
-            float ret = NDalicPINVOKE.Ruler_SnapAndClamp__SWIG_4(swigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
+            float ret = Interop.Ruler.Ruler_SnapAndClamp__SWIG_4(swigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RulerType
         {
+            /// <summary>A Fixed ruler.</summary>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+
             Fixed,
+
+            /// <summary>A Free ruler.</summary>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
             Free
         }
-
     }
-
 }
