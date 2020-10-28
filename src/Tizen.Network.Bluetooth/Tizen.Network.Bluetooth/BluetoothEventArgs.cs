@@ -982,16 +982,9 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
-        internal ValueChangedEventArgs(IntPtr value, int len)
+        internal ValueChangedEventArgs(byte[] value)
         {
-            Value = new byte[len];
-            unsafe
-            {
-                for (int i = 0; i < len; i++)
-                {
-                    Value[i] = *((byte*)value.ToPointer() + i);
-                }
-            }
+            Value = value;
         }
 
         /// <summary>

@@ -58,10 +58,6 @@ namespace Tizen.Network.WiFi
         private int _requestId = 0;
         private string _macAddress;
 
-        //private string PrivilegeNetworkSet = "http://tizen.org/privilege/network.set";
-        private string PrivilegeNetworkGet = "http://tizen.org/privilege/network.get";
-        private string PrivilegeNetworkProfile = "http://tizen.org/privilege/network.get";
-
         internal string MacAddress
         {
             get
@@ -160,8 +156,8 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.Initialize(tid, out handle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Initialize Fail, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, PrivilegeNetworkGet);
+                Log.Error(Globals.LogTag, "Failed to initialize wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, "http://tizen.org/privilege/network.get");
             }
             handle.SetTID(tid);
             return handle;
@@ -185,7 +181,15 @@ namespace Tizen.Network.WiFi
             };
 
             int ret = Interop.WiFi.GetForeachFoundAPs(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundAPs", PrivilegeNetworkGet);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get all APs, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+            }
 
             return apList;
         }
@@ -209,8 +213,16 @@ namespace Tizen.Network.WiFi
             };
 
             int ret = Interop.WiFi.GetForeachFoundSpecificAPs(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundSpecificAPs", PrivilegeNetworkGet);
-            
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get specific APs, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+            }
+
             return apList;
         }
 
@@ -232,7 +244,15 @@ namespace Tizen.Network.WiFi
             };
 
             int ret = Interop.WiFi.GetForeachFoundBssids(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundBssids", PrivilegeNetworkGet);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get bssid APs, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+            }
 
             return apList;
         }
@@ -255,7 +275,16 @@ namespace Tizen.Network.WiFi
             };
 
             int ret = Interop.WiFi.Config.GetForeachConfiguration(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachConfiguration", PrivilegeNetworkProfile);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get configurations, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.profile");
+            }
+
             return configList;
         }
 
@@ -269,20 +298,35 @@ namespace Tizen.Network.WiFi
 
             IntPtr configHandle = config.GetHandle();
             int ret = Interop.WiFi.Config.SaveConfiguration(GetSafeHandle(), configHandle);
-            CheckReturnValue(ret, "SaveConfiguration", PrivilegeNetworkProfile);
-       }
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to save configuration, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.profile");
+            }
+        }
 
         internal WiFiAP GetConnectedAP()
         {
             Log.Info(Globals.LogTag, "GetConnectedAP");
             IntPtr apHandle;
             int ret = Interop.WiFi.GetConnectedAP(GetSafeHandle(), out apHandle);
-            if (ret == (int)WiFiError.NoConnectionError)
+            if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "No connection " + (WiFiError)ret);
-                return null;
+                if (ret == (int)WiFiError.NoConnectionError)
+                {
+                    Log.Error(Globals.LogTag, "No connection " + (WiFiError)ret);
+                    return null;
+                }
+                else if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Failed to get connected AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+                }
             }
-            CheckReturnValue(ret, "GetConnectedAP", PrivilegeNetworkGet);
             WiFiAP ap = new WiFiAP(apHandle);
             return ap;
         }
@@ -320,11 +364,19 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
-                    CheckReturnValue(ret, "Activate", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
@@ -365,11 +417,19 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
-                    CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
@@ -410,11 +470,19 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
-                    CheckReturnValue(ret, "Deactivate", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
@@ -455,11 +523,19 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
-                    CheckReturnValue(ret, "Scan", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on Scan\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on Scan\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
@@ -500,11 +576,15 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
-                    CheckReturnValue(ret, "ScanSpecificAP", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
@@ -545,29 +625,24 @@ namespace Tizen.Network.WiFi
                 try
                 {
                     int ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
-                    CheckReturnValue(ret, "BssidScan", "");
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to scan Bssid AP, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e);
+                    Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);
 
             return task.Task;
-        }
-
-        private void CheckReturnValue(int ret, string method, string privilege)
-        {
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, method + " Fail, Error - " + (WiFiError)ret);
-                if (ret == (int)WiFiError.InvalidParameterError)
-                {
-                    throw new InvalidOperationException("Invalid handle");
-                }
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), privilege);
-            }
         }
     }
 }

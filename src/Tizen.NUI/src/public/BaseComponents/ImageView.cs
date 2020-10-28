@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [ContentProperty("ResourceUrl")]
     public class ImageView : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -39,6 +40,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView._url = (newValue == null? "" : (string)newValue);
                 imageView.UpdateImage();
             }
+            Console.WriteLine("ImageView ResourceUrlProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -58,6 +60,7 @@ namespace Tizen.NUI.BaseComponents
                     Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
                 }
             }
+            Console.WriteLine("ImageView ImageProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -82,6 +85,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue((bool)newValue));
             }
+            Console.WriteLine("ImageView PreMultipliedAlphaProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -99,6 +103,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.PIXEL_AREA, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
             }
+            Console.WriteLine("ImageView PixelAreaProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -118,6 +123,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView._border = (Rectangle)newValue;
                 imageView.UpdateImage();
             }
+            Console.WriteLine("ImageView BorderProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -134,6 +140,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView._borderOnly = (bool)newValue;
                 imageView.UpdateImage();
             }
+            Console.WriteLine("ImageView BorderOnlyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -150,6 +157,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView._synchronousLoading = (bool)newValue;
                 imageView.UpdateImage();
             }
+            Console.WriteLine("ImageView SynchronosLoadingProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -166,6 +174,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView._orientationCorrection = (bool)newValue;
                 imageView.UpdateImage();
             }
+            Console.WriteLine("ImageView OrientationCorrectionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -319,6 +328,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
         {
+            base.InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

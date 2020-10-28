@@ -20,6 +20,7 @@
 
   <Target Name="BeforeCompile"
           Condition="'$(IsDummyBuild)' == 'True'">
+
     <GenDummyTask Sources="@(Compile)" OutputDirectory="$(IntermediateOutputPath)dummy\">
       <Output TaskParameter="GeneratedFiles" ItemName="_DummyCompile" />
     </GenDummyTask>

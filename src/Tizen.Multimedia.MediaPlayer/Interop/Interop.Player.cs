@@ -121,13 +121,6 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetPlayPosition(IntPtr player, int millisecond,
             bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.Player, EntryPoint = "player_get_play_position_nsec")]
-        internal static extern PlayerErrorCode GetPlayPositionNanoseconds(IntPtr player, out long nanoseconds);
-
-        [DllImport(Libraries.Player, EntryPoint = "player_set_play_position_nsec")]
-        internal static extern PlayerErrorCode SetPlayPositionNanoseconds(IntPtr player, long nanoseconds,
-            bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
-
         [DllImport(Libraries.Player, EntryPoint = "player_set_mute")]
         internal static extern PlayerErrorCode SetMute(IntPtr player, bool muted);
 
@@ -249,9 +242,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_duration")]
         internal static extern PlayerErrorCode GetDuration(IntPtr player, out int duration);
-
-        [DllImport(Libraries.Player, EntryPoint = "player_get_duration_nsec")]
-        internal static extern PlayerErrorCode GetDurationNanoseconds(IntPtr player, out long duration);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_path")]
         internal static extern PlayerErrorCode SetSubtitlePath(IntPtr player, string path);

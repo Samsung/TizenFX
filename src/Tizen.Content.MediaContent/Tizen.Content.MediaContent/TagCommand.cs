@@ -213,12 +213,11 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Tag.GetTagFromDb(tagId, out handle).ThrowIfError("Failed to query");
 
+                if (handle == IntPtr.Zero)
+                {
+                    return null;
+                }
                 return new Tag(handle);
-            }
-            catch (ArgumentException)
-            {
-                // Native FW returns ArgumentException when there's no matched record.
-                return null;
             }
             finally
             {

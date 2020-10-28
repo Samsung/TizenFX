@@ -38,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer ContentDirectionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -55,6 +56,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer FlexDirectionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -72,6 +74,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer FlexWrapProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -89,6 +92,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer JustifyContentProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -106,6 +110,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer AlignItemsProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -123,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
+            Console.WriteLine("FlexContainer AlignContentProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator: (bindable) =>
         {

@@ -38,10 +38,6 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public Spinner(EvasObject parent) : base(parent)
         {
-            if (Elementary.GetProfile() == "tv")
-            {
-                Style = "vertical";
-            }
         }
 
         /// <summary>

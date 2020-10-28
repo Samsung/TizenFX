@@ -32,8 +32,8 @@ namespace Tizen.NUI.Examples
 
         public WeatherPage(Window win) : base (win)
         {
-            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather/bg.bmp";
-            // Root.BackgroundColor = Color.Green;
+            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/bg.bmp";
+            // Content.BackgroundColor = Color.Green;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Examples
 
         public override void SetFocus()
         {
-            listTable = Root.FindChildByName("ListTable") as TableView;
+            listTable = Content.FindChildByName("ListTable") as TableView;
 
             FocusManager.Instance.FocusIndicator = new View();
             FocusManager.Instance.SetCurrentFocusView(listTable.GetChildAt(0));

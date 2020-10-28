@@ -32,22 +32,6 @@ internal static partial class Interop
 {
     internal static partial class Device
     {
-        // Any changes here might require changes in Tizen.System.DisplayState enum
-        internal enum DisplayState
-        {
-            Normal = 0,
-            ScreenDim = 1,
-            ScreenOff = 2,
-        }
-
-        // Any changes here might require changes in Tizen.System.PowerLock enum
-        internal enum PowerLock
-        {
-            Cpu = 0,
-            DisplayNormal = 1,
-            DisplayDim = 2,
-        }
-   
         // Battery
         [DllImport(Libraries.Device, EntryPoint = "device_battery_get_percent", CallingConvention = CallingConvention.Cdecl)]
         public static extern int DeviceBatteryGetPercent(out int percent);
@@ -66,9 +50,9 @@ internal static partial class Interop
         [DllImport(Libraries.Device, EntryPoint = "device_display_set_brightness", CallingConvention = CallingConvention.Cdecl)]
         public static extern int DeviceDisplaySetBrightness(int index, int brightness);
         [DllImport(Libraries.Device, EntryPoint = "device_display_get_state", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int DeviceDisplayGetState(out DisplayState state);
+        public static extern int DeviceDisplayGetState(out int state);
         [DllImport(Libraries.Device, EntryPoint = "device_display_change_state", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int DeviceDisplayChangeState(DisplayState state);
+        public static extern int DeviceDisplayChangeState(int state);
 
         // Haptic
         [DllImport(Libraries.Device, EntryPoint = "device_haptic_get_count", CallingConvention = CallingConvention.Cdecl)]
@@ -96,9 +80,9 @@ internal static partial class Interop
 
         // Power
         [DllImport(Libraries.Device, EntryPoint = "device_power_request_lock", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int DevicePowerRequestLock(PowerLock type, int timeout_ms);
+        internal static extern int DevicePowerRequestLock(int type, int timeout_ms);
         [DllImport(Libraries.Device, EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int DevicePowerReleaseLock(PowerLock type);
+        internal static extern int DevicePowerReleaseLock(int type);
 
         //IR
         [DllImport(Libraries.Device, EntryPoint = "device_ir_is_available", CallingConvention = CallingConvention.Cdecl)]

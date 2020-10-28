@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,16 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
 
-    /// <summary>
-    /// This class emits a signals when a pan gesture occurs.<br />
-    /// </summary>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PanGestureDetector : GestureDetector
+    using System;
+    using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
+
+
+    internal class PanGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -41,12 +37,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -80,23 +70,14 @@ namespace Tizen.NUI
         }
 
 
-        /// <summary>
-        /// Event arguments that passed via the PanGestureEvent signal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
+        /// <since_tizen> 3 </since_tizen>
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
             private PanGesture _panGesture;
 
-            /// <summary>
-            /// The attached view.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get
@@ -109,12 +90,7 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <summary>
-            /// The PanGesture.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 3 </since_tizen>
             public PanGesture PanGesture
             {
                 get
@@ -133,11 +109,7 @@ namespace Tizen.NUI
         private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
         private DetectedCallbackDelegate _panGestureCallbackDelegate;
 
-        /// <summary>
-        /// This signal is emitted when the specified pan is detected on the attached view.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
         public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
@@ -185,17 +157,20 @@ namespace Tizen.NUI
 
         }
 
-        internal static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr)
+
+        public static PanGestureDetector GetPanGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             PanGestureDetector ret = new PanGestureDetector(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal class Property : global::System.IDisposable
+
+        /// <since_tizen> 3 </since_tizen>
+        public class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -212,7 +187,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
-
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
 
@@ -225,7 +200,7 @@ namespace Tizen.NUI
                 }
             }
 
-
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -245,7 +220,7 @@ namespace Tizen.NUI
                 }
             }
 
-
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -278,35 +253,30 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
-
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_PanGestureDetector_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_POSITION = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_POSITION_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_VELOCITY_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_POSITION = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_POSITION_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_VELOCITY_get();
-
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PANNING = NDalicPINVOKE.PanGestureDetector_Property_PANNING_get();
 
         }
 
-        /// <summary>
-        /// For a left pan (-PI Radians).
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionLeft
+        public static Radian DIRECTION_LEFT
         {
             get
             {
@@ -317,12 +287,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// For a right pan (0 Radians).
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionRight
+        public static Radian DIRECTION_RIGHT
         {
             get
             {
@@ -333,12 +298,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// For an up pan (-0.5 * PI Radians).
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionUp
+        public static Radian DIRECTION_UP
         {
             get
             {
@@ -349,12 +309,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// For a down pan (0.5 * PI Radians).
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionDown
+        public static Radian DIRECTION_DOWN
         {
             get
             {
@@ -365,12 +320,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// For a left and right pan (PI Radians). Useful for AddDirection().
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionHorizontal
+        public static Radian DIRECTION_HORIZONTAL
         {
             get
             {
@@ -381,12 +331,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// For an up and down pan (-0.5 * PI Radians). Useful for AddDirection().
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DirectionVertical
+        public static Radian DIRECTION_VERTICAL
         {
             get
             {
@@ -397,12 +342,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// The default threshold is PI * 0.25 radians (or 45 degrees).
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian DefaultThreshold
+        public static Radian DEFAULT_THRESHOLD
         {
             get
             {
@@ -413,72 +353,42 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Creates an initialized PanGestureDetector.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public PanGestureDetector() : this(NDalicPINVOKE.PanGestureDetector_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-
-        internal new static PanGestureDetector DownCast(BaseHandle handle)
+        public new static PanGestureDetector DownCast(BaseHandle handle)
         {
             PanGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PanGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        /// <summary>
-        /// The copy constructor.
-        /// </summary>
-        /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public PanGestureDetector(PanGestureDetector handle) : this(NDalicPINVOKE.new_PanGestureDetector__SWIG_1(PanGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PanGestureDetector Assign(PanGestureDetector rhs)
+        public PanGestureDetector Assign(PanGestureDetector rhs)
         {
             PanGestureDetector ret = new PanGestureDetector(NDalicPINVOKE.PanGestureDetector_Assign(swigCPtr, PanGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        /// <summary>
-        /// This is the minimum number of touches required for the pan gesture to be detected.
-        /// </summary>
-        /// <param name="minimum">Minimum touches required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumTouchesRequired(uint minimum)
         {
             NDalicPINVOKE.PanGestureDetector_SetMinimumTouchesRequired(swigCPtr, minimum);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// This is the maximum number of touches required for the pan gesture to be detected.
-        /// </summary>
-        /// <param name="maximum">Maximum touches required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaximumTouchesRequired(uint maximum)
         {
             NDalicPINVOKE.PanGestureDetector_SetMaximumTouchesRequired(swigCPtr, maximum);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Retrieves the minimum number of touches required for the pan gesture to be detected.
-        /// </summary>
-        /// <returns>The minimum touches required</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMinimumTouchesRequired()
         {
             uint ret = NDalicPINVOKE.PanGestureDetector_GetMinimumTouchesRequired(swigCPtr);
@@ -486,12 +396,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Retrieves the maximum number of touches required for the pan gesture to be detected.
-        /// </summary>
-        /// <returns>The maximum touches required</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMaximumTouchesRequired()
         {
             uint ret = NDalicPINVOKE.PanGestureDetector_GetMaximumTouchesRequired(swigCPtr);
@@ -499,70 +403,30 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// The pan gesture is only emitted if the pan occurs in the direction specified by this method with a +/- threshold allowance.<br />
-        /// If an angle of 0.0 degrees is specified and the threshold is 45 degrees then the acceptable direction range is from -45 to 45 degrees.<br />
-        /// The angle added using this API is only checked when the gesture first starts, after that, this detector will emit the gesture regardless of what angle the pan is moving.
-        /// The user can add as many angles as they require.
-        /// </summary>
-        /// <param name="angle">The angle that pan should be allowed</param>
-        /// <param name="threshold">The threshold around that angle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAngle(Radian angle, Radian threshold)
         {
             NDalicPINVOKE.PanGestureDetector_AddAngle__SWIG_0(swigCPtr, Radian.getCPtr(angle), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// The pan gesture is only emitted if the pan occurs in the direction specified by this method with a +/- threshold allowance. The default threshold (PI * 0.25) is used.<br />
-        /// The angle added using this API is only checked when the gesture first starts, after that, this detector will emit the gesture regardless of what angle the pan is moving.<br />
-        /// The user can add as many angles as they require.<br />
-        /// </summary>
-        /// <param name="angle">The angle that pan should be allowed</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAngle(Radian angle)
         {
             NDalicPINVOKE.PanGestureDetector_AddAngle__SWIG_1(swigCPtr, Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// A helper method for adding bi-directional angles where the pan should take place.<br />
-        /// In other words, if 0 is requested, then PI will also be added so that we have both left and right scrolling.<br />
-        /// </summary>
-        /// <param name="direction">The direction of panning required</param>
-        /// <param name="threshold">The threshold</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDirection(Radian direction, Radian threshold)
         {
             NDalicPINVOKE.PanGestureDetector_AddDirection__SWIG_0(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// A helper method for adding bi-directional angles where the pan should take place.
-        /// In other words, if 0 is requested, then PI will also be added so that we have both left and right scrolling.<br />
-        /// The default threshold (PI * 0.25) is used.
-        /// </summary>
-        /// <param name="direction">The direction of panning required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDirection(Radian direction)
         {
             NDalicPINVOKE.PanGestureDetector_AddDirection__SWIG_1(swigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Returns the count of angles that this pan gesture detector emits a signal.
-        /// </summary>
-        /// <returns>The gesture detector has been initialized.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetAngleCount()
         {
             uint ret = NDalicPINVOKE.PanGestureDetector_GetAngleCount(swigCPtr);
@@ -577,35 +441,18 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Clears any directional angles that are used by the gesture detector.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearAngles()
         {
             NDalicPINVOKE.PanGestureDetector_ClearAngles(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Removes the angle specified from the container. This will only remove the first instance of the angle found from the container.
-        /// </summary>
-        /// <param name="angle">The angle to remove</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAngle(Radian angle)
         {
             NDalicPINVOKE.PanGestureDetector_RemoveAngle(swigCPtr, Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Removes the two angles that make up the direction from the container.
-        /// </summary>
-        /// <param name="direction">The direction to remove</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveDirection(Radian direction)
         {
             NDalicPINVOKE.PanGestureDetector_RemoveDirection(swigCPtr, Radian.getCPtr(direction));
@@ -619,23 +466,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Allows setting of the pan properties that are returned in constraints.
-        /// </summary>
-        /// <param name="pan">The pan gesture to set</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetPanGestureProperties(PanGesture pan)
         {
             NDalicPINVOKE.PanGestureDetector_SetPanGestureProperties(PanGesture.getCPtr(pan));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Retrieves the screen position.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScreenPosition
         {
             get
@@ -645,12 +481,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the screen displacement.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScreenDisplacement
         {
             get
@@ -660,12 +490,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the screen velocity.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScreenVelocity
         {
             get
@@ -675,12 +499,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the local position.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 LocalPosition
         {
             get
@@ -690,12 +508,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the local displacement
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 LocalDisplacement
         {
             get
@@ -705,12 +517,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the local velocity.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 LocalVelocity
         {
             get
@@ -720,12 +526,6 @@ namespace Tizen.NUI
                 return temp;
             }
         }
-
-        /// <summary>
-        /// Retrieves the panning flag.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Panning
         {
             get

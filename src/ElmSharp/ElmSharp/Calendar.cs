@@ -271,7 +271,8 @@ namespace ElmSharp
         {
             get
             {
-                Interop.Elementary.elm_calendar_displayed_time_get(RealHandle, out Interop.Libc.SystemTime tm);
+                var tm = new Interop.Libc.SystemTime();
+                Interop.Elementary.elm_calendar_displayed_time_get(RealHandle, out tm);
                 // TODO
                 // If the defect is fixed, it will be removed.
                 var daysInMonth = DateTime.DaysInMonth(tm.tm_year + 1900, tm.tm_mon + 1);

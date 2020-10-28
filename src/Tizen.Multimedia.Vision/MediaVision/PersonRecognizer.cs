@@ -42,7 +42,6 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public PersonRecognizer() : base(PersonRecognizedEventType)
         {
-
         }
 
         /// <summary>
@@ -53,12 +52,17 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PersonRecognizedEventArgs> Recognized;
 
-        private void RegisterEvent()
+        internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
+            IntPtr result, IntPtr _)
         {
-            _eventDetectedCallback = (IntPtr trigger, IntPtr source, int streamId, IntPtr result, IntPtr _) =>
+            try
             {
                 Recognized?.Invoke(this, CreatePersonRecognizedEventArgs(result));
-            };
+            }
+            catch (Exception e)
+            {
+                MultimediaLog.Error(MediaVisionLog.Tag, "Failed to invoke Recognized event.", e);
+            }
         }
 
         private PersonRecognizedEventArgs CreatePersonRecognizedEventArgs(IntPtr result)
@@ -120,8 +124,6 @@ namespace Tizen.Multimedia.Vision
             {
                 throw new ArgumentNullException(nameof(config));
             }
-
-            RegisterEvent();
             InvokeAddSource(source, config);
         }
     }
