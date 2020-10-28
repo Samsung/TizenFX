@@ -23,7 +23,6 @@ namespace Tizen.NUI
     using global::System;
     using global::System.ComponentModel;
     using global::System.Runtime.InteropServices;
-    using global::System.ComponentModel;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
