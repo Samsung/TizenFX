@@ -41,6 +41,15 @@ namespace Tizen.NUI
             this.frame = frame;
         }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~FrameData()
+        {
+            Dispose();
+        }
+
         private Shader CreateShader()
         {
             string vertex_shader =

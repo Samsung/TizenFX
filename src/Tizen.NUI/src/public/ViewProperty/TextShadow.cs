@@ -48,6 +48,15 @@ namespace Tizen.NUI
             propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
         }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~TextShadow()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// Deep copy method
         /// </summary>

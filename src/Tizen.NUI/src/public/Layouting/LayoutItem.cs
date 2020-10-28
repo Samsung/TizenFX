@@ -122,6 +122,15 @@ namespace Tizen.NUI
             Initialize();
         }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~LayoutItem()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// [Draft] Set parent to this layout.
         /// </summary>

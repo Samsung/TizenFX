@@ -51,6 +51,15 @@ namespace Tizen.NUI
         public KeyValue()
         { }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~KeyValue()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// Key property.
         /// </summary>

@@ -38,8 +38,15 @@ namespace Tizen.NUI.Accessibility
             dummy = new View();
             dummy.Name = "dali-atspi-singleton";
         }
-        #endregion Constructor, Distructor, Dispose
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        ~Accessibility()
+        {
+            Dispose();
+        }
+        #endregion Constructor, Distructor, Dispose
 
         #region Property
         /// <summary>

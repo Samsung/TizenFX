@@ -114,6 +114,15 @@ namespace Tizen.NUI
             AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
         }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~TransitionComponents()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// TransitionComponents constructor. Stores delay, duration and AlphaFunction.
         /// </summary>

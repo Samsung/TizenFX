@@ -145,6 +145,15 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~LinearLayout()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// Measure the layout and its content to determine the measured width and the measured height.
         /// </summary>
