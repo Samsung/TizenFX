@@ -162,12 +162,10 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if(Root != null) 
-            {
-                Window.Instance.Remove(Root);
-                Root.Dispose();
-                Root = null;
-            }
+            Window.Instance.Remove(Root);
+            Root?.Dispose();
+            Root = null;
+
             base.Dispose(type);
         }
 

@@ -48,37 +48,37 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         CameraDevice2,
         /// <summary>
-        /// The fourth camera device.
+        /// The 4th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice3,
         /// <summary>
-        /// The fifth camera device.
+        /// The 5th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice4,
         /// <summary>
-        /// The sixth camera device.
+        /// The 6th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice5,
         /// <summary>
-        /// The seventh camera device.
+        /// The 7th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice6,
         /// <summary>
-        /// The eighth camera device.
+        /// The 8th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice7,
         /// <summary>
-        /// The ninth camera device.
+        /// The 9th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice8,
         /// <summary>
-        /// The tenth camera device.
+        /// The 10th camera device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         CameraDevice9
@@ -231,7 +231,7 @@ namespace Tizen.Multimedia
         /// </summary>
         H264 = 15,
         /// <summary>
-        /// Depth pixel format.
+        /// Depth pixel format
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Invz

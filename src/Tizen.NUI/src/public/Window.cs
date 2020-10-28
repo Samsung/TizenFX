@@ -442,22 +442,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// The rendering behavior of a Window.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public RenderingBehaviorType RenderingBehavior
-        {
-            get
-            {
-                return GetRenderingBehavior();
-            }
-            set
-            {
-                SetRenderingBehavior(value);
-            }
-        }
-
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
             WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
@@ -739,20 +723,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
-        {
-            NDalicPINVOKE.Stage_SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal RenderingBehaviorType GetRenderingBehavior()
-        {
-            RenderingBehaviorType ret = (RenderingBehaviorType)NDalicPINVOKE.Stage_GetRenderingBehavior(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal KeyEventSignal KeyEventSignal()
         {
             KeyEventSignal ret = new KeyEventSignal(NDalicPINVOKE.Stage_KeyEventSignal(stageCPtr), false);
@@ -926,10 +896,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the keyboard repeat information.
+        /// Sets keyboard repeat information.
         /// </summary>
-        /// <param name="rate">The key repeat rate value in seconds.</param>
-        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool SetKeyboardRepeatInfo(float rate, float delay)
@@ -940,10 +910,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the keyboard repeat information.
+        /// Gets keyboard repeat information.
         /// </summary>
-        /// <param name="rate">The key repeat rate value in seconds.</param>
-        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool GetKeyboardRepeatInfo(out float rate, out float delay)
@@ -1498,7 +1468,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets whether the window is transparent or not.
         /// </summary>
-        /// <param name="transparent">Whether the window is transparent or not.</param>
+        /// <param name="transparent">Whether the window is transparent.</param>
         /// <since_tizen> 5 </since_tizen>
         public void SetTransparency(bool transparent) {
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
@@ -1694,7 +1664,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Feeds a key event into the window.
+        /// Feed a key-event into the window.
         /// </summary>
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 5 </since_tizen>

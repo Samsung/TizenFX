@@ -400,7 +400,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Forcefully reloads the image. All the visuals using this image will reload to the latest image.
+        /// Force reloading of the image, all visuals using this image will get the latest one.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>        
         public void Reload()
@@ -409,7 +409,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Plays the animated GIF. This is also the default playback mode.
+        /// Play the animated GIF. This is also Default playback mode.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Play()
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Pauses the animated GIF.
+        /// Pause the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Pause()
@@ -427,7 +427,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Stops the animated GIF.
+        /// Stop the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Stop()
@@ -606,7 +606,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to automatically correct the orientation of an image.<br />
+        /// Gets or sets whether to correct orientation of image automatically.<br />
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public bool OrientationCorrection
@@ -624,7 +624,7 @@ namespace Tizen.NUI.BaseComponents
 
 
         /// <summary>
-        /// Gets the loading state of the visual resource.
+        /// Get the loading state of the visual resource.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public ImageView.LoadingStatusType LoadingStatus
