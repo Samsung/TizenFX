@@ -4,11 +4,9 @@ using System.Reflection;
 using System.Globalization;
 
 using Tizen.NUI;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.Size2DTypeConverter")]
     internal class SizeTypeConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)
@@ -28,7 +26,6 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.Size2DTypeConverter")]
     internal class Size2DTypeConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)

@@ -27,13 +27,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
 
@@ -60,34 +58,23 @@ namespace Tizen.NUI.Xaml.Internals
 
 namespace Tizen.NUI.Xaml
 {
-    static internal class XamlLoader
+    static class XamlLoader
     {
         public static void Load(object view, Type callingType)
         {
-            try
-            {
-                var xaml = GetXamlForType(callingType);
-                if (string.IsNullOrEmpty(xaml))
-                    throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
-                Load(view, xaml);
-            }
-            catch (XamlParseException e)
-            {
-                Tizen.Log.Fatal("NUI", "XamlParseException e.Message: " + e.Message);
-                Console.WriteLine("\n[FATAL] XamlParseException e.Message: {0}\n", e.Message);
-            }
+            var xaml = GetXamlForType(callingType);
+            if (string.IsNullOrEmpty(xaml))
+                throw new XamlParseException(string.Format("No embeddedresource found for {0}", callingType), new XmlLineInfo());
+            Console.WriteLine("============= Got xaml text is {0} ===========", xaml);
+            Load(view, xaml);
         }
 
-        public static T LoadObject<T>(string path)
+        public static Transition LoadTransition(string animationXamlPath)
         {
-            var xaml = GetAnimationXaml(path);
+            var xaml = GetAnimationXaml(animationXamlPath);
             if (string.IsNullOrEmpty(xaml))
-                throw new XamlParseException(string.Format("No embeddedresource found for {0}", path), new XmlLineInfo());
-            Type type = typeof(T);
-            T ret = (T)type.Assembly.CreateInstance(type.FullName);
-
-            NameScopeExtensions.PushElement(ret);
-
+                throw new XamlParseException(string.Format("No embeddedresource found for {0}", animationXamlPath), new XmlLineInfo());
+            Transition animation = new Transition();
             using (var textReader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textReader))
             {
@@ -104,11 +91,11 @@ namespace Tizen.NUI.Xaml
                         continue;
                     }
 
-                    var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), ret, (IXmlNamespaceResolver)reader);
+                    var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), animation, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml(rootnode, reader);
                     Visit(rootnode, new HydrationContext
                     {
-                        RootElement = ret,
+                        RootElement = animation,
 #pragma warning disable 0618
                         ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
 #pragma warning restore 0618
@@ -116,9 +103,44 @@ namespace Tizen.NUI.Xaml
                     break;
                 }
             }
+            return animation;
+        }
 
-            NameScopeExtensions.PopElement();
-            return ret;
+        public static Animation LoadAnimation(string animationXamlPath)
+        {
+            var xaml = GetAnimationXaml(animationXamlPath);
+            if (string.IsNullOrEmpty(xaml))
+                throw new XamlParseException(string.Format("No embeddedresource found for {0}", animationXamlPath), new XmlLineInfo());
+            Animation animation = new Animation();
+            using (var textReader = new StringReader(xaml))
+            using (var reader = XmlReader.Create(textReader))
+            {
+                while (reader.Read())
+                {
+                    //Skip until element
+                    if (reader.NodeType == XmlNodeType.Whitespace)
+                        continue;
+                    if (reader.NodeType == XmlNodeType.XmlDeclaration)
+                        continue;
+                    if (reader.NodeType != XmlNodeType.Element)
+                    {
+                        Debug.WriteLine("Unhandled node {0} {1} {2}", reader.NodeType, reader.Name, reader.Value);
+                        continue;
+                    }
+
+                    var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), animation, (IXmlNamespaceResolver)reader);
+                    XamlParser.ParseXaml(rootnode, reader);
+                    Visit(rootnode, new HydrationContext
+                    {
+                        RootElement = animation,
+#pragma warning disable 0618
+                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+#pragma warning restore 0618
+                    });
+                    break;
+                }
+            }
+            return animation;
         }
 
         public static void Load(object view, string xaml)

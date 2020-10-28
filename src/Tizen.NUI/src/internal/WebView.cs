@@ -17,7 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
@@ -160,14 +159,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via the webview signal.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class WebViewEventArgs : EventArgs
         {
             private WebView _webView;
             /// <summary>
             /// The view for displaying webpages.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public WebView WebView
             {
                 get
@@ -184,7 +181,6 @@ namespace Tizen.NUI
             /// <summary>
             /// The url string of current webpage.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public string PageUrl
             {
                 get
@@ -419,10 +415,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptMessageHandler(string message);
 
-
-        // For rooting handlers
-        internal Dictionary<string, JavaScriptMessageHandler> handlerRootMap = new Dictionary<string, JavaScriptMessageHandler>();
-
         /// <summary>
         /// Add a message handler into the WebView.
         /// <param name="objectName">The name of exposed object</param>
@@ -431,16 +423,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddJavaScriptMessageHandler(string objectName, JavaScriptMessageHandler handler)
         {
-            if (handlerRootMap.ContainsKey(objectName))
-            {
-                return;
-            }
-
-            handlerRootMap.Add(objectName, handler);
-
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             NDalicPINVOKE.WebView_AddJavaScriptMessageHandler(swigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

@@ -100,8 +100,9 @@ namespace Tizen.NUI.Binding
             if (propertyGetter == null)
                 throw new ArgumentNullException("propertyGetter");
 
-			return new Binding(GetBindingPath(propertyGetter), mode, converter, converterParameter, stringFormat);
-		}
+            string path = GetBindingPath(propertyGetter);
+            return new Binding(path, mode, converter, converterParameter, stringFormat);
+        }
 
         internal override void Apply(bool fromTarget)
         {

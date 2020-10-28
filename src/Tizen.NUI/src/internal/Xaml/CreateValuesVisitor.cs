@@ -29,7 +29,6 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary => false;
         public bool VisitNodeOnDataTemplate => false;
         public bool SkipChildren(INode node, INode parentNode) => false;
-        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
 
         public void Visit(ValueNode node, INode parentNode)
         {
@@ -176,7 +175,7 @@ namespace Tizen.NUI.Xaml
             {
                 // Modify the namespace
                 var propname =
-                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")?
+                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")
                         .ConstructorArguments.First()
                         .Value as string;
                 if (!node.Properties.ContainsKey(new XmlName("", propname)))
@@ -198,15 +197,7 @@ namespace Tizen.NUI.Xaml
                             ci.GetParameters().Length != 0 && ci.IsPublic &&
                             ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute))));
             object[] arguments = CreateArgumentsArray(node, ctorInfo);
-
-            if (arguments != null)
-            {
-                return ctorInfo?.Invoke(arguments);
-            }
-            else
-            {
-                return null;
-            }
+            return ctorInfo.Invoke(arguments);
         }
 
         public object CreateFromFactory(Type nodeType, IElementNode node)
@@ -286,43 +277,39 @@ namespace Tizen.NUI.Xaml
 
         public object[] CreateArgumentsArray(IElementNode enode, ConstructorInfo ctorInfo)
         {
-            if( ctorInfo != null )
+            var n = ctorInfo.GetParameters().Length;
+            var array = new object[n];
+            for (var i = 0; i < n; i++)
             {
-                var n = ctorInfo.GetParameters().Length;
-                var array = new object[n];
-                for (var i = 0; i < n; i++)
+                var parameter = ctorInfo.GetParameters()[i];
+                var propname =
+                    parameter.CustomAttributes.First(attr => attr.AttributeType == typeof (ParameterAttribute))
+                        .ConstructorArguments.First()
+                        .Value as string;
+                var name = new XmlName("", propname);
+                INode node;
+                if (!enode.Properties.TryGetValue(name, out node))
                 {
-                    var parameter = ctorInfo.GetParameters()[i];
-                    var propname =
-                        parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof (ParameterAttribute))?
-                            .ConstructorArguments.First()
-                            .Value as string;
-                    var name = new XmlName("", propname);
-                    INode node;
-                    if (!enode.Properties.TryGetValue(name, out node))
+                    String msg = "";
+                    if (propname != null)
                     {
-                        String msg = "";
-                        if (propname != null)
-                        {
-                            msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
-                        }
-                        else
-                        {
-                            msg = "propname is null.";
-                        }
-                        throw new XamlParseException(msg, enode as IXmlLineInfo);
+                        msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
                     }
-                    if (!enode.SkipProperties.Contains(name))
-                        enode.SkipProperties.Add(name);
-                    var value = Context.Values[node];
-                    var serviceProvider = new XamlServiceProvider(enode, Context);
-                    var convertedValue = value?.ConvertTo(parameter?.ParameterType, () => parameter, serviceProvider);
-                    array[i] = convertedValue;
+                    else
+                    {
+                        msg = "propname is null.";
+                    }
+                    throw new XamlParseException(msg, enode as IXmlLineInfo);
                 }
-                return array;
+                if (!enode.SkipProperties.Contains(name))
+                    enode.SkipProperties.Add(name);
+                var value = Context.Values[node];
+                var serviceProvider = new XamlServiceProvider(enode, Context);
+                var convertedValue = value.ConvertTo(parameter.ParameterType, () => parameter, serviceProvider);
+                array[i] = convertedValue;
             }
 
-            return null;
+            return array;
         }
 
         static bool IsXaml2009LanguagePrimitive(IElementNode node)

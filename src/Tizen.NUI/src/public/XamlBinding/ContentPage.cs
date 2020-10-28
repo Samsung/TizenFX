@@ -35,13 +35,27 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Root {get; internal set;}
 
-        /// <summary>
-        /// The contents of ContentPage can be added into it.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
+            // var self = (IControlTemplated)bindable;
+            // var newElement = (Element)newValue;
+            // if (self.ControlTemplate == null)
+            // {
+            //  while (self.InternalChildren.Count > 0)
+            //  {
+            //      self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
+            //  }
+
+            // 	if (newValue != null)
+            //      self.InternalChildren.Add(newElement);
+            // }
+            // else
+            // {
+            // 	if (newElement != null)
+            // 	{
+            //      BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
+            // 	}
+            // }
             var self = (ContentPage)bindable;
             if (newValue != null)
             {
@@ -101,8 +115,10 @@ namespace Tizen.NUI
             IsCreateByXaml = true;
 
             Root = new View();
-            Root.WidthResizePolicy = ResizePolicyType.FillToParent;
-            Root.HeightResizePolicy = ResizePolicyType.FillToParent;
+            Root.Size2D = new Size2D(win.WindowSize.Width, win.WindowSize.Height);
+            Root.ParentOrigin = ParentOrigin.TopLeft;
+            Root.PivotPoint = PivotPoint.TopLeft;
+            Root.PositionUsesPivotPoint = true;
 
             win.Add(Root);
         }
@@ -231,16 +247,19 @@ namespace Tizen.NUI
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Transition GetTransition(string transitionName)
+        public Animation CreateAnimation(string animationType)
         {
+            Animation ani = null;
             Transition trans = null;
-            transDictionary.TryGetValue(transitionName, out trans);
-            return trans;
+            transDictionary.TryGetValue(animationType, out trans);
+
+            ani = trans?.CreateAnimation();
+            return ani;
         }
 
-        private void LoadTransitions()
+        private void CreateAnimationFactory()
         {
-            foreach (string str in transitionNames)
+            foreach (string str in transitionType)
             {
                 string resourceName = str + ".xaml";
                 Transition trans = null;
@@ -251,7 +270,7 @@ namespace Tizen.NUI
 
                 if (File.Exists(likelyResourcePath))
                 {
-                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
+                    trans = Extensions.LoadTransition(likelyResourcePath);
                 }
                 if (trans)
                 {
@@ -260,20 +279,20 @@ namespace Tizen.NUI
             }
         }
 
-        private string[] transitionNames;
+        private string[] transitionType;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] TransitionNames
+        public string[] TransitionType
         {
             get
             {
-                return transitionNames;
+                return transitionType;
             }
             set
             {
-                transitionNames = value;
-                LoadTransitions();
+                transitionType = value;
+                CreateAnimationFactory();
             }
         }
     }

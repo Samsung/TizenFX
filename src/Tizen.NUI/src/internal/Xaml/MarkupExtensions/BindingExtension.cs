@@ -8,8 +8,15 @@ namespace Tizen.NUI.Xaml
     [AcceptEmptyServiceProvider]
     internal sealed class BindingExtension : IMarkupExtension<BindingBase>
     {
-		public string Path { get; set; } = Binding.Binding.SelfPath;
-		public BindingMode Mode { get; set; } = BindingMode.Default;
+        public BindingExtension()
+        {
+            Mode = BindingMode.Default;
+            Path = Tizen.NUI.Binding.Binding.SelfPath;
+        }
+
+        public string Path { get; set; }
+
+        public BindingMode Mode { get; set; }
 
         public IValueConverter Converter { get; set; }
 
@@ -21,21 +28,12 @@ namespace Tizen.NUI.Xaml
 
         public string UpdateSourceEventName { get; set; }
 
-        public object TargetNullValue { get; set; }
-        
-		public object FallbackValue { get; set; }
-
         public TypedBindingBase TypedBinding { get; set; }
 
         BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
         {
             if (TypedBinding == null)
-                return new Tizen.NUI.Binding.Binding(Path, Mode, Converter, ConverterParameter, StringFormat, Source)
-				{
-				    UpdateSourceEventName = UpdateSourceEventName,
-                    FallbackValue = FallbackValue,
-                    TargetNullValue = TargetNullValue,
-				};
+                return new Tizen.NUI.Binding.Binding(Path, Mode, Converter, ConverterParameter, StringFormat, Source) { UpdateSourceEventName = UpdateSourceEventName };
 
             TypedBinding.Mode = Mode;
             TypedBinding.Converter = Converter;
@@ -43,8 +41,6 @@ namespace Tizen.NUI.Xaml
             TypedBinding.StringFormat = StringFormat;
             TypedBinding.Source = Source;
             TypedBinding.UpdateSourceEventName = UpdateSourceEventName;
-            TypedBinding.FallbackValue = FallbackValue;
-            TypedBinding.TargetNullValue = TargetNullValue;
             return TypedBinding;
         }
 

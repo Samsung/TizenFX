@@ -9,6 +9,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Binding.Internals
 {
     //FIXME: need a better name for this, and share with Binding, so we can share more unittests
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal abstract class TypedBindingBase : BindingBase
     {
         IValueConverter _converter;
@@ -53,6 +54,7 @@ namespace Tizen.NUI.Binding.Internals
         }
     }
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal sealed class TypedBinding<TSource, TProperty> : TypedBindingBase
     {
         readonly Func<TSource, TProperty> _getter;

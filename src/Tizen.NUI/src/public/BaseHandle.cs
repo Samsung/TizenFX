@@ -261,11 +261,11 @@ namespace Tizen.NUI
         {
             if (!BaseHandle.ReferenceEquals(x, null) || !BaseHandle.ReferenceEquals(y, null))
             {
-                if (x != null && x.HasBody())
+                if (x.HasBody())
                 {
                     return x;
                 }
-                if (y != null && y.HasBody())
+                if (y.HasBody())
                 {
                     return y;
                 }

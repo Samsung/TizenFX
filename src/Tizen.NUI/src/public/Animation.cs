@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
