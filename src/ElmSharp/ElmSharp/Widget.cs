@@ -293,14 +293,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void SetFocus(bool isFocus)
         {
-            if (isFocus)
-            {
-                Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
-            }
-            else
-            {
-                Interop.Elementary.elm_object_focused_clear(RealHandle);
-            }
+            Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
         }
 
         /// <summary>

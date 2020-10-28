@@ -32,7 +32,12 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public MediaControlServerStartedEventArgs(MediaController mediaController)
         {
-            Controller = mediaController ?? throw new ArgumentNullException(nameof(mediaController));
+            if (mediaController == null)
+            {
+                throw new ArgumentNullException(nameof(mediaController));
+            }
+
+            Controller = mediaController;
         }
 
         /// <summary>

@@ -42,6 +42,7 @@ namespace Tizen.Nlp
         private int _requestIdLang = 0;
         private int _requestIdNeChunk = 0;
         private int _requestIdWordTokenize = 0;
+        private int _requestIdLemmatize = 0;
         private Task _connectionTask;
         private ConnectedState _connectionState = ConnectedState.Disconnected;
 
@@ -55,6 +56,8 @@ namespace Tizen.Nlp
 
         private readonly Dictionary<int, NamedEntityRecognitionCallback> _mapsNamedEntity =
             new Dictionary<int, NamedEntityRecognitionCallback>();
+
+        private readonly Dictionary<int, LemmatizeCallback> _mapsLemmatize = new Dictionary<int, LemmatizeCallback>();
 
         /// <summary>
         /// An construct method  to init local env of NLP .
@@ -72,6 +75,8 @@ namespace Tizen.Nlp
         private delegate bool PostagCallback(MessageReceivedEventArgs e);
 
         private delegate bool NamedEntityRecognitionCallback(MessageReceivedEventArgs e);
+
+        private delegate bool LemmatizeCallback(MessageReceivedEventArgs e);
 
         /// <summary>
         /// A connection status change event
@@ -145,6 +150,15 @@ namespace Tizen.Nlp
                     _mapsNamedEntity.Remove(requestid);
                 }
             }
+            else if (msg.GetItem("command").Equals("lemmatize"))
+            {
+                e.Message = result;
+                if (_mapsLemmatize.ContainsKey(requestid))
+                {
+                    _mapsLemmatize[requestid]?.Invoke(e);
+                    _mapsLemmatize.Remove(requestid);
+                }
+            }
             else if (msg.GetItem("command").Equals("langdetect"))
             {
                 e.Message = result;
@@ -160,7 +174,6 @@ namespace Tizen.Nlp
         /// An async method  to connect remote service.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <returns>A task representing the asynchronous connect operation.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
         public Task Connect()
         {
@@ -185,8 +198,8 @@ namespace Tizen.Nlp
             {
                 Log.Debug(LogTag, "start to register");
                 _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                _connectionState = ConnectedState.Connected;
                 tcs.SetResult(true);
+                _connectionState = ConnectedState.Connected;
             };
             _msg.Rejected += (sender, e) =>
             {
@@ -218,6 +231,7 @@ namespace Tizen.Nlp
             _mapsWordTokenize.Clear();
             _mapsPosTag.Clear();
             _mapsNamedEntity.Clear();
+            _mapsLemmatize.Clear();
             _mapsLangDetect.Clear();
         }
 
@@ -311,6 +325,28 @@ namespace Tizen.Nlp
                 e.Message.TryGetValue("token", out string[] lang);
                 if (lang != null) lr.Language = lang[0];
                 task.SetResult(lr);
+                return true;
+            };
+            return task.Task;
+        }
+
+        /// <summary>
+        /// Send Lemmatize request to remote tidl service with one parameters.
+        /// </summary>
+        /// <param name="sentence">A sentence need to be processed.</param>
+        /// <returns>ProcessResult</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public Task<LemmatizeResult> LemmatizeaAsync(string sentence)
+        {
+            int id = _requestIdLemmatize++;
+            MakeRequest("lemmatize", sentence, id);
+            var task = new TaskCompletionSource<LemmatizeResult>();
+            _mapsLemmatize[id] = (e) =>
+            {
+                LemmatizeResult mr = new LemmatizeResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                if (tokens != null) mr.ActualWord = tokens[0];
+                task.SetResult(mr);
                 return true;
             };
             return task.Task;

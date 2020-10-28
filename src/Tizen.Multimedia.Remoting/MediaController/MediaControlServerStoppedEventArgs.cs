@@ -32,7 +32,12 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public MediaControlServerStoppedEventArgs(string serverAppId)
         {
-            ServerAppId = serverAppId ?? throw new ArgumentNullException(nameof(serverAppId));
+            if (serverAppId == null)
+            {
+                throw new ArgumentNullException(nameof(serverAppId));
+            }
+
+            ServerAppId = serverAppId;
         }
 
         /// <summary>

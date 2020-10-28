@@ -147,7 +147,6 @@ namespace Tizen.NUI
             _application.AppControl += OnAppControl;
 
             _application.MainLoop();
-            _application.Dispose();
         }
 
         /// <summary>

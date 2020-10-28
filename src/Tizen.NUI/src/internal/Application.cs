@@ -957,15 +957,12 @@ namespace Tizen.NUI
 
             NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
             // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+            if (_applicationInitEventHandler != null)
             {
-                if (_applicationInitEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationInitEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationInitEventHandler(this, e);
             }
-
         }
 
         /**
@@ -1009,13 +1006,12 @@ namespace Tizen.NUI
             NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
 
             // Populate all members of "e" (NUIApplicationTerminateEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationTerminateEventHandler != null)
             {
-                if (_applicationTerminateEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationTerminateEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationTerminateEventHandler(this, e);
             }
         }
 
@@ -1060,13 +1056,12 @@ namespace Tizen.NUI
             NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
 
             // Populate all members of "e" (NUIApplicationPauseEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationPauseEventHandler != null)
             {
-                if (_applicationPauseEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationPauseEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationPauseEventHandler(this, e);
             }
         }
 
@@ -1111,13 +1106,12 @@ namespace Tizen.NUI
             NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
 
             // Populate all members of "e" (NUIApplicationResumeEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResumeEventHandler != null)
             {
-                if (_applicationResumeEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationResumeEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationResumeEventHandler(this, e);
             }
         }
 
@@ -1162,13 +1156,12 @@ namespace Tizen.NUI
             NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
 
             // Populate all members of "e" (NUIApplicationResetEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResetEventHandler != null)
             {
-                if (_applicationResetEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationResetEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationResetEventHandler(this, e);
             }
         }
 
@@ -1213,13 +1206,12 @@ namespace Tizen.NUI
             NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
 
             // Populate all members of "e" (NUIApplicationResizeEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationResizeEventHandler != null)
             {
-                if (_applicationResizeEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationResizeEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationResizeEventHandler(this, e);
             }
         }
 
@@ -1264,13 +1256,12 @@ namespace Tizen.NUI
             NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
 
             // Populate all members of "e" (NUIApplicationLanguageChangedEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationLanguageChangedEventHandler != null)
             {
-                if (_applicationLanguageChangedEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationLanguageChangedEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationLanguageChangedEventHandler(this, e);
             }
         }
 
@@ -1315,13 +1306,12 @@ namespace Tizen.NUI
             NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
 
             // Populate all members of "e" (NUIApplicationRegionChangedEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(data))
+            e.Application = Application.GetApplicationFromPtr(data);
+
+            if (_applicationRegionChangedEventHandler != null)
             {
-                if (_applicationRegionChangedEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationRegionChangedEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationRegionChangedEventHandler(this, e);
             }
         }
 
@@ -1464,16 +1454,15 @@ namespace Tizen.NUI
         private void OnNUIApplicationAppControl(IntPtr application, IntPtr voidp)
         {
             NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
-            e.VoidP = voidp;
 
             // Populate all members of "e" (NUIApplicationAppControlEventArgs) with real data
-            using (e.Application = Application.GetApplicationFromPtr(application))
+            e.Application = Application.GetApplicationFromPtr(application);
+            e.VoidP = voidp;
+
+            if (_applicationAppControlEventHandler != null)
             {
-                if (_applicationAppControlEventHandler != null)
-                {
-                    //here we send all data to user event handlers
-                    _applicationAppControlEventHandler(this, e);
-                }
+                //here we send all data to user event handlers
+                _applicationAppControlEventHandler(this, e);
             }
         }
 
@@ -1489,11 +1478,6 @@ namespace Tizen.NUI
 
         public static Application GetApplicationFromPtr(global::System.IntPtr cPtr)
         {
-            if (cPtr == null)
-            {
-                return null;
-            }
-
             Application ret = new Application(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

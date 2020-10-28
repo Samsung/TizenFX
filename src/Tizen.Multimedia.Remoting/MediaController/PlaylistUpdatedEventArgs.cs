@@ -29,19 +29,14 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="mode">A value indicating the updated repeat mode.</param>
         /// <param name="name">A value indicating the playlist name.</param>
-        /// <param name="playlist">A value indicating the playlist.</param>
         /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="name"/> or <paramref name="playlist"/> is null.
-        /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public PlaylistUpdatedEventArgs(MediaControlPlaylistMode mode, string name, MediaControlPlaylist playlist)
+        public PlaylistUpdatedEventArgs(MediaControlPlaylistMode mode, string name)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaylistMode), mode, nameof(mode));
 
             Mode = mode;
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Playlist = playlist ?? throw new ArgumentNullException(nameof(playlist));
+            Name = name;
         }
 
         /// <summary>
@@ -60,11 +55,5 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public string Name { get; }
-
-        /// <summary>
-        /// Gets the updated playlist.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlPlaylist Playlist { get; }
     }
 }
