@@ -57,28 +57,24 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ScrollOutofBoundEventArgs is to record scroll out-of-bound event arguments which will be sent to user.
     /// </summary>
-    /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollOutofBoundEventArgs : EventArgs
+    public class ScrollOutOfBoundEventArgs : EventArgs
     {
         /// <summary>
         /// The bound to be scrolled out of.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Bound
         {
             /// <summary>
             /// Top bound.
             /// </summary>
-            /// <since_tizen> 8 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Top,
 
             /// <summary>
             /// Bottom bound.
             /// </summary>
-            /// <since_tizen> 8 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Bottom
         }
@@ -87,9 +83,8 @@ namespace Tizen.NUI.Components
         /// Default constructor.
         /// </summary>
         /// <param name="bound">Current scrollable bound</param>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollOutofBoundEventArgs(Bound bound)
+        public ScrollOutOfBoundEventArgs(Bound bound)
         {
             ScrollableBound = bound;
         }
@@ -97,7 +92,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Current position of ContentContainer.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Bound ScrollableBound
         {
@@ -369,9 +363,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when scrolling out of bound, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollOutofBoundEventArgs> ScrollOutofBound;
+        public event EventHandler<ScrollOutOfBoundEventArgs> ScrollOutOfBound;
 
         /// <summary>
         /// Scrollbar for ScrollableBase.
@@ -1049,11 +1042,11 @@ namespace Tizen.NUI.Components
                 if (!isVerticalShadowShown)
                 {
                     startShowShadowDisplacement = displacement;
-                    OnScrollOutofBound(ScrollOutofBoundEventArgs.Bound.Top);
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = displacement < startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1072,11 +1065,11 @@ namespace Tizen.NUI.Components
                 if (!isVerticalShadowShown)
                 {
                     startShowShadowDisplacement = displacement;
-                    OnScrollOutofBound(ScrollOutofBoundEventArgs.Bound.Bottom);
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = startShowShadowDisplacement < displacement ? 0 : startShowShadowDisplacement - displacement;
+                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1132,10 +1125,10 @@ namespace Tizen.NUI.Components
             isVerticalShadowShown = false;
         }
 
-        private void OnScrollOutofBound(ScrollOutofBoundEventArgs.Bound bound)
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
         {
-            ScrollOutofBoundEventArgs args = new ScrollOutofBoundEventArgs(bound);
-            ScrollOutofBound?.Invoke(this, args);
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
+            ScrollOutOfBound?.Invoke(this, args);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
