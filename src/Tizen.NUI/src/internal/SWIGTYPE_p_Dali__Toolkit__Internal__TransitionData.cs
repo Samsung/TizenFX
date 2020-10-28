@@ -10,7 +10,6 @@
 
 namespace Tizen.NUI
 {
-
     internal class SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -24,11 +23,5 @@ namespace Tizen.NUI
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
     }
-
 }

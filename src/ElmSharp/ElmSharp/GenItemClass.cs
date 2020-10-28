@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 namespace ElmSharp
 {
     /// <summary>
@@ -217,8 +219,8 @@ namespace ElmSharp
 
         void EvasObjectDeleted(object sender, EventArgs e)
         {
-            IntPtr handle = (sender as EvasObject).Handle;
-            s_HandleToEvasObject.Remove(handle);
+            if(sender is EvasObject evasObject)
+                s_HandleToEvasObject.Remove(evasObject);
         }
 
         IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old)
@@ -279,6 +281,7 @@ namespace ElmSharp
         }
     }
 
+    [NativeStruct("Elm_Gen_Item_Class", Include="Elementary.h", PkgConfig="elementary")]
     [StructLayout(LayoutKind.Sequential)]
     internal class ItemClass
     {

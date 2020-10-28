@@ -607,7 +607,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Switzerland,
         /// <summary>
-        /// Taiwan, Province of China.
+        /// Chinese Taiwan.
         /// </summary>
         Taiwan,
         /// <summary>
@@ -823,7 +823,7 @@ namespace Tizen.PhonenumberUtils
         /// </summary>
         Guyana,
         /// <summary>
-        /// Hong Kong.
+        /// Chinese Hong Kong.
         /// </summary>
         HongKong,
         /// <summary>

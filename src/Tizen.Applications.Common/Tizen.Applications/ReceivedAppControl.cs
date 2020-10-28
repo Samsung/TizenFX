@@ -51,6 +51,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes a ReceivedAppControl class.
         /// </summary>
+        /// <param name="handle">App control handle</param>
         /// <since_tizen> 3 </since_tizen>
         public ReceivedAppControl(SafeAppControlHandle handle) : base(handle)
         {

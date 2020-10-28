@@ -31,7 +31,57 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The front camera device.
         /// </summary>
-        Front
+        Front,
+        /// <summary>
+        /// The primary camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice0 = Rear,
+        /// <summary>
+        /// The secondary camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice1 = Front,
+        /// <summary>
+        /// The third camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice2,
+        /// <summary>
+        /// The fourth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice3,
+        /// <summary>
+        /// The fifth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice4,
+        /// <summary>
+        /// The sixth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice5,
+        /// <summary>
+        /// The seventh camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice6,
+        /// <summary>
+        /// The eighth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice7,
+        /// <summary>
+        /// The ninth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice8,
+        /// <summary>
+        /// The tenth camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice9
     }
 
     /// <summary>
@@ -179,7 +229,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Encoded pixel format : H264.
         /// </summary>
-        H264 = 15
+        H264 = 15,
+        /// <summary>
+        /// Depth pixel format.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Invz,
+        /// <summary>
+        /// Encoded pixel format : Motion JPEG
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Mjpeg
     }
 
     /// <summary>
@@ -855,6 +915,16 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Encoded plane data.
         /// </summary>
-        EncodedPlane
+        EncodedPlane,
+        /// <summary>
+        /// Depth plane data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DepthPlane,
+        /// <summary>
+        /// Rgb plane data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        RgbPlane
     }
 }

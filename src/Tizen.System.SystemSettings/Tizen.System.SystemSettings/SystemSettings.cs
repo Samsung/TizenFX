@@ -29,6 +29,11 @@ namespace Tizen.System
     public static class SystemSettings
     {
         /// <summary>
+        /// Lock for EventHandlers.
+        /// </summary>
+        private static readonly object LockObj = new object();
+
+        /// <summary>
         /// The file path of the current ringtone.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
@@ -136,6 +141,7 @@ namespace Tizen.System
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/systemsetting.font</feature>
         /// <exception cref="ArgumentException">Invalid Argument</exception>
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
@@ -169,6 +175,7 @@ namespace Tizen.System
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/systemsetting.font</feature>
         /// <exception cref="ArgumentException">Invalid Argument</exception>
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
@@ -368,6 +375,7 @@ namespace Tizen.System
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/systemsetting.font</feature>
         /// <exception cref="ArgumentException">Invalid Argument</exception>
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
@@ -964,8 +972,218 @@ namespace Tizen.System
                 }
                 return isAccessibilityTTSEnabled;
             }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityTtsEnabled, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set AccessibilityTTS system setting.");
+                }
+            }
         }
 
+        /// <summary>
+        /// Indicates whether the vibration is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool Vibration
+        {
+            get
+            {
+                bool isVibration;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.Vibration, out isVibration);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isVibration system setting.");
+                }
+                return isVibration;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.Vibration, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isVibration system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the automatic time update is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool AutomaticTimeUpdate
+        {
+            get
+            {
+                bool isAutomaticTimeUpdate;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AutomaticTimeUpdate, out isAutomaticTimeUpdate);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAutomaticTimeUpdate system setting.");
+                }
+                return isAutomaticTimeUpdate;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AutomaticTimeUpdate, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAutomaticTimeUpdate system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the developer option state is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool DeveloperOptionState
+        {
+            get
+            {
+                bool isDeveloperOptionState;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.DeveloperOptionState, out isDeveloperOptionState);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isDeveloperOptionState system setting.");
+                }
+                return isDeveloperOptionState;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.DeveloperOptionState, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isDeveloperOptionState system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether accessibility grayscale is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.grayscale</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool AccessibilityGrayscale
+        {
+            get
+            {
+                bool isAccessibilityGrayscale;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AccessibilityGrayscale, out isAccessibilityGrayscale);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAccessibilityGrayscale system setting.");
+                }
+                return isAccessibilityGrayscale;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityGrayscale, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAccessibilityGrayscale system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether accessibility negative color is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.negative</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool AccessibilityNegativeColor
+        {
+            get
+            {
+                bool isAccessibilityNegativeColor;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AccessibilityNegativeColor, out isAccessibilityNegativeColor);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAccessibilityNegativeColor system setting.");
+                }
+                return isAccessibilityNegativeColor;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityNegativeColor, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAccessibilityNegativeColor system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether rotary event is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/input.rotating_bezel</feature>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool RotaryEventEnabled
+        {
+            get
+            {
+                bool isRotaryEventEnabled;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.RotaryEventEnabled, out isRotaryEventEnabled);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isRotaryEventEnabled system setting.");
+                }
+                return isRotaryEventEnabled;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.RotaryEventEnabled, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isRotaryEventEnabled system setting.");
+                }
+            }
+        }
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
@@ -990,30 +1208,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_incomingCallRingtoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.IncomingCallRingtone, s_incomingCallRingtoneChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_incomingCallRingtoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.IncomingCallRingtone, s_incomingCallRingtoneChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_incomingCallRingtoneChanged += value;
                 }
-                s_incomingCallRingtoneChanged += value;
             }
 
             remove
             {
-                if (s_incomingCallRingtoneChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_incomingCallRingtoneChanged -= value;
-                if (s_incomingCallRingtoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.IncomingCallRingtone, s_incomingCallRingtoneChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_incomingCallRingtoneChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_incomingCallRingtoneChanged -= value;
+                    if (s_incomingCallRingtoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.IncomingCallRingtone, s_incomingCallRingtoneChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1042,30 +1266,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_wallpaperHomeScreenChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.WallpaperHomeScreen, s_wallpaperHomeScreenChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_wallpaperHomeScreenChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.WallpaperHomeScreen, s_wallpaperHomeScreenChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_wallpaperHomeScreenChanged += value;
                 }
-                s_wallpaperHomeScreenChanged += value;
             }
 
             remove
             {
-                if (s_wallpaperHomeScreenChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_wallpaperHomeScreenChanged -= value;
-                if (s_wallpaperHomeScreenChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperHomeScreen, s_wallpaperHomeScreenChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_wallpaperHomeScreenChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_wallpaperHomeScreenChanged -= value;
+                    if (s_wallpaperHomeScreenChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperHomeScreen, s_wallpaperHomeScreenChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1094,30 +1324,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_wallpaperLockScreenChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.WallpaperLockScreen, s_wallpaperLockScreenChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_wallpaperLockScreenChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.WallpaperLockScreen, s_wallpaperLockScreenChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_wallpaperLockScreenChanged += value;
                 }
-                s_wallpaperLockScreenChanged += value;
             }
 
             remove
             {
-                if (s_wallpaperLockScreenChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_wallpaperLockScreenChanged -= value;
-                if (s_wallpaperLockScreenChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperLockScreen, s_wallpaperLockScreenChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_wallpaperLockScreenChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_wallpaperLockScreenChanged -= value;
+                    if (s_wallpaperLockScreenChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperLockScreen, s_wallpaperLockScreenChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1145,30 +1381,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_fontSizeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.FontSize, s_fontSizeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_fontSizeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.FontSize, s_fontSizeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_fontSizeChanged += value;
                 }
-                s_fontSizeChanged += value;
             }
 
             remove
             {
-                if (s_fontSizeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_fontSizeChanged -= value;
-                if (s_fontSizeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontSize, s_fontSizeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_fontSizeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_fontSizeChanged -= value;
+                    if (s_fontSizeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontSize, s_fontSizeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1196,30 +1438,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_fontTypeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.FontType, s_fontTypeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_fontTypeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.FontType, s_fontTypeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_fontTypeChanged += value;
                 }
-                s_fontTypeChanged += value;
             }
 
             remove
             {
-                if (s_fontTypeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_fontTypeChanged -= value;
-                if (s_fontTypeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontType, s_fontTypeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_fontTypeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_fontTypeChanged -= value;
+                    if (s_fontTypeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontType, s_fontTypeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1247,30 +1495,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_motionActivationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_motionActivationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_motionActivationChanged += value;
                 }
-                s_motionActivationChanged += value;
             }
 
             remove
             {
-                if (s_motionActivationChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_motionActivationChanged -= value;
-                if (s_motionActivationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_motionActivationChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_motionActivationChanged -= value;
+                    if (s_motionActivationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1299,30 +1553,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_emailAlertRingtoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.EmailAlertRingtone, s_emailAlertRingtoneChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_emailAlertRingtoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.EmailAlertRingtone, s_emailAlertRingtoneChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_emailAlertRingtoneChanged += value;
                 }
-                s_emailAlertRingtoneChanged += value;
             }
 
             remove
             {
-                if (s_emailAlertRingtoneChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_emailAlertRingtoneChanged -= value;
-                if (s_emailAlertRingtoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.EmailAlertRingtone, s_emailAlertRingtoneChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_emailAlertRingtoneChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_emailAlertRingtoneChanged -= value;
+                    if (s_emailAlertRingtoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.EmailAlertRingtone, s_emailAlertRingtoneChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1350,30 +1610,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_usbDebuggingSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UsbDebuggingEnabled, s_usbDebuggingSettingChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_usbDebuggingSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UsbDebuggingEnabled, s_usbDebuggingSettingChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_usbDebuggingSettingChanged += value;
                 }
-                s_usbDebuggingSettingChanged += value;
             }
 
             remove
             {
-                if (s_usbDebuggingSettingChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_usbDebuggingSettingChanged -= value;
-                if (s_usbDebuggingSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UsbDebuggingEnabled, s_usbDebuggingSettingChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_usbDebuggingSettingChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_usbDebuggingSettingChanged -= value;
+                    if (s_usbDebuggingSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UsbDebuggingEnabled, s_usbDebuggingSettingChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1401,30 +1667,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_data3GNetworkSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Data3GNetworkEnabled, s_data3GNetworkSettingChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_data3GNetworkSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Data3GNetworkEnabled, s_data3GNetworkSettingChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_data3GNetworkSettingChanged += value;
                 }
-                s_data3GNetworkSettingChanged += value;
             }
 
             remove
             {
-                if (s_data3GNetworkSettingChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_data3GNetworkSettingChanged -= value;
-                if (s_data3GNetworkSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Data3GNetworkEnabled, s_data3GNetworkSettingChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_data3GNetworkSettingChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_data3GNetworkSettingChanged -= value;
+                    if (s_data3GNetworkSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Data3GNetworkEnabled, s_data3GNetworkSettingChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1453,31 +1725,37 @@ namespace Tizen.System
         {
             add
             {
-                if (s_lockscreenAppChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_lockscreenAppChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_lockscreenAppChanged += value;
                 }
-                s_lockscreenAppChanged += value;
             }
 
             remove
             {
-                if (s_lockscreenAppChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-
-                s_lockscreenAppChanged -= value;
-                if (s_lockscreenAppChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_lockscreenAppChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+
+                    s_lockscreenAppChanged -= value;
+                    if (s_lockscreenAppChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1505,30 +1783,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_localeCountryChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleCountry, s_localeCountryChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeCountryChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleCountry, s_localeCountryChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_localeCountryChanged += value;
                 }
-                s_localeCountryChanged += value;
             }
 
             remove
             {
-                if (s_localeCountryChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_localeCountryChanged -= value;
-                if (s_localeCountryChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleCountry, s_localeCountryChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeCountryChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_localeCountryChanged -= value;
+                    if (s_localeCountryChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleCountry, s_localeCountryChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1556,30 +1840,42 @@ namespace Tizen.System
         {
             add
             {
-                if (s_localeLanguageChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (null == value)
+                        throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
+
+                    if (s_localeLanguageChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_localeLanguageChanged += value;
                 }
-                s_localeLanguageChanged += value;
             }
 
             remove
             {
-                if (s_localeLanguageChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_localeLanguageChanged -= value;
-                if (s_localeLanguageChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (null == value)
+                        throw SystemSettingsExceptionFactory.CreateException(SystemSettingsError.InvalidParameter, "Error invalid callback");
+
+                    if (s_localeLanguageChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_localeLanguageChanged -= value;
+                    if (s_localeLanguageChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1607,30 +1903,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_localeTimeFormat24HourChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeTimeFormat24HourChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_localeTimeFormat24HourChanged += value;
                 }
-                s_localeTimeFormat24HourChanged += value;
             }
 
             remove
             {
-                if (s_localeTimeFormat24HourChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_localeTimeFormat24HourChanged -= value;
-                if (s_localeTimeFormat24HourChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeTimeFormat24HourChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_localeTimeFormat24HourChanged -= value;
+                    if (s_localeTimeFormat24HourChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1658,30 +1960,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_localeTimeZoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeTimeZoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_localeTimeZoneChanged += value;
                 }
-                s_localeTimeZoneChanged += value;
             }
 
             remove
             {
-                if (s_localeTimeZoneChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_localeTimeZoneChanged -= value;
-                if (s_localeTimeZoneChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_localeTimeZoneChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_localeTimeZoneChanged -= value;
+                    if (s_localeTimeZoneChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1710,30 +2018,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_timeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Time, s_timeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_timeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Time, s_timeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_timeChanged += value;
                 }
-                s_timeChanged += value;
             }
 
             remove
             {
-                if (s_timeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_timeChanged -= value;
-                if (s_timeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Time, s_timeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_timeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_timeChanged -= value;
+                    if (s_timeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Time, s_timeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1761,30 +2075,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_soundLockChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundLockChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_soundLockChanged += value;
                 }
-                s_soundLockChanged += value;
             }
 
             remove
             {
-                if (s_soundLockChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_soundLockChanged -= value;
-                if (s_soundLockChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundLockChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_soundLockChanged -= value;
+                    if (s_soundLockChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1812,30 +2132,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_soundSilentModeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundSilentModeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_soundSilentModeChanged += value;
                 }
-                s_soundSilentModeChanged += value;
             }
 
             remove
             {
-                if (s_soundSilentModeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_soundSilentModeChanged -= value;
-                if (s_soundSilentModeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundSilentModeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_soundSilentModeChanged -= value;
+                    if (s_soundSilentModeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1863,31 +2189,37 @@ namespace Tizen.System
         {
             add
             {
-                if (s_soundTouchChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundTouchChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_soundTouchChanged += value;
                 }
-                s_soundTouchChanged += value;
             }
 
             remove
             {
-                if (s_soundTouchChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_soundTouchChanged -= value;
-                if (s_soundTouchChanged == null)
-
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundTouchChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_soundTouchChanged -= value;
+                    if (s_soundTouchChanged == null)
+
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1915,30 +2247,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_displayScreenRotationAutoChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_displayScreenRotationAutoChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_displayScreenRotationAutoChanged += value;
                 }
-                s_displayScreenRotationAutoChanged += value;
             }
 
             remove
             {
-                if (s_displayScreenRotationAutoChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_displayScreenRotationAutoChanged -= value;
-                if (s_displayScreenRotationAutoChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_displayScreenRotationAutoChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_displayScreenRotationAutoChanged -= value;
+                    if (s_displayScreenRotationAutoChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -1966,30 +2304,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_deviceNameChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DeviceName, s_deviceNameChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_deviceNameChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DeviceName, s_deviceNameChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_deviceNameChanged += value;
                 }
-                s_deviceNameChanged += value;
             }
 
             remove
             {
-                if (s_deviceNameChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_deviceNameChanged -= value;
-                if (s_deviceNameChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeviceName, s_deviceNameChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_deviceNameChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_deviceNameChanged -= value;
+                    if (s_deviceNameChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeviceName, s_deviceNameChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2017,30 +2361,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_motionSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionEnabled, s_motionSettingChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_motionSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.MotionEnabled, s_motionSettingChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_motionSettingChanged += value;
                 }
-                s_motionSettingChanged += value;
             }
 
             remove
             {
-                if (s_motionSettingChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_motionSettingChanged -= value;
-                if (s_motionSettingChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionEnabled, s_motionSettingChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_motionSettingChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_motionSettingChanged -= value;
+                    if (s_motionSettingChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionEnabled, s_motionSettingChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2069,30 +2419,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_networkWifiNotificationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_networkWifiNotificationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_networkWifiNotificationChanged += value;
                 }
-                s_networkWifiNotificationChanged += value;
             }
 
             remove
             {
-                if (s_networkWifiNotificationChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_networkWifiNotificationChanged -= value;
-                if (s_networkWifiNotificationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_networkWifiNotificationChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_networkWifiNotificationChanged -= value;
+                    if (s_networkWifiNotificationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2120,30 +2476,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_networkFlightModeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_networkFlightModeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_networkFlightModeChanged += value;
                 }
-                s_networkFlightModeChanged += value;
             }
 
             remove
             {
-                if (s_networkFlightModeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_networkFlightModeChanged -= value;
-                if (s_networkFlightModeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_networkFlightModeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_networkFlightModeChanged -= value;
+                    if (s_networkFlightModeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2171,30 +2533,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_screenBacklightTimeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.ScreenBacklightTime, s_screenBacklightTimeChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_screenBacklightTimeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.ScreenBacklightTime, s_screenBacklightTimeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_screenBacklightTimeChanged += value;
                 }
-                s_screenBacklightTimeChanged += value;
             }
 
             remove
             {
-                if (s_screenBacklightTimeChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_screenBacklightTimeChanged -= value;
-                if (s_screenBacklightTimeChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.ScreenBacklightTime, s_screenBacklightTimeChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_screenBacklightTimeChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_screenBacklightTimeChanged -= value;
+                    if (s_screenBacklightTimeChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.ScreenBacklightTime, s_screenBacklightTimeChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2223,30 +2591,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_soundNotificationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundNotification, s_soundNotificationChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundNotificationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundNotification, s_soundNotificationChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_soundNotificationChanged += value;
                 }
-                s_soundNotificationChanged += value;
             }
 
             remove
             {
-                if (s_soundNotificationChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_soundNotificationChanged -= value;
-                if (s_soundNotificationChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotification, s_soundNotificationChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundNotificationChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_soundNotificationChanged -= value;
+                    if (s_soundNotificationChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotification, s_soundNotificationChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2274,30 +2648,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_soundNotificationRepetitionPeriodChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod, s_soundNotificationRepetitionPeriodChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundNotificationRepetitionPeriodChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod, s_soundNotificationRepetitionPeriodChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_soundNotificationRepetitionPeriodChanged += value;
                 }
-                s_soundNotificationRepetitionPeriodChanged += value;
             }
 
             remove
             {
-                if (s_soundNotificationRepetitionPeriodChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_soundNotificationRepetitionPeriodChanged -= value;
-                if (s_soundNotificationRepetitionPeriodChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod, s_soundNotificationRepetitionPeriodChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_soundNotificationRepetitionPeriodChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_soundNotificationRepetitionPeriodChanged -= value;
+                    if (s_soundNotificationRepetitionPeriodChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod, s_soundNotificationRepetitionPeriodChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2325,30 +2705,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_lockStateChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockState, s_lockStateChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_lockStateChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockState, s_lockStateChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_lockStateChanged += value;
                 }
-                s_lockStateChanged += value;
             }
 
             remove
             {
-                if (s_lockStateChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_lockStateChanged -= value;
-                if (s_lockStateChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockState, s_lockStateChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_lockStateChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_lockStateChanged -= value;
+                    if (s_lockStateChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockState, s_lockStateChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2376,30 +2762,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_adsIdChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_adsIdChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_adsIdChanged += value;
                 }
-                s_adsIdChanged += value;
             }
 
             remove
             {
-                if (s_adsIdChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_adsIdChanged -= value;
-                if (s_adsIdChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_adsIdChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_adsIdChanged -= value;
+                    if (s_adsIdChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2428,30 +2820,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_ultraDataSaveChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_ultraDataSaveChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_ultraDataSaveChanged += value;
                 }
-                s_ultraDataSaveChanged += value;
             }
 
             remove
             {
-                if (s_ultraDataSaveChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_ultraDataSaveChanged -= value;
-                if (s_ultraDataSaveChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_ultraDataSaveChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_ultraDataSaveChanged -= value;
+                    if (s_ultraDataSaveChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2480,30 +2878,36 @@ namespace Tizen.System
         {
             add
             {
-                if (s_ultraDataSavePackageListChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_ultraDataSavePackageListChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_ultraDataSavePackageListChanged += value;
                 }
-                s_ultraDataSavePackageListChanged += value;
             }
 
             remove
             {
-                if (s_ultraDataSavePackageListChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_ultraDataSavePackageListChanged -= value;
-                if (s_ultraDataSavePackageListChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_ultraDataSavePackageListChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_ultraDataSavePackageListChanged -= value;
+                    if (s_ultraDataSavePackageListChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
@@ -2531,36 +2935,363 @@ namespace Tizen.System
         {
             add
             {
-                if (s_accessibilityTtsChanged == null)
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback, IntPtr.Zero);
-                    if (ret != SystemSettingsError.None)
+                    if (s_accessibilityTtsChanged == null)
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
+                    s_accessibilityTtsChanged += value;
                 }
-                s_accessibilityTtsChanged += value;
             }
 
             remove
             {
-                if (s_accessibilityTtsChanged == null) {
-                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
-                    return;
-                }
-                s_accessibilityTtsChanged -= value;
-                if (s_accessibilityTtsChanged == null)
-
+                lock (LockObj)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback);
-                    if (ret != SystemSettingsError.None)
+                    if (s_accessibilityTtsChanged == null) {
+                        Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                        return;
+                    }
+                    s_accessibilityTtsChanged -= value;
+                    if (s_accessibilityTtsChanged == null)
+
                     {
-                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
                     }
                 }
             }
         }
 
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_vibrationChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool vibration = SystemSettings.Vibration;
+            VibrationChangedEventArgs eventArgs = new VibrationChangedEventArgs(vibration);
+            s_vibrationChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<VibrationChangedEventArgs> s_vibrationChanged;
+        /// <summary>
+        /// The VibrationChanged event is triggered when the vibration value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<VibrationChangedEventArgs> VibrationChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_vibrationChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Vibration, s_vibrationChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_vibrationChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_vibrationChanged -= value;
+                    if (s_vibrationChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Vibration, s_vibrationChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_automaticTimeUpdateChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool automaticTimeUpdate = SystemSettings.AutomaticTimeUpdate;
+            AutomaticTimeUpdateChangedEventArgs eventArgs = new AutomaticTimeUpdateChangedEventArgs(automaticTimeUpdate);
+            s_automaticTimeUpdateChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AutomaticTimeUpdateChangedEventArgs> s_automaticTimeUpdateChanged;
+        /// <summary>
+        /// The AutomaticTimeUpdateChanged event is triggered when the AutomaticTimeUpdate value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<AutomaticTimeUpdateChangedEventArgs> AutomaticTimeUpdateChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_automaticTimeUpdateChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AutomaticTimeUpdate, s_automaticTimeUpdateChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_automaticTimeUpdateChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_automaticTimeUpdateChanged -= value;
+                    if (s_automaticTimeUpdateChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AutomaticTimeUpdate, s_automaticTimeUpdateChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_developerOptionStateChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool developerOptionState = SystemSettings.DeveloperOptionState;
+            DeveloperOptionStateChangedEventArgs eventArgs = new DeveloperOptionStateChangedEventArgs(developerOptionState);
+            s_developerOptionStateChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<DeveloperOptionStateChangedEventArgs> s_developerOptionStateChanged;
+        /// <summary>
+        /// The DeveloperOptionStateChanged event is triggered when the DeveloperOptionState value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<DeveloperOptionStateChangedEventArgs> DeveloperOptionStateChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_developerOptionStateChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DeveloperOptionState, s_developerOptionStateChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_developerOptionStateChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_developerOptionStateChanged -= value;
+                    if (s_developerOptionStateChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeveloperOptionState, s_developerOptionStateChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_accessibilityGrayscaleChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool accessibilityGrayscale = SystemSettings.AccessibilityGrayscale;
+            AccessibilityGrayscaleChangedEventArgs eventArgs = new AccessibilityGrayscaleChangedEventArgs(accessibilityGrayscale);
+            s_accessibilityGrayscaleChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AccessibilityGrayscaleChangedEventArgs> s_accessibilityGrayscaleChanged;
+        /// <summary>
+        /// The AccessibilityGrayscaleChanged event is triggered when the AccessibilityGrayscale value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.grayscale</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<AccessibilityGrayscaleChangedEventArgs> AccessibilityGrayscaleChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_accessibilityGrayscaleChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityGrayscale, s_accessibilityGrayscaleChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_accessibilityGrayscaleChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_accessibilityGrayscaleChanged -= value;
+                    if (s_accessibilityGrayscaleChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityGrayscale, s_accessibilityGrayscaleChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_accessibilityNegativeColorChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool accessibilityNegativeColor = SystemSettings.AccessibilityNegativeColor;
+            AccessibilityNegativeColorChangedEventArgs eventArgs = new AccessibilityNegativeColorChangedEventArgs(accessibilityNegativeColor);
+            s_accessibilityNegativeColorChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AccessibilityNegativeColorChangedEventArgs> s_accessibilityNegativeColorChanged;
+        /// <summary>
+        /// The AccessibilityNegativeColorChanged event is triggered when the AccessibilityNegativeColor value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.negative</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<AccessibilityNegativeColorChangedEventArgs> AccessibilityNegativeColorChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_accessibilityNegativeColorChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityNegativeColor, s_accessibilityNegativeColorChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_accessibilityNegativeColorChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_accessibilityNegativeColorChanged -= value;
+                    if (s_accessibilityNegativeColorChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityNegativeColor, s_accessibilityNegativeColorChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_rotaryEventEnabledChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool rotaryEventEnabled = SystemSettings.RotaryEventEnabled;
+            RotaryEventEnabledChangedEventArgs eventArgs = new RotaryEventEnabledChangedEventArgs(rotaryEventEnabled);
+            s_rotaryEventEnabledChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<RotaryEventEnabledChangedEventArgs> s_rotaryEventEnabledChanged;
+        /// <summary>
+        /// The RotaryEventEnabledChanged event is triggered when the RotaryEventEnabled value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/input.rotating_bezel</feature>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<RotaryEventEnabledChangedEventArgs> RotaryEventEnabledChanged
+        {
+            add
+            {
+                lock (LockObj)
+                {
+                    if (s_rotaryEventEnabledChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.RotaryEventEnabled, s_rotaryEventEnabledChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_rotaryEventEnabledChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (LockObj)
+                {
+                    s_rotaryEventEnabledChanged -= value;
+                    if (s_rotaryEventEnabledChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.RotaryEventEnabled, s_rotaryEventEnabledChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

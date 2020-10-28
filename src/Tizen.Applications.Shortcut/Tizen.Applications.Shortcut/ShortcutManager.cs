@@ -26,12 +26,6 @@ namespace Tizen.Applications.Shortcut
     {
         private const string LogTag = "Tizen.Applications.Shortcut";
 
-        private static Interop.Shortcut.ResultCallback shortcutAddResult = null;
-
-        private static Interop.Shortcut.ResultCallback widgetAddResult = null;
-
-        private static Interop.Shortcut.ResultCallback shortcutDeleteResult = null;
-
         /// <summary>
         /// Adds a shortcut on the home-screen.
         /// </summary>
@@ -61,12 +55,7 @@ namespace Tizen.Applications.Shortcut
                     type = 1;
                 }
 
-                if (shortcutAddResult == null)
-                {
-                    shortcutAddResult = new Interop.Shortcut.ResultCallback(ShortcutAddResultCallback);
-                }
-
-                err = Interop.Shortcut.AddToHome(shortcut.ShortcutName, type, shortcut.Uri, shortcut.IconPath, Convert.ToInt32(shortcut.IsAllowDuplicate), shortcutAddResult, IntPtr.Zero);
+                err = Interop.Shortcut.AddToHome(shortcut.ShortcutName, type, shortcut.Uri, shortcut.IconPath, Convert.ToInt32(shortcut.IsAllowDuplicate));
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to add shortcut");
@@ -101,12 +90,7 @@ namespace Tizen.Applications.Shortcut
 
             try
             {
-                if (widgetAddResult == null)
-                {
-                    widgetAddResult = new Interop.Shortcut.ResultCallback(WidgetAddResultCallback);
-                }
-
-                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate), widgetAddResult, IntPtr.Zero);
+                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate));
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to add widget");
@@ -141,12 +125,7 @@ namespace Tizen.Applications.Shortcut
 
             try
             {
-                if (shortcutDeleteResult == null)
-                {
-                    shortcutDeleteResult = new Interop.Shortcut.ResultCallback(DeleteResultCallback);
-                }
-
-                err = Interop.Shortcut.Delete(shortcutName, shortcutDeleteResult, IntPtr.Zero);
+                err = Interop.Shortcut.Delete(shortcutName);
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to delete shortcut");
@@ -185,36 +164,6 @@ namespace Tizen.Applications.Shortcut
             {
                 throw ShortcutErrorFactory.GetException(Interop.Shortcut.ErrorCode.IoError, e.Message);
             }
-        }
-
-        private static int ShortcutAddResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add shortcut");
-            }
-
-            return 0;
-        }
-
-        private static int WidgetAddResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add widget");
-            }
-
-            return 0;
-        }
-
-        private static int DeleteResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to delete shortcut");
-            }
-
-            return 0;
         }
     }
 }

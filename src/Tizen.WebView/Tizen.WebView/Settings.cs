@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.WebView
 {
@@ -97,6 +98,121 @@ namespace Tizen.WebView
             {
                 Interop.ChromiumEwk.ewk_settings_default_font_size_set(_handle, value);
             }
+        }
+
+        /// <summary>
+        /// Whether the scripts can open windows.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool ScriptsCanOpenWindows
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_scripts_can_open_windows_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_scripts_can_open_windows_set(_handle, value);
+            }
+        }
+ 
+        /// <summary>
+        /// Enable or Disable force zoom.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ForceZoom
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_force_zoom_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_force_zoom_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable text autosizing.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextAutosizing
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_text_autosizing_enabled_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_text_autosizing_enabled_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable text zoom.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextZoom
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_text_zoom_enabled_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_text_zoom_enabled_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable the usage of keypad without user action.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseKeypadWithoutUserAction
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_uses_keypad_without_user_action_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_uses_keypad_without_user_action_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable Extra feature such as "edge,enable", "zoom,enable", "longpress,enable"
+        /// "doubletap,enable" and "selection,magnifier".
+        /// </summary>
+        /// <param name="name">The name of the feature user wants to set or reset.</param>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetExtraFeature(string name, bool enable)
+        {
+            Interop.ChromiumEwk.ewk_settings_extra_feature_set(_handle, name, enable);
+        }
+
+        /// <summary>
+        /// Get status of Extra feature such as "edge,enable", "zoom,enable", "longpress,enable"
+        /// "doubletap,enable" and "selection,magnifier".
+        /// </summary>
+        /// <param name="name">The name of the feature user wants to know status.</param>
+        /// <returns>Status true or false is returned.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetExtraFeatureStatus(string name)
+        {
+             return Interop.ChromiumEwk.ewk_settings_extra_feature_get(_handle, name);
         }
     }
 }

@@ -145,6 +145,7 @@ namespace Tizen.Applications.AttachPanel
         /// <param name="extraData">The AttachPanel sends some information using the Bundle.</param>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <feature>http://tizen.org/feature/camera</feature>
@@ -158,6 +159,7 @@ namespace Tizen.Applications.AttachPanel
         /// Privileges,
         /// http://tizen.org/privilege/mediastorage, for using Image or Camera.
         /// http://tizen.org/privilege/camera, for using Camera or TakePicture.
+        /// http://tizen.org/privilege/telephony, for using Camera, Since(5.0).
         /// http://tizen.org/privilege/recorder, for using Voice.
         /// http://tizen.org/privilege/appmanager.launch, for adding content categories on the More tab.
         /// http://tizen.org/feature/camera, for using Camera or TakePicture.

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,18 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-
-    internal class ItemIdContainer : global::System.IDisposable, global::System.Collections.IEnumerable
-    , global::System.Collections.Generic.IList<uint>
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ItemIdContainer : Disposable, global::System.Collections.IEnumerable,
+        global::System.Collections.Generic.IList<uint>
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
 
-        internal ItemIdContainer(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal ItemIdContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ItemIdContainer obj)
@@ -35,72 +34,15 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~ItemIdContainer()
+        /// This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            Interop.ItemIdContainer.delete_ItemIdContainer(swigCPtr);
         }
 
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ItemIdContainer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemIdContainer(global::System.Collections.ICollection c) : this()
         {
             if (c == null)
@@ -111,6 +53,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsFixedSize
         {
             get
@@ -119,6 +63,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsReadOnly
         {
             get
@@ -127,6 +73,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint this[int index]
         {
             get
@@ -139,6 +87,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Capacity
         {
             get
@@ -153,6 +103,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Count
         {
             get
@@ -161,6 +113,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsSynchronized
         {
             get
@@ -169,16 +123,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void CopyTo(uint[] array)
         {
             CopyTo(0, array, 0, this.Count);
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void CopyTo(uint[] array, int arrayIndex)
         {
             CopyTo(0, array, arrayIndex, this.Count);
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void CopyTo(int index, uint[] array, int arrayIndex, int count)
         {
             if (array == null)
@@ -207,6 +167,8 @@ namespace Tizen.NUI
             return new ItemIdContainerEnumerator(this);
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemIdContainerEnumerator GetEnumerator()
         {
             return new ItemIdContainerEnumerator(this);
@@ -217,7 +179,8 @@ namespace Tizen.NUI
         /// whenever the collection is modified. This has been done for changes in the size of the
         /// collection, but not when one of the elements of the collection is modified as it is a bit
         /// tricky to detect unmanaged code that modifies the collection under our feet.
-        /// <since_tizen> 3 </since_tizen>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public sealed class ItemIdContainerEnumerator : global::System.Collections.IEnumerator
           , global::System.Collections.Generic.IEnumerator<uint>
         {
@@ -226,7 +189,8 @@ namespace Tizen.NUI
             private object currentObject;
             private int currentSize;
 
-            /// <since_tizen> 3 </since_tizen>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public ItemIdContainerEnumerator(ItemIdContainer collection)
             {
                 collectionRef = collection;
@@ -236,7 +200,8 @@ namespace Tizen.NUI
             }
 
             // Type-safe iterator Current
-            /// <since_tizen> 3 </since_tizen>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint Current
             {
                 get
@@ -260,7 +225,8 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool MoveNext()
             {
                 int size = collectionRef.Count;
@@ -277,7 +243,8 @@ namespace Tizen.NUI
                 return moveOkay;
             }
 
-            /// <since_tizen> 3 </since_tizen>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public void Reset()
             {
                 currentIndex = -1;
@@ -288,7 +255,8 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public void Dispose()
             {
                 currentIndex = -1;
@@ -296,165 +264,201 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
-            NDalicPINVOKE.ItemIdContainer_Clear(swigCPtr);
+            Interop.ItemIdContainer.ItemIdContainer_Clear(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(uint x)
         {
-            NDalicPINVOKE.ItemIdContainer_Add(swigCPtr, x);
+            Interop.ItemIdContainer.ItemIdContainer_Add(swigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private uint size()
         {
-            uint ret = NDalicPINVOKE.ItemIdContainer_size(swigCPtr);
+            uint ret = Interop.ItemIdContainer.ItemIdContainer_size(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private uint capacity()
         {
-            uint ret = NDalicPINVOKE.ItemIdContainer_capacity(swigCPtr);
+            uint ret = Interop.ItemIdContainer.ItemIdContainer_capacity(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void reserve(uint n)
         {
-            NDalicPINVOKE.ItemIdContainer_reserve(swigCPtr, n);
+            Interop.ItemIdContainer.ItemIdContainer_reserve(swigCPtr, n);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ItemIdContainer() : this(NDalicPINVOKE.new_ItemIdContainer__SWIG_0(), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ItemIdContainer() : this(Interop.ItemIdContainer.new_ItemIdContainer__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ItemIdContainer(ItemIdContainer other) : this(NDalicPINVOKE.new_ItemIdContainer__SWIG_1(ItemIdContainer.getCPtr(other)), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ItemIdContainer(ItemIdContainer other) : this(Interop.ItemIdContainer.new_ItemIdContainer__SWIG_1(ItemIdContainer.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ItemIdContainer(int capacity) : this(NDalicPINVOKE.new_ItemIdContainer__SWIG_2(capacity), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ItemIdContainer(int capacity) : this(Interop.ItemIdContainer.new_ItemIdContainer__SWIG_2(capacity), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private uint getitemcopy(int index)
         {
-            uint ret = NDalicPINVOKE.ItemIdContainer_getitemcopy(swigCPtr, index);
+            uint ret = Interop.ItemIdContainer.ItemIdContainer_getitemcopy(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private uint getitem(int index)
         {
-            uint ret = NDalicPINVOKE.ItemIdContainer_getitem(swigCPtr, index);
+            uint ret = Interop.ItemIdContainer.ItemIdContainer_getitem(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void setitem(int index, uint val)
         {
-            NDalicPINVOKE.ItemIdContainer_setitem(swigCPtr, index, val);
+            Interop.ItemIdContainer.ItemIdContainer_setitem(swigCPtr, index, val);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddRange(ItemIdContainer values)
         {
-            NDalicPINVOKE.ItemIdContainer_AddRange(swigCPtr, ItemIdContainer.getCPtr(values));
+            Interop.ItemIdContainer.ItemIdContainer_AddRange(swigCPtr, ItemIdContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemIdContainer GetRange(int index, int count)
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.ItemIdContainer_GetRange(swigCPtr, index, count);
+            global::System.IntPtr cPtr = Interop.ItemIdContainer.ItemIdContainer_GetRange(swigCPtr, index, count);
             ItemIdContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ItemIdContainer(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Insert(int index, uint x)
         {
-            NDalicPINVOKE.ItemIdContainer_Insert(swigCPtr, index, x);
+            Interop.ItemIdContainer.ItemIdContainer_Insert(swigCPtr, index, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertRange(int index, ItemIdContainer values)
         {
-            NDalicPINVOKE.ItemIdContainer_InsertRange(swigCPtr, index, ItemIdContainer.getCPtr(values));
+            Interop.ItemIdContainer.ItemIdContainer_InsertRange(swigCPtr, index, ItemIdContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAt(int index)
         {
-            NDalicPINVOKE.ItemIdContainer_RemoveAt(swigCPtr, index);
+            Interop.ItemIdContainer.ItemIdContainer_RemoveAt(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveRange(int index, int count)
         {
-            NDalicPINVOKE.ItemIdContainer_RemoveRange(swigCPtr, index, count);
+            Interop.ItemIdContainer.ItemIdContainer_RemoveRange(swigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ItemIdContainer Repeat(uint value, int count)
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.ItemIdContainer_Repeat(value, count);
+            global::System.IntPtr cPtr = Interop.ItemIdContainer.ItemIdContainer_Repeat(value, count);
             ItemIdContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ItemIdContainer(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reverse()
         {
-            NDalicPINVOKE.ItemIdContainer_Reverse__SWIG_0(swigCPtr);
+            Interop.ItemIdContainer.ItemIdContainer_Reverse__SWIG_0(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reverse(int index, int count)
         {
-            NDalicPINVOKE.ItemIdContainer_Reverse__SWIG_1(swigCPtr, index, count);
+            Interop.ItemIdContainer.ItemIdContainer_Reverse__SWIG_1(swigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRange(int index, ItemIdContainer values)
         {
-            NDalicPINVOKE.ItemIdContainer_SetRange(swigCPtr, index, ItemIdContainer.getCPtr(values));
+            Interop.ItemIdContainer.ItemIdContainer_SetRange(swigCPtr, index, ItemIdContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Contains(uint value)
         {
-            bool ret = NDalicPINVOKE.ItemIdContainer_Contains(swigCPtr, value);
+            bool ret = Interop.ItemIdContainer.ItemIdContainer_Contains(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int IndexOf(uint value)
         {
-            int ret = NDalicPINVOKE.ItemIdContainer_IndexOf(swigCPtr, value);
+            int ret = Interop.ItemIdContainer.ItemIdContainer_IndexOf(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int LastIndexOf(uint value)
         {
-            int ret = NDalicPINVOKE.ItemIdContainer_LastIndexOf(swigCPtr, value);
+            int ret = Interop.ItemIdContainer.ItemIdContainer_LastIndexOf(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Remove(uint value)
         {
-            bool ret = NDalicPINVOKE.ItemIdContainer_Remove(swigCPtr, value);
+            bool ret = Interop.ItemIdContainer.ItemIdContainer_Remove(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

@@ -31,6 +31,12 @@ namespace ElmSharp
             Icon = icon;
         }
 
+        internal ContextPopupItem(string text, EvasObject icon, EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+            Text = text;
+            Icon = icon;
+        }
+
         /// <summary>
         /// Gets the Text property of the given ContextPopupItem.
         /// </summary>

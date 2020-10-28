@@ -15,7 +15,7 @@
  */
 
 using System.Threading.Tasks;
-using static Interop.ImageUtil;
+using static Interop;
 
 namespace Tizen.Multimedia.Util
 {

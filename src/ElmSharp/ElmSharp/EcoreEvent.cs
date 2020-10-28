@@ -180,6 +180,7 @@ namespace ElmSharp
                 {
                     TEventArgs ea = _parser == null ? (TEventArgs)EventArgs.Empty : _parser(data, _eventType, info);
                     handler(this, ea);
+                    return true;
                 });
                 IntPtr hNative = Interop.Ecore.ecore_event_handler_add(_eventType.GetValue(), cb, IntPtr.Zero);
                 _nativeCallbacks.Add(new NativeCallback { callback = cb, eventHandler = handler, nativeHandler = hNative });

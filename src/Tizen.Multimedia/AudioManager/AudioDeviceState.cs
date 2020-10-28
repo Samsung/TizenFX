@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// Specifies the audio device states.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 5.")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AudioDeviceState
     {
         /// <summary>
@@ -32,5 +37,4 @@ namespace Tizen.Multimedia
         /// </summary>
         Activated
     }
-
 }

@@ -22,16 +22,14 @@ namespace Tizen.NUI
 {
     internal class WidgetImpl : BaseObject
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal WidgetImpl() : this( NDalicManualPINVOKE.WidgetImpl_New(), true )
+        internal WidgetImpl() : this( Interop.WidgetImpl.WidgetImpl_New(), true )
         {
             SwigDirectorConnect();
         }
 
-        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetImpl obj)
@@ -39,35 +37,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    //throw new global::System.MethodAccessException("C++ destructor does not have public access");
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            //throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
         public class WIdgetInstanceOnCreateArgs : EventArgs
@@ -306,13 +278,13 @@ namespace Tizen.NUI
 
         public void SetContentInfo(string contentInfo)
         {
-            NDalicManualPINVOKE.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
+            Interop.WidgetImpl.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
-            NDalicManualPINVOKE.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
+            Interop.WidgetImpl.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -326,7 +298,7 @@ namespace Tizen.NUI
             swigDelegate5 = new SwigDelegateWidgetImpl_5(SwigDirectorOnUpdate);
             swigDelegate6 = new SwigDelegateWidgetImpl_6(SwigDirectorSignalConnected);
             swigDelegate7 = new SwigDelegateWidgetImpl_7(SwigDirectorSignalDisconnected);
-            NDalicManualPINVOKE.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
+            Interop.WidgetImpl.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -338,7 +310,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnCreate(string contentInfo, global::System.IntPtr window)
         {
-            OnCreate(contentInfo, new Window(window, true));
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(window) as Window;
+            if (ret == null)
+            {
+                ret = new Window(window, true);
+            }
+            OnCreate(contentInfo, ret);
         }
 
         private void SwigDirectorOnTerminate(string contentInfo, int type)
@@ -358,7 +335,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnResize(global::System.IntPtr window)
         {
-            OnResize(new Window(window, true));
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(window) as Window;
+            if (ret == null)
+            {
+                ret = new Window(window, true);
+            }
+            OnResize(ret);
         }
 
         private void SwigDirectorOnUpdate(string contentInfo, int force)

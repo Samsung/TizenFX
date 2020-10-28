@@ -17,6 +17,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Timers;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -29,6 +30,8 @@ namespace Tizen.Applications
     {
         private readonly ICoreBackend _backend;
         private bool _disposedValue = false;
+
+        private static Timer sTimer;
 
         /// <summary>
         /// Initializes the CoreApplication class.
@@ -112,18 +115,13 @@ namespace Tizen.Applications
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
-            string[] argsClone = null;
-
-            if (args == null)
+            string[] argsClone = new string[args.Length + 1];
+            if (args.Length > 1)
             {
-                argsClone = new string[1];
-            }
-            else
-            {
-                argsClone = new string[args.Length + 1];
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
+
             _backend.Run(argsClone);
         }
 
@@ -171,10 +169,23 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
         /// </summary>
+        /// <param name="e">The low memory event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
+            double interval = new Random().Next(10 * 1000);
+            if (interval <= 0)
+                interval = 10 * 1000;
+
+            sTimer = new Timer(interval);
+            sTimer.Elapsed += OnTimedEvent;
+            sTimer.AutoReset = false;
+            sTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
             System.GC.Collect();
         }
 
@@ -182,6 +193,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
         /// </summary>
+        /// <param name="e">The low battery event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -192,10 +204,11 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The locale changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            ChangeCurrentCultureInfo(e.Locale);
+            ChangeCurrentUICultureInfo(e.Locale);
             LocaleChanged?.Invoke(this, e);
         }
 
@@ -203,9 +216,11 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The region format changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
+            ChangeCurrentCultureInfo(e.Region);
             RegionFormatChanged?.Invoke(this, e);
         }
 
@@ -213,6 +228,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The device orientation changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
@@ -238,21 +254,27 @@ namespace Tizen.Applications
             base.Dispose(disposing);
         }
 
-        private void ChangeCurrentCultureInfo(string locale)
+        private CultureInfo ConvertCultureInfo(string locale)
         {
             ULocale pLocale = new ULocale(locale);
-            CultureInfo currentCultureInfo = null;
-
             try
             {
-                currentCultureInfo = new CultureInfo(pLocale.Locale.Replace("_", "-"));
+                return new CultureInfo(pLocale.Locale.Replace("_", "-"));
             }
             catch (CultureNotFoundException)
             {
-                currentCultureInfo = GetFallbackCultureInfo(pLocale);
+                return GetFallbackCultureInfo(pLocale);
             }
+        }
 
-            CultureInfo.CurrentCulture = currentCultureInfo;
+        private void ChangeCurrentCultureInfo(string locale)
+        {
+            CultureInfo.CurrentCulture = ConvertCultureInfo(locale);
+        }
+
+        private void ChangeCurrentUICultureInfo(string locale)
+        {
+            CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
         }
 
         private CultureInfo GetCultureInfo(string locale)
@@ -312,12 +334,11 @@ namespace Tizen.Applications
 
     internal class ULocale
     {
-        private const int ICU_ULOC_FULLNAME_CAPACITY = 157;
-        private const int ICU_ULOC_LANG_CAPACITY = 12;
-        private const int ICU_ULOC_SCRIPT_CAPACITY = 6;
-        private const int ICU_ULOC_COUNTRY_CAPACITY = 4;
-        private const int ICU_ULOC_VARIANT_CAPACITY = ICU_ULOC_FULLNAME_CAPACITY;
-        private const int ICU_U_ZERO_ERROR = 0;
+        private const int ULOC_FULLNAME_CAPACITY = 157;
+        private const int ULOC_LANG_CAPACITY = 12;
+        private const int ULOC_SCRIPT_CAPACITY = 6;
+        private const int ULOC_COUNTRY_CAPACITY = 4;
+        private const int ULOC_VARIANT_CAPACITY = ULOC_FULLNAME_CAPACITY;
 
         internal ULocale(string locale)
         {
@@ -336,11 +357,9 @@ namespace Tizen.Applications
 
         private string Canonicalize(string localeName)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the locale name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_FULLNAME_CAPACITY);
-            if (Interop.Icu.Canonicalize(localeName, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_FULLNAME_CAPACITY);
+            if (Interop.BaseUtilsi18n.Canonicalize(localeName, sb, sb.Capacity) <= 0)
             {
                 return null;
             }
@@ -350,11 +369,9 @@ namespace Tizen.Applications
 
         private string GetLanguage(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the language name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_LANG_CAPACITY);
-            if (Interop.Icu.GetLanguage(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_LANG_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetLanguage(locale, sb, sb.Capacity, out int bufSizeLanguage) != 0)
             {
                 return null;
             }
@@ -364,11 +381,9 @@ namespace Tizen.Applications
 
         private string GetScript(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the script name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
-            if (Interop.Icu.GetScript(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetScript(locale, sb, sb.Capacity) <= 0)
             {
                 return null;
             }
@@ -378,11 +393,11 @@ namespace Tizen.Applications
 
         private string GetCountry(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
+            int err = 0;
 
             // Get the country name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
-            if (Interop.Icu.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
             {
                 return null;
             }
@@ -392,11 +407,9 @@ namespace Tizen.Applications
 
         private string GetVariant(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the variant name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_VARIANT_CAPACITY);
-            if (Interop.Icu.GetVariant(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_VARIANT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetVariant(locale, sb, sb.Capacity) <= 0)
             {
                 return null;
             }

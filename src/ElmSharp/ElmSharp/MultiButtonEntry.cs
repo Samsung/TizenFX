@@ -375,11 +375,12 @@ namespace ElmSharp
             // "item,deleted" event will be called after removing the item from ItemObject has been done.
             // ItemObject will no longer have the item instance that is deleted after this.
             // So, ItemDelete event with the removed item should be triggered here.
-            ItemDeleted?.Invoke(this, new MultiButtonEntryItemEventArgs() { Item = removed });
+            ItemDeleted?.Invoke(this, new MultiButtonEntryItemEventArgs { Item = removed });
         }
 
         void OnItemAdded(object sender, MultiButtonEntryItemEventArgs e)
         {
+            e.Item.Parent = this;
             _children.Add(e.Item);
             e.Item.Deleted += Item_Deleted;
             ItemAdded?.Invoke(this, e);
@@ -434,7 +435,7 @@ namespace ElmSharp
         internal static MultiButtonEntryItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             MultiButtonEntryItem item = ItemObject.GetItemByHandle(info) as MultiButtonEntryItem;
-            return new MultiButtonEntryItemEventArgs() { Item = item };
+            return new MultiButtonEntryItemEventArgs { Item = item };
         }
 
         internal static MultiButtonEntryItemEventArgs CreateAndAddFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -443,8 +444,9 @@ namespace ElmSharp
             // And since "item.added" event will be called before xx_append() method returns,
             // ItemObject does NOT have an item that contains handle matched to "info" at this time.
             // So, item should be created and added internally here.
+
             MultiButtonEntryItem item = new MultiButtonEntryItem(info);
-            return new MultiButtonEntryItemEventArgs() { Item = item };
+            return new MultiButtonEntryItemEventArgs { Item = item };
         }
     }
 }

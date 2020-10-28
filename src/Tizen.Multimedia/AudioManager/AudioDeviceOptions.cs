@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -55,11 +56,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Deactivated devices.
         /// </summary>
+        [Obsolete("Deprecated since API level 5.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Deactivated = 0x1000,
 
         /// <summary>
         /// Activated devices.
         /// </summary>
+        [Obsolete("Deprecated since API level 5.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Activated = 0x2000,
 
         /// <summary>

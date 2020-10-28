@@ -567,7 +567,7 @@ namespace Tizen.Content.Download
             }
             set
             {
-                int ret = Interop.Download.SetDestination(_downloadId, value.ToString());
+                int ret = Interop.Download.SetDestination(_downloadId, value);
                 if (ret != (int)DownloadError.None)
                 {
                     DownloadErrorFactory.ThrowException(ret, "Failed to set DestinationPath");
@@ -602,7 +602,7 @@ namespace Tizen.Content.Download
             }
             set
             {
-                int ret = Interop.Download.SetFileName(_downloadId, value.ToString());
+                int ret = Interop.Download.SetFileName(_downloadId, value);
                 if (ret != (int)DownloadError.None)
                 {
                     DownloadErrorFactory.ThrowException(ret, "Failed to set FileName");
@@ -701,7 +701,7 @@ namespace Tizen.Content.Download
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public void Start()
         {
-            int ret = (int)DownloadError.None;
+            int ret;
             foreach (KeyValuePair<string, string> entry in _httpHeaders)
             {
                 ret = Interop.Download.AddHttpHeaderField(_downloadId, entry.Key, entry.Value);
@@ -794,19 +794,6 @@ namespace Tizen.Content.Download
             }
             Interop.Download.DestroyRequest(_downloadId);
             _disposed = true;
-        }
-
-        static private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
-        {
-            managedArray = new string[size];
-            IntPtr[] IntPtrArray = new IntPtr[size];
-
-            Marshal.Copy(unmanagedArray, IntPtrArray, 0, size);
-
-            for (int iterator = 0; iterator < size; iterator++)
-            {
-                managedArray[iterator] = Marshal.PtrToStringAnsi(IntPtrArray[iterator]);
-            }
         }
 
         private void RegisterStateChangedEvent()

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,27 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
     //This version should be updated and synced for every Dali native release
     internal static class Version
     {
-        public const int daliVer1 = 1;
-        public const int daliVer2 = 2;
-        public const int daliVer3 = 83;
-        public const int nuiVer1 = 1;
-        public const int nuiVer2 = 2;
-        public const int nuiVer3 = 83;
-        public const string nuiRelease = "";
-
+        //from dali_1.3.23 : NUI internal API version 501
+        //from dali_1.3.28 : NUI internal API version 502
+        //from dali_1.3.34 : NUI internal API version 503
+        //from dali_1.3.41 : NUI internal API version 504
+        //from dali_1.3.48 : NUI internal API version 505
+        public const int nuiAPIVer = 505;
+        public const int reservedVer1 = 0;
+        public const int reservedVer2 = 0;
+        
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeVersionCheck")]
+        public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
+        
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
+        public static extern bool InternalAPIVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
         static internal bool DaliVersionMatchWithNUI()
         {
@@ -39,27 +46,40 @@ namespace Tizen.NUI
 
             try
             {
-                if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
+                if (InternalAPIVersionCheck(ref ver1, ref ver2, ref ver3) == true)
                 {
-                    if (ver1 != daliVer1 || ver2 != daliVer2 || ver3 != daliVer3)
+                    if (ver1 != nuiAPIVer)
                     {
-                        NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
-                        throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
+                        NUILog.Error($"NUI API version mismatch error! NUI API Version: ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
+                        throw new System.InvalidOperationException($"NUI API version mismatch error! NUI API version should be ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
                     }
                 }
                 else
                 {
-                    NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
-                    throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
+                    NUILog.Error($"NUI API version mismatch error! NUI API Version: ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
+                    throw new System.InvalidOperationException($"NUI API version mismatch error! NUI API version should be ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
                 }
             }
             catch (Exception)
             {
-                NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
-                throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
+                NUILog.Error($"NUI API version mismatch error! NUI API Version: ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
+                throw new System.InvalidOperationException($"NUI API version mismatch error! NUI API version should be ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
             }
-            NUILog.Debug($"version info: nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3}, dali= { ver1 }.{ ver2}.{ ver3}");
+
+            PrintDaliNativeVersion();
             return true;
+        }
+
+        //[Conditional("DEBUG_ON")]
+        static internal void PrintDaliNativeVersion()
+        {
+            int ver1 = -1;
+            int ver2 = -1;
+            int ver3 = -1;
+
+            NativeVersionCheck(ref ver1, ref ver2, ref ver3);
+            //NUILog.Debug($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
+            NUILog.Error($"NOT Error! Just Showing DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
         }
     }
 }

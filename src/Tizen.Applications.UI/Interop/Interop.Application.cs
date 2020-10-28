@@ -16,7 +16,9 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.Internals;
 using Tizen.Internals.Errors;
 
 internal static partial class Interop
@@ -35,6 +37,10 @@ internal static partial class Interop
 
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
+
+        [DllImport(Libraries.Application, EntryPoint = "app_get_device_orientation")]
+        internal static extern DeviceOrientation AppGetDeviceOrientation();
+
         [DllImport(Libraries.Application, EntryPoint = "ui_app_main")]
         internal static extern ErrorCode Main(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
 
@@ -47,6 +53,8 @@ internal static partial class Interop
         [DllImport(Libraries.Application, EntryPoint = "ui_app_remove_event_handler")]
         internal static extern ErrorCode RemoveEventHandler(IntPtr handle);
 
+
+        [NativeStruct("ui_app_lifecycle_callback_s", Include="app.h", PkgConfig="capi-appfw-application")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct UIAppLifecycleCallbacks
         {

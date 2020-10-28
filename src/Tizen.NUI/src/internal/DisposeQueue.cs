@@ -12,7 +12,6 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-
     internal class DisposeQueue
     {
         private static readonly DisposeQueue _disposableQueue = new DisposeQueue();
@@ -58,7 +57,7 @@ namespace Tizen.NUI
             }
         }
 
-        private void ProcessDisposables()
+        public void ProcessDisposables()
         {
             lock (_listLock)
             {

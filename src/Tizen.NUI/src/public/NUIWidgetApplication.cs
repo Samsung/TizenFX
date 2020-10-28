@@ -17,10 +17,12 @@
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
+using System;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
@@ -34,8 +36,27 @@ namespace Tizen.NUI
         /// <param name="widgetType">Derived widget class type.</param>
         public NUIWidgetApplication( System.Type widgetType ) : base(new NUIWidgetCoreBackend())
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// The constructor for multi widget class and instance.
+        /// </summary>
+        /// <param name="widgetTypes">List of derived widget class type.</param>
+        public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
+        {
+            if( widgetTypes == null )
+            {
+              throw new InvalidOperationException("Dictionary is null");
+            }
+            else
+            {
+                Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+                NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+                core?.RegisterWidgetInfo(widgetTypes);
+            }
         }
 
         /// <summary>
@@ -47,8 +68,60 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public NUIWidgetApplication(System.Type widgetType, string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetType">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( System.Type widgetType )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// Add WidgetInfo in runtime
+        /// </summary>
+        /// <param name="widgetTypes">Derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddWidgetType( Dictionary<System.Type, string> widgetTypes )
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.AddWidgetInfo(widgetTypes);
+        }
+
+        internal WidgetApplication ApplicationHandle
+        {
+            get
+            {
+                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
+            }
+        }
+
+        /// <summary>
+        /// Run NUIWidgetApplication.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Run(string[] args)
+        {
+            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
+            base.Run(args);
+        }
+
+        /// <summary>
+        /// Exit NUIWidgetApplication.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Exit()
+        {
+            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication Exit called");
+            base.Exit();
         }
 
         /// <summary>
@@ -121,35 +194,6 @@ namespace Tizen.NUI
             disposeQ.Initialize();
             Log.Fatal("NUI","OnCreate() is called!");
             base.OnCreate();
-        }
-
-        /// <summary>
-        /// Run NUIWidgetApplication.
-        /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Run(string[] args)
-        {
-            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            base.Run(args);
-        }
-
-        /// <summary>
-        /// Exit NUIWidgetApplication.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Exit()
-        {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication Exit called");
-            base.Exit();
-        }
-
-        internal WidgetApplication ApplicationHandle
-        {
-            get
-            {
-                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
-            }
         }
     }
 }

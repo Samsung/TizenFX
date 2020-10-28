@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd.
- *Z:\Desktop\shared\tizenfx\src\Tizen.NUI\src\public\BaseComponents\CustomView.cs
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,10 +26,18 @@ namespace Tizen.NUI
     /// <since_tizen> 4 </since_tizen>
     public class Widget : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         internal WidgetImpl widgetImpl;
 
-        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(NDalicManualPINVOKE.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
+        /// <summary>
+        /// Creates a Widget handle.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public Widget() : this(new WidgetImpl(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(Interop.Widget.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
         {
             this.widgetImpl = widgetImpl;
             widgetImpl.WidgetInstanceCreated += OnWidgetInstanceCreated;
@@ -38,80 +47,13 @@ namespace Tizen.NUI
             widgetImpl.WidgetInstanceResized += OnWidgetInstanceResized;
             widgetImpl.WidgetInstanceUpdated += OnWidgetInstanceUpdated;
 
-            WidgetApplication.Instance?.AddWidgetInstance(this);
+            (WidgetApplication.Instance as WidgetApplication)?.AddWidgetInstance(this);
         }
 
-        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.Widget_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        private void OnWidgetInstanceCreated(object sender, WidgetImpl.WIdgetInstanceOnCreateArgs e)
-        {
-            OnCreate(e.ContentInfo, e.Window);
-        }
-
-        private void OnWidgetInstanceDestroyed(object sender, WidgetImpl.WIdgetInstanceOnDestroyArgs e)
-        {
-            OnTerminate(e.ContentInfo, e.TerminateType);
-        }
-
-        private void OnWidgetInstancePaused(object sender, EventArgs e)
-        {
-            OnPause();
-        }
-
-        private void OnWidgetInstanceResumed(object sender, EventArgs e)
-        {
-            OnResume();
-        }
-
-        private void OnWidgetInstanceResized(object sender, WidgetImpl.WidgetInstanceOnResizeArgs e)
-        {
-            OnResize(e.Window);
-        }
-
-        private void OnWidgetInstanceUpdated(object sender, WidgetImpl.WidgetInstanceOnUpdateArgs e)
-        {
-            OnUpdate(e.ContentInfo, e.Force);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Widget obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_Widget(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
         /// <summary>
         /// Enumeration for termination type of widget
         /// </summary>
@@ -131,16 +73,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a Widget handle.
+        /// Set content info to WidgetView.
         /// </summary>
+        /// <param name="contentInfo">Content info is kind of context information which contains current status of widget.</param>
         /// <since_tizen> 4 </since_tizen>
-        public Widget () : this (new WidgetImpl(), true) {
-			if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-		}
+        public void SetContentInfo(string contentInfo)
+        {
+            widgetImpl.SetContentInfo(contentInfo);
+        }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Widget obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal System.IntPtr GetIntPtr()
+        {
+            return swigCPtr.Handle;
+        }
         internal Widget Assign(Widget widget)
         {
-            Widget ret = new Widget(NDalicManualPINVOKE.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
+            Widget ret = new Widget(Interop.Widget.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -200,19 +153,41 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Set content info to WidgetView.
-        /// </summary>
-        /// <param name="contentInfo">Content info is kind of context information which contains current status of widget.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public void SetContentInfo(string contentInfo)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            widgetImpl.SetContentInfo(contentInfo);
+            Interop.Widget.delete_Widget(swigCPtr);
         }
 
-        internal System.IntPtr GetIntPtr()
+        private void OnWidgetInstanceCreated(object sender, WidgetImpl.WIdgetInstanceOnCreateArgs e)
         {
-            return swigCPtr.Handle;
+            OnCreate(e.ContentInfo, e.Window);
+        }
+
+        private void OnWidgetInstanceDestroyed(object sender, WidgetImpl.WIdgetInstanceOnDestroyArgs e)
+        {
+            OnTerminate(e.ContentInfo, e.TerminateType);
+        }
+
+        private void OnWidgetInstancePaused(object sender, EventArgs e)
+        {
+            OnPause();
+        }
+
+        private void OnWidgetInstanceResumed(object sender, EventArgs e)
+        {
+            OnResume();
+        }
+
+        private void OnWidgetInstanceResized(object sender, WidgetImpl.WidgetInstanceOnResizeArgs e)
+        {
+            OnResize(e.Window);
+        }
+
+        private void OnWidgetInstanceUpdated(object sender, WidgetImpl.WidgetInstanceOnUpdateArgs e)
+        {
+            OnUpdate(e.ContentInfo, e.Force);
         }
     }
 }

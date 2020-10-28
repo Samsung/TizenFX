@@ -203,7 +203,7 @@ namespace ElmSharp.Wearable
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
-        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        public new ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
             {

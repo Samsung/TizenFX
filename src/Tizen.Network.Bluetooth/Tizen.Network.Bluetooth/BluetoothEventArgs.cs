@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -391,13 +392,7 @@ namespace Tizen.Network.Bluetooth
         /// A value indicating whether the device is connected.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsConnected
-        {
-            get
-            {
-                return _isConnected;
-            }
-        }
+        public bool IsConnected => _isConnected;
 
         /// <summary>
         /// The device connection data.
@@ -551,12 +546,47 @@ namespace Tizen.Network.Bluetooth
         /// The server socket instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use the 'Client' in the SocketConnection.")]
         public IBluetoothServerSocket Server
         {
             get
             {
                 return _server;
             }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the socket connection requested.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SocketConnectionRequestedEventArgs : EventArgs
+    {
+        internal SocketConnectionRequestedEventArgs(int socketFd, string remoteAddress)
+        {
+            SocketFd = socketFd;
+            RemoteAddress = remoteAddress;
+        }
+
+        /// <summary>
+        /// The socket fd.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        internal int SocketFd
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string RemoteAddress
+        {
+            get;
+            private set;
         }
     }
 
@@ -631,6 +661,29 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AgScoStateChangedEventArgs : EventArgs
+    {
+        internal AgScoStateChangedEventArgs(bool isOpened)
+        {
+            IsOpened = isOpened;
+        }
+
+        /// <summary>
+        /// A value indicating whether the state is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsOpened
+        {
+            get;
+            private set;
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class HidConnectionStateChangedEventArgs : EventArgs
     {
@@ -679,6 +732,76 @@ namespace Tizen.Network.Bluetooth
             {
                 return _address;
             }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class HidDeviceConnectionStateChangedEventArgs : EventArgs
+    {
+        internal HidDeviceConnectionStateChangedEventArgs(bool isConnected, string address)
+        {
+            IsConnected = isConnected;
+            Address = address;
+        }
+
+        internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
+        {
+            Result = result;
+            IsConnected = isConnected;
+            Address = address;
+        }
+
+        internal int Result
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsConnected
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Address
+        {
+            get;
+            private set;
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class HidDeviceDataReceivedEventArgs : EventArgs
+    {
+        internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData)
+        {
+            ReceivedData = receivedData;
+        }
+
+        /// <summary>
+        /// The result.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidDeviceReceivedData ReceivedData
+        {
+            get;
+            private set;
         }
     }
 
@@ -822,6 +945,121 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return _address;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the remote device address.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class AvrcpControlConnectionChangedEventArgs : EventArgs
+    {
+        private bool _isConnected;
+        string _remoteAddress;
+        // Setting Values when Event is invoked
+        internal AvrcpControlConnectionChangedEventArgs(bool conn, string address)
+        {
+            _isConnected = conn;
+            _remoteAddress = address;
+        }
+
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public string RemoteAddress
+        {
+            get
+            {
+                return _remoteAddress;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the position.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class PositionChangedEventArgs : EventArgs
+    {
+        private uint _pos;
+        internal PositionChangedEventArgs(uint pos)
+        {
+            _pos = pos;
+        }
+
+        /// <summary>
+        /// The current position in milliseconds.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public uint Position
+        {
+            get
+            {
+                return _pos;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the play state.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class PlayStateChangedEventArgs : EventArgs
+    {
+        private PlayerState _playState;
+        internal PlayStateChangedEventArgs(PlayerState playState)
+        {
+            _playState = playState;
+        }
+
+        /// <summary>
+        /// The current play state.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public PlayerState PlayState
+        {
+            get
+            {
+                return _playState;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the play state.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class TrackInfoChangedEventArgs : EventArgs
+    {
+        private Track _track;
+        internal TrackInfoChangedEventArgs(Track Data)
+        {
+            _track = Data;
+        }
+
+        /// <summary>
+        /// The current track data
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public Track TrackData
+        {
+            get
+            {
+                return _track;
             }
         }
     }
@@ -982,9 +1220,16 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
-        internal ValueChangedEventArgs(byte[] value)
+        internal ValueChangedEventArgs(IntPtr value, int len)
         {
-            Value = value;
+            Value = new byte[len];
+            unsafe
+            {
+                for (int i = 0; i < len; i++)
+                {
+                    Value[i] = *((byte*)value.ToPointer() + i);
+                }
+            }
         }
 
         /// <summary>
@@ -1120,7 +1365,7 @@ namespace Tizen.Network.Bluetooth
         /// The GATT server instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattServer Server { get; }
+        public BluetoothGattServer Server { get; internal set; }
         /// <summary>
         /// The client address.
         /// </summary>
@@ -1272,11 +1517,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushRespondedEventArgs : EventArgs
     {
         int _result;
@@ -1367,11 +1611,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushFinishedEventArgs : EventArgs
     {
         int _result;

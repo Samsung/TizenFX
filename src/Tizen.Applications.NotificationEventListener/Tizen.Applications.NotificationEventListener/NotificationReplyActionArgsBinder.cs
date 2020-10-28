@@ -94,7 +94,11 @@ namespace Tizen.Applications.NotificationEventListener
 
             if (isExisted)
             {
-                (eventargs.Style["Active"] as NotificationEventArgs.ActiveStyleArgs).Reply = reply;
+                NotificationEventArgs.ActiveStyleArgs activeStyle = eventargs.Style["Active"] as NotificationEventArgs.ActiveStyleArgs;
+                if (activeStyle != null)
+                {
+                    activeStyle.Reply = reply;
+                }
             }
         }
     }

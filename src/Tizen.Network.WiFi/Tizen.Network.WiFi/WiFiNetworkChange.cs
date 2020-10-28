@@ -16,6 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Tizen.Network.WiFi
 {
@@ -45,30 +46,52 @@ namespace Tizen.Network.WiFi
         private event EventHandler<DeviceStateChangedEventArgs> _deviceStateChanged;
         private event EventHandler<ConnectionStateChangedEventArgs> _connectionStateChanged;
         private event EventHandler<RssiLevelChangedEventArgs> _rssiLevelChanged;
+        private event EventHandler<ScanStateChangedEventArgs> _scanStateChanged;
         private event EventHandler _backgroundScanFinished;
 
         private Interop.WiFi.DeviceStateChangedCallback _deviceChangedCallback;
         private Interop.WiFi.ConnectionStateChangedCallback _connectionChangedCallback;
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
+        private Interop.WiFi.ScanStateChangedCallback _scanChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
             {
-                if (_deviceStateChanged == null)
+                context.Post((x) =>
                 {
-                    RegisterDeviceStateChangedEvent();
-                }
-                _deviceStateChanged += value;
+                    if (_deviceStateChanged == null)
+                    {
+                        try
+                        {
+                            RegisterDeviceStateChangedEvent();
+                        } catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding DeviceStateChanged\n" + e);
+                            return;
+                        }
+                    }
+                    _deviceStateChanged += value;
+                }, null);
             }
             remove
             {
-                _deviceStateChanged -= value;
-                if (_deviceStateChanged == null)
+                context.Post((x) =>
                 {
-                    UnregisterDeviceStateChangedEvent();
-                }
+                    _deviceStateChanged -= value;
+                    if (_deviceStateChanged == null)
+                    {
+                        try
+                        {
+                            UnregisterDeviceStateChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing DeviceStateChanged\n" + e);
+                        }
+                    }
+                }, null);
             }
         }
 
@@ -76,19 +99,40 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_connectionStateChanged == null)
+                context.Post((x) =>
                 {
-                    RegisterConnectionStateChangedEvent();
-                }
-                _connectionStateChanged += value;
+                    if (_connectionStateChanged == null)
+                    {
+                        try
+                        {
+                            RegisterConnectionStateChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ConnectionStateChanged\n" + e);
+                            return;
+                        }
+                    }
+                    _connectionStateChanged += value;
+                }, null);
             }
             remove
             {
-                _connectionStateChanged -= value;
-                if (_connectionStateChanged == null)
+                context.Post((x) =>
                 {
-                    UnregisterConnectionStateChangedEvent();
-                }
+                    _connectionStateChanged -= value;
+                    if (_connectionStateChanged == null)
+                    {
+                        try
+                        {
+                            UnregisterConnectionStateChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ConnectionStateChanged\n" + e);
+                        }
+                    }
+                }, null);
             }
         }
 
@@ -96,19 +140,81 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_rssiLevelChanged == null)
+                context.Post((x) =>
                 {
-                    RegisterRssiLevelChangedEvent();
-                }
-                _rssiLevelChanged += value;
+                    if (_rssiLevelChanged == null)
+                    {
+                        try
+                        {
+                            RegisterRssiLevelChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding RssiLevelChanged\n" + e);
+                            return;
+                        }
+                    }
+                    _rssiLevelChanged += value;
+                }, null);
             }
             remove
             {
-                _rssiLevelChanged -= value;
-                if (_rssiLevelChanged == null)
+                context.Post((x) =>
                 {
-                    UnregisterRssiLevelChangedEvent();
-                }
+                    _rssiLevelChanged -= value;
+                    if (_rssiLevelChanged == null)
+                    {
+                        try
+                        {
+                            UnregisterRssiLevelChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing RssiLevelChanged\n" + e);
+                        }
+                    }
+                }, null);
+            }
+        }
+
+        internal event EventHandler<ScanStateChangedEventArgs> ScanStateChanged
+        {
+            add
+            {
+                context.Post((x) =>
+                {
+                    if (_scanStateChanged == null)
+                    {
+                        try
+                        {
+                            RegisterScanStateChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ScanStateChanged\n" + e);
+                            return;
+                        }
+                    }
+                    _scanStateChanged += value;
+                }, null);
+            }
+            remove
+            {
+                context.Post((x) =>
+                {
+                    _scanStateChanged -= value;
+                    if (_scanStateChanged == null)
+                    {
+                        try
+                        {
+                            UnregisterScanStateChangedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ScanStateChanged\n" + e);
+                        }
+                    }
+                }, null);
             }
         }
 
@@ -116,24 +222,46 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_backgroundScanFinished == null)
+                context.Post((x) =>
                 {
-                    RegisterBackgroundScanFinishedEvent();
-                }
-                _backgroundScanFinished += value;
+                    if (_backgroundScanFinished == null)
+                    {
+                        try
+                        {
+                            RegisterBackgroundScanFinishedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding BackgroundScanFinished\n" + e);
+                            return;
+                        }
+                    }
+                    _backgroundScanFinished += value;
+                }, null);
             }
             remove
             {
-                _backgroundScanFinished -= value;
-                if (_backgroundScanFinished == null)
+                context.Post((x) =>
                 {
-                    UnregisterBackgroundScanFinishedEvent();
-                }
+                    _backgroundScanFinished -= value;
+                    if (_backgroundScanFinished == null)
+                    {
+                        try
+                        {
+                            UnregisterBackgroundScanFinishedEvent();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing BackgroundScanFinished\n" + e);
+                        }
+                    }
+                }, null);
             }
         }
 
         private void RegisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "RegisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             _deviceChangedCallback = (int deviceState, IntPtr userDate) =>
             {
                 WiFiDeviceState state = (WiFiDeviceState)deviceState;
@@ -149,6 +277,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "UnregisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
@@ -205,6 +334,28 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset rssi level changed callback, Error - " + (WiFiError)ret);
+            }
+        }
+
+        private void RegisterScanStateChangedEvent()
+        {
+            _scanChangedCallback = (int scanState, IntPtr userData) =>
+            {
+                _scanStateChanged?.Invoke(null, new ScanStateChangedEventArgs((WiFiScanState)scanState));
+            };
+            int ret = Interop.WiFi.SetScanStateChangedCallback(GetSafeHandle(), _scanChangedCallback, IntPtr.Zero);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set scan state changed callback, Error - " + (WiFiError)ret);
+            }
+        }
+
+        private void UnregisterScanStateChangedEvent()
+        {
+            int ret = Interop.WiFi.UnsetScanStateChangedCallback(GetSafeHandle());
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset scan state changed callback, Error - " + (WiFiError)ret);
             }
         }
 

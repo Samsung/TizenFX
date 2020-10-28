@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
+
 using static Interop;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
@@ -76,6 +74,8 @@ namespace Tizen.Multimedia
         public event EventHandler<BufferingProgressChangedEventArgs> BufferingProgressChanged;
         private NativePlayer.BufferingProgressCallback _bufferingProgressCallback;
 
+        private NativePlayer.PrepareCallback _prepareCallback;
+
         internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamAudioBufferStatusChanged;
         private NativePlayer.MediaStreamBufferStatusCallback _mediaStreamAudioBufferStatusChangedCallback;
 
@@ -88,14 +88,8 @@ namespace Tizen.Multimedia
         internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamVideoSeekingOccurred;
         private NativePlayer.MediaStreamSeekCallback _mediaStreamVideoSeekCallback;
 
-        private bool _callbackRegistered;
-
         private void RegisterEvents()
         {
-            if (_callbackRegistered)
-            {
-                return;
-            }
             RegisterSubtitleUpdatedCallback();
             RegisterErrorOccurredCallback();
             RegisterPlaybackInterruptedCallback();
@@ -104,8 +98,6 @@ namespace Tizen.Multimedia
             RegisterMediaStreamBufferStatusCallback();
             RegisterMediaStreamSeekCallback();
             RegisterPlaybackCompletedCallback();
-
-            _callbackRegistered = true;
         }
 
         private void RegisterSubtitleUpdatedCallback()
@@ -166,12 +158,19 @@ namespace Tizen.Multimedia
                 ThrowIfFailed(this, "Failed to set PlaybackError");
         }
 
+        /// <summary>
+        /// Raises the <see cref="ErrorOccurred"/> event.
+        /// </summary>
+        /// <param name="e">
+        /// An <see cref="PlayerErrorOccurredEventArgs"/> that contains the event data.
+        /// </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void OnErrorOccurred(PlayerErrorOccurredEventArgs e)
+        {
+            ErrorOccurred?.Invoke(this, e);
+        }
+
         #region VideoFrameDecoded event
-
-        private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
-
-        private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
-
         /// <summary>
         /// Occurs when a video frame is decoded.
         /// </summary>
@@ -183,42 +182,23 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
-        {
-            add
-            {
-                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded;
+        private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+        #endregion
 
-                _videoFrameDecoded += value;
-            }
-            remove
-            {
-                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+        #region AudioFrameDecoded event
+        /// <summary>
+        /// Occurs when a audio frame is decoded.
+        /// </summary>
+        /// <remarks>
+        ///     <para>The event handler will be executed on an internal thread.</para>
+        ///     <para>The <see cref="AudioDataDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
+        /// </remarks>
+        /// <seealso cref="AudioDataDecodedEventArgs.Packet"/>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<AudioDataDecodedEventArgs> AudioDataDecoded;
 
-                _videoFrameDecoded -= value;
-            }
-        }
-
-        private void RegisterVideoFrameDecodedCallback()
-        {
-            _videoFrameDecodedCallback = (packetHandle, _) =>
-            {
-                var handler = _videoFrameDecoded;
-                if (handler != null)
-                {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
-                    handler.Invoke(this,
-                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
-                }
-                else
-                {
-                    MediaPacket.From(packetHandle).Dispose();
-                }
-            };
-
-            NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
-                ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
-        }
+        private NativePlayer.AudioFrameDecodedCallback _audioFrameDecodedCallback;
         #endregion
 
         private void RegisterVideoStreamChangedCallback()

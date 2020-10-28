@@ -110,5 +110,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Storage, EntryPoint = "storage_unset_changed_cb")]
         internal static extern ErrorCode StorageUnsetChanged(int id, StorageChangedCallback callback);
+
+        [DllImport(Libraries.Storage, EntryPoint = "storage_get_type_dev")]
+        internal static extern ErrorCode StorageGetTypeDev(int id, out StorageArea type, out StorageDevice devicetype);
     }
 }

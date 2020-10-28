@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.SystemSettings.UnitTest" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.SystemSettings.UnitTest" exec="SystemSettings.UnitTest.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>SystemSettings_UnitTest</label>
+        <icon>SystemSettings_UnitTest.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+    <feature name="http://tizen.org/feature/systemsetting.home_screen">true</feature>
+    <feature name="http://tizen.org/feature/systemsetting.incoming_call">true</feature>
+    <feature name="http://tizen.org/feature/systemsetting.lock_screen">true</feature>
+    <feature name="http://tizen.org/feature/systemsetting.notification_email">true</feature>
+</manifest>

@@ -39,6 +39,7 @@ namespace Tizen.Multimedia
     /// It also notifies you when a significant picture parameter changes, (For example, focus).
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// <feature> http://tizen.org/feature/camera </feature>
     public class Camera : IDisposable, IDisplayable<CameraError>
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -48,18 +49,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
-        /// <feature>http://tizen.org/feature/camera</feature>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The camera device to access.</param>
+        /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
+        /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         public Camera(CameraDevice device)
         {
-            if (!Features.IsSupported(CameraFeatures.Camera))
-            {
-                throw new NotSupportedException("Camera feature is not supported.");
-            }
-
-            CameraErrorFactory.ThrowIfError(Native.Create(device, out _handle),
-                "Failed to create camera instance");
+            Native.Create(device, out _handle).ThrowIfFailed("Failed to create camera instance");
 
             Capabilities = new CameraCapabilities(this);
             Settings = new CameraSettings(this);
@@ -82,6 +79,7 @@ namespace Tizen.Multimedia
         /// Gets the native handle of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         public IntPtr Handle => GetHandle();
 
         internal IntPtr GetHandle()
@@ -119,6 +117,7 @@ namespace Tizen.Multimedia
         /// Releases all resources used by the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         public void Dispose()
         {
             ReplaceDisplay(null);
@@ -395,7 +394,7 @@ namespace Tizen.Multimedia
         {
             if (display == null)
             {
-                return CameraDisplay.SetTarget(GetHandle(), DisplayType.None, IntPtr.Zero);
+                return CameraDisplay.SetDisplay(GetHandle(), DisplayType.None, IntPtr.Zero);
             }
 
             return display.ApplyTo(this);
@@ -442,7 +441,7 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
 
-                CameraErrorFactory.ThrowIfError(SetDisplay(value), "Failed to set the camera display");
+                SetDisplay(value).ThrowIfFailed("Failed to set the camera display");
 
                 ReplaceDisplay(value);
             }
@@ -453,12 +452,14 @@ namespace Tizen.Multimedia
             Debug.Assert(_disposed == false);
             ValidationUtil.ValidateEnum(typeof(DisplayType), type, nameof(type));
 
-            return CameraDisplay.SetTarget(GetHandle(), type, evasObject);
+            return CameraDisplay.SetDisplay(GetHandle(), type, evasObject);
         }
 
         CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle)
         {
-            throw new NotSupportedException("Camera does not support NUI.Window display.");
+            Debug.Assert(_disposed == false);
+
+            return CameraDisplay.SetEcoreDisplay(GetHandle(), windowHandle);
         }
 
         /// <summary>
@@ -474,8 +475,8 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 CameraState val = CameraState.None;
-                CameraErrorFactory.ThrowIfError(Native.GetState(_handle, out val),
-                    "Failed to get camera state");
+
+                Native.GetState(_handle, out val).ThrowIfFailed("Failed to get camera state");
 
                 return val;
             }
@@ -496,8 +497,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                CameraErrorFactory.ThrowIfError(Native.GetDisplayReuseHint(_handle, out bool val),
-                    "Failed to get camera display reuse hint");
+                Native.GetDisplayReuseHint(_handle, out bool val).ThrowIfFailed("Failed to get camera display reuse hint");
 
                 return val;
             }
@@ -506,8 +506,7 @@ namespace Tizen.Multimedia
             {
                 ValidateState(CameraState.Preview);
 
-                CameraErrorFactory.ThrowIfError(Native.SetDisplayReuseHint(_handle, value),
-                    "Failed to set display reuse hint.");
+                Native.SetDisplayReuseHint(_handle, value).ThrowIfFailed("Failed to set display reuse hint.");
             }
         }
 
@@ -523,8 +522,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                CameraErrorFactory.ThrowIfError(Native.GetFacingDirection(_handle, out var val),
-                    "Failed to get camera direction");
+                Native.GetFacingDirection(_handle, out var val).ThrowIfFailed("Failed to get camera direction");
 
                 return val;
             }
@@ -543,8 +541,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                CameraErrorFactory.ThrowIfError(Native.GetDeviceCount(_handle, out int val),
-                    "Failed to get camera device count");
+                Native.GetDeviceCount(_handle, out int val).ThrowIfFailed("Failed to get camera device count");
 
                 return val;
             }
@@ -555,8 +552,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Changes the camera device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The hardware camera to access.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// If display reuse is set using <see cref="DisplayReuseHint"/>
         /// before stopping the preview, the display will be reused and last frame on the display
@@ -572,16 +570,16 @@ namespace Tizen.Multimedia
             ValidateState(CameraState.Created);
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.ChangeDevice(_handle, device),
-                "Failed to change the camera device");
+            Native.ChangeDevice(_handle, device).ThrowIfFailed("Failed to change the camera device");
         }
 
         /// <summary>
         /// Gets the device state.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="device">The device to get the state.</param>
         /// <returns>Returns the state of the camera device.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
@@ -589,8 +587,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.GetDeviceState(device, out var val),
-                "Failed to get the camera device state.");
+            Native.GetDeviceState(device, out var val).ThrowIfFailed("Failed to get the camera device state.");
 
             return val;
         }
@@ -598,9 +595,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the flash state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The device to get the state.</param>
         /// <returns>Returns the flash state of the camera device.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
@@ -608,8 +606,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.GetFlashState(device, out var val),
-                "Failed to get camera flash state");
+            Native.GetFlashState(device, out var val).ThrowIfFailed("Failed to get camera flash state");
 
             return val;
         }
@@ -623,9 +620,8 @@ namespace Tizen.Multimedia
         /// The camera must be in the <see cref="CameraState.Created"/> or the <see cref="CameraState.Captured"/> state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
@@ -634,8 +630,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Created, CameraState.Captured);
 
-            CameraErrorFactory.ThrowIfError(Native.StartPreview(_handle),
-                "Failed to start the camera preview.");
+            Native.StartPreview(_handle).ThrowIfFailed("Failed to start the camera preview.");
 
             // Update by StateChangedCallback can be delayed for dozens of milliseconds.
             SetState(CameraState.Preview);
@@ -646,9 +641,8 @@ namespace Tizen.Multimedia
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
@@ -657,8 +651,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Preview);
 
-            CameraErrorFactory.ThrowIfError(Native.StopPreview(_handle),
-                "Failed to stop the camera preview.");
+            Native.StopPreview(_handle).ThrowIfFailed("Failed to stop the camera preview.");
 
             SetState(CameraState.Created);
         }
@@ -670,9 +663,8 @@ namespace Tizen.Multimedia
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// This function causes the transition of the camera state from capturing to captured
         /// automatically and the corresponding EventHandlers will be invoked.
@@ -686,8 +678,8 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Preview);
 
-            CameraErrorFactory.ThrowIfError(Native.StartCapture(_handle, _capturingCallback, _captureCompletedCallback, IntPtr.Zero),
-                "Failed to start the camera capture.");
+            Native.StartCapture(_handle, _capturingCallback, _captureCompletedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to start the camera capture.");
 
             SetState(CameraState.Capturing);
         }
@@ -698,14 +690,13 @@ namespace Tizen.Multimedia
         /// and for completed using <see cref="CaptureCompleted"/> before calling this method.
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         /// <param name="count">The number of still images.</param>
         /// <param name="interval">The interval of the capture(milliseconds).</param>
         /// <param name="cancellationToken">The cancellation token to cancel capturing.</param>
         /// <seealso cref="CancellationToken"/>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// If this is not supported, zero shutter lag occurs. The capture resolution could be
         /// changed to the preview resolution. This function causes the transition of the camera state
@@ -737,14 +728,13 @@ namespace Tizen.Multimedia
             {
                 cancellationToken.Register(() =>
                 {
-                    CameraErrorFactory.ThrowIfError(Native.StopContinuousCapture(_handle),
-                        "Failed to cancel the continuous capture");
+                    Native.StopContinuousCapture(_handle).ThrowIfFailed("Failed to cancel the continuous capture");
                     SetState(CameraState.Captured);
                 });
             }
 
-            CameraErrorFactory.ThrowIfError(Native.StartContinuousCapture(_handle, count, interval,
-                _capturingCallback, _captureCompletedCallback, IntPtr.Zero), "Failed to start the continuous capture.");
+            Native.StartContinuousCapture(_handle, count, interval, _capturingCallback, _captureCompletedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to start the continuous capture.");
 
             SetState(CameraState.Capturing);
         }
@@ -753,11 +743,10 @@ namespace Tizen.Multimedia
         /// Starts camera auto-focusing, asynchronously.
         /// The camera must be in the <see cref="CameraState.Preview"/> or the <see cref="CameraState.Captured"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="continuous">Continuous auto focus.</param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// If continuous status is true, the camera continuously tries to focus.
         /// </remarks>
@@ -770,8 +759,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Preview, CameraState.Captured);
 
-            CameraErrorFactory.ThrowIfError(Native.StartFocusing(_handle, continuous),
-                "Failed to cancel the camera focus.");
+            Native.StartFocusing(_handle, continuous).ThrowIfFailed("Failed to cancel the camera focus.");
         }
 
         /// <summary>
@@ -779,9 +767,8 @@ namespace Tizen.Multimedia
         /// The camera must be in the <see cref="CameraState.Preview"/> or the <see cref="CameraState.Captured"/> state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
@@ -790,8 +777,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(CameraState.Preview, CameraState.Captured);
 
-            CameraErrorFactory.ThrowIfError(Native.CancelFocusing(_handle),
-                "Failed to cancel the camera focus.");
+            Native.CancelFocusing(_handle).ThrowIfFailed("Failed to cancel the camera focus.");
         }
 
         /// <summary>
@@ -799,9 +785,8 @@ namespace Tizen.Multimedia
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// This should be called after <see cref="StartPreview"/> is started.
         /// The Eventhandler set using <see cref="FaceDetected"/> is invoked when the face is detected in the preview frame.
@@ -828,30 +813,31 @@ namespace Tizen.Multimedia
 
                 FaceDetected?.Invoke(this, new FaceDetectedEventArgs(result));
             };
-            CameraErrorFactory.ThrowIfError(Native.StartFaceDetection(_handle, _faceDetectedCallback, IntPtr.Zero),
-                "Failed to start face detection");
+
+            Native.StartFaceDetection(_handle, _faceDetectedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to start face detection");
         }
 
         /// <summary>
         /// Stops face detection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
+        /// <privilege> http://tizen.org/privilege/camera </privilege>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFaceDetection()
         {
+            ValidateNotDisposed();
+
             if (_faceDetectedCallback == null)
             {
                 throw new InvalidOperationException("The face detection is not started.");
             }
 
-            CameraErrorFactory.ThrowIfError(Native.StopFaceDetection(_handle),
-                "Failed to stop the face detection.");
+            Native.StopFaceDetection(_handle).ThrowIfFailed("Failed to stop the face detection.");
 
             _faceDetectedCallback = null;
         }
@@ -888,8 +874,9 @@ namespace Tizen.Multimedia
             {
                 InterruptStarted?.Invoke(this, new CameraInterruptStartedEventArgs(policy, state));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback, IntPtr.Zero),
-                "Failed to set interrupt callback");
+
+            Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set interrupt callback");
         }
 
         private void RegisterInterruptedCallback()
@@ -898,8 +885,9 @@ namespace Tizen.Multimedia
             {
                 Interrupted?.Invoke(this, new CameraInterruptedEventArgs(policy, previous, current));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero),
-                "Failed to set interrupt callback");
+
+            Native.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero).
+                ThrowIfFailed("Failed to set interrupt callback");
         }
 
         private void RegisterErrorCallback()
@@ -908,8 +896,8 @@ namespace Tizen.Multimedia
             {
                 ErrorOccurred?.Invoke(this, new CameraErrorOccurredEventArgs(error, current));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetErrorCallback(_handle, _errorCallback, IntPtr.Zero),
-                "Setting error callback failed");
+
+            Native.SetErrorCallback(_handle, _errorCallback, IntPtr.Zero).ThrowIfFailed("Setting error callback failed");
         }
 
         private void RegisterStateChangedCallback()
@@ -920,8 +908,9 @@ namespace Tizen.Multimedia
                 Log.Info(CameraLog.Tag, "Camera state changed " + previous.ToString() + " -> " + current.ToString());
                 StateChanged?.Invoke(this, new CameraStateChangedEventArgs(previous, current, byPolicy));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
-                "Setting state changed callback failed");
+
+            Native.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting state changed callback failed");
         }
 
         private static void RegisterDeviceStateChangedCallback()
@@ -931,16 +920,17 @@ namespace Tizen.Multimedia
                 _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
             };
 
-            CameraErrorFactory.ThrowIfError(Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateCallbackId),
-                "Failed to set device state changed callback");
+            Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateCallbackId).
+                ThrowIfFailed("Failed to set device state changed callback");
 
             Log.Info(CameraLog.Tag, "add callbackId " + _deviceStateCallbackId.ToString());
         }
 
         private static void UnregisterDeviceStateChangedCallback()
         {
-            CameraErrorFactory.ThrowIfError(Native.UnsetDeviceStateChangedCallback(_deviceStateCallbackId),
-                "Unsetting device state changed callback failed");
+            Native.UnsetDeviceStateChangedCallback(_deviceStateCallbackId).
+                ThrowIfFailed("Unsetting device state changed callback failed");
+
             _deviceStateChangedCallback = null;
             _deviceStateCallbackId = 0;
         }
@@ -951,8 +941,9 @@ namespace Tizen.Multimedia
             {
                 FocusStateChanged?.Invoke(this, new CameraFocusStateChangedEventArgs(state));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback, IntPtr.Zero),
-                "Setting focus changed callback failed");
+
+            Native.SetFocusStateChangedCallback(_handle, _focusStateChangedCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting focus changed callback failed");
         }
 
         private void RegisterHdrCaptureProgress()
@@ -961,14 +952,16 @@ namespace Tizen.Multimedia
             {
                 _hdrCaptureProgress?.Invoke(this, new HdrCaptureProgressEventArgs(percent));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero),
-                "Setting Hdr capture progress callback failed");
+
+            Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting Hdr capture progress callback failed");
         }
 
         private void UnregisterHdrCaptureProgress()
         {
-            CameraErrorFactory.ThrowIfError(Native.UnsetHdrCaptureProgressCallback(_handle),
-                "Unsetting hdr capture progress is failed");
+            Native.UnsetHdrCaptureProgressCallback(_handle).
+                ThrowIfFailed("Unsetting hdr capture progress is failed");
+
             _hdrCaptureProgressCallback = null;
         }
 
@@ -978,14 +971,15 @@ namespace Tizen.Multimedia
             {
                 _preview?.Invoke(this, new PreviewEventArgs(new PreviewFrame(frame)));
             };
-            CameraErrorFactory.ThrowIfError(Native.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero),
-                "Setting preview callback failed");
+
+            Native.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting preview callback failed");
         }
 
         private void UnregisterPreviewCallback()
         {
-            CameraErrorFactory.ThrowIfError(Native.UnsetPreviewCallback(_handle),
-                "Unsetting preview callback failed");
+            Native.UnsetPreviewCallback(_handle).ThrowIfFailed("Unsetting preview callback failed");
+
             _previewCallback = null;
         }
 
@@ -994,25 +988,26 @@ namespace Tizen.Multimedia
             _mediaPacketPreviewCallback = (IntPtr mediaPacket, IntPtr userData) =>
             {
                 MediaPacket packet = MediaPacket.From(mediaPacket);
+
                 var eventHandler = _mediaPacketPreview;
 
                 if (eventHandler != null)
                 {
                     eventHandler.Invoke(this, new MediaPacketPreviewEventArgs(packet));
                 }
-                else
-                {
-                    packet.Dispose();
-                }
+
+                packet.Dispose();
             };
-            CameraErrorFactory.ThrowIfError(Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero),
-                "Setting media packet preview callback failed");
+
+            Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero).
+                ThrowIfFailed("Setting media packet preview callback failed");
         }
 
         private void UnregisterMediaPacketPreviewCallback()
         {
-            CameraErrorFactory.ThrowIfError(Native.UnsetMediaPacketPreviewCallback(_handle),
-                "Unsetting media packet preview callback failed");
+            Native.UnsetMediaPacketPreviewCallback(_handle).
+                ThrowIfFailed("Unsetting media packet preview callback failed");
+
             _mediaPacketPreviewCallback = null;
         }
         #endregion Callback registrations

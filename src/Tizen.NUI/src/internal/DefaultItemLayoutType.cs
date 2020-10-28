@@ -15,14 +15,37 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-
-    internal enum DefaultItemLayoutType
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum DefaultItemLayoutType
     {
+
+        /// <summary>
+        /// Items arranged in a grid, scrolling along the Z-Axis.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         DEPTH,
+
+        /// <summary>
+        /// Items arranged in a grid, scrolling along the Y-Axis.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         GRID,
+
+        /// <summary>
+        /// One item per line, scrolling along the Y-Axis.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         LIST,
+
+        /// <summary>
+        /// Items arranged in a spiral, centered around the Y-Axis.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         SPIRAL
     }
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Samsung Electronics Co., Ltd.
+// Copyright (c) 2019 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,14 +13,15 @@
 // limitations under the License.
 //
 
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel;
+
 namespace Tizen.NUI.BaseComponents
 {
-    using System;
-    using System.Text;
-    using System.Runtime.InteropServices;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// A visual view control if a user adds any visual to it.
     /// </summary>
@@ -46,9 +47,34 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<int, PropertyMap> _tranformDictionary = null;
         private PropertyArray _animateArray = null;
 
-        static CustomView CreateInstance()
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public VisualView() : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
-            return new VisualView();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(ViewStyle viewStyle) : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
+        {
+
+        }
+
+        /// <summary>Create a VisualView with specified behaviour.</summary>
+        /// <param name="behaviour">CustomView behaviour</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(CustomViewBehaviour behaviour) : base(typeof(VisualView).FullName, behaviour)
+        {
+        }
+
+        /// <summary>Create a VisualView with specified behaviour and a style.</summary>
+        /// <param name="behaviour">CustomView behaviour</param>
+        /// <param name="viewStyle">The ViewStyle.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeof(VisualView).FullName, behaviour, viewStyle)
+        {
         }
 
         // static constructor registers the control type (for user can add kinds of visuals to it)
@@ -60,11 +86,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Constructor.
+        /// Gets the total number of visuals which are added by users.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault)
+        public int NumberOfVisuals
         {
+            get
+            {
+                return _visualDictionary.Count;
+            }
         }
 
         /// <summary>
@@ -152,18 +182,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the total number of visuals which are added by users.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int NumberOfVisuals
-        {
-            get
-            {
-                return _visualDictionary.Count;
-            }
-        }
-
-        /// <summary>
         /// Removes all visuals of the visual view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -198,23 +216,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal void UpdateVisual(int visualIndex, string visualName, VisualMap visualMap)
-        {
-            VisualBase visual = null;
-
-            visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
-            visual.Name = visualName;
-            visual.DepthIndex = visualMap.DepthIndex;
-
-            RegisterVisual(visualIndex, visual);
-
-            _visualDictionary[visualIndex] = visual;
-            _tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
-
-            RelayoutRequest();
-            NUILog.Debug("UpdateVisual() name=" + visualName);
-        }
-
         /// <summary>
         /// Creates a visual animation (transition) with the input parameters.
         /// </summary>
@@ -229,90 +230,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = null;
-            if (alphaFunction != null)
-            {
-                switch (alphaFunction)
-                {
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
-                    {
-                        _alphaFunction = "LINEAR";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
-                    {
-                        _alphaFunction = "REVERSE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
-                    {
-                        _alphaFunction = "EASE_IN_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
-                    {
-                        _alphaFunction = "EASE_OUT_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
-                    {
-                        _alphaFunction = "EASE_IN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
-                    {
-                        _alphaFunction = "EASE_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
-                    {
-                        _alphaFunction = "EASE_IN_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
-                    {
-                        _alphaFunction = "EASE_IN_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
-                    {
-                        _alphaFunction = "EASE_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
-                    {
-                        _alphaFunction = "EASE_IN_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
-                    {
-                        _alphaFunction = "BOUNCE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
-                    {
-                        _alphaFunction = "SIN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
-                    {
-                        _alphaFunction = "EASE_OUT_BACK";
-                        break;
-                    }
-                    default:
-                    {
-                        _alphaFunction = "DEFAULT";
-                        break;
-                    }
-                }
-            }
+            string _alphaFunction = alphaFunction?.GetDescription();
 
             foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == target.Name)
                 {
                     PropertyMap _animator = new PropertyMap();
-                    if ( _alphaFunction != null) {_animator.Add("alphaFunction", new PropertyValue(_alphaFunction));}
+                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
 
                     PropertyMap _timePeriod = new PropertyMap();
                     _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
@@ -322,7 +247,7 @@ namespace Tizen.NUI.BaseComponents
                     StringBuilder sb = new StringBuilder(property);
                     sb[0] = (char)(sb[0] | 0x20);
                     string _str = sb.ToString();
-                    if (_str == "position") {_str = "offset";}
+                    if (_str == "position") { _str = "offset"; }
 
                     PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
 
@@ -357,90 +282,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = null;
-            if (alphaFunction != null)
-            {
-                switch (alphaFunction)
-                {
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
-                    {
-                        _alphaFunction = "LINEAR";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
-                    {
-                        _alphaFunction = "REVERSE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
-                    {
-                        _alphaFunction = "EASE_IN_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
-                    {
-                        _alphaFunction = "EASE_OUT_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
-                    {
-                        _alphaFunction = "EASE_IN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
-                    {
-                        _alphaFunction = "EASE_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
-                    {
-                        _alphaFunction = "EASE_IN_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
-                    {
-                        _alphaFunction = "EASE_IN_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
-                    {
-                        _alphaFunction = "EASE_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
-                    {
-                        _alphaFunction = "EASE_IN_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
-                    {
-                        _alphaFunction = "BOUNCE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
-                    {
-                        _alphaFunction = "SIN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
-                    {
-                        _alphaFunction = "EASE_OUT_BACK";
-                        break;
-                    }
-                    default:
-                    {
-                        _alphaFunction = "DEFAULT";
-                        break;
-                    }
-                }
-            }
+            string _alphaFunction = alphaFunction?.GetDescription();
 
             foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == target.Name)
                 {
                     PropertyMap _animator = new PropertyMap();
-                    if ( _alphaFunction != null) {_animator.Add("alphaFunction", new PropertyValue(_alphaFunction));}
+                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
 
                     PropertyMap _timePeriod = new PropertyMap();
                     _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
@@ -450,7 +299,7 @@ namespace Tizen.NUI.BaseComponents
                     StringBuilder sb = new StringBuilder(property);
                     sb[0] = (char)(sb[0] | 0x20);
                     string _str = sb.ToString();
-                    if (_str == "position") {_str = "offset";}
+                    if (_str == "position") { _str = "offset"; }
 
                     PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
 
@@ -477,7 +326,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisualAddFinish()
         {
-            if ( _animateArray == null || _animateArray.Empty())
+            if (_animateArray == null || _animateArray.Empty())
             {
                 Tizen.Log.Fatal("NUI", "animate visual property array is empty!");
                 return null;
@@ -504,6 +353,28 @@ namespace Tizen.NUI.BaseComponents
             return null;
         }
         //temporary fix to pass TCT
+
+        internal void UpdateVisual(int visualIndex, string visualName, VisualMap visualMap)
+        {
+            VisualBase visual = null;
+
+            visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
+            visual.Name = visualName;
+            visual.DepthIndex = visualMap.DepthIndex;
+
+            RegisterVisual(visualIndex, visual);
+
+            _visualDictionary[visualIndex] = visual;
+            _tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
+
+            RelayoutRequest();
+            NUILog.Debug("UpdateVisual() name=" + visualName);
+        }
+
+        static CustomView CreateInstance()
+        {
+            return new VisualView();
+        }
 
     }
 }

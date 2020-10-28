@@ -72,17 +72,22 @@ namespace Tizen.Applications.Notifications
         internal static void BindObject(Notification notification)
         {
             int flag;
+            int hidetime = 0;
+            int deletetime = 0;
             NotificationError ret = NotificationError.None;
             Notification.ActiveStyle style = (Notification.ActiveStyle)notification.GetStyle("Active");
 
             Interop.Notification.SetAutoRemove(notification.Handle, style.IsAutoRemove);
-            if (style.IsAutoRemove == true)
-            {
-                int hidetime;
-                int deletetime;
-                style.GetRemoveTime(out hidetime, out deletetime);
 
+            style.GetRemoveTime(out hidetime, out deletetime);
+
+            if (hidetime > 0)
+            {
                 Interop.Notification.SetHideTime(notification.Handle, hidetime);
+            }
+
+            if (deletetime > 0)
+            {
                 try
                 {
                     Interop.Notification.SetDeleteTime(notification.Handle, deletetime);
@@ -94,7 +99,7 @@ namespace Tizen.Applications.Notifications
                 }
             }
 
-            ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.Background, style?.BackgroundImage);
+            ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.Background, style.BackgroundImage);
             if (ret != NotificationError.None)
             {
                 throw NotificationErrorFactory.GetException(ret, "unable to set background Image");
