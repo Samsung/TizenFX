@@ -1,5 +1,5 @@
  /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -22,18 +22,39 @@ using Tizen;
 
 namespace Tizen.Messaging.Push
 {
-    internal static class PushImpl
+    internal class PushImpl
     {
         private static readonly object _lock = new object();
+        private static PushImpl _instance;
         private static Interop.PushClient.VoidStateChangedCallback stateDelegate = null;
         private static Interop.PushClient.VoidNotifyCallback notifyDelegate = null;
         private static Interop.PushClient.VoidResultCallback registerResult = null;
         private static Interop.PushClient.VoidResultCallback unregisterResult = null;
 
+        internal static PushImpl Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        Log.Info(Interop.PushClient.LogTag, "Creating New Instance");
+                        _instance = new PushImpl();
+                    }
+                    return _instance;
+                }
+            }
+        }
 
-        private static IntPtr _connection;
+        internal PushImpl()
+        {
+            // Empty
+        }
 
-        internal static void PushServiceConnect(string pushAppId)
+        private IntPtr _connection;
+
+        internal void PushServiceConnect(string pushAppId)
         {
             stateDelegate = (int state, string err, IntPtr userData) =>
             {
@@ -128,13 +149,13 @@ namespace Tizen.Messaging.Push
             }
         }
 
-        internal static void PushServiceDisconnect()
+        internal void PushServiceDisconnect()
         {
             Interop.PushClient.ServiceDisconnect(_connection);
             Log.Info(Interop.PushClient.LogTag, "PushServiceDisconnect Completed");
         }
 
-        internal static Task<ServerResponse> PushServerRegister()
+        internal async Task<ServerResponse> PushServerRegister()
         {
             Log.Info(Interop.PushClient.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
@@ -142,7 +163,7 @@ namespace Tizen.Messaging.Push
             {
                 Log.Error(Interop.PushClient.LogTag, "Register callback was already registered with same callback");
                 task.SetException(PushExceptionFactory.CreateResponseException(Interop.PushClient.ServiceError.OpearationFailed));
-                return task.Task;
+                return await task.Task;
             }
 
             registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
@@ -187,10 +208,10 @@ namespace Tizen.Messaging.Push
                     registerResult = null;
                 }
             }
-            return task.Task;
+            return await task.Task;
         }
 
-        internal static Task<ServerResponse> PushServerUnregister()
+        internal async Task<ServerResponse> PushServerUnregister()
         {
             var task = new TaskCompletionSource<ServerResponse>();
             unregisterResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
@@ -223,10 +244,10 @@ namespace Tizen.Messaging.Push
             {
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
             }
-            return task.Task;
+            return await task.Task;
         }
 
-        internal static string GetRegistrationId()
+        internal string GetRegistrationId()
         {
             string regID = "";
             Interop.PushClient.ServiceError result = Interop.PushClient.GetRegistrationId(_connection, out regID);
@@ -238,7 +259,7 @@ namespace Tizen.Messaging.Push
             return regID;
         }
 
-        internal static void GetUnreadNotifications()
+        internal void GetUnreadNotifications()
         {
             Interop.PushClient.ServiceError result = Interop.PushClient.RequestUnreadNotification(_connection);
             if (result != Interop.PushClient.ServiceError.None)
@@ -247,5 +268,13 @@ namespace Tizen.Messaging.Push
             }
         }
 
+        internal static void Reset()
+        {
+            lock (_lock)
+            {
+                Log.Info(Interop.PushClient.LogTag, "Making _instance as null");
+                _instance = null;
+            }
+        }
     }
 }

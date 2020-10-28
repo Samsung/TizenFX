@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+
     internal enum StencilOperationType
     {
         ZERO,
@@ -28,4 +29,5 @@ namespace Tizen.NUI
         INCREMENT_WRAP,
         DECREMENT_WRAP
     }
+
 }

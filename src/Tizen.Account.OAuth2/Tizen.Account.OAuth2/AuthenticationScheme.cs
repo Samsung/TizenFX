@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 namespace Tizen.Account.OAuth2
 {
     /// <summary>
@@ -23,7 +22,6 @@ namespace Tizen.Account.OAuth2
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <remarks>Facebook and Google does not support HTTP Basic Authentication, instead they require client credentials to be sent via request body.</remarks>
-    [Obsolete]
     public enum AuthenticationScheme
     {
         /// <summary>

@@ -51,11 +51,8 @@ namespace Tizen.Applications
             /// <summary>
             /// Gets the widget content.
             /// </summary>
-            /// <returns>The bundle containing widget content.</returns>
             /// <since_tizen> 3 </since_tizen>
-            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-            /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
             public Bundle GetContent()
             {
                 IntPtr h;
@@ -66,10 +63,9 @@ namespace Tizen.Applications
                 {
                     case Interop.WidgetService.ErrorCode.InvalidParameter:
                         throw new InvalidOperationException("Invalid parameter at unmanaged code");
+
                     case Interop.WidgetService.ErrorCode.IoError:
                         throw new InvalidOperationException("Failed to access DB");
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
                 }
 
                 return new Bundle(new SafeBundleHandle(h, true));
@@ -81,11 +77,9 @@ namespace Tizen.Applications
             /// <since_tizen> 3 </since_tizen>
             /// <param name="content">Content to be changed.</param>
             /// <param name="force"> True if you want to update your widget even if the provider is paused, otherwise false.</param>
-            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-            /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
             public void ChangeContent(Bundle content, bool force)
             {
                 Interop.WidgetService.ErrorCode err = Interop.WidgetService.UpdateContent(_widgetId, Id, content.SafeBundleHandle, force ? 1 : 0);
@@ -106,9 +100,6 @@ namespace Tizen.Applications
 
                     case Interop.WidgetService.ErrorCode.PermissionDenied:
                         throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
                 }
             }
 
@@ -116,12 +107,9 @@ namespace Tizen.Applications
             /// Changes the update period for the widget instance.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// <param name="period">The period to be changed.</param>
-            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-            /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
             public void ChangePeriod(double period)
             {
                 Interop.WidgetService.ErrorCode err = Interop.WidgetService.ChangePeriod(_widgetId, Id, period);
@@ -139,9 +127,6 @@ namespace Tizen.Applications
 
                     case Interop.WidgetService.ErrorCode.PermissionDenied:
                         throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
                 }
             }
         }
@@ -269,13 +254,10 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="pkgId">Package ID.</param>
-        /// <returns>The widget control array.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public static WidgetControl[] CreateAll(string pkgId)
         {
             List<WidgetControl> list = new List<WidgetControl>();
@@ -295,9 +277,6 @@ namespace Tizen.Applications
 
                 case Interop.WidgetService.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException("Not supported");
             }
 
             return list.ToArray();
@@ -307,14 +286,10 @@ namespace Tizen.Applications
         /// Gets all the widget IDs by the package ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="pkgId">Package ID.</param>
-        /// <returns>The widget id array.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public static string[] GetWidgetIds(string pkgId)
         {
             List<string> list = new List<string>();
@@ -334,68 +309,9 @@ namespace Tizen.Applications
 
                 case Interop.WidgetService.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException("Not supported");
             }
 
             return list.ToArray();
-        }
-
-        /// <summary>
-        /// Gets main appid of the widget.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
-        public string MainAppId
-        {
-            get
-            {
-                string str = Interop.WidgetService.GetWidgetMainAppId(Id);
-                Interop.WidgetService.ErrorCode err =
-                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-                switch (err)
-                {
-                    case Interop.WidgetService.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
-                }
-
-                return str;
-            }
-        }
-
-        /// <summary>
-        /// Gets package ID of the widget.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
-        public string PackageId
-        {
-            get
-            {
-                string str = Interop.WidgetService.GetWidgetPackageId(Id);
-                Interop.WidgetService.ErrorCode err =
-                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-                switch (err)
-                {
-                    case Interop.WidgetService.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
-                }
-
-                return str;
-            }
         }
 
         /// <summary>
@@ -409,26 +325,11 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
         public bool IsNoDisplay
         {
             get
             {
-                int ret = Interop.WidgetService.GetNoDisplay(Id);
-                Interop.WidgetService.ErrorCode err =
-                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-                switch (err)
-                {
-                    case Interop.WidgetService.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException("Not supported");
-                }
-
-                if (ret != 0)
+                if (Interop.WidgetService.GetNoDisplay(Id) != 0)
                     return true;
 
                 return false;
@@ -439,10 +340,8 @@ namespace Tizen.Applications
         ///  The event handler for a created widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Created
         {
             add
@@ -461,10 +360,8 @@ namespace Tizen.Applications
         /// The event handler for a resumed widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Resumed
         {
             add
@@ -483,10 +380,8 @@ namespace Tizen.Applications
         /// The event handler for a paused widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Paused
         {
             add
@@ -505,10 +400,8 @@ namespace Tizen.Applications
         /// The event handler for a destroyed widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Destroyed
         {
             add
@@ -544,12 +437,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the objects for widget instance information.
         /// </summary>
-        /// <returns>The instances list.</returns>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public IEnumerable<Instance> GetInstances()
         {
             IList<Instance> instances = new List<Instance>();
@@ -576,13 +467,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the objects for widget scale information.
         /// </summary>
-        /// <returns>The scales list.</returns>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public IEnumerable<Scale> GetScales()
         {
             IntPtr wPtr;
@@ -612,9 +500,6 @@ namespace Tizen.Applications
 
                 case Interop.WidgetService.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
             }
             w = new int[cnt1];
             Marshal.Copy(wPtr, w, 0, cnt1);
@@ -667,31 +552,14 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
-        /// <returns>The widget name.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
         public string GetName(string lang)
         {
             if (lang == null)
                 throw new ArgumentNullException();
 
-            string str = Interop.WidgetService.GetName(Id, lang);
-            Interop.WidgetService.ErrorCode err =
-                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-
-            switch (err)
-            {
-                case Interop.WidgetService.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
-            }
-
-            return str;
+            return Interop.WidgetService.GetName(Id, lang);
         }
 
         /// <summary>
@@ -699,42 +567,22 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
-        /// <returns>The widget icon path.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
         public string GetIconPath(string lang)
         {
             if (lang == null)
                 throw new ArgumentNullException();
 
             string pkgId = Interop.WidgetService.GetPkgId(Id);
-            string str = Interop.WidgetService.GetIcon(pkgId, lang);
-            Interop.WidgetService.ErrorCode err =
-                    (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
 
-            switch (err)
-            {
-                case Interop.WidgetService.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
-            }
-
-            return str;
+            return Interop.WidgetService.GetIcon(pkgId, lang);
         }
 
         /// <summary>
         /// Releases all the resources used by the WidgetControl class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the required features are not supported.</exception>
         public void Dispose()
         {
             Dispose(true);
@@ -780,9 +628,6 @@ namespace Tizen.Applications
 
                     case Interop.WidgetService.ErrorCode.PermissionDenied:
                         throw new UnauthorizedAccessException();
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException();
                 }
             }
 
@@ -816,9 +661,6 @@ namespace Tizen.Applications
 
                     case Interop.WidgetService.ErrorCode.NotExist:
                         throw new InvalidOperationException("Event handler is not exist");
-
-                    case Interop.WidgetService.ErrorCode.NotSupported:
-                        throw new NotSupportedException();
                 }
                 _onLifecycleCallback = null;
             }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AppDetailPage x:Class="Tizen.NUI.Examples.SearchPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <View Name="UpperArea" BackgroundColor="Green" SizeWidth="1920" SizeHeight="332" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionY="30"  PositionUsesPivotPoint="true">
+        <TextLabel Text="TopResults" PointSize="25" SizeWidth="300" SizeHeight="50" PositionX="81" PositionY="0" />
+        <TableView Name="UpperListTable" Focusable="true" SizeWidth="1758" SizeHeight="250" PositionX="81" Rows="1" Columns="5" CellPadding="6,0" ParentOrigin="CenterLeft" PivotPoint="CenterLeft"  PositionUsesPivotPoint="true">
+            <ImageView Name="listItem11" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb01.png" CellIndex="0,0" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" PivotPoint="CenterLeft"/>
+            <ImageView Name="listItem12" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb02.png" CellIndex="0,1" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem13" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb03.png" CellIndex="0,2" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem14" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb04.png" CellIndex="0,3" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem15" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb05.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+        </TableView>
+    </View>
+    <View Name="MidArea" BackgroundColor="Green" SizeWidth="1920" SizeHeight="332" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionY="390"  PositionUsesPivotPoint="true">
+        <TextLabel Text="Youtube" PointSize="25" SizeWidth="300" SizeHeight="50" PositionX="81" PositionY="0" />
+        <TableView Name="MidListTable" Focusable="true" SizeWidth="1758" SizeHeight="250" PositionX="81" Rows="1" Columns="5" CellPadding="6,0" ParentOrigin="CenterLeft" PivotPoint="CenterLeft"  PositionUsesPivotPoint="true">
+            <ImageView Name="listItem21" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb06.png" CellIndex="0,0" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" PivotPoint="CenterLeft"/>
+            <ImageView Name="listItem22" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb07.png" CellIndex="0,1" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem23" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb08.png" CellIndex="0,2" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem24" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb09.png" CellIndex="0,3" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem25" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb010.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+        </TableView>
+    </View>
+    <View Name="BottomArea" BackgroundColor="Green" SizeWidth="1920" SizeHeight="332" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionY="748"  PositionUsesPivotPoint="true">
+        <TextLabel Text="Facebook" PointSize="25" SizeWidth="300" SizeHeight="50" PositionX="81" PositionY="0" />
+        <TableView Name="BottomListTable" Focusable="true" SizeWidth="1758" SizeHeight="250" PositionX="81" Rows="1" Columns="5" CellPadding="6,0" ParentOrigin="CenterLeft" PivotPoint="CenterLeft"  PositionUsesPivotPoint="true">
+            <ImageView Name="listItem31" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb011.png" CellIndex="0,0" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" PivotPoint="CenterLeft"/>
+            <ImageView Name="listItem32" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb012.png" CellIndex="0,1" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem33" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb013.png" CellIndex="0,2" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem34" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb014.png" CellIndex="0,3" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem35" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/youtube/ytb015.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+        </TableView>
+    </View>
+</AppDetailPage>

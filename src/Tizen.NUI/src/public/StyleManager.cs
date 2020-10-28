@@ -33,6 +33,7 @@ namespace Tizen.NUI
     public class StyleManager : BaseHandle
     {
         private static readonly StyleManager instance = StyleManager.Get();
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandler<StyleChangedEventArgs> _styleManagerStyleChangedEventHandler;
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
@@ -172,6 +173,7 @@ namespace Tizen.NUI
 
         internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.StyleManager.StyleManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal StyleChangedSignal StyleChangedSignal()

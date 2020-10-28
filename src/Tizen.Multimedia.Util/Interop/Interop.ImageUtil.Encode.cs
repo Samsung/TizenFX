@@ -65,27 +65,27 @@ internal static partial class Interop
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run")]
             internal static extern ImageUtilError Run(ImageEncoderHandle handle, out ulong size);
         }
-    }
 
-    internal class ImageEncoderHandle : SafeHandle
-    {
-        protected ImageEncoderHandle() : base(IntPtr.Zero, true)
+        internal class ImageEncoderHandle : SafeHandle
         {
-        }
-
-        public override bool IsInvalid => handle == IntPtr.Zero;
-
-
-        protected override bool ReleaseHandle()
-        {
-            var ret = ImageUtil.Encode.Destroy(handle);
-            if (ret != ImageUtilError.None)
+            protected ImageEncoderHandle() : base(IntPtr.Zero, true)
             {
-                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-                return false;
             }
 
-            return true;
+            public override bool IsInvalid => handle == IntPtr.Zero;
+
+
+            protected override bool ReleaseHandle()
+            {
+                var ret = Encode.Destroy(handle);
+                if (ret != ImageUtilError.None)
+                {
+                    Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                    return false;
+                }
+
+                return true;
+            }
         }
     }
 }

@@ -157,36 +157,14 @@ namespace Tizen.Sensor
             return count;
         }
 
-        /// <summary>
-        /// Read rotation vector sensor data synchronously.
-        /// </summary>
-        internal override void ReadData()
-        {
-            Interop.SensorEventStruct sensorData;
-            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error reading rotation vector sensor data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading rotation vector sensor data failed");
-            }
-
-            Timestamp = sensorData.timestamp;
-            X = sensorData.values[0];
-            Y = sensorData.values[1];
-            Z = sensorData.values[2];
-            W = sensorData.values[3];
-            Accuracy = sensorData.accuracy;
-        }
-
-        private static Interop.SensorListener.SensorEventsCallback _callback;
+        private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
-                updateBatchEvents(eventPtr, events_count);
-                Interop.SensorEventStruct sensorData = latestEvent();
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
-                Timestamp = sensorData.timestamp;
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 X = sensorData.values[0];
                 Y = sensorData.values[1];
                 Z = sensorData.values[2];
@@ -196,7 +174,7 @@ namespace Tizen.Sensor
                 DataUpdated?.Invoke(this, new RotationVectorSensorDataUpdatedEventArgs(sensorData.values, sensorData.accuracy));
             };
 
-            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for rotation vector sensor");
@@ -206,7 +184,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for rotation vector sensor");
@@ -219,9 +197,9 @@ namespace Tizen.Sensor
         private void AccuracyListenStart()
         {
             _accuracyCallback = (IntPtr sensorHandle, UInt64 timestamp, SensorDataAccuracy accuracy, IntPtr data) => {
-                Timestamp = timestamp;
+                TimeSpan = new TimeSpan((Int64)timestamp);
                 Accuracy = accuracy;
-                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(timestamp, accuracy));
+                _accuracyChanged?.Invoke(this, new SensorAccuracyChangedEventArgs(new TimeSpan((Int64)timestamp), accuracy));
             };
 
             int error = Interop.SensorListener.SetAccuracyCallback(ListenerHandle, _accuracyCallback, IntPtr.Zero);

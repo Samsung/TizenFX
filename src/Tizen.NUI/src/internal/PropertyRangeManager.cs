@@ -109,6 +109,7 @@ namespace Tizen.NUI
 
         }
 
+
         /// <since_tizen> 3 </since_tizen>
         public struct PropertyRange
         {
@@ -128,6 +129,7 @@ namespace Tizen.NUI
                 }
             }
 
+
             /// <since_tizen> 3 </since_tizen>
             public int startEventIndex;        // start of the property range
             /// <since_tizen> 3 </since_tizen>
@@ -138,5 +140,8 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public int lastUsedAnimationIndex; // last used of the property index
         };
+
+
+
     }
 }

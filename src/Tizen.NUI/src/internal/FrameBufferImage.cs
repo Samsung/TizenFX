@@ -17,11 +17,14 @@
 
 namespace Tizen.NUI
 {
+
     internal class FrameBufferImage : Image
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal FrameBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBufferImage.FrameBufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameBufferImage obj)
@@ -29,41 +32,70 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.FrameBufferImage.delete_FrameBufferImage(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.FrameBufferImage.delete_FrameBufferImage(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
+
 
         public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat, RenderBufferFormat bufferFormat) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_0(width, height, (int)pixelFormat, (int)bufferFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_1(width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public FrameBufferImage(uint width, uint height) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_2(width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public FrameBufferImage(uint width) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_3(width), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public FrameBufferImage() : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_4(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public FrameBufferImage(NativeImageInterface image) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_5(NativeImageInterface.getCPtr(image)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
+        }
         public new static FrameBufferImage DownCast(BaseHandle handle)
         {
             FrameBufferImage ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as FrameBufferImage;
@@ -82,5 +114,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
     }
+
 }

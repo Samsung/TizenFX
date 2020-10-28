@@ -16,7 +16,6 @@
 
 using System;
 using System.Diagnostics;
-using Native = Tizen.Multimedia.Interop.MediaPacket;
 
 namespace Tizen.Multimedia
 {
@@ -40,15 +39,15 @@ namespace Tizen.Multimedia
 
             _packet = packet;
 
-            int ret = Native.GetVideoStrideWidth(packet.GetHandle(), index, out _strideWidth);
+            int ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideWidth);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Native.GetVideoStrideHeight(packet.GetHandle(), index, out _strideHeight);
+            ret = Interop.MediaPacket.GetVideoStrideHeight(packet.GetHandle(), index, out _strideHeight);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(_strideWidth >= 0 && _strideHeight >= 0, "size must not be negative!");
 
-            ret = Native.GetVideoPlaneData(packet.GetHandle(), index, out var dataHandle);
+            ret = Interop.MediaPacket.GetVideoPlaneData(packet.GetHandle(), index, out var dataHandle);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");

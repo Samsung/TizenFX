@@ -15,6 +15,8 @@ namespace Tizen.NUI.Binding
 
         void BeginInvokeOnMainThread(Action action);
 
+        Ticker CreateTicker();
+
         Assembly[] GetAssemblies();
 
         string GetMD5Hash(string input);

@@ -227,7 +227,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected virtual void OnPause()
+        protected void OnPause()
         {
             Log.Debug("NUI", "OnPause() is called!");
             Paused?.Invoke(this, EventArgs.Empty);

@@ -10,6 +10,7 @@
 
 namespace Tizen.NUI
 {
+
     internal class SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -24,5 +25,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
     }
+
 }

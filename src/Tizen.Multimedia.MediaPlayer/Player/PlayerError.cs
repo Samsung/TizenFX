@@ -48,8 +48,7 @@ namespace Tizen.Multimedia
         ServiceDisconnected = PlayerErrorClass | 0x0d,
         NotSupportedAudioCodec = PlayerErrorClass | 0x0e,
         NotSupportedVideoCodec = PlayerErrorClass | 0x0f,
-        NotSupportedSubtitle = PlayerErrorClass | 0x10,
-        NotAvailable = PlayerErrorClass | 0x12
+        NotSupportedSubtitle = PlayerErrorClass | 0x10
     }
 
     internal static class PlayerErrorCodeExtensions
@@ -130,9 +129,6 @@ namespace Tizen.Multimedia
 
                 case PlayerErrorCode.NotSupportedVideoCodec:
                     throw new CodecNotSupportedException(CodecKind.Video);
-
-                case PlayerErrorCode.NotAvailable:
-                    throw new NotAvailableException(msg);
             }
 
             return null;
@@ -167,22 +163,6 @@ namespace Tizen.Multimedia
         /// <param name="message">Error description.</param>
         /// <since_tizen> 3 </since_tizen>
         public ResourceLimitException(string message) : base(message)
-        {
-        }
-    }
-
-    /// <summary>
-    /// The exception that is thrown when there it is not available.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public class NotAvailableException : Exception
-    {
-        /// <summary>
-        /// Initializes a new instance of the NotAvailableException class with a specified error message.
-        /// </summary>
-        /// <param name="message">Error description.</param>
-        /// <since_tizen> 6 </since_tizen>
-        public NotAvailableException(string message) : base(message)
         {
         }
     }

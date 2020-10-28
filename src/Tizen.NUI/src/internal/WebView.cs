@@ -20,7 +20,6 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -30,31 +29,20 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, string pageUrl, int errorCode);
-
-        private readonly WebViewPageLoadSignal pageLoadStartedSignal;
-        private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
-
-        private readonly WebViewPageLoadSignal pageLoadFinishedSignal;
-        private EventHandler<WebViewPageLoadEventArgs> pageLoadFinishedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadFinishedCallback;
-
-        private readonly WebViewPageLoadErrorSignal pageLoadErrorSignal;
-        private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
-        private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
-
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadStarted(swigCPtr));
-            pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadFinished(swigCPtr));
-            pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.new_WebViewPageLoadErrorSignal_PageLoadError(swigCPtr));
+            InitializeSignals();
+        }
+
+        private global::System.Runtime.InteropServices.HandleRef pageLoadStartedSignalProxy;
+        private global::System.Runtime.InteropServices.HandleRef pageLoadFinishedSignalProxy;
+        private void InitializeSignals()
+        {
+            pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.WebView.new_WebViewSignalProxy_PageLoadStarted(swigCPtr));
+            pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.WebView.new_WebViewSignalProxy_PageLoadFinished(swigCPtr));
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebView obj)
@@ -62,22 +50,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal WebView Assign(WebView webView)
-        {
-            WebView ret = new WebView(Interop.WebView.WebView_Assign(swigCPtr, WebView.getCPtr(webView)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal static WebView DownCast(BaseHandle handle)
-        {
-            WebView ret = new WebView(Interop.WebView.WebView_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
-        /// Dispose for IDisposable pattern
+        /// To make Button instance be disposed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -92,217 +67,50 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                pageLoadStartedSignal.Dispose();
-                pageLoadFinishedSignal.Dispose();
-                pageLoadErrorSignal.Dispose();
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            DisposeSignals();
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.WebView.delete_WebView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             base.Dispose(type);
         }
 
-        /// This will not be public opened.
-        /// <param name="swigCPtr"></param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        private void DisposeSignals()
         {
-            Interop.WebView.delete_WebView(swigCPtr);
-        }
-
-        private void OnPageLoadStarted(IntPtr data, string pageUrl)
-        {
-            WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
-
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
-            e.PageUrl = pageUrl;
-
-            if (pageLoadStartedEventHandler != null)
+            if (pageLoadStartedSignalProxy.Handle != global::System.IntPtr.Zero)
             {
-                pageLoadStartedEventHandler(this, e);
+                if (pageLoadStartedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
+                }
+                Interop.WebView.delete_WebViewSignalProxy(pageLoadStartedSignalProxy);
+                pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            if (pageLoadFinishedSignalProxy.Handle != global::System.IntPtr.Zero)
+            {
+                if (pageLoadFinishedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
+                }
+                Interop.WebView.delete_WebViewSignalProxy(pageLoadFinishedSignalProxy);
+                pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
         }
-
-        private void OnPageLoadFinished(IntPtr data, string pageUrl)
-        {
-            WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
-
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
-            e.PageUrl = pageUrl;
-
-            if (pageLoadFinishedEventHandler != null)
-            {
-                pageLoadFinishedEventHandler(this, e);
-            }
-        }
-
-        private void OnPageLoadError(IntPtr data, string pageUrl, int errorCode)
-        {
-            WebViewPageLoadErrorEventArgs e = new WebViewPageLoadErrorEventArgs();
-
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
-            e.PageUrl = pageUrl;
-            e.ErrorCode = (WebViewPageLoadErrorEventArgs.LoadErrorCode)errorCode;
-
-            if (pageLoadErrorEventHandler != null)
-            {
-                pageLoadErrorEventHandler(this, e);
-            }
-        }
-
-        internal static new class Property
-        {
-            internal static readonly int URL = Interop.WebView.WebView_Property_URL_get();
-            internal static readonly int CACHE_MODEL = Interop.WebView.WebView_Property_CACHE_MODEL_get();
-            internal static readonly int COOKIE_ACCEPT_POLICY = Interop.WebView.WebView_Property_COOKIE_ACCEPT_POLICY_get();
-            internal static readonly int USER_AGENT = Interop.WebView.WebView_Property_USER_AGENT_get();
-            internal static readonly int ENABLE_JAVASCRIPT = Interop.WebView.WebView_Property_ENABLE_JAVASCRIPT_get();
-            internal static readonly int LOAD_IMAGES_AUTOMATICALLY = Interop.WebView.WebView_Property_LOAD_IMAGES_AUTOMATICALLY_get();
-            internal static readonly int DEFAULT_TEXT_ENCODING_NAME = Interop.WebView.WebView_Property_DEFAULT_TEXT_ENCODING_NAME_get();
-            internal static readonly int DEFAULT_FONT_SIZE = Interop.WebView.WebView_Property_DEFAULT_FONT_SIZE_get();
-        }
-
-        private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.URL, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.URL).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), CacheModel.DocumentViewer, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.CACHE_MODEL, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.CACHE_MODEL).Get(out temp) == false)
-            {
-                NUILog.Error("CacheModel get error!");
-            }
-            switch (temp)
-            {
-                case "DOCUMENT_VIEWER": return CacheModel.DocumentViewer;
-                case "DOCUMENT_BROWSER": return CacheModel.DocumentBrowser;
-                default: return CacheModel.PrimaryWebBrowser;
-            }
-        });
-
-        private static readonly BindableProperty CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), CookieAcceptPolicy.NoThirdParty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.COOKIE_ACCEPT_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.COOKIE_ACCEPT_POLICY).Get(out temp) == false)
-            {
-                NUILog.Error("CookieAcceptPolicy get error!");
-            }
-            switch (temp)
-            {
-                case "ALWAYS": return CookieAcceptPolicy.Always;
-                case "NEVER": return CookieAcceptPolicy.Never;
-                default: return CookieAcceptPolicy.NoThirdParty;
-            }
-        });
-
-        private static readonly BindableProperty UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.USER_AGENT, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.USER_AGENT).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.ENABLE_JAVASCRIPT, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.ENABLE_JAVASCRIPT).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.LOAD_IMAGES_AUTOMATICALLY, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.LOAD_IMAGES_AUTOMATICALLY).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.DEFAULT_TEXT_ENCODING_NAME, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.DEFAULT_TEXT_ENCODING_NAME).Get(out temp);
-            return temp;
-        });
-
-        private static readonly BindableProperty DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 16, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.swigCPtr, WebView.Property.DEFAULT_FONT_SIZE, new Tizen.NUI.PropertyValue((int)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var webview = (WebView)bindable;
-            int temp;
-            Tizen.NUI.Object.GetProperty(webview.swigCPtr, WebView.Property.DEFAULT_FONT_SIZE).Get(out temp);
-            return temp;
-        });
 
         /// <summary>
         /// Creates an uninitialized WebView.
@@ -335,156 +143,98 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// The url to load.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Url
+        internal WebView Assign(WebView webView)
         {
-            get
-            {
-                return (string)GetValue(UrlProperty);
-            }
-            set
-            {
-                SetValue(UrlProperty, value);
-                NotifyPropertyChanged();
-            }
+            WebView ret = new WebView(Interop.WebView.WebView_Assign(swigCPtr, WebView.getCPtr(webView)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static WebView DownCast(BaseHandle handle)
+        {
+            WebView ret = new WebView(Interop.WebView.WebView_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// The cache model of the current WebView.
+        /// Event arguments that passed via the webview signal.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CacheModel CacheModel
+        public class WebViewEventArgs : EventArgs
         {
-            get
+            private WebView _webView;
+            /// <summary>
+            /// The view for displaying webpages.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public WebView WebView
             {
-                return (CacheModel)GetValue(CacheModelProperty);
+                get
+                {
+                    return _webView;
+                }
+                set
+                {
+                    _webView = value;
+                }
             }
-            set
+
+            private string _pageUrl;
+            /// <summary>
+            /// The url string of current webpage.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string PageUrl
             {
-                SetValue(CacheModelProperty, value);
-                NotifyPropertyChanged();
+                get
+                {
+                    return _pageUrl;
+                }
+                set
+                {
+                    _pageUrl = value;
+                }
             }
         }
 
-        /// <summary>
-        /// The cookie acceptance policy.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public CookieAcceptPolicy CookieAcceptPolicy
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewCallbackDelegate(IntPtr data, string pageUrl);
+
+        private void WebViewProxyConnect(global::System.Runtime.InteropServices.HandleRef proxy, System.Delegate func)
         {
-            get
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                return (CookieAcceptPolicy)GetValue(CookieAcceptPolicyProperty);
-            }
-            set
-            {
-                SetValue(CookieAcceptPolicyProperty, value);
-                NotifyPropertyChanged();
+                Interop.WebView.WebViewSignalProxy_Connect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
-        /// <summary>
-        /// The user agent string.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string UserAgent
+        private void WebViewProxyDisconnect(global::System.Runtime.InteropServices.HandleRef proxy, System.Delegate func)
         {
-            get
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                return (string)GetValue(UserAgentProperty);
-            }
-            set
-            {
-                SetValue(UserAgentProperty, value);
-                NotifyPropertyChanged();
+                Interop.WebView.WebViewSignalProxy_Disconnect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
-        /// <summary>
-        /// Whether JavaScript is enabled.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableJavaScript
-        {
-            get
-            {
-                return (bool)GetValue(EnableJavaScriptProperty);
-            }
-            set
-            {
-                SetValue(EnableJavaScriptProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Whether images can be loaded automatically.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool LoadImagesAutomatically
-        {
-            get
-            {
-                return (bool)GetValue(LoadImagesAutomaticallyProperty);
-            }
-            set
-            {
-                SetValue(LoadImagesAutomaticallyProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// The default text encoding name.<br />
-        /// e.g. "UTF-8"<br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string DefaultTextEncodingName
-        {
-            get
-            {
-                return (string)GetValue(DefaultTextEncodingNameProperty);
-            }
-            set
-            {
-                SetValue(DefaultTextEncodingNameProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// The default font size in pixel.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int DefaultFontSize
-        {
-            get
-            {
-                return (int)GetValue(DefaultFontSizeProperty);
-            }
-            set
-            {
-                SetValue(DefaultFontSizeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
+        private EventHandler<WebViewEventArgs> pageLoadStartedEventHandler;
+        private WebViewCallbackDelegate pageLoadStartedCallback;
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewPageLoadEventArgs> PageLoadStarted
+        public event EventHandler<WebViewEventArgs> PageLoadStarted
         {
             add
             {
                 if (pageLoadStartedEventHandler == null)
                 {
                     pageLoadStartedCallback = (OnPageLoadStarted);
-                    pageLoadStartedSignal.Connect(pageLoadStartedCallback);
+                    WebViewProxyConnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
                 }
                 pageLoadStartedEventHandler += value;
             }
@@ -493,24 +243,40 @@ namespace Tizen.NUI
                 pageLoadStartedEventHandler -= value;
                 if (pageLoadStartedEventHandler == null && pageLoadStartedCallback != null)
                 {
-                    pageLoadStartedSignal.Disconnect(pageLoadStartedCallback);
+                    WebViewProxyDisconnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
                 }
             }
         }
+
+        private void OnPageLoadStarted(IntPtr data, string pageUrl)
+        {
+            WebViewEventArgs e = new WebViewEventArgs();
+
+            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.PageUrl = pageUrl;
+
+            if (pageLoadStartedEventHandler != null)
+            {
+                pageLoadStartedEventHandler(this, e);
+            }
+        }
+
+        private EventHandler<WebViewEventArgs> pageLoadFinishedEventHandler;
+        private WebViewCallbackDelegate pageLoadFinishedCallback;
 
         /// <summary>
         /// Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has finished.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewPageLoadEventArgs> PageLoadFinished
+        public event EventHandler<WebViewEventArgs> PageLoadFinished
         {
             add
             {
                 if (pageLoadFinishedEventHandler == null)
                 {
                     pageLoadFinishedCallback = (OnPageLoadFinished);
-                    pageLoadFinishedSignal.Connect(pageLoadFinishedCallback);
+                    WebViewProxyConnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
                 }
                 pageLoadFinishedEventHandler += value;
             }
@@ -519,34 +285,21 @@ namespace Tizen.NUI
                 pageLoadFinishedEventHandler -= value;
                 if (pageLoadFinishedEventHandler == null && pageLoadFinishedCallback != null)
                 {
-                    pageLoadFinishedSignal.Disconnect(pageLoadFinishedCallback);
+                    WebViewProxyDisconnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
                 }
             }
         }
 
-        /// <summary>
-        /// Event for the PageLoadError signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted when there's an error in page loading.<br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewPageLoadErrorEventArgs> PageLoadError
+        private void OnPageLoadFinished(IntPtr data, string pageUrl)
         {
-            add
+            WebViewEventArgs e = new WebViewEventArgs();
+
+            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.PageUrl = pageUrl;
+
+            if (pageLoadFinishedEventHandler != null)
             {
-                if (pageLoadErrorEventHandler == null)
-                {
-                    pageLoadErrorCallback = (OnPageLoadError);
-                    pageLoadErrorSignal.Connect(pageLoadErrorCallback);
-                }
-                pageLoadErrorEventHandler += value;
-            }
-            remove
-            {
-                pageLoadErrorEventHandler -= value;
-                if (pageLoadErrorEventHandler == null && pageLoadErrorCallback != null)
-                {
-                    pageLoadErrorSignal.Disconnect(pageLoadErrorCallback);
-                }
+                pageLoadFinishedEventHandler(this, e);
             }
         }
 
@@ -559,6 +312,18 @@ namespace Tizen.NUI
         {
             Interop.WebView.WebView_LoadUrl(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns the URL of the Web
+        /// <returns>Url of string type</returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetUrl()
+        {
+            string url = Interop.WebView.WebView_GetUrl(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return url;
         }
 
         /// <summary>
@@ -589,26 +354,6 @@ namespace Tizen.NUI
         public void StopLoading()
         {
             Interop.WebView.WebView_StopLoading(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Suspends the operation.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Suspend()
-        {
-            Interop.WebView.WebView_Suspend(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Resumes the operation after calling Suspend()
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Resume()
-        {
-            Interop.WebView.WebView_Resume(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -657,22 +402,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The callback function that is invoked when the message is received from the script.
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void JavaScriptMessageHandler(string message);
-
-        /// <summary>
         /// Evaluates JavaScript code represented as a string.
         /// <param name="script">The JavaScript code</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
-            Interop.WebView.WebView_EvaluateJavaScript(swigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+            Interop.WebView.WebView_EvaluateJavaScript(swigCPtr, script);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptMessageHandler(string message);
+
 
         // For rooting handlers
         internal Dictionary<string, JavaScriptMessageHandler> handlerRootMap = new Dictionary<string, JavaScriptMessageHandler>();
@@ -699,7 +445,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the history of current WebView.
+        /// Clears the history of Web.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearHistory()
@@ -709,22 +455,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Clears the cache of current WebView.
+        /// Clears the cache of Web.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
         {
             Interop.WebView.WebView_ClearCache(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Clears all the cookies of current WebView.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearCookies()
-        {
-            Interop.WebView.WebView_ClearCookies(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

@@ -15,6 +15,19 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
     {
+
+        // public static readonly BindableProperty MenuProperty = BindableProperty.CreateAttached(nameof(Menu), typeof(Menu), typeof(Element), null);
+
+        // public static Menu GetMenu(BindableObject bindable)
+        // {
+        //   return (Menu)bindable.GetValue(MenuProperty);
+        // }
+
+        // public static void SetMenu(BindableObject bindable, Menu menu)
+        // {
+        //   bindable.SetValue(MenuProperty, menu);
+        // }
+
         internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);
 
         /// <summary>
@@ -30,9 +43,15 @@ namespace Tizen.NUI.Binding
 
         Dictionary<BindableProperty, string> _dynamicResources;
 
+        IEffectControlProvider _effectControlProvider;
+
+        TrackableCollection<Effect> _effects;
+
         Guid? _id;
 
         Element _parentOverride;
+
+        IPlatform _platform;
 
         string _styleId;
 
@@ -61,6 +80,20 @@ namespace Tizen.NUI.Binding
         {
             get { return (string)GetValue(ClassIdProperty); }
             set { SetValue(ClassIdProperty, value); }
+        }
+
+        internal IList<Effect> Effects
+        {
+            get
+            {
+                if (_effects == null)
+                {
+                    _effects = new TrackableCollection<Effect>();
+                    _effects.CollectionChanged += EffectsOnCollectionChanged;
+                    _effects.Clearing += EffectsOnClearing;
+                }
+                return _effects;
+            }
         }
 
         /// <summary>
@@ -152,6 +185,31 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// For internal use.
         /// </summary>
+        internal IPlatform Platform
+        {
+            get
+            {
+                if (_platform == null && RealParent != null)
+                    return RealParent.Platform;
+                return _platform;
+            }
+            set
+            {
+                if (_platform == value)
+                    return;
+                _platform = value;
+                PlatformSet?.Invoke(this, EventArgs.Empty);
+                foreach (Element descendant in Descendants())
+                {
+                    descendant._platform = _platform;
+                    descendant.PlatformSet?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        /// <summary>
+        /// For internal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Element RealParent { get; private set; }
 
@@ -202,6 +260,13 @@ namespace Tizen.NUI.Binding
 
                 OnParentSet();
 
+                if (RealParent != null)
+                {
+                    IPlatform platform = RealParent.Platform;
+                    if (platform != null)
+                        Platform = platform;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -211,6 +276,33 @@ namespace Tizen.NUI.Binding
             if (_changeHandlers == null)
                 return;
             _changeHandlers.Remove(onchanged);
+        }
+
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        internal IEffectControlProvider EffectControlProvider
+        {
+            get { return _effectControlProvider; }
+            set
+            {
+                if (_effectControlProvider == value)
+                    return;
+                if (_effectControlProvider != null && _effects != null)
+                {
+                    foreach (Effect effect in _effects)
+                        effect?.SendDetached();
+                }
+                _effectControlProvider = value;
+                if (_effectControlProvider != null && _effects != null)
+                {
+                    foreach (Effect effect in _effects)
+                    {
+                        if (effect != null)
+                            AttachEffect(effect);
+                    }
+                }
+            }
         }
 
         //void IElementController.SetValueFromRenderer(BindableProperty property, object value) => SetValueFromRenderer(property, value);
@@ -233,6 +325,22 @@ namespace Tizen.NUI.Binding
         internal void SetValueFromRenderer(BindablePropertyKey property, object value)
         {
             SetValueCore(property, value);
+        }
+
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        /// <param name="name">The nameof the effect</param>
+        /// <returns>true if attached</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EffectIsAttached(string name)
+        {
+            foreach (var effect in Effects)
+            {
+                if (effect.ResolveId == name)
+                    return true;
+            }
+            return false;
         }
 
         object INameScope.FindByName(string name)
@@ -341,6 +449,8 @@ namespace Tizen.NUI.Binding
         protected virtual void OnChildAdded(Element child)
         {
             child.Parent = this;
+            if (Platform != null)
+                child.Platform = Platform;
 
             child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged:true);
 
@@ -388,6 +498,15 @@ namespace Tizen.NUI.Binding
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
+
+            if (_effects == null || _effects.Count == 0)
+                return;
+
+            var args = new PropertyChangedEventArgs(propertyName);
+            foreach (Effect effect in _effects)
+            {
+                effect?.SendOnElementPropertyChanged(args);
+            }
         }
 
         /// <summary>
@@ -496,6 +615,12 @@ namespace Tizen.NUI.Binding
         {
         }
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlatformSet;
+
         internal virtual void SetChildInheritedBindingContext(Element child, object context)
         {
             SetInheritedBindingContext(child, context);
@@ -519,6 +644,78 @@ namespace Tizen.NUI.Binding
                     yield return child;
                     queue.Enqueue(child);
                 }
+            }
+        }
+
+        void AttachEffect(Effect effect)
+        {
+            if (_effectControlProvider == null)
+                return;
+            if (effect.IsAttached)
+                throw new InvalidOperationException("Cannot attach Effect to multiple sources");
+
+            Effect effectToRegister = effect;
+            if (effect is RoutingEffect)
+                effectToRegister = ((RoutingEffect)effect).Inner;
+            _effectControlProvider.RegisterEffect(effectToRegister);
+            effectToRegister.Element = this;
+            effect.SendAttached();
+        }
+
+        void EffectsOnClearing(object sender, EventArgs eventArgs)
+        {
+            foreach (Effect effect in _effects)
+            {
+                effect?.ClearEffect();
+            }
+        }
+
+        void EffectsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (Effect effect in e.NewItems)
+                    {
+                        AttachEffect(effect);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (Effect effect in e.OldItems)
+                    {
+                        effect.ClearEffect();
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (Effect effect in e.NewItems)
+                    {
+                        AttachEffect(effect);
+                    }
+                    foreach (Effect effect in e.OldItems)
+                    {
+                        effect.ClearEffect();
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    if (e.NewItems != null)
+                    {
+                        foreach (Effect effect in e.NewItems)
+                        {
+                            AttachEffect(effect);
+                        }
+                    }
+                    if (e.OldItems != null)
+                    {
+                        foreach (Effect effect in e.OldItems)
+                        {
+                            effect.ClearEffect();
+                        }
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

@@ -51,11 +51,7 @@ namespace Tizen.Applications.NotificationEventListener
 
             if (isExisted)
             {
-                NotificationEventArgs.ActiveStyleArgs activeStyle = eventargs.Style["Active"] as NotificationEventArgs.ActiveStyleArgs;
-                if (activeStyle != null)
-                {
-                    activeStyle.Button.Add(button);
-                }
+                (eventargs.Style["Active"] as NotificationEventArgs.ActiveStyleArgs).Button.Add(button);
             }
         }
     }

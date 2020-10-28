@@ -23,12 +23,6 @@ namespace Tizen.NUI.Binding
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
         }
-
-        public override string ConvertToString(object value)
-        {
-            Vector2 vector = (Vector2)value;
-            return vector.X.ToString() + " " + vector.Y.ToString();
-        }
     }
 
     internal class Vector3TypeConverter : TypeConverter
@@ -47,12 +41,6 @@ namespace Tizen.NUI.Binding
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector3)}");
-        }
-
-        public override string ConvertToString(object value)
-        {
-            Vector3 vector = (Vector3)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
         }
     }
 
@@ -74,12 +62,6 @@ namespace Tizen.NUI.Binding
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector4)}");
         }
-
-        public override string ConvertToString(object value)
-        {
-            Vector4 vector = (Vector4)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
-        }
     }
 
     internal class RelativeVector2TypeConverter : TypeConverter
@@ -97,12 +79,6 @@ namespace Tizen.NUI.Binding
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector2)}");
-        }
-
-        public override string ConvertToString(object value)
-        {
-            RelativeVector2 vector = (RelativeVector2)value;
-            return vector.X.ToString() + " " + vector.Y.ToString();
         }
     }
 
@@ -123,12 +99,6 @@ namespace Tizen.NUI.Binding
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector3)}");
         }
-
-        public override string ConvertToString(object value)
-        {
-            RelativeVector3 vector = (RelativeVector3)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
-        }
     }
 
     internal class RelativeVector4TypeConverter : TypeConverter
@@ -148,12 +118,6 @@ namespace Tizen.NUI.Binding
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector4)}");
-        }
-
-        public override string ConvertToString(object value)
-        {
-            RelativeVector4 vector = (RelativeVector4)value;
-            return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString(); ;
         }
     }
 }

@@ -94,12 +94,6 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_rotate_method")]
             internal static extern int GetRotation(IntPtr handle, out RotationFlip rotationFlip);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_duration")]
-            internal static extern int SetDuration(IntPtr handle, ulong value);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_duration")]
-            internal static extern int GetDuration(IntPtr handle, out ulong value);
         }
 
         internal static class MediaFormat
@@ -141,9 +135,6 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_avg_bps")]
             internal static extern int SetVideoAverageBps(IntPtr handle, int value);
 
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_max_bps")]
-            internal static extern int SetVideoMaxBps(IntPtr handle, int value);
-
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_frame_rate")]
             internal static extern int SetVideoFrameRate(IntPtr handle, int value);
             #endregion
@@ -173,26 +164,6 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_aac_header_type")]
             internal static extern int SetAudioAacType(IntPtr handle, MediaFormatAacType value);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_audio_channel_mask")]
-            internal static extern int SetAudioChannelMask(IntPtr handle, ulong mask);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_channel_mask")]
-            internal static extern int GetAudioChannelMask(IntPtr handle, out ulong mask);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_is_little_endian")]
-            internal static extern int IsLittleEndian(IntPtr handle, out bool isLittleEndian);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_audio_bit_depth")]
-            internal static extern int GetAudioBitDepth(IntPtr handle, out int bitDepth);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_from_mask")]
-            internal static extern int GetChannelPositionFromMask(IntPtr handle, ulong mask,
-                out MediaFormatAudioChannelPosition[] position);
-
-            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_to_mask")]
-            internal static extern int GetMaskFromChannelPosition(IntPtr handle,
-                MediaFormatAudioChannelPosition[] position, out ulong mask);
             #endregion
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_get_text_info")]

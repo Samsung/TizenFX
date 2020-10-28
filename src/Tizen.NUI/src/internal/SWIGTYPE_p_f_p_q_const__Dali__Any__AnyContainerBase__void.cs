@@ -10,6 +10,7 @@
 
 namespace Tizen.NUI
 {
+
     internal class SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -29,4 +30,5 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
     }
+
 }

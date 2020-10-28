@@ -16,9 +16,9 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
 using Tizen.Internals.Errors;
-using Native = Tizen.Multimedia.Interop.MediaPacket;
-using NativeFormat = Tizen.Multimedia.Interop.MediaFormat;
 
 namespace Tizen.Multimedia
 {
@@ -59,7 +59,8 @@ namespace Tizen.Multimedia
         {
             _handle = handle;
 
-            int ret = Native.GetFormat(handle, out IntPtr formatHandle);
+            IntPtr formatHandle;
+            int ret = Interop.MediaPacket.GetFormat(handle, out formatHandle);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -72,7 +73,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                NativeFormat.Unref(formatHandle);
+                Interop.MediaFormat.Unref(formatHandle);
             }
         }
 
@@ -103,7 +104,7 @@ namespace Tizen.Multimedia
             {
                 formatHandle = format.AsNativeHandle();
 
-                int ret = Native.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
+                int ret = Interop.MediaPacket.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(_handle != IntPtr.Zero, "Created handle must not be null");
@@ -114,7 +115,7 @@ namespace Tizen.Multimedia
             {
                 if (_handle != IntPtr.Zero)
                 {
-                    Native.Destroy(_handle);
+                    Interop.MediaPacket.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
 
@@ -124,7 +125,7 @@ namespace Tizen.Multimedia
             {
                 if (formatHandle != IntPtr.Zero)
                 {
-                    NativeFormat.Unref(formatHandle);
+                    Interop.MediaFormat.Unref(formatHandle);
                 }
             }
         }
@@ -135,7 +136,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">Operation failed.</exception>
         private void Alloc()
         {
-            ErrorCode ret = (ErrorCode)Native.Alloc(_handle);
+            ErrorCode ret = (ErrorCode)Interop.MediaPacket.Alloc(_handle);
             if (ret == ErrorCode.None)
             {
                 return;
@@ -170,7 +171,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the PTS(Presentation Time Stamp) value of the current packet in nanoseconds.
+        /// Gets or sets the PTS(Presentation Time Stamp) value of the current packet.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -183,7 +184,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetPts(_handle, out var value);
+                int ret = Interop.MediaPacket.GetPts(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
@@ -194,14 +195,14 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
                 ValidateNotLocked();
 
-                int ret = Native.SetPts(_handle, value);
+                int ret = Interop.MediaPacket.SetPts(_handle, value);
 
                 MultimediaDebug.AssertNoError(ret);
             }
         }
 
         /// <summary>
-        /// Gets or sets the DTS(Decoding Time Stamp) value of the current packet in nanoseconds.
+        /// Gets or sets the DTS(Decoding Time Stamp) value of the current packet.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -214,7 +215,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetDts(_handle, out var value);
+                int ret = Interop.MediaPacket.GetDts(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -224,36 +225,7 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
                 ValidateNotLocked();
 
-                int ret = Native.SetDts(_handle, value);
-                MultimediaDebug.AssertNoError(ret);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the duration value of the current packet in nanoseconds.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
-        /// </exception>
-        /// <since_tizen> 6 </since_tizen>
-        public ulong Duration
-        {
-            get
-            {
-                ValidateNotDisposed();
-
-                int ret = Native.GetDuration(_handle, out var value);
-                MultimediaDebug.AssertNoError(ret);
-
-                return value;
-            }
-            set
-            {
-                ValidateNotDisposed();
-                ValidateNotLocked();
-
-                int ret = Native.SetDuration(_handle, value);
+                int ret = Interop.MediaPacket.SetDts(_handle, value);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -270,7 +242,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.IsEncoded(_handle, out var value);
+                int ret = Interop.MediaPacket.IsEncoded(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -292,7 +264,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetRotation(_handle, out var value);
+                int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 var rotation = value < RotationFlip.HorizontalFlip ? (Rotation)value : Rotation.Rotate0;
@@ -305,7 +277,7 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
                 ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
-                int ret = Native.SetRotation(_handle, (RotationFlip)value);
+                int ret = Interop.MediaPacket.SetRotation(_handle, (RotationFlip)value);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -328,7 +300,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetRotation(_handle, out var value);
+                int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 var flip = (value < RotationFlip.HorizontalFlip) ? Flips.None :
@@ -349,7 +321,7 @@ namespace Tizen.Multimedia
 
                 var flip = value == Flips.Horizontal ? RotationFlip.HorizontalFlip : RotationFlip.VerticalFlip;
 
-                int ret = Native.SetRotation(_handle, flip);
+                int ret = Interop.MediaPacket.SetRotation(_handle, flip);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -400,7 +372,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetBufferSize(_handle, out var value);
+                int ret = Interop.MediaPacket.GetBufferSize(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(value < int.MaxValue);
@@ -426,7 +398,7 @@ namespace Tizen.Multimedia
                         "value must be less than Buffer.Size.");
                 }
 
-                int ret = Native.SetBufferSize(_handle, (ulong)value);
+                int ret = Interop.MediaPacket.SetBufferSize(_handle, (ulong)value);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -476,7 +448,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int ret = Native.GetBufferFlags(_handle, out var value);
+                int ret = Interop.MediaPacket.GetBufferFlags(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
@@ -488,11 +460,11 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
                 ValidateNotLocked();
 
-                int ret = Native.ResetBufferFlags(_handle);
+                int ret = Interop.MediaPacket.ResetBufferFlags(_handle);
 
                 MultimediaDebug.AssertNoError(ret);
 
-                ret = Native.SetBufferFlags(_handle, (int)value);
+                ret = Interop.MediaPacket.SetBufferFlags(_handle, (int)value);
 
                 MultimediaDebug.AssertNoError(ret);
             }
@@ -543,7 +515,7 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
-                Native.Destroy(_handle);
+                Interop.MediaPacket.Destroy(_handle);
                 _handle = IntPtr.Zero;
             }
 
@@ -606,7 +578,7 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
-            int ret = Native.GetNumberOfVideoPlanes(_handle, out var numberOfPlanes);
+            int ret = Interop.MediaPacket.GetNumberOfVideoPlanes(_handle, out var numberOfPlanes);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -630,12 +602,12 @@ namespace Tizen.Multimedia
 
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
-            int ret = Native.GetBufferData(_handle, out var dataHandle);
+            int ret = Interop.MediaPacket.GetBufferData(_handle, out var dataHandle);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
 
-            ret = Native.GetAllocatedBufferSize(_handle, out var size);
+            ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out var size);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(size >= 0, "size must not be negative!");

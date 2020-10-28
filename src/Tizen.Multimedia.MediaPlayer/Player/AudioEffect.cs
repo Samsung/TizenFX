@@ -31,12 +31,31 @@ namespace Tizen.Multimedia
         {
             Player = owner;
 
+            bool available = false;
+
+            Native.EqualizerIsAvailable(Player.Handle, out available).
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+
+            IsAvailable = available;
+
             if (IsAvailable == false)
             {
                 return;
             }
 
-            _bands = new EqualizerBand[Count];
+            int count = 0;
+            Native.GetEqualizerBandsCount(Player.Handle, out count).
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+
+            int min = 0;
+            int max = 0;
+            Native.GetEqualizerLevelRange(Player.Handle, out min, out max).
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+
+            Count = count;
+            BandLevelRange = new Range(min, max);
+
+            _bands = new EqualizerBand[count];
         }
 
         /// <summary>
@@ -49,16 +68,12 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
-        /// <exception cref="NotAvailableException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public EqualizerBand this[int index]
         {
             get
             {
                 Player.ValidateNotDisposed();
-                Player.AudioOffload.CheckDisabled();
 
                 if (index < 0 || Count <= index)
                 {
@@ -79,19 +94,10 @@ namespace Tizen.Multimedia
         /// Clears the equalizer effect.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
-        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        ///     -or-<br/>
-        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
-        /// </exception>
-        /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
             Player.ValidateNotDisposed();
-            Player.AudioOffload.CheckDisabled();
-
-            if (IsAvailable == false)
-                throw new NotAvailableException("The function is not available.");
 
             Native.EqualizerClear(Player.Handle).
                 ThrowIfFailed(Player, "Failed to clear equalizer effect");
@@ -100,77 +106,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the number of items.
         /// </summary>
-        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        ///     -or-<br/>
-        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
-        /// </exception>
-        /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
-        public int Count
-        {
-            get
-            {
-                Player.AudioOffload.CheckDisabled();
-
-                if (IsAvailable == false)
-                    throw new NotAvailableException("The function is not available.");
-
-                Native.GetEqualizerBandsCount(Player.Handle, out var count).
-                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-
-                return count;
-            }
-        }
+        public int Count { get; }
 
         /// <summary>
-        /// Gets the range of band level in dB.
+        /// Gets the band level range of the bands in the dB.
         /// </summary>
-        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        ///     -or-<br/>
-        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
-        /// </exception>
-        /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
-        public Range BandLevelRange
-        {
-            get
-            {
-                Player.AudioOffload.CheckDisabled();
-
-                if (IsAvailable == false)
-                    throw new NotAvailableException("The function is not available.");
-
-                Native.GetEqualizerLevelRange(Player.Handle, out var min, out var max).
-                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-
-                return new Range(min, max);
-            }
-        }
+        public Range BandLevelRange { get; }
 
         /// <summary>
         /// Gets the value whether the AudioEffect is available or not.
         /// </summary>
-        /// <remarks>This function returns the availability of the <see cref="AudioEffect"/>.
-        /// It could be unavailable depending on the platform capabilities.<br/>
-        /// If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>,
-        /// the <see cref="IsAvailable"/> returns false.(Since tizen 6.0)</remarks>
-        /// <exception cref="NotAvailableException">
-        ///     Depending on the audio codec type, the function is not available. (Since tizen 6.0)
-        /// </exception>
-        /// <seealso cref="Player.AudioOffload"/>
-        /// <seealso cref="Player.AudioCodecType"/>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsAvailable
-        {
-            get
-            {
-                Player.AudioOffload.CheckDisabled();
-
-                Native.EqualizerIsAvailable(Player.Handle, out var available).
-                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-                return available;
-            }
-        }
+        public bool IsAvailable { get; }
 
         /// <summary>
         /// Gets the player that this AudioEffect belongs to.

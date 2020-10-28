@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  *
  */
 using System;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -38,9 +37,23 @@ namespace Tizen.NUI
     ///
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public class Adaptor : Disposable
+    public class Adaptor : global::System.IDisposable
     {
+        /// <summary>swigCMemOwn.</summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected bool disposed = false;
+
         private static readonly Adaptor instance = Adaptor.Get();
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
 
         private EventHandler<ResizedEventArgs> _resizedEventHandler;
         private ResizedCallbackDelegate _resizedCallbackDelegate;
@@ -48,8 +61,23 @@ namespace Tizen.NUI
         private EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
         private LanguageChangedCallbackDelegate _languageChangedCallbackDelegate;
 
-        internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ~Adaptor()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -118,6 +146,26 @@ namespace Tizen.NUI
             get
             {
                 return instance;
+            }
+        }
+
+        /// <since_tizen> 4 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -301,6 +349,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets whether the frame count per render is managed using the hardware vsync or manually timed.
+        /// </summary>
+        /// <param name="useHardware">True if the hardware vsync should be used.</param>
+        internal void SetUseHardwareVSync(bool useHardware)
+        {
+            Interop.Adaptor.Adaptor_SetUseHardwareVSync(swigCPtr, useHardware);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Calls this method to notify DALi when a scene is created and initialized.
         /// Notify the adaptor that the scene has been created.
         /// </summary>
@@ -322,6 +380,16 @@ namespace Tizen.NUI
         internal void NotifyLanguageChanged()
         {
             Interop.Adaptor.Adaptor_NotifyLanguageChanged(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the minimum distance in pixels that the fingers must move towards or away from each other in order to trigger a pinch gesture.
+        /// </summary>
+        /// <param name="distance">The minimum pinch distance in pixels.</param>
+        internal void SetMinimumPinchDistance(float distance)
+        {
+            Interop.Adaptor.Adaptor_SetMinimumPinchDistance(swigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -354,11 +422,37 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            Interop.Adaptor.delete_Adaptor(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                swigCMemOwn = false;
+                Interop.Adaptor.delete_Adaptor(swigCPtr);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            disposed = true;
         }
 
         private void OnResized(IntPtr adaptor)

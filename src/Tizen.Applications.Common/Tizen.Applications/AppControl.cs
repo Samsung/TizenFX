@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
@@ -46,9 +45,8 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
 
-        private static Dictionary<int, Interop.AppControl.ResultCallback> s_resultNativeCallbackMaps = new Dictionary<int, Interop.AppControl.ResultCallback>();
-        private static Dictionary<int, AppControlReplyCallback> s_replyCallbackMaps = new Dictionary<int, AppControlReplyCallback>();
-        private static int s_reaustId = 0;
+        private static Dictionary<int, Interop.AppControl.ReplyCallback> s_replyNativeCallbackMaps = new Dictionary<int, Interop.AppControl.ReplyCallback>();
+        private static int s_replyNativeCallbackId = 0;
 
         private readonly SafeAppControlHandle _handle;
 
@@ -58,7 +56,6 @@ namespace Tizen.Applications
         private string _category = null;
         private string _applicationId = null;
         private ExtraDataCollection _extraData = null;
-        private string _componentId = null;
 
         /// <summary>
         /// Initializes the instance of the AppControl class.
@@ -126,23 +123,7 @@ namespace Tizen.Applications
             }
         }
 
-        private static Interop.AppControl.ReplyCallback s_replyNativeCallback = (launchHandle, replyHandle, result, userData) =>
-        {
-            int requestId = (int)userData;
-            lock (s_replyCallbackMaps)
-            {
-                if (s_replyCallbackMaps.ContainsKey(requestId))
-                {
-                    s_replyCallbackMaps[requestId](new AppControl(launchHandle), new AppControl(replyHandle), (AppControlReplyResult)result);
-                    if (result != Interop.AppControl.AppStartedStatus)
-                    {
-                        s_replyCallbackMaps.Remove(requestId);
-                    }
-                }
-            }
-        };
-
-#region Public Properties
+        #region Public Properties
 
         /// <summary>
         /// Gets the SafeAppControlHandle instance.
@@ -442,53 +423,7 @@ namespace Tizen.Applications
             }
         }
 
-        /// <summary>
-        /// Gets and sets the component ID to explicitly launch a component.
-        /// </summary>
-        /// <value>
-        /// (if the component ID is null for setter, it clears the previous value.)
-        /// From Tizen 5.5, a new application model is supported that is component-based application.
-        /// This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
-        /// If the target app is not component-based application, setting property is meaningless.
-        /// </value>
-        /// <example>
-        /// <code>
-        /// AppControl appControl = new AppControl();
-        /// appControl.ApplicationId = "org.tizen.component-based-app"; // component-based application
-        /// appControl.ComponentId = "org.tizen.frame-component";
-        /// AppControl.SendLaunchRequest(appControl);
-        /// </code>
-        /// </example>
-        /// <since_tizen> 6 </since_tizen>
-        public string ComponentId
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(_componentId))
-                {
-                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetComponentId(_handle, out _componentId);
-                    if (err != Interop.AppControl.ErrorCode.None)
-                    {
-                        Log.Warn(LogTag, "Failed to get the component id from the AppControl. Err = " + err);
-                    }
-                }
-                return _componentId;
-            }
-            set
-            {
-                Interop.AppControl.ErrorCode err = Interop.AppControl.SetComponentId(_handle, value);
-                if (err == Interop.AppControl.ErrorCode.None)
-                {
-                    _componentId = value;
-                }
-                else
-                {
-                    Log.Warn(LogTag, "Failed to set the component id to the AppControl. Err = " + err);
-                }
-            }
-        }
-
-#endregion // Public Properties
+        #endregion // Public Properties
 
         /// <summary>
         /// Retrieves all applications that can be launched to handle the given app_control request.
@@ -609,12 +544,26 @@ namespace Tizen.Applications
             if (replyAfterLaunching != null)
             {
                 int id = 0;
-                lock (s_replyCallbackMaps)
+                lock (s_replyNativeCallbackMaps)
                 {
-                    id = s_reaustId++;
-                    s_replyCallbackMaps[id] = replyAfterLaunching;
+                    id = s_replyNativeCallbackId++;
+                    s_replyNativeCallbackMaps[id] = (launchRequestHandle, replyRequestHandle, result, userData) =>
+                    {
+                        if (replyAfterLaunching != null)
+                        {
+                            Log.Debug(LogTag, "Reply Callback is launched");
+                            replyAfterLaunching(new AppControl(launchRequestHandle), new AppControl(replyRequestHandle), (AppControlReplyResult)result);
+                            if (result != Interop.AppControl.AppStartedStatus)
+                            {
+                                lock (s_replyNativeCallbackMaps)
+                                {
+                                    s_replyNativeCallbackMaps.Remove(id);
+                                }
+                            }
+                        }
+                    };
                 }
-                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, s_replyNativeCallback, (IntPtr)id);
+                err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, s_replyNativeCallbackMaps[id], IntPtr.Zero);
             }
             else
             {
@@ -632,7 +581,7 @@ namespace Tizen.Applications
                     case Interop.AppControl.ErrorCode.OutOfMemory:
                         throw new Exceptions.OutOfMemoryException("Out-of-memory");
                     case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
+                        throw new Exceptions.AppNotFoundException("App not found");
                     case Interop.AppControl.ErrorCode.LaunchRejected:
                         throw new Exceptions.LaunchRejectedException("Launch rejected");
                     case Interop.AppControl.ErrorCode.LaunchFailed:
@@ -689,83 +638,6 @@ namespace Tizen.Applications
                         throw new InvalidOperationException("Error = " + err);
                 }
             }
-        }
-
-        /// <summary>
-        /// Sends the launch request asynchronously.
-        /// </summary>
-        /// <remarks>
-        /// The operation is mandatory information for the launch request.
-        /// If the operation is not specified, AppControlOperations.Default is used by default.
-        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
-        /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
-        /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
-        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
-        /// </remarks>
-        /// <param name="launchRequest">The AppControl.</param>
-        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
-        /// <returns>A task with the result of the launch request.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
-        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
-        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
-        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        /// <since_tizen> 6 </since_tizen>
-        public static Task<AppControlResult> SendLaunchRequestAsync(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching)
-        {
-            if (launchRequest == null)
-            {
-                throw new ArgumentNullException(nameof(launchRequest));
-            }
-
-            var task = new TaskCompletionSource<AppControlResult>();
-            Interop.AppControl.ErrorCode err;
-            int requestId = 0;
-
-            lock (s_resultNativeCallbackMaps)
-            {
-                requestId = s_reaustId++;
-                s_resultNativeCallbackMaps[requestId] = (handle, result, userData) =>
-                {
-                    task.SetResult((AppControlResult)result);
-                    lock (s_resultNativeCallbackMaps)
-                    {
-                        s_resultNativeCallbackMaps.Remove((int)userData);
-                    }
-                };
-            }
-
-            if (replyAfterLaunching != null)
-            {
-                lock (s_replyCallbackMaps)
-                {
-                    s_replyCallbackMaps[requestId] = replyAfterLaunching;
-                }
-                err = Interop.AppControl.SendLaunchRequestAsync(launchRequest.SafeAppControlHandle, s_resultNativeCallbackMaps[requestId], s_replyNativeCallback, (IntPtr)requestId);
-            }
-            else
-            {
-                err = Interop.AppControl.SendLaunchRequestAsync(launchRequest.SafeAppControlHandle, s_resultNativeCallbackMaps[requestId], null, (IntPtr)requestId);
-            }
-
-            if (err != Interop.AppControl.ErrorCode.None)
-            {
-                switch (err)
-                {
-                    case Interop.AppControl.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid Arguments");
-                    case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
-                    case Interop.AppControl.ErrorCode.LaunchRejected:
-                        throw new Exceptions.LaunchRejectedException("Launch rejected");
-                    case Interop.AppControl.ErrorCode.PermissionDenied:
-                        throw new Exceptions.PermissionDeniedException("Permission denied");
-
-                    default:
-                        throw new Exceptions.LaunchRejectedException("Launch rejected");
-                }
-            }
-
-            return task.Task;
         }
 
         /// <summary>

@@ -1,17 +1,14 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
-%define TIZEN_NET_API_VERSION 8
-%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui550
-%define TIZEN_NET_NUGET_VERSION 8.0.0.99999
+%define TIZEN_NET_API_VERSION 5
+%define TIZEN_NET_RPM_VERSION 5.0.0.999+nui504
+%define TIZEN_NET_NUGET_VERSION 5.0.0.99999
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
-%define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
-%define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
-
-%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
@@ -41,21 +38,13 @@ AutoReqProv: no
 %description nuget
 NuGet package for %{name}
 
-%package tools
-Summary:   Tools for TizenFX
-Group:     Development/Libraries
-AutoReqProv: no
-
-%description tools
-Tools for TizenFX
-
 %package dummy
-Summary:   not used package
+Summary:   Dummy assemblies of Tizen .NET
 Group:     Development/Libraries
 AutoReqProv: no
 
 %description dummy
-not used package
+Dummy assemblies of Tizen .NET
 
 %package full
 Summary:   All Tizen .NET assemblies
@@ -78,6 +67,7 @@ All .pdb files of Tizen .NET
 Summary:   Tizen .NET assemblies for Common profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description common
@@ -87,6 +77,7 @@ Tizen .NET assemblies for Common profile
 Summary:   Tizen .NET assemblies for Mobile profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile
@@ -96,6 +87,7 @@ Tizen .NET assemblies for Mobile profile
 Summary:   Tizen .NET assemblies for Emulator of Mobile profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile-emul
@@ -105,15 +97,27 @@ Tizen .NET assemblies for Emulator of Mobile profile
 Summary:   Tizen .NET assemblies for TV profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description tv
 Tizen .NET assemblies for TV profile
 
+%package ivi
+Summary:   Tizen .NET assemblies for IVI profile
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
+AutoReqProv: no
+
+%description ivi
+Tizen .NET assemblies for IVI profile
+
 %package wearable
 Summary:   Tizen .NET assemblies for Wearable profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description wearable
@@ -123,54 +127,56 @@ Tizen .NET assemblies for Wearable profile
 %setup -q
 cp %{SOURCE1} .
 
+# prepare external modules
+for ext in $(ls -1 packaging/externals.*.tar.gz); do
+  extname=$(basename -- $ext)
+  extname=${extname#externals\.}
+  extname=${extname%\.tar\.gz}
+  mkdir -p externals/$extname
+  tar xvfz $ext -C externals/$extname
+done
+
 %build
 %{?asan:export ASAN_OPTIONS=use_sigaltstack=false:allow_user_segv_handler=true:handle_sigfpe=false:`cat /ASAN_OPTIONS`}
 
 %define _tizenfx_bin_path Artifacts
 
-rm -fr %{_tizenfx_bin_path}
-export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-
-%define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
-%{build_cmd} --full
-%{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
-
 GetFileList() {
   PROFILE=$1
-  cat packaging/PlatformFileList.txt | grep -v "\.preload" | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
-  for f in $(cat packaging/PlatformFileList.txt | grep -v -E "#$PROFILE[[:space:]]|#$PROFILE$|\.preload" | cut -d# -f1); do
-    if [ -f %{_tizenfx_bin_path}/bin/dummy/$f ]; then
-      echo "%{DOTNET_ASSEMBLY_PATH}/ref/$f"
-    fi
-  done
-  for f in $(cat packaging/PlatformFileList.txt | grep "\.preload" | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1); do
-    if [ -f packaging/preload/$f ]; then
-      echo "%{DOTNET_PRELOAD_PATH}/$f"
-    fi
-  done
+  cat pkg/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
 }
 
 GetFileList common > common.filelist
 GetFileList mobile > mobile.filelist
 GetFileList mobile-emul > mobile-emul.filelist
 GetFileList tv > tv.filelist
+GetFileList ivi > ivi.filelist
 GetFileList wearable > wearable.filelist
+
+rm -fr %{_tizenfx_bin_path}
+export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+./build.sh --full
+./build.sh --dummy
+./build.sh --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
+./build.sh --ext
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
-mkdir -p %{buildroot}%{DOTNET_TOOLS_PATH}
-mkdir -p %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install Runtime Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+[ -d %{_tizenfx_bin_path}/bin/external ] \
+  && install -p -m 644 %{_tizenfx_bin_path}/bin/external/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 
 # Install Debug Symbols
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+[ -d %{_tizenfx_bin_path}/bin/external ] \
+  && install -p -m 644 %{_tizenfx_bin_path}/bin/external/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 
 # Install Resource files
 [ -d %{_tizenfx_bin_path}/bin/public/res ] \
@@ -183,40 +189,26 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 
 # Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
-install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
-
-# Install Tools
-install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
-
-# Install Preload
-install -p -m 644 packaging/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
-/usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
-/usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
+
 
 %files
 %license LICENSE
-%license LICENSE.MIT
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg
 
-%files tools
-%manifest %{name}.manifest
-%{DOTNET_TOOLS_PATH}/*
-
 %files dummy
+%attr(644,root,root) %{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
 
 %files full
 %manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.dll
-%attr(644,root,root) %{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
-%manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
 %files common -f common.filelist
@@ -229,6 +221,9 @@ install -p -m 644 packaging/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
 %manifest %{name}.manifest
 
 %files tv -f tv.filelist
+%manifest %{name}.manifest
+
+%files ivi -f ivi.filelist
 %manifest %{name}.manifest
 
 %files wearable -f wearable.filelist

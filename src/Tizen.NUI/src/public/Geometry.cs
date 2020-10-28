@@ -14,16 +14,17 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// Geometry is handle to an object that can be used to define a geometric elements.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Geometry : BaseHandle
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Create an instance of Geometry.
@@ -37,6 +38,7 @@ namespace Tizen.NUI
 
         internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Geometry.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -160,11 +162,41 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.Geometry.delete_Geometry(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Geometry.delete_Geometry(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
+
     }
 }

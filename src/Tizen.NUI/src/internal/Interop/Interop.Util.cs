@@ -9,10 +9,13 @@ namespace Tizen.NUI
     {
         internal static partial class Util
         {
+
             internal static ulong GetNanoSeconds()
             {
+
                 return 0;
             }
         }
+
     }
 }

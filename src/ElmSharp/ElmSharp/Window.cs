@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -989,11 +989,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_win_withdrawn_get(Handle);
+                return Interop.Elementary.elm_win_urgent_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_win_withdrawn_set(Handle, value);
+                Interop.Elementary.elm_win_urgent_set(Handle, value);
             }
         }
 
@@ -1078,8 +1078,6 @@ namespace ElmSharp
                 Interop.Eutil.efl_util_set_window_brightness(Handle, value);
             }
         }
-
-        internal static bool IsPreloaded { get; private set; }
 
         /// <summary>
         /// Creates a socket to provide the service for the Plug widget.
@@ -1254,83 +1252,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Creates an auxiliary hint of the window.
-        /// </summary>
-        /// <remarks>
-        /// Support for this depends on the underlying windowing system. 
-        /// </remarks>
-        /// <param name="hint">The auxiliary hint string</param>
-        /// <param name="value">The value string</param>
-        /// <returns>The ID of the created auxiliary hint, otherwise -1 on failure</returns>
-        /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int AddAuxiliaryHint(string hint, string value)
-        {
-            return Interop.Elementary.elm_win_aux_hint_add(RealHandle, hint, value);
-        }
-
-        /// <summary>
-        /// Deletes an auxiliary hint of the window.
-        /// </summary>
-        /// <remarks>
-        /// Support for this depends on the underlying windowing system. 
-        /// </remarks>
-        /// <param name="id">The ID of the auxiliary hint</param>
-        /// <returns>If true deletes successful, otherwise false.</returns>
-        /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DeleteAuxiliaryHint(int id)
-        {
-            return Interop.Elementary.elm_win_aux_hint_del(RealHandle, id);
-        }
-
-        /// <summary>
-        /// Changes a value of the auxiliary hint.
-        /// </summary>
-        /// <remarks>
-        /// Support for this depends on the underlying windowing system. 
-        /// </remarks>
-        /// <param name="id">The auxiliary hint ID</param>
-        /// <param name="value">The value string to be set</param>
-        /// <returns>If true changes successful, otherwise false.</returns>
-        /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetAuxiliaryHintValue(int id, string value)
-        {
-            return Interop.Elementary.elm_win_aux_hint_val_set(RealHandle, id, value);
-        }
-
-        /// <summary>
-        /// Gets a value of the auxiliary hint.
-        /// </summary>
-        /// <remarks>
-        /// Support for this depends on the underlying windowing system. 
-        /// </remarks>
-        /// <param name="id">The auxiliary hint ID</param>
-        /// <returns>The string value of the auxiliary hint ID</returns>
-        /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetAuxiliaryHintValue(int id)
-        {
-            return Interop.Elementary.elm_win_aux_hint_val_get(RealHandle, id);
-        }
-
-        /// <summary>
-        /// Gets an ID of the auxiliary hint string.
-        /// </summary>
-        /// <remarks>
-        /// Support for this depends on the underlying windowing system. 
-        /// </remarks>
-        /// <param name="hint">The auxiliary hint string</param>
-        /// <returns>The ID of the auxiliary hint, otherwise -1 on failure</returns>
-        /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int GetAuxiliaryHintId(string hint)
-        {
-            return Interop.Elementary.elm_win_aux_hint_id_get(RealHandle, hint);
-        }
-
-        /// <summary>
         /// Creates a widget handle.
         /// </summary>
         /// <param name="parent">Parent EvasObject.</param>
@@ -1375,18 +1296,5 @@ namespace ElmSharp
             }
             return (DisplayRotation)orientation;
         }
-
-        static void Preload()
-        {
-            Elementary.Initialize();
-            Elementary.ThemeOverlay();
-            _ = new PreloadedWindow();
-            IsPreloaded = true;
-        }
-
-        /// <summary>
-        /// For internal use only
-        /// </summary>
-        internal static Window CreateWindow(string name) => PreloadedWindow.GetInstance() ?? new Window(name);
     }
 }

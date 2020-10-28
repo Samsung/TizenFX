@@ -17,10 +17,12 @@
 
 namespace Tizen.NUI
 {
+
     internal enum TooltipPositionType
     {
         ABOVE,
         BELOW,
         HOVER_POINT
     }
+
 }

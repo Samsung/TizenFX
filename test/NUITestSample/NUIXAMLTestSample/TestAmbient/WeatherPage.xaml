@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.WeatherPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <ImageView Name="title" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/up.bmp" Position2D="53,0" Size2D="1867,461" />
+  <ImageView Name="left" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/left.bmp" Position2D="0,0" Size2D="53,1079" />
+  <View Name="content" Size2D="1920,1080" Position2D="0,0" BackgroundColor="0,0,0,0">
+     <TableView  Name="ListTable" Focusable="true" SizeWidth="1758" SizeHeight="360" PositionX="81" PositionY="560" Rows="1" Columns="5" CellPadding="33.8,0">
+            <ImageView ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/current.bmp" CellIndex="0,0" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+            <ImageView ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/1.bmp" CellIndex="0,1" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+            <ImageView ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/2.bmp" CellIndex="0,2" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+            <ImageView ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/3.bmp" CellIndex="0,3" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+            <ImageView ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/weather/4.bmp" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+     </TableView>
+  </View>
+</ContentPage>

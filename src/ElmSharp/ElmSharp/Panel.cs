@@ -49,7 +49,6 @@ namespace ElmSharp
     public class Panel : Layout
     {
         SmartEvent _toggled;
-        SmartEvent _scrolled;
 
         /// <summary>
         /// Creates and initializes a new instance of the Panel class.
@@ -59,10 +58,7 @@ namespace ElmSharp
         public Panel(EvasObject parent) : base(parent)
         {
             _toggled = new SmartEvent(this, this.RealHandle, "toggled");
-            _scrolled = new SmartEvent(this, this.RealHandle, "scroll");
-
             _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
-            _scrolled.On += (s, e) => Scrolled?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -102,12 +98,6 @@ namespace ElmSharp
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Toggled;
-
-        /// <summary>
-        /// Scrolled will be triggered when the panel has been scrolled. This event is emitted only when the panel is scrollable
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public event EventHandler Scrolled;
 
         /// <summary>
         /// Enable or disable scrolling in the panel.

@@ -17,9 +17,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -123,6 +121,19 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public abstract UInt32 GetChildCount();
 
-        internal abstract View FindCurrentChildById(uint id);
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            base.Dispose(type);
+        }
+
     }
 } // namespace Tizen.NUI

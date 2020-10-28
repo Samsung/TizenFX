@@ -108,38 +108,20 @@ namespace Tizen.Sensor
             return count;
         }
 
-        /// <summary>
-        /// Read sleep monitor data synchronously.
-        /// </summary>
-        internal override void ReadData()
-        {
-            Interop.SensorEventStruct sensorData;
-            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error reading sleep monitor data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading sleep monitor data failed");
-            }
-
-            Timestamp = sensorData.timestamp;
-            SleepState = (SleepMonitorState)sensorData.values[0];
-        }
-
-        private static Interop.SensorListener.SensorEventsCallback _callback;
+        private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
-                updateBatchEvents(eventPtr, events_count);
-                Interop.SensorEventStruct sensorData = latestEvent();
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
-                Timestamp = sensorData.timestamp;
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 SleepState = (SleepMonitorState)sensorData.values[0];
 
                 DataUpdated?.Invoke(this, new SleepMonitorDataUpdatedEventArgs((int)sensorData.values[0]));
             };
 
-            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for sleep monitor");
@@ -149,7 +131,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for sleep monitor");

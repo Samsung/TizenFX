@@ -39,22 +39,17 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml.Internals
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete ("Replaced by ResourceLoader")]
-    public static class XamlLoader
+    internal static class XamlLoader
     {
         static Func<Type, string> xamlFileProvider;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Func<Type, string> XamlFileProvider {
             get { return xamlFileProvider; }
-            internal set
-            {
+            internal set {
                 xamlFileProvider = value;
                 Tizen.NUI.Xaml.DesignMode.IsDesignModeEnabled = true;
-                //¯\_(??_/¯ the previewer forgot to set that bool
+                //¯\_(ツ)_/¯ the previewer forgot to set that bool
                 DoNotThrowOnExceptions = value != null;
             }
         }
@@ -138,24 +133,17 @@ namespace Tizen.NUI.Xaml
                         continue;
                     if (reader.NodeType == XmlNodeType.XmlDeclaration)
                         continue;
-                    if (reader.NodeType != XmlNodeType.Element)
-                    {
+                    if (reader.NodeType != XmlNodeType.Element) {
                         Debug.WriteLine("Unhandled node {0} {1} {2}", reader.NodeType, reader.Name, reader.Value);
                         continue;
                     }
 
-                    if (view is Element)
-                    {
-                        (view as Element).IsCreateByXaml = true;
-                    }
-
-                    var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), view, (IXmlNamespaceResolver)reader);
-                    XamlParser.ParseXaml(rootnode, reader);
-                    Visit(rootnode, new HydrationContext
-                    {
+                    var rootnode = new RuntimeRootNode (new XmlType (reader.NamespaceURI, reader.Name, null), view, (IXmlNamespaceResolver)reader);
+                    XamlParser.ParseXaml (rootnode, reader);
+                    Visit (rootnode, new HydrationContext {
                         RootElement = view,
 #pragma warning disable 0618
-                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { }: (Action<Exception>)null)
 #pragma warning restore 0618
                     });
                     break;
@@ -163,54 +151,50 @@ namespace Tizen.NUI.Xaml
             }
         }
 
-        [Obsolete("Use the XamlFileProvider to provide xaml files. We will remove this when Cycle 8 hits Stable.")]
-        public static object Create(string xaml, bool doNotThrow = false)
+        [Obsolete ("Use the XamlFileProvider to provide xaml files. We will remove this when Cycle 8 hits Stable.")]
+        public static object Create (string xaml, bool doNotThrow = false)
         {
             object inflatedView = null;
             using (var textreader = new StringReader(xaml))
-            using (var reader = XmlReader.Create(textreader))
-            {
-                while (reader.Read())
-                {
+            using (var reader = XmlReader.Create (textreader)) {
+                while (reader.Read ()) {
                     //Skip until element
                     if (reader.NodeType == XmlNodeType.Whitespace)
                         continue;
                     if (reader.NodeType == XmlNodeType.XmlDeclaration)
                         continue;
-                    if (reader.NodeType != XmlNodeType.Element)
-                    {
+                    if (reader.NodeType != XmlNodeType.Element) {
                         Debug.WriteLine("Unhandled node {0} {1} {2}", reader.NodeType, reader.Name, reader.Value);
                         continue;
                     }
 
-                    var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), null, (IXmlNamespaceResolver)reader);
-                    XamlParser.ParseXaml(rootnode, reader);
-                    var visitorContext = new HydrationContext
-                    {
+                    var rootnode = new RuntimeRootNode (new XmlType (reader.NamespaceURI, reader.Name, null), null, (IXmlNamespaceResolver)reader);
+                    XamlParser.ParseXaml (rootnode, reader);
+                    var visitorContext = new HydrationContext {
                         ExceptionHandler = doNotThrow ? e => { } : (Action<Exception>)null,
                     };
-                    var cvv = new CreateValuesVisitor(visitorContext);
-                    cvv.Visit((ElementNode)rootnode, null);
-                    inflatedView = rootnode.Root = visitorContext.Values[rootnode];
+                    var cvv = new CreateValuesVisitor (visitorContext);
+                    cvv.Visit ((ElementNode)rootnode, null);
+                    inflatedView = rootnode.Root = visitorContext.Values [rootnode];
                     visitorContext.RootElement = inflatedView as BindableObject;
 
-                    Visit(rootnode, visitorContext);
+                    Visit (rootnode, visitorContext);
                     break;
                 }
             }
             return inflatedView;
         }
 
-        static void Visit(RootNode rootnode, HydrationContext visitorContext)
+        static void Visit (RootNode rootnode, HydrationContext visitorContext)
         {
-            rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null); //set parents for {StaticResource}
-            rootnode.Accept(new ExpandMarkupsVisitor(visitorContext), null);
-            rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
-            rootnode.Accept(new NamescopingVisitor(visitorContext), null); //set namescopes for {x:Reference}
-            rootnode.Accept(new CreateValuesVisitor(visitorContext), null);
-            rootnode.Accept(new RegisterXNamesVisitor(visitorContext), null);
-            rootnode.Accept(new FillResourceDictionariesVisitor(visitorContext), null);
-            rootnode.Accept(new ApplyPropertiesVisitor(visitorContext, true), null);
+            rootnode.Accept (new XamlNodeVisitor ((node, parent) => node.Parent = parent), null); //set parents for {StaticResource}
+            rootnode.Accept (new ExpandMarkupsVisitor (visitorContext), null);
+            rootnode.Accept (new PruneIgnoredNodesVisitor(), null);
+            rootnode.Accept (new NamescopingVisitor (visitorContext), null); //set namescopes for {x:Reference}
+            rootnode.Accept (new CreateValuesVisitor (visitorContext), null);
+            rootnode.Accept (new RegisterXNamesVisitor (visitorContext), null);
+            rootnode.Accept (new FillResourceDictionariesVisitor (visitorContext), null);
+            rootnode.Accept (new ApplyPropertiesVisitor (visitorContext, true), null);
         }
 
         static string GetAnimationXaml(string animationXamlPath)
@@ -220,8 +204,6 @@ namespace Tizen.NUI.Xaml
             {
                 StreamReader reader = new StreamReader(animationXamlPath);
                 xaml = reader.ReadToEnd();
-                reader.Close();
-                reader.Dispose();
                 Tizen.Log.Fatal("NUI", "File is exist!, try with xaml: " + xaml);
                 return xaml;
             }
@@ -238,8 +220,8 @@ namespace Tizen.NUI.Xaml
             string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
             Tizen.Log.Fatal("NUI", "the resource path: " + resource);
-            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
-            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
+            int windowWidth = Window.Instance.Size.Width;
+            int windowHeight = Window.Instance.Size.Height;
 
             string likelyResourcePath = resource + "layout/" + windowWidth.ToString() + "x" + windowHeight.ToString() + "/" + resourceName;
             Tizen.Log.Fatal("NUI", "the resource path: " + likelyResourcePath);
@@ -254,8 +236,6 @@ namespace Tizen.NUI.Xaml
             {
                 StreamReader reader = new StreamReader(likelyResourcePath);
                 xaml = reader.ReadToEnd();
-                reader.Close();
-                reader.Dispose();
                 Tizen.Log.Fatal("NUI", "File is exist!, try with xaml: " + xaml);
                 var pattern = String.Format("x:Class *= *\"{0}\"", type.FullName);
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
@@ -266,41 +246,6 @@ namespace Tizen.NUI.Xaml
                 else
                 {
                     throw new XamlParseException(string.Format("Can't find type {0}", type.FullName), new XmlLineInfo());
-                }
-            }
-            else
-            {
-                Assembly assembly = type.Assembly;
-
-                Stream stream = null;
-
-                foreach (string str in assembly.GetManifestResourceNames())
-                {
-                    string resourceClassName = str.Substring(0, str.LastIndexOf('.'));
-                    int index = resourceClassName.LastIndexOf('.');
-                    if (0 <= index && index < resourceClassName.Length)
-                    {
-                        resourceClassName = resourceClassName.Substring(index + 1);
-
-                        if (resourceClassName == type.Name)
-                        {
-                            stream = assembly.GetManifestResourceStream(str);
-                            break;
-                        }
-                    }
-                }
-
-                if (null == stream)
-                {
-                    throw new XamlParseException(string.Format("Can't find type {0} in embedded resource", type.FullName), new XmlLineInfo());
-                }
-                else
-                {
-                    Byte[] buffer = new byte[stream.Length];
-                    stream.Read(buffer, 0, (int)stream.Length);
-
-                    string ret = System.Text.Encoding.Default.GetString(buffer);
-                    return ret;
                 }
             }
 
@@ -314,8 +259,7 @@ namespace Tizen.NUI.Xaml
             var assembly = type.GetTypeInfo().Assembly;
 
             string resourceId;
-            if (XamlResources.TryGetValue(type, out resourceId))
-            {
+            if (XamlResources.TryGetValue(type, out resourceId)) {
                 var result = ReadResourceAsXaml(type, assembly, resourceId);
                 if (result != null)
                     return result;
@@ -327,10 +271,8 @@ namespace Tizen.NUI.Xaml
 
             // first pass, pray to find it because the user named it correctly
 
-            foreach (var resource in resourceNames)
-            {
-                if (ResourceMatchesFilename(assembly, resource, likelyResourceName))
-                {
+            foreach (var resource in resourceNames) {
+                if (ResourceMatchesFilename(assembly, resource, likelyResourceName)) {
                     resourceName = resource;
                     var xaml = ReadResourceAsXaml(type, assembly, resource);
                     if (xaml != null)
@@ -340,8 +282,7 @@ namespace Tizen.NUI.Xaml
 
             // okay maybe they at least named it .xaml
 
-            foreach (var resource in resourceNames)
-            {
+            foreach (var resource in resourceNames) {
                 if (!resource.EndsWith(".xaml", StringComparison.OrdinalIgnoreCase))
                     continue;
 
@@ -351,8 +292,7 @@ namespace Tizen.NUI.Xaml
                     return xaml;
             }
 
-            foreach (var resource in resourceNames)
-            {
+            foreach (var resource in resourceNames) {
                 if (resource.EndsWith(".xaml", StringComparison.OrdinalIgnoreCase))
                     continue;
 
@@ -368,16 +308,14 @@ namespace Tizen.NUI.Xaml
         //legacy...
         static bool ResourceMatchesFilename(Assembly assembly, string resource, string filename)
         {
-            try
-            {
+            try {
                 var info = assembly.GetManifestResourceInfo(resource);
 
                 if (!string.IsNullOrEmpty(info.FileName) &&
                     string.Compare(info.FileName, filename, StringComparison.OrdinalIgnoreCase) == 0)
                     return true;
             }
-            catch (PlatformNotSupportedException)
-            {
+            catch (PlatformNotSupportedException) {
                 // Because Win10 + .NET Native
             }
 
@@ -392,10 +330,8 @@ namespace Tizen.NUI.Xaml
         static string ReadResourceAsXaml(Type type, Assembly assembly, string likelyTargetName, bool validate = false)
         {
             using (var stream = assembly.GetManifestResourceStream(likelyTargetName))
-            using (var reader = new StreamReader(stream))
-            {
-                if (validate)
-                {
+            using (var reader = new StreamReader(stream)) {
+                if (validate) {
                     // terrible validation of XML. Unfortunately it will probably work most of the time since comments
                     // also start with a <. We can't bring in any real deps.
 
@@ -421,62 +357,12 @@ namespace Tizen.NUI.Xaml
 
         public class RuntimeRootNode : RootNode
         {
-            public RuntimeRootNode(XmlType xmlType, object root, IXmlNamespaceResolver resolver) : base(xmlType, resolver)
+            public RuntimeRootNode(XmlType xmlType, object root, IXmlNamespaceResolver resolver) : base (xmlType, resolver)
             {
                 Root = root;
             }
 
             public object Root { get; internal set; }
         }
-
-        internal static string GetXamlForName(string nameOfXamlFile)
-        {
-            string xaml;
-            string resourceName = nameOfXamlFile + ".xaml";
-            string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-
-            NUILog.Debug($"resource=({resource})");
-
-            int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
-            int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
-
-            string likelyResourcePath = resource + "layout/" + windowWidth.ToString() + "x" + windowHeight.ToString() + "/" + resourceName;
-
-            NUILog.Debug($"likelyResourcePath=({likelyResourcePath})");
-
-
-            if (!File.Exists(likelyResourcePath))
-            {
-                likelyResourcePath = resource + "layout/" + resourceName;
-            }
-
-            //Find the xaml file in the layout folder
-            if (File.Exists(likelyResourcePath))
-            {
-                StreamReader reader = new StreamReader(likelyResourcePath);
-                xaml = reader.ReadToEnd();
-
-                NUILog.Debug($"File is exist!, try with xaml: {xaml}");
-
-                // Layer
-                var pattern = String.Format("x:Class *= *\"{0}\"", "Tizen.NUI.Layer");
-                var regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.Layer")))
-                {
-                    return xaml;
-                }
-                // View
-                pattern = String.Format("x:Class *= *\"{0}\"", "Tizen.NUI.BaseComponents.View");
-                regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.BaseComponents.View")))
-                {
-                    return xaml;
-                }
-
-                throw new XamlParseException(string.Format("Can't find type {0}", "Tizen.NUI.XamlMainPage nor View nor Layer"), new XmlLineInfo());
-            }
-            return null;
-        }
-
     }
 }

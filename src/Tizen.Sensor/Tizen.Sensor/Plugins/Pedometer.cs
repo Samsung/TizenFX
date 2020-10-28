@@ -156,38 +156,14 @@ namespace Tizen.Sensor
             return count;
         }
 
-        /// <summary>
-        /// Read pedometer sensor data synchronously.
-        /// </summary>
-        internal override void ReadData()
-        {
-            Interop.SensorEventStruct pedoSensorData;
-            int error = Interop.SensorListener.ReadData(ListenerHandle, out pedoSensorData);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error reading pedometer sensor data");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Reading pedometer sensor data failed");
-            }
-
-            StepCount = (uint)pedoSensorData.values[0];
-            WalkStepCount = (uint)pedoSensorData.values[1];
-            RunStepCount = (uint)pedoSensorData.values[2];
-            MovingDistance = pedoSensorData.values[3];
-            CalorieBurned = pedoSensorData.values[4];
-            LastSpeed = pedoSensorData.values[5];
-            LastSteppingFrequency = pedoSensorData.values[6];
-            LastStepStatus = (PedometerState)pedoSensorData.values[7];
-        }
-
-        private static Interop.SensorListener.SensorEventsCallback _callback;
+        private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
-                updateBatchEvents(eventPtr, events_count);
-                Interop.SensorEventStruct sensorData = latestEvent();
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
-                Timestamp = sensorData.timestamp;
+                TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 StepCount = (uint)sensorData.values[0];
                 WalkStepCount = (uint)sensorData.values[1];
                 RunStepCount = (uint)sensorData.values[2];
@@ -200,7 +176,7 @@ namespace Tizen.Sensor
                 DataUpdated?.Invoke(this, new PedometerDataUpdatedEventArgs(sensorData.values));
             };
 
-            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for pedometer sensor");
@@ -210,7 +186,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for pedometer sensor");

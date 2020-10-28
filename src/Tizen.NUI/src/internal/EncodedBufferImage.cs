@@ -17,11 +17,14 @@
 
 namespace Tizen.NUI
 {
+
     internal class EncodedBufferImage : Image
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal EncodedBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BufferImage.EncodedBufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EncodedBufferImage obj)
@@ -29,9 +32,36 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void Dispose(DisposeTypes type)
         {
-            Interop.BufferImage.delete_EncodedBufferImage(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.BufferImage.delete_EncodedBufferImage(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         public EncodedBufferImage(SWIGTYPE_p_uint8_t encodedImage, uint encodedImageByteCount) : this(Interop.BufferImage.EncodedBufferImage_New__SWIG_0(SWIGTYPE_p_uint8_t.getCPtr(encodedImage), encodedImageByteCount), true)
@@ -67,5 +97,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
     }
+
 }

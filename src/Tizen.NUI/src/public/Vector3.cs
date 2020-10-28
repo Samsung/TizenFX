@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System.ComponentModel;
+using System;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -24,9 +24,23 @@ namespace Tizen.NUI
     /// A three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Binding.TypeConverter(typeof(Vector3TypeConverter))]
-    public class Vector3 : Disposable
+    [TypeConverter(typeof(Vector3TypeConverter))]
+    public class Vector3 : global::System.IDisposable
     {
+        /// <summary>
+        /// swigCMemOwn.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool swigCMemOwn;
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -78,17 +92,24 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal Vector3(Vector3ChangedCallback cb, float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ~Vector3()
         {
-            callback = cb;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if(!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
-        internal delegate void Vector3ChangedCallback(float x, float y, float z);
-        private Vector3ChangedCallback callback = null;
 
         /// <summary>
         /// (1.0f,1.0f,1.0f).
@@ -220,8 +241,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -241,8 +260,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -262,8 +279,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_r_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -283,8 +298,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -304,8 +317,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -325,8 +336,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_g_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -346,8 +355,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -367,8 +374,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -388,8 +393,6 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_b_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -594,6 +597,29 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector3 obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -614,11 +640,39 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will not be public opened.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            Interop.Vector3.delete_Vector3(swigCPtr);
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Vector3.delete_Vector3(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
 
         private Vector3 Add(Vector3 rhs)

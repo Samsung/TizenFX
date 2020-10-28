@@ -40,10 +40,11 @@ namespace Tizen.System
                     __callback = (RuntimeInfoKey num, IntPtr userData) =>
                     {
                         string strKey = "Invalid";
+                        RuntimeInfoKey key = TvProductHelper.ReconvertKeyIfTvProduct(num);
 
-                        if (num > 0 && Information.EnumStringMapping.ContainsKey(num))
+                        if (key > 0 && Information.EnumStringMapping.ContainsKey(key))
                         {
-                            strKey = Information.EnumStringMapping[num];
+                            strKey = Information.EnumStringMapping[key];
                         }
 
                         RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
@@ -54,7 +55,7 @@ namespace Tizen.System
                         Handler?.Invoke(null, eventArgs);
                     };
 
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(Key, __callback, IntPtr.Zero);
+                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key), __callback, IntPtr.Zero);
                     if (ret != InformationError.None)
                     {
                         Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
@@ -68,7 +69,7 @@ namespace Tizen.System
                 Handler -= value;
                 if (Handler == null)
                 {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(Key);
+                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(Key));
                     if (ret != InformationError.None)
                     {
                         Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");

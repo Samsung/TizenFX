@@ -184,7 +184,6 @@ namespace ElmSharp
     {
         private IntPtr _realHandle = IntPtr.Zero;
         private EvasCanvas _evasCanvas;
-        private string _automationId;
 
         private event EventHandler _backButtonPressed;
 
@@ -229,8 +228,6 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
-        EvasObjectEvent _shown;
-        EvasObjectEvent _hidden;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
         Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
@@ -370,26 +367,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Shown will be triggered when the widget is shown.
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public event EventHandler Shown
-        {
-            add { _shown.On += value; }
-            remove { _shown.On -= value; }
-        }
-        
-        /// <summary>
-        /// Hidden will be triggered when the widget is hidden.
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public event EventHandler Hidden
-        {
-            add { _hidden.On += value; }
-            remove { _hidden.On -= value; }
-        }
-
-        /// <summary>
         /// RenderPost Event Handler of the current widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -439,24 +416,6 @@ namespace ElmSharp
                 if (_evasCanvas == null)
                     _evasCanvas = new EvasCanvas(Handle);
                 return _evasCanvas;
-            }
-        }
-
-        /// <summary>
-        /// Sets of gets a value that allow the automation framework to find and interact with this object.
-        /// </summary>
-        /// <since_tizen> preview </since_tizen>
-        public string AutomationId
-        {
-            get
-            {
-                return _automationId;
-            }
-            set
-            {
-                if (_automationId != null)
-                    throw new InvalidOperationException("AutomationId may only be set one time.");
-                _automationId = value;
             }
         }
 
@@ -1122,26 +1081,12 @@ namespace ElmSharp
         /// <param name="y">y coordinate of the line.</param>
         /// <param name="w">w coordinate of the line.</param>
         /// <param name="h">h coordinate of the line.</param>
-        /// <returns>True on success, or False on error.</returns>
+        /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
-            x = -1; y = -1; w = -1; h = -1;
-
-            IntPtr _edjeHandle = Interop.Elementary.elm_layout_edje_get(RealHandle);
-            if (_edjeHandle == IntPtr.Zero)
-            {
-                return false;
-            }
-
-            IntPtr _textblock = Interop.Elementary.edje_object_part_object_get(_edjeHandle, "elm.text");
-            if (_textblock == IntPtr.Zero)
-            {
-                return false;
-            }
-
-            return Interop.Evas.evas_object_textblock_line_number_geometry_get(_textblock, lineNumber, out x, out y, out w, out h);
+            return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
         }
 
         internal IntPtr GetData(string key)
@@ -1222,11 +1167,8 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
-                _shown = new EvasObjectEvent(this, EvasObjectCallbackType.Show);
-                _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
-                _shown.On += (s, e) => Elementary.SendEvasObjectRealized(this);
             }
         }
 
@@ -1277,8 +1219,7 @@ namespace ElmSharp
 
         private void DisposeEvent()
         {
-            var events = new List<IInvalidatable>(_eventStore);
-            foreach (var evt in events)
+            foreach (var evt in _eventStore)
             {
                 evt.Dispose();
             }
@@ -1297,11 +1238,6 @@ namespace ElmSharp
         internal void AddToEventLifeTracker(IInvalidatable item)
         {
             _eventStore.Add(item);
-        }
-
-        internal void RemoveFromEventLifeTracker(IInvalidatable item)
-        {
-            _eventStore.Remove(item);
         }
     }
 }

@@ -54,26 +54,13 @@ namespace Tizen.NUI.Binding
                 parts = value.Split(',');
                 if (parts.Length == 3)
                 {
-                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
-                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
-                    int z = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[2].Trim());
-                    return new Position(x, y, z);
-                }
-                else if (parts.Length == 2)
-                {
-                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
-                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
-                    return new Position(x, y);
+                    return new Position(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position)}");
-        }
-
-        public override string ConvertToString(object value)
-        {
-            Position position = (Position)value;
-            return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
         }
     }
 
@@ -82,12 +69,6 @@ namespace Tizen.NUI.Binding
         public override object ConvertFromInvariantString(string value)
         {
             return Position2D.ConvertFromString(value);
-        }
-
-        public override string ConvertToString(object value)
-        {
-            Position2D position = (Position2D)value;
-            return  position.X.ToString() + " " + position.Y.ToString();
         }
     }
 }

@@ -227,7 +227,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Dictionary<string, string> GetLabelsByAppId(string appId)
         {
-            AccountErrorFactory.CheckAccountFeature();
 
             Dictionary<string, string> labels = new Dictionary<string, string>();
             Interop.AccountProvider.LabelCallback callback = (string applicationId, string label, string locale, IntPtr userData) =>
@@ -321,8 +320,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static bool IsFeatureSupportedByApp(string appId, string capability)
         {
-            AccountErrorFactory.CheckAccountFeature();
-
             bool supported = Interop.AccountProvider.IsFeatureSupported(appId, capability);
             if (!supported)
             {
@@ -351,7 +348,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<string> GetFeaturesByAppId(string appId)
         {
-            AccountErrorFactory.CheckAccountFeature();
 
             List<string> features = new List<string>();
             Interop.AccountProvider.AccountProviderFeatureCallback callback = (string applicationId, string key, IntPtr userData) =>

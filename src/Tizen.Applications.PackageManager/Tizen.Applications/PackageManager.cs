@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_moveEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
-        private static readonly object s_pkgEventLock = new object();
-        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
+        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
 
         private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
         private static int s_callbackId = 0;
@@ -72,21 +71,15 @@ namespace Tizen.Applications
         {
             add
             {
-                lock (s_pkgEventLock)
-                {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
-                    RegisterPackageManagerEventIfNeeded();
-                    s_installEventHandler += value;
-                }
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
+                RegisterPackageManagerEventIfNeeded();
+                s_installEventHandler += value;
             }
             remove
             {
-                lock (s_pkgEventLock)
-                {
-                    s_installEventHandler -= value;
-                    UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
-                }
+                s_installEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -98,22 +91,16 @@ namespace Tizen.Applications
         {
             add
             {
-                lock (s_pkgEventLock)
-                {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
-                    RegisterPackageManagerEventIfNeeded();
-                    s_uninstallEventHandler += value;
-                }
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
+                RegisterPackageManagerEventIfNeeded();
+                s_uninstallEventHandler += value;
             }
             remove
             {
-                lock (s_pkgEventLock)
-                {
-                    s_uninstallEventHandler -= value;
-                    UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
-                }
-           }
+                s_uninstallEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
+            }
         }
 
         /// <summary>
@@ -124,21 +111,15 @@ namespace Tizen.Applications
         {
             add
             {
-                lock (s_pkgEventLock)
-                {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
-                    RegisterPackageManagerEventIfNeeded();
-                    s_updateEventHandler += value;
-                }
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
+                RegisterPackageManagerEventIfNeeded();
+                s_updateEventHandler += value;
             }
             remove
             {
-                lock (s_pkgEventLock)
-                {
-                    s_updateEventHandler -= value;
-                    UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
-                }
+                s_updateEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -150,21 +131,15 @@ namespace Tizen.Applications
         {
             add
             {
-                lock (s_pkgEventLock)
-                {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
-                    RegisterPackageManagerEventIfNeeded();
-                    s_moveEventHandler += value;
-                }
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
+                RegisterPackageManagerEventIfNeeded();
+                s_moveEventHandler += value;
             }
             remove
             {
-                lock (s_pkgEventLock)
-                {
-                    s_moveEventHandler -= value;
-                    UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
-                }
+                s_moveEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -176,21 +151,15 @@ namespace Tizen.Applications
         {
             add
             {
-                lock (s_pkgEventLock)
-                {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
-                    RegisterPackageManagerEventIfNeeded();
-                    s_clearDataEventHandler += value;
-                }
+                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
+                RegisterPackageManagerEventIfNeeded();
+                s_clearDataEventHandler += value;
             }
             remove
             {
-                lock (s_pkgEventLock)
-                {
-                    s_clearDataEventHandler -= value;
-                    UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
-                }
+                s_clearDataEventHandler -= value;
+                UnregisterPackageManagerEventIfNeeded();
+                UnsetPackageManagerEventStatus();
             }
         }
 
@@ -470,7 +439,7 @@ namespace Tizen.Applications
         /// <param name="packagePath">Absolute path for the package to be installed.</param>
         /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
@@ -489,7 +458,7 @@ namespace Tizen.Applications
         /// <param name="packagePath">Absolute path for the package to be installed.</param>
         /// <param name="type">Package type for the package to be installed.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
@@ -508,7 +477,7 @@ namespace Tizen.Applications
         /// <param name="packagePath">Absolute path for the package to be installed.</param>
         /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
@@ -528,7 +497,7 @@ namespace Tizen.Applications
         /// <param name="type">Package type for the package to be installed.</param>
         /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
@@ -548,7 +517,7 @@ namespace Tizen.Applications
         /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
         /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
@@ -568,7 +537,7 @@ namespace Tizen.Applications
         /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
         /// <param name="type">Package type for the package to be installed.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
@@ -589,7 +558,7 @@ namespace Tizen.Applications
         /// <param name="type">Package type for the package to be installed.</param>
         /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if installation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
         /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
@@ -709,7 +678,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="packageId">ID of the package to be uninstalled.</param>
         /// <param name="type">Optional - Package type for the package to be uninstalled.</param>
-        /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
+        /// <returns>Returns true if the uninstalltion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that the request for uninstallation is successful.
         /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.
@@ -1027,22 +996,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the package archive's information for the given archive path.
-        /// </summary>
-        /// <param name="archivePath">The path of the package archive.</param>
-        /// <remarks>
-        /// Regular 3rd party apps do not need to use this API
-        /// </remarks>
-        /// <returns>Returns the package archive information for the given archive path.</returns>
-        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
-        /// <since_tizen> 6 </since_tizen>
-        public static PackageArchive GetPackageArchive(string archivePath)
-        {
-            return PackageArchive.GetPackageArchive(archivePath);
-        }
-
-        /// <summary>
         /// Drm nested class. This class has the PackageManager's drm related methods.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1126,7 +1079,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
@@ -1153,7 +1106,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
@@ -1170,20 +1123,18 @@ namespace Tizen.Applications
                 return;
 
             var err = Interop.PackageManager.ErrorCode.None;
+            s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
             if (!Handle.IsInvalid)
             {
-                lock (Handle)
+                Log.Debug(LogTag, "Reset Package Event");
+                err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Debug(LogTag, "Reset Package Event");
-                    err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-                    if (err != Interop.PackageManager.ErrorCode.None)
-                    {
-                        throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
-                    }
-
-                    err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
                 }
+
+                err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -1193,43 +1144,33 @@ namespace Tizen.Applications
 
         private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
         {
-            PackageManagerEventArgs args;
             try
             {
-                args = new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress);
+                if (eventType == Interop.PackageManager.EventType.Install)
+                {
+                    s_installEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                }
+                else if (eventType == Interop.PackageManager.EventType.Uninstall)
+                {
+                    s_uninstallEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                }
+                else if (eventType == Interop.PackageManager.EventType.Update)
+                {
+                    s_updateEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                }
+                else if (eventType == Interop.PackageManager.EventType.Move)
+                {
+                    s_moveEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                }
+                else if (eventType == Interop.PackageManager.EventType.ClearData)
+                {
+                    s_clearDataEventHandler?.Invoke(null, new PackageManagerEventArgs(packageType, packageId, (PackageEventState)eventState, progress));
+                }
             }
             catch (Exception e)
             {
                 Log.Warn(LogTag, e.Message);
-                return;
             }
-
-            EventHandler<PackageManagerEventArgs> handlers = null;
-            lock (s_pkgEventLock)
-            {
-                if (eventType == Interop.PackageManager.EventType.Install)
-                {
-                    handlers = s_installEventHandler;
-                }
-                else if (eventType == Interop.PackageManager.EventType.Uninstall)
-                {
-                    handlers = s_uninstallEventHandler;
-                }
-                else if (eventType == Interop.PackageManager.EventType.Update)
-                {
-                    handlers = s_updateEventHandler;
-                }
-                else if (eventType == Interop.PackageManager.EventType.Move)
-                {
-                    handlers = s_moveEventHandler;
-                }
-                else if (eventType == Interop.PackageManager.EventType.ClearData)
-                {
-                    handlers = s_clearDataEventHandler;
-                }
-            }
-
-            handlers?.Invoke(null, args);
         }
 
         private static void UnregisterPackageManagerEventIfNeeded()
@@ -1239,13 +1180,12 @@ namespace Tizen.Applications
                 return;
             }
 
-            lock (Handle)
+            s_packageManagerEventCallback = null;
+
+            var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+            if (err != Interop.PackageManager.ErrorCode.None)
             {
-                var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-                if (err != Interop.PackageManager.ErrorCode.None)
-                {
-                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
-                }
+                throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
             }
         }
     }

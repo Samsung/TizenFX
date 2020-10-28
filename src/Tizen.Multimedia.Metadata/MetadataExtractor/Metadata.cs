@@ -196,10 +196,7 @@ namespace Tizen.Multimedia
             Album = extractor.GetMetadata(MetadataExtractorAttr.Album);
             AlbumArtist = extractor.GetMetadata(MetadataExtractorAttr.AlbumArtist);
             Genre = extractor.GetMetadata(MetadataExtractorAttr.Genre);
-#pragma warning disable CS0618 // Type or member is obsolete
-            Author = extractor.GetMetadata(MetadataExtractorAttr.Composer);
-#pragma warning restore CS0618 // Type or member is obsolete
-            Composer = extractor.GetMetadata(MetadataExtractorAttr.Composer);
+            Author = extractor.GetMetadata(MetadataExtractorAttr.Author);
             Copyright = extractor.GetMetadata(MetadataExtractorAttr.Copyright);
             DateReleased = extractor.GetMetadata(MetadataExtractorAttr.ReleaseDate);
             Description = extractor.GetMetadata(MetadataExtractorAttr.Description);
@@ -281,15 +278,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A string representing the author, or null if the information does not exist.</value>
-        [Obsolete("Please do not use! This will be deprecated. Please use Composer instead.")]
         public string Author { get; }
-
-        /// <summary>
-        /// Gets the composer of the media.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <value>A string representing the composer, or null if the information does not exist.</value>
-        public string Composer { get; }
 
         /// <summary>
         /// Gets the copyright of the media.
