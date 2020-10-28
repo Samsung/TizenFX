@@ -69,7 +69,7 @@ namespace UIControlSample
                 }
                 else
                 {
-                    return 25.0f;
+                    return 34.0f;
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace UIControlSample
                 }
                 else
                 {
-                    return 30.0f;
+                    return 43.0f;
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace UIControlSample
                 }
                 else
                 {
-                    return 35.0f;
+                    return 65.0f;
                 }
             }
         }
