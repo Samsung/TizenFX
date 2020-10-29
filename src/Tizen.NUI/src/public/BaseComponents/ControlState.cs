@@ -226,7 +226,23 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>true if the ControlStates are equal; otherwise, false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(ControlState lhs, ControlState rhs) => lhs.Equals(rhs);
+        public static bool operator ==(ControlState lhs, ControlState rhs)
+        {
+            // Check for null on left side.
+            if (lhs is null)
+            {
+                if (rhs is null)
+                {
+                    // null == null = true.
+                    return true;
+                }
+
+                // Only the left side is null.
+                return false;
+            }
+            // Equals handles case of null on right side.
+            return lhs.Equals(rhs);
+        }
 
         /// <summary>
         /// Compares whether the two ControlStates are different or not.
@@ -235,7 +251,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>true if the ControlStates are not equal; otherwise, false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(ControlState lhs, ControlState rhs) => !lhs.Equals(rhs);
+        public static bool operator !=(ControlState lhs, ControlState rhs) => !(lhs == rhs);
 
         /// <summary>
         /// The addition operator.
