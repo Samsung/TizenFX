@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector2TypeConverter))]
-    public class Vector2 : Disposable
+    public class Vector2 : Disposable, ICloneable
     {
 
         /// <summary>
@@ -449,6 +449,10 @@ namespace Tizen.NUI
             Interop.Vector2.Vector2_Normalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Vector2(this);
 
         /// <summary>
         /// Clamps the vector between minimum and maximum vectors.

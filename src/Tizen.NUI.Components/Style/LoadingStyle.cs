@@ -26,6 +26,42 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
+        /// <summary>The FrameRateSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FrameRateSelectorProperty = BindableProperty.Create("FrameRateSelector", typeof(Selector<int?>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).frameRate = ((Selector<int?>)newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((LoadingStyle)bindable).frameRate;
+        });
+
+        /// <summary>The LoadingSize bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LoadingSizeProperty = BindableProperty.Create(nameof(LoadingSize), typeof(Size), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).Size = (Size)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((LoadingStyle)bindable).Size;
+        });
+
+        /// <summary>The Images bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).images = (string[])((string[])newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((LoadingStyle)bindable).images;
+        });
+
+        private Selector<int?> frameRate;
+        private string[] images;
+
         static LoadingStyle() { }
 
         /// <summary>
@@ -41,18 +77,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public LoadingStyle(LoadingStyle style) : base(style)
         {
-            if(null == style)
-            {
-                return;
-            }
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public string[] Images { get; set; }
+        public string[] Images
+        {
+            get => (string[])GetValue(ImagesProperty);
+            set => SetValue(ImagesProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets loading image size.
@@ -60,21 +95,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Size LoadingSize
         {
-            get
-            {
-                return this.Size;
-            }
-            set
-            {
-                this.Size = value;
-            }
+            get => (Size)GetValue(LoadingSizeProperty);
+            set => SetValue(LoadingSizeProperty, value);
         }
 
         /// <summary>
         /// Gets or sets loading frame per second.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
+        public Selector<int?> FrameRate
+        {
+            get => (Selector<int?>)GetValue(FrameRateSelectorProperty);
+            set => SetValue(FrameRateSelectorProperty, value);
+        }
 
         /// <summary>
         /// Style's clone function.
@@ -84,24 +117,6 @@ namespace Tizen.NUI.Components
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
-
-            LoadingStyle loadingStyle = bindableObject as LoadingStyle;
-
-            if (null != loadingStyle)
-            {
-                if (null != loadingStyle.FrameRate)
-                {
-                    FrameRate?.Clone(loadingStyle.FrameRate);
-                }
-                if (null != loadingStyle.LoadingSize)
-                {
-                    LoadingSize = loadingStyle.LoadingSize;
-                }
-                if (null != loadingStyle.Images)
-                {
-                    Images = loadingStyle.Images;
-                }
-            }
         }
     }
 }
