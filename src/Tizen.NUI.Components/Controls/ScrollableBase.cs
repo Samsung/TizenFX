@@ -14,6 +14,7 @@
  *
  */
 using System;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -576,7 +577,7 @@ namespace Tizen.NUI.Components
             //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
             verticalTopShadowView = new View
             {
-                BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_top.png"),
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_top.png",
                 Opacity = 1.0f,
                 SizeHeight = 0.0f,
                 PositionUsesPivotPoint = true,
@@ -585,7 +586,7 @@ namespace Tizen.NUI.Components
             };
             verticalBottomShadowView = new View
             {
-                BackgroundImage = StyleManager.GetFrameworkResourcePath("nui_component_default_scroll_over_shooting_bottom.png"),
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_bottom.png",
                 Opacity = 1.0f,
                 SizeHeight = 0.0f,
                 PositionUsesPivotPoint = true,
