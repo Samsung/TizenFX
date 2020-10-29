@@ -12,7 +12,7 @@ namespace Tizen.NUI.Binding
         public ElementEventArgs(Element element)
         {
             if (element == null)
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
 
             Element = element;
         }

@@ -34,7 +34,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowsProperty = BindableProperty.Create("Rows", typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RowsProperty = BindableProperty.Create(nameof(Rows), typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -51,7 +51,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnsProperty = BindableProperty.Create("Columns", typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create("CellPadding", typeof(Vector2), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create(nameof(CellPadding), typeof(Vector2), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create("LayoutRows", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create(nameof(LayoutRows), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create("LayoutColumns", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create(nameof(LayoutColumns), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
