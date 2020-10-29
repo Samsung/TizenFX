@@ -19,7 +19,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create("BindingContext", typeof(object), typeof(BindableObject), default(object),
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), default(object),
                                     BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
 
         readonly List<BindablePropertyContext> _properties = new List<BindablePropertyContext>(4);
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Binding
         internal void ClearValue(BindablePropertyKey propertyKey)
         {
             if (propertyKey == null)
-                throw new ArgumentNullException("propertyKey");
+                throw new ArgumentNullException(nameof(propertyKey));
 
             ClearValue(propertyKey.BindableProperty, fromStyle:false, checkAccess: false);
         }
@@ -144,7 +144,7 @@ namespace Tizen.NUI.Binding
         public object GetValue(BindableProperty property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             BindablePropertyContext context = property.DefaultValueCreator != null ? GetOrCreateContext(property) : GetContext(property);
 
@@ -168,7 +168,7 @@ namespace Tizen.NUI.Binding
         internal void RemoveBinding(BindableProperty property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             BindablePropertyContext context = GetContext(property);
             if (context == null || context.Binding == null)
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Binding
         internal void SetValueAndForceSendChangeSignal(BindableProperty property, object value)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             if (true == isCreateByXaml)
             {
@@ -254,7 +254,7 @@ namespace Tizen.NUI.Binding
         public void SetValue(BindablePropertyKey propertyKey, object value)
         {
             if (propertyKey == null)
-                throw new ArgumentNullException("propertyKey");
+                throw new ArgumentNullException(nameof(propertyKey));
 
             SetValue(propertyKey.BindableProperty, value, false, false);
         }
@@ -350,7 +350,7 @@ namespace Tizen.NUI.Binding
         internal bool GetIsBound(BindableProperty targetProperty)
         {
             if (targetProperty == null)
-                throw new ArgumentNullException("targetProperty");
+                throw new ArgumentNullException(nameof(targetProperty));
 
             BindablePropertyContext bpcontext = GetContext(targetProperty);
             return bpcontext != null && bpcontext.Binding != null;
@@ -472,7 +472,7 @@ namespace Tizen.NUI.Binding
         internal void RemoveDynamicResource(BindableProperty property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             OnRemoveDynamicResource(property);
             BindablePropertyContext context = GetOrCreateContext(property);
@@ -482,9 +482,9 @@ namespace Tizen.NUI.Binding
         internal void SetBinding(BindableProperty targetProperty, BindingBase binding, bool fromStyle)
         {
             if (targetProperty == null)
-                throw new ArgumentNullException("targetProperty");
+                throw new ArgumentNullException(nameof(targetProperty));
             if (binding == null)
-                throw new ArgumentNullException("binding");
+                throw new ArgumentNullException(nameof(binding));
 
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
@@ -576,7 +576,7 @@ namespace Tizen.NUI.Binding
             bool converted = (privateAttributes & SetValuePrivateFlags.Converted) != 0;
 
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
             if (checkAccess && property.IsReadOnly)
             {
                 Debug.WriteLine("Can not set the BindableProperty \"{0}\" because it is readonly.", property.PropertyName);
@@ -590,7 +590,7 @@ namespace Tizen.NUI.Binding
             }
 
             if (property.ValidateValue != null && !property.ValidateValue(this, value))
-                throw new ArgumentException("Value was an invalid value for " + property.PropertyName, "value");
+                throw new ArgumentException("Value was an invalid value for " + property.PropertyName, nameof(value));
 
             if (property.CoerceValue != null)
                 value = property.CoerceValue(this, value);
@@ -771,7 +771,7 @@ namespace Tizen.NUI.Binding
         void SetValue(BindableProperty property, object value, bool fromStyle, bool checkAccess)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             if (checkAccess && property.IsReadOnly)
                 throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));

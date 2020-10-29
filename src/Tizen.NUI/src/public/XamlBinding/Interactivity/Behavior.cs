@@ -11,7 +11,7 @@ namespace Tizen.NUI.Binding
         internal Behavior(Type associatedType)
         {
             if (associatedType == null)
-                throw new ArgumentNullException("associatedType");
+                throw new ArgumentNullException(nameof(associatedType));
             AssociatedType = associatedType;
         }
 
@@ -22,7 +22,7 @@ namespace Tizen.NUI.Binding
         void IAttachedObject.AttachTo(BindableObject bindable)
         {
             if (bindable == null)
-                throw new ArgumentNullException("bindable");
+                throw new ArgumentNullException(nameof(bindable));
             if (!AssociatedType.IsInstanceOfType(bindable))
                 throw new InvalidOperationException("bindable not an instance of AssociatedType");
             OnAttachedTo(bindable);

@@ -34,9 +34,9 @@ namespace Tizen.NUI.Binding
         public Binding(string path, BindingMode mode = BindingMode.Default, IValueConverter converter = null, object converterParameter = null, string stringFormat = null, object source = null)
         {
             if (path == null)
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             if (string.IsNullOrWhiteSpace(path))
-                throw new ArgumentException("path can not be an empty string", "path");
+                throw new ArgumentException("path can not be an empty string", nameof(path));
 
             Path = path;
             Converter = converter;
@@ -115,7 +115,7 @@ namespace Tizen.NUI.Binding
                                               string stringFormat = null)
         {
             if (propertyGetter == null)
-                throw new ArgumentNullException("propertyGetter");
+                throw new ArgumentNullException(nameof(propertyGetter));
 
 			return new Binding(GetBindingPath(propertyGetter), mode, converter, converterParameter, stringFormat);
 		}

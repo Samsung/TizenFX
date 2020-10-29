@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapEnabledProperty = BindableProperty.Create("WrapEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapEnabledProperty = BindableProperty.Create(nameof(WrapEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create("PanningEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create(nameof(PanningEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create("AxisAutoLockEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create(nameof(AxisAutoLockEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create("WheelScrollDistanceStep", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create("ScrollPosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create("ScrollPrePosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create(nameof(ScrollPrePosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -138,7 +138,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create("ScrollPrePositionMax", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create(nameof(ScrollPrePositionMax), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -156,7 +156,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootXProperty = BindableProperty.Create("OvershootX", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootXProperty = BindableProperty.Create(nameof(OvershootX), typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootYProperty = BindableProperty.Create("OvershootY", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootYProperty = BindableProperty.Create(nameof(OvershootY), typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -192,7 +192,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create("ScrollFinal", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create(nameof(ScrollFinal), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -210,7 +210,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapProperty = BindableProperty.Create("Wrap", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapProperty = BindableProperty.Create(nameof(Wrap), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -228,7 +228,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningProperty = BindableProperty.Create("Panning", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PanningProperty = BindableProperty.Create(nameof(Panning), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -246,7 +246,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollingProperty = BindableProperty.Create("Scrolling", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollingProperty = BindableProperty.Create(nameof(Scrolling), typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -264,7 +264,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create("ScrollDomainSize", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create(nameof(ScrollDomainSize), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -282,7 +282,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create("ScrollDomainOffset", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create(nameof(ScrollDomainOffset), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -300,7 +300,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create("ScrollPositionDelta", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create(nameof(ScrollPositionDelta), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -318,7 +318,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create("StartPagePosition", typeof(Vector3), typeof(ScrollView), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create(nameof(StartPagePosition), typeof(Vector3), typeof(ScrollView), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -336,7 +336,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create("ScrollMode", typeof(PropertyMap), typeof(ScrollView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create(nameof(ScrollMode), typeof(PropertyMap), typeof(ScrollView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)

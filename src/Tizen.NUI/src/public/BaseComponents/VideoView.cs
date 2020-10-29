@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VideoProperty = BindableProperty.Create("Video", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VideoProperty = BindableProperty.Create(nameof(Video), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopingProperty = BindableProperty.Create("Looping", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
@@ -63,7 +63,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MutedProperty = BindableProperty.Create("Muted", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VolumeProperty = BindableProperty.Create("Volume", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
@@ -97,7 +97,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create("Underlay", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
@@ -114,7 +114,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
