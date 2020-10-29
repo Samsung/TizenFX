@@ -984,6 +984,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The start index for selection.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int SelectedTextStart
+        {
+            get
+            {
+                int temp;
+                GetProperty(TextEditor.Property.SELECTED_TEXT_START).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SELECTED_TEXT_START, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The end index for selection.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int SelectedTextEnd
+        {
+            get
+            {
+                int temp;
+                GetProperty(TextEditor.Property.SELECTED_TEXT_END).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.SELECTED_TEXT_END, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1271,6 +1313,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextEditor.TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int MAX_LENGTH = Interop.TextEditor.TextEditor_Property_MAX_LENGTH_get();
+            internal static readonly int SELECTED_TEXT_START = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_START_get();
+            internal static readonly int SELECTED_TEXT_END = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_END_get();
         }
 
         internal class InputStyle
