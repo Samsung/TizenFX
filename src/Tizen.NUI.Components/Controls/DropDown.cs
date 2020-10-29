@@ -245,8 +245,8 @@ namespace Tizen.NUI.Components
                 {
                     button = new Button()
                     {
-                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = NUI.PivotPoint.CenterLeft,
+                        ParentOrigin = NUI.ParentOrigin.TopLeft,
+                        PivotPoint = NUI.PivotPoint.TopLeft,
                         PositionUsesPivotPoint = true,
                         HeightResizePolicy = ResizePolicyType.FitToChildren,
                         IconRelativeOrientation = Button.IconOrientation.Right,

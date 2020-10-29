@@ -128,7 +128,7 @@ namespace Tizen.NUI.WindowSystem.Shell
                     {
                         ErrorCodeThrow(res);
                     }
-                    catch (ArgumentException e)
+                    catch (ArgumentException)
                     {
                         throw new MemberAccessException("TizehShell is a corrupted");
                     }

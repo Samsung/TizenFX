@@ -71,6 +71,10 @@ namespace Tizen.Sensor
         /// </param>
         public AutoRotationSensor(uint index = 0) : base(index)
         {
+            if (!IsSupported)
+            {
+                throw new NotSupportedException("Not Supported: " + "AutoRotationSensor is not supported");
+            }
             Log.Info(Globals.LogTag, "Creating AutoRotationSensor object");
         }
 

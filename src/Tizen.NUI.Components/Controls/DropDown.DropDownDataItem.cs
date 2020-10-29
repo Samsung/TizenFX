@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem()
             {
-                itemDataStyle = (DropDownItemStyle)StyleManager.Instance.GetComponentStyle(this.GetType());
+                itemDataStyle = ThemeManager.GetStyle("Tizen.NUI.Components.DropDown.DropDownDataItem") as DropDownItemStyle;
                 Initialize();
             }
 

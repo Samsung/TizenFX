@@ -14,8 +14,10 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System;
 
 namespace Tizen.NUI
 {
@@ -24,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
-    public class Size2D : Disposable
+    public class Size2D : Disposable, ICloneable
     {
 
         private Size2DChangedCallback callback = null;
@@ -71,10 +73,13 @@ namespace Tizen.NUI
         /// The property for the width component of a size.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor")]
         public int Width
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor");
+
                 Interop.Vector2.Vector2_Width_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -92,10 +97,13 @@ namespace Tizen.NUI
         /// The property for the height component of a size.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor")]
         public int Height
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor");
+
                 Interop.Vector2.Vector2_Height_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -295,6 +303,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Size2D(Width, Height);
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size2D obj)
         {

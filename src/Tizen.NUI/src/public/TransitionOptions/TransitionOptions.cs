@@ -203,7 +203,7 @@ namespace Tizen.NUI
 
         internal void SendLaunchRequest(AppControl appControl)
         {
-            this.frameBroker.SendLaunchRequest(appControl, false);
+            this.frameBroker.SendLaunchRequest(appControl, true);
         }
     }
 }

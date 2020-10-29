@@ -33,6 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
+        internal string styleName;
 
         internal MergedStyle _mergedStyle
         {
@@ -1051,6 +1052,15 @@ namespace Tizen.NUI.BaseComponents
             UpdateShadowCornerRadius(value);
         }
 
+        internal void UpdateStyle()
+        {
+            ViewStyle newStyle;
+            if (styleName == null) newStyle = ThemeManager.GetStyle(GetType());
+            else newStyle = ThemeManager.GetStyle(styleName);
+
+            if (newStyle != null && (viewStyle == null || viewStyle.GetType() == newStyle.GetType())) ApplyStyle(newStyle);
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1071,6 +1081,10 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 selectorData?.Reset(this);
+                if (themeChangeSensitive)
+                {
+                    ThemeManager.ThemeChanged -= OnThemeChanged;
+                }
             }
 
             //Release your own unmanaged resources here.
@@ -1079,16 +1093,6 @@ namespace Tizen.NUI.BaseComponents
             if (this != null)
             {
                 DisConnectFromSignals();
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.View.delete_View(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             foreach (View view in Children)
@@ -1170,6 +1174,11 @@ namespace Tizen.NUI.BaseComponents
                 this.HoveredSignal().Disconnect(_hoverEventCallback);
             }
 
+            if (_interceptTouchDataCallback != null)
+            {
+                this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
+            }
+
             if (_touchDataCallback != null)
             {
                 this.TouchSignal().Disconnect(_touchDataCallback);
@@ -1178,36 +1187,6 @@ namespace Tizen.NUI.BaseComponents
             if (_ResourcesLoadedCallback != null)
             {
                 this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
-            }
-
-            if (_offWindowEventCallback != null)
-            {
-                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
-            }
-
-            if (_onWindowEventCallback != null)
-            {
-                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
-            }
-
-            if (_wheelEventCallback != null)
-            {
-                this.WheelEventSignal().Disconnect(_wheelEventCallback);
-            }
-
-            if (_hoverEventCallback != null)
-            {
-                this.HoveredSignal().Disconnect(_hoverEventCallback);
-            }
-
-            if (_touchDataCallback != null)
-            {
-                this.TouchSignal().Disconnect(_touchDataCallback);
-            }
-
-            if (_onRelayoutEventCallback != null)
-            {
-                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
             }
 
             if (_keyCallback != null)

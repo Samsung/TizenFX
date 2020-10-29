@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using System;
-using System.Drawing;
 /*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
@@ -18,12 +15,15 @@ using System.Drawing;
  *
  */
 
+using System.Diagnostics;
+using System;
+using System.Drawing;
+
 namespace Tizen.NUI
 {
     using global::System;
     using global::System.ComponentModel;
     using global::System.Runtime.InteropServices;
-    using global::System.ComponentModel;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -107,9 +107,9 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
         /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Start(Container source, Position position, Size size, string path, Color color )
+        public void Start(Container source, Position position, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -139,9 +139,9 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
         /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Start(Container source, Size size, string path, Color color, uint quality )
+        public void Start(Container source, Size size, string path, Color color, uint quality)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -176,7 +176,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -209,7 +209,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path)
         {
-            if (size.Width <= 0 || size.Height <=0)
+            if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -217,7 +217,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException("path should not be null");
             }
-            
+
             if (source is View || source is Layer)
             {
                 Interop.Capture.Start2(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
@@ -238,7 +238,7 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("quality should between zero to 100");
             }
-            
+
             Interop.Capture.SetImageQuality(swigCPtr, quality);
         }
 
