@@ -34,7 +34,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create("ProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create(nameof(ProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -52,7 +52,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create("SecondaryProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create(nameof(SecondaryProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -70,7 +70,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create("Indeterminate", typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create(nameof(Indeterminate), typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -88,7 +88,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create(nameof(TrackVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -106,7 +106,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create(nameof(ProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -124,7 +124,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create("SecondaryProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create(nameof(SecondaryProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -142,7 +142,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create("IndeterminateVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create(nameof(IndeterminateVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -160,7 +160,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create("IndeterminateVisualAnimation", typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create(nameof(IndeterminateVisualAnimation), typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
@@ -178,7 +178,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create("LabelVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create(nameof(LabelVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
