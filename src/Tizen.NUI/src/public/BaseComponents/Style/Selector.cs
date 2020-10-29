@@ -37,7 +37,7 @@ namespace Tizen.NUI.BaseComponents
         /// The list for adding state-value pair.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        List<StateValuePair<T>> StateValueList { get; set; } = new List<StateValuePair<T>>();
+        public List<StateValuePair<T>> StateValueList { get; set; } = new List<StateValuePair<T>>();
 
         /// <summary>
         /// Adds the specified state and value.
