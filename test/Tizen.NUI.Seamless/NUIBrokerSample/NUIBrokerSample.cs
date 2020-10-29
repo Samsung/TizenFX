@@ -8,6 +8,9 @@ namespace NUIBrokerSample
     class Program : NUIApplication
     {
         private UICreator uiCreator;
+        private SeamlessForwardAnimation fAnimation;
+        private SeamlessBackwardAnimation bAnimation;
+
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -24,12 +27,26 @@ namespace NUIBrokerSample
 
             TransitionOptions = new TransitionOptions(GetDefaultWindow());
             TransitionOptions.EnableTransition = true;
-            TransitionOptions.ForwardAnimation = new SlideIn(1300);
-            TransitionOptions.BackwardAnimation = new SlideOut(1300);
 
+            fAnimation = new SeamlessForwardAnimation(uiCreator, 600);
+            bAnimation = new SeamlessBackwardAnimation(uiCreator, 600);
+            TransitionOptions.ForwardAnimation = fAnimation;
+            //TransitionOptions.BackwardAnimation = bAnimation;
+
+            TransitionOptions.AnimationInitialized += TransitionOptions_AnimationInitialized;
             //(launchBroker as SeamlessAnimator)?.SetUICreator(uiCreator);
         }
 
+        private void TransitionOptions_AnimationInitialized(object sender, EventArgs e)
+        {
+            fAnimation.InitAnimation();
+            //bAnimation.InitAnimation();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+        }
 
         protected override void OnPause()
         {

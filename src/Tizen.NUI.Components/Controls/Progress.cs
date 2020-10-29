@@ -426,22 +426,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ProgressStyle;
-            if (null != tempStyle)
-            {
-                progressStyle.CopyFrom(tempStyle);
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
         /// Change Image status. It can be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

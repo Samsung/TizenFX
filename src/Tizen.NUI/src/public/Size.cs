@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
-    public class Size : Disposable
+    public class Size : Disposable, ICloneable
     {
 
         /// <summary>
@@ -313,6 +313,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Size(Width, Height, Depth);
 
         /// <summary>
         /// The type cast operator, Size to Vector3.
