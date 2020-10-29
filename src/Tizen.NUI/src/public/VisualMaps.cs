@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// A class encapsulating the transform map of the visual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class VisualMap
+    public class VisualMap : Disposable
     {
         /// <summary>
         /// outputVisualMap.
@@ -683,6 +683,33 @@ namespace Tizen.NUI
             if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
             if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
             if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
+        }
+
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            _commonlyUsedMap.Dispose();
+            _mixColor.Dispose();
+            _outputVisualMap.Dispose();
+            _shader.Dispose();
+            _visualOffset.Dispose();
+            _visualOffsetPolicy.Dispose();
+            _visualSize.Dispose();
+            _visualSizePolicy.Dispose();
+            _visualTransformMap.Dispose();
+            Parent.Dispose();
+
+            base.Dispose();
         }
     }
 }

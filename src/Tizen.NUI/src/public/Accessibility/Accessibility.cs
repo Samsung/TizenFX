@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Tizen.NUI.Accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility
+    public class Accessibility : Disposable
     {
         #region Constructor, Distructor, Dispose
         private Accessibility()
@@ -38,14 +38,15 @@ namespace Tizen.NUI.Accessibility
             dummy = new View();
             dummy.Name = "dali-atspi-singleton";
         }
-        /// <summary>
-        /// destructor. This is HiddenAPI. recommended not to use in public.
-        /// </summary>
+
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
         ~Accessibility()
         {
+            Dispose();
         }
         #endregion Constructor, Distructor, Dispose
-
 
         #region Property
         /// <summary>
@@ -215,6 +216,24 @@ namespace Tizen.NUI.Accessibility
         {
             tlog.Fatal(tag, $"_sayFinishedEventCallback(res={result}) called!");
             _sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
+        }
+
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            dummy?.Dispose();
+
+            base.Dispose();
         }
 
         private View dummy;
