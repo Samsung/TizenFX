@@ -14,6 +14,7 @@
  *
  */
 using System;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,51 @@ namespace Tizen.NUI.Components
             {
                 return position;
             }
+        }
+    }
+
+    /// <summary>
+    /// ScrollOutofBoundEventArgs is to record scroll out-of-bound event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScrollOutOfBoundEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The bound to be scrolled out of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Bound
+        {
+            /// <summary>
+            /// Top bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top,
+
+            /// <summary>
+            /// Bottom bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="bound">Current scrollable bound</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollOutOfBoundEventArgs(Bound bound)
+        {
+            ScrollableBound = bound;
+        }
+
+        /// <summary>
+        /// Current position of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Bound ScrollableBound
+        {
+            get;
         }
     }
 
@@ -297,7 +343,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollDragEnded;
 
-
         /// <summary>
         /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
@@ -310,13 +355,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollAnimationEnded;
 
-
         /// <summary>
         /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> Scrolling;
 
+        /// <summary>
+        /// An event emitted when scrolling out of bound, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollOutOfBoundEventArgs> ScrollOutOfBound;
 
         /// <summary>
         /// Scrollbar for ScrollableBase.
@@ -528,6 +577,14 @@ namespace Tizen.NUI.Components
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
 
+        private View verticalTopShadowView;
+        private View verticalBottomShadowView;
+        private const int verticalShadowScaleHeightLimit = 64 * 3;
+        private const int verticalShadowAnimationDuration = 300;
+        private Animation verticalShadowAnimation;
+        private bool isVerticalShadowShown = false;
+        private float startShowShadowDisplacement;
+
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -564,6 +621,26 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
+            verticalTopShadowView = new View
+            {
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_top.png",
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.TopCenter,
+                PivotPoint = NUI.PivotPoint.TopCenter,
+            };
+            verticalBottomShadowView = new View
+            {
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_bottom.png",
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.BottomCenter,
+                PivotPoint = NUI.PivotPoint.BottomCenter,
+            };
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
@@ -843,7 +920,6 @@ namespace Tizen.NUI.Components
                 {
                     ContentContainer.PositionY = finalTargetPosition;
                 }
-
             }
         }
 
@@ -862,6 +938,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                StopVerticalShadowAnimation();
                 StopScroll();
 
                 if (mPanGestureDetector != null)
@@ -936,6 +1013,125 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        private void AttachShadowView()
+        {
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            base.Add(verticalTopShadowView);
+            base.Add(verticalBottomShadowView);
+
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalTopShadowView.Opacity = 1.0f;
+
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Opacity = 1.0f;
+
+            // at the beginning, height of vertical shadow is 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
+        private void DragVerticalShadow(float displacement)
+        {
+            if ((int)displacement > 0) // downwards
+            {
+                // check if reaching at the top.
+                if ((int)finalTargetPosition != 0)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                verticalTopShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else if ((int)displacement < 0) // upwards
+            {
+                // check if reaching at the bottom.
+                if (-(int)finalTargetPosition != (int)maxScrollDistance)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                verticalBottomShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else
+            {
+                // if total displacement is 0, shadow would become invisible.
+                isVerticalShadowShown = false;
+            }
+        }
+
+        private void PlayVerticalShadowAnimation()
+        {
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            if (verticalShadowAnimation == null)
+            {
+                verticalShadowAnimation = new Animation(verticalShadowAnimationDuration);
+                verticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
+            }
+
+            View targetView = totalDisplacementForPan < 0 ? verticalBottomShadowView : verticalTopShadowView;
+            verticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
+            verticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
+            verticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            verticalShadowAnimation.Play();
+        }
+
+        private void StopVerticalShadowAnimation()
+        {
+            if (verticalShadowAnimation == null || verticalShadowAnimation.State != Animation.States.Playing)
+                return;
+
+            verticalShadowAnimation.Stop(Animation.EndActions.Cancel);
+            OnVerticalShadowAnimationFinished(null, null);
+            verticalShadowAnimation.Clear();
+        }
+
+        private void OnVerticalShadowAnimationFinished(object sender, EventArgs e)
+        {
+            base.Remove(verticalTopShadowView);
+            base.Remove(verticalBottomShadowView);
+
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+
+            // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
+        {
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
+            ScrollOutOfBound?.Invoke(this, args);
+        }
+
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             OnPanGesture(e.PanGesture);
@@ -952,6 +1148,7 @@ namespace Tizen.NUI.Components
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
+                AttachShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
@@ -969,13 +1166,19 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    ScrollBy(panGesture.Displacement.Y, false);
+                    // if vertical shadow is shown, does not scroll.
+                    if (!isVerticalShadowShown)
+                    {
+                        ScrollBy(panGesture.Displacement.Y, false);
+                    }
                     totalDisplacementForPan += panGesture.Displacement.Y;
+                    DragVerticalShadow(totalDisplacementForPan);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
+                PlayVerticalShadowAnimation();
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
 

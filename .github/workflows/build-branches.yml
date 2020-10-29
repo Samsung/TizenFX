@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - DevelNUI
     - API*
 
     paths:
