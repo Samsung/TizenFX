@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 
 using System.Collections.Generic;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,13 +25,14 @@ namespace Tizen.NUI
     /// Define a List of LayoutTransitions
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TransitionList : List<LayoutTransition> {}
+    public class TransitionList : List<LayoutTransition> { }
 
     /// <summary>
     /// The conditions for transitions.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    [FlagsAttribute] public enum TransitionCondition
+    [FlagsAttribute]
+    public enum TransitionCondition
     {
         /// <summary>
         /// Default when a condition has not been set.
@@ -99,7 +101,7 @@ namespace Tizen.NUI
     /// Parts of the transition that can be configured to provide a custom effect.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TransitionComponents
+    public class TransitionComponents : Disposable
     {
         /// <summary>
         /// TransitionComponents default constructor.
@@ -110,6 +112,15 @@ namespace Tizen.NUI
             Delay = 0;
             Duration = 100;
             AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+        }
+
+        /// <summary>	
+        /// destructor. This is HiddenAPI. recommended not to use in public.	
+        /// </summary>	
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~TransitionComponents()
+        {
+            Dispose();
         }
 
         /// <summary>
@@ -142,6 +153,22 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlphaFunction AlphaFunction;
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            AlphaFunction.Dispose();
+            base.Dispose();
+        }
     }
 
     /// <summary>
@@ -155,10 +182,10 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LayoutTransition()
         {
-          Condition = TransitionCondition.Unspecified;
-          AnimatableProperty = AnimatableProperties.Position;
-          Animator = null;
-          TargetValue = 0;
+            Condition = TransitionCondition.Unspecified;
+            AnimatableProperty = AnimatableProperties.Position;
+            Animator = null;
+            TargetValue = 0;
         }
         /// <summary>
         /// LayoutTransition constructor.
@@ -168,7 +195,7 @@ namespace Tizen.NUI
         /// <param name="targetValue">target value of the property.</param>
         /// <param name="animator">Components to define the animator.</param>
         /// <since_tizen> 6 </since_tizen>
-        public LayoutTransition( TransitionCondition condition,
+        public LayoutTransition(TransitionCondition condition,
                                  AnimatableProperties animatableProperty,
                                  object targetValue,
                                  TransitionComponents animator)
@@ -184,25 +211,25 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
-        public TransitionCondition Condition{get; set;}
+        public TransitionCondition Condition { get; set; }
         /// <summary>
         /// Property to animate.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
-        public AnimatableProperties AnimatableProperty{get; set;}
+        public AnimatableProperties AnimatableProperty { get; set; }
         /// <summary>
         /// Components of the Animator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
-        public TransitionComponents Animator{get; set;}
+        public TransitionComponents Animator { get; set; }
         /// <summary>
         /// Target value to animate to.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
-        public object TargetValue{get; set;}
+        public object TargetValue { get; set; }
     }
 
 
@@ -231,7 +258,7 @@ namespace Tizen.NUI
             {
                 if (transitionListMatchingCondition != null)
                 {
-                    for (var index = 0; index < transitionListMatchingCondition.Count; index++ )
+                    for (var index = 0; index < transitionListMatchingCondition.Count; index++)
                     {
                         if (transitionListMatchingCondition[index].AnimatableProperty == transition.AnimatableProperty)
                         {
@@ -279,7 +306,7 @@ namespace Tizen.NUI
         static public bool GetTransitionsListForCondition(
                               Dictionary<TransitionCondition, TransitionList> sourceTransitionCollection,
                               TransitionCondition condition,
-                              TransitionList transitionsForCondition )
+                              TransitionList transitionsForCondition)
         {
             TransitionCondition resolvedCondition = condition;
             bool matched = false;
@@ -303,8 +330,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="sourceTransitionList">The source transition list.</param>
         /// <param name="targetTransitionList">The target transition list to copy to.</param>
-        static public void CopyTransitions( TransitionList sourceTransitionList,
-                                            TransitionList targetTransitionList )
+        static public void CopyTransitions(TransitionList sourceTransitionList,
+                                            TransitionList targetTransitionList)
         {
             targetTransitionList.Clear();
             foreach (LayoutTransition transitionToApply in sourceTransitionList)

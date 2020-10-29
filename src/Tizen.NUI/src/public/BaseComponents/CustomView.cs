@@ -63,8 +63,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="typeName">typename</param>
         /// <param name="behaviour">CustomView Behaviour</param>
-        /// <since_tizen> 3 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="viewStyle">CustomView ViewStyle</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeName, new ViewWrapperImpl(behaviour), viewStyle)
         {
