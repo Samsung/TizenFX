@@ -25,29 +25,20 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents the Frame Data.
     /// </summary>
-    internal class FrameData : Disposable
+    internal class FrameData
     {
-        private const string logTag = "NUI";
-        private readonly IntPtr frame;
-        private int fd = -1;
-        private uint size = 0;
-        private ImageView image = null;
+        private const string LogTag = "NUI";
+        private readonly IntPtr _frame;
+        private int _fd = -1;
+        private uint _size = 0;
+        private ImageView _image = null;
 
         private Renderer renderer;
         private TextureSet textureSet;
 
         internal FrameData(IntPtr frame)
         {
-            this.frame = frame;
-        }
-
-        /// <summary>	
-        /// destructor. This is HiddenAPI. recommended not to use in public.	
-        /// </summary>	
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        ~FrameData()
-        {
-            Dispose();
+            _frame = frame;
         }
 
         private Shader CreateShader()
@@ -142,9 +133,9 @@ namespace Tizen.NUI
         {
             get
             {
-                if (image == null)
+                if (_image == null)
                 {
-                    image = new ImageView();
+                    _image = new ImageView();
                     renderer = new Renderer(CreateQuadGeometry(), CreateShader());
                     textureSet = new TextureSet();
                 }
@@ -157,13 +148,13 @@ namespace Tizen.NUI
                         }
                         textureSet.SetTexture(0, new Texture(TbmSurface));
                         renderer.SetTextures(textureSet);
-                        image.AddRenderer(renderer);
+                        _image.AddRenderer(renderer);
                         break;
                     default:
                         break;
                 }
 
-                return image;
+                return _image;
             }
         }
 
@@ -175,10 +166,10 @@ namespace Tizen.NUI
             get
             {
                 Interop.FrameBroker.FrameDirection direction = Interop.FrameBroker.FrameDirection.Backward + 1;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetDirection(frame, out direction);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetDirection(_frame, out direction);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get direction");
+                    Log.Error(LogTag, "Failed to get direction");
                 }
                 return (direction == Interop.FrameBroker.FrameDirection.Forward);
             }
@@ -192,10 +183,10 @@ namespace Tizen.NUI
             get
             {
                 SafeBundleHandle safeBundle;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetExtraData(frame, out safeBundle);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetExtraData(_frame, out safeBundle);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get extra data");
+                    Log.Error(LogTag, "Failed to get extra data");
                     return null;
                 }
                 return new Bundle(safeBundle);
@@ -255,11 +246,11 @@ namespace Tizen.NUI
             get
             {
                 IntPtr tbmSurface = IntPtr.Zero;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetTbmSurface(frame, out tbmSurface);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetTbmSurface(_frame, out tbmSurface);
 
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get tbm surface");
+                    Log.Error(LogTag, "Failed to get tbm surface");
                 }
                 return tbmSurface;
             }
@@ -272,15 +263,15 @@ namespace Tizen.NUI
         {
             get
             {
-                if (fd != -1)
-                    return fd;
+                if (_fd != -1)
+                    return _fd;
 
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetImageFile(frame, out fd, out size);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetImageFile(_frame, out _fd, out _size);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get fd of image file");
+                    Log.Error(LogTag, "Failed to get fd of image file");
                 }
-                return fd;
+                return _fd;
             }
         }
 
@@ -291,15 +282,15 @@ namespace Tizen.NUI
         {
             get
             {
-                if (size != 0)
-                    return size;
+                if (_size != 0)
+                    return _size;
 
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetImageFile(frame, out fd, out size);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetImageFile(_frame, out _fd, out _size);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get size of image file");
+                    Log.Error(LogTag, "Failed to get size of image file");
                 }
-                return size;
+                return _size;
             }
         }
 
@@ -311,10 +302,10 @@ namespace Tizen.NUI
             get
             {
                 string filePath = string.Empty;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetFilePath(frame, out filePath);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetFilePath(_frame, out filePath);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get file path");
+                    Log.Error(LogTag, "Failed to get file path");
                 }
                 return filePath;
             }
@@ -328,10 +319,10 @@ namespace Tizen.NUI
             get
             {
                 string fileGroup = string.Empty;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetFileGroup(frame, out fileGroup);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetFileGroup(_frame, out fileGroup);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get file group");
+                    Log.Error(LogTag, "Failed to get file group");
                 }
                 return fileGroup;
             }
@@ -345,10 +336,10 @@ namespace Tizen.NUI
             get
             {
                 Interop.FrameBroker.FrameType type = Interop.FrameBroker.FrameType.SplashScreenImage + 1;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetType(frame, out type);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetType(_frame, out type);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get frame type");
+                    Log.Error(LogTag, "Failed to get frame type");
                 }
                 return (FrameType)type;
             }
@@ -362,10 +353,10 @@ namespace Tizen.NUI
             get
             {
                 int x = -1;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetPositionX(frame, out x);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetPositionX(_frame, out x);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get position X");
+                    Log.Error(LogTag, "Failed to get position X");
                 }
                 return x;
             }
@@ -379,33 +370,13 @@ namespace Tizen.NUI
             get
             {
                 int y = -1;
-                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetPositionY(frame, out y);
+                Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.GetPositionY(_frame, out y);
                 if (err != Interop.FrameBroker.ErrorCode.None)
                 {
-                    Log.Error(logTag, "Failed to get position Y");
+                    Log.Error(LogTag, "Failed to get position Y");
                 }
                 return y;
             }
-        }
-
-
-        /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            image?.Dispose();
-            renderer?.Dispose();
-            textureSet?.Dispose();
-
-            base.Dispose();
         }
     }
 }
