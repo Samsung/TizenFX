@@ -30,7 +30,16 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual TextLabel CreateText()
         {
-            return new TextLabel();
+            return new TextLabel
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
         }
 
         /// <summary>
@@ -40,7 +49,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ImageView CreateIcon()
         {
-            return new ImageView();
+            return new ImageView
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center
+            };
         }
 
         /// <summary>
@@ -50,7 +64,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ImageView CreateOverlayImage()
         {
-            return new ImageView();
+            return new ImageView
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent
+            };
         }
 
         /// <summary>
@@ -184,31 +205,34 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (Icon == null || TextLabel == null)
+            if (buttonIcon == null || buttonText == null)
             {
                 return;
             }
-            TextLabel.WidthResizePolicy = ResizePolicyType.Fixed;
-            TextLabel.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingStart = buttonStyle.TextPadding.Start;
-            int textPaddingEnd = buttonStyle.TextPadding.End;
-            int textPaddingTop = buttonStyle.TextPadding.Top;
-            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
+            buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
+            buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
 
-            int iconPaddingStart = buttonStyle.IconPadding.Start;
-            int iconPaddingEnd = buttonStyle.IconPadding.End;
-            int iconPaddingTop = buttonStyle.IconPadding.Top;
-            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
+            var textPadding = TextPadding;
+            int textPaddingStart = textPadding.Start;
+            int textPaddingEnd = textPadding.End;
+            int textPaddingTop = textPadding.Top;
+            int textPaddingBottom = textPadding.Bottom;
+
+            var iconPadding = IconPadding;
+            int iconPaddingStart = iconPadding.Start;
+            int iconPaddingEnd = iconPadding.End;
+            int iconPaddingTop = iconPadding.Top;
+            int iconPaddingBottom = iconPadding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                TextLabel.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
-                TextLabel.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - Icon.SizeHeight;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - buttonIcon.SizeHeight;
             }
             else
             {
-                TextLabel.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - Icon.SizeWidth;
-                TextLabel.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - buttonIcon.SizeWidth;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
 
@@ -220,23 +244,22 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (Icon == null || TextLabel == null)
+            if (buttonIcon == null || buttonText == null)
             {
                 return;
             }
 
-            var buttonIcon = Icon;
-            var buttonText = TextLabel;
+            var textPadding = TextPadding;
+            int textPaddingStart = textPadding.Start;
+            int textPaddingEnd = textPadding.End;
+            int textPaddingTop = textPadding.Top;
+            int textPaddingBottom = textPadding.Bottom;
 
-            int textPaddingStart = buttonStyle.TextPadding.Start;
-            int textPaddingEnd = buttonStyle.TextPadding.End;
-            int textPaddingTop = buttonStyle.TextPadding.Top;
-            int textPaddingBottom = buttonStyle.TextPadding.Bottom;
-
-            int iconPaddingStart = buttonStyle.IconPadding.Start;
-            int iconPaddingEnd = buttonStyle.IconPadding.End;
-            int iconPaddingTop = buttonStyle.IconPadding.Top;
-            int iconPaddingBottom = buttonStyle.IconPadding.Bottom;
+            var iconPadding = IconPadding;
+            int iconPaddingStart = iconPadding.Start;
+            int iconPaddingEnd = iconPadding.End;
+            int iconPaddingTop = iconPadding.Top;
+            int iconPaddingBottom = iconPadding.Bottom;
 
             switch (IconRelativeOrientation)
             {
@@ -326,22 +349,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(StyleName) as ButtonStyle;
-            if (buttonStyle != null)
-            {
-                ApplyStyle(buttonStyle);
-                UpdateUIContent();
-            }
-        }
-
-        /// <summary>
         /// Dispose Button and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -357,17 +364,17 @@ namespace Tizen.NUI.Components
             {
                 Extension?.OnDispose(this);
 
-                if (Icon != null)
+                if (buttonIcon != null)
                 {
-                    Utility.Dispose(Icon);
+                    Utility.Dispose(buttonIcon);
                 }
-                if (TextLabel != null)
+                if (buttonText != null)
                 {
-                    Utility.Dispose(TextLabel);
+                    Utility.Dispose(buttonText);
                 }
-                if (OverlayImage != null)
+                if (overlayImage != null)
                 {
-                    Utility.Dispose(OverlayImage);
+                    Utility.Dispose(overlayImage);
                 }
             }
 
