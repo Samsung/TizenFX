@@ -183,7 +183,7 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 
 # Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
-install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/depends/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 # Install Tools
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
