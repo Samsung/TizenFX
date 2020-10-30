@@ -14,14 +14,12 @@
  *
  */
 using System;
-
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -120,6 +118,10 @@ namespace Tizen.NUI.Components
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
+                Extents padding = Padding;
+                float totalHeight = padding.Top + padding.Bottom;
+                float totalWidth = padding.Start + padding.End;
+
                 MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
                 MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
@@ -130,30 +132,38 @@ namespace Tizen.NUI.Components
                     scrollingDirection = scrollableBase.ScrollingDirection;
                 }
 
-                float totalWidth = 0.0f;
-                float totalHeight = 0.0f;
-
                 // measure child, should be a single scrolling child
                 foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
+                    if (childLayout != null)
                     {
                         // Get size of child
                         // Use an Unspecified MeasureSpecification mode so scrolling child is not restricted to it's parents size in Height (for vertical scrolling)
                         // or Width for horizontal scrolling
+                        MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
-                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0)); // Height unrestricted by parent
+                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0));  // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(widthMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
-                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0)); // Width unrestricted by parent
+                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));  // Width unrestricted by parent
                         }
 
-                        totalWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                        totalHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+                        float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+                        float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                        // Determine the width and height needed by the children using their given position and size.
+                        // Children could overlap so find the left most and right most child.
+                        Position2D childPosition = childLayout.Owner.Position2D;
+                        float childLeft = childPosition.X;
+                        float childTop = childPosition.Y;
+
+                        // Store current width and height needed to contain all children.
+                        Extents childMargin = childLayout.Margin;
+                        totalWidth = childWidth + childMargin.Start + childMargin.End;
+                        totalHeight = childHeight + childMargin.Top + childMargin.Bottom;
 
                         if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                         {
@@ -166,8 +176,9 @@ namespace Tizen.NUI.Components
                     }
                 }
 
-                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
                 totalWidth = widthSizeAndState.Size.AsDecimal();
                 totalHeight = heightSizeAndState.Size.AsDecimal();
 
@@ -178,27 +189,29 @@ namespace Tizen.NUI.Components
                 widthSizeAndState.State = childWidthState;
                 heightSizeAndState.State = childHeightState;
 
-                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
-                    ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, childWidthState),
+                                       ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
                 scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
-                scrollableBase.OnScrollingChildRelayout(null, null);
+                scrollableBase.OnScrollingChildRelayout(null , null);
             }
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
             {
                 foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
+                    if (childLayout != null)
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
                         Position2D childPosition = childLayout.Owner.Position2D;
+                        Extents padding = Padding;
+                        Extents childMargin = childLayout.Margin;
 
-                        LayoutLength childLeft = new LayoutLength(childPosition.X);
-                        LayoutLength childTop = new LayoutLength(childPosition.Y);
+                        LayoutLength childLeft = new LayoutLength(childPosition.X + childMargin.Start + padding.Start);
+                        LayoutLength childTop = new LayoutLength(childPosition.Y + childMargin.Top + padding.Top);
 
                         childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                     }
@@ -241,12 +254,15 @@ namespace Tizen.NUI.Components
                 if (value != mScrollingDirection)
                 {
                     mScrollingDirection = value;
-                    mPanGestureDetector.ClearAngles();
+                    mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ?
+                        PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
                         PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
 
-                    ContentContainer.WidthSpecification = LayoutParamPolicies.WrapContent;
-                    ContentContainer.HeightSpecification = LayoutParamPolicies.WrapContent;
+                    ContentContainer.WidthSpecification = mScrollingDirection == Direction.Vertical ?
+                        LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
+                    ContentContainer.HeightSpecification = mScrollingDirection == Direction.Vertical ?
+                        LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
                 }
             }
         }
@@ -371,6 +387,7 @@ namespace Tizen.NUI.Components
 
                 if (scrollBar != null)
                 {
+                    scrollBar.Name = "ScrollBar";
                     base.Add(scrollBar);
 
                     if (hideScrollbar)
@@ -436,7 +453,7 @@ namespace Tizen.NUI.Components
                 ContentContainer.Layout = value;
                 if (ContentContainer.Layout != null)
                 {
-                    ContentContainer.Layout.SetPositionByLayout = true;
+                    ContentContainer.Layout.SetPositionByLayout = false;
                 }
             }
         }
@@ -500,6 +517,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+
         /// <summary>
         /// Page will be changed when velocity of panning is over threshold.
         /// The unit of threshold is pixel per milisec.
@@ -514,22 +532,6 @@ namespace Tizen.NUI.Components
             set
             {
                 mPageFlickThreshold = value >= 0f ? value : mPageFlickThreshold;
-            }
-        }
-
-        /// <summary>
-        /// Padding for the ScrollableBase
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents Padding
-        {
-            get
-            {
-                return ContentContainer.Padding;
-            }
-            set
-            {
-                ContentContainer.Padding = value;
             }
         }
 
@@ -559,11 +561,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         // Let's consider more whether this needs to be set as protected.
-        public float NoticeAnimationEndBeforePosition
-        {
-            get => noticeAnimationEndBeforePosition;
-            set => noticeAnimationEndBeforePosition = value;
-        }
+        public float NoticeAnimationEndBeforePosition { get => noticeAnimationEndBeforePosition; set => noticeAnimationEndBeforePosition = value; }
 
         // Let's consider more whether this needs to be set as protected.
         private float finalTargetPosition;
@@ -606,13 +604,9 @@ namespace Tizen.NUI.Components
             //Default Scrolling child
             ContentContainer = new View()
             {
-                Name = "ContentContainer",
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new LinearLayout()
-                {
-                    SetPositionByLayout = true
-                },
+                WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
+                HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
+                Layout = new AbsoluteLayout() { SetPositionByLayout = false },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
@@ -699,8 +693,8 @@ namespace Tizen.NUI.Components
         private void OnScrollingChildRelayout(object source, EventArgs args)
         {
             // Size is changed. Calculate maxScrollDistance.
-            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height ||
-                previousSize.Width != Size.Width || previousSize.Height != Size.Height;
+            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height
+                || previousSize.Width != Size.Width || previousSize.Height != Size.Height;
 
             if (isSizeChanged)
             {
@@ -897,10 +891,11 @@ namespace Tizen.NUI.Components
             float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy childCurrentPosition:" + childCurrentPosition +
-                " displacement:" + displacement,
-                " maxScrollDistance:" + maxScrollDistance);
+                                                   " displacement:" + displacement,
+                                                   " maxScrollDistance:" + maxScrollDistance);
 
             childTargetPosition = childCurrentPosition + displacement; // child current position + gesture displacement
+
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
 
@@ -977,8 +972,8 @@ namespace Tizen.NUI.Components
             }
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy maxScrollDistance:" + (scrollingChildLength - scrollerLength) +
-                " parent length:" + scrollerLength +
-                " scrolling child length:" + scrollingChildLength);
+                                                   " parent length:" + scrollerLength +
+                                                   " scrolling child length:" + scrollingChildLength);
 
             return Math.Max(scrollingChildLength - scrollerLength, 0);
         }
@@ -986,7 +981,7 @@ namespace Tizen.NUI.Components
         private void PageSnap(float velocity)
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
-                " currentPage[" + CurrentPage + "]");
+                                                                " currentPage[" + CurrentPage + "]");
 
             //Increment current page if total displacement enough to warrant a page change.
             if (Math.Abs(totalDisplacementForPan) > (mPageWidth * ratioOfScreenWidthToCompleteScroll))

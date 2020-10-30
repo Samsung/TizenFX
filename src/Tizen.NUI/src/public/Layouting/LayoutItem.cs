@@ -15,11 +15,11 @@
  *
  */
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
 
+using System;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -41,7 +41,7 @@ namespace Tizen.NUI
     {
         static bool LayoutDebugFrameData = false; // Debug flag
         private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
-        private MeasureSpecification OldHeightMeasureSpec; // Store measure specification to compare against later
+        private MeasureSpecification OldHeightMeasureSpec;// Store measure specification to compare against later
 
         private LayoutFlags Flags = LayoutFlags.None;
 
@@ -190,15 +190,15 @@ namespace Tizen.NUI
         {
             // Check if relayouting is required.
             bool specChanged = (widthMeasureSpec.Size != OldWidthMeasureSpec.Size) ||
-                (heightMeasureSpec.Size != OldHeightMeasureSpec.Size) ||
-                (widthMeasureSpec.Mode != OldWidthMeasureSpec.Mode) ||
-                (heightMeasureSpec.Mode != OldHeightMeasureSpec.Mode);
+                               (heightMeasureSpec.Size != OldHeightMeasureSpec.Size) ||
+                               (widthMeasureSpec.Mode != OldWidthMeasureSpec.Mode) ||
+                               (heightMeasureSpec.Mode != OldHeightMeasureSpec.Mode);
 
             bool isSpecExactly = (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly) &&
-                (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
+                                 (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
 
             bool matchesSpecSize = (MeasuredWidth.Size == widthMeasureSpec.Size) &&
-                (MeasuredHeight.Size == heightMeasureSpec.Size);
+                                   (MeasuredHeight.Size == heightMeasureSpec.Size);
 
             bool needsLayout = specChanged && ( !isSpecExactly || !matchesSpecSize);
             needsLayout = needsLayout || ((Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
@@ -227,9 +227,9 @@ namespace Tizen.NUI
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             bool changed = SetFrame(left.AsRoundedValue(),
-                top.AsRoundedValue(),
-                right.AsRoundedValue(),
-                bottom.AsRoundedValue());
+                                    top.AsRoundedValue(),
+                                    right.AsRoundedValue(),
+                                    bottom.AsRoundedValue());
 
             // Check if Measure needed before Layouting
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
@@ -504,21 +504,27 @@ namespace Tizen.NUI
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
+        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+        }
 
         /// <summary>
         /// Virtual method to allow derived classes to remove any children before it is removed from
         /// its parent.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnUnparent() { }
+        protected virtual void OnUnparent()
+        {
+        }
 
         /// <summary>
         /// Virtual method called when this Layout is attached to it's owner.
         /// Allows derived layouts to take ownership of child Views and connect to any Owner signals required.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnAttachedToOwner() { }
+        protected virtual void OnAttachedToOwner()
+        {
+        }
 
         private bool SetFrame(float left, float top, float right, float bottom)
         {
@@ -564,6 +570,7 @@ namespace Tizen.NUI
                         Owner.SetPosition(left, top, Owner.Position.Z);
                     }
                 }
+
 
                 // Reset condition for animation ready for next transition when required.
                 ConditionForAnimation = TransitionCondition.Unspecified;
