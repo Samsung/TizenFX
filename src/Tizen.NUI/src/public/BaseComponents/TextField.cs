@@ -1168,6 +1168,26 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// Enable editing in text control.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableEditing
+        {
+            get
+            {
+                bool temp;
+                GetProperty(TextField.Property.ENABLE_EDITING).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.ENABLE_EDITING, new PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
@@ -1485,6 +1505,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SELECTED_TEXT = Interop.TextField.TextField_Property_SELECTED_TEXT_get();
             internal static readonly int SELECTED_TEXT_START = Interop.TextField.TextField_Property_SELECTED_TEXT_START_get();
             internal static readonly int SELECTED_TEXT_END = Interop.TextField.TextField_Property_SELECTED_TEXT_END_get();
+            internal static readonly int ENABLE_EDITING = Interop.TextField.TextField_Property_ENABLE_EDITING_get();
         }
 
         internal class InputStyle
