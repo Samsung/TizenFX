@@ -227,7 +227,7 @@ namespace Tizen.NUI
             [CallerFilePath] string file = null
         )
         {
-            Tizen.Log.Debug("NUI", $"{msg} (at line {lineNum} of {caller} in {file})\n");
+            Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})");
         }
 
         public static void Error(string msg,
@@ -236,7 +236,7 @@ namespace Tizen.NUI
             [CallerFilePath] string file = null
         )
         {
-            Tizen.Log.Error("NUI", $"{msg} (at line {lineNum} of {caller} in {file})\n");
+            Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})");
         }
     }
 

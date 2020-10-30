@@ -454,7 +454,7 @@ namespace Tizen.NUI
             widthSizeAndState.State = childState.widthState;
 
             SetMeasuredDimensions(widthSizeAndState,
-                                  ResolveSizeAndState( new LayoutLength(maxHeight), heightMeasureSpec, childState.heightState ));
+                                  ResolveSizeAndState( new LayoutLength(maxHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childState.heightState ));
 
             if (matchHeight)
             {
@@ -651,7 +651,7 @@ namespace Tizen.NUI
 
             heightSizeAndState.State = childState.heightState;
 
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(maxWidth), widthMeasureSpec, childState.widthState ),
+            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(maxWidth + Padding.Top + Padding.Bottom), widthMeasureSpec, childState.widthState ),
                                   heightSizeAndState );
 
             if (matchWidth)
