@@ -201,7 +201,7 @@ install -p -m 644 Artifacts/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install NuGet Packages
 install -p -m 644 Artifacts/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
-install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/depends/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 # Install Tools
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
