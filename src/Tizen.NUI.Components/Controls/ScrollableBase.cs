@@ -56,6 +56,51 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// ScrollOutofBoundEventArgs is to record scroll out-of-bound event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScrollOutOfBoundEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The bound to be scrolled out of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Bound
+        {
+            /// <summary>
+            /// Top bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top,
+
+            /// <summary>
+            /// Bottom bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="bound">Current scrollable bound</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollOutOfBoundEventArgs(Bound bound)
+        {
+            ScrollableBound = bound;
+        }
+
+        /// <summary>
+        /// Current position of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Bound ScrollableBound
+        {
+            get;
+        }
+    }
+
+    /// <summary>
     /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
@@ -298,7 +343,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollDragEnded;
 
-
         /// <summary>
         /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
@@ -311,13 +355,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollAnimationEnded;
 
-
         /// <summary>
         /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> Scrolling;
 
+        /// <summary>
+        /// An event emitted when scrolling out of bound, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollOutOfBoundEventArgs> ScrollOutOfBound;
 
         /// <summary>
         /// Scrollbar for ScrollableBase.
@@ -995,10 +1043,11 @@ namespace Tizen.NUI.Components
                 if (!isVerticalShadowShown)
                 {
                     startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = displacement < startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1017,10 +1066,11 @@ namespace Tizen.NUI.Components
                 if (!isVerticalShadowShown)
                 {
                     startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = startShowShadowDisplacement < displacement ? 0 : startShowShadowDisplacement - displacement;
+                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1074,6 +1124,12 @@ namespace Tizen.NUI.Components
 
             // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
             isVerticalShadowShown = false;
+        }
+
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
+        {
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
+            ScrollOutOfBound?.Invoke(this, args);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
