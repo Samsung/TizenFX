@@ -150,8 +150,8 @@ namespace Tizen.NUI.Components
                             MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0)); // Width unrestricted by parent
                         }
 
-                        totalWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                        totalHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+                        totalWidth = (childLayout.MeasuredWidth.Size + (childLayout.Padding.Start + childLayout.Padding.End)).AsDecimal();
+                        totalHeight = (childLayout.MeasuredHeight.Size + (childLayout.Padding.Top + childLayout.Padding.Bottom)).AsDecimal();
 
                         if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                         {
@@ -243,8 +243,8 @@ namespace Tizen.NUI.Components
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
                         PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
 
-                    ContentContainer.WidthSpecification = LayoutParamPolicies.WrapContent;
-                    ContentContainer.HeightSpecification = LayoutParamPolicies.WrapContent;
+                    ContentContainer.WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
+                    ContentContainer.HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
                 }
             }
         }
@@ -435,7 +435,7 @@ namespace Tizen.NUI.Components
                 ContentContainer.Layout = value;
                 if (ContentContainer.Layout != null)
                 {
-                    ContentContainer.Layout.SetPositionByLayout = true;
+                    ContentContainer.Layout.SetPositionByLayout = false;
                 }
             }
         }
@@ -606,11 +606,11 @@ namespace Tizen.NUI.Components
             ContentContainer = new View()
             {
                 Name = "ContentContainer",
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new LinearLayout()
+                WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
+                HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
+                Layout = new AbsoluteLayout()
                 {
-                    SetPositionByLayout = true
+                    SetPositionByLayout = false
                 },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
