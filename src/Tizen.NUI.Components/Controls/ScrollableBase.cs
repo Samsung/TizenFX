@@ -1019,6 +1019,9 @@ namespace Tizen.NUI.Components
 
         private void AttachShadowView()
         {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
             // stop animation if necessary.
             StopVerticalShadowAnimation();
 
@@ -1037,6 +1040,9 @@ namespace Tizen.NUI.Components
 
         private void DragVerticalShadow(float displacement)
         {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
             if ((int)displacement > 0) // downwards
             {
                 // check if reaching at the top.
@@ -1092,6 +1098,9 @@ namespace Tizen.NUI.Components
 
         private void PlayVerticalShadowAnimation()
         {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
             // stop animation if necessary.
             StopVerticalShadowAnimation();
 
