@@ -183,8 +183,10 @@ namespace Tizen.NUI
         /// <param name="child">Child View to remove.</param>
         internal void RemoveChildFromLayoutGroup(View child)
         {
-            Debug.Assert(child.Layout !=null);
-            Remove(child.Layout);
+            if(child.Layout != null)
+            {
+                Remove(child.Layout);
+            }
         }
 
         /// <summary>
