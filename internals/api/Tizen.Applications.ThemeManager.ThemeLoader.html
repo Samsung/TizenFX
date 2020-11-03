@@ -110,11 +110,17 @@
 
   
   
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L42">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L42">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader__ctor_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.#ctor*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader__ctor" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.#ctor">ThemeLoader()</h4>
@@ -125,6 +131,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ThemeLoader()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Failed to create handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -133,7 +155,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L103">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader_CurrentTheme_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.CurrentTheme*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_CurrentTheme" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.CurrentTheme">CurrentTheme</h4>
@@ -159,6 +181,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -167,7 +205,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L191">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L191">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader_Dispose_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.Dispose*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_Dispose" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.Dispose">Dispose()</h4>
@@ -184,7 +222,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L201">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L201">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader_Dispose_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.Dispose*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_Dispose_System_Boolean_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -218,7 +256,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L141">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L141">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader_LoadTheme_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.LoadTheme*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_LoadTheme_System_String_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.LoadTheme(System.String)">LoadTheme(String)</h4>
@@ -261,13 +299,29 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L160">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L160">View Source</a>
   </span>
   <a id="Tizen_Applications_ThemeManager_ThemeLoader_QueryIds_" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.QueryIds*"></a>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_QueryIds" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.QueryIds">QueryIds()</h4>
@@ -288,8 +342,29 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when failed because of out of memory.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -301,7 +376,7 @@
   <h3 id="events">Events
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L63">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L63">View Source</a>
   </span>
   <h4 id="Tizen_Applications_ThemeManager_ThemeLoader_ThemeChanged" data-uid="Tizen.Applications.ThemeManager.ThemeLoader.ThemeChanged">ThemeChanged</h4>
   <div class="markdown level1 summary"><p>Adds or removes events for theme changed.</p>
@@ -321,8 +396,29 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.ThemeManager.ThemeEventArgs.html">ThemeEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.ThemeManager.ThemeEventArgs.html">ThemeEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when failed because of out of memory.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -331,6 +427,10 @@
   
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
 </article>
           </div>
           
@@ -339,7 +439,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API8/internals/src/Tizen.Applications.ThemeManager/Tizen.Applications.ThemeManager/ThemeLoader.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
