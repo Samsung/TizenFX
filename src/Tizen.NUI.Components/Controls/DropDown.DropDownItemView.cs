@@ -283,6 +283,7 @@ namespace Tizen.NUI.Components
                         HeightResizePolicy = ResizePolicyType.FillToParent,
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Begin,
+                        Text = "List item",
                     };
                     Add(mText);
                 }

@@ -252,6 +252,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// If child view doesn't want the parent's view to intercept the touch, you can set it to true.
+        /// for example :
+        ///    parent.Add(child);
+        ///    parent.InterceptTouchEvent += OnInterceptTouchEvent;
+        ///    View view = child.GetParent() as View;
+        ///    view.DisallowInterceptTouchEvent = true;
+        ///  This prevents the parent from interceping touch.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DisallowInterceptTouchEvent {get; set;}
+
+
+        /// <summary>
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The touched signal is emitted when the touch input is received.<br />
         /// </summary>
@@ -812,6 +825,12 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            // DisallowInterceptTouchEvent prevents the parent from intercepting touch.
+            if (DisallowInterceptTouchEvent)
+            {
+                return false;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
@@ -821,11 +840,6 @@ namespace Tizen.NUI.BaseComponents
             if (_interceptTouchDataEventHandler != null)
             {
                 consumed = _interceptTouchDataEventHandler(this, e);
-            }
-
-            if (enableControlState && !consumed)
-            {
-                consumed = HandleControlStateOnTouch(e.Touch);
             }
 
             return consumed;
