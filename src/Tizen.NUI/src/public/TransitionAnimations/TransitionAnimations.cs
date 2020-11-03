@@ -100,7 +100,7 @@ namespace Tizen.NUI
         /// Return default size of main view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Size GetDefaultSize()
+        public override Size GetDefaultSize()
         {
             return Window.Instance.GetWindowSize();
         }
@@ -150,7 +150,7 @@ namespace Tizen.NUI
         /// Return default size of main view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Size GetDefaultSize()
+        public override Size GetDefaultSize()
         {
             return Window.Instance.GetWindowSize();
         }
