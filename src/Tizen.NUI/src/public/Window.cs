@@ -1302,21 +1302,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Add FrameCallback
+        /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddFrameCallback(FrameCallbackInterface frameCallback)
+        public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameCallback?.AddFrameCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
         }
 
         /// <summary>
-        /// Remove FrameCallback
+        /// Remove FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveFrameCallback(FrameCallbackInterface frameCallback)
+        public void RemoveFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameCallback?.RemoveFrameCallback(stageCPtr);
+            frameUpdateCallback?.RemoveFrameUpdateCallback(stageCPtr);
         }
 
         /// <summary>
