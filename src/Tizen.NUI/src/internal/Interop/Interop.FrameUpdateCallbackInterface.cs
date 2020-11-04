@@ -6,13 +6,13 @@ namespace Tizen.NUI
 {
     internal static partial class Interop
     {
-        internal static partial class FrameCallbackInterface
+        internal static partial class FrameUpdateCallbackInterface
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FrameCallbackInterface")]
-            public static extern global::System.IntPtr new_FrameCallbackInterface();
+            public static extern global::System.IntPtr new_FrameUpdateCallbackInterface();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_director_connect")]
-            public static extern void FrameCallbackInterface_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.FrameCallbackInterface.SwigDelegateFrameCallbackInterface delegate0);
+            public static extern void FrameUpdateCallbackInterface_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.FrameUpdateCallbackInterface.SwigDelegateFrameUpdateCallbackInterface delegate0);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetPosition")]
             public static extern bool FraemCallbackInterface_GetPosition(global::System.IntPtr proxy, uint id, global::System.Runtime.InteropServices.HandleRef vector);
@@ -54,10 +54,10 @@ namespace Tizen.NUI
             public static extern bool FraemCallbackInterface_BakeColor(global::System.IntPtr proxy, uint id, global::System.Runtime.InteropServices.HandleRef vector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_AddFrameCallback")]
-            public static extern void FraemCallbackInterface_AddFrameCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void FraemCallbackInterface_AddFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_RemoveFrameCallback")]
-            public static extern void FraemCallbackInterface_RemoveFrameCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void FraemCallbackInterface_RemoveFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

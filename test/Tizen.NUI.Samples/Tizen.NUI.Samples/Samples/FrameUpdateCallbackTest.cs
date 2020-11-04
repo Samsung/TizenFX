@@ -15,24 +15,24 @@ namespace Tizen.NUI.Samples
     END_ANIMATION = NO_ANIMATION
   };
 
-  public class FrameCallbackTest : IExample
+  public class FrameUpdateCallbackTest : IExample
   {
 
     private static string resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
     private static string[] BACKGROUND_IMAGE_PATH = {
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_02_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_03_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_04_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_05_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_06_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_bg_apps_nor.png"
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_02_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_03_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_04_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_05_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_06_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_apps_nor.png"
     };
 
     private static string[] APPS_IMAGE_PATH = {
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_culinary_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_family_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_ent_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_homecare_nor.png"
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_culinary_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_family_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_ent_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_homecare_nor.png"
     };
 
     private static string[] APPS_ICON_NAME = {
@@ -43,11 +43,11 @@ namespace Tizen.NUI.Samples
     };
 
     private static string[] CONTROL_IMAGE_PATH = {
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_apps_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_settings_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_viewinside_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_timer_nor.png",
-      resourcePath + "/images/FrameCallbackTest/launcher_ic_internet_nor.png"
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_apps_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_settings_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_viewinside_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_timer_nor.png",
+      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_internet_nor.png"
     };
 
     private static string[] CONTROL_ICON_NAME = {
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Samples
     private const int DEVIDE_BAR_SIZE = 4;
 
     private TextLabel text;
-    public class FrameCallback : FrameCallbackInterface
+    public class FrameUpdateCallback : FrameUpdateCallbackInterface
     {
       private int mTimeInterval;
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Samples
       // dirty flag.
       private bool mDirty;
 
-      public FrameCallback()
+      public FrameUpdateCallback()
       {
         mViewId = new List<uint>();
         mMovement = new List<float>();
@@ -332,7 +332,7 @@ namespace Tizen.NUI.Samples
 
     private Window mWindow;
 
-    private FrameCallback mFrameCallback;        ///< An instance of our implementation of the FrameCallbackInterface.
+    private FrameUpdateCallback mFrameUpdateCallback;        ///< An instance of our implementation of the FrameUpdateCallbackInterface.
 
     // Views for launcher
     private View mBaseView;
@@ -368,7 +368,7 @@ namespace Tizen.NUI.Samples
 
     public void Activate()
     {
-      mFrameCallback = new FrameCallback();
+      mFrameUpdateCallback = new FrameUpdateCallback();
       Initialize();
     }
 
@@ -419,7 +419,7 @@ namespace Tizen.NUI.Samples
       mControlView.PositionUsesPivotPoint = true;
       mControlView.Position = new Position(mRightDirectionLimit, 0);
       mBaseView.Add(mControlView);
-      mFrameCallback.SetContainerId(mControlView.ID);
+      mFrameUpdateCallback.SetContainerId(mControlView.ID);
 
       mLayoutView = new View();
       mLayoutView.ParentOrigin = ParentOrigin.CenterLeft;
@@ -445,7 +445,7 @@ namespace Tizen.NUI.Samples
       divideBar.PositionUsesPivotPoint = true;
       divideBar.Size = new Size(DEVIDE_BAR_SIZE, OBJECT_SIZE);
       mLayoutView.Add(divideBar);
-      mFrameCallback.AddId(divideBar.ID);
+      mFrameUpdateCallback.AddId(divideBar.ID);
 
       int iconNumber = 8;
       for (int i = 0; i < iconNumber; ++i)
@@ -453,8 +453,8 @@ namespace Tizen.NUI.Samples
         AddIcon(BACKGROUND_IMAGE_PATH[5], CONTROL_IMAGE_PATH[i % 5], CONTROL_ICON_NAME[i % 5], new Color(0.0f, 0.0f, 0.0f, 0.5f));
       }
 
-      mFrameCallback.ResetViewPosition();
-      mFrameCallback.SetTimeInterval(1000 / FRAME_RATE);
+      mFrameUpdateCallback.ResetViewPosition();
+      mFrameUpdateCallback.SetTimeInterval(1000 / FRAME_RATE);
 
       mAnimationState = TOUCH_ANIMATION_STATE.NO_ANIMATION;
 
@@ -479,7 +479,7 @@ namespace Tizen.NUI.Samples
       backgroundView.PivotPoint = PivotPoint.CenterLeft;
       backgroundView.PositionUsesPivotPoint = true;
       mLayoutView.Add(backgroundView);
-      mFrameCallback.AddId(backgroundView.ID);
+      mFrameUpdateCallback.AddId(backgroundView.ID);
 
       ImageView iconView = new ImageView();
       iconView.ResourceUrl = icon;
@@ -502,21 +502,21 @@ namespace Tizen.NUI.Samples
     }
 
     // Set frame callback to start drag animation.
-    private void SetFrameCallback(float position)
+    private void SetFrameUpdateCallback(float position)
     {
       // remove frame callback if it is already added.
-      mWindow.RemoveFrameCallback(mFrameCallback);
+      mWindow.RemoveFrameUpdateCallback(mFrameUpdateCallback);
 
-      mFrameCallback.ResetAnimationData();
-      mFrameCallback.AddMovement(0.0f); // Add first movement.
+      mFrameUpdateCallback.ResetAnimationData();
+      mFrameUpdateCallback.AddMovement(0.0f); // Add first movement.
 
       // Set container start position and start positions of each icon(and vertical bar)
       // And compute total container size.
       float totalSize = 0.0f;
-      mFrameCallback.SetContainerStartPosition(mControlView.Position.X);
+      mFrameUpdateCallback.SetContainerStartPosition(mControlView.Position.X);
       for (int i = 0; i < mLayoutView.ChildCount; ++i)
       {
-        mFrameCallback.SetViewPosition(i, mLayoutView.Children[i].Position.X);
+        mFrameUpdateCallback.SetViewPosition(i, mLayoutView.Children[i].Position.X);
         totalSize += (float)(mLayoutView.Children[i].Size.Width + DEFAULT_SPACE);
       }
       totalSize -= (float)DEFAULT_SPACE;
@@ -526,22 +526,22 @@ namespace Tizen.NUI.Samples
       {
         if (position >= mLayoutView.Children[i].Position.X + mControlView.Position.X)
         {
-          mFrameCallback.SetTouchedViewIndex(i);
+          mFrameUpdateCallback.SetTouchedViewIndex(i);
           mTouchedViewIndex = i;
           break;
         }
       }
       if (position < mLayoutView.Children[0].Position.X + mControlView.Position.X)
       {
-        mFrameCallback.SetTouchedViewIndex(0);
+        mFrameUpdateCallback.SetTouchedViewIndex(0);
         mTouchedViewIndex = 0;
       }
 
       mPreviousTouchedPosition = position;
 
       // Add frame callback on window.
-      // OnUpdate callback of mFrameCallback will be called before every render frame.
-      mWindow.AddFrameCallback(mFrameCallback);
+      // OnUpdate callback of mFrameUpdateCallback will be called before every render frame.
+      mWindow.AddFrameUpdateCallback(mFrameUpdateCallback);
 
       // compute limit position the container could go.
       mLeftDirectionLimit = (float)mWindow.Size.Width - (totalSize + (float)(INITIAL_POSITION));
@@ -579,7 +579,7 @@ namespace Tizen.NUI.Samples
         {
           // in case of stable state
           // just set new framecallback for this touched position.
-          SetFrameCallback(position.X);
+          SetFrameUpdateCallback(position.X);
         }
       }
       else if (PointStateType.Motion == state)
@@ -588,13 +588,13 @@ namespace Tizen.NUI.Samples
         // because, if current frame callback is re-birthed one, the animation is not totally re-created one.
         // So, some properties like touched icon index can be wrong for the continuous animation.
         // But, some case like that finger is stopped and restart to move, this could make weired feeling.
-        // We reset mFrameCallback as soon as possible we can. And the conditions are ...
+        // We reset mFrameUpdateCallback as soon as possible we can. And the conditions are ...
         // 1. icons in screen is stopped.
         // 2. velocity of frame callback is 0.0 (this frame callback will not move again instantly)
         // 3. frame callback is not dirty (there is no reserved action)
-        if (mFrameCallback.IsResetTouchedViewPossible() && mFrameCallback.GetVelocity() == 0.0f && !mFrameCallback.IsDirty())
+        if (mFrameUpdateCallback.IsResetTouchedViewPossible() && mFrameUpdateCallback.GetVelocity() == 0.0f && !mFrameUpdateCallback.IsDirty())
         {
-          SetFrameCallback(position.X);
+          SetFrameUpdateCallback(position.X);
         }
 
         // Set new controlView(container) position
@@ -612,7 +612,7 @@ namespace Tizen.NUI.Samples
         mAnimationState = TOUCH_ANIMATION_STATE.ON_FINISH_ANIMATION;
 
         // To launch finish animation, we get latest velocty from frame callback
-        float velocity = mFrameCallback.GetVelocity();
+        float velocity = mFrameUpdateCallback.GetVelocity();
 
         /* TUNING */
         // This is just for turning of finish animation.
@@ -633,7 +633,7 @@ namespace Tizen.NUI.Samples
       // set currently visible icons for optimization
       SetVisibleLimit();
       // make frame callback dirty.
-      mFrameCallback.Dirty();
+      mFrameUpdateCallback.Dirty();
       return true;
     }
 
@@ -660,8 +660,8 @@ namespace Tizen.NUI.Samples
       }
       rightViewIndex = Math.Min(rightViewIndex, (int)mLayoutView.ChildCount - 1);
 
-      mFrameCallback.SetLeftIndex(leftViewIndex);
-      mFrameCallback.SetRightIndex(rightViewIndex);
+      mFrameUpdateCallback.SetLeftIndex(leftViewIndex);
+      mFrameUpdateCallback.SetRightIndex(rightViewIndex);
     }
 
     // set decelerating properties
@@ -742,10 +742,10 @@ namespace Tizen.NUI.Samples
     // If it is, finish all animation and make animationstate End_animation(NO_ANIMATION)
     private bool OffAnimatable(object target, Timer.TickEventArgs args)
     {
-      if (mFrameCallback.IsResetTouchedViewPossible())
+      if (mFrameUpdateCallback.IsResetTouchedViewPossible())
       {
         mWindow.RenderingBehavior = RenderingBehaviorType.IfRequired;
-        mWindow.RemoveFrameCallback(mFrameCallback);
+        mWindow.RemoveFrameUpdateCallback(mFrameUpdateCallback);
         mAnimationOffTimer.Stop();
         mAnimationState = TOUCH_ANIMATION_STATE.END_ANIMATION;
         return false;
