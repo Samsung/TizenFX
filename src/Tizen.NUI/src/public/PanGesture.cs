@@ -326,11 +326,7 @@ namespace Tizen.NUI
 
         internal static PanGesture GetPanGestureFromPtr(global::System.IntPtr cPtr)
         {
-            PanGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PanGesture;
-            if (ret == null)
-            {
-                ret = new PanGesture(cPtr, false);
-            }
+            PanGesture ret = new PanGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
