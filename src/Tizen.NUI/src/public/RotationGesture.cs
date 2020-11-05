@@ -137,11 +137,7 @@ namespace Tizen.NUI
 
         internal static RotationGesture GetRotationGestureFromPtr(global::System.IntPtr cPtr)
         {
-            RotationGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RotationGesture;
-            if (ret == null)
-            {
-                ret = new RotationGesture(cPtr, false);
-            }
+            RotationGesture ret = new RotationGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

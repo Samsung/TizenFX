@@ -161,11 +161,7 @@ namespace Tizen.NUI
         /// <returns>The TapGesture object.</returns>
         internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
-            TapGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TapGesture;
-            if (ret == null)
-            {
-                ret = new TapGesture(cPtr, false);
-            }
+            TapGesture ret = new TapGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
