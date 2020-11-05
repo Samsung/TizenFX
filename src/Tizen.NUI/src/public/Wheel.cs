@@ -253,11 +253,7 @@ namespace Tizen.NUI
 
         internal static Wheel GetWheelFromPtr(global::System.IntPtr cPtr)
         {
-            Wheel ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Wheel;
-            if (ret == null)
-            {
-                ret = new Wheel(cPtr, false);
-            }
+            Wheel ret = new Wheel(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
