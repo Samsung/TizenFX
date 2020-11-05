@@ -48,7 +48,7 @@ namespace Tizen.NUI
         public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
         {
             BlurRadius = blurRadius;
-            Color = new Color(color);
+            Color = color == null ? new Color(defaultColor) : new Color(color);
         }
 
         /// <summary>

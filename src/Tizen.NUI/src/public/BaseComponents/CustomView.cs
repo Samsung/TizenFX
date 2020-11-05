@@ -28,7 +28,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create("FocusNavigationSupport", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
@@ -63,8 +63,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="typeName">typename</param>
         /// <param name="behaviour">CustomView Behaviour</param>
-        /// <since_tizen> 3 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="viewStyle">CustomView ViewStyle</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeName, new ViewWrapperImpl(behaviour), viewStyle)
         {

@@ -33,7 +33,7 @@ namespace Tizen.NUI.Binding
         public Style([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType)
         {
             if (targetType == null)
-                throw new ArgumentNullException("targetType");
+                throw new ArgumentNullException(nameof(targetType));
 
             TargetType = targetType;
             Setters = new List<Setter>();

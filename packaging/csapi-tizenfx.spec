@@ -1,8 +1,8 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
-%define TIZEN_NET_API_VERSION 8
-%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui21932
-%define TIZEN_NET_NUGET_VERSION 8.0.0.99999
+%define TIZEN_NET_API_VERSION 9
+%define TIZEN_NET_RPM_VERSION 9.0.0.999+nui21932
+%define TIZEN_NET_NUGET_VERSION 9.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -12,7 +12,7 @@
 %define DOTNET_NUGET_SOURCE /nuget
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
-%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen80:tizen70:tizen60:tizen50:tizen40:netstandard2.0
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen90:tizen80:tizen70:tizen60:tizen50:tizen40:netstandard2.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
@@ -201,7 +201,7 @@ install -p -m 644 Artifacts/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install NuGet Packages
 install -p -m 644 Artifacts/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
-install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/depends/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 # Install Tools
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}

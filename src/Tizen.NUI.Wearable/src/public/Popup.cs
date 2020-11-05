@@ -437,7 +437,7 @@ namespace Tizen.NUI.Wearable
 
         private void initialize()
         {
-            popupStyle = Style as PopupStyle;
+            popupStyle = ViewStyle as PopupStyle;
             if (popupStyle == null)
             {
                 throw new Exception("Popup style is null.");

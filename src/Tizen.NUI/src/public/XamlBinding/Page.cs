@@ -55,12 +55,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
-        internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
+        internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create(nameof(IgnoresContainerArea), typeof(bool), typeof(Page), false);
 
         /// <summary>
         /// Identifies the IsBusy property.
         /// </summary>
-        internal static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
+        internal static readonly BindableProperty IsBusyProperty = BindableProperty.Create(nameof(IsBusy), typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
         Rectangle _containerArea;
 
@@ -184,7 +184,7 @@ namespace Tizen.NUI
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
         {
             if (string.IsNullOrEmpty(cancel))
-                throw new ArgumentNullException("cancel");
+                throw new ArgumentNullException(nameof(cancel));
 
             var args = new AlertArguments(title, message, accept, cancel);
             MessagingCenter.Send(this, AlertSignalName, args);

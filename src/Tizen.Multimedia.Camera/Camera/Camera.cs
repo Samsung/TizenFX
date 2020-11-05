@@ -56,11 +56,6 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         public Camera(CameraDevice device)
         {
-            if (!Features.IsSupported(CameraFeatures.Camera))
-            {
-                throw new NotSupportedException("Camera feature is not supported.");
-            }
-
             Native.Create(device, out _handle).ThrowIfFailed("Failed to create camera instance");
 
             Capabilities = new CameraCapabilities(this);

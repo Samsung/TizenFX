@@ -20,7 +20,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Identifies the ClassId bindable property.
         /// </summary>
-        internal static readonly BindableProperty ClassIdProperty = BindableProperty.Create("ClassId", typeof(string), typeof(Tizen.NUI.BaseComponents.View), null);
+        internal static readonly BindableProperty ClassIdProperty = BindableProperty.Create(nameof(ClassId), typeof(string), typeof(Tizen.NUI.BaseComponents.View), null);
 
         string _automationId;
 
