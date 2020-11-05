@@ -1020,8 +1020,17 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        /// <summary>
+        /// Enable/Disable overshooting effect. default is disabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableOverShootingEffect { get; set; } = false;
+
         private void AttachShadowView()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1033,9 +1042,11 @@ namespace Tizen.NUI.Components
 
             verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalTopShadowView.Opacity = 1.0f;
+            verticalTopShadowView.RaiseToTop();
 
             verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalBottomShadowView.Opacity = 1.0f;
+            verticalBottomShadowView.RaiseToTop();
 
             // at the beginning, height of vertical shadow is 0, so it is invisible.
             isVerticalShadowShown = false;
@@ -1043,6 +1054,9 @@ namespace Tizen.NUI.Components
 
         private void DragVerticalShadow(float displacement)
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1101,6 +1115,9 @@ namespace Tizen.NUI.Components
 
         private void PlayVerticalShadowAnimation()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
