@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -179,6 +179,7 @@ namespace Tizen.NUI
             {
                 LayoutVertical(left, top, right, bottom);
             }
+            LayoutForIndependentChild();
         }
 
 
@@ -289,6 +290,12 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
+                if (!childLayout.Owner.ExcludeLayouting)
+                {
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    continue;
+                }
+
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
@@ -400,6 +407,10 @@ namespace Tizen.NUI
                 for (int i = 0; i < numberOfChildren; ++i)
                 {
                     LayoutItem childLayout = LayoutChildren[i];
+                    if (!childLayout.Owner.ExcludeLayouting)
+                    {
+                        continue;
+                    }
 
                     float desiredChildHeight = childLayout.Owner.HeightSpecification;
 
@@ -491,6 +502,12 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
+                if (!childLayout.Owner.ExcludeLayouting)
+                {
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    continue;
+                }
+
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
@@ -601,6 +618,10 @@ namespace Tizen.NUI
                 for (int i = 0; i < numberOfChildren; ++i)
                 {
                     LayoutItem childLayout = LayoutChildren[i];
+                    if (!childLayout.Owner.ExcludeLayouting)
+                    {
+                        continue;
+                    }
 
                     float desiredChildWidth = childLayout.Owner.WidthSpecification;
 
@@ -726,27 +747,30 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[childIndex];
                 if (childLayout != null)
                 {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                    Extents childMargin = childLayout.Margin;
-
-                    switch ( LinearAlignment )
+                    if (childLayout.Owner.ExcludeLayouting)
                     {
-                        case Alignment.Bottom:
-                            childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
-                            break;
-                        case Alignment.CenterVertical:
-                        case Alignment.Center: // FALLTHROUGH
-                            childTop = new LayoutLength(Padding.Top + ( ( childSpace - childHeight ).AsDecimal() / 2.0f ) + childMargin.Top - childMargin.Bottom);
-                            break;
-                        case Alignment.Top: // FALLTHROUGH default
-                        default:
-                            childTop = new LayoutLength(Padding.Top + childMargin.Top);
-                            break;
+                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                        Extents childMargin = childLayout.Margin;
+
+                        switch (LinearAlignment)
+                        {
+                            case Alignment.Bottom:
+                                childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
+                                break;
+                            case Alignment.CenterVertical:
+                            case Alignment.Center: // FALLTHROUGH
+                                childTop = new LayoutLength(Padding.Top + ((childSpace - childHeight).AsDecimal() / 2.0f) + childMargin.Top - childMargin.Bottom);
+                                break;
+                            case Alignment.Top: // FALLTHROUGH default
+                            default:
+                                childTop = new LayoutLength(Padding.Top + childMargin.Top);
+                                break;
+                        }
+                        childLeft += childMargin.Start;
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                        childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
                     }
-                    childLeft += childMargin.Start;
-                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                    childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
                 }
             }
         } // LayoutHorizontally
@@ -787,60 +811,96 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                    Extents childMargin = childLayout.Margin;
-
-                    childTop += childMargin.Top;
-                    switch ( LinearAlignment )
+                    if (childLayout.Owner.ExcludeLayouting)
                     {
-                      case Alignment.Begin:
-                      default:
-                      {
-                        childLeft = new LayoutLength(Padding.Start + childMargin.Start);
-                        break;
-                      }
-                      case Alignment.End:
-                      {
-                        childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
-                        break;
-                      }
-                      case Alignment.CenterHorizontal:
-                      case Alignment.Center: // FALL THROUGH
-                      {
-                        childLeft = new LayoutLength(Padding.Start + (( childSpace - childWidth ).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
-                        break;
-                      }
+                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                        Extents childMargin = childLayout.Margin;
+
+                        childTop += childMargin.Top;
+                        switch (LinearAlignment)
+                        {
+                            case Alignment.Begin:
+                            default:
+                                {
+                                    childLeft = new LayoutLength(Padding.Start + childMargin.Start);
+                                    break;
+                                }
+                            case Alignment.End:
+                                {
+                                    childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
+                                    break;
+                                }
+                            case Alignment.CenterHorizontal:
+                            case Alignment.Center: // FALL THROUGH
+                                {
+                                    childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
+                                    break;
+                                }
+                        }
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                        childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
                     }
-                    childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
-                    childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
                 }
             }
         } // LayoutVertical
 
         private void ForceUniformHeight(MeasureSpecification widthMeasureSpec)
         {
-          // Pretend that the linear layout has an exact size. This is the measured height of
-          // ourselves. The measured height should be the max height of the children, changed
-          // to accommodate the heightMeasureSpec from the parent
-          MeasureSpecification uniformMeasureSpec = new MeasureSpecification( MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-          foreach (LayoutItem childLayout in LayoutChildren)
-          {
-              int desiredChildHeight = childLayout.Owner.HeightSpecification;
-              int desiredChildWidth = childLayout.Owner.WidthSpecification;
+            // Pretend that the linear layout has an exact size. This is the measured height of
+            // ourselves. The measured height should be the max height of the children, changed
+            // to accommodate the heightMeasureSpec from the parent
+            MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
+            foreach (LayoutItem childLayout in LayoutChildren)
+            {
+                if (!childLayout.Owner.ExcludeLayouting)
+                {
+                    continue;
+                }
+                int desiredChildHeight = childLayout.Owner.HeightSpecification;
+                int desiredChildWidth = childLayout.Owner.WidthSpecification;
 
-              if (desiredChildHeight == LayoutParamPolicies.MatchParent)
-              {
-                  // Temporarily force children to reuse their original measured width
-                  int originalWidth = desiredChildWidth;
-                  childLayout.Owner.WidthSpecification = (int)childLayout.MeasuredWidth.Size.AsRoundedValue();
-                  // Remeasure with new dimensions
-                  MeasureChildWithMargins( childLayout, widthMeasureSpec, new LayoutLength(0),
-                                           uniformMeasureSpec, new LayoutLength(0) );
-                  // Restore width specification
-                  childLayout.Owner.WidthSpecification =  originalWidth;
-              }
-          }
+                if (desiredChildHeight == LayoutParamPolicies.MatchParent)
+                {
+                    // Temporarily force children to reuse their original measured width
+                    int originalWidth = desiredChildWidth;
+                    childLayout.Owner.WidthSpecification = (int)childLayout.MeasuredWidth.Size.AsRoundedValue();
+                    // Remeasure with new dimensions
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0),
+                                             uniformMeasureSpec, new LayoutLength(0));
+                    // Restore width specification
+                    childLayout.Owner.WidthSpecification = originalWidth;
+                }
+            }
         }
 
         private void ForceUniformWidth(MeasureSpecification heightMeasureSpec)
+        {
+            // Pretend that the linear layout has an exact size.
+            MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredWidth.Size, MeasureSpecification.ModeType.Exactly);
+            foreach (LayoutItem childLayout in LayoutChildren)
+            {
+                if (!childLayout.Owner.ExcludeLayouting)
+                {
+                    continue;
+                }
+
+                int desiredChildWidth = childLayout.Owner.WidthSpecification;
+                int desiredChildHeight = childLayout.Owner.WidthSpecification;
+
+                if (desiredChildWidth == LayoutParamPolicies.MatchParent)
+                {
+                    // Temporarily force children to reuse their original measured height
+                    int originalHeight = desiredChildHeight;
+                    childLayout.Owner.HeightSpecification = (int)childLayout.MeasuredHeight.Size.AsRoundedValue();
+
+                    // Remeasure with new dimensions
+                    MeasureChildWithMargins(childLayout, uniformMeasureSpec, new LayoutLength(0),
+                                             heightMeasureSpec, new LayoutLength(0));
+                    // Restore height specification
+                    childLayout.Owner.HeightSpecification = originalHeight;
+                }
+            }
+        }
+    } //LinearLayout
+} // namespace

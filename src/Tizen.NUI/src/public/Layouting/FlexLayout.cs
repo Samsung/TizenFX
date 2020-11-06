@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -672,15 +672,26 @@ namespace Tizen.NUI
                 if (childHandleRef.Handle == IntPtr.Zero || Child == null)
                     continue;
 
+                if (!layoutItem.Owner.ExcludeLayouting)
+                {
+                    SetFlexPositionType(Child, PositionType.Absolute);
+                    Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)PositionType.Absolute);
+                    MeasureChildWithoutPadding(layoutItem, widthMeasureSpec, heightMeasureSpec);
+                    continue;
+                }
+                else
+                {
+                    SetFlexPositionType(Child, PositionType.Relative);
+                    Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)PositionType.Relative);
+                }
+
                 AlignmentType flexAlignemnt = GetFlexAlignmentSelf(Child);
-                PositionType flexPosition = GetFlexPositionType(Child);
                 float flexAspectRatio = GetFlexAspectRatio(Child);
                 float flexBasis = GetFlexBasis(Child);
                 float flexShrink = GetFlexShrink(Child);
                 float flexGrow = GetFlexGrow(Child);
 
                 Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
-                Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)flexPosition);
                 Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
                 Interop.FlexLayout.FlexLayout_SetFlexBasis(childHandleRef, flexBasis);
                 Interop.FlexLayout.FlexLayout_SetFlexShrink(childHandleRef, flexShrink);
@@ -724,11 +735,15 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[childIndex];
                 if (childLayout != null)
                 {
-                    // Get the frame for the child, start, top, end, bottom.
-                    Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
-                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    if (childLayout.Owner.ExcludeLayouting)
+                    {
+                        // Get the frame for the child, start, top, end, bottom.
+                        Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
+                        childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                    }
                 }
             }
+            LayoutForIndependentChild();
         }
     } // FLexlayout
 } // namesspace Tizen.NUI
