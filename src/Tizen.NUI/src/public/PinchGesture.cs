@@ -163,11 +163,7 @@ namespace Tizen.NUI
 
         internal static PinchGesture GetPinchGestureFromPtr(global::System.IntPtr cPtr)
         {
-            PinchGesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PinchGesture;
-            if (ret == null)
-            {
-                ret = new PinchGesture(cPtr, false);
-            }
+            PinchGesture ret = new PinchGesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
