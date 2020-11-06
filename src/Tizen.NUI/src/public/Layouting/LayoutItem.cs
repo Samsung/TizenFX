@@ -53,6 +53,7 @@ namespace Tizen.NUI
         private Extents _margin;
 
         private bool parentReplacement = false;
+        private bool setPositionByLayout = true;
 
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
@@ -77,7 +78,21 @@ namespace Tizen.NUI
         /// [Draft] Set position by layouting result
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetPositionByLayout{get;set;} = true;
+        public bool SetPositionByLayout
+        {
+            get
+            {
+                return setPositionByLayout;
+            }
+            set
+            {
+                setPositionByLayout = value;
+                if (Owner != null && Owner.ExcludeLayouting != value)
+                {
+                    Owner.ExcludeLayouting = value;
+                }
+            }
+        }
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
@@ -226,10 +241,40 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            bool changed = SetFrame(left.AsRoundedValue(),
-                top.AsRoundedValue(),
-                right.AsRoundedValue(),
-                bottom.AsRoundedValue());
+            Layout(left, top, right, bottom, false);
+        }
+
+        /// <summary>
+        /// Assign a size and position to a layout and all of its descendants. <br />
+        /// This is the second phase of the layout mechanism.  (The first is measuring). In this phase, each parent
+        /// calls layout on all of its children to position them.  This is typically done using the child<br />
+        /// measurements that were stored in the measure pass.<br />
+        /// </summary>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top">Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <param name="independent">true, if this layout is not affected by parent layout.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom, bool independent)
+        {
+            bool changed = true;
+            if (!independent)
+            {
+                changed = SetFrame(left.AsRoundedValue(),
+                    top.AsRoundedValue(),
+                    right.AsRoundedValue(),
+                    bottom.AsRoundedValue());
+            }
+            else
+            {
+                // If height or width specification is not explicitly defined,
+                // the size of the owner view must be reset even the ExcludeLayouting is false.
+                if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                {
+                    Owner.SetSize(right.AsRoundedValue() - left.AsRoundedValue(), bottom.AsRoundedValue() - top.AsRoundedValue());
+                }
+            }
 
             // Check if Measure needed before Layouting
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
@@ -560,11 +605,8 @@ namespace Tizen.NUI
                 {
                     if (Owner.Position != null)
                     {
-                        Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
-                        if (SetPositionByLayout)
-                        {
-                            Owner.SetPosition(left, top, Owner.Position.Z);
-                        }
+                        Owner.SetSize(right - left, bottom - top);
+                        Owner.SetPosition(left, top);
                     }
                 }
 

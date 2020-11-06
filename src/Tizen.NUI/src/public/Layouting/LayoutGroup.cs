@@ -431,6 +431,35 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Layout independent children those Owners have false ExcludeLayouting. <br />
+        /// These children are required not to be affected by this layout. <br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void LayoutForIndependentChild()
+        {
+            int count = LayoutChildren.Count;
+            for (int childIndex = 0; childIndex < count; childIndex++)
+            {
+                LayoutItem childLayout = LayoutChildren[childIndex];
+                if (childLayout != null)
+                {
+                    if (!childLayout.Owner.ExcludeLayouting)
+                    {
+                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+
+                        Position2D childPosition = childLayout.Owner.Position2D;
+
+                        LayoutLength childPositionX = new LayoutLength(childPosition.X);
+                        LayoutLength childPositionY = new LayoutLength(childPosition.Y);
+
+                        childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Overridden method called when the layout is attached to an owner.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -553,6 +582,32 @@ namespace Tizen.NUI
                         new LayoutLength(childOwner.HeightSpecification));
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
+        }
+
+        /// <summary>
+        /// Ask one of the children of this view to measure itself, taking into
+        /// account both the MeasureSpec requirements for this view and without its padding.<br />
+        /// and margins. The heavy lifting is done in GetChildMeasureSpecification.<br />
+        /// </summary>
+        /// <param name="child">The child to measure.</param>
+        /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
+        /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
+        {
+            View childOwner = child.Owner;
+
+            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
+                        new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
+                        new LayoutLength(0),
+                        new LayoutLength(childOwner.WidthSpecification));
+
+            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
+                        new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
+                        new LayoutLength(0),
+                        new LayoutLength(childOwner.HeightSpecification));
+
+            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
 
         /// <summary>
