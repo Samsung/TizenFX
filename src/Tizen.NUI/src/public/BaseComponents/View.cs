@@ -2348,6 +2348,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Determines which blend equation will be used to render renderers of this actor.
+        /// </summary>
+        /// <returns>blend equation enum currently assigned</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BlendEquationType BlendEquation
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(View.Property.BlendEquation).Get(out temp);
+                return (BlendEquationType)temp;
+            }
+            set
+            {
+                SetProperty(View.Property.BlendEquation, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// If the value is true, the View will change its style as the theme changes.
         /// It is false by default, but turned to true when setting StyleName (by setting property or using specified constructor).
         /// </summary>
