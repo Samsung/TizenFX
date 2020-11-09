@@ -19,6 +19,7 @@ using TizenSystemInformation.Tizen.System;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using Tizen.NUI.Xaml;
 using Tizen.NUI.BaseComponents;
 
@@ -304,6 +305,12 @@ namespace Tizen.NUI
             foreach (var project in nuiThemeProjects)
             {
                 string path = StyleManager.FrameworkResourcePath + "/Theme/" + project + "_" + id + ".xaml";
+
+                if (!File.Exists(path))
+                {
+                    Tizen.Log.Info("NUI", $"\"{path}\" is not found in this profile.\n");
+                    continue;
+                }
 
                 try
                 {

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  Id="MyTheme"
+  BasedOn="Tizen.NUI.Theme.Common">
+
+
+    <!--Button-->
+    <c:ButtonStyle x:Key="Tizen.NUI.Components.Button" >
+        <c:ButtonStyle.BackgroundColor>
+            <Selector x:TypeArguments="Color" Normal="{x:StaticResource ButtonBackgroundColorNormal}" Pressed="{x:StaticResource ButtonBackgroundColorPressed}" Disabled="{x:StaticResource ButtonBackgroundColorDisabled}"/>
+        </c:ButtonStyle.BackgroundColor>
+    </c:ButtonStyle>
+</Theme>
