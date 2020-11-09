@@ -100,6 +100,10 @@ namespace Tizen.NUI.Components
                     return;
                 }
                 DropDownItemView listItemView = holder.ItemView as DropDownItemView;
+                if (listItemView == null)
+                {
+                    return;
+                }
                 listItemView.Name = "Item" + position;
                 if (listItemData.Size != null)
                 {
