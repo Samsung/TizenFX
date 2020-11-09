@@ -210,9 +210,12 @@ namespace Tizen.NUI.Components
             if(targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecycleItem candidate = Container.Children[targetSibling] as RecycleItem;
-                if(candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
+                if (candidate != null)
                 {
-                    nextFocusedView = candidate;
+                    if (candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
+                    {
+                        nextFocusedView = candidate;
+                    }
                 }
             }
 

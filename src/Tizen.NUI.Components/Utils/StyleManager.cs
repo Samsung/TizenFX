@@ -169,7 +169,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
+            ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase)?.GetViewStyle());
         }
 
         /// <summary>

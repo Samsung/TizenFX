@@ -40,7 +40,7 @@ namespace Tizen.NUI
             var attributes = info.GetCustomAttributes(typeof(DescriptionAttribute), true);
             if (null != attributes?.FirstOrDefault())
             {
-                result = (attributes.First() as DescriptionAttribute).Description;
+                result = (attributes.First() as DescriptionAttribute)?.Description;
             }
 
             return result;
