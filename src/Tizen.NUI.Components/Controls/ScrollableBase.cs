@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
 
                 Direction scrollingDirection = Direction.Vertical;
                 ScrollableBase scrollableBase = this.Owner as ScrollableBase;
-                if (scrollableBase)
+                if (scrollableBase != null)
                 {
                     scrollingDirection = scrollableBase.ScrollingDirection;
                 }
