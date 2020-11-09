@@ -44,6 +44,11 @@ namespace Tizen.NUI
         /// <summary></summary>
         internal float CornerRadius { get; set; }
 
+        /// <summary>
+        /// Whether the CornerRadius value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// </summary>
+        internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
+
         internal bool Empty()
         {
             return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
