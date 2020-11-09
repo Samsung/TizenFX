@@ -1068,27 +1068,34 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
         }
 
-        internal virtual void UpdateCornerRadius(float value)
+        /// TODO open as a protected level
+        internal virtual void ApplyCornerRadius()
         {
-            if (value != 0)
-            {
-                (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = value;
-            }
+            if (backgroundExtraData == null) return;
 
-            Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
+            // Apply to the background visual
+            PropertyMap backgroundMap = new PropertyMap();
             PropertyValue background = Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND);
-            background?.Get(backgroundMap);
-
-            if (!backgroundMap.Empty())
+            if (background.Get(backgroundMap) && !backgroundMap.Empty())
             {
-                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
-                PropertyValue setValue = new Tizen.NUI.PropertyValue(backgroundMap);
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, setValue);
-                setValue?.Dispose();
+                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
+                backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new PropertyValue(backgroundMap));
             }
-            UpdateShadowCornerRadius(value);
-            backgroundMap?.Dispose();
-            background?.Dispose();
+            backgroundMap.Dispose();
+            background.Dispose();
+
+            // Apply to the shadow visual
+            PropertyMap shadowMap = new PropertyMap();
+            PropertyValue shadow = Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW);
+            if (shadow.Get(shadowMap) && !shadowMap.Empty())
+            {
+                shadowMap[Visual.Property.CornerRadius] = new PropertyValue(backgroundExtraData.CornerRadius);
+                shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(shadowMap));
+            }
+            shadowMap.Dispose();
+            shadow.Dispose();
         }
 
         internal void UpdateStyle()
@@ -1386,24 +1393,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnSizeModeFactorChanged(float x, float y, float z)
         {
             SizeModeFactor = new Vector3(x, y, z);
-        }
-
-        private void UpdateShadowCornerRadius(float value)
-        {
-            // TODO Update corner radius property only whe DALi supports visual property update.
-            PropertyMap map = new PropertyMap();
-
-            PropertyValue shadowVal = Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW);
-            if (shadowVal.Get(map) && !map.Empty())
-            {
-                map[Visual.Property.CornerRadius] = new PropertyValue(value);
-
-                PropertyValue setValue = new PropertyValue(map);
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, setValue);
-                setValue?.Dispose();
-            }
-            map?.Dispose();
-            shadowVal?.Dispose();
         }
 
         private bool EmptyOnTouch(object target, TouchEventArgs args)
