@@ -215,6 +215,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
                 {
                     this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                    _onRelayoutEventCallback = null;
                 }
 
             }
@@ -250,6 +251,19 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        /// <summary>
+        /// If child view doesn't want the parent's view to intercept the touch, you can set it to true.
+        /// for example :
+        ///    parent.Add(child);
+        ///    parent.InterceptTouchEvent += OnInterceptTouchEvent;
+        ///    View view = child.GetParent() as View;
+        ///    view.DisallowInterceptTouchEvent = true;
+        ///  This prevents the parent from interceping touch.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DisallowInterceptTouchEvent {get; set;}
+
 
         /// <summary>
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -374,6 +388,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
                 {
                     this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                    _onWindowEventCallback = null;
                 }
             }
         }
@@ -403,6 +418,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
                 {
                     this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                    _offWindowEventCallback = null;
                 }
             }
         }
@@ -490,6 +506,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
                     this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                    _ResourcesLoadedCallback = null;
                 }
             }
         }
@@ -545,6 +562,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
                 {
                     this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                    _backgroundResourceLoadedCallback = null;
                 }
             }
         }
@@ -812,6 +830,12 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            // DisallowInterceptTouchEvent prevents the parent from intercepting touch.
+            if (DisallowInterceptTouchEvent)
+            {
+                return false;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
@@ -821,11 +845,6 @@ namespace Tizen.NUI.BaseComponents
             if (_interceptTouchDataEventHandler != null)
             {
                 consumed = _interceptTouchDataEventHandler(this, e);
-            }
-
-            if (enableControlState && !consumed)
-            {
-                consumed = HandleControlStateOnTouch(e.Touch);
             }
 
             return consumed;

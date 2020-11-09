@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
 
@@ -27,6 +26,19 @@ namespace Tizen.NUI.Wearable
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
+        /// <summary>Bindable property of WrapContent</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WrapContentProperty = BindableProperty.Create(nameof(WrapContent), typeof(bool?), typeof(PopupStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((PopupStyle)bindable).wrapContent = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((PopupStyle)bindable).wrapContent;
+        });
+
+        private bool? wrapContent;
+
         static PopupStyle() { }
 
         /// <summary>
@@ -44,12 +56,6 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
-            if (null == style)
-            {
-                return;
-            }
-            initSubStyle();
-            CopyFrom(style);
         }
 
         /// <summary>
@@ -58,26 +64,8 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WrapContent
         {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Retrieves a copy of PopupStyle.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            PopupStyle popupStyle = bindableObject as PopupStyle;
-            if (null != popupStyle)
-            {
-                if (null != popupStyle.WrapContent)
-                {
-                    WrapContent = popupStyle.WrapContent;
-                }
-            }
+            get => (bool?)GetValue(WrapContentProperty);
+            set => SetValue(WrapContentProperty, value);            
         }
 
         private void initSubStyle()

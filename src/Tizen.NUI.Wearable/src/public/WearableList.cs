@@ -33,7 +33,6 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="adapter">Recycle adapter of List.</param>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]

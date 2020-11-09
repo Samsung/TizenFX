@@ -27,7 +27,7 @@ namespace Tizen.NUI
     {
         internal ViewWrapperImpl viewWrapperImpl;
 
-        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn, null)
         {
         }
 

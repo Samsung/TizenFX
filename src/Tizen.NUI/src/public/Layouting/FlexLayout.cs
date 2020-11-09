@@ -104,6 +104,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexAlignmentSelf(View, AlignmentType)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of alignment self.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static AlignmentType GetFlexAlignmentSelf(View view) => GetAttachedValue<AlignmentType>(view, FlexAlignmentSelfProperty);
 
@@ -113,6 +114,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexPositionType(View, PositionType)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of position type</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static PositionType GetFlexPositionType(View view) => GetAttachedValue<PositionType>(view, FlexPositionTypeProperty);
 
@@ -122,6 +124,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexAspectRatio(View, float)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of aspect ratio</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexAspectRatio(View view) => GetAttachedValue<float>(view, FlexAspectRatioProperty);
 
@@ -131,6 +134,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexBasis(View, float)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of basis</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexBasis(View view) => GetAttachedValue<float>(view, FlexBasisProperty);
 
@@ -140,6 +144,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexShrink(View, float)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of shrink</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexShrink(View view) => GetAttachedValue<float>(view, FlexShrinkProperty);
 
@@ -149,6 +154,7 @@ namespace Tizen.NUI
         /// <seealso cref="SetFlexGrow(View, float)"/>
         /// <param name="view">The child view.</param>
         /// <returns> The value of grow</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static float GetFlexGrow(View view) => GetAttachedValue<float>(view, FlexGrowProperty);
 
@@ -160,6 +166,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of alignment self.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="AlignmentType"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAlignmentSelf(View view, AlignmentType value) => SetAttachedValue(view, FlexAlignmentSelfProperty, value);
 
@@ -173,6 +181,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of position type.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="PositionType"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexPositionType(View view, PositionType value) => SetAttachedValue(view, FlexPositionTypeProperty, value);
 
@@ -184,6 +194,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of aspect ratio</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than or equal to 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexAspectRatio(View view, float value) => SetAttachedValue(view, FlexAspectRatioProperty, value);
 
@@ -196,6 +208,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of basis</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexBasis(View view, float value) => SetAttachedValue(view, FlexBasisProperty, value);
 
@@ -204,10 +218,12 @@ namespace Tizen.NUI
         /// Flex shrink describes how to shrink children along the main axis in the case that the total size of the children overflow the size of the container on the main axis.<br/>
         /// Flex shrink is very similar to flex grow and can be thought of in the same way if any overflowing size is considered to be negative remaining space.
         /// These two properties also work well together by allowing children to grow and shrink as needed.<br/>
-        /// Flex shrink accepts any floating point value >= 0, with 1 being the default value. A container will shrink its children weighted by the child’s flex shrink value.
+        /// Flex shrink accepts any floating point value >= 0, with 1 being the default value. A container will shrink its children weighted by the child's flex shrink value.
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of shrink</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexShrink(View view, float value) => SetAttachedValue(view, FlexShrinkProperty, value);
 
@@ -216,10 +232,12 @@ namespace Tizen.NUI
         /// Flex grow describes how any space within a container should be distributed among its children along the main axis.
         /// After laying out its children, a container will distribute any remaining space according to the flex grow values specified by its children.<br/>
         /// Flex grow accepts any floating point value >= 0, with 0 being the default value.<br/>
-        /// A container will distribute any remaining space among its children weighted by the child’s flex grow value.
+        /// A container will distribute any remaining space among its children weighted by the child's flex grow value.
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The value of flex</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
 

@@ -164,7 +164,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if(newValue != null)
             {
-                imageView._border = (Rectangle)newValue;
+                imageView._border = new Rectangle((Rectangle)newValue);
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
             }
         },
@@ -346,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn, null)
         {
             if (!shown)
             {

@@ -326,6 +326,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.size == null)
                 {
+                    if ((float)newValue == 0) return;
                     viewStyle.size = new Size();
                 }
                 viewStyle.size.Width = (float)newValue;
@@ -344,6 +345,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.size == null)
                 {
+                    if ((float)newValue == 0) return;
                     viewStyle.size = new Size();
                 }
                 viewStyle.size.Height = (float)newValue;
@@ -359,6 +361,10 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             viewStyle.position = (Position)newValue;
+            if (viewStyle.position != null && viewStyle.position.X == 0 && viewStyle.position.Y == 0)
+            {
+                viewStyle.position = null;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -374,6 +380,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.position == null)
                 {
+                    if ((float)newValue == 0) return;
                     viewStyle.position = new Position();
                 }
                 viewStyle.position.X = (float)newValue;
@@ -392,6 +399,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.position == null)
                 {
+                    if ((float)newValue == 0) return;
                     viewStyle.position = new Position();
                 }
                 viewStyle.position.Y = (float)newValue;
@@ -410,6 +418,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.position == null)
                 {
+                    if ((float)newValue == 0) return;
                     viewStyle.position = new Position();
                 }
                 viewStyle.position.Z = (float)newValue;
@@ -437,6 +446,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             viewStyle.scale = (Vector3)newValue;
+            if (viewStyle.scale != null && viewStyle.scale.X == 1.0f && viewStyle.scale.Y == 1.0f && viewStyle.scale.Z == 1.0f) return;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -452,6 +462,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.scale == null)
                 {
+                    if ((float)newValue == 1.0f) return;
                     viewStyle.scale = new Vector3();
                 }
                 viewStyle.scale.X = (float)newValue;
@@ -470,6 +481,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.scale == null)
                 {
+                    if ((float)newValue == 1.0f) return;
                     viewStyle.scale = new Vector3();
                 }
                 viewStyle.scale.Y = (float)newValue;
@@ -488,6 +500,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (viewStyle.scale == null)
                 {
+                    if ((float)newValue == 1.0f) return;
                     viewStyle.scale = new Vector3();
                 }
                 viewStyle.scale.Z = (float)newValue;
@@ -708,6 +721,10 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             viewStyle.size = (Size)newValue;
+            if (viewStyle.size != null && viewStyle.size.Width == 0 && viewStyle.size.Height == 0)
+            {
+                viewStyle.size = null;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -816,7 +833,11 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
 
             viewStyle.imageShadow = ((Selector<ImageShadow>)newValue)?.Clone();
-            viewStyle.boxShadow = null;
+
+            if (viewStyle.imageShadow != null)
+            {
+                viewStyle.boxShadow = null;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -831,7 +852,11 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
 
             viewStyle.boxShadow = ((Selector<Shadow>)newValue)?.Clone();
-            viewStyle.imageShadow = null;
+
+            if (viewStyle.boxShadow != null)
+            {
+                viewStyle.imageShadow = null;
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -862,6 +887,19 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             return ((ViewStyle)bindable).enableControlState;
+        });
+
+        /// <summary>
+        /// EnableControlState property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create("ThemeChangeSensitive", typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ViewStyle)bindable).themeChangeSensitive;
         });
     }
 }
