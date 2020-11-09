@@ -265,7 +265,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -275,7 +277,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -285,7 +289,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, attributes);
+            attributes.Dispose();
         }
     }
 }
