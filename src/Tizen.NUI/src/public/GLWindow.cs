@@ -80,19 +80,19 @@ namespace Tizen.NUI
             /// Landscape orientation. A wide view area is needed.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Landscape = 1,
+            Landscape = 90,
 
             /// <summary>
             /// Portrait inverse orientation.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            PortraitInverse = 2,
+            PortraitInverse = 180,
 
             /// <summary>
             /// Landscape inverse orientation.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            LandscapeInverse = 3,
+            LandscapeInverse = 270,
 
             /// <summary>
             /// No orientation. It is for the preferred orientation
@@ -426,7 +426,7 @@ namespace Tizen.NUI
         /// Type of callback to render to frame to use native GL code.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void GLRenderFrameCallbackType();
+        public delegate int GLRenderFrameCallbackType();
 
         GLRenderFrameCallbackType GLRenderFrameCallback;
         HandleRef RenderHandlerRef;
