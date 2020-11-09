@@ -195,11 +195,7 @@ namespace Tizen.NUI
 
         internal static Gesture GetGestureFromPtr(global::System.IntPtr cPtr)
         {
-            Gesture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Gesture;
-            if (ret == null)
-            {
-                ret = new Gesture(cPtr, false);
-            }
+            Gesture ret = new Gesture(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

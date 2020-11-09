@@ -9,8 +9,11 @@ namespace Tizen.NUI.Binding.Internals
     {
         static Func<AssemblyName, string, string> resourceProvider = (asmName, path) =>
         {
-            string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-            path = resource + path;
+            if (typeof(Theme).Assembly.GetName().FullName != asmName.FullName)
+            {
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                path = resource + path;
+            }
 
             string ret = File.ReadAllText(path);
             return ret;

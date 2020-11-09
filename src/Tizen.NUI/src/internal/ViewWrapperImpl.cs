@@ -475,14 +475,10 @@ namespace Tizen.NUI
         private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
             View view = GetNextFocusableView(Registry.GetManagedBaseHandleFromNativePtr(currentFocusedActor) as View, (View.FocusDirection)direction, loopEnabled);
-            if (view)
-            {
-                return View.getCPtr(view).Handle;
-            }
-            else
-            {
-                return currentFocusedActor;
-            }
+
+            if (view != null) return View.getCPtr(view).Handle;
+
+            return global::System.IntPtr.Zero;
         }
 
         private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
