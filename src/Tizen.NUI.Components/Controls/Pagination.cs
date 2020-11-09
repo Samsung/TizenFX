@@ -157,7 +157,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                paginationStyle.IndicatorSpacing = value;
+                if (paginationStyle != null)
+                {
+                    paginationStyle.IndicatorSpacing = value;
+                }
                 UpdateVisual();
             }
         }
@@ -501,6 +504,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateVisual()
         {
+            if (null == paginationStyle) return;
             if (null == paginationStyle.IndicatorSize) return;
             if (null == paginationStyle.IndicatorImageUrl) return;
             if (indicatorCount < 0) return;

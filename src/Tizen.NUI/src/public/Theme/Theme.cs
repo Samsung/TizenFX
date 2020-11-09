@@ -250,7 +250,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    map[item.Key] = theme.GetStyle(item.Key).Clone();
+                    map[item.Key] = theme.GetStyle(item.Key)?.Clone();
                 }
             }
         }

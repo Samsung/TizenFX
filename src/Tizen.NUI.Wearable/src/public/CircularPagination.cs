@@ -534,7 +534,7 @@ namespace Tizen.NUI.Wearable
             }
             else
             {
-                visual.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                visual.URL = (circularPaginationStyle.IndicatorImageURL != null) ? circularPaginationStyle.IndicatorImageURL.Normal: "";
             }
             visual.Opacity = 0.5f;
         }
@@ -555,7 +555,7 @@ namespace Tizen.NUI.Wearable
             }
             else
             {
-                visual.URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                visual.URL = (circularPaginationStyle.IndicatorImageURL != null)? circularPaginationStyle.IndicatorImageURL.Selected: "";
             }
             visual.Opacity = 1.0f;
         }
@@ -636,8 +636,8 @@ namespace Tizen.NUI.Wearable
 
             ImageVisual indicator = new ImageVisual
             {
-                URL = circularPaginationStyle.IndicatorImageURL.Normal,
-                Size = new Size2D((int)circularPaginationStyle.IndicatorSize.Width, (int)circularPaginationStyle.IndicatorSize.Height),
+                URL = (circularPaginationStyle.IndicatorImageURL != null)? circularPaginationStyle.IndicatorImageURL.Normal: "",
+                Size = (circularPaginationStyle.IndicatorSize !=null) ? new Size2D((int)circularPaginationStyle.IndicatorSize.Width, (int)circularPaginationStyle.IndicatorSize.Height) : new Size2D(0, 0),
                 Opacity = 0.5f,
             };
 
@@ -676,13 +676,13 @@ namespace Tizen.NUI.Wearable
             }
             if (indicatorList.Count > 0)
             {
-                container.SizeWidth = (circularPaginationStyle.IndicatorSize.Width) * indicatorList.Count;
+                container.SizeWidth = (circularPaginationStyle.IndicatorSize != null)? (circularPaginationStyle.IndicatorSize.Width) * indicatorList.Count: 0;
             }
             else
             {
                 container.SizeWidth = 0;
             }
-            container.SizeHeight = circularPaginationStyle.IndicatorSize.Height;
+            container.SizeHeight = (circularPaginationStyle.IndicatorSize != null)? circularPaginationStyle.IndicatorSize.Height : 0;
         }
 
         private void UpdateVisual()
