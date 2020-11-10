@@ -70,6 +70,12 @@ namespace Tizen.NUI.Components
         public int SelectedIndex => selectedIndex;
 
         /// <summary>
+        /// EnableMultiSelection is used to indicate if SelectGroup can select multiple SelectButtons.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableMultiSelection { get; set; } = true;
+
+        /// <summary>
         /// Construct SelectionGroup
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -142,7 +148,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior after pressing return key by user.
+        /// Called when the state of Selected is changed.
         /// </summary>
         /// <param name="selection">The selection selected by user</param>
         /// <since_tizen> 6 </since_tizen>
@@ -160,6 +166,18 @@ namespace Tizen.NUI.Components
                 if (args.IsSelected == true)
                 {
                     selectedIndex = selection.Index;
+
+                    if (EnableMultiSelection == false)
+                    {
+                        foreach (SelectButton btn in ItemGroup)
+                        {
+                            if ((btn != null) && (btn != selection) && (btn.IsEnabled == true) && (btn.IsSelected == true))
+                            {
+                                btn.IsSelected = false;
+                            }
+                        }
+                    }
+
                     SelectionHandler(selection);
                 }
             }
