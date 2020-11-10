@@ -57,11 +57,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// Create a Shadow from a propertyMap.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal ImageShadow(PropertyMap propertyMap) : base(propertyMap)
         {
+            Border = noBorder;
+            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
+
+            string url = null;
+            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
+            Url = url;
         }
 
         /// <summary>
@@ -153,25 +158,6 @@ namespace Tizen.NUI
             map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(Url);
 
             return map;
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (!base.SetPropertyMap(propertyMap))
-            {
-                return false;
-            }
-
-            Border = noBorder;
-            propertyMap.Find(ImageVisualProperty.Border)?.Get(Border);
-
-            string url = null;
-            propertyMap.Find(ImageVisualProperty.URL)?.Get(out url);
-            Url = url;
-
-            return true;
         }
     }
 }
