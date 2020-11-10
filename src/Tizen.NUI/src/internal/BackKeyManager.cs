@@ -76,13 +76,19 @@ namespace Tizen.NUI
                 {
                     // parent1 is in DefaultLayer.
                     Layer comparison2AsLayer = comparison2 as Layer;
-                    result = comparison2AsLayer.Depth > NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth;
+                    if(comparison2AsLayer != null)
+                    {
+                        result = comparison2AsLayer.Depth > NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth;
+                    }   
                 }
                 else
                 {
                     // parent2 is in DefaultLayer.
                     Layer comparison1AsLayer = comparison1 as Layer;
-                    result = NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth < comparison1AsLayer.Depth;
+                    if (comparison1AsLayer != null)
+                    {
+                        result = NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth < comparison1AsLayer.Depth;
+                    }
                 }
             }
             else
@@ -97,8 +103,10 @@ namespace Tizen.NUI
                         // Compare Depth
                         Layer comparison1AsLayer = comparison1 as Layer;
                         Layer comparison2AsLayer = comparison2 as Layer;
-
-                        result = comparison1AsLayer.Depth < comparison2AsLayer.Depth;
+                        if (comparison1AsLayer != null && comparison2AsLayer != null)
+                        {
+                            result = comparison1AsLayer.Depth < comparison2AsLayer.Depth;
+                        }          
                     }
                     else
                     {
@@ -106,8 +114,10 @@ namespace Tizen.NUI
                         // Compare SiblingOrder
                         View comparison1AsView = comparison1 as View;
                         View comparison2AsView = comparison2 as View;
-
-                        result = comparison1AsView.SiblingOrder < comparison2AsView.SiblingOrder;
+                        if (comparison1AsView != null && comparison2AsView != null)
+                        {
+                            result = comparison1AsView.SiblingOrder < comparison2AsView.SiblingOrder;
+                        }                    
                     }
                 }
                 else

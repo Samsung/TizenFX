@@ -304,7 +304,7 @@ namespace Tizen.NUI.Binding
 #endif
 
                 if (property == null) //is the indexer defined on the base class?
-                    property = sourceType.BaseType.GetProperty(indexerName);
+                    property = sourceType.BaseType?.GetProperty(indexerName);
                 if (property == null) //is the indexer defined on implemented interface ?
                 {
                     foreach (var implementedInterface in sourceType.ImplementedInterfaces)
