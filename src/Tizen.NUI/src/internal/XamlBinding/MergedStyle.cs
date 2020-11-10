@@ -125,6 +125,10 @@ namespace Tizen.NUI.Binding
         void RegisterImplicitStyles()
         {
             Type type = TargetType;
+            if (type == null)
+            {
+                return;
+            }
             while (true) {
                 BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(Style), typeof(View), default(Style),
                         propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());

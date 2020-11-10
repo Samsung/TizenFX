@@ -771,6 +771,10 @@ namespace Tizen.NUI.Components
         {
             PointStateType state = e.Touch.GetState(0);
             DropDownItemView touchedView = sender as DropDownItemView;
+            if (touchedView == null)
+            {
+                return true;
+            }
 
             touchedView.OnTouch(e.Touch); // Handle control state change
 
