@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Tizen.Applications;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -136,13 +138,39 @@ namespace NUIComponentApplicationSample
             }
         }
 
+        static private Type LoadFrameComponentDll()
+        {
+            string path = @"/opt/usr/FrameComponentDll.dll";
+            FileInfo fi = new FileInfo(path);
+            if (fi.Exists)
+            {
+                Assembly assembly = Assembly.LoadFile(path);
+                if (assembly != null)
+                {
+                    Module[] modules = assembly.GetModules();
+                    Type frameComponent3 = modules[0].GetType("FrameComponentDll.MyFrameComponent3");
+                    return frameComponent3;
+                }
+            }
+            return null;
+        }
+
         static void Main(string[] args)
         {
+
             Dictionary<Type, string> dict = new Dictionary<Type, string>();
             dict.Add(typeof(MyFrameComponent), "csharp_frame");
             dict.Add(typeof(MyFrameComponent2), "csharp_frame2");
-            var app = new Program(dict);
 
+            Type type = LoadFrameComponentDll();
+            if (type != null)
+            {
+                Tizen.Log.Error("MYLOG", "Add type : " + type);
+                dict.Add(type, "csharp_frame3");
+            }
+
+
+            var app = new Program(dict);
             app.Run(args);
             app.Dispose();
         }

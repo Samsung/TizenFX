@@ -476,7 +476,7 @@ namespace Tizen.NUI.Components
                 MixColor = (indicatorColor == null) ? new Color(1.0f, 1.0f, 1.0f, 0.5f) : indicatorColor,
                 Opacity = (indicatorColor == null) ? 0.5f : indicatorColor.A
             };
-            indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
+            indicator.Position = new Vector2((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);
             indicatorList.Add(indicator);
         }
@@ -510,7 +510,7 @@ namespace Tizen.NUI.Components
                 ImageVisual indicator = indicatorList[i];
                 indicator.URL = paginationStyle.IndicatorImageUrl.Normal;
                 indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
-                indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
+                indicator.Position = new Vector2((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
             }
 
             if (lastIndicatorImageUrl != null && indicatorCount > 0)

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
-    public class Position2D : Disposable
+    public class Position2D : Disposable, ICloneable
     {
         private Position2DChangedCallback callback = null;
 
@@ -342,6 +342,10 @@ namespace Tizen.NUI
         {
             return new Position2D((int)position.X, (int)position.Y);
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Position2D(this);
 
         internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr)
         {

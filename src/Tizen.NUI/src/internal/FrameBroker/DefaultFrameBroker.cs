@@ -26,6 +26,7 @@ namespace Tizen.NUI
     {
         private Window window;
         private ImageView providerImage;
+        private bool isAnimating;
 
         public delegate void AnimationEventHandler();
         internal event AnimationEventHandler AnimationInitialized;
@@ -34,10 +35,16 @@ namespace Tizen.NUI
         internal DefaultFrameBroker(Window window) : base(window)
         {
             this.window = window;
+            isAnimating = false;
         }
 
         protected override void OnFrameResumed(FrameData frame)
         {
+            if(isAnimating)
+            {
+                return;
+            }
+            isAnimating = true;
             base.OnFrameResumed(frame);
             if (AnimationInitialized != null)
             {
@@ -61,14 +68,13 @@ namespace Tizen.NUI
             if (animation)
             {
                 providerImage = frame.Image;
-                providerImage.Size = window.Size;
-                window.Add(providerImage);
+                providerImage.PositionUsesPivotPoint = true;
+                providerImage.PivotPoint = animation.GetDefaultPivotPoint();
+                providerImage.ParentOrigin = animation.GetDefaultParentOrigin();
+                providerImage.Position = animation.GetDefaultPosition();
+                providerImage.Size = animation.GetDefaultSize();
 
-                if (animation is SlideIn)
-                {
-                    SlideIn slideIn = animation as SlideIn;
-                    providerImage.PositionX = slideIn.GetDefaultInitValue();
-                }
+                window.Add(providerImage);
 
                 animation.PlayAnimateTo(providerImage);
             }
@@ -77,6 +83,7 @@ namespace Tizen.NUI
                 FinishAnimation();
             }
         }
+
 
         private TransitionAnimation forwardAnimation;
         internal TransitionAnimation ForwardAnimation 
@@ -120,6 +127,7 @@ namespace Tizen.NUI
                 providerImage = null;
             }
             FinishAnimation();
+            isAnimating = false;
         }
     }
 }

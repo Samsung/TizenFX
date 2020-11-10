@@ -97,5 +97,20 @@ namespace Tizen.NUI.Components
                 IsSelected = true;
             }
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ImageView CreateIcon()
+        {
+            return new ImageView
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.DimensionDependency,
+                HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
+                SizeModeFactor = new Vector3(1, 1, 1),
+            };
+        }
     }
 }
