@@ -218,7 +218,7 @@ namespace Tizen.NUI.Wearable
         /// The constructor of CircularSlider.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularSlider() : base(new CircularSliderStyle())
+        public CircularSlider() : base()
         {
             Initialize();
         }

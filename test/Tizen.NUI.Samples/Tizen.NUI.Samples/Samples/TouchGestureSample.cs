@@ -10,12 +10,21 @@ namespace Tizen.NUI.Samples
     {
         private View root;
         GestureDetectorManager mGestureDetector;
+        private TextLabel frontView;
+        private TextLabel backView;
+
+        public void ChangeText()
+        {
+            backView.Text = "From OnTap BackView";
+        }
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
+            root = new View();
 
-            TextLabel frontView = new TextLabel
+
+           frontView = new TextLabel
             {
                 Size = new Size(300, 300),
                 Text = "Front View",
@@ -25,7 +34,8 @@ namespace Tizen.NUI.Samples
             };
             frontView.TouchEvent += OnFrontTouchEvent;
 
-            TextLabel backView = new TextLabel
+
+            backView = new TextLabel
             {
                 Size = new Size(300, 300),
                 Text = "Back View",
@@ -37,42 +47,49 @@ namespace Tizen.NUI.Samples
             mGestureDetector = new GestureDetectorManager(backView, new MyGestureListener());
             backView.TouchEvent += OnBackTouchEvent;
 
-            window.Add(backView);
-            window.Add(frontView);
+            backView.Add(frontView);
+
+            root.Add(backView);
+            window.Add(root);
         }
 
         private bool OnFrontTouchEvent(object source, View.TouchEventArgs e)
         {
             Tizen.Log.Error("NUI", $"OnFrontTouchEvent {e.Touch.GetState(0)}\n");
-            return false;
+            return true;
         }
 
 
         private bool OnBackTouchEvent(object source, View.TouchEventArgs e)
         {
             Tizen.Log.Error("NUI", $"OnBackTouchEvent {e.Touch.GetState(0)}\n");
-            mGestureDetector.FeedTouchEvent(source, e);
+            mGestureDetector.FeedTouchEvent(source, e, this);
             return false;
         }
 
         class MyGestureListener : GestureDetectorManager.GestureListener
         {
-          public override void OnTap(object sender, TapGestureDetector.DetectedEventArgs e)
+          public override void OnTap(object sender, TapGestureDetector.DetectedEventArgs e, object userData)
           {
             Tizen.Log.Error("NUI", $"OnTap \n");
+            if(userData != null)
+            {
+              TouchGestureSample sample = (TouchGestureSample) userData;
+              sample.ChangeText();
+            }
           }
 
-          public override void OnPan(object sender, PanGestureDetector.DetectedEventArgs e)
+          public override void OnPan(object sender, PanGestureDetector.DetectedEventArgs e, object userData)
           {
             Tizen.Log.Error("NUI", $"OnPan \n");
           }
 
-          public override void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
+          public override void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e, object userData)
           {
             Tizen.Log.Error("NUI", $"OnPinch \n");
           }
 
-          public override void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
+          public override void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e, object userData)
           {
             Tizen.Log.Error("NUI", $"OnLongPress \n");
           }

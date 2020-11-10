@@ -21,19 +21,6 @@ using System.ComponentModel;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
-    /// </summary>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SelectedChangedEventArgs : EventArgs
-    {
-        /// <summary> Select state of SelectButton </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsSelected { get; set; }
-    }
-
-    /// <summary>
     /// SelectButton is base class of CheckBox and RadioButton.
     /// It can be used as selector and add into group for single-choice or multiple-choice .
     /// User can handle Navigation by adding/inserting/deleting NavigationItem.

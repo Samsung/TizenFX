@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -131,6 +132,14 @@ namespace Tizen.NUI.Xaml
             using (var textReader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textReader))
             {
+                Load(view, reader);
+            }
+        }
+
+        public static void Load(object view, XmlReader reader)
+        {
+            if (reader != null)
+            {
                 while (reader.Read())
                 {
                     //Skip until element
@@ -170,6 +179,16 @@ namespace Tizen.NUI.Xaml
             using (var textreader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textreader))
             {
+                inflatedView = Create(reader, doNotThrow);
+            }
+            return inflatedView;
+        }
+
+        public static object Create(XmlReader reader, bool doNotThrow = false)
+        {
+            object inflatedView = null;
+            if (reader != null)
+            {
                 while (reader.Read())
                 {
                     //Skip until element
@@ -190,6 +209,36 @@ namespace Tizen.NUI.Xaml
                         ExceptionHandler = doNotThrow ? e => { } : (Action<Exception>)null,
                     };
                     var cvv = new CreateValuesVisitor(visitorContext);
+
+                    // Visit Parameter Properties to create instance from parameterized constructor
+                    var type = XamlParser.GetElementType(rootnode.XmlType, rootnode, null, out XamlParseException xpe);
+                    if (xpe != null)
+                        throw xpe;
+
+                    var ctorInfo =
+                        type.GetTypeInfo()
+                            .DeclaredConstructors.FirstOrDefault(
+                                ci =>
+                                    ci.GetParameters().Length != 0 && ci.IsPublic &&
+                                    ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof(ParameterAttribute))));
+                    if (ctorInfo != null)
+                    {
+                        foreach (var parameter in ctorInfo.GetParameters())
+                        {
+                            var propname =
+                                parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")?
+                                    .ConstructorArguments.First()
+                                    .Value as string;
+
+                            var name = new XmlName("", propname);
+                            if (rootnode.Properties.TryGetValue(name, out INode node) && node is ValueNode)
+                            {
+                                node.Accept(cvv, rootnode);
+                            }
+                        }
+                    }
+
+
                     cvv.Visit((ElementNode)rootnode, null);
                     inflatedView = rootnode.Root = visitorContext.Values[rootnode];
                     visitorContext.RootElement = inflatedView as BindableObject;

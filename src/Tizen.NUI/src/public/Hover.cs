@@ -25,14 +25,23 @@ namespace Tizen.NUI
     /// hovered or the points where a hover has stopped.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Hover : Disposable
+    public class Hover : BaseHandle
     {
 
         /// <summary>
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Hover() : this(Interop.Hover.new_Hover__SWIG_0(), true)
+        public Hover() : this(Interop.Hover.Hover_New(0u), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="time">The time the event occurred.</param>
+        internal Hover(uint time) : this(Interop.Hover.Hover_New(time), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -42,7 +51,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Hover.Hover_SWIGUpcast(cPtr), cMemoryOwn)
         {
         }
 

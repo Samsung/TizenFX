@@ -122,7 +122,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create("PreMultipliedAlpha", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create(nameof(PreMultipliedAlpha), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -140,7 +140,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create("PixelArea", typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create(nameof(PixelArea), typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -159,12 +159,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if(newValue != null)
             {
-                imageView._border = (Rectangle)newValue;
+                imageView._border = new Rectangle((Rectangle)newValue);
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
             }
         },
@@ -176,7 +176,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create("BorderOnly", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create(nameof(BorderOnly), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -196,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create("SynchronosLoading", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronosLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -213,7 +213,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create("OrientationCorrection", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -346,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn, null)
         {
             if (!shown)
             {
@@ -828,7 +828,7 @@ namespace Tizen.NUI.BaseComponents
                 case VisualFittingModeType.FitHeight:
                     return FittingModeType.FitHeight;
                 case VisualFittingModeType.FitWidth:
-                    return FittingModeType.FitHeight;
+                    return FittingModeType.FitWidth;
                 default:
                     return FittingModeType.ShrinkToFit;
             }

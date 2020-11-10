@@ -100,6 +100,11 @@ namespace Tizen.NUI.Binding
         /// <param name="value">The default value.</param>
         /// <returns>System.Boolean</returns>
         public delegate bool ValidateValueDelegate<in TPropertyType>(BindableObject bindable, TPropertyType value);
+		
+        //To confirm the static dictionary will be created before the constructor is called.
+        static BindableProperty()
+        {
+        }
 
         static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new  Dictionary<Type,TypeConverter>
         {
@@ -145,19 +150,19 @@ namespace Tizen.NUI.Binding
                                  CoerceValueDelegate coerceValue = null, BindablePropertyBindingChanging bindingChanging = null, bool isReadOnly = false, CreateDefaultValueDelegate defaultValueCreator = null)
         {
             if (propertyName == null)
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
             if (ReferenceEquals(returnType, null))
-                throw new ArgumentNullException("returnType");
+                throw new ArgumentNullException(nameof(returnType));
             if (ReferenceEquals(declaringType, null))
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
 
             // don't use Enum.IsDefined as its redonkulously expensive for what it does
             if (defaultBindingMode != BindingMode.Default && defaultBindingMode != BindingMode.OneWay && defaultBindingMode != BindingMode.OneWayToSource && defaultBindingMode != BindingMode.TwoWay && defaultBindingMode != BindingMode.OneTime)
-                throw new ArgumentException("Not a valid type of BindingMode", "defaultBindingMode");
+                throw new ArgumentException("Not a valid type of BindingMode", nameof(defaultBindingMode));
             if (defaultValue == null && Nullable.GetUnderlyingType(returnType) == null && returnType.GetTypeInfo().IsValueType)
-                throw new ArgumentException("Not a valid default value", "defaultValue");
+                throw new ArgumentException("Not a valid default value", nameof(defaultValue));
             if (defaultValue != null && !returnType.IsInstanceOfType(defaultValue))
-                throw new ArgumentException("Default value did not match return type", "defaultValue");
+                throw new ArgumentException("Default value did not match return type", nameof(defaultValue));
             if (defaultBindingMode == BindingMode.Default)
                 defaultBindingMode = BindingMode.OneWay;
 
@@ -487,7 +492,7 @@ namespace Tizen.NUI.Binding
                                                                           CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
         {
             if (getter == null)
-                throw new ArgumentNullException("getter");
+                throw new ArgumentNullException(nameof(getter));
 
             Expression expr = getter.Body;
 
@@ -497,7 +502,7 @@ namespace Tizen.NUI.Binding
 
             var member = expr as MemberExpression;
             if (member == null)
-                throw new ArgumentException("getter must be a MemberExpression", "getter");
+                throw new ArgumentException("getter must be a MemberExpression", nameof(getter));
 
             var property = (PropertyInfo)member.Member;
 
@@ -536,7 +541,7 @@ namespace Tizen.NUI.Binding
                                                                                   CreateDefaultValueDelegate<BindableObject, TPropertyType> defaultValueCreator = null)
         {
             if (staticgetter == null)
-                throw new ArgumentNullException("staticgetter");
+                throw new ArgumentNullException(nameof(staticgetter));
 
             Expression expr = staticgetter.Body;
 
@@ -546,11 +551,11 @@ namespace Tizen.NUI.Binding
 
             var methodcall = expr as MethodCallExpression;
             if (methodcall == null)
-                throw new ArgumentException("staticgetter must be a MethodCallExpression", "staticgetter");
+                throw new ArgumentException("staticgetter must be a MethodCallExpression", nameof(staticgetter));
 
             MethodInfo method = methodcall.Method;
             if (!method.Name.StartsWith("Get", StringComparison.Ordinal))
-                throw new ArgumentException("staticgetter name must start with Get", "staticgetter");
+                throw new ArgumentException("staticgetter name must start with Get", nameof(staticgetter));
 
             string propertyname = method.Name.Substring(3);
 

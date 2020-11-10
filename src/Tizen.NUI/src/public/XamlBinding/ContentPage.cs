@@ -152,7 +152,7 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if(Root != null) 
+            if(Root != null)
             {
                 Root.Unparent();
                 Root.Dispose();
@@ -258,7 +258,7 @@ namespace Tizen.NUI
                 {
                     trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
                 }
-                if (trans)
+                if (trans != null)
                 {
                     transDictionary?.Add(trans.Name, trans);
                 }

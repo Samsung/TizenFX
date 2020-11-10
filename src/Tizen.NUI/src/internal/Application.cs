@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1194,11 +1195,23 @@ namespace Tizen.NUI
 
         public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
-            int argc = args.Length;
-            string argvStr = string.Join(" ", args);
+            Application ret = null;
+            int argc = 0;
+            string argvStr = "";
+            try
+            {
+                argc = args.Length;
+                argvStr = string.Join(" ", args);
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
+                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                throw;
+            }
 
-            Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
-
+            ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return ret;
@@ -1213,11 +1226,25 @@ namespace Tizen.NUI
 
         public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
-            int argc = args.Length;
-            string argvStr = string.Join(" ", args);
+            Application ret = null;
+            int argc = 0;
+            string argvStr = "";
+            try
+            {
+                argc = args.Length;
+                argvStr = string.Join(" ", args);
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, msg : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
+                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                throw;
+            }
 
-            Application ret = new Application(NDalicPINVOKE.Application_New_WithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            ret = new Application(NDalicPINVOKE.Application_New_WithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             return ret;
         }
 
@@ -1241,12 +1268,6 @@ namespace Tizen.NUI
         public void MainLoop()
         {
             NDalicPINVOKE.Application_MainLoop__SWIG_0(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
-        {
-            Interop.Application.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

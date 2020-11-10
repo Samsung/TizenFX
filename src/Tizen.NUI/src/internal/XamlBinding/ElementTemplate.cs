@@ -22,7 +22,7 @@ namespace Tizen.NUI.Binding
         internal ElementTemplate(Type type) : this()
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             _canRecycle = true;
 
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding
         internal ElementTemplate(Func<object> loadTemplate) : this()
         {
             if (loadTemplate == null)
-                throw new ArgumentNullException("loadTemplate");
+                throw new ArgumentNullException(nameof(loadTemplate));
 
             LoadTemplate = loadTemplate;
         }

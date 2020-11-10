@@ -84,23 +84,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public virtual bool OnHoverEvent(Hover arg0)
-        {
-            bool ret = Interop.CustomActorImpl.CustomActorImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public virtual bool OnKeyEvent(Key arg0)
         {
             bool ret = Interop.CustomActorImpl.CustomActorImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnWheelEvent(Wheel arg0)
-        {
-            bool ret = Interop.CustomActorImpl.CustomActorImpl_OnWheelEvent(swigCPtr, Wheel.getCPtr(arg0));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

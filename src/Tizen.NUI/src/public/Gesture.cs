@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// in a particular order or within a certain time frame (for example, pinch).<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Gesture : Disposable
+    public class Gesture : BaseHandle
     {
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Gesture.Gesture_SWIGUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -191,6 +191,13 @@ namespace Tizen.NUI
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Gesture obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static Gesture GetGestureFromPtr(global::System.IntPtr cPtr)
+        {
+            Gesture ret = new Gesture(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// This will not be public opened.

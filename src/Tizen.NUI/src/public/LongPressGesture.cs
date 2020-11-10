@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         /// <since_tizen> 3 </since_tizen>
-        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.new_LongPressGesture__SWIG_0((int)state), true)
+        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.LongPressGesture_New((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

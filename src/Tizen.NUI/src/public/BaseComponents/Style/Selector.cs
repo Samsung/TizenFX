@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
@@ -24,12 +25,42 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Selector class, which is related by Control State, it is base class for other Selector.
     /// </summary>
+    /// <typeparam name="T">The property type of the selector. if it's reference type, it should be of type <see cref="ICloneable"/> that implement deep copy in <see cref="ICloneable.Clone"/>.</typeparam>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Selector<T> : StateValueCollection<T>
+    public class Selector<T>
     {
-        private readonly bool cloneable = typeof(T).IsAssignableFrom(typeof(ICloneable));
+        private readonly bool cloneable = typeof(ICloneable).IsAssignableFrom(typeof(T));
+
+        /// <summary>
+        /// The list for adding state-value pair.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<StateValuePair<T>> StateValueList { get; set; } = new List<StateValuePair<T>>();
+
+        /// <summary>
+        /// Adds the specified state and value.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <param name="value">The value associated with state.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(ControlState state, T value) => Add(new StateValuePair<T>(state, value));
+
+        /// <summary>
+        /// Adds the specified state and value.
+        /// </summary>
+        /// <param name="stateValuePair"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(StateValuePair<T> stateValuePair)
+        {
+            // To prevent a state from having multiple values, remove existing state-value pair.
+            int index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => x.State == stateValuePair.State);
+            if (index != -1)
+               StateValueList.RemoveAt(index);
+
+            StateValueList.Add(stateValuePair);
+        }
 
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -58,25 +89,6 @@ namespace Tizen.NUI.BaseComponents
             Clone(value);
         }
 
-        internal Selector(SelectorChangedCallback<T> cb) : this()
-        {
-            callback = cb;
-        }
-
-        internal Selector(SelectorChangedCallback<T> cb, T value) : this(value)
-        {
-            callback = cb;
-        }
-
-        internal Selector(SelectorChangedCallback<T> cb, Selector<T> value) : this(value)
-        {
-            callback = cb;
-        }
-
-        internal delegate void SelectorChangedCallback<T>(Selector<T> value);
-        private SelectorChangedCallback<T> callback = null;
-
-
         /// <summary>
         /// All State.
         /// </summary>
@@ -96,15 +108,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Normal).Value;
-            }
-            set
-            {
-                Add(ControlState.Normal, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Normal).Value;
+            set => Add(ControlState.Normal, value);
         }
         /// <summary>
         /// Pressed State.
@@ -114,15 +119,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Pressed).Value;
-            }
-            set
-            {
-                Add(ControlState.Pressed, value);
-                callback?.Invoke(this);
-            }
+
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Pressed).Value;
+            set => Add(ControlState.Pressed, value);
         }
         /// <summary>
         /// Focused State.
@@ -132,15 +131,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Focused).Value;
-            }
-            set
-            {
-                Add(ControlState.Focused, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Focused).Value;
+            set => Add(ControlState.Focused, value);
         }
         /// <summary>
         /// Selected State.
@@ -150,15 +142,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Selected).Value;
-            }
-            set
-            {
-                Add(ControlState.Selected, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Selected).Value;
+            set => Add(ControlState.Selected, value);
         }
         /// <summary>
         /// Disabled State.
@@ -168,15 +153,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Disabled).Value;
-            }
-            set
-            {
-                Add(ControlState.Disabled, value);
-                callback?.Invoke(this);
-            }
+
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Disabled).Value;
+            set => Add(ControlState.Disabled, value);
         }
         /// <summary>
         /// DisabledFocused State.
@@ -186,15 +165,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get
-            {
-                return Find(x => x.State == ControlState.DisabledFocused).Value;
-            }
-            set
-            {
-                Add(ControlState.DisabledFocused, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.DisabledFocused).Value;
+            set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
         /// SelectedFocused State.
@@ -203,15 +175,8 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public T SelectedFocused
         {
-            get
-            {
-                return Find(x => x.State == ControlState.SelectedFocused).Value;
-            }
-            set
-            {
-                Add(ControlState.SelectedFocused, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.SelectedFocused).Value;
+            set => Add(ControlState.SelectedFocused, value);
         }
         /// <summary>
         /// DisabledSelected State.
@@ -221,15 +186,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get
-            {
-                return Find(x => x.State == ControlState.DisabledSelected).Value;
-            }
-            set
-            {
-                Add(ControlState.DisabledSelected, value);
-                callback?.Invoke(this);
-            }
+
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.DisabledSelected).Value;
+            set => Add(ControlState.DisabledSelected, value);
         }
 
         /// <summary>
@@ -240,16 +199,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get
-            {
-                return Find(x => x.State == ControlState.Other).Value;
-            }
-            set
-            {
-                Add(ControlState.Other, value);
-                callback?.Invoke(this);
-            }
+            get => ((List<StateValuePair<T>>)StateValueList).Find(x => x.State == ControlState.Other).Value;
+            set => Add(ControlState.Other, value);
         }
+
+        /// <summary>
+        /// Gets the number of elements.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Count => StateValueList.Count;
+
         /// <summary>
         /// Get value by State.
         /// </summary>
@@ -268,7 +227,7 @@ namespace Tizen.NUI.BaseComponents
 
             result = default;
 
-            int index = StateValueList.FindIndex(x => x.State == state);
+            int index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => x.State == state);
             if (index >= 0)
             {
                 result = StateValueList[index].Value;
@@ -277,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (state.IsCombined)
             {
-                index = StateValueList.FindIndex(x => state.Contains(x.State));
+                index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => state.Contains(x.State));
                 if (index >= 0)
                 {
                     result = StateValueList[index].Value;
@@ -285,7 +244,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            index = StateValueList.FindIndex(x => x.State == ControlState.Other);
+            index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => x.State == ControlState.Other);
             if (index >= 0)
             {
                 result = StateValueList[index].Value;
@@ -295,12 +254,14 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Removes all elements.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void Clear()
+        public void Clear()
         {
             All = default;
-            base.Clear();
+            StateValueList.Clear();
         }
 
         /// <inheritdoc/>
@@ -337,23 +298,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clone(Selector<T> other)
         {
-            Clear();
-
             if (cloneable)
             {
                 All = (T)((ICloneable)other.All)?.Clone();
-                foreach (var item in other.StateValueList)
-                {
-                    AddWithoutCheck(new StateValuePair<T>(item.State, (T)((ICloneable)item.Value)?.Clone()));
-                }
+                StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => new StateValuePair<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
             }
             else
             {
                 All = other.All;
-                foreach (var item in other.StateValueList)
-                {
-                    AddWithoutCheck(item);
-                }
+                StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => m);
             }
         }
 
@@ -361,6 +314,7 @@ namespace Tizen.NUI.BaseComponents
         {
             return StateValueList.Count > 1;
         }
+
     }
 
     /// <summary>
@@ -430,7 +384,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (otherSelector == null)
             {
-                return;   
+                return;
             }
 
             selector = otherSelector.Clone();

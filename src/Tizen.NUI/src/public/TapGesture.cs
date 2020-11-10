@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// Creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TapGesture() : this(Interop.TapGesture.new_TapGesture__SWIG_0(), true)
+        public TapGesture() : this(Interop.TapGesture.TapGesture_New(0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

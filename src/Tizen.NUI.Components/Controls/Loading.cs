@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +54,7 @@ namespace Tizen.NUI.Components
             {
                 Size size = (Size)newValue;
                 ((View)bindable).Size = size;
-                if (null != instance.imageVisual)
-                {
-                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
-                }
+                instance.loadingStyle.LoadingSize = size;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -75,7 +72,7 @@ namespace Tizen.NUI.Components
                 int frameRate = (int)newValue;
                 if (0 != frameRate) //It will crash if 0
                 {
-                    instance.loadingStyle.FrameRate.All = frameRate;
+                    instance.loadingStyle.FrameRate = frameRate;
                     instance.imageVisual.FrameDelay = 1000.0f / frameRate;
                 }
             }
@@ -237,7 +234,9 @@ namespace Tizen.NUI.Components
                 LoopCount = -1,
                 Position = new Vector2(0, 0),
                 Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center
+                AnchorPoint = Visual.AlignType.Center,
+                SizePolicy = VisualTransformPolicyType.Relative,
+                Size = new Size2D(1, 1)
             };
 
             UpdateVisual();
@@ -257,10 +256,6 @@ namespace Tizen.NUI.Components
             {
                 imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
             }
-            if (null != loadingStyle.LoadingSize)
-            {
-                this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
-            }
         }
 
         /// <summary>
@@ -270,7 +265,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -280,7 +277,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -290,7 +289,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, attributes);
+            attributes.Dispose();
         }
     }
 }

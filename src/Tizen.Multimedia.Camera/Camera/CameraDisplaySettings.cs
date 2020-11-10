@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="CameraDisplayMode"/> that specifies the display mode.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public CameraDisplayMode Mode
         {
@@ -69,7 +69,6 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public bool Visible
         {
@@ -94,7 +93,7 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="Rotation"/> that specifies the rotation of the camera device.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display rotation type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Rotation Rotation
         {
@@ -122,7 +121,7 @@ namespace Tizen.Multimedia
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
         /// <value>A <see cref="Flips"/> that specifies the camera flip type.</value>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
+        /// <exception cref="ArgumentException">Display flip type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Flips Flip
         {
@@ -148,7 +147,6 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
         public Rectangle RoiArea
         {

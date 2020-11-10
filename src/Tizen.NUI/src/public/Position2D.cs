@@ -17,7 +17,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -26,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
-    public class Position2D : Disposable
+    public class Position2D : Disposable, ICloneable
     {
         private Position2DChangedCallback callback = null;
 
@@ -88,10 +87,13 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
         public int X
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
+                
                 Interop.Vector2.Vector2_X_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -109,10 +111,13 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
         public int Y
         {
             set
             {
+                Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
+
                 Interop.Vector2.Vector2_Y_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -337,6 +342,10 @@ namespace Tizen.NUI
         {
             return new Position2D((int)position.X, (int)position.Y);
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Position2D(this);
 
         internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr)
         {

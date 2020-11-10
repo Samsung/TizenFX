@@ -32,6 +32,17 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SelectedChangedEventArgs : EventArgs
+    {
+        /// <summary> Selected state </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool IsSelected { get; set; }
+    }
+
+    /// <summary>
     /// Button is one kind of common component, a button clearly describes what action will occur when the user selects it.
     /// Button may contain text or an icon.
     /// </summary>
@@ -43,20 +54,16 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(IconOrientation?), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
+            var newIconOrientation = (IconOrientation?)newValue;
+            if (instance.iconRelativeOrientation != newIconOrientation)
             {
-                if (instance.buttonStyle != null && instance.buttonStyle.IconRelativeOrientation != (IconOrientation?)newValue)
-                {
-                    instance.buttonStyle.IconRelativeOrientation = (IconOrientation?)newValue;
-                    instance.UpdateUIContent();
-                }
+                instance.iconRelativeOrientation = newIconOrientation;
+                instance.UpdateUIContent();
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconRelativeOrientation;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconRelativeOrientation
+        );
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -64,18 +71,21 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsEnabled != (bool)newValue))
+                bool newEnabled = (bool)newValue;
+                if (instance.isEnabled != newEnabled)
                 {
-                    instance.buttonStyle.IsEnabled = (bool)newValue;
+                    instance.isEnabled = newEnabled;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsEnabled = newEnabled;
+                    }
+
                     instance.UpdateState();
                 }
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IsEnabled ?? true;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).isEnabled);
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
@@ -83,17 +93,27 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && instance.IsSelectable && (!instance.styleApplied || instance.buttonStyle.IsSelected != (bool)newValue))
+                bool newSelected = (bool)newValue;
+                if (instance.isSelected != newSelected)
                 {
-                    instance.buttonStyle.IsSelected = (bool)newValue;
-                    instance.UpdateState();
+                    instance.isSelected = newSelected;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsSelected = newSelected;
+                    }
+
+                    if (instance.isSelectable)
+                    {
+                        instance.UpdateState();
+                    }
                 }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.IsSelectable && (instance.buttonStyle.IsSelected ?? false);
+            return instance.isSelectable && instance.isSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -102,49 +122,48 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsSelectable != (bool)newValue))
+                bool newSelectable = (bool)newValue;
+                if (instance.isSelectable != newSelectable)
                 {
-                    instance.buttonStyle.IsSelectable = (bool)newValue;
+                    instance.isSelectable = newSelectable;
+
+                    if (instance.buttonStyle != null)
+                    {
+                        instance.buttonStyle.IsSelectable = newSelectable;
+                    }
+
+                    instance.UpdateState();
                 }
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IsSelectable ?? false;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).isSelectable);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.IconPadding)
-            {
-                instance.buttonStyle.IconPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.iconPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconPadding);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.TextPadding)
-            {
-                instance.buttonStyle.TextPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
-            }
+            instance.textPadding = (Extents)((Extents)newValue).Clone();
+            instance.UpdateUIContent();
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.TextPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).textPadding);
+
+        private IconOrientation? iconRelativeOrientation;
+        private bool isSelected = false;
+        private bool isSelectable = false;
+        private bool isEnabled = true;
+        private Extents iconPadding;
+        private Extents textPadding;
 
         static Button() { }
 
@@ -250,8 +269,11 @@ namespace Tizen.NUI.Components
                     {
                         buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
                     }
-                    Add(buttonIcon);
-                    buttonIcon.Relayout += OnIconRelayout;
+                    if (null != buttonIcon)
+                    {
+                        Add(buttonIcon);
+                        buttonIcon.Relayout += OnIconRelayout;
+                    }
                 }
                 return buttonIcon;
             }
@@ -276,9 +298,10 @@ namespace Tizen.NUI.Components
                     {
                         overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
                     }
-                    overlayImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                    overlayImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                    Add(overlayImage);
+                    if (null != overlayImage)
+                    {
+                        Add(overlayImage);
+                    }
                 }
                 return overlayImage;
             }
@@ -303,9 +326,10 @@ namespace Tizen.NUI.Components
                     {
                         buttonText = Extension.OnCreateText(this, buttonText);
                     }
-                    buttonText.HorizontalAlignment = HorizontalAlignment.Center;
-                    buttonText.VerticalAlignment = VerticalAlignment.Center;
-                    Add(buttonText);
+                    if (null != buttonText)
+                    {
+                        Add(buttonText);
+                    }
                 }
                 return buttonText;
             }
@@ -615,7 +639,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IconOrientation?)GetValue(IconRelativeOrientationProperty);
+                return (IconOrientation?)GetValue(IconRelativeOrientationProperty) ?? IconOrientation.Left;
             }
             set
             {
@@ -629,7 +653,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
-            get => (Extents)GetValue(IconPaddingProperty);
+            get => (Extents)GetValue(IconPaddingProperty) ?? new Extents();
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -639,7 +663,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents)GetValue(TextPaddingProperty);
+            get => (Extents)GetValue(TextPaddingProperty) ?? new Extents();
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -720,6 +744,7 @@ namespace Tizen.NUI.Components
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
         public override bool OnTouch(Touch touch)
         {
             return base.OnTouch(touch);
@@ -782,48 +807,6 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
-        }
-
-        /// <summary>
-        /// Get current text part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's text part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel GetCurrentText(ButtonExtension extension)
-        {
-            return (extension == Extension) ? TextLabel : null;
-        }
-
-        /// <summary>
-        /// Get current icon part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentIcon(ButtonExtension extension)
-        {
-            return (extension == Extension) ? Icon : null;
-        }
-
-        /// <summary>
-        /// Get current overlay image part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentOverlayImage(ButtonExtension extension)
-        {
-            return (extension == Extension) ? OverlayImage : null;
         }
     }
 }

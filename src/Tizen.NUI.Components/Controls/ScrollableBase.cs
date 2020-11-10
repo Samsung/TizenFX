@@ -14,6 +14,7 @@
  *
  */
 using System;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,51 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// ScrollOutofBoundEventArgs is to record scroll out-of-bound event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScrollOutOfBoundEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The bound to be scrolled out of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Bound
+        {
+            /// <summary>
+            /// Top bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top,
+
+            /// <summary>
+            /// Bottom bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="bound">Current scrollable bound</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollOutOfBoundEventArgs(Bound bound)
+        {
+            ScrollableBound = bound;
+        }
+
+        /// <summary>
+        /// Current position of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Bound ScrollableBound
+        {
+            get;
+        }
+    }
+
+    /// <summary>
     /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
@@ -66,15 +112,12 @@ namespace Tizen.NUI.Components
         private int mScrollDuration = 125;
         private int mPageWidth = 0;
         private float mPageFlickThreshold = 0.4f;
+        private float mScrollingEventThreshold = 0.00001f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
-                Extents padding = Padding;
-                float totalHeight = padding.Top + padding.Bottom;
-                float totalWidth = padding.Start + padding.End;
-
                 MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
                 MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
@@ -85,38 +128,30 @@ namespace Tizen.NUI.Components
                     scrollingDirection = scrollableBase.ScrollingDirection;
                 }
 
+                float totalWidth = 0.0f;
+                float totalHeight = 0.0f;
+
                 // measure child, should be a single scrolling child
                 foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if (childLayout != null)
+                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
                     {
                         // Get size of child
                         // Use an Unspecified MeasureSpecification mode so scrolling child is not restricted to it's parents size in Height (for vertical scrolling)
                         // or Width for horizontal scrolling
-                        MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
-
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0));  // Height unrestricted by parent
+                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                            MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0)); // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));  // Width unrestricted by parent
+                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(widthMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                            MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0)); // Width unrestricted by parent
                         }
 
-                        float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                        float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
-
-                        // Determine the width and height needed by the children using their given position and size.
-                        // Children could overlap so find the left most and right most child.
-                        Position2D childPosition = childLayout.Owner.Position2D;
-                        float childLeft = childPosition.X;
-                        float childTop = childPosition.Y;
-
-                        // Store current width and height needed to contain all children.
-                        Extents childMargin = childLayout.Margin;
-                        totalWidth = childWidth + childMargin.Start + childMargin.End;
-                        totalHeight = childHeight + childMargin.Top + childMargin.Bottom;
+                        totalWidth = (childLayout.MeasuredWidth.Size + (childLayout.Padding.Start + childLayout.Padding.End)).AsDecimal();
+                        totalHeight = (childLayout.MeasuredHeight.Size + (childLayout.Padding.Top + childLayout.Padding.Bottom)).AsDecimal();
 
                         if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                         {
@@ -129,9 +164,8 @@ namespace Tizen.NUI.Components
                     }
                 }
 
-
-                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
                 totalWidth = widthSizeAndState.Size.AsDecimal();
                 totalHeight = heightSizeAndState.Size.AsDecimal();
 
@@ -142,28 +176,27 @@ namespace Tizen.NUI.Components
                 widthSizeAndState.State = childWidthState;
                 heightSizeAndState.State = childHeightState;
 
-                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, childWidthState),
-                                       ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childHeightState));
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
+                    ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
                 scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
+                scrollableBase.OnScrollingChildRelayout(null, null);
             }
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
             {
                 foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if (childLayout != null)
+                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
                         Position2D childPosition = childLayout.Owner.Position2D;
-                        Extents padding = Padding;
-                        Extents childMargin = childLayout.Margin;
 
-                        LayoutLength childLeft = new LayoutLength(childPosition.X + childMargin.Start + padding.Start);
-                        LayoutLength childTop = new LayoutLength(childPosition.Y + childMargin.Top + padding.Top);
+                        LayoutLength childLeft = new LayoutLength(childPosition.X);
+                        LayoutLength childTop = new LayoutLength(childPosition.Y);
 
                         childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                     }
@@ -206,15 +239,12 @@ namespace Tizen.NUI.Components
                 if (value != mScrollingDirection)
                 {
                     mScrollingDirection = value;
-                    mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ?
-                        PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
+                    mPanGestureDetector.ClearAngles();
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ?
                         PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
 
-                    ContentContainer.WidthSpecification = mScrollingDirection == Direction.Vertical ?
-                        LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
-                    ContentContainer.HeightSpecification = mScrollingDirection == Direction.Vertical ?
-                        LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
+                    ContentContainer.WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent;
+                    ContentContainer.HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent;
                 }
             }
         }
@@ -295,7 +325,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollDragEnded;
 
-
         /// <summary>
         /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
@@ -308,13 +337,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> ScrollAnimationEnded;
 
-
         /// <summary>
         /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<ScrollEventArgs> Scrolling;
 
+        /// <summary>
+        /// An event emitted when scrolling out of bound, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollOutOfBoundEventArgs> ScrollOutOfBound;
 
         /// <summary>
         /// Scrollbar for ScrollableBase.
@@ -332,21 +365,24 @@ namespace Tizen.NUI.Components
                 {
                     scrollBar.Unparent();
                 }
-
                 scrollBar = value;
-                scrollBar.Name = "ScrollBar";
-                base.Add(scrollBar);
 
-                if (hideScrollbar)
+                if (scrollBar != null)
                 {
-                    scrollBar.Hide();
-                }
-                else
-                {
-                    scrollBar.Show();
-                }
+                    scrollBar.Name = "ScrollBar";
+                    base.Add(scrollBar);
 
-                SetScrollbar();
+                    if (hideScrollbar)
+                    {
+                        scrollBar.Hide();
+                    }
+                    else
+                    {
+                        scrollBar.Show();
+                    }
+
+                    SetScrollbar();
+                }
             }
         }
 
@@ -442,6 +478,28 @@ namespace Tizen.NUI.Components
         public float DecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
+        /// Scrolling event will be thrown when this amount of scroll positino is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScrollingEventThreshold
+        {
+            get
+            {
+                return mScrollingEventThreshold;
+            }
+            set
+            {
+                if (mScrollingEventThreshold != value && value > 0)
+                {
+                    ContentContainer.RemovePropertyNotification(propertyNotification);
+                    propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(value));
+                    propertyNotification.Notified += OnPropertyChanged;
+                    mScrollingEventThreshold = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Page will be changed when velocity of panning is over threshold.
         /// The unit of threshold is pixel per milisec.
         /// </summary>
@@ -455,6 +513,22 @@ namespace Tizen.NUI.Components
             set
             {
                 mPageFlickThreshold = value >= 0f ? value : mPageFlickThreshold;
+            }
+        }
+
+        /// <summary>
+        /// Padding for the ScrollableBase
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents Padding
+        {
+            get
+            {
+                return ContentContainer.Padding;
+            }
+            set
+            {
+                ContentContainer.Padding = value;
             }
         }
 
@@ -474,6 +548,7 @@ namespace Tizen.NUI.Components
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
         private Size previousContainerSize = new Size();
+        private Size previousSize = new Size();
         private PropertyNotification propertyNotification;
         private float noticeAnimationEndBeforePosition = 0.0f;
         private bool readyToNotice = false;
@@ -483,7 +558,11 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         // Let's consider more whether this needs to be set as protected.
-        public float NoticeAnimationEndBeforePosition { get => noticeAnimationEndBeforePosition; set => noticeAnimationEndBeforePosition = value; }
+        public float NoticeAnimationEndBeforePosition
+        {
+            get => noticeAnimationEndBeforePosition;
+            set => noticeAnimationEndBeforePosition = value;
+        }
 
         // Let's consider more whether this needs to be set as protected.
         private float finalTargetPosition;
@@ -498,6 +577,14 @@ namespace Tizen.NUI.Components
         private float panAnimationDelta = 0.0f;
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
+
+        private View verticalTopShadowView;
+        private View verticalBottomShadowView;
+        private const int verticalShadowScaleHeightLimit = 64 * 3;
+        private const int verticalShadowAnimationDuration = 300;
+        private Animation verticalShadowAnimation;
+        private bool isVerticalShadowShown = false;
+        private float startShowShadowDisplacement;
 
         /// <summary>
         /// Default Constructor
@@ -518,12 +605,16 @@ namespace Tizen.NUI.Components
             //Default Scrolling child
             ContentContainer = new View()
             {
+                Name = "ContentContainer",
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
-                Layout = new AbsoluteLayout() { SetPositionByLayout = false },
+                Layout = new AbsoluteLayout()
+                {
+                    SetPositionByLayout = false
+                },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
-            propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
+            propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
             propertyNotification.Notified += OnPropertyChanged;
             base.Add(ContentContainer);
 
@@ -535,6 +626,26 @@ namespace Tizen.NUI.Components
             };
             mInterruptTouchingChild.TouchEvent += OnIterruptTouchingChildTouched;
             Scrollbar = new Scrollbar();
+
+            //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
+            verticalTopShadowView = new View
+            {
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_top.png",
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.TopCenter,
+                PivotPoint = NUI.PivotPoint.TopCenter,
+            };
+            verticalBottomShadowView = new View
+            {
+                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_bottom.png",
+                Opacity = 1.0f,
+                SizeHeight = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.BottomCenter,
+                PivotPoint = NUI.PivotPoint.BottomCenter,
+            };
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
         }
@@ -587,7 +698,8 @@ namespace Tizen.NUI.Components
         private void OnScrollingChildRelayout(object source, EventArgs args)
         {
             // Size is changed. Calculate maxScrollDistance.
-            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height;
+            bool isSizeChanged = previousContainerSize.Width != ContentContainer.Size.Width || previousContainerSize.Height != ContentContainer.Size.Height ||
+                previousSize.Width != Size.Width || previousSize.Height != Size.Height;
 
             if (isSizeChanged)
             {
@@ -596,6 +708,7 @@ namespace Tizen.NUI.Components
             }
 
             previousContainerSize = ContentContainer.Size;
+            previousSize = Size;
         }
 
         /// <summary>
@@ -673,7 +786,7 @@ namespace Tizen.NUI.Components
             float contentLength = isHorizontal ? ContentContainer.Size.Width : ContentContainer.Size.Height;
             float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
 
-            scrollBar.Update(contentLength, Math.Abs(currentPosition));
+            scrollBar?.Update(contentLength, Math.Abs(currentPosition));
             CheckPreReachedTargetPosition();
         }
 
@@ -783,11 +896,10 @@ namespace Tizen.NUI.Components
             float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy childCurrentPosition:" + childCurrentPosition +
-                                                   " displacement:" + displacement,
-                                                   " maxScrollDistance:" + maxScrollDistance);
+                " displacement:" + displacement,
+                " maxScrollDistance:" + maxScrollDistance);
 
             childTargetPosition = childCurrentPosition + displacement; // child current position + gesture displacement
-
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
 
@@ -812,7 +924,6 @@ namespace Tizen.NUI.Components
                 {
                     ContentContainer.PositionY = finalTargetPosition;
                 }
-
             }
         }
 
@@ -831,6 +942,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                StopVerticalShadowAnimation();
                 StopScroll();
 
                 if (mPanGestureDetector != null)
@@ -839,6 +951,8 @@ namespace Tizen.NUI.Components
                     mPanGestureDetector.Dispose();
                     mPanGestureDetector = null;
                 }
+
+                propertyNotification.Dispose();
             }
             base.Dispose(type);
         }
@@ -862,8 +976,8 @@ namespace Tizen.NUI.Components
             }
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy maxScrollDistance:" + (scrollingChildLength - scrollerLength) +
-                                                   " parent length:" + scrollerLength +
-                                                   " scrolling child length:" + scrollingChildLength);
+                " parent length:" + scrollerLength +
+                " scrolling child length:" + scrollingChildLength);
 
             return Math.Max(scrollingChildLength - scrollerLength, 0);
         }
@@ -871,7 +985,7 @@ namespace Tizen.NUI.Components
         private void PageSnap(float velocity)
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
-                                                                " currentPage[" + CurrentPage + "]");
+                " currentPage[" + CurrentPage + "]");
 
             //Increment current page if total displacement enough to warrant a page change.
             if (Math.Abs(totalDisplacementForPan) > (mPageWidth * ratioOfScreenWidthToCompleteScroll))
@@ -903,6 +1017,134 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        private void AttachShadowView()
+        {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            base.Add(verticalTopShadowView);
+            base.Add(verticalBottomShadowView);
+
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalTopShadowView.Opacity = 1.0f;
+
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Opacity = 1.0f;
+
+            // at the beginning, height of vertical shadow is 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
+        private void DragVerticalShadow(float displacement)
+        {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
+            if ((int)displacement > 0) // downwards
+            {
+                // check if reaching at the top.
+                if ((int)finalTargetPosition != 0)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                verticalTopShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else if ((int)displacement < 0) // upwards
+            {
+                // check if reaching at the bottom.
+                if (-(int)finalTargetPosition != (int)maxScrollDistance)
+                    return;
+
+                // save start displacement, and re-calculate displacement.
+                if (!isVerticalShadowShown)
+                {
+                    startShowShadowDisplacement = displacement;
+                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
+                }
+                isVerticalShadowShown = true;
+
+                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
+
+                // scale limit of width is 60%.
+                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
+                verticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                // scale limit of height is 300%.
+                verticalBottomShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+            }
+            else
+            {
+                // if total displacement is 0, shadow would become invisible.
+                isVerticalShadowShown = false;
+            }
+        }
+
+        private void PlayVerticalShadowAnimation()
+        {
+            if (ScrollingDirection != Direction.Vertical)
+                return;
+
+            // stop animation if necessary.
+            StopVerticalShadowAnimation();
+
+            if (verticalShadowAnimation == null)
+            {
+                verticalShadowAnimation = new Animation(verticalShadowAnimationDuration);
+                verticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
+            }
+
+            View targetView = totalDisplacementForPan < 0 ? verticalBottomShadowView : verticalTopShadowView;
+            verticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
+            verticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
+            verticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            verticalShadowAnimation.Play();
+        }
+
+        private void StopVerticalShadowAnimation()
+        {
+            if (verticalShadowAnimation == null || verticalShadowAnimation.State != Animation.States.Playing)
+                return;
+
+            verticalShadowAnimation.Stop(Animation.EndActions.Cancel);
+            OnVerticalShadowAnimationFinished(null, null);
+            verticalShadowAnimation.Clear();
+        }
+
+        private void OnVerticalShadowAnimationFinished(object sender, EventArgs e)
+        {
+            base.Remove(verticalTopShadowView);
+            base.Remove(verticalBottomShadowView);
+
+            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
+            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+
+            // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
+            isVerticalShadowShown = false;
+        }
+
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
+        {
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
+            ScrollOutOfBound?.Invoke(this, args);
+        }
+
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             OnPanGesture(e.PanGesture);
@@ -919,6 +1161,7 @@ namespace Tizen.NUI.Components
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
+                AttachShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
@@ -936,13 +1179,19 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    ScrollBy(panGesture.Displacement.Y, false);
+                    // if vertical shadow is shown, does not scroll.
+                    if (!isVerticalShadowShown)
+                    {
+                        ScrollBy(panGesture.Displacement.Y, false);
+                    }
                     totalDisplacementForPan += panGesture.Displacement.Y;
+                    DragVerticalShadow(totalDisplacementForPan);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
-            else if (panGesture.State == Gesture.StateType.Finished)
+            else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
+                PlayVerticalShadowAnimation();
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
 
@@ -1147,6 +1396,40 @@ namespace Tizen.NUI.Components
                 return new Position(-ContentContainer.CurrentPosition);
             }
         }
+
+        /// <summary>
+        /// Remove all children in ContentContainer.
+        /// </summary>
+        /// <param name="dispose">If true, removed child is disposed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllChildren(bool dispose = false)
+        {
+            RecursiveRemoveChildren(ContentContainer, dispose);
+        }
+
+        private void RecursiveRemoveChildren(View parent, bool dispose)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+            int maxChild = (int)parent.GetChildCount();
+            for (int i = maxChild - 1; i >= 0; --i)
+            {
+                View child = parent.GetChildAt((uint)i);
+                if (child == null)
+                {
+                    continue;
+                }
+                RecursiveRemoveChildren(child, dispose);
+                parent.Remove(child);
+                if (dispose)
+                {
+                    child.Dispose();
+                }
+            }
+        }
+
     }
 
 } // namespace

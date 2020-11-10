@@ -22,9 +22,15 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothHidDeviceImpl
     {
         private event EventHandler<HidDeviceConnectionStateChangedEventArgs> _hidDeviceConnectionStateChanged;
-        private event EventHandler<HidDeviceDataReceivedEventArgs> _hidDeviceDataReceived;
+        private Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback;
 
-        private static readonly BluetoothHidDeviceImpl _instance = new BluetoothHidDeviceImpl();
+        private event EventHandler<HidDeviceDataReceivedEventArgs> _hidDeviceDataReceived;
+        private Interop.Bluetooth.HidDeviceDataReceivedCallback _hidDeviceDataReceivedCallback;
+
+        private static readonly Lazy<BluetoothHidDeviceImpl> _instance = new Lazy<BluetoothHidDeviceImpl>(() =>
+        {
+            return new BluetoothHidDeviceImpl();
+        });
 
         internal event EventHandler<HidDeviceConnectionStateChangedEventArgs> ConnectionStateChanged
         {
@@ -90,7 +96,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterHidDataReceivedEvent()
         {
-            Interop.Bluetooth.HidDeviceDataReceivedCallback _hidDeviceDataReceivedCallback = (ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData) =>
+            _hidDeviceDataReceivedCallback = (ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData) =>
             {
                 _hidDeviceDataReceived?.Invoke(null, new HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData.Create(receivedData)));
             };
@@ -127,7 +133,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
 
@@ -145,7 +151,7 @@ namespace Tizen.Network.Bluetooth
         {
             if (Globals.IsInitialize)
             {
-                Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
+                _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
                 {
                     _hidDeviceConnectionStateChanged?.Invoke(null, new HidDeviceConnectionStateChangedEventArgs(result, isConnected, address));
                 };

@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
-    /// Slider sliding finished event data.
+    /// Slider sliding started event data.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class SliderSlidingStartedEventArgs : EventArgs
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The sliding finished event handler.
+        /// The sliding started event handler.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<SliderSlidingStartedEventArgs> SlidingStarted
@@ -902,22 +902,6 @@ namespace Tizen.NUI.Components
             UpdateBgTrackPosition();
             UpdateLowIndicatorSize();
             UpdateValue();
-        }
-
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            SliderStyle sliderStyle = StyleManager.Instance.GetViewStyle(StyleName) as SliderStyle;
-            if (sliderStyle != null)
-            {
-                ApplyStyle(sliderStyle);
-                RelayoutRequest();
-            }
         }
 
         private void CalculateCurrentValueByGesture(float offset)

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.new_RotationGesture__SWIG_0((int)state), true)
+        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.RotationGesture_New((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

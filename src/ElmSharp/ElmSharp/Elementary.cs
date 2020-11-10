@@ -49,6 +49,7 @@ namespace ElmSharp
     public static class Elementary
     {
         private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private const string _tvThemeFilePath = "/usr/share/elm-sharp/vd-elm-sharp-theme.edj";
 
         /// <summary>
         /// EvasObjectRealized will be triggered when the EvasObject is realized.
@@ -236,9 +237,13 @@ namespace ElmSharp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
-            if (!Window.IsPreloaded && File.Exists(_themeFilePath))
+            if (!Window.IsPreloaded)
             {
-                AddThemeOverlay(_themeFilePath);
+                if (File.Exists(_themeFilePath))
+                    AddThemeOverlay(_themeFilePath);
+
+                if (Elementary.GetProfile() == "tv" && File.Exists(_tvThemeFilePath))
+                    AddThemeOverlay(_tvThemeFilePath);
             }
         }
 

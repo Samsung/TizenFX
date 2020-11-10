@@ -101,6 +101,7 @@ namespace Tizen.NUI.Utility
       int cutOffIndex = 0;
 
       // init
+      totalPageCnt = 0;
       pageList = new List<PageData>();
       tagList = new List<TagData>();
       characterList = new List<char>();
@@ -150,7 +151,7 @@ namespace Tizen.NUI.Utility
             pageList.Add(pageData);
           }
           totalPageCnt++;
-          if(offset <= 0 ) break;
+          if(offset <= 0 || remainLength <= 0 ) break;
       }
 
       textParameters.Dispose();

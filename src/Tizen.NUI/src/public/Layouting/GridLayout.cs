@@ -54,27 +54,27 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
-        private const int CellUndefined = int.MinValue;
+        private const int CellUndefined = -1;
         private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
@@ -98,148 +98,156 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the column index.
+        /// Gets the column index.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The column index of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetColumn(View view)
-        {
-            return (int)view.GetValue(ColumnProperty);
-        }
+        public static int GetColumn(View view) => GetAttachedValue<int>(view, ColumnProperty);
 
         /// <summary>
-        /// Get the column span.
+        /// Gets the column span.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The column span of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetColumnSpan(View view)
-        {
-            return (int)view.GetValue(ColumnSpanProperty);
-        }
+        public static int GetColumnSpan(View view) => GetAttachedValue<int>(view, ColumnSpanProperty);
 
         /// <summary>
-        /// Get the row index.
+        /// Gets the row index.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The row index of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetRow(View view)
-        {
-            return (int)view.GetValue(RowProperty);
-        }
+        public static int GetRow(View view) => GetAttachedValue<int>(view, RowProperty);
 
         /// <summary>
-        /// Get the row span.
+        /// Gets the row span.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The row span of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static int GetRowSpan(View view)
-        {
-            return (int)view.GetValue(RowSpanProperty);
-        }
+        public static int GetRowSpan(View view) => GetAttachedValue<int>(view, RowSpanProperty);
 
         /// <summary>
-        /// Get the value how child is resized within its horizontal space.
+        /// Gets the value how child is resized within its horizontal space.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The horizontal stretch flag of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static StretchFlags GetHorizontalStretch(View view)
-        {
-            return (StretchFlags)view.GetValue(HorizontalStretchProperty);
-        }
+        public static StretchFlags GetHorizontalStretch(View view) => GetAttachedValue<StretchFlags>(view, HorizontalStretchProperty);
 
         /// <summary>
-        /// Get the value how child is resized within its vertical space.
+        /// Gets the value how child is resized within its vertical space.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The vertical stretch flag of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static StretchFlags GetVerticalStretch(View view)
-        {
-            return (StretchFlags)view.GetValue(VerticalStretchProperty);
-        }
+        public static StretchFlags GetVerticalStretch(View view) => GetAttachedValue<StretchFlags>(view, VerticalStretchProperty);
 
         /// <summary>
-        /// Get the horizontal alignment of this child.
+        /// Gets the horizontal alignment of this child.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The horizontal alignment of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static Alignment GetHorizontalAlignment(View view)
-        {
-            return (Alignment)view.GetValue(HorizontalAlignmentProperty);
-        }
+        public static Alignment GetHorizontalAlignment(View view) => GetAttachedValue<Alignment>(view, HorizontalAlignmentProperty);
 
         /// <summary>
-        /// Get the vertical alignment of this child.
+        /// Gets the vertical alignment of this child.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The vertical alignment of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static Alignment GetVerticalAlignment(View view)
-        {
-            return (Alignment)view.GetValue(VerticalAlignmentProperty);
-        }
+        public static Alignment GetVerticalAlignment(View view) => GetAttachedValue<Alignment>(view, VerticalAlignmentProperty);
 
         /// <summary>
-        /// Set the column index.
+        /// Sets the column index the child occupies. the default value is -1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The column index of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetColumn(View view, int value)
-        {
-            SetChildValue(view, ColumnProperty, value);
-        }
+        public static void SetColumn(View view, int value) => SetAttachedValue(view, ColumnProperty, value);
 
         /// <summary>
-        /// Set the column span.
+        /// Sets the column span the child occupies. the default value is 1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The column span of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 1.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetColumnSpan(View view, int value)
-        {
-            SetChildValue(view, ColumnSpanProperty, value);
-        }
+        public static void SetColumnSpan(View view, int value) => SetAttachedValue(view, ColumnSpanProperty, value);
 
         /// <summary>
-        /// Set the row index.
+        /// Sets the row index the child occupies. the default value is -1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The row index of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetRow(View view, int value)
-        {
-            SetChildValue(view, RowProperty, value);
-        }
+        public static void SetRow(View view, int value) => SetAttachedValue(view, RowProperty, value);
 
         /// <summary>
-        /// Set the row span.
+        /// Sets the row span the child occupies. the default value is 1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The row span of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 1.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetRowSpan(View view, int value)
-        {
-            SetChildValue(view, RowSpanProperty, value);
-        }
+        public static void SetRowSpan(View view, int value) => SetAttachedValue(view, RowSpanProperty, value);
 
         /// <summary>
-        /// Set the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// Sets the value how child is resized within its horizontal space. <see cref="StretchFlags.None"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The horizontal stretch flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="StretchFlags"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetHorizontalStretch(View view, StretchFlags value)
-        {
-            SetChildValue(view, HorizontalStretchProperty, value);
-        }
+        public static void SetHorizontalStretch(View view, StretchFlags value) => SetAttachedValue(view, HorizontalStretchProperty, value);
 
         /// <summary>
-        /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.None"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The vertical stretch flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="StretchFlags"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetVerticalStretch(View view, StretchFlags value)
-        {
-            SetChildValue(view, VerticalStretchProperty, value);
-        }
+        public static void SetVerticalStretch(View view, StretchFlags value) => SetAttachedValue(view, VerticalStretchProperty, value);
 
         /// <summary>
-        /// Set the horizontal alignment of this child inside the cells.
+        /// Set the horizontal alignment of this child inside the cells. <see cref="Alignment.Start"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The horizontal alignment flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="Alignment"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetHorizontalAlignment(View view, Alignment value)
-        {
-            SetChildValue(view, HorizontalAlignmentProperty, value);
-        }
+        public static void SetHorizontalAlignment(View view, Alignment value) => SetAttachedValue(view, HorizontalAlignmentProperty, value);
 
         /// <summary>
         /// Set the vertical alignment of this child inside the cells.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The vertical alignment flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="Alignment"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetVerticalAlignment(View view, Alignment value)
-        {
-            SetChildValue(view, VerticalAlignmentProperty, value);
-        }
+        public static void SetVerticalAlignment(View view, Alignment value) => SetAttachedValue(view, VerticalAlignmentProperty, value);
 
         /// <summary>
         /// The distance between columns.
@@ -276,6 +284,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get/Set the orientation in the layout
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 8 </since_tizen>
         public Orientation GridOrientation
         {
@@ -283,6 +292,9 @@ namespace Tizen.NUI
             set
             {
                 if (gridOrientation == value) return;
+                if (value != Orientation.Horizontal && value != Orientation.Vertical)
+                    throw new InvalidEnumArgumentException(nameof(GridOrientation));
+
                 gridOrientation = value;
                 RequestLayout();
             }
