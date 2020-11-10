@@ -97,7 +97,7 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
-                if ( childLayout != null )
+                if (childLayout != null)
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                     LayoutLength childHeight = childLayout.MeasuredHeight.Size;

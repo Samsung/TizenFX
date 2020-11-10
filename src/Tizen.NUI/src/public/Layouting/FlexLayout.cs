@@ -242,7 +242,7 @@ namespace Tizen.NUI
         public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ChildMeasureCallback( global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize );
+        internal delegate void ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize);
 
         event ChildMeasureCallback measureChildDelegate; // Stores a delegate to the child measure callback. Used for all children of this FlexLayout.
 
@@ -730,6 +730,5 @@ namespace Tizen.NUI
                 }
             }
         }
-
     } // FLexlayout
 } // namesspace Tizen.NUI
