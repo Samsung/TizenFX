@@ -8,9 +8,9 @@ namespace Tizen.NUI.Samples
     {
         public void Activate()
         {
-            string resourceDefault = System.IO.Path.Combine("res", "resSampleThemeResourceDefault.xaml");
-            string resourceDark = System.IO.Path.Combine("res", "SampleThemeResourceDark.xaml");
-            Theme sampleTheme = new Theme(System.IO.Path.Combine("res", "SampleTheme.xaml"), resourceDefault);
+            string resourceDefault = global::System.IO.Path.Combine("res", "resSampleThemeResourceDefault.xaml");
+            string resourceDark = global::System.IO.Path.Combine("res", "SampleThemeResourceDark.xaml");
+            Theme sampleTheme = new Theme(global::System.IO.Path.Combine("res", "SampleTheme.xaml"), resourceDefault);
             ThemeManager.ApplyTheme(sampleTheme);
 
             View root = new View();
