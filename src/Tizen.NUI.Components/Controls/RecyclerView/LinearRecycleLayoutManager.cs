@@ -35,6 +35,10 @@ namespace Tizen.NUI.Components
         {
             bool result = false;
             View list = Container.GetParent() as View;
+            if (list == null)
+            {
+                return result;
+            }
 
             Vector2 visibleArea = new Vector2( Math.Abs(scrollPosition), 
                 Math.Abs(scrollPosition) + (LayoutOrientation == Orientation.Horizontal?
@@ -71,7 +75,7 @@ namespace Tizen.NUI.Components
             {
                 RecycleItem item = Container.Children[i] as RecycleItem;
 
-                if(previousItem != null)
+                if(previousItem != null && item != null)
                 {
                     item.Position = LayoutOrientation == Orientation.Horizontal?
                         new Position(
@@ -137,10 +141,13 @@ namespace Tizen.NUI.Components
                 {
                     // Too many item is in front!!! move first item to back!!!!
                     RecycleItem target = Container.Children[0] as RecycleItem;
-                    target.DataIndex = target.DataIndex + Container.Children.Count;
-                    target.SiblingOrder = Container.Children.Count - 1;
+                    if (target != null)
+                    {
+                        target.DataIndex = target.DataIndex + Container.Children.Count;
+                        target.SiblingOrder = Container.Children.Count - 1;
 
-                    result.Add(target);
+                        result.Add(target);
+                    }
                 }
             }
             else
@@ -148,16 +155,18 @@ namespace Tizen.NUI.Components
                 if(lastVisibleItemIndex < Container.Children.Count - 3)
                 {
                     RecycleItem prevFirstItem = Container.Children[0] as RecycleItem;
-
                     RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
-                    target.Position = new Position(
-                        LayoutOrientation == Orientation.Horizontal ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
-                        LayoutOrientation == Orientation.Horizontal ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
-                    );
-                    target.DataIndex = target.DataIndex - Container.Children.Count;
-                    target.SiblingOrder = 0;
+                    if (prevFirstItem != null && target != null)
+                    {
+                        target.Position = new Position(
+                            LayoutOrientation == Orientation.Horizontal ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
+                            LayoutOrientation == Orientation.Horizontal ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
+                        );
+                        target.DataIndex = target.DataIndex - Container.Children.Count;
+                        target.SiblingOrder = 0;
 
-                    result.Add(target);
+                        result.Add(target);
+                    }
                 }
             }
 
@@ -210,7 +219,7 @@ namespace Tizen.NUI.Components
             if(targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecycleItem candidate = Container.Children[targetSibling] as RecycleItem;
-                if(candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
+                if(candidate != null && candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
                 {
                     nextFocusedView = candidate;
                 }
