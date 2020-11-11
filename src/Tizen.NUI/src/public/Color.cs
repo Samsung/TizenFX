@@ -184,8 +184,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.R = 0.1f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float R
         {
             set
@@ -207,8 +217,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.G = 0.5f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float G
         {
             set
@@ -230,8 +250,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.B = 0.9f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float B
         {
             set
@@ -253,8 +283,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The alpha component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.A = 1.0f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float A
         {
             set
