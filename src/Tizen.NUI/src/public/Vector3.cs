@@ -214,8 +214,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.X = 0.1f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f;
+        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float X
         {
             set
@@ -238,6 +248,17 @@ namespace Tizen.NUI
         /// <summary>
         /// The width component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.Width = 1.0f; 
+        /// // Please USE like this
+        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
+        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Width
@@ -262,8 +283,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.R = 0.1f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f;
+        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float R
         {
             set
@@ -286,8 +317,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.Y = 0.5f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f;
+        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Y
         {
             set
@@ -310,8 +351,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The height component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.Height = 2.0f; 
+        /// // Please USE like this
+        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
+        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Height
         {
             set
@@ -334,8 +385,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.G = 0.5f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f;
+        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float G
         {
             set
@@ -358,8 +419,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The z component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.Z = 0.9f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f;
+        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Z
         {
             set
@@ -382,6 +453,17 @@ namespace Tizen.NUI
         /// <summary>
         /// The depth component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.Depth = 3.0f; 
+        /// // Please USE like this
+        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
+        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float Depth
@@ -406,8 +488,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector3(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector3 vector3 = new Vector3();
+        /// vector3.B = 0.9f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f;
+        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector3(...) constructor")]
         public float B
         {
             set

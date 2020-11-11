@@ -198,8 +198,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector2 vector2 = new Vector2();
+        /// vector2.X = 0.1f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f;
+        /// Vector2 vector2 = new Vector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
         public float X
         {
             set
@@ -222,8 +232,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The width.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector2 vector2 = new Vector2();
+        /// vector2.Width = 1.0f; 
+        /// // Please USE like this
+        /// float width = 1.0f, height = 2.0f;
+        /// Vector2 vector2 = new Vector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
         public float Width
         {
             set
@@ -246,8 +266,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector2 vector2 = new Vector2();
+        /// vector2.Y = 0.5f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f;
+        /// Vector2 vector2 = new Vector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
         public float Y
         {
             set
@@ -270,8 +300,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The height.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Vector2 vector2 = new Vector2();
+        /// vector2.Height = 2.0f; 
+        /// // Please USE like this
+        /// float width = 1.0f, height = 2.0f;
+        /// Vector2 vector2 = new Vector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
         public float Height
         {
             set
