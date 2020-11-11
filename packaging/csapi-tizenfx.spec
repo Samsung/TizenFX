@@ -14,6 +14,8 @@
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
 %define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen80:tizen70:tizen60:tizen50:tizen40:netstandard2.0
 
+%define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
+
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
 Version:    %{TIZEN_NET_RPM_VERSION}
@@ -207,6 +209,10 @@ install -p -m 644 packaging/depends/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 
 
+# Install Upgrade Script
+mkdir -p %{buildroot}%{UPGRADE_SCRIPT_PATH}
+install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_PATH}
+
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
@@ -216,6 +222,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 %files
 %license LICENSE
 %license LICENSE.MIT
+%attr(0755,root,root) %{UPGRADE_SCRIPT_PATH}/500.tizenfx_upgrade.sh
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg
