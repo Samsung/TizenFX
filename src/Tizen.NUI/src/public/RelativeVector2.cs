@@ -76,8 +76,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector2 relativeVector2 = new RelativeVector2();
+        /// relativeVector2.X = 0.1f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.9f;
+        /// RelativeVector2 relativeVector2 = new RelativeVector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
         public float X
         {
             set
@@ -98,8 +108,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector2(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector2 relativeVector2 = new RelativeVector2();
+        /// relativeVector2.Y = 0.9f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.9f;
+        /// RelativeVector2 relativeVector2 = new RelativeVector2(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector2(...) constructor")]
         public float Y
         {
             set
