@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -25,6 +26,9 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1715:IdentifiersShouldHaveCorrectPrefix",
+                     Justification = "T, U, R are commonly used as generic type parameter names.")]
     public delegate R DaliEventHandlerWithReturnType<T, U, R>(T source, U e);
 
     /// <summary>
@@ -43,6 +47,9 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1715:IdentifiersShouldHaveCorrectPrefix",
+                     Justification = "T, U are commonly used as generic type parameter names.")]
     public delegate void DaliEventHandler<T, U>(T source, U e);
 
     /// <summary>
@@ -50,6 +57,9 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    [SuppressMessage("Microsoft.Naming",
+                     "CA1715:IdentifiersShouldHaveCorrectPrefix",
+                     Justification = "T, U, R are commonly used as generic type parameter names.")]
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
 
     /// <summary>
