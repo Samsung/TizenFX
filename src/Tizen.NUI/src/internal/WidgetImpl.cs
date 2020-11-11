@@ -375,14 +375,5 @@ namespace Tizen.NUI
         private SwigDelegateWidgetImpl_5 swigDelegate5;
         private SwigDelegateWidgetImpl_6 swigDelegate6;
         private SwigDelegateWidgetImpl_7 swigDelegate7;
-
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(string), typeof(Window) };
-        private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(string), typeof(Widget.TerminationType) };
-        private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes3 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(Window) };
-        private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(string), typeof(int) };
-        private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
-        private static global::System.Type[] swigMethodTypes7 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
     }
 }

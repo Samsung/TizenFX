@@ -305,8 +305,6 @@ namespace Tizen.NUI
 
         ReadOnlyCollection<Element> _logicalChildren;
 
-        static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetCurrentApplication(Application value) => Current = value;
 

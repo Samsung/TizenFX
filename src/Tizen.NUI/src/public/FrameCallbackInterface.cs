@@ -63,7 +63,6 @@ namespace Tizen.NUI
 
         internal delegate void SwigDelegateFrameCallbackInterface(global::System.IntPtr proxy, float elapsedSeconds);
         private SwigDelegateFrameCallbackInterface swigDelegate0;
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(IntPtr), typeof(float) };
 
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
