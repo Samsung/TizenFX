@@ -194,6 +194,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 install -p -m 644 packaging/preload/*.preload %{buildroot}%{DOTNET_PRELOAD_PATH}
 
 # Install Upgrade Script
+mkdir -p %{buildroot}%{UPGRADE_SCRIPT_PATH}
 install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_PATH}
 
 %post
