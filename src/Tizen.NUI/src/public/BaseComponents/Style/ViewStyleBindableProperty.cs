@@ -893,7 +893,7 @@ namespace Tizen.NUI.BaseComponents
         /// EnableControlState property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create("ThemeChangeSensitive", typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue;
         },
