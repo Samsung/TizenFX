@@ -368,7 +368,9 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourceReadyEventHandler == null)
                 {
                     _resourceReadyEventCallback = OnResourceReady;
-                    ResourceReadySignal(this).Connect(_resourceReadyEventCallback);
+                    ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
+                    resourceReadySignal?.Connect(_resourceReadyEventCallback);
+                    resourceReadySignal?.Dispose();
                 }
 
                 _resourceReadyEventHandler += value;
@@ -378,10 +380,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceReadyEventHandler -= value;
 
-                if (_resourceReadyEventHandler == null && ResourceReadySignal(this).Empty() == false)
+                ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
+                if (_resourceReadyEventHandler == null && resourceReadySignal?.Empty() == false)
                 {
-                    ResourceReadySignal(this).Disconnect(_resourceReadyEventCallback);
+                    resourceReadySignal?.Disconnect(_resourceReadyEventCallback);
                 }
+                resourceReadySignal?.Dispose();
             }
         }
 
@@ -392,7 +396,9 @@ namespace Tizen.NUI.BaseComponents
                 if (_resourceLoadedEventHandler == null)
                 {
                     _resourceLoadedCallback = OnResourceLoaded;
-                    this.ResourceReadySignal(this).Connect(_resourceLoadedCallback);
+                    ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
+                    resourceReadySignal?.Connect(_resourceLoadedCallback);
+                    resourceReadySignal?.Dispose();
                 }
 
                 _resourceLoadedEventHandler += value;
@@ -400,11 +406,12 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 _resourceLoadedEventHandler -= value;
-
-                if (_resourceLoadedEventHandler == null && this.ResourceReadySignal(this).Empty() == false)
+                ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
+                if (_resourceLoadedEventHandler == null && resourceReadySignal?.Empty() == false)
                 {
-                    this.ResourceReadySignal(this).Disconnect(_resourceLoadedCallback);
+                    resourceReadySignal?.Disconnect(_resourceLoadedCallback);
                 }
+                resourceReadySignal?.Dispose();
             }
         }
 
@@ -464,9 +471,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
-                    PropertyMap temp = new PropertyMap();
-                    GetProperty(ImageView.Property.IMAGE).Get(temp);
-                    return temp;
+                    PropertyMap returnValue = new PropertyMap();
+                    PropertyValue image = GetProperty(ImageView.Property.IMAGE);
+                    image?.Get(returnValue);
+                    image?.Dispose();
+                    return returnValue;
                 }
                 else
                 {
@@ -477,8 +486,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
-                    SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                    PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                    SetProperty(ImageView.Property.IMAGE, setValue);
                     NotifyPropertyChanged();
+                    setValue?.Dispose();
                 }
             }
         }
@@ -717,7 +728,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public void Reload()
         {
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionReload, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(ImageView.Property.IMAGE, Property.ActionReload, attributes);
+            attributes?.Dispose();
         }
 
         /// <summary>
@@ -726,7 +739,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public void Play()
         {
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPlay, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(ImageView.Property.IMAGE, Property.ActionPlay, attributes);
+            attributes?.Dispose();
         }
 
         /// <summary>
@@ -735,7 +750,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public void Pause()
         {
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPause, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(ImageView.Property.IMAGE, Property.ActionPause, attributes);
+            attributes?.Dispose();
         }
 
         /// <summary>
@@ -744,7 +761,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public void Stop()
         {
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionStop, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(ImageView.Property.IMAGE, Property.ActionStop, attributes);
+            attributes?.Dispose();
         }
 
         /// <summary>
@@ -759,10 +778,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 string ret = "";
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.AlphaMaskURL)?.Get(out ret);
-
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue maskUrl = imageMap?.Find(ImageVisualProperty.AlphaMaskURL);
+                maskUrl?.Get(out ret);
                 _alphaMaskUrl = ret;
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                maskUrl?.Dispose();
+
                 return ret;
             }
             set
@@ -773,7 +798,10 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 _alphaMaskUrl = value;
-                UpdateImage(ImageVisualProperty.AlphaMaskURL, new PropertyValue(value));
+
+                PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.AlphaMaskURL, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -788,14 +816,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 bool ret = false;
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.CropToMask)?.Get(out ret);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue cropUrl = imageMap?.Find(ImageVisualProperty.CropToMask);
+                cropUrl?.Get(out ret);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                cropUrl?.Dispose();
 
                 return ret;
             }
             set
             {
-                UpdateImage(ImageVisualProperty.CropToMask, new PropertyValue(value));
+                PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.CropToMask, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -855,14 +891,23 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)VisualFittingModeType.Fill;
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(Visual.Property.VisualFittingMode)?.Get(out ret);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue fittingMode = imageMap?.Find(Visual.Property.VisualFittingMode);
+                fittingMode?.Get(out ret);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                fittingMode?.Dispose();
+
                 return ConvertVisualFittingModetoFittingMode((VisualFittingModeType)ret);
             }
             set
             {
                 VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
-                UpdateImage(Visual.Property.VisualFittingMode, new PropertyValue((int)ret));
+                PropertyValue setValue = new PropertyValue((int)ret);
+                UpdateImage(Visual.Property.VisualFittingMode, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -881,8 +926,14 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredWidth)?.Get(out _desired_width);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue desireWidth = imageMap?.Find(ImageVisualProperty.DesiredWidth);
+                desireWidth?.Get(out _desired_width);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                desireWidth?.Dispose();
 
                 return _desired_width;
             }
@@ -909,8 +960,14 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.DesiredHeight)?.Get(out _desired_height);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue desireheight = imageMap?.Find(ImageVisualProperty.DesiredHeight);
+                desireheight?.Get(out _desired_height);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                desireheight?.Dispose();
 
                 return _desired_height;
             }
@@ -935,13 +992,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)ReleasePolicyType.Detached;
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.ReleasePolicy)?.Get(out ret);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue releasePoli = imageMap?.Find(ImageVisualProperty.ReleasePolicy);
+                releasePoli?.Get(out ret);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                releasePoli?.Dispose();
+
                 return (ReleasePolicyType)ret;
             }
             set
             {
-                UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.ReleasePolicy, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -960,14 +1026,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)WrapModeType.Default;
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.WrapModeU)?.Get(out ret);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue warpModeU = imageMap?.Find(ImageVisualProperty.WrapModeU);
+                warpModeU?.Get(out ret);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                warpModeU?.Dispose();
 
                 return (WrapModeType)ret;
             }
             set
             {
-                UpdateImage(ImageVisualProperty.WrapModeU, new PropertyValue((int)value));
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.WrapModeU, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -987,14 +1061,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)WrapModeType.Default;
                 PropertyMap imageMap = new PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-                imageMap?.Find(ImageVisualProperty.WrapModeV)?.Get(out ret);
+                PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+                image?.Get(imageMap);
+                PropertyValue wrapModeV = imageMap?.Find(ImageVisualProperty.WrapModeV);
+                wrapModeV?.Get(out ret);
+
+                imageMap?.Dispose();
+                image?.Dispose();
+                wrapModeV?.Dispose();
 
                 return (WrapModeType)ret;
             }
             set
             {
-                UpdateImage(ImageVisualProperty.WrapModeV, new PropertyValue((int)value));
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.WrapModeV, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -1093,48 +1175,70 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateImageMap(PropertyMap fromMap)
         {
             PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Merge(fromMap);
 
-            SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
+            PropertyValue image = Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE);
+            image?.Get(imageMap);
+            imageMap?.Merge(fromMap);
+            PropertyValue setValue = new PropertyValue(imageMap);
+            SetProperty(ImageView.Property.IMAGE, setValue);
+
+            imageMap?.Dispose();
+            image?.Dispose();
+            setValue?.Dispose();
         }
 
         private void UpdateImage(int key, PropertyValue value)
         {
-            PropertyMap temp = new PropertyMap();
+            PropertyMap imageMap = new PropertyMap();
 
             if (_alphaMaskUrl != null)
             {
-                temp.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl));
+                PropertyValue alphaMaskUrl = new PropertyValue(_alphaMaskUrl);
+                imageMap?.Insert(ImageVisualProperty.AlphaMaskURL, alphaMaskUrl);
+                alphaMaskUrl?.Dispose();
             }
 
             if (_resourceUrl == "")
             {
-                temp.Insert(ImageVisualProperty.URL, new PropertyValue(_resourceUrl));
-                SetProperty(ImageView.Property.IMAGE, new PropertyValue(temp));
+                PropertyValue resourceUrl = new PropertyValue(_resourceUrl);
+                imageMap?.Insert(ImageVisualProperty.URL, resourceUrl);
+                PropertyValue setValue = new PropertyValue(imageMap);
+                SetProperty(ImageView.Property.IMAGE, setValue);
+                resourceUrl?.Dispose();
+                setValue?.Dispose();
                 return;
             }
 
             if (_border == null)
             {
-                temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                PropertyValue image = new PropertyValue((int)Visual.Type.Image);
+                imageMap?.Insert(Visual.Property.Type, image);
+                image?.Dispose();
             }
             else
             {
-                temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
-                temp.Insert(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                PropertyValue nPatch = new PropertyValue((int)Visual.Type.NPatch);
+                imageMap?.Insert(Visual.Property.Type, nPatch);
+                nPatch?.Dispose();
+                PropertyValue border = new PropertyValue(_border);
+                imageMap?.Insert(NpatchImageVisualProperty.Border, border);
+                border?.Dispose();
             }
 
-            temp.Insert(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronosLoading));
+            PropertyValue synchronosLoading = new PropertyValue(_synchronosLoading);
+            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronosLoading);
+            synchronosLoading?.Dispose();
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius > 0)
             {
-                temp.Insert(Visual.Property.CornerRadius, new PropertyValue(backgroundExtraData.CornerRadius));
+                PropertyValue cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius);
+                imageMap?.Insert(Visual.Property.CornerRadius, cornerRadius);
+                cornerRadius?.Dispose();
             }
 
             if (value != null)
             {
-                temp.Insert(key, value);
+                imageMap?.Insert(key, value);
             }
 
             // Do Fitting Buffer when desired dimension is set
@@ -1142,31 +1246,40 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceUrl != null)
                 {
-                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
+                  Size2D originalImageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
+                  Size2D imageSize = originalImageSize;
+                  originalImageSize?.Dispose();
 
-                    int adjustedDesiredWidth, adjustedDesiredHeight;
-                    float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                    float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                    if( aspectOfImageSize > aspectOfDesiredSize)
-                    {
-                        adjustedDesiredWidth = _desired_width;
-                        adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
-                    }
-                    else
-                    {
-                        adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
-                        adjustedDesiredHeight = _desired_height;
-                    }
-                    temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
-                    temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
-                    temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ScaleToFill));
+                  int adjustedDesiredWidth, adjustedDesiredHeight;
+                  float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                  float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                  if( aspectOfImageSize > aspectOfDesiredSize)
+                  {
+                      adjustedDesiredWidth = _desired_width;
+                      adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
+                  }
+                  else
+                  {
+                      adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
+                      adjustedDesiredHeight = _desired_height;
+                  }
+
+                  PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
+                  imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
+                  returnWidth?.Dispose();
+                  PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
+                  imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
+                  returnHeight?.Dispose();
+                  PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
+                  imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
+                  scaleToFit?.Dispose();
                 }
             }
 
-            UpdateImageMap(temp);
+            UpdateImageMap(imageMap);
 
-            temp.Dispose();
-            temp = null;
+            imageMap?.Dispose();
+            imageMap = null;
         }
 
 
