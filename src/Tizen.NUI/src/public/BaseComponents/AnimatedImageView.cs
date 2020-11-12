@@ -74,11 +74,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 return mUrl;
             }
-            set
-            {
-                mDirtyFlag = true;
-                mUrl = value;
-            }
         }
 
         /// <summary>
@@ -91,11 +86,6 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return mResourceURLs;
-            }
-            set
-            {
-                mDirtyFlag = true;
-                mResourceURLs = value;
             }
         }
 
