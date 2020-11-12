@@ -52,7 +52,7 @@ namespace Tizen.NUI
         {
             /* Common   */ "Tizen.NUI.Theme.Common",
             /* Mobile   */ "Tizen.NUI.Theme.Common",
-            /* TV       */ null,
+            /* TV       */ "Tizen.NUI.Theme.Common",
             /* Wearable */ "Tizen.NUI.Theme.Wearable",
         };
 
