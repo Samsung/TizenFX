@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using global::System.Threading;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -56,10 +58,25 @@ namespace Tizen.NUI
 
         public void Disconnect(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            try
             {
-                Interop.ActorSignal.ActorSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+                {
+                    Interop.ActorSignal.ActorSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+            catch (global::System.Exception ex)
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] excpetion! {ex}: {ex.Message}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] current threadID : {Thread.CurrentThread.ManagedThreadId}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
+                global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
+                }
             }
         }
 

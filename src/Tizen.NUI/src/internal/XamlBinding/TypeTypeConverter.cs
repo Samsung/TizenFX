@@ -17,7 +17,7 @@ namespace Tizen.NUI.Binding
         object IExtendedTypeConverter.ConvertFromInvariantString(string value, IServiceProvider serviceProvider)
         {
             if (serviceProvider == null)
-                throw new ArgumentNullException("serviceProvider");
+                throw new ArgumentNullException(nameof(serviceProvider));
             var typeResolver = serviceProvider.GetService(typeof(IXamlTypeResolver)) as IXamlTypeResolver;
             if (typeResolver == null)
                 throw new ArgumentException("No IXamlTypeResolver in IServiceProvider");

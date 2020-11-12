@@ -50,7 +50,7 @@ namespace Tizen.NUI.Binding
         internal void Apply(BindableObject target, bool fromStyle = false)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             if (Property == null)
                 return;
 

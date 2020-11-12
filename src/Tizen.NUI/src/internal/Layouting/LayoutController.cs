@@ -81,7 +81,7 @@ namespace Tizen.NUI
             if (layoutParent != null)
             {
                  LayoutGroup layoutGroup =  layoutParent as LayoutGroup;
-                 if(! layoutGroup.LayoutRequested)
+                 if(layoutGroup != null && !layoutGroup.LayoutRequested)
                  {
                     layoutGroup.RequestLayout();
                  }
@@ -184,7 +184,7 @@ namespace Tizen.NUI
                 Size2D rootSize;
                 Position2D rootPosition = root.Position2D;
                 View parentView = parentNode as View;
-                if (parentView)
+                if (parentView != null)
                 {
                     // Get parent View's Size.  If using Legacy size negotiation then should have been set already.
                     rootSize = new Size2D(parentView.Size2D.Width, parentView.Size2D.Height);
@@ -263,7 +263,7 @@ namespace Tizen.NUI
             for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
                 Layer layer = _window.GetLayer(layerIndex);
-                if (layer)
+                if (layer != null)
                 {
                     for (uint i = 0; i < layer.ChildCount; i++)
                     {

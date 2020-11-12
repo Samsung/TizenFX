@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
                 int frameRate = (int)newValue;
                 if (0 != frameRate) //It will crash if 0
                 {
-                    instance.loadingStyle.FrameRate.All = frameRate;
+                    instance.loadingStyle.FrameRate = frameRate;
                     instance.imageVisual.FrameDelay = 1000.0f / frameRate;
                 }
             }
@@ -265,7 +265,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -275,7 +277,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, attributes);
+            attributes.Dispose();
         }
 
         /// <summary>
@@ -285,7 +289,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
+            PropertyValue attributes = new PropertyValue(0);
+            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, attributes);
+            attributes.Dispose();
         }
     }
 }

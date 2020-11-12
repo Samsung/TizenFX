@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:w="clr-namespace:Tizen.NUI.Wearable;assembly=Tizen.NUI.Wearable"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  Id="Tizen.NUI.Theme.Common" >
+    
+    <!--CircularPagination-->
+    <w:CircularPaginationStyle x:Key="Tizen.NUI.Wearable.CircularPagination" IndicatorSize="10, 10">
+      <w:CircularPaginationStyle.IndicatorImageURL>
+        <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_component_default_pagination_normal_dot.png}" Selected="{NUIResourcePath nui_component_default_pagination_focus_dot.png}" />
+      </w:CircularPaginationStyle.IndicatorImageURL>
+      <w:CircularPaginationStyle.CenterIndicatorImageURL>
+        <Selector x:TypeArguments="x:String" Normal="{NUIResourcePath nui_wearable_circular_pagination_center_normal_dot.png}" Selected="{NUIResourcePath nui_wearable_circular_pagination_center_focus_dot.png}" />
+      </w:CircularPaginationStyle.CenterIndicatorImageURL>
+    </w:CircularPaginationStyle>
+
+    <!--CircularProgress-->
+    <w:CircularProgressStyle x:Key="Tizen.NUI.Wearable.CircularProgress" Thickness="6" MaxValue="100" MinValue="0" CurrentValue="0" TrackColor="0, 0.16, 0.3, 1" ProgressColor="0, 0.55, 1, 1" />
+
+    <!--CircularScrollbar-->
+    <w:CircularScrollbarStyle x:Key="Tizen.NUI.Wearable.CircularScrollbar" Thickness="10" TrackSweepAngle="60" TrackColor="1, 1, 1, 0.15" ThumbColor="0.6, 0.6, 0.6, 1" />
+
+    <!--CircularSlider-->
+    <w:CircularSliderStyle x:Key="Tizen.NUI.Wearable.CircularSlider" Thickness="6" MaxValue="100" MinValue="0" CurrentValue="0" TrackColor="0, 0.16, 0.3, 1" ProgressColor="0, 0.55, 1, 1" ThumbSize="19, 19" ThumbColor="0, 0.55, 1, 1"/>
+
+</Theme>

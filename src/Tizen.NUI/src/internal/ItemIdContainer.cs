@@ -46,7 +46,7 @@ namespace Tizen.NUI
         public ItemIdContainer(global::System.Collections.ICollection c) : this()
         {
             if (c == null)
-                throw new global::System.ArgumentNullException("c");
+                throw new global::System.ArgumentNullException(nameof(c));
             foreach (uint element in c)
             {
                 this.Add(element);
@@ -142,15 +142,15 @@ namespace Tizen.NUI
         public void CopyTo(int index, uint[] array, int arrayIndex, int count)
         {
             if (array == null)
-                throw new global::System.ArgumentNullException("array");
+                throw new global::System.ArgumentNullException(nameof(array));
             if (index < 0)
-                throw new global::System.ArgumentOutOfRangeException("index", "Value is less than zero");
+                throw new global::System.ArgumentOutOfRangeException(nameof(index), "Value is less than zero");
             if (arrayIndex < 0)
-                throw new global::System.ArgumentOutOfRangeException("arrayIndex", "Value is less than zero");
+                throw new global::System.ArgumentOutOfRangeException(nameof(arrayIndex), "Value is less than zero");
             if (count < 0)
-                throw new global::System.ArgumentOutOfRangeException("count", "Value is less than zero");
+                throw new global::System.ArgumentOutOfRangeException(nameof(count), "Value is less than zero");
             if (array.Rank > 1)
-                throw new global::System.ArgumentException("Multi dimensional array.", "array");
+                throw new global::System.ArgumentException("Multi dimensional array.", nameof(array));
             if (index + count > this.Count || arrayIndex + count > array.Length)
                 throw new global::System.ArgumentException("Number of elements to copy is too large.");
             for (int i = 0; i < count; i++)

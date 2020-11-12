@@ -48,7 +48,7 @@ namespace Tizen.NUI
         public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
         {
             BlurRadius = blurRadius;
-            Color = new Color(color);
+            Color = color == null ? new Color(defaultColor) : new Color(color);
         }
 
         /// <summary>
@@ -60,11 +60,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create a Shadow from a propertyMap.
+        /// Create a Shadow from a property map.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
+            Color = noColor;
+            propertyMap.Find(ColorVisualProperty.MixColor)?.Get(Color);
+
+            float blurRadius = 0;
+            propertyMap.Find(ColorVisualProperty.BlurRadius)?.Get(out blurRadius);
+            BlurRadius = blurRadius;
         }
 
         /// <summary>
@@ -136,25 +141,6 @@ namespace Tizen.NUI
             map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
 
             return map;
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (!base.SetPropertyMap(propertyMap))
-            {
-                return false;
-            }
-
-            Color = noColor;
-            propertyMap.Find(ColorVisualProperty.MixColor)?.Get(Color);
-
-            float blurRadius = 0;
-            propertyMap.Find(ColorVisualProperty.BlurRadius)?.Get(out blurRadius);
-            BlurRadius = blurRadius;
-
-            return true;
         }
     }
 }

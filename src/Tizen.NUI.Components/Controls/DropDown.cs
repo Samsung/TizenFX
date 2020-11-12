@@ -245,8 +245,8 @@ namespace Tizen.NUI.Components
                 {
                     button = new Button()
                     {
-                        ParentOrigin = NUI.ParentOrigin.CenterLeft,
-                        PivotPoint = NUI.PivotPoint.CenterLeft,
+                        ParentOrigin = NUI.ParentOrigin.TopLeft,
+                        PivotPoint = NUI.PivotPoint.TopLeft,
                         PositionUsesPivotPoint = true,
                         HeightResizePolicy = ResizePolicyType.FitToChildren,
                         IconRelativeOrientation = Button.IconOrientation.Right,
@@ -529,7 +529,9 @@ namespace Tizen.NUI.Components
             if (null == scrollableBase || null == listBackgroundImage || null == dropDownMenuFullList) return;
             if (null == ListBackgroundImage.Size) return;
             // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
-            scrollableBase.Size = ListBackgroundImage.Size - new Size((dropDownStyle.ListPadding.Start + dropDownStyle.ListPadding.End), (dropDownStyle.ListPadding.Top + dropDownStyle.ListPadding.Bottom), 0);
+            Size dropDownPaddingSize = new Size((dropDownStyle.ListPadding.Start + dropDownStyle.ListPadding.End), (dropDownStyle.ListPadding.Top + dropDownStyle.ListPadding.Bottom), 0);
+            scrollableBase.Size = ListBackgroundImage.Size - dropDownPaddingSize;
+            dropDownPaddingSize.Dispose();
             scrollableBase.Position2D = new Position2D(dropDownStyle.ListPadding.Start, dropDownStyle.ListPadding.Top);
 
             int listBackgroundImageX = 0;
@@ -769,6 +771,10 @@ namespace Tizen.NUI.Components
         {
             PointStateType state = e.Touch.GetState(0);
             DropDownItemView touchedView = sender as DropDownItemView;
+            if (touchedView == null)
+            {
+                return true;
+            }
 
             touchedView.OnTouch(e.Touch); // Handle control state change
 

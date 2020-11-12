@@ -74,7 +74,7 @@ namespace Tizen.NUI
             }
             else
             {
-                throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", "compType");
+                throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", nameof(compType));
             }
         }
 

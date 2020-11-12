@@ -122,6 +122,11 @@ namespace Tizen.NUI
 
         public static System.IntPtr WidgetCreateFunction(ref string widgetName)
         {
+            if ((Instance as WidgetApplication) == null)
+            {
+                return IntPtr.Zero;
+            }
+
             Dictionary<System.Type, string> widgetInfo = (Instance as WidgetApplication).WidgetInfo;
 
             foreach (System.Type widgetType in widgetInfo.Keys)
@@ -129,7 +134,7 @@ namespace Tizen.NUI
                 if (widgetInfo[widgetType] == widgetName)
                 {
                     Widget widget = Activator.CreateInstance(widgetType) as Widget;
-                    if (widget)
+                    if (widget != null)
                     {
                         return widget.GetIntPtr();
                     }

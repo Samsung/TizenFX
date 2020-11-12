@@ -33,7 +33,6 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="adapter">Recycle adapter of List.</param>
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -96,6 +95,11 @@ namespace Tizen.NUI.Wearable
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public void SetFocus(int dataIndex, bool animated)
         {
+            if (LayoutManager == null)
+            {
+                return;
+            }
+
             foreach (RecycleItem item in Children)
             {
                 if (item.DataIndex == dataIndex)
@@ -122,11 +126,19 @@ namespace Tizen.NUI.Wearable
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         protected override void OnPreReachedTargetPosition(float targetPosition)
         {
+            if (LayoutManager == null)
+            {
+                return;
+            }
             int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / LayoutManager.StepSize);
 
             for (int i = 0; i < Children.Count; i++)
             {
                 RecycleItem item = Children[i] as RecycleItem;
+                if (item == null)
+                {
+                    continue;
+                }
 
                 if (targetDataIndex == item.DataIndex)
                 {

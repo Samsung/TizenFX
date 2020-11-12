@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create("StateVisuals", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create(nameof(StateVisuals), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create(nameof(Tooltips), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create(nameof(CurrentStateIndex), typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
