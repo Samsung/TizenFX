@@ -271,11 +271,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState operator -(ControlState lhs, ControlState rhs)
         {
+            if (null == lhs)
+            {
+                throw new ArgumentNullException(nameof(lhs));
+            }
+            else if (null == rhs)
+            {
+                throw new ArgumentNullException(nameof(rhs));
+            }
+
             if (!lhs.IsCombined)
             {
                 return ReferenceEquals(lhs, rhs) ? Normal : lhs;
             }
-            
+
             var rest = lhs.stateList.Except(rhs.stateList);
 
             if (rest.Count() == 0)

@@ -226,6 +226,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
+            if (null == viewType)
+            {
+                throw new ArgumentNullException(nameof(viewType));
+            }
+
             // add the mapping between the view name and it's create function
             _constructorMap.Add(viewType.ToString(), createFunction);
 

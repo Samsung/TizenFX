@@ -52,6 +52,10 @@ namespace Tizen.NUI
         /// <param name="childLayout">LayoutItem to add to the layout group.</param>
         public virtual void Add(LayoutItem childLayout)
         {
+            if (null == childLayout)
+            {
+                throw new ArgumentNullException(nameof(childLayout));
+            }
             LayoutChildren.Add(childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
@@ -300,7 +304,7 @@ namespace Tizen.NUI
                 {
                     if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
                     {
-                        // Crashed. Cannot calculate. 
+                        // Crashed. Cannot calculate.
 
                         // Child wants to be our size, but our size is not fixed.
                         // Constrain child to not be bigger than us.
@@ -507,6 +511,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChild(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
@@ -535,8 +544,12 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildWithMargins(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, LayoutLength widthUsed, MeasureSpecification parentHeightMeasureSpec, LayoutLength heightUsed)
         {
-            View childOwner = child.Owner;
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
 
+            View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(

@@ -144,6 +144,10 @@ namespace Tizen.NUI
 
         public static RenderTask DownCast(BaseHandle handle)
         {
+            if (handle == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(handle));
+            }
             RenderTask ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTask;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

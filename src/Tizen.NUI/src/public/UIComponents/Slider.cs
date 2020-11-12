@@ -53,7 +53,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -179,7 +179,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -287,7 +287,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -742,6 +742,10 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Slider DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Slider ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

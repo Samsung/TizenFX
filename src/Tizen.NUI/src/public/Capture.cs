@@ -109,13 +109,25 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Position position, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <= 0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
             else if (null == path)
             {
                 throw new ArgumentNullException("path should not be null");
+            }
+            else if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
             }
 
             if (source is View || source is Layer)
@@ -141,7 +153,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color, uint quality)
         {
-            if (size.Width <= 0 || size.Height <= 0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
@@ -152,6 +168,10 @@ namespace Tizen.NUI
             else if (quality > 100)
             {
                 throw new InvalidOperationException("quality should between 0 to 100");
+            }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
             }
 
             if (source is View || source is Layer)
@@ -176,13 +196,21 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color)
         {
-            if (size.Width <= 0 || size.Height <= 0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }
             else if (null == path)
             {
                 throw new ArgumentNullException("path should not be null");
+            }
+            else if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
             }
 
             if (source is View || source is Layer)
@@ -209,7 +237,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path)
         {
-            if (size.Width <= 0 || size.Height <= 0)
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            else if (size.Width <= 0 || size.Height <= 0)
             {
                 throw new InvalidOperationException("size should larger than zero");
             }

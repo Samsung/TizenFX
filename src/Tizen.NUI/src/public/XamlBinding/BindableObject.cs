@@ -219,9 +219,12 @@ namespace Tizen.NUI.Binding
             }
             else
             {
-                property.PropertyChanged?.Invoke(this, null, value);
+                if (property != null)
+                {
+                    property.PropertyChanged?.Invoke(this, null, value);
 
-                OnPropertyChanged(property.PropertyName);
+                    OnPropertyChanged(property.PropertyName);
+                }
             }
         }
 
@@ -267,6 +270,11 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetInheritedBindingContext(BindableObject bindable, object value)
         {
+            if (null == bindable)
+            {
+                throw new ArgumentNullException(nameof(bindable));
+            }
+
             BindablePropertyContext bpContext = bindable.GetContext(BindingContextProperty);
             if (bpContext != null && ((bpContext.Attributes & BindableContextAttributes.IsManuallySet) != 0))
                 return;

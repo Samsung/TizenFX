@@ -266,23 +266,26 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.GetParent();
-
-            if (oldParent != this)
+            if (child != null)
             {
-                if (oldParent != null)
+                Container oldParent = child.GetParent();
+
+                if (oldParent != this)
                 {
-                    oldParent.Remove(child);
+                    if (oldParent != null)
+                    {
+                        oldParent.Remove(child);
+                    }
+                    else
+                    {
+                        child.InternalParent = this;
+                    }
+                    Interop.Actor.Actor_Add( swigCPtr , View.getCPtr(child));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    Children.Add(child);
+                    BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
                 }
-                else
-                {
-                    child.InternalParent = this;
-                }
-                Interop.Actor.Actor_Add( swigCPtr , View.getCPtr(child));
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Children.Add(child);
-                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -294,12 +297,15 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            Interop.Actor.Actor_Remove( swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (child != null)
+            {
+                Interop.Actor.Actor_Remove( swigCPtr, View.getCPtr(child));
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            Children.Remove(child);
-            child.InternalParent = null;
+                Children.Remove(child);
+                child.InternalParent = null;
+            }
         }
 
         /// <summary>
@@ -351,6 +357,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Layer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

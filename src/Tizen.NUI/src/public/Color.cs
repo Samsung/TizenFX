@@ -128,6 +128,10 @@ namespace Tizen.NUI
         {
             try
             {
+                if (null == hexColor)
+                {
+                    throw new ArgumentNullException(nameof(hexColor));
+                }
                 hexColor = hexColor.Replace("#", "");
 
                 R = ((float)Convert.ToInt32(hexColor.Substring(0, 2), 16)) / 255.0f;
@@ -159,7 +163,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="other">The copy target.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(Color other) : this(other.R, other.G, other.B, other.A)
+        public Color(Color other) : this((float)other?.R, (float)other.G, (float)other.B, (float)other.A)
         {
         }
 
@@ -294,7 +298,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(Color color)
         {
-            return new Vector4(color.R, color.G, color.B, color.A);
+            return new Vector4((float)color?.R, (float)color.G, (float)color.B, (float)color.A);
         }
 
         /// <summary>
@@ -304,7 +308,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Color(Vector4 vec)
         {
-            return new Color(vec.R, vec.G, vec.B, vec.A);
+            return new Color((float)vec?.R, (float)vec.G, (float)vec.B, (float)vec.A);
         }
 
         /// <summary>
@@ -316,6 +320,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator +(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Add(arg2);
             return ValueCheck(result);
         }
@@ -329,6 +337,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract(arg2);
             return ValueCheck(result);
         }
@@ -341,6 +353,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract();
             return ValueCheck(result);
         }
@@ -354,6 +370,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -367,6 +387,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -380,6 +404,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -393,6 +421,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -504,6 +536,11 @@ namespace Tizen.NUI
 
         internal static float[] ValueCheck(float[] arr)
         {
+            if (null == arr)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] < 0.0f)

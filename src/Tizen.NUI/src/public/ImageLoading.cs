@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -41,6 +42,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -60,6 +65,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -78,6 +87,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -95,6 +108,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url, Size2D size)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -130,6 +147,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_0(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
@@ -150,6 +171,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_1(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
@@ -169,6 +194,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_2(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
@@ -187,6 +216,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename, Size2D size)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_3(filename, Uint16Pair.getCPtr(uSize)), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
@@ -240,6 +273,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -259,6 +296,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -277,6 +318,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -294,6 +339,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
             PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

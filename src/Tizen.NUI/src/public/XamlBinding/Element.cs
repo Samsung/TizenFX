@@ -340,6 +340,11 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildAdded(Element child)
         {
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             child.Parent = this;
 
             child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged:true);
@@ -359,6 +364,11 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildRemoved(Element child)
         {
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             child.Parent = null;
 
             ChildRemoved?.Invoke(child, new ElementEventArgs(child));

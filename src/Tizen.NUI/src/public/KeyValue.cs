@@ -77,22 +77,25 @@ namespace Tizen.NUI
             }
             set
             {
-                _originalKey = value;
-                if (value is int || value is Int32)
+                if (value != null)
                 {
-                    KeyInt = (int)value;
-                }
-                else if (value is string)
-                {
-                    KeyString = value.ToString();
-                }
-                else if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
-                {
-                    KeyInt = (int)value;
-                }
-                else if (value.GetType().Equals(typeof(string)))
-                {
-                    KeyString = value.ToString();
+                    _originalKey = value;
+                    if (value is int || value is Int32)
+                    {
+                        KeyInt = (int)value;
+                    }
+                    else if (value is string)
+                    {
+                        KeyString = value.ToString();
+                    }
+                    else if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
+                    {
+                        KeyInt = (int)value;
+                    }
+                    else if (value.GetType().Equals(typeof(string)))
+                    {
+                        KeyString = value.ToString();
+                    }
                 }
             }
         }

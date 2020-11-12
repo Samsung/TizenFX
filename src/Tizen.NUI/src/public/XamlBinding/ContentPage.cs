@@ -109,7 +109,14 @@ namespace Tizen.NUI
             Root.WidthResizePolicy = ResizePolicyType.FillToParent;
             Root.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            win.Add(Root);
+            if (win != null)
+            {
+                win.Add(Root);
+            }
+            else
+            {
+                NUIApplication.GetDefaultWindow().Add(Root);
+            }
         }
 
         /// <summary>

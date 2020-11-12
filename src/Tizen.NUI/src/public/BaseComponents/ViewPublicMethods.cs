@@ -162,7 +162,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            if (!child || child.GetParent() == null) // Early out if child null.
+            if (child == null || child.GetParent() == null) // Early out if child null.
                 return;
 
             bool hasLayout = (_layout != null);

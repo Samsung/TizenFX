@@ -118,10 +118,13 @@ namespace Tizen.NUI
             }
             set
             {
-                var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
-                Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height );
+                if (value != null)
+                {
+                    var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
+                    Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height );
 
-                Interop.GLWindow.GlWindow_SetPositionSize(swigCPtr, Rectangle.getCPtr(ret));
+                    Interop.GLWindow.GlWindow_SetPositionSize(swigCPtr, Rectangle.getCPtr(ret));
+                }
             }
         }
 
@@ -392,6 +395,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAvailableOrientations(List<GLWindow.GLWindowOrientation> orientations)
         {
+            if (null == orientations)
+            {
+                throw new ArgumentNullException(nameof(orientations));
+            }
+
             PropertyArray orientationArray = new PropertyArray();
             for (int i = 0; i < orientations.Count; i++)
             {

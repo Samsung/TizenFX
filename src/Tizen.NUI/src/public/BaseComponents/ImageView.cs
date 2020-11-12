@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             string ret = "";
-			
+
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            
+
             bool ret = false;
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
@@ -451,7 +451,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(ResourceUrlProperty, value);
                 resourceUrlSelector.UpdateIfNeeds(this, value);
-                NotifyPropertyChanged();       
+                NotifyPropertyChanged();
             }
         }
 
@@ -665,6 +665,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ImageView DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -678,16 +682,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
-            if(url.Contains(".json"))
+            if (url != null)
             {
-                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
-                return;
+                if(url.Contains(".json"))
+                {
+                    Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                    return;
+                }
+
+                Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                ResourceUrl = url;
             }
-
-            Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            ResourceUrl = url;
         }
 
         /// <summary>
@@ -931,7 +938,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
             }
         }
- 
+
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
@@ -1006,7 +1013,7 @@ namespace Tizen.NUI.BaseComponents
 
             Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-			
+
             ResourceUrl = url;
         }
 
@@ -1082,10 +1089,10 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Merge(fromMap);
-			
+
             SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
         }
-		
+
         private void UpdateImage(int key, PropertyValue value)
         {
             PropertyMap temp = new PropertyMap();

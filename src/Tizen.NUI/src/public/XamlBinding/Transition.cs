@@ -149,7 +149,7 @@ namespace Tizen.NUI
             AnimationBehavior behavior = null;
             behaviors.TryGetValue(behaviorKey, out behavior);
 
-            if (null != behavior)
+            if (null != instance && null != behavior)
             {
                 var elementType = instance.GetType();
                 PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == behavior.Property);
@@ -185,7 +185,7 @@ namespace Tizen.NUI
             AnimationBehavior behavior = null;
             behaviors.TryGetValue(behaviorKey, out behavior);
 
-            if (null != behavior)
+            if (null != instance && null != behavior)
             {
                 var elementType = instance.GetType();
                 PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == behavior.Property);

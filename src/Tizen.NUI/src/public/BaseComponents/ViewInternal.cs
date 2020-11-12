@@ -1117,20 +1117,23 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool HandleControlStateOnTouch(Touch touch)
         {
-            switch(touch.GetState(0))
+            if (touch != null)
             {
-                case PointStateType.Down:
-                    ControlState += ControlState.Pressed;
-                    break;
-                case PointStateType.Interrupted:
-                case PointStateType.Up:
-                    if (ControlState.Contains(ControlState.Pressed))
-                    {
-                        ControlState -= ControlState.Pressed;
-                    }
-                    break;
-                default:
-                    break;
+                switch(touch.GetState(0))
+                {
+                    case PointStateType.Down:
+                        ControlState += ControlState.Pressed;
+                        break;
+                    case PointStateType.Interrupted:
+                    case PointStateType.Up:
+                        if (ControlState.Contains(ControlState.Pressed))
+                        {
+                            ControlState -= ControlState.Pressed;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return false;

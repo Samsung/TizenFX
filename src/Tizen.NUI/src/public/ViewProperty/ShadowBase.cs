@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// Copy Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other?.Offset, other.Extents)
         {
         }
 

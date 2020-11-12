@@ -786,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
-                
+
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -1677,7 +1677,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (_layout != null)
+                if (_layout != null && value != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
                     // To force the size it should be done through the width&height spec or Size2D.
@@ -2032,9 +2032,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
-                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
+                if (value != null)
+                {
+                    LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
 
-                AttachTransitionsToChildren(value);
+                    AttachTransitionsToChildren(value);
+                }
             }
         }
 

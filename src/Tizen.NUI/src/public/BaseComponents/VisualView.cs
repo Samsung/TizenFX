@@ -142,6 +142,10 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualIndex > 0)
             {
+                if (visualMap == null)
+                {
+                    throw new ArgumentNullException(nameof(visualMap));
+                }
                 visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap); // Create a visual for the new one.
                 visual.Name = visualName;
                 visual.DepthIndex = visualMap.DepthIndex;
@@ -230,6 +234,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
             string _alphaFunction = alphaFunction?.GetDescription();
 
             foreach (var item in _visualDictionary.ToList())
@@ -282,6 +291,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
             string _alphaFunction = alphaFunction?.GetDescription();
 
             foreach (var item in _visualDictionary.ToList())
@@ -342,6 +356,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
+            if (visualMap == null)
+            {
+                throw new ArgumentNullException(nameof(visualMap));
+            }
+
             foreach (var item in _visualDictionary.ToList())
             {
                 if (item.Value.Name == visualMap.Target)

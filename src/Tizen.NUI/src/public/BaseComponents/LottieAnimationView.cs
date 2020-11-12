@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets or gets the loop count. 
+        /// Sets or gets the loop count.
         /// </summary>
         /// <remarks>
         /// The minus value means the infinite loop count.
@@ -514,7 +514,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame. 
+        /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
         /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
         /// </summary>
@@ -972,7 +972,7 @@ namespace Tizen.NUI.BaseComponents
         private bool BeReadyToShow(LottieAnimationView lottieView)
         {
             // Validate input lottieView
-            if (null== lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
+            if (null == lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
             {
                 return false;
             }
