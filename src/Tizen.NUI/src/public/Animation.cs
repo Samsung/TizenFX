@@ -511,6 +511,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Animation DownCast(BaseHandle handle)
         {
+            if (handle == null)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -538,6 +542,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
@@ -564,6 +577,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
@@ -590,6 +612,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
@@ -610,6 +641,11 @@ namespace Tizen.NUI
         /// <param name="target">The target object to animate.</param>
         public void PlayAnimateTo(View target)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
             Clear();
             if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
             {
@@ -646,6 +682,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);

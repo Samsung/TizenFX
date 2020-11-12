@@ -101,6 +101,10 @@ namespace Tizen.NUI
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public void CopyFrom(Extents that)
         {
+            if (null == that)
+            {
+                throw new ArgumentNullException(nameof(that));
+            }
             Interop.Extents.Extents_start_set(swigCPtr, that.Start);
             Interop.Extents.Extents_end_set(swigCPtr, that.End);
             Interop.Extents.Extents_top_set(swigCPtr, that.Top);

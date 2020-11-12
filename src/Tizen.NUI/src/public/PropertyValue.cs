@@ -252,8 +252,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         static public PropertyValue CreateFromObject(System.Object obj)
         {
-            System.Type type = obj.GetType();
+            if (null == obj)
+            {
+                throw new global::System.ArgumentNullException(nameof(obj));
+            }
 
+            System.Type type = obj.GetType();
             PropertyValue value;
             if (type.IsEnum)
             {

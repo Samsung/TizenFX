@@ -53,6 +53,11 @@ namespace Tizen.NUI
 
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct
         {
+            if (null == vertices)
+            {
+                throw new ArgumentNullException(nameof(vertices));
+            }
+
             int structSize = Marshal.SizeOf<VertexType>();
             global::System.IntPtr buffer = Marshal.AllocHGlobal(structSize * vertices.Length);
 

@@ -174,6 +174,10 @@ namespace Tizen.NUI
         /// <returns>Returns a reference to this object.</returns>
         public PropertyMap Add(KeyValue keyValue)
         {
+            if (null == keyValue)
+            {
+                throw new global::System.ArgumentNullException(nameof(keyValue));
+            }
             if (keyValue.KeyInt != null)
             {
                 Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue));

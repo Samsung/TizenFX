@@ -234,7 +234,7 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
-            if (state.IsCombined)
+            if (state != null && state.IsCombined)
             {
                 index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => state.Contains(x.State));
                 if (index >= 0)
@@ -298,15 +298,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clone(Selector<T> other)
         {
-            if (cloneable)
+            if (other != null)
             {
-                All = (T)((ICloneable)other.All)?.Clone();
-                StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => new StateValuePair<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
-            }
-            else
-            {
-                All = other.All;
-                StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => m);
+                if (cloneable)
+                {
+                    All = (T)((ICloneable)other.All)?.Clone();
+                    StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => new StateValuePair<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
+                }
+                else
+                {
+                    All = other.All;
+                    StateValueList = ((List<StateValuePair<T>>)other.StateValueList).ConvertAll(m => m);
+                }
             }
         }
 
@@ -353,6 +356,10 @@ namespace Tizen.NUI.BaseComponents
         public Selector<T> Get(View view)
         {
             if (!dirty) return selector;
+            if (null == view)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
 
             T value = default;
 
@@ -381,6 +388,11 @@ namespace Tizen.NUI.BaseComponents
         public void Update(View view, Selector<T> otherSelector, bool updateView = false)
         {
             Reset(view);
+
+            if (null == view)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
 
             if (otherSelector == null)
             {
@@ -427,7 +439,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reset(View view)
         {
-            view.ControlStateChangeEventInternal -= OnViewControlState;
+            if (view != null)
+            {
+                view.ControlStateChangeEventInternal -= OnViewControlState;
+            }
             selector?.Clear();
             selector = null;
             dirty = false;

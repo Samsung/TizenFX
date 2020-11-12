@@ -77,6 +77,11 @@ namespace Tizen.NUI
             }
             set
             {
+                if (null == value)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
                 _originalKey = value;
                 if (value is int || value is Int32)
                 {

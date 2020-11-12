@@ -335,7 +335,10 @@ namespace Tizen.NUI
             }
             set
             {
-                SetWindowSize(value);
+                if (null != value)
+                {
+                    SetWindowSize(value);
+                }
             }
         }
 
@@ -351,7 +354,10 @@ namespace Tizen.NUI
             }
             set
             {
-                SetPosition(value);
+                if (null != value)
+                {
+                    SetPosition(value);
+                }
             }
         }
 
@@ -753,7 +759,10 @@ namespace Tizen.NUI
             Interop.Actor.ActorAdd(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
-            view.InternalParent = this.GetRootLayer();
+            if (null != view)
+            {
+                view.InternalParent = this.GetRootLayer();
+            }
         }
 
         /// <summary>
@@ -765,7 +774,10 @@ namespace Tizen.NUI
         {
             Interop.Actor.ActorRemove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
-            view.InternalParent = null;
+            if (null != view)
+            {
+                view.InternalParent = null;
+            }
         }
 
         /// <summary>
@@ -903,7 +915,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            Add(layer);
+            if (null != layer)
+            {
+                Add(layer);
+            }
         }
 
         /// <summary>
@@ -913,7 +928,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
-            Remove(layer);
+            if (null != layer)
+            {
+                Remove(layer);
+            }
         }
 
         /// <summary>
@@ -1097,9 +1115,12 @@ namespace Tizen.NUI
         public void SetAvailableOrientations(List<Window.WindowOrientation> orientations)
         {
             PropertyArray orientationArray = new PropertyArray();
-            for (int i = 0; i < orientations.Count; i++)
+            if (null != orientations)
             {
-                orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                for (int i = 0; i < orientations.Count; i++)
+                {
+                    orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                }
             }
 
             Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));

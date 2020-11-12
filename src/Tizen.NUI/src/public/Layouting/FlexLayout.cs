@@ -614,6 +614,10 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildAdd(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             InsertChild(child);
         }
 
