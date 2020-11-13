@@ -130,17 +130,17 @@ namespace Tizen.NUI.Binding
 
         public static class Styles
         {
-            public static readonly string TitleStyleKey = "TitleStyle";
+            public const string TitleStyleKey = "TitleStyle";
 
-            public static readonly string SubtitleStyleKey = "SubtitleStyle";
+            public const string SubtitleStyleKey = "SubtitleStyle";
 
-            public static readonly string BodyStyleKey = "BodyStyle";
+            public const string BodyStyleKey = "BodyStyle";
 
-            public static readonly string ListItemTextStyleKey = "ListItemTextStyle";
+            public const string ListItemTextStyleKey = "ListItemTextStyle";
 
-            public static readonly string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
+            public const string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
 
-            public static readonly string CaptionStyleKey = "CaptionStyle";
+            public const string CaptionStyleKey = "CaptionStyle";
 
             public static readonly Style TitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
 
