@@ -111,17 +111,22 @@ namespace Tizen.NUI
         {
             get
             {
-                var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr);
+                var val = new Rectangle(intPtr, true);
                 Size2D ret = new Size2D(val.Width, val.Height);
+                val.Dispose();
 
                 return ret;
             }
             set
             {
-                var val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
-                Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height );
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr);
+                Rectangle val = new Rectangle(intPtr, true);
+                Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height);
+                val.Dispose();
 
                 Interop.GLWindow.GlWindow_SetPositionSize(swigCPtr, Rectangle.getCPtr(ret));
+                ret.Dispose();
             }
         }
 
@@ -218,8 +223,10 @@ namespace Tizen.NUI
         {
             get
             {
-                Rectangle val = new Rectangle(Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr), true);
+                global::System.IntPtr intPtr = Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr);
+                Rectangle val = new Rectangle(intPtr, true);
                 Rectangle ret = new Rectangle(val.X, val.Y, val.Width, val.Height );
+                val.Dispose();
 
                 return ret;
             }
@@ -395,10 +402,13 @@ namespace Tizen.NUI
             PropertyArray orientationArray = new PropertyArray();
             for (int i = 0; i < orientations.Count; i++)
             {
-                orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                PropertyValue val = new PropertyValue((int)orientations[i]);
+                orientationArray.PushBack(val);
+                val.Dispose();
             }
 
             Interop.GLWindow.GlWindow_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray), orientations.Count);
+            orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
