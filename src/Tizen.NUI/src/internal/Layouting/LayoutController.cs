@@ -83,7 +83,7 @@ namespace Tizen.NUI
             if (layoutParent != null)
             {
                  LayoutGroup layoutGroup =  layoutParent as LayoutGroup;
-                 if(! layoutGroup.LayoutRequested)
+                 if(layoutGroup != null && !layoutGroup.LayoutRequested)
                  {
                     layoutGroup.RequestLayout();
                  }
@@ -195,7 +195,10 @@ namespace Tizen.NUI
                 for (uint i = 0; i < rootNode.ChildCount; i++)
                 {
                     View view = rootNode.GetChildAt(i);
-                    FindRootLayouts(view);
+                    if (view != null)
+                    {
+                        FindRootLayouts(view);
+                    }
                 }
             }
         }
@@ -295,7 +298,10 @@ namespace Tizen.NUI
                     for (uint i = 0; i < layer.ChildCount; i++)
                     {
                         View view = layer.GetChildAt(i);
-                        FindRootLayouts(view);
+                        if (view != null)
+                        {
+                            FindRootLayouts(view);
+                        }
                     }
                 }
             }

@@ -47,7 +47,10 @@ namespace Tizen.NUI
             {
                 RegisterComponent(component.Key, component.Value);
             }
-            (Backend as NUIComponentCoreBackend).ComponentFactories = _componentFactories;
+            if ((Backend as NUIComponentCoreBackend) != null)
+            {
+                (Backend as NUIComponentCoreBackend).ComponentFactories = _componentFactories;
+            } 
         }
 
         /// <summary>

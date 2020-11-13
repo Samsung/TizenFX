@@ -691,8 +691,10 @@ namespace Tizen.NUI.Components
                     data.IsSelected = false;
                 }
                 DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
-
-                SetListItemToSelected(listItemView);
+                if (listItemView != null)
+                {
+                    SetListItemToSelected(listItemView);
+                }
             }
 
             if (index != -1)
@@ -833,12 +835,15 @@ namespace Tizen.NUI.Components
                 }
                 set
                 {
-                    if (null == itemDataStyle?.BackgroundColor)
+                    if (null != itemDataStyle)
                     {
-                        itemDataStyle.BackgroundColor = new Selector<Color>();
-                    }
+                        if (null == itemDataStyle.BackgroundColor)
+                        {
+                            itemDataStyle.BackgroundColor = new Selector<Color>();
+                        }
 
-                    itemDataStyle.BackgroundColor.Clone(value);
+                        itemDataStyle.BackgroundColor.Clone(value);
+                    }
                 }
             }
 
@@ -1476,7 +1481,6 @@ namespace Tizen.NUI.Components
                     return;
                 }
                 DropDownItemView listItemView = holder.ItemView as DropDownItemView;
-                listItemView.Name = "Item" + position;
                 if (listItemData.Size != null)
                 {
                     if (listItemData.Size.Width > 0)
@@ -1500,6 +1504,7 @@ namespace Tizen.NUI.Components
 
                 if (listItemView != null)
                 {
+                    listItemView.Name = "Item" + position;
                     listItemView.BackgroundColorSelector = listItemData.BackgroundColor;
                     if (listItemData.Text != null)
                     {
