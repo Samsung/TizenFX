@@ -569,6 +569,12 @@ namespace Tizen.NUI
         {
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
+            if (child == null)
+            {
+                measureSize.width = 0;
+                measureSize.height = 0;
+                return;
+            }
 
             LayoutItem childLayout = child.Layout;
 

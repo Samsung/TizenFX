@@ -309,7 +309,7 @@ namespace Tizen.NUI
             if (Parent != null)
             {
                  LayoutGroup layoutGroup =  Parent as LayoutGroup;
-                 if(! layoutGroup.LayoutRequested)
+                 if(layoutGroup != null && !layoutGroup.LayoutRequested)
                  {
                     layoutGroup.RequestLayout();
                  }
@@ -558,10 +558,13 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
-                    if(SetPositionByLayout)
+                    if (Owner.Position != null)
                     {
-                        Owner.SetPosition(left, top, Owner.Position.Z);
+                        Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
+                        if (SetPositionByLayout)
+                        {
+                            Owner.SetPosition(left, top, Owner.Position.Z);
+                        }
                     }
                 }
 

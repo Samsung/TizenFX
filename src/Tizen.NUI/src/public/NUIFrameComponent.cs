@@ -37,7 +37,7 @@ namespace Tizen.NUI
         public override IWindowInfo CreateWindowInfo()
         {
             ComponentApplication instance = ComponentApplication.Instance as ComponentApplication;
-            if (instance)
+            if (instance != null)
             {
                 if (!defaultWindowSet)
                 {

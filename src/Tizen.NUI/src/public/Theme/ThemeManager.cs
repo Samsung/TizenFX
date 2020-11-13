@@ -19,12 +19,21 @@ using TizenSystemInformation.Tizen.System;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Tizen.NUI.Xaml;
+using System.IO;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    /// <summary></summary>
+    /// <summary>
+    /// This static module provides methods that can manage NUI <seealso cref="Theme"/>.
+    /// </summary>
+    /// <example>
+    /// To apply custom theme to the application, try <seealso cref="ApplyTheme(Theme)"/>.
+    /// <code>
+    /// var customTheme = new Theme(res + "customThemeFile.xaml");
+    /// ThemeManager.ApplyTheme(customTheme);
+    /// </code>
+    /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ThemeManager
     {
@@ -59,12 +68,13 @@ namespace Tizen.NUI
         private static Theme defaultTheme;
         private static bool isLoadingDefault = false;
         private static Profile? currentProfile;
-        private static List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
+        private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
         internal static List<Theme> customThemes = new List<Theme>(); // Themes registered by user.
 
         static ThemeManager() {}
 
         /// <summary>
+        /// An event invoked after the theme has changed by <seealso cref="ApplyTheme(Theme)"/>.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<ThemeChangedEventArgs> ThemeChanged;
@@ -76,14 +86,7 @@ namespace Tizen.NUI
 
         internal static Theme CurrentTheme
         {
-            get
-            {
-                if (currentTheme == null)
-                {
-                    currentTheme = DefaultTheme;
-                }
-                return currentTheme;
-            }
+            get =>  currentTheme ?? (currentTheme = DefaultTheme);
             set
             {
                 currentTheme = value;
@@ -124,6 +127,9 @@ namespace Tizen.NUI
                     }
                     catch
                     {
+                        // Note
+                        // Do not rethrow exception.
+                        // In some machine, profile may not exits.
                         Tizen.Log.Info("NUI", "Unknown device profile\n");
                     }
                     finally
@@ -155,7 +161,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ApplyFallbackTheme(Theme fallbackTheme)
         {
-            DefaultTheme = fallbackTheme ?? throw new ArgumentNullException("Invalid theme.");
+            DefaultTheme = fallbackTheme ?? throw new ArgumentNullException(nameof(fallbackTheme));
         }
 
         /// <summary>
@@ -168,7 +174,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ApplyTheme(Theme theme)
         {
-            var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException("Invalid theme.");
+            var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
 
             if (string.IsNullOrEmpty(newTheme.Id))
             {
@@ -179,21 +185,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// <para>
         /// Note that this API is to support legacy Tizen.NUI.Components.StyleManager.
         /// Please use <seealso cref="ApplyTheme(Theme)"/> instead.
-        ///
+        /// </para>
+        /// <para>
         /// Apply theme to the NUI using theme id.
         /// The id of theme should be either a registered custom theme or a built-in theme.
         /// You can register custom theme using <seealso cref="RegisterTheme(Theme)"/>.
         /// This will change the appreance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
         /// This also affects all components created afterwards.
+        /// </para>
         /// </summary>
         /// <param name="themeId">The theme Id.</param>
         /// <exception cref="ArgumentNullException">Thrown when the given themeId is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ApplyTheme(string themeId)
         {
-            if (themeId == null) throw new ArgumentNullException("Invalid themeId");
+            if (themeId == null) throw new ArgumentNullException(nameof(themeId));
 
             int index = customThemes.FindIndex(x => x.Id.Equals(themeId, StringComparison.OrdinalIgnoreCase));
             if (index >= 0)
@@ -201,7 +210,7 @@ namespace Tizen.NUI
                 CurrentTheme = customThemes[index];
                 return;
             }
-            
+
             index = builtinThemes.FindIndex(x => string.Equals(x.Id, themeId, StringComparison.OrdinalIgnoreCase));
             if (index >= 0)
             {
@@ -214,16 +223,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Note that this API is to support legacy Tizen.NUI.Components.StyleManager.
-        ///
-        /// Register a custom theme that can be used as an id when calling <seealso cref="ApplyTheme(string)"/>.
+        /// <para> Note that this API is to support legacy Tizen.NUI.Components.StyleManager. </para>
+        /// <para> Register a custom theme that can be used as an id when calling <seealso cref="ApplyTheme(string)"/>. </para>
         /// </summary>
         /// <param name="theme">The theme instance.</param>
-        /// <exception cref="ArgumentException">Thrown when the given theme is null or invalid.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the given theme is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the given theme id is invalid.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RegisterTheme(Theme theme)
         {
-            if (theme == null || string.IsNullOrEmpty(theme.Id)) throw new ArgumentException("Invalid theme.");
+            if (theme == null) throw new ArgumentNullException(nameof(theme));
+            if (string.IsNullOrEmpty(theme.Id)) throw new ArgumentException("Invalid theme id.");
 
             int index = customThemes.FindIndex(x => x.Id.Equals(theme.Id, StringComparison.OrdinalIgnoreCase));
             if (index >= 0)
@@ -245,7 +255,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ViewStyle GetStyle(string styleName)
         {
-            if (styleName == null) throw new ArgumentNullException("Invalid style name");
+            if (styleName == null) throw new ArgumentNullException(nameof(styleName));
 
             if (!ThemeApplied) return null;
 
@@ -260,7 +270,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ViewStyle GetStyle(Type viewType)
         {
-            if (viewType == null) throw new ArgumentNullException("Invalid viewType");
+            if (viewType == null) throw new ArgumentNullException(nameof(viewType));
 
             if (!ThemeApplied) return null;
 
@@ -275,7 +285,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Theme GetBuiltinTheme(string themeId)
         {
-            if (themeId == null) throw new ArgumentNullException("Invalid themeId");
+            if (themeId == null) throw new ArgumentNullException(nameof(themeId));
 
             Theme result = null;
             int index = builtinThemes.FindIndex(x => string.Equals(x.Id, themeId, StringComparison.OrdinalIgnoreCase));
@@ -304,6 +314,12 @@ namespace Tizen.NUI
             foreach (var project in nuiThemeProjects)
             {
                 string path = StyleManager.FrameworkResourcePath + "/Theme/" + project + "_" + id + ".xaml";
+
+                if (!File.Exists(path))
+                {
+                    Tizen.Log.Info("NUI", $"\"{path}\" is not found in this profile.\n");
+                    continue;
+                }
 
                 try
                 {
