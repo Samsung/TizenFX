@@ -530,11 +530,11 @@ namespace Tizen.NUI.Wearable
             if (!(selectOutIndicator is ImageVisual visual)) return;
             if (isCurrentIndicatorCentered)
             {
-                visual.URL = circularPaginationStyle.CenterIndicatorImageURL.Normal;
+                visual.URL = circularPaginationStyle?.CenterIndicatorImageURL?.Normal;
             }
             else
             {
-                visual.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                visual.URL = circularPaginationStyle?.IndicatorImageURL?.Normal;
             }
             visual.Opacity = 0.5f;
         }
@@ -551,11 +551,11 @@ namespace Tizen.NUI.Wearable
             if (!(selectInIndicator is ImageVisual visual)) return;
             if (isCurrentIndicatorCentered)
             {
-                visual.URL = circularPaginationStyle.CenterIndicatorImageURL.Selected;
+                visual.URL = circularPaginationStyle?.CenterIndicatorImageURL?.Selected;
             }
             else
             {
-                visual.URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                visual.URL = circularPaginationStyle?.IndicatorImageURL?.Selected;
             }
             visual.Opacity = 1.0f;
         }
@@ -629,14 +629,14 @@ namespace Tizen.NUI.Wearable
         // The parameter, index, is for the index of either oddArray or evenArray.
         private void CreateIndicator(int index)
         {
-            if (circularPaginationStyle == null)
+            if (circularPaginationStyle == null || circularPaginationStyle.IndicatorSize == null)
             {
                 return;
             }
 
             ImageVisual indicator = new ImageVisual
             {
-                URL = circularPaginationStyle.IndicatorImageURL.Normal,
+                URL = circularPaginationStyle.IndicatorImageURL?.Normal,
                 Size = new Size2D((int)circularPaginationStyle.IndicatorSize.Width, (int)circularPaginationStyle.IndicatorSize.Height),
                 Opacity = 0.5f,
             };
@@ -670,7 +670,7 @@ namespace Tizen.NUI.Wearable
 
         private void UpdateContainer()
         {
-            if (circularPaginationStyle == null)
+            if (circularPaginationStyle == null || circularPaginationStyle.IndicatorSize == null || container == null)
             {
                 return;
             }
