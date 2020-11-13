@@ -15,7 +15,6 @@
  *
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
@@ -26,7 +25,18 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
-    /// <summary></summary>
+    /// <summary>
+    /// <para>
+    /// Basically, the Theme is a dictionary of <seealso cref="ViewStyle"/>s that can decorate NUI <seealso cref="View"/>s.
+    /// Each ViewStyle item is identified by a string key that can be matched the <seealso cref="View.StyleName"/>.
+    /// </para>
+    /// <para>
+    /// The main purpose of providing Theme is to separate style details from the structure.
+    /// Managing style separately makes it easier to customize the look of application by user context.
+    /// Also since a Theme can be created from xaml file, it can be treated as a resource.
+    /// This enables sharing styles with other applications.
+    /// </para>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Theme : BindableObject, IResourcesProvider
     {
@@ -68,7 +78,7 @@ namespace Tizen.NUI
         {
             if (string.IsNullOrEmpty(xamlFile))
             {
-                throw new ArgumentNullException("The xaml file path cannot be null or empty string", nameof(xamlFile));
+                throw new ArgumentNullException(nameof(xamlFile), "The xaml file path cannot be null or empty string");
             }
 
             LoadFromXaml(xamlFile);
@@ -80,7 +90,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="xamlFile">An absolute path to the xaml file.</param>
         /// <param name="themeResource">An absolute path to the theme resource file.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the given xamlFile is null or empty string.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the given xamlFile or themeResource is null or empty string.</exception>
         /// <exception cref="System.IO.IOException">Thrown when there are file IO problems.</exception>
         /// <exception cref="Exception">Thrown when the content of the xaml file is not valid xaml form.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -98,7 +108,9 @@ namespace Tizen.NUI
             this.xamlFile = xamlFile;
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// The string key to identify the Theme.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; set; }
 
@@ -209,10 +221,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="viewType">The type of View.</param>
         /// <returns>Founded style instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetStyle(Type viewType)
         {
-            var currentType = viewType;
+            var currentType = viewType ?? throw new ArgumentNullException(nameof(viewType));
             ViewStyle resultStyle = null;
 
             do
