@@ -400,7 +400,7 @@ namespace Tizen.NUI.Binding
             var queue = new Queue<Element>(16);
             queue.Enqueue(this);
 
-            while (queue.Count > 0)
+            while (queue.Count > 0 && queue.Dequeue() != null)
             {
                 ReadOnlyCollection<Element> children = queue.Dequeue().LogicalChildrenInternal;
                 for (var i = 0; i < children.Count; i++)
@@ -506,7 +506,7 @@ namespace Tizen.NUI.Binding
             var queue = new Queue<Element>(16);
             queue.Enqueue(this);
 
-            while (queue.Count > 0)
+            while (queue.Count > 0 && queue.Dequeue() != null)
             {
                 ReadOnlyCollection<Element> children = queue.Dequeue().LogicalChildrenInternal;
                 for (var i = 0; i < children.Count; i++)

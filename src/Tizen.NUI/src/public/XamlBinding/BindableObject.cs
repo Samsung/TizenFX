@@ -694,7 +694,10 @@ namespace Tizen.NUI.Binding
                     while (delayQueue.Count > 0)
                     {
                         SetValueArgs s = delayQueue.Dequeue();
-                        SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, forceSendChangeSignal, s.Attributes);
+                        if (s != null)
+                        {
+                            SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, forceSendChangeSignal, s.Attributes);
+                        }
                     }
 
                     context.DelayedSetters = null;
