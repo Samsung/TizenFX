@@ -211,7 +211,7 @@ namespace Tizen.NUI.BaseComponents
                     Text = translatableText;
                     if (systemlangTextFlag == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                        SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
                         systemlangTextFlag = true;
                     }
                 }
@@ -968,6 +968,11 @@ namespace Tizen.NUI.BaseComponents
             if (disposed)
             {
                 return;
+            }
+
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
             if (type == DisposeTypes.Explicit)
