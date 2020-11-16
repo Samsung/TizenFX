@@ -750,7 +750,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            Interop.Actor.Actor_Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.ActorAdd(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = this.GetRootLayer();
@@ -763,7 +763,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            Interop.Actor.Actor_Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.ActorRemove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = null;
         }
@@ -1404,7 +1404,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
@@ -1427,7 +1427,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
