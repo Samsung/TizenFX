@@ -335,5 +335,50 @@ namespace Tizen.NUI.Components
 
             return defaultNavigator;
         }
+
+        /// <summary>
+        /// Shows a dialog by pushing a page containing dialog to default navigator.
+        /// </summary>
+        /// <param name="content">The content of Dialog.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ShowDialog(View content = null)
+        {
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+
+            var dialog = new Dialog(content);
+            SetDialogScrim(dialog);
+
+            var dialogPage = new Page(dialog);
+            defaultNavigator.Push(dialogPage);
+        }
+
+        private static void SetDialogScrim(Dialog dialog)
+        {
+            if (dialog == null)
+            {
+                return;
+            }
+
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+            var defaultScrim = dialog.Scrim;
+
+            //Copies default scrim's GUI properties.
+            var scrim = new VisualView();
+            scrim.BackgroundColor = defaultScrim.BackgroundColor;
+            scrim.Size = defaultScrim.Size;
+            scrim.TouchEvent += (object source, View.TouchEventArgs e) =>
+            {
+                if (e.Touch.GetState(0) == PointStateType.Up)
+                {
+                    defaultNavigator.Pop();
+                }
+
+                return true;
+            };
+
+            dialog.Scrim = scrim;
+        }
     }
 } //namespace Tizen.NUI
