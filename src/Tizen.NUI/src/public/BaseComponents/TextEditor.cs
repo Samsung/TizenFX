@@ -1216,6 +1216,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+            }
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -1253,7 +1258,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (systemlangTextFlag == false)
                 {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                    SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
                     systemlangTextFlag = true;
                 }
                 return translatableText;
