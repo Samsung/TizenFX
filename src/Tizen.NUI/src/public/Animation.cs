@@ -1318,11 +1318,14 @@ namespace Tizen.NUI
 
         private void OnFinished(IntPtr data)
         {
+            Tizen.Log.Error("NUI", $"[TEMP]OnFinished() START");
             if (_animationFinishedEventHandler != null)
             {
                 //here we send all data to user event handlers
                 _animationFinishedEventHandler(this, null);
+                Tizen.Log.Error("NUI", $"[TEMP]OnFinished() handler is invoked! should be shown!");
             }
+            Tizen.Log.Error("NUI", $"[TEMP]OnFinished() END");
         }
 
         private void OnProgressReached(IntPtr data)
