@@ -108,7 +108,7 @@ namespace Tizen.NUI.Xaml
             {
                 var nsResolver = serviceProvider.GetService(typeof (IXmlNamespaceResolver)) as IXmlNamespaceResolver;
                 if (nsResolver == null)
-                    throw new ArgumentException();
+                    throw new ArgumentException(nameof(nsResolver));
                 IXmlLineInfo xmlLineInfo = null;
                 var xmlLineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 if (xmlLineInfoProvider != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI.Xaml
 
                 var split = match.Split(':');
                 if (split.Length > 2)
-                    throw new ArgumentException();
+                    throw new ArgumentException(nameof(split.Length));
 
                 string prefix; //, name;
                 if (split.Length == 2)
