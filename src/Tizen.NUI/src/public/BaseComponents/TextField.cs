@@ -136,7 +136,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldTextSid = value;
                 Text = SetTranslatable(textFieldTextSid);
@@ -174,7 +174,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textFieldPlaceHolderTextSid);
