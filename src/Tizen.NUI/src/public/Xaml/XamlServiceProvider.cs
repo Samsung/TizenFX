@@ -159,7 +159,7 @@ namespace Tizen.NUI.Xaml
             if (objectAndParents == null)
                 throw new ArgumentNullException(nameof(objectAndParents));
             if (objectAndParents.Length == 0)
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(objectAndParents.Length));
 
             this.objectAndParents = objectAndParents;
             this.targetProperty = targetProperty;
@@ -211,9 +211,9 @@ namespace Tizen.NUI.Xaml
         {
             this.currentAssembly = currentAssembly;
             if (namespaceResolver == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(namespaceResolver));
             if (getTypeFromXmlName == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(getTypeFromXmlName));
 
             this.namespaceResolver = namespaceResolver;
             this.getTypeFromXmlName = getTypeFromXmlName;
