@@ -37,7 +37,7 @@ namespace Tizen.NUI.Binding
                     && value != BindingMode.OneWayToSource
                     && value != BindingMode.TwoWay
                     && value != BindingMode.OneTime)
-                    throw new ArgumentException("mode is not a valid BindingMode", "mode");
+                    throw new ArgumentException("mode is not a valid BindingMode", nameof(Mode));
 
                 ThrowIfApplied();
 
