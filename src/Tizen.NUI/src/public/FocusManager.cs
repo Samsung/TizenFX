@@ -293,7 +293,7 @@ namespace Tizen.NUI
         {
             if (view == null)
             {
-                throw new ArgumentNullException("the target view should not be null");
+                throw new ArgumentNullException(nameof(view), "the target view should not be null");
             }
 
             bool ret = Interop.FocusManager.FocusManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
