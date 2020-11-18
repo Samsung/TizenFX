@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             string ret = "";
-			
+
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            
+
             bool ret = false;
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
@@ -451,7 +451,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(ResourceUrlProperty, value);
                 resourceUrlSelector.UpdateIfNeeds(this, value);
-                NotifyPropertyChanged();       
+                NotifyPropertyChanged();
             }
         }
 
@@ -881,8 +881,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpdateImage(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
-                _desired_width = value;
+                if (_desired_width != value)
+                {
+                    _desired_width = value;
+                    UpdateImage(0, null);
+                }
             }
         }
 
@@ -906,8 +909,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpdateImage(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
-                _desired_height = value;
+                if (_desired_height != value)
+                {
+                    _desired_height = value;
+                    UpdateImage(0, null);
+                }
             }
         }
 
@@ -931,7 +937,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
             }
         }
- 
+
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
@@ -1006,7 +1012,7 @@ namespace Tizen.NUI.BaseComponents
 
             Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-			
+
             ResourceUrl = url;
         }
 
@@ -1082,10 +1088,10 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Merge(fromMap);
-			
+
             SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
         }
-		
+
         private void UpdateImage(int key, PropertyValue value)
         {
             PropertyMap temp = new PropertyMap();
@@ -1131,21 +1137,22 @@ namespace Tizen.NUI.BaseComponents
                 {
                   Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
 
-                  int ret_width,ret_height;
-                  if( imageSize.Width > imageSize.Height)
+                  int adjustedDesiredWidth, adjustedDesiredHeight;
+                  float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                  float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                  if( aspectOfImageSize > aspectOfDesiredSize)
                   {
-                      ret_width = _desired_width;
-                      ret_height = imageSize.Height * _desired_height /(imageSize.Width);
+                      adjustedDesiredWidth = _desired_width;
+                      adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
                   }
                   else
                   {
-                      ret_width = imageSize.Width*_desired_width/(imageSize.Height);
-                      ret_height = _desired_height;
-
+                      adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
+                      adjustedDesiredHeight = _desired_height;
                   }
-                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
-                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
-                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ShrinkToFit));
+                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
+                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
+                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ScaleToFill));
                 }
             }
 
