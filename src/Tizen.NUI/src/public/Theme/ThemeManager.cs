@@ -88,6 +88,7 @@ namespace Tizen.NUI
             set
             {
                 currentTheme = value;
+                ChangeId++;
                 NotifyThemeChanged();
             }
         }
@@ -108,6 +109,8 @@ namespace Tizen.NUI
         }
 
         internal static bool ThemeApplied => (CurrentTheme.Count > 0 || DefaultTheme.Count > 0);
+
+        internal static uint ChangeId { get; set; }
 
         private static Profile CurrentProfile
         {
