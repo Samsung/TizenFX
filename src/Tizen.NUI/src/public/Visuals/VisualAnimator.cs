@@ -163,7 +163,6 @@ namespace Tizen.NUI
             _transition.Add("animator", new PropertyValue(_animator));
 
             _outputVisualMap = _transition;
-            base.ComposingPropertyMap();
         }
     }
     //temporary fix for TCT
