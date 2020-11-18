@@ -42,10 +42,10 @@ namespace Tizen.NUI.Binding
 
         public int Count
         {
-            get 
+            get
             {
                 lock (_list)
-                    return _list.Count; 
+                    return _list.Count;
             }
         }
 

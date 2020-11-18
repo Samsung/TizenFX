@@ -1022,7 +1022,7 @@ namespace Tizen.NUI.BaseComponents
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
-        private void  NotifyPropertyChangedAndRequestLayout()
+        private void NotifyPropertyChangedAndRequestLayout()
         {
             NotifyPropertyChanged();
             Layout?.RequestLayout();

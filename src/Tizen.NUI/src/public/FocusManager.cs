@@ -395,7 +395,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
-            if(arg0 != null)
+            if (arg0 != null)
             {
                 _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
                 _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
@@ -775,7 +775,7 @@ namespace Tizen.NUI
 
             public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
-                if(_customFocusAlgorithm == null)
+                if (_customFocusAlgorithm == null)
                 {
                     Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
                     return null;

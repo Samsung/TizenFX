@@ -129,7 +129,7 @@ namespace Tizen.NUI.BaseComponents
                 // If child already has a parent then re-parent child
                 if (oldParent != null)
                 {
-                    if (child.Layout !=null)
+                    if (child.Layout != null)
                     {
                         child.Layout.SetReplaceFlag();
                     }
@@ -312,7 +312,7 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Add(this);
 
                 LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(parentChildren.Count-1);
+                layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
 
                 Interop.NDalic.RaiseToTop(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -613,11 +613,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ObjectDump()
         {
-            if ( 0== Children.Count)
+            if (0 == Children.Count)
             {
                 Type type = this.GetType();
                 PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                foreach(var property in properties)
+                foreach (var property in properties)
                 {
                     if (null != property && property.CanRead)
                     {

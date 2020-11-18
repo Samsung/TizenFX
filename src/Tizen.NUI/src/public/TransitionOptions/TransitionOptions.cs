@@ -130,7 +130,7 @@ namespace Tizen.NUI
                 }
             }
         }
-        
+
         /// <summary>
         /// Emits the event when the animation is started.
         /// </summary>
