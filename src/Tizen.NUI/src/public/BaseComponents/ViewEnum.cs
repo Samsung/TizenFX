@@ -47,8 +47,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Constant which indicates child size should match parent size
         /// </summary>
-       /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public const int MatchParent = -1;
         /// <summary>
         /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size

@@ -52,13 +52,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -70,13 +70,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -88,13 +88,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -106,13 +106,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -124,13 +124,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -142,13 +142,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
@@ -160,13 +160,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -178,13 +178,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -200,28 +200,28 @@ namespace Tizen.NUI.UIComponents
                     case Align.End: { valueToString = "END"; break; }
                     case Align.Top: { valueToString = "TOP"; break; }
                     case Align.Bottom: { valueToString = "BOTTOM"; break; }
-                    default: { valueToString = "END";  break; }
+                    default: { valueToString = "END"; break; }
                 }
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            string temp;
-            if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
-            {
-                NUILog.Error("LabelRelativeAlignment get error!");
-            }
-            switch (temp)
-            {
-                case "BEGIN":  return Align.Begin;
-                case "END": return Align.End;
-                case "TOP": return Align.Top;
-                case "BOTTOM": return Align.Bottom;
-                default: return Align.End;
-            }
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             string temp;
+             if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
+             {
+                 NUILog.Error("LabelRelativeAlignment get error!");
+             }
+             switch (temp)
+             {
+                 case "BEGIN": return Align.Begin;
+                 case "END": return Align.End;
+                 case "TOP": return Align.Top;
+                 case "BOTTOM": return Align.Bottom;
+                 default: return Align.End;
+             }
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -233,13 +233,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_PADDING).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_PADDING).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -251,13 +251,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -269,13 +269,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -287,13 +287,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -305,13 +305,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -323,13 +323,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.TOGGLABLE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.TOGGLABLE).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.TOGGLABLE).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -341,13 +341,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -357,21 +357,21 @@ namespace Tizen.NUI.UIComponents
             if (newValue != null)
             {
                 PropertyMap background = new PropertyMap();
-                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
-                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
+                          .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(map);
-            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
-            value?.Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+             Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(map);
+             Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
+             value?.Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -381,21 +381,21 @@ namespace Tizen.NUI.UIComponents
             if (newValue != null)
             {
                 PropertyMap background = new PropertyMap();
-                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
-                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
+                          .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(map);
-            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
-            value?.Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+             Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(map);
+             Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
+             value?.Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -407,13 +407,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -425,16 +425,16 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var button = (Button)bindable;
-            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(map);
-            Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
-            string str = "";
-            value?.Get(out str);
-            return str;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var button = (Button)bindable;
+             Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(map);
+             Tizen.NUI.PropertyValue value = map.Find(TextVisualProperty.Text, "Text");
+             string str = "";
+             value?.Get(out str);
+             return str;
+         });
 
         private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         private ClickedCallbackType _clickedCallback;

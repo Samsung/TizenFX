@@ -15,9 +15,11 @@ namespace Tizen.NUI.Binding
         bool useLegacyFallback;
         T android;
         [Obsolete]
-        public T Android {
+        public T Android
+        {
             get { return android; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 android = value;
             }
@@ -25,9 +27,11 @@ namespace Tizen.NUI.Binding
 
         T ios;
         [Obsolete]
-        public T iOS {
+        public T iOS
+        {
             get { return ios; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 ios = value;
             }
@@ -35,9 +39,11 @@ namespace Tizen.NUI.Binding
 
         T winPhone;
         [Obsolete]
-        public T WinPhone {
+        public T WinPhone
+        {
             get { return winPhone; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 winPhone = value;
             }
@@ -45,9 +51,11 @@ namespace Tizen.NUI.Binding
 
         bool hasDefault;
         T @default;
-        public T Default {
+        public T Default
+        {
             get { return @default; }
-            set {
+            set
+            {
                 hasDefault = true;
                 @default = value;
             }
@@ -61,7 +69,8 @@ namespace Tizen.NUI.Binding
 
         public static implicit operator T(OnPlatform<T> onPlatform)
         {
-            foreach (var onPlat in onPlatform.Platforms) {
+            foreach (var onPlat in onPlatform.Platforms)
+            {
                 if (onPlat.Platform == null)
                     continue;
                 if (null != Device.RuntimePlatform && !onPlat.Platform.Contains(Device.RuntimePlatform))

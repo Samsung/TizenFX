@@ -121,7 +121,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object other)
         {
-            if ((other == null) || ! GetType().Equals(other.GetType()))
+            if ((other == null) || !GetType().Equals(other.GetType()))
             {
                 return false;
             }

@@ -39,7 +39,7 @@ namespace Tizen.NUI
             public static extern uint GestureDetector_GetAttachedActorCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureDetector_GetAttachedActor")]
-            public static extern global::System.IntPtr GestureDetector_GetAttachedActor(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);           
+            public static extern global::System.IntPtr GestureDetector_GetAttachedActor(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
         }
     }
 }

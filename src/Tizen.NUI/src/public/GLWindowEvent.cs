@@ -378,7 +378,8 @@ namespace Tizen.NUI
             public bool Visibility
             {
                 get => _visibility;
-                set {
+                set
+                {
                     _visibility = value;
                 }
             }
@@ -427,9 +428,9 @@ namespace Tizen.NUI
                 VisibilityChangedEventHandler -= value;
                 if (VisibilityChangedEventHandler == null)
                 {
-                    if(_GLVisibilityChangedEventSignal != null)
+                    if (_GLVisibilityChangedEventSignal != null)
                     {
-                        if(_GLVisibilityChangedEventSignal.Empty() == false)
+                        if (_GLVisibilityChangedEventSignal.Empty() == false)
                         {
                             _GLVisibilityChangedEventSignal.Disconnect(_GLVisibilityChangedEventCallback);
                         }
@@ -444,7 +445,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if(_GLVisibilityChangedEventSignal == null)
+            if (_GLVisibilityChangedEventSignal == null)
             {
                 _GLVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
             }

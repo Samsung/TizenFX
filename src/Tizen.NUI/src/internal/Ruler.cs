@@ -37,7 +37,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-           throw new global::System.MethodAccessException("C++ destructor does not have public access");
+            throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.

@@ -265,34 +265,34 @@ namespace Tizen.NUI.Components
             int targetSibling = -1;
             bool isHorizontal = LayoutOrientation == Orientation.Horizontal;
 
-            switch(direction)
+            switch (direction)
             {
-                case View.FocusDirection.Left :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - 1 : currentFocusedView.SiblingOrder - Rows;
-                    break;
-                }
-                case View.FocusDirection.Right :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + 1 : currentFocusedView.SiblingOrder + Rows;
-                    break;
-                }
-                case View.FocusDirection.Up :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - Columns : currentFocusedView.SiblingOrder - 1;
-                    break;
-                }
-                case View.FocusDirection.Down :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + Columns : currentFocusedView.SiblingOrder + 1;
-                    break;
-                }
+                case View.FocusDirection.Left:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - 1 : currentFocusedView.SiblingOrder - Rows;
+                        break;
+                    }
+                case View.FocusDirection.Right:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + 1 : currentFocusedView.SiblingOrder + Rows;
+                        break;
+                    }
+                case View.FocusDirection.Up:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - Columns : currentFocusedView.SiblingOrder - 1;
+                        break;
+                    }
+                case View.FocusDirection.Down:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + Columns : currentFocusedView.SiblingOrder + 1;
+                        break;
+                    }
             }
 
-            if(targetSibling > -1 && targetSibling < Container.Children.Count)
+            if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecycleItem candidate = Container.Children[targetSibling] as RecycleItem;
-                if(candidate != null && candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
+                if (candidate != null && candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
                 {
                     nextFocusedView = candidate;
                 }

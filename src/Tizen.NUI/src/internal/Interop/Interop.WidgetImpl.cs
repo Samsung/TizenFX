@@ -71,7 +71,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_director_connect")]
             public static extern void WidgetImpl_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_0 delegate0, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_1 delegate1,
                 Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_2 delegate2, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_3 delegate3, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_4 delegate4, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_5 delegate5,
-                Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_6 delegate6, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_7 delegate7);           
+                Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_6 delegate6, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_7 delegate7);
         }
     }
 }

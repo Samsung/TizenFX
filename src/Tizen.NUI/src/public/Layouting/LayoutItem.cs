@@ -353,7 +353,7 @@ namespace Tizen.NUI
             Flags = Flags | LayoutFlags.ForceLayout;
             if (Parent != null)
             {
-                LayoutGroup layoutGroup =  Parent as LayoutGroup;
+                LayoutGroup layoutGroup = Parent as LayoutGroup;
                 if (layoutGroup != null && !layoutGroup.LayoutRequested)
                 {
                     layoutGroup.RequestLayout();

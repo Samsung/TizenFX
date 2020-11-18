@@ -149,7 +149,7 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor");
-                
+
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -349,7 +349,7 @@ namespace Tizen.NUI
         {
             return new Size(size2d.Width, size2d.Height, 0);
         }
-        
+
 
         internal static Size GetSizeFromPtr(global::System.IntPtr cPtr)
         {
