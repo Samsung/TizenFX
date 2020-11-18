@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
                         LayoutLength childLeft = new LayoutLength(childPosition.X);
                         LayoutLength childTop = new LayoutLength(childPosition.Y);
 
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
                     }
                 }
             }
@@ -433,10 +433,6 @@ namespace Tizen.NUI.Components
             set
             {
                 ContentContainer.Layout = value;
-                if (ContentContainer.Layout != null)
-                {
-                    ContentContainer.Layout.SetPositionByLayout = false;
-                }
             }
         }
 
@@ -606,12 +602,9 @@ namespace Tizen.NUI.Components
             ContentContainer = new View()
             {
                 Name = "ContentContainer",
+                ExcludeLayouting = false,
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
-                Layout = new AbsoluteLayout()
-                {
-                    SetPositionByLayout = false
-                },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
