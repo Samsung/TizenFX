@@ -48,7 +48,7 @@ namespace Tizen.NUI.Xaml
             var type = XamlParser.GetElementType(node.XmlType, node, Context.RootElement?.GetType().GetTypeInfo().Assembly,
                 out xpe);
             if (type == null)
-                throw new ArgumentNullException(nameof(type));
+                throw new ArgumentNullException(null, "type should not be null");
             if (xpe != null)
                 throw xpe;
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI.Xaml
                 INode xKey;
                 if (!node.Properties.TryGetValue(XmlName.xKey, out xKey))
                     xKey = null;
-                
+
                 node.Properties.Clear();
                 node.CollectionItems.Clear();
 
