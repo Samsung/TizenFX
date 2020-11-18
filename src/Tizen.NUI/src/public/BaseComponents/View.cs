@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,6 +62,7 @@ namespace Tizen.NUI.BaseComponents
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
+        private bool excludeLayouting = true;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
@@ -202,6 +203,25 @@ namespace Tizen.NUI.BaseComponents
                 OnControlStateChanged(changeInfo);
 
                 ControlStateChangedEvent?.Invoke(this, changeInfo);
+            }
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ExcludeLayouting
+        {
+            get
+            {
+                return excludeLayouting;
+            }
+            set
+            {
+                excludeLayouting = value;
+                if(Layout != null && Layout.SetPositionByLayout != value)
+                {
+                    Layout.SetPositionByLayout = value;
+                    Layout.RequestLayout();
+                }
             }
         }
 
@@ -2186,6 +2206,8 @@ namespace Tizen.NUI.BaseComponents
 
                 // Remove existing layout from it's parent layout group.
                 _layout?.Unparent();
+
+                value.SetPositionByLayout = excludeLayouting;
 
                 // Set layout to this view
                 SetLayout(value);

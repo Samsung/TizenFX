@@ -39,14 +39,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ItemFactory.delete_ItemFactory(swigCPtr);
+            Interop.ItemFactory.DeleteItemFactory(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetNumberOfItems()
         {
-            uint ret = Interop.ItemFactory.ItemFactory_GetNumberOfItems(swigCPtr);
+            uint ret = Interop.ItemFactory.ItemFactoryGetNumberOfItems(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual View NewItem(uint itemId)
         {
-            View ret = new View(Interop.ItemFactory.ItemFactory_NewItem(swigCPtr, itemId), true);
+            View ret = new View(Interop.ItemFactory.ItemFactoryNewItem(swigCPtr, itemId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -64,30 +64,30 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ItemReleased(uint itemId, View view)
         {
-            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
+            if (DerivedClassHasMethod("ItemReleased", methodTypes2)) Interop.ItemFactory.ItemFactoryItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactoryItemReleased(swigCPtr, itemId, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ItemFactory() : this(Interop.ItemFactory.new_ItemFactory(), true)
+        public ItemFactory() : this(Interop.ItemFactory.NewItemFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            SwigDirectorConnect();
+            DirectorConnect();
         }
 
-        private void SwigDirectorConnect()
+        private void DirectorConnect()
         {
-            if (SwigDerivedClassHasMethod("GetNumberOfItems", swigMethodTypes0))
-                swigDelegate0 = new SwigDelegateItemFactory_0(SwigDirectorGetNumberOfItems);
-            if (SwigDerivedClassHasMethod("NewItem", swigMethodTypes1))
-                swigDelegate1 = new SwigDelegateItemFactory_1(SwigDirectorNewItem);
-            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2))
-                swigDelegate2 = new SwigDelegateItemFactory_2(SwigDirectorItemReleased);
-            Interop.ItemFactory.ItemFactory_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
+            if (DerivedClassHasMethod("GetNumberOfItems", methodTypes0))
+                swigDelegate0 = new DelegateItemFactory0(DirectorGetNumberOfItems);
+            if (DerivedClassHasMethod("NewItem", methodTypes1))
+                swigDelegate1 = new DelegateItemFactory1(DirectorNewItem);
+            if (DerivedClassHasMethod("ItemReleased", methodTypes2))
+                swigDelegate2 = new DelegateItemFactory2(DirectorItemReleased);
+            Interop.ItemFactory.ItemFactoryDirectorConnect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
         }
 
-        private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
+        private bool DerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
             bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(ItemFactory));
@@ -95,39 +95,39 @@ namespace Tizen.NUI
             return hasDerivedMethod && (methodInfo != null);
         }
 
-        private uint SwigDirectorGetNumberOfItems()
+        private uint DirectorGetNumberOfItems()
         {
             return GetNumberOfItems();
         }
 
-        private global::System.IntPtr SwigDirectorNewItem(uint itemId)
+        private global::System.IntPtr DirectorNewItem(uint itemId)
         {
             return View.getCPtr(NewItem(itemId)).Handle;
         }
 
-        private void SwigDirectorItemReleased(uint itemId, global::System.IntPtr actor)
+        private void DirectorItemReleased(uint itemId, global::System.IntPtr actor)
         {
             ItemReleased(itemId, new View(actor, true));
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate uint SwigDelegateItemFactory_0();
+        public delegate uint DelegateItemFactory0();
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
+        public delegate global::System.IntPtr DelegateItemFactory1(uint itemId);
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
+        public delegate void DelegateItemFactory2(uint itemId, global::System.IntPtr actor);
 
-        private SwigDelegateItemFactory_0 swigDelegate0;
-        private SwigDelegateItemFactory_1 swigDelegate1;
-        private SwigDelegateItemFactory_2 swigDelegate2;
+        private DelegateItemFactory0 swigDelegate0;
+        private DelegateItemFactory1 swigDelegate1;
+        private DelegateItemFactory2 swigDelegate2;
 
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };
-        private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(uint), typeof(View) };
+        private static global::System.Type[] methodTypes0 = new global::System.Type[] { };
+        private static global::System.Type[] methodTypes1 = new global::System.Type[] { typeof(uint) };
+        private static global::System.Type[] methodTypes2 = new global::System.Type[] { typeof(uint), typeof(View) };
     }
 }
