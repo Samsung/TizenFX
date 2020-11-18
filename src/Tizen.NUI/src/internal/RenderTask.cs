@@ -152,7 +152,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static RenderTask DownCast(BaseHandle handle)
         {
-            RenderTask ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTask;
+            RenderTask ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTask;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

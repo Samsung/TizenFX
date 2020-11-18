@@ -45,14 +45,16 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IntPtr AcquireBuffer(ref int width, ref int height, ref int stride) {
+        public IntPtr AcquireBuffer(ref int width, ref int height, ref int stride)
+        {
             IntPtr ret = Interop.NativeImageSource.AcquireBuffer(this.swigCPtr.Handle, ref width, ref height, ref stride);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ReleaseBuffer() {
+        public bool ReleaseBuffer()
+        {
             bool ret = Interop.NativeImageSource.ReleaseBuffer(this.swigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

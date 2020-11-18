@@ -785,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            
+
             if (newValue == null)
             {
                 viewStyle.backgroundColorSelector = null;
@@ -795,7 +795,7 @@ namespace Tizen.NUI.BaseComponents
                 viewStyle.backgroundColorSelector = ((Selector<Color>)newValue).Clone();
                 viewStyle.backgroundImageSelector = null;
             }
-            
+
         },
         defaultValueCreator: (bindable) =>
         {

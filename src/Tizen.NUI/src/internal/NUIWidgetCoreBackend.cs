@@ -106,7 +106,7 @@ namespace Tizen.NUI
         {
             if (_application != null)
             {
-                _application.AddWidgetInfo( widgetInfo );
+                _application.AddWidgetInfo(widgetInfo);
             }
         }
 
@@ -192,20 +192,20 @@ namespace Tizen.NUI
             switch (e.MemoryStatus)
             {
                 case Application.MemoryStatus.Normal:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
+                        break;
+                    }
                 case Application.MemoryStatus.Low:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                        break;
+                    }
                 case Application.MemoryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                        break;
+                    }
             }
         }
 
@@ -220,20 +220,20 @@ namespace Tizen.NUI
             switch (e.BatteryStatus)
             {
                 case Application.BatteryStatus.Normal:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                        break;
+                    }
                 case Application.BatteryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                        break;
+                    }
                 case Application.BatteryStatus.PowerOff:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
             }
         }
 

@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
 
-        static ViewStyle() {}
+        static ViewStyle() { }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -716,9 +716,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (view == null) return;
 
-            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);            
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var styleProperties);
             BindableProperty.GetBindablePropertysOfType(view.GetType(), out var viewProperties);
-            
+
 
             if (styleProperties == null || viewProperties == null) return;
 

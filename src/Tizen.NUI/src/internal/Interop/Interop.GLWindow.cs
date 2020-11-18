@@ -13,7 +13,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr GlWindow_New__SWIG_0();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_New__SWIG_1")]
-            public static extern global::System.IntPtr GlWindow_New__SWIG_1(HandleRef jarg1, string jarg2, string jarg3, bool jarg4 );
+            public static extern global::System.IntPtr GlWindow_New__SWIG_1(HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow__SWIG_0")]
             public static extern global::System.IntPtr new_GlWindow__SWIG_0();
@@ -91,7 +91,7 @@ namespace Tizen.NUI
             public static extern void GlWindow_SetPreferredOrientation(HandleRef jarg1, int jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_RegisterGlCallback")]
-            public static extern void GlWindow_RegisterGlCallback(HandleRef  jarg1, HandleRef  jarg2, HandleRef  jarg3, HandleRef  jarg4);
+            public static extern void GlWindow_RegisterGlCallback(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, HandleRef jarg4);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_RenderOnce")]
             public static extern void GlWindow_RenderOnce(HandleRef jarg1);

@@ -7,7 +7,7 @@ namespace Tizen.NUI.Binding
         public T Phone { get; set; }
 
         public T Tablet { get; set; }
-        
+
         public T Desktop { get; set; }
 
         public T TV { get; set; }

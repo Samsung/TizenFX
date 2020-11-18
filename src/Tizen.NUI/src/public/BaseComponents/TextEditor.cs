@@ -1261,12 +1261,12 @@ namespace Tizen.NUI.BaseComponents
 
             if (this.HasBody())
             {
-                if(_textEditorTextChangedCallbackDelegate != null)
+                if (_textEditorTextChangedCallbackDelegate != null)
                 {
                     TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
                 }
 
-                if(_textEditorMaxLengthReachedCallbackDelegate != null)
+                if (_textEditorMaxLengthReachedCallbackDelegate != null)
                 {
                     this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
                 }

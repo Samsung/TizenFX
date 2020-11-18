@@ -76,20 +76,20 @@ namespace Tizen.NUI.Components
             }
             set
             {
-               if (_content)
-               {
-                   if (_content != value)
-                   {
-                       Remove(_content);
-                       _content = value;
-                       Add(value);
-                   }
-               }
-               else
-               {
-                   _content = value;
-                   Add(value);
-               }
+                if (_content)
+                {
+                    if (_content != value)
+                    {
+                        Remove(_content);
+                        _content = value;
+                        Add(value);
+                    }
+                }
+                else
+                {
+                    _content = value;
+                    Add(value);
+                }
             }
         }
 

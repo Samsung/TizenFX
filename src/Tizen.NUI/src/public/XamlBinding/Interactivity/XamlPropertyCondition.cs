@@ -67,7 +67,7 @@ namespace Tizen.NUI.Binding
                 {
                     _triggerValue = value;
                 }
-                
+
             }
         }
 

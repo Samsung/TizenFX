@@ -72,7 +72,7 @@ namespace Tizen.NUI
 
         public static Model3dView DownCast(BaseHandle handle)
         {
-            Model3dView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Model3dView;
+            Model3dView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Model3dView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
