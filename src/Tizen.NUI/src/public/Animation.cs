@@ -95,7 +95,9 @@ namespace Tizen.NUI
             {
                 if (_animationFinishedEventHandler == null && disposed == false)
                 {
-                    FinishedSignal().Connect(_finishedCallbackOfNative);
+                    AnimationSignal finishedSignal = FinishedSignal();
+                    finishedSignal.Connect(_finishedCallbackOfNative);
+                    finishedSignal.Dispose();
                 }
                 _animationFinishedEventHandler += value;
             }
@@ -103,10 +105,12 @@ namespace Tizen.NUI
             {
                 _animationFinishedEventHandler -= value;
 
-                if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                AnimationSignal finishedSignal = FinishedSignal();
+                if (_animationFinishedEventHandler == null && finishedSignal.Empty() == false)
                 {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                    finishedSignal.Disconnect(_finishedCallbackOfNative);
                 }
+                finishedSignal.Dispose();
             }
         }
 
@@ -124,7 +128,9 @@ namespace Tizen.NUI
                 if (_animationProgressReachedEventHandler == null)
                 {
                     _animationProgressReachedEventCallback = OnProgressReached;
-                    ProgressReachedSignal().Connect(_animationProgressReachedEventCallback);
+                    AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                    progressReachedSignal?.Connect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Dispose();
                 }
 
                 _animationProgressReachedEventHandler += value;
@@ -133,10 +139,12 @@ namespace Tizen.NUI
             {
                 _animationProgressReachedEventHandler -= value;
 
-                if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
+                AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                if (_animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
                 {
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
                 }
+                progressReachedSignal.Dispose();
             }
         }
 
@@ -550,6 +558,9 @@ namespace Tizen.NUI
             {
                 AnimateBy(_prop, val);
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -572,12 +583,17 @@ namespace Tizen.NUI
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateBy(_prop, val, alphaFunction, time);
+                time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateBy(_prop, val, time);
+                time.Dispose();
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -602,6 +618,9 @@ namespace Tizen.NUI
             {
                 AnimateTo(_prop, val);
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -654,12 +673,17 @@ namespace Tizen.NUI
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateTo(_prop, val, alphaFunction, time);
+                time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateTo(_prop, val, time);
+                time.Dispose();
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -688,6 +712,8 @@ namespace Tizen.NUI
             {
                 AnimateBetween(_prop, keyFrames, interpolation);
             }
+
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -714,6 +740,9 @@ namespace Tizen.NUI
             {
                 AnimateBetween(_prop, keyFrames, time, interpolation);
             }
+
+            time.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -761,6 +790,7 @@ namespace Tizen.NUI
             {
                 Animate(view, path, forward, alphaFunction, time);
             }
+            time.Dispose();
         }
 
         /// <summary>
@@ -1290,14 +1320,17 @@ namespace Tizen.NUI
 
             if (_animationFinishedEventHandler != null)
             {
-                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                AnimationSignal finishedSignal = FinishedSignal();
+                finishedSignal?.Disconnect(_finishedCallbackOfNative);
+                finishedSignal?.Dispose();
                 _animationFinishedEventHandler = null;
             }
 
             if (_animationProgressReachedEventCallback != null)
             {
-
-                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                progressReachedSignal?.Dispose();
                 _animationProgressReachedEventCallback = null;
             }
 
