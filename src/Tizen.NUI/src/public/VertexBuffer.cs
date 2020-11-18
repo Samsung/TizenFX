@@ -49,6 +49,7 @@ namespace Tizen.NUI
         /// This function expects an array of structures with the same format that was given in the construction.
         /// </summary>
         /// <param name="vertices">The vertex data that will be copied to the buffer.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when vertices is null. </exception>
         /// <since_tizen> 8 </since_tizen>
 
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct

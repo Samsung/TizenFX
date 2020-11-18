@@ -37,6 +37,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -60,6 +61,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -82,6 +84,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -103,6 +106,7 @@ namespace Tizen.NUI
         /// <param name="url">The URL of the image file to load.</param>
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case loading failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -142,6 +146,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The image filter to use if the image needs to be downsampled to the requested size.</param>
         /// <param name="orientationCorrection">Whether to use image metadata to rotate or flip the image, for example, from portrait to landscape.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -166,6 +171,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method to use to map the source image to the desired dimensions.</param>
         /// <param name="samplingMode">The image filter to use if the image needs to be downsampled to the requested size.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -189,6 +195,7 @@ namespace Tizen.NUI
         /// <param name="size">The requested size for the image</param>
         /// <param name="fittingMode">The method to use to map the source image to the desired dimensions.</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -211,6 +218,7 @@ namespace Tizen.NUI
         /// <param name="filename">The name of the image.</param>
         /// <param name="size">The requested size for the image</param>
         /// <returns>Dimensions that image will have if it is loaded with given parameters.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -268,6 +276,7 @@ namespace Tizen.NUI
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <param name="orientationCorrection">Reorient the image to respect any orientation metadata in its header.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -291,6 +300,7 @@ namespace Tizen.NUI
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <param name="samplingMode">The filtering method used when sampling pixels from the input image while fitting it to desired size.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -313,6 +323,7 @@ namespace Tizen.NUI
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <param name="fittingMode">The method used to fit the shape of the image before loading to the shape defined by the size parameter.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -334,6 +345,7 @@ namespace Tizen.NUI
         /// <param name="url">The URL of the image file to load.</param>
         /// <param name="size">The width and height to fit the loaded image to, 0.0 means whole image.</param>
         /// <returns>Handle to the loaded PixelBuffer object or an empty handle in case downloading or decoding failed.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when size is null. </exception>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]

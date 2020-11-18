@@ -106,6 +106,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D WindowSize
         {
@@ -401,6 +402,7 @@ namespace Tizen.NUI
         /// This API is for setting several orientations one time.
         /// </summary>
         /// <param name="orientations">The list of orientations.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when orientations is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAvailableOrientations(List<GLWindow.GLWindowOrientation> orientations)
         {

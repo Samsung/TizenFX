@@ -223,6 +223,7 @@ namespace Tizen.NUI
         /// }
         ///
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when viewType is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {

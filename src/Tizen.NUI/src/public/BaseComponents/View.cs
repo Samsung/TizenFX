@@ -1684,6 +1684,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.MinimumSize.Width = 1;) is possible.
         /// </remarks>
@@ -1697,7 +1698,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (_layout != null && value != null)
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+                if (_layout != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
                     // To force the size it should be done through the width&height spec or Size2D.
@@ -2040,6 +2045,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Set a layout transitions for this View.
         ///</summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// Use LayoutTransitions to receive a collection of LayoutTransitions set on the View.
         /// </remarks>
@@ -2048,16 +2054,18 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                if (value == null)
+                {
+                    throw new global::System.ArgumentNullException(nameof(value));
+                }
                 if (_layoutTransitions == null)
                 {
                     _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
-                if (value != null)
-                {
-                    LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
 
-                    AttachTransitionsToChildren(value);
-                }
+                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
+
+                AttachTransitionsToChildren(value);
             }
         }
 

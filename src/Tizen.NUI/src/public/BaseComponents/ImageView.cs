@@ -655,6 +655,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Downcasts a handle to imageView handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
         /// <since_tizen> 3 </since_tizen>
@@ -679,22 +680,25 @@ namespace Tizen.NUI.BaseComponents
         /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
         /// <param name="url">The URL to the image resource to display.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when url is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
-            if (url != null)
+            if (null == url)
             {
-                if (url.Contains(".json"))
-                {
-                    Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
-                    return;
-                }
-
-                Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                ResourceUrl = url;
+                throw new ArgumentNullException(nameof(url));
             }
+
+            if (url.Contains(".json"))
+            {
+                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                return;
+            }
+
+            Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            ResourceUrl = url;
         }
 
         /// <summary>

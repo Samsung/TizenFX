@@ -57,14 +57,16 @@ namespace Tizen.NUI.Binding.Internals
             return (INameScope)bindable?.GetValue(NameScopeProperty);
         }
 
+        /// <exception cref="ArgumentNullException"> Thrown when bindable is null. </exception>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetNameScope(BindableObject bindable, INameScope value)
         {
-            if (bindable != null)
+            if (null == bindable)
             {
-                bindable.SetValue(NameScopeProperty, value);
+                throw new ArgumentNullException(nameof(bindable));
             }
+            bindable.SetValue(NameScopeProperty, value);
         }
     }
 }

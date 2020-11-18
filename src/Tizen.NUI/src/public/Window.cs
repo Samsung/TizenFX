@@ -326,6 +326,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public Size2D WindowSize
         {
@@ -335,16 +336,14 @@ namespace Tizen.NUI
             }
             set
             {
-                if (null != value)
-                {
-                    SetWindowSize(value);
-                }
+                SetWindowSize(value);
             }
         }
 
         /// <summary>
         /// Gets or sets a position of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public Position2D WindowPosition
         {
@@ -354,10 +353,7 @@ namespace Tizen.NUI
             }
             set
             {
-                if (null != value)
-                {
-                    SetPosition(value);
-                }
+                SetPosition(value);
             }
         }
 
@@ -912,26 +908,22 @@ namespace Tizen.NUI
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            if (null != layer)
-            {
-                Add(layer);
-            }
+            Add(layer);
         }
 
         /// <summary>
         /// Removes a layer from the stage.
         /// </summary>
         /// <param name="layer">Layer to remove.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
-            if (null != layer)
-            {
-                Remove(layer);
-            }
+            Remove(layer);
         }
 
         /// <summary>
@@ -1148,6 +1140,10 @@ namespace Tizen.NUI
 
         internal void Add(Layer layer)
         {
+            if (null == layer)
+            {
+                throw new ArgumentNullException(nameof(layer));
+            }
             Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1157,6 +1153,10 @@ namespace Tizen.NUI
 
         internal void Remove(Layer layer)
         {
+            if (null == layer)
+            {
+                throw new ArgumentNullException(nameof(layer));
+            }
             Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1249,6 +1249,10 @@ namespace Tizen.NUI
 
         internal void SetWindowSize(Size2D size)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
             Interop.Window.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
 
@@ -1268,6 +1272,10 @@ namespace Tizen.NUI
 
         internal void SetPosition(Position2D position)
         {
+            if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
             var val = new Uint16Pair((uint)position.X, (uint)position.Y);
             Interop.Window.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
 

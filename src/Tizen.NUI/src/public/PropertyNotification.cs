@@ -144,6 +144,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object of BaseHandle type.</param>
         /// <returns>Handle to an object of the PropertyNotification type.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification DownCast(BaseHandle handle)
         {

@@ -945,6 +945,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.

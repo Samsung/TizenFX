@@ -263,29 +263,32 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Add">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            if (child != null)
+            if (null == child)
             {
-                Container oldParent = child.GetParent();
+                throw new ArgumentNullException(nameof(child));
+            }
 
-                if (oldParent != this)
+            Container oldParent = child.GetParent();
+
+            if (oldParent != this)
+            {
+                if (oldParent != null)
                 {
-                    if (oldParent != null)
-                    {
-                        oldParent.Remove(child);
-                    }
-                    else
-                    {
-                        child.InternalParent = this;
-                    }
-                    Interop.Actor.ActorAdd(swigCPtr, View.getCPtr(child));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    Children.Add(child);
-                    BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
+                    oldParent.Remove(child);
                 }
+                else
+                {
+                    child.InternalParent = this;
+                }
+                Interop.Actor.ActorAdd(swigCPtr, View.getCPtr(child));
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Children.Add(child);
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -294,18 +297,21 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Remove">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            if (child != null)
+            if (null == child)
             {
-                Interop.Actor.ActorRemove(swigCPtr, View.getCPtr(child));
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                Children.Remove(child);
-                child.InternalParent = null;
+                throw new ArgumentNullException(nameof(child));
             }
+
+            Interop.Actor.ActorRemove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(child);
+            child.InternalParent = null;
         }
 
         /// <summary>
@@ -350,6 +356,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcasts a handle to layer handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.

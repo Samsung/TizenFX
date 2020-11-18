@@ -249,6 +249,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="obj">An object to create.</param>
         /// <returns>The created value.</returns>
+        /// <exception cref="global::System.ArgumentNullException"> Thrown when obj is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         static public PropertyValue CreateFromObject(System.Object obj)
         {

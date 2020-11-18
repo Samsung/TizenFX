@@ -69,6 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// OriginalKey property.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         public object OriginalKey
         {
             get

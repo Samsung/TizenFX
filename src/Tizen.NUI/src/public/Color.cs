@@ -121,6 +121,7 @@ namespace Tizen.NUI
         /// The conversion constructor from an hexcode of four floats.
         /// </summary>
         /// <param name="hexColor">Hex color code</param>
+        /// <exception cref="ArgumentNullException">This exception is thrown when hexColor is null.</exception>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -317,6 +318,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the addition.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator +(Color arg1, Color arg2)
         {
@@ -334,6 +336,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the subtraction.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1, Color arg2)
         {
@@ -350,6 +353,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The target value.</param>
         /// <returns>The color containg the negation.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1)
         {
@@ -367,6 +371,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, Color arg2)
         {
@@ -384,6 +389,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, float arg2)
         {
@@ -401,6 +407,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, Color arg2)
         {
@@ -418,6 +425,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, float arg2)
         {

@@ -97,6 +97,7 @@ namespace Tizen.NUI
         /// Copy other extents
         /// </summary>
         /// <param name="that"></param>
+        /// <exception cref="ArgumentNullException"> Thrown when that is null. </exception>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public void CopyFrom(Extents that)

@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <param name="color">background color of captured scene.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or position or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Position position, Size size, string path, Color color)
         {
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         /// <param name="color">background color of captured scene.</param>
         /// <param name="quality">The value to control image quality for jpeg file format in the range [1, 100].</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color, uint quality)
         {
@@ -192,7 +192,7 @@ namespace Tizen.NUI
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <param name="color">background color of captured scene.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path or color is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path, Color color)
         {
@@ -233,7 +233,7 @@ namespace Tizen.NUI
         /// <param name="path">image file path to be saved as a file.
         /// If path is empty string, the captured result is not be saved as a file.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to the invalid size values, of when width or height is lower than zero.</exception>
-        /// <exception cref="ArgumentNullException">This exception is due to the path is null.</exception>
+        /// <exception cref="ArgumentNullException">This exception is thrown when size or path is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Start(Container source, Size size, string path)
         {

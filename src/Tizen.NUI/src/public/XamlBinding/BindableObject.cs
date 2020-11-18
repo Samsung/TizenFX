@@ -209,6 +209,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindableProperty on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when property is null. </exception>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
@@ -219,12 +220,13 @@ namespace Tizen.NUI.Binding
             }
             else
             {
-                if (property != null)
+                if (null == property)
                 {
-                    property.PropertyChanged?.Invoke(this, null, value);
-
-                    OnPropertyChanged(property.PropertyName);
+                    throw new ArgumentNullException(nameof(property));
                 }
+                property.PropertyChanged?.Invoke(this, null, value);
+
+                OnPropertyChanged(property.PropertyName);
             }
         }
 
@@ -267,6 +269,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="bindable">The object on which to set the inherited binding context.</param>
         /// <param name="value">The inherited context to set.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when bindable is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetInheritedBindingContext(BindableObject bindable, object value)
         {

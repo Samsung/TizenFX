@@ -114,6 +114,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="visualName">The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</param>
         /// <param name="visualMap">The property map of a visual to create.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AddVisual(string visualName, VisualMap visualMap)
         {
@@ -231,6 +232,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
         /// <returns>Animation instance</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
@@ -288,6 +290,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="endTime">The end time of visual animation.</param>
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
@@ -353,6 +356,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// temporary fix to pass TCT.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
