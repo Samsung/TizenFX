@@ -946,6 +946,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Selected Text property (read-only).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SelectedText
+        {
+            get
+            {
+                string temp;
+                GetProperty(TextEditor.Property.SELECTED_TEXT).Get(out temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
         /// The Placeholder text color.
         /// </summary>
         /// <remarks>
@@ -1193,6 +1207,26 @@ namespace Tizen.NUI.BaseComponents
             return inputMethodContext;
         }
 
+        /// <summary>
+        /// Select the whole text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectWholeText()
+        {
+            Interop.TextEditor.TextEditor_SelectWholeText(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clear selection of the text.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectNone()
+        {
+            Interop.TextEditor.TextEditor_SelectNone(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -1336,6 +1370,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SELECTED_TEXT_START = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_START_get();
             internal static readonly int SELECTED_TEXT_END = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_END_get();
             internal static readonly int ENABLE_EDITING = Interop.TextEditor.TextEditor_Property_ENABLE_EDITING_get();
+            internal static readonly int SELECTED_TEXT = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_get();
         }
 
         internal class InputStyle
