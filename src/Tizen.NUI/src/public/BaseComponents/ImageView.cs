@@ -881,8 +881,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpdateImage(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
-                _desired_width = value;
+                if (_desired_width != value)
+                {
+                    _desired_width = value;
+                    UpdateImage(0, null);
+                }
             }
         }
 
@@ -906,8 +909,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpdateImage(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
-                _desired_height = value;
+                if (_desired_height != value)
+                {
+                    _desired_height = value;
+                    UpdateImage(0, null);
+                }
             }
         }
 
@@ -1131,21 +1137,22 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
 
-                    int ret_width, ret_height;
-                    if (imageSize.Width > imageSize.Height)
+                    int adjustedDesiredWidth, adjustedDesiredHeight;
+                    float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
+                    float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
+                    if( aspectOfImageSize > aspectOfDesiredSize)
                     {
-                        ret_width = _desired_width;
-                        ret_height = imageSize.Height * _desired_height / (imageSize.Width);
+                        adjustedDesiredWidth = _desired_width;
+                        adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
                     }
                     else
                     {
-                        ret_width = imageSize.Width * _desired_width / (imageSize.Height);
-                        ret_height = _desired_height;
-
+                        adjustedDesiredWidth = imageSize.Width * _desired_height/ imageSize.Height;
+                        adjustedDesiredHeight = _desired_height;
                     }
-                    temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
-                    temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
-                    temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ShrinkToFit));
+                    temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(adjustedDesiredWidth));
+                    temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(adjustedDesiredHeight));
+                    temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ScaleToFill));
                 }
             }
 
