@@ -215,6 +215,15 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextEditor_Property_PLACEHOLDER_get")]
             public static extern int TextEditor_Property_PLACEHOLDER_get();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectWholeText")]
+            public static extern void TextEditor_SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTED_TEXT_get")]
+            public static extern int TextEditor_Property_SELECTED_TEXT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectNone")]
+            public static extern int TextEditor_SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextEditor_Property_LINE_WRAP_MODE_get")]
             public static extern int TextEditor_Property_LINE_WRAP_MODE_get();
 
