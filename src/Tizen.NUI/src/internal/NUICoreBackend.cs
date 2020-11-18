@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            if(_application != null)
+            if (_application != null)
             {
                 _application.Dispose();
             }
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            if(_application != null)
+            if (_application != null)
             {
                 _application.Quit();
             }
@@ -158,11 +158,11 @@ namespace Tizen.NUI
             {
                 if (_windowSize != null)
                 {
-                  _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
+                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
                 }
                 else
                 {
-                  _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
                 }
             }
 
@@ -190,7 +190,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            handler?.Invoke( new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
+            handler?.Invoke(new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
         }
 
         /// <summary>
@@ -203,23 +203,23 @@ namespace Tizen.NUI
             Log.Info("NUI", "NUICorebackend OnMemoryLow Called");
             var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
 
-            switch ( e.MemoryStatus )
+            switch (e.MemoryStatus)
             {
                 case Application.MemoryStatus.Normal:
-                {
-                    handler?.Invoke( new LowMemoryEventArgs(LowMemoryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
+                        break;
+                    }
                 case Application.MemoryStatus.Low:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                        break;
+                    }
                 case Application.MemoryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                        break;
+                    }
             }
         }
 
@@ -232,7 +232,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            handler?.Invoke( new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
+            handler?.Invoke(new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
         }
 
         /// <summary>
@@ -244,23 +244,23 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnBatteryLow Called");
             var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
-            switch( e.BatteryStatus )
+            switch (e.BatteryStatus)
             {
                 case Application.BatteryStatus.Normal:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                        break;
+                    }
                 case Application.BatteryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                        break;
+                    }
                 case Application.BatteryStatus.PowerOff:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
             }
         }
 
@@ -313,8 +313,8 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnAppControl Called");
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP,false);
-            handler?.Invoke( new AppControlReceivedEventArgs(new ReceivedAppControl(handle)) );
+            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP, false);
+            handler?.Invoke(new AppControlReceivedEventArgs(new ReceivedAppControl(handle)));
         }
 
         /// <summary>

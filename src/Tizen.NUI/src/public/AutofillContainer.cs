@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// <param name="name"> The AutofillContainer name</param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AutofillContainer(string name) : this(Interop.AutofillContainer.AutofillContainer_New( name ), true)
+        public AutofillContainer(string name) : this(Interop.AutofillContainer.AutofillContainer_New(name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

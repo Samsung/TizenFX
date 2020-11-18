@@ -30,7 +30,7 @@ namespace Tizen.NUI.Binding
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Style([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType)
+        public Style([TypeConverter(typeof(TypeTypeConverter))][Parameter("TargetType")] Type targetType)
         {
             if (targetType == null)
                 throw new ArgumentNullException(nameof(targetType));

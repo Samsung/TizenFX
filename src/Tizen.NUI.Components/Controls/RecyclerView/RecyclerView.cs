@@ -275,7 +275,7 @@ namespace Tizen.NUI.Components
                 if (LayoutManager != null)
                 {
                     nextFocusedView = LayoutManager.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
-                }       
+                }
             }
 
             if (nextFocusedView)
@@ -323,7 +323,7 @@ namespace Tizen.NUI.Components
                 {
                     prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
                 }
-                
+
                 ScrollTo(targetPosition, true);
             }
             else
@@ -333,28 +333,28 @@ namespace Tizen.NUI.Components
                 switch (direction)
                 {
                     case View.FocusDirection.Left:
-                    {
-                        nextFocusedView = LeftFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = LeftFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Right:
-                    {
-                        nextFocusedView = RightFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = RightFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Up:
-                    {
-                        nextFocusedView = UpFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = UpFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Down:
-                    {
-                        nextFocusedView = DownFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = DownFocusableView;
+                            break;
+                        }
                 }
 
-                if(nextFocusedView)
+                if (nextFocusedView)
                 {
                     focusedView = null;
                 }

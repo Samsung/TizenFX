@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// Pagination shows the number of pages available and the currently active page.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class Pagination: Control
+    public class Pagination : Control
     {
         private VisualView container;
 
@@ -461,8 +461,8 @@ namespace Tizen.NUI.Components
             this.Add(container);
 
             //TODO: Apply color properties from PaginationStyle class.
-			indicatorColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-			selectedIndicatorColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            indicatorColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            selectedIndicatorColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
         private void CreateIndicator()

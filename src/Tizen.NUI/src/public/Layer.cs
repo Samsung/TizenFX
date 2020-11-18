@@ -278,7 +278,7 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
-                Interop.Actor.ActorAdd( swigCPtr , View.getCPtr(child));
+                Interop.Actor.ActorAdd(swigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -294,7 +294,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            Interop.Actor.ActorRemove( swigCPtr, View.getCPtr(child));
+            Interop.Actor.ActorRemove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

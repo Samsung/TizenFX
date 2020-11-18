@@ -22,9 +22,9 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.BaseComponents
 {
-    #if (NUI_DEBUG_ON)
+#if (NUI_DEBUG_ON)
     using tlog = Tizen.Log;
-    #endif
+#endif
 
     /// <summary>
     /// LottieAnimationView renders an animated vector image (Lottie file).
@@ -972,7 +972,7 @@ namespace Tizen.NUI.BaseComponents
         private bool BeReadyToShow(LottieAnimationView lottieView)
         {
             // Validate input lottieView
-            if (null== lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
+            if (null == lottieView || lottieView.PlayState == LottieAnimationView.PlayStateType.Invalid)
             {
                 return false;
             }

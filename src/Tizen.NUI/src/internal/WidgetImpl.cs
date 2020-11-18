@@ -23,7 +23,7 @@ namespace Tizen.NUI
     internal class WidgetImpl : BaseObject
     {
 
-        internal WidgetImpl() : this( Interop.WidgetImpl.WidgetImpl_New(), true )
+        internal WidgetImpl() : this(Interop.WidgetImpl.WidgetImpl_New(), true)
         {
             SwigDirectorConnect();
         }
@@ -240,7 +240,7 @@ namespace Tizen.NUI
             WIdgetInstanceOnDestroyArgs args = new WIdgetInstanceOnDestroyArgs();
             args.ContentInfo = contentInfo;
             args.TerminateType = type;
-            _widgetInstanceOnDestroyEventHandler?.Invoke(this,args);
+            _widgetInstanceOnDestroyEventHandler?.Invoke(this, args);
         }
 
         public virtual void OnPause()

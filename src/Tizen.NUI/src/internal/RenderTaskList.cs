@@ -41,7 +41,7 @@ namespace Tizen.NUI
 
         public static RenderTaskList DownCast(BaseHandle handle)
         {
-            RenderTaskList ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTaskList;
+            RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTaskList;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

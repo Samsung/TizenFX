@@ -41,7 +41,7 @@ namespace Tizen.NUI
 
         public static CustomActor DownCast(BaseHandle handle)
         {
-            CustomActor ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as CustomActor;
+            CustomActor ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as CustomActor;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
