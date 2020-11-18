@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,11 @@ namespace Tizen.NUI
                     // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
+                    if (!childLayout.Owner.ExcludeLayouting)
+                    {
+                        continue;
+                    }
+
                     // Determine the width and height needed by the children using their given position and size.
                     // Children could overlap so find the right most child.
                     Position2D childPosition = childLayout.Owner.Position2D;
@@ -97,7 +102,7 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
-                if ( childLayout != null )
+                if (childLayout != null)
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                     LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -107,26 +112,9 @@ namespace Tizen.NUI
                     LayoutLength childLeft = new LayoutLength(childPosition.X);
                     LayoutLength childTop = new LayoutLength(childPosition.Y);
 
-                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
                 }
             }
-        }
-
-        private void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
-        {
-            View childOwner = child.Owner;
-
-            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.WidthSpecification));
-
-            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.HeightSpecification));
-
-            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
     }
 
