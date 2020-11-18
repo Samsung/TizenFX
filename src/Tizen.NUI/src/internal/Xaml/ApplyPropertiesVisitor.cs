@@ -353,12 +353,12 @@ namespace Tizen.NUI.Xaml
                 return;
 
             //If value is BindingBase, SetBinding
-            if (xpe == null && TrySetBinding(xamlelement, property, localName, value, lineInfo, out xpe))
+            if (xpe == null && TrySetBinding(xamlelement, property, value, lineInfo, out xpe))
                 return;
 
             //Call TrySetProperty first and then TrySetValue to keep the code logic consistent whether it is through xaml or code.
             //If we can assign that value to a normal property, let's do it
-            if (xpe == null && TrySetProperty(xamlelement, localName, value, lineInfo, serviceProvider, context, out xpe))
+            if (xpe == null && TrySetProperty(xamlelement, localName, value, serviceProvider, context, out xpe))
                 return;
 
             //If it's a BindableProberty, SetValue
@@ -389,11 +389,11 @@ namespace Tizen.NUI.Xaml
             var property = GetBindableProperty(bpOwnerType, localName, lineInfo, false);
 
             //If it's a BindableProberty, GetValue
-            if (xpe == null && TryGetValue(xamlElement, property, attached, out value, lineInfo, out xpe, out targetProperty))
+            if (xpe == null && TryGetValue(xamlElement, property, out value, out xpe, out targetProperty))
                 return value;
 
             //If it's a normal property, get it
-            if (xpe == null && TryGetProperty(xamlElement, localName, out value, lineInfo, context, out xpe, out targetProperty))
+            if (xpe == null && TryGetProperty(xamlElement, localName, out value, context, out xpe, out targetProperty))
                 return value;
 
             xpe = xpe ?? new XamlParseException($"Property {localName} is not found or does not have an accessible getter", lineInfo);
@@ -454,7 +454,7 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetBinding(object element, BindableProperty property, string localName, object value, IXmlLineInfo lineInfo, out Exception exception)
+        static bool TrySetBinding(object element, BindableProperty property, object value, IXmlLineInfo lineInfo, out Exception exception)
         {
             exception = null;
 
@@ -517,7 +517,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool TryGetValue(object element, BindableProperty property, bool attached, out object value, IXmlLineInfo lineInfo, out Exception exception, out object targetProperty)
+        static bool TryGetValue(object element, BindableProperty property, out object value, out Exception exception, out object targetProperty)
         {
             exception = null;
             value = null;
@@ -535,7 +535,7 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetProperty(object element, string localName, object value, IXmlLineInfo lineInfo, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
+        static bool TrySetProperty(object element, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
         {
             exception = null;
 
@@ -603,7 +603,7 @@ namespace Tizen.NUI.Xaml
             }
         }
 
-        static bool TryGetProperty(object element, string localName, out object value, IXmlLineInfo lineInfo, HydrationContext context, out Exception exception, out object targetProperty)
+        static bool TryGetProperty(object element, string localName, out object value, HydrationContext context, out Exception exception, out object targetProperty)
         {
             exception = null;
             value = null;

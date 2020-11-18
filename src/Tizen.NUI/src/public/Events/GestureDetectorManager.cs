@@ -150,6 +150,9 @@ namespace Tizen.NUI.Events
     [EditorBrowsable(EditorBrowsableState.Never)]
     public void FeedTouchEvent(object sender, View.TouchEventArgs e, object userData)
     {
+      // Unused parameter
+      _ = sender;
+
       mUserData = userData;
       mTapGestureDetector.Detected -= InternalOnTap;
       mLongGestureDetector.Detected -= InternalOnLongPress;

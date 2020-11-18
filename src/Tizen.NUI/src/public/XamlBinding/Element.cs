@@ -492,10 +492,6 @@ namespace Tizen.NUI.Binding
 
         internal event EventHandler ParentSet;
 
-        internal static void SetFlowDirectionFromParent(Element child)
-        {
-        }
-
         internal virtual void SetChildInheritedBindingContext(Element child, object context)
         {
             SetInheritedBindingContext(child, context);

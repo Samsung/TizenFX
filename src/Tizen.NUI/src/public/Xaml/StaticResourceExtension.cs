@@ -95,7 +95,7 @@ namespace Tizen.NUI.Xaml
         {
             object resource = null;
             if (Application.Current == null || !((IResourcesProvider)Application.Current).IsResourcesCreated || !Application.Current.XamlResources.TryGetValue(Key, out resource))
-                throw new XamlParseException($"StaticResource not found for key {Key}", xmlLineInfo);
+                throw new XamlParseException($"StaticResource not found for key {key}", xmlLineInfo);
             return resource;
         }
     }
