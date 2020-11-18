@@ -29,7 +29,7 @@ namespace Tizen.NUI.Xaml
             }
             var valueProvider = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideParentValues;
             if (valueProvider == null)
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(valueProvider));
             var xmlLineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
             var xmlLineInfo = xmlLineInfoProvider != null ? xmlLineInfoProvider.XmlLineInfo : null;
             object resource = null;
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Xaml
             if (implicit_op != null)
                 return implicit_op.Invoke(resource, new [] { resource });
 
-            if (resource != null) { 
+            if (resource != null) {
                 //Special case for https://bugzilla.xamarin.com/show_bug.cgi?id=59818
                 //On OnPlatform, check for an opImplicit from the targetType
                 if (   Device.Flags != null
