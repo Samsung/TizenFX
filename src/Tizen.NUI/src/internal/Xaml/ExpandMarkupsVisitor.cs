@@ -89,7 +89,7 @@ namespace Tizen.NUI.Xaml
                 throw new Exception("Expression did not end in '}'");
 
             var serviceProvider = new XamlServiceProvider(node, Context);
-            serviceProvider.Add(typeof (IXmlNamespaceResolver), nsResolver);
+            serviceProvider.Add(typeof(IXmlNamespaceResolver), nsResolver);
 
             return new MarkupExpansionParser().Parse(match, ref expression, serviceProvider);
         }
@@ -105,11 +105,11 @@ namespace Tizen.NUI.Xaml
 
             public INode Parse(string match, ref string remaining, IServiceProvider serviceProvider)
             {
-                var nsResolver = serviceProvider.GetService(typeof (IXmlNamespaceResolver)) as IXmlNamespaceResolver;
+                var nsResolver = serviceProvider.GetService(typeof(IXmlNamespaceResolver)) as IXmlNamespaceResolver;
                 if (nsResolver == null)
                     throw new ArgumentException(nameof(nsResolver));
                 IXmlLineInfo xmlLineInfo = null;
-                var xmlLineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                var xmlLineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 if (xmlLineInfoProvider != null)
                     xmlLineInfo = xmlLineInfoProvider.XmlLineInfo;
 
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Xaml
                 }
 
                 Type type;
-                var typeResolver = serviceProvider.GetService(typeof (IXamlTypeResolver)) as IXamlTypeResolver;
+                var typeResolver = serviceProvider.GetService(typeof(IXamlTypeResolver)) as IXamlTypeResolver;
                 if (typeResolver == null)
                     type = null;
                 // Add Binding and StaticResource support, The ordinal code can't find BindingExtension for Binding
@@ -147,7 +147,7 @@ namespace Tizen.NUI.Xaml
                     //The order of lookup is to look for the Extension-suffixed class name first and then look for the class name without the Extension suffix.
                     if (!typeResolver.TryResolve(match + "Extension", out type) && !typeResolver.TryResolve(match, out type))
                     {
-                        var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                        var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                         var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
                         throw new XamlParseException(String.Format("MarkupExtension not found for {0}", match), lineInfo);
                     }
@@ -179,7 +179,7 @@ namespace Tizen.NUI.Xaml
 
             protected override void SetPropertyValue(string prop, string strValue, object value, IServiceProvider serviceProvider)
             {
-                var nsResolver = serviceProvider.GetService(typeof (IXmlNamespaceResolver)) as IXmlNamespaceResolver;
+                var nsResolver = serviceProvider.GetService(typeof(IXmlNamespaceResolver)) as IXmlNamespaceResolver;
 
                 var childnode = value as INode ?? new ValueNode(strValue, nsResolver);
                 childnode.Parent = node;

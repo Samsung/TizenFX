@@ -203,7 +203,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AnimationSignal")]
             public static extern void delete_AnimationSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-           
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SWIGUpcast")]
             public static extern global::System.IntPtr Animation_SWIGUpcast(global::System.IntPtr jarg1);
         }

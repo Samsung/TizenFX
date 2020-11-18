@@ -26,7 +26,7 @@ namespace Tizen.NUI
     {
         public static PropertyValue GetProperty(global::System.Runtime.InteropServices.HandleRef handle, int index)
         {
-            if(handle.Handle == System.IntPtr.Zero)
+            if (handle.Handle == System.IntPtr.Zero)
             {
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }

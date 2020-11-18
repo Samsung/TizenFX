@@ -64,7 +64,7 @@ namespace Tizen.NUI.Binding
                     type = (parent as TriggerBase).TargetType;
 
                 if (type == null)
-                    throw new XamlParseException($"Can't resolve {parts [0]}", lineinfo);
+                    throw new XamlParseException($"Can't resolve {parts[0]}", lineinfo);
 
                 return ConvertFrom(type, parts[0], lineinfo);
             }
@@ -122,7 +122,8 @@ namespace Tizen.NUI.Binding
             // Skip 1; we would not be making this check if the immediate parent were not a VisualState
 
             // VisualStates must be in a VisualStateGroup
-            if(!(parents[2] is VisualStateGroup)) {
+            if (!(parents[2] is VisualStateGroup))
+            {
                 throw new XamlParseException($"Expected {nameof(VisualStateGroup)} but found {parents[2]}.", lineInfo);
             }
 

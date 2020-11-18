@@ -213,7 +213,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != value && null != tabStyle?.ItemPadding)
+                if (null != value && null != tabStyle?.ItemPadding)
                 {
                     tabStyle.ItemPadding.CopyFrom(value);
 
@@ -317,7 +317,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.FontFamily = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -338,7 +338,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.TextColor = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -400,7 +400,7 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void DeleteItem(int itemIndex)
         {
-            if(itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
+            if (itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
             {
                 return;
             }
@@ -450,9 +450,9 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if(underlineAni != null)
+                if (underlineAni != null)
                 {
-                    if(underlineAni.State == Animation.States.Playing)
+                    if (underlineAni.State == Animation.States.Playing)
                     {
                         underlineAni.Stop();
                     }
@@ -460,9 +460,9 @@ namespace Tizen.NUI.Components
                     underlineAni = null;
                 }
                 Utility.Dispose(underline);
-                if(itemList != null)
+                if (itemList != null)
                 {
-                    for(int i = 0; i < itemList.Count; i++)
+                    for (int i = 0; i < itemList.Count; i++)
                     {
                         Remove(itemList[i]);
                         itemList[i].Dispose();
@@ -640,7 +640,7 @@ namespace Tizen.NUI.Components
                 underlineAni = new Animation(aniTime);
             }
         }
-        
+
         private void UpdateUnderLinePos()
         {
             if (underline == null || Underline.Size == null || itemList == null || itemList.Count <= 0)
@@ -674,7 +674,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateSelectedItem(TabItem item)
         {
-            if(item == null || curIndex == item.Index)
+            if (item == null || curIndex == item.Index)
             {
                 return;
             }
@@ -696,7 +696,7 @@ namespace Tizen.NUI.Components
         private bool ItemTouchEvent(object source, TouchEventArgs e)
         {
             TabItem item = source as TabItem;
-            if(item == null)
+            if (item == null)
             {
                 return false;
             }

@@ -201,7 +201,7 @@ namespace Tizen.NUI.Components
         }
 
         private void OnSelect()
-        {    
+        {
             OnSelectedChanged();
 
             if (SelectedChanged != null)

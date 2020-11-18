@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding
             get { return _mode; }
             set
             {
-                if (   value != BindingMode.Default
+                if (value != BindingMode.Default
                     && value != BindingMode.OneWay
                     && value != BindingMode.OneWayToSource
                     && value != BindingMode.TwoWay
@@ -64,25 +64,28 @@ namespace Tizen.NUI.Binding
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object TargetNullValue
-		{
-			get { return _targetNullValue; }
-			set {
-				ThrowIfApplied();
-				_targetNullValue = value;
-			}
-		}
+        {
+            get { return _targetNullValue; }
+            set
+            {
+                ThrowIfApplied();
+                _targetNullValue = value;
+            }
+        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object FallbackValue {
-			get => _fallbackValue;
-			set {
-				ThrowIfApplied();
-				_fallbackValue = value;
-			}
-		}
+        public object FallbackValue
+        {
+            get => _fallbackValue;
+            set
+            {
+                ThrowIfApplied();
+                _fallbackValue = value;
+            }
+        }
 
-		internal bool AllowChaining { get; set; }
+        internal bool AllowChaining { get; set; }
 
         internal object Context { get; set; }
 

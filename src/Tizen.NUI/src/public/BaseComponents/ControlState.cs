@@ -275,7 +275,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return ReferenceEquals(lhs, rhs) ? Normal : lhs;
             }
-            
+
             var rest = lhs.stateList.Except(rhs.stateList);
 
             if (rest.Count() == 0)

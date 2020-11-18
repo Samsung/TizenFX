@@ -15,7 +15,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr new_Vector4__SWIG_1(float jarg1, float jarg2, float jarg3, float jarg4);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Vector4__SWIG_2")]
-            public static extern global::System.IntPtr new_Vector4__SWIG_2([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]float[] jarg1);
+            public static extern global::System.IntPtr new_Vector4__SWIG_2([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Vector4__SWIG_3")]
             public static extern global::System.IntPtr new_Vector4__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -39,7 +39,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr Vector4_ZERO_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_Assign__SWIG_0")]
-            public static extern global::System.IntPtr Vector4_Assign__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]float[] jarg2);
+            public static extern global::System.IntPtr Vector4_Assign__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_Assign__SWIG_1")]
             public static extern global::System.IntPtr Vector4_Assign__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

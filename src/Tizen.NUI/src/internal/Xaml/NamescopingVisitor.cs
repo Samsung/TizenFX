@@ -70,7 +70,7 @@ namespace Tizen.NUI.Xaml
 
         static bool IsVisualStateGroupList(ElementNode node)
         {
-            return node != null  && node.XmlType.Name == "VisualStateGroup" && node.Parent is IListNode;
+            return node != null && node.XmlType.Name == "VisualStateGroup" && node.Parent is IListNode;
         }
     }
 }

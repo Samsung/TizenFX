@@ -342,7 +342,7 @@ namespace Tizen.NUI.Binding
         {
             child.Parent = this;
 
-            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged:true);
+            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged: true);
 
             ChildAdded?.Invoke(this, new ElementEventArgs(child));
 

@@ -26,7 +26,7 @@ namespace Tizen.NUI.Binding
         public override string ConvertToString(object value)
         {
             Rectangle rec = (Rectangle)value;
-            return  rec.X.ToString() + " " + rec.Y.ToString() + " " + rec.Width.ToString() + " " + rec.Height.ToString();
+            return rec.X.ToString() + " " + rec.Y.ToString() + " " + rec.Width.ToString() + " " + rec.Height.ToString();
         }
     }
 }

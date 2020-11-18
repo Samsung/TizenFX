@@ -10,10 +10,11 @@ namespace Tizen.NUI.Xaml
 {
     internal class ResourcesLoader : IResourcesLoader
     {
-        public T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T: new()
+        public T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new()
         {
             var alternateResource = ResourceLoader.ResourceProvider?.Invoke(assembly.GetName(), resourcePath);
-            if (alternateResource != null) {
+            if (alternateResource != null)
+            {
                 var rd = new T();
                 rd.LoadFromXaml(alternateResource);
                 return rd;
@@ -23,10 +24,12 @@ namespace Tizen.NUI.Xaml
             if (resourceId == null)
                 throw new XamlParseException($"Resource '{resourcePath}' not found.", lineInfo);
 
-            using (var stream = assembly.GetManifestResourceStream(resourceId)) {
+            using (var stream = assembly.GetManifestResourceStream(resourceId))
+            {
                 if (stream == null)
                     throw new XamlParseException($"No resource found for '{resourceId}'.", lineInfo);
-                using (var reader = new StreamReader(stream)) {
+                using (var reader = new StreamReader(stream))
+                {
                     var rd = new T();
                     rd.LoadFromXaml(reader.ReadToEnd());
                     return rd;
@@ -44,7 +47,8 @@ namespace Tizen.NUI.Xaml
             if (resourceId == null)
                 throw new XamlParseException($"Resource '{resourcePath}' not found.", lineInfo);
 
-            using (var stream = assembly.GetManifestResourceStream(resourceId)) {
+            using (var stream = assembly.GetManifestResourceStream(resourceId))
+            {
                 if (stream == null)
                     throw new XamlParseException($"No resource found for '{resourceId}'.", lineInfo);
                 using (var reader = new StreamReader(stream))

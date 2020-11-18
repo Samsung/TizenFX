@@ -22,32 +22,36 @@ namespace Tizen.NUI.StyleSheets
             int p;
             reader.SkipWhiteSpaces();
             bool readingName = true;
-            while ((p = reader.Peek()) > 0) {
-                switch (unchecked((char)p)) {
-                case ':':
-                    reader.Read();
-                    readingName = false;
-                    reader.SkipWhiteSpaces();
-                    break;
-                case ';':
-                    reader.Read();
-                    if (!string.IsNullOrEmpty(propertyName) && !string.IsNullOrEmpty(propertyValue))
-                        style.Declarations.Add(propertyName, propertyValue);
-                    propertyName = propertyValue = null;
-                    readingName = true;
-                    reader.SkipWhiteSpaces();
-                    break;
-                default:
-                    if ((char)p == stopChar)
-                        return style;
+            while ((p = reader.Peek()) > 0)
+            {
+                switch (unchecked((char)p))
+                {
+                    case ':':
+                        reader.Read();
+                        readingName = false;
+                        reader.SkipWhiteSpaces();
+                        break;
+                    case ';':
+                        reader.Read();
+                        if (!string.IsNullOrEmpty(propertyName) && !string.IsNullOrEmpty(propertyValue))
+                            style.Declarations.Add(propertyName, propertyValue);
+                        propertyName = propertyValue = null;
+                        readingName = true;
+                        reader.SkipWhiteSpaces();
+                        break;
+                    default:
+                        if ((char)p == stopChar)
+                            return style;
 
-                    if (readingName) {
-                        propertyName = reader.ReadIdent();
-                        if (propertyName == null)
-                            throw new Exception();
-                    } else 
-                        propertyValue = reader.ReadUntil(stopChar, ';', ':');
-                    break;
+                        if (readingName)
+                        {
+                            propertyName = reader.ReadIdent();
+                            if (propertyName == null)
+                                throw new Exception();
+                        }
+                        else
+                            propertyValue = reader.ReadUntil(stopChar, ';', ':');
+                        break;
                 }
             }
             return style;
@@ -58,13 +62,15 @@ namespace Tizen.NUI.StyleSheets
             if (styleable == null)
                 throw new ArgumentNullException(nameof(styleable));
 
-            foreach (var decl in Declarations) {
+            foreach (var decl in Declarations)
+            {
                 var property = ((IStylable)styleable).GetProperty(decl.Key, inheriting);
                 if (property == null)
                     continue;
                 if (string.Equals(decl.Value, "initial", StringComparison.OrdinalIgnoreCase))
                     styleable.ClearValue(property, fromStyle: true);
-                else {
+                else
+                {
                     object value;
                     if (!convertedValues.TryGetValue(decl, out value))
                         convertedValues[decl] = (value = Convert(styleable, decl.Value, property));
@@ -72,7 +78,8 @@ namespace Tizen.NUI.StyleSheets
                 }
             }
 
-            foreach (var child in styleable.LogicalChildrenInternal) {
+            foreach (var child in styleable.LogicalChildrenInternal)
+            {
                 var ve = child as /*VisualElement*/BaseHandle;
                 if (ve == null)
                     continue;
@@ -83,7 +90,7 @@ namespace Tizen.NUI.StyleSheets
         // [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static object Convert(object target, object value, BindableProperty property)
         {
-            Func<MemberInfo> minforetriever = () =>    property.DeclaringType.GetRuntimeProperty(property.PropertyName) as MemberInfo
+            Func<MemberInfo> minforetriever = () => property.DeclaringType.GetRuntimeProperty(property.PropertyName) as MemberInfo
                                                     ?? property.DeclaringType.GetRuntimeMethod("Get" + property.PropertyName, new[] { typeof(BindableObject) }) as MemberInfo;
             var serviceProvider = new StyleSheetServiceProvider(target, property);
             // return value.ConvertTo(property.ReturnType, minforetriever, serviceProvider);
