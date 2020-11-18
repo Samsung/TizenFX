@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
+            view.GetProperty(Interop.ActorProperty.ActorPropertyColorGet()).Get(color);
             return color;
         });
 
