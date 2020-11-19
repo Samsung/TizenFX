@@ -152,7 +152,7 @@ namespace Tizen.NUI
                 LayoutItem item = LayoutChildren[i];
                 View view = item?.Owner;
                 if (view == null) continue;
-                if (item.Owner.ExcludeLayouting)
+                if (!item.Owner.ExcludeLayouting)
                 {
                     gridChildCount++;
                 }
@@ -177,7 +177,7 @@ namespace Tizen.NUI
                 View view = item?.Owner;
                 if (view == null) continue;
 
-                if (!view.ExcludeLayouting)
+                if (view.ExcludeLayouting)
                 {
                     MeasureChildWithoutPadding(item, widthMeasureSpec, heightMeasureSpec);
                     gridChildIndex--;

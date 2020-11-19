@@ -54,7 +54,7 @@ namespace Tizen.NUI
                     // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
-                    if (!childLayout.Owner.ExcludeLayouting)
+                    if (childLayout.Owner.ExcludeLayouting)
                     {
                         continue;
                     }
