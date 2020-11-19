@@ -73,7 +73,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Toast FromText(string text, uint duration) 
+        public static Toast FromText(string text, uint duration)
         {
             Toast toast = new Toast();
             toast.Message = text;

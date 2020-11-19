@@ -86,7 +86,10 @@ namespace Tizen.NUI.Components
         {
             bool result = false;
             View list = Container.GetParent() as View;
-
+            if (list == null)
+            {
+                return result;
+            }
             Vector2 visibleArea = new Vector2(Math.Abs(scrollPosition),
                 Math.Abs(scrollPosition) + (LayoutOrientation == Orientation.Vertical ?
                                                 list.Size.Width : list.Size.Height)
@@ -133,7 +136,7 @@ namespace Tizen.NUI.Components
             {
                 RecycleItem item = Container.Children[i] as RecycleItem;
 
-                if (previousItem != null)
+                if (previousItem != null && item != null)
                 {
                     item.Position = LayoutOrientation == Orientation.Vertical ?
                         new Position(
@@ -204,10 +207,13 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < itemInGroup; i++)
                     {
                         RecycleItem target = Container.Children[0] as RecycleItem;
-                        target.DataIndex = target.DataIndex + Container.Children.Count;
-                        target.SiblingOrder = Container.Children.Count - 1;
+                        if (target != null)
+                        {
+                            target.DataIndex = target.DataIndex + Container.Children.Count;
+                            target.SiblingOrder = Container.Children.Count - 1;
 
-                        result.Add(target);
+                            result.Add(target);
+                        }
                     }
                 }
             }
@@ -220,16 +226,18 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < itemInGroup; i++)
                     {
                         RecycleItem prevFirstItem = Container.Children[itemInGroup] as RecycleItem;
-
                         RecycleItem target = Container.Children[Container.Children.Count - 1] as RecycleItem;
-                        target.Position = new Position(
-                            LayoutOrientation == Orientation.Vertical ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
-                            LayoutOrientation == Orientation.Vertical ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
-                        );
-                        target.DataIndex = target.DataIndex - Container.Children.Count;
-                        target.SiblingOrder = 0;
+                        if (prevFirstItem != null && target != null)
+                        {
+                            target.Position = new Position(
+                                LayoutOrientation == Orientation.Vertical ? (prevFirstItem.Position.X - target.Size.Width) : prevFirstItem.Position.X,
+                                LayoutOrientation == Orientation.Vertical ? prevFirstItem.Position.Y : (prevFirstItem.Position.Y - target.Size.Height)
+                            );
+                            target.DataIndex = target.DataIndex - Container.Children.Count;
+                            target.SiblingOrder = 0;
 
-                        result.Add(target);
+                            result.Add(target);
+                        }
                     }
                 }
             }
@@ -257,34 +265,34 @@ namespace Tizen.NUI.Components
             int targetSibling = -1;
             bool isHorizontal = LayoutOrientation == Orientation.Horizontal;
 
-            switch(direction)
+            switch (direction)
             {
-                case View.FocusDirection.Left :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - 1 : currentFocusedView.SiblingOrder - Rows;
-                    break;
-                }
-                case View.FocusDirection.Right :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + 1 : currentFocusedView.SiblingOrder + Rows;
-                    break;
-                }
-                case View.FocusDirection.Up :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - Columns : currentFocusedView.SiblingOrder - 1;
-                    break;
-                }
-                case View.FocusDirection.Down :
-                {
-                    targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + Columns : currentFocusedView.SiblingOrder + 1;
-                    break;
-                }
+                case View.FocusDirection.Left:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - 1 : currentFocusedView.SiblingOrder - Rows;
+                        break;
+                    }
+                case View.FocusDirection.Right:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + 1 : currentFocusedView.SiblingOrder + Rows;
+                        break;
+                    }
+                case View.FocusDirection.Up:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder - Columns : currentFocusedView.SiblingOrder - 1;
+                        break;
+                    }
+                case View.FocusDirection.Down:
+                    {
+                        targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + Columns : currentFocusedView.SiblingOrder + 1;
+                        break;
+                    }
             }
 
-            if(targetSibling > -1 && targetSibling < Container.Children.Count)
+            if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecycleItem candidate = Container.Children[targetSibling] as RecycleItem;
-                if(candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
+                if (candidate != null && candidate.DataIndex >= 0 && candidate.DataIndex < DataCount)
                 {
                     nextFocusedView = candidate;
                 }

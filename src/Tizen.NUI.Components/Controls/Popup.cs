@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create(nameof(ButtonHeight), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if (newValue != null && instance?.popupStyle?.Buttons?.Size != null )
+            if (newValue != null && instance?.popupStyle?.Buttons?.Size != null)
             {
                 instance.popupStyle.Buttons.Size.Height = (int)newValue;
                 instance.btGroup.Itemheight = (int)newValue;
@@ -91,7 +91,7 @@ namespace Tizen.NUI.Components
         {
             var instance = (Popup)bindable;
             if (newValue != null)
-            {  
+            {
                 if (instance.popupStyle?.Buttons?.Text != null)
                 {
                     instance.popupStyle.Buttons.Text.TextColor = (Color)newValue;
@@ -557,7 +557,7 @@ namespace Tizen.NUI.Components
         public string ButtonFontFamily
         {
             get
-            {           
+            {
                 return (string)GetValue(ButtonFontFamilyProperty);
             }
             set
@@ -609,7 +609,7 @@ namespace Tizen.NUI.Components
         public HorizontalAlignment ButtonTextAlignment
         {
             get
-            {   
+            {
                 return (HorizontalAlignment)GetValue(ButtonTextAlignmentProperty);
             }
             set
@@ -627,7 +627,7 @@ namespace Tizen.NUI.Components
         public string ButtonBackground
         {
             get
-            {     
+            {
                 return (string)GetValue(ButtonBackgroundProperty);
             }
             set
@@ -646,7 +646,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                
+
                 return (Rectangle)GetValue(ButtonBackgroundBorderProperty);
             }
             set
@@ -865,7 +865,7 @@ namespace Tizen.NUI.Components
                 titleY = (int)Title.Position.Y;
             }
 
-            if (btGroup.Count != 0 && popupStyle?.Buttons?.Size != null )
+            if (btGroup.Count != 0 && popupStyle?.Buttons?.Size != null)
             {
                 buttonH = (int)popupStyle.Buttons.Size.Height;
             }

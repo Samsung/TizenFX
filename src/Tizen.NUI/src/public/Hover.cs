@@ -159,12 +159,7 @@ namespace Tizen.NUI
 
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
-            Hover ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Hover;
-            if (ret == null)
-            {
-                ret = new Hover(cPtr, false);
-            }
-
+            Hover ret = new Hover(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

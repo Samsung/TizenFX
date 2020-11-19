@@ -118,7 +118,7 @@ namespace Tizen.NUI.Components
         /// The constructor of the Slider class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Slider() 
+        public Slider()
         {
             Initialize();
         }
@@ -589,8 +589,8 @@ namespace Tizen.NUI.Components
             {
                 if (null != lowIndicatorText)
                 {
-                    lowIndicatorText.Text= value;
-                    sliderStyle.LowIndicator.Text= value;
+                    lowIndicatorText.Text = value;
+                    sliderStyle.LowIndicator.Text = value;
                 }
             }
         }
@@ -954,7 +954,7 @@ namespace Tizen.NUI.Components
                     slidingFinishedHandler(this, args);
                 }
 
-                if (null !=sliderSlidingFinishedHandler)
+                if (null != sliderSlidingFinishedHandler)
                 {
                     SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
                     args.CurrentValue = curValue;

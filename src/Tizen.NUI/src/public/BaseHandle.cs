@@ -471,7 +471,7 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
-            if(swigCPtr.Handle != IntPtr.Zero)
+            if (swigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {

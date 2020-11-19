@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// Subscriber.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<View> Subscriber{get; set;} = new List<View>();
+        public List<View> Subscriber { get; set; } = new List<View>();
 
         /// <summary>
         /// BackKeyManager static instance.
@@ -69,36 +69,44 @@ namespace Tizen.NUI
             Container parent1 = comparison1?.GetParent();
             Container parent2 = comparison2?.GetParent();
 
-            if((parent1 == null && parent2 != null) || (parent2 == null && parent1 != null))
+            if ((parent1 == null && parent2 != null) || (parent2 == null && parent1 != null))
             {
                 // One is in DefaultLayer but the other is not
-                if(parent2 == null)
+                if (parent2 == null)
                 {
                     // parent1 is in DefaultLayer.
                     Layer comparison2AsLayer = comparison2 as Layer;
-                    result = comparison2AsLayer.Depth > NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth;
+                    if (comparison2AsLayer != null)
+                    {
+                        result = comparison2AsLayer.Depth > NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth;
+                    }
                 }
                 else
                 {
                     // parent2 is in DefaultLayer.
                     Layer comparison1AsLayer = comparison1 as Layer;
-                    result = NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth < comparison1AsLayer.Depth;
+                    if (comparison1AsLayer != null)
+                    {
+                        result = NUIApplication.GetDefaultWindow().GetDefaultLayer().Depth < comparison1AsLayer.Depth;
+                    }
                 }
             }
             else
             {
                 // If they have same parent, ready to compare!
-                if(parent1 == parent2)
+                if (parent1 == parent2)
                 {
 
-                    if(comparison1.GetType().FullName.Contains("Layer"))
+                    if (comparison1.GetType().FullName.Contains("Layer"))
                     {
                         // If comparison1 is Layer, comparison2 is also Layer because only window can have Layer as child in NUI.
                         // Compare Depth
                         Layer comparison1AsLayer = comparison1 as Layer;
                         Layer comparison2AsLayer = comparison2 as Layer;
-
-                        result = comparison1AsLayer.Depth < comparison2AsLayer.Depth;
+                        if (comparison1AsLayer != null && comparison2AsLayer != null)
+                        {
+                            result = comparison1AsLayer.Depth < comparison2AsLayer.Depth;
+                        }
                     }
                     else
                     {
@@ -106,8 +114,10 @@ namespace Tizen.NUI
                         // Compare SiblingOrder
                         View comparison1AsView = comparison1 as View;
                         View comparison2AsView = comparison2 as View;
-
-                        result = comparison1AsView.SiblingOrder < comparison2AsView.SiblingOrder;
+                        if (comparison1AsView != null && comparison2AsView != null)
+                        {
+                            result = comparison1AsView.SiblingOrder < comparison2AsView.SiblingOrder;
+                        }
                     }
                 }
                 else
@@ -122,30 +132,30 @@ namespace Tizen.NUI
 
         private void OnWindowKeyEvent(object source, Window.KeyEventArgs args)
         {
-            if(args.Key.State == Key.StateType.Up && (args.Key.KeyPressedName == "Back" || args.Key.KeyPressedName == "XF86Back"))
+            if (args.Key.State == Key.StateType.Up && (args.Key.KeyPressedName == "Back" || args.Key.KeyPressedName == "XF86Back"))
             {
                 View top = null;
 
                 for (int i = 0; i < Subscriber.Count; i++)
                 {
                     // Check visibility
-                    if(Subscriber[i].Visibility && Subscriber[i].IsOnWindow)
+                    if (Subscriber[i].Visibility && Subscriber[i].IsOnWindow)
                     {
                         // Initialize first top
-                        if(top == null)
+                        if (top == null)
                         {
                             top = Subscriber[i];
                             continue;
                         }
                         else
                         {
-                            if(top.HierarchyDepth != Subscriber[i].HierarchyDepth)
+                            if (top.HierarchyDepth != Subscriber[i].HierarchyDepth)
                             {
                                 Container compare1 = top;
                                 Container compare2 = Subscriber[i];
 
                                 // If their depth is different, sync.
-                                if(top.HierarchyDepth > Subscriber[i].HierarchyDepth)
+                                if (top.HierarchyDepth > Subscriber[i].HierarchyDepth)
                                 {
                                     compare1 = FindParent(compare1, top.HierarchyDepth - Subscriber[i].HierarchyDepth);
                                 }
@@ -154,10 +164,10 @@ namespace Tizen.NUI
                                     compare2 = FindParent(compare2, Subscriber[i].HierarchyDepth - top.HierarchyDepth);
                                 }
 
-                                if(compare1 == compare2)
+                                if (compare1 == compare2)
                                 {
                                     // One is descendant of the other. Descendant is above ancestor.
-                                    top = top.HierarchyDepth > Subscriber[i].HierarchyDepth? top : Subscriber[i];
+                                    top = top.HierarchyDepth > Subscriber[i].HierarchyDepth ? top : Subscriber[i];
                                 }
                                 else
                                 {

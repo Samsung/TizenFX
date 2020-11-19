@@ -311,7 +311,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != Style?.Thumb)
+                if (null != Style?.Thumb)
                 {
                     Style.Thumb.BackgroundColor = value;
                     RelayoutRequest();

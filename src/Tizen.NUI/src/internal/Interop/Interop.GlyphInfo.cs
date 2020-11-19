@@ -63,7 +63,7 @@ namespace Tizen.NUI
             public static extern float GlyphInfo_scaleFactor_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GlyphInfo")]
-            public static extern void delete_GlyphInfo(global::System.Runtime.InteropServices.HandleRef jarg1);           
+            public static extern void delete_GlyphInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

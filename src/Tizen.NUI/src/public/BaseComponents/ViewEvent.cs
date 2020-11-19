@@ -262,7 +262,7 @@ namespace Tizen.NUI.BaseComponents
         ///  This prevents the parent from interceping touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisallowInterceptTouchEvent {get; set;}
+        public bool DisallowInterceptTouchEvent { get; set; }
 
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void EmitBackKeyPressed()
         {
-            _backKeyPressed.Invoke(this,null);
+            _backKeyPressed.Invoke(this, null);
         }
 
 
@@ -1265,9 +1265,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
         private void OnWindowWheelEvent(object sender, Window.WheelEventArgs e)
         {
-            if(e != null)
+            if (e != null)
             {
-                if(e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
                 {
                     var arg = new WheelEventArgs()
                     {

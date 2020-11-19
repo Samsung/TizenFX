@@ -16,10 +16,10 @@
  */
 
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// The property map class that has transform property for one of its items.
     /// This class can be used to convert visual properties to map.
@@ -49,19 +49,31 @@ namespace Tizen.NUI
             Extents = extents == null ? null : new Vector2(extents);
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Create a Shadow from a property map.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal protected ShadowBase(PropertyMap propertyMap)
+        protected ShadowBase(PropertyMap propertyMap)
         {
+            Debug.Assert(propertyMap != null);
+
             Offset = noOffset;
             Extents = noExtents;
 
-            if (propertyMap == null)
+            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+
+            if (transformProperty == null)
             {
+                // No transform map
                 return;
             }
 
-            SetPropertyMap(propertyMap);
+            var transformMap = new PropertyMap();
+
+            if (transformProperty.Get(transformMap))
+            {
+                SetTransformMap(transformMap);
+            }
         }
 
         /// <summary>
@@ -87,14 +99,18 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 Extents { get; set; }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Equality operator.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator ==(ShadowBase shadow1, ShadowBase shadow2)
         {
             return object.ReferenceEquals(shadow1, null) ? object.ReferenceEquals(shadow2, null) : shadow1.Equals(shadow2);
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Inequality operator.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator !=(ShadowBase shadow1, ShadowBase shadow2)
         {
@@ -105,11 +121,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object other)
         {
-            if ((other == null) || ! this.GetType().Equals(other.GetType())) 
+            if ((other == null) || !GetType().Equals(other.GetType()))
             {
                 return false;
             }
-            
+
             var otherShadow = (ShadowBase)other;
 
             if (!((Offset == null) ? otherShadow.Offset == null : Offset.Equals(otherShadow.Offset)))
@@ -117,7 +133,7 @@ namespace Tizen.NUI
                 return false;
             }
 
-            return ((Extents == null) ? otherShadow.Extents == null : Extents.Equals(otherShadow.Extents));
+            return (Extents == null) ? otherShadow.Extents == null : Extents.Equals(otherShadow.Extents);
         }
 
         /// <inheritdoc/>
@@ -154,6 +170,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Extract a property map.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual PropertyMap GetPropertyMap()
@@ -161,34 +178,6 @@ namespace Tizen.NUI
             PropertyMap map = new PropertyMap();
 
             return map;
-        }
-
-        /// <summary>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (propertyMap == null)
-            {
-                return false;
-            }
-
-            var transformProperty = propertyMap.Find(Visual.Property.Transform);
-
-            if (transformProperty == null)
-            {
-                // No transform map
-                return true;
-            }
-
-            var transformMap = new PropertyMap();
-
-            if (transformProperty.Get(transformMap))
-            {
-                SetTransformMap(transformMap);
-            }
-
-            return true;
         }
 
         private PropertyValue GetTransformMap()
@@ -212,9 +201,6 @@ namespace Tizen.NUI
             return new PropertyValue(transformMap);
         }
 
-        /// <summary>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private void SetTransformMap(PropertyMap transformMap)
         {
             if (transformMap == null)

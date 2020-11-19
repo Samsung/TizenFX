@@ -53,13 +53,15 @@ namespace Tizen.NUI.Binding
 
                 _styleClass = value;
 
-                if (_styleClass != null) {
-                    _classStyleProperties = new List<BindableProperty> ();
-                    foreach (var styleClass in _styleClass) {
-                        var classStyleProperty = BindableProperty.Create ("ClassStyle", typeof(IList<Style>), typeof(View), default(IList<Style>),
+                if (_styleClass != null)
+                {
+                    _classStyleProperties = new List<BindableProperty>();
+                    foreach (var styleClass in _styleClass)
+                    {
+                        var classStyleProperty = BindableProperty.Create("ClassStyle", typeof(IList<Style>), typeof(View), default(IList<Style>),
                             propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.OnClassStyleChanged());
-                        _classStyleProperties.Add (classStyleProperty);
-                        Target.OnSetDynamicResource (classStyleProperty, Tizen.NUI.Binding.Style.StyleClassPrefix + styleClass);
+                        _classStyleProperties.Add(classStyleProperty);
+                        Target.OnSetDynamicResource(classStyleProperty, Tizen.NUI.Binding.Style.StyleClassPrefix + styleClass);
                     }
                 }
             }
@@ -101,7 +103,7 @@ namespace Tizen.NUI.Binding
 
         void OnClassStyleChanged()
         {
-            ClassStyles = _classStyleProperties.Select (p => (Target.GetValue (p) as IList<Style>)?.FirstOrDefault (s => s.CanBeAppliedTo (TargetType))).ToList ();
+            ClassStyles = _classStyleProperties.Select(p => (Target.GetValue(p) as IList<Style>)?.FirstOrDefault(s => s.CanBeAppliedTo(TargetType))).ToList();
         }
 
         void OnImplicitStyleChanged()
@@ -125,7 +127,12 @@ namespace Tizen.NUI.Binding
         void RegisterImplicitStyles()
         {
             Type type = TargetType;
-            while (true) {
+            if (type == null)
+            {
+                return;
+            }
+            while (true)
+            {
                 BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(Style), typeof(View), default(Style),
                         propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
                 _implicitStyles.Add(implicitStyleProperty);

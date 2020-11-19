@@ -22,13 +22,13 @@ namespace Tizen.NUI
         internal static partial class Accessibility
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_get_status")]
-            public static extern bool accessibility_get_status(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern bool AccessibilityGetStatus(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_say")]
-            public static extern bool accessibility_say(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3, global::System.IntPtr jarg4);
+            public static extern bool AccessibilitySay(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3, global::System.IntPtr jarg4);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_pause_resume")]
-            public static extern void accessibility_pause_resume(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            public static extern void AccessibilityPauseResume(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }

@@ -399,9 +399,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddItem(DropDownDataItem itemData)
         {
-           // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
-           int insertionPosition = adapter.GetItemCount();
-           adapter.InsertData(insertionPosition, itemData);
+            // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
+            int insertionPosition = adapter.GetItemCount();
+            adapter.InsertData(insertionPosition, itemData);
         }
 
         /// <summary>
@@ -420,14 +420,14 @@ namespace Tizen.NUI.Components
             {
                 dropDownStyle.SelectedItemIndex = -1;
             }
-            else if(dropDownStyle.SelectedItemIndex > index)
+            else if (dropDownStyle.SelectedItemIndex > index)
             {
                 dropDownStyle.SelectedItemIndex--;
             }
 
             adapter?.RemoveData(index);
 
-            if(index < dropDownMenuFullList.ChildCount)
+            if (index < dropDownMenuFullList.ChildCount)
             {
                 View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
                 if (childToRemove)
@@ -475,7 +475,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            Tizen.Log.Error("DropDown","Feature unsupported");
+            Tizen.Log.Error("DropDown", "Feature unsupported");
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            Tizen.Log.Error("DropDown","Feature unsupported");
+            Tizen.Log.Error("DropDown", "Feature unsupported");
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -529,7 +529,9 @@ namespace Tizen.NUI.Components
             if (null == scrollableBase || null == listBackgroundImage || null == dropDownMenuFullList) return;
             if (null == ListBackgroundImage.Size) return;
             // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
-            scrollableBase.Size = ListBackgroundImage.Size - new Size((dropDownStyle.ListPadding.Start + dropDownStyle.ListPadding.End), (dropDownStyle.ListPadding.Top + dropDownStyle.ListPadding.Bottom), 0);
+            Size dropDownPaddingSize = new Size((dropDownStyle.ListPadding.Start + dropDownStyle.ListPadding.End), (dropDownStyle.ListPadding.Top + dropDownStyle.ListPadding.Bottom), 0);
+            scrollableBase.Size = ListBackgroundImage.Size - dropDownPaddingSize;
+            dropDownPaddingSize.Dispose();
             scrollableBase.Position2D = new Position2D(dropDownStyle.ListPadding.Start, dropDownStyle.ListPadding.Top);
 
             int listBackgroundImageX = 0;
@@ -621,7 +623,7 @@ namespace Tizen.NUI.Components
             return new DropDownStyle();
         }
 
-        private void AddItemAt(DropDownDataItem itemData,int index)
+        private void AddItemAt(DropDownDataItem itemData, int index)
         {
             ViewHolder viewHolder = adapter.OnCreateViewHolder();
             if (!viewHolder.IsBound)
@@ -699,7 +701,7 @@ namespace Tizen.NUI.Components
 
         private View GetViewFromIndex(uint index)
         {
-            if ((index < dropDownMenuFullList.ChildCount) && (index >=0) )
+            if ((index < dropDownMenuFullList.ChildCount) && (index >= 0))
             {
                 return dropDownMenuFullList.GetChildAt(index);
             }
@@ -769,6 +771,10 @@ namespace Tizen.NUI.Components
         {
             PointStateType state = e.Touch.GetState(0);
             DropDownItemView touchedView = sender as DropDownItemView;
+            if (touchedView == null)
+            {
+                return true;
+            }
 
             touchedView.OnTouch(e.Touch); // Handle control state change
 

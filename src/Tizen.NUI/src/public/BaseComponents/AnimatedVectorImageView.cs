@@ -20,9 +20,9 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
-    #if (NUI_DEBUG_ON)
+#if (NUI_DEBUG_ON)
     using tlog = Tizen.Log;
-    #endif
+#endif
 
     /// <summary>
     /// AnimatedVectorImageView is a class for displaying a vector resource.
