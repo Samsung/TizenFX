@@ -585,7 +585,8 @@ namespace Tizen.NUI
         {
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
-            if (child == null)
+            // independent child will be measured in LayoutGroup.OnMeasureIndependentChildren().
+            if (child?.ExcludeLayouting ?? true)
             {
                 measureSize.width = 0;
                 measureSize.height = 0;
@@ -693,12 +694,6 @@ namespace Tizen.NUI
                 if (childHandleRef.Handle == IntPtr.Zero || Child == null)
                     continue;
 
-                if (layoutItem.Owner.ExcludeLayouting)
-                {
-                    MeasureChildWithoutPadding(layoutItem, widthMeasureSpec, heightMeasureSpec);
-                    continue;
-                }
-
                 AlignmentType flexAlignemnt = GetFlexAlignmentSelf(Child);
                 PositionType positionType = GetFlexPositionType(Child);
                 float flexAspectRatio = GetFlexAspectRatio(Child);
@@ -748,21 +743,16 @@ namespace Tizen.NUI
             // Call to FlexLayout implementation to calculate layout values for later retrieval.
             Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl);
 
-            int count = LayoutChildren.Count;
-            for (int childIndex = 0; childIndex < count; childIndex++)
+            for (int childIndex = 0; childIndex < LayoutChildren.Count; childIndex++)
             {
                 LayoutItem childLayout = LayoutChildren[childIndex];
-                if (childLayout != null)
+                if (!childLayout?.Owner?.ExcludeLayouting ?? false)
                 {
-                    if (!childLayout.Owner.ExcludeLayouting)
-                    {
-                        // Get the frame for the child, start, top, end, bottom.
-                        Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
-                        childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
-                    }
+                    // Get the frame for the child, start, top, end, bottom.
+                    Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
+                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                 }
             }
-            LayoutForIndependentChild();
         }
     } // FLexlayout
 } // namesspace Tizen.NUI
