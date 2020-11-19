@@ -25,12 +25,12 @@ namespace Tizen.NUI.Components
         public static void Dispose(View child)
         {
             View parent = child?.GetParent() as View;
-            if(child != null)
+            if (child != null)
             {
-                if(parent != null)
+                if (parent != null)
                 {
                     parent.Remove(child);
-                   
+
                 }
 
                 child.Dispose();

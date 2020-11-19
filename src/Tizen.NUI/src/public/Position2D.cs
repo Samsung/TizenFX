@@ -93,7 +93,7 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
-                
+
                 Interop.Vector2.Vector2_X_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

@@ -335,7 +335,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (NormalLayoutType) (_variation ?? 0);
+                return (NormalLayoutType)(_variation ?? 0);
             }
             set
             {
@@ -351,7 +351,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (NumberOnlyLayoutType) (_variation ?? 0);
+                return (NumberOnlyLayoutType)(_variation ?? 0);
             }
             set
             {
@@ -367,7 +367,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return (PasswordLayoutType) (_variation ?? 0);
+                return (PasswordLayoutType)(_variation ?? 0);
             }
             set
             {

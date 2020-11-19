@@ -18,7 +18,7 @@
 
 // friend assembly setting
 // compile with: /target:Tizen.NUI.ExtTEST /keyfile:FriendAssemblies.snk
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -38,7 +38,8 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("NuiSample, " + Tizen.NUI.PublicKey.Sample)]
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
     internal static class PublicKey
     {

@@ -58,7 +58,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_DownCast")]
             public static extern global::System.IntPtr Model3dView_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
-           
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Model3dView_SWIGUpcast")]
             public static extern global::System.IntPtr Model3dView_SWIGUpcast(global::System.IntPtr jarg1);
         }

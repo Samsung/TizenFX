@@ -36,10 +36,10 @@ namespace Tizen.NUI
         private bool _isCalled = false;
         public void Initialize()
         {
-            if(_isCalled == false)
+            if (_isCalled == false)
             {
-            _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
-            _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+                _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
+                _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
                 _isCalled = true;
             }
         }

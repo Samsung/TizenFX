@@ -136,7 +136,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldTextSid = value;
                 Text = SetTranslatable(textFieldTextSid);
@@ -174,7 +174,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textFieldPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textFieldPlaceHolderTextSid);
@@ -1379,6 +1379,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+            }
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -1423,7 +1428,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (systemlangTextFlag == false)
                 {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                    SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
                     systemlangTextFlag = true;
                 }
                 return translatableText;

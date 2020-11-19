@@ -7,7 +7,7 @@ namespace Tizen.NUI
     internal static partial class Interop
     {
         internal static partial class PanGestureDetector
-        {            
+        {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_SWIGUpcast")]
             public static extern global::System.IntPtr PanGesture_SWIGUpcast(global::System.IntPtr jarg1);
 
