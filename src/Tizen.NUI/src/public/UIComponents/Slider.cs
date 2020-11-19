@@ -43,17 +43,17 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -61,13 +61,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -79,13 +79,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -97,13 +97,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             PropertyMap temp = new PropertyMap();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -115,13 +115,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             PropertyMap temp = new PropertyMap();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -133,13 +133,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             PropertyMap temp = new PropertyMap();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -151,13 +151,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             PropertyMap temp = new PropertyMap();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -169,17 +169,17 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             PropertyMap temp = new PropertyMap();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -187,13 +187,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -205,13 +205,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             int temp = 0;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -223,13 +223,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -241,13 +241,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -259,13 +259,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARKS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -277,17 +277,17 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             float temp = 0.0f;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
+             return temp;
+         });
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -295,13 +295,13 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
-        {
-            var slider = (Slider)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
-            return temp;
-        });
+        defaultValueCreator: (bindable) =>
+         {
+             var slider = (Slider)bindable;
+             bool temp = false;
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
+             return temp;
+         });
 
         private EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> _sliderValueChangedEventHandler;
         private ValueChangedCallbackDelegate _sliderValueChangedCallbackDelegate;
@@ -721,7 +721,8 @@ namespace Tizen.NUI.UIComponents
 
                 if (value == true)
                 {
-                    this.ValueChanged += (obj, e) => {
+                    this.ValueChanged += (obj, e) =>
+                    {
                         this.Value = e.SlideValue;
                         return true;
                     };

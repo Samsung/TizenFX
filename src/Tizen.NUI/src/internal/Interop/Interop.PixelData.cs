@@ -12,7 +12,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr PixelData_SWIGUpcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelData_New")]
-            public static extern global::System.IntPtr PixelData_New([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]byte[] jarg1, uint jarg2, uint jarg3, uint jarg4, int jarg5, int jarg6);
+            public static extern global::System.IntPtr PixelData_New([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] byte[] jarg1, uint jarg2, uint jarg3, uint jarg4, int jarg5, int jarg6);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PixelData__SWIG_0")]
             public static extern global::System.IntPtr new_PixelData__SWIG_0();

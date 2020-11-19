@@ -38,7 +38,7 @@ namespace Tizen.NUI
             string result = value.ToString();
             FieldInfo info = typeof(T).GetField(result);
             var attributes = info.GetCustomAttributes(typeof(DescriptionAttribute), true);
-            if (null != attributes?.FirstOrDefault())
+            if (null != attributes?.FirstOrDefault() && (attributes.First() as DescriptionAttribute) != null)
             {
                 result = (attributes.First() as DescriptionAttribute).Description;
             }
@@ -90,7 +90,7 @@ namespace Tizen.NUI
                 return result;
             }
 
-            throw new ArgumentException($"{value} can't be found.", "Value");
+            throw new ArgumentException($"{value} can't be found.", nameof(value));
         }
     }
 }

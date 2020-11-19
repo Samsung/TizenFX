@@ -255,18 +255,18 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object o)
         {
-            if(o == null)
+            if (o == null)
             {
                 return false;
             }
-            if(!(o is PaddingType))
+            if (!(o is PaddingType))
             {
                 return false;
             }
             PaddingType p = (PaddingType)o;
 
             // Return true if the fields match:
-            return (System.Math.Abs(Start- p.Start) < NDalic.GetRangedEpsilon(Start, p.Start)) &&
+            return (System.Math.Abs(Start - p.Start) < NDalic.GetRangedEpsilon(Start, p.Start)) &&
                    (System.Math.Abs(End - p.End) < NDalic.GetRangedEpsilon(End, p.End)) &&
                    (System.Math.Abs(Bottom - p.Bottom) < NDalic.GetRangedEpsilon(Bottom, p.Bottom)) &&
                    (System.Math.Abs(Top - p.Top) < NDalic.GetRangedEpsilon(Top, p.Top));

@@ -272,7 +272,10 @@ namespace Tizen.NUI.Components
             else
             {
                 // If this is not first focus, request next focus to LayoutManager
-                nextFocusedView = LayoutManager.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
+                if (LayoutManager != null)
+                {
+                    nextFocusedView = LayoutManager.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
+                }
             }
 
             if (nextFocusedView)
@@ -316,7 +319,10 @@ namespace Tizen.NUI.Components
                 }
 
                 focusedView = nextFocusedView;
-                prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
+                if ((nextFocusedView as RecycleItem) != null)
+                {
+                    prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
+                }
 
                 ScrollTo(targetPosition, true);
             }
@@ -327,28 +333,28 @@ namespace Tizen.NUI.Components
                 switch (direction)
                 {
                     case View.FocusDirection.Left:
-                    {
-                        nextFocusedView = LeftFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = LeftFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Right:
-                    {
-                        nextFocusedView = RightFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = RightFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Up:
-                    {
-                        nextFocusedView = UpFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = UpFocusableView;
+                            break;
+                        }
                     case View.FocusDirection.Down:
-                    {
-                        nextFocusedView = DownFocusableView;
-                        break;
-                    }
+                        {
+                            nextFocusedView = DownFocusableView;
+                            break;
+                        }
                 }
 
-                if(nextFocusedView)
+                if (nextFocusedView)
                 {
                     focusedView = null;
                 }

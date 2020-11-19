@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TimeTickCallbackType(IntPtr application, IntPtr watchTime);
         private TimeTickCallbackType _timeTickCallback;
-        private DaliEventHandler<object,TimeTickEventArgs> _timeTickEventHandler;
+        private DaliEventHandler<object, TimeTickEventArgs> _timeTickEventHandler;
 
         /// <summary>
         /// TimeTick event.
@@ -151,7 +151,7 @@ namespace Tizen.NUI
             {
                 if (_timeTickEventHandler == null)
                 {
-                    _timeTickCallback = new TimeTickCallbackType( OnTimeTick);
+                    _timeTickCallback = new TimeTickCallbackType(OnTimeTick);
                     TimeTickSignal().Connect(_timeTickCallback);
                 }
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI
 
                 if (_timeTickEventHandler == null && TimeTickSignal().Empty() == false)
                 {
-                   TimeTickSignal().Disconnect(_timeTickCallback);
+                    TimeTickSignal().Disconnect(_timeTickCallback);
                 }
             }
         }
@@ -216,7 +216,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AmbientTickCallbackType(IntPtr application, IntPtr watchTime);
         private AmbientTickCallbackType _ambientTickCallback;
-        private DaliEventHandler<object,AmbientTickEventArgs> _ambientTickEventHandler;
+        private DaliEventHandler<object, AmbientTickEventArgs> _ambientTickEventHandler;
 
         /// <summary>
         /// AmbientTick event.
@@ -227,7 +227,7 @@ namespace Tizen.NUI
             {
                 if (_ambientTickEventHandler == null)
                 {
-                    _ambientTickCallback = new AmbientTickCallbackType( OnAmbientTick);
+                    _ambientTickCallback = new AmbientTickCallbackType(OnAmbientTick);
                     AmbientTickSignal().Connect(_ambientTickCallback);
                 }
 
@@ -240,7 +240,7 @@ namespace Tizen.NUI
 
                 if (_ambientTickEventHandler == null && AmbientTickSignal().Empty() == false)
                 {
-                   AmbientTickSignal().Disconnect(_ambientTickCallback);
+                    AmbientTickSignal().Disconnect(_ambientTickCallback);
                 }
             }
         }
@@ -291,7 +291,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AmbientChangedCallbackType(IntPtr application, bool changed);
         private AmbientChangedCallbackType _ambientChangedCallback;
-        private DaliEventHandler<object,AmbientChangedEventArgs> _ambientChangedEventHandler;
+        private DaliEventHandler<object, AmbientChangedEventArgs> _ambientChangedEventHandler;
 
         /// <summary>
         /// AmbientChanged event.
@@ -302,7 +302,7 @@ namespace Tizen.NUI
             {
                 if (_ambientChangedEventHandler == null)
                 {
-                    _ambientChangedCallback = new AmbientChangedCallbackType( OnAmbientChanged);
+                    _ambientChangedCallback = new AmbientChangedCallbackType(OnAmbientChanged);
                     AmbientChangedSignal().Connect(_ambientChangedCallback);
                 }
 
@@ -315,7 +315,7 @@ namespace Tizen.NUI
 
                 if (_ambientChangedEventHandler == null && AmbientChangedSignal().Empty() == false)
                 {
-                   AmbientChangedSignal().Disconnect(_ambientChangedCallback);
+                    AmbientChangedSignal().Disconnect(_ambientChangedCallback);
                 }
             }
         }

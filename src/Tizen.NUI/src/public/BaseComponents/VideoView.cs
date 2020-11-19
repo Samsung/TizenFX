@@ -489,7 +489,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
         {
-            if(videoView != null)
+            if (videoView != null)
             {
                 SetHandle(videoView.GetNativePlayerHandle());
             }

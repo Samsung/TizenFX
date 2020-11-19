@@ -201,7 +201,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 string translatableText = null;
                 textLabelSid = value;
@@ -211,7 +211,7 @@ namespace Tizen.NUI.BaseComponents
                     Text = translatableText;
                     if (systemlangTextFlag == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                        SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
                         systemlangTextFlag = true;
                     }
                 }
@@ -970,6 +970,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+            }
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -1017,7 +1022,7 @@ namespace Tizen.NUI.BaseComponents
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
-        private void  NotifyPropertyChangedAndRequestLayout()
+        private void NotifyPropertyChangedAndRequestLayout()
         {
             NotifyPropertyChanged();
             Layout?.RequestLayout();

@@ -97,7 +97,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void AddWidgetInstance( Widget widget )
+        public void AddWidgetInstance(Widget widget)
         {
             _widgetList.Add(widget);
         }
@@ -109,11 +109,11 @@ namespace Tizen.NUI
 
         public void AddWidgetInfo(Dictionary<Type, string> newWidgetInfo)
         {
-            foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo )
+            foreach (KeyValuePair<Type, string> widgetInfo in newWidgetInfo)
             {
-                if ( _widgetInfo.ContainsKey(widgetInfo.Key) == false )
+                if (_widgetInfo.ContainsKey(widgetInfo.Key) == false)
                 {
-                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value );
+                    _widgetInfo.Add(widgetInfo.Key, widgetInfo.Value);
                     string widgetName = widgetInfo.Value;
                     RegisterWidgetCreatingFunction(ref widgetName);
                 }
@@ -122,6 +122,11 @@ namespace Tizen.NUI
 
         public static System.IntPtr WidgetCreateFunction(ref string widgetName)
         {
+            if ((Instance as WidgetApplication) == null)
+            {
+                return IntPtr.Zero;
+            }
+
             Dictionary<System.Type, string> widgetInfo = (Instance as WidgetApplication).WidgetInfo;
 
             foreach (System.Type widgetType in widgetInfo.Keys)
@@ -129,7 +134,7 @@ namespace Tizen.NUI
                 if (widgetInfo[widgetType] == widgetName)
                 {
                     Widget widget = Activator.CreateInstance(widgetType) as Widget;
-                    if (widget)
+                    if (widget != null)
                     {
                         return widget.GetIntPtr();
                     }

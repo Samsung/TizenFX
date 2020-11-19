@@ -211,7 +211,7 @@ namespace Tizen.NUI
         {
             Log.Warn(LogTag, "The OnFrameErred() is not implemented");
         }
-                
+
         private void OnCreateNative(IntPtr context, IntPtr userData)
         {
             _context = context;

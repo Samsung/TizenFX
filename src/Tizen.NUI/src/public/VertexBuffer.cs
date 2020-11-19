@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public VertexBuffer(PropertyMap bufferFormat) : this(Interop.VertexBuffer.VertexBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -62,7 +62,7 @@ namespace Tizen.NUI
             }
 
             Interop.VertexBuffer.VertexBuffer_SetData(swigCPtr, buffer, (uint)vertices.Length);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         public uint GetSize()
         {
             uint ret = Interop.VertexBuffer.VertexBuffer_GetSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
