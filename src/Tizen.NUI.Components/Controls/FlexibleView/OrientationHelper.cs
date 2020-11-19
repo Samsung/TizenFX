@@ -41,42 +41,42 @@ namespace Tizen.NUI.Components
             mLayoutManager = layoutManager;
         }
 
-         // Call this method after onLayout method is complete if state is NOT pre-layout.
-         // This method records information like layout bounds that might be useful in the next layout
-         // calculations.
+        // Call this method after onLayout method is complete if state is NOT pre-layout.
+        // This method records information like layout bounds that might be useful in the next layout
+        // calculations.
         public void OnLayoutComplete()
         {
             mLastTotalSpace = GetTotalSpace();
         }
 
-         // Returns the layout space change between the previous layout pass and current layout pass.
-         // Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
-         // {@link FlexibleViewRecyclerView.LayoutManager#onLayoutChildren(FlexibleViewRecyclerView.Recycler,
-         // FlexibleViewRecyclerView.State)} method.
-         //
-         // @return The difference between the current total space and previous layout's total space.
-         // @see #onLayoutComplete()
+        // Returns the layout space change between the previous layout pass and current layout pass.
+        // Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
+        // {@link FlexibleViewRecyclerView.LayoutManager#onLayoutChildren(FlexibleViewRecyclerView.Recycler,
+        // FlexibleViewRecyclerView.State)} method.
+        //
+        // @return The difference between the current total space and previous layout's total space.
+        // @see #onLayoutComplete()
         public float GetTotalSpaceChange()
         {
             return INVALID_SIZE == mLastTotalSpace ? 0 : GetTotalSpace() - mLastTotalSpace;
         }
 
-         // Returns the start of the view including its decoration and margin.
-         // For example, for the horizontal helper, if a View's left is at pixel 20, has 2px left
-         // decoration and 3px left margin, returned value will be 15px.
-         //
-         // @param view The view element to check
-         // @return The first pixel of the element
-         // @see #getDecoratedEnd(android.view.View)
+        // Returns the start of the view including its decoration and margin.
+        // For example, for the horizontal helper, if a View's left is at pixel 20, has 2px left
+        // decoration and 3px left margin, returned value will be 15px.
+        //
+        // @param view The view element to check
+        // @return The first pixel of the element
+        // @see #getDecoratedEnd(android.view.View)
         public abstract float GetViewHolderStart(FlexibleViewViewHolder holder);
 
-         // Returns the end of the view including its decoration and margin.
-         // For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
-         // decoration and 3px right margin, returned value will be 205.
-         //
-         // @param view The view element to check
-         // @return The last pixel of the element
-         // @see #getDecoratedStart(android.view.View)
+        // Returns the end of the view including its decoration and margin.
+        // For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
+        // decoration and 3px right margin, returned value will be 205.
+        //
+        // @param view The view element to check
+        // @return The last pixel of the element
+        // @see #getDecoratedStart(android.view.View)
         public abstract float GetViewHolderEnd(FlexibleViewViewHolder holder);
 
         // Returns the space occupied by this View in the current orientation including decorations and
@@ -151,7 +151,7 @@ namespace Tizen.NUI.Components
             {
                 return CreateVerticalHelper(layoutManager);
             }
-            
+
             throw new ArgumentException("invalid orientation");
         }
 
@@ -166,10 +166,10 @@ namespace Tizen.NUI.Components
 
         }
 
-       // Creates a vertical OrientationHelper for the given LayoutManager.
-       //
-       // @param layoutManager The LayoutManager to attach to.
-       // @return A new OrientationHelper
+        // Creates a vertical OrientationHelper for the given LayoutManager.
+        //
+        // @param layoutManager The LayoutManager to attach to.
+        // @return A new OrientationHelper
         public static OrientationHelper CreateVerticalHelper(FlexibleViewLayoutManager layoutManager)
         {
             return new VerticalHelper(layoutManager);
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Components
 
     internal class HorizontalHelper : OrientationHelper
     {
-        public HorizontalHelper(FlexibleViewLayoutManager layoutManager): base(layoutManager)
+        public HorizontalHelper(FlexibleViewLayoutManager layoutManager) : base(layoutManager)
         {
 
         }

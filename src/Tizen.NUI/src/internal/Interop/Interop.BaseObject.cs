@@ -7,7 +7,7 @@ namespace Tizen.NUI
     internal static partial class Interop
     {
         internal static partial class BaseObject
-        {            
+        {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BaseObject_DoAction")]
             public static extern bool BaseObject_DoAction(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 

@@ -105,7 +105,7 @@ namespace Tizen.NUI
         public uint AddVertexBuffer(VertexBuffer vertexBuffer)
         {
             uint ret = Interop.Geometry.Geometry_AddVertexBuffer(swigCPtr, VertexBuffer.getCPtr(vertexBuffer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) 
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

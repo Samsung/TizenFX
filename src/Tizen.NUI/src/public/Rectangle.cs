@@ -158,7 +158,7 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor");
-                
+
                 height = (value);
 
                 callback?.Invoke(X, Y, Width, Height);
@@ -334,11 +334,11 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object o)
         {
-            if(o == null)
+            if (o == null)
             {
                 return false;
             }
-            if(!(o is Rectangle))
+            if (!(o is Rectangle))
             {
                 return false;
             }

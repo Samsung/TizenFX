@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
-            get  => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
+            get => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
             set => SetValue(TextPaddingProperty, value);
         }
 

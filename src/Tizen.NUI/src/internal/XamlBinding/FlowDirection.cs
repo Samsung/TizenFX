@@ -15,7 +15,8 @@ namespace Tizen.NUI.Binding
     {
         public override object ConvertFromInvariantString(string value)
         {
-            if (value != null) {
+            if (value != null)
+            {
                 if (Enum.TryParse(value, out FlowDirection direction))
                     return direction;
 

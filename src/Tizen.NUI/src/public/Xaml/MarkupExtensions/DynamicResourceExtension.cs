@@ -25,7 +25,7 @@ namespace Tizen.NUI.Xaml
         {
             if (Key == null)
             {
-                var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
                 throw new XamlParseException("DynamicResource markup require a Key", lineInfo);
             }

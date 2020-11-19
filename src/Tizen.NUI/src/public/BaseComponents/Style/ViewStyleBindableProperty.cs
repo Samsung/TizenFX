@@ -785,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            
+
             if (newValue == null)
             {
                 viewStyle.backgroundColorSelector = null;
@@ -795,7 +795,7 @@ namespace Tizen.NUI.BaseComponents
                 viewStyle.backgroundColorSelector = ((Selector<Color>)newValue).Clone();
                 viewStyle.backgroundImageSelector = null;
             }
-            
+
         },
         defaultValueCreator: (bindable) =>
         {
@@ -893,7 +893,7 @@ namespace Tizen.NUI.BaseComponents
         /// EnableControlState property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create("ThemeChangeSensitive", typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue;
         },

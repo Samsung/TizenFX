@@ -164,11 +164,11 @@ namespace Tizen.NUI.Components
             }
 
             if (PressAnimation.State == Animation.States.Playing)
-                {
-                    PressAnimation.Stop();
-                }
-                PressAnimation.Dispose();
-                PressAnimation = null;
+            {
+                PressAnimation.Stop();
+            }
+            PressAnimation.Dispose();
+            PressAnimation = null;
         }
     }
 }

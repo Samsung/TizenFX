@@ -48,7 +48,7 @@ namespace Tizen.NUI
         }
         public static PathConstrainer DownCast(BaseHandle handle)
         {
-            PathConstrainer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PathConstrainer;
+            PathConstrainer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PathConstrainer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

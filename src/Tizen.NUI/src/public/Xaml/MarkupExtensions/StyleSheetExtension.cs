@@ -26,12 +26,14 @@ namespace Tizen.NUI.Xaml
         {
             IXmlLineInfo lineInfo;
 
-            if (!string.IsNullOrEmpty(Style) && Source != null) {
+            if (!string.IsNullOrEmpty(Style) && Source != null)
+            {
                 lineInfo = (serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider)?.XmlLineInfo;
                 throw new XamlParseException($"StyleSheet can not have both a Source and a content", lineInfo);
             }
 
-            if (Source != null) {
+            if (Source != null)
+            {
                 lineInfo = (serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider)?.XmlLineInfo;
                 if (Source.IsAbsoluteUri)
                     throw new XamlParseException($"Source only accepts Relative URIs", lineInfo);
@@ -45,7 +47,8 @@ namespace Tizen.NUI.Xaml
                 return StyleSheet.FromString(resString);
             }
 
-            if (!string.IsNullOrEmpty(Style)) {
+            if (!string.IsNullOrEmpty(Style))
+            {
                 using (var reader = new StringReader(Style))
                     return StyleSheet.FromReader(reader);
             }

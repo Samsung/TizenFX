@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
 
         private bool isDisposeQueued = false;
 
-        static ControlStyle () { }
+        static ControlStyle() { }
 
         /// <summary>
         /// Creates a new instance of a ControlStyle.
