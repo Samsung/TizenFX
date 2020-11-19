@@ -672,7 +672,7 @@ namespace Tizen.NUI
                 if (childHandleRef.Handle == IntPtr.Zero || Child == null)
                     continue;
 
-                if (!layoutItem.Owner.ExcludeLayouting)
+                if (layoutItem.Owner.ExcludeLayouting)
                 {
                     SetFlexPositionType(Child, PositionType.Absolute);
                     Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)PositionType.Absolute);
@@ -735,7 +735,7 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[childIndex];
                 if (childLayout != null)
                 {
-                    if (childLayout.Owner.ExcludeLayouting)
+                    if (!childLayout.Owner.ExcludeLayouting)
                     {
                         // Get the frame for the child, start, top, end, bottom.
                         Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);

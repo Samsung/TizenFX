@@ -87,9 +87,9 @@ namespace Tizen.NUI
             set
             {
                 setPositionByLayout = value;
-                if (Owner != null && Owner.ExcludeLayouting != value)
+                if (Owner != null && Owner.ExcludeLayouting == value)
                 {
-                    Owner.ExcludeLayouting = value;
+                    Owner.ExcludeLayouting = !value;
                 }
             }
         }
@@ -269,7 +269,7 @@ namespace Tizen.NUI
             else
             {
                 // If height or width specification is not explicitly defined,
-                // the size of the owner view must be reset even the ExcludeLayouting is false.
+                // the size of the owner view must be reset even the ExcludeLayouting is true.
                 if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
                 {
                     Owner.SetSize(right.AsRoundedValue() - left.AsRoundedValue(), bottom.AsRoundedValue() - top.AsRoundedValue());
