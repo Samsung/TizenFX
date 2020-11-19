@@ -100,9 +100,11 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string UpdateSourceEventName {
+        public string UpdateSourceEventName
+        {
             get { return _updateSourceEventName; }
-            set {
+            set
+            {
                 ThrowIfApplied();
                 _updateSourceEventName = value;
             }
@@ -117,8 +119,8 @@ namespace Tizen.NUI.Binding
             if (propertyGetter == null)
                 throw new ArgumentNullException(nameof(propertyGetter));
 
-			return new Binding(GetBindingPath(propertyGetter), mode, converter, converterParameter, stringFormat);
-		}
+            return new Binding(GetBindingPath(propertyGetter), mode, converter, converterParameter, stringFormat);
+        }
 
         internal override void Apply(bool fromTarget)
         {
@@ -172,7 +174,7 @@ namespace Tizen.NUI.Binding
         {
             if (Source != null && fromBindingContextChanged && IsApplied)
                 return;
-            
+
             base.Unapply(fromBindingContextChanged: fromBindingContextChanged);
 
             if (_expression != null)

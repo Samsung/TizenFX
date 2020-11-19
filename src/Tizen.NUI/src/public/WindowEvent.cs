@@ -148,7 +148,7 @@ namespace Tizen.NUI
                 }
 
                 DetentEventHandler -= value;
-                if(DetentEventHandler ==  null && StageWheelEventSignal().Empty() == false)
+                if (DetentEventHandler == null && StageWheelEventSignal().Empty() == false)
                 {
                     StageWheelEventSignal().Disconnect(DetentEventCallback);
                 }
@@ -497,7 +497,7 @@ namespace Tizen.NUI
                 WheelEventSignal().Disconnect(_wheelEventCallback);
             }
 
-            if(DetentEventCallback != null)
+            if (DetentEventCallback != null)
             {
                 StageWheelEventSignal().Disconnect(DetentEventCallback);
             }
@@ -1019,7 +1019,8 @@ namespace Tizen.NUI
             public bool Visibility
             {
                 get => visibility;
-                set {
+                set
+                {
                     visibility = value;
                 }
             }
@@ -1068,9 +1069,9 @@ namespace Tizen.NUI
                 VisibilityChangedEventHandler -= value;
                 if (VisibilityChangedEventHandler == null)
                 {
-                    if(VisibilityChangedEventSignal != null)
+                    if (VisibilityChangedEventSignal != null)
                     {
-                        if(VisibilityChangedEventSignal.Empty() == false)
+                        if (VisibilityChangedEventSignal.Empty() == false)
                         {
                             VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
                         }
@@ -1085,7 +1086,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if(VisibilityChangedEventSignal == null)
+            if (VisibilityChangedEventSignal == null)
             {
                 VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
             }

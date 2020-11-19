@@ -125,7 +125,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public bool Equals(LayoutLength layoutLength)
         {
-            return (Math.Abs(_value - layoutLength._value ) <= float.Epsilon);
+            return (Math.Abs(_value - layoutLength._value) <= float.Epsilon);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator +(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength( arg1._value + arg2._value );
+            return new LayoutLength(arg1._value + arg2._value);
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator /(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength(arg1._value /  arg2._value);
+            return new LayoutLength(arg1._value / arg2._value);
         }
 
         /// <summary>

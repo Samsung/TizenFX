@@ -17,7 +17,8 @@
 
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
     internal class VideoViewSignal : Disposable
     {

@@ -7,7 +7,7 @@ namespace Tizen.NUI
     internal static partial class Interop
     {
         internal static partial class RefObject
-        {            
+        {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_Reference")]
             public static extern void RefObject_Reference(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -242,7 +242,7 @@ namespace Tizen.NUI
 
         internal uint GetInterval()
         {
-            if(swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return 0;

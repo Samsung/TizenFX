@@ -1088,7 +1088,7 @@ namespace Tizen.NUI
         {
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
-            if(_instance)
+            if (_instance)
             {
                 return _instance;
             }
@@ -1291,7 +1291,7 @@ namespace Tizen.NUI
         public Window GetWindow()
         {
             Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindow(swigCPtr)) as Window;
-            if(ret == null)
+            if (ret == null)
             {
                 ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
             }
@@ -1328,11 +1328,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             List<Window> WindowList = new List<Window>();
-            for( uint i = 0; i < ListSize; ++i )
+            for (uint i = 0; i < ListSize; ++i)
             {
                 Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindowsFromList(i)) as Window;
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                if(currWin)
+                if (currWin)
                 {
                     WindowList.Add(currWin);
                 }

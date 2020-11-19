@@ -90,7 +90,7 @@ namespace Tizen.NUI
                 return result;
             }
 
-            throw new ArgumentException($"{value} can't be found.", "Value");
+            throw new ArgumentException($"{value} can't be found.", nameof(value));
         }
     }
 }

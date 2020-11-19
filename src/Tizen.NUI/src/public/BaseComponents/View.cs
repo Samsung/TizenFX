@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool layoutingDisabled{get; set;} = true;
+        public static bool layoutingDisabled { get; set; } = true;
 
         private LayoutItem _layout; // Exclusive layout assigned to this View.
 
@@ -62,11 +62,12 @@ namespace Tizen.NUI.BaseComponents
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
+        private bool excludeLayouting = true;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
 
-        static View() {}
+        static View() { }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -113,7 +114,7 @@ namespace Tizen.NUI.BaseComponents
         internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if(!shown)
+            if (!shown)
             {
                 SetVisible(false);
             }
@@ -202,6 +203,25 @@ namespace Tizen.NUI.BaseComponents
                 OnControlStateChanged(changeInfo);
 
                 ControlStateChangedEvent?.Invoke(this, changeInfo);
+            }
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ExcludeLayouting
+        {
+            get
+            {
+                return excludeLayouting;
+            }
+            set
+            {
+                excludeLayouting = value;
+                if (Layout != null && Layout.SetPositionByLayout != value)
+                {
+                    Layout.SetPositionByLayout = value;
+                    Layout.RequestLayout();
+                }
             }
         }
 
@@ -786,7 +806,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
-                
+
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -970,7 +990,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
+                Vector3 ret = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -988,7 +1008,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
+                Vector3 temp = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1834,7 +1854,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.Actor_GetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.ActorGetParent(swigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -1926,7 +1946,7 @@ namespace Tizen.NUI.BaseComponents
                     // If View stores the Margin too then the Legacy Size Negotiation will
                     // overwrite the position and size values measured in the Layouting.
                     Layout.Margin = value;
-                    SetValue(MarginProperty, new Extents(0,0,0,0));
+                    SetValue(MarginProperty, new Extents(0, 0, 0, 0));
                     _layout?.RequestLayout();
                 }
                 else
@@ -1951,16 +1971,16 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _widthPolicy = value;
-                if( _oldWidthPolicy != _widthPolicy )
+                if (_oldWidthPolicy != _widthPolicy)
                 {
                     if (_widthPolicy >= 0)
                     {
-                        _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
+                        _measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
 
-                        if(_heightPolicy>=0) // Policy an exact value
+                        if (_heightPolicy >= 0) // Policy an exact value
                         {
                             // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                            Size2D = new Size2D(_widthPolicy, _heightPolicy);
                         }
                     }
                     _layout?.RequestLayout();
@@ -1982,16 +2002,16 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _heightPolicy = value;
-                if( _oldHeightPolicy != _heightPolicy )
+                if (_oldHeightPolicy != _heightPolicy)
                 {
                     if (_heightPolicy >= 0)
                     {
-                        _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
+                        _measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
 
-                        if(_widthPolicy>=0) // Policy an exact value
+                        if (_widthPolicy >= 0) // Policy an exact value
                         {
                             // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                            Size2D = new Size2D(_widthPolicy, _heightPolicy);
                         }
 
                     }
@@ -2032,7 +2052,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
-                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
+                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);
             }
@@ -2143,7 +2163,7 @@ namespace Tizen.NUI.BaseComponents
                 // Copy Margin and Padding to new layout being set or restore padding and margin back to
                 // View if no replacement. Previously margin and padding values would have been moved from
                 // the View to the layout.
-                if (_layout != null ) // Existing layout
+                if (_layout != null) // Existing layout
                 {
                     if (value != null)
                     {
@@ -2153,10 +2173,10 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else
                     {
-                      // Layout not being replaced so restore margin and padding to View.
-                      SetValue(MarginProperty, _layout.Margin);
-                      SetValue(PaddingProperty, _layout.Padding);
-                      NotifyPropertyChanged();
+                        // Layout not being replaced so restore margin and padding to View.
+                        SetValue(MarginProperty, _layout.Margin);
+                        SetValue(PaddingProperty, _layout.Padding);
+                        NotifyPropertyChanged();
                     }
                 }
                 else
@@ -2164,21 +2184,21 @@ namespace Tizen.NUI.BaseComponents
                     // First Layout to be added to the View hence copy
 
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
-                    if (value !=null)
+                    if (value != null)
                     {
-                        if (Margin.Top != 0 || Margin.Bottom !=0 || Margin.Start !=0 || Margin.End != 0)
+                        if (Margin.Top != 0 || Margin.Bottom != 0 || Margin.Start != 0 || Margin.End != 0)
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = Margin;
-                            SetValue(MarginProperty, new Extents(0,0,0,0));
+                            SetValue(MarginProperty, new Extents(0, 0, 0, 0));
                             NotifyPropertyChanged();
                         }
 
-                        if (Padding.Top != 0 || Padding.Bottom !=0 || Padding.Start !=0 || Padding.End != 0)
+                        if (Padding.Top != 0 || Padding.Bottom != 0 || Padding.Start != 0 || Padding.End != 0)
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = Padding;
-                            SetValue(PaddingProperty, new Extents(0,0,0,0));
+                            SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
                             NotifyPropertyChanged();
                         }
                     }
@@ -2186,6 +2206,8 @@ namespace Tizen.NUI.BaseComponents
 
                 // Remove existing layout from it's parent layout group.
                 _layout?.Unparent();
+
+                value.SetPositionByLayout = excludeLayouting;
 
                 // Set layout to this view
                 SetLayout(value);
@@ -2307,7 +2329,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Whether the actor grab all touches even if touch leaves its boundary.
         /// </summary>
         /// <returns>true, if it grab all touch after start</returns>

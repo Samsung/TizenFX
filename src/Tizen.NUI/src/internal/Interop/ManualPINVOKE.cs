@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get")]
         public static extern int HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get();
-                
+
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_MUST_BREAK_get")]
         public static extern int LINE_MUST_BREAK_get();
 

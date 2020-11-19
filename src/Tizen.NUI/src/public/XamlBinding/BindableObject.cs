@@ -116,7 +116,7 @@ namespace Tizen.NUI.Binding
             if (propertyKey == null)
                 throw new ArgumentNullException(nameof(propertyKey));
 
-            ClearValue(propertyKey.BindableProperty, fromStyle:false, checkAccess: false);
+            ClearValue(propertyKey.BindableProperty, fromStyle: false, checkAccess: false);
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace Tizen.NUI.Binding
                 bindable._inheritedContext = value;
             }
 
-            bindable.ApplyBindings(skipBindingContext:false, fromBindingContextChanged:true);
+            bindable.ApplyBindings(skipBindingContext: false, fromBindingContextChanged: true);
             bindable.OnBindingContextChanged();
         }
 
@@ -338,8 +338,9 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UnapplyBindings()
         {
-            for (int i = 0, _propertiesCount = _properties.Count; i < _propertiesCount; i++) {
-                BindablePropertyContext context = _properties [i];
+            for (int i = 0, _propertiesCount = _properties.Count; i < _propertiesCount; i++)
+            {
+                BindablePropertyContext context = _properties[i];
                 if (context.Binding == null)
                     continue;
 
@@ -446,14 +447,16 @@ namespace Tizen.NUI.Binding
         internal object[] GetValues(params BindableProperty[] properties)
         {
             var values = new object[properties.Length];
-            for (var i = 0; i < _properties.Count; i++) {
+            for (var i = 0; i < _properties.Count; i++)
+            {
                 var context = _properties[i];
                 var index = properties.IndexOf(context.Property);
                 if (index < 0)
                     continue;
                 values[index] = context.Value;
             }
-            for (var i = 0; i < values.Length; i++) {
+            for (var i = 0; i < values.Length; i++)
+            {
                 if (!ReferenceEquals(values[i], null))
                     continue;
                 values[i] = properties[i].DefaultValueCreator == null ? properties[i].DefaultValue : CreateAndAddContext(properties[i]).Value;
@@ -596,10 +599,12 @@ namespace Tizen.NUI.Binding
                 value = property.CoerceValue(this, value);
 
             BindablePropertyContext context = GetOrCreateContext(property);
-            if (manuallySet) {
+            if (manuallySet)
+            {
                 context.Attributes |= BindableContextAttributes.IsManuallySet;
                 context.Attributes &= ~BindableContextAttributes.IsSetFromStyle;
-            } else
+            }
+            else
                 context.Attributes &= ~BindableContextAttributes.IsManuallySet;
 
             if (fromStyle)
@@ -640,8 +645,9 @@ namespace Tizen.NUI.Binding
         internal void ApplyBindings(bool skipBindingContext, bool fromBindingContextChanged)
         {
             var prop = _properties.ToArray();
-            for (int i = 0, propLength = prop.Length; i < propLength; i++) {
-                BindablePropertyContext context = prop [i];
+            for (int i = 0, propLength = prop.Length; i < propLength; i++)
+            {
+                BindablePropertyContext context = prop[i];
                 BindingBase binding = context.Binding;
                 if (binding == null)
                     continue;
@@ -669,7 +675,7 @@ namespace Tizen.NUI.Binding
         static void BindingContextPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             bindable._inheritedContext = null;
-            bindable.ApplyBindings(skipBindingContext: true, fromBindingContextChanged:true);
+            bindable.ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
             bindable.OnBindingContextChanged();
         }
 
@@ -751,7 +757,7 @@ namespace Tizen.NUI.Binding
             {
                 context = CreateAndAddContext(property);
             }
-            else if (property.DefaultValueCreator != null )
+            else if (property.DefaultValueCreator != null)
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
             }//added by xb.teng

@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
             // To prevent a state from having multiple values, remove existing state-value pair.
             int index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => x.State == stateValuePair.State);
             if (index != -1)
-               StateValueList.RemoveAt(index);
+                StateValueList.RemoveAt(index);
 
             StateValueList.Add(stateValuePair);
         }
