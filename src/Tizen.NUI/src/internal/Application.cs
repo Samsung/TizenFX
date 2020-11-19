@@ -507,7 +507,7 @@ namespace Tizen.NUI
         }
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Application.delete_Application(swigCPtr);
+            Interop.Application.DeleteApplication(swigCPtr);
         }
 
         /// <since_tizen> 4 </since_tizen>
@@ -1155,7 +1155,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
 
-            bool ret = Interop.Application.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+            bool ret = Interop.Application.ApplicationAddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1166,28 +1166,28 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
-            Application ret = new Application(Interop.Application.Application_New__SWIG_0(), true);
+            Application ret = new Application(Interop.Application.ApplicationNew(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc)
         {
-            Application ret = new Application(Interop.Application.Application_New__SWIG_1(argc), true);
+            Application ret = new Application(Interop.Application.ApplicationNew(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet)
         {
-            Application ret = new Application(Interop.Application.Application_New__SWIG_2(argc, stylesheet), true);
+            Application ret = new Application(Interop.Application.ApplicationNew(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
-            Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            Application ret = new Application(Interop.Application.ApplicationNew(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             s_current = ret;
             return ret;
@@ -1219,7 +1219,7 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
-            Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            Application ret = new Application(Interop.Application.ApplicationNew(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1248,19 +1248,19 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public Application() : this(Interop.Application.new_Application__SWIG_0(), true)
+        public Application() : this(Interop.Application.NewApplication(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Application(Application application) : this(Interop.Application.new_Application__SWIG_1(Application.getCPtr(application)), true)
+        public Application(Application application) : this(Interop.Application.NewApplication(Application.getCPtr(application)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application Assign(Application application)
         {
-            Application ret = new Application(Interop.Application.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
+            Application ret = new Application(Interop.Application.ApplicationAssign(swigCPtr, Application.getCPtr(application)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1273,29 +1273,29 @@ namespace Tizen.NUI
 
         public void Lower()
         {
-            Interop.Application.Application_Lower(swigCPtr);
+            Interop.Application.ApplicationLower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Quit()
         {
-            Interop.Application.Application_Quit(swigCPtr);
+            Interop.Application.ApplicationQuit(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            bool ret = Interop.Application.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            bool ret = Interop.Application.ApplicationAddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Window GetWindow()
         {
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindow(swigCPtr)) as Window;
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.ApplicationGetWindow(swigCPtr)) as Window;
             if (ret == null)
             {
-                ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
+                ret = new Window(Interop.Application.ApplicationGetWindow(swigCPtr), true);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1304,21 +1304,21 @@ namespace Tizen.NUI
 
         public static string GetResourcePath()
         {
-            string ret = Interop.Application.Application_GetResourcePath();
+            string ret = Interop.Application.ApplicationGetResourcePath();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetLanguage()
         {
-            string ret = Interop.Application.Application_GetLanguage(swigCPtr);
+            string ret = Interop.Application.ApplicationGetLanguage(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetRegion()
         {
-            string ret = Interop.Application.Application_GetRegion(swigCPtr);
+            string ret = Interop.Application.ApplicationGetRegion(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1326,13 +1326,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Window> GetWindowList()
         {
-            uint ListSize = Interop.Application.Application_GetWindowsListSize();
+            uint ListSize = Interop.Application.ApplicationGetWindowsListSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             List<Window> WindowList = new List<Window>();
             for (uint i = 0; i < ListSize; ++i)
             {
-                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindowsFromList(i)) as Window;
+                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.ApplicationGetWindowsFromList(i)) as Window;
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 if (currWin)
                 {

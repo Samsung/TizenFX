@@ -42,12 +42,12 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBoxButton() : this(Interop.CheckBoxButton.CheckBoxButton_New(), true)
+        public CheckBoxButton() : this(Interop.CheckBoxButton.CheckBoxButtonNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CheckBoxButton.CheckBoxButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CheckBoxButton.CheckBoxButtonUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -56,7 +56,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.CheckBoxButton.delete_CheckBoxButton(swigCPtr);
+            Interop.CheckBoxButton.DeleteCheckBoxButton(swigCPtr);
         }
     }
 }

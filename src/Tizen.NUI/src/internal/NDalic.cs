@@ -555,11 +555,11 @@ namespace Tizen.NUI
         internal static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_Y = Interop.NDalicVisual.VISUAL_SHADER_SUBDIVIDE_GRID_Y_get();
         internal static readonly int VISUAL_SHADER_HINTS = Interop.NDalicVisual.VISUAL_SHADER_HINTS_get();
 
-        internal static readonly int BORDER_VISUAL_COLOR = Interop.NDalicBorderVisual.BORDER_VISUAL_COLOR_get();
-        internal static readonly int BORDER_VISUAL_SIZE = Interop.NDalicBorderVisual.BORDER_VISUAL_SIZE_get();
-        internal static readonly int BORDER_VISUAL_ANTI_ALIASING = Interop.NDalicBorderVisual.BORDER_VISUAL_ANTI_ALIASING_get();
+        internal static readonly int BorderVisualColor = Interop.NDalicBorderVisual.BorderVisualColorGet();
+        internal static readonly int BorderVisualSize = Interop.NDalicBorderVisual.BorderVisualSizeGet();
+        internal static readonly int BorderVisualAntiAliasing = Interop.NDalicBorderVisual.BorderVisualAntiAliasingGet();
 
-        internal static readonly int COLOR_VISUAL_MIX_COLOR = Interop.NDalicColorVisual.COLOR_VISUAL_MIX_COLOR_get();
+        internal static readonly int ColorVisualMixColor = Interop.NDalicColorVisual.ColorVisualMixColorGet();
 
         internal static readonly int GRADIENT_VISUAL_START_POSITION = Interop.NDalicGradientVisual.GRADIENT_VISUAL_START_POSITION_get();
         internal static readonly int GRADIENT_VISUAL_END_POSITION = Interop.NDalicGradientVisual.GRADIENT_VISUAL_END_POSITION_get();

@@ -435,7 +435,7 @@ namespace Tizen.NUI
 
         internal TouchDataSignal TouchDataSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(Layer.getCPtr(GetRootLayer())), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(Layer.getCPtr(GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -557,7 +557,7 @@ namespace Tizen.NUI
 
         private WheelSignal WheelEventSignal()
         {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
+            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -706,7 +706,7 @@ namespace Tizen.NUI
             // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
             // val.Dispose();
 
-            // Workaround : windowSize should be valid pointer from dali, 
+            // Workaround : windowSize should be valid pointer from dali,
             // but currenlty it is fixed and is not Uint16Pair class.
             // will be fixed later.
             e.WindowSize = this.WindowSize;

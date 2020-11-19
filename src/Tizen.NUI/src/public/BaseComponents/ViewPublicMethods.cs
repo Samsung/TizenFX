@@ -529,7 +529,7 @@ namespace Tizen.NUI.BaseComponents
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.DeleteBaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)

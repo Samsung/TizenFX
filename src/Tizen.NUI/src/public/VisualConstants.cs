@@ -592,17 +592,17 @@ namespace Tizen.NUI
         /// The color of the border.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
+        public static readonly int Color = NDalic.BorderVisualColor;
         /// <summary>
         /// The width of the border (in pixels).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Size = NDalic.BORDER_VISUAL_SIZE;
+        public static readonly int Size = NDalic.BorderVisualSize;
         /// <summary>
         /// Whether anti-aliasing of the border is required.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
+        public static readonly int AntiAliasing = NDalic.BorderVisualAntiAliasing;
     }
 
     /// <summary>
@@ -615,17 +615,17 @@ namespace Tizen.NUI
         /// The solid color required.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
+        public static readonly int MixColor = NDalic.ColorVisualMixColor;
         /// <summary>
         /// Whether to render if the MixColor is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
+        public static readonly int RenderIfTransparent = NDalic.ColorVisualMixColor + 1;
         /// <summary>
         /// Then radius value for the area to blur.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int BlurRadius = NDalic.COLOR_VISUAL_MIX_COLOR + 2;
+        public static readonly int BlurRadius = NDalic.ColorVisualMixColor + 2;
     }
 
     /// <summary>

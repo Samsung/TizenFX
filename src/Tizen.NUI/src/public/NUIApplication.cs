@@ -383,7 +383,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void PreLoad()
         {
-            Interop.Application.Application_PreInitialize();
+            Interop.Application.ApplicationPreInitialize();
         }
 
         /// <summary>

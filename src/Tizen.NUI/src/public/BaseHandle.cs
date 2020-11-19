@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle() : this(Interop.BaseHandle.new_BaseHandle__SWIG_1())
+        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle())
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">The BaseHandle instance.</param>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)))
+        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)))
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -79,7 +79,7 @@ namespace Tizen.NUI
             _registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.new_BaseHandle__SWIG_2(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
@@ -97,7 +97,7 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.new_BaseHandle__SWIG_2(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
@@ -325,7 +325,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool DoAction(string actionName, PropertyMap attributes)
         {
-            bool ret = Interop.BaseHandle.BaseHandle_DoAction(swigCPtrCopy, actionName, PropertyMap.getCPtr(attributes));
+            bool ret = Interop.BaseHandle.BaseHandleDoAction(swigCPtrCopy, actionName, PropertyMap.getCPtr(attributes));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -339,7 +339,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetTypeName()
         {
-            string ret = Interop.BaseHandle.BaseHandle_GetTypeName(swigCPtrCopy);
+            string ret = Interop.BaseHandle.BaseHandleGetTypeName(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -352,7 +352,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = Interop.BaseHandle.BaseHandle_GetTypeInfo(swigCPtrCopy, Tizen.NUI.TypeInfo.getCPtr(info));
+            bool ret = Interop.BaseHandle.BaseHandleGetTypeInfo(swigCPtrCopy, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -363,7 +363,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Reset()
         {
-            Interop.BaseHandle.BaseHandle_Reset(swigCPtrCopy);
+            Interop.BaseHandle.BaseHandleReset(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -375,7 +375,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(BaseHandle rhs)
         {
-            bool ret = Interop.BaseHandle.BaseHandle_EqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.BaseHandleEqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -388,7 +388,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(BaseHandle rhs)
         {
-            bool ret = Interop.BaseHandle.BaseHandle_NotEqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.BaseHandleNotEqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -409,7 +409,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.BaseHandle.BaseHandle_HasBody(swigCPtrCopy);
+            bool ret = Interop.BaseHandle.BaseHandleHasBody(swigCPtrCopy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -427,7 +427,7 @@ namespace Tizen.NUI
                 return false;
             }
 
-            bool ret = Interop.BaseHandle.BaseHandle_IsEqual(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.BaseHandleIsEqual(swigCPtrCopy, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -483,7 +483,7 @@ namespace Tizen.NUI
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
-                Interop.BaseHandle.delete_BaseHandle(swigCPtrCopy);
+                Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 

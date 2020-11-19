@@ -27,19 +27,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ButtonSignal.delete_ButtonSignal(swigCPtr);
+            Interop.ButtonSignal.DeleteButtonSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ButtonSignal.ButtonSignal_Empty(swigCPtr);
+            bool ret = Interop.ButtonSignal.ButtonSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ButtonSignal.ButtonSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ButtonSignal.ButtonSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ButtonSignal.ButtonSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ButtonSignal.ButtonSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,19 +57,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ButtonSignal.ButtonSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ButtonSignal.ButtonSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(Tizen.NUI.UIComponents.Button arg)
         {
-            bool ret = Interop.ButtonSignal.ButtonSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.Button.getCPtr(arg));
+            bool ret = Interop.ButtonSignal.ButtonSignalEmit(swigCPtr, Tizen.NUI.UIComponents.Button.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public ButtonSignal() : this(Interop.ButtonSignal.new_ButtonSignal(), true)
+        public ButtonSignal() : this(Interop.ButtonSignal.NewButtonSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

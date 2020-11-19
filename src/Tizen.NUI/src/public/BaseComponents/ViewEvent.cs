@@ -569,7 +569,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TouchDataSignal InterceptTouchSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_InterceptTouchSignal(swigCPtr), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -577,7 +577,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TouchDataSignal TouchSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(swigCPtr), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -585,7 +585,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal HoverSignal HoveredSignal()
         {
-            HoverSignal ret = new HoverSignal(Interop.ActorSignal.Actor_HoveredSignal(swigCPtr), false);
+            HoverSignal ret = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -593,7 +593,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal WheelSignal WheelEventSignal()
         {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(swigCPtr), false);
+            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -601,7 +601,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -609,7 +609,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OffWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -617,7 +617,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnRelayoutSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnRelayoutSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

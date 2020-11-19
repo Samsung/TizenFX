@@ -9,55 +9,55 @@ namespace Tizen.NUI
         internal static partial class Any
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Any__SWIG_0")]
-            public static extern global::System.IntPtr new_Any__SWIG_0();
+            public static extern global::System.IntPtr NewAny();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Any")]
-            public static extern void delete_Any(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteAny(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AssertAlways")]
-            public static extern void Any_AssertAlways(string jarg1);
+            public static extern void AnyAssertAlways(string jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Any__SWIG_2")]
-            public static extern global::System.IntPtr new_Any__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewAny(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_Assign")]
-            public static extern global::System.IntPtr Any_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr AnyAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_GetType")]
-            public static extern global::System.IntPtr Any_GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyGetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_Empty")]
-            public static extern bool Any_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern bool AnyEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Any_AnyContainerBase")]
-            public static extern global::System.IntPtr new_Any_AnyContainerBase(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern global::System.IntPtr NewAnyAnyContainerBase(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_GetType")]
-            public static extern global::System.IntPtr Any_AnyContainerBase_GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyAnyContainerBaseGetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_mType_get")]
-            public static extern global::System.IntPtr Any_AnyContainerBase_mType_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyAnyContainerBaseTypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_mCloneFunc_set")]
-            public static extern void Any_AnyContainerBase_mCloneFunc_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void AnyAnyContainerBaseCloneFuncSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_mCloneFunc_get")]
-            public static extern global::System.IntPtr Any_AnyContainerBase_mCloneFunc_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyAnyContainerBaseCloneFuncGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_mDeleteFunc_set")]
-            public static extern void Any_AnyContainerBase_mDeleteFunc_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void AnyAnyContainerBaseDeleteFuncSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_AnyContainerBase_mDeleteFunc_get")]
-            public static extern global::System.IntPtr Any_AnyContainerBase_mDeleteFunc_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyAnyContainerBaseDeleteFuncGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Any_AnyContainerBase")]
-            public static extern void delete_Any_AnyContainerBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteAnyAnyContainerBase(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_mContainer_set")]
-            public static extern void Any_mContainer_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void AnyContainerSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Any_mContainer_get")]
-            public static extern global::System.IntPtr Any_mContainer_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr AnyContainerGet(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

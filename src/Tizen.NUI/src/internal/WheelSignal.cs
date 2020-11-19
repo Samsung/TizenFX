@@ -28,19 +28,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ActorWheelSignal.delete_ActorWheelSignal(swigCPtr);
+            Interop.ActorWheelSignal.DeleteActorWheelSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ActorWheelSignal.ActorWheelSignal_Empty(swigCPtr);
+            bool ret = Interop.ActorWheelSignal.ActorWheelSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ActorWheelSignal.ActorWheelSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ActorWheelSignal.ActorWheelSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorWheelSignal.ActorWheelSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorWheelSignal.ActorWheelSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,19 +58,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorWheelSignal.ActorWheelSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorWheelSignal.ActorWheelSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(View arg1, Wheel arg2)
         {
-            bool ret = Interop.ActorWheelSignal.ActorWheelSignal_Emit(swigCPtr, View.getCPtr(arg1), Wheel.getCPtr(arg2));
+            bool ret = Interop.ActorWheelSignal.ActorWheelSignalEmit(swigCPtr, View.getCPtr(arg1), Wheel.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public WheelSignal() : this(Interop.ActorWheelSignal.new_ActorWheelSignal(), true)
+        public WheelSignal() : this(Interop.ActorWheelSignal.NewActorWheelSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

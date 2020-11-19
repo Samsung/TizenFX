@@ -30,19 +30,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ActorSignal.delete_ActorSignal(swigCPtr);
+            Interop.ActorSignal.DeleteActorSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ActorSignal.ActorSignal_Empty(swigCPtr);
+            bool ret = Interop.ActorSignal.ActorSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ActorSignal.ActorSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ActorSignal.ActorSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ActorSignal.ActorSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ActorSignal.ActorSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -62,7 +62,7 @@ namespace Tizen.NUI
             {
                 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
                 {
-                    Interop.ActorSignal.ActorSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                    Interop.ActorSignal.ActorSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
@@ -82,11 +82,11 @@ namespace Tizen.NUI
 
         public void Emit(View arg)
         {
-            Interop.ActorSignal.ActorSignal_Emit(swigCPtr, View.getCPtr(arg));
+            Interop.ActorSignal.ActorSignalEmit(swigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ViewSignal() : this(Interop.ActorSignal.new_ActorSignal(), true)
+        public ViewSignal() : this(Interop.ActorSignal.NewActorSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

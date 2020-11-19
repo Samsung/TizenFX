@@ -1868,7 +1868,7 @@ namespace Tizen.NUI.BaseComponents
                     ret = basehandle as View;
                 }
 
-                Interop.BaseHandle.delete_BaseHandle(CPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
