@@ -214,14 +214,14 @@ namespace Tizen.NUI
 
                 // assign column/row depending on GridOrientation. The main axis count(Columns on Horizontal, Rows otherwise) won't be exceeded
                 // explicit column(row) count which is assigned by Columns(Rows). but, cross axis count(Rows(Columns)) can be increased by sub axis count.
-                if (column == CellUndefined || row == CellUndefined)
+                if (column == AutoColumn || row == AutoRow)
                 {
                     (int point, int span) mainAxis = isHorizontal ? (column, columnSpan) : (row, rowSpan);
                     (int point, int span) subAxis = isHorizontal ? (row, rowSpan) : (column, columnSpan);
 
-                    if (subAxis.point != CellUndefined)
+                    if (subAxis.point != AutoColumn && subAxis.point != AutoRow)
                         subPivot = subAxis.point;
-                    if (mainAxis.point != CellUndefined)
+                    if (mainAxis.point != AutoColumn && mainAxis.point != AutoRow)
                         mainPivot = mainAxis.point;
 
                     if (mainPivot + mainAxis.span > pivotStack.Length)
@@ -239,7 +239,7 @@ namespace Tizen.NUI
 
                             if (n > pivotStack.Length)
                             {
-                                if (mainAxis.point != CellUndefined)
+                                if (mainAxis.point != AutoColumn && mainAxis.point != AutoRow)
                                     mainPivot = mainAxis.point;
                                 else
                                     mainPivot = 0;
