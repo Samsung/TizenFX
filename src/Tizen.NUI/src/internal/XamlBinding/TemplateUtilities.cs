@@ -44,12 +44,11 @@ namespace Tizen.NUI.Binding
             return tcs.Task;
         }
 
-        public static void OnContentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-        }
-
         public static void OnControlTemplateChanged(BindableObject bindable, object oldValue, object newValue)
         {
+            // Unused parameter
+            _ = newValue;
+
             var self = (IControlTemplated)bindable;
 
             // First make sure any old ContentPresenters are no longer bound up. This MUST be

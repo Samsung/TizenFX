@@ -111,10 +111,10 @@ namespace Tizen.NUI.Binding
             return iOS;
         }
 
-        public static void OpenUri(Uri uri)
-        {
-            // PlatformServices?.OpenUriAction(uri);
-        }
+        // public static void OpenUri(Uri uri)
+        // {
+        //     PlatformServices?.OpenUriAction(uri);
+        // }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Assembly[] GetAssemblies()

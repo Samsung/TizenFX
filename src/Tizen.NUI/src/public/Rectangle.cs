@@ -65,6 +65,7 @@ namespace Tizen.NUI
 
         internal Rectangle(RectangleChangedCallback cb) : this()
         {
+            callback = cb;
         }
 
         internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)

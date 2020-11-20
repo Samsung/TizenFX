@@ -52,7 +52,7 @@ namespace Tizen.NUI.Xaml
 
             var markupString = markupnode.MarkupString;
             var node =
-                ParseExpression(ref markupString, markupnode.NamespaceResolver, markupnode, markupnode, parentNode) as IElementNode;
+                ParseExpression(ref markupString, markupnode.NamespaceResolver, markupnode) as IElementNode;
             if (node != null)
             {
                 ((IElementNode)parentNode).Properties[propertyName] = node;
@@ -72,8 +72,7 @@ namespace Tizen.NUI.Xaml
         {
         }
 
-        INode ParseExpression(ref string expression, IXmlNamespaceResolver nsResolver, IXmlLineInfo xmlLineInfo, INode node,
-            INode parentNode)
+        INode ParseExpression(ref string expression, IXmlNamespaceResolver nsResolver, INode node)
         {
             if (expression.StartsWith("{}", StringComparison.Ordinal))
                 return new ValueNode(expression.Substring(2), null);
