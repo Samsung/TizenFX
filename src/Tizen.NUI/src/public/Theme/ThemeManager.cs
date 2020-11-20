@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Tizen.NUI.Xaml;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -73,7 +74,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Internal one should be called before calling public ThemeChanged
         /// </summary>
-        internal static event EventHandler<ThemeChangedEventArgs> ThemeChangedInternal;
+        internal static WeakEvent<EventHandler<ThemeChangedEventArgs>> ThemeChangedInternal = new WeakEvent<EventHandler<ThemeChangedEventArgs>>();
 
         internal static Theme CurrentTheme
         {
@@ -330,7 +331,7 @@ namespace Tizen.NUI
 
         private static void NotifyThemeChanged()
         {
-            ThemeChangedInternal?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
+            ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
             ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
         }
     }
