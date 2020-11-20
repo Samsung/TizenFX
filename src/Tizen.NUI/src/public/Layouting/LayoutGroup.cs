@@ -431,7 +431,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layout independent children those Owners have true ExcludeLayouting. <br />
+        /// Layout independent children those Owners have false ExcludeLayouting. <br />
         /// These children are required not to be affected by this layout. <br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -443,7 +443,7 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[childIndex];
                 if (childLayout != null)
                 {
-                    if (childLayout.Owner.ExcludeLayouting)
+                    if (!childLayout.Owner.ExcludeLayouting)
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;

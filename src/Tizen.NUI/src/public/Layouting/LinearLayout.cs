@@ -290,7 +290,7 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout.Owner.ExcludeLayouting)
+                if (!childLayout.Owner.ExcludeLayouting)
                 {
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                     continue;
@@ -407,7 +407,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < numberOfChildren; ++i)
                 {
                     LayoutItem childLayout = LayoutChildren[i];
-                    if (childLayout.Owner.ExcludeLayouting)
+                    if (!childLayout.Owner.ExcludeLayouting)
                     {
                         continue;
                     }
@@ -502,7 +502,7 @@ namespace Tizen.NUI
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
                 LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout.Owner.ExcludeLayouting)
+                if (!childLayout.Owner.ExcludeLayouting)
                 {
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                     continue;
@@ -618,7 +618,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < numberOfChildren; ++i)
                 {
                     LayoutItem childLayout = LayoutChildren[i];
-                    if (childLayout.Owner.ExcludeLayouting)
+                    if (!childLayout.Owner.ExcludeLayouting)
                     {
                         continue;
                     }
@@ -747,7 +747,7 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[childIndex];
                 if (childLayout != null)
                 {
-                    if (!childLayout.Owner.ExcludeLayouting)
+                    if (childLayout.Owner.ExcludeLayouting)
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -811,7 +811,7 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    if (!childLayout.Owner.ExcludeLayouting)
+                    if (childLayout.Owner.ExcludeLayouting)
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -853,7 +853,7 @@ namespace Tizen.NUI
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
             foreach (LayoutItem childLayout in LayoutChildren)
             {
-                if (childLayout.Owner.ExcludeLayouting)
+                if (!childLayout.Owner.ExcludeLayouting)
                 {
                     continue;
                 }
@@ -880,7 +880,7 @@ namespace Tizen.NUI
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredWidth.Size, MeasureSpecification.ModeType.Exactly);
             foreach (LayoutItem childLayout in LayoutChildren)
             {
-                if (childLayout.Owner.ExcludeLayouting)
+                if (!childLayout.Owner.ExcludeLayouting)
                 {
                     continue;
                 }
