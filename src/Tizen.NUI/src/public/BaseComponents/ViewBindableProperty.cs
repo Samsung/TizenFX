@@ -1616,11 +1616,11 @@ namespace Tizen.NUI.BaseComponents
 
             if (view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChangedInternal += view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
             else
             {
-                ThemeManager.ThemeChangedInternal -= view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
             }
         },
         defaultValueCreator: (bindable) =>

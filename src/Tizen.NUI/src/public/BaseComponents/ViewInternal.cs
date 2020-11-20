@@ -1122,7 +1122,7 @@ namespace Tizen.NUI.BaseComponents
                 selectorData?.Reset(this);
                 if (themeChangeSensitive)
                 {
-                    ThemeManager.ThemeChanged -= OnThemeChanged;
+                    ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
                 }
             }
 
