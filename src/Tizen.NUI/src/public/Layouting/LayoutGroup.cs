@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// [Draft] List of child layouts in this container.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected List<LayoutItem> LayoutChildren { get; } // Children of this LayoutGroup
+        protected List<LayoutItem> LayoutChildren{ get;} // Children of this LayoutGroup
 
         /// <summary>
         /// [Draft] Constructor
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RemoveAll()
         {
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
                 childLayout.Owner = null;
@@ -86,9 +86,9 @@ namespace Tizen.NUI
         public virtual void Remove(LayoutItem layoutItem)
         {
             bool childRemoved = false;
-            foreach (LayoutItem childLayout in LayoutChildren.ToList())
+            foreach( LayoutItem childLayout in LayoutChildren.ToList() )
             {
-                if (childLayout == layoutItem)
+                if( childLayout == layoutItem )
                 {
                     childLayout.ClearReplaceFlag();
                     LayoutChildren.Remove(childLayout);
@@ -133,14 +133,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeLayoutSiblingOrder(int order)
         {
-            if (Owner != null && Owner.Parent != null)
+            if(Owner != null && Owner.Parent != null)
             {
                 LayoutGroup parent = Owner.Parent.Layout as LayoutGroup;
 
-                if (parent != null && parent.LayoutChildren.Count > order)
+                if(parent != null && parent.LayoutChildren.Count>order)
                 {
                     parent.LayoutChildren.Remove(this);
-                    parent.LayoutChildren.Insert(order, this);
+                    parent.LayoutChildren.Insert(order,this);
                 }
             }
 
@@ -156,7 +156,7 @@ namespace Tizen.NUI
             // First time the set Layout API is used by any View the Window no longer has layoutingDisabled.
 
             // If child already has a Layout then don't change it.
-            if (!View.layoutingDisabled && (null == child.Layout))
+            if (! View.layoutingDisabled && (null == child.Layout))
             {
                 // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
                 if ((true == Owner.layoutSet || GetType() == typeof(View)))
@@ -169,7 +169,7 @@ namespace Tizen.NUI
             else
             {
                 // Add child layout to this LayoutGroup (Setting parent in the process)
-                if (child.Layout != null)
+                if(child.Layout != null)
                 {
                     Add(child.Layout);
                 }
@@ -183,7 +183,7 @@ namespace Tizen.NUI
         /// <param name="child">Child View to remove.</param>
         internal void RemoveChildFromLayoutGroup(View child)
         {
-            if (child.Layout != null)
+            if(child.Layout != null)
             {
                 Remove(child.Layout);
             }
@@ -193,44 +193,44 @@ namespace Tizen.NUI
         /// Set all children in a LayoutGroup to the supplied condition.
         /// Children with Add or Remove conditions should not be changed.
         /// </summary>
-        private void SetConditionsForAnimationOnLayoutGroup(TransitionCondition conditionToSet)
+        private void SetConditionsForAnimationOnLayoutGroup( TransitionCondition conditionToSet)
         {
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
-                switch (conditionToSet)
+                switch( conditionToSet )
                 {
-                    case TransitionCondition.ChangeOnAdd:
-                        {
-                            // If other children also being added (TransitionCondition.Add) then do not change their
-                            // conditions, Continue to use their Add transitions.
-                            if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Add))
-                            {
-                                break;  // Child being Added so don't update it's condition
-                            }
-                            else
-                            {
-                                // Set siblings for the child being added to use the ChangeOnAdd transition.
-                                childLayout.ConditionForAnimation = TransitionCondition.ChangeOnAdd;
-                            }
-                            break;
-                        }
-                    case TransitionCondition.ChangeOnRemove:
-                        {
-                            if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Remove))
-                            {
-                                break; // Child being Removed so don't update it's condition
-                            }
-                            else
-                            {
-                                childLayout.ConditionForAnimation = TransitionCondition.ChangeOnRemove;
-                            }
-                            break;
-                        }
-                    case TransitionCondition.LayoutChanged:
-                        {
-                            childLayout.ConditionForAnimation = TransitionCondition.LayoutChanged;
-                            break;
-                        }
+                case TransitionCondition.ChangeOnAdd :
+                {
+                    // If other children also being added (TransitionCondition.Add) then do not change their
+                    // conditions, Continue to use their Add transitions.
+                    if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Add))
+                    {
+                        break;  // Child being Added so don't update it's condition
+                    }
+                    else
+                    {
+                        // Set siblings for the child being added to use the ChangeOnAdd transition.
+                        childLayout.ConditionForAnimation = TransitionCondition.ChangeOnAdd;
+                    }
+                    break;
+                }
+                case TransitionCondition.ChangeOnRemove :
+                {
+                    if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Remove))
+                    {
+                        break; // Child being Removed so don't update it's condition
+                    }
+                    else
+                    {
+                        childLayout.ConditionForAnimation = TransitionCondition.ChangeOnRemove;
+                    }
+                    break;
+                }
+                case TransitionCondition.LayoutChanged :
+                {
+                    childLayout.ConditionForAnimation = TransitionCondition.LayoutChanged;
+                    break;
+                }
                 }
             }
 
@@ -272,86 +272,86 @@ namespace Tizen.NUI
             MeasureSpecification.ModeType resultMode = MeasureSpecification.ModeType.Unspecified;
 
             // Child only can use parent's size without parent's padding and own margin.
-            LayoutLength resultSize = new LayoutLength(Math.Max(0.0f, (parentMeasureSpec.Size - padding).AsDecimal()));
-            switch (specMode)
+            LayoutLength resultSize = new LayoutLength(Math.Max( 0.0f, (parentMeasureSpec.Size - padding).AsDecimal()));
+            switch( specMode )
             {
                 // Parent has imposed an exact size on us
                 case MeasureSpecification.ModeType.Exactly:
+                {
+                    if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
                     {
-                        if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
-                        {
-                            resultMode = MeasureSpecification.ModeType.Exactly;
-                        }
-                        else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
-                        {
-                            resultMode = MeasureSpecification.ModeType.AtMost;
-                        }
-                        else
-                        {
-                            resultSize = childDimension;
-                            resultMode = MeasureSpecification.ModeType.Exactly;
-                        }
-
-                        break;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
                     }
+                    else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+                    {
+                        resultMode = MeasureSpecification.ModeType.AtMost;
+                    }
+                    else
+                    {
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+
+                    break;
+                }
 
                 // Parent has imposed a maximum size on us
                 case MeasureSpecification.ModeType.AtMost:
+                {
+                    if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
                     {
-                        if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
-                        {
-                            // Crashed. Cannot calculate. 
+                        // Crashed. Cannot calculate. 
 
-                            // Child wants to be our size, but our size is not fixed.
-                            // Constrain child to not be bigger than us.
-                            resultMode = MeasureSpecification.ModeType.AtMost;
-                        }
-                        else if (childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
-                        {
-                            // Child wants to determine its own size. It can't be
-                            // bigger than us.
-
-                            // Don't need parent's size. Size of this child will be determined by its children.
-                            resultMode = MeasureSpecification.ModeType.AtMost;
-                        }
-                        else
-                        {
-                            // Child wants a specific size... so be it
-                            resultSize = childDimension;
-                            resultMode = MeasureSpecification.ModeType.Exactly;
-                        }
-
-                        break;
+                        // Child wants to be our size, but our size is not fixed.
+                        // Constrain child to not be bigger than us.
+                        resultMode = MeasureSpecification.ModeType.AtMost;
                     }
+                    else if (childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+                    {
+                        // Child wants to determine its own size. It can't be
+                        // bigger than us.
+
+                        // Don't need parent's size. Size of this child will be determined by its children.
+                        resultMode = MeasureSpecification.ModeType.AtMost;
+                    }
+                    else
+                    {
+                        // Child wants a specific size... so be it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+
+                    break;
+                }
 
                 // Parent asked to see how big we want to be
                 case MeasureSpecification.ModeType.Unspecified:
+                {
+                    if ((childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent))
                     {
-                        if ((childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent))
-                        {
-                            // Child wants to be our size... find out how big it should be
+                        // Child wants to be our size... find out how big it should be
 
-                            // There is no one who has exact size in parent hierarchy.
-                            // Cannot calculate.
-                            resultMode = MeasureSpecification.ModeType.Unspecified;
-                        }
-                        else if (childDimension.AsRoundedValue() == (LayoutParamPolicies.WrapContent))
-                        {
-                            // Child wants to determine its own size.... find out how big
-                            // it should be
-                            resultMode = MeasureSpecification.ModeType.Unspecified;
-                        }
-                        else
-                        {
-                            // Child wants a specific size... let him have it
-                            resultSize = childDimension;
-                            resultMode = MeasureSpecification.ModeType.Exactly;
-                        }
-                        break;
+                        // There is no one who has exact size in parent hierarchy.
+                        // Cannot calculate.
+                        resultMode = MeasureSpecification.ModeType.Unspecified;
                     }
+                    else if (childDimension.AsRoundedValue() == (LayoutParamPolicies.WrapContent))
+                    {
+                        // Child wants to determine its own size.... find out how big
+                        // it should be
+                        resultMode = MeasureSpecification.ModeType.Unspecified;
+                    }
+                    else
+                    {
+                        // Child wants a specific size... let him have it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+                    break;
+                }
             } // switch
 
-            return new MeasureSpecification(resultSize, resultMode);
+            return new MeasureSpecification( resultSize, resultMode );
         }
 
         /// <summary>
@@ -369,29 +369,29 @@ namespace Tizen.NUI
             LayoutLength measuredHeight = new LayoutLength(0.0f);
 
             // Layout takes size of largest child width and largest child height dimensions
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
-                if (childLayout != null)
+                if( childLayout != null )
                 {
-                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                    MeasureChildWithMargins( childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0) );
                     LayoutLength childWidth = new LayoutLength(childLayout.MeasuredWidth.Size);
-                    LayoutLength childHeight = new LayoutLength(childLayout.MeasuredHeight.Size);
+                    LayoutLength childHeight = new LayoutLength( childLayout.MeasuredHeight.Size);
 
                     Extents childMargin = childLayout.Margin;
-                    measuredWidth = new LayoutLength(Math.Max(measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
-                    measuredHeight = new LayoutLength(Math.Max(measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));
+                    measuredWidth = new LayoutLength(Math.Max( measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
+                    measuredHeight = new LayoutLength(Math.Max( measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));
                 }
             }
 
-            if (0 == LayoutChildren.Count)
+            if( 0 == LayoutChildren.Count )
             {
                 // Must be a leaf as has no children
-                measuredWidth = GetDefaultSize(SuggestedMinimumWidth, widthMeasureSpec);
-                measuredHeight = GetDefaultSize(SuggestedMinimumHeight, heightMeasureSpec);
+                measuredWidth = GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec );
+                measuredHeight = GetDefaultSize( SuggestedMinimumHeight, heightMeasureSpec );
             }
 
-            SetMeasuredDimensions(new MeasuredSize(measuredWidth, MeasuredSize.StateType.MeasuredSizeOK),
-                                   new MeasuredSize(measuredHeight, MeasuredSize.StateType.MeasuredSizeOK));
+            SetMeasuredDimensions( new MeasuredSize( measuredWidth, MeasuredSize.StateType.MeasuredSizeOK ),
+                                   new MeasuredSize( measuredHeight, MeasuredSize.StateType.MeasuredSizeOK ) );
         }
 
         /// <summary>
@@ -406,55 +406,26 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
-                if (childLayout != null)
+                if( childLayout !=null )
                 {
                     // Use position if explicitly set to child otherwise will be top left.
-                    var childLeft = new LayoutLength(childLayout.Owner.Position2D.X);
-                    var childTop = new LayoutLength(childLayout.Owner.Position2D.Y);
+                    var childLeft = new LayoutLength( childLayout.Owner.Position2D.X );
+                    var childTop = new LayoutLength( childLayout.Owner.Position2D.Y );
 
                     View owner = Owner;
 
-                    if (owner)
+                    if ( owner )
                     {
                         // Margin and Padding only supported when child anchor point is TOP_LEFT.
-                        if (owner.PivotPoint == PivotPoint.TopLeft || (owner.PositionUsesPivotPoint == false))
+                        if ( owner.PivotPoint == PivotPoint.TopLeft || ( owner.PositionUsesPivotPoint == false ) )
                         {
                             childLeft = childLeft + owner.Padding.Start + childLayout.Margin.Start;
                             childTop = childTop + owner.Padding.Top + childLayout.Margin.Top;
                         }
                     }
-                    childLayout.Layout(childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Layout independent children those Owners have false ExcludeLayouting. <br />
-        /// These children are required not to be affected by this layout. <br />
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void LayoutForIndependentChild()
-        {
-            int count = LayoutChildren.Count;
-            for (int childIndex = 0; childIndex < count; childIndex++)
-            {
-                LayoutItem childLayout = LayoutChildren[childIndex];
-                if (childLayout != null)
-                {
-                    if (!childLayout.Owner.ExcludeLayouting)
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-
-                        Position2D childPosition = childLayout.Owner.Position2D;
-
-                        LayoutLength childPositionX = new LayoutLength(childPosition.X);
-                        LayoutLength childPositionY = new LayoutLength(childPosition.Y);
-
-                        childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
-                    }
+                    childLayout.Layout( childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size );
                 }
             }
         }
@@ -519,7 +490,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
             }
@@ -540,8 +511,8 @@ namespace Tizen.NUI
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
-                        new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(Padding.Start + Padding.End ),
+                        new LayoutLength(childOwner.WidthSpecification) );
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
@@ -571,8 +542,8 @@ namespace Tizen.NUI
                         new MeasureSpecification(
                             new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (childOwner.Margin.Start + childOwner.Margin.End)),
                             parentWidthMeasureSpec.Mode),
-                        new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(Padding.Start + Padding.End ),
+                        new LayoutLength(childOwner.WidthSpecification) );
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
@@ -580,34 +551,8 @@ namespace Tizen.NUI
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
                         new LayoutLength(childOwner.HeightSpecification));
-            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            child.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
 
-        }
-
-        /// <summary>
-        /// Ask one of the children of this view to measure itself, taking into
-        /// account both the MeasureSpec requirements for this view and without its padding.<br />
-        /// and margins. The heavy lifting is done in GetChildMeasureSpecification.<br />
-        /// </summary>
-        /// <param name="child">The child to measure.</param>
-        /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
-        /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
-        {
-            View childOwner = child.Owner;
-
-            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.WidthSpecification));
-
-            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.HeightSpecification));
-
-            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
 
         /// <summary>
