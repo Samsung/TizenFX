@@ -33,7 +33,6 @@ namespace Tizen.NUI.BaseComponents
     {
         private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
-        private uint lastThemeChangeId;
         internal string styleName;
 
         internal MergedStyle _mergedStyle
@@ -1055,8 +1054,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal void UpdateStyle()
         {
-            lastThemeChangeId = ThemeManager.ChangeId;
-
             ViewStyle newStyle;
             if (styleName == null) newStyle = ThemeManager.GetStyle(GetType());
             else newStyle = ThemeManager.GetStyle(styleName);
@@ -1084,8 +1081,7 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 selectorData?.Reset(this);
-
-                if (themeChangeSensitive && IsOnWindow)
+                if (themeChangeSensitive)
                 {
                     ThemeManager.ThemeChangedInternal -= OnThemeChanged;
                 }
@@ -1338,50 +1334,6 @@ namespace Tizen.NUI.BaseComponents
         private bool EmptyOnTouch(object target, TouchEventArgs args)
         {
             return false;
-        }
-
-        private void OnAddedToWindowInternal(object sender, global::System.EventArgs args)
-        {
-            if (lastThemeChangeId != ThemeManager.ChangeId)
-            {
-                OnThemeChanged(null, new ThemeChangedEventArgs(ThemeManager.CurrentTheme?.Id));
-            }
-            AddedToWindow -= OnAddedToWindowInternal;
-            RemovedFromWindow += OnRemovedFromWindowInternal;
-            ThemeManager.ThemeChangedInternal += OnThemeChanged;
-        }
-
-        private void OnRemovedFromWindowInternal(object sender, global::System.EventArgs args)
-        {
-            ThemeManager.ThemeChangedInternal -= OnThemeChanged;
-            RemovedFromWindow -= OnRemovedFromWindowInternal;
-            AddedToWindow += OnAddedToWindowInternal;
-        }
-
-        private void SubscribeThemeChange()
-        {
-            if (IsOnWindow)
-            {
-                ThemeManager.ThemeChangedInternal += OnThemeChanged;
-                RemovedFromWindow += OnRemovedFromWindowInternal;
-            }
-            else
-            {
-                AddedToWindow += OnAddedToWindowInternal;
-            }
-        }
-
-        private void UnsubscribeThemeChange()
-        {
-            if (IsOnWindow)
-            {
-                ThemeManager.ThemeChangedInternal -= OnThemeChanged;
-                RemovedFromWindow -= OnRemovedFromWindowInternal;
-            }
-            else
-            {
-                AddedToWindow -= OnAddedToWindowInternal;
-            }
         }
     }
 }
