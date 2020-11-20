@@ -62,6 +62,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
+            // Unused parameter
+            _ = data;
+
             NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
         }
 
