@@ -243,8 +243,8 @@ namespace Tizen.NUI
 #if !(NUI_DEBUG_ON)
     internal class tlog
     {
-        internal static void Fatal(string tag, string msg) { }
-        internal static void Error(string tag, string msg) { }
+        internal static void Fatal(string tag, string msg) { _ = tag; _ = msg; }
+        internal static void Error(string tag, string msg) { _ = tag; _ = msg; }
     }
 #endif
 
