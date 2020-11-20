@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
         private bool controlStatePropagation = false;
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
-        private bool excludeLayouting = true;
+        private bool excludeLayouting = false;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
@@ -217,9 +217,9 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 excludeLayouting = value;
-                if (Layout != null && Layout.SetPositionByLayout != value)
+                if (Layout != null && Layout.SetPositionByLayout == value)
                 {
-                    Layout.SetPositionByLayout = value;
+                    Layout.SetPositionByLayout = !value;
                     Layout.RequestLayout();
                 }
             }
@@ -2207,7 +2207,7 @@ namespace Tizen.NUI.BaseComponents
                 // Remove existing layout from it's parent layout group.
                 _layout?.Unparent();
 
-                value.SetPositionByLayout = excludeLayouting;
+                value.SetPositionByLayout = !excludeLayouting;
 
                 // Set layout to this view
                 SetLayout(value);
