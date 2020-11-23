@@ -14,6 +14,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1801:ReviewUnusedParameters", MessageId = "futureUse")]
         internal SWIGTYPE_p_Dali__SignalT_bool_fDali__Actor_Dali__TouchEvent_const_RF_t(global::System.IntPtr cPtr, bool futureUse)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);

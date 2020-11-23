@@ -20,6 +20,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1801:ReviewUnusedParameters", MessageId = "futureUse")]
         internal SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t(global::System.IntPtr cPtr, bool futureUse)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
