@@ -682,6 +682,8 @@ namespace Tizen.NUI
             parentMeasureSpecificationWidth = widthMeasureSpec;
             parentMeasureSpecificationHeight = heightMeasureSpec;
 
+            Extents zeroMargin = new Extents();
+
             // Assign child properties
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
@@ -703,7 +705,9 @@ namespace Tizen.NUI
                 float flexBasis = GetFlexBasis(Child);
                 float flexShrink = GetFlexShrink(Child);
                 float flexGrow = GetFlexGrow(Child);
+                Extents childMargin = Child.ExcludeLayouting ? zeroMargin : layoutItem.Margin;
 
+                Interop.FlexLayout.FlexLayout_SetMargin(childHandleRef, Extents.getCPtr(childMargin));
                 Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
                 Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)positionType);
                 Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
@@ -713,6 +717,7 @@ namespace Tizen.NUI
             }
 
             Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width, height, isLayoutRtl);
+            zeroMargin.Dispose();
 
             LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr));
             LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr));
