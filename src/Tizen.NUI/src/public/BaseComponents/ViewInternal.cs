@@ -1167,9 +1167,15 @@ namespace Tizen.NUI.BaseComponents
         /// The touch event handler for ControlState.
         /// Please change ControlState value by touch state if needed.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when touch is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool HandleControlStateOnTouch(Touch touch)
         {
+            if (touch == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(touch));
+            }
+
             switch (touch.GetState(0))
             {
                 case PointStateType.Down:
@@ -1185,7 +1191,6 @@ namespace Tizen.NUI.BaseComponents
                 default:
                     break;
             }
-
             return false;
         }
 
