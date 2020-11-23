@@ -371,7 +371,10 @@ namespace Tizen.Network.Bluetooth
             }
 
             BluetoothGattCharacteristic Characteristic = BluetoothGattCharacteristicImpl.CreateBluetoothGattGattCharacteristic(attributeHandle, uuid);
-            Characteristic.SetParent(service);
+            if (Characteristic != null)
+            {
+                Characteristic.SetParent(service);
+            }
             return Characteristic;
         }
 
@@ -532,7 +535,10 @@ namespace Tizen.Network.Bluetooth
                 return null;
             }
             BluetoothGattDescriptor descriptor = BluetoothGattDescriptorImpl.CreateBluetoothGattDescriptor(handle, uuid);
-            descriptor.SetParent(characteristic);
+            if (descriptor != null)
+            {
+                descriptor.SetParent(characteristic);
+            }
             return descriptor;
         }
 
