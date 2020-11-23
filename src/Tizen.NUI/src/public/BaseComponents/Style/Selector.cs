@@ -212,6 +212,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get value by State.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when state is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         /// <returns>True if the selector has a given state value, false otherwise.</returns>
@@ -234,6 +235,10 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            if (null == state)
+            {
+                throw new ArgumentNullException(nameof(state));
+            }
             if (state.IsCombined)
             {
                 index = ((List<StateValuePair<T>>)StateValueList).FindIndex(x => state.Contains(x.State));
@@ -295,9 +300,15 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Copy values from other selector.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clone(Selector<T> other)
         {
+            if (null == other)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+
             if (cloneable)
             {
                 All = (T)((ICloneable)other.All)?.Clone();
@@ -349,10 +360,15 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Return the containing selector. It can be null.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when view is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<T> Get(View view)
         {
             if (!dirty) return selector;
+            if (null == view)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
 
             T value = default;
 
@@ -377,10 +393,16 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="view">The View that is affected by this TriggerableSelector.</param>
         /// <param name="otherSelector">The copy target.</param>
         /// <param name="updateView">Whether it updates the target view after update the selector or not.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when view is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Update(View view, Selector<T> otherSelector, bool updateView = false)
         {
             Reset(view);
+
+            if (null == view)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
 
             if (otherSelector == null)
             {
@@ -427,7 +449,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reset(View view)
         {
-            view.ControlStateChangeEventInternal -= OnViewControlState;
+            if (view != null)
+            {
+                view.ControlStateChangeEventInternal -= OnViewControlState;
+            }
             selector?.Clear();
             selector = null;
             dirty = false;

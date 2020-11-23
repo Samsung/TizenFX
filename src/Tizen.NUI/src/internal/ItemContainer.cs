@@ -197,7 +197,7 @@ namespace Tizen.NUI
                 collectionRef = collection;
                 currentIndex = -1;
                 currentObject = null;
-                currentSize = collectionRef.Count;
+                currentSize = collectionRef?.Count ?? 0;
             }
 
             // Type-safe iterator Current

@@ -480,7 +480,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator +(Vector4 arg1, Vector4 arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -492,7 +492,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator -(Vector4 arg1, Vector4 arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -503,7 +503,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator -(Vector4 arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -515,7 +515,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator *(Vector4 arg1, Vector4 arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -527,7 +527,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator *(Vector4 arg1, float arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator /(Vector4 arg1, Vector4 arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -551,7 +551,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 operator /(Vector4 arg1, float arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
