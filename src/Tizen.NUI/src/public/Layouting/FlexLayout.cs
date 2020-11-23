@@ -47,7 +47,23 @@ namespace Tizen.NUI
         /// FlexPositionTypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, validateValue: ValidateEnum((int)PositionType.Relative, (int)PositionType.Absolute), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, validateValue: ValidateEnum((int)PositionType.Relative, (int)PositionType.Absolute),
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            if (bindable is View view)
+            {
+                view.ExcludeLayouting = (PositionType)newValue == PositionType.Absolute;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            if (view.ExcludeLayouting)
+                return PositionType.Absolute;
+
+            return PositionType.Relative;
+        });
+
 
         /// <summary>
         /// AspectRatioProperty
@@ -679,24 +695,19 @@ namespace Tizen.NUI
 
                 if (layoutItem.Owner.ExcludeLayouting)
                 {
-                    SetFlexPositionType(Child, PositionType.Absolute);
-                    Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)PositionType.Absolute);
                     MeasureChildWithoutPadding(layoutItem, widthMeasureSpec, heightMeasureSpec);
                     continue;
                 }
-                else
-                {
-                    SetFlexPositionType(Child, PositionType.Relative);
-                    Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)PositionType.Relative);
-                }
 
                 AlignmentType flexAlignemnt = GetFlexAlignmentSelf(Child);
+                PositionType positionType = GetFlexPositionType(Child);
                 float flexAspectRatio = GetFlexAspectRatio(Child);
                 float flexBasis = GetFlexBasis(Child);
                 float flexShrink = GetFlexShrink(Child);
                 float flexGrow = GetFlexGrow(Child);
 
                 Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
+                Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)positionType);
                 Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
                 Interop.FlexLayout.FlexLayout_SetFlexBasis(childHandleRef, flexBasis);
                 Interop.FlexLayout.FlexLayout_SetFlexShrink(childHandleRef, flexShrink);

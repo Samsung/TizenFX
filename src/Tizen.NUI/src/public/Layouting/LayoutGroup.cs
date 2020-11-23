@@ -658,6 +658,10 @@ namespace Tizen.NUI
         }
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {
+            // Unused parameters
+            _ = oldValue;
+            _ = newValue;
+
             View view = bindable as View;
             view?.Layout?.RequestLayout();
         }
