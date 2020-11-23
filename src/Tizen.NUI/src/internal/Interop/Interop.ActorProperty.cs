@@ -9,190 +9,190 @@ namespace Tizen.NUI
         internal static partial class ActorProperty
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_INHERIT_LAYOUT_DIRECTION_get")]
-            public static extern int ActorPropertyInheritLayoutDirectionGet();
+            public static extern int Actor_Property_INHERIT_LAYOUT_DIRECTION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_LAYOUT_DIRECTION_get")]
-            public static extern int ActorPropertyLayoutDirectionGet();
+            public static extern int Actor_Property_LAYOUT_DIRECTION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_SIBLING_ORDER_get")]
-            public static extern int ActorPropertySiblingOrderGet();
+            public static extern int Actor_Property_SIBLING_ORDER_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_OPACITY_get")]
-            public static extern int ActorPropertyOpacityGet();
+            public static extern int Actor_Property_OPACITY_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_SCREEN_POSITION_get")]
-            public static extern int ActorPropertyScreenPositionGet();
+            public static extern int Actor_Property_SCREEN_POSITION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_POSITION_USES_ANCHOR_POINT_get")]
-            public static extern int ActorPropertyPositionUsesAnchorPointGet();
+            public static extern int Actor_Property_POSITION_USES_ANCHOR_POINT_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_PARENT_ORIGIN_get")]
-            public static extern int ActorPropertyParentOriginGet();
+            public static extern int Actor_Property_PARENT_ORIGIN_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_PARENT_ORIGIN_X_get")]
-            public static extern int ActorPropertyParentOriginXGet();
+            public static extern int Actor_Property_PARENT_ORIGIN_X_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_PARENT_ORIGIN_Y_get")]
-            public static extern int ActorPropertyParentOriginYGet();
+            public static extern int Actor_Property_PARENT_ORIGIN_Y_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_PARENT_ORIGIN_Z_get")]
-            public static extern int ActorPropertyParentOriginZGet();
+            public static extern int Actor_Property_PARENT_ORIGIN_Z_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ANCHOR_POINT_get")]
-            public static extern int ActorPropertyAnchorPointGet();
+            public static extern int Actor_Property_ANCHOR_POINT_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ANCHOR_POINT_X_get")]
-            public static extern int ActorPropertyAnchorPointXGet();
+            public static extern int Actor_Property_ANCHOR_POINT_X_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ANCHOR_POINT_Y_get")]
-            public static extern int ActorPropertyAnchorPointYGet();
+            public static extern int Actor_Property_ANCHOR_POINT_Y_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ANCHOR_POINT_Z_get")]
-            public static extern int ActorPropertyAnchorPointZGet();
+            public static extern int Actor_Property_ANCHOR_POINT_Z_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_get")]
-            public static extern int ActorPropertySizeGet();
+            public static extern int Actor_Property_SIZE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_WIDTH_get")]
-            public static extern int ActorPropertySizeWidthGet();
+            public static extern int Actor_Property_SIZE_WIDTH_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_HEIGHT_get")]
-            public static extern int ActorPropertySizeHeightGet();
+            public static extern int Actor_Property_SIZE_HEIGHT_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_DEPTH_get")]
-            public static extern int ActorPropertySizeDepthGet();
+            public static extern int Actor_Property_SIZE_DEPTH_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_get")]
-            public static extern int ActorPropertyPositionGet();
+            public static extern int Actor_Property_POSITION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_X_get")]
-            public static extern int ActorPropertyPositionXGet();
+            public static extern int Actor_Property_POSITION_X_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_Y_get")]
-            public static extern int ActorPropertyPositionYGet();
+            public static extern int Actor_Property_POSITION_Y_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_Z_get")]
-            public static extern int ActorPropertyPositionZGet();
+            public static extern int Actor_Property_POSITION_Z_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_POSITION_get")]
-            public static extern int ActorPropertyWorldPositionGet();
+            public static extern int Actor_Property_WORLD_POSITION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_POSITION_X_get")]
-            public static extern int ActorPropertyWorldPositionXGet();
+            public static extern int Actor_Property_WORLD_POSITION_X_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_POSITION_Y_get")]
-            public static extern int ActorPropertyWorldPositionYGet();
+            public static extern int Actor_Property_WORLD_POSITION_Y_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_POSITION_Z_get")]
-            public static extern int ActorPropertyWorldPositionZGet();
+            public static extern int Actor_Property_WORLD_POSITION_Z_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ORIENTATION_get")]
-            public static extern int ActorPropertyOrientationGet();
+            public static extern int Actor_Property_ORIENTATION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_ORIENTATION_get")]
-            public static extern int ActorPropertyWorldOrientationGet();
+            public static extern int Actor_Property_WORLD_ORIENTATION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SCALE_get")]
-            public static extern int ActorPropertyScaleGet();
+            public static extern int Actor_Property_SCALE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SCALE_X_get")]
-            public static extern int ActorPropertyScaleXGet();
+            public static extern int Actor_Property_SCALE_X_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SCALE_Y_get")]
-            public static extern int ActorPropertyScaleYGet();
+            public static extern int Actor_Property_SCALE_Y_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SCALE_Z_get")]
-            public static extern int ActorPropertyScaleZGet();
+            public static extern int Actor_Property_SCALE_Z_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_SCALE_get")]
-            public static extern int ActorPropertyWorldScaleGet();
+            public static extern int Actor_Property_WORLD_SCALE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_VISIBLE_get")]
-            public static extern int ActorPropertyVisibleGet();
+            public static extern int Actor_Property_VISIBLE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_get")]
-            public static extern int ActorPropertyColorGet();
+            public static extern int Actor_Property_COLOR_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_RED_get")]
-            public static extern int ActorPropertyColorRedGet();
+            public static extern int Actor_Property_COLOR_RED_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_GREEN_get")]
-            public static extern int ActorPropertyColorGreenGet();
+            public static extern int Actor_Property_COLOR_GREEN_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_BLUE_get")]
-            public static extern int ActorPropertyColorBlueGet();
+            public static extern int Actor_Property_COLOR_BLUE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_ALPHA_get")]
-            public static extern int ActorPropertyColorAlphaGet();
+            public static extern int Actor_Property_COLOR_ALPHA_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_COLOR_get")]
-            public static extern int ActorPropertyWorldColorGet();
+            public static extern int Actor_Property_WORLD_COLOR_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WORLD_MATRIX_get")]
-            public static extern int ActorPropertyWorldMatrixGet();
+            public static extern int Actor_Property_WORLD_MATRIX_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_NAME_get")]
-            public static extern int ActorPropertyNameGet();
+            public static extern int Actor_Property_NAME_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SENSITIVE_get")]
-            public static extern int ActorPropertySensitiveGet();
+            public static extern int Actor_Property_SENSITIVE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_LEAVE_REQUIRED_get")]
-            public static extern int ActorPropertyLeaveRequiredGet();
+            public static extern int Actor_Property_LEAVE_REQUIRED_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_INHERIT_ORIENTATION_get")]
-            public static extern int ActorPropertyInheritOrientationGet();
+            public static extern int Actor_Property_INHERIT_ORIENTATION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_INHERIT_SCALE_get")]
-            public static extern int ActorPropertyInheritScaleGet();
+            public static extern int Actor_Property_INHERIT_SCALE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_COLOR_MODE_get")]
-            public static extern int ActorPropertyColorModeGet();
+            public static extern int Actor_Property_COLOR_MODE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_DRAW_MODE_get")]
-            public static extern int ActorPropertyDrawModeGet();
+            public static extern int Actor_Property_DRAW_MODE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_MODE_FACTOR_get")]
-            public static extern int ActorPropertySizeModeFactorGet();
+            public static extern int Actor_Property_SIZE_MODE_FACTOR_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WIDTH_RESIZE_POLICY_get")]
-            public static extern int ActorPropertyWidthResizePolicyGet();
+            public static extern int Actor_Property_WIDTH_RESIZE_POLICY_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_HEIGHT_RESIZE_POLICY_get")]
-            public static extern int ActorPropertyHeightResizePolicyGet();
+            public static extern int Actor_Property_HEIGHT_RESIZE_POLICY_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SIZE_SCALE_POLICY_get")]
-            public static extern int ActorPropertySizeScalePolicyGet();
+            public static extern int Actor_Property_SIZE_SCALE_POLICY_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_WIDTH_FOR_HEIGHT_get")]
-            public static extern int ActorPropertyWidthForHeightGet();
+            public static extern int Actor_Property_WIDTH_FOR_HEIGHT_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_HEIGHT_FOR_WIDTH_get")]
-            public static extern int ActorPropertyHeightForWidthGet();
+            public static extern int Actor_Property_HEIGHT_FOR_WIDTH_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_PADDING_get")]
-            public static extern int ActorPropertyPaddingGet();
+            public static extern int Actor_Property_PADDING_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_MINIMUM_SIZE_get")]
-            public static extern int ActorPropertyMinimumSizeGet();
+            public static extern int Actor_Property_MINIMUM_SIZE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_MAXIMUM_SIZE_get")]
-            public static extern int ActorPropertyMaximumSizeGet();
+            public static extern int Actor_Property_MAXIMUM_SIZE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_INHERIT_POSITION_get")]
-            public static extern int ActorPropertyInheritPositionGet();
+            public static extern int Actor_Property_INHERIT_POSITION_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_CLIPPING_MODE_get")]
-            public static extern int ActorPropertyClippingModeGet();
+            public static extern int Actor_Property_CLIPPING_MODE_get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_CAPTURE_ALL_TOUCH_AFTER_START_get")]
             public static extern int ActorPropertyCaptureAllTouchAfterStartGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Actor_Property")]
-            public static extern global::System.IntPtr NewActorProperty();
+            public static extern global::System.IntPtr new_Actor_Property();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Actor_Property")]
-            public static extern void DeleteActorProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void delete_Actor_Property(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
