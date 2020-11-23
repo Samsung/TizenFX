@@ -191,7 +191,10 @@ namespace Tizen.NUI
             }
             set
             {
-                NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
+                if (value != null)
+                {
+                    NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
+                }
 
                 _textColor = value;
                 _textField.TextColor = _textColor;

@@ -126,7 +126,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator +(Size2D arg1, Size2D arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator -(Size2D arg1, Size2D arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator -(Size2D arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator *(Size2D arg1, Size2D arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator *(Size2D arg1, int arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator /(Size2D arg1, Size2D arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator /(Size2D arg1, int arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Size2D size)
         {
-            return new Vector2((float)size.Width, (float)size.Height);
+            return new Vector2((float)size?.Width, (float)size.Height);
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Size2D(Vector2 vector2)
         {
-            return new Size2D((int)vector2.X, (int)vector2.Y);
+            return new Size2D((int)vector2?.X, (int)vector2.Y);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Size2D(Size size)
         {
-            return new Size2D((int)size.Width, (int)size.Height);
+            return new Size2D((int)size?.Width, (int)size.Height);
         }
 
 
