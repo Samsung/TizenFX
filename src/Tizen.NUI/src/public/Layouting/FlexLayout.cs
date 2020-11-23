@@ -655,9 +655,7 @@ namespace Tizen.NUI
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
             Extents padding = Owner.Padding;
-            Extents margin = Owner.Margin;
 
-            Interop.FlexLayout.FlexLayout_SetMargin(swigCPtr, Extents.getCPtr(margin));
             Interop.FlexLayout.FlexLayout_SetPadding(swigCPtr, Extents.getCPtr(padding));
 
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
