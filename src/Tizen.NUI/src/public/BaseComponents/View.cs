@@ -806,7 +806,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
-
+                
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -990,7 +990,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
+                Vector3 ret = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -1008,7 +1008,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
+                Vector3 temp = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1684,6 +1684,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.MinimumSize.Width = 1;) is possible.
         /// </remarks>
@@ -1697,6 +1698,10 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
                 if (_layout != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
@@ -1854,7 +1859,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.ActorGetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.Actor_GetParent(swigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -2040,6 +2045,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Set a layout transitions for this View.
         ///</summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// Use LayoutTransitions to receive a collection of LayoutTransitions set on the View.
         /// </remarks>
@@ -2048,10 +2054,15 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                if (value == null)
+                {
+                    throw new global::System.ArgumentNullException(nameof(value));
+                }
                 if (_layoutTransitions == null)
                 {
                     _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
+
                 LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);

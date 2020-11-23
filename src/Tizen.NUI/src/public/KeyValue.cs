@@ -69,6 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// OriginalKey property.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         public object OriginalKey
         {
             get
@@ -77,6 +78,11 @@ namespace Tizen.NUI
             }
             set
             {
+                if (null == value)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
                 _originalKey = value;
                 if (value is int || value is Int32)
                 {
