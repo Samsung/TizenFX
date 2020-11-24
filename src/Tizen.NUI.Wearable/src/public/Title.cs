@@ -183,8 +183,8 @@ namespace Tizen.NUI.Components
 
         private void UpdateImage()
         {
-            leftImage.Size.Width = fadeOutWidth;
-            rightImage.Size.Width = fadeOutWidth;
+            leftImage.SizeWidth = fadeOutWidth;
+            rightImage.SizeWidth = fadeOutWidth;
 
             if (fadeOutWidth > 0)
             {
