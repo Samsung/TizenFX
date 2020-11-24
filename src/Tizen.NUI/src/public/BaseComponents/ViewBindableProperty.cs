@@ -1576,12 +1576,6 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
-        /// XamlStyleProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
-
-        /// <summary>
         /// EnableControlState property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
