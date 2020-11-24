@@ -444,46 +444,52 @@ namespace Tizen.NUI
 
         internal static Color ValueCheck(Color color)
         {
-            if (color.R < 0.0f)
+            float r = color.R;
+            float g = color.G;
+            float b = color.B;
+            float a = color.A;
+
+            if (r < 0.0f)
             {
-                color.R = 0.0f;
+                r = 0.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            else if (color.R > 1.0f)
+            else if (r > 1.0f)
             {
-                color.R = 1.0f;
+                r = 1.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            if (color.G < 0.0f)
+            if (g < 0.0f)
             {
-                color.G = 0.0f;
+                g = 0.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            else if (color.G > 1.0f)
+            else if (g > 1.0f)
             {
-                color.G = 1.0f;
+                g = 1.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            if (color.B < 0.0f)
+            if (b < 0.0f)
             {
-                color.B = 0.0f;
+                b = 0.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            else if (color.B > 1.0f)
+            else if (b > 1.0f)
             {
-                color.B = 1.0f;
+                b = 1.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            if (color.A < 0.0f)
+            if (a < 0.0f)
             {
-                color.A = 0.0f;
+                a = 0.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
-            else if (color.A > 1.0f)
+            else if (a > 1.0f)
             {
-                color.A = 1.0f;
+                a = 1.0f;
                 NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
             }
+            color = new Color(r, g, b, a);
             return color;
         }
 
