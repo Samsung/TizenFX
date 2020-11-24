@@ -24,12 +24,6 @@ namespace Tizen.NUI.Binding
                         foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
                             if (!resources.ContainsKey(res.Key))
                                 resources.Add(res.Key, res.Value);
-                            else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                            {
-                                var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                                mergedClassStyles.AddRange(res.Value as List<Style>);
-                                resources[res.Key] = mergedClassStyles;
-                            }
                     }
                 }
 
@@ -45,12 +39,6 @@ namespace Tizen.NUI.Binding
                     foreach (KeyValuePair<string, object> res in app.SystemResources)
                         if (!resources.ContainsKey(res.Key))
                             resources.Add(res.Key, res.Value);
-                        else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                        {
-                            var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                            mergedClassStyles.AddRange(res.Value as List<Style>);
-                            resources[res.Key] = mergedClassStyles;
-                        }
                 }
                 element = element.Parent;
             }
