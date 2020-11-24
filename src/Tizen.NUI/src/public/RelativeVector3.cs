@@ -145,7 +145,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator +(RelativeVector3 arg1, RelativeVector3 arg2)
         {
-            RelativeVector3 result = arg1.Add(arg2);
+            RelativeVector3 result = arg1?.Add(arg2);
             return result;
         }
 
@@ -158,7 +158,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator -(RelativeVector3 arg1, RelativeVector3 arg2)
         {
-            RelativeVector3 result = arg1.Subtract(arg2);
+            RelativeVector3 result = arg1?.Subtract(arg2);
             return result;
         }
 
@@ -171,7 +171,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator *(RelativeVector3 arg1, RelativeVector3 arg2)
         {
-            RelativeVector3 result = arg1.Multiply(arg2);
+            RelativeVector3 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -184,7 +184,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator *(RelativeVector3 arg1, float arg2)
         {
-            RelativeVector3 result = arg1.Multiply(arg2);
+            RelativeVector3 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -197,7 +197,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator /(RelativeVector3 arg1, RelativeVector3 arg2)
         {
-            RelativeVector3 result = arg1.Divide(arg2);
+            RelativeVector3 result = arg1?.Divide(arg2);
             return result;
         }
 
@@ -210,7 +210,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector3 operator /(RelativeVector3 arg1, float arg2)
         {
-            RelativeVector3 result = arg1.Divide(arg2);
+            RelativeVector3 result = arg1?.Divide(arg2);
             return result;
         }
 

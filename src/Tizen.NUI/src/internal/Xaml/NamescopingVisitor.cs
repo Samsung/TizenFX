@@ -33,7 +33,7 @@ namespace Tizen.NUI.Xaml
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var ns = parentNode == null || IsDataTemplate(node, parentNode) || IsStyle(node, parentNode) || IsVisualStateGroupList(node)
+            var ns = parentNode == null || IsDataTemplate(node, parentNode) || IsStyle(parentNode) || IsVisualStateGroupList(node)
                 ? new NameScope()
                 : scopes[parentNode];
             node.Namescope = ns;
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool IsStyle(INode node, INode parentNode)
+        static bool IsStyle(INode parentNode)
         {
             var pnode = parentNode as ElementNode;
             return pnode != null && pnode.XmlType.Name == "Style";
