@@ -273,7 +273,6 @@ namespace Tizen.NUI.BaseComponents
         int mLoopCount = -1;
         bool mDirtyFlag = false;
         PropertyMap mMap;
-        const string tag = "NUITEST";
         #endregion Private
     }
 }
