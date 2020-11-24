@@ -96,12 +96,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (defaultTheme == null && !isLoadingDefault)
-                {
-                    isLoadingDefault = true;
-                    defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
-                    isLoadingDefault = false;
-                }
+                EnsureDefaultTheme();
                 return defaultTheme;
             }
             set => defaultTheme = (Theme)value?.Clone();
@@ -291,6 +286,16 @@ namespace Tizen.NUI
                 result = theme;
             }
             return (Theme)result?.Clone();
+        }
+
+        internal static void EnsureDefaultTheme()
+        {
+            if (defaultTheme == null && !isLoadingDefault)
+            {
+                isLoadingDefault = true;
+                defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
+                isLoadingDefault = false;
+            }
         }
 
         private static Theme LoadBuiltinTheme(string id)
