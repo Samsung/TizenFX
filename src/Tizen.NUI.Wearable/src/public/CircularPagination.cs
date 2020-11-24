@@ -487,6 +487,10 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void SetIndicatorPosition(int index, Position position)
         {
+            if (position == null)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
             // Update odd / even Array and List by each converted index.
             if (isOddNumber)
             {
@@ -498,14 +502,12 @@ namespace Tizen.NUI.Wearable
                 {
                     oddArray[(middleIndex - leftIndicatorCount) + index] = position;
                 }
-                indicatorList[index].Position.X = position.X;
-                indicatorList[index].Position.Y = position.Y;
+                indicatorList[index].Position = new Vector2(position.X, position.Y);
             }
             else // Only symmetry circular pagination can be even number.
             {
                 evenArray[(middleIndex - (indicatorCount / 2) + index)] = position;
-                indicatorList[index].Position.X = position.X;
-                indicatorList[index].Position.Y = position.Y;
+                indicatorList[index].Position = new Vector2(position.X, position.Y);
             }
             UpdateVisual();
         }
