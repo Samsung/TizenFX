@@ -564,7 +564,7 @@ namespace Tizen.NUI.Components
             }
             float fitWidth = (Button.Icon.Size?.Width ?? 48) + dropDownStyle.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
             fitWidth += (button.IconPadding.Start + button.IconPadding.End);
-            button.Size.Width = Math.Max(button.Size.Width, fitWidth);
+            button.SizeWidth = Math.Max(button.Size.Width, fitWidth);
             RelayoutRequest();
 
             int numberOfItemsToAdd = adapter.GetItemCount();
