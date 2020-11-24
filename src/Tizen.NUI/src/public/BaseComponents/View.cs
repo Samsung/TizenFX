@@ -767,14 +767,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Size2D temp = (Size2D)GetValue(Size2DProperty);
+                int width = temp.Width;
+                int height = temp.Height;
 
                 if (this.Layout == null)
                 {
-                    if (temp.Width < 0) { temp.Width = 0; }
-                    if (temp.Height < 0) { temp.Height = 0; }
+                    if (width < 0) { width = 0; }
+                    if (height < 0) { height = 0; }
                 }
 
-                return new Size2D(OnSize2DChanged, temp.Width, temp.Height);
+                return new Size2D(OnSize2DChanged, width, height);
             }
             set
             {

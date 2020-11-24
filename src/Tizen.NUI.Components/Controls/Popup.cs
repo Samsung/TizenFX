@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null && instance?.popupStyle?.Buttons?.Size != null )
             {
-                instance.popupStyle.Buttons.Size.Height = (int)newValue;
+                instance.popupStyle.Buttons.SizeHeight = (int)newValue;
                 instance.btGroup.Itemheight = (int)newValue;
                 instance.UpdateView();
             }
@@ -488,7 +488,7 @@ namespace Tizen.NUI.Components
             {
                 if (popupStyle?.Title?.Size != null)
                 {
-                    popupStyle.Title.Size.Height = value;
+                    popupStyle.Title.SizeHeight = value;
                 }
             }
         }
