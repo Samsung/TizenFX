@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// Subscriber.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<View> Subscriber { get; set; } = new List<View>();
+        public List<View> Subscriber { get; } = new List<View>();
 
         /// <summary>
         /// BackKeyManager static instance.

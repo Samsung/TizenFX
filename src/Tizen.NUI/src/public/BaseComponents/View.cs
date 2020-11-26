@@ -2096,21 +2096,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Style XamlStyle
-        {
-            get
-            {
-                return (Style)GetValue(XamlStyleProperty);
-            }
-            set
-            {
-                SetValue(XamlStyleProperty, value);
-            }
-        }
-
         /// <summary>
         /// The Color of View. This is an RGBA value.
         /// </summary>
