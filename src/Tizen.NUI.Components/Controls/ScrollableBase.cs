@@ -101,6 +101,64 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
+    /// ScrollOutOfBoundWithDisplacementEventArgs is to record scroll out-of-bound event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScrollOutOfBoundWithDisplacementEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The direction to be touched.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum Direction
+        {
+            /// <summary>
+            /// Upwards.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Up,
+
+            /// <summary>
+            /// Downwards.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Down,
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="direction">Current pan direction</param>
+        /// <param name="displacement">Current total displacement</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollOutOfBoundWithDisplacementEventArgs(Direction direction, float displacement)
+        {
+            PanDirection = direction;
+            Displacement = displacement;
+        }
+
+        /// <summary>
+        /// Current pan direction of ContentContainer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Direction PanDirection
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Current total displacement of ContentContainer.
+        /// if its value is greater than 0, it is at the top/left;
+        /// if less than 0, it is at the bottom/right.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Displacement
+        {
+            get;
+        }
+    }
+
+    /// <summary>
     /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
@@ -351,6 +409,12 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollOutOfBoundEventArgs> ScrollOutOfBound;
+
+        /// <summary>
+        /// An event emitted when scrolling out of bound, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollOutOfBoundWithDisplacementEventArgs> ScrollOutOfBoundWithDisplacement;
 
         /// <summary>
         /// Scrollbar for ScrollableBase.
@@ -1052,7 +1116,7 @@ namespace Tizen.NUI.Components
             isVerticalShadowShown = false;
         }
 
-        private void DragVerticalShadow(float displacement)
+        private void DragVerticalShadow(float totalPanDisplacement, float panDisplacement)
         {
             if (!EnableOverShootingEffect)
                 return;
@@ -1060,7 +1124,7 @@ namespace Tizen.NUI.Components
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
-            if ((int)displacement > 0) // downwards
+            if (totalPanDisplacement > 0) // downwards
             {
                 // check if reaching at the top.
                 if ((int)finalTargetPosition != 0)
@@ -1069,12 +1133,16 @@ namespace Tizen.NUI.Components
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
                 {
-                    startShowShadowDisplacement = displacement;
-                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
+                    startShowShadowDisplacement = totalPanDisplacement;
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+                // trigger event
+                ScrollOutOfBoundWithDisplacementEventArgs.Direction direction = panDisplacement > 0 ?
+                    ScrollOutOfBoundWithDisplacementEventArgs.Direction.Down : ScrollOutOfBoundWithDisplacementEventArgs.Direction.Up;
+                OnScrollOutOfBoundWithDisplacement(direction, totalPanDisplacement);
+
+                float newDisplacement = (int)totalPanDisplacement < (int)startShowShadowDisplacement ? 0 : totalPanDisplacement - startShowShadowDisplacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1083,7 +1151,7 @@ namespace Tizen.NUI.Components
                 // scale limit of height is 300%.
                 verticalTopShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
             }
-            else if ((int)displacement < 0) // upwards
+            else if (totalPanDisplacement < 0) // upwards
             {
                 // check if reaching at the bottom.
                 if (-(int)finalTargetPosition != (int)maxScrollDistance)
@@ -1092,12 +1160,16 @@ namespace Tizen.NUI.Components
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
                 {
-                    startShowShadowDisplacement = displacement;
-                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
+                    startShowShadowDisplacement = totalPanDisplacement;
                 }
                 isVerticalShadowShown = true;
 
-                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
+                // trigger event
+                ScrollOutOfBoundWithDisplacementEventArgs.Direction direction = panDisplacement > 0 ?
+                    ScrollOutOfBoundWithDisplacementEventArgs.Direction.Down : ScrollOutOfBoundWithDisplacementEventArgs.Direction.Up;
+                OnScrollOutOfBoundWithDisplacement(direction, totalPanDisplacement);
+
+                float newDisplacement = (int)startShowShadowDisplacement < (int)totalPanDisplacement ? 0 : startShowShadowDisplacement - totalPanDisplacement;
 
                 // scale limit of width is 60%.
                 float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
@@ -1159,10 +1231,10 @@ namespace Tizen.NUI.Components
             isVerticalShadowShown = false;
         }
 
-        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
+        private void OnScrollOutOfBoundWithDisplacement(ScrollOutOfBoundWithDisplacementEventArgs.Direction direction, float displacement)
         {
-            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
-            ScrollOutOfBound?.Invoke(this, args);
+            ScrollOutOfBoundWithDisplacementEventArgs args = new ScrollOutOfBoundWithDisplacementEventArgs(direction, displacement);
+            ScrollOutOfBoundWithDisplacement?.Invoke(this, args);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -1205,7 +1277,7 @@ namespace Tizen.NUI.Components
                         ScrollBy(panGesture.Displacement.Y, false);
                     }
                     totalDisplacementForPan += panGesture.Displacement.Y;
-                    DragVerticalShadow(totalDisplacementForPan);
+                    DragVerticalShadow(totalDisplacementForPan, panGesture.Displacement.Y);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
