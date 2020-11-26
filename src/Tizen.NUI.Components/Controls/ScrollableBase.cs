@@ -180,8 +180,11 @@ namespace Tizen.NUI.Components
                     ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
-                scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
-                scrollableBase.OnScrollingChildRelayout(null, null);
+                if (scrollableBase != null)
+                {
+                    scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
+                    scrollableBase.OnScrollingChildRelayout(null, null);
+                }
             }
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
