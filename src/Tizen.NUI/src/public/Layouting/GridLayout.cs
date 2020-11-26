@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
 .*
 .* Licensed under the Apache License, Version 2.0 (the "License");
 .* you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// ColumnProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), AutoColumn, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoColumn, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// ColumnSpanProperty
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// RowProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), AutoRow, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoRow, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// RowSpanProperty
@@ -74,7 +74,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
-        private const int CellUndefined = -1;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int AutoColumn = int.MinValue;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int AutoRow = int.MinValue;
+
         private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
@@ -170,12 +175,13 @@ namespace Tizen.NUI
         public static Alignment GetVerticalAlignment(View view) => GetAttachedValue<Alignment>(view, VerticalAlignmentProperty);
 
         /// <summary>
-        /// Sets the column index the child occupies. the default value is -1.
+        /// Sets the column index the child occupies. A default column is <see cref="AutoColumn"/>.<br/>
+        /// If column is a <see cref="AutoColumn"/>, child will be automatically laid out depending on <see cref="GridOrientation"/>.
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The column index of <paramref name="view"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be a negative value other than <see cref="AutoColumn"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetColumn(View view, int value) => SetAttachedValue(view, ColumnProperty, value);
 
@@ -190,12 +196,13 @@ namespace Tizen.NUI
         public static void SetColumnSpan(View view, int value) => SetAttachedValue(view, ColumnSpanProperty, value);
 
         /// <summary>
-        /// Sets the row index the child occupies. the default value is -1.
+        /// Sets the row index the child occupies. A default row index is <see cref="AutoRow"/>.<br/>
+        /// If row is a <see cref="AutoRow"/>, child will be automatically laid out depending on <see cref="GridOrientation"/>.
         /// </summary>
         /// <param name="view">The child view.</param>
         /// <param name="value">The row index of <paramref name="view"/>.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
-        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be a negative value other than <see cref="AutoRow"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetRow(View view, int value) => SetAttachedValue(view, RowProperty, value);
 
@@ -423,6 +430,8 @@ namespace Tizen.NUI
 
                 child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));
             }
+
+            LayoutForIndependentChild();
         }
 
         /// <summary>

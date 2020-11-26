@@ -23,15 +23,15 @@ namespace Tizen.NUI.Binding
                     {
                         useDefault = false;
                         string radianOrDegree = head[0].Trim().ToLowerInvariant();
-                        if(radianOrDegree == "d" || radianOrDegree == "degree")
+                        if (radianOrDegree == "d" || radianOrDegree == "degree")
                         {
                             // Oritation="D:23, 0, 0, 1"
-                            radian = new Radian( new Degree( Single.Parse( head[1].Trim(), CultureInfo.InvariantCulture ) ) );
+                            radian = new Radian(new Degree(Single.Parse(head[1].Trim(), CultureInfo.InvariantCulture)));
                         }
                         else if (radianOrDegree == "r" || radianOrDegree == "radian")
                         {
                             // Oritation="R:23, 0, 0, 1"
-                            radian = new Radian( Single.Parse( head[1].Trim(), CultureInfo.InvariantCulture ) );
+                            radian = new Radian(Single.Parse(head[1].Trim(), CultureInfo.InvariantCulture));
                         }
                         else
                         {
@@ -42,7 +42,7 @@ namespace Tizen.NUI.Binding
                     if (useDefault)
                     {
                         // Default: <View Orientation="45.0,12,13,0" />
-                        radian = new Radian( Single.Parse( parts[0].Trim(), CultureInfo.InvariantCulture ) );
+                        radian = new Radian(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture));
                     }
 
                     Vector3 vector3 = new Vector3(Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),

@@ -201,7 +201,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 string translatableText = null;
                 textLabelSid = value;
@@ -211,7 +211,7 @@ namespace Tizen.NUI.BaseComponents
                     Text = translatableText;
                     if (systemlangTextFlag == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                        SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
                         systemlangTextFlag = true;
                     }
                 }
@@ -945,6 +945,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
@@ -955,8 +956,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TextLabel DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -968,6 +972,11 @@ namespace Tizen.NUI.BaseComponents
             if (disposed)
             {
                 return;
+            }
+
+            if (systemlangTextFlag)
+            {
+                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
             if (type == DisposeTypes.Explicit)
@@ -1017,7 +1026,7 @@ namespace Tizen.NUI.BaseComponents
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
-        private void  NotifyPropertyChangedAndRequestLayout()
+        private void NotifyPropertyChangedAndRequestLayout()
         {
             NotifyPropertyChanged();
             Layout?.RequestLayout();

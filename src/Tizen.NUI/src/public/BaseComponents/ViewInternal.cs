@@ -31,22 +31,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
         internal string styleName;
-
-        internal MergedStyle _mergedStyle
-        {
-            get
-            {
-                if (null == mergedStyle)
-                {
-                    mergedStyle = new MergedStyle(GetType(), this);
-                }
-
-                return mergedStyle;
-            }
-        }
 
         /// <summary>
         /// The color mode of View.
@@ -69,9 +55,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_X).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue wordPositionX = GetProperty(View.Property.WORLD_POSITION_X);
+                wordPositionX?.Get(out returnValue);
+                wordPositionX?.Dispose();
+                return returnValue;
             }
         }
 
@@ -79,9 +67,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Y).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue wordPositionY = GetProperty(View.Property.WORLD_POSITION_Y);
+                wordPositionY?.Get(out returnValue);
+                wordPositionY?.Dispose();
+                return returnValue;
             }
         }
 
@@ -89,9 +79,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Z).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue wordPositionZ = GetProperty(View.Property.WORLD_POSITION_Z);
+                wordPositionZ?.Get(out returnValue);
+                wordPositionZ?.Dispose();
+                return returnValue;
             }
         }
 
@@ -161,13 +153,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_X).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue parentOriginX = GetProperty(View.Property.PARENT_ORIGIN_X);
+                parentOriginX?.Get(out returnValue);
+                parentOriginX?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.PARENT_ORIGIN_X, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.PARENT_ORIGIN_X, setValue);
+                setValue.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -176,13 +172,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_Y).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue parentOriginY = GetProperty(View.Property.PARENT_ORIGIN_Y);
+                parentOriginY?.Get(out returnValue);
+                parentOriginY?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.PARENT_ORIGIN_Y, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.PARENT_ORIGIN_Y, setValue);
+                setValue.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -191,13 +191,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_Z).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue parentOriginZ = GetProperty(View.Property.PARENT_ORIGIN_Z);
+                parentOriginZ?.Get(out returnValue);
+                parentOriginZ?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.PARENT_ORIGIN_Z, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.PARENT_ORIGIN_Z, setValue);
+                setValue.Dispose();
                 NotifyPropertyChanged();
             }
         }
@@ -206,13 +210,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_X).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue anchorPointX = GetProperty(View.Property.ANCHOR_POINT_X);
+                anchorPointX?.Get(out returnValue);
+                anchorPointX?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.ANCHOR_POINT_X, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ANCHOR_POINT_X, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -220,13 +228,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_Y).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue anchorPointY = GetProperty(View.Property.ANCHOR_POINT_Y);
+                anchorPointY?.Get(out returnValue);
+                anchorPointY?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.ANCHOR_POINT_Y, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ANCHOR_POINT_Y, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -234,13 +246,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_Z).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue anchorPointZ = GetProperty(View.Property.ANCHOR_POINT_Z);
+                anchorPointZ?.Get(out returnValue);
+                anchorPointZ?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.ANCHOR_POINT_Z, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ANCHOR_POINT_Z, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -248,9 +264,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Matrix temp = new Matrix();
-                GetProperty(View.Property.WORLD_MATRIX).Get(temp);
-                return temp;
+                Matrix returnValue = new Matrix();
+                PropertyValue wordMatrix = GetProperty(View.Property.WORLD_MATRIX);
+                wordMatrix?.Get(returnValue);
+                wordMatrix?.Dispose();
+                return returnValue;
             }
         }
 
@@ -263,13 +281,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue leftFocusableViewId = GetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID);
+                leftFocusableViewId?.Get(out returnValue);
+                leftFocusableViewId?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -277,13 +299,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue rightFocusableViewId = GetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID);
+                rightFocusableViewId?.Get(out returnValue);
+                rightFocusableViewId?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -291,13 +317,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.UP_FOCUSABLE_VIEW_ID).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue upFocusableViewId = GetProperty(View.Property.UP_FOCUSABLE_VIEW_ID);
+                upFocusableViewId?.Get(out returnValue);
+                upFocusableViewId?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.UP_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.UP_FOCUSABLE_VIEW_ID, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -305,13 +335,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue downFocusableViewId = GetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID);
+                downFocusableViewId?.Get(out returnValue);
+                downFocusableViewId?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -571,6 +605,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             Size2D size = new Size2D((int)ret.Width, (int)ret.Height);
+            ret.Dispose();
             return size;
         }
 
@@ -1041,15 +1076,19 @@ namespace Tizen.NUI.BaseComponents
             }
 
             Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
+            PropertyValue background = Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND);
+            background?.Get(backgroundMap);
 
             if (!backgroundMap.Empty())
             {
                 backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(backgroundMap);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, setValue);
+                setValue?.Dispose();
             }
-
             UpdateShadowCornerRadius(value);
+            backgroundMap?.Dispose();
+            background?.Dispose();
         }
 
         internal void UpdateStyle()
@@ -1114,10 +1153,16 @@ namespace Tizen.NUI.BaseComponents
         /// The touch event handler for ControlState.
         /// Please change ControlState value by touch state if needed.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when touch is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool HandleControlStateOnTouch(Touch touch)
         {
-            switch(touch.GetState(0))
+            if (touch == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(touch));
+            }
+
+            switch (touch.GetState(0))
             {
                 case PointStateType.Down:
                     ControlState += ControlState.Pressed;
@@ -1132,7 +1177,6 @@ namespace Tizen.NUI.BaseComponents
                 default:
                     break;
             }
-
             return false;
         }
 
@@ -1146,25 +1190,33 @@ namespace Tizen.NUI.BaseComponents
 
             if (_onRelayoutEventCallback != null)
             {
-                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                ViewSignal signal = this.OnRelayoutSignal();
+                signal?.Disconnect(_onRelayoutEventCallback);
+                signal?.Dispose();
                 _onRelayoutEventCallback = null;
             }
 
             if (_offWindowEventCallback != null)
             {
-                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                ViewSignal signal = this.OffWindowSignal();
+                signal?.Disconnect(_offWindowEventCallback);
+                signal?.Dispose();
                 _offWindowEventCallback = null;
             }
 
             if (_onWindowEventCallback != null)
             {
-                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                ViewSignal signal = this.OnWindowSignal();
+                signal?.Disconnect(_onWindowEventCallback);
+                signal?.Dispose();
                 _onWindowEventCallback = null;
             }
 
             if (_wheelEventCallback != null)
             {
-                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+                WheelSignal signal = this.WheelEventSignal();
+                signal?.Disconnect(_wheelEventCallback);
+                signal?.Dispose();
             }
 
             if (WindowWheelEventHandler != null)
@@ -1174,49 +1226,67 @@ namespace Tizen.NUI.BaseComponents
 
             if (_hoverEventCallback != null)
             {
-                this.HoveredSignal().Disconnect(_hoverEventCallback);
+                HoverSignal signal = this.HoveredSignal();
+                signal?.Disconnect(_hoverEventCallback);
+                signal?.Dispose();
             }
 
             if (_interceptTouchDataCallback != null)
             {
-                this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
+                TouchDataSignal signal = this.InterceptTouchSignal();
+                signal?.Disconnect(_interceptTouchDataCallback);
+                signal?.Dispose();
             }
 
             if (_touchDataCallback != null)
             {
-                this.TouchSignal().Disconnect(_touchDataCallback);
+                TouchDataSignal signal = this.TouchSignal();
+                signal?.Disconnect(_touchDataCallback);
+                signal?.Dispose();
             }
 
             if (_ResourcesLoadedCallback != null)
             {
-                this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                ViewSignal signal = this.ResourcesLoadedSignal();
+                signal?.Disconnect(_ResourcesLoadedCallback);
+                signal?.Dispose();
                 _ResourcesLoadedCallback = null;
             }
 
             if (_keyCallback != null)
             {
-                this.KeyEventSignal().Disconnect(_keyCallback);
+                ControlKeySignal signal = this.KeyEventSignal();
+                signal?.Disconnect(_keyCallback);
+                signal?.Dispose();
             }
 
             if (_keyInputFocusLostCallback != null)
             {
-                this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
+                KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
+                signal?.Disconnect(_keyInputFocusLostCallback);
+                signal?.Dispose();
             }
 
             if (_keyInputFocusGainedCallback != null)
             {
-                this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+                KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
+                signal?.Disconnect(_keyInputFocusGainedCallback);
+                signal?.Dispose();
             }
 
             if (_backgroundResourceLoadedCallback != null)
             {
-                this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                ViewSignal signal = this.ResourcesLoadedSignal();
+                signal?.Disconnect(_backgroundResourceLoadedCallback);
+                signal?.Dispose();
                 _backgroundResourceLoadedCallback = null;
             }
 
             if (_onWindowSendEventCallback != null)
             {
-                this.OnWindowSignal().Disconnect(_onWindowSendEventCallback);
+                ViewSignal signal = this.OnWindowSignal();
+                signal?.Disconnect(_onWindowSendEventCallback);
+                signal?.Dispose();
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
@@ -1323,12 +1393,17 @@ namespace Tizen.NUI.BaseComponents
             // TODO Update corner radius property only whe DALi supports visual property update.
             PropertyMap map = new PropertyMap();
 
-            if (Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW).Get(map) && !map.Empty())
+            PropertyValue shadowVal = Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.SHADOW);
+            if (shadowVal.Get(map) && !map.Empty())
             {
                 map[Visual.Property.CornerRadius] = new PropertyValue(value);
 
-                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, new PropertyValue(map));
+                PropertyValue setValue = new PropertyValue(map);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SHADOW, setValue);
+                setValue?.Dispose();
             }
+            map?.Dispose();
+            shadowVal?.Dispose();
         }
 
         private bool EmptyOnTouch(object target, TouchEventArgs args)

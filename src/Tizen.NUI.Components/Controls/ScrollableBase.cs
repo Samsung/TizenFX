@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
                         LayoutLength childLeft = new LayoutLength(childPosition.X);
                         LayoutLength childTop = new LayoutLength(childPosition.Y);
 
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
                     }
                 }
             }
@@ -433,10 +433,6 @@ namespace Tizen.NUI.Components
             set
             {
                 ContentContainer.Layout = value;
-                if (ContentContainer.Layout != null)
-                {
-                    ContentContainer.Layout.SetPositionByLayout = false;
-                }
             }
         }
 
@@ -606,12 +602,9 @@ namespace Tizen.NUI.Components
             ContentContainer = new View()
             {
                 Name = "ContentContainer",
+                ExcludeLayouting = false,
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
-                Layout = new AbsoluteLayout()
-                {
-                    SetPositionByLayout = false
-                },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
@@ -1017,8 +1010,17 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        /// <summary>
+        /// Enable/Disable overshooting effect. default is disabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableOverShootingEffect { get; set; } = false;
+
         private void AttachShadowView()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1030,9 +1032,11 @@ namespace Tizen.NUI.Components
 
             verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalTopShadowView.Opacity = 1.0f;
+            verticalTopShadowView.RaiseToTop();
 
             verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalBottomShadowView.Opacity = 1.0f;
+            verticalBottomShadowView.RaiseToTop();
 
             // at the beginning, height of vertical shadow is 0, so it is invisible.
             isVerticalShadowShown = false;
@@ -1040,6 +1044,9 @@ namespace Tizen.NUI.Components
 
         private void DragVerticalShadow(float displacement)
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1098,6 +1105,9 @@ namespace Tizen.NUI.Components
 
         private void PlayVerticalShadowAnimation()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 

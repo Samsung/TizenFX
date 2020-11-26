@@ -39,7 +39,7 @@ namespace Tizen.NUI
             public static extern void Geometry_RemoveVertexBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Geometry_SetIndexBuffer")]
-            public static extern void Geometry_SetIndexBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]ushort[] jarg2, uint jarg3);
+            public static extern void Geometry_SetIndexBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] ushort[] jarg2, uint jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Geometry_SetType")]
             public static extern void Geometry_SetType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
