@@ -482,6 +482,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="index">Indicator index</param>
         /// <param name="position">The position of a indicator by index</param>
+        /// <exception cref="ArgumentNullException">This exception can occur by the position is null.</exception>
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
