@@ -62,42 +62,11 @@ namespace Tizen.NUI.Components
     public class ScrollOutOfBoundEventArgs : EventArgs
     {
         /// <summary>
-        /// The bound to be scrolled out of.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum Bound
-        {
-            /// <summary>
-            /// None.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            None,
-
-            /// <summary>
-            /// Top bound.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Top,
-
-            /// <summary>
-            /// Bottom bound.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Bottom
-        }
-
-        /// <summary>
         /// The direction to be touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Direction
         {
-            /// <summary>
-            /// None.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            None,
-
             /// <summary>
             /// Upwards.
             /// </summary>
@@ -114,24 +83,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="bound">Current scrollable bound</param>
         /// <param name="direction">Current pan direction</param>
         /// <param name="displacement">Current total displacement</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollOutOfBoundEventArgs(Bound bound, Direction direction, float displacement)
+        public ScrollOutOfBoundEventArgs(Direction direction, float displacement)
         {
-            ScrollableBound = bound;
             PanDirection = direction;
             Displacement = displacement;
-        }
-
-        /// <summary>
-        /// Current bound of ContentContainer.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Bound ScrollableBound
-        {
-            get;
         }
 
         /// <summary>
@@ -145,6 +103,8 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Current total displacement of ContentContainer.
+        /// if its value is greater than 0, it is at the top/left;
+        /// if less than 0, it is at the bottom/right.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Displacement
@@ -1125,7 +1085,7 @@ namespace Tizen.NUI.Components
                 // trigger event
                 ScrollOutOfBoundEventArgs.Direction direction = panDisplacement > 0 ?
                     ScrollOutOfBoundEventArgs.Direction.Down : ScrollOutOfBoundEventArgs.Direction.Up;
-                OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top, direction, totalPanDisplacement);
+                OnScrollOutOfBound(direction, totalPanDisplacement);
 
                 float newDisplacement = (int)totalPanDisplacement < (int)startShowShadowDisplacement ? 0 : totalPanDisplacement - startShowShadowDisplacement;
 
@@ -1152,7 +1112,7 @@ namespace Tizen.NUI.Components
                 // trigger event
                 ScrollOutOfBoundEventArgs.Direction direction = panDisplacement > 0 ?
                     ScrollOutOfBoundEventArgs.Direction.Down : ScrollOutOfBoundEventArgs.Direction.Up;
-                OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom, direction, totalPanDisplacement);
+                OnScrollOutOfBound(direction, totalPanDisplacement);
 
                 float newDisplacement = (int)startShowShadowDisplacement < (int)totalPanDisplacement ? 0 : startShowShadowDisplacement - totalPanDisplacement;
 
@@ -1167,7 +1127,6 @@ namespace Tizen.NUI.Components
             {
                 // if total displacement is 0, shadow would become invisible.
                 isVerticalShadowShown = false;
-                OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.None, ScrollOutOfBoundEventArgs.Direction.None, totalPanDisplacement);
             }
         }
 
@@ -1217,9 +1176,9 @@ namespace Tizen.NUI.Components
             isVerticalShadowShown = false;
         }
 
-        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound, ScrollOutOfBoundEventArgs.Direction direction, float displacement)
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Direction direction, float displacement)
         {
-            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound, direction, displacement);
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(direction, displacement);
             ScrollOutOfBound?.Invoke(this, args);
         }
 
