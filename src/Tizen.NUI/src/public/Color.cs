@@ -489,45 +489,9 @@ namespace Tizen.NUI
             float b = color.B;
             float a = color.A;
 
-            if (r < 0.0f)
+            if (IsInvalidValue(ref r) | IsInvalidValue(ref g) | IsInvalidValue(ref b) | IsInvalidValue(ref a))
             {
-                r = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (r > 1.0f)
-            {
-                r = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (g < 0.0f)
-            {
-                g = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (g > 1.0f)
-            {
-                g = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (b < 0.0f)
-            {
-                b = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (b > 1.0f)
-            {
-                b = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (a < 0.0f)
-            {
-                a = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (a > 1.0f)
-            {
-                a = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. Color is {color.R}, {color.G}, {color.B}, {color.A}");
             }
             color = new Color(r, g, b, a);
             return color;
@@ -535,17 +499,12 @@ namespace Tizen.NUI
 
         internal static float ValueCheck(float value)
         {
-            if (value < 0.0f)
+            float refValue = value;
+            if (IsInvalidValue(ref refValue))
             {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. float value is {value}");
             }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
+            return refValue;
         }
 
         internal static float[] ValueCheck(float[] arr)
@@ -557,18 +516,29 @@ namespace Tizen.NUI
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < 0.0f)
+                float refValue = arr[i];
+                if (IsInvalidValue(ref refValue))
                 {
-                    arr[i] = 0.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-                }
-                else if (arr[i] > 1.0f)
-                {
-                    arr[i] = 1.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                    NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. arr[] is {arr[i]}");
+                    arr[i] = refValue;
                 }
             }
             return arr;
+        }
+
+        private static bool IsInvalidValue(ref float value)
+        {
+            if (value < 0.0f)
+            {
+                value = 0.0f;
+                return true;
+            }
+            else if (value > 1.0f)
+            {
+                value = 1.0f;
+                return true;
+            }
+            return false;
         }
 
         /// This will not be public opened.

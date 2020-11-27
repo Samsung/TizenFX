@@ -565,13 +565,11 @@ namespace Tizen.NUI
 
         private WindowTransitionEffectSignal TransitionEffectEventSignal()
         {
-            //Tizen.Log.Fatal("NUITEST", "TransitionEffectEventSignal()!");
             if (transitionEffectSignal == null)
             {
                 transitionEffectSignal = new WindowTransitionEffectSignal(this);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                //Tizen.Log.Fatal("NUITEST", $"transitionEffectSignal is null, new here!");
             }
             return transitionEffectSignal;
         }
@@ -737,24 +735,19 @@ namespace Tizen.NUI
 
         private void OnTransitionEffect(IntPtr window, int state, int type)
         {
-            //Tizen.Log.Fatal("NUITEST", $"OnTransitionEffect() called");
             if (window == global::System.IntPtr.Zero)
             {
-                //Tizen.Log.Error("NUI", $"OnTransitionEffect() IntPtr window is null!");
                 return;
             }
 
             TransitionEffectArgs e = new TransitionEffectArgs();
 
             e.State = (EffectStates)state;
-            //Tizen.Log.Error("NUITEST", $"e.State={e.State}");
 
             e.Type = (EffectTypes)type;
-            //Tizen.Log.Error("NUITEST", $"e.Type={e.Type}");
 
             if (transitionEffectHandler != null)
             {
-                //Tizen.Log.Fatal("NUITEST", $"Execute transitionEffectHandler(this, e)!!!");
                 transitionEffectHandler(this, e);
             }
             return;
