@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// KeyboardTypeSignalType
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
         "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class KeyboardTypeSignalType : Disposable
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
@@ -62,7 +62,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
@@ -77,7 +77,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The member function to connect</param>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(InputMethodContext.KeyboardType arg)
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyboardTypeSignalType() : this(Interop.KeyboardTypeSignalType.new_KeyboardTypeSignalType(), true)

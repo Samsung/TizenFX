@@ -38,9 +38,11 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(TypeTypeConverter))]
         [Obsolete("Use Source")]
-        public Type MergedWith {
+        public Type MergedWith
+        {
             get { return _mergedWith; }
-            set {
+            set
+            {
                 if (_mergedWith == value)
                     return;
 
@@ -65,9 +67,11 @@ namespace Tizen.NUI.Binding
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(RDSourceTypeConverter))]
-        public Uri Source {
+        public Uri Source
+        {
             get { return _source; }
-            set {
+            set
+            {
                 if (_source == value)
                     return;
                 throw new InvalidOperationException("Source can only be set from XAML."); //through the RDSourceTypeConverter
@@ -102,9 +106,12 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ICollection<ResourceDictionary> MergedDictionaries {
-            get {
-                if (_mergedDictionaries == null) {
+        public ICollection<ResourceDictionary> MergedDictionaries
+        {
+            get
+            {
+                if (_mergedDictionaries == null)
+                {
                     var col = new ObservableCollection<ResourceDictionary>();
                     col.CollectionChanged += MergedDictionaries_CollectionChanged;
                     _mergedDictionaries = col;
@@ -113,16 +120,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal IList<StyleSheets.StyleSheet> StyleSheets { get; set; }
-
-        void StyleSheetsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            switch (e.Action) {
-            case NotifyCollectionChangedAction.Add:
-                    ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
-                break;
-            }
-        }
         IList<ResourceDictionary> _collectionTrack;
 
         void MergedDictionaries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -133,7 +130,8 @@ namespace Tizen.NUI.Binding
 
             _collectionTrack = _collectionTrack ?? new List<ResourceDictionary>();
             // Collection has been cleared
-            if (e.Action == NotifyCollectionChangedAction.Reset) {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
                 foreach (var dictionary in _collectionTrack)
                     dictionary.ValuesChanged -= Item_ValuesChanged;
 
@@ -288,8 +286,10 @@ namespace Tizen.NUI.Binding
             return _innerDictionary.GetEnumerator();
         }
 
-        internal IEnumerable<KeyValuePair<string, object>> MergedResources {
-            get {
+        internal IEnumerable<KeyValuePair<string, object>> MergedResources
+        {
+            get
+            {
                 if (MergedDictionaries != null)
                     foreach (var r in MergedDictionaries.Reverse().SelectMany(x => x.MergedResources))
                         yield return r;
@@ -326,33 +326,11 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
-        internal void Add(Style style)
-        {
-            if (string.IsNullOrEmpty(style.Class))
-                Add(style.TargetType.FullName, style);
-            else
-            {
-                IList<Style> classes;
-                object outclasses;
-                if (!TryGetValue(Style.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<Style>) == null)
-                    classes = new List<Style>();
-                classes.Add(style);
-                this[Style.StyleClassPrefix + style.Class] = classes;
-            }
-        }
-
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(ResourceDictionary mergedResourceDictionary)
         {
             MergedDictionaries.Add(mergedResourceDictionary);
-        }
-
-        internal void Add(StyleSheets.StyleSheet styleSheet)
-        {
-            StyleSheets = StyleSheets ?? new List<StyleSheets.StyleSheet>(2);
-            StyleSheets.Add(styleSheet);
-            ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
         }
 
         void OnValueChanged(string key, object value)

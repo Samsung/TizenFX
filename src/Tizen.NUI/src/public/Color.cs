@@ -121,6 +121,7 @@ namespace Tizen.NUI
         /// The conversion constructor from an hexcode of four floats.
         /// </summary>
         /// <param name="hexColor">Hex color code</param>
+        /// <exception cref="ArgumentNullException">This exception is thrown when hexColor is null.</exception>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -128,6 +129,10 @@ namespace Tizen.NUI
         {
             try
             {
+                if (null == hexColor)
+                {
+                    throw new ArgumentNullException(nameof(hexColor));
+                }
                 hexColor = hexColor.Replace("#", "");
 
                 R = ((float)Convert.ToInt32(hexColor.Substring(0, 2), 16)) / 255.0f;
@@ -159,7 +164,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="other">The copy target.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color(Color other) : this(other.R, other.G, other.B, other.A)
+        public Color(Color other) : this((float)other?.R, (float)other.G, (float)other.B, (float)other.A)
         {
         }
 
@@ -294,7 +299,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(Color color)
         {
-            return new Vector4(color.R, color.G, color.B, color.A);
+            return new Vector4((float)color?.R, (float)color.G, (float)color.B, (float)color.A);
         }
 
         /// <summary>
@@ -304,7 +309,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Color(Vector4 vec)
         {
-            return new Color(vec.R, vec.G, vec.B, vec.A);
+            return new Color((float)vec?.R, (float)vec.G, (float)vec.B, (float)vec.A);
         }
 
         /// <summary>
@@ -313,9 +318,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the addition.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator +(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Add(arg2);
             return ValueCheck(result);
         }
@@ -326,9 +336,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the subtraction.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract(arg2);
             return ValueCheck(result);
         }
@@ -338,9 +353,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The target value.</param>
         /// <returns>The color containg the negation.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Subtract();
             return ValueCheck(result);
         }
@@ -351,9 +371,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -364,9 +389,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
@@ -377,9 +407,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, Color arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -390,9 +425,14 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when arg1 is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, float arg2)
         {
+            if (null == arg1)
+            {
+                throw new ArgumentNullException(nameof(arg1));
+            }
             Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
@@ -444,80 +484,61 @@ namespace Tizen.NUI
 
         internal static Color ValueCheck(Color color)
         {
-            if (color.R < 0.0f)
+            float r = color.R;
+            float g = color.G;
+            float b = color.B;
+            float a = color.A;
+
+            if (IsInvalidValue(ref r) | IsInvalidValue(ref g) | IsInvalidValue(ref b) | IsInvalidValue(ref a))
             {
-                color.R = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. Color is {color.R}, {color.G}, {color.B}, {color.A}");
             }
-            else if (color.R > 1.0f)
-            {
-                color.R = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.G < 0.0f)
-            {
-                color.G = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.G > 1.0f)
-            {
-                color.G = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.B < 0.0f)
-            {
-                color.B = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.B > 1.0f)
-            {
-                color.B = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.A < 0.0f)
-            {
-                color.A = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.A > 1.0f)
-            {
-                color.A = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
+            color = new Color(r, g, b, a);
             return color;
         }
 
         internal static float ValueCheck(float value)
         {
-            if (value < 0.0f)
+            float refValue = value;
+            if (IsInvalidValue(ref refValue))
             {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. float value is {value}");
             }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
+            return refValue;
         }
 
         internal static float[] ValueCheck(float[] arr)
         {
+            if (null == arr)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < 0.0f)
+                float refValue = arr[i];
+                if (IsInvalidValue(ref refValue))
                 {
-                    arr[i] = 0.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-                }
-                else if (arr[i] > 1.0f)
-                {
-                    arr[i] = 1.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                    NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. arr[] is {arr[i]}");
+                    arr[i] = refValue;
                 }
             }
             return arr;
+        }
+
+        private static bool IsInvalidValue(ref float value)
+        {
+            if (value < 0.0f)
+            {
+                value = 0.0f;
+                return true;
+            }
+            else if (value > 1.0f)
+            {
+                value = 1.0f;
+                return true;
+            }
+            return false;
         }
 
         /// This will not be public opened.

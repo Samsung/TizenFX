@@ -32,7 +32,7 @@ namespace Tizen.NUI.Xaml
             catch (ArgumentException ae)
             {
                 if (ae.ParamName != "name")
-                    throw ae;
+                    throw;
                 throw new XamlParseException($"An element with the name \"{(string)node.Value}\" already exists in this NameScope", node);
             }
             var element = Values[parentNode] as Element;

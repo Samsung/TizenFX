@@ -86,23 +86,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 string alignment = "begin";
-                switch(value)
+                switch (value)
                 {
-                    case HorizontalAlignment.Begin: {
-                        alignment = "begin";
-                        break;
-                    }
-                    case HorizontalAlignment.Center: {
-                        alignment = "center";
-                        break;
-                    }
-                    case HorizontalAlignment.End: {
-                        alignment = "end";
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case HorizontalAlignment.Begin:
+                        {
+                            alignment = "begin";
+                            break;
+                        }
+                    case HorizontalAlignment.Center:
+                        {
+                            alignment = "center";
+                            break;
+                        }
+                    case HorizontalAlignment.End:
+                        {
+                            alignment = "end";
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 Interop.RendererParameters.RendererParameters_horizontalAlignment_set(swigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -112,23 +116,27 @@ namespace Tizen.NUI.BaseComponents
                 string ret = Interop.RendererParameters.RendererParameters_horizontalAlignment_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 HorizontalAlignment alignment = HorizontalAlignment.Begin;
-                switch(ret)
+                switch (ret)
                 {
-                    case "begin": {
-                        alignment = HorizontalAlignment.Begin;
-                        break;
-                    }
-                    case "center": {
-                        alignment = HorizontalAlignment.Center;
-                        break;
-                    }
-                    case "end": {
-                        alignment = HorizontalAlignment.End;
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case "begin":
+                        {
+                            alignment = HorizontalAlignment.Begin;
+                            break;
+                        }
+                    case "center":
+                        {
+                            alignment = HorizontalAlignment.Center;
+                            break;
+                        }
+                    case "end":
+                        {
+                            alignment = HorizontalAlignment.End;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 return alignment;
             }
@@ -144,23 +152,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 string alignment = "top";
-                switch(value)
+                switch (value)
                 {
-                    case VerticalAlignment.Top: {
-                        alignment = "top";
-                        break;
-                    }
-                    case VerticalAlignment.Center: {
-                        alignment = "center";
-                        break;
-                    }
-                    case VerticalAlignment.Bottom: {
-                        alignment = "bottom";
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case VerticalAlignment.Top:
+                        {
+                            alignment = "top";
+                            break;
+                        }
+                    case VerticalAlignment.Center:
+                        {
+                            alignment = "center";
+                            break;
+                        }
+                    case VerticalAlignment.Bottom:
+                        {
+                            alignment = "bottom";
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 Interop.RendererParameters.RendererParameters_verticalAlignment_set(swigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -170,23 +182,27 @@ namespace Tizen.NUI.BaseComponents
                 string ret = Interop.RendererParameters.RendererParameters_verticalAlignment_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 VerticalAlignment alignment = VerticalAlignment.Top;
-                switch(ret)
+                switch (ret)
                 {
-                    case "top": {
-                        alignment = VerticalAlignment.Top;
-                        break;
-                    }
-                    case "center": {
-                        alignment = VerticalAlignment.Center;
-                        break;
-                    }
-                    case "bottom": {
-                        alignment = VerticalAlignment.Bottom;
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case "top":
+                        {
+                            alignment = VerticalAlignment.Top;
+                            break;
+                        }
+                    case "center":
+                        {
+                            alignment = VerticalAlignment.Center;
+                            break;
+                        }
+                    case "bottom":
+                        {
+                            alignment = VerticalAlignment.Bottom;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 return alignment;
             }
@@ -282,23 +298,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 string textLayout = "singleLine";
-                switch(value)
+                switch (value)
                 {
-                    case TextLayout.SingleLine: {
-                        textLayout = "singleLine";
-                        break;
-                    }
-                    case TextLayout.MultiLine: {
-                        textLayout = "multiLine";
-                        break;
-                    }
-                    case TextLayout.Circular: {
-                        textLayout = "circular";
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case TextLayout.SingleLine:
+                        {
+                            textLayout = "singleLine";
+                            break;
+                        }
+                    case TextLayout.MultiLine:
+                        {
+                            textLayout = "multiLine";
+                            break;
+                        }
+                    case TextLayout.Circular:
+                        {
+                            textLayout = "circular";
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 Interop.RendererParameters.RendererParameters_layout_set(swigCPtr, textLayout);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -308,23 +328,27 @@ namespace Tizen.NUI.BaseComponents
                 string ret = Interop.RendererParameters.RendererParameters_layout_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 TextLayout textLayout = TextLayout.SingleLine;
-                switch(ret)
+                switch (ret)
                 {
-                    case "singleLine": {
-                        textLayout = TextLayout.SingleLine;
-                        break;
-                    }
-                    case "multiLine": {
-                        textLayout = TextLayout.MultiLine;
-                        break;
-                    }
-                    case "circular": {
-                        textLayout = TextLayout.Circular;
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case "singleLine":
+                        {
+                            textLayout = TextLayout.SingleLine;
+                            break;
+                        }
+                    case "multiLine":
+                        {
+                            textLayout = TextLayout.MultiLine;
+                            break;
+                        }
+                    case "circular":
+                        {
+                            textLayout = TextLayout.Circular;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 return textLayout;
             }
@@ -340,23 +364,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 string alignment = "begin";
-                switch(value)
+                switch (value)
                 {
-                    case CircularAlignment.Begin: {
-                        alignment = "begin";
-                        break;
-                    }
-                    case CircularAlignment.Center: {
-                        alignment = "center";
-                        break;
-                    }
-                    case CircularAlignment.End: {
-                        alignment = "end";
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case CircularAlignment.Begin:
+                        {
+                            alignment = "begin";
+                            break;
+                        }
+                    case CircularAlignment.Center:
+                        {
+                            alignment = "center";
+                            break;
+                        }
+                    case CircularAlignment.End:
+                        {
+                            alignment = "end";
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 Interop.RendererParameters.RendererParameters_circularAlignment_set(swigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -366,23 +394,27 @@ namespace Tizen.NUI.BaseComponents
                 string ret = Interop.RendererParameters.RendererParameters_circularAlignment_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 CircularAlignment alignment = CircularAlignment.Begin;
-                switch(ret)
+                switch (ret)
                 {
-                    case "begin": {
-                        alignment = CircularAlignment.Begin;
-                        break;
-                    }
-                    case "center": {
-                        alignment = CircularAlignment.Center;
-                        break;
-                    }
-                    case "end": {
-                        alignment = CircularAlignment.End;
-                        break;
-                    }
-                    default : {
-                        break;
-                    }
+                    case "begin":
+                        {
+                            alignment = CircularAlignment.Begin;
+                            break;
+                        }
+                    case "center":
+                        {
+                            alignment = CircularAlignment.Center;
+                            break;
+                        }
+                    case "end":
+                        {
+                            alignment = CircularAlignment.End;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
                 return alignment;
             }
@@ -968,7 +1000,8 @@ namespace Tizen.NUI.BaseComponents
             PixelBuffer ret = new PixelBuffer(Interop.TextUtils.TextUtils_Render(RendererParameters.getCPtr(textParameters), ref returnItem, ref count, ref length), true);
 
             embeddedItemLayout = new EmbeddedItemInfo[count];
-            for(int i=0; i< count; i++) {
+            for (int i = 0; i < count; i++)
+            {
                 IntPtr p = new IntPtr((returnItem.ToInt32() + i * length));
                 embeddedItemLayout[i] = new EmbeddedItemInfo(p, false);
             }

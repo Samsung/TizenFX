@@ -501,7 +501,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding); 
+            trackVisual.Size = calculator.CalculateTrackSize(TrackThickness, containerSize, trackPadding);
             trackVisual.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbVisual.Size = calculator.CalculateThumbSize(ThumbThickness, trackVisual.Size);
             thumbVisual.Position = calculator.CalculateThumbPaddingPosition(trackVisual.Size, thumbVisual.Size, thumbVisual.Position, trackPadding);
@@ -634,12 +634,12 @@ namespace Tizen.NUI.Components
 
             public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
             {
-                return new Size(containerSize.Width - trackPadding?.Start??0 - trackPadding?.End??0, thickness);
+                return new Size(containerSize.Width - trackPadding?.Start ?? 0 - trackPadding?.End ?? 0, thickness);
             }
 
             public override Vector2 CalculateTrackPosition(Extents trackPadding)
             {
-                return new Vector2(0, -trackPadding?.Bottom??0);
+                return new Vector2(0, -trackPadding?.Bottom ?? 0);
             }
 
             public override Size CalculateThumbSize(float thickness, Size trackSize)
@@ -649,21 +649,21 @@ namespace Tizen.NUI.Components
 
             public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
             {
-                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding?.Bottom??0;
+                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding?.Bottom ?? 0;
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(trackPadding?.Start??0 + trackSize.Width * pos / contentLength, -padding);
+                return new Vector2(trackPadding?.Start ?? 0 + trackSize.Width * pos / contentLength, -padding);
             }
 
             public override Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding)
             {
-                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding?.Bottom??0;
+                float padding = ((trackSize.Height - thumbSize.Height) / 2.0f) + trackPadding?.Bottom ?? 0;
                 return new Vector2(thumbCurrentPosition.X, -padding);
             }
 
             public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbCurrentPosition, Extents trackPadding)
             {
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(trackPadding?.Start??0 + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
+                return new Vector2(trackPadding?.Start ?? 0 + trackSize.Width * pos / contentLength, thumbCurrentPosition.Y);
             }
         }
 
@@ -685,12 +685,12 @@ namespace Tizen.NUI.Components
 
             public override Size CalculateTrackSize(float thickness, Size containerSize, Extents trackPadding)
             {
-                return new Size(thickness, containerSize.Height - trackPadding?.Top??0 - trackPadding?.Bottom??0);
+                return new Size(thickness, containerSize.Height - trackPadding?.Top ?? 0 - trackPadding?.Bottom ?? 0);
             }
 
             public override Vector2 CalculateTrackPosition(Extents trackPadding)
             {
-                return new Vector2(-trackPadding?.End??0, 0);
+                return new Vector2(-trackPadding?.End ?? 0, 0);
             }
 
             public override Size CalculateThumbSize(float thickness, Size trackSize)
@@ -700,21 +700,21 @@ namespace Tizen.NUI.Components
 
             public override Vector2 CalculateThumbPosition(Size trackSize, Size thumbSize, Extents trackPadding)
             {
-                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding?.End??0;
+                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding?.End ?? 0;
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(-padding, trackPadding?.Top??0 + trackSize.Height * pos / contentLength);
+                return new Vector2(-padding, trackPadding?.Top ?? 0 + trackSize.Height * pos / contentLength);
             }
 
             public override Vector2 CalculateThumbPaddingPosition(Size trackSize, Size thumbSize, Vector2 thumbCurrentPosition, Extents trackPadding)
             {
-                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding?.End??0;
+                float padding = ((trackSize.Width - thumbSize.Width) / 2.0f) + trackPadding?.End ?? 0;
                 return new Vector2(-padding, thumbCurrentPosition.Y);
             }
 
             public override Vector2 CalculateThumbScrollPosition(Size trackSize, Vector2 thumbPosition, Extents trackPadding)
             {
                 float pos = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-                return new Vector2(thumbPosition.X, trackPadding?.Top??0 + trackSize.Height * pos / contentLength);
+                return new Vector2(thumbPosition.X, trackPadding?.Top ?? 0 + trackSize.Height * pos / contentLength);
             }
         }
 

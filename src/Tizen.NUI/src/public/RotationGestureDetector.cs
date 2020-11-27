@@ -98,7 +98,7 @@ namespace Tizen.NUI
 
         internal new static RotationGestureDetector DownCast(BaseHandle handle)
         {
-            RotationGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as RotationGestureDetector;
+            RotationGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RotationGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

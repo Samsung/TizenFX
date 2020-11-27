@@ -399,9 +399,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddItem(DropDownDataItem itemData)
         {
-           // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
-           int insertionPosition = adapter.GetItemCount();
-           adapter.InsertData(insertionPosition, itemData);
+            // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
+            int insertionPosition = adapter.GetItemCount();
+            adapter.InsertData(insertionPosition, itemData);
         }
 
         /// <summary>
@@ -420,14 +420,14 @@ namespace Tizen.NUI.Components
             {
                 dropDownStyle.SelectedItemIndex = -1;
             }
-            else if(dropDownStyle.SelectedItemIndex > index)
+            else if (dropDownStyle.SelectedItemIndex > index)
             {
                 dropDownStyle.SelectedItemIndex--;
             }
 
             adapter?.RemoveData(index);
 
-            if(index < dropDownMenuFullList.ChildCount)
+            if (index < dropDownMenuFullList.ChildCount)
             {
                 View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
                 if (childToRemove)
@@ -475,7 +475,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            Tizen.Log.Error("DropDown","Feature unsupported");
+            Tizen.Log.Error("DropDown", "Feature unsupported");
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            Tizen.Log.Error("DropDown","Feature unsupported");
+            Tizen.Log.Error("DropDown", "Feature unsupported");
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -564,7 +564,7 @@ namespace Tizen.NUI.Components
             }
             float fitWidth = (Button.Icon.Size?.Width ?? 48) + dropDownStyle.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
             fitWidth += (button.IconPadding.Start + button.IconPadding.End);
-            button.Size.Width = Math.Max(button.Size.Width, fitWidth);
+            button.SizeWidth = Math.Max(button.Size.Width, fitWidth);
             RelayoutRequest();
 
             int numberOfItemsToAdd = adapter.GetItemCount();
@@ -623,7 +623,7 @@ namespace Tizen.NUI.Components
             return new DropDownStyle();
         }
 
-        private void AddItemAt(DropDownDataItem itemData,int index)
+        private void AddItemAt(DropDownDataItem itemData, int index)
         {
             ViewHolder viewHolder = adapter.OnCreateViewHolder();
             if (!viewHolder.IsBound)
@@ -701,7 +701,7 @@ namespace Tizen.NUI.Components
 
         private View GetViewFromIndex(uint index)
         {
-            if ((index < dropDownMenuFullList.ChildCount) && (index >=0) )
+            if ((index < dropDownMenuFullList.ChildCount) && (index >= 0))
             {
                 return dropDownMenuFullList.GetChildAt(index);
             }
@@ -771,6 +771,10 @@ namespace Tizen.NUI.Components
         {
             PointStateType state = e.Touch.GetState(0);
             DropDownItemView touchedView = sender as DropDownItemView;
+            if (touchedView == null)
+            {
+                return true;
+            }
 
             touchedView.OnTouch(e.Touch); // Handle control state change
 

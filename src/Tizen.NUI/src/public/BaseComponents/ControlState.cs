@@ -266,9 +266,19 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>The <see cref="ControlState"/> containing the result of the substraction.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when lhs or rhs is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState operator -(ControlState lhs, ControlState rhs)
         {
+            if (null == lhs)
+            {
+                throw new ArgumentNullException(nameof(lhs));
+            }
+            else if (null == rhs)
+            {
+                throw new ArgumentNullException(nameof(rhs));
+            }
+
             if (!lhs.IsCombined)
             {
                 return ReferenceEquals(lhs, rhs) ? Normal : lhs;

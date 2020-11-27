@@ -263,9 +263,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Add">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             Container oldParent = child.GetParent();
 
             if (oldParent != this)
@@ -291,9 +297,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Remove">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             Interop.Actor.Actor_Remove( swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -344,6 +355,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcasts a handle to layer handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
@@ -351,6 +363,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Layer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

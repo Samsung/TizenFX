@@ -148,7 +148,7 @@ namespace Tizen.NUI
                 }
 
                 DetentEventHandler -= value;
-                if(DetentEventHandler ==  null && StageWheelEventSignal().Empty() == false)
+                if (DetentEventHandler == null && StageWheelEventSignal().Empty() == false)
                 {
                     StageWheelEventSignal().Disconnect(DetentEventCallback);
                 }
@@ -497,7 +497,7 @@ namespace Tizen.NUI
                 WheelEventSignal().Disconnect(_wheelEventCallback);
             }
 
-            if(DetentEventCallback != null)
+            if (DetentEventCallback != null)
             {
                 StageWheelEventSignal().Disconnect(DetentEventCallback);
             }
@@ -565,13 +565,11 @@ namespace Tizen.NUI
 
         private WindowTransitionEffectSignal TransitionEffectEventSignal()
         {
-            //Tizen.Log.Fatal("NUITEST", "TransitionEffectEventSignal()!");
             if (transitionEffectSignal == null)
             {
                 transitionEffectSignal = new WindowTransitionEffectSignal(this);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                //Tizen.Log.Fatal("NUITEST", $"transitionEffectSignal is null, new here!");
             }
             return transitionEffectSignal;
         }
@@ -737,24 +735,19 @@ namespace Tizen.NUI
 
         private void OnTransitionEffect(IntPtr window, int state, int type)
         {
-            //Tizen.Log.Fatal("NUITEST", $"OnTransitionEffect() called");
             if (window == global::System.IntPtr.Zero)
             {
-                //Tizen.Log.Error("NUI", $"OnTransitionEffect() IntPtr window is null!");
                 return;
             }
 
             TransitionEffectArgs e = new TransitionEffectArgs();
 
             e.State = (EffectStates)state;
-            //Tizen.Log.Error("NUITEST", $"e.State={e.State}");
 
             e.Type = (EffectTypes)type;
-            //Tizen.Log.Error("NUITEST", $"e.Type={e.Type}");
 
             if (transitionEffectHandler != null)
             {
-                //Tizen.Log.Fatal("NUITEST", $"Execute transitionEffectHandler(this, e)!!!");
                 transitionEffectHandler(this, e);
             }
             return;
@@ -1019,7 +1012,8 @@ namespace Tizen.NUI
             public bool Visibility
             {
                 get => visibility;
-                set {
+                set
+                {
                     visibility = value;
                 }
             }
@@ -1068,9 +1062,9 @@ namespace Tizen.NUI
                 VisibilityChangedEventHandler -= value;
                 if (VisibilityChangedEventHandler == null)
                 {
-                    if(VisibilityChangedEventSignal != null)
+                    if (VisibilityChangedEventSignal != null)
                     {
-                        if(VisibilityChangedEventSignal.Empty() == false)
+                        if (VisibilityChangedEventSignal.Empty() == false)
                         {
                             VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
                         }
@@ -1085,7 +1079,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if(VisibilityChangedEventSignal == null)
+            if (VisibilityChangedEventSignal == null)
             {
                 VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
             }

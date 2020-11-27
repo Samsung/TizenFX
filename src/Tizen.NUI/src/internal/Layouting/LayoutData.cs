@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// <param name="top">Top position.</param>
         /// <param name="right">Right position.</param>
         /// <param name="bottom">Bottom position.</param>
-        public LayoutData( LayoutItem item, TransitionCondition condition, float left, float top, float right, float bottom )
+        public LayoutData(LayoutItem item, TransitionCondition condition, float left, float top, float right, float bottom)
         {
             Item = item;
             ConditionForAnimation = condition;
@@ -41,14 +41,14 @@ namespace Tizen.NUI
             Bottom = bottom;
         }
 
-        public LayoutItem Item{ get;}
+        public LayoutItem Item { get; }
 
-        public TransitionCondition ConditionForAnimation{get;}
+        public TransitionCondition ConditionForAnimation { get; }
 
-        public float Left{get;}
-        public float Top{get;}
-        public float Right{get;}
-        public float Bottom{get;}
+        public float Left { get; }
+        public float Top { get; }
+        public float Right { get; }
+        public float Bottom { get; }
 
     };
 

@@ -48,12 +48,9 @@ namespace Tizen.NUI.Binding
                 object parent = parentValuesProvider.ParentObjects.Skip(1).FirstOrDefault();
                 if (parentValuesProvider.TargetObject is Setter)
                 {
-                    var style = parent as Style;
                     var triggerBase = parent as TriggerBase;
                     var visualState = parent as VisualState;
-                    if (style != null)
-                        type = style.TargetType;
-                    else if (triggerBase != null)
+                    if (triggerBase != null)
                         type = triggerBase.TargetType;
                     else if (visualState != null)
                         type = FindTypeForVisualState(parentValuesProvider, lineinfo);
@@ -64,7 +61,7 @@ namespace Tizen.NUI.Binding
                     type = (parent as TriggerBase).TargetType;
 
                 if (type == null)
-                    throw new XamlParseException($"Can't resolve {parts [0]}", lineinfo);
+                    throw new XamlParseException($"Can't resolve {parts[0]}", lineinfo);
 
                 return ConvertFrom(type, parts[0], lineinfo);
             }
@@ -122,7 +119,8 @@ namespace Tizen.NUI.Binding
             // Skip 1; we would not be making this check if the immediate parent were not a VisualState
 
             // VisualStates must be in a VisualStateGroup
-            if(!(parents[2] is VisualStateGroup)) {
+            if (!(parents[2] is VisualStateGroup))
+            {
                 throw new XamlParseException($"Expected {nameof(VisualStateGroup)} but found {parents[2]}.", lineInfo);
             }
 
@@ -144,13 +142,8 @@ namespace Tizen.NUI.Binding
                 throw new XamlParseException($"Expected {nameof(Setter)} but found {parents[4]}.", lineInfo);
             }
 
-            // These must be part of a Style; verify that 
-            if (!(parents[5] is Style style))
-            {
-                throw new XamlParseException($"Expected {nameof(Style)} but found {parents[5]}.", lineInfo);
-            }
+            throw new XamlParseException("NUI doesn't support VisualState", lineInfo);
 
-            return style.TargetType;
         }
     }
 }

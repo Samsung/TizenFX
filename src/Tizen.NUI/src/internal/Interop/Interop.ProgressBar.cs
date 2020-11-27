@@ -7,7 +7,7 @@ namespace Tizen.NUI
     internal static partial class Interop
     {
         internal static partial class ProgressBar
-        {            
+        {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProgressBar_SWIGUpcast")]
             public static extern global::System.IntPtr ProgressBar_SWIGUpcast(global::System.IntPtr jarg1);
 

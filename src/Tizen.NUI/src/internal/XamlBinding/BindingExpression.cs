@@ -164,7 +164,7 @@ namespace Tizen.NUI.Binding
                 else
                     value = property.DefaultValue;
 
-                if (!TryConvert(part, ref value, property.ReturnType, true))
+                if (!TryConvert(ref value, property.ReturnType, true))
                 {
                     Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, property.ReturnType);
                     return;
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Binding
             {
                 object value = Binding.GetTargetValue(target.GetValue(property), part.SetterType);
 
-                if (!TryConvert(part, ref value, part.SetterType, false))
+                if (!TryConvert(ref value, part.SetterType, false))
                 {
                     Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, part.SetterType);
                     return;
@@ -289,12 +289,15 @@ namespace Tizen.NUI.Binding
                 part.IndexerName = indexerName;
 
 #if NETSTANDARD2_0
-                try {
+                try
+                {
                     property = sourceType.GetDeclaredProperty(indexerName);
                 }
-                catch (AmbiguousMatchException) {
+                catch (AmbiguousMatchException)
+                {
                     // Get most derived instance of property
-                    foreach (var p in sourceType.GetProperties().Where(prop => prop.Name == indexerName)) {
+                    foreach (var p in sourceType.GetProperties().Where(prop => prop.Name == indexerName))
+                    {
                         if (property == null || property.DeclaringType.IsAssignableFrom(property.DeclaringType))
                             property = p;
                     }
@@ -304,7 +307,7 @@ namespace Tizen.NUI.Binding
 #endif
 
                 if (property == null) //is the indexer defined on the base class?
-                    property = sourceType.BaseType.GetProperty(indexerName);
+                    property = sourceType.BaseType?.GetProperty(indexerName);
                 if (property == null) //is the indexer defined on implemented interface ?
                 {
                     foreach (var implementedInterface in sourceType.ImplementedInterfaces)
@@ -351,7 +354,7 @@ namespace Tizen.NUI.Binding
                 }
                 if (property.CanWrite && property.SetMethod != null)
                 {
-                    if(property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
+                    if (property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
                     {
                         part.LastSetter = property.SetMethod;
                         part.SetterType = part.LastSetter.GetParameters().Last().ParameterType;
@@ -419,7 +422,7 @@ namespace Tizen.NUI.Binding
         }
         static Type[] DecimalTypes = new[] { typeof(float), typeof(decimal), typeof(double) };
 
-        bool TryConvert(BindingExpressionPart part, ref object value, Type convertTo, bool toTarget)
+        bool TryConvert(ref object value, Type convertTo, bool toTarget)
         {
             if (value == null)
                 return true;

@@ -93,7 +93,7 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
-                
+
                 Interop.Vector2.Vector2_X_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -183,7 +183,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator +(Position2D arg1, Position2D arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator -(Position2D arg1, Position2D arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator -(Position2D arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator *(Position2D arg1, Position2D arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator *(Position2D arg1, int arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator /(Position2D arg1, Position2D arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator /(Position2D arg1, int arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Position2D position2d)
         {
-            return new Vector2((float)position2d.X, (float)position2d.Y);
+            return new Vector2((float)position2d?.X, (float)position2d.Y);
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position2D(Vector2 vec)
         {
-            return new Position2D((int)vec.X, (int)vec.Y);
+            return new Position2D((int)vec?.X, (int)vec.Y);
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Position2D(Position position)
         {
-            return new Position2D((int)position.X, (int)position.Y);
+            return new Position2D((int)position?.X, (int)position.Y);
         }
 
         /// <inheritdoc/>

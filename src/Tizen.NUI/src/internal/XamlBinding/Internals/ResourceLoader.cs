@@ -20,9 +20,11 @@ namespace Tizen.NUI.Binding.Internals
         };
 
         //takes a resource path, returns string content
-        public static Func<AssemblyName, string, string> ResourceProvider {
+        public static Func<AssemblyName, string, string> ResourceProvider
+        {
             get => resourceProvider;
-            internal set {
+            internal set
+            {
                 DesignMode.IsDesignModeEnabled = true;
                 resourceProvider = value;
             }
