@@ -224,7 +224,6 @@ namespace Tizen.NUI
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
         static NDalicPINVOKE()
         {
-            Tizen.Log.Error("NUI", "Create NDalicPINVOKE");
         }
 
 		[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
