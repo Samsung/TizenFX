@@ -35,6 +35,7 @@ namespace Tizen.NUI.Samples
                 Position = new Position(300, 100),
                 Size = new Size(400, 300),
                 ScrollingDirection = Components.ScrollableBase.Direction.Vertical,
+                EnableOverShootingEffect = true,
             };
             mScrollableBase.ScrollOutOfBound += OnScrollOutOfBound;
 
@@ -63,13 +64,19 @@ namespace Tizen.NUI.Samples
 
         private void OnScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
         {
-            if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Top)
+            if (e.Displacement > 100)
             {
-                items[0].Text = "Reached at the top.";
+                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Down)
+                {
+                    items[0].Text = $"Reached at the top, panned displacement is {e.Displacement}.";
+                }
             }
-            else
+            else if (0 - e.Displacement > 100)
             {
-                items[4].Text = "Reached at the bottom.";
+                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Up)
+                {
+                    items[4].Text = $"Reached at the bottom, panned displacement is {e.Displacement}.";
+                }
             }
         }
 
