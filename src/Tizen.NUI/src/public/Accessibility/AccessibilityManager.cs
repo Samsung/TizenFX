@@ -832,6 +832,32 @@ namespace Tizen.NUI.Accessibility
             return ret;
         }
 
+        /// <summary>
+        /// Enables Accessibility or not.
+        /// </summary>
+        /// <param name="enabled"> True if Accessibility should be enabled.</param>
+        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableAccessibility(bool enabled)
+        {
+            Interop.AccessibilityManager.EnableAccessibility(swigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Queries whether the accessibility(screen-reader) is enabled.
+        /// Basically, the accessibility will be enabled by system setting.
+        /// </summary>
+        /// <returns> True if the accessibility(screen-reader) is enabled. </returns>
+        /// This will be public opened later. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsEnabled()
+        {
+            bool ret = Interop.AccessibilityManager.IsEnabled(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static AccessibilityManager Get()
         {
             AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManager.AccessibilityManager_Get(), true);
