@@ -527,8 +527,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -538,8 +538,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -554,8 +554,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = w - preW - preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = w - preW - preX;
+                        itemList[i].SizeWidth = preW;
                         preX = w - itemList[i].Position2D.X + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -565,8 +565,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -599,8 +599,8 @@ namespace Tizen.NUI.Components
             item.TextItem.ApplyStyle(tabStyle.Text);
 
             item.Text = itemData.Text;
-            item.Size2D.Height = Size2D.Height - h - topSpace;
-            item.Position2D.Y = topSpace;
+            item.SizeHeight = SizeHeight - h - topSpace;
+            item.PositionY = topSpace;
             item.TouchEvent += ItemTouchEvent;
             Add(item);
 
@@ -648,7 +648,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            Underline.Size.Width = itemList[curIndex].Size2D.Width;
+            Underline.SizeWidth = itemList[curIndex].Size2D.Width;
 
             underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Underline.Size.Height);
             underline.BackgroundColor = tabStyle.UnderLine.BackgroundColor.All;
@@ -665,7 +665,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                underline.Position2D.X = itemList[curIndex].Position2D.X;
+                underline.PositionX = itemList[curIndex].PositionX;
                 isNeedAnimation = true;
             }
 
