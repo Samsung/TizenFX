@@ -13,6 +13,8 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlFilePathAttribute([CallerFilePath] string filePath = "")
         {
+            // Unused parameter
+            _ = filePath;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// Create an instance of Renderer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.RendererNew(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
+        public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -476,7 +476,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetGeometry(Geometry geometry)
         {
-            Interop.Renderer.RendererSetGeometry(swigCPtr, Geometry.getCPtr(geometry));
+            Interop.Renderer.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -488,7 +488,7 @@ namespace Tizen.NUI
         public Geometry GetGeometry()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.RendererGetGeometry(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetGeometry(swigCPtr);
             Geometry ret = this.GetInstanceSafely<Geometry>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -502,7 +502,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetIndexRange(int firstElement, int elementsCount)
         {
-            Interop.Renderer.RendererSetIndexRange(swigCPtr, firstElement, elementsCount);
+            Interop.Renderer.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -513,7 +513,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTextures(TextureSet textureSet)
         {
-            Interop.Renderer.RendererSetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
+            Interop.Renderer.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -525,7 +525,7 @@ namespace Tizen.NUI
         public TextureSet GetTextures()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.RendererGetTextures(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetTextures(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
             if (cPtr != null && ret == null)
@@ -548,7 +548,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetShader(Shader shader)
         {
-            Interop.Renderer.RendererSetShader(swigCPtr, Shader.getCPtr(shader));
+            Interop.Renderer.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -560,7 +560,7 @@ namespace Tizen.NUI
         public Shader GetShader()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.RendererGetShader(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetShader(swigCPtr);
             Shader ret = this.GetInstanceSafely<Shader>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -571,7 +571,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Renderer.RendererSwigUpcast(cPtr), cMemoryOwn)
+        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Renderer.Renderer_SWIGUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -579,33 +579,39 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Renderer.DeleteRenderer(swigCPtr);
+            Interop.Renderer.delete_Renderer(swigCPtr);
         }
 
 
+        /// <since_tizen> 6.0 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class Ranges
         {
+            /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int BackgroundEffect = Interop.Renderer.RendererRangesBackgroundEffectGet();
+            public static readonly int BACKGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_BACKGROUND_EFFECT_get();
 
+            /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int Background = Interop.Renderer.RendererRangesBackgroundGet();
+            public static readonly int BACKGROUND = Interop.Renderer.Renderer_Ranges_BACKGROUND_get();
 
+            /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int Content = Interop.Renderer.RendererRangesContentGet();
+            public static readonly int CONTENT = Interop.Renderer.Renderer_Ranges_CONTENT_get();
 
+            /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int Decoration = Interop.Renderer.RendererRangesDecorationGet();
+            public static readonly int DECORATION = Interop.Renderer.Renderer_Ranges_DECORATION_get();
 
+            /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ForegroundEffect = Interop.Renderer.RendererRangesForegroundEffectGet();
+            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_FOREGROUND_EFFECT_get();
         }
 
         /// <summary>

@@ -760,7 +760,6 @@ namespace Tizen.NUI.Components
          */
         private Vector2 GetRectOfVisibleChildScrollAmount(FlexibleView parent, FlexibleViewViewHolder child)
         {
-            Vector2 ret = new Vector2(0, 0);
             int parentLeft = PaddingLeft;
             int parentTop = PaddingTop;
             int parentRight = (int)Width - PaddingRight;
@@ -776,13 +775,9 @@ namespace Tizen.NUI.Components
             var offsetBottom = Math.Max(0, childBottom - parentBottom);
 
             int dx = offsetStart != 0 ? offsetStart : Math.Min(childLeft - parentLeft, offsetEnd);
-
             int dy = offsetTop != 0 ? offsetTop : Math.Min(childTop - parentTop, offsetBottom);
 
-            ret.X = -dx;
-            ret.Y = -dy;
-
-            return ret;
+            return new Vector2(-dx, -dy);
         }
 
         private void OnScrollAnimationFinished(object sender, EventArgs e)

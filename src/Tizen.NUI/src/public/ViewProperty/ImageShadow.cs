@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageShadow(ImageShadow other) : this(other.Url, other.Border, other.Offset, other.Extents)
+        public ImageShadow(ImageShadow other) : this(other?.Url, other.Border, other.Offset, other.Extents)
         {
         }
 

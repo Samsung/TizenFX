@@ -112,7 +112,7 @@ namespace Tizen.NUI.Components
         private int mScrollDuration = 125;
         private int mPageWidth = 0;
         private float mPageFlickThreshold = 0.4f;
-        private float mScrollingEventThreshold = 0.00001f;
+        private float mScrollingEventThreshold = 0.001f;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -180,8 +180,11 @@ namespace Tizen.NUI.Components
                     ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
-                scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
-                scrollableBase.OnScrollingChildRelayout(null, null);
+                if (scrollableBase != null)
+                {
+                    scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
+                    scrollableBase.OnScrollingChildRelayout(null, null);
+                }
             }
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
@@ -474,7 +477,10 @@ namespace Tizen.NUI.Components
         public float DecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
-        /// Scrolling event will be thrown when this amount of scroll positino is changed.
+        /// Scrolling event will be thrown when this amount of scroll position is changed.
+        /// If this threshold becomes smaller, the tracking detail increases but the scrolling range that can be tracked becomes smaller.
+        /// If large sized ContentContainer is required, please use larger threshold value.
+        /// Default ScrollingEventThreshold value is 0.001f.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollingEventThreshold
@@ -1010,8 +1016,17 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
+        /// <summary>
+        /// Enable/Disable overshooting effect. default is disabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableOverShootingEffect { get; set; } = false;
+
         private void AttachShadowView()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1023,9 +1038,11 @@ namespace Tizen.NUI.Components
 
             verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalTopShadowView.Opacity = 1.0f;
+            verticalTopShadowView.RaiseToTop();
 
             verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
             verticalBottomShadowView.Opacity = 1.0f;
+            verticalBottomShadowView.RaiseToTop();
 
             // at the beginning, height of vertical shadow is 0, so it is invisible.
             isVerticalShadowShown = false;
@@ -1033,6 +1050,9 @@ namespace Tizen.NUI.Components
 
         private void DragVerticalShadow(float displacement)
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 
@@ -1091,6 +1111,9 @@ namespace Tizen.NUI.Components
 
         private void PlayVerticalShadowAnimation()
         {
+            if (!EnableOverShootingEffect)
+                return;
+
             if (ScrollingDirection != Direction.Vertical)
                 return;
 

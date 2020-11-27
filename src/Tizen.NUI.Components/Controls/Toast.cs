@@ -237,8 +237,8 @@ namespace Tizen.NUI.Components
         {
             window = win;
             window.Add(this);
-            this.Position.X = (window.Size.Width - this.Size.Width) / 2;
-            this.Position.Y = (window.Size.Height - this.Size.Height) / 2;
+            this.PositionX = (window.Size.Width - this.Size.Width) / 2;
+            this.PositionY = (window.Size.Height - this.Size.Height) / 2;
             timer.Start();
         }
 
