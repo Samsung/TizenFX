@@ -278,7 +278,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (nextFocusedView)
+            if (nextFocusedView != null)
             {
                 // Check next focused view is inside of visible area.
                 // If it is not, move scroll position to make it visible.

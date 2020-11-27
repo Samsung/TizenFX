@@ -10,8 +10,6 @@ namespace Tizen.NUI
         {
             static Stage()
             {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "Stage : " + ret);
             }
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_DEFAULT_BACKGROUND_COLOR_get")]

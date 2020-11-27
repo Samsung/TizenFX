@@ -484,62 +484,27 @@ namespace Tizen.NUI
 
         internal static Color ValueCheck(Color color)
         {
-            if (color.R < 0.0f)
+            float r = color.R;
+            float g = color.G;
+            float b = color.B;
+            float a = color.A;
+
+            if (IsInvalidValue(ref r) | IsInvalidValue(ref g) | IsInvalidValue(ref b) | IsInvalidValue(ref a))
             {
-                color.R = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. Color is {color.R}, {color.G}, {color.B}, {color.A}");
             }
-            else if (color.R > 1.0f)
-            {
-                color.R = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.G < 0.0f)
-            {
-                color.G = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.G > 1.0f)
-            {
-                color.G = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.B < 0.0f)
-            {
-                color.B = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.B > 1.0f)
-            {
-                color.B = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.A < 0.0f)
-            {
-                color.A = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.A > 1.0f)
-            {
-                color.A = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
+            color = new Color(r, g, b, a);
             return color;
         }
 
         internal static float ValueCheck(float value)
         {
-            if (value < 0.0f)
+            float refValue = value;
+            if (IsInvalidValue(ref refValue))
             {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. float value is {value}");
             }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
+            return refValue;
         }
 
         internal static float[] ValueCheck(float[] arr)
@@ -551,18 +516,29 @@ namespace Tizen.NUI
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < 0.0f)
+                float refValue = arr[i];
+                if (IsInvalidValue(ref refValue))
                 {
-                    arr[i] = 0.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-                }
-                else if (arr[i] > 1.0f)
-                {
-                    arr[i] = 1.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                    NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. arr[] is {arr[i]}");
+                    arr[i] = refValue;
                 }
             }
             return arr;
+        }
+
+        private static bool IsInvalidValue(ref float value)
+        {
+            if (value < 0.0f)
+            {
+                value = 0.0f;
+                return true;
+            }
+            else if (value > 1.0f)
+            {
+                value = 1.0f;
+                return true;
+            }
+            return false;
         }
 
         /// This will not be public opened.
