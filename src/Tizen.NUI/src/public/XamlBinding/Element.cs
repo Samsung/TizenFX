@@ -336,13 +336,19 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildAdded event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was added.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildAdded(Element child)
         {
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             child.Parent = this;
 
-            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged:true);
+            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged: true);
 
             ChildAdded?.Invoke(this, new ElementEventArgs(child));
 
@@ -355,10 +361,16 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildRemoved event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was removed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildRemoved(Element child)
         {
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             child.Parent = null;
 
             ChildRemoved?.Invoke(child, new ElementEventArgs(child));
@@ -491,10 +503,6 @@ namespace Tizen.NUI.Binding
         }
 
         internal event EventHandler ParentSet;
-
-        internal static void SetFlowDirectionFromParent(Element child)
-        {
-        }
 
         internal virtual void SetChildInheritedBindingContext(Element child, object context)
         {

@@ -12,19 +12,19 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr FlexLayout_New();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetContext")]
-            public static extern global::System.IntPtr FlexLayout_SetContext( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr FlexLayout_SetContext(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMeasureFunction")]
-            public static extern global::System.IntPtr FlexLayout_SetMeasureFunction( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr FlexLayout_SetMeasureFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_AddChildWithMargin")]
-            public static extern global::System.IntPtr FlexLayout_AddChildWithMargin( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, Tizen.NUI.FlexLayout.ChildMeasureCallback jarg4, int jarg5);
+            public static extern global::System.IntPtr FlexLayout_AddChildWithMargin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, Tizen.NUI.FlexLayout.ChildMeasureCallback jarg4, int jarg5);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_RemoveChild")]
-            public static extern global::System.IntPtr FlexLayout_RemoveChild( global::System.Runtime.InteropServices.HandleRef jarg1, LayoutItem jarg2);
+            public static extern global::System.IntPtr FlexLayout_RemoveChild(global::System.Runtime.InteropServices.HandleRef jarg1, LayoutItem jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_CalculateLayout")]
-            public static extern global::System.IntPtr FlexLayout_CalculateLayout( global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, bool jarg4);
+            public static extern global::System.IntPtr FlexLayout_CalculateLayout(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, bool jarg4);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetWidth")]
             public static extern float FlexLayout_GetWidth(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -36,13 +36,13 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr FlexLayout_GetNodeFrame(global::System.Runtime.InteropServices.HandleRef jarg1, int index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_MarkDirty")]
-            public static extern global::System.IntPtr FlexLayout_MarkDirty (global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr FlexLayout_MarkDirty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMargin")]
-            public static extern global::System.IntPtr FlexLayout_SetMargin( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr FlexLayout_SetMargin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetPadding")]
-            public static extern global::System.IntPtr FlexLayout_SetPadding( global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr FlexLayout_SetPadding(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_DownCast")]
             public static extern global::System.IntPtr FlexLayout_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);

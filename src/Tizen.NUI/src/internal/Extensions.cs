@@ -34,7 +34,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static string GetValueString(this PropertyInfo property,  object obj, Type propertyType)
+        public static string GetValueString(this PropertyInfo property, object obj, Type propertyType)
         {
             string ret = "";
             object value = property.GetValue(obj);

@@ -506,11 +506,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Animation DownCast(BaseHandle handle)
         {
+            if (handle == null)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -535,9 +540,19 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="relativeValue">The property value will change by this amount.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
@@ -561,9 +576,19 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
@@ -587,9 +612,19 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="destinationValue">The destination value.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
@@ -608,8 +643,14 @@ namespace Tizen.NUI
         /// Animates one or more properties to a destination value.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
         public void PlayAnimateTo(View target)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
             Clear();
             if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
             {
@@ -643,9 +684,19 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
+            }
+
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
             destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
@@ -1308,7 +1359,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if(swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            if (swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
             {
                 Tizen.Log.Fatal("NUI", $"[ERROR] Animation ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
                 return;

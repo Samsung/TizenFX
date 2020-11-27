@@ -53,7 +53,7 @@ namespace Tizen.NUI
 
         public new static PageTurnPortraitView DownCast(BaseHandle handle)
         {
-            PageTurnPortraitView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnPortraitView;
+            PageTurnPortraitView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnPortraitView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

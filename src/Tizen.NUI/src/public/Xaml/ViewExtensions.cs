@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
+        public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType)
         {
             XamlLoader.Load(view, callingType);
             return view;

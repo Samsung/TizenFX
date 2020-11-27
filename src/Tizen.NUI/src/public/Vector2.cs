@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="other">The copy target.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2(Vector2 other) : this(other.X, other.Y)
+        public Vector2(Vector2 other) : this((float)other?.X, (float)other.Y)
         {
         }
 
@@ -354,7 +354,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator +(Vector2 arg1, Vector2 arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator -(Vector2 arg1, Vector2 arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator -(Vector2 arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator *(Vector2 arg1, Vector2 arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -401,7 +401,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator *(Vector2 arg1, float arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -413,7 +413,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator /(Vector2 arg1, Vector2 arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -425,7 +425,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Vector2 operator /(Vector2 arg1, float arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>

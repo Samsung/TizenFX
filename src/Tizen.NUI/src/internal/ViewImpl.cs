@@ -862,8 +862,6 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes19 = new global::System.Type[] { typeof(DimensionType) };
         private static global::System.Type[] swigMethodTypes20 = new global::System.Type[] { typeof(float), typeof(DimensionType) };
         private static global::System.Type[] swigMethodTypes21 = new global::System.Type[] { };
-        private static global::System.Type[] swigMethodTypes22 = new global::System.Type[] { typeof(View) };
-        private static global::System.Type[] swigMethodTypes23 = new global::System.Type[] { typeof(View) };
         private static global::System.Type[] swigMethodTypes24 = new global::System.Type[] { typeof(StyleManager), typeof(StyleChangeType) };
         private static global::System.Type[] swigMethodTypes25 = new global::System.Type[] { };
         private static global::System.Type[] swigMethodTypes26 = new global::System.Type[] { typeof(PanGesture) };

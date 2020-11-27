@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 namespace Tizen.NUI
 {
     internal class LowMemorySignalType : Disposable

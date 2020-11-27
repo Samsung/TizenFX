@@ -71,7 +71,7 @@ namespace Tizen.NUI
         private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
         internal static List<Theme> customThemes = new List<Theme>(); // Themes registered by user.
 
-        static ThemeManager() {}
+        static ThemeManager() { }
 
         /// <summary>
         /// An event invoked after the theme has changed by <seealso cref="ApplyTheme(Theme)"/>.
@@ -86,7 +86,7 @@ namespace Tizen.NUI
 
         internal static Theme CurrentTheme
         {
-            get =>  currentTheme ?? (currentTheme = DefaultTheme);
+            get => currentTheme ?? (currentTheme = DefaultTheme);
             set
             {
                 currentTheme = value;
@@ -98,12 +98,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (defaultTheme == null && !isLoadingDefault)
-                {
-                    isLoadingDefault = true;
-                    defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
-                    isLoadingDefault = false;
-                }
+                EnsureDefaultTheme();
                 return defaultTheme;
             }
             set => defaultTheme = (Theme)value?.Clone();
@@ -300,6 +295,16 @@ namespace Tizen.NUI
                 result = theme;
             }
             return (Theme)result?.Clone();
+        }
+
+        internal static void EnsureDefaultTheme()
+        {
+            if (defaultTheme == null && !isLoadingDefault)
+            {
+                isLoadingDefault = true;
+                defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
+                isLoadingDefault = false;
+            }
         }
 
         private static Theme LoadBuiltinTheme(string id)

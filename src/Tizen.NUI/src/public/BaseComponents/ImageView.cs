@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             string ret = "";
-			
+
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
@@ -162,7 +162,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
-            if(newValue != null)
+            if (newValue != null)
             {
                 imageView._border = new Rectangle((Rectangle)newValue);
                 imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
@@ -201,7 +201,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._synchronosLoading = (bool) newValue;
+                imageView._synchronosLoading = (bool)newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            
+
             bool ret = false;
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
@@ -451,7 +451,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(ResourceUrlProperty, value);
                 resourceUrlSelector.UpdateIfNeeds(this, value);
-                NotifyPropertyChanged();       
+                NotifyPropertyChanged();
             }
         }
 
@@ -655,6 +655,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Downcasts a handle to imageView handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
         /// <since_tizen> 3 </since_tizen>
@@ -665,6 +666,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ImageView DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -675,10 +680,16 @@ namespace Tizen.NUI.BaseComponents
         /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
         /// <param name="url">The URL to the image resource to display.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when url is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
-            if(url.Contains(".json"))
+            if (null == url)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
+            if (url.Contains(".json"))
             {
                 Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
                 return;
@@ -794,7 +805,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
         {
-            switch(value)
+            switch (value)
             {
                 case FittingModeType.ShrinkToFit:
                     return VisualFittingModeType.FitKeepAspectRatio;
@@ -815,7 +826,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal FittingModeType ConvertVisualFittingModetoFittingMode(VisualFittingModeType value)
         {
-            switch(value)
+            switch (value)
             {
                 case VisualFittingModeType.FitKeepAspectRatio:
                     return FittingModeType.ShrinkToFit;
@@ -855,7 +866,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
-                UpdateImage(Visual.Property.VisualFittingMode, new PropertyValue((int) ret));
+                UpdateImage(Visual.Property.VisualFittingMode, new PropertyValue((int)ret));
             }
         }
 
@@ -931,7 +942,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
             }
         }
- 
+
         /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
@@ -998,7 +1009,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetImage(string url, Uint16Pair size)
         {
-            if(url.Contains(".json"))
+            if (url.Contains(".json"))
             {
                 Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
                 return;
@@ -1006,7 +1017,7 @@ namespace Tizen.NUI.BaseComponents
 
             Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-			
+
             ResourceUrl = url;
         }
 
@@ -1082,15 +1093,15 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = new PropertyMap();
             Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
             imageMap.Merge(fromMap);
-			
+
             SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
         }
-		
+
         private void UpdateImage(int key, PropertyValue value)
         {
             PropertyMap temp = new PropertyMap();
 
-            if(_alphaMaskUrl != null)
+            if (_alphaMaskUrl != null)
             {
                 temp.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl));
             }
@@ -1125,27 +1136,27 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Do Fitting Buffer when desired dimension is set
-            if( _desired_width != -1 && _desired_height != -1)
+            if (_desired_width != -1 && _desired_height != -1)
             {
-                if(_resourceUrl != null)
+                if (_resourceUrl != null)
                 {
-                  Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
+                    Size2D imageSize = ImageLoading.GetOriginalImageSize(_resourceUrl);
 
-                  int ret_width,ret_height;
-                  if( imageSize.Width > imageSize.Height)
-                  {
-                      ret_width = _desired_width;
-                      ret_height = imageSize.Height * _desired_height /(imageSize.Width);
-                  }
-                  else
-                  {
-                      ret_width = imageSize.Width*_desired_width/(imageSize.Height);
-                      ret_height = _desired_height;
+                    int ret_width, ret_height;
+                    if (imageSize.Width > imageSize.Height)
+                    {
+                        ret_width = _desired_width;
+                        ret_height = imageSize.Height * _desired_height / (imageSize.Width);
+                    }
+                    else
+                    {
+                        ret_width = imageSize.Width * _desired_width / (imageSize.Height);
+                        ret_height = _desired_height;
 
-                  }
-                  temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
-                  temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
-                  temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int) FittingModeType.ShrinkToFit));
+                    }
+                    temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue((int)ret_width));
+                    temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue((int)ret_height));
+                    temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ShrinkToFit));
                 }
             }
 

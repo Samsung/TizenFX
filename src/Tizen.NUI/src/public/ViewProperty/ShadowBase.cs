@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// Copy Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other?.Offset, other.Extents)
         {
         }
 
@@ -121,7 +121,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object other)
         {
-            if ((other == null) || ! GetType().Equals(other.GetType()))
+            if ((other == null) || !GetType().Equals(other.GetType()))
             {
                 return false;
             }

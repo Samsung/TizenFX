@@ -201,7 +201,7 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor");
-                
+
                 Interop.Vector4.Vector4_W_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -224,7 +224,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator +(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Add(arg2);
+            RelativeVector4 result = arg1?.Add(arg2);
             return result;
         }
 
@@ -237,7 +237,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator -(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Subtract(arg2);
+            RelativeVector4 result = arg1?.Subtract(arg2);
             return result;
         }
 
@@ -250,7 +250,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Multiply(arg2);
+            RelativeVector4 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, float arg2)
         {
-            RelativeVector4 result = arg1.Multiply(arg2);
+            RelativeVector4 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -276,7 +276,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Divide(arg2);
+            RelativeVector4 result = arg1?.Divide(arg2);
             return result;
         }
 
@@ -289,7 +289,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, float arg2)
         {
-            RelativeVector4 result = arg1.Divide(arg2);
+            RelativeVector4 result = arg1?.Divide(arg2);
             return result;
         }
 
@@ -298,7 +298,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
         {
-            return new Vector4(relativeVector4.X, relativeVector4.Y, relativeVector4.Z, relativeVector4.W);
+            return new Vector4((float)relativeVector4?.X, (float)relativeVector4.Y, (float)relativeVector4.Z, (float)relativeVector4.W);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
-            return new RelativeVector4(vec.X, vec.Y, vec.Z, vec.W);
+            return new RelativeVector4((float)vec?.X, (float)vec.Y, (float)vec.Z, (float)vec.W);
         }
 
         /// <summary>

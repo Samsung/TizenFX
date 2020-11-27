@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GLWindow(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.GLWindow.GlWindow_New__SWIG_1( Rectangle.getCPtr(windowPosition), name, "", isTranslucent), true)
+        public GLWindow(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.GLWindow.GlWindow_New__SWIG_1(Rectangle.getCPtr(windowPosition), name, "", isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -106,6 +106,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D WindowSize
         {
@@ -120,6 +121,11 @@ namespace Tizen.NUI
             }
             set
             {
+                if (null == value)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
                 global::System.IntPtr intPtr = Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr);
                 Rectangle val = new Rectangle(intPtr, true);
                 Rectangle ret = new Rectangle(val.X, val.Y, value.Width, value.Height);
@@ -158,7 +164,7 @@ namespace Tizen.NUI
         /// <param name="msaa">The bit of msaa.</param>
         /// <param name="version">The GLES version.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetEglConfig( bool depth, bool stencil, int msaa, GLESVersion version )
+        public void SetEglConfig(bool depth, bool stencil, int msaa, GLESVersion version)
         {
             Interop.GLWindow.GlWindow_SetEglConfig(swigCPtr, depth, stencil, msaa, (int)version);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -225,7 +231,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr intPtr = Interop.GLWindow.GlWindow_GetPositionSize(swigCPtr);
                 Rectangle val = new Rectangle(intPtr, true);
-                Rectangle ret = new Rectangle(val.X, val.Y, val.Width, val.Height );
+                Rectangle ret = new Rectangle(val.X, val.Y, val.Width, val.Height);
                 val.Dispose();
 
                 return ret;
@@ -396,9 +402,15 @@ namespace Tizen.NUI
         /// This API is for setting several orientations one time.
         /// </summary>
         /// <param name="orientations">The list of orientations.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when orientations is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAvailableOrientations(List<GLWindow.GLWindowOrientation> orientations)
         {
+            if (null == orientations)
+            {
+                throw new ArgumentNullException(nameof(orientations));
+            }
+
             PropertyArray orientationArray = new PropertyArray();
             for (int i = 0; i < orientations.Count; i++)
             {
@@ -458,7 +470,7 @@ namespace Tizen.NUI
         /// <param name="glRenderFrame">The callback function to render to the frame</param>
         /// <param name="glTerminate">The callback function to clean-up application GL resource</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterGlCallback( GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate )
+        public void RegisterGlCallback(GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate)
         {
             GLInitializeCallback = glInit;
             InitHandleRef = new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(GLInitializeCallback));

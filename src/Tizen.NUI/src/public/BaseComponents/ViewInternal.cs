@@ -31,22 +31,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private MergedStyle mergedStyle = null;
         private ViewSelectorData selectorData;
         internal string styleName;
-
-        internal MergedStyle _mergedStyle
-        {
-            get
-            {
-                if (null == mergedStyle)
-                {
-                    mergedStyle = new MergedStyle(GetType(), this);
-                }
-
-                return mergedStyle;
-            }
-        }
 
         /// <summary>
         /// The color mode of View.
@@ -1167,10 +1153,16 @@ namespace Tizen.NUI.BaseComponents
         /// The touch event handler for ControlState.
         /// Please change ControlState value by touch state if needed.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when touch is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool HandleControlStateOnTouch(Touch touch)
         {
-            switch(touch.GetState(0))
+            if (touch == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(touch));
+            }
+
+            switch (touch.GetState(0))
             {
                 case PointStateType.Down:
                     ControlState += ControlState.Pressed;
@@ -1185,7 +1177,6 @@ namespace Tizen.NUI.BaseComponents
                 default:
                     break;
             }
-
             return false;
         }
 

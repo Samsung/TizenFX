@@ -128,7 +128,7 @@ namespace Tizen.NUI
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use Notified event instead!" +
             "IntPtr(native integer pointer) is supposed to be not used in Application!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -144,9 +144,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object of BaseHandle type.</param>
         /// <returns>Handle to an object of the PropertyNotification type.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             PropertyNotification ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PropertyNotification;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -158,7 +163,7 @@ namespace Tizen.NUI
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use PropertyNotification() constructor instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
@@ -243,7 +248,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use Notified event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()

@@ -40,7 +40,7 @@ namespace Tizen.NUI
 
         protected override void OnFrameResumed(FrameData frame)
         {
-            if(isAnimating)
+            if (isAnimating)
             {
                 return;
             }
@@ -86,8 +86,8 @@ namespace Tizen.NUI
 
 
         private TransitionAnimation forwardAnimation;
-        internal TransitionAnimation ForwardAnimation 
-        { 
+        internal TransitionAnimation ForwardAnimation
+        {
             get
             {
                 return forwardAnimation;
@@ -103,7 +103,7 @@ namespace Tizen.NUI
         internal TransitionAnimation BackwardAnimation
         {
             get
-            { 
+            {
                 return backwardAnimation;
             }
             set
