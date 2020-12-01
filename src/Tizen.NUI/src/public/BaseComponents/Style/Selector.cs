@@ -37,7 +37,7 @@ namespace Tizen.NUI.BaseComponents
         /// The list for adding <see cref="SelectorItem{T}"/>.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IList<SelectorItem<T>> SelectorItems { get; set; } = new List<SelectorItem<T>>();
+        List<SelectorItem<T>> SelectorItems { get; set; } = new List<SelectorItem<T>>();
 
         /// <summary>
         /// Adds the specified state and value to the <see cref="SelectorItems"/>.
@@ -55,7 +55,7 @@ namespace Tizen.NUI.BaseComponents
         public void Add(SelectorItem<T> selectorItem)
         {
             // To prevent a state from having multiple values, remove existing state-value pair.
-            int index = ((List<SelectorItem<T>>)SelectorItems).FindIndex(x => x.State == selectorItem.State);
+            int index = SelectorItems.FindIndex(x => x.State == selectorItem.State);
             if (index != -1)
                 SelectorItems.RemoveAt(index);
 
@@ -108,7 +108,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Normal).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Normal).Value;
             set => Add(ControlState.Normal, value);
         }
         /// <summary>
@@ -119,7 +119,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Pressed
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Pressed).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Pressed).Value;
             set => Add(ControlState.Pressed, value);
         }
         /// <summary>
@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Focused
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Focused).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Focused).Value;
             set => Add(ControlState.Focused, value);
         }
         /// <summary>
@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Selected
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Selected).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Selected).Value;
             set => Add(ControlState.Selected, value);
         }
         /// <summary>
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Disabled
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Disabled).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Disabled).Value;
             set => Add(ControlState.Disabled, value);
         }
         /// <summary>
@@ -163,7 +163,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledFocused
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.DisabledFocused).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.DisabledFocused).Value;
             set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
@@ -173,7 +173,7 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         public T SelectedFocused
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.SelectedFocused).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.SelectedFocused).Value;
             set => Add(ControlState.SelectedFocused, value);
         }
         /// <summary>
@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T DisabledSelected
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.DisabledSelected).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.DisabledSelected).Value;
             set => Add(ControlState.DisabledSelected, value);
         }
 
@@ -196,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Other
         {
-            get => ((List<SelectorItem<T>>)SelectorItems).Find(x => x.State == ControlState.Other).Value;
+            get => SelectorItems.Find(x => x.State == ControlState.Other).Value;
             set => Add(ControlState.Other, value);
         }
 
@@ -228,7 +228,7 @@ namespace Tizen.NUI.BaseComponents
 
             result = default;
 
-            int index = ((List<SelectorItem<T>>)SelectorItems).FindIndex(x => x.State == state);
+            int index = SelectorItems.FindIndex(x => x.State == state);
             if (index >= 0)
             {
                 result = SelectorItems[index].Value;
@@ -241,7 +241,7 @@ namespace Tizen.NUI.BaseComponents
             }
             if (state.IsCombined)
             {
-                index = ((List<SelectorItem<T>>)SelectorItems).FindIndex(x => state.Contains(x.State));
+                index = SelectorItems.FindIndex(x => state.Contains(x.State));
                 if (index >= 0)
                 {
                     result = SelectorItems[index].Value;
@@ -249,7 +249,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            index = ((List<SelectorItem<T>>)SelectorItems).FindIndex(x => x.State == ControlState.Other);
+            index = SelectorItems.FindIndex(x => x.State == ControlState.Other);
             if (index >= 0)
             {
                 result = SelectorItems[index].Value;
@@ -312,12 +312,12 @@ namespace Tizen.NUI.BaseComponents
             if (cloneable)
             {
                 All = (T)((ICloneable)other.All)?.Clone();
-                SelectorItems = ((List<SelectorItem<T>>)other.SelectorItems).ConvertAll(m => new SelectorItem<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
+                SelectorItems = other.SelectorItems.ConvertAll(m => new SelectorItem<T>(m.State, (T)((ICloneable)m.Value)?.Clone()));
             }
             else
             {
                 All = other.All;
-                SelectorItems = ((List<SelectorItem<T>>)other.SelectorItems).ConvertAll(m => m);
+                SelectorItems = other.SelectorItems.ConvertAll(m => m);
             }
         }
 
