@@ -39,7 +39,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         List<SelectorItem<T>> SelectorItems { get; set; } = new List<SelectorItem<T>>();
 
-
         /// <summary>
         /// Adds the specified state and value to the <see cref="SelectorItems"/>.
         /// </summary>
@@ -56,7 +55,6 @@ namespace Tizen.NUI.BaseComponents
         public void Add(SelectorItem<T> selectorItem)
         {
             // To prevent a state from having multiple values, remove existing state-value pair.
-
             int index = SelectorItems.FindIndex(x => x.State == selectorItem.State);
             if (index != -1)
                 SelectorItems.RemoveAt(index);
@@ -110,7 +108,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public T Normal
         {
-
             get => SelectorItems.Find(x => x.State == ControlState.Normal).Value;
             set => Add(ControlState.Normal, value);
         }
