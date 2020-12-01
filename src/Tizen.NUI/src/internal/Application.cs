@@ -544,55 +544,55 @@ namespace Tizen.NUI
             CriticallyLow
         };
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationInitEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationInitEventArgs> _applicationInitEventHandler;
         private NUIApplicationInitEventCallbackDelegate _applicationInitEventCallbackDelegate;
 
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationTerminateEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationTerminatingEventArgs> _applicationTerminateEventHandler;
         private NUIApplicationTerminateEventCallbackDelegate _applicationTerminateEventCallbackDelegate;
 
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationPauseEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationPausedEventArgs> _applicationPauseEventHandler;
         private NUIApplicationPauseEventCallbackDelegate _applicationPauseEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationResumeEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationResumedEventArgs> _applicationResumeEventHandler;
         private NUIApplicationResumeEventCallbackDelegate _applicationResumeEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationResetEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationResetEventArgs> _applicationResetEventHandler;
         private NUIApplicationResetEventCallbackDelegate _applicationResetEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationLanguageChangedEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> _applicationLanguageChangedEventHandler;
         private NUIApplicationLanguageChangedEventCallbackDelegate _applicationLanguageChangedEventCallbackDelegate;
 
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationRegionChangedEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> _applicationRegionChangedEventHandler;
         private NUIApplicationRegionChangedEventCallbackDelegate _applicationRegionChangedEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationBatteryLowEventCallbackDelegate(BatteryStatus status);
         private DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> _applicationBatteryLowEventHandler;
         private NUIApplicationBatteryLowEventCallbackDelegate _applicationBatteryLowEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationMemoryLowEventCallbackDelegate(MemoryStatus status);
         private DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> _applicationMemoryLowEventHandler;
         private NUIApplicationMemoryLowEventCallbackDelegate _applicationMemoryLowEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationAppControlEventCallbackDelegate(IntPtr application, IntPtr voidp);
         private DaliEventHandler<object, NUIApplicationAppControlEventArgs> _applicationAppControlEventHandler;
         private NUIApplicationAppControlEventCallbackDelegate _applicationAppControlEventCallbackDelegate;

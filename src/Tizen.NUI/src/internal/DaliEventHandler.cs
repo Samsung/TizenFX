@@ -23,17 +23,17 @@ namespace Tizen.NUI
     /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate R DaliEventHandlerWithReturnType<T, U, R>(T source, U e);
 
     /// <summary>
     /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void EventCallbackDelegateType0();
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void EventCallbackDelegateType1(IntPtr arg1);
 
     /// <summary>
@@ -41,13 +41,13 @@ namespace Tizen.NUI
     /// this should be removed with EventHandler from .NET
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void DaliEventHandler<T, U>(T source, U e);
 
     /// <summary>
     /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
 }
