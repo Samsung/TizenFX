@@ -48,10 +48,15 @@ namespace Tizen.NUI
         /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when childLayout is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="childLayout">LayoutItem to add to the layout group.</param>
         public virtual void Add(LayoutItem childLayout)
         {
+            if (null == childLayout)
+            {
+                throw new ArgumentNullException(nameof(childLayout));
+            }
             LayoutChildren.Add(childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
@@ -133,9 +138,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeLayoutSiblingOrder(int order)
         {
-            if (Owner != null && Owner.Parent != null)
+            var ownerParent = Owner.GetParent() as View;
+            if (Owner != null && ownerParent != null)
             {
-                LayoutGroup parent = Owner.Parent.Layout as LayoutGroup;
+                var parent = ownerParent.Layout as LayoutGroup;
 
                 if (parent != null && parent.LayoutChildren.Count > order)
                 {
@@ -300,7 +306,7 @@ namespace Tizen.NUI
                     {
                         if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
                         {
-                            // Crashed. Cannot calculate. 
+                            // Crashed. Cannot calculate.
 
                             // Child wants to be our size, but our size is not fixed.
                             // Constrain child to not be bigger than us.
@@ -533,9 +539,15 @@ namespace Tizen.NUI
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChild(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
@@ -561,11 +573,16 @@ namespace Tizen.NUI
         /// <param name="widthUsed">Extra space that has been used up by the parent horizontally (possibly by other children of the parent).</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
         /// <param name="heightUsed">Extra space that has been used up by the parent vertically (possibly by other children of the parent).</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildWithMargins(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, LayoutLength widthUsed, MeasureSpecification parentHeightMeasureSpec, LayoutLength heightUsed)
         {
-            View childOwner = child.Owner;
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
 
+            View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(

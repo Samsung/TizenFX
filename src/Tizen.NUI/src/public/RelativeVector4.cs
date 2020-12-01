@@ -82,8 +82,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector4(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector4 relativeVector4 = new RelativeVector4();
+        /// relativeVector4.X = 0.1f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
+        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
         public float X
         {
             set
@@ -106,8 +116,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector4(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector4 relativeVector4 = new RelativeVector4();
+        /// relativeVector4.Y = 0.5f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
+        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
         public float Y
         {
             set
@@ -130,8 +150,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The z component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector4(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector4 relativeVector4 = new RelativeVector4();
+        /// relativeVector4.Z = 0.9f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
+        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
         public float Z
         {
             set
@@ -154,8 +184,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The w component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new RelativeVector4(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// RelativeVector4 relativeVector4 = new RelativeVector4();
+        /// relativeVector4.W = 1.0f; 
+        /// // Please USE like this
+        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
+        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new RelativeVector4(...) constructor")]
         public float W
         {
             set
@@ -184,7 +224,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator +(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Add(arg2);
+            RelativeVector4 result = arg1?.Add(arg2);
             return result;
         }
 
@@ -197,7 +237,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator -(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Subtract(arg2);
+            RelativeVector4 result = arg1?.Subtract(arg2);
             return result;
         }
 
@@ -210,7 +250,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Multiply(arg2);
+            RelativeVector4 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -223,7 +263,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, float arg2)
         {
-            RelativeVector4 result = arg1.Multiply(arg2);
+            RelativeVector4 result = arg1?.Multiply(arg2);
             return result;
         }
 
@@ -236,7 +276,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, RelativeVector4 arg2)
         {
-            RelativeVector4 result = arg1.Divide(arg2);
+            RelativeVector4 result = arg1?.Divide(arg2);
             return result;
         }
 
@@ -249,7 +289,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, float arg2)
         {
-            RelativeVector4 result = arg1.Divide(arg2);
+            RelativeVector4 result = arg1?.Divide(arg2);
             return result;
         }
 
@@ -258,7 +298,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
         {
-            return new Vector4(relativeVector4.X, relativeVector4.Y, relativeVector4.Z, relativeVector4.W);
+            return new Vector4((float)relativeVector4?.X, (float)relativeVector4.Y, (float)relativeVector4.Z, (float)relativeVector4.W);
         }
 
         /// <summary>
@@ -266,7 +306,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
-            return new RelativeVector4(vec.X, vec.Y, vec.Z, vec.W);
+            return new RelativeVector4((float)vec?.X, (float)vec.Y, (float)vec.Z, (float)vec.W);
         }
 
         /// <summary>

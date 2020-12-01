@@ -627,9 +627,14 @@ namespace Tizen.NUI
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 6 </since_tizen>
         protected override void OnChildAdd(LayoutItem child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
             InsertChild(child);
         }
 
@@ -655,9 +660,7 @@ namespace Tizen.NUI
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
             Extents padding = Owner.Padding;
-            Extents margin = Owner.Margin;
 
-            Interop.FlexLayout.FlexLayout_SetMargin(swigCPtr, Extents.getCPtr(margin));
             Interop.FlexLayout.FlexLayout_SetPadding(swigCPtr, Extents.getCPtr(padding));
 
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
@@ -678,6 +681,8 @@ namespace Tizen.NUI
             // because measurChild function is called by native callback.
             parentMeasureSpecificationWidth = widthMeasureSpec;
             parentMeasureSpecificationHeight = heightMeasureSpec;
+
+            Extents zeroMargin = new Extents();
 
             // Assign child properties
             for (int i = 0; i < LayoutChildren.Count; i++)
@@ -700,7 +705,9 @@ namespace Tizen.NUI
                 float flexBasis = GetFlexBasis(Child);
                 float flexShrink = GetFlexShrink(Child);
                 float flexGrow = GetFlexGrow(Child);
+                Extents childMargin = Child.ExcludeLayouting ? zeroMargin : layoutItem.Margin;
 
+                Interop.FlexLayout.FlexLayout_SetMargin(childHandleRef, Extents.getCPtr(childMargin));
                 Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
                 Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)positionType);
                 Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
@@ -710,6 +717,7 @@ namespace Tizen.NUI
             }
 
             Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width, height, isLayoutRtl);
+            zeroMargin.Dispose();
 
             LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr));
             LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr));

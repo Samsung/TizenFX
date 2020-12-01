@@ -263,9 +263,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Add">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             Container oldParent = child.GetParent();
 
             if (oldParent != this)
@@ -278,7 +284,7 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
-                Interop.Actor.ActorAdd(swigCPtr, View.getCPtr(child));
+                Interop.Actor.Actor_Add( swigCPtr , View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -291,10 +297,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Remove">
         /// </seealso>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            Interop.Actor.ActorRemove(swigCPtr, View.getCPtr(child));
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+            Interop.Actor.Actor_Remove( swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -344,6 +355,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcasts a handle to layer handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
@@ -351,6 +363,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             Layer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -367,7 +383,7 @@ namespace Tizen.NUI
         public View FindChildById(uint id)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.ActorFindChildById(swigCPtr, id);
+            IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -383,7 +399,7 @@ namespace Tizen.NUI
         public View FindChildByName(string viewName)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.ActorFindChildByName(swigCPtr, viewName);
+            IntPtr cPtr = Interop.Actor.Actor_FindChildByName(swigCPtr, viewName);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -496,7 +512,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchorPoint(Vector3 anchorPoint)
         {
-            Interop.Actor.ActorSetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            Interop.Actor.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -505,7 +521,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSize(float width, float height)
         {
-            Interop.ActorInternal.ActorSetSize(swigCPtr, width, height);
+            Interop.ActorInternal.Actor_SetSize__SWIG_0(swigCPtr, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -514,7 +530,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetParentOrigin(Vector3 parentOrigin)
         {
-            Interop.ActorInternal.ActorSetParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
+            Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -523,7 +539,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
-            Interop.Actor.ActorSetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            Interop.Actor.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -654,7 +670,7 @@ namespace Tizen.NUI
 
         internal string GetName()
         {
-            string ret = Interop.Actor.ActorGetName(swigCPtr);
+            string ret = Interop.Actor.Actor_GetName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -662,7 +678,7 @@ namespace Tizen.NUI
 
         internal void SetName(string name)
         {
-            Interop.Actor.ActorSetName(swigCPtr, name);
+            Interop.Actor.Actor_SetName(swigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

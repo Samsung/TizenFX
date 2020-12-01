@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,19 @@
  * limitations under the License.
  *
  */
+ 
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal enum BlendEquationType
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable (EditorBrowsableState.Never)]
+    public class GraphicsCapabilities
     {
-        ADD = 0x8006,
-        SUBTRACT = 0x800A,
-        REVERSE_SUBTRACT = 0x800B
+        [EditorBrowsable (EditorBrowsableState.Never)]
+        public static bool IsBlendEquationSupported(BlendEquationType blendEquation)
+        {
+          return Interop.GraphicsCapabilities.IsBlendEquationSupported((int)blendEquation);
+        }
     }
 }
