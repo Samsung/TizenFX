@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // To prevent a state from having multiple values, remove existing state-value pair.
 
-            int index = SelectorItems.FindIndex(x => x.State == stateValuePair.State);
+            int index = SelectorItems.FindIndex(x => x.State == selectorItem.State);
             if (index != -1)
                 SelectorItems.RemoveAt(index);
 
