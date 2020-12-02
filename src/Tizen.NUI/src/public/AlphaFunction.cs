@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
+        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -316,7 +316,7 @@ namespace Tizen.NUI
         internal SWIGTYPE_p_f_float__float GetCustomFunction()
         {
             global::System.IntPtr cPtr = Interop.AlphaFunction.AlphaFunction_GetCustomFunction(swigCPtr);
-            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr, false);
+            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

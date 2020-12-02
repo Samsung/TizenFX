@@ -51,7 +51,7 @@ namespace Tizen.NUI
         public SWIGTYPE_p_int cast()
         {
             global::System.IntPtr cPtr = Interop.intp.intp_cast(swigCPtr);
-            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
+            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
