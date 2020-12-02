@@ -15,7 +15,7 @@ namespace Tizen.NUI.Binding
 {
     internal class TizenPlatformServices : IPlatformServices
     {
-        static MD5 checksum = MD5.Create();
+        static SHA256 checksum = SHA256.Create();
 
         static SynchronizationContext s_context;
 
