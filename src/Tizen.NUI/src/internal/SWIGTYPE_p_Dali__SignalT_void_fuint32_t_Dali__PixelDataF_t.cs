@@ -14,7 +14,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(global::System.IntPtr cPtr, bool futureUse)
+        internal SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
