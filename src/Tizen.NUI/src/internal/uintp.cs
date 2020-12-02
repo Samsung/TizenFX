@@ -52,7 +52,7 @@ namespace Tizen.NUI
         internal SWIGTYPE_p_unsigned_int cast()
         {
             global::System.IntPtr cPtr = Interop.uintp.uintp_cast(swigCPtr);
-            SWIGTYPE_p_unsigned_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_int(cPtr, false);
+            SWIGTYPE_p_unsigned_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_int(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
