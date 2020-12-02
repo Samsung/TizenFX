@@ -1185,7 +1185,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TextChanged += (obj, e) =>
                     {
-                        this.Text = this.Text;
+                        this.Text = e.TextEditor.Text;
                     };
                 }
             }
