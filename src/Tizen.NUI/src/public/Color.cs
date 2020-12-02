@@ -189,8 +189,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.R = 0.1f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float R
         {
             set
@@ -212,8 +222,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.G = 0.5f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float G
         {
             set
@@ -235,8 +255,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.B = 0.9f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float B
         {
             set
@@ -258,8 +288,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The alpha component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Color color = new Color();
+        /// color.A = 1.0f; 
+        /// // Please USE like this
+        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
+        /// Color color = new Color(r, g, b, a);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
         public float A
         {
             set
@@ -484,62 +524,27 @@ namespace Tizen.NUI
 
         internal static Color ValueCheck(Color color)
         {
-            if (color.R < 0.0f)
+            float r = color.R;
+            float g = color.G;
+            float b = color.B;
+            float a = color.A;
+
+            if (IsInvalidValue(ref r) | IsInvalidValue(ref g) | IsInvalidValue(ref b) | IsInvalidValue(ref a))
             {
-                color.R = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. Color is {color.R}, {color.G}, {color.B}, {color.A}");
             }
-            else if (color.R > 1.0f)
-            {
-                color.R = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.G < 0.0f)
-            {
-                color.G = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.G > 1.0f)
-            {
-                color.G = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.B < 0.0f)
-            {
-                color.B = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.B > 1.0f)
-            {
-                color.B = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.A < 0.0f)
-            {
-                color.A = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.A > 1.0f)
-            {
-                color.A = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
+            color = new Color(r, g, b, a);
             return color;
         }
 
         internal static float ValueCheck(float value)
         {
-            if (value < 0.0f)
+            float refValue = value;
+            if (IsInvalidValue(ref refValue))
             {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. float value is {value}");
             }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
+            return refValue;
         }
 
         internal static float[] ValueCheck(float[] arr)
@@ -551,18 +556,29 @@ namespace Tizen.NUI
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < 0.0f)
+                float refValue = arr[i];
+                if (IsInvalidValue(ref refValue))
                 {
-                    arr[i] = 0.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-                }
-                else if (arr[i] > 1.0f)
-                {
-                    arr[i] = 1.0f;
-                    NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
+                    NUILog.Error($"The value of Result is invalid! Should be between [0, 1]. arr[] is {arr[i]}");
+                    arr[i] = refValue;
                 }
             }
             return arr;
+        }
+
+        private static bool IsInvalidValue(ref float value)
+        {
+            if (value < 0.0f)
+            {
+                value = 0.0f;
+                return true;
+            }
+            else if (value > 1.0f)
+            {
+                value = 1.0f;
+                return true;
+            }
+            return false;
         }
 
         /// This will not be public opened.

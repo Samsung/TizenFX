@@ -26,43 +26,43 @@ namespace Tizen.NUI
 
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class FrameCallbackInterface : Disposable
+    public class FrameUpdateCallbackInterface : Disposable
     {
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal FrameCallbackInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal FrameUpdateCallbackInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FrameCallbackInterface() : this(Interop.FrameCallbackInterface.new_FrameCallbackInterface(), true)
+        public FrameUpdateCallbackInterface() : this(Interop.FrameUpdateCallbackInterface.newFrameUpdateCallbackInterface(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            SwigDirectorConnect();
+            DirectorConnect();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameCallbackInterface obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameUpdateCallbackInterface obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        private void SwigDirectorConnect()
+        private void DirectorConnect()
         {
-            swigDelegate0 = new SwigDelegateFrameCallbackInterface(SwigDirectorOnUpdate);
-            Interop.FrameCallbackInterface.FrameCallbackInterface_director_connect(swigCPtr, swigDelegate0);
+            Delegate0 = new DelegateFrameUpdateCallbackInterface(DirectorOnUpdate);
+            Interop.FrameUpdateCallbackInterface.FrameUpdateCallbackInterfaceDirectorConnect(swigCPtr, Delegate0);
         }
 
         private global::System.IntPtr proxyIntPtr;
-        private void SwigDirectorOnUpdate(global::System.IntPtr proxy, float elapsedSeconds)
+        private void DirectorOnUpdate(global::System.IntPtr proxy, float elapsedSeconds)
         {
             proxyIntPtr = proxy;
             OnUpdate(elapsedSeconds);
             return;
         }
 
-        internal delegate void SwigDelegateFrameCallbackInterface(global::System.IntPtr proxy, float elapsedSeconds);
-        private SwigDelegateFrameCallbackInterface swigDelegate0;
+        internal delegate void DelegateFrameUpdateCallbackInterface(global::System.IntPtr proxy, float elapsedSeconds);
+        private DelegateFrameUpdateCallbackInterface Delegate0;
 
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -80,7 +80,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_GetPosition(proxyIntPtr, id, Vector3.getCPtr(position));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceGetPosition(proxyIntPtr, id, Vector3.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_SetPosition(proxyIntPtr, id, Vector3.getCPtr(position));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceSetPosition(proxyIntPtr, id, Vector3.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -108,7 +108,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakePosition(proxyIntPtr, id, Vector3.getCPtr(position));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakePosition(proxyIntPtr, id, Vector3.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -122,7 +122,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_GetSize(proxyIntPtr, id, Vector3.getCPtr(size));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceGetSize(proxyIntPtr, id, Vector3.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -136,7 +136,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_SetSize(proxyIntPtr, id, Vector3.getCPtr(size));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceSetSize(proxyIntPtr, id, Vector3.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -149,7 +149,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakeSize(proxyIntPtr, id, Vector3.getCPtr(size));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakeSize(proxyIntPtr, id, Vector3.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -163,7 +163,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_SetScale(proxyIntPtr, id, Vector3.getCPtr(scale));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceSetScale(proxyIntPtr, id, Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -177,7 +177,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_SetScale(proxyIntPtr, id, Vector3.getCPtr(scale));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceSetScale(proxyIntPtr, id, Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -191,7 +191,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakeScale(proxyIntPtr, id, Vector3.getCPtr(scale));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakeScale(proxyIntPtr, id, Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -204,7 +204,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -217,7 +217,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -230,7 +230,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_BakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceBakeScale(proxyIntPtr, id, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -244,19 +244,19 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.FrameCallbackInterface.FraemCallbackInterface_GetPositionAndSize(proxyIntPtr, id, Vector3.getCPtr(Position), Vector3.getCPtr(Size));
+            bool ret = Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceGetPositionAndSize(proxyIntPtr, id, Vector3.getCPtr(Position), Vector3.getCPtr(Size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal void AddFrameCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr, global::System.Runtime.InteropServices.HandleRef layerCPtr)
+        internal void AddFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr, global::System.Runtime.InteropServices.HandleRef layerCPtr)
         {
-            Interop.FrameCallbackInterface.FraemCallbackInterface_AddFrameCallback(windowCPtr, swigCPtr, layerCPtr);
+            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceAddFrameUpdateCallback(windowCPtr, swigCPtr, layerCPtr);
         }
 
-        internal void RemoveFrameCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr)
+        internal void RemoveFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr)
         {
-            Interop.FrameCallbackInterface.FraemCallbackInterface_RemoveFrameCallback(windowCPtr, swigCPtr);
+            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceRemoveFrameUpdateCallback(windowCPtr, swigCPtr);
         }
     }
 }
