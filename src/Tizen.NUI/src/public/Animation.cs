@@ -1004,7 +1004,7 @@ namespace Tizen.NUI
                 if (toType == typeof(Char))
                 {
                     char c = '\0';
-                    Char.TryParse(str, out c);
+                    _ = Char.TryParse(str, out c);
                     return c;
                 }
                 if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))
