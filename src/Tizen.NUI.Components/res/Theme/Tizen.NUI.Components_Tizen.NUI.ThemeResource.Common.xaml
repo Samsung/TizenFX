@@ -1,0 +1,93 @@
+﻿<ResourceDictionary
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Resources for Tizen.NUI.Components.Button -->
+    <Color x:Key="ButtonBackgroundColorNormal">0.88, 0.88, 0.88, 1</Color>
+    <Color x:Key="ButtonBackgroundColorPressed">0.77, 0.77, 0.77, 1</Color>
+    <Color x:Key="ButtonBackgroundColorDisabled">0.88, 0.88, 0.88, 1</Color>
+    <Color x:Key="ButtonTextColorNormal">0.22, 0.22, 0.22, 1</Color>
+    <Color x:Key="ButtonTextColorPressed">0.11, 0.11, 0.11, 1</Color>
+    <Color x:Key="ButtonTextColorDisabled">0.66, 0.66, 0.66, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.CheckBox -->
+    <NUIResourcePath x:Key="CheckBoxIconBackgroundImagePressed">nui_component_default_checkbox_bg_p.png</NUIResourcePath>
+    <NUIResourcePath x:Key="CheckBoxIconBackgroundImageSelected">nui_component_default_checkbox_bg_p.png</NUIResourcePath>
+    <NUIResourcePath x:Key="CheckBoxIconBackgroundImageOther">nui_component_default_checkbox_bg_n.png</NUIResourcePath>
+    <NUIResourcePath x:Key="CheckBoxIconImageResourceUrlSelected">nui_component_default_checkbox_s.png</NUIResourcePath>
+    <x:String x:Key="CheckBoxIconImageResourceUrlOther"></x:String>
+    <Color x:Key="CheckBoxTextColorNormal">0.22, 0.22, 0.22, 1</Color>
+    <Color x:Key="CheckBoxTextColorPressed">0.11, 0.11, 0.11, 1</Color>
+    <Color x:Key="CheckBoxTextColorDisabled">0.66, 0.66, 0.66, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.DropDown -->
+    <NUIResourcePath x:Key="DropDownBackgroundImagePressed">nui_component_default_checkbox_bg_p.png</NUIResourcePath>
+    <NUIResourcePath x:Key="DropDownBackgroundImageOther">nui_component_default_checkbox_bg_n.png</NUIResourcePath>
+    <NUIResourcePath x:Key="DropDownIconImageResourceUrl">nui_component_default_dropdown_button_icon.png</NUIResourcePath>
+    <NUIResourcePath x:Key="DropDownListBackgroundImageResourceUrl">nui_component_default_dropdown_list_bg.png</NUIResourcePath>
+
+    <!-- Resources for Tizen.NUI.Components.DropDownDataItem -->
+    <Color x:Key="DropDownDataItemBackgroundColorPressed">0.05, 0.63, 0.9, 1</Color>
+    <Color x:Key="DropDownDataItemBackgroundColorSelected">0.8, 0.8, 0.8, 1</Color>
+    <Color x:Key="DropDownDataItemBackgroundColorNormal">1, 1, 1, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Popup -->
+    <Color x:Key="PopupBackgroundColor">0.9, 0.9, 0.9, 1</Color>
+    <NUIResourcePath x:Key="PopupImageShadow">nui_component_default_popup_shadow.png</NUIResourcePath>
+    <Color x:Key="PopupButtonBackgroundColorNormal">1, 1, 1, 1</Color>
+    <Color x:Key="PopupButtonBackgroundColorPressed">1, 1, 1, 0.5</Color>
+    <Color x:Key="PopupButtonOverlayBackgroundColorNormal">1, 1, 1, 1</Color>
+    <Color x:Key="PopupButtonOverlayBackgroundColorPressed">0, 0, 0, 0.1</Color>
+    <Color x:Key="PopupButtonOverlayBackgroundColorSelected">1, 1, 1, 1</Color>
+    <Color x:Key="PopupTextColor">0.05, 0.63, 0.9, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Progress -->
+    <Color x:Key="ProgressTrackBackgroundColor">0, 0, 0, 0.1</Color>
+    <Color x:Key="ProgressBufferBackgroundColor">0.05, 0.63, 0.9, 0.3</Color>
+    <Color x:Key="ProgressProgressBackgroundColor">0.05, 0.63, 0.9, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.RadioButton -->
+    <NUIResourcePath x:Key="RadioButtonIconBackgroundImagePressed">nui_component_default_radiobutton_p.png</NUIResourcePath>
+    <NUIResourcePath x:Key="RadioButtonIconBackgroundImageSelected">nui_component_default_radiobutton_s.png</NUIResourcePath>
+    <NUIResourcePath x:Key="RadioButtonIconBackgroundImageOther">nui_component_default_radiobutton_n.png</NUIResourcePath>
+    <Color x:Key="RadioButtonTextColorNormal">0.22, 0.22, 0.22, 1</Color>
+    <Color x:Key="RadioButtonTextColorPressed">0.11, 0.11, 0.11, 1</Color>
+    <Color x:Key="RadioButtonTextColorDisabled">0.66, 0.66, 0.66, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Slider -->
+    <Color x:Key="SliderTrackColor">0, 0, 0, 0.1</Color>
+    <Color x:Key="SliderProgressColor">0.5, 0.63, 0.9, 1</Color>
+    <NUIResourcePath x:Key="SliderThumbImageResourceUrl">nui_component_default_slider_thumb_n.png</NUIResourcePath>
+    <x:String x:Key="SliderThumbBackgroundImageNormal"></x:String>
+    <NUIResourcePath x:Key="SliderThumbBackgroundImagePressed">nui_component_default_slider_thumb_bg_p.png</NUIResourcePath>
+
+    <!-- Resources for Tizen.NUI.Components.Switch -->
+    <NUIResourcePath x:Key="SwitchTrackImageResourceUrlNormal">nui_component_default_switch_track_n.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchTrackImageResourceUrlSelected">nui_component_default_switch_track_s.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchTrackImageResourceUrlDisabled">nui_component_default_switch_track_d.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchTrackImageResourceUrlDisabledSelected">nui_component_default_switch_track_ds.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchThumbImageResourceUrlNormal">nui_component_default_switch_thumb_n.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchThumbImageResourceUrlDisabled">nui_component_default_switch_thumb_d.png</NUIResourcePath>
+    <NUIResourcePath x:Key="SwitchThumbImageResourceUrlSelected">nui_component_default_switch_thumb_n.png</NUIResourcePath>
+    <Color x:Key="SwitchTextColorNormal">0.22, 0.22, 0.22, 1</Color>
+    <Color x:Key="SwitchTextColorPressed">0.11, 0.11, 0.11, 1</Color>
+    <Color x:Key="SwitchTextColorDisabled">0.66, 0.66, 0.66, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Tab -->
+    <Color x:Key="TabBackgroundColor">Yellow</Color>
+    <Color x:Key="TabUnderLineBackgroundColor">0.05, 0.63, 0.9, 1.0</Color>
+    <Color x:Key="TabTextColorNormal">Black</Color>
+    <Color x:Key="TabTextColorSelected">0.05, 0.63, 0.9, 1</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Toast -->
+    <Color x:Key="ToastBackgroundColor">0, 0, 0, 0.8</Color>
+
+    <!-- Resources for Tizen.NUI.Components.Pagination -->
+    <NUIResourcePath x:Key="PaginationIndicatorImageUrlNormal">nui_component_default_pagination_normal_dot.png</NUIResourcePath>
+    <NUIResourcePath x:Key="PaginationIndicatorImageUrlSelected">nui_component_default_pagination_focus_dot.png</NUIResourcePath>
+
+    <!-- Resources for Tizen.NUI.Components.Scrollbar -->
+    <Color x:Key="ScrollbarTrackColor">1, 1, 1, 0.15</Color>
+    <Color x:Key="ScrollbarThumbColor">0.6, 0.6, 0.6, 1.0</Color>
+</ResourceDictionary>
+
