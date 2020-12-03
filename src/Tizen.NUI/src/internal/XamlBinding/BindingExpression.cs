@@ -164,7 +164,7 @@ namespace Tizen.NUI.Binding
                 else
                     value = property.DefaultValue;
 
-                if (!TryConvert(part, ref value, property.ReturnType, true))
+                if (!TryConvert(ref value, property.ReturnType, true))
                 {
                     Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, property.ReturnType);
                     return;
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Binding
             {
                 object value = Binding.GetTargetValue(target.GetValue(property), part.SetterType);
 
-                if (!TryConvert(part, ref value, part.SetterType, false))
+                if (!TryConvert(ref value, part.SetterType, false))
                 {
                     Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, part.SetterType);
                     return;
@@ -422,7 +422,7 @@ namespace Tizen.NUI.Binding
         }
         static Type[] DecimalTypes = new[] { typeof(float), typeof(decimal), typeof(double) };
 
-        bool TryConvert(BindingExpressionPart part, ref object value, Type convertTo, bool toTarget)
+        bool TryConvert(ref object value, Type convertTo, bool toTarget)
         {
             if (value == null)
                 return true;

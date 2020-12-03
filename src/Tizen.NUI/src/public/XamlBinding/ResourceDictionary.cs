@@ -120,17 +120,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal IList<StyleSheets.StyleSheet> StyleSheets { get; set; }
-
-        void StyleSheetsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
-                    break;
-            }
-        }
         IList<ResourceDictionary> _collectionTrack;
 
         void MergedDictionaries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -337,33 +326,11 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
-        internal void Add(Style style)
-        {
-            if (string.IsNullOrEmpty(style.Class))
-                Add(style.TargetType.FullName, style);
-            else
-            {
-                IList<Style> classes;
-                object outclasses;
-                if (!TryGetValue(Style.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<Style>) == null)
-                    classes = new List<Style>();
-                classes.Add(style);
-                this[Style.StyleClassPrefix + style.Class] = classes;
-            }
-        }
-
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(ResourceDictionary mergedResourceDictionary)
         {
             MergedDictionaries.Add(mergedResourceDictionary);
-        }
-
-        internal void Add(StyleSheets.StyleSheet styleSheet)
-        {
-            StyleSheets = StyleSheets ?? new List<StyleSheets.StyleSheet>(2);
-            StyleSheets.Add(styleSheet);
-            ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
         }
 
         void OnValueChanged(string key, object value)

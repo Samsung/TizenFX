@@ -249,11 +249,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="obj">An object to create.</param>
         /// <returns>The created value.</returns>
+        /// <exception cref="global::System.ArgumentNullException"> Thrown when obj is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         static public PropertyValue CreateFromObject(System.Object obj)
         {
-            System.Type type = obj.GetType();
+            if (null == obj)
+            {
+                throw new global::System.ArgumentNullException(nameof(obj));
+            }
 
+            System.Type type = obj.GetType();
             PropertyValue value;
             if (type.IsEnum)
             {
@@ -339,7 +344,6 @@ namespace Tizen.NUI
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
             }
-            //NUILog.Debug(" got an property value of =" + type.Name);
             return value;
         }
 

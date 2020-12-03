@@ -236,23 +236,21 @@ namespace Tizen.NUI
             }
             set
             {
-                if (_visualOffsetPolicy == null)
-                {
-                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
-                }
+                float x = 0.0f;
 
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualOffsetPolicy.X = 0.0f;
+                        x = 0.0f;
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualOffsetPolicy.X = 1.0f;
+                        x = 1.0f;
                         break;
                     default:
-                        _visualOffsetPolicy.X = 0.0f;
+                        x = 0.0f;
                         break;
                 }
+                _visualOffsetPolicy = new Vector2(x, _visualOffsetPolicy?.Y ?? 0);
 
                 UpdateVisual();
             }
@@ -277,23 +275,21 @@ namespace Tizen.NUI
             }
             set
             {
-                if (_visualOffsetPolicy == null)
-                {
-                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
-                }
+                float y = 0.0f;
 
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualOffsetPolicy.Y = 0.0f;
+                        y = 0.0f;
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualOffsetPolicy.Y = 1.0f;
+                        y = 1.0f;
                         break;
                     default:
-                        _visualOffsetPolicy.Y = 0.0f;
+                        y = 0.0f;
                         break;
                 }
+                _visualOffsetPolicy = new Vector2(_visualOffsetPolicy?.X ?? 0, y);
                 UpdateVisual();
             }
         }
@@ -353,23 +349,21 @@ namespace Tizen.NUI
             }
             set
             {
-                if (_visualSizePolicy == null)
-                {
-                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
-                }
-
+                float width = 0.0f;
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualSizePolicy.Width = 0.0f;
+                        width = 0.0f;
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualSizePolicy.Width = 1.0f;
+                        width = 1.0f;
                         break;
                     default:
-                        _visualSizePolicy.Width = 0.0f;
+                        width = 0.0f;
                         break;
                 }
+
+                _visualSizePolicy = new Vector2(width, _visualSizePolicy?.Height ?? 0);
                 UpdateVisual();
             }
         }
@@ -393,23 +387,21 @@ namespace Tizen.NUI
             }
             set
             {
-                if (_visualSizePolicy == null)
-                {
-                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
-                }
+                float height = 0.0f;
 
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualSizePolicy.Height = 0.0f;
+                        height = 0.0f;
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualSizePolicy.Height = 1.0f;
+                        height = 1.0f;
                         break;
                     default:
-                        _visualSizePolicy.Height = 0.0f;
+                        height = 0.0f;
                         break;
                 }
+                _visualSizePolicy = new Vector2(_visualSizePolicy?.Width ?? 0, height);
                 UpdateVisual();
             }
         }

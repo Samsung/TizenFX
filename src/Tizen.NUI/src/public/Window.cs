@@ -326,6 +326,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public Size2D WindowSize
         {
@@ -342,6 +343,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a position of the window.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <since_tizen> 4 </since_tizen>
         public Position2D WindowPosition
         {
@@ -750,10 +752,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            Interop.Actor.ActorAdd(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.Actor_Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
-            view.InternalParent = this.GetRootLayer();
+            if (null != view)
+            {
+                view.InternalParent = this.GetRootLayer();
+            }
         }
 
         /// <summary>
@@ -763,9 +768,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            Interop.Actor.ActorRemove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.Actor_Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
-            view.InternalParent = null;
+            if (null != view)
+            {
+                view.InternalParent = null;
+            }
         }
 
         /// <summary>
@@ -900,6 +908,7 @@ namespace Tizen.NUI
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
@@ -910,6 +919,7 @@ namespace Tizen.NUI
         /// Removes a layer from the stage.
         /// </summary>
         /// <param name="layer">Layer to remove.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
@@ -1097,9 +1107,12 @@ namespace Tizen.NUI
         public void SetAvailableOrientations(List<Window.WindowOrientation> orientations)
         {
             PropertyArray orientationArray = new PropertyArray();
-            for (int i = 0; i < orientations.Count; i++)
+            if (null != orientations)
             {
-                orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                for (int i = 0; i < orientations.Count; i++)
+                {
+                    orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+                }
             }
 
             Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
@@ -1127,6 +1140,10 @@ namespace Tizen.NUI
 
         internal void Add(Layer layer)
         {
+            if (null == layer)
+            {
+                throw new ArgumentNullException(nameof(layer));
+            }
             Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1136,6 +1153,10 @@ namespace Tizen.NUI
 
         internal void Remove(Layer layer)
         {
+            if (null == layer)
+            {
+                throw new ArgumentNullException(nameof(layer));
+            }
             Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1228,6 +1249,10 @@ namespace Tizen.NUI
 
         internal void SetWindowSize(Size2D size)
         {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
             Interop.Window.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
 
@@ -1247,6 +1272,10 @@ namespace Tizen.NUI
 
         internal void SetPosition(Position2D position)
         {
+            if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
             var val = new Uint16Pair((uint)position.X, (uint)position.Y);
             Interop.Window.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
 
@@ -1273,21 +1302,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Add FrameCallback
+        /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddFrameCallback(FrameCallbackInterface frameCallback)
+        public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameCallback?.AddFrameCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
         }
 
         /// <summary>
-        /// Remove FrameCallback
+        /// Remove FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveFrameCallback(FrameCallbackInterface frameCallback)
+        public void RemoveFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameCallback?.RemoveFrameCallback(stageCPtr);
+            frameUpdateCallback?.RemoveFrameUpdateCallback(stageCPtr);
         }
 
         /// <summary>
@@ -1404,7 +1433,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called.
+        /// This callback will be deleted once it is called. 
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
@@ -1427,7 +1456,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called.
+        /// This callback will be deleted once it is called. 
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>

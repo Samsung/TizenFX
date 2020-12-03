@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            view.GetProperty(Interop.ActorProperty.ActorPropertyColorGet()).Get(color);
+            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
             return color;
         });
 
@@ -1574,12 +1574,6 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
         });
-
-        /// <summary>
-        /// XamlStyleProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
         /// <summary>
         /// EnableControlState property

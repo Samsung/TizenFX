@@ -520,8 +520,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Position position = new Position();
+        /// position.X = 1.0f; 
+        /// // Please USE like this
+        /// float x = 1.0f, y = 2.0f, z = 3.0f;
+        /// Position position = new Position(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
         public float X
         {
             set
@@ -544,8 +554,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Position position = new Position();
+        /// position.Y = 2.0f; 
+        /// // Please USE like this
+        /// float x = 1.0f, y = 2.0f, z = 3.0f;
+        /// Position position = new Position(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
         public float Y
         {
             set
@@ -568,8 +588,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The z component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Position position = new Position();
+        /// position.Z = 3.0f; 
+        /// // Please USE like this
+        /// float x = 1.0f, y = 2.0f, z = 3.0f;
+        /// Position position = new Position(x, y, z);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
         public float Z
         {
             set
@@ -679,7 +709,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator +(Position arg1, Position arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -691,7 +721,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator -(Position arg1, Position arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -702,7 +732,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator -(Position arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -714,7 +744,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator *(Position arg1, Position arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -726,7 +756,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator *(Position arg1, float arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -738,7 +768,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator /(Position arg1, Position arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -750,7 +780,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position operator /(Position arg1, float arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -759,7 +789,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector3(Position Position)
         {
-            return new Vector3(Position.X, Position.Y, Position.Z);
+            return new Vector3((float)Position?.X, (float)Position.Y, (float)Position.Z);
         }
 
         /// <summary>
@@ -768,7 +798,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position(Vector3 vec)
         {
-            return new Position(vec.X, vec.Y, vec.Z);
+            return new Position((float)vec?.X, (float)vec.Y, (float)vec.Z);
         }
 
         /// <summary>
@@ -780,7 +810,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Position(Position2D position2d)
         {
-            return new Position(position2d.X, position2d.Y, 0);
+            return new Position((float)position2d?.X, (float)position2d.Y, 0);
         }
 
         /// <summary>

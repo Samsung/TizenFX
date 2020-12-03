@@ -787,14 +787,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Size2D temp = (Size2D)GetValue(Size2DProperty);
+                int width = temp.Width;
+                int height = temp.Height;
 
                 if (this.Layout == null)
                 {
-                    if (temp.Width < 0) { temp.Width = 0; }
-                    if (temp.Height < 0) { temp.Height = 0; }
+                    if (width < 0) { width = 0; }
+                    if (height < 0) { height = 0; }
                 }
 
-                return new Size2D(OnSize2DChanged, temp.Width, temp.Height);
+                return new Size2D(OnSize2DChanged, width, height);
             }
             set
             {
@@ -806,7 +808,7 @@ namespace Tizen.NUI.BaseComponents
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 _widthPolicy = value.Width;
                 _heightPolicy = value.Height;
-
+                
                 _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
@@ -990,7 +992,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
+                Vector3 ret = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -1008,7 +1010,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.ActorGetNaturalSize(swigCPtr), true);
+                Vector3 temp = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1684,6 +1686,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.MinimumSize.Width = 1;) is possible.
         /// </remarks>
@@ -1697,6 +1700,10 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
                 if (_layout != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
@@ -1854,7 +1861,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.ActorGetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.Actor_GetParent(swigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -2040,6 +2047,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Set a layout transitions for this View.
         ///</summary>
+        /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// Use LayoutTransitions to receive a collection of LayoutTransitions set on the View.
         /// </remarks>
@@ -2048,10 +2056,15 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                if (value == null)
+                {
+                    throw new global::System.ArgumentNullException(nameof(value));
+                }
                 if (_layoutTransitions == null)
                 {
                     _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
+
                 LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);
@@ -2080,21 +2093,6 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
                 _layout?.RequestLayout();
-            }
-        }
-
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Style XamlStyle
-        {
-            get
-            {
-                return (Style)GetValue(XamlStyleProperty);
-            }
-            set
-            {
-                SetValue(XamlStyleProperty, value);
             }
         }
 
@@ -2345,6 +2343,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.CaptureAllTouchAfterStart, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Determines which blend equation will be used to render renderers of this actor.
+        /// </summary>
+        /// <returns>blend equation enum currently assigned</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BlendEquationType BlendEquation
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(View.Property.BlendEquation).Get(out temp);
+                return (BlendEquationType)temp;
+            }
+            set
+            {
+                SetProperty(View.Property.BlendEquation, new Tizen.NUI.PropertyValue((int)value));
                 NotifyPropertyChanged();
             }
         }
