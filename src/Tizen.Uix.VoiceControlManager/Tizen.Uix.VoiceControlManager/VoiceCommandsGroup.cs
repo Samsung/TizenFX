@@ -129,14 +129,14 @@ namespace Tizen.Uix.VoiceControlManager
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
 				if (e.NewItems != null) {
-	                foreach (VoiceCommand item in e.NewItems.OfType<VoiceCommand>())
+	                foreach (VoiceCommand item in e.NewItems)
 		                Add(item);
 				}
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
 				if (e.OldItems != null) {
-	                foreach (VoiceCommand item in e.OldItems.OfType<VoiceCommand>())
+	                foreach (VoiceCommand item in e.OldItems)
 		                Remove(item);
 				}
             }
