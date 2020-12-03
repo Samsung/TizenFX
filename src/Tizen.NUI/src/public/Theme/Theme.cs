@@ -82,7 +82,6 @@ namespace Tizen.NUI
             }
 
             LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
         }
 
         /// <summary>
@@ -105,7 +104,6 @@ namespace Tizen.NUI
             XamlResources.SetAndLoadSource(new Uri(themeResource), themeResource, Assembly.GetAssembly(GetType()), null);
 
             LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
         }
 
         /// <summary>
@@ -329,6 +327,7 @@ namespace Tizen.NUI
             {
                 using (var reader = XmlReader.Create(xamlFile))
                 {
+                    this.xamlFile = xamlFile;
                     XamlLoader.Load(this, reader);
                 }
             }
