@@ -285,13 +285,14 @@ namespace Tizen.NUI.BaseComponents
             }
 
             var rest = lhs.stateList.Except(rhs.stateList);
+            var count = rest.Count();
 
-            if (rest.Count() == 0)
+            if (count == 0)
             {
                 return Normal;
             }
 
-            if (rest.Count() == 1)
+            if (count == 1)
             {
                 return rest.First();
             }
