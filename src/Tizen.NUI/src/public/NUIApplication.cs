@@ -439,7 +439,7 @@ namespace Tizen.NUI
         /// The backend used by the NUIApplication.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BackendType Backend = BackendType.Gles;
+        internal static BackendType Backend = BackendType.Gles;
 
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
