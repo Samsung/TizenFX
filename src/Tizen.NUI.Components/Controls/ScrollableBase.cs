@@ -1128,7 +1128,10 @@ namespace Tizen.NUI.Components
             {
                 // check if reaching at the top.
                 if ((int)finalTargetPosition != 0)
+                {
+                    isVerticalShadowShown = false;
                     return;
+                }
 
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
@@ -1155,7 +1158,10 @@ namespace Tizen.NUI.Components
             {
                 // check if reaching at the bottom.
                 if (-(int)finalTargetPosition != (int)maxScrollDistance)
+                {
+                    isVerticalShadowShown = false;
                     return;
+                }
 
                 // save start displacement, and re-calculate displacement.
                 if (!isVerticalShadowShown)
