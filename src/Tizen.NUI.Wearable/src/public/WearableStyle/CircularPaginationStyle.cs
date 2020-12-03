@@ -130,13 +130,13 @@ namespace Tizen.NUI.Wearable
             IndicatorSize = new Size(10, 10);
             IndicatorImageURL = new Selector<string>()
             {
-                Normal = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_pagination_normal_dot.png",
-                Selected = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_pagination_focus_dot.png",
+                Normal = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
+                Selected = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
             };
             CenterIndicatorImageURL = new Selector<string>()
             {
-                Normal = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_wearable_circular_pagination_center_normal_dot.png",
-                Selected = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_wearable_circular_pagination_center_focus_dot.png",
+                Normal = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_wearable_circular_pagination_center_normal_dot.png",
+                Selected = Tizen.NUI.FrameworkInformation.ResourcePath + "nui_wearable_circular_pagination_center_focus_dot.png",
             };
         }
     }
