@@ -1805,4 +1805,13 @@ namespace Tizen.NUI
         /// </summary>
         NoThirdParty
     }
+
+    /// <summary>
+    /// TODO This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
+    /// Internal use only. Do not open this API.
+    /// </summary>
+    internal struct FrameworkInformation
+    {
+        public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+    }
 }
