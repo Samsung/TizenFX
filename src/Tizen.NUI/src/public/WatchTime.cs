@@ -210,14 +210,14 @@ namespace Tizen.NUI
 
         internal SWIGTYPE_p_tm GetUtcTime()
         {
-            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(Interop.Watch.WatchTime_GetUtcTime(swigCPtr), true);
+            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(Interop.Watch.WatchTime_GetUtcTime(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_time_t GetUtcTimeStamp()
         {
-            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(Interop.Watch.WatchTime_GetUtcTimeStamp(swigCPtr), true);
+            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(Interop.Watch.WatchTime_GetUtcTimeStamp(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

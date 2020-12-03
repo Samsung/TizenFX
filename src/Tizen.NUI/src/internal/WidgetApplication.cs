@@ -91,7 +91,7 @@ namespace Tizen.NUI
             _createWidgetFunctionDelegateList.Add(newDelegate);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
-            CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);
+            CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip);
 
             Interop.WidgetApplication.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

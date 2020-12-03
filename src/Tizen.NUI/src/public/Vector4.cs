@@ -769,7 +769,7 @@ namespace Tizen.NUI
         internal SWIGTYPE_p_float AsFloat()
         {
             global::System.IntPtr cPtr = Interop.Vector4.Vector4_AsFloat__SWIG_0(swigCPtr);
-            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
