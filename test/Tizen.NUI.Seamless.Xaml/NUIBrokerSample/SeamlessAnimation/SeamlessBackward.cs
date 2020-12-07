@@ -8,7 +8,7 @@ namespace NUIBrokerSample
     class SeamlessBackward : TransitionAnimation
     {
         string[] properties = { "SizeWidth", "SizeHeight" };
-        string[] destValue = { "470", "600" };
+        string[] destinationValue = { "470", "600" };
 
         public SeamlessBackward(int durationMilliSeconds) : base(durationMilliSeconds)
         {
@@ -24,7 +24,7 @@ namespace NUIBrokerSample
                 data.StartTime = 0;
                 data.EndTime = durationMilliSeconds;
                 data.Property = property;
-                data.DestValue = destValue[idx++];
+                data.DestinationValue = destinationValue[idx++];
                 AddAnimationData(data);
             }
         }
