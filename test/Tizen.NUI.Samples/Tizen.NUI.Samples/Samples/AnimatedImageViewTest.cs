@@ -167,12 +167,10 @@ namespace Tizen.NUI.Samples
             box2 = new Box(new Size2D(root.Size2D.Width, GetRatio(40, root.Size2D.Height)), "Image array Test", "");
             root.Add(box2);
 
-            var list = new List<string>();
             for (int i = 1; i <= 8; i++)
             {
-                list.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
+                box2.image.URLs.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
             }
-            box2.image.URLs = list;
             box2.image.Play();
 
             box2.but1.Clicked += But1_Clicked1;

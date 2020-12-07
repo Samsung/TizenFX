@@ -37,6 +37,8 @@ namespace Tizen.NUI.Components
         //This will be replaced with view transition class instance.
         private Animation _newAnimation = null;
 
+        private static Dictionary<Window, Navigator> windowNavigator = new Dictionary<Window, Navigator>();
+
         /// <summary>
         /// Creates a new instance of a Navigator.
         /// </summary>
@@ -305,6 +307,33 @@ namespace Tizen.NUI.Components
             if (NavigationPages.Count == 0) return null;
 
             return NavigationPages[NavigationPages.Count - 1];
+        }
+
+        /// <summary>
+        /// Returns the default navigator of the given window.
+        /// </summary>
+        /// <returns>The default navigator of the given window.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the argument window is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Navigator GetDefaultNavigator(Window window)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
+
+            if (windowNavigator.ContainsKey(window) == true)
+            {
+                return windowNavigator[window];
+            }
+
+            var defaultNavigator = new Navigator();
+            defaultNavigator.WidthResizePolicy = ResizePolicyType.FillToParent;
+            defaultNavigator.HeightResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(defaultNavigator);
+            windowNavigator.Add(window, defaultNavigator);
+
+            return defaultNavigator;
         }
     }
 } //namespace Tizen.NUI

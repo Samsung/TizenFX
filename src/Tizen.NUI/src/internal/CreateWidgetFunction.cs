@@ -20,7 +20,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal CreateWidgetFunction(global::System.IntPtr cPtr, bool futureUse)
+        internal CreateWidgetFunction(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }

@@ -319,7 +319,7 @@ namespace Tizen.NUI
 
             foreach (var project in nuiThemeProjects)
             {
-                string path = StyleManager.FrameworkResourcePath + "/Theme/" + project + "_" + id + ".xaml";
+                string path = FrameworkInformation.ResourcePath + "/Theme/" + project + "_" + id + ".xaml";
 
                 if (!File.Exists(path))
                 {

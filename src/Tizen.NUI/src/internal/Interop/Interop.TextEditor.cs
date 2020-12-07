@@ -258,6 +258,15 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_ENABLE_EDITING_get")]
             public static extern int TextEditor_Property_ENABLE_EDITING_get();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_HORIZONTAL_SCROLL_POSITION_get")]
+            public static extern int TextEditor_Property_HORIZONTAL_SCROLL_POSITION_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_VERTICAL_SCROLL_POSITION_get")]
+            public static extern int TextEditor_Property_VERTICAL_SCROLL_POSITION_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_ScrollBy")]
+            public static extern void TextEditor_ScrollBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
         }
     }
 }
