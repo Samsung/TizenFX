@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// destination value of animation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string DestValue { get; set; }
+        public string DestinationValue { get; set; }
     }
 
     /// <summary>
@@ -161,7 +161,7 @@ namespace Tizen.NUI
             data.StartTime = 0;
             data.EndTime = durationMilliSeconds;
             data.Property = "PositionX";
-            data.DestValue = "0";
+            data.DestinationValue = "0";
             AddAnimationData(data);
         }
     }
@@ -190,7 +190,7 @@ namespace Tizen.NUI
             data.StartTime = 0;
             data.EndTime = durationMilliSeconds;
             data.Property = "PositionX";
-            data.DestValue = Window.Instance.GetWindowSize().Width.ToString();
+            data.DestinationValue = Window.Instance.GetWindowSize().Width.ToString();
             AddAnimationData(data);
         }
     }
