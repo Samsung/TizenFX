@@ -110,14 +110,14 @@ namespace Tizen.NUI
                 int propertyCount = transition.AnimationDataList.Count;
                 animation = new Animation(transition.DurationMilliSeconds+80);
                 animation.Properties = new string[propertyCount];
-                animation.DestValue = new string[propertyCount];
+                animation.DestinationValue = new string[propertyCount];
                 animation.StartTime = new int[propertyCount];
                 animation.EndTime = new int[propertyCount];
 
                 for (int i = 0; i < propertyCount; i++)
                 {
                     animation.Properties[i] = transition.AnimationDataList[i].Property;
-                    animation.DestValue[i] = transition.AnimationDataList[i].DestValue;
+                    animation.DestinationValue[i] = transition.AnimationDataList[i].DestinationValue;
                     animation.StartTime[i] = 80+transition.AnimationDataList[i].StartTime;
                     animation.EndTime[i] = 80+transition.AnimationDataList[i].EndTime;
                 }
