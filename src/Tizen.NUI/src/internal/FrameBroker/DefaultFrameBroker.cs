@@ -95,7 +95,7 @@ namespace Tizen.NUI
                     providerImage.ParentOrigin = transition.DefaultImageStyle.ParentOrigin;
                     providerImage.PivotPoint = transition.DefaultImageStyle.PivotPoint;
                     providerImage.PositionUsesPivotPoint = true;
-                    providerImage.AddRenderer(frame.Renderer);
+                    providerImage.AddRenderer(GetRenderer(frame));
                     if (mainView)
                     {
                         mainView.Add(providerImage);

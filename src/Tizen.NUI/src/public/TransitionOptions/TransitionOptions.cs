@@ -29,6 +29,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionOptions : IDisposable
     {
+        private bool disposed = false;
         private FrameProvider frameProvider;
         private DefaultFrameBroker frameBroker;
 
@@ -169,24 +170,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event AnimationEventHandler AnimationFinished;
 
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            if (frameBroker != null)
-            {
-                frameBroker.Dispose();
-            }
-
-            if (frameProvider != null)
-            {
-                frameProvider.Dispose();
-            }
-        }
-
         private void FrameBroker_TransitionAnimationFinished(bool direction)
         {
             AnimationFinished?.Invoke(direction);
@@ -234,6 +217,33 @@ namespace Tizen.NUI
         internal void SendLaunchRequest(AppControl appControl)
         {
             this.frameBroker.SendLaunchRequest(appControl, true);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (frameBroker != null)
+                {
+                    frameBroker.Dispose();
+                }
+
+                if (frameProvider != null)
+                {
+                    frameProvider.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Dispose for IDisposable pattern
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }
