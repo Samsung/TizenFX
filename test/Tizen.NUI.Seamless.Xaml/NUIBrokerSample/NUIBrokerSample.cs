@@ -45,7 +45,7 @@ namespace NUIBrokerSample
         private void EnableAppTransition(bool isCustomAnimation = true)
         {
             TransitionOptions = new TransitionOptions(window);
-            TransitionOptions.MainAnimatedView = animationView;
+            TransitionOptions.AnimatedTarget = animationView;
             TransitionOptions.EnableTransition = true;
 
             if (isCustomAnimation)
