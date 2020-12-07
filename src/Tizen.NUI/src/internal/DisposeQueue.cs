@@ -26,6 +26,7 @@ namespace Tizen.NUI
 
         ~DisposeQueue()
         {
+          NUILog.Error("DisposeQueue is terminated");
         }
 
         public static DisposeQueue Instance

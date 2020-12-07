@@ -43,7 +43,7 @@ namespace Tizen.NUI.Samples
                 image = new AnimatedImageView();
                 image.Size2D = new Size2D(boxSize.Width, GetRatio(50, boxSize.Height));
                 image.Position2D = new Position2D(0, title.Size2D.Height);
-                image.ResourceUrl = imageUrl;
+                //image.ResourceUrl = imageUrl;
                 image.Play();
                 this.Add(image);
 

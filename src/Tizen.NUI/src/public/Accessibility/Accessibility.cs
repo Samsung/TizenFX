@@ -43,6 +43,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         ~Accessibility()
         {
+          NUILog.Error("Accessibility is terminated");
         }
         #endregion Constructor, Distructor, Dispose
 

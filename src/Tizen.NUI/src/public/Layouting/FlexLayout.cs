@@ -99,8 +99,6 @@ namespace Tizen.NUI
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
 
-        private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
-
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
         internal struct MeasuredSize
@@ -266,7 +264,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            _rootFlex = Interop.FlexLayout.FlexLayout_New();
             measureChildDelegate = new ChildMeasureCallback(measureChild);
         }
 

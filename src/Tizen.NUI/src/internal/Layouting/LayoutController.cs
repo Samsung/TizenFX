@@ -385,7 +385,7 @@ namespace Tizen.NUI
         private void SetupAnimationForPosition(LayoutData layoutPositionData, TransitionComponents positionTransitionComponents)
         {
             // A removed item does not have a valid target position within the layout so don't try to position.
-            if (layoutPositionData.ConditionForAnimation != TransitionCondition.Remove)
+            if (layoutPositionData.ConditionForAnimation != TransitionConditions.Remove)
             {
                 _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Position",
                             new Vector3(layoutPositionData.Left,
@@ -490,13 +490,13 @@ namespace Tizen.NUI
         {
             LayoutTransition positionTransition = new LayoutTransition();
             LayoutTransition sizeTransition = new LayoutTransition();
-            TransitionCondition conditionForAnimators = layoutPositionData.ConditionForAnimation;
+            TransitionConditions conditionForAnimators = layoutPositionData.ConditionForAnimation;
 
             // LayoutChanged transitions overrides ChangeOnAdd and ChangeOnRemove as siblings will
             // reposition to the new layout not to the insertion/removal of a sibling.
-            if (layoutPositionData.ConditionForAnimation.HasFlag(TransitionCondition.LayoutChanged))
+            if (layoutPositionData.ConditionForAnimation.HasFlag(TransitionConditions.LayoutChanged))
             {
-                conditionForAnimators = TransitionCondition.LayoutChanged;
+                conditionForAnimators = TransitionConditions.LayoutChanged;
             }
 
             // Set up a default transitions, will be overwritten if inherited from parent or set explicitly.

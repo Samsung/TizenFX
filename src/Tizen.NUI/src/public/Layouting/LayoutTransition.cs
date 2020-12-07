@@ -15,6 +15,7 @@
  *
  */
 
+using System.ComponentModel;
 using System.Collections.Generic;
 using System;
 
@@ -66,6 +67,51 @@ namespace Tizen.NUI
         /// Animation when an item changes due to a  being removed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+
+        ChangeOnRemove = 16
+    }
+    
+    /// <summary>
+    /// The conditions for transitions.
+    /// </summary>
+    /// <since_tizen> 6.5 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [FlagsAttribute]
+    public enum TransitionConditions
+    {
+        /// <summary>
+        /// Default when a condition has not been set.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        Unspecified = 0,
+        /// <summary>
+        /// Animate changing layout to another layout.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+
+        LayoutChanged = 1,
+        /// <summary>
+        /// Animate adding item.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+
+        Add = 2,
+        /// <summary>
+        /// Animate removing item.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+
+        Remove = 4,
+        /// <summary>
+        /// Animation when an item changes due to a  being added.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+
+        ChangeOnAdd = 8,
+        /// <summary>
+        /// Animation when an item changes due to a  being removed.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
 
         ChangeOnRemove = 16
     }
@@ -156,7 +202,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LayoutTransition()
         {
-            Condition = TransitionCondition.Unspecified;
+            Condition = TransitionConditions.Unspecified;
             AnimatableProperty = AnimatableProperties.Position;
             Animator = null;
             TargetValue = 0;
@@ -169,7 +215,7 @@ namespace Tizen.NUI
         /// <param name="targetValue">target value of the property.</param>
         /// <param name="animator">Components to define the animator.</param>
         /// <since_tizen> 6 </since_tizen>
-        public LayoutTransition(TransitionCondition condition,
+        public LayoutTransition(TransitionConditions condition,
                                  AnimatableProperties animatableProperty,
                                  object targetValue,
                                  TransitionComponents animator)
@@ -185,7 +231,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
-        public TransitionCondition Condition { get; set; }
+        public TransitionConditions Condition { get; set; }
         /// <summary>
         /// Property to animate.
         /// </summary>
@@ -220,8 +266,8 @@ namespace Tizen.NUI
         /// <param name="transition">The transition to add.</param>
         /// <param name="explicitlySet">True is set explicitly, false if inherited.</param>
         static public void AddTransitionForCondition(
-                              Dictionary<TransitionCondition, TransitionList> targetTransitionList,
-                              TransitionCondition condition,
+                              Dictionary<TransitionConditions, TransitionList> targetTransitionList,
+                              TransitionConditions condition,
                               LayoutTransition transition,
                               bool explicitlySet)
         {
@@ -278,17 +324,17 @@ namespace Tizen.NUI
         /// <param name="transitionsForCondition">transition list to return as out parameter.</param>
         /// <returns>True if a transition list found for the given condition></returns>
         static public bool GetTransitionsListForCondition(
-                              Dictionary<TransitionCondition, TransitionList> sourceTransitionCollection,
-                              TransitionCondition condition,
+                              Dictionary<TransitionConditions, TransitionList> sourceTransitionCollection,
+                              TransitionConditions condition,
                               TransitionList transitionsForCondition)
         {
-            TransitionCondition resolvedCondition = condition;
+            TransitionConditions resolvedCondition = condition;
             bool matched = false;
             // LayoutChanged transitions overrides ChangeOnAdd and ChangeOnRemove as siblings will
             // reposition to the new layout not to the insertion/removal of a sibling.
-            if ((condition & TransitionCondition.LayoutChanged) == TransitionCondition.LayoutChanged)
+            if ((condition & TransitionConditions.LayoutChanged) == TransitionConditions.LayoutChanged)
             {
-                resolvedCondition = TransitionCondition.LayoutChanged;
+                resolvedCondition = TransitionConditions.LayoutChanged;
             }
 
             if (sourceTransitionCollection.TryGetValue(resolvedCondition, out transitionsForCondition))

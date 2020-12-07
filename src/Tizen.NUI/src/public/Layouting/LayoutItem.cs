@@ -58,7 +58,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
         /// </summary>
-        internal TransitionCondition ConditionForAnimation { get; set; }
+        internal TransitionConditions ConditionForAnimation { get; set; }
 
         /// <summary>
         /// [Draft] The View that this Layout has been assigned to.
@@ -167,7 +167,7 @@ namespace Tizen.NUI
         private void Initialize()
         {
             LayoutWithTransition = false;
-            _layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
+            _layoutPositionData = new LayoutData(this, TransitionConditions.Unspecified, 0, 0, 0, 0);
             _padding = new Extents(0, 0, 0, 0);
             _margin = new Extents(0, 0, 0, 0);
         }
@@ -186,9 +186,9 @@ namespace Tizen.NUI
             (parent?.Layout as LayoutGroup)?.Add(this);
 
             // If Add or ChangeOnAdd then do not update condition
-            if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
+            if (ConditionForAnimation.Equals(TransitionConditions.Unspecified))
             {
-                ConditionForAnimation = TransitionCondition.LayoutChanged;
+                ConditionForAnimation = TransitionConditions.LayoutChanged;
             }
         }
 
@@ -583,9 +583,9 @@ namespace Tizen.NUI
                 bool sizeChanged = (newWidth != oldWidth) || (newHeight != oldHeight);
 
                 // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
-                if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
+                if (ConditionForAnimation.Equals(TransitionConditions.Unspecified))
                 {
-                    ConditionForAnimation = TransitionCondition.LayoutChanged;
+                    ConditionForAnimation = TransitionConditions.LayoutChanged;
                 }
 
                 // Store new layout position data
@@ -614,7 +614,7 @@ namespace Tizen.NUI
                 }
 
                 // Reset condition for animation ready for next transition when required.
-                ConditionForAnimation = TransitionCondition.Unspecified;
+                ConditionForAnimation = TransitionConditions.Unspecified;
             }
 
             return changed;

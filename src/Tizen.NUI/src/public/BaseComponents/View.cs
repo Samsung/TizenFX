@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutItem _layout; // Exclusive layout assigned to this View.
 
         // List of transitions paired with the condition that uses the transition.
-        private Dictionary<TransitionCondition, TransitionList> _layoutTransitions;
+        private Dictionary<TransitionConditions, TransitionList> _layoutTransitions;
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private int _oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
@@ -2044,13 +2044,13 @@ namespace Tizen.NUI.BaseComponents
         /// Gets the List of transitions for this View.
         ///</summary>
         /// <since_tizen> 6 </since_tizen>
-        public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
+        public Dictionary<TransitionConditions, TransitionList> LayoutTransitions
         {
             get
             {
                 if (_layoutTransitions == null)
                 {
-                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                    _layoutTransitions = new Dictionary<TransitionConditions, TransitionList>();
                 }
                 return _layoutTransitions;
             }
@@ -2074,7 +2074,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (_layoutTransitions == null)
                 {
-                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                    _layoutTransitions = new Dictionary<TransitionConditions, TransitionList>();
                 }
 
                 LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);

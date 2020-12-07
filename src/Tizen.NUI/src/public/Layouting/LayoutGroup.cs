@@ -60,9 +60,9 @@ namespace Tizen.NUI
             LayoutChildren.Add(childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
-            childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Add;
+            childLayout.ConditionForAnimation = ConditionForAnimation | TransitionConditions.Add;
             // Child's parent sets all other children not being added to a ChangeOnAdd transition.
-            SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnAdd);
+            SetConditionsForAnimationOnLayoutGroup(TransitionConditions.ChangeOnAdd);
             OnChildAdd(childLayout);
             RequestLayout();
         }
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         {
             foreach (LayoutItem childLayout in LayoutChildren)
             {
-                childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
+                childLayout.ConditionForAnimation = ConditionForAnimation | TransitionConditions.Remove;
                 childLayout.Owner = null;
             }
             LayoutChildren.Clear();
@@ -105,14 +105,14 @@ namespace Tizen.NUI
                             NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
                         }
 
-                        childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
+                        childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionConditions.Remove;
                         // Add LayoutItem to the transition stack so can animate it out.
                         NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
                     }
 
                     // Reset condition for animation ready for next transition when required.
                     // SetFrame usually would do this but this LayoutItem is being removed.
-                    childLayout.ConditionForAnimation = TransitionCondition.Unspecified;
+                    childLayout.ConditionForAnimation = TransitionConditions.Unspecified;
                     childRemoved = true;
 
                     break;
@@ -122,7 +122,7 @@ namespace Tizen.NUI
             if (childRemoved)
             {
                 // If child removed then set all siblings not being added to a ChangeOnRemove transition.
-                SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnRemove);
+                SetConditionsForAnimationOnLayoutGroup(TransitionConditions.ChangeOnRemove);
             }
 
             RequestLayout();
@@ -199,42 +199,42 @@ namespace Tizen.NUI
         /// Set all children in a LayoutGroup to the supplied condition.
         /// Children with Add or Remove conditions should not be changed.
         /// </summary>
-        private void SetConditionsForAnimationOnLayoutGroup(TransitionCondition conditionToSet)
+        private void SetConditionsForAnimationOnLayoutGroup(TransitionConditions conditionToSet)
         {
             foreach (LayoutItem childLayout in LayoutChildren)
             {
                 switch (conditionToSet)
                 {
-                    case TransitionCondition.ChangeOnAdd:
+                    case TransitionConditions.ChangeOnAdd:
                         {
-                            // If other children also being added (TransitionCondition.Add) then do not change their
+                            // If other children also being added (TransitionConditions.Add) then do not change their
                             // conditions, Continue to use their Add transitions.
-                            if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Add))
+                            if (childLayout.ConditionForAnimation.HasFlag(TransitionConditions.Add))
                             {
                                 break;  // Child being Added so don't update it's condition
                             }
                             else
                             {
                                 // Set siblings for the child being added to use the ChangeOnAdd transition.
-                                childLayout.ConditionForAnimation = TransitionCondition.ChangeOnAdd;
+                                childLayout.ConditionForAnimation = TransitionConditions.ChangeOnAdd;
                             }
                             break;
                         }
-                    case TransitionCondition.ChangeOnRemove:
+                    case TransitionConditions.ChangeOnRemove:
                         {
-                            if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Remove))
+                            if (childLayout.ConditionForAnimation.HasFlag(TransitionConditions.Remove))
                             {
                                 break; // Child being Removed so don't update it's condition
                             }
                             else
                             {
-                                childLayout.ConditionForAnimation = TransitionCondition.ChangeOnRemove;
+                                childLayout.ConditionForAnimation = TransitionConditions.ChangeOnRemove;
                             }
                             break;
                         }
-                    case TransitionCondition.LayoutChanged:
+                    case TransitionConditions.LayoutChanged:
                         {
-                            childLayout.ConditionForAnimation = TransitionCondition.LayoutChanged;
+                            childLayout.ConditionForAnimation = TransitionConditions.LayoutChanged;
                             break;
                         }
                 }
