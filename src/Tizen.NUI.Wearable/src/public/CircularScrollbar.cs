@@ -137,6 +137,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         static CircularScrollbar()
         {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
         }
 
         #endregion Constructors
