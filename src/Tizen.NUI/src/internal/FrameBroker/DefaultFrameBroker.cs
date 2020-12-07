@@ -79,11 +79,6 @@ namespace Tizen.NUI
             isAnimating = false;
         }
 
-        private bool Timer_Tick(object source, Timer.TickEventArgs e)
-        {
-            return false;
-        }
-
         private void PlayAnimateTo(FrameData frame, TransitionAnimation transition)
         {
             if (transition != null)
