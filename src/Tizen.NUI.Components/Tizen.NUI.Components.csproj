@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\**">
+    <None Update="res\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
