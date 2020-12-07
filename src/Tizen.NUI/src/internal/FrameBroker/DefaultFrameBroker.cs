@@ -28,9 +28,14 @@ namespace Tizen.NUI
         private ImageView providerImage;
         private bool isAnimating;
 
-        public delegate void AnimationEventHandler();
+        public delegate void AnimationEventHandler(bool direction);
         internal event AnimationEventHandler AnimationInitialized;
         internal event AnimationEventHandler AnimationFinished;
+
+        internal View mainView;
+        private bool direction;
+
+        internal Animation animation;
 
         internal DefaultFrameBroker(Window window) : base(window)
         {
@@ -40,16 +45,17 @@ namespace Tizen.NUI
 
         protected override void OnFrameResumed(FrameData frame)
         {
-            if(isAnimating)
+            base.OnFrameResumed(frame);
+
+            direction = frame.DirectionForward;
+
+            if (isAnimating)
             {
                 return;
             }
             isAnimating = true;
-            base.OnFrameResumed(frame);
-            if (AnimationInitialized != null)
-            {
-                AnimationInitialized();
-            }
+
+            AnimationInitialized?.Invoke(frame.DirectionForward);
 
             if (frame.DirectionForward)
             {
@@ -63,20 +69,65 @@ namespace Tizen.NUI
             StartAnimation();
         }
 
-        private void PlayAnimateTo(FrameData frame, TransitionAnimation animation)
+        protected override void OnFramePaused()
         {
-            if (animation)
+            base.OnFramePaused();
+            animation?.Stop();
+
+            ResetImage();
+
+            isAnimating = false;
+        }
+
+        private bool Timer_Tick(object source, Timer.TickEventArgs e)
+        {
+            return false;
+        }
+
+        private void PlayAnimateTo(FrameData frame, TransitionAnimation transition)
+        {
+            if (transition != null)
             {
-                providerImage = frame.Image;
-                providerImage.PositionUsesPivotPoint = true;
-                providerImage.PivotPoint = animation.GetDefaultPivotPoint();
-                providerImage.ParentOrigin = animation.GetDefaultParentOrigin();
-                providerImage.Position = animation.GetDefaultPosition();
-                providerImage.Size = animation.GetDefaultSize();
+                //ResetImage();
+                if (!providerImage)
+                {
+                    providerImage = new ImageView(transition.DefaultImageStyle);
+                    providerImage.ParentOrigin = transition.DefaultImageStyle.ParentOrigin;
+                    providerImage.PivotPoint = transition.DefaultImageStyle.PivotPoint;
+                    providerImage.PositionUsesPivotPoint = true;
+                    providerImage.AddRenderer(frame.Renderer);
+                    if (mainView)
+                    {
+                        mainView.Add(providerImage);
+                        providerImage.LowerToBottom();
+                    }
+                    else
+                    {
+                        window.Add(providerImage);
+                    }
+                }
+                else
+                {
+                    providerImage.ApplyStyle(transition.DefaultImageStyle.Clone());
+                }
 
-                window.Add(providerImage);
+                providerImage.Show();
+                int propertyCount = transition.AnimationDataList.Count;
+                animation = new Animation(transition.DurationMilliSeconds+80);
+                animation.Properties = new string[propertyCount];
+                animation.DestValue = new string[propertyCount];
+                animation.StartTime = new int[propertyCount];
+                animation.EndTime = new int[propertyCount];
 
+                for (int i = 0; i < propertyCount; i++)
+                {
+                    animation.Properties[i] = transition.AnimationDataList[i].Property;
+                    animation.DestValue[i] = transition.AnimationDataList[i].DestValue;
+                    animation.StartTime[i] = 80+transition.AnimationDataList[i].StartTime;
+                    animation.EndTime[i] = 80+transition.AnimationDataList[i].EndTime;
+                }
                 animation.PlayAnimateTo(providerImage);
+                animation.Finished += Ani_Finished;
             }
             else
             {
@@ -86,8 +137,8 @@ namespace Tizen.NUI
 
 
         private TransitionAnimation forwardAnimation;
-        internal TransitionAnimation ForwardAnimation 
-        { 
+        internal TransitionAnimation ForwardAnimation
+        {
             get
             {
                 return forwardAnimation;
@@ -95,7 +146,6 @@ namespace Tizen.NUI
             set
             {
                 forwardAnimation = value;
-                forwardAnimation.Finished += Ani_Finished;
             }
         }
 
@@ -103,31 +153,31 @@ namespace Tizen.NUI
         internal TransitionAnimation BackwardAnimation
         {
             get
-            { 
+            {
                 return backwardAnimation;
             }
             set
             {
                 backwardAnimation = value;
-                backwardAnimation.Finished += Ani_Finished;
             }
         }
 
         private void Ani_Finished(object sender, EventArgs e)
         {
-            if (AnimationFinished != null)
-            {
-                AnimationFinished();
-            }
+            FinishAnimation();
 
+            AnimationFinished?.Invoke(direction);
+        }
+
+        private void ResetImage()
+        {
             if (providerImage != null)
             {
-                providerImage.Unparent();
-                providerImage.Dispose();
-                providerImage = null;
+                providerImage.Hide();
+                //providerImage.Unparent();
+                //providerImage.Dispose();
+                //providerImage = null;
             }
-            FinishAnimation();
-            isAnimating = false;
         }
     }
 }

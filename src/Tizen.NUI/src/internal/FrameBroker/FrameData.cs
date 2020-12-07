@@ -127,6 +127,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the Renderer.
+        /// </summary>
+        internal Renderer Renderer
+        {
+            get
+            {
+                renderer = new Renderer(CreateQuadGeometry(), CreateShader());
+                textureSet = new TextureSet();
+
+                switch (Type)
+                {
+                    case FrameType.RemoteSurfaceTbmSurface:
+                        if (TbmSurface == null)
+                        {
+                            return null;
+                        }
+                        textureSet.SetTexture(0, new Texture(TbmSurface));
+                        renderer.SetTextures(textureSet);
+                        break;
+                    default:
+                        break;
+                }
+
+                return renderer;
+            }
+        }
+
+        /// <summary>
         /// Gets the image view.
         /// </summary>
         internal ImageView Image

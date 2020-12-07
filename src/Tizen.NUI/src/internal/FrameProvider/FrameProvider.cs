@@ -37,7 +37,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="window">The window instance of Ecore_Wl2_Window pointer.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
-        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
         /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -128,7 +128,7 @@ namespace Tizen.NUI
         public void Dispose()
         {
             Dispose(true);
-         
+
         }
     }
 }
