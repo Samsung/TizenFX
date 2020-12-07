@@ -35,7 +35,7 @@ namespace Tizen.NUI
 
         private bool enableTransition = false;
         private Window mainWindow;
-        private View mainAnimatedView;
+        private View animatedTarget;
         private string sharedId;
 
         /// <summary>
@@ -53,15 +53,15 @@ namespace Tizen.NUI
         /// Set animated view of seamless animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View MainAnimatedView
+        public View AnimatedTarget
         {
             get
             {
-                return mainAnimatedView;
+                return animatedTarget;
             }
             set
             {
-                mainAnimatedView = value;
+                animatedTarget = value;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.NUI
                 if (value)
                 {
                     frameBroker = new DefaultFrameBroker(mainWindow);
-                    frameBroker.mainView = mainAnimatedView;
+                    frameBroker.mainView = animatedTarget;
                     frameBroker.AnimationInitialized += FrameBroker_TransitionAnimationInitialized;
                     frameBroker.AnimationFinished += FrameBroker_TransitionAnimationFinished;
                     EnableProvider();
