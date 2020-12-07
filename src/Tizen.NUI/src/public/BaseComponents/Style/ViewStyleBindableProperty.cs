@@ -868,6 +868,13 @@ namespace Tizen.NUI.BaseComponents
             return viewStyle.cornerRadius;
         });
 
+        /// <summary> A BindableProperty for CornerRadiusPolicy </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType?), typeof(ViewStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).cornerRadiusPolicy = (VisualTransformPolicyType?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadiusPolicy
+        );
+
         /// <summary>
         /// EnableControlState property
         /// </summary>

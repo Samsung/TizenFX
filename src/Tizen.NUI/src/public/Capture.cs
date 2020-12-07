@@ -342,7 +342,7 @@ namespace Tizen.NUI
         public string GenerateUrl()
         {
             string url = "";
-            url = Interop.Capture.GenerageUrl(swigCPtr);
+            url = Interop.Capture.GenerateUrl(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return url;
         }

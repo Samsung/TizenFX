@@ -493,6 +493,12 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
+            /// <summary>
+            /// The corner radius policy of the visual.
+            /// Whether the corner radius value is relative (percentage [0.0f to 1.0f] of the visual size) or absolute (in world units).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerRadiusPolicy = NDalic.VISUAL_PROPERTY_MIX_COLOR + 4;
         }
 
         /// <summary>
