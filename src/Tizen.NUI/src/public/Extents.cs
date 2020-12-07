@@ -97,10 +97,15 @@ namespace Tizen.NUI
         /// Copy other extents
         /// </summary>
         /// <param name="that"></param>
+        /// <exception cref="ArgumentNullException"> Thrown when that is null. </exception>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public void CopyFrom(Extents that)
         {
+            if (null == that)
+            {
+                throw new ArgumentNullException(nameof(that));
+            }
             Interop.Extents.Extents_start_set(swigCPtr, that.Start);
             Interop.Extents.Extents_end_set(swigCPtr, that.End);
             Interop.Extents.Extents_top_set(swigCPtr, that.Top);
@@ -122,8 +127,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Start extent.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Start = 1; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Start
         {
             set
@@ -145,8 +160,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The End extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.End = 2; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort End
         {
             set
@@ -169,8 +194,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Top extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Top = 3; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Top
         {
             set
@@ -193,8 +228,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Bottom Extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Bottom = 4; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Bottom
         {
             set

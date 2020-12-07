@@ -98,12 +98,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (defaultTheme == null && !isLoadingDefault)
-                {
-                    isLoadingDefault = true;
-                    defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
-                    isLoadingDefault = false;
-                }
+                EnsureDefaultTheme();
                 return defaultTheme;
             }
             set => defaultTheme = (Theme)value?.Clone();
@@ -302,6 +297,16 @@ namespace Tizen.NUI
             return (Theme)result?.Clone();
         }
 
+        internal static void EnsureDefaultTheme()
+        {
+            if (defaultTheme == null && !isLoadingDefault)
+            {
+                isLoadingDefault = true;
+                defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
+                isLoadingDefault = false;
+            }
+        }
+
         private static Theme LoadBuiltinTheme(string id)
         {
             var loaded = new Theme()
@@ -313,7 +318,7 @@ namespace Tizen.NUI
 
             foreach (var project in nuiThemeProjects)
             {
-                string path = StyleManager.FrameworkResourcePath + "/Theme/" + project + "_" + id + ".xaml";
+                string path = FrameworkInformation.ResourcePath + "/Theme/" + project + "_" + id + ".xaml";
 
                 if (!File.Exists(path))
                 {

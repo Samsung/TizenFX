@@ -74,11 +74,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 return mUrl;
             }
-            set
-            {
-                mDirtyFlag = true;
-                mUrl = value;
-            }
         }
 
         /// <summary>
@@ -91,11 +86,6 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return mResourceURLs;
-            }
-            set
-            {
-                mDirtyFlag = true;
-                mResourceURLs = value;
             }
         }
 
@@ -297,7 +287,6 @@ namespace Tizen.NUI.BaseComponents
         int mLoopCount = -1;
         bool mDirtyFlag = false;
         PropertyMap mMap;
-        const string tag = "NUITEST";
         #endregion Private
     }
 }

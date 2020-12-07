@@ -51,7 +51,7 @@ namespace Tizen.NUI
         public SWIGTYPE_p_unsigned_short cast()
         {
             global::System.IntPtr cPtr = Interop.ushortp.ushortp_cast(swigCPtr);
-            SWIGTYPE_p_unsigned_short ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_short(cPtr, false);
+            SWIGTYPE_p_unsigned_short ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_short(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

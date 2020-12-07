@@ -94,8 +94,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Width property for the width component of size
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Size size = new Size();
+        /// size.Width = 0.1f; 
+        /// // Please USE like this
+        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
+        /// Size size = new Size(width, height, depth);
+        /// </code>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
         public float Width
         {
             set
@@ -118,8 +128,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Height property for the height component of size.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Size size = new Size();
+        /// size.Height = 0.5f; 
+        /// // Please USE like this
+        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
+        /// Size size = new Size(width, height, depth);
+        /// </code>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
         public float Height
         {
             set
@@ -142,8 +162,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The Depth property for the depth component of size.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Size size = new Size();
+        /// size.Depth = 0.9f; 
+        /// // Please USE like this
+        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
+        /// Size size = new Size(width, height, depth);
+        /// </code>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
         public float Depth
         {
             set
@@ -172,7 +202,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator +(Size arg1, Size arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -184,7 +214,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator -(Size arg1, Size arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -195,7 +225,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator -(Size arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -207,7 +237,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator *(Size arg1, Size arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -219,7 +249,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator *(Size arg1, float arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -231,7 +261,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator /(Size arg1, Size arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -243,7 +273,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static Size operator /(Size arg1, float arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -325,7 +355,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static implicit operator Vector3(Size size)
         {
-            return new Vector3(size.Width, size.Height, size.Depth);
+            return new Vector3((float)size?.Width, (float)size.Height, (float)size.Depth);
         }
 
         /// <summary>
@@ -335,7 +365,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static implicit operator Size(Vector3 vec)
         {
-            return new Size(vec.Width, vec.Height, vec.Depth);
+            return new Size((int)vec?.Width, (int)vec.Height, (int)vec.Depth);
         }
 
         /// <summary>
@@ -347,7 +377,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Size(Size2D size2d)
         {
-            return new Size(size2d.Width, size2d.Height, 0);
+            return new Size((int)size2d?.Width, (int)size2d.Height, 0);
         }
 
 

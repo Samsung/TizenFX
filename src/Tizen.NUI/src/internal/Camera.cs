@@ -69,6 +69,10 @@ namespace Tizen.NUI
 
         public static Camera DownCast(BaseHandle handle)
         {
+            if (handle == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(handle));
+            }
             Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

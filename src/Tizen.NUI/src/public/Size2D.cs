@@ -72,8 +72,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The property for the width component of a size.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size2D(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Size2D size2d = new Size2D();
+        /// size2d.Width = 1; 
+        /// // Please USE like this
+        /// int width = 1, height = 2;
+        /// Size2D size2d = new Size2D(width, height);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor")]
         public int Width
         {
             set
@@ -96,8 +106,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The property for the height component of a size.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size2D(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Size2D size2d = new Size2D();
+        /// size2d.Height = 2; 
+        /// // Please USE like this
+        /// int width = 1, height = 2;
+        /// Size2D size2d = new Size2D(width, height);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor")]
         public int Height
         {
             set
@@ -126,7 +146,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator +(Size2D arg1, Size2D arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -138,7 +158,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator -(Size2D arg1, Size2D arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -149,7 +169,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator -(Size2D arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -161,7 +181,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator *(Size2D arg1, Size2D arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -174,7 +194,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator *(Size2D arg1, int arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -186,7 +206,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator /(Size2D arg1, Size2D arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -198,7 +218,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Size2D operator /(Size2D arg1, int arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -209,7 +229,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Size2D size)
         {
-            return new Vector2((float)size.Width, (float)size.Height);
+            return new Vector2((float)size?.Width, (float)size.Height);
         }
 
         /// <summary>
@@ -220,7 +240,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Size2D(Vector2 vector2)
         {
-            return new Size2D((int)vector2.X, (int)vector2.Y);
+            return new Size2D((int)vector2?.X, (int)vector2.Y);
         }
 
         /// <summary>
@@ -232,7 +252,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Size2D(Size size)
         {
-            return new Size2D((int)size.Width, (int)size.Height);
+            return new Size2D((int)size?.Width, (int)size.Height);
         }
 
 

@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// Creates a new widgetView manager object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(Interop.WidgetViewManager.WidgetViewManager_New(Application.getCPtr(nuiApplication.ApplicationHandle), appId), true)
+        public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(Interop.WidgetViewManager.WidgetViewManager_New(Application.getCPtr(nuiApplication?.ApplicationHandle), appId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
