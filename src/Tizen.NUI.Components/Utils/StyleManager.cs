@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return ThemeManager.CurrentTheme?.Id;
+                return ThemeManager.CurrentTheme?.Id ?? ThemeManager.DefaultTheme.Id;
             }
             set
             {

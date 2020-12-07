@@ -213,7 +213,11 @@ namespace Tizen.NUI.Wearable
 
         #region Constructors
 
-        static CircularSlider() { }
+        static CircularSlider()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
+
         /// <summary>
         /// The constructor of CircularSlider.
         /// </summary>
