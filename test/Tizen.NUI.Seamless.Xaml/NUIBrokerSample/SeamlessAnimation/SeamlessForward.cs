@@ -9,7 +9,7 @@ namespace NUIBrokerSample
     class SeamlessForward : TransitionAnimation
     {
         private string[] properties = { "SizeWidth", "SizeHeight", "PositionX", "PositionY", "Opacity" };
-        private string[] destValue = { "1080", "1920", "0", "0", "1" };
+        private string[] destinationValue = { "1080", "1920", "0", "0", "1" };
 
         public SeamlessForward(int durationMilliSeconds) : base(durationMilliSeconds)
         {
@@ -25,7 +25,7 @@ namespace NUIBrokerSample
                 data.StartTime = 0;
                 data.EndTime = durationMilliSeconds;
                 data.Property = property;
-                data.DestValue = destValue[idx++];
+                data.DestinationValue = destinationValue[idx++];
                 AddAnimationData(data);
             }
         }
