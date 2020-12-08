@@ -24,7 +24,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete]
+        [ObsoleteAttribute(" ", false)]
         public static void SetBinding<TSource>(this BindableObject self, BindableProperty targetProperty, Expression<Func<TSource, object>> sourceProperty, BindingMode mode = BindingMode.Default,
                                                IValueConverter converter = null, string stringFormat = null)
         {
