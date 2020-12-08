@@ -248,6 +248,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_EDITING_get")]
             public static extern int EnableEditingGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_POSITION_get")]
+            public static extern int PrimaryCursorPositionGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone")]
             public static extern int SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
