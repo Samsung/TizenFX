@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="NUIMusicPlayer.XamlPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View x:Name="profileContainer" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" BackgroundColor="White" Position2D="0,150" Size2D="96,96" CornerRadius="48" Opacity="0">
+        <View x:Name="profileContainer_inner" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" BackgroundColor="Black" Size2D="94,94" CornerRadius="47">
+            <ImageView x:Name="profileImage" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" ResourceUrl="*Resource*/profile.jpg" Size2D="80,80" CornerRadius="40"/>
+        </View>
+    </View>
+
+    <View x:Name="addContainer" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" BackgroundColor="White" Position2D="33,183" Size2D="40,40" CornerRadius="20" Opacity="0">
+        <ImageView x:Name="addIcon" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" ResourceUrl="*Resource*/add.png" Size2D="16,16"/>
+    </View>
+    <ImageView x:Name="backBtn" PositionUsesPivotPoint="True" ParentOrigin="BottomLeft" PivotPoint="Center" ResourceUrl="*Resource*/arrow-89-128.png" Position2D="50,-60" Size2D="40,40" TouchEvent="OnBackTouchEvent"/>
+
+    <TextLabel x:Name="profileText1" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="PIANO DAILY" HorizontalAlignment="Center" VerticalAlignment="Top" TextColor="0.95,0.95,0.95,1.0" PointSize="20" Position2D="0,220" WidthResizePolicy="FillToParent" Opacity="0"/>
+    <TextLabel x:Name="profileText2" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="July 2020" HorizontalAlignment="Center" VerticalAlignment="Top" TextColor="0.70,0.70,0.70,1.0" PointSize="13" Position2D="0,243" WidthResizePolicy="FillToParent" Opacity="0"/>
+
+    <TextLabel x:Name="info1" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="9,465&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Top" TextColor="0.3, 0.3, 0.3, 1.0" PointSize="20" Position2D="-65,400" WidthResizePolicy="FillToParent"/>
+    <ImageView x:Name="info1Icon" ParentOrigin="TopCenter" ResourceUrl="*Resource*/bar-chart-5-128.png" Color="0.3, 0.3, 0.3, 1.0" Position2D="-125,392" Size2D="18,18"/>
+
+    <TextLabel x:Name="info2" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="5h 35m&#x0a;" HorizontalAlignment="Center" VerticalAlignment="Top" TextColor="0.3, 0.3, 0.3, 1.0" PointSize="20" Position2D="65,400" WidthResizePolicy="FillToParent"/>
+    <ImageView x:Name="info2Icon" ParentOrigin="TopCenter" ResourceUrl="*Resource*/clock-128.png" Color="0.3, 0.3, 0.3, 1.0" Position2D="-2,392" Size2D="18,18"/>
+
+    <TextLabel  x:Name="cinematicText" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="Cinematic Piano" HorizontalAlignment="Center" VerticalAlignment="Top" TextColor="0.95, 0.95, 0.95, 1.0" PointSize="70" Position2D="0,320" WidthResizePolicy="FillToParent">
+        <TextLabel.FontStyle>
+            <PropertyMap>
+                <KeyValue Key="weight" Value="bold" />
+            </PropertyMap>
+        </TextLabel.FontStyle>
+    </TextLabel>
+
+    <ImageView x:Name="imgView" PositionUsesPivotPoint="True" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" ResourceUrl="*Resource*/pic_1.jpg" Size2D="850,850"/>
+
+    <TextLabel x:Name="contents" PositionUsesPivotPoint="True" ParentOrigin="TopCenter" PivotPoint="Center" Text="Beautiful, dreamy and dramtic&#x0a; instrumental neo classical piano scores&#x0a; from movies and tv series.&#x0a;" MultiLine="True" HorizontalAlignment="Center"
+               VerticalAlignment="Top" TextColor="0.4, 0.4, 0.4, 1.0" PointSize="30" Position2D="0,500" WidthResizePolicy="FillToParent"/>
+
+    <View x:Name="playBtn" PositionUsesPivotPoint="True" ParentOrigin="BottomCenter" PivotPoint="Center" BackgroundColor="White" Position2D="0,-70" Size2D="88,88" CornerRadius="44">
+        <ImageView x:Name="playIcon" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center" ResourceUrl="*Resource*/play-128.png" Color="Black" Size2D="26,26"/>
+    </View>
+
+</View>

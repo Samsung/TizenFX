@@ -84,6 +84,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Color> backgroundColorSelector;
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
+        private VisualTransformPolicyType? cornerRadiusPolicy;
 
         static ViewStyle() { }
 
@@ -674,6 +675,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<float?>)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        /// <summary>
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 1.0f] of the view size) or absolute (in world units).
+        /// It is absolute by default.
+        /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualTransformPolicyType? CornerRadiusPolicy
+        {
+            get => (VisualTransformPolicyType?)GetValue(CornerRadiusPolicyProperty);
+            set => SetValue(CornerRadiusPolicyProperty, value);
         }
 
         /// <summary>

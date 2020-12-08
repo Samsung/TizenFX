@@ -1028,9 +1028,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override void UpdateCornerRadius(float value)
+        internal override void ApplyCornerRadius()
         {
-            base.UpdateCornerRadius(value);
+            base.ApplyCornerRadius();
 
             UpdateImage(0, null);
         }
