@@ -126,7 +126,7 @@ namespace Tizen.NUI
         private SwigDelegateItemFactory_1 swigDelegate1;
         private SwigDelegateItemFactory_2 swigDelegate2;
 
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { };
+        private static global::System.Type[] swigMethodTypes0 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };
         private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(uint), typeof(View) };
     }
