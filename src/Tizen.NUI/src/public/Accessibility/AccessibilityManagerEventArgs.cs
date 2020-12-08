@@ -133,5 +133,22 @@ namespace Tizen.NUI.Accessibility
                 }
             }
         }
+
+        /// <summary>
+        /// Event argument that passed via StatusEnabled signal
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class StatusEnabledEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Accessibility status.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool statusEnabled
+            {
+                get;
+                set;
+            }
+        }
     }
 }

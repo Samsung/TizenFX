@@ -171,6 +171,11 @@ namespace Tizen.NUI.Accessibility
         private EventHandler<FocusOvershotEventArgs> _accessibilityManagerFocusOvershotEventHandler;
         private FocusOvershotEventCallbackDelegate _accessibilityManagerFocusOvershotEventCallbackDelegate;
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void StatusEnabledEventCallbackDelegate(bool statusEnabled);
+        private event EventHandler<StatusEnabledEventArgs> _statusEnabledEventHandler;
+        private StatusEnabledEventCallbackDelegate _statusEnabledEventCallbackDelegate;
+
         // Accessibility action signals
 
         /// <summary>
@@ -1130,6 +1135,36 @@ namespace Tizen.NUI.Accessibility
                 }
 
                 _accessibilityManagerFocusOvershotEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// This signal is emitted when accessibility status enabled.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<StatusEnabledEventArgs> StatusEnabled
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (_statusEnabledEventHandler == null)
+                {
+                    _statusEnabledEventHandler += value;
+
+                    _statusEnabledEventCallbackDelegate = new StatusEnabledEventCallbackDelegate(OnStatusEnabled);
+                    this.StatusEnabledSignal().Connect(_statusEnabledEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (_statusEnabledEventHandler != null)
+                {
+                    this.StatusEnabledSignal().Disconnect(_statusEnabledEventCallbackDelegate);
+                }
+
+                _statusEnabledEventHandler -= value;
             }
         }
     }

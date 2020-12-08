@@ -374,6 +374,19 @@ namespace Tizen.NUI.Accessibility
             }
         }
 
+        // Callback for AccessibilityManager StatusEnabledSignal
+        private void OnStatusEnabled(bool statusEnabled)
+        {
+            StatusEnabledEventArgs e = new StatusEnabledEventArgs();
+
+            e.statusEnabled = statusEnabled;
+
+            if (_statusEnabledEventHandler != null)
+            {
+                _statusEnabledEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// Enumeration for accessibility that needs four information which will be read by screen-reader.
         ///
@@ -876,6 +889,13 @@ namespace Tizen.NUI.Accessibility
         internal AccessibilityFocusOvershotSignal FocusOvershotSignal()
         {
             AccessibilityFocusOvershotSignal ret = new AccessibilityFocusOvershotSignal(Interop.AccessibilityManager.AccessibilityManager_FocusOvershotSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal AccessibilityStatusEnabledSignal StatusEnabledSignal()
+        {
+            AccessibilityStatusEnabledSignal ret = new AccessibilityStatusEnabledSignal(Interop.AccessibilityManager.AccessibilityManager_StatusEnabledSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
