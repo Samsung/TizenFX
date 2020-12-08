@@ -655,7 +655,7 @@ namespace Tizen.NUI.Xaml
             if (!IsVisibleFrom(getter, context.RootElement))
                 return false;
 
-            value = getter.Invoke(element, new object[] { });
+            value = getter.Invoke(element, System.Array.Empty<object>());
             return true;
         }
 
