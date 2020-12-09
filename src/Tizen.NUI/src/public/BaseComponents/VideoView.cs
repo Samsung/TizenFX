@@ -154,6 +154,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Using Uri class to provide safe sevice and secure API.
+        /// Creates an initialized VideoView.
+        /// If the string is empty, VideoView will not display anything.
+        /// </summary>
+        /// <param name="uri">The URI of the video resource to display.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(Uri uri) : this(Interop.VideoView.New((uri == null) ? String.Empty : uri.AbsoluteUri), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Creates an initialized VideoView.<br />
         /// If the string is empty, VideoView will not display anything.<br />
         /// </summary>
@@ -172,6 +185,20 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="swCodec">Video rendering by H/W codec if false.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VideoView(string url, bool swCodec) : this(Interop.VideoView.New(url, swCodec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Using Uri class to provide safe sevice and secure API.
+        /// Creates an initialized VideoView.
+        /// If the string is empty, VideoView will not display anything.
+        /// </summary>
+        /// <param name="uri">The URI of the video resource to display.</param>
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(Uri uri, bool swCodec) : this(Interop.VideoView.New((uri == null) ? String.Empty : uri.AbsoluteUri, swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
