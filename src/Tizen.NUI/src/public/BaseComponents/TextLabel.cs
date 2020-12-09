@@ -81,16 +81,6 @@ namespace Tizen.NUI.BaseComponents
         private TextLabelSelectorData selectorData;
 
         /// <summary>
-        /// Return a copied Style instance of the TextLabel.
-        /// </summary>
-        /// <remarks>
-        /// It returns copied style instance so that changing it does not effect to the view.
-        /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Style => new TextLabelStyle(this);
-
-        /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
