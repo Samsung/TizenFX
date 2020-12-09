@@ -667,7 +667,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
-            ClippingMode = ClippingModeType.ClipChildren;
+            ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             //Default Scrolling child
             ContentContainer = new View()
