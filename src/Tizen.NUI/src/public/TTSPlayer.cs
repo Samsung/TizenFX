@@ -22,6 +22,31 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
+    /// TTSPlayer's play state changed event argument.
+    /// </summary>
+    /// <since_tizen> 6.5 </since_tizen>
+    public class TTSStateChangedEventArgs : EventArgs
+    {
+        internal TTSStateChangedEventArgs(TTSPlayer.TTSState prevState, TTSPlayer.TTSState nextState)
+        {
+            PrevState = prevState;
+            NextState = nextState;
+        }
+
+        /// <summary>
+        /// The previous tts state.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        public TTSPlayer.TTSState PrevState { get; }
+
+        /// <summary>
+        /// The next tts state.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        public TTSPlayer.TTSState NextState { get; }
+    }
+
+    /// <summary>
     /// The Text-to-speech (TTS) player.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -47,11 +72,14 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void StateChangedEventCallbackType(TTSState prevState, TTSState nextState);
         private event EventHandler<StateChangedEventArgs> _stateChangedEventHandler;
+        private event EventHandler<TTSStateChangedEventArgs> ttsStateChangedEventHandler;
 
         /// <summary>
         /// State changed event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API12. Please use TTSStateChanged events instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -67,6 +95,33 @@ namespace Tizen.NUI
             remove
             {
                 _stateChangedEventHandler -= value;
+
+                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
+                {
+                    StateChangedSignal().Disconnect(_stateChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// TTSState changed event.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        public event EventHandler<TTSStateChangedEventArgs> TTSStateChanged
+        {
+            add
+            {
+                if (_stateChangedEventHandler == null)
+                {
+                    _stateChangedEventCallback = OnStateChanged;
+                    StateChangedSignal().Connect(_stateChangedEventCallback);
+                }
+
+                ttsStateChangedEventHandler += value;
+            }
+            remove
+            {
+                ttsStateChangedEventHandler -= value;
 
                 if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false && _stateChangedEventCallback != null)
                 {
@@ -250,6 +305,8 @@ namespace Tizen.NUI
             {
                 _stateChangedEventHandler(this, e);
             }
+
+            ttsStateChangedEventHandler?.Invoke(this, new TTSStateChangedEventArgs(prevState, nextState));
         }
 
         /// <summary>
