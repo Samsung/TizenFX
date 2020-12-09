@@ -39,7 +39,7 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 3 </since_tizen>
-        public class Attachment
+        public sealed class Attachment
         {
             /// <since_tizen> 3 </since_tizen>
             public enum Mask

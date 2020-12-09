@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
@@ -416,6 +417,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Graphics Backend Type.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete("Please do not use! This will be deprecated!")]
     public class Graphics

@@ -287,7 +287,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class to get resources in current application.
     /// </summary>
-    public class GetResourcesProvider
+    public sealed class GetResourcesProvider
     {
         /// <summary>
         /// Get resources in current application.
