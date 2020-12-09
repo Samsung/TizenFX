@@ -41,6 +41,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class Attachment
         {
+            /// Test
             /// <since_tizen> 3 </since_tizen>
             public enum Mask
             {

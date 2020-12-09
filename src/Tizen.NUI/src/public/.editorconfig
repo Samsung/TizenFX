@@ -1,0 +1,3 @@
+[*]
+dotnet_diagnostic.ca1034.severity = silent
+dotnet_diagnostic.ca2000.severity = silent

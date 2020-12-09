@@ -1011,6 +1011,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class TouchedOutsideEventArgs : EventArgs
         {
+            // Test
         }
 
         /// <summary>
