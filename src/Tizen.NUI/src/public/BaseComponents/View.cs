@@ -51,6 +51,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
         private bool excludeLayouting = false;
+        private LayoutTransition layoutTransition;
 
         private ControlState controlStates = ControlState.Normal;
 
@@ -521,6 +522,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public string TooltipText
         {
+            get
+            {
+                using (var propertyValue = GetProperty(Property.TOOLTIP))
+                {
+                    if (propertyValue != null && propertyValue.Get(out string retrivedValue))
+                    {
+                        return retrivedValue;
+                    }
+                    NUILog.Error($"[ERROR] Fail to get TooltipText! Return error MSG (error to get TooltipText)!");
+                    return "error to get TooltipText";
+                }
+            }
             set
             {
                 SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
@@ -2069,6 +2082,10 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public LayoutTransition LayoutTransition
         {
+            get
+            {
+                return layoutTransition;
+            }
             set
             {
                 if (value == null)
@@ -2083,6 +2100,8 @@ namespace Tizen.NUI.BaseComponents
                 LayoutTransitionsHelper.AddTransitionForCondition(layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);
+
+                layoutTransition = value;
             }
         }
 
