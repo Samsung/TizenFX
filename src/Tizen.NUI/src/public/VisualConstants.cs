@@ -914,6 +914,17 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int ContentInfo = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 10;
+
+        /// <summary>
+        /// @brief Whether to redraw the image when the visual is scaled down.
+        /// @details Name "redrawInScalingDown", type Property::BOOLEAN.
+        /// @note It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RedrawInScalingDown = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 11;
     }
 
     /// <summary>
