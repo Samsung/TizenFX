@@ -63,6 +63,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewStyle viewStyle;
         private bool themeChangeSensitive = false;
         private bool excludeLayouting = false;
+        private LayoutTransition layoutTransition;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
@@ -515,6 +516,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public string TooltipText
         {
+            get
+            {
+                using (var propertyValue = GetProperty(Property.TOOLTIP))
+                {
+                    if (propertyValue != null && propertyValue.Get(out string retrivedValue))
+                    {
+                        return retrivedValue;
+                    }
+                    NUILog.Error($"[ERROR] Fail to get TooltipText! Return error MSG (error to get TooltipText)!");
+                    return "error to get TooltipText";
+                }
+            }
             set
             {
                 SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
@@ -2066,6 +2079,10 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         public LayoutTransition LayoutTransition
         {
+            get
+            {
+                return layoutTransition;
+            }
             set
             {
                 if (value == null)
@@ -2080,6 +2097,8 @@ namespace Tizen.NUI.BaseComponents
                 LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);
+
+                layoutTransition = value;
             }
         }
 
