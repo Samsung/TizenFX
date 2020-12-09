@@ -133,18 +133,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeLayoutSiblingOrder(int order)
         {
-            var ownerParent = Owner.GetParent() as View;
-            if (Owner != null && ownerParent != null)
+            if (Owner != null)
             {
-                var parent = ownerParent.Layout as LayoutGroup;
-
-                if(parent != null && parent.LayoutChildren.Count>order)
+                var ownerParent = Owner.GetParent() as View;
+                if (ownerParent != null)
                 {
-                    parent.LayoutChildren.Remove(this);
-                    parent.LayoutChildren.Insert(order,this);
+                    var parent = ownerParent.Layout as LayoutGroup;
+
+                    if (parent != null && parent.LayoutChildren.Count > order)
+                    {
+                        parent.LayoutChildren.Remove(this);
+                        parent.LayoutChildren.Insert(order, this);
+                    }
                 }
             }
-
             RequestLayout();
         }
 
