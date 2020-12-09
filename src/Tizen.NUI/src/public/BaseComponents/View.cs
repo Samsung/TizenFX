@@ -124,10 +124,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (viewStyle == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(viewStyle.Clone());   // Use given style
+            InitializeStyle(viewStyle);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)

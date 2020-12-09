@@ -269,10 +269,6 @@ namespace Tizen.NUI.BaseComponents
         private readonly TriggerableSelector<string> resourceUrlSelector = new TriggerableSelector<string>(ResourceUrlProperty);
         private readonly TriggerableSelector<Rectangle> borderSelector = new TriggerableSelector<Rectangle>(BorderProperty);
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Style => new ImageViewStyle(this);
-
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
