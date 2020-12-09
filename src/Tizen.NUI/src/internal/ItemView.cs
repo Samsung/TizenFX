@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
@@ -62,6 +63,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Property for ItemView. This is internal use only, so not recommended to use. Need to use ItemView's properties.
         /// </summary>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new class Property
