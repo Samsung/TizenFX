@@ -1399,5 +1399,13 @@ namespace Tizen.NUI.BaseComponents
         {
             return false;
         }
+
+        private void InitializeStyle(ViewStyle style)
+        {
+            if (!ThemeManager.ThemeApplied) return;
+
+            if (viewStyle == null) UpdateStyle(); // Use style in the current theme
+            else ApplyStyle(viewStyle.Clone());   // Use given style
+        }
     }
 }
