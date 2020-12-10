@@ -53,7 +53,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reference()
         {
-            Interop.RefObject.RefObject_Reference(swigCPtr);
+            Interop.RefObject.Reference(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Unreference()
         {
-            Interop.RefObject.RefObject_Unreference(swigCPtr);
+            Interop.RefObject.Unreference(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ReferenceCount()
         {
-            int ret = Interop.RefObject.RefObject_ReferenceCount(swigCPtr);
+            int ret = Interop.RefObject.ReferenceCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
