@@ -26,25 +26,25 @@ namespace Tizen.NUI
         {
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ComponentApplication")]
-            public static extern global::System.IntPtr ComponentApplication_New(int argc, string argv, string styleSheet);
+            public static extern global::System.IntPtr New(int argc, string argv, string styleSheet);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ComponentApplication_SWIG1")]
-            public static extern global::System.IntPtr new_ComponentApplication__SWIG_1(global::System.Runtime.InteropServices.HandleRef swigCPtr);
+            public static extern global::System.IntPtr NewComponentApplication(global::System.Runtime.InteropServices.HandleRef swigCPtr);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_assign_ComponentApplication")]
-            public static extern global::System.IntPtr ComponentApplication_Assign(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef swigCPtr2);
+            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef swigCPtr2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ComponentApplication")]
-            public static extern global::System.IntPtr delete_ComponentApplication(global::System.Runtime.InteropServices.HandleRef swigCPtr);
+            public static extern global::System.IntPtr DeleteComponentApplication(global::System.Runtime.InteropServices.HandleRef swigCPtr);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ComponentApplication_CreateNativeSignal")]
-            public static extern global::System.IntPtr ComponentApplication_CreateNativeSignal(global::System.Runtime.InteropServices.HandleRef swigCPtr);
+            public static extern global::System.IntPtr CreateNativeSignal(global::System.Runtime.InteropServices.HandleRef swigCPtr);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ComponentApplication_CreateNativeSignal_Connect")]
-            public static extern global::System.IntPtr ComponentApplication_CreateNativeSignal_Connect(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef func);
+            public static extern global::System.IntPtr CreateNativeSignalConnect(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef func);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ComponentApplication_CreateNativeSignal_Disconnect")]
-            public static extern global::System.IntPtr ComponentApplication_CreateNativeSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef func);
+            public static extern global::System.IntPtr CreateNativeSignalDisconnect(global::System.Runtime.InteropServices.HandleRef swigCPtr, global::System.Runtime.InteropServices.HandleRef func);
         }
     }
 }

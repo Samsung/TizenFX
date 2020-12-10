@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification() : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_0(), true)
+        public PropertyNotification() : this(Interop.PropertyNotification.NewPropertyNotification(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
+        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.NewPropertyNotification(PropertyNotification.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.PropertyNotification_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -168,7 +168,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
-            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
+            PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -180,7 +180,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.PropertyNotification_GetCondition__SWIG_0(swigCPtr), true);
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.GetCondition(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -191,7 +191,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
-            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.PropertyNotification_GetTarget(swigCPtr));
+            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.GetTarget(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret as Animatable;
         }
@@ -203,7 +203,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public int GetTargetProperty()
         {
-            int ret = Interop.PropertyNotification.PropertyNotification_GetTargetProperty(swigCPtr);
+            int ret = Interop.PropertyNotification.GetTargetProperty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -215,7 +215,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
-            Interop.PropertyNotification.PropertyNotification_SetNotifyMode(swigCPtr, (int)mode);
+            Interop.PropertyNotification.SetNotifyMode(swigCPtr, (int)mode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -226,7 +226,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification.NotifyMode GetNotifyMode()
         {
-            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.PropertyNotification_GetNotifyMode(swigCPtr);
+            PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.GetNotifyMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -238,7 +238,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool GetNotifyResult()
         {
-            bool ret = Interop.PropertyNotification.PropertyNotification_GetNotifyResult(swigCPtr);
+            bool ret = Interop.PropertyNotification.GetNotifyResult(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -253,7 +253,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
-            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.PropertyNotification_NotifySignal(swigCPtr), false);
+            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -267,7 +267,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyNotification.delete_PropertyNotification(swigCPtr);
+            Interop.PropertyNotification.DeletePropertyNotification(swigCPtr);
         }
 
         // Callback for PropertyNotification NotifySignal

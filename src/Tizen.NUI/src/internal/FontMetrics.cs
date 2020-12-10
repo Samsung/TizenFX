@@ -30,15 +30,15 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.FontClient.delete_FontMetrics(swigCPtr);
+            Interop.FontClient.DeleteFontMetrics(swigCPtr);
         }
 
-        public FontMetrics() : this(Interop.FontClient.new_FontMetrics__SWIG_0(), true)
+        public FontMetrics() : this(Interop.FontClient.NewFontMetrics(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public FontMetrics(float ascenderPixels, float descenderPixels, float heightPixels, float underlinePositionPixels, float underlinePositionThickness) : this(Interop.FontClient.new_FontMetrics__SWIG_1(ascenderPixels, descenderPixels, heightPixels, underlinePositionPixels, underlinePositionThickness), true)
+        public FontMetrics(float ascenderPixels, float descenderPixels, float heightPixels, float underlinePositionPixels, float underlinePositionThickness) : this(Interop.FontClient.NewFontMetrics(ascenderPixels, descenderPixels, heightPixels, underlinePositionPixels, underlinePositionThickness), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -47,12 +47,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetrics_ascender_set(swigCPtr, value);
+                Interop.FontClient.FontMetricsAscenderSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetrics_ascender_get(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsAscenderGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -62,12 +62,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetrics_descender_set(swigCPtr, value);
+                Interop.FontClient.FontMetricsDescenderSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetrics_descender_get(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsDescenderGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -77,12 +77,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetrics_height_set(swigCPtr, value);
+                Interop.FontClient.FontMetricsHeightSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetrics_height_get(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsHeightGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -92,12 +92,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetrics_underlinePosition_set(swigCPtr, value);
+                Interop.FontClient.FontMetricsUnderlinePositionSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetrics_underlinePosition_get(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsUnderlinePositionGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -107,12 +107,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetrics_underlineThickness_set(swigCPtr, value);
+                Interop.FontClient.FontMetricsUnderlineThicknessSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetrics_underlineThickness_get(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsUnderlineThicknessGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
