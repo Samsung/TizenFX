@@ -53,12 +53,12 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PushButton() : this(Interop.PushButton.PushButton_New(), true)
+        public PushButton() : this(Interop.PushButton.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PushButton.PushButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PushButton.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -124,13 +124,13 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PushButton.delete_PushButton(swigCPtr);
+            Interop.PushButton.DeletePushButton(swigCPtr);
         }
 
         internal new class Property
         {
-            internal static readonly int LABEL_PADDING = Interop.PushButton.PushButton_Property_LABEL_PADDING_get();
-            internal static readonly int ICON_PADDING = Interop.PushButton.PushButton_Property_ICON_PADDING_get();
+            internal static readonly int LabelPadding = Interop.PushButton.LabelPaddingGet();
+            internal static readonly int IconPadding = Interop.PushButton.IconPaddingGet();
         }
     }
 }

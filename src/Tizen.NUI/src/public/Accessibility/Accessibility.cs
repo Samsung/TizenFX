@@ -88,7 +88,7 @@ namespace Tizen.NUI.Accessibility
                 callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
-            bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
+            bool ret = Interop.Accessibility.Say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -101,7 +101,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void PauseResume(bool pause)
         {
-            Interop.Accessibility.accessibility_pause_resume(View.getCPtr(dummy), pause);
+            Interop.Accessibility.PauseResume(View.getCPtr(dummy), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         #endregion Method
@@ -182,7 +182,7 @@ namespace Tizen.NUI.Accessibility
         #region Internal
         internal void PauseResume(View target, bool pause)
         {
-            Interop.Accessibility.accessibility_pause_resume(View.getCPtr(target), pause);
+            Interop.Accessibility.PauseResume(View.getCPtr(target), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Accessibility
                 callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
-            bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
+            bool ret = Interop.Accessibility.Say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

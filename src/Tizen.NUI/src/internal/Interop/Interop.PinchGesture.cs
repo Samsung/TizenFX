@@ -9,91 +9,91 @@ namespace Tizen.NUI
         internal static partial class PinchGesture
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGestureDetector__SWIG_0")]
-            public static extern global::System.IntPtr new_PinchGestureDetector__SWIG_0();
+            public static extern global::System.IntPtr NewPinchGestureDetector();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_New")]
-            public static extern global::System.IntPtr PinchGestureDetector_New();
+            public static extern global::System.IntPtr PinchGestureDetectorNew();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_DownCast")]
-            public static extern global::System.IntPtr PinchGestureDetector_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr PinchGestureDetectorDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGestureDetector")]
-            public static extern void delete_PinchGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeletePinchGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGestureDetector__SWIG_1")]
-            public static extern global::System.IntPtr new_PinchGestureDetector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewPinchGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_Assign")]
-            public static extern global::System.IntPtr PinchGestureDetector_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr PinchGestureDetectorAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_DetectedSignal")]
-            public static extern global::System.IntPtr PinchGestureDetector_DetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr PinchGestureDetectorDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGesture__SWIG_0")]
-            public static extern global::System.IntPtr new_PinchGesture__SWIG_0(int jarg1);
+            public static extern global::System.IntPtr NewPinchGesture(int jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_New")]
-            public static extern global::System.IntPtr PinchGesture_New(int jarg1);
+            public static extern global::System.IntPtr New(int jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGesture__SWIG_1")]
-            public static extern global::System.IntPtr new_PinchGesture__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewPinchGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_Assign")]
-            public static extern global::System.IntPtr PinchGesture_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGesture")]
-            public static extern void delete_PinchGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeletePinchGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_scale_set")]
-            public static extern void PinchGesture_scale_set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            public static extern void ScaleSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_scale_get")]
-            public static extern float PinchGesture_scale_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern float ScaleGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_speed_set")]
-            public static extern void PinchGesture_speed_set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            public static extern void SpeedSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_speed_get")]
-            public static extern float PinchGesture_speed_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern float SpeedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_screenCenterPoint_set")]
-            public static extern void PinchGesture_screenCenterPoint_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void ScreenCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_screenCenterPoint_get")]
-            public static extern global::System.IntPtr PinchGesture_screenCenterPoint_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ScreenCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_localCenterPoint_set")]
-            public static extern void PinchGesture_localCenterPoint_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void LocalCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_localCenterPoint_get")]
-            public static extern global::System.IntPtr PinchGesture_localCenterPoint_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr LocalCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_Empty")]
-            public static extern bool PinchGestureDetectedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern bool PinchGestureDetectedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_GetConnectionCount")]
-            public static extern uint PinchGestureDetectedSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern uint PinchGestureDetectedSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_Connect")]
-            public static extern void PinchGestureDetectedSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void PinchGestureDetectedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_Disconnect")]
-            public static extern void PinchGestureDetectedSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void PinchGestureDetectedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetectedSignal_Emit")]
-            public static extern void PinchGestureDetectedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void PinchGestureDetectedSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PinchGestureDetectedSignal")]
-            public static extern global::System.IntPtr new_PinchGestureDetectedSignal();
+            public static extern global::System.IntPtr NewPinchGestureDetectedSignal();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGestureDetectedSignal")]
-            public static extern void delete_PinchGestureDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeletePinchGestureDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGestureDetector_SWIGUpcast")]
-            public static extern global::System.IntPtr PinchGestureDetector_SWIGUpcast(global::System.IntPtr jarg1);
+            public static extern global::System.IntPtr PinchGestureDetectorUpcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_SWIGUpcast")]
-            public static extern global::System.IntPtr PinchGesture_SWIGUpcast(global::System.IntPtr jarg1);
+            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }
