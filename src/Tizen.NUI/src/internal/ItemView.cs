@@ -64,7 +64,9 @@ namespace Tizen.NUI
         /// </summary>
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CA1716 // Identifiers should not match keywords
         public new class Property
+#pragma warning restore CA1716 // Identifiers should not match keywords
         {
             /// <summary>
             /// LAYOUT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
