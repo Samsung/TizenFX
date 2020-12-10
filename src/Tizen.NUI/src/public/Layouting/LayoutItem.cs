@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Layout(left, top, right, bottom, false);
+            Layout(left, top, right, bottom, Owner.ExcludeLayouting);
         }
 
         /// <summary>
@@ -259,23 +259,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom, bool independent)
         {
-            bool changed = true;
-            if (!independent)
-            {
-                changed = SetFrame(left.AsRoundedValue(),
+            bool changed = SetFrame(left.AsRoundedValue(),
                     top.AsRoundedValue(),
                     right.AsRoundedValue(),
-                    bottom.AsRoundedValue());
-            }
-            else
-            {
-                // If height or width specification is not explicitly defined,
-                // the size of the owner view must be reset even the ExcludeLayouting is true.
-                if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
-                {
-                    Owner.SetSize(right.AsRoundedValue() - left.AsRoundedValue(), bottom.AsRoundedValue() - top.AsRoundedValue());
-                }
-            }
+                    bottom.AsRoundedValue(), independent);
 
             // Check if Measure needed before Layouting
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
@@ -571,7 +558,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected virtual void OnAttachedToOwner() { }
 
-        private bool SetFrame(float left, float top, float right, float bottom)
+        private bool SetFrame(float left, float top, float right, float bottom, bool independent)
         {
             bool changed = false;
 
@@ -614,8 +601,20 @@ namespace Tizen.NUI
                 {
                     if (Owner.Position != null)
                     {
-                        Owner.SetSize(right - left, bottom - top);
-                        Owner.SetPosition(left, top);
+                        if(independent)
+                        {
+                            // If height or width specification is not explicitly defined,
+                            // the size of the owner view must be reset even the ExcludeLayouting is true.
+                            if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                            {
+                                Owner.SetSize(right - left, bottom - top);
+                            }
+                        }
+                        else
+                        {
+                            Owner.SetSize(right - left, bottom - top);
+                            Owner.SetPosition(left, top);
+                        }
                     }
                 }
 
