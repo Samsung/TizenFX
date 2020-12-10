@@ -14,6 +14,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -312,6 +313,8 @@ namespace Tizen.NUI
     /// An enum of Device Class types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// Can't fix because it's already used by other GBM.
+    [SuppressMessage("Microsoft.Naming", "CA1720: Identifiers should not contain type names")]
     public enum DeviceClassType
     {
         /// <summary>
@@ -434,6 +437,8 @@ namespace Tizen.NUI
     /// Enumeration for the property types supported.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// Can't fix because it's already used by other GBM.
+    [SuppressMessage("Microsoft.Naming", "CA1720: Identifiers should not contain type names")]
     public enum PropertyType
     {
         /// <summary>
