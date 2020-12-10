@@ -739,6 +739,7 @@ namespace Tizen.NUI
             "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs arg)" +
             "{...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
             private View _view;

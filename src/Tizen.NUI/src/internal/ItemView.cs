@@ -64,6 +64,7 @@ namespace Tizen.NUI
         /// </summary>
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public new class Property
         {
             /// <summary>
