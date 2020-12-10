@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -582,11 +583,10 @@ namespace Tizen.NUI
             Interop.Renderer.DeleteRenderer(swigCPtr);
         }
 
-
         /// <since_tizen> 6.0 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class Ranges
+        public sealed class Ranges
         {
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -618,8 +618,10 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Renderer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class Property
         {
             /// <summary>

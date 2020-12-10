@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -87,7 +88,7 @@ namespace Tizen.NUI
         /// Hint.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public class Hint
+        public sealed class Hint
         {
             /// <summary>
             /// Enumeration for the hint value.
@@ -119,8 +120,10 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class Property
         {
             /// <summary>

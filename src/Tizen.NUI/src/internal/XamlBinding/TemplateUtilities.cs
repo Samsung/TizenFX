@@ -13,11 +13,11 @@ namespace Tizen.NUI.Binding
             if (element.RealParent is Application)
                 return null;
 
-            element = await GetRealParentAsync(element);
+            element = await GetRealParentAsync(element).ConfigureAwait(false);
             while (!Application.IsApplicationOrNull(element))
             {
                 var controlTemplated = element as IControlTemplated;
-                element = await GetRealParentAsync(element);
+                element = await GetRealParentAsync(element).ConfigureAwait(false);
             }
 
             return null;

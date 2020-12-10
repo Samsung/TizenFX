@@ -773,6 +773,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class TabItemData
         {
             /// <summary>
@@ -792,6 +793,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ItemChangedEventArgs : EventArgs
         {
             /// <summary> Previous selected index of Tab </summary>
