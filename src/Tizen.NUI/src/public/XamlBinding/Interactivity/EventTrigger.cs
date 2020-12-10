@@ -78,7 +78,7 @@ namespace Tizen.NUI.Binding
             }
             catch (Exception)
             {
-                Console.WriteLine("EventTrigger", "Can not attach EventTrigger to {0}.{1}. Check if the handler exists and if the signature is right.", bindable.GetType(), Event);
+	       Console.WriteLine($"EventTrigger", "Can not attach EventTrigger to {binding.GetType()}.{Evnet}. Check if the handler exists and if the signature is right.");
             }
             if (_eventinfo != null && _handlerdelegate != null)
                 _eventinfo.AddEventHandler(bindable, _handlerdelegate);

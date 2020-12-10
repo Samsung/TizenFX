@@ -137,7 +137,7 @@ namespace Tizen.NUI.Binding
                 {
                     if ((needsGetter && part.LastGetter == null) || (needsSetter && part.NextPart == null && part.LastSetter == null))
                     {
-                        Console.WriteLine("Binding", PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
+			Console.WriteLine($"Binding, {PropertyNotFoundErrorMessage}, {part.Content}, {current}, {target.GetType()}, {property.PropertyName}");
                         break;
                     }
                 }
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Binding
 
                 if (!TryConvert(ref value, property.ReturnType, true))
                 {
-                    Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, property.ReturnType);
+                    Console.WriteLine($"Binding : {value} can not be converted to type {property.ReturnType}");
                     return;
                 }
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Binding
 
                 if (!TryConvert(ref value, part.SetterType, false))
                 {
-                    Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, part.SetterType);
+                    Console.WriteLine($"Binding : {value} can not be converted to type {part.SetterType}");
                     return;
                 }
 
@@ -274,7 +274,7 @@ namespace Tizen.NUI.Binding
                 {
                     int index;
                     if (!int.TryParse(part.Content, out index))
-                        Console.WriteLine("Binding", "{0} could not be parsed as an index for a {1}", part.Content, sourceType);
+                        Console.WriteLine($"Binding : {part.Content} could not be parsed as an index for a {sourceType}");
                     else
                         part.Arguments = new object[] { index };
 

@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 string styleName = (string)newValue;
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.STYLE_NAME, new Tizen.NUI.PropertyValue(styleName));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.StyleName, new Tizen.NUI.PropertyValue(styleName));
 
                 view.styleName = styleName;
                 view.UpdateStyle();
@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
             if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
 
             string temp;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.STYLE_NAME).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.StyleName).Get(out temp);
             return temp;
         });
 
@@ -63,14 +63,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.KeyInputFocus, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.KEY_INPUT_FOCUS).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.KeyInputFocus).Get(out temp);
             return temp;
         });
 
@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
+            view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color);
             return color;
         });
 
@@ -293,14 +293,14 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 valueToString = ((States)newValue).GetDescription<States>();
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SubState, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SUB_STATE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SubState).Get(out temp) == false)
             {
                 NUILog.Error("subState get error!");
             }
@@ -356,14 +356,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, FlexContainer.ChildProperty.ALIGN_SELF, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, FlexContainer.ChildProperty.AlignSelf, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.ALIGN_SELF).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.AlignSelf).Get(out temp);
             return temp;
         });
 
@@ -376,14 +376,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, FlexContainer.ChildProperty.FLEX_MARGIN, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, FlexContainer.ChildProperty.FlexMargin, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.FLEX_MARGIN).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.FlexMargin).Get(temp);
             return temp;
         });
 
@@ -396,14 +396,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_INDEX, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CellIndex, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CELL_INDEX).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CellIndex).Get(temp);
             return temp;
         });
 
@@ -416,14 +416,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.ROW_SPAN, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.RowSpan, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.ROW_SPAN).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.RowSpan).Get(out temp);
             return temp;
         });
 
@@ -436,14 +436,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.COLUMN_SPAN, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.ColumnSpan, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.COLUMN_SPAN).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.ColumnSpan).Get(out temp);
             return temp;
         });
 
@@ -459,14 +459,14 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 valueToString = ((HorizontalAlignmentType)newValue).GetDescription<HorizontalAlignmentType>();
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CellHorizontalAlignment, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CellHorizontalAlignment).Get(out temp) == false)
             {
                 NUILog.Error("CellHorizontalAlignment get error!");
             }
@@ -486,14 +486,14 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 valueToString = ((VerticalAlignmentType)newValue).GetDescription<VerticalAlignmentType>();
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CellVerticalAlignment, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CellVerticalAlignment).Get(out temp);
             {
                 NUILog.Error("CellVerticalAlignment get error!");
             }
@@ -675,14 +675,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PositionUsesAnchorPoint, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PositionUsesAnchorPoint).Get(out temp);
             return temp;
         });
 
@@ -744,14 +744,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PARENT_ORIGIN, new Tizen.NUI.PropertyValue((Position)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ParentOrigin, new Tizen.NUI.PropertyValue((Position)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             Position temp = new Position(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PARENT_ORIGIN).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ParentOrigin).Get(temp);
             return temp;
         }
         );
@@ -765,14 +765,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue((Position)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.AnchorPoint, new Tizen.NUI.PropertyValue((Position)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             Position temp = new Position(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ANCHOR_POINT).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.AnchorPoint).Get(temp);
             return temp;
         });
 
@@ -785,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)newValue));
                 view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
@@ -793,7 +793,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_WIDTH).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SizeWidth).Get(out temp);
             return temp;
         });
 
@@ -806,7 +806,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)newValue));
                 view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         },
@@ -814,7 +814,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SizeHeight).Get(out temp);
             return temp;
         });
 
@@ -847,14 +847,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.POSITION_X, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PositionX, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_X).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PositionX).Get(out temp);
             return temp;
         });
 
@@ -867,14 +867,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.POSITION_Y, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PositionY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_Y).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PositionY).Get(out temp);
             return temp;
         });
 
@@ -887,14 +887,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.POSITION_Z, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PositionZ, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_Z).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PositionZ).Get(out temp);
             return temp;
         });
 
@@ -947,14 +947,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SCALE_X, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ScaleX, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_X).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ScaleX).Get(out temp);
             return temp;
         });
 
@@ -967,14 +967,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SCALE_Y, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ScaleY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_Y).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ScaleY).Get(out temp);
             return temp;
         });
 
@@ -987,14 +987,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SCALE_Z, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ScaleZ, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_Z).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ScaleZ).Get(out temp);
             return temp;
         });
 
@@ -1047,14 +1047,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.LEAVE_REQUIRED, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.LeaveRequired, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.LEAVE_REQUIRED).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.LeaveRequired).Get(out temp);
             return temp;
         });
 
@@ -1067,14 +1067,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.INHERIT_ORIENTATION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.InheritOrientation, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_ORIENTATION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.InheritOrientation).Get(out temp);
             return temp;
         });
 
@@ -1087,14 +1087,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.INHERIT_SCALE, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.InheritScale, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_SCALE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.InheritScale).Get(out temp);
             return temp;
         });
 
@@ -1107,14 +1107,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.DRAW_MODE, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.DrawMode, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             int temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.DRAW_MODE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.DrawMode).Get(out temp) == false)
             {
                 NUILog.Error("DrawMode get error!");
             }
@@ -1130,14 +1130,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_MODE_FACTOR, new Tizen.NUI.PropertyValue((Vector3)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SizeModeFactor, new Tizen.NUI.PropertyValue((Vector3)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_MODE_FACTOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SizeModeFactor).Get(temp);
             return temp;
         });
 
@@ -1150,7 +1150,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)
@@ -1179,7 +1179,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.WidthResizePolicy).Get(out temp) == false)
             {
                 NUILog.Error("WidthResizePolicy get error!");
             }
@@ -1195,7 +1195,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)
@@ -1224,7 +1224,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.HeightResizePolicy).Get(out temp) == false)
             {
                 NUILog.Error("HeightResizePolicy get error!");
             }
@@ -1242,14 +1242,14 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 valueToString = ((SizeScalePolicyType)newValue).GetDescription<SizeScalePolicyType>();
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SizeScalePolicy, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             int temp;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SizeScalePolicy).Get(out temp) == false)
             {
                 NUILog.Error("SizeScalePolicy get error!");
             }
@@ -1265,14 +1265,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_FOR_HEIGHT, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WidthForHeight, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.WIDTH_FOR_HEIGHT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.WidthForHeight).Get(out temp);
             return temp;
         });
 
@@ -1285,14 +1285,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_FOR_WIDTH, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HeightForWidth, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.HEIGHT_FOR_WIDTH).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.HeightForWidth).Get(out temp);
             return temp;
         });
 
@@ -1351,7 +1351,7 @@ namespace Tizen.NUI.BaseComponents
             Size2D temp = newValue as Size2D;
             if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MinimumSize, new Tizen.NUI.PropertyValue(temp));
             }
             else
             {
@@ -1362,7 +1362,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Size2D temp = new Size2D(0, 0);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MinimumSize).Get(temp);
             return temp;
         });
 
@@ -1376,7 +1376,7 @@ namespace Tizen.NUI.BaseComponents
             Size2D temp = newValue as Size2D;
             if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MaximumSize, new Tizen.NUI.PropertyValue(temp));
             }
             else
             {
@@ -1387,7 +1387,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Size2D temp = new Size2D(0, 0);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MaximumSize).Get(temp);
             return temp;
         });
 
@@ -1400,14 +1400,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.INHERIT_POSITION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.InheritPosition, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_POSITION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.InheritPosition).Get(out temp);
             return temp;
         });
 
@@ -1420,14 +1420,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ClippingMode, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             int temp = 0;
-            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.CLIPPING_MODE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ClippingMode).Get(out temp) == false)
             {
                 NUILog.Error("ClippingMode get error!");
             }
@@ -1443,14 +1443,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.INHERIT_LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.InheritLayoutDirection, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_LAYOUT_DIRECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.InheritLayoutDirection).Get(out temp);
             return temp;
         });
 
@@ -1463,14 +1463,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.LayoutDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             int temp;
-            if (false == Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.LAYOUT_DIRECTION).Get(out temp))
+            if (false == Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.LayoutDirection).Get(out temp))
             {
                 NUILog.Error("LAYOUT_DIRECTION get error!");
             }
@@ -1506,7 +1506,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get(), new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.UpdateSizeHintGet(), new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1514,7 +1514,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get()).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, Interop.ViewProperty.UpdateSizeHintGet()).Get(temp);
             return temp;
         });
 

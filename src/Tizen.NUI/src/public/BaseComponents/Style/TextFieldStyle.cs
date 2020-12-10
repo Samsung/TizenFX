@@ -534,15 +534,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        /// <summary>
-        /// Create an instance and set properties from the given TextField.
-        /// </summary>
-        /// <param name="textField">The TextField instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle(TextField textField) : base(textField)
-        {
-        }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatableText

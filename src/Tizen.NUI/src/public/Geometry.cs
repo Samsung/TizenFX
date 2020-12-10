@@ -29,13 +29,13 @@ namespace Tizen.NUI
         /// Create an instance of Geometry.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Geometry() : this(Interop.Geometry.Geometry_New(), true)
+        public Geometry() : this(Interop.Geometry.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Geometry.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Geometry.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -91,7 +91,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
         {
-            uint ret = Interop.Geometry.Geometry_AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
+            uint ret = Interop.Geometry.AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public uint AddVertexBuffer(VertexBuffer vertexBuffer)
         {
-            uint ret = Interop.Geometry.Geometry_AddVertexBuffer(swigCPtr, VertexBuffer.getCPtr(vertexBuffer));
+            uint ret = Interop.Geometry.AddVertexBuffer(swigCPtr, VertexBuffer.getCPtr(vertexBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetNumberOfVertexBuffers()
         {
-            uint ret = Interop.Geometry.Geometry_GetNumberOfVertexBuffers(swigCPtr);
+            uint ret = Interop.Geometry.GetNumberOfVertexBuffers(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveVertexBuffer(uint index)
         {
-            Interop.Geometry.Geometry_RemoveVertexBuffer(swigCPtr, index);
+            Interop.Geometry.RemoveVertexBuffer(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetIndexBuffer(ushort[] indices, uint count)
         {
-            Interop.Geometry.Geometry_SetIndexBuffer(swigCPtr, indices, count);
+            Interop.Geometry.SetIndexBuffer(swigCPtr, indices, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -153,7 +153,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetType(Geometry.Type geometryType)
         {
-            Interop.Geometry.Geometry_SetType(swigCPtr, (int)geometryType);
+            Interop.Geometry.SetType(swigCPtr, (int)geometryType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public new Geometry.Type GetType()
         {
-            Geometry.Type ret = (Geometry.Type)Interop.Geometry.Geometry_GetType(swigCPtr);
+            Geometry.Type ret = (Geometry.Type)Interop.Geometry.GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Geometry.delete_Geometry(swigCPtr);
+            Interop.Geometry.DeleteGeometry(swigCPtr);
         }
     }
 }
