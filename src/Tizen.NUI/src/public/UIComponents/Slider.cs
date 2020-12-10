@@ -40,14 +40,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LowerBound, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LowerBound).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -58,14 +58,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UpperBound, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UpperBound).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -94,14 +94,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TrackVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -112,14 +112,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HandleVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HandleVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -130,14 +130,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ProgressVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -148,14 +148,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PopupVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PopupVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -166,14 +166,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PopupArrowVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PopupArrowVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -184,14 +184,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DisabledColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DisabledColor).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -202,14 +202,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ValuePrecision, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              int temp = 0;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ValuePrecision).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -220,14 +220,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ShowPopup, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ShowPopup).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -238,14 +238,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ShowValue, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ShowValue).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -274,14 +274,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MarkTolerance, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MarkTolerance).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -292,14 +292,14 @@ namespace Tizen.NUI.UIComponents
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SnapToMarks, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
+             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SnapToMarks).Get(out temp);
              return temp;
          });
 
@@ -317,16 +317,16 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Slider() : this(Interop.Slider.Slider_New(), true)
+        public Slider() : this(Interop.Slider.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Slider_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Upcast(cPtr), cMemoryOwn)
         {
         }
 
-        internal Slider(Slider handle) : this(Interop.Slider.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
+        internal Slider(Slider handle) : this(Interop.Slider.NewSlider(Slider.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -777,28 +777,28 @@ namespace Tizen.NUI.UIComponents
 
         internal Slider Assign(Slider handle)
         {
-            Slider ret = new Slider(Interop.Slider.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
+            Slider ret = new Slider(Interop.Slider.Assign(swigCPtr, Slider.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal ValueChangedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_ValueChangedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.ValueChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal SlidingFinishedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_SlidingFinishedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.SlidingFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderMarkReachedSignal MarkReachedSignal()
         {
-            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.Slider_MarkReachedSignal(swigCPtr), false);
+            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.MarkReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -845,7 +845,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Slider.delete_Slider(swigCPtr);
+            Interop.Slider.DeleteSlider(swigCPtr);
         }
 
         // Callback for Slider ValueChanged signal
@@ -1054,21 +1054,21 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int LOWER_BOUND = Interop.Slider.Slider_Property_LOWER_BOUND_get();
-            internal static readonly int UPPER_BOUND = Interop.Slider.Slider_Property_UPPER_BOUND_get();
-            internal static readonly int VALUE = Interop.Slider.Slider_Property_VALUE_get();
-            internal static readonly int TRACK_VISUAL = Interop.Slider.Slider_Property_TRACK_VISUAL_get();
-            internal static readonly int HANDLE_VISUAL = Interop.Slider.Slider_Property_HANDLE_VISUAL_get();
-            internal static readonly int PROGRESS_VISUAL = Interop.Slider.Slider_Property_PROGRESS_VISUAL_get();
-            internal static readonly int POPUP_VISUAL = Interop.Slider.Slider_Property_POPUP_VISUAL_get();
-            internal static readonly int POPUP_ARROW_VISUAL = Interop.Slider.Slider_Property_POPUP_ARROW_VISUAL_get();
-            internal static readonly int DISABLED_COLOR = Interop.Slider.Slider_Property_DISABLED_COLOR_get();
-            internal static readonly int VALUE_PRECISION = Interop.Slider.Slider_Property_VALUE_PRECISION_get();
-            internal static readonly int SHOW_POPUP = Interop.Slider.Slider_Property_SHOW_POPUP_get();
-            internal static readonly int SHOW_VALUE = Interop.Slider.Slider_Property_SHOW_VALUE_get();
-            internal static readonly int MARKS = Interop.Slider.Slider_Property_MARKS_get();
-            internal static readonly int SNAP_TO_MARKS = Interop.Slider.Slider_Property_SNAP_TO_MARKS_get();
-            internal static readonly int MARK_TOLERANCE = Interop.Slider.Slider_Property_MARK_TOLERANCE_get();
+            internal static readonly int LowerBound = Interop.Slider.LowerBoundGet();
+            internal static readonly int UpperBound = Interop.Slider.UpperBoundGet();
+            internal static readonly int VALUE = Interop.Slider.ValueGet();
+            internal static readonly int TrackVisual = Interop.Slider.TrackVisualGet();
+            internal static readonly int HandleVisual = Interop.Slider.HandleVisualGet();
+            internal static readonly int ProgressVisual = Interop.Slider.ProgressVisualGet();
+            internal static readonly int PopupVisual = Interop.Slider.PopupVisualGet();
+            internal static readonly int PopupArrowVisual = Interop.Slider.PopupArrowVisualGet();
+            internal static readonly int DisabledColor = Interop.Slider.DisabledColorGet();
+            internal static readonly int ValuePrecision = Interop.Slider.ValuePrecisionGet();
+            internal static readonly int ShowPopup = Interop.Slider.ShowPopupGet();
+            internal static readonly int ShowValue = Interop.Slider.ShowValueGet();
+            internal static readonly int MARKS = Interop.Slider.MarksGet();
+            internal static readonly int SnapToMarks = Interop.Slider.SnapToMarksGet();
+            internal static readonly int MarkTolerance = Interop.Slider.MarkToleranceGet();
         }
     }
 }

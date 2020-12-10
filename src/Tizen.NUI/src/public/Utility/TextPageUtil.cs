@@ -31,23 +31,23 @@ namespace Tizen.NUI.Utility
     /// This is a class for stroing the text of a page.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    class PageData
+    internal class PageData
     {
-        public string previousTag { get; set; }
-        public string endTag { get; set; }
-        public int startOffset { get; set; }
-        public int endOffset { get; set; }
+        public string PreviousTag { get; set; }
+        public string EndTag { get; set; }
+        public int StartOffset { get; set; }
+        public int EndOffset { get; set; }
     }
 
     /// <summary>
     /// This is a class that stores information when parsing markup text.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    class TagData
+    internal class TagData
     {
-        public string tagName { get; set; }
-        public string attributeName { get; set; }
-        public bool isEndTag { get; set; }
+        public string TagName { get; set; }
+        public string AttributeName { get; set; }
+        public bool IsEndTag { get; set; }
     }
 
     /// <summary>
@@ -124,6 +124,7 @@ namespace Tizen.NUI.Utility
             textParameters.EllipsisEnabled = true;
             textParameters.MarkupEnabled = previousMarkup;
             textParameters.MinLineSize = label.MinLineSize;
+            textParameters.Padding = label.Padding;
 
 
             Tizen.NUI.PropertyArray cutOffIndexArray = TextUtils.GetLastCharacterIndex(textParameters);
@@ -143,11 +144,11 @@ namespace Tizen.NUI.Utility
                 else
                 {
                     PageData pageData = new PageData();
-                    pageData.startOffset = offset;
+                    pageData.StartOffset = offset;
                     int cnt = (cutOffIndex - offset) < remainLength ? (cutOffIndex - offset) : remainLength;
                     remainLength -= cnt;
                     offset += cnt;
-                    pageData.endOffset = offset;
+                    pageData.EndOffset = offset;
                     pageList.Add(pageData);
                 }
                 totalPageCnt++;
@@ -176,10 +177,10 @@ namespace Tizen.NUI.Utility
             List<PageData> dataList = pageList.GetRange(pageNum - 1, 1);
             foreach (PageData data in dataList)
             {
-                int cnt = data.endOffset - data.startOffset;
+                int cnt = data.EndOffset - data.StartOffset;
                 char[] charArray = new char[cnt];
-                pageString.CopyTo(data.startOffset, charArray, 0, cnt);
-                string pageText = data.previousTag + new String(charArray) + data.endTag;
+                pageString.CopyTo(data.StartOffset, charArray, 0, cnt);
+                string pageText = data.PreviousTag + new String(charArray) + data.EndTag;
                 return pageText;
             }
             return "";
@@ -203,14 +204,14 @@ namespace Tizen.NUI.Utility
             bool isTag = false;
             bool isQuotationOpen = false;
             bool attributesFound = false;
-            tag.isEndTag = false;
+            tag.IsEndTag = false;
             bool isPreviousLessThan = true;
             bool isPreviousSlash = false;
 
             int character;
 
-            tag.tagName = "";
-            tag.attributeName = "";
+            tag.TagName = "";
+            tag.AttributeName = "";
             // SkipWhiteSpace(ref offset);
             while ((!isTag) && ((character = stream.Read()) != -1))
             {
@@ -220,7 +221,7 @@ namespace Tizen.NUI.Utility
                 {
                     if (isPreviousLessThan)
                     {
-                        tag.isEndTag = true;
+                        tag.IsEndTag = true;
                     }
                     else
                     {
@@ -235,16 +236,16 @@ namespace Tizen.NUI.Utility
                     isTag = true;
                     if (isPreviousSlash)
                     {
-                        tag.isEndTag = true;
+                        tag.IsEndTag = true;
                     }
 
                     if (!attributesFound)
                     {
-                        tag.tagName = new String(tagChaList.ToArray());
+                        tag.TagName = new String(tagChaList.ToArray());
                     }
                     else
                     {
-                        tag.attributeName = new String(tagChaList.ToArray());
+                        tag.AttributeName = new String(tagChaList.ToArray());
                     }
 
                     isPreviousSlash = false;
@@ -263,7 +264,7 @@ namespace Tizen.NUI.Utility
                     // Let's save tag name.
                     if (!attributesFound)
                     {
-                        tag.tagName = new String(tagChaList.ToArray());
+                        tag.TagName = new String(tagChaList.ToArray());
                         tagChaList.Clear();
                     }
                     tagChaList.Add((char)character);
@@ -293,15 +294,15 @@ namespace Tizen.NUI.Utility
             characterList.Clear();
             PageData pageData = new PageData();
 
-            pageData.startOffset = offset;
+            pageData.StartOffset = offset;
 
             // If the markup was previously open, the markup tag should be attached to the front.
             string tag = "";
             foreach (TagData data in tagList)
             {
-                tag += "<" + data.tagName + data.attributeName + ">";
+                tag += "<" + data.TagName + data.AttributeName + ">";
             }
-            pageData.previousTag = tag;
+            pageData.PreviousTag = tag;
 
 
             bool isTag = false;
@@ -319,7 +320,7 @@ namespace Tizen.NUI.Utility
 
                 if (isTag)
                 {
-                    if (tagData.isEndTag)
+                    if (tagData.IsEndTag)
                     {
                         int lastIndex = tagList.Count;
                         tagList.RemoveAt(lastIndex - 1);
@@ -341,11 +342,11 @@ namespace Tizen.NUI.Utility
             tag = "";
             foreach (TagData data in tagList)
             {
-                tag = "</" + data.tagName + ">" + tag;
+                tag = "</" + data.TagName + ">" + tag;
             }
-            pageData.endTag = tag;
+            pageData.EndTag = tag;
 
-            pageData.endOffset = offset;
+            pageData.EndOffset = offset;
             pageList.Add(pageData);
 
             if (character == -1) offset = -1;

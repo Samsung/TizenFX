@@ -31,43 +31,43 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Any.delete_Any(swigCPtr);
+            Interop.Any.DeleteAny(swigCPtr);
         }
 
 
-        public Any() : this(Interop.Any.new_Any__SWIG_0(), true)
+        public Any() : this(Interop.Any.NewAny(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void AssertAlways(string assertMessage)
         {
-            Interop.Any.Any_AssertAlways(assertMessage);
+            Interop.Any.AssertAlways(assertMessage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Any(Any any) : this(Interop.Any.new_Any__SWIG_2(Any.getCPtr(any)), true)
+        public Any(Any any) : this(Interop.Any.NewAny(Any.getCPtr(any)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Any Assign(Any any)
         {
-            Any ret = new Any(Interop.Any.Any_Assign(swigCPtr, Any.getCPtr(any)), false);
+            Any ret = new Any(Interop.Any.Assign(swigCPtr, Any.getCPtr(any)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new SWIGTYPE_p_std__type_info GetType()
         {
-            SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.Any_GetType(swigCPtr));
+            SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.GetType(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Empty()
         {
-            bool ret = Interop.Any.Any_Empty(swigCPtr);
+            bool ret = Interop.Any.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,11 +88,11 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
             {
-                Interop.Any.delete_Any_AnyContainerBase(swigCPtr);
+                Interop.Any.DeleteAnyAnyContainerBase(swigCPtr);
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(Interop.Any.new_Any_AnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true)
+            public AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(Interop.Any.NewAnyAnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public new SWIGTYPE_p_std__type_info GetType()
             {
-                SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.Any_AnyContainerBase_GetType(swigCPtr));
+                SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.AnyContainerBaseGetType(swigCPtr));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -110,7 +110,7 @@ namespace Tizen.NUI
             {
                 get
                 {
-                    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.Any_AnyContainerBase_mType_get(swigCPtr));
+                    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.AnyContainerBaseMTypeGet(swigCPtr));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -121,12 +121,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Any.Any_AnyContainerBase_mCloneFunc_set(swigCPtr, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(value));
+                    Interop.Any.AnyContainerBaseMCloneFuncSet(swigCPtr, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(value));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    global::System.IntPtr cPtr = Interop.Any.Any_AnyContainerBase_mCloneFunc_get(swigCPtr);
+                    global::System.IntPtr cPtr = Interop.Any.AnyContainerBaseMCloneFuncGet(swigCPtr);
                     SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase(cPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
@@ -138,12 +138,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.Any.Any_AnyContainerBase_mDeleteFunc_set(swigCPtr, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(value));
+                    Interop.Any.AnyContainerBaseMDeleteFuncSet(swigCPtr, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(value));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    global::System.IntPtr cPtr = Interop.Any.Any_AnyContainerBase_mDeleteFunc_get(swigCPtr);
+                    global::System.IntPtr cPtr = Interop.Any.AnyContainerBaseMDeleteFuncGet(swigCPtr);
                     SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void(cPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
@@ -155,12 +155,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Any.Any_mContainer_set(swigCPtr, Any.AnyContainerBase.getCPtr(value));
+                Interop.Any.MContainerSet(swigCPtr, Any.AnyContainerBase.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.Any.Any_mContainer_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Any.MContainerGet(swigCPtr);
                 Any.AnyContainerBase ret = (cPtr == global::System.IntPtr.Zero) ? null : new Any.AnyContainerBase(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

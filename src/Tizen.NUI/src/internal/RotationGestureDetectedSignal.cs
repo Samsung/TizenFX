@@ -28,19 +28,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.RotationGesture.delete_RotationGestureDetectedSignal(swigCPtr);
+            Interop.RotationGesture.DeleteRotationGestureDetectedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.RotationGesture.RotationGestureDetectedSignal_Empty(swigCPtr);
+            bool ret = Interop.RotationGesture.RotationGestureDetectedSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.RotationGesture.RotationGestureDetectedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.RotationGesture.RotationGestureDetectedSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.RotationGesture.RotationGestureDetectedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.RotationGesture.RotationGestureDetectedSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.RotationGesture.RotationGestureDetectedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.RotationGesture.RotationGestureDetectedSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, RotationGesture arg2)
         {
-            Interop.RotationGesture.RotationGestureDetectedSignal_Emit(swigCPtr, View.getCPtr(arg1), RotationGesture.getCPtr(arg2));
+            Interop.RotationGesture.RotationGestureDetectedSignalEmit(swigCPtr, View.getCPtr(arg1), RotationGesture.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public RotationGestureDetectedSignal() : this(Interop.RotationGesture.new_RotationGestureDetectedSignal(), true)
+        public RotationGestureDetectedSignal() : this(Interop.RotationGesture.NewRotationGestureDetectedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
