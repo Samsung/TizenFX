@@ -186,7 +186,9 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
-            PropertyNotification ret = new PropertyNotification(Interop.Handle.Handle_AddPropertyNotification__SWIG_0(swigCPtr, PropertyHelper.GetPropertyFromString(this, property).propertyIndex, PropertyCondition.getCPtr(condition)), true);
+            Property properties = PropertyHelper.GetPropertyFromString(this, property);
+            PropertyNotification ret = new PropertyNotification(Interop.Handle.Handle_AddPropertyNotification__SWIG_0(swigCPtr, properties.propertyIndex, PropertyCondition.getCPtr(condition)), true);
+            properties.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
