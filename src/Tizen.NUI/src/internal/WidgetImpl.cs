@@ -23,12 +23,12 @@ namespace Tizen.NUI
     internal class WidgetImpl : BaseObject
     {
 
-        internal WidgetImpl() : this(Interop.WidgetImpl.WidgetImpl_New(), true)
+        internal WidgetImpl() : this(Interop.WidgetImpl.New(), true)
         {
             SwigDirectorConnect();
         }
 
-        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -278,13 +278,13 @@ namespace Tizen.NUI
 
         public void SetContentInfo(string contentInfo)
         {
-            Interop.WidgetImpl.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
+            Interop.WidgetImpl.SetContentInfo(swigCPtr, contentInfo);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
-            Interop.WidgetImpl.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
+            Interop.WidgetImpl.SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -298,7 +298,7 @@ namespace Tizen.NUI
             swigDelegate5 = new SwigDelegateWidgetImpl_5(SwigDirectorOnUpdate);
             swigDelegate6 = new SwigDelegateWidgetImpl_6(SwigDirectorSignalConnected);
             swigDelegate7 = new SwigDelegateWidgetImpl_7(SwigDirectorSignalDisconnected);
-            Interop.WidgetImpl.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
+            Interop.WidgetImpl.DirectorConnect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

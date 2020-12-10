@@ -83,7 +83,7 @@ namespace Tizen.NUI.Binding
 
             base.Apply(newContext, bindObj, targetProperty, fromBindingContextChanged);
 
-            Element templatedParent = await TemplateUtilities.FindTemplatedParentAsync(view);
+            Element templatedParent = await TemplateUtilities.FindTemplatedParentAsync(view).ConfigureAwait(false);
             ApplyInner(templatedParent, bindObj, targetProperty);
         }
 

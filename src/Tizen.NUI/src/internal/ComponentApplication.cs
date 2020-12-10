@@ -34,7 +34,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ComponentApplication.delete_ComponentApplication(swigCPtr);
+                    Interop.ComponentApplication.DeleteComponentApplication(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -54,7 +54,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = Interop.ComponentApplication.ComponentApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.ComponentApplication.New(argc, argvStr, stylesheet);
 
             ComponentApplication ret = new ComponentApplication(widgetIntPtr, false);
 
@@ -63,14 +63,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ComponentApplication(ComponentApplication componentApplication) : this(Interop.ComponentApplication.new_ComponentApplication__SWIG_1(ComponentApplication.getCPtr(componentApplication)), true)
+        internal ComponentApplication(ComponentApplication componentApplication) : this(Interop.ComponentApplication.NewComponentApplication(ComponentApplication.getCPtr(componentApplication)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ComponentApplication Assign(ComponentApplication componentApplication)
         {
-            ComponentApplication ret = new ComponentApplication(Interop.ComponentApplication.ComponentApplication_Assign(swigCPtr, ComponentApplication.getCPtr(componentApplication)), false);
+            ComponentApplication ret = new ComponentApplication(Interop.ComponentApplication.Assign(swigCPtr, ComponentApplication.getCPtr(componentApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.ComponentApplication.ComponentApplication_CreateNativeSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ComponentApplication.CreateNativeSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ComponentApplication.ComponentApplication_CreateNativeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ComponentApplication.CreateNativeSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -146,7 +146,7 @@ namespace Tizen.NUI
 
         internal ApplicationSignal CreateNativeSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Interop.ComponentApplication.ComponentApplication_CreateNativeSignal(swigCPtr), false);
+            ApplicationSignal ret = new ApplicationSignal(Interop.ComponentApplication.CreateNativeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

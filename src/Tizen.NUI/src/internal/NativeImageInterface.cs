@@ -23,7 +23,7 @@ namespace Tizen.NUI
     public class NativeImageInterface : RefObject
     {
 
-        internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageInterface.NativeImageInterface_SWIGUpcast(cPtr), cMemoryOwn)
+        internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageInterface.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -39,47 +39,47 @@ namespace Tizen.NUI
 
         public virtual bool GlExtensionCreate()
         {
-            bool ret = Interop.NativeImageInterface.NativeImageInterface_GlExtensionCreate(swigCPtr);
+            bool ret = Interop.NativeImageInterface.GlExtensionCreate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void GlExtensionDestroy()
         {
-            Interop.NativeImageInterface.NativeImageInterface_GlExtensionDestroy(swigCPtr);
+            Interop.NativeImageInterface.GlExtensionDestroy(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual uint TargetTexture()
         {
-            uint ret = Interop.NativeImageInterface.NativeImageInterface_TargetTexture(swigCPtr);
+            uint ret = Interop.NativeImageInterface.TargetTexture(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void PrepareTexture()
         {
-            Interop.NativeImageInterface.NativeImageInterface_PrepareTexture(swigCPtr);
+            Interop.NativeImageInterface.PrepareTexture(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual uint GetWidth()
         {
-            uint ret = Interop.NativeImageInterface.NativeImageInterface_GetWidth(swigCPtr);
+            uint ret = Interop.NativeImageInterface.GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual uint GetHeight()
         {
-            uint ret = Interop.NativeImageInterface.NativeImageInterface_GetHeight(swigCPtr);
+            uint ret = Interop.NativeImageInterface.GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool RequiresBlending()
         {
-            bool ret = Interop.NativeImageInterface.NativeImageInterface_RequiresBlending(swigCPtr);
+            bool ret = Interop.NativeImageInterface.RequiresBlending(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

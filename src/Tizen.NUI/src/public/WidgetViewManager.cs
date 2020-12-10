@@ -30,11 +30,11 @@ namespace Tizen.NUI
         /// Creates a new widgetView manager object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(Interop.WidgetViewManager.WidgetViewManager_New(Application.getCPtr(nuiApplication?.ApplicationHandle), appId), true)
+        public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(Interop.WidgetViewManager.New(Application.getCPtr(nuiApplication?.ApplicationHandle), appId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.WidgetViewManager_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
         {
-            WidgetView ret = new WidgetView(Interop.WidgetViewManager.WidgetViewManager_AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
+            WidgetView ret = new WidgetView(Interop.WidgetViewManager.AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -62,19 +62,19 @@ namespace Tizen.NUI
 
         internal static WidgetViewManager DownCast(BaseHandle handle)
         {
-            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.WidgetViewManager_DownCast(BaseHandle.getCPtr(handle)), true);
+            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal WidgetViewManager(WidgetViewManager handle) : this(Interop.WidgetViewManager.new_WidgetViewManager__SWIG_1(WidgetViewManager.getCPtr(handle)), true)
+        internal WidgetViewManager(WidgetViewManager handle) : this(Interop.WidgetViewManager.NewWidgetViewManager(WidgetViewManager.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WidgetViewManager Assign(WidgetViewManager handle)
         {
-            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.WidgetViewManager_Assign(swigCPtr, WidgetViewManager.getCPtr(handle)), false);
+            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.Assign(swigCPtr, WidgetViewManager.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WidgetViewManager.delete_WidgetViewManager(swigCPtr);
+            Interop.WidgetViewManager.DeleteWidgetViewManager(swigCPtr);
         }
     }
 }

@@ -27,10 +27,10 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NDalic.delete_ChildPropertyRegistration(swigCPtr);
+            Interop.NDalic.DeleteChildPropertyRegistration(swigCPtr);
         }
 
-        public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(Interop.NDalic.new_ChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
+        public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(Interop.NDalic.NewChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
