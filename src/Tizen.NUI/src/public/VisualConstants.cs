@@ -457,42 +457,48 @@ namespace Tizen.NUI
             /// Type.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
+            public static readonly int Type = NDalic.VisualPropertyType;
             /// <summary>
             /// Shader.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int Shader = NDalic.VISUAL_PROPERTY_SHADER;
+            public static readonly int Shader = NDalic.VisualPropertyShader;
             /// <summary>
             /// Transform.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int Transform = NDalic.VISUAL_PROPERTY_TRANSFORM;
+            public static readonly int Transform = NDalic.VisualPropertyTransform;
             /// <summary>
             /// PremultipliedAlpha.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int PremultipliedAlpha = NDalic.VISUAL_PROPERTY_PREMULTIPLIED_ALPHA;
+            public static readonly int PremultipliedAlpha = NDalic.VisualPropertyPremultipliedAlpha;
             /// <summary>
             /// MixColor.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
+            public static readonly int MixColor = NDalic.VisualPropertyMixColor;
             /// <summary>
             /// Opacity.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int Opacity = NDalic.VISUAL_PROPERTY_MIX_COLOR + 1;
+            public static readonly int Opacity = NDalic.VisualPropertyMixColor + 1;
             /// <summary>
             /// The fitting mode of the visual.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
+            public static readonly int VisualFittingMode = NDalic.VisualPropertyMixColor + 2;
             /// <summary>
             /// The corner radius of the visual.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
+            public static readonly int CornerRadius = NDalic.VisualPropertyMixColor + 3;
+            /// <summary>
+            /// The corner radius policy of the visual.
+            /// Whether the corner radius value is relative (percentage [0.0f to 1.0f] of the visual size) or absolute (in world units).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerRadiusPolicy = NDalic.VisualPropertyMixColor + 4;
         }
 
         /// <summary>
@@ -505,27 +511,27 @@ namespace Tizen.NUI
             /// Vertex shader code
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
+            public static readonly int VertexShader = NDalic.VisualShaderVertex;
             /// <summary>
             /// Fragment shader code
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int FragmentShader = NDalic.VISUAL_SHADER_FRAGMENT;
+            public static readonly int FragmentShader = NDalic.VisualShaderFragment;
             /// <summary>
             /// How to subdivide the grid along X
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int ShaderSubdivideGridX = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_X;
+            public static readonly int ShaderSubdivideGridX = NDalic.VisualShaderSubdivideGridX;
             /// <summary>
             /// How to subdivide the grid along Y
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int ShaderSubdivideGridY = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_Y;
+            public static readonly int ShaderSubdivideGridY = NDalic.VisualShaderSubdivideGridY;
             /// <summary>
             /// Bitmask of hints
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int ShaderHints = NDalic.VISUAL_SHADER_HINTS;
+            public static readonly int ShaderHints = NDalic.VisualShaderHints;
         }
 
         /// <summary>
@@ -592,17 +598,17 @@ namespace Tizen.NUI
         /// The color of the border.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
+        public static readonly int Color = NDalic.BorderVisualColor;
         /// <summary>
         /// The width of the border (in pixels).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Size = NDalic.BORDER_VISUAL_SIZE;
+        public static readonly int Size = NDalic.BorderVisualSize;
         /// <summary>
         /// Whether anti-aliasing of the border is required.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
+        public static readonly int AntiAliasing = NDalic.BorderVisualAntiAliasing;
     }
 
     /// <summary>
@@ -615,17 +621,17 @@ namespace Tizen.NUI
         /// The solid color required.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
+        public static readonly int MixColor = NDalic.ColorVisualMixColor;
         /// <summary>
         /// Whether to render if the MixColor is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
+        public static readonly int RenderIfTransparent = NDalic.ColorVisualMixColor + 1;
         /// <summary>
         /// Then radius value for the area to blur.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int BlurRadius = NDalic.COLOR_VISUAL_MIX_COLOR + 2;
+        public static readonly int BlurRadius = NDalic.ColorVisualMixColor + 2;
     }
 
     /// <summary>
@@ -638,42 +644,42 @@ namespace Tizen.NUI
         /// The start position of a linear gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
+        public static readonly int StartPosition = NDalic.GradientVisualStartPosition;
         /// <summary>
         /// The end position of a linear gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int EndPosition = NDalic.GRADIENT_VISUAL_END_POSITION;
+        public static readonly int EndPosition = NDalic.GradientVisualEndPosition;
         /// <summary>
         /// The center point of a radial gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Center = NDalic.GRADIENT_VISUAL_CENTER;
+        public static readonly int Center = NDalic.GradientVisualCenter;
         /// <summary>
         /// The size of the radius of a radial gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Radius = NDalic.GRADIENT_VISUAL_RADIUS;
+        public static readonly int Radius = NDalic.GradientVisualRadius;
         /// <summary>
         /// All the stop offsets.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int StopOffset = NDalic.GRADIENT_VISUAL_STOP_OFFSET;
+        public static readonly int StopOffset = NDalic.GradientVisualStopOffset;
         /// <summary>
         /// The color at the stop offsets.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int StopColor = NDalic.GRADIENT_VISUAL_STOP_COLOR;
+        public static readonly int StopColor = NDalic.GradientVisualStopColor;
         /// <summary>
         /// Defines the coordinate system for certain attributes of the points in a gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Units = NDalic.GRADIENT_VISUAL_UNITS;
+        public static readonly int Units = NDalic.GradientVisualUnits;
         /// <summary>
         /// Indicates what happens if the gradient starts or ends inside the bounds of the target rectangle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int SpreadMethod = NDalic.GRADIENT_VISUAL_SPREAD_METHOD;
+        public static readonly int SpreadMethod = NDalic.GradientVisualSpreadMethod;
     }
 
     /// <summary>
@@ -686,146 +692,146 @@ namespace Tizen.NUI
         /// The URL of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        public static readonly int URL = NDalic.ImageVisualUrl;
 
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+        public static readonly int FittingMode = NDalic.ImageVisualFittingMode;
 
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+        public static readonly int SamplingMode = NDalic.ImageVisualSamplingMode;
 
         /// <summary>
         /// The desired image width.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+        public static readonly int DesiredWidth = NDalic.ImageVisualDesiredWidth;
 
         /// <summary>
         /// The desired image height.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+        public static readonly int DesiredHeight = NDalic.ImageVisualDesiredHeight;
 
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+        public static readonly int SynchronousLoading = NDalic.ImageVisualSynchronousLoading;
 
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+        public static readonly int BorderOnly = NDalic.ImageVisualBorderOnly;
 
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+        public static readonly int PixelArea = NDalic.ImageVisualPixelArea;
 
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+        public static readonly int WrapModeU = NDalic.ImageVisualWrapModeU;
 
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+        public static readonly int WrapModeV = NDalic.ImageVisualWrapModeV;
 
         /// <summary>
         /// The border of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
+        public static readonly int Border = NDalic.ImageVisualBorder;
 
         /// <summary>
         /// Whether to use the texture atlas.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int Atlasing = NDalic.IMAGE_VISUAL_BORDER + 1;
+        public static readonly int Atlasing = NDalic.ImageVisualBorder + 1;
 
         /// <summary>
         /// The URL of the alpha mask image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+        public static readonly int AlphaMaskURL = NDalic.ImageVisualAlphaMaskUrl;
 
         /// <summary>
         /// Defines the batch size for pre-loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
+        public static readonly int BatchSize = NDalic.ImageVisualBatchSize;
 
         /// <summary>
         /// Defines the cache size for loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
+        public static readonly int CacheSize = NDalic.ImageVisualCacheSize;
 
         /// <summary>
         /// The number of milliseconds between each frame in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
+        public static readonly int FrameDelay = NDalic.ImageVisualFrameDelay;
 
         /// <summary>
         /// The scale factor to apply to the content image before masking.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
+        public static readonly int MaskContentScale = NDalic.ImageVisualMaskContentScale;
 
         /// <summary>
         /// Whether to crop image to mask or scale mask to fit image
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+        public static readonly int CropToMask = NDalic.ImageVisualCropToMask;
 
         /// <summary>
         /// The policy to determine when an image should be loaded.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+        public static readonly int LoadPolicy = NDalic.ImageVisualLoadPolicy;
 
         /// <summary>
         /// The policy to determine when an image should no longer be cached.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+        public static readonly int ReleasePolicy = NDalic.ImageVisualReleasePolicy;
 
         /// <summary>
         /// Determines if image orientation should be corrected so that the image displays as it was intended.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
+        public static readonly int OrientationCorrection = NDalic.ImageVisualOrientationCorrection;
 
         /// <summary>
         /// Overlays the auxiliary image on top of an NPatch image.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
+        public static readonly int AuxiliaryImageURL = NDalic.ImageVisualAuxiliaryImageUrl;
 
         /// <summary>
         /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
+        public static readonly int AuxiliaryImageAlpha = NDalic.ImageVisualAuxiliaryImageAlpha;
 
         /// <summary>
         /// The number of times the AnimatedImageVisual will be looped.
         /// The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
+        public static readonly int LoopCount = NDalic.ImageVisualLoopCount;
 
         /// <summary>
         /// @brief The playing range the AnimatedVectorImageVisual will use.
@@ -839,7 +845,7 @@ namespace Tizen.NUI
         /// Hidden API (Inhouse API)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int PlayRange = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 4;
+        public static readonly int PlayRange = NDalic.ImageVisualOrientationCorrection + 4;
 
         /// <summary>
         /// @brief The playing state the AnimatedVectorImageVisual will use.
@@ -850,7 +856,7 @@ namespace Tizen.NUI
         /// Hidden API (Inhouse API)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int PlayState = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 5;
+        public static readonly int PlayState = NDalic.ImageVisualOrientationCorrection + 5;
 
         /// <summary>
         /// @brief The current frame number the AnimatedVectorImageVisual will use.
@@ -861,7 +867,7 @@ namespace Tizen.NUI
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int CurrentFrameNumber = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 6;
+        public static readonly int CurrentFrameNumber = NDalic.ImageVisualOrientationCorrection + 6;
 
         /// <summary>
         /// @brief The total frame number the AnimatedVectorImageVisual will use.
@@ -872,7 +878,7 @@ namespace Tizen.NUI
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int TotalFrameNumber = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 7;
+        public static readonly int TotalFrameNumber = NDalic.ImageVisualOrientationCorrection + 7;
 
         /// <summary>
         /// @brief  The stop behavior the AnimatedVectorImageVisual will use.
@@ -883,7 +889,7 @@ namespace Tizen.NUI
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int StopBehavior = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 8;
+        public static readonly int StopBehavior = NDalic.ImageVisualOrientationCorrection + 8;
 
         /// <summary>
         /// @brief  The looping mode the AnimatedVectorImageVisual will use.
@@ -894,7 +900,7 @@ namespace Tizen.NUI
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int LoopingMode = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 9;
+        public static readonly int LoopingMode = NDalic.ImageVisualOrientationCorrection + 9;
 
         /// <summary>
         /// @brief The content information the AnimatedVectorImageVisual will use.
@@ -907,7 +913,18 @@ namespace Tizen.NUI
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int ContentInfo = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 10;
+        public static readonly int ContentInfo = NDalic.ImageVisualOrientationCorrection + 10;
+
+        /// <summary>
+        /// @brief Whether to redraw the image when the visual is scaled down.
+        /// @details Name "redrawInScalingDown", type Property::BOOLEAN.
+        /// @note It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RedrawInScalingDown = NDalic.ImageVisualOrientationCorrection + 11;
     }
 
     /// <summary>
@@ -920,37 +937,37 @@ namespace Tizen.NUI
         /// The location of the ".obj" file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
+        public static readonly int ObjectURL = NDalic.MeshVisualObjectUrl;
         /// <summary>
         /// The location of the ".mtl" file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MaterialtURL = NDalic.MESH_VISUAL_MATERIAL_URL;
+        public static readonly int MaterialtURL = NDalic.MeshVisualMaterialUrl;
         /// <summary>
         /// Path to the directory the textures (including gloss and normal) are stored in.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int TexturesPath = NDalic.MESH_VISUAL_TEXTURES_PATH;
+        public static readonly int TexturesPath = NDalic.MeshVisualTexturesPath;
         /// <summary>
         /// Sets the type of shading mode that the mesh will use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ShadingMode = NDalic.MESH_VISUAL_SHADING_MODE;
+        public static readonly int ShadingMode = NDalic.MeshVisualShadingMode;
         /// <summary>
         /// Whether to use mipmaps for textures or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int UseMipmapping = NDalic.MESH_VISUAL_USE_MIPMAPPING;
+        public static readonly int UseMipmapping = NDalic.MeshVisualUseMipmapping;
         /// <summary>
         /// Whether to average normals at each point to smooth textures or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int UseSoftNormals = NDalic.MESH_VISUAL_USE_SOFT_NORMALS;
+        public static readonly int UseSoftNormals = NDalic.MeshVisualUseSoftNormals;
         /// <summary>
         /// The position, in stage space, of the point light that applies lighting to the model.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
+        public static readonly int LightPosition = NDalic.MeshVisualLightPosition;
     }
 
     /// <summary>
@@ -963,62 +980,62 @@ namespace Tizen.NUI
         /// The specific shape to render.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
+        public static readonly int Shape = NDalic.PrimitiveVisualShape;
         /// <summary>
         /// The color of the shape.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MixColor = NDalic.PRIMITIVE_VISUAL_MIX_COLOR;
+        public static readonly int MixColor = NDalic.PrimitiveVisualMixColor;
         /// <summary>
         /// The number of slices as you go around the shape.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Slices = NDalic.PRIMITIVE_VISUAL_SLICES;
+        public static readonly int Slices = NDalic.PrimitiveVisualSlices;
         /// <summary>
         /// The number of stacks as you go down the shape.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Stacks = NDalic.PRIMITIVE_VISUAL_STACKS;
+        public static readonly int Stacks = NDalic.PrimitiveVisualStacks;
         /// <summary>
         /// The scale of the radius of the top circle of a conical frustrum.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ScaleTopRadius = NDalic.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS;
+        public static readonly int ScaleTopRadius = NDalic.PrimitiveVisualScaleTopRadius;
         /// <summary>
         /// The scale of the radius of the bottom circle of a conical frustrum.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ScaleBottomRadius = NDalic.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS;
+        public static readonly int ScaleBottomRadius = NDalic.PrimitiveVisualScaleBottomRadius;
         /// <summary>
         /// The scale of the height of a conic.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ScaleHeight = NDalic.PRIMITIVE_VISUAL_SCALE_HEIGHT;
+        public static readonly int ScaleHeight = NDalic.PrimitiveVisualScaleHeight;
         /// <summary>
         /// The scale of the radius of a cylinder.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ScaleRadius = NDalic.PRIMITIVE_VISUAL_SCALE_RADIUS;
+        public static readonly int ScaleRadius = NDalic.PrimitiveVisualScaleRadius;
         /// <summary>
         /// The dimensions of a cuboid. Scales in the same fashion as a 9-patch image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int ScaleDimensions = NDalic.PRIMITIVE_VISUAL_SCALE_DIMENSIONS;
+        public static readonly int ScaleDimensions = NDalic.PrimitiveVisualScaleDimensions;
         /// <summary>
         /// Determines how bevelled the cuboid should be, based off the smallest dimension.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int BevelPercentage = NDalic.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE;
+        public static readonly int BevelPercentage = NDalic.PrimitiveVisualBevelPercentage;
         /// <summary>
         /// Defines how smooth the bevelled edges should be.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int BevelSmoothness = NDalic.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS;
+        public static readonly int BevelSmoothness = NDalic.PrimitiveVisualBevelSmoothness;
         /// <summary>
         /// The position, in stage space, of the point light that applies lighting to the model.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
+        public static readonly int LightPosition = NDalic.PrimitiveVisualLightPosition;
     }
 
     /// <summary>
@@ -1031,67 +1048,67 @@ namespace Tizen.NUI
         /// The text to display in UTF-8 format.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
+        public static readonly int Text = NDalic.TextVisualText;
         /// <summary>
         /// The requested font family to use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int FontFamily = NDalic.TEXT_VISUAL_FONT_FAMILY;
+        public static readonly int FontFamily = NDalic.TextVisualFontFamily;
         /// <summary>
         /// The requested font style to use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int FontStyle = NDalic.TEXT_VISUAL_FONT_STYLE;
+        public static readonly int FontStyle = NDalic.TextVisualFontStyle;
         /// <summary>
         /// The size of font in points.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int PointSize = NDalic.TEXT_VISUAL_POINT_SIZE;
+        public static readonly int PointSize = NDalic.TextVisualPointSize;
         /// <summary>
         /// The single-line or multi-line layout option.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MultiLine = NDalic.TEXT_VISUAL_MULTI_LINE;
+        public static readonly int MultiLine = NDalic.TextVisualMultiLine;
         /// <summary>
         /// The line horizontal alignment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int HorizontalAlignment = NDalic.TEXT_VISUAL_HORIZONTAL_ALIGNMENT;
+        public static readonly int HorizontalAlignment = NDalic.TextVisualHorizontalAlignment;
         /// <summary>
         /// The line vertical alignment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int VerticalAlignment = NDalic.TEXT_VISUAL_VERTICAL_ALIGNMENT;
+        public static readonly int VerticalAlignment = NDalic.TextVisualVerticalAlignment;
         /// <summary>
         /// The color of the text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
+        public static readonly int TextColor = NDalic.TextVisualTextColor;
         /// <summary>
         /// Whether the mark-up processing is enabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
+        public static readonly int EnableMarkup = NDalic.TextVisualEnableMarkup;
         /// <summary>
         /// The shadow parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int Shadow = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 1;
+        public static readonly int Shadow = NDalic.TextVisualEnableMarkup + 1;
         /// <summary>
         /// The default underline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int Underline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 2;
+        public static readonly int Underline = NDalic.TextVisualEnableMarkup + 2;
         /// <summary>
         /// The default outline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int Outline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 3;
+        public static readonly int Outline = NDalic.TextVisualEnableMarkup + 3;
         /// <summary>
         /// The default text background parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static readonly int Background = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 4;
+        public static readonly int Background = NDalic.TextVisualEnableMarkup + 4;
     }
 
     /// <summary>
@@ -1104,57 +1121,57 @@ namespace Tizen.NUI
         /// The URL of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        public static readonly int URL = NDalic.ImageVisualUrl;
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+        public static readonly int FittingMode = NDalic.ImageVisualFittingMode;
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+        public static readonly int SamplingMode = NDalic.ImageVisualSamplingMode;
         /// <summary>
         /// The desired image width.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+        public static readonly int DesiredWidth = NDalic.ImageVisualDesiredWidth;
         /// <summary>
         /// The desired image height.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+        public static readonly int DesiredHeight = NDalic.ImageVisualDesiredHeight;
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+        public static readonly int SynchronousLoading = NDalic.ImageVisualSynchronousLoading;
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+        public static readonly int BorderOnly = NDalic.ImageVisualBorderOnly;
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+        public static readonly int PixelArea = NDalic.ImageVisualPixelArea;
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+        public static readonly int WrapModeU = NDalic.ImageVisualWrapModeU;
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+        public static readonly int WrapModeV = NDalic.ImageVisualWrapModeV;
         /// <summary>
         /// The border of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
+        public static readonly int Border = NDalic.ImageVisualWrapModeV + 1;
     }
 
     /// <summary>
@@ -1167,7 +1184,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>The value is float type.</remarks>
         /// <remarks>This is mandatory property.</remarks>
-        internal static readonly int Thickness = NDalic.IMAGE_VISUAL_URL;
+        internal static readonly int Thickness = NDalic.ImageVisualUrl;
 
         /// <summary>
         /// The start angle where the arc begins in degrees.
