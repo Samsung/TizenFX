@@ -33,13 +33,13 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+        public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.New(PropertyMap.getCPtr(bufferFormat)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyBuffer.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyBuffer.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
-            Interop.PropertyBuffer.PropertyBuffer_SetData(swigCPtr, data, size);
+            Interop.PropertyBuffer.SetData(swigCPtr, data, size);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetSize()
         {
-            uint ret = Interop.PropertyBuffer.PropertyBuffer_GetSize(swigCPtr);
+            uint ret = Interop.PropertyBuffer.GetSize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PropertyBuffer.delete_PropertyBuffer(swigCPtr);
+            Interop.PropertyBuffer.DeletePropertyBuffer(swigCPtr);
         }
     }
 }

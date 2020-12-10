@@ -31,29 +31,29 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VectorUint16Pair.delete_VectorUint16Pair(swigCPtr);
+            Interop.VectorUint16Pair.DeleteVectorUint16Pair(swigCPtr);
         }
 
-        public VectorUint16Pair() : this(Interop.VectorUint16Pair.new_VectorUint16Pair__SWIG_0(), true)
+        public VectorUint16Pair() : this(Interop.VectorUint16Pair.NewVectorUint16Pair(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public VectorUint16Pair(VectorUint16Pair vector) : this(Interop.VectorUint16Pair.new_VectorUint16Pair__SWIG_1(VectorUint16Pair.getCPtr(vector)), true)
+        public VectorUint16Pair(VectorUint16Pair vector) : this(Interop.VectorUint16Pair.NewVectorUint16Pair(VectorUint16Pair.getCPtr(vector)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VectorUint16Pair Assign(VectorUint16Pair vector)
         {
-            VectorUint16Pair ret = new VectorUint16Pair(Interop.VectorUint16Pair.VectorUint16Pair_Assign(swigCPtr, VectorUint16Pair.getCPtr(vector)), false);
+            VectorUint16Pair ret = new VectorUint16Pair(Interop.VectorUint16Pair.Assign(swigCPtr, VectorUint16Pair.getCPtr(vector)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Uint16Pair Begin()
         {
-            global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Begin(swigCPtr);
+            global::System.IntPtr cPtr = Interop.VectorUint16Pair.Begin(swigCPtr);
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -61,7 +61,7 @@ namespace Tizen.NUI
 
         public Uint16Pair End()
         {
-            global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_End(swigCPtr);
+            global::System.IntPtr cPtr = Interop.VectorUint16Pair.End(swigCPtr);
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -69,50 +69,50 @@ namespace Tizen.NUI
 
         public Uint16Pair ValueOfIndex(uint index)
         {
-            Uint16Pair ret = new Uint16Pair(Interop.VectorUint16Pair.VectorUint16Pair_ValueOfIndex__SWIG_0(swigCPtr, index), false);
+            Uint16Pair ret = new Uint16Pair(Interop.VectorUint16Pair.ValueOfIndex(swigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void PushBack(Uint16Pair element)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_PushBack(swigCPtr, Uint16Pair.getCPtr(element));
+            Interop.VectorUint16Pair.PushBack(swigCPtr, Uint16Pair.getCPtr(element));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Insert(Uint16Pair at, Uint16Pair element)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Insert__SWIG_0(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(element));
+            Interop.VectorUint16Pair.Insert(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(element));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Insert(Uint16Pair at, Uint16Pair from, Uint16Pair to)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Insert__SWIG_1(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(from), Uint16Pair.getCPtr(to));
+            Interop.VectorUint16Pair.Insert(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(from), Uint16Pair.getCPtr(to));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reserve(uint count)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Reserve(swigCPtr, count);
+            Interop.VectorUint16Pair.Reserve(swigCPtr, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Resize__SWIG_0(swigCPtr, count);
+            Interop.VectorUint16Pair.Resize(swigCPtr, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count, Uint16Pair item)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Resize__SWIG_1(swigCPtr, count, Uint16Pair.getCPtr(item));
+            Interop.VectorUint16Pair.Resize(swigCPtr, count, Uint16Pair.getCPtr(item));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Uint16Pair Erase(Uint16Pair iterator)
         {
-            global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Erase__SWIG_0(swigCPtr, Uint16Pair.getCPtr(iterator));
+            global::System.IntPtr cPtr = Interop.VectorUint16Pair.Erase(swigCPtr, Uint16Pair.getCPtr(iterator));
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -120,7 +120,7 @@ namespace Tizen.NUI
 
         public Uint16Pair Erase(Uint16Pair first, Uint16Pair last)
         {
-            global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Erase__SWIG_1(swigCPtr, Uint16Pair.getCPtr(first), Uint16Pair.getCPtr(last));
+            global::System.IntPtr cPtr = Interop.VectorUint16Pair.Erase(swigCPtr, Uint16Pair.getCPtr(first), Uint16Pair.getCPtr(last));
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -128,28 +128,28 @@ namespace Tizen.NUI
 
         public void Remove(Uint16Pair iterator)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Remove(swigCPtr, Uint16Pair.getCPtr(iterator));
+            Interop.VectorUint16Pair.Remove(swigCPtr, Uint16Pair.getCPtr(iterator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Swap(VectorUint16Pair vector)
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Swap(swigCPtr, VectorUint16Pair.getCPtr(vector));
+            Interop.VectorUint16Pair.Swap(swigCPtr, VectorUint16Pair.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Clear()
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Clear(swigCPtr);
+            Interop.VectorUint16Pair.Clear(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Release()
         {
-            Interop.VectorUint16Pair.VectorUint16Pair_Release(swigCPtr);
+            Interop.VectorUint16Pair.Release(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static readonly int BaseType = Interop.VectorUint16Pair.VectorUint16Pair_BaseType_get();
+        public static readonly int BaseType = Interop.VectorUint16Pair.BaseTypeGet();
     }
 }

@@ -49,11 +49,11 @@ namespace Tizen.NUI
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
         /// <param name="window">Window attach this LayoutController to.</param>
         /// </summary>
-        public LayoutController(Window window) : this(Interop.LayoutController.LayoutController_New(), true)
+        public LayoutController(Window window) : this(Interop.LayoutController.New(), true)
         {
             _window = window;
             _instance = new Callback(Process);
-            Interop.LayoutController.LayoutController_SetCallback(swigCPtr, _instance);
+            Interop.LayoutController.SetCallback(swigCPtr, _instance);
 
             _layoutTransitionDataQueue = new List<LayoutData>();
         }
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return Interop.LayoutController.LayoutController_GetId(swigCPtr);
+            return Interop.LayoutController.GetId(swigCPtr);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Tizen.NUI
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                Interop.LayoutController.delete_LayoutController(swigCPtr);
+                Interop.LayoutController.DeleteLayoutController(swigCPtr);
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 

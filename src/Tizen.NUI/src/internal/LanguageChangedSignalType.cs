@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.LanguageChangedSignalType.delete_LanguageChangedSignalType(swigCPtr);
+            Interop.LanguageChangedSignalType.DeleteLanguageChangedSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.LanguageChangedSignalType.LanguageChangedSignalType_Empty(swigCPtr);
+            bool ret = Interop.LanguageChangedSignalType.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.LanguageChangedSignalType.LanguageChangedSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.LanguageChangedSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.LanguageChangedSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -91,7 +91,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
-            Interop.LanguageChangedSignalType.LanguageChangedSignalType_Emit(swigCPtr, arg);
+            Interop.LanguageChangedSignalType.Emit(swigCPtr, arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -99,7 +99,7 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public LanguageChangedSignalType() : this(Interop.LanguageChangedSignalType.new_LanguageChangedSignalType(), true)
+        public LanguageChangedSignalType() : this(Interop.LanguageChangedSignalType.NewLanguageChangedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

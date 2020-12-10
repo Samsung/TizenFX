@@ -99,16 +99,6 @@ namespace Tizen.NUI.BaseComponents
             CopyFrom(viewAttributes);
         }
 
-        /// <summary>
-        /// Create an instance and set properties from the given view.
-        /// </summary>
-        /// <param name="view">The View that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle(View view)
-        {
-            CopyPropertiesFromView(view);
-        }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string StyleName

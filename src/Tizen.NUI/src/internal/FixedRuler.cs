@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class FixedRuler : Ruler
     {
 
-        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.FixedRuler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.FixedRulerUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -33,19 +33,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Ruler.delete_FixedRuler(swigCPtr);
+            Interop.Ruler.DeleteFixedRuler(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FixedRuler(float spacing) : this(Interop.Ruler.new_FixedRuler__SWIG_0(spacing), true)
+        public FixedRuler(float spacing) : this(Interop.Ruler.NewFixedRuler(spacing), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FixedRuler() : this(Interop.Ruler.new_FixedRuler__SWIG_1(), true)
+        public FixedRuler() : this(Interop.Ruler.NewFixedRuler(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float Snap(float x, float bias)
         {
-            float ret = Interop.Ruler.FixedRuler_Snap(swigCPtr, x, bias);
+            float ret = Interop.Ruler.FixedRulerSnap(swigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -63,7 +63,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = Interop.Ruler.FixedRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
+            float ret = Interop.Ruler.FixedRulerGetPositionFromPage(swigCPtr, page, out volume, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = Interop.Ruler.FixedRuler_GetPageFromPosition(swigCPtr, position, wrap);
+            uint ret = Interop.Ruler.FixedRulerGetPageFromPosition(swigCPtr, position, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetTotalPages()
         {
-            uint ret = Interop.Ruler.FixedRuler_GetTotalPages(swigCPtr);
+            uint ret = Interop.Ruler.FixedRulerGetTotalPages(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
