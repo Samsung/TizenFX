@@ -397,7 +397,7 @@ namespace Tizen.NUI
         {
             InitChildrenWithExpand(MeasuredWidth.Size - Padding.Start - Padding.End, MeasuredHeight.Size - Padding.Top - Padding.Bottom);
 
-            for (int i = 0; i < gridChildren.Length; i++)
+            for (int i = 0; i < gridChildren.Count; i++)
             {
                 GridChild child = gridChildren[i];
                 View view = child.LayoutItem?.Owner;
@@ -430,8 +430,6 @@ namespace Tizen.NUI
 
                 child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));
             }
-
-            LayoutForIndependentChild();
         }
 
         /// <summary>

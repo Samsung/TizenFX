@@ -27,19 +27,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Watch.delete_WatchBoolSignal(swigCPtr);
+            Interop.Watch.DeleteWatchBoolSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.Watch.WatchBoolSignal_Empty(swigCPtr);
+            bool ret = Interop.Watch.WatchBoolSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Watch.WatchBoolSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.Watch.WatchBoolSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Watch.WatchBoolSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Watch.WatchBoolSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,18 +57,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Watch.WatchBoolSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Watch.WatchBoolSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Application arg1, bool arg2)
         {
-            Interop.Watch.WatchBoolSignal_Emit(swigCPtr, Application.getCPtr(arg1), arg2);
+            Interop.Watch.WatchBoolSignalEmit(swigCPtr, Application.getCPtr(arg1), arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public WatchBoolSignal() : this(Interop.Watch.new_WatchBoolSignal(), true)
+        public WatchBoolSignal() : this(Interop.Watch.NewWatchBoolSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

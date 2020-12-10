@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// The default constructor, initializes to 0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Radian() : this(Interop.Radian.new_Radian__SWIG_0(), true)
+        public Radian() : this(Interop.Radian.NewRadian(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="value">The initial value in radians.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Radian(float value) : this(Interop.Radian.new_Radian__SWIG_1(value), true)
+        public Radian(float value) : this(Interop.Radian.NewRadian(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="degree">The initial value in degrees.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Radian(Degree degree) : this(Interop.Radian.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
+        public Radian(Degree degree) : this(Interop.Radian.NewRadian(Degree.getCPtr(degree)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -66,12 +66,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Radian.Radian_radian_set(swigCPtr, value);
+                Interop.Radian.RadianSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.Radian.Radian_radian_get(swigCPtr);
+                float ret = Interop.Radian.RadianGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float ConvertToFloat()
         {
-            float ret = Interop.Radian.Radian_ConvertToFloat(swigCPtr);
+            float ret = Interop.Radian.ConvertToFloat(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Radian.delete_Radian(swigCPtr);
+            Interop.Radian.DeleteRadian(swigCPtr);
         }
     }
 }
