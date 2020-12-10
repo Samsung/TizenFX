@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding.Internals
             _names[name] = scopedElement;
         }
 
-        [Obsolete]
+        [ObsoleteAttribute(" ", false)]
         void INameScope.RegisterName(string name, object scopedElement, IXmlLineInfo xmlLineInfo)
         {
             try

@@ -27,19 +27,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ScrollableSignal.delete_ScrollableSignal(swigCPtr);
+            Interop.ScrollableSignal.DeleteScrollableSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ScrollableSignal.ScrollableSignal_Empty(swigCPtr);
+            bool ret = Interop.ScrollableSignal.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ScrollableSignal.ScrollableSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ScrollableSignal.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ScrollableSignal.ScrollableSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ScrollableSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,18 +57,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ScrollableSignal.ScrollableSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ScrollableSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Vector2 arg)
         {
-            Interop.ScrollableSignal.ScrollableSignal_Emit(swigCPtr, Vector2.getCPtr(arg));
+            Interop.ScrollableSignal.Emit(swigCPtr, Vector2.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ScrollableSignal() : this(Interop.ScrollableSignal.new_ScrollableSignal(), true)
+        public ScrollableSignal() : this(Interop.ScrollableSignal.NewScrollableSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -232,8 +232,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationStates AnimationState
         {
-            private set;
-            get;
+            private set
+            {
+                CurrentAnimationState = value;
+            }
+            get
+            {
+                if (CurrentAnimationState == AnimationStates.Playing)
+                {
+                    if (PlayState == PlayStateType.Stopped)
+                    {
+                        CurrentAnimationState = AnimationStates.Stopped;
+                    }
+                }
+                return CurrentAnimationState;
+            }
         }
         #endregion Property
 
@@ -547,6 +560,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private string tag = "NUITEST";
+        private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
         #endregion Private
     }
 }

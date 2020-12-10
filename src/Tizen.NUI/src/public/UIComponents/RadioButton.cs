@@ -47,7 +47,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton() : this(Interop.RadioButton.RadioButton_New__SWIG_0(), true)
+        public RadioButton() : this(Interop.RadioButton.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -60,12 +60,12 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton(string label) : this(Interop.RadioButton.RadioButton_New__SWIG_1(label), true)
+        public RadioButton(string label) : this(Interop.RadioButton.New(label), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RadioButton.RadioButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RadioButton.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -74,7 +74,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.RadioButton.delete_RadioButton(swigCPtr);
+            Interop.RadioButton.DeleteRadioButton(swigCPtr);
         }
     }
 }

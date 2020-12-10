@@ -49,12 +49,12 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Popup() : this(Interop.Popup.Popup_New(), true)
+        public Popup() : this(Interop.Popup.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Popup_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -758,7 +758,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTitle(View titleView)
         {
-            Interop.Popup.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
+            Interop.Popup.SetTitle(swigCPtr, View.getCPtr(titleView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -772,7 +772,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(View content)
         {
-            Interop.Popup.Popup_SetContent(swigCPtr, View.getCPtr(content));
+            Interop.Popup.SetContent(swigCPtr, View.getCPtr(content));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -786,7 +786,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public void SetFooter(View footer)
         {
-            Interop.Popup.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
+            Interop.Popup.SetFooter(swigCPtr, View.getCPtr(footer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -813,14 +813,14 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
-            Interop.Popup.Popup_SetDisplayState(swigCPtr, (int)displayState);
+            Interop.Popup.SetDisplayState(swigCPtr, (int)displayState);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.Popup_GetTitle(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetTitle(swigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -829,7 +829,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetContent()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.Popup_GetContent(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetContent(swigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -838,7 +838,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetFooter()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.Popup_GetFooter(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetFooter(swigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -846,42 +846,42 @@ namespace Tizen.NUI.UIComponents
 
         internal Popup.DisplayStateType GetDisplayState()
         {
-            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.Popup_GetDisplayState(swigCPtr);
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.GetDisplayState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal OutsideTouchedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_OutsideTouchedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.OutsideTouchedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShowingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShowingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShowingSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShownSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShownSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShownSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HidingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HidingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HidingSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HiddenSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HiddenSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HiddenSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -939,7 +939,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Popup.delete_Popup(swigCPtr);
+            Interop.Popup.DeletePopup(swigCPtr);
         }
 
         // Callback for Popup OutsideTouchedSignal
@@ -1064,27 +1064,27 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int TITLE = Interop.Popup.Popup_Property_TITLE_get();
-            internal static readonly int CONTENT = Interop.Popup.Popup_Property_CONTENT_get();
-            internal static readonly int FOOTER = Interop.Popup.Popup_Property_FOOTER_get();
-            internal static readonly int DISPLAY_STATE = Interop.Popup.Popup_Property_DISPLAY_STATE_get();
-            internal static readonly int TOUCH_TRANSPARENT = Interop.Popup.Popup_Property_TOUCH_TRANSPARENT_get();
-            internal static readonly int TAIL_VISIBILITY = Interop.Popup.Popup_Property_TAIL_VISIBILITY_get();
-            internal static readonly int TAIL_POSITION = Interop.Popup.Popup_Property_TAIL_POSITION_get();
-            internal static readonly int CONTEXTUAL_MODE = Interop.Popup.Popup_Property_CONTEXTUAL_MODE_get();
-            internal static readonly int ANIMATION_DURATION = Interop.Popup.Popup_Property_ANIMATION_DURATION_get();
-            internal static readonly int ANIMATION_MODE = Interop.Popup.Popup_Property_ANIMATION_MODE_get();
-            internal static readonly int ENTRY_ANIMATION = Interop.Popup.Popup_Property_ENTRY_ANIMATION_get();
-            internal static readonly int EXIT_ANIMATION = Interop.Popup.Popup_Property_EXIT_ANIMATION_get();
-            internal static readonly int AUTO_HIDE_DELAY = Interop.Popup.Popup_Property_AUTO_HIDE_DELAY_get();
-            internal static readonly int BACKING_ENABLED = Interop.Popup.Popup_Property_BACKING_ENABLED_get();
-            internal static readonly int BACKING_COLOR = Interop.Popup.Popup_Property_BACKING_COLOR_get();
-            internal static readonly int POPUP_BACKGROUND_IMAGE = Interop.Popup.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
-            internal static readonly int POPUP_BACKGROUND_BORDER = Interop.Popup.Popup_Property_POPUP_BACKGROUND_BORDER_get();
-            internal static readonly int TAIL_UP_IMAGE = Interop.Popup.Popup_Property_TAIL_UP_IMAGE_get();
-            internal static readonly int TAIL_DOWN_IMAGE = Interop.Popup.Popup_Property_TAIL_DOWN_IMAGE_get();
-            internal static readonly int TAIL_LEFT_IMAGE = Interop.Popup.Popup_Property_TAIL_LEFT_IMAGE_get();
-            internal static readonly int TAIL_RIGHT_IMAGE = Interop.Popup.Popup_Property_TAIL_RIGHT_IMAGE_get();
+            internal static readonly int TITLE = Interop.Popup.TitleGet();
+            internal static readonly int CONTENT = Interop.Popup.ContentGet();
+            internal static readonly int FOOTER = Interop.Popup.FooterGet();
+            internal static readonly int DisplayState = Interop.Popup.DisplayStateGet();
+            internal static readonly int TouchTransparent = Interop.Popup.TouchTransparentGet();
+            internal static readonly int TailVisibility = Interop.Popup.TailVisibilityGet();
+            internal static readonly int TailPosition = Interop.Popup.TailPositionGet();
+            internal static readonly int ContextualMode = Interop.Popup.ContextualModeGet();
+            internal static readonly int AnimationDuration = Interop.Popup.AnimationDurationGet();
+            internal static readonly int AnimationMode = Interop.Popup.AnimationModeGet();
+            internal static readonly int EntryAnimation = Interop.Popup.EntryAnimationGet();
+            internal static readonly int ExitAnimation = Interop.Popup.ExitAnimationGet();
+            internal static readonly int AutoHideDelay = Interop.Popup.AutoHideDelayGet();
+            internal static readonly int BackingEnabled = Interop.Popup.BackingEnabledGet();
+            internal static readonly int BackingColor = Interop.Popup.BackingColorGet();
+            internal static readonly int PopupBackgroundImage = Interop.Popup.PopupBackgroundImageGet();
+            internal static readonly int PopupBackgroundBorder = Interop.Popup.PopupBackgroundBorderGet();
+            internal static readonly int TailUpImage = Interop.Popup.TailUpImageGet();
+            internal static readonly int TailDownImage = Interop.Popup.TailDownImageGet();
+            internal static readonly int TailLeftImage = Interop.Popup.TailLeftImageGet();
+            internal static readonly int TailRightImage = Interop.Popup.TailRightImageGet();
         }
     }
 }

@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -33,7 +34,7 @@ namespace Tizen.NUI
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <param name="hints">The hints to define the geometry of the rendered object.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
+        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +45,7 @@ namespace Tizen.NUI
         /// <param name="vertexShader">The vertex shader code for the effect.</param>
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
+        public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.New(vertexShader, fragmentShader), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -72,7 +73,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Shader.Shader_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Shader.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -80,14 +81,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Shader.delete_Shader(swigCPtr);
+            Interop.Shader.DeleteShader(swigCPtr);
         }
 
         /// <summary>
         /// Hint.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public class Hint
+        public sealed class Hint
         {
             /// <summary>
             /// Enumeration for the hint value.
@@ -119,6 +120,7 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
@@ -131,7 +133,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
+            public static readonly int PROGRAM = Interop.Shader.ProgramGet();
         }
     }
 }

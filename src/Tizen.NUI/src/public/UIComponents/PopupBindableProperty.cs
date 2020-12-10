@@ -97,14 +97,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.DISPLAY_STATE, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.DisplayState, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.DISPLAY_STATE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.DisplayState).Get(out temp) == false)
             {
                 NUILog.Error("DisplayState get error!");
             }
@@ -130,14 +130,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TOUCH_TRANSPARENT, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TouchTransparent, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TOUCH_TRANSPARENT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TouchTransparent).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -148,14 +148,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_VISIBILITY, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailVisibility, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_VISIBILITY).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailVisibility).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -166,14 +166,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_POSITION, new Tizen.NUI.PropertyValue((Vector3)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailPosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_POSITION).Get(temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailPosition).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -218,14 +218,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ContextualMode, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTEXTUAL_MODE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ContextualMode).Get(out temp) == false)
             {
                 NUILog.Error("ContextualMode get error!");
             }
@@ -253,14 +253,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ANIMATION_DURATION, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AnimationDuration, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_DURATION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AnimationDuration).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -300,14 +300,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AnimationMode, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_MODE).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AnimationMode).Get(out temp) == false)
             {
                 NUILog.Error("AnimationMode get error!");
             }
@@ -333,14 +333,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ENTRY_ANIMATION, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.EntryAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ENTRY_ANIMATION).Get(temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EntryAnimation).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -351,14 +351,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.EXIT_ANIMATION, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ExitAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EXIT_ANIMATION).Get(temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ExitAnimation).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -369,14 +369,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AUTO_HIDE_DELAY, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AutoHideDelay, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AUTO_HIDE_DELAY).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AutoHideDelay).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -387,14 +387,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BACKING_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BackingEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_ENABLED).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BackingEnabled).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -405,14 +405,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BACKING_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BackingColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BackingColor).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -423,14 +423,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundImage).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -441,14 +441,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_BORDER, new Tizen.NUI.PropertyValue((Rectangle)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundBorder, new Tizen.NUI.PropertyValue((Rectangle)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             Rectangle temp = new Rectangle(0, 0, 0, 0);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundBorder).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -459,14 +459,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_UP_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailUpImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_UP_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailUpImage).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -477,14 +477,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_DOWN_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailDownImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_DOWN_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailDownImage).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -495,14 +495,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_LEFT_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailLeftImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_LEFT_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailLeftImage).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -513,14 +513,14 @@ namespace Tizen.NUI.UIComponents
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TAIL_RIGHT_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailRightImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_RIGHT_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailRightImage).Get(out temp);
             return temp;
         });
 

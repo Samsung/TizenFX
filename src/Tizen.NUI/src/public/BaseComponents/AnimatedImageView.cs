@@ -74,6 +74,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 return mUrl;
             }
+            set
+            {
+                mDirtyFlag = true;
+                mUrl = value;
+            }
         }
 
         /// <summary>

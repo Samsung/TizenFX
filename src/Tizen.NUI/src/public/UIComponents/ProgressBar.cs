@@ -39,14 +39,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VALUE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VALUE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressValue).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -57,14 +57,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VALUE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VALUE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressValue).Get(out temp);
             return temp;
         });
         /// This will be deprecated
@@ -93,14 +93,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.TRACK_VISUAL).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.TrackVisual).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -111,14 +111,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VISUAL).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressVisual).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -129,14 +129,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VISUAL).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressVisual).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -147,14 +147,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisual).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -165,14 +165,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisualAnimation, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisualAnimation).Get(temp);
             return temp;
         });
         /// This will be deprecated
@@ -183,14 +183,14 @@ namespace Tizen.NUI.UIComponents
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.LABEL_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.LabelVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.LABEL_VISUAL).Get(temp);
+            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.LabelVisual).Get(temp);
             return temp;
         });
 
@@ -204,13 +204,13 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ProgressBar() : this(Interop.ProgressBar.ProgressBar_New(), true)
+        public ProgressBar() : this(Interop.ProgressBar.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ProgressBar.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ProgressBar.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -435,7 +435,7 @@ namespace Tizen.NUI.UIComponents
 
         internal ProgressBarValueChangedSignal ValueChangedSignal()
         {
-            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ProgressBar_ValueChangedSignal(swigCPtr), false);
+            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ValueChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -470,7 +470,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ProgressBar.delete_ProgressBar(swigCPtr);
+            Interop.ProgressBar.DeleteProgressBar(swigCPtr);
         }
 
         // Callback for ProgressBar ValueChanged signal
@@ -564,15 +564,15 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int PROGRESS_VALUE = Interop.ProgressBar.ProgressBar_Property_PROGRESS_VALUE_get();
-            internal static readonly int SECONDARY_PROGRESS_VALUE = Interop.ProgressBar.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
-            internal static readonly int INDETERMINATE = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_get();
-            internal static readonly int TRACK_VISUAL = Interop.ProgressBar.ProgressBar_Property_TRACK_VISUAL_get();
-            internal static readonly int PROGRESS_VISUAL = Interop.ProgressBar.ProgressBar_Property_PROGRESS_VISUAL_get();
-            internal static readonly int SECONDARY_PROGRESS_VISUAL = Interop.ProgressBar.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
-            internal static readonly int LABEL_VISUAL = Interop.ProgressBar.ProgressBar_Property_LABEL_VISUAL_get();
+            internal static readonly int ProgressValue = Interop.ProgressBar.ProgressValueGet();
+            internal static readonly int SecondaryProgressValue = Interop.ProgressBar.SecondaryProgressValueGet();
+            internal static readonly int INDETERMINATE = Interop.ProgressBar.IndeterminateGet();
+            internal static readonly int TrackVisual = Interop.ProgressBar.TrackVisualGet();
+            internal static readonly int ProgressVisual = Interop.ProgressBar.ProgressVisualGet();
+            internal static readonly int SecondaryProgressVisual = Interop.ProgressBar.SecondaryProgressVisualGet();
+            internal static readonly int IndeterminateVisual = Interop.ProgressBar.IndeterminateVisualGet();
+            internal static readonly int IndeterminateVisualAnimation = Interop.ProgressBar.IndeterminateVisualAnimationGet();
+            internal static readonly int LabelVisual = Interop.ProgressBar.LabelVisualGet();
         }
     }
 }

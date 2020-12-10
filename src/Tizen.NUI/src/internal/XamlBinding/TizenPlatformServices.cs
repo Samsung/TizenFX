@@ -59,8 +59,8 @@ namespace Tizen.NUI.Binding
         public async Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken))
-                return await response.Content.ReadAsStreamAsync();
+            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken).ConfigureAwait(false))
+                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 
         public Assembly[] GetAssemblies()
