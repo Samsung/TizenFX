@@ -39,7 +39,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
+            Interop.WidgetView.DeleteWidgetViewSignal(swigCPtr);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.WidgetView.WidgetViewSignal_Empty(swigCPtr);
+            bool ret = Interop.WidgetView.WidgetViewSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.WidgetView.WidgetViewSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.WidgetView.WidgetViewSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WidgetView.WidgetViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WidgetView.WidgetViewSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WidgetView.WidgetViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WidgetView.WidgetViewSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(WidgetView arg)
         {
-            Interop.WidgetView.WidgetViewSignal_Emit(swigCPtr, WidgetView.getCPtr(arg));
+            Interop.WidgetView.WidgetViewSignalEmit(swigCPtr, WidgetView.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API6, Will be removed in API9, " +
             "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WidgetViewSignal() : this(Interop.WidgetView.new_WidgetViewSignal(), true)
+        public WidgetViewSignal() : this(Interop.WidgetView.NewWidgetViewSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

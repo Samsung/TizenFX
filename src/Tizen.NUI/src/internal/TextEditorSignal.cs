@@ -30,20 +30,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TextEditor.delete_TextEditorSignal(swigCPtr);
+            Interop.TextEditor.DeleteTextEditorSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.TextEditor.TextEditorSignal_Empty(swigCPtr);
+            bool ret = Interop.TextEditor.TextEditorSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.TextEditor.TextEditorSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.TextEditor.TextEditorSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TextEditor.TextEditorSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TextEditor.TextEditorSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -61,18 +61,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TextEditor.TextEditorSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TextEditor.TextEditorSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(TextEditor arg)
         {
-            Interop.TextEditor.TextEditorSignal_Emit(swigCPtr, TextEditor.getCPtr(arg));
+            Interop.TextEditor.TextEditorSignalEmit(swigCPtr, TextEditor.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TextEditorSignal() : this(Interop.TextEditor.new_TextEditorSignal(), true)
+        public TextEditorSignal() : this(Interop.TextEditor.NewTextEditorSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

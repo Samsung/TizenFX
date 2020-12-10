@@ -37,7 +37,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WidgetApplication.delete_WidgetApplication(swigCPtr);
+            Interop.WidgetApplication.DeleteWidgetApplication(swigCPtr);
         }
 
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
@@ -53,7 +53,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = Interop.WidgetApplication.WidgetApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.WidgetApplication.New(argc, argvStr, stylesheet);
 
             WidgetApplication ret = new WidgetApplication(widgetIntPtr, false);
 
@@ -62,14 +62,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.new_WidgetApplication__SWIG_1(WidgetApplication.getCPtr(widgetApplication)), true)
+        internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.NewWidgetApplication(WidgetApplication.getCPtr(widgetApplication)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WidgetApplication Assign(WidgetApplication widgetApplication)
         {
-            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.WidgetApplication_Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
+            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip);
 
-            Interop.WidgetApplication.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
+            Interop.WidgetApplication.RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -31,7 +32,7 @@ namespace Tizen.NUI
         /// Create an instance of Renderer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
+        public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -46,12 +47,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DepthIndex).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DepthIndex, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -64,12 +65,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FaceCullingMode).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.FaceCullingMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -82,12 +83,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_MODE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendMode).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_MODE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -100,12 +101,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendEquationRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendEquationRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -118,12 +119,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendEquationAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendEquationAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -136,12 +137,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendFactorSrcRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendFactorSrcRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -154,12 +155,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendFactorDestRgb).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendFactorDestRgb, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -172,12 +173,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendFactorSrcAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendFactorSrcAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -190,12 +191,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendFactorDestAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendFactorDestAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -208,12 +209,12 @@ namespace Tizen.NUI
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_COLOR).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendColor).Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_COLOR, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendColor, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -226,12 +227,12 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BlendPreMultipliedAlpha).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BlendPreMultipliedAlpha, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -244,12 +245,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.IndexRangeFirst).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.IndexRangeFirst, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -262,12 +263,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.IndexRangeCount).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.IndexRangeCount, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -280,12 +281,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DepthWriteMode).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DepthWriteMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -298,12 +299,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DepthFunction).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DepthFunction, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -316,12 +317,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DepthTestMode).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DepthTestMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -334,12 +335,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RENDER_MODE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RenderMode).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.RENDER_MODE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.RenderMode, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -352,12 +353,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilFunction).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilFunction, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -370,12 +371,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilFunctionMask).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilFunctionMask, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -388,12 +389,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilFunctionReference).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilFunctionReference, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -406,12 +407,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_MASK).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilMask).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_MASK, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilMask, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -424,12 +425,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilOperationOnFail).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilOperationOnFail, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -442,12 +443,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilOperationOnZFail).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilOperationOnZFail, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -460,12 +461,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS).Get(out temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.StencilOperationOnZPass).Get(out temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS, new Tizen.NUI.PropertyValue(value));
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.StencilOperationOnZPass, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -476,7 +477,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetGeometry(Geometry geometry)
         {
-            Interop.Renderer.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
+            Interop.Renderer.SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -488,7 +489,7 @@ namespace Tizen.NUI
         public Geometry GetGeometry()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.Renderer_GetGeometry(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.GetGeometry(swigCPtr);
             Geometry ret = this.GetInstanceSafely<Geometry>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -502,7 +503,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetIndexRange(int firstElement, int elementsCount)
         {
-            Interop.Renderer.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
+            Interop.Renderer.SetIndexRange(swigCPtr, firstElement, elementsCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -513,7 +514,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTextures(TextureSet textureSet)
         {
-            Interop.Renderer.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
+            Interop.Renderer.SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -525,7 +526,7 @@ namespace Tizen.NUI
         public TextureSet GetTextures()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.Renderer_GetTextures(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.GetTextures(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
             if (cPtr != null && ret == null)
@@ -534,7 +535,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.DeleteBaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -548,7 +549,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetShader(Shader shader)
         {
-            Interop.Renderer.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
+            Interop.Renderer.SetShader(swigCPtr, Shader.getCPtr(shader));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -560,7 +561,7 @@ namespace Tizen.NUI
         public Shader GetShader()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.Renderer_GetShader(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.GetShader(swigCPtr);
             Shader ret = this.GetInstanceSafely<Shader>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -571,7 +572,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Renderer.Renderer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Renderer.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -579,45 +580,45 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Renderer.delete_Renderer(swigCPtr);
+            Interop.Renderer.DeleteRenderer(swigCPtr);
         }
-
 
         /// <since_tizen> 6.0 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class Ranges
+        public sealed class Ranges
         {
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int BACKGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_BACKGROUND_EFFECT_get();
+            public static readonly int BackgroundEffect = Interop.Renderer.RangesBackgroundEffectGet();
 
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int BACKGROUND = Interop.Renderer.Renderer_Ranges_BACKGROUND_get();
+            public static readonly int BACKGROUND = Interop.Renderer.RangesBackgroundGet();
 
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CONTENT = Interop.Renderer.Renderer_Ranges_CONTENT_get();
+            public static readonly int CONTENT = Interop.Renderer.RangesContentGet();
 
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int DECORATION = Interop.Renderer.Renderer_Ranges_DECORATION_get();
+            public static readonly int DECORATION = Interop.Renderer.RangesDecorationGet();
 
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_FOREGROUND_EFFECT_get();
+            public static readonly int ForegroundEffect = Interop.Renderer.RangesForegroundEffectGet();
         }
 
         /// <summary>
         /// Enumeration for instances of properties belonging to the Renderer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         public class Property
@@ -628,168 +629,168 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int DEPTH_INDEX = Interop.Renderer.Renderer_Property_DEPTH_INDEX_get();
+            public static readonly int DepthIndex = Interop.Renderer.DepthIndexGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int FACE_CULLING_MODE = Interop.Renderer.Renderer_Property_FACE_CULLING_MODE_get();
+            public static readonly int FaceCullingMode = Interop.Renderer.FaceCullingModeGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_MODE = Interop.Renderer.Renderer_Property_BLEND_MODE_get();
+            public static readonly int BlendMode = Interop.Renderer.BlendModeGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_EQUATION_RGB = Interop.Renderer.Renderer_Property_BLEND_EQUATION_RGB_get();
+            public static readonly int BlendEquationRgb = Interop.Renderer.BlendEquationRgbGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_EQUATION_ALPHA = Interop.Renderer.Renderer_Property_BLEND_EQUATION_ALPHA_get();
+            public static readonly int BlendEquationAlpha = Interop.Renderer.BlendEquationAlphaGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_FACTOR_SRC_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
+            public static readonly int BlendFactorSrcRgb = Interop.Renderer.BlendFactorSrcRgbGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_FACTOR_DEST_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
+            public static readonly int BlendFactorDestRgb = Interop.Renderer.BlendFactorDestRgbGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_FACTOR_SRC_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
+            public static readonly int BlendFactorSrcAlpha = Interop.Renderer.BlendFactorSrcAlphaGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_FACTOR_DEST_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
+            public static readonly int BlendFactorDestAlpha = Interop.Renderer.BlendFactorDestAlphaGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_COLOR = Interop.Renderer.Renderer_Property_BLEND_COLOR_get();
+            public static readonly int BlendColor = Interop.Renderer.BlendColorGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = Interop.Renderer.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
+            public static readonly int BlendPreMultipliedAlpha = Interop.Renderer.BlendPreMultipliedAlphaGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int INDEX_RANGE_FIRST = Interop.Renderer.Renderer_Property_INDEX_RANGE_FIRST_get();
+            public static readonly int IndexRangeFirst = Interop.Renderer.IndexRangeFirstGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int INDEX_RANGE_COUNT = Interop.Renderer.Renderer_Property_INDEX_RANGE_COUNT_get();
+            public static readonly int IndexRangeCount = Interop.Renderer.IndexRangeCountGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int DEPTH_WRITE_MODE = Interop.Renderer.Renderer_Property_DEPTH_WRITE_MODE_get();
+            public static readonly int DepthWriteMode = Interop.Renderer.DepthWriteModeGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int DEPTH_FUNCTION = Interop.Renderer.Renderer_Property_DEPTH_FUNCTION_get();
+            public static readonly int DepthFunction = Interop.Renderer.DepthFunctionGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int DEPTH_TEST_MODE = Interop.Renderer.Renderer_Property_DEPTH_TEST_MODE_get();
+            public static readonly int DepthTestMode = Interop.Renderer.DepthTestModeGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int RENDER_MODE = Interop.Renderer.Renderer_Property_RENDER_MODE_get();
+            public static readonly int RenderMode = Interop.Renderer.RenderModeGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_FUNCTION = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_get();
+            public static readonly int StencilFunction = Interop.Renderer.StencilFunctionGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_FUNCTION_MASK = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_MASK_get();
+            public static readonly int StencilFunctionMask = Interop.Renderer.StencilFunctionMaskGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_FUNCTION_REFERENCE = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
+            public static readonly int StencilFunctionReference = Interop.Renderer.StencilFunctionReferenceGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_MASK = Interop.Renderer.Renderer_Property_STENCIL_MASK_get();
+            public static readonly int StencilMask = Interop.Renderer.StencilMaskGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_OPERATION_ON_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
+            public static readonly int StencilOperationOnFail = Interop.Renderer.StencilOperationOnFailGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_OPERATION_ON_Z_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
+            public static readonly int StencilOperationOnZFail = Interop.Renderer.StencilOperationOnZFailGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int STENCIL_OPERATION_ON_Z_PASS = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
+            public static readonly int StencilOperationOnZPass = Interop.Renderer.StencilOperationOnZPassGet();
         }
     }
 }

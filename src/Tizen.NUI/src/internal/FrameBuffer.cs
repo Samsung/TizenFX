@@ -24,7 +24,7 @@ namespace Tizen.NUI
     public class FrameBuffer : BaseHandle
     {
 
-        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBuffer.FrameBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBuffer.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -35,11 +35,11 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.FrameBuffer.delete_FrameBuffer(swigCPtr);
+            Interop.FrameBuffer.DeleteFrameBuffer(swigCPtr);
         }
 
         /// <since_tizen> 3 </since_tizen>
-        public class Attachment
+        public sealed class Attachment
         {
             /// <since_tizen> 3 </since_tizen>
             public enum Mask
@@ -51,7 +51,7 @@ namespace Tizen.NUI
             }
         }
 
-        public FrameBuffer(uint width, uint height, uint attachments) : this(Interop.FrameBuffer.FrameBuffer_New(width, height, attachments), true)
+        public FrameBuffer(uint width, uint height, uint attachments) : this(Interop.FrameBuffer.New(width, height, attachments), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -59,20 +59,20 @@ namespace Tizen.NUI
 
         public void AttachColorTexture(Texture texture)
         {
-            Interop.FrameBuffer.FrameBuffer_AttachColorTexture__SWIG_0(swigCPtr, Texture.getCPtr(texture));
+            Interop.FrameBuffer.AttachColorTexture(swigCPtr, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AttachColorTexture(Texture texture, uint mipmapLevel, uint layer)
         {
-            Interop.FrameBuffer.FrameBuffer_AttachColorTexture__SWIG_1(swigCPtr, Texture.getCPtr(texture), mipmapLevel, layer);
+            Interop.FrameBuffer.AttachColorTexture(swigCPtr, Texture.getCPtr(texture), mipmapLevel, layer);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Texture GetColorTexture()
         {
             //to fix memory leak issue, match the handle count with native side.
-            global::System.IntPtr cPtr = Interop.FrameBuffer.FrameBuffer_GetColorTexture(swigCPtr);
+            global::System.IntPtr cPtr = Interop.FrameBuffer.GetColorTexture(swigCPtr);
             Texture ret = this.GetInstanceSafely<Texture>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
