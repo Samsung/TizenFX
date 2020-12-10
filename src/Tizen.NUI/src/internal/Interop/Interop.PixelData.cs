@@ -34,6 +34,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelData_GetPixelFormat")]
             public static extern int PixelData_GetPixelFormat(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelData_GenerateUrl")]
+            public static extern string GenerateUrl(IntPtr handle);
         }
     }
 }

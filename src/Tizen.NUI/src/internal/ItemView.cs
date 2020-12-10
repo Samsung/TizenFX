@@ -46,12 +46,16 @@ namespace Tizen.NUI
             get
             {
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(ItemView.Property.LAYOUT).Get(temp);
+                PropertyValue layout = GetProperty(ItemView.Property.LAYOUT);
+                layout?.Get(temp);
+                layout?.Dispose();
                 return temp;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LAYOUT, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -206,14 +210,14 @@ namespace Tizen.NUI
 
         internal SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetLayout(uint layoutIndex)
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetLayout(swigCPtr, layoutIndex), true);
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetLayout(swigCPtr, layoutIndex));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetActiveLayout()
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetActiveLayout(swigCPtr), true);
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetActiveLayout(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -482,13 +486,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue minimumSwipeSpeed = GetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED);
+                minimumSwipeSpeed?.Get(out returnValue);
+                minimumSwipeSpeed?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -498,13 +506,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue minimumSwipDistance = GetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE);
+                minimumSwipDistance?.Get(out returnValue);
+                minimumSwipDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -514,13 +526,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue wheelScrollDistanceStep = GetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP);
+                wheelScrollDistanceStep?.Get(out returnValue);
+                wheelScrollDistanceStep?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -530,13 +546,17 @@ namespace Tizen.NUI
         {
             get
             {
-                bool temp = false;
-                GetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED).Get(out temp);
-                return temp;
+                bool returnValue = false;
+                PropertyValue snapToItemEnabled = GetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED);
+                snapToItemEnabled?.Get(out returnValue);
+                snapToItemEnabled?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -546,13 +566,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.REFRESH_INTERVAL).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue refreshIntervalu = GetProperty(ItemView.Property.REFRESH_INTERVAL);
+                refreshIntervalu?.Get(out returnValue);
+                refreshIntervalu?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.REFRESH_INTERVAL, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.REFRESH_INTERVAL, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -562,13 +586,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.LAYOUT_POSITION).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue layoutPosition = GetProperty(ItemView.Property.LAYOUT_POSITION);
+                layoutPosition?.Get(out returnValue);
+                layoutPosition?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT_POSITION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LAYOUT_POSITION, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -578,13 +606,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_SPEED).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue scrollSpeed = GetProperty(ItemView.Property.SCROLL_SPEED);
+                scrollSpeed?.Get(out returnValue);
+                scrollSpeed?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.SCROLL_SPEED, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -594,13 +626,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.OVERSHOOT).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue overShoot = GetProperty(ItemView.Property.OVERSHOOT);
+                overShoot?.Get(out returnValue);
+                overShoot?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.OVERSHOOT, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.OVERSHOOT, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -610,13 +646,17 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(ItemView.Property.SCROLL_DIRECTION).Get(temp);
-                return temp;
+                Vector2 returnValue = new Vector2(0.0f, 0.0f);
+                PropertyValue scrollDirection = GetProperty(ItemView.Property.SCROLL_DIRECTION);
+                scrollDirection?.Get(returnValue);
+                scrollDirection?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.SCROLL_DIRECTION, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -626,13 +666,17 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                GetProperty(ItemView.Property.LAYOUT_ORIENTATION).Get(out temp);
-                return temp;
+                int returnValue = 0;
+                PropertyValue layoutOrientation = GetProperty(ItemView.Property.LAYOUT_ORIENTATION);
+                layoutOrientation?.Get(out returnValue);
+                layoutOrientation?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.LAYOUT_ORIENTATION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.LAYOUT_ORIENTATION, setValue);
+                setValue.Dispose();
             }
         }
 
@@ -642,13 +686,17 @@ namespace Tizen.NUI
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_CONTENT_SIZE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue scrollContentSize = GetProperty(ItemView.Property.SCROLL_CONTENT_SIZE);
+                scrollContentSize?.Get(out returnValue);
+                scrollContentSize?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(ItemView.Property.SCROLL_CONTENT_SIZE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ItemView.Property.SCROLL_CONTENT_SIZE, setValue);
+                setValue.Dispose();
             }
         }
     }

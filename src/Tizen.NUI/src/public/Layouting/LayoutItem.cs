@@ -221,6 +221,7 @@ namespace Tizen.NUI
             if (needsLayout)
             {
                 OnMeasure(widthMeasureSpec, heightMeasureSpec);
+                OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
                 Flags = Flags | LayoutFlags.LayoutRequired;
                 Flags &= ~LayoutFlags.ForceLayout;
             }
@@ -280,6 +281,7 @@ namespace Tizen.NUI
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
             {
                 OnLayout(changed, left, top, right, bottom);
+                OnLayoutIndependentChildren(changed, left, top, right, bottom);
                 // Clear flag
                 Flags &= ~LayoutFlags.LayoutRequired;
             }
@@ -539,6 +541,8 @@ namespace Tizen.NUI
                                    GetDefaultSize(SuggestedMinimumHeight, heightMeasureSpec));
         }
 
+        internal virtual void OnMeasureIndependentChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec) { }
+
         /// <summary>
         /// Called from Layout() when this layout should assign a size and position to each of its children. <br />
         /// Derived classes with children should override this method and call Layout() on each of their children. <br />
@@ -550,6 +554,8 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
+
+        internal virtual void OnLayoutIndependentChildren(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
 
         /// <summary>
         /// Virtual method to allow derived classes to remove any children before it is removed from
@@ -597,8 +603,10 @@ namespace Tizen.NUI
                                                          " right:" + _layoutPositionData.Right +
                                                          " bottom:" + _layoutPositionData.Bottom);
 
-                var ownerParent = Owner.GetParent() as View;
-                if (ownerParent != null && ownerParent.Layout != null && ownerParent.Layout.LayoutWithTransition)
+                Container onwerContainer = Owner.GetParent();
+                View onwerView = onwerContainer is Layer ? new View(Layer.getCPtr(onwerContainer).Handle, false) : onwerContainer as View;
+
+                if (onwerView != null && onwerView.Layout != null && onwerView.Layout.LayoutWithTransition)
                 {
                     NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }

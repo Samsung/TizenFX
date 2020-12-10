@@ -46,6 +46,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// returns an enumerable collection of the child layouts that owner's <see cref="View.ExcludeLayouting"/> is false.
+        /// </summary>
+        /// <returns>An enumerable collection of the child layouts that affected by this layout.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected IEnumerable<LayoutItem> IterateLayoutChildren()
+        {
+            for (int i = 0; i < LayoutChildren.Count; i++)
+            {
+                LayoutItem childLayout = LayoutChildren[i];
+                if (!childLayout?.Owner?.ExcludeLayouting ?? false)
+                {
+                    yield return childLayout;
+                }
+            }
+        }
+
+        /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when childLayout is null. </exception>
@@ -400,6 +417,14 @@ namespace Tizen.NUI
                                    new MeasuredSize(measuredHeight, MeasuredSize.StateType.MeasuredSizeOK));
         }
 
+        internal override void OnMeasureIndependentChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        {
+            foreach (LayoutItem childLayout in LayoutChildren.Where(item => item?.Owner?.ExcludeLayouting ?? false))
+            {
+                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+            }
+        }
+
         /// <summary>
         /// Called from Layout() when this layout should assign a size and position to each of its children.<br />
         /// Derived classes with children should override this method and call Layout() on each of their children.<br />
@@ -440,28 +465,19 @@ namespace Tizen.NUI
         /// Layout independent children those Owners have true ExcludeLayouting. <br />
         /// These children are required not to be affected by this layout. <br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void LayoutForIndependentChild()
+        internal override void OnLayoutIndependentChildren(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            int count = LayoutChildren.Count;
-            for (int childIndex = 0; childIndex < count; childIndex++)
+            foreach (LayoutItem childLayout in LayoutChildren.Where(item => item?.Owner?.ExcludeLayouting ?? false))
             {
-                LayoutItem childLayout = LayoutChildren[childIndex];
-                if (childLayout != null)
-                {
-                    if (childLayout.Owner.ExcludeLayouting)
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                        Position2D childPosition = childLayout.Owner.Position2D;
+                Position2D childPosition = childLayout.Owner.Position2D;
 
-                        LayoutLength childPositionX = new LayoutLength(childPosition.X);
-                        LayoutLength childPositionY = new LayoutLength(childPosition.Y);
+                LayoutLength childPositionX = new LayoutLength(childPosition.X);
+                LayoutLength childPositionY = new LayoutLength(childPosition.Y);
 
-                        childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
-                    }
-                }
+                childLayout.Layout(childPositionX, childPositionY, childPositionX + childWidth, childPositionY + childHeight, true);
             }
         }
 

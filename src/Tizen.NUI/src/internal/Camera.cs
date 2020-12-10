@@ -216,174 +216,226 @@ namespace Tizen.NUI
         {
             get
             {
-                string temp;
-                GetProperty(Camera.Property.TYPE).Get(out temp);
-                return temp;
+                string returnValue = "";
+                PropertyValue type = GetProperty(Camera.Property.TYPE);
+                type?.Get(out returnValue);
+                type?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.TYPE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.TYPE, setValue);
+                setValue.Dispose();
             }
         }
         public string ProjectionMode
         {
             get
             {
-                string temp;
-                GetProperty(Camera.Property.PROJECTION_MODE).Get(out temp);
-                return temp;
+                string returnValue = "";
+                PropertyValue projectionMode = GetProperty(Camera.Property.PROJECTION_MODE);
+                projectionMode?.Get(out returnValue);
+                projectionMode?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.PROJECTION_MODE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.PROJECTION_MODE, setValue);
+                setValue.Dispose();
             }
         }
         public float FieldOfView
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.FIELD_OF_VIEW).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue fieldView = GetProperty(Camera.Property.FIELD_OF_VIEW);
+                fieldView?.Get(out returnValue);
+                fieldView?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.FIELD_OF_VIEW, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.FIELD_OF_VIEW, setValue);
+                setValue.Dispose();
             }
         }
         public float AspectRatio
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.ASPECT_RATIO).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue aspectRatio = GetProperty(Camera.Property.ASPECT_RATIO);
+                aspectRatio?.Get(out returnValue);
+                aspectRatio?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.ASPECT_RATIO, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.ASPECT_RATIO, setValue);
+                setValue.Dispose();
             }
         }
         public float NearPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.NEAR_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue nearPlaneDistance = GetProperty(Camera.Property.NEAR_PLANE_DISTANCE);
+                nearPlaneDistance?.Get(out returnValue);
+                nearPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.NEAR_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.NEAR_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public float FarPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.FAR_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue farPlaneDistance = GetProperty(Camera.Property.FAR_PLANE_DISTANCE);
+                farPlaneDistance?.Get(out returnValue);
+                farPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.FAR_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.FAR_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public float LeftPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.LEFT_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue leftPlaneDistance = GetProperty(Camera.Property.LEFT_PLANE_DISTANCE);
+                leftPlaneDistance?.Get(out returnValue);
+                leftPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.LEFT_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.LEFT_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public float RightPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.RIGHT_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue rightPlaneDistance = GetProperty(Camera.Property.RIGHT_PLANE_DISTANCE);
+                rightPlaneDistance?.Get(out returnValue);
+                rightPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.RIGHT_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.RIGHT_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public float TopPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.TOP_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue topPlaneDistance = GetProperty(Camera.Property.TOP_PLANE_DISTANCE);
+                topPlaneDistance?.Get(out returnValue);
+                topPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.TOP_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.TOP_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public float BottomPlaneDistance
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE).Get(out temp);
-                return temp;
+                float returnValue = 0.0f;
+                PropertyValue bottomPlaneDistance = GetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE);
+                bottomPlaneDistance?.Get(out returnValue);
+                bottomPlaneDistance?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE, setValue);
+                setValue.Dispose();
             }
         }
         public Vector3 TargetPosition
         {
             get
             {
-                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(Camera.Property.TARGET_POSITION).Get(temp);
-                return temp;
+                Vector3 returnValue = new Vector3(0.0f, 0.0f, 0.0f);
+                PropertyValue targetPosition = GetProperty(Camera.Property.TARGET_POSITION);
+                targetPosition?.Get(returnValue);
+                targetPosition?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.TARGET_POSITION, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.TARGET_POSITION, setValue);
+                setValue.Dispose();
             }
         }
         internal Matrix ProjectionMatrix
         {
             get
             {
-                Matrix temp = new Matrix();
-                GetProperty(Camera.Property.PROJECTION_MATRIX).Get(temp);
-                return temp;
+                Matrix returnValue = new Matrix();
+                PropertyValue projectionMatrix = GetProperty(Camera.Property.PROJECTION_MATRIX);
+                projectionMatrix?.Get(returnValue);
+                projectionMatrix?.Dispose();
+                return returnValue;
             }
         }
         internal Matrix ViewMatrix
         {
             get
             {
-                Matrix temp = new Matrix();
-                GetProperty(Camera.Property.VIEW_MATRIX).Get(temp);
-                return temp;
+                Matrix returnValue = new Matrix();
+                PropertyValue viewMatrix = GetProperty(Camera.Property.VIEW_MATRIX);
+                viewMatrix.Get(returnValue);
+                viewMatrix.Dispose();
+                return returnValue;
             }
         }
         public bool InvertYAxis
         {
             get
             {
-                bool temp = false;
-                GetProperty(Camera.Property.INVERT_Y_AXIS).Get(out temp);
-                return temp;
+                bool returnValue = false;
+                PropertyValue invertYAxis = GetProperty(Camera.Property.INVERT_Y_AXIS);
+                invertYAxis?.Get(out returnValue);
+                invertYAxis?.Dispose();
+                return returnValue;
             }
             set
             {
-                SetProperty(Camera.Property.INVERT_Y_AXIS, new Tizen.NUI.PropertyValue(value));
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Camera.Property.INVERT_Y_AXIS, setValue);
+                setValue.Dispose();
             }
         }
     }

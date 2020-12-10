@@ -1567,12 +1567,32 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.UpdateCornerRadius((float)newValue);
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (float)newValue;
+            view.ApplyCornerRadius();
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0 : view.backgroundExtraData.CornerRadius;
+        });
+
+        /// <summary>
+        /// CornerRadiusPolicy Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
+            if (view.backgroundExtraData.CornerRadius != 0)
+            {
+                view.ApplyCornerRadius();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
         });
 
         /// <summary>
@@ -1616,11 +1636,11 @@ namespace Tizen.NUI.BaseComponents
 
             if (view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChangedInternal += view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
             else
             {
-                ThemeManager.ThemeChangedInternal -= view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
             }
         },
         defaultValueCreator: (bindable) =>
