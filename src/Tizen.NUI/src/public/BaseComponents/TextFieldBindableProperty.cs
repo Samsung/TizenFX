@@ -84,14 +84,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PlaceholderText, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PlaceholderText).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -101,14 +101,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_FOCUSED, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PlaceholderTextFocused, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_FOCUSED).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PlaceholderTextFocused).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -118,14 +118,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.FONT_FAMILY).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.FontFamily).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -135,14 +135,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FONT_STYLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FontStyle, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.FONT_STYLE).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.FontStyle).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -152,14 +152,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.POINT_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.POINT_SIZE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PointSize).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -169,14 +169,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MAX_LENGTH, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MaxLength, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.MAX_LENGTH).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.MaxLength).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -186,14 +186,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EXCEED_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ExceedPolicy, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EXCEED_POLICY).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ExceedPolicy).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -203,14 +203,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HorizontalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.HorizontalAlignment).Get(out temp) == false)
             {
                 NUILog.Error("HorizontalAlignment get error!");
             }
@@ -224,14 +224,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.VerticalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.VerticalAlignment).Get(out temp) == false)
             {
                 NUILog.Error("VerticalAlignment get error!");
             }
@@ -245,14 +245,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.TextColor, new Tizen.NUI.PropertyValue((Color)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.TEXT_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.TextColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -262,14 +262,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PlaceholderTextColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PlaceholderTextColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -279,14 +279,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableGrabHandle, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableGrabHandle).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -296,14 +296,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableGrabHandlePopup, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE_POPUP).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableGrabHandlePopup).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -313,14 +313,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PrimaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PRIMARY_CURSOR_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PrimaryCursorColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -330,14 +330,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SECONDARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SecondaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SECONDARY_CURSOR_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SecondaryCursorColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -347,14 +347,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_CURSOR_BLINK, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableCursorBlink, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_CURSOR_BLINK).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableCursorBlink).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -364,14 +364,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_INTERVAL, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CursorBlinkInterval, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_INTERVAL).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CursorBlinkInterval).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -381,14 +381,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_DURATION, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CursorBlinkDuration, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_DURATION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CursorBlinkDuration).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -398,14 +398,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_WIDTH, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CursorWidth, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CURSOR_WIDTH).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.CursorWidth).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -415,14 +415,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GrabHandleImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.GrabHandleImage).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -432,14 +432,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_PRESSED_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GrabHandlePressedImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_PRESSED_IMAGE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.GrabHandlePressedImage).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -449,14 +449,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SCROLL_THRESHOLD, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ScrollThreshold, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SCROLL_THRESHOLD).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ScrollThreshold).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -466,14 +466,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ScrollSpeed, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SCROLL_SPEED).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ScrollSpeed).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -483,14 +483,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandleImageLeft, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_LEFT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandleImageLeft).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -500,14 +500,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandleImageRight, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandleImageRight).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -517,14 +517,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandlePressedImageLeft, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandlePressedImageLeft).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -534,14 +534,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandlePressedImageRight, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandlePressedImageRight).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -551,14 +551,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandleMarkerImageLeft, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandleMarkerImageLeft).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -568,14 +568,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHandleMarkerImageRight, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHandleMarkerImageRight).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -585,14 +585,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SelectionHighlightColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SELECTION_HIGHLIGHT_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SelectionHighlightColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -602,14 +602,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.DECORATION_BOUNDING_BOX, new Tizen.NUI.PropertyValue((Rectangle)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.DecorationBoundingBox, new Tizen.NUI.PropertyValue((Rectangle)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Rectangle temp = new Rectangle(0, 0, 0, 0);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.DECORATION_BOUNDING_BOX).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.DecorationBoundingBox).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -619,14 +619,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_METHOD_SETTINGS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputMethodSettings, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_METHOD_SETTINGS).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputMethodSettings).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -636,14 +636,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputColor).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -653,14 +653,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableMarkup, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_MARKUP).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableMarkup).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -670,14 +670,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_FAMILY, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputFontFamily, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_FAMILY).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputFontFamily).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -687,14 +687,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_STYLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputFontStyle, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_STYLE).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputFontStyle).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -704,14 +704,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_POINT_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_POINT_SIZE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputPointSize).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -738,14 +738,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_UNDERLINE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputUnderline, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_UNDERLINE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputUnderline).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -772,14 +772,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_SHADOW, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputShadow, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_SHADOW).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputShadow).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -806,14 +806,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputEmboss, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_EMBOSS).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputEmboss).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -840,14 +840,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.InputOutline, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.INPUT_OUTLINE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.InputOutline).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -857,14 +857,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HIDDEN_INPUT_SETTINGS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HiddenInputSettings, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.HIDDEN_INPUT_SETTINGS).Get(temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.HiddenInputSettings).Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -874,14 +874,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PIXEL_SIZE).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PixelSize).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -891,14 +891,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_SELECTION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableSelection, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_SELECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableSelection).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -942,14 +942,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_SHIFT_SELECTION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EnableShiftSelection, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_SHIFT_SELECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.EnableShiftSelection).Get(out temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -959,14 +959,14 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MatchSystemLanguageDirection, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.MatchSystemLanguageDirection).Get(out temp);
             return (bool)temp;
         });
 

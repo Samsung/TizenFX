@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextField control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextField() : this(Interop.TextField.TextField_New(), true)
+        public TextField() : this(Interop.TextField.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextField(bool shown) : this(Interop.TextField.TextField_New(), true)
+        public TextField(bool shown) : this(Interop.TextField.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
             return new TextFieldStyle();
         }
 
-        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -82,7 +82,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn, null)
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.Upcast(cPtr), cMemoryOwn, null)
         {
             if (!shown)
             {
@@ -90,7 +90,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
+        internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1121,7 +1121,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 string temp;
-                GetProperty(TextField.Property.SELECTED_TEXT).Get(out temp);
+                GetProperty(TextField.Property.SelectedText).Get(out temp);
                 return temp;
             }
         }
@@ -1137,12 +1137,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp;
-                GetProperty(TextField.Property.SELECTED_TEXT_START).Get(out temp);
+                GetProperty(TextField.Property.SelectedTextStart).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(TextField.Property.SELECTED_TEXT_START, new PropertyValue(value));
+                SetProperty(TextField.Property.SelectedTextStart, new PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -1158,12 +1158,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp;
-                GetProperty(TextField.Property.SELECTED_TEXT_END).Get(out temp);
+                GetProperty(TextField.Property.SelectedTextEnd).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(TextField.Property.SELECTED_TEXT_END, new PropertyValue(value));
+                SetProperty(TextField.Property.SelectedTextEnd, new PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -1178,12 +1178,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp;
-                GetProperty(TextField.Property.ENABLE_EDITING).Get(out temp);
+                GetProperty(TextField.Property.EnableEditing).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(TextField.Property.ENABLE_EDITING, new PropertyValue(value));
+                SetProperty(TextField.Property.EnableEditing, new PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -1325,7 +1325,7 @@ namespace Tizen.NUI.BaseComponents
             if (inputMethodCotext == null)
             {
                 /*Avoid raising InputMethodContext reference count.*/
-                inputMethodCotext = new InputMethodContext(Interop.TextField.TextField_GetInputMethodContext(swigCPtr), true);
+                inputMethodCotext = new InputMethodContext(Interop.TextField.GetInputMethodContext(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return inputMethodCotext;
@@ -1339,7 +1339,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectWholeText()
         {
-            Interop.TextField.TextField_SelectWholeText(swigCPtr);
+            Interop.TextField.SelectWholeText(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1351,7 +1351,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectNone()
         {
-            Interop.TextField.TextField_SelectNone(swigCPtr);
+            Interop.TextField.SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1362,7 +1362,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(Interop.TextField.TextField_InputStyleChangedSignal(swigCPtr));
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(Interop.TextField.InputStyleChangedSignal(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1417,7 +1417,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // In order to speed up IME hide, temporarily add
             GetInputMethodContext()?.DestroyContext();
-            Interop.TextField.delete_TextField(swigCPtr);
+            Interop.TextField.DeleteTextField(swigCPtr);
         }
 
         private string SetTranslatable(string textFieldSid)
@@ -1454,63 +1454,63 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int TEXT = Interop.TextField.TextField_Property_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT_FOCUSED = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();
-            internal static readonly int FONT_FAMILY = Interop.TextField.TextField_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = Interop.TextField.TextField_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = Interop.TextField.TextField_Property_POINT_SIZE_get();
-            internal static readonly int MAX_LENGTH = Interop.TextField.TextField_Property_MAX_LENGTH_get();
-            internal static readonly int EXCEED_POLICY = Interop.TextField.TextField_Property_EXCEED_POLICY_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = Interop.TextField.TextField_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int VERTICAL_ALIGNMENT = Interop.TextField.TextField_Property_VERTICAL_ALIGNMENT_get();
-            internal static readonly int TEXT_COLOR = Interop.TextField.TextField_Property_TEXT_COLOR_get();
-            internal static readonly int PLACEHOLDER_TEXT_COLOR = Interop.TextField.TextField_Property_PLACEHOLDER_TEXT_COLOR_get();
-            internal static readonly int PRIMARY_CURSOR_COLOR = Interop.TextField.TextField_Property_PRIMARY_CURSOR_COLOR_get();
-            internal static readonly int SECONDARY_CURSOR_COLOR = Interop.TextField.TextField_Property_SECONDARY_CURSOR_COLOR_get();
-            internal static readonly int ENABLE_CURSOR_BLINK = Interop.TextField.TextField_Property_ENABLE_CURSOR_BLINK_get();
-            internal static readonly int CURSOR_BLINK_INTERVAL = Interop.TextField.TextField_Property_CURSOR_BLINK_INTERVAL_get();
-            internal static readonly int CURSOR_BLINK_DURATION = Interop.TextField.TextField_Property_CURSOR_BLINK_DURATION_get();
-            internal static readonly int CURSOR_WIDTH = Interop.TextField.TextField_Property_CURSOR_WIDTH_get();
-            internal static readonly int GRAB_HANDLE_IMAGE = Interop.TextField.TextField_Property_GRAB_HANDLE_IMAGE_get();
-            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = Interop.TextField.TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
-            internal static readonly int SCROLL_THRESHOLD = Interop.TextField.TextField_Property_SCROLL_THRESHOLD_get();
-            internal static readonly int SCROLL_SPEED = Interop.TextField.TextField_Property_SCROLL_SPEED_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = Interop.TextField.TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = Interop.TextField.TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = Interop.TextField.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = Interop.TextField.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = Interop.TextField.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = Interop.TextField.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HIGHLIGHT_COLOR = Interop.TextField.TextField_Property_SELECTION_HIGHLIGHT_COLOR_get();
-            internal static readonly int DECORATION_BOUNDING_BOX = Interop.TextField.TextField_Property_DECORATION_BOUNDING_BOX_get();
-            internal static readonly int INPUT_METHOD_SETTINGS = Interop.TextField.TextField_Property_INPUT_METHOD_SETTINGS_get();
-            internal static readonly int INPUT_COLOR = Interop.TextField.TextField_Property_INPUT_COLOR_get();
-            internal static readonly int ENABLE_MARKUP = Interop.TextField.TextField_Property_ENABLE_MARKUP_get();
-            internal static readonly int INPUT_FONT_FAMILY = Interop.TextField.TextField_Property_INPUT_FONT_FAMILY_get();
-            internal static readonly int INPUT_FONT_STYLE = Interop.TextField.TextField_Property_INPUT_FONT_STYLE_get();
-            internal static readonly int INPUT_POINT_SIZE = Interop.TextField.TextField_Property_INPUT_POINT_SIZE_get();
-            internal static readonly int UNDERLINE = Interop.TextField.TextField_Property_UNDERLINE_get();
-            internal static readonly int INPUT_UNDERLINE = Interop.TextField.TextField_Property_INPUT_UNDERLINE_get();
-            internal static readonly int SHADOW = Interop.TextField.TextField_Property_SHADOW_get();
-            internal static readonly int INPUT_SHADOW = Interop.TextField.TextField_Property_INPUT_SHADOW_get();
-            internal static readonly int EMBOSS = Interop.TextField.TextField_Property_EMBOSS_get();
-            internal static readonly int INPUT_EMBOSS = Interop.TextField.TextField_Property_INPUT_EMBOSS_get();
-            internal static readonly int OUTLINE = Interop.TextField.TextField_Property_OUTLINE_get();
-            internal static readonly int INPUT_OUTLINE = Interop.TextField.TextField_Property_INPUT_OUTLINE_get();
-            internal static readonly int HIDDEN_INPUT_SETTINGS = Interop.TextField.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
-            internal static readonly int PIXEL_SIZE = Interop.TextField.TextField_Property_PIXEL_SIZE_get();
-            internal static readonly int ENABLE_SELECTION = Interop.TextField.TextField_Property_ENABLE_SELECTION_get();
-            internal static readonly int PLACEHOLDER = Interop.TextField.TextField_Property_PLACEHOLDER_get();
-            internal static readonly int ELLIPSIS = Interop.TextField.TextField_Property_ELLIPSIS_get();
-            internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextField.TextField_Property_ENABLE_SHIFT_SELECTION_get();
-            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextField.TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
-            internal static readonly int ENABLE_GRAB_HANDLE = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_get();
-            internal static readonly int ENABLE_GRAB_HANDLE_POPUP = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
-            internal static readonly int SELECTED_TEXT = Interop.TextField.TextField_Property_SELECTED_TEXT_get();
-            internal static readonly int SELECTED_TEXT_START = Interop.TextField.TextField_Property_SELECTED_TEXT_START_get();
-            internal static readonly int SELECTED_TEXT_END = Interop.TextField.TextField_Property_SELECTED_TEXT_END_get();
-            internal static readonly int ENABLE_EDITING = Interop.TextField.TextField_Property_ENABLE_EDITING_get();
+            internal static readonly int TEXT = Interop.TextField.TextGet();
+            internal static readonly int PlaceholderText = Interop.TextField.PlaceholderTextGet();
+            internal static readonly int PlaceholderTextFocused = Interop.TextField.PlaceholderTextFocusedGet();
+            internal static readonly int FontFamily = Interop.TextField.FontFamilyGet();
+            internal static readonly int FontStyle = Interop.TextField.FontStyleGet();
+            internal static readonly int PointSize = Interop.TextField.PointSizeGet();
+            internal static readonly int MaxLength = Interop.TextField.MaxLengthGet();
+            internal static readonly int ExceedPolicy = Interop.TextField.ExceedPolicyGet();
+            internal static readonly int HorizontalAlignment = Interop.TextField.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextField.VerticalAlignmentGet();
+            internal static readonly int TextColor = Interop.TextField.TextColorGet();
+            internal static readonly int PlaceholderTextColor = Interop.TextField.PlaceholderTextColorGet();
+            internal static readonly int PrimaryCursorColor = Interop.TextField.PrimaryCursorColorGet();
+            internal static readonly int SecondaryCursorColor = Interop.TextField.SecondaryCursorColorGet();
+            internal static readonly int EnableCursorBlink = Interop.TextField.EnableCursorBlinkGet();
+            internal static readonly int CursorBlinkInterval = Interop.TextField.CursorBlinkIntervalGet();
+            internal static readonly int CursorBlinkDuration = Interop.TextField.CursorBlinkDurationGet();
+            internal static readonly int CursorWidth = Interop.TextField.CursorWidthGet();
+            internal static readonly int GrabHandleImage = Interop.TextField.GrabHandleImageGet();
+            internal static readonly int GrabHandlePressedImage = Interop.TextField.GrabHandlePressedImageGet();
+            internal static readonly int ScrollThreshold = Interop.TextField.ScrollThresholdGet();
+            internal static readonly int ScrollSpeed = Interop.TextField.ScrollSpeedGet();
+            internal static readonly int SelectionHandleImageLeft = Interop.TextField.SelectionHandleImageLeftGet();
+            internal static readonly int SelectionHandleImageRight = Interop.TextField.SelectionHandleImageRightGet();
+            internal static readonly int SelectionHandlePressedImageLeft = Interop.TextField.SelectionHandlePressedImageLeftGet();
+            internal static readonly int SelectionHandlePressedImageRight = Interop.TextField.SelectionHandlePressedImageRightGet();
+            internal static readonly int SelectionHandleMarkerImageLeft = Interop.TextField.SelectionHandleMarkerImageLeftGet();
+            internal static readonly int SelectionHandleMarkerImageRight = Interop.TextField.SelectionHandleMarkerImageRightGet();
+            internal static readonly int SelectionHighlightColor = Interop.TextField.SelectionHighlightColorGet();
+            internal static readonly int DecorationBoundingBox = Interop.TextField.DecorationBoundingBoxGet();
+            internal static readonly int InputMethodSettings = Interop.TextField.InputMethodSettingsGet();
+            internal static readonly int InputColor = Interop.TextField.InputColorGet();
+            internal static readonly int EnableMarkup = Interop.TextField.EnableMarkupGet();
+            internal static readonly int InputFontFamily = Interop.TextField.InputFontFamilyGet();
+            internal static readonly int InputFontStyle = Interop.TextField.InputFontStyleGet();
+            internal static readonly int InputPointSize = Interop.TextField.InputPointSizeGet();
+            internal static readonly int UNDERLINE = Interop.TextField.UnderlineGet();
+            internal static readonly int InputUnderline = Interop.TextField.InputUnderlineGet();
+            internal static readonly int SHADOW = Interop.TextField.ShadowGet();
+            internal static readonly int InputShadow = Interop.TextField.InputShadowGet();
+            internal static readonly int EMBOSS = Interop.TextField.EmbossGet();
+            internal static readonly int InputEmboss = Interop.TextField.InputEmbossGet();
+            internal static readonly int OUTLINE = Interop.TextField.OutlineGet();
+            internal static readonly int InputOutline = Interop.TextField.InputOutlineGet();
+            internal static readonly int HiddenInputSettings = Interop.TextField.HiddenInputSettingsGet();
+            internal static readonly int PixelSize = Interop.TextField.PixelSizeGet();
+            internal static readonly int EnableSelection = Interop.TextField.EnableSelectionGet();
+            internal static readonly int PLACEHOLDER = Interop.TextField.PlaceholderGet();
+            internal static readonly int ELLIPSIS = Interop.TextField.EllipsisGet();
+            internal static readonly int EnableShiftSelection = Interop.TextField.EnableShiftSelectionGet();
+            internal static readonly int MatchSystemLanguageDirection = Interop.TextField.MatchSystemLanguageDirectionGet();
+            internal static readonly int EnableGrabHandle = Interop.TextField.EnableGrabHandleGet();
+            internal static readonly int EnableGrabHandlePopup = Interop.TextField.EnableGrabHandlePopupGet();
+            internal static readonly int SelectedText = Interop.TextField.SelectedTextGet();
+            internal static readonly int SelectedTextStart = Interop.TextField.SelectedTextStartGet();
+            internal static readonly int SelectedTextEnd = Interop.TextField.SelectedTextEndGet();
+            internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
         }
 
         internal class InputStyle

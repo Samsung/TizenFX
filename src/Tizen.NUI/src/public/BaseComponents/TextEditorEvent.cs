@@ -125,21 +125,21 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextEditorSignal TextChangedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_TextChangedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
         {
-            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
+            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TextEditorSignal MaxLengthReachedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_MaxLengthReachedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
