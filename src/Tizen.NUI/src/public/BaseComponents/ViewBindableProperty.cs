@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            view.GetProperty(Interop.ActorProperty.ActorPropertyColorGet()).Get(color);
+            view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color);
             return color;
         });
 
@@ -1567,7 +1567,8 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.UpdateCornerRadius((float)newValue);
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (float)newValue;
+            view.ApplyCornerRadius();
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1576,10 +1577,23 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
-        /// XamlStyleProperty
+        /// CornerRadiusPolicy Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
+        public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
+            if (view.backgroundExtraData.CornerRadius != 0)
+            {
+                view.ApplyCornerRadius();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
+        });
 
         /// <summary>
         /// EnableControlState property
@@ -1622,11 +1636,11 @@ namespace Tizen.NUI.BaseComponents
 
             if (view.themeChangeSensitive)
             {
-                ThemeManager.ThemeChangedInternal += view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
             }
             else
             {
-                ThemeManager.ThemeChangedInternal -= view.OnThemeChanged;
+                ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
             }
         },
         defaultValueCreator: (bindable) =>

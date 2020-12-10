@@ -153,8 +153,13 @@ namespace Tizen.NUI
         /// This function should be first
         /// </summary>
         /// <param name="value">The value to add at the end of the array.</param>
+        /// <exception cref="global::System.ArgumentNullException"> Thrown when value is null. </exception>
         public PropertyArray Add(KeyValue value)
         {
+            if (null == value)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
             PropertyArray ret = new PropertyArray(Interop.Property.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value.TrueValue)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

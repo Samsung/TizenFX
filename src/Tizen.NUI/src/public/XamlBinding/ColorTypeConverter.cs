@@ -140,8 +140,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Color color = (Color)value;
-            return color.R.ToString() + " " + color.G.ToString() + " " + color.B.ToString() + " " + color.A.ToString();
+            if (value != null)
+            {
+                Color color = (Color)value;
+                return color.R.ToString() + " " + color.G.ToString() + " " + color.B.ToString() + " " + color.A.ToString();
+            }
+            return "";
         }
     }
 }

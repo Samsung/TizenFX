@@ -41,20 +41,23 @@ namespace Tizen.NUI
         public virtual float ConvertScriptToPixel(string scriptValue)
         {
             float convertedValue = 0;
-            if (scriptValue.EndsWith("dp"))
+            if (scriptValue != null)
             {
-                convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
-            }
-            else if (scriptValue.EndsWith("px"))
-            {
-                convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                if (scriptValue.EndsWith("dp"))
                 {
-                    NUILog.Error("Cannot convert the script {scriptValue}\n");
-                    convertedValue = 0;
+                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                }
+                else if (scriptValue.EndsWith("px"))
+                {
+                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                    {
+                        NUILog.Error("Cannot convert the script {scriptValue}\n");
+                        convertedValue = 0;
+                    }
                 }
             }
             return convertedValue;

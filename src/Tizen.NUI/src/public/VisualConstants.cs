@@ -493,6 +493,12 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
+            /// <summary>
+            /// The corner radius policy of the visual.
+            /// Whether the corner radius value is relative (percentage [0.0f to 1.0f] of the visual size) or absolute (in world units).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerRadiusPolicy = NDalic.VISUAL_PROPERTY_MIX_COLOR + 4;
         }
 
         /// <summary>
@@ -908,6 +914,17 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int ContentInfo = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 10;
+
+        /// <summary>
+        /// @brief Whether to redraw the image when the visual is scaled down.
+        /// @details Name "redrawInScalingDown", type Property::BOOLEAN.
+        /// @note It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RedrawInScalingDown = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 11;
     }
 
     /// <summary>

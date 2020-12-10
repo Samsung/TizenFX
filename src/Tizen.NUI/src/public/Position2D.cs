@@ -86,8 +86,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position2D(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Position2D position2d = new Position2D();
+        /// position2d.X = 1; 
+        /// // Please USE like this
+        /// int x = 1, y = 2;
+        /// Position2D position2d = new Position2D(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
         public int X
         {
             set
@@ -110,8 +120,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position2D(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Position2D position2d = new Position2D();
+        /// position2d.Y = 2; 
+        /// // Please USE like this
+        /// int x = 1, y = 2;
+        /// Position2D position2d = new Position2D(x, y);
+        /// </code>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
         public int Y
         {
             set
@@ -183,7 +203,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator +(Position2D arg1, Position2D arg2)
         {
-            return arg1.Add(arg2);
+            return arg1?.Add(arg2);
         }
 
         /// <summary>
@@ -195,7 +215,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator -(Position2D arg1, Position2D arg2)
         {
-            return arg1.Subtract(arg2);
+            return arg1?.Subtract(arg2);
         }
 
         /// <summary>
@@ -206,7 +226,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator -(Position2D arg1)
         {
-            return arg1.Subtract();
+            return arg1?.Subtract();
         }
 
         /// <summary>
@@ -218,7 +238,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator *(Position2D arg1, Position2D arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -230,7 +250,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator *(Position2D arg1, int arg2)
         {
-            return arg1.Multiply(arg2);
+            return arg1?.Multiply(arg2);
         }
 
         /// <summary>
@@ -242,7 +262,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator /(Position2D arg1, Position2D arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -254,7 +274,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static Position2D operator /(Position2D arg1, int arg2)
         {
-            return arg1.Divide(arg2);
+            return arg1?.Divide(arg2);
         }
 
         /// <summary>
@@ -317,7 +337,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Position2D position2d)
         {
-            return new Vector2((float)position2d.X, (float)position2d.Y);
+            return new Vector2((float)position2d?.X, (float)position2d.Y);
         }
 
         /// <summary>
@@ -328,7 +348,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position2D(Vector2 vec)
         {
-            return new Position2D((int)vec.X, (int)vec.Y);
+            return new Position2D((int)vec?.X, (int)vec.Y);
         }
 
         /// <summary>
@@ -340,7 +360,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static implicit operator Position2D(Position position)
         {
-            return new Position2D((int)position.X, (int)position.Y);
+            return new Position2D((int)position?.X, (int)position.Y);
         }
 
         /// <inheritdoc/>

@@ -1039,6 +1039,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
         /// Enable editing in text control.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -1056,6 +1057,56 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetProperty(TextEditor.Property.ENABLE_EDITING, new PropertyValue(value));
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Specify horizontal scroll position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int HorizontalScrollPosition
+        {
+            get
+            {
+                int temp;
+                using (PropertyValue propertyValue = GetProperty(TextEditor.Property.HORIZONTAL_SCROLL_POSITION))
+                {
+                    propertyValue.Get(out temp);
+                }
+                return temp;
+            }
+            set
+            {
+                using (PropertyValue propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.HORIZONTAL_SCROLL_POSITION, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specify vertical scroll position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int VerticalScrollPosition
+        {
+            get
+            {
+                int temp;
+                using (PropertyValue propertyValue = GetProperty(TextEditor.Property.VERTICAL_SCROLL_POSITION))
+                {
+                    propertyValue.Get(out temp);
+                }
+                return temp;
+            }
+            set
+            {
+                using (PropertyValue propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.VERTICAL_SCROLL_POSITION, propertyValue);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -1185,10 +1236,21 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.TextChanged += (obj, e) =>
                     {
-                        this.Text = this.Text;
+                        this.Text = e.TextEditor.Text;
                     };
                 }
             }
+        }
+
+        /// <summary>
+        /// Scroll the text control by specific amount..
+        /// </summary>
+        /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScrollBy(Vector2 scroll)
+        {
+            Interop.TextEditor.TextEditor_ScrollBy(swigCPtr, Vector2.getCPtr(scroll));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1234,7 +1296,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t InputStyleChangedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.TextEditor_InputStyleChangedSignal(swigCPtr), false);
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.TextEditor_InputStyleChangedSignal(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1376,6 +1438,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SELECTED_TEXT_END = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_END_get();
             internal static readonly int ENABLE_EDITING = Interop.TextEditor.TextEditor_Property_ENABLE_EDITING_get();
             internal static readonly int SELECTED_TEXT = Interop.TextEditor.TextEditor_Property_SELECTED_TEXT_get();
+            internal static readonly int HORIZONTAL_SCROLL_POSITION = Interop.TextEditor.TextEditor_Property_HORIZONTAL_SCROLL_POSITION_get();
+            internal static readonly int VERTICAL_SCROLL_POSITION = Interop.TextEditor.TextEditor_Property_VERTICAL_SCROLL_POSITION_get();
         }
 
         internal class InputStyle

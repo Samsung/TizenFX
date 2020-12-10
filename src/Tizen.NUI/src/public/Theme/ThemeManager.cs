@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -82,7 +83,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Internal one should be called before calling public ThemeChanged
         /// </summary>
-        internal static event EventHandler<ThemeChangedEventArgs> ThemeChangedInternal;
+        internal static WeakEvent<EventHandler<ThemeChangedEventArgs>> ThemeChangedInternal = new WeakEvent<EventHandler<ThemeChangedEventArgs>>();
 
         internal static Theme CurrentTheme
         {
@@ -98,12 +99,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (defaultTheme == null && !isLoadingDefault)
-                {
-                    isLoadingDefault = true;
-                    defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
-                    isLoadingDefault = false;
-                }
+                EnsureDefaultTheme();
                 return defaultTheme;
             }
             set => defaultTheme = (Theme)value?.Clone();
@@ -302,6 +298,16 @@ namespace Tizen.NUI
             return (Theme)result?.Clone();
         }
 
+        internal static void EnsureDefaultTheme()
+        {
+            if (defaultTheme == null && !isLoadingDefault)
+            {
+                isLoadingDefault = true;
+                defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
+                isLoadingDefault = false;
+            }
+        }
+
         private static Theme LoadBuiltinTheme(string id)
         {
             var loaded = new Theme()
@@ -313,7 +319,7 @@ namespace Tizen.NUI
 
             foreach (var project in nuiThemeProjects)
             {
-                string path = StyleManager.FrameworkResourcePath + "/Theme/" + project + "_" + id + ".xaml";
+                string path = FrameworkInformation.ResourcePath + "/Theme/" + project + "_" + id + ".xaml";
 
                 if (!File.Exists(path))
                 {
@@ -339,7 +345,7 @@ namespace Tizen.NUI
 
         private static void NotifyThemeChanged()
         {
-            ThemeChangedInternal?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
+            ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
             ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
         }
     }

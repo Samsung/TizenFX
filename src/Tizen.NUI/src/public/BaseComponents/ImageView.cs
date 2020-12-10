@@ -655,6 +655,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Downcasts a handle to imageView handle.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
         /// <since_tizen> 3 </since_tizen>
@@ -665,6 +666,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ImageView DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -675,9 +680,15 @@ namespace Tizen.NUI.BaseComponents
         /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
         /// <param name="url">The URL to the image resource to display.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when url is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
+            if (null == url)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
             if (url.Contains(".json"))
             {
                 Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
@@ -1023,9 +1034,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override void UpdateCornerRadius(float value)
+        internal override void ApplyCornerRadius()
         {
-            base.UpdateCornerRadius(value);
+            base.ApplyCornerRadius();
 
             UpdateImage(0, null);
         }

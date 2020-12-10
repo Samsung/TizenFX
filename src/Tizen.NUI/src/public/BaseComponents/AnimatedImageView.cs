@@ -74,11 +74,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 return mUrl;
             }
-            set
-            {
-                mDirtyFlag = true;
-                mUrl = value;
-            }
         }
 
         /// <summary>
@@ -91,11 +86,6 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return mResourceURLs;
-            }
-            set
-            {
-                mDirtyFlag = true;
-                mResourceURLs = value;
             }
         }
 
@@ -197,28 +187,52 @@ namespace Tizen.NUI.BaseComponents
             mDirtyFlag = false;
 
             PropertyMap tMap = new PropertyMap();
-            tMap.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
+            PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
+            tMap.Insert(Visual.Property.Type, animatiedImage);
             if (mResourceURLs?.Count != 0)
             {
-                PropertyArray tArr = new PropertyArray();
+                PropertyArray mArray = new PropertyArray();
+                PropertyArray returnedArr = new PropertyArray();
+                PropertyValue index = new PropertyValue();
                 foreach (var iter in mResourceURLs)
                 {
-                    tArr.Add(new PropertyValue(iter));
+                    index = new PropertyValue(iter);
+                    returnedArr = mArray.Add(index);
                 }
-                tMap.Insert(ImageVisualProperty.URL, new PropertyValue(tArr));
-                tMap.Insert(ImageVisualProperty.BatchSize, new PropertyValue(mBatchSize));
-                tMap.Insert(ImageVisualProperty.CacheSize, new PropertyValue(mCacheSize));
-                tMap.Insert(ImageVisualProperty.FrameDelay, new PropertyValue(mFrameDelay));
-                tMap.Insert(ImageVisualProperty.LoopCount, new PropertyValue(mLoopCount));
+                index.Dispose();
+                returnedArr.Dispose();
+                PropertyValue array = new PropertyValue(mArray);
+                tMap.Insert(ImageVisualProperty.URL, array);
+                PropertyValue batchSize = new PropertyValue(mBatchSize);
+                tMap.Insert(ImageVisualProperty.BatchSize, batchSize);
+                PropertyValue cacheSize = new PropertyValue(mCacheSize);
+                tMap.Insert(ImageVisualProperty.CacheSize, cacheSize);
+                PropertyValue frameDelay = new PropertyValue(mFrameDelay);
+                tMap.Insert(ImageVisualProperty.FrameDelay, frameDelay);
+                PropertyValue loopCount = new PropertyValue(mLoopCount);
+                tMap.Insert(ImageVisualProperty.LoopCount, loopCount);
 
+                loopCount.Dispose();
+                frameDelay.Dispose();
+                cacheSize.Dispose();
+                batchSize.Dispose();
+                mArray.Dispose();
+                array.Dispose();
             }
             else
             {
-                tMap.Insert(ImageVisualProperty.URL, new PropertyValue(mUrl));
+                PropertyValue url = new PropertyValue(mUrl);
+                tMap.Insert(ImageVisualProperty.URL, url);
+                url.Dispose();
             }
 
             mMap = tMap;
-            SetProperty(ImageView.Property.IMAGE, new PropertyValue(mMap));
+            PropertyValue map = new PropertyValue(mMap);
+            SetProperty(ImageView.Property.IMAGE, map);
+            map.Dispose();
+
+            tMap.Dispose();
+            animatiedImage.Dispose();
         }
 
         /// <summary>
@@ -273,7 +287,6 @@ namespace Tizen.NUI.BaseComponents
         int mLoopCount = -1;
         bool mDirtyFlag = false;
         PropertyMap mMap;
-        const string tag = "NUITEST";
         #endregion Private
     }
 }

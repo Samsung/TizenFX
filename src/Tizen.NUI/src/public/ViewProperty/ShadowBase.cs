@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// Copy Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other?.Offset, other.Extents)
         {
         }
 
@@ -162,9 +162,8 @@ namespace Tizen.NUI
             if (attachedView.CornerRadius > 0)
             {
                 map[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
             }
-
-            map[Visual.Property.Transform] = GetTransformMap();
 
             return new PropertyValue(map);
         }
@@ -176,6 +175,8 @@ namespace Tizen.NUI
         protected virtual PropertyMap GetPropertyMap()
         {
             PropertyMap map = new PropertyMap();
+
+            map[Visual.Property.Transform] = GetTransformMap();
 
             return map;
         }

@@ -55,7 +55,7 @@ namespace Tizen.NUI
         /// Copy constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(Shadow other) : this(other.BlurRadius, other.Offset, other.Color, other.Extents)
+        public Shadow(Shadow other) : this((float)other?.BlurRadius, other.Offset, other.Color, other.Extents)
         {
         }
 
