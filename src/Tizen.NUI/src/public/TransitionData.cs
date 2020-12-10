@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transition">The transition data to store (a single animator).</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(PropertyMap transition) : this(Interop.TransitionData.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true)
+        public TransitionData(PropertyMap transition) : this(Interop.TransitionData.NewByMap(PropertyMap.getCPtr(transition)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transition">The transition data to store (an array of maps of animators).</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(PropertyArray transition) : this(Interop.TransitionData.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true)
+        public TransitionData(PropertyArray transition) : this(Interop.TransitionData.NewByArray(PropertyArray.getCPtr(transition)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -52,12 +52,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(TransitionData handle) : this(Interop.TransitionData.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
+        public TransitionData(TransitionData handle) : this(Interop.TransitionData.NewTransitionData(TransitionData.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TransitionData.TransitionData_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TransitionData.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {
-            uint ret = Interop.TransitionData.TransitionData_Count(swigCPtr);
+            uint ret = Interop.TransitionData.Count(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap GetAnimatorAt(uint index)
         {
-            PropertyMap ret = new PropertyMap(Interop.TransitionData.TransitionData_GetAnimatorAt(swigCPtr, index), true);
+            PropertyMap ret = new PropertyMap(Interop.TransitionData.GetAnimatorAt(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TransitionData.delete_TransitionData(swigCPtr);
+            Interop.TransitionData.DeleteTransitionData(swigCPtr);
         }
     }
 }

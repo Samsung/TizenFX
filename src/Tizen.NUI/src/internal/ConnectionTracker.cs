@@ -20,37 +20,37 @@ namespace Tizen.NUI
     internal class ConnectionTracker : ConnectionTrackerInterface
     {
 
-        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTracker_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ConnectionTracker(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.Upcast(cPtr), cMemoryOwn)
         {
         }
 
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ConnectionTracker.delete_ConnectionTracker(swigCPtr);
+            Interop.ConnectionTracker.DeleteConnectionTracker(swigCPtr);
         }
 
         public void DisconnectAll()
         {
-            Interop.ConnectionTracker.ConnectionTracker_DisconnectAll(swigCPtr);
+            Interop.ConnectionTracker.DisconnectAll(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTracker_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTracker_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ConnectionTracker.ConnectionTracker_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ConnectionTracker.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

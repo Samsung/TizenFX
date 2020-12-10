@@ -30,15 +30,15 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.GlytphInfo.delete_GlyphInfo(swigCPtr);
+            Interop.GlytphInfo.DeleteGlyphInfo(swigCPtr);
         }
 
-        public GlyphInfo() : this(Interop.GlytphInfo.new_GlyphInfo__SWIG_0(), true)
+        public GlyphInfo() : this(Interop.GlytphInfo.NewGlyphInfo(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public GlyphInfo(uint font, uint i) : this(Interop.GlytphInfo.new_GlyphInfo__SWIG_1(font, i), true)
+        public GlyphInfo(uint font, uint i) : this(Interop.GlytphInfo.NewGlyphInfo(font, i), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -47,12 +47,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_fontId_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoFontIdSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.GlytphInfo.GlyphInfo_fontId_get(swigCPtr);
+                uint ret = Interop.GlytphInfo.GlyphInfoFontIdGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -62,12 +62,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_index_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoIndexSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.GlytphInfo.GlyphInfo_index_get(swigCPtr);
+                uint ret = Interop.GlytphInfo.GlyphInfoIndexGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -77,12 +77,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_width_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoWidthSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_width_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoWidthGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -92,12 +92,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_height_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoHeightSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_height_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoHeightGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -107,12 +107,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_xBearing_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoXBearingSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_xBearing_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoXBearingGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -122,12 +122,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_yBearing_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoYBearingSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_yBearing_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoYBearingGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -137,12 +137,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_advance_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoAdvanceSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_advance_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoAdvanceGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -152,12 +152,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.GlytphInfo.GlyphInfo_scaleFactor_set(swigCPtr, value);
+                Interop.GlytphInfo.GlyphInfoScaleFactorSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.GlytphInfo.GlyphInfo_scaleFactor_get(swigCPtr);
+                float ret = Interop.GlytphInfo.GlyphInfoScaleFactorGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
