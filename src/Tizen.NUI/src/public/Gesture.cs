@@ -32,12 +32,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A reference to the copied handle</param>
         /// <since_tizen> 3 </since_tizen>
-        public Gesture(Gesture rhs) : this(Interop.Gesture.new_Gesture(Gesture.getCPtr(rhs)), true)
+        public Gesture(Gesture rhs) : this(Interop.Gesture.NewGesture(Gesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Gesture.Gesture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Gesture.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -147,12 +147,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.Gesture_type_set(swigCPtr, (int)value);
+                Interop.Gesture.TypeSet(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.Gesture_type_get(swigCPtr);
+                Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.TypeGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -162,12 +162,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.Gesture_state_set(swigCPtr, (int)value);
+                Interop.Gesture.StateSet(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.Gesture_state_get(swigCPtr);
+                Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.StateGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -177,12 +177,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.Gesture_time_set(swigCPtr, value);
+                Interop.Gesture.TimeSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.Gesture.Gesture_time_get(swigCPtr);
+                uint ret = Interop.Gesture.TimeGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -204,7 +204,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Gesture.delete_Gesture(swigCPtr);
+            Interop.Gesture.DeleteGesture(swigCPtr);
         }
     }
 }

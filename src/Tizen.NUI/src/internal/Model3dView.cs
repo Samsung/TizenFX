@@ -22,7 +22,7 @@ namespace Tizen.NUI
     internal class Model3dView : View
     {
 
-        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Model3DView.Model3dView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Model3DView.Model3dViewUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -33,39 +33,39 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Model3DView.delete_Model3dView(swigCPtr);
+            Interop.Model3DView.DeleteModel3dView(swigCPtr);
         }
 
         internal new class Property
         {
-            internal static readonly int GEOMETRY_URL = Interop.Model3DView.Model3dView_Property_GEOMETRY_URL_get();
-            internal static readonly int MATERIAL_URL = Interop.Model3DView.Model3dView_Property_MATERIAL_URL_get();
-            internal static readonly int IMAGES_URL = Interop.Model3DView.Model3dView_Property_IMAGES_URL_get();
-            internal static readonly int ILLUMINATION_TYPE = Interop.Model3DView.Model3dView_Property_ILLUMINATION_TYPE_get();
-            internal static readonly int TEXTURE0_URL = Interop.Model3DView.Model3dView_Property_TEXTURE0_URL_get();
-            internal static readonly int TEXTURE1_URL = Interop.Model3DView.Model3dView_Property_TEXTURE1_URL_get();
-            internal static readonly int TEXTURE2_URL = Interop.Model3DView.Model3dView_Property_TEXTURE2_URL_get();
-            internal static readonly int LIGHT_POSITION = Interop.Model3DView.Model3dView_Property_LIGHT_POSITION_get();
+            internal static readonly int GeometryUrl = Interop.Model3DView.GeometryUrlGet();
+            internal static readonly int MaterialUrl = Interop.Model3DView.MaterialUrlGet();
+            internal static readonly int ImagesUrl = Interop.Model3DView.ImagesUrlGet();
+            internal static readonly int IlluminationType = Interop.Model3DView.IlluminationTypeGet();
+            internal static readonly int Texture0Url = Interop.Model3DView.Texture0UrlGet();
+            internal static readonly int Texture1Url = Interop.Model3DView.Texture1UrlGet();
+            internal static readonly int Texture2Url = Interop.Model3DView.Texture2UrlGet();
+            internal static readonly int LightPosition = Interop.Model3DView.LightPositionGet();
         }
 
-        public Model3dView() : this(Interop.Model3DView.Model3dView_New__SWIG_0(), true)
+        public Model3dView() : this(Interop.Model3DView.Model3dViewNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Model3dView(string objUrl, string mtlUrl, string imagesUrl) : this(Interop.Model3DView.Model3dView_New__SWIG_1(objUrl, mtlUrl, imagesUrl), true)
+        public Model3dView(string objUrl, string mtlUrl, string imagesUrl) : this(Interop.Model3DView.Model3dViewNew(objUrl, mtlUrl, imagesUrl), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Model3dView(Model3dView model3dView) : this(Interop.Model3DView.new_Model3dView__SWIG_1(Model3dView.getCPtr(model3dView)), true)
+        public Model3dView(Model3dView model3dView) : this(Interop.Model3DView.NewModel3dView(Model3dView.getCPtr(model3dView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Model3dView Assign(Model3dView model3dView)
         {
-            Model3dView ret = new Model3dView(Interop.Model3DView.Model3dView_Assign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
+            Model3dView ret = new Model3dView(Interop.Model3DView.Model3dViewAssign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -90,12 +90,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.GEOMETRY_URL).Get(out temp);
+                GetProperty(Model3dView.Property.GeometryUrl).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.GEOMETRY_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.GeometryUrl, new Tizen.NUI.PropertyValue(value));
             }
         }
         public string MaterialUrl
@@ -103,12 +103,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.MATERIAL_URL).Get(out temp);
+                GetProperty(Model3dView.Property.MaterialUrl).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.MATERIAL_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.MaterialUrl, new Tizen.NUI.PropertyValue(value));
             }
         }
         public string ImagesUrl
@@ -116,12 +116,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.IMAGES_URL).Get(out temp);
+                GetProperty(Model3dView.Property.ImagesUrl).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.IMAGES_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.ImagesUrl, new Tizen.NUI.PropertyValue(value));
             }
         }
         public int IlluminationType
@@ -129,12 +129,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(Model3dView.Property.ILLUMINATION_TYPE).Get(out temp);
+                GetProperty(Model3dView.Property.IlluminationType).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.ILLUMINATION_TYPE, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.IlluminationType, new Tizen.NUI.PropertyValue(value));
             }
         }
         public string Texture0Url
@@ -142,12 +142,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.TEXTURE0_URL).Get(out temp);
+                GetProperty(Model3dView.Property.Texture0Url).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.TEXTURE0_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.Texture0Url, new Tizen.NUI.PropertyValue(value));
             }
         }
         public string Texture1Url
@@ -155,12 +155,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.TEXTURE1_URL).Get(out temp);
+                GetProperty(Model3dView.Property.Texture1Url).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.TEXTURE1_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.Texture1Url, new Tizen.NUI.PropertyValue(value));
             }
         }
         public string Texture2Url
@@ -168,12 +168,12 @@ namespace Tizen.NUI
             get
             {
                 string temp;
-                GetProperty(Model3dView.Property.TEXTURE2_URL).Get(out temp);
+                GetProperty(Model3dView.Property.Texture2Url).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.TEXTURE2_URL, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.Texture2Url, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector3 LightPosition
@@ -181,12 +181,12 @@ namespace Tizen.NUI
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(Model3dView.Property.LIGHT_POSITION).Get(temp);
+                GetProperty(Model3dView.Property.LightPosition).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(Model3dView.Property.LIGHT_POSITION, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Model3dView.Property.LightPosition, new Tizen.NUI.PropertyValue(value));
             }
         }
     }

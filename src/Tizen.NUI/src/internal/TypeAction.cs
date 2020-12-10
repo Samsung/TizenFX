@@ -27,11 +27,11 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NDalic.delete_TypeAction(swigCPtr);
+            Interop.NDalic.DeleteTypeAction(swigCPtr);
         }
 
 
-        internal TypeAction(TypeRegistration registered, string name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool f) : this(Interop.NDalic.new_TypeAction(TypeRegistration.getCPtr(registered), name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool.getCPtr(f)), true)
+        internal TypeAction(TypeRegistration registered, string name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool f) : this(Interop.NDalic.NewTypeAction(TypeRegistration.getCPtr(registered), name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool.getCPtr(f)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

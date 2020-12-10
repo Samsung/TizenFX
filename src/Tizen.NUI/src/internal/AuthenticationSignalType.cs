@@ -35,7 +35,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.AuthenticationSignalType.delete_AuthenticationSignalType(swigCPtr);
+            Interop.AuthenticationSignalType.DeleteAuthenticationSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.AuthenticationSignalType.AuthenticationSignalType_Empty(swigCPtr);
+            bool ret = Interop.AuthenticationSignalType.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.AuthenticationSignalType.AuthenticationSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.AuthenticationSignalType.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.AuthenticationSignalType.AuthenticationSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AuthenticationSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.AuthenticationSignalType.AuthenticationSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AuthenticationSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(AutofillContainer arg)
         {
-            Interop.AuthenticationSignalType.AuthenticationSignalType_Emit(swigCPtr, AutofillContainer.getCPtr(arg));
+            Interop.AuthenticationSignalType.Emit(swigCPtr, AutofillContainer.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -110,7 +110,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AuthenticationSignalType() : this(Interop.AuthenticationSignalType.new_AuthenticationSignalType(), true)
+        public AuthenticationSignalType() : this(Interop.AuthenticationSignalType.NewAuthenticationSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

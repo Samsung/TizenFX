@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public virtual void Add(View view, Size2D size)
         {
-            Interop.NDalic.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
+            Interop.NDalic.RelayoutContainerAdd(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NDalic.delete_RelayoutContainer(swigCPtr);
+            Interop.NDalic.DeleteRelayoutContainer(swigCPtr);
         }
     }
 }
