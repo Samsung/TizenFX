@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The string key.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyKey(string key) : this(Interop.Property.new_Property_Key__SWIG_0(key), true)
+        public PropertyKey(string key) : this(Interop.Property.NewPropertyKey(key), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The index key.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyKey(int key) : this(Interop.Property.new_Property_Key__SWIG_1(key), true)
+        public PropertyKey(int key) : this(Interop.Property.NewPropertyKey(key), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -74,12 +74,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.Property_Key_type_set(swigCPtr, (int)value);
+                Interop.Property.KeyTypeSet(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.Property_Key_type_get(swigCPtr);
+                PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.KeyTypeGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -93,12 +93,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.Property_Key_indexKey_set(swigCPtr, value);
+                Interop.Property.KeyIndexKeySet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.Property_Key_indexKey_get(swigCPtr);
+                int ret = Interop.Property.KeyIndexKeyGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -112,12 +112,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.Property_Key_stringKey_set(swigCPtr, value);
+                Interop.Property.KeyStringKeySet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.Property.Property_Key_stringKey_get(swigCPtr);
+                string ret = Interop.Property.KeyStringKeyGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -131,7 +131,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(string rhs)
         {
-            bool ret = Interop.Property.Property_Key_EqualTo__SWIG_0(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyEqualTo(swigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(int rhs)
         {
-            bool ret = Interop.Property.Property_Key_EqualTo__SWIG_1(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyEqualTo(swigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(PropertyKey rhs)
         {
-            bool ret = Interop.Property.Property_Key_EqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
+            bool ret = Interop.Property.KeyEqualTo(swigCPtr, PropertyKey.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(string rhs)
         {
-            bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_0(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -183,7 +183,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(int rhs)
         {
-            bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_1(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -196,7 +196,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(PropertyKey rhs)
         {
-            bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
+            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, PropertyKey.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -210,7 +210,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Property.delete_Property_Key(swigCPtr);
+            Interop.Property.DeletePropertyKey(swigCPtr);
         }
     }
 }

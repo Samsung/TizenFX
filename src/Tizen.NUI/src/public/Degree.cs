@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Degree() : this(Interop.Degree.new_Degree__SWIG_0(), true)
+        public Degree() : this(Interop.Degree.NewDegree(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="value">The initial value in degrees.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Degree(float value) : this(Interop.Degree.new_Degree__SWIG_1(value), true)
+        public Degree(float value) : this(Interop.Degree.NewDegree(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="value">The initial value in radians.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Degree(Radian value) : this(Interop.Degree.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
+        public Degree(Radian value) : this(Interop.Degree.NewDegree(Radian.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -67,12 +67,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Degree.Degree_degree_set(swigCPtr, value);
+                Interop.Degree.DegreeSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.Degree.Degree_degree_get(swigCPtr);
+                float ret = Interop.Degree.DegreeGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -87,7 +87,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Degree.delete_Degree(swigCPtr);
+            Interop.Degree.DeleteDegree(swigCPtr);
         }
     }
 }

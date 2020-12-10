@@ -27,11 +27,11 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.RenderTask.delete_RenderTaskSignal(swigCPtr);
+            Interop.RenderTask.DeleteRenderTaskSignal(swigCPtr);
         }
 
 
-        public RenderTaskSignal() : this(Interop.RenderTask.new_RenderTaskSignal(), true)
+        public RenderTaskSignal() : this(Interop.RenderTask.NewRenderTaskSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

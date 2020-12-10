@@ -23,7 +23,7 @@ namespace Tizen.NUI
     internal class ConnectionTrackerInterface : SignalObserver
     {
 
-        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTrackerInterface_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTrackerInterfaceUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ConnectionTracker.delete_ConnectionTrackerInterface(swigCPtr);
+            Interop.ConnectionTracker.DeleteConnectionTrackerInterface(swigCPtr);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
