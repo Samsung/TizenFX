@@ -33,13 +33,13 @@ namespace Tizen.NUI
         /// Creates an initialized KeyFrames handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public KeyFrames() : this(Interop.KeyFrames.KeyFrames_New(), true)
+        public KeyFrames() : this(Interop.KeyFrames.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal KeyFrames(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyFrames.KeyFrames_SWIGUpcast(cPtr), cMemoryOwn)
+        internal KeyFrames(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.KeyFrames.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public new PropertyType GetType()
         {
-            PropertyType ret = (PropertyType)Interop.KeyFrames.KeyFrames_GetType(swigCPtr);
+            PropertyType ret = (PropertyType)Interop.KeyFrames.GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value)
         {
-            Interop.KeyFrames.KeyFrames_Add__SWIG_0(swigCPtr, progress, PropertyValue.getCPtr(value));
+            Interop.KeyFrames.Add(swigCPtr, progress, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
-            Interop.KeyFrames.KeyFrames_Add__SWIG_1(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
+            Interop.KeyFrames.Add(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.KeyFrames.delete_KeyFrames(swigCPtr);
+            Interop.KeyFrames.DeleteKeyFrames(swigCPtr);
         }
     }
 }

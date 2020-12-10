@@ -137,7 +137,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an initialized VideoView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VideoView() : this(Interop.VideoView.VideoView_New__SWIG_0(), true)
+        public VideoView() : this(Interop.VideoView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the video resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public VideoView(string url) : this(Interop.VideoView.VideoView_New__SWIG_1(url), true)
+        public VideoView(string url) : this(Interop.VideoView.New(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -159,7 +159,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="swCodec">Video rendering by H/W codec if false.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_2(swCodec), true)
+        public VideoView(bool swCodec) : this(Interop.VideoView.New(swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -171,17 +171,17 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="url">The URL of the video resource to display.</param>
         /// <param name="swCodec">Video rendering by H/W codec if false.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(string url, bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_3(url, swCodec), true)
+        public VideoView(string url, bool swCodec) : this(Interop.VideoView.New(url, swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView(VideoView videoView) : this(Interop.VideoView.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
+        internal VideoView(VideoView videoView) : this(Interop.VideoView.NewVideoView(VideoView.getCPtr(videoView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -323,7 +323,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
-            Interop.VideoView.VideoView_Play(swigCPtr);
+            Interop.VideoView.Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -333,7 +333,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
-            Interop.VideoView.VideoView_Pause(swigCPtr);
+            Interop.VideoView.Pause(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -343,7 +343,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
-            Interop.VideoView.VideoView_Stop(swigCPtr);
+            Interop.VideoView.Stop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -354,7 +354,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Forward(int millisecond)
         {
-            Interop.VideoView.VideoView_Forward(swigCPtr, millisecond);
+            Interop.VideoView.Forward(swigCPtr, millisecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -365,13 +365,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Backward(int millisecond)
         {
-            Interop.VideoView.VideoView_Backward(swigCPtr, millisecond);
+            Interop.VideoView.Backward(swigCPtr, millisecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VideoViewSignal FinishedSignal()
         {
-            VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.VideoView_FinishedSignal(swigCPtr), false);
+            VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.FinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -409,7 +409,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VideoView.delete_VideoView(swigCPtr);
+            Interop.VideoView.DeleteVideoView(swigCPtr);
         }
 
         // Callback for VideoView Finished signal
@@ -454,11 +454,11 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int VIDEO = Interop.VideoView.VideoView_Property_VIDEO_get();
-            internal static readonly int LOOPING = Interop.VideoView.VideoView_Property_LOOPING_get();
-            internal static readonly int MUTED = Interop.VideoView.VideoView_Property_MUTED_get();
-            internal static readonly int VOLUME = Interop.VideoView.VideoView_Property_VOLUME_get();
-            internal static readonly int UNDERLAY = Interop.VideoView.VideoView_Property_UNDERLAY_get();
+            internal static readonly int VIDEO = Interop.VideoView.VideoGet();
+            internal static readonly int LOOPING = Interop.VideoView.LoopingGet();
+            internal static readonly int MUTED = Interop.VideoView.MutedGet();
+            internal static readonly int VOLUME = Interop.VideoView.VolumeGet();
+            internal static readonly int UNDERLAY = Interop.VideoView.UnderlayGet();
         }
 
         internal System.IntPtr GetNativePlayerHandle()

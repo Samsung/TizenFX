@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -127,7 +127,7 @@ namespace Tizen.NUI.Components
         private float mPageFlickThreshold = 0.4f;
         private float mScrollingEventThreshold = 0.001f;
 
-        private class ScrollableBaseCustomLayout : LayoutGroup
+        private class ScrollableBaseCustomLayout : AbsoluteLayout
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
@@ -197,25 +197,6 @@ namespace Tizen.NUI.Components
                 {
                     scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
                     scrollableBase.OnScrollingChildRelayout(null, null);
-                }
-            }
-
-            protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
-            {
-                foreach (LayoutItem childLayout in LayoutChildren)
-                {
-                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-
-                        Position2D childPosition = childLayout.Owner.Position2D;
-
-                        LayoutLength childLeft = new LayoutLength(childPosition.X);
-                        LayoutLength childTop = new LayoutLength(childPosition.Y);
-
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
-                    }
                 }
             }
         } //  ScrollableBaseCustomLayout
@@ -615,13 +596,12 @@ namespace Tizen.NUI.Components
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
-            ClippingMode = ClippingModeType.ClipChildren;
+            ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             //Default Scrolling child
             ContentContainer = new View()
             {
                 Name = "ContentContainer",
-                ExcludeLayouting = false,
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
             };

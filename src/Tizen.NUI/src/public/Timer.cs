@@ -47,18 +47,18 @@ namespace Tizen.NUI
         /// <param name="milliSec">Interval in milliseconds.</param>
         /// <returns>A new timer.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public Timer(uint milliSec) : this(Interop.Timer.Timer_New(milliSec), true)
+        public Timer(uint milliSec) : this(Interop.Timer.New(milliSec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
         }
-        internal Timer(Timer timer) : this(Interop.Timer.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
+        internal Timer(Timer timer) : this(Interop.Timer.NewTimer(Timer.getCPtr(timer)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Timer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Upcast(cPtr), cMemoryOwn)
         {
 
             _timerTickCallbackDelegate = OnTick;
@@ -148,7 +148,7 @@ namespace Tizen.NUI
             }
 
             played = true;
-            Interop.Timer.Timer_Start(swigCPtr);
+            Interop.Timer.Start(swigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -179,7 +179,7 @@ namespace Tizen.NUI
             }
 
             played = false;
-            Interop.Timer.Timer_Stop(swigCPtr);
+            Interop.Timer.Stop(swigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -209,7 +209,7 @@ namespace Tizen.NUI
                 return false;
             }
 
-            bool ret = Interop.Timer.Timer_IsRunning(swigCPtr);
+            bool ret = Interop.Timer.IsRunning(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -236,7 +236,7 @@ namespace Tizen.NUI
 
             played = true;
 
-            Interop.Timer.Timer_SetInterval(swigCPtr, milliSec);
+            Interop.Timer.SetInterval(swigCPtr, milliSec);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -248,14 +248,14 @@ namespace Tizen.NUI
                 return 0;
             }
 
-            uint ret = Interop.Timer.Timer_GetInterval(swigCPtr);
+            uint ret = Interop.Timer.GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TimerSignalType TickSignal()
         {
-            TimerSignalType ret = new TimerSignalType(Interop.Timer.Timer_TickSignal(swigCPtr), false);
+            TimerSignalType ret = new TimerSignalType(Interop.Timer.TickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -286,7 +286,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Timer.delete_Timer(swigCPtr);
+            Interop.Timer.DeleteTimer(swigCPtr);
         }
 
         private bool OnTick()
