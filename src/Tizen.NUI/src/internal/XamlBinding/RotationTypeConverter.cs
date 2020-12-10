@@ -22,7 +22,7 @@ namespace Tizen.NUI.Binding
                     if (head.Length == 2)
                     {
                         useDefault = false;
-                        string radianOrDegree = head[0].Trim().ToLowerInvariant();
+                        string radianOrDegree = head[0].Trim().ToUpperInvariant();
                         if (radianOrDegree == "d" || radianOrDegree == "degree")
                         {
                             // Oritation="D:23, 0, 0, 1"
