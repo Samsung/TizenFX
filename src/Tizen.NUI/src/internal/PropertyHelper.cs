@@ -31,7 +31,7 @@ namespace Tizen.NUI
             string str = sb.ToString();
 
             Property property = new Property(handle, str);
-            if (property.propertyIndex == Property.INVALID_INDEX)
+            if (property.propertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("string property is invalid");
             }

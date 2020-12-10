@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D() : this(Interop.Vector2.new_Vector2__SWIG_0(), true)
+        public Position2D() : this(Interop.Vector2.NewVector2(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">Position to create this vector from</param>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D(Position position) : this(Interop.Vector2.new_Vector2__SWIG_3(Position.getCPtr(position)), true)
+        public Position2D(Position position) : this(Interop.Vector2.NewVector2WithVector3(Position.getCPtr(position)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D(int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
+        public Position2D(int x, int y) : this(Interop.Vector2.NewVector2((float)x, (float)y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Position2D(Position2DChangedCallback cb, int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
+        internal Position2D(Position2DChangedCallback cb, int x, int y) : this(Interop.Vector2.NewVector2((float)x, (float)y), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -104,14 +104,14 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
 
-                Interop.Vector2.Vector2_X_set(swigCPtr, (float)value);
+                Interop.Vector2.XSet(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(X, Y);
             }
             get
             {
-                float ret = Interop.Vector2.Vector2_X_get(swigCPtr);
+                float ret = Interop.Vector2.XGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return (int)ret;
             }
@@ -138,14 +138,14 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor");
 
-                Interop.Vector2.Vector2_Y_set(swigCPtr, (float)value);
+                Interop.Vector2.YSet(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(X, Y);
             }
             get
             {
-                float ret = Interop.Vector2.Vector2_Y_get(swigCPtr);
+                float ret = Interop.Vector2.YGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return (int)ret;
             }
@@ -311,7 +311,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(Position2D rhs)
         {
-            bool ret = Interop.Vector2.Vector2_EqualTo(swigCPtr, Position2D.getCPtr(rhs));
+            bool ret = Interop.Vector2.EqualTo(swigCPtr, Position2D.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -324,7 +324,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(Position2D rhs)
         {
-            bool ret = Interop.Vector2.Vector2_NotEqualTo(swigCPtr, Position2D.getCPtr(rhs));
+            bool ret = Interop.Vector2.NotEqualTo(swigCPtr, Position2D.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -383,61 +383,61 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Vector2.delete_Vector2(swigCPtr);
+            Interop.Vector2.DeleteVector2(swigCPtr);
         }
 
         private Position2D Add(Position2D rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Add(swigCPtr, Position2D.getCPtr(rhs)), true);
+            Position2D ret = new Position2D(Interop.Vector2.Add(swigCPtr, Position2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Subtract(Position2D rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Subtract__SWIG_0(swigCPtr, Position2D.getCPtr(rhs)), true);
+            Position2D ret = new Position2D(Interop.Vector2.Subtract(swigCPtr, Position2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Multiply(Position2D rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Multiply__SWIG_0(swigCPtr, Position2D.getCPtr(rhs)), true);
+            Position2D ret = new Position2D(Interop.Vector2.Multiply(swigCPtr, Position2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Multiply(int rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Multiply__SWIG_1(swigCPtr, (float)rhs), true);
+            Position2D ret = new Position2D(Interop.Vector2.Multiply(swigCPtr, (float)rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Divide(Position2D rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Divide__SWIG_0(swigCPtr, Position2D.getCPtr(rhs)), true);
+            Position2D ret = new Position2D(Interop.Vector2.Divide(swigCPtr, Position2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Divide(int rhs)
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Divide__SWIG_1(swigCPtr, (float)rhs), true);
+            Position2D ret = new Position2D(Interop.Vector2.Divide(swigCPtr, (float)rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Position2D Subtract()
         {
-            Position2D ret = new Position2D(Interop.Vector2.Vector2_Subtract__SWIG_1(swigCPtr), true);
+            Position2D ret = new Position2D(Interop.Vector2.Subtract(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private int ValueOfIndex(uint index)
         {
-            int ret = (int)Interop.Vector2.Vector2_ValueOfIndex__SWIG_0(swigCPtr, index);
+            int ret = (int)Interop.Vector2.ValueOfIndex(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
