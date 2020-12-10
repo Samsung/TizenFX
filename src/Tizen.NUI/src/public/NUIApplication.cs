@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
@@ -383,7 +384,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void PreLoad()
         {
-            Interop.Application.Application_PreInitialize();
+            Interop.Application.PreInitialize();
             ThemeManager.EnsureDefaultTheme();
         }
 
@@ -416,6 +417,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Graphics Backend Type.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete("Please do not use! This will be deprecated!")]
     public class Graphics
@@ -439,7 +441,7 @@ namespace Tizen.NUI
         /// The backend used by the NUIApplication.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BackendType Backend = BackendType.Gles;
+        internal static BackendType Backend = BackendType.Gles;
 
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";

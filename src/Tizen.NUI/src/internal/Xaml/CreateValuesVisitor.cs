@@ -244,7 +244,7 @@ namespace Tizen.NUI.Xaml
             }
 
             var factoryMethod = ((string)((ValueNode)node.Properties[XmlName.xFactoryMethod]).Value);
-            Type[] types = arguments == null ? new Type[0] : arguments.Select(a => a.GetType()).ToArray();
+            Type[] types = arguments == null ? System.Array.Empty<Type>() : arguments.Select(a => a.GetType()).ToArray();
             Func<MethodInfo, bool> isMatch = m =>
             {
                 if (m.Name != factoryMethod)

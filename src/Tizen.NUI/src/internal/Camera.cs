@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class Camera : View
     {
 
-        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CameraActor.CameraActor_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CameraActor.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -36,33 +36,33 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.CameraActor.delete_CameraActor(swigCPtr);
+            Interop.CameraActor.DeleteCameraActor(swigCPtr);
         }
 
         internal class Property
         {
-            internal static readonly int TYPE = Interop.CameraActor.CameraActor_Property_TYPE_get();
-            internal static readonly int PROJECTION_MODE = Interop.CameraActor.CameraActor_Property_PROJECTION_MODE_get();
-            internal static readonly int FIELD_OF_VIEW = Interop.CameraActor.CameraActor_Property_FIELD_OF_VIEW_get();
-            internal static readonly int ASPECT_RATIO = Interop.CameraActor.CameraActor_Property_ASPECT_RATIO_get();
-            internal static readonly int NEAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
-            internal static readonly int FAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_FAR_PLANE_DISTANCE_get();
-            internal static readonly int LEFT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
-            internal static readonly int RIGHT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
-            internal static readonly int TOP_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_TOP_PLANE_DISTANCE_get();
-            internal static readonly int BOTTOM_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
-            internal static readonly int TARGET_POSITION = Interop.CameraActor.CameraActor_Property_TARGET_POSITION_get();
-            internal static readonly int PROJECTION_MATRIX = Interop.CameraActor.CameraActor_Property_PROJECTION_MATRIX_get();
-            internal static readonly int VIEW_MATRIX = Interop.CameraActor.CameraActor_Property_VIEW_MATRIX_get();
-            internal static readonly int INVERT_Y_AXIS = Interop.CameraActor.CameraActor_Property_INVERT_Y_AXIS_get();
+            internal static readonly int TYPE = Interop.CameraActor.TypeGet();
+            internal static readonly int ProjectionMode = Interop.CameraActor.ProjectionModeGet();
+            internal static readonly int FieldOfView = Interop.CameraActor.FieldOfViewGet();
+            internal static readonly int AspectRatio = Interop.CameraActor.AspectRatioGet();
+            internal static readonly int NearPlaneDistance = Interop.CameraActor.NearPlaneDistanceGet();
+            internal static readonly int FarPlaneDistance = Interop.CameraActor.FarPlaneDistanceGet();
+            internal static readonly int LeftPlaneDistance = Interop.CameraActor.LeftPlaneDistanceGet();
+            internal static readonly int RightPlaneDistance = Interop.CameraActor.RightPlaneDistanceGet();
+            internal static readonly int TopPlaneDistance = Interop.CameraActor.TopPlaneDistanceGet();
+            internal static readonly int BottomPlaneDistance = Interop.CameraActor.BottomPlaneDistanceGet();
+            internal static readonly int TargetPosition = Interop.CameraActor.TargetPositionGet();
+            internal static readonly int ProjectionMatrix = Interop.CameraActor.ProjectionMatrixGet();
+            internal static readonly int ViewMatrix = Interop.CameraActor.ViewMatrixGet();
+            internal static readonly int InvertYAxis = Interop.CameraActor.InvertYAxisGet();
         }
 
-        public Camera() : this(Interop.CameraActor.CameraActor_New__SWIG_0(), true)
+        public Camera() : this(Interop.CameraActor.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Camera(Vector2 size) : this(Interop.CameraActor.CameraActor_New__SWIG_1(Vector2.getCPtr(size)), true)
+        public Camera(Vector2 size) : this(Interop.CameraActor.New(Vector2.getCPtr(size)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -78,137 +78,137 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public Camera(Camera copy) : this(Interop.CameraActor.new_CameraActor__SWIG_1(Camera.getCPtr(copy)), true)
+        public Camera(Camera copy) : this(Interop.CameraActor.NewCameraActor(Camera.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Camera Assign(Camera rhs)
         {
-            Camera ret = new Camera(Interop.CameraActor.CameraActor_Assign(swigCPtr, Camera.getCPtr(rhs)), false);
+            Camera ret = new Camera(Interop.CameraActor.Assign(swigCPtr, Camera.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetType(CameraType type)
         {
-            Interop.CameraActor.CameraActor_SetType(swigCPtr, (int)type);
+            Interop.CameraActor.SetType(swigCPtr, (int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new CameraType GetType()
         {
-            CameraType ret = (CameraType)Interop.CameraActor.CameraActor_GetType(swigCPtr);
+            CameraType ret = (CameraType)Interop.CameraActor.GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetProjectionMode(ProjectionMode mode)
         {
-            Interop.CameraActor.CameraActor_SetProjectionMode(swigCPtr, (int)mode);
+            Interop.CameraActor.SetProjectionMode(swigCPtr, (int)mode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ProjectionMode GetProjectionMode()
         {
-            ProjectionMode ret = (ProjectionMode)Interop.CameraActor.CameraActor_GetProjectionMode(swigCPtr);
+            ProjectionMode ret = (ProjectionMode)Interop.CameraActor.GetProjectionMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFieldOfView(float fieldOfView)
         {
-            Interop.CameraActor.CameraActor_SetFieldOfView(swigCPtr, fieldOfView);
+            Interop.CameraActor.SetFieldOfView(swigCPtr, fieldOfView);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetFieldOfView()
         {
-            float ret = Interop.CameraActor.CameraActor_GetFieldOfView(swigCPtr);
+            float ret = Interop.CameraActor.GetFieldOfView(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetAspectRatio(float aspectRatio)
         {
-            Interop.CameraActor.CameraActor_SetAspectRatio(swigCPtr, aspectRatio);
+            Interop.CameraActor.SetAspectRatio(swigCPtr, aspectRatio);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetAspectRatio()
         {
-            float ret = Interop.CameraActor.CameraActor_GetAspectRatio(swigCPtr);
+            float ret = Interop.CameraActor.GetAspectRatio(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetNearClippingPlane(float nearClippingPlane)
         {
-            Interop.CameraActor.CameraActor_SetNearClippingPlane(swigCPtr, nearClippingPlane);
+            Interop.CameraActor.SetNearClippingPlane(swigCPtr, nearClippingPlane);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetNearClippingPlane()
         {
-            float ret = Interop.CameraActor.CameraActor_GetNearClippingPlane(swigCPtr);
+            float ret = Interop.CameraActor.GetNearClippingPlane(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFarClippingPlane(float farClippingPlane)
         {
-            Interop.CameraActor.CameraActor_SetFarClippingPlane(swigCPtr, farClippingPlane);
+            Interop.CameraActor.SetFarClippingPlane(swigCPtr, farClippingPlane);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetFarClippingPlane()
         {
-            float ret = Interop.CameraActor.CameraActor_GetFarClippingPlane(swigCPtr);
+            float ret = Interop.CameraActor.GetFarClippingPlane(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetTargetPosition(Vector3 targetPosition)
         {
-            Interop.CameraActor.CameraActor_SetTargetPosition(swigCPtr, Vector3.getCPtr(targetPosition));
+            Interop.CameraActor.SetTargetPosition(swigCPtr, Vector3.getCPtr(targetPosition));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector3 GetTargetPosition()
         {
-            Vector3 ret = new Vector3(Interop.CameraActor.CameraActor_GetTargetPosition(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.CameraActor.GetTargetPosition(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetInvertYAxis(bool invertYAxis)
         {
-            Interop.CameraActor.CameraActor_SetInvertYAxis(swigCPtr, invertYAxis);
+            Interop.CameraActor.SetInvertYAxis(swigCPtr, invertYAxis);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool GetInvertYAxis()
         {
-            bool ret = Interop.CameraActor.CameraActor_GetInvertYAxis(swigCPtr);
+            bool ret = Interop.CameraActor.GetInvertYAxis(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetPerspectiveProjection(Vector2 size)
         {
-            Interop.CameraActor.CameraActor_SetPerspectiveProjection(swigCPtr, Vector2.getCPtr(size));
+            Interop.CameraActor.SetPerspectiveProjection(swigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetOrthographicProjection(Vector2 size)
         {
-            Interop.CameraActor.CameraActor_SetOrthographicProjection__SWIG_0(swigCPtr, Vector2.getCPtr(size));
+            Interop.CameraActor.SetOrthographicProjection(swigCPtr, Vector2.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetOrthographicProjection(float left, float right, float top, float bottom, float near, float far)
         {
-            Interop.CameraActor.CameraActor_SetOrthographicProjection__SWIG_1(swigCPtr, left, right, top, bottom, near, far);
+            Interop.CameraActor.SetOrthographicProjection(swigCPtr, left, right, top, bottom, near, far);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -234,7 +234,7 @@ namespace Tizen.NUI
             get
             {
                 string returnValue = "";
-                PropertyValue projectionMode = GetProperty(Camera.Property.PROJECTION_MODE);
+                PropertyValue projectionMode = GetProperty(Camera.Property.ProjectionMode);
                 projectionMode?.Get(out returnValue);
                 projectionMode?.Dispose();
                 return returnValue;
@@ -242,7 +242,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.PROJECTION_MODE, setValue);
+                SetProperty(Camera.Property.ProjectionMode, setValue);
                 setValue.Dispose();
             }
         }
@@ -251,7 +251,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue fieldView = GetProperty(Camera.Property.FIELD_OF_VIEW);
+                PropertyValue fieldView = GetProperty(Camera.Property.FieldOfView);
                 fieldView?.Get(out returnValue);
                 fieldView?.Dispose();
                 return returnValue;
@@ -259,7 +259,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.FIELD_OF_VIEW, setValue);
+                SetProperty(Camera.Property.FieldOfView, setValue);
                 setValue.Dispose();
             }
         }
@@ -268,7 +268,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue aspectRatio = GetProperty(Camera.Property.ASPECT_RATIO);
+                PropertyValue aspectRatio = GetProperty(Camera.Property.AspectRatio);
                 aspectRatio?.Get(out returnValue);
                 aspectRatio?.Dispose();
                 return returnValue;
@@ -276,7 +276,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.ASPECT_RATIO, setValue);
+                SetProperty(Camera.Property.AspectRatio, setValue);
                 setValue.Dispose();
             }
         }
@@ -285,7 +285,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue nearPlaneDistance = GetProperty(Camera.Property.NEAR_PLANE_DISTANCE);
+                PropertyValue nearPlaneDistance = GetProperty(Camera.Property.NearPlaneDistance);
                 nearPlaneDistance?.Get(out returnValue);
                 nearPlaneDistance?.Dispose();
                 return returnValue;
@@ -293,7 +293,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.NEAR_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.NearPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -302,7 +302,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue farPlaneDistance = GetProperty(Camera.Property.FAR_PLANE_DISTANCE);
+                PropertyValue farPlaneDistance = GetProperty(Camera.Property.FarPlaneDistance);
                 farPlaneDistance?.Get(out returnValue);
                 farPlaneDistance?.Dispose();
                 return returnValue;
@@ -310,7 +310,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.FAR_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.FarPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -319,7 +319,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue leftPlaneDistance = GetProperty(Camera.Property.LEFT_PLANE_DISTANCE);
+                PropertyValue leftPlaneDistance = GetProperty(Camera.Property.LeftPlaneDistance);
                 leftPlaneDistance?.Get(out returnValue);
                 leftPlaneDistance?.Dispose();
                 return returnValue;
@@ -327,7 +327,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.LEFT_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.LeftPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -336,7 +336,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue rightPlaneDistance = GetProperty(Camera.Property.RIGHT_PLANE_DISTANCE);
+                PropertyValue rightPlaneDistance = GetProperty(Camera.Property.RightPlaneDistance);
                 rightPlaneDistance?.Get(out returnValue);
                 rightPlaneDistance?.Dispose();
                 return returnValue;
@@ -344,7 +344,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.RIGHT_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.RightPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -353,7 +353,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue topPlaneDistance = GetProperty(Camera.Property.TOP_PLANE_DISTANCE);
+                PropertyValue topPlaneDistance = GetProperty(Camera.Property.TopPlaneDistance);
                 topPlaneDistance?.Get(out returnValue);
                 topPlaneDistance?.Dispose();
                 return returnValue;
@@ -361,7 +361,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.TOP_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.TopPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -370,7 +370,7 @@ namespace Tizen.NUI
             get
             {
                 float returnValue = 0.0f;
-                PropertyValue bottomPlaneDistance = GetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE);
+                PropertyValue bottomPlaneDistance = GetProperty(Camera.Property.BottomPlaneDistance);
                 bottomPlaneDistance?.Get(out returnValue);
                 bottomPlaneDistance?.Dispose();
                 return returnValue;
@@ -378,7 +378,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.BOTTOM_PLANE_DISTANCE, setValue);
+                SetProperty(Camera.Property.BottomPlaneDistance, setValue);
                 setValue.Dispose();
             }
         }
@@ -387,7 +387,7 @@ namespace Tizen.NUI
             get
             {
                 Vector3 returnValue = new Vector3(0.0f, 0.0f, 0.0f);
-                PropertyValue targetPosition = GetProperty(Camera.Property.TARGET_POSITION);
+                PropertyValue targetPosition = GetProperty(Camera.Property.TargetPosition);
                 targetPosition?.Get(returnValue);
                 targetPosition?.Dispose();
                 return returnValue;
@@ -395,7 +395,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.TARGET_POSITION, setValue);
+                SetProperty(Camera.Property.TargetPosition, setValue);
                 setValue.Dispose();
             }
         }
@@ -404,7 +404,7 @@ namespace Tizen.NUI
             get
             {
                 Matrix returnValue = new Matrix();
-                PropertyValue projectionMatrix = GetProperty(Camera.Property.PROJECTION_MATRIX);
+                PropertyValue projectionMatrix = GetProperty(Camera.Property.ProjectionMatrix);
                 projectionMatrix?.Get(returnValue);
                 projectionMatrix?.Dispose();
                 return returnValue;
@@ -415,7 +415,7 @@ namespace Tizen.NUI
             get
             {
                 Matrix returnValue = new Matrix();
-                PropertyValue viewMatrix = GetProperty(Camera.Property.VIEW_MATRIX);
+                PropertyValue viewMatrix = GetProperty(Camera.Property.ViewMatrix);
                 viewMatrix.Get(returnValue);
                 viewMatrix.Dispose();
                 return returnValue;
@@ -426,7 +426,7 @@ namespace Tizen.NUI
             get
             {
                 bool returnValue = false;
-                PropertyValue invertYAxis = GetProperty(Camera.Property.INVERT_Y_AXIS);
+                PropertyValue invertYAxis = GetProperty(Camera.Property.InvertYAxis);
                 invertYAxis?.Get(out returnValue);
                 invertYAxis?.Dispose();
                 return returnValue;
@@ -434,7 +434,7 @@ namespace Tizen.NUI
             set
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                SetProperty(Camera.Property.INVERT_Y_AXIS, setValue);
+                SetProperty(Camera.Property.InvertYAxis, setValue);
                 setValue.Dispose();
             }
         }

@@ -31,19 +31,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PageFactory.delete_PageFactory(swigCPtr);
+            Interop.PageFactory.DeletePageFactory(swigCPtr);
         }
 
         public virtual uint GetNumberOfPages()
         {
-            uint ret = Interop.PageFactory.PageFactory_GetNumberOfPages(swigCPtr);
+            uint ret = Interop.PageFactory.GetNumberOfPages(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual Texture NewPage(uint pageId)
         {
-            Texture ret = new Texture(Interop.PageFactory.PageFactory_NewPage(swigCPtr, pageId), true);
+            Texture ret = new Texture(Interop.PageFactory.NewPage(swigCPtr, pageId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

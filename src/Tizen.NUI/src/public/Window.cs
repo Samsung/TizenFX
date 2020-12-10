@@ -46,11 +46,11 @@ namespace Tizen.NUI
             return isSupported;
         }
 
-        internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Upcast(cPtr), cMemoryOwn)
         {
-            if (Interop.Stage.Stage_IsInstalled())
+            if (Interop.Stage.IsInstalled())
             {
-                stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Stage.Stage_GetCurrent());
+                stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Stage.GetCurrent());
 
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        public Window(Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
+        public Window(Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.New(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
             if (IsSupportedMultiWindow() == false)
             {
@@ -87,7 +87,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
+        public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.New(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
         {
             if (IsSupportedMultiWindow() == false)
             {
@@ -381,7 +381,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.Stage.Stage_DEFAULT_BACKGROUND_COLOR_get();
+                global::System.IntPtr cPtr = Interop.Stage.DefaultBackgroundColorGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -392,7 +392,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.Stage.Stage_DEBUG_BACKGROUND_COLOR_get();
+                global::System.IntPtr cPtr = Interop.Stage.DebugBackgroundColorGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -426,7 +426,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
         public static void FeedKeyEvent(Key keyEvent)
         {
-            Interop.Window.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -701,7 +701,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void SetClass(string name, string klass)
         {
-            Interop.Window.Window_SetClass(swigCPtr, name, klass);
+            Interop.Window.SetClass(swigCPtr, name, klass);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -711,7 +711,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            Interop.Window.Window_Raise(swigCPtr);
+            Interop.Window.Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -721,7 +721,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            Interop.Window.Window_Lower(swigCPtr);
+            Interop.Window.Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -731,7 +731,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Activate()
         {
-            Interop.Window.Window_Activate(swigCPtr);
+            Interop.Window.Activate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -752,7 +752,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            Interop.Actor.Actor_Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
             if (null != view)
@@ -768,7 +768,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            Interop.Actor.Actor_Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
+            Interop.Actor.Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
             if (null != view)
             {
@@ -811,7 +811,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void KeepRendering(float durationSeconds)
         {
-            Interop.Stage.Stage_KeepRendering(stageCPtr, durationSeconds);
+            Interop.Stage.KeepRendering(stageCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -933,7 +933,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
-            Interop.Window.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -944,7 +944,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void RenderOnce()
         {
-            Interop.Window.Window_RenderOnce(swigCPtr);
+            Interop.Window.RenderOnce(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1034,7 +1034,7 @@ namespace Tizen.NUI
 
         internal static bool IsInstalled()
         {
-            bool ret = Interop.Stage.Stage_IsInstalled();
+            bool ret = Interop.Stage.IsInstalled();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1046,7 +1046,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void AddAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.AddAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1057,7 +1057,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RemoveAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.RemoveAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1068,7 +1068,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void SetPreferredOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
+            Interop.Window.SetPreferredOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1079,7 +1079,7 @@ namespace Tizen.NUI
         /// <returns>The preferred orientation if previously set, or none.</returns>
         public Window.WindowOrientation GetPreferredOrientation()
         {
-            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetPreferredOrientation(swigCPtr);
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetPreferredOrientation(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1092,7 +1092,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window.WindowOrientation GetCurrentOrientation()
         {
-            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetCurrentOrientation(swigCPtr);
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetCurrentOrientation(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1115,7 +1115,7 @@ namespace Tizen.NUI
                 }
             }
 
-            Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
+            Interop.Window.SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1133,7 +1133,7 @@ namespace Tizen.NUI
 
         internal Any GetNativeHandle()
         {
-            Any ret = new Any(Interop.WindowInternal.Window_GetNativeHandle(swigCPtr), true);
+            Any ret = new Any(Interop.WindowInternal.WindowGetNativeHandle(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1174,7 +1174,7 @@ namespace Tizen.NUI
 
         internal RenderTaskList GetRenderTaskList()
         {
-            RenderTaskList ret = new RenderTaskList(Interop.Stage.Stage_GetRenderTaskList(stageCPtr), true);
+            RenderTaskList ret = new RenderTaskList(Interop.Stage.GetRenderTaskList(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1221,27 +1221,27 @@ namespace Tizen.NUI
 
         internal Vector2 GetDpi()
         {
-            Vector2 ret = new Vector2(Interop.Stage.Stage_GetDpi(stageCPtr), true);
+            Vector2 ret = new Vector2(Interop.Stage.GetDpi(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ObjectRegistry GetObjectRegistry()
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.Stage_GetObjectRegistry(stageCPtr), true);
+            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.GetObjectRegistry(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
         {
-            Interop.Stage.Stage_SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
+            Interop.Stage.SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal RenderingBehaviorType GetRenderingBehavior()
         {
-            RenderingBehaviorType ret = (RenderingBehaviorType)Interop.Stage.Stage_GetRenderingBehavior(stageCPtr);
+            RenderingBehaviorType ret = (RenderingBehaviorType)Interop.Stage.GetRenderingBehavior(stageCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1294,7 +1294,7 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
-            Interop.Window.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
+            Interop.Window.SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1363,7 +1363,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Window.delete_Window(swigCPtr);
+            Interop.Window.DeleteWindow(swigCPtr);
         }
 
         private static Dictionary<int, internalHookCallbackType> frameCallbackList = new Dictionary<int, internalHookCallbackType>();
