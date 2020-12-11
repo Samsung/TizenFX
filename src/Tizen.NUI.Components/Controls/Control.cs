@@ -14,12 +14,14 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.Windows.Input;
+using Tizen.System;
 
 namespace Tizen.NUI.Components
 {
@@ -41,6 +43,8 @@ namespace Tizen.NUI.Components
             propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
 
         private bool onThemeChangedEventOverrideChecker;
+
+        private Feedback feedback = new Feedback();
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
 
@@ -89,6 +93,13 @@ namespace Tizen.NUI.Components
             this.styleName = styleName;
             ThemeChangeSensitive = true;
         }
+
+        /// <summary>
+        /// The flag of sound feedback when tap gesture detected.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsTapGestureFeedback { get; set; } = false;
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -148,6 +159,12 @@ namespace Tizen.NUI.Components
             {
                 tapGestureDetector.Detected -= OnTapGestureDetected;
                 tapGestureDetector.Detach(this);
+
+                if (feedback != null)
+                {
+                    feedback.Stop();
+                    feedback = null;
+                }
             }
 
             base.Dispose(type);
@@ -213,7 +230,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e) { }
+        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
+        {
+            if (IsTapGestureFeedback && e?.TapGesture?.State == Gesture.StateType.Started)
+            {
+                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                {
+                    feedback.Play(FeedbackType.Sound, "Tap");
+                }
+            }
+        }
 
         /// <summary>
         /// Update by style.
