@@ -906,6 +906,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ValueChangedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -957,6 +958,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SlidingFinishedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -1008,6 +1010,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class MarkReachedEventArgs : EventArgs
         {
             private Slider _slider;

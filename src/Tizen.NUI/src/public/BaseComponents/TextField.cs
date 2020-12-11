@@ -38,10 +38,6 @@ namespace Tizen.NUI.BaseComponents
 
         static TextField() { }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle Style => new TextFieldStyle(this);
-
         /// <summary>
         /// Creates the TextField control.
         /// </summary>
@@ -1351,7 +1347,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectNone()
         {
-            Interop.TextField.SelectNone(swigCPtr);
+            _ = Interop.TextField.SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

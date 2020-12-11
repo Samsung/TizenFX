@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -746,6 +747,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of properties belonging to the Scrollable class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
 #pragma warning disable CA1716 // Identifiers should not match keywords
