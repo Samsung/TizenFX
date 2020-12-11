@@ -97,7 +97,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The flag of sound feedback when tap gesture detected.
         /// </summary>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsTapGestureFeedback { get; set; } = false;
 
