@@ -35,11 +35,11 @@ namespace Tizen.NUI.Components
     {
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Button), null,
             propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
 
         private bool onThemeChangedEventOverrideChecker;
