@@ -42,6 +42,7 @@ namespace Tizen.NUI
         private Position2D _windowPosition2D = null;
         private TransitionOptions transitionOptions;
 
+        private static bool isPreLoad = false;
 
         /// <summary>
         /// The default constructor.
@@ -386,6 +387,7 @@ namespace Tizen.NUI
         {
             Interop.Application.PreInitialize();
             ThemeManager.EnsureDefaultTheme();
+            isPreLoad = true;
         }
 
         /// <summary>
@@ -410,6 +412,17 @@ namespace Tizen.NUI
             set
             {
                 transitionOptions = value;
+            }
+        }
+
+        /// <summary>
+        /// Check if it is loaded as dotnet-loader-nui.
+        /// </summary>
+        static internal bool IsPreLoad
+        {
+            get
+            {
+                return isPreLoad;
             }
         }
     }
