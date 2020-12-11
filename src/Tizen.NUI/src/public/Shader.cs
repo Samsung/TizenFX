@@ -121,7 +121,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
+#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
         public class Property
+#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
             /// The default value is empty.
