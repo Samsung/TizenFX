@@ -618,6 +618,12 @@ namespace Tizen.NUI
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
+            // Notify that the window is displayed to the app core.
+            if (NUIApplication.IsPreLoad)
+            {
+                Window.Instance.Show();
+            }
+
             if (_applicationInitEventHandler != null)
             {
                 NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
