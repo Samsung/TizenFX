@@ -42,7 +42,7 @@ namespace Tizen.NUI
     /// Transition animation effect
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TransitionAnimation
+    public class TransitionAnimation : IDisposable
     {
         private ImageViewStyle defaultImageStyle;
         private List<TransitionAnimationData> animationDataList;
@@ -135,6 +135,24 @@ namespace Tizen.NUI
             {
                 defaultImageStyle = value;
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                defaultImageStyle?.Dispose();
+            }
+            // Free native resources.
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 
