@@ -26,6 +26,7 @@ namespace Tizen.NUI
 
         ~DisposeQueue()
         {
+            Tizen.Log.Debug("NUI",$"DisposeQueue is destroyed\n");
         }
 
         public static DisposeQueue Instance

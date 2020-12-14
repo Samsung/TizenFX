@@ -38,11 +38,13 @@ namespace Tizen.NUI.Accessibility
             dummy = new View();
             dummy.Name = "dali-atspi-singleton";
         }
+
         /// <summary>
         /// destructor. This is HiddenAPI. recommended not to use in public.
         /// </summary>
         ~Accessibility()
         {
+            Tizen.Log.Debug("NUI",$"Accessibility is destroyed\n");
         }
         #endregion Constructor, Distructor, Dispose
 
