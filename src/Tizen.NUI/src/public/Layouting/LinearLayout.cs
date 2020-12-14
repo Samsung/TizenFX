@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -829,5 +830,18 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                _cellPadding?.Dispose();
+            }
+            // Free native resources.
+            base.Dispose(disposing);
+        }
+
     } //LinearLayout
 } // namespace
