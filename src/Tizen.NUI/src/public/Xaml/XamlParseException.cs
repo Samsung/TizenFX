@@ -27,6 +27,26 @@ namespace Tizen.NUI.Xaml
             return ret;
         }
 
+        /// <summary> Initializes a new instance. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlParseException()
+        {
+        }
+
+        /// <summary> Initializes a new instance with message. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlParseException(string message) : base(message)
+        {
+           _unformattedMessage = message;
+        }
+
+        /// <summary> Initializes a new instance with message and inner exception. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlParseException(string message, Exception innerException = null) : base(message, innerException)
+        {
+           _unformattedMessage = message;
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlParseException(string message, IXmlLineInfo xmlInfo, Exception innerException = null) : base(FormatMessage(message + GetStackInfo(), xmlInfo), innerException)
