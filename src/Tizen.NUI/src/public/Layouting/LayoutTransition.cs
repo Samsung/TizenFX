@@ -69,6 +69,57 @@ namespace Tizen.NUI
 
         ChangeOnRemove = 16
     }
+    
+    /// <summary>
+    /// The conditions for transitions.
+    /// </summary>
+    /// <since_tizen> 6.5 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [FlagsAttribute]
+    public enum TransitionConditions
+    {
+        /// <summary>
+        /// Default when a condition has not been set.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        Unspecified = 0,
+
+        /// <summary>
+        /// Animate changing layout to another layout.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        LayoutChanged = 1,
+
+        /// <summary>
+        /// Animate adding item.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Add = 2,
+
+        /// <summary>
+        /// Animate removing item.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Remove = 4,
+
+        /// <summary>
+        /// Animation when an item changes due to a  being added.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChangeOnAdd = 8,
+
+        /// <summary>
+        /// Animation when an item changes due to a  being removed.
+        /// </summary>
+        /// <since_tizen> 6.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChangeOnRemove = 16
+    }
 
     /// <summary>
     /// The properties that can be animated.
