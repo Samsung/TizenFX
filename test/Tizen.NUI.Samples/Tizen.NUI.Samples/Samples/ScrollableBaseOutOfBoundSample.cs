@@ -37,7 +37,7 @@ namespace Tizen.NUI.Samples
                 ScrollingDirection = Components.ScrollableBase.Direction.Vertical,
                 EnableOverShootingEffect = true,
             };
-            mScrollableBase.ScrollOutOfBound += OnScrollOutOfBound;
+            mScrollableBase.ScrollOutOfBoundWithDisplacement += OnScrollOutOfBound;
 
             items = new TextLabel[5];
             for (int i = 0; i < 5; i++)
@@ -62,18 +62,18 @@ namespace Tizen.NUI.Samples
             root.Add(mScrollableBase);
         }
 
-        private void OnScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
+        private void OnScrollOutOfBound(object sender, Components.ScrollOutOfBoundWithDisplacementEventArgs e)
         {
             if (e.Displacement > 100)
             {
-                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Down)
+                if (e.PanDirection == Components.ScrollOutOfBoundWithDisplacementEventArgs.Direction.Down)
                 {
                     items[0].Text = $"Reached at the top, panned displacement is {e.Displacement}.";
                 }
             }
             else if (0 - e.Displacement > 100)
             {
-                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Up)
+                if (e.PanDirection == Components.ScrollOutOfBoundWithDisplacementEventArgs.Direction.Up)
                 {
                     items[4].Text = $"Reached at the bottom, panned displacement is {e.Displacement}.";
                 }
