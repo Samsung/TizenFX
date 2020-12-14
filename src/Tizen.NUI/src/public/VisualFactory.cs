@@ -53,7 +53,7 @@ namespace Tizen.NUI
                 if (!instance)
                 {
                     instance = new VisualFactory(Interop.VisualFactory.Get(), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 }
 
                 return instance;

@@ -30,7 +30,7 @@ namespace Tizen.NUI.Accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility
+    public class Accessibility : IDisposable
     {
         #region Constructor, Distructor, Dispose
         private Accessibility()
@@ -221,5 +221,21 @@ namespace Tizen.NUI.Accessibility
 
         private static string tag = "NUITEST";
         #endregion Private
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                dummy?.Dispose();
+            }
+            // Free native resources.
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }
