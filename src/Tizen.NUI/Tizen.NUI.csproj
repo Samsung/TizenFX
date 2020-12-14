@@ -34,10 +34,4 @@
     </ItemGroup>
   </Target>
 
-  <ItemGroup>
-    <None Update="res\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

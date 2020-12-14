@@ -158,7 +158,11 @@ namespace Tizen.NUI.Wearable
 
         #region Constructors
 
-        static CircularProgress() { }
+        static CircularProgress()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
+
         /// <summary>
         /// The constructor of CircularProgress.
         /// Basically, CircularProgress is for full screen. (360 x 360)
