@@ -349,24 +349,24 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap();
+            OutputVisualMap = new PropertyMap();
 
             if (_text != null)
             {
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-                _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
-                _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize));
-                if (_fontFamily != null) { _outputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily)); }
-                if (_fontStyle != null) { _outputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle)); }
-                if (_multiLine != null) { _outputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue((bool)_multiLine)); }
-                if (_horizontalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment)); }
-                if (_verticalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
-                if (_textColor != null) { _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
-                if (_enableMarkup != null) { _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
-                if (_shadow != null) { _outputVisualMap.Add(TextVisualProperty.Shadow, new PropertyValue(_shadow)); }
-                if (_underline != null) { _outputVisualMap.Add(TextVisualProperty.Underline, new PropertyValue(_underline)); }
-                if (_outline != null) { _outputVisualMap.Add(TextVisualProperty.Outline, new PropertyValue(_outline)); }
-                if (_background != null) { _outputVisualMap.Add(TextVisualProperty.Background, new PropertyValue(_background)); }
+                OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
+                OutputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
+                OutputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize));
+                if (_fontFamily != null) { OutputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily)); }
+                if (_fontStyle != null) { OutputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle)); }
+                if (_multiLine != null) { OutputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue((bool)_multiLine)); }
+                if (_horizontalAlignment != null) { OutputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment)); }
+                if (_verticalAlignment != null) { OutputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
+                if (_textColor != null) { OutputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
+                if (_enableMarkup != null) { OutputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
+                if (_shadow != null) { OutputVisualMap.Add(TextVisualProperty.Shadow, new PropertyValue(_shadow)); }
+                if (_underline != null) { OutputVisualMap.Add(TextVisualProperty.Underline, new PropertyValue(_underline)); }
+                if (_outline != null) { OutputVisualMap.Add(TextVisualProperty.Outline, new PropertyValue(_outline)); }
+                if (_background != null) { OutputVisualMap.Add(TextVisualProperty.Background, new PropertyValue(_background)); }
                 base.ComposingPropertyMap();
             }
         }

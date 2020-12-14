@@ -71,7 +71,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }
@@ -132,7 +132,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(swigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -176,7 +176,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -215,7 +215,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -252,7 +252,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
+                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -271,7 +271,7 @@ namespace Tizen.NUI
                 throw new InvalidOperationException("quality should between zero to 100");
             }
 
-            Interop.Capture.SetImageQuality(swigCPtr, quality);
+            Interop.Capture.SetImageQuality(SwigCPtr, quality);
         }
 
         private void onFinished(IntPtr data, int state)
@@ -303,9 +303,9 @@ namespace Tizen.NUI
         {
             add
             {
-                if (finishedEventHandler == null && disposed == false)
+                if (finishedEventHandler == null && Disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(swigCPtr), false);
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr), false);
                     finishedCallback = onFinished;
                     finishedSignal.Connect(finishedCallback);
                 }
@@ -331,7 +331,7 @@ namespace Tizen.NUI
         public NativeImageSource GetNativeImageSource()
         {
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
-            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(swigCPtr), true);
+            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Tizen.NUI
         public string GenerateUrl()
         {
             string url = "";
-            url = Interop.Capture.GenerateUrl(swigCPtr);
+            url = Interop.Capture.GenerateUrl(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return url;
         }

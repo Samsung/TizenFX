@@ -162,7 +162,7 @@ namespace Tizen.NUI
             _transition.Add("targetValue", val);
             _transition.Add("animator", new PropertyValue(_animator));
 
-            _outputVisualMap = _transition;
+            OutputVisualMap = _transition;
             base.ComposingPropertyMap();
         }
     }

@@ -164,11 +164,11 @@ namespace Tizen.NUI
         {
             if (_urls != null)
             {
-                _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
+                OutputVisualMap = new PropertyMap();
+                OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
                 if (_urls.Count == 1)
                 {
-                    _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_urls[0]));
+                    OutputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_urls[0]));
                 }
                 else
                 {
@@ -177,12 +177,12 @@ namespace Tizen.NUI
                     {
                         urlArray.Add(new PropertyValue(url));
                     }
-                    _outputVisualMap.Add(ImageVisualProperty.URL, (new PropertyValue(urlArray)));
+                    OutputVisualMap.Add(ImageVisualProperty.URL, (new PropertyValue(urlArray)));
                 }
-                if (_batchSize != null) { _outputVisualMap.Add(ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
-                if (_cacheSize != null) { _outputVisualMap.Add(ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
-                if (_frameDelay != null) { _outputVisualMap.Add(ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
-                if (_loopCount != null) { _outputVisualMap.Add(ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
+                if (_batchSize != null) { OutputVisualMap.Add(ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
+                if (_cacheSize != null) { OutputVisualMap.Add(ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
+                if (_frameDelay != null) { OutputVisualMap.Add(ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
+                if (_loopCount != null) { OutputVisualMap.Add(ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
                 base.ComposingPropertyMap();
             }
         }

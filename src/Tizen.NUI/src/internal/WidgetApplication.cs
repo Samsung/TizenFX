@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetApplication obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -69,7 +69,7 @@ namespace Tizen.NUI
 
         internal WidgetApplication Assign(WidgetApplication widgetApplication)
         {
-            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
+            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.Assign(SwigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip);
 
-            Interop.WidgetApplication.RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
+            Interop.WidgetApplication.RegisterWidgetCreatingFunction(SwigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

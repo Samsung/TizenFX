@@ -80,7 +80,7 @@ namespace Tizen.NUI
 
         internal static HandleRef getCPtr(VisualEventSignal obj)
         {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.SwigCPtr;
         }
     }
 }

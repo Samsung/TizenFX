@@ -34,89 +34,89 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowsProperty = BindableProperty.Create(nameof(Rows), typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RowsProperty = BindableProperty.Create(nameof(Rows), typeof(int), typeof(TableView), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.ROWS, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.ROWS, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(tableView.swigCPtr, TableView.Property.ROWS).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.ROWS).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(int), typeof(TableView), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(tableView.swigCPtr, TableView.Property.COLUMNS).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.COLUMNS).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create(nameof(CellPadding), typeof(Vector2), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create(nameof(CellPadding), typeof(Vector2), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.CellPadding, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(tableView.swigCPtr, TableView.Property.CellPadding).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create(nameof(LayoutRows), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create(nameof(LayoutRows), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.LayoutRows, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutRows, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(tableView.swigCPtr, TableView.Property.LayoutRows).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutRows).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create(nameof(LayoutColumns), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create(nameof(LayoutColumns), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.LayoutColumns, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutColumns, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(tableView.swigCPtr, TableView.Property.LayoutColumns).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutColumns).Get(temp);
             return temp;
-        });
+        }));
 
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool AddChild(View child, TableView.CellPosition position)
         {
-            bool ret = Interop.TableView.AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = Interop.TableView.AddChild(SwigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             Children.Add(child);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -290,7 +290,7 @@ namespace Tizen.NUI.BaseComponents
         public View GetChildAt(TableView.CellPosition position)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.TableView.GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
+            IntPtr cPtr = Interop.TableView.GetChildAt(SwigCPtr, TableView.CellPosition.getCPtr(position));
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
             Interop.BaseHandle.DeleteBaseHandle(CPtr);
@@ -309,7 +309,7 @@ namespace Tizen.NUI.BaseComponents
         public View RemoveChildAt(TableView.CellPosition position)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.TableView.RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
+            IntPtr cPtr = Interop.TableView.RemoveChildAt(SwigCPtr, TableView.CellPosition.getCPtr(position));
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -327,7 +327,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool FindChildPosition(View child, TableView.CellPosition position)
         {
-            bool ret = Interop.TableView.FindChildPosition(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = Interop.TableView.FindChildPosition(SwigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -339,7 +339,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void InsertRow(uint rowIndex)
         {
-            Interop.TableView.InsertRow(swigCPtr, rowIndex);
+            Interop.TableView.InsertRow(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -351,7 +351,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void DeleteRow(uint rowIndex)
         {
-            Interop.TableView.DeleteRow(swigCPtr, rowIndex);
+            Interop.TableView.DeleteRow(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -362,7 +362,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void InsertColumn(uint columnIndex)
         {
-            Interop.TableView.InsertColumn(swigCPtr, columnIndex);
+            Interop.TableView.InsertColumn(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -374,7 +374,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void DeleteColumn(uint columnIndex)
         {
-            Interop.TableView.DeleteColumn(swigCPtr, columnIndex);
+            Interop.TableView.DeleteColumn(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -386,7 +386,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Resize(uint rows, uint columns)
         {
-            Interop.TableView.Resize(swigCPtr, rows, columns);
+            Interop.TableView.Resize(SwigCPtr, rows, columns);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -397,7 +397,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetCellPadding(Size2D padding)
         {
-            Interop.TableView.SetCellPadding(swigCPtr, Size2D.getCPtr(padding));
+            Interop.TableView.SetCellPadding(SwigCPtr, Size2D.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -408,7 +408,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetCellPadding()
         {
-            Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(swigCPtr), true);
+            Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -420,7 +420,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFitHeight(uint rowIndex)
         {
-            Interop.TableView.SetFitHeight(swigCPtr, rowIndex);
+            Interop.TableView.SetFitHeight(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -432,7 +432,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool IsFitHeight(uint rowIndex)
         {
-            bool ret = Interop.TableView.IsFitHeight(swigCPtr, rowIndex);
+            bool ret = Interop.TableView.IsFitHeight(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -444,7 +444,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFitWidth(uint columnIndex)
         {
-            Interop.TableView.SetFitWidth(swigCPtr, columnIndex);
+            Interop.TableView.SetFitWidth(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -456,7 +456,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool IsFitWidth(uint columnIndex)
         {
-            bool ret = Interop.TableView.IsFitWidth(swigCPtr, columnIndex);
+            bool ret = Interop.TableView.IsFitWidth(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -470,7 +470,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFixedHeight(uint rowIndex, float height)
         {
-            Interop.TableView.SetFixedHeight(swigCPtr, rowIndex, height);
+            Interop.TableView.SetFixedHeight(SwigCPtr, rowIndex, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -482,7 +482,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetFixedHeight(uint rowIndex)
         {
-            float ret = Interop.TableView.GetFixedHeight(swigCPtr, rowIndex);
+            float ret = Interop.TableView.GetFixedHeight(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -497,7 +497,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetRelativeHeight(uint rowIndex, float heightPercentage)
         {
-            Interop.TableView.SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
+            Interop.TableView.SetRelativeHeight(SwigCPtr, rowIndex, heightPercentage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -509,7 +509,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetRelativeHeight(uint rowIndex)
         {
-            float ret = Interop.TableView.GetRelativeHeight(swigCPtr, rowIndex);
+            float ret = Interop.TableView.GetRelativeHeight(SwigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -523,7 +523,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFixedWidth(uint columnIndex, float width)
         {
-            Interop.TableView.SetFixedWidth(swigCPtr, columnIndex, width);
+            Interop.TableView.SetFixedWidth(SwigCPtr, columnIndex, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -535,7 +535,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetFixedWidth(uint columnIndex)
         {
-            float ret = Interop.TableView.GetFixedWidth(swigCPtr, columnIndex);
+            float ret = Interop.TableView.GetFixedWidth(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -550,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetRelativeWidth(uint columnIndex, float widthPercentage)
         {
-            Interop.TableView.SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
+            Interop.TableView.SetRelativeWidth(SwigCPtr, columnIndex, widthPercentage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -562,7 +562,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetRelativeWidth(uint columnIndex)
         {
-            float ret = Interop.TableView.GetRelativeWidth(swigCPtr, columnIndex);
+            float ret = Interop.TableView.GetRelativeWidth(SwigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -577,13 +577,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)
         {
-            Interop.TableView.SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
+            Interop.TableView.SetCellAlignment(SwigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TableView obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
@@ -801,7 +801,7 @@ namespace Tizen.NUI.BaseComponents
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
             /// This will not be public opened.

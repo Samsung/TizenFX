@@ -100,11 +100,11 @@ namespace Tizen.NUI
         {
             if (_url != null)
             {
-                _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
-                _outputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
-                if (_borderOnly != null) { _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
-                if (_border != null) { _outputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border)); }
+                OutputVisualMap = new PropertyMap();
+                OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                OutputVisualMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
+                if (_borderOnly != null) { OutputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                if (_border != null) { OutputVisualMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border)); }
                 base.ComposingPropertyMap();
             }
         }

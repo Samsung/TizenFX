@@ -248,7 +248,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed) return;
+            if (Disposed) return;
 
             if (type == DisposeTypes.Explicit)
             {

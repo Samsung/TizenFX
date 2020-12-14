@@ -75,7 +75,7 @@ namespace Tizen.NUI
 
         internal ScrollViewSnapStartedSignal SnapStartedSignal()
         {
-            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(swigCPtr), false);
+            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -105,14 +105,6 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SnapEvent : Disposable
         {
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            /// This will be deprecated
-            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
@@ -211,7 +203,7 @@ namespace Tizen.NUI
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SnapEvent obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
             }
 
             /// <summary>

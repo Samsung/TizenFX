@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetName()
         {
-            string ret = Interop.TypeInfo.GetName(swigCPtr);
+            string ret = Interop.TypeInfo.GetName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetBaseName()
         {
-            string ret = Interop.TypeInfo.GetBaseName(swigCPtr);
+            string ret = Interop.TypeInfo.GetBaseName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public BaseHandle CreateInstance()
         {
-            BaseHandle ret = new BaseHandle(Interop.TypeInfo.CreateInstance(swigCPtr), true);
+            BaseHandle ret = new BaseHandle(Interop.TypeInfo.CreateInstance(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPropertyCount()
         {
-            uint ret = Interop.TypeInfo.GetPropertyCount(swigCPtr);
+            uint ret = Interop.TypeInfo.GetPropertyCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -106,14 +106,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetPropertyName(int index)
         {
-            string ret = Interop.TypeInfo.GetPropertyName(swigCPtr, index);
+            string ret = Interop.TypeInfo.GetPropertyName(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TypeInfo obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

@@ -311,20 +311,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = new PropertyMap(); ;
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Primitive));
-            if (_shape != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Shape, new PropertyValue((int)_shape)); }
-            if (_mixColorForPrimitiveVisual != null) { _outputVisualMap.Add(PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColorForPrimitiveVisual)); }
-            if (_slices != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Slices, new PropertyValue((int)_slices)); }
-            if (_stacks != null) { _outputVisualMap.Add(PrimitiveVisualProperty.Stacks, new PropertyValue((int)_stacks)); }
-            if (_scaleTopRadius != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleTopRadius, new PropertyValue((float)_scaleTopRadius)); }
-            if (_scaleBottomRadius != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleBottomRadius, new PropertyValue((float)_scaleBottomRadius)); }
-            if (_scaleHeight != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleHeight, new PropertyValue((float)_scaleHeight)); }
-            if (_scaleRadius != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleRadius, new PropertyValue((float)_scaleRadius)); }
-            if (_scaleDimensions != null) { _outputVisualMap.Add(PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(_scaleDimensions)); }
-            if (_bevelPercentage != null) { _outputVisualMap.Add(PrimitiveVisualProperty.BevelPercentage, new PropertyValue((float)_bevelPercentage)); }
-            if (_bevelSmoothness != null) { _outputVisualMap.Add(PrimitiveVisualProperty.BevelSmoothness, new PropertyValue((float)_bevelSmoothness)); }
-            if (_lightPosition != null) { _outputVisualMap.Add(PrimitiveVisualProperty.LightPosition, new PropertyValue(_lightPosition)); }
+            OutputVisualMap = new PropertyMap(); ;
+            OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Primitive));
+            if (_shape != null) { OutputVisualMap.Add(PrimitiveVisualProperty.Shape, new PropertyValue((int)_shape)); }
+            if (_mixColorForPrimitiveVisual != null) { OutputVisualMap.Add(PrimitiveVisualProperty.MixColor, new PropertyValue(_mixColorForPrimitiveVisual)); }
+            if (_slices != null) { OutputVisualMap.Add(PrimitiveVisualProperty.Slices, new PropertyValue((int)_slices)); }
+            if (_stacks != null) { OutputVisualMap.Add(PrimitiveVisualProperty.Stacks, new PropertyValue((int)_stacks)); }
+            if (_scaleTopRadius != null) { OutputVisualMap.Add(PrimitiveVisualProperty.ScaleTopRadius, new PropertyValue((float)_scaleTopRadius)); }
+            if (_scaleBottomRadius != null) { OutputVisualMap.Add(PrimitiveVisualProperty.ScaleBottomRadius, new PropertyValue((float)_scaleBottomRadius)); }
+            if (_scaleHeight != null) { OutputVisualMap.Add(PrimitiveVisualProperty.ScaleHeight, new PropertyValue((float)_scaleHeight)); }
+            if (_scaleRadius != null) { OutputVisualMap.Add(PrimitiveVisualProperty.ScaleRadius, new PropertyValue((float)_scaleRadius)); }
+            if (_scaleDimensions != null) { OutputVisualMap.Add(PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(_scaleDimensions)); }
+            if (_bevelPercentage != null) { OutputVisualMap.Add(PrimitiveVisualProperty.BevelPercentage, new PropertyValue((float)_bevelPercentage)); }
+            if (_bevelSmoothness != null) { OutputVisualMap.Add(PrimitiveVisualProperty.BevelSmoothness, new PropertyValue((float)_bevelSmoothness)); }
+            if (_lightPosition != null) { OutputVisualMap.Add(PrimitiveVisualProperty.LightPosition, new PropertyValue(_lightPosition)); }
             base.ComposingPropertyMap();
         }
     }

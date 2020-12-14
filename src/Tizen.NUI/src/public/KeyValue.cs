@@ -25,24 +25,58 @@ namespace Tizen.NUI
     /// </summary>
     public class KeyValue
     {
+        private string _key = null;
+        private object _originalValue = null;
+        private object _originalKey = null;
+
+        private int? keyInt = null;
+        private string keyString = null;
+        private PropertyValue trueValue = null;
+
         /// <summary>
         /// Int key.
         /// </summary>
-        public int? KeyInt = null;
+        public int? KeyInt
+        {
+            get
+            {
+                return keyInt;
+            }
+            set
+            {
+                keyInt = value;
+            }
+        }
 
         /// <summary>
         /// String key.
         /// </summary>
-        public string KeyString = null;
+        public string KeyString
+        {
+            get
+            {
+                return keyString;
+            }
+            set
+            {
+                keyString = value;
+            }
+        }
 
         /// <summary>
         /// True value.
         /// </summary>
-        public PropertyValue TrueValue = null;
-
-        private string _key = null;
-        private object _originalValue = null;
-        private object _originalKey = null;
+        public PropertyValue TrueValue
+        {
+            get
+            {
+                return trueValue;
+            }
+            set
+            {
+                trueValue = value;
+            }
+        }
 
         /// <summary>
         /// Default Constructor.

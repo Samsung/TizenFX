@@ -150,28 +150,28 @@ namespace Tizen.NUI
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.GLWindow.GlWindowFocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.GLWindow.GlWindowFocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.GLWindow.GlWindowKeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.GLWindow.GlWindowKeyEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.GLWindow.GlWindowTouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.GLWindow.GlWindowTouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal GLWindowResizedSignal GLWindowResizedSignal()
         {
-            GLWindowResizedSignal ret = new GLWindowResizedSignal(Interop.GLWindow.GlWindowResizedSignal(swigCPtr), false);
+            GLWindowResizedSignal ret = new GLWindowResizedSignal(Interop.GLWindow.GlWindowResizedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

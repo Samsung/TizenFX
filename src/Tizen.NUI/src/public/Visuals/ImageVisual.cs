@@ -425,27 +425,27 @@ namespace Tizen.NUI
         {
             if (_url != null)
             {
-                _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
-                if (_alphaMaskUrl != null) { _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl)); }
-                if (_auxiliaryImageUrl != null) { _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, new PropertyValue(_auxiliaryImageUrl)); }
-                if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
-                if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
-                if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
-                if (_desiredHeight != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue((int)_desiredHeight)); }
-                if (_synchronousLoading != null) { _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
-                if (_borderOnly != null) { _outputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
-                if (_pixelArea != null) { _outputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
-                if (_wrapModeU != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
-                if (_wrapModeV != null) { _outputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
-                if (_maskContentScale != null) { _outputVisualMap.Add(ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
-                if (_cropToMask != null) { _outputVisualMap.Add(ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
-                if (_auxiliaryImageAlpha != null) { _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, new PropertyValue((float)_auxiliaryImageAlpha)); }
-                if (_releasePolicy != null) { _outputVisualMap.Add(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)_releasePolicy)); }
-                if (_loadPolicy != null) { _outputVisualMap.Add(ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
-                if (_orientationCorrection != null) { _outputVisualMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
-                if (_atlasing != null) { _outputVisualMap.Add(ImageVisualProperty.Atlasing, new PropertyValue((bool)_atlasing)); }
+                OutputVisualMap = new PropertyMap();
+                OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                OutputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_alphaMaskUrl != null) { OutputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl)); }
+                if (_auxiliaryImageUrl != null) { OutputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, new PropertyValue(_auxiliaryImageUrl)); }
+                if (_fittingMode != null) { OutputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
+                if (_samplingMode != null) { OutputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
+                if (_desiredWidth != null) { OutputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
+                if (_desiredHeight != null) { OutputVisualMap.Add(ImageVisualProperty.DesiredHeight, new PropertyValue((int)_desiredHeight)); }
+                if (_synchronousLoading != null) { OutputVisualMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
+                if (_borderOnly != null) { OutputVisualMap.Add(ImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                if (_pixelArea != null) { OutputVisualMap.Add(ImageVisualProperty.PixelArea, new PropertyValue(_pixelArea)); }
+                if (_wrapModeU != null) { OutputVisualMap.Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)_wrapModeU)); }
+                if (_wrapModeV != null) { OutputVisualMap.Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)_wrapModeV)); }
+                if (_maskContentScale != null) { OutputVisualMap.Add(ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
+                if (_cropToMask != null) { OutputVisualMap.Add(ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
+                if (_auxiliaryImageAlpha != null) { OutputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, new PropertyValue((float)_auxiliaryImageAlpha)); }
+                if (_releasePolicy != null) { OutputVisualMap.Add(ImageVisualProperty.ReleasePolicy, new PropertyValue((int)_releasePolicy)); }
+                if (_loadPolicy != null) { OutputVisualMap.Add(ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
+                if (_orientationCorrection != null) { OutputVisualMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
+                if (_atlasing != null) { OutputVisualMap.Add(ImageVisualProperty.Atlasing, new PropertyValue((bool)_atlasing)); }
                 base.ComposingPropertyMap();
             }
         }

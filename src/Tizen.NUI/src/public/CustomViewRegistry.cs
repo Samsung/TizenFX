@@ -4,6 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -75,18 +76,24 @@ namespace Tizen.NUI
     [AttributeUsage(AttributeTargets.Property)]
     public class ScriptableProperty : System.Attribute
     {
-
-        /// <since_tizen> 3 </since_tizen>
-        public readonly ScriptableType type;
-
+        /// <summary>
+        /// Set the ScriptableType
+        /// Read Writable, non-animatable property, event thread only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScriptableType Type { get; set; }
+        
+        /// <summary>
+        /// The enum of ScriptableType
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ScriptableProperty(ScriptableType type = ScriptableType.Default)
         {
-            this.type = type;
+            this.Type = type;
         }
 
         /// <summary>
-        /// Rhe enum of ScriptableType
+        /// The enum of ScriptableType
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum ScriptableType
@@ -259,7 +266,7 @@ namespace Tizen.NUI
                             ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
                             // we get the start property index, based on the type and it's heirachy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
-                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
+                            int propertyIndex = _propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.Type);
 
                             // get the enum for the property type... E.g. registering a string property returns Tizen.NUI.PropertyType.String
                             Tizen.NUI.PropertyType propertyType = GetDaliPropertyType(propertyInfo.PropertyType.Name);

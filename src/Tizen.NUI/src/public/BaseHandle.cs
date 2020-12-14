@@ -29,28 +29,57 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
+        private bool swigCMemOwn;
+        private bool disposed = false;
 
-        /// <summary>
-        /// A flag to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
         /// <summary>
         /// swigCPtr.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtrCopy;
-        private bool _registerMe;
+        private bool registerMe;
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
+
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SwigCMemOwn
+        {
+            get
+            {
+                return swigCMemOwn;
+            }
+            set
+            {
+                swigCMemOwn = value;
+            }
+        }
+
+
+        /// <summary>
+        /// A flag to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool Disposed
+        {
+            get
+            {
+                return Disposed;
+            }
+            set
+            {
+                disposed = value;
+            }
+        }
+
 
         /// <summary>
         /// Create an instance of BaseHandle.
@@ -76,13 +105,13 @@ namespace Tizen.NUI
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            _registerMe = swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            registerMe = swigCMemOwn = cMemoryOwn;
+            SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (_registerMe)
+            if (registerMe)
             {
 
                 // Register this instance of BaseHandle in the registry.
@@ -92,15 +121,15 @@ namespace Tizen.NUI
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
-            _registerMe = swigCMemOwn = true;
+            registerMe = swigCMemOwn = true;
 
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
+            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (_registerMe)
+            if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
@@ -405,7 +434,7 @@ namespace Tizen.NUI
                 return false;
             }
 
-            if (disposed == true)
+            if (Disposed == true)
             {
                 return false;
             }
@@ -422,7 +451,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsEqual(BaseHandle rhs)
         {
-            if (disposed == true)
+            if (Disposed == true)
             {
                 return false;
             }
@@ -434,7 +463,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtrCopy;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.GetBaseHandleCPtrHandleRef;
         }
 
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -448,7 +477,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }
@@ -466,19 +495,19 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this instance from Registry.
-            if (_registerMe)
+            if (registerMe)
             {
                 Registry.Unregister(this);
             }
 
-            if (swigCPtr.Handle != IntPtr.Zero)
+            if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    ReleaseSwigCPtr(swigCPtr);
+                    ReleaseSwigCPtr(SwigCPtr);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
@@ -487,7 +516,7 @@ namespace Tizen.NUI
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            Disposed = true;
         }
 
         /// <summary>
@@ -520,6 +549,10 @@ namespace Tizen.NUI
         internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
         {
             get => swigCPtr;
+            set
+            {
+                swigCPtr = value;
+            }
         }
     }
 

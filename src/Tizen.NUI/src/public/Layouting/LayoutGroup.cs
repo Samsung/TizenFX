@@ -184,7 +184,7 @@ namespace Tizen.NUI
             if (!View.layoutingDisabled && (null == child.Layout))
             {
                 // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
-                if ((true == Owner.layoutSet || GetType() == typeof(View)))
+                if ((true == Owner.LayoutSet || GetType() == typeof(View)))
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.

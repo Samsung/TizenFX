@@ -35,273 +35,273 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LowerBoundProperty = BindableProperty.Create(nameof(LowerBound), typeof(float), typeof(Slider), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LowerBoundProperty = BindableProperty.Create(nameof(LowerBound), typeof(float), typeof(Slider), 0.0f, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LowerBound, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.LowerBound, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LowerBound).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.LowerBound).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create(nameof(UpperBound), typeof(float), typeof(Slider), 1.0f, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UpperBound, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.UpperBound, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UpperBound).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.UpperBound).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.VALUE).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create(nameof(TrackVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create(nameof(TrackVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TrackVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.TrackVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create(nameof(HandleVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create(nameof(HandleVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HandleVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.HandleVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HandleVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.HandleVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create(nameof(ProgressVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create(nameof(ProgressVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ProgressVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ProgressVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create(nameof(PopupVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create(nameof(PopupVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PopupVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.PopupVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PopupVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.PopupVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create(nameof(PopupArrowVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create(nameof(PopupArrowVisual), typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PopupArrowVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.PopupArrowVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              PropertyMap temp = new PropertyMap();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PopupArrowVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.PopupArrowVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create(nameof(DisabledColor), typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DisabledColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.DisabledColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DisabledColor).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.DisabledColor).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create(nameof(ValuePrecision), typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create(nameof(ValuePrecision), typeof(int), typeof(Slider), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ValuePrecision, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ValuePrecision, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              int temp = 0;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ValuePrecision).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ValuePrecision).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create(nameof(ShowPopup), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create(nameof(ShowPopup), typeof(bool), typeof(Slider), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ShowPopup, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ShowPopup, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ShowPopup).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ShowPopup).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create(nameof(ShowValue), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create(nameof(ShowValue), typeof(bool), typeof(Slider), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.ShowValue, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ShowValue, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.ShowValue).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.ShowValue).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarksProperty = BindableProperty.Create(nameof(Marks), typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MarksProperty = BindableProperty.Create(nameof(Marks), typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARKS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.MARKS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.MARKS).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create(nameof(MarkTolerance), typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create(nameof(MarkTolerance), typeof(float), typeof(Slider), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MarkTolerance, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.MarkTolerance, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MarkTolerance).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.MarkTolerance).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create(nameof(SnapToMarks), typeof(bool), typeof(Slider), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SnapToMarks, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)slider.SwigCPtr, Slider.Property.SnapToMarks, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var slider = (Slider)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SnapToMarks).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)slider.SwigCPtr, Slider.Property.SnapToMarks).Get(out temp);
              return temp;
-         });
+         }));
 
         private EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> _sliderValueChangedEventHandler;
         private ValueChangedCallbackDelegate _sliderValueChangedCallbackDelegate;
@@ -755,7 +755,7 @@ namespace Tizen.NUI.UIComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Slider obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -777,28 +777,28 @@ namespace Tizen.NUI.UIComponents
 
         internal Slider Assign(Slider handle)
         {
-            Slider ret = new Slider(Interop.Slider.Assign(swigCPtr, Slider.getCPtr(handle)), false);
+            Slider ret = new Slider(Interop.Slider.Assign(SwigCPtr, Slider.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal ValueChangedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.ValueChangedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.ValueChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal SlidingFinishedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.SlidingFinishedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.SlidingFinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderMarkReachedSignal MarkReachedSignal()
         {
-            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.MarkReachedSignal(swigCPtr), false);
+            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.MarkReachedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -812,7 +812,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }

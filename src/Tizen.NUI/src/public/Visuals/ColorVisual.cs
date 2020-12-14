@@ -76,20 +76,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            Color color = _mixColorForColorVisual ?? _mixColor;
+            Color color = _mixColorForColorVisual ?? MixColor;
 
             if (color != null)
             {
-                _outputVisualMap = null;
+                OutputVisualMap = null;
 
                 base.ComposingPropertyMap();
 
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
+                OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
+                OutputVisualMap.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
             }
             else
             {
-                _outputVisualMap = new PropertyMap();
+                OutputVisualMap = new PropertyMap();
             }
         }
     }

@@ -138,15 +138,15 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ComposingPropertyMap()
         {
-            _outputVisualMap = null;
+            OutputVisualMap = null;
 
             base.ComposingPropertyMap();
 
-            _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Arc));
-            _outputVisualMap.Add(ArcVisualProperty.Thickness, new PropertyValue(Thickness < 0.0f ? 0.0f : Thickness));
-            _outputVisualMap.Add(ArcVisualProperty.StartAngle, new PropertyValue(StartAngle));
-            _outputVisualMap.Add(ArcVisualProperty.SweepAngle, new PropertyValue(SweepAngle));
-            _outputVisualMap.Add(ArcVisualProperty.Cap, new PropertyValue((int)Cap));
+            OutputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Arc));
+            OutputVisualMap.Add(ArcVisualProperty.Thickness, new PropertyValue(Thickness < 0.0f ? 0.0f : Thickness));
+            OutputVisualMap.Add(ArcVisualProperty.StartAngle, new PropertyValue(StartAngle));
+            OutputVisualMap.Add(ArcVisualProperty.SweepAngle, new PropertyValue(SweepAngle));
+            OutputVisualMap.Add(ArcVisualProperty.Cap, new PropertyValue((int)Cap));
         }
 
         #endregion Methods

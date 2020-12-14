@@ -28,15 +28,15 @@ namespace Tizen.NUI
         /// A Flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected bool disposed = false;
+        protected bool disposed { get; set; }
 
         /// This will not be public.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool swigCMemOwn;
+        protected bool swigCMemOwn { get; set; }
 
         /// This will not be public.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected global::System.Runtime.InteropServices.HandleRef swigCPtr { get; set; }
 
         private bool isDisposeQueued = false;
 

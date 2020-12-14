@@ -34,165 +34,165 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create(nameof(ProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create(nameof(ProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.ProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressValue).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.ProgressValue).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create(nameof(SecondaryProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create(nameof(SecondaryProgressValue), typeof(float), typeof(ProgressBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.SecondaryProgressValue, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressValue).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.SecondaryProgressValue).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create(nameof(Indeterminate), typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create(nameof(Indeterminate), typeof(bool), typeof(ProgressBar), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.INDETERMINATE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.INDETERMINATE).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create(nameof(TrackVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create(nameof(TrackVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.TrackVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.TrackVisual).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.TrackVisual).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create(nameof(ProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create(nameof(ProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.ProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.ProgressVisual).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.ProgressVisual).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create(nameof(SecondaryProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create(nameof(SecondaryProgressVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.SecondaryProgressVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SecondaryProgressVisual).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.SecondaryProgressVisual).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create(nameof(IndeterminateVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create(nameof(IndeterminateVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.IndeterminateVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisual).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.IndeterminateVisual).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create(nameof(IndeterminateVisualAnimation), typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create(nameof(IndeterminateVisualAnimation), typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisualAnimation, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.IndeterminateVisualAnimation, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.IndeterminateVisualAnimation).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.IndeterminateVisualAnimation).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create(nameof(LabelVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create(nameof(LabelVisual), typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var progressBar = (ProgressBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.LabelVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.LabelVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-            Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.LabelVisual).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)progressBar.SwigCPtr, ProgressBar.Property.LabelVisual).Get(temp);
             return temp;
-        });
+        }));
 
         private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
         private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
@@ -430,12 +430,12 @@ namespace Tizen.NUI.UIComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBar obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal ProgressBarValueChangedSignal ValueChangedSignal()
         {
-            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ValueChangedSignal(swigCPtr), false);
+            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ValueChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -449,7 +449,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }

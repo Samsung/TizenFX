@@ -30,13 +30,6 @@ namespace Tizen.NUI.BaseComponents
     public partial class View : Container, IResourcesProvider
     {
         /// <summary>
-        /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool layoutSet = false;
-
-        /// <summary>
         /// Flag to allow Layouting to be disabled for Views.
         /// Once a View has a Layout set then any children added to Views from then on will receive
         /// automatic Layouts.
@@ -68,6 +61,13 @@ namespace Tizen.NUI.BaseComponents
         internal BackgroundExtraData backgroundExtraData;
 
         static View() { }
+
+        /// <summary>
+        /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LayoutSet { get; set; }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1001,7 +1001,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
+                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -1019,7 +1019,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
+                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1870,7 +1870,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.GetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.GetParent(SwigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -2150,7 +2150,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 layoutingDisabled = false;
-                layoutSet = true;
+                LayoutSet = true;
 
                 // If new layout being set already has a owner then that owner receives a replacement default layout.
                 // First check if the layout to be set already has a owner.

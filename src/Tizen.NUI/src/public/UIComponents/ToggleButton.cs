@@ -38,14 +38,14 @@ namespace Tizen.NUI
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty(toggleButton.SwigCPtr, ToggleButton.Property.StateVisuals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals).Get(temp);
+            Tizen.NUI.Object.GetProperty(toggleButton.SwigCPtr, ToggleButton.Property.StateVisuals).Get(temp);
             return temp;
         });
 
@@ -58,14 +58,14 @@ namespace Tizen.NUI
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty(toggleButton.SwigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
+            Tizen.NUI.Object.GetProperty(toggleButton.SwigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
             return temp;
         });
 
@@ -77,14 +77,14 @@ namespace Tizen.NUI
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(toggleButton.SwigCPtr, ToggleButton.Property.CurrentStateIndex, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex).Get(out temp);
+            Tizen.NUI.Object.GetProperty(toggleButton.SwigCPtr, ToggleButton.Property.CurrentStateIndex).Get(out temp);
             return temp;
         });
 
@@ -165,9 +165,9 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef SwigCPtr)
         {
-            Interop.ToggleButton.DeleteToggleButton(swigCPtr);
+            Interop.ToggleButton.DeleteToggleButton(SwigCPtr);
         }
 
         /// <summary>

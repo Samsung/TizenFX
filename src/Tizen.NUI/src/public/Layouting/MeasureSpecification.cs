@@ -30,13 +30,13 @@ namespace Tizen.NUI
         /// MeasureSpecification Size value.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public LayoutLength Size;
+        public LayoutLength Size { get; set; }
 
         /// <summary>
         /// MeasureSpecification Mode.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public MeasureSpecification.ModeType Mode;
+        public MeasureSpecification.ModeType Mode { get; set; }
 
         /// <summary>
         /// Constructor taking size and mode type.

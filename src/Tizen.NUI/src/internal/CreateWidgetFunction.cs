@@ -18,21 +18,21 @@ namespace Tizen.NUI
 {
     internal class CreateWidgetFunction
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        internal global::System.Runtime.InteropServices.HandleRef SwigCPtr { get; set; }
 
         internal CreateWidgetFunction(global::System.IntPtr cPtr)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         protected CreateWidgetFunction()
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CreateWidgetFunction obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
     }
 }

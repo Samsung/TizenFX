@@ -87,7 +87,7 @@ namespace Tizen.NUI
             get
             {
                 string Uri = "";
-                Uri = Interop.PixelData.GenerateUrl(this.swigCPtr.Handle);
+                Uri = Interop.PixelData.GenerateUrl(this.SwigCPtr.Handle);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return new Uri(Uri);
             }
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetWidth()
         {
-            uint ret = Interop.PixelData.GetWidth(swigCPtr);
+            uint ret = Interop.PixelData.GetWidth(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetHeight()
         {
-            uint ret = Interop.PixelData.GetHeight(swigCPtr);
+            uint ret = Interop.PixelData.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -130,14 +130,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelFormat GetPixelFormat()
         {
-            PixelFormat ret = (PixelFormat)Interop.PixelData.GetPixelFormat(swigCPtr);
+            PixelFormat ret = (PixelFormat)Interop.PixelData.GetPixelFormat(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PixelData obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
