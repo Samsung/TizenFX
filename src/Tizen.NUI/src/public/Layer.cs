@@ -127,7 +127,7 @@ namespace Tizen.NUI
                 if (ClippingEnabled)
                 {
                     Rectangle ret = new Rectangle(Interop.Layer.GetClippingBox(swigCPtr), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
                 else
