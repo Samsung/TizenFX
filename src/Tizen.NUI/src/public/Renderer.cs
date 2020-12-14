@@ -618,11 +618,11 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Renderer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
         public class Property
+#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
             /// This should be internal, please do not use.

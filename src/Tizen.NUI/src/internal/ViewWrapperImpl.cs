@@ -94,8 +94,8 @@ namespace Tizen.NUI
 
         public new OnSceneConnectionDelegate OnSceneConnection;
         public new OnSceneDisconnectionDelegate OnSceneDisconnection;
-        public new OnSceneConnectionDelegate OnStageConnection;
-        public new OnSceneDisconnectionDelegate OnStageDisconnection;
+        public OnSceneConnectionDelegate OnStageConnection;
+        public OnSceneDisconnectionDelegate OnStageDisconnection;
         public new OnChildAddDelegate OnChildAdd;
         public new OnChildRemoveDelegate OnChildRemove;
         public new OnPropertySetDelegate OnPropertySet;
