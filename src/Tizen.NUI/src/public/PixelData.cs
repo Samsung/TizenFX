@@ -88,7 +88,7 @@ namespace Tizen.NUI
             {
                 string Uri = "";
                 Uri = Interop.PixelData.GenerateUrl(this.swigCPtr.Handle);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return new Uri(Uri);
             }
         }

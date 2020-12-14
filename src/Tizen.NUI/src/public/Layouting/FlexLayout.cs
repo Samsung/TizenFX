@@ -282,7 +282,8 @@ namespace Tizen.NUI
             // Throw exception if Dispose() is called in separate thread.
             if (!Window.IsInstalled())
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                Tizen.Log.Error("NUI", "This API called from separate thread.This API must be called from MainThread.");
+                return;
             }
 
             if (isDisposeQueued)

@@ -942,7 +942,8 @@ namespace Tizen.NUI.BaseComponents
                 return new LottieFrameInfo(Int32.Parse(parts[0].Trim()), Int32.Parse(parts[1].Trim()));
             }
 
-            throw new InvalidCastException($"Can not convert string {pair} to LottieFrameInfo");
+            Tizen.Log.Error("NUI", $"Can not convert string {pair} to LottieFrameInfo");
+            return null;
         }
 
         /// <summary>

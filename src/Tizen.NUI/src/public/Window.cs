@@ -224,7 +224,7 @@ namespace Tizen.NUI
             get
             {
                 WindowType ret = (WindowType)Interop.Window.GetType(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set

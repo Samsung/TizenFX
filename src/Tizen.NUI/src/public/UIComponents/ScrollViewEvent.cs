@@ -151,7 +151,7 @@ namespace Tizen.NUI
                 {
                     global::System.IntPtr cPtr = Interop.ScrollView.SnapEventPositionGet(swigCPtr);
                     Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -173,7 +173,7 @@ namespace Tizen.NUI
                 get
                 {
                     float ret = Interop.ScrollView.SnapEventDurationGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }

@@ -1002,8 +1002,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -1020,8 +1019,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
                 return new Size2D((int)temp.Width, (int)temp.Height);
             }
@@ -1887,8 +1885,7 @@ namespace Tizen.NUI.BaseComponents
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
