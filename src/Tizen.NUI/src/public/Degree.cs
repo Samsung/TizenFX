@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -73,7 +74,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Degree.DegreeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

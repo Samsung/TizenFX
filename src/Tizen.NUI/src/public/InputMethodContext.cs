@@ -989,7 +989,7 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = Interop.InputMethodContext.EventDataPredictiveStringGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1008,7 +1008,7 @@ namespace Tizen.NUI
                 get
                 {
                     InputMethodContext.EventType ret = (InputMethodContext.EventType)Interop.InputMethodContext.EventDataEventNameGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1027,7 +1027,7 @@ namespace Tizen.NUI
                 get
                 {
                     int ret = Interop.InputMethodContext.EventDataCursorOffsetGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1046,7 +1046,7 @@ namespace Tizen.NUI
                 get
                 {
                     int ret = Interop.InputMethodContext.EventDataNumberOfCharsGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1141,7 +1141,7 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = Interop.InputMethodContext.CallbackDataCurrentTextGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1160,7 +1160,7 @@ namespace Tizen.NUI
                 get
                 {
                     int ret = Interop.InputMethodContext.CallbackDataCursorPositionGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1179,7 +1179,7 @@ namespace Tizen.NUI
                 get
                 {
                     bool ret = Interop.InputMethodContext.CallbackDataUpdateGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -1198,7 +1198,7 @@ namespace Tizen.NUI
                 get
                 {
                     bool ret = Interop.InputMethodContext.CallbackDataPreeditResetRequiredGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }

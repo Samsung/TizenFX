@@ -86,7 +86,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
                 Size ret = (cPtr == global::System.IntPtr.Zero) ? null : new Size(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -120,7 +120,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Vector3.WidthGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -154,7 +154,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Vector3.HeightGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -188,7 +188,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Vector3.DepthGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

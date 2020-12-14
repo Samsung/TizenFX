@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -81,7 +82,7 @@ namespace Tizen.NUI
             get
             {
                 bool ret = Interop.RenderTask.DefaultExclusiveGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -91,7 +92,7 @@ namespace Tizen.NUI
             get
             {
                 bool ret = Interop.RenderTask.DefaultInputEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -102,7 +103,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.RenderTask.DefaultClearColorGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -112,7 +113,7 @@ namespace Tizen.NUI
             get
             {
                 bool ret = Interop.RenderTask.DefaultClearEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -122,7 +123,7 @@ namespace Tizen.NUI
             get
             {
                 bool ret = Interop.RenderTask.DefaultCullModeGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -132,7 +133,7 @@ namespace Tizen.NUI
             get
             {
                 uint ret = Interop.RenderTask.DefaultRefreshRateGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
