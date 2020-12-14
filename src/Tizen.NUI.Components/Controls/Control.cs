@@ -52,7 +52,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
-        static Control() { }
+        static Control()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Construct an empty Control.

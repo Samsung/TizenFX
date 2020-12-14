@@ -14,10 +14,8 @@
  * limitations under the License.
  *
  */
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -37,7 +35,10 @@ namespace Tizen.NUI.Components
 
         private bool isDisposeQueued = false;
 
-        static ControlStyle() { }
+        static ControlStyle()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Creates a new instance of a ControlStyle.
