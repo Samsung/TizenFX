@@ -1373,7 +1373,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectNone()
         {
-            Interop.TextField.SelectNone(swigCPtr);
+            _ = Interop.TextField.SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

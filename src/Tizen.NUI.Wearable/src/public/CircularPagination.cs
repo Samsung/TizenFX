@@ -62,7 +62,10 @@ namespace Tizen.NUI.Wearable
                                                    new Position2D(237, 14), new Position2D(253, 22), new Position2D(269, 31), new Position2D(283, 41),
                                                    new Position2D(297, 53), new Position2D(309, 67) };
 
-        static CircularPagination() { }
+        static CircularPagination()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Creates a new instance of a CircularPagination.

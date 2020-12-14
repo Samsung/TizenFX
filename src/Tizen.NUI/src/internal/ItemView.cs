@@ -63,11 +63,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Property for ItemView. This is internal use only, so not recommended to use. Need to use ItemView's properties.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+#pragma warning disable CA1034, CA1052, CA1716 // Identifiers should not match keywords
         public new class Property
+#pragma warning restore CA1034, CA1052, CA1716 // Identifiers should not match keywords
         {
             /// <summary>
             /// LAYOUT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
@@ -396,9 +396,9 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InsertItems(ItemContainer newItems, float durationSeconds)
+        public void InsertItems(ItemCollection newItems, float durationSeconds)
         {
-            Interop.ItemView.InsertItems(swigCPtr, ItemContainer.getCPtr(newItems), durationSeconds);
+            Interop.ItemView.InsertItems(swigCPtr, ItemCollection.getCPtr(newItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -412,9 +412,9 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveItems(ItemIdContainer itemIds, float durationSeconds)
+        public void RemoveItems(ItemIdCollection itemIds, float durationSeconds)
         {
-            Interop.ItemView.RemoveItems(swigCPtr, ItemIdContainer.getCPtr(itemIds), durationSeconds);
+            Interop.ItemView.RemoveItems(swigCPtr, ItemIdCollection.getCPtr(itemIds), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -428,9 +428,9 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ReplaceItems(ItemContainer replacementItems, float durationSeconds)
+        public void ReplaceItems(ItemCollection replacementItems, float durationSeconds)
         {
-            Interop.ItemView.ReplaceItems(swigCPtr, ItemContainer.getCPtr(replacementItems), durationSeconds);
+            Interop.ItemView.ReplaceItems(swigCPtr, ItemCollection.getCPtr(replacementItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

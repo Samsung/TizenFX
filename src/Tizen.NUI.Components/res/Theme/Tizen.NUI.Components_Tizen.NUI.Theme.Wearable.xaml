@@ -44,14 +44,14 @@
   </cx:LottieButtonStyle>
 
   <!--Switch-->
-  <cx:LottieButtonStyle x:Key="Tizen.NUI.Components.Switch" LottieUrl="NUIResourcePath nui_wearable_switch_icon.json">
-    <cx:LottieButtonStyle.PlayRange>
+  <cx:LottieSwitchStyle x:Key="Tizen.NUI.Components.Switch" LottieUrl="NUIResourcePath nui_wearable_switch_icon.json">
+    <cx:LottieSwitchStyle.PlayRange>
       <Selector x:TypeArguments="LottieFrameInfo" Selected="0, 18" Normal="19, 36"/>
-    </cx:LottieButtonStyle.PlayRange>
-    <cx:LottieButtonStyle.Opacity>
+    </cx:LottieSwitchStyle.PlayRange>
+    <cx:LottieSwitchStyle.Opacity>
       <Selector x:TypeArguments="x:Single?" Other="1" Pressed="0.6" Disabled="0.3"/>
-    </cx:LottieButtonStyle.Opacity>
-  </cx:LottieButtonStyle>
+    </cx:LottieSwitchStyle.Opacity>
+  </cx:LottieSwitchStyle>
 
   <!--Loading-->
   <c:LoadingStyle x:Key="Tizen.NUI.Components.Loading" LoadingSize="360, 360" />
