@@ -41,5 +41,11 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="res\xaml\RelativeLayoutSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>
 

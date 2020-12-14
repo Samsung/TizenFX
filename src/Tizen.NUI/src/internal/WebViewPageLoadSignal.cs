@@ -23,14 +23,14 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.WebView.delete_WebViewPageLoadSignal(swigCPtr);
+            Interop.WebView.DeleteWebViewPageLoadSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.WebView.WebViewPageLoadSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewPageLoadSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WebView.WebViewPageLoadSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WebView.WebViewPageLoadSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                 {
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();

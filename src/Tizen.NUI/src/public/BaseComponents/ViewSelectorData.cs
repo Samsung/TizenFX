@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate (View view)
         {
             Color color = new Color();
-            if (view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color))
+            if (view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color))
             {
                 return color;
             }

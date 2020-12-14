@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.KeyboardResizedSignalType.delete_KeyboardResizedSignalType(swigCPtr);
+            Interop.KeyboardResizedSignalType.DeleteKeyboardResizedSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.KeyboardResizedSignalType.KeyboardResizedSignalType_Empty(swigCPtr);
+            bool ret = Interop.KeyboardResizedSignalType.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.KeyboardResizedSignalType.KeyboardResizedSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.KeyboardResizedSignalType.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.KeyboardResizedSignalType.KeyboardResizedSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardResizedSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.KeyboardResizedSignalType.KeyboardResizedSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardResizedSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -92,7 +92,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
-            Interop.KeyboardResizedSignalType.KeyboardResizedSignalType_Emit(swigCPtr, arg);
+            Interop.KeyboardResizedSignalType.Emit(swigCPtr, arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public KeyboardResizedSignalType() : this(Interop.KeyboardResizedSignalType.new_KeyboardResizedSignalType(), true)
+        public KeyboardResizedSignalType() : this(Interop.KeyboardResizedSignalType.NewKeyboardResizedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

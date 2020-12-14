@@ -150,28 +150,28 @@ namespace Tizen.NUI
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.GLWindow.GlWindow_FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.GLWindow.GlWindowFocusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.GLWindow.GlWindow_KeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.GLWindow.GlWindowKeyEventSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.GLWindow.GlWindow_TouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.GLWindow.GlWindowTouchSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal GLWindowResizedSignal GLWindowResizedSignal()
         {
-            GLWindowResizedSignal ret = new GLWindowResizedSignal(Interop.GLWindow.GlWindow_ResizedSignal(swigCPtr), false);
+            GLWindowResizedSignal ret = new GLWindowResizedSignal(Interop.GLWindow.GlWindowResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -368,7 +368,7 @@ namespace Tizen.NUI
         /// VisibilityChangedArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class VisibilityChangedArgs : EventArgs
+        public class VisibilityChangedEventArgs : EventArgs
         {
             private bool _visibility;
             /// <summary>
@@ -393,7 +393,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             e.Visibility = visibility;
             if (VisibilityChangedEventHandler != null)
             {
@@ -404,14 +404,14 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void GLVisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private GLVisibilityChangedEventCallbackType _GLVisibilityChangedEventCallback;
-        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
         private GLWindowVisibilityChangedEvent _GLVisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
         {
             add
             {

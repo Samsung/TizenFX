@@ -28,19 +28,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.LongPressGestureDetectedSignal.delete_LongPressGestureDetectedSignal(swigCPtr);
+            Interop.LongPressGestureDetectedSignal.DeleteLongPressGestureDetectedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.LongPressGestureDetectedSignal.LongPressGestureDetectedSignal_Empty(swigCPtr);
+            bool ret = Interop.LongPressGestureDetectedSignal.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.LongPressGestureDetectedSignal.LongPressGestureDetectedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.LongPressGestureDetectedSignal.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.LongPressGestureDetectedSignal.LongPressGestureDetectedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LongPressGestureDetectedSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.LongPressGestureDetectedSignal.LongPressGestureDetectedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LongPressGestureDetectedSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, LongPressGesture arg2)
         {
-            Interop.LongPressGestureDetectedSignal.LongPressGestureDetectedSignal_Emit(swigCPtr, View.getCPtr(arg1), LongPressGesture.getCPtr(arg2));
+            Interop.LongPressGestureDetectedSignal.Emit(swigCPtr, View.getCPtr(arg1), LongPressGesture.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public LongPressGestureDetectedSignal() : this(Interop.LongPressGestureDetectedSignal.new_LongPressGestureDetectedSignal(), true)
+        public LongPressGestureDetectedSignal() : this(Interop.LongPressGestureDetectedSignal.NewLongPressGestureDetectedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
