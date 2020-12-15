@@ -251,7 +251,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }

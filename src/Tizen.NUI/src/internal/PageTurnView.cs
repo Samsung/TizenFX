@@ -29,7 +29,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnView obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -409,7 +409,7 @@ namespace Tizen.NUI
 
         public PageTurnView Assign(PageTurnView handle)
         {
-            PageTurnView ret = new PageTurnView(Interop.PageTurnView.Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
+            PageTurnView ret = new PageTurnView(Interop.PageTurnView.Assign(SwigCPtr, PageTurnView.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -423,28 +423,28 @@ namespace Tizen.NUI
 
         public PageTurnSignal PageTurnStartedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnStartedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnFinishedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnFinishedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnFinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanStartedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanStartedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanFinishedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanFinishedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanFinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

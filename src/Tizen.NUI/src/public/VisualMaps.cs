@@ -66,7 +66,7 @@ namespace Tizen.NUI
         /// The corner radius value of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected float? _cornerRadius = null;
+        private float? cornerRadius = null;
 
         /// <summary>
         /// The map for visual.
@@ -599,13 +599,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CornerRadius
         {
-            get
+            protected get
             {
-                return _cornerRadius ?? (0.0f);
+                return cornerRadius ?? (0.0f);
             }
             set
             {
-                _cornerRadius = value;
+                cornerRadius = value;
                 UpdateVisual();
             }
         }
@@ -663,7 +663,7 @@ namespace Tizen.NUI
             if (_mixColor != null) { _outputVisualMap.Add(Visual.Property.MixColor, new PropertyValue(_mixColor)); }
             if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
             if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
-            if (_cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)_cornerRadius)); }
+            if (cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)cornerRadius)); }
         }
 
         private void ComposingTransformMap()

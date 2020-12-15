@@ -67,12 +67,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Radian.RadianSet(swigCPtr, value);
+                Interop.Radian.RadianSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.Radian.RadianGet(swigCPtr);
+                float ret = Interop.Radian.RadianGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -85,14 +85,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float ConvertToFloat()
         {
-            float ret = Interop.Radian.ConvertToFloat(swigCPtr);
+            float ret = Interop.Radian.ConvertToFloat(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Radian obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

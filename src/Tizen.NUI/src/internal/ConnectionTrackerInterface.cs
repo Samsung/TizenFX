@@ -29,7 +29,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ConnectionTrackerInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
-            Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
+            Interop.ConnectionTracker.ConnectionTrackerInterfaceSignalConnected(SwigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

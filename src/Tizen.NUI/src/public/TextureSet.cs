@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTexture(uint index, Texture texture)
         {
-            Interop.TextureSet.SetTexture(swigCPtr, index, Texture.getCPtr(texture));
+            Interop.TextureSet.SetTexture(SwigCPtr, index, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI
         public Texture GetTexture(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.GetTexture(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.GetTexture(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
             if (cPtr != null && ret == null)
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetSampler(uint index, Sampler sampler)
         {
-            Interop.TextureSet.SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
+            Interop.TextureSet.SetSampler(SwigCPtr, index, Sampler.getCPtr(sampler));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         public Sampler GetSampler(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.GetSampler(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.GetSampler(SwigCPtr, index);
             Sampler ret = this.GetInstanceSafely<Sampler>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -111,14 +111,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetTextureCount()
         {
-            uint ret = Interop.TextureSet.GetTextureCount(swigCPtr);
+            uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextureSet obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

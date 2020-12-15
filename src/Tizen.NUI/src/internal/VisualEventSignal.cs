@@ -34,14 +34,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.VisualEventSignal.Empty(swigCPtr);
+            bool ret = Interop.VisualEventSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.VisualEventSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.VisualEventSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
 
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.VisualEventSignal.Connect(swigCPtr, new HandleRef(this, ip));
+                Interop.VisualEventSignal.Connect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -63,14 +63,14 @@ namespace Tizen.NUI
 
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.VisualEventSignal.Disconnect(swigCPtr, new HandleRef(this, ip));
+                Interop.VisualEventSignal.Disconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(BaseComponents.View target, int visualIndex, int signalId)
         {
-            Interop.VisualEventSignal.Emit(swigCPtr, BaseComponents.View.getCPtr(target), visualIndex, signalId);
+            Interop.VisualEventSignal.Emit(SwigCPtr, BaseComponents.View.getCPtr(target), visualIndex, signalId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -80,7 +80,7 @@ namespace Tizen.NUI
 
         internal static HandleRef getCPtr(VisualEventSignal obj)
         {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.SwigCPtr;
         }
     }
 }

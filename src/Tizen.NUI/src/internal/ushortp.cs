@@ -37,20 +37,20 @@ namespace Tizen.NUI
 
         public void assign(ushort value)
         {
-            Interop.ushortp.assign(swigCPtr, value);
+            Interop.ushortp.assign(SwigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ushort value()
         {
-            ushort ret = Interop.ushortp.value(swigCPtr);
+            ushort ret = Interop.ushortp.value(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_unsigned_short cast()
         {
-            global::System.IntPtr cPtr = Interop.ushortp.cast(swigCPtr);
+            global::System.IntPtr cPtr = Interop.ushortp.cast(SwigCPtr);
             SWIGTYPE_p_unsigned_short ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_short(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
