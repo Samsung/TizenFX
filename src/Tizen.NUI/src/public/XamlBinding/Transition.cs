@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -10,6 +11,18 @@ using static Tizen.NUI.Animation;
 
 namespace Tizen.NUI
 {
+    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class StoryBoard
+    {
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(object obj)
+        {
+            int temp = 0;
+        }
+    }
+
     /// <since_tizen> 5 </since_tizen>
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -101,6 +114,46 @@ namespace Tizen.NUI
     }
 
     /// <since_tizen> 5 </since_tizen>
+    /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BehaviorContainer : IEnumerable
+    {
+        private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
+
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(object obj)
+        {
+            var behavior = obj as AnimationBehavior;
+
+            if (null != behavior)
+            {
+                behaviors.Add(behavior.Key, behavior);
+            }
+        }
+
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimationBehavior GetAnimationBehavior(string key)
+        {
+            AnimationBehavior behavior = null;
+            behaviors.TryGetValue(key, out behavior);
+
+            return behavior;
+        }
+
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IEnumerator GetEnumerator()
+        {
+            return ((IEnumerable)behaviors).GetEnumerator();
+        }
+    }
+
+    /// <since_tizen> 5 </since_tizen>
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Transition : Animation
@@ -146,8 +199,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateTo(View instance, string behaviorKey)
         {
-            AnimationBehavior behavior = null;
-            behaviors.TryGetValue(behaviorKey, out behavior);
+            AnimationBehavior behavior = Behaviors?.GetAnimationBehavior(behaviorKey);
 
             if (null != instance && null != behavior)
             {
@@ -182,8 +234,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateBy(View instance, string behaviorKey)
         {
-            AnimationBehavior behavior = null;
-            behaviors.TryGetValue(behaviorKey, out behavior);
+            AnimationBehavior behavior = Behaviors?.GetAnimationBehavior(behaviorKey);
 
             if (null != instance && null != behavior)
             {
@@ -212,5 +263,13 @@ namespace Tizen.NUI
                 throw new XamlParseException(string.Format("Behaviors don't have key {0}", behaviorKey), new XmlLineInfo());
             }
         }
+
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BehaviorContainer Behaviors
+        {
+            get;
+        } = new BehaviorContainer();
     }
 }

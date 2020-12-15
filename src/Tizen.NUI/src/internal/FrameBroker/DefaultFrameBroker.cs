@@ -109,17 +109,13 @@ namespace Tizen.NUI
                 providerImage.Show();
                 int propertyCount = transition.AnimationDataList.Count;
                 animation = new Animation(transition.DurationMilliSeconds+80);
-                animation.Properties = new string[propertyCount];
-                animation.DestValue = new string[propertyCount];
-                animation.StartTime = new int[propertyCount];
-                animation.EndTime = new int[propertyCount];
 
                 for (int i = 0; i < propertyCount; i++)
                 {
-                    animation.Properties[i] = transition.AnimationDataList[i].Property;
-                    animation.DestValue[i] = transition.AnimationDataList[i].DestinationValue;
-                    animation.StartTime[i] = 80+transition.AnimationDataList[i].StartTime;
-                    animation.EndTime[i] = 80+transition.AnimationDataList[i].EndTime;
+                    animation.PropertiesList.Add(transition.AnimationDataList[i].Property);
+                    animation.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
+                    animation.StartTimeList.Add(80 +transition.AnimationDataList[i].StartTime);
+                    animation.EndTimeList.Add(80 +transition.AnimationDataList[i].EndTime);
                 }
                 animation.PlayAnimateTo(providerImage);
                 animation.Finished += Ani_Finished;

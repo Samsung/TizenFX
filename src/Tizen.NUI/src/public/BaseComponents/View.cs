@@ -2307,21 +2307,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] TransitionNames
-        {
-            get
-            {
-                return transitionNames;
-            }
-            set
-            {
-                transitionNames = value;
-                LoadTransitions();
-            }
-        }
-
         /// <summary>
         /// Enable/Disable ControlState propagation for children.
         /// It is false by default.
@@ -2486,6 +2471,14 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
             }
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StoryBoard StoryBoard
+        {
+            get;
+            set;
         }
     }
 }
