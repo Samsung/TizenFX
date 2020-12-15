@@ -54,7 +54,9 @@ namespace Tizen.NUI
                         _scrollViewSnapStartedEventHandler += value;
 
                         _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
-                        this.SnapStartedSignal().Connect(_scrollViewSnapStartedCallbackDelegate);
+                        ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                        snapStarted?.Connect(_scrollViewSnapStartedCallbackDelegate);
+                        snapStarted?.Dispose();
                     }
                 }
             }
@@ -65,7 +67,9 @@ namespace Tizen.NUI
                 {
                     if (_scrollViewSnapStartedEventHandler != null)
                     {
-                        this.SnapStartedSignal().Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                        ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                        snapStarted?.Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                        snapStarted?.Dispose();
                     }
 
                     _scrollViewSnapStartedEventHandler -= value;
