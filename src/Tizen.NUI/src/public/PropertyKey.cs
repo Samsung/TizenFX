@@ -14,7 +14,9 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -52,6 +54,8 @@ namespace Tizen.NUI
         /// The type of key.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// Can't fix because it's already used by other GBM.
+        [SuppressMessage("Microsoft.Naming", "CA1720:Identifiers should not contain type names")]
         public enum KeyType
         {
             /// <summary>
@@ -80,7 +84,7 @@ namespace Tizen.NUI
             get
             {
                 PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.KeyTypeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -99,7 +103,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Property.KeyIndexKeyGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -118,7 +122,7 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Property.KeyStringKeyGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
