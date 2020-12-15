@@ -98,11 +98,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The flag of sound feedback when tap gesture detected.
+        /// Enable/Disable a sound feedback when tap gesture detected.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsTapGestureFeedback { get; set; } = false;
+        public bool Feedback { get; set; } = false;
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -235,7 +234,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
         {
-            if (IsTapGestureFeedback && e?.TapGesture?.State == Gesture.StateType.Started)
+            if (Feedback && e?.TapGesture?.State == Gesture.StateType.Started)
             {
                 if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
                 {
