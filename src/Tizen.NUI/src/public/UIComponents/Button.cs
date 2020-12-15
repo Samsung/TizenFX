@@ -485,7 +485,9 @@ namespace Tizen.NUI.UIComponents
                 if (_clickedEventHandler == null)
                 {
                     _clickedCallback = OnClicked;
-                    ClickedSignal().Connect(_clickedCallback);
+                    ButtonSignal clickSignal = ClickedSignal();
+                    clickSignal?.Connect(_clickedCallback);
+                    clickSignal?.Dispose();
                 }
 
                 _clickedEventHandler += value;
@@ -495,10 +497,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _clickedEventHandler -= value;
 
-                if (_clickedEventHandler == null && ClickedSignal().Empty() == false)
+                ButtonSignal clickSignal = ClickedSignal();
+                if (_clickedEventHandler == null && clickSignal.Empty() == false)
                 {
-                    ClickedSignal().Disconnect(_clickedCallback);
+                    clickSignal?.Disconnect(_clickedCallback);
                 }
+                clickSignal?.Dispose();
             }
         }
 
@@ -516,7 +520,9 @@ namespace Tizen.NUI.UIComponents
                 if (_pressedEventHandler == null)
                 {
                     _pressedCallback = OnPressed;
-                    PressedSignal().Connect(_pressedCallback);
+                    ButtonSignal pressSignal = PressedSignal();
+                    pressSignal?.Connect(_pressedCallback);
+                    pressSignal?.Dispose();
                 }
 
                 _pressedEventHandler += value;
@@ -526,10 +532,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _pressedEventHandler -= value;
 
-                if (_pressedEventHandler == null && PressedSignal().Empty() == false)
+                ButtonSignal pressSignal = this.PressedSignal();
+                if (_pressedEventHandler == null && pressSignal.Empty() == false)
                 {
-                    this.PressedSignal().Disconnect(_pressedCallback);
+                    pressSignal.Disconnect(_pressedCallback);
                 }
+                pressSignal.Dispose();
             }
         }
 
@@ -547,7 +555,9 @@ namespace Tizen.NUI.UIComponents
                 if (_releasedEventHandler == null)
                 {
                     _releasedCallback = OnReleased;
-                    ReleasedSignal().Connect(_releasedCallback);
+                    ButtonSignal releaseSignal = ReleasedSignal();
+                    releaseSignal?.Connect(_releasedCallback);
+                    releaseSignal?.Dispose();
                 }
                 _releasedEventHandler += value;
             }
@@ -556,10 +566,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _releasedEventHandler -= value;
 
-                if (_releasedEventHandler == null && ReleasedSignal().Empty() == false)
+                ButtonSignal releaseSignal = ReleasedSignal();
+                if (_releasedEventHandler == null && releaseSignal.Empty() == false)
                 {
-                    ReleasedSignal().Disconnect(_releasedCallback);
+                    releaseSignal?.Disconnect(_releasedCallback);
                 }
+                releaseSignal?.Dispose();
 
             }
         }
@@ -578,7 +590,9 @@ namespace Tizen.NUI.UIComponents
                 if (_stateChangedEventHandler == null)
                 {
                     _stateChangedCallback = OnStateChanged;
-                    StateChangedSignal().Connect(_stateChangedCallback);
+                    ButtonSignal stateChanged = StateChangedSignal();
+                    stateChanged?.Connect(_stateChangedCallback);
+                    stateChanged?.Dispose();
                 }
 
                 _stateChangedEventHandler += value;
@@ -588,10 +602,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false)
+                ButtonSignal stateChanged = StateChangedSignal();
+                if (_stateChangedEventHandler == null && stateChanged.Empty() == false)
                 {
-                    StateChangedSignal().Disconnect(_stateChangedCallback);
+                    stateChanged?.Disconnect(_stateChangedCallback);
                 }
+                stateChanged?.Dispose();
             }
         }
 
@@ -1077,22 +1093,30 @@ namespace Tizen.NUI.UIComponents
 
             if (_stateChangedCallback != null)
             {
-                StateChangedSignal().Disconnect(_stateChangedCallback);
+                ButtonSignal stateChanged = StateChangedSignal();
+                stateChanged?.Disconnect(_stateChangedCallback);
+                stateChanged?.Dispose();
             }
 
             if (_releasedCallback != null)
             {
-                ReleasedSignal().Disconnect(_releasedCallback);
+                ButtonSignal released = ReleasedSignal();
+                released?.Disconnect(_releasedCallback);
+                released?.Dispose();
             }
 
             if (_pressedCallback != null)
             {
-                this.PressedSignal().Disconnect(_pressedCallback);
+                ButtonSignal pressSignal = PressedSignal();
+                pressSignal?.Disconnect(_pressedCallback);
+                pressSignal?.Dispose();
             }
 
             if (_clickedCallback != null)
             {
-                ClickedSignal().Disconnect(_clickedCallback);
+                ButtonSignal clickSignal = ClickedSignal();
+                clickSignal?.Disconnect(_clickedCallback);
+                clickSignal?.Dispose();
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.

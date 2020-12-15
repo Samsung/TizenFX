@@ -231,17 +231,21 @@ namespace Tizen.NUI.UIComponents
                 if (_progressBarValueChangedEventHandler == null)
                 {
                     _progressBarValueChangedCallbackDelegate = (OnValueChanged);
-                    ValueChangedSignal().Connect(_progressBarValueChangedCallbackDelegate);
+                    ProgressBarValueChangedSignal valueChanged = ValueChangedSignal();
+                    valueChanged?.Connect(_progressBarValueChangedCallbackDelegate);
+                    valueChanged?.Dispose();
                 }
                 _progressBarValueChangedEventHandler += value;
             }
             remove
             {
                 _progressBarValueChangedEventHandler -= value;
-                if (_progressBarValueChangedEventHandler == null && ValueChangedSignal().Empty() == false)
+                ProgressBarValueChangedSignal valueChanged = ValueChangedSignal();
+                if (_progressBarValueChangedEventHandler == null && valueChanged.Empty() == false)
                 {
-                    ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
+                    valueChanged.Disconnect(_progressBarValueChangedCallbackDelegate);
                 }
+                valueChanged.Dispose();
             }
         }
 
@@ -460,7 +464,9 @@ namespace Tizen.NUI.UIComponents
 
             if (this != null && _progressBarValueChangedCallbackDelegate != null)
             {
-                ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
+                ProgressBarValueChangedSignal valueChanged = ValueChangedSignal();
+                valueChanged.Disconnect(_progressBarValueChangedCallbackDelegate);
+                valueChanged.Dispose();
             }
 
             base.Dispose(type);

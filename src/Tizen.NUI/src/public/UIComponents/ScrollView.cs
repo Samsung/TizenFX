@@ -1229,7 +1229,9 @@ namespace Tizen.NUI
 
             if (this != null && _scrollViewSnapStartedCallbackDelegate != null)
             {
-                this.SnapStartedSignal().Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                ScrollViewSnapStartedSignal snapStarted = this.SnapStartedSignal();
+                snapStarted.Disconnect(_scrollViewSnapStartedCallbackDelegate);
+                snapStarted.Dispose();
             }
 
             base.Dispose(type);
