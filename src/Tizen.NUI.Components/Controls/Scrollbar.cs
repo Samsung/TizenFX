@@ -122,7 +122,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Create an empty Scrollbar.
         /// </summary>
-        public Scrollbar() : base()
+        public Scrollbar()
         {
         }
 
@@ -158,24 +158,6 @@ namespace Tizen.NUI.Components
 
 
         #region Properties
-
-        /// <summary>
-        /// Return a copied Style instance of Scrollbar
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Scrollbar.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ScrollbarStyle Style
-        {
-            get
-            {
-                var result = new ScrollbarStyle(scrollbarStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
 
         /// <summary>
         /// The thickness of the track.
@@ -261,7 +243,7 @@ namespace Tizen.NUI.Components
                 trackVisual = new ColorVisual
                 {
                     SuppressUpdateVisual = true,
-                    Color = TrackColor,
+                    MixColor = TrackColor,
                     SizePolicy = VisualTransformPolicyType.Absolute,
                     Origin = calculator.CalculatorTrackAlign(),
                     AnchorPoint = calculator.CalculatorTrackAlign(),

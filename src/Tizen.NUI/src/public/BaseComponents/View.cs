@@ -29,34 +29,22 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View : Container, IResourcesProvider
     {
-        /// <summary>
-        /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool layoutSet = false;
+        internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+        internal BackgroundExtraData backgroundExtraData;
 
-        /// <summary>
-        /// Flag to allow Layouting to be disabled for Views.
-        /// Once a View has a Layout set then any children added to Views from then on will receive
-        /// automatic Layouts.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool layoutingDisabled { get; set; } = true;
-
-        private LayoutItem _layout; // Exclusive layout assigned to this View.
+        private bool layoutSet = false;
+        private LayoutItem layout; // Exclusive layout assigned to this View.
 
         // List of transitions paired with the condition that uses the transition.
-        private Dictionary<TransitionCondition, TransitionList> _layoutTransitions;
-        private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
-        private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
-        private int _oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
-        private int _oldHeightPolicy = LayoutParamPolicies.MatchParent; // Store Layout height to compare against later
-        private float _weight = 0.0f; // Weighting of child View in a Layout
-        private MeasureSpecification _measureSpecificationWidth; // Layout width and internal Mode
-        private MeasureSpecification _measureSpecificationHeight; // Layout height and internal Mode
-        private bool _backgroundImageSynchronosLoading = false;
+        private Dictionary<TransitionCondition, TransitionList> layoutTransitions;
+        private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
+        private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
+        private int oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
+        private int oldHeightPolicy = LayoutParamPolicies.MatchParent; // Store Layout height to compare against later
+        private float weight = 0.0f; // Weighting of child View in a Layout
+        private MeasureSpecification measureSpecificationWidth; // Layout width and internal Mode
+        private MeasureSpecification measureSpecificationHeight; // Layout height and internal Mode
+        private bool backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
         private bool controlStatePropagation = false;
@@ -64,25 +52,9 @@ namespace Tizen.NUI.BaseComponents
         private bool themeChangeSensitive = false;
         private bool excludeLayouting = false;
 
-        internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
-        internal BackgroundExtraData backgroundExtraData;
+        private ControlState controlStates = ControlState.Normal;
 
         static View() { }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle ViewStyle
-        {
-            get
-            {
-                if (null == viewStyle)
-                {
-                    ApplyStyle(GetViewStyle());
-                }
-
-                return viewStyle;
-            }
-        }
 
         /// <summary>
         /// Creates a new instance of a view.
@@ -162,7 +134,44 @@ namespace Tizen.NUI.BaseComponents
 
         internal event EventHandler<ControlStateChangedEventArgs> ControlStateChangeEventInternal;
 
-        private ControlState controlStates = ControlState.Normal;
+
+        /// <summary>
+        /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LayoutSet
+        {
+            get
+            {
+                return layoutSet;
+            }
+        }
+
+        /// <summary>
+        /// Flag to allow Layouting to be disabled for Views.
+        /// Once a View has a Layout set then any children added to Views from then on will receive
+        /// automatic Layouts.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool LayoutingDisabled { get; set; } = true;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle ViewStyle
+        {
+            get
+            {
+                if (null == viewStyle)
+                {
+                    ApplyStyle(GetViewStyle());
+                }
+
+                return viewStyle;
+            }
+        }
+
         /// <summary>
         /// Get/Set the control state.
         /// </summary>
@@ -815,10 +824,10 @@ namespace Tizen.NUI.BaseComponents
                 // All Views are currently Layouts.
                 MeasureSpecificationWidth = new MeasureSpecification(new LayoutLength(value.Width), MeasureSpecification.ModeType.Exactly);
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
-                _widthPolicy = value.Width;
-                _heightPolicy = value.Height;
+                widthPolicy = value.Width;
+                heightPolicy = value.Height;
                 
-                _layout?.RequestLayout();
+                layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }
@@ -1001,9 +1010,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -1019,9 +1027,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
                 return new Size2D((int)temp.Width, (int)temp.Height);
             }
@@ -1713,13 +1720,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
-                if (_layout != null)
+                if (layout != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
                     // To force the size it should be done through the width&height spec or Size2D.
-                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Width);
-                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
-                    _layout.RequestLayout();
+                    layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Width);
+                    layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
+                    layout.RequestLayout();
                 }
                 SetValue(MinimumSizeProperty, value);
                 NotifyPropertyChanged();
@@ -1744,9 +1751,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
-                if (_layout != null)
+                if (layout != null)
                 {
-                    _layout.RequestLayout();
+                    layout.RequestLayout();
                 }
                 SetValue(MaximumSizeProperty, value);
                 NotifyPropertyChanged();
@@ -1870,7 +1877,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.GetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.GetParent(SwigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -1887,8 +1894,7 @@ namespace Tizen.NUI.BaseComponents
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -1924,7 +1930,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(LayoutDirectionProperty, value);
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
+                layout?.RequestLayout();
             }
         }
 
@@ -1963,14 +1969,14 @@ namespace Tizen.NUI.BaseComponents
                     // overwrite the position and size values measured in the Layouting.
                     Layout.Margin = value;
                     SetValue(MarginProperty, new Extents(0, 0, 0, 0));
-                    _layout?.RequestLayout();
+                    layout?.RequestLayout();
                 }
                 else
                 {
                     SetValue(MarginProperty, value);
                 }
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
+                layout?.RequestLayout();
             }
         }
 
@@ -1982,25 +1988,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _widthPolicy;
+                return widthPolicy;
             }
             set
             {
-                _widthPolicy = value;
-                if (_oldWidthPolicy != _widthPolicy)
+                widthPolicy = value;
+                if (oldWidthPolicy != widthPolicy)
                 {
-                    if (_widthPolicy >= 0)
+                    if (widthPolicy >= 0)
                     {
-                        _measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+                        measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
 
-                        if (_heightPolicy >= 0) // Policy an exact value
+                        if (heightPolicy >= 0) // Policy an exact value
                         {
                             // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(_widthPolicy, _heightPolicy);
+                            Size2D = new Size2D(widthPolicy, heightPolicy);
                         }
                     }
-                    _layout?.RequestLayout();
-                    _oldWidthPolicy = _widthPolicy;
+                    layout?.RequestLayout();
+                    oldWidthPolicy = widthPolicy;
                 }
             }
         }
@@ -2013,26 +2019,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _heightPolicy;
+                return heightPolicy;
             }
             set
             {
-                _heightPolicy = value;
-                if (_oldHeightPolicy != _heightPolicy)
+                heightPolicy = value;
+                if (oldHeightPolicy != heightPolicy)
                 {
-                    if (_heightPolicy >= 0)
+                    if (heightPolicy >= 0)
                     {
-                        _measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+                        measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
 
-                        if (_widthPolicy >= 0) // Policy an exact value
+                        if (widthPolicy >= 0) // Policy an exact value
                         {
                             // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                            Size2D = new Size2D(_widthPolicy, _heightPolicy);
+                            Size2D = new Size2D(widthPolicy, heightPolicy);
                         }
 
                     }
-                    _layout?.RequestLayout();
-                    _oldHeightPolicy = _heightPolicy;
+                    layout?.RequestLayout();
+                    oldHeightPolicy = heightPolicy;
                 }
             }
         }
@@ -2045,11 +2051,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (_layoutTransitions == null)
+                if (layoutTransitions == null)
                 {
-                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                    layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
-                return _layoutTransitions;
+                return layoutTransitions;
             }
         }
 
@@ -2069,12 +2075,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new global::System.ArgumentNullException(nameof(value));
                 }
-                if (_layoutTransitions == null)
+                if (layoutTransitions == null)
                 {
-                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                    layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
                 }
 
-                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions, value.Condition, value, true);
+                LayoutTransitionsHelper.AddTransitionForCondition(layoutTransitions, value.Condition, value, true);
 
                 AttachTransitionsToChildren(value);
             }
@@ -2101,7 +2107,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
+                layout?.RequestLayout();
             }
         }
 
@@ -2139,17 +2145,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _layout;
+                return layout;
             }
             set
             {
                 // Do nothing if layout provided is already set on this View.
-                if (value == _layout)
+                if (value == layout)
                 {
                     return;
                 }
 
-                layoutingDisabled = false;
+                LayoutingDisabled = false;
                 layoutSet = true;
 
                 // If new layout being set already has a owner then that owner receives a replacement default layout.
@@ -2170,19 +2176,19 @@ namespace Tizen.NUI.BaseComponents
                 // Copy Margin and Padding to new layout being set or restore padding and margin back to
                 // View if no replacement. Previously margin and padding values would have been moved from
                 // the View to the layout.
-                if (_layout != null) // Existing layout
+                if (layout != null) // Existing layout
                 {
                     if (value != null)
                     {
                         // Existing layout being replaced so copy over margin and padding values.
-                        value.Margin = _layout.Margin;
-                        value.Padding = _layout.Padding;
+                        value.Margin = layout.Margin;
+                        value.Padding = layout.Padding;
                     }
                     else
                     {
                         // Layout not being replaced so restore margin and padding to View.
-                        SetValue(MarginProperty, _layout.Margin);
-                        SetValue(PaddingProperty, _layout.Padding);
+                        SetValue(MarginProperty, layout.Margin);
+                        SetValue(PaddingProperty, layout.Padding);
                         NotifyPropertyChanged();
                     }
                 }
@@ -2212,7 +2218,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 // Remove existing layout from it's parent layout group.
-                _layout?.Unparent();
+                layout?.Unparent();
 
                 value.SetPositionByLayout = !excludeLayouting;
 
@@ -2229,12 +2235,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _weight;
+                return weight;
             }
             set
             {
-                _weight = value;
-                _layout?.RequestLayout();
+                weight = value;
+                layout?.RequestLayout();
             }
         }
 
@@ -2249,11 +2255,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _backgroundImageSynchronosLoading;
+                return backgroundImageSynchronosLoading;
             }
             set
             {
-                _backgroundImageSynchronosLoading = value;
+                backgroundImageSynchronosLoading = value;
 
                 string bgUrl = null;
                 Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
@@ -2261,7 +2267,7 @@ namespace Tizen.NUI.BaseComponents
                 if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
-                    bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                    bgMap.Add("synchronousLoading", new PropertyValue(backgroundImageSynchronosLoading));
                     Background = bgMap;
                 }
             }

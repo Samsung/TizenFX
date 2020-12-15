@@ -9,61 +9,61 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TITLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TITLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TITLE).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TITLE).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.CONTENT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.CONTENT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTENT).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.CONTENT).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FooterProperty = BindableProperty.Create(nameof(Footer), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FooterProperty = BindableProperty.Create(nameof(Footer), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.FOOTER, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.FOOTER, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.FOOTER).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.FOOTER).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisplayStateProperty = BindableProperty.Create(nameof(DisplayState), typeof(DisplayStateType), typeof(Popup), DisplayStateType.Hidden, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisplayStateProperty = BindableProperty.Create(nameof(DisplayState), typeof(DisplayStateType), typeof(Popup), DisplayStateType.Hidden, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             string valueToString = "";
@@ -97,14 +97,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.DisplayState, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.DisplayState, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.DisplayState).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.DisplayState).Get(out temp) == false)
             {
                 NUILog.Error("DisplayState get error!");
             }
@@ -121,65 +121,65 @@ namespace Tizen.NUI.UIComponents
                 default:
                     return DisplayStateType.Hidden;
             }
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TouchTransparentProperty = BindableProperty.Create(nameof(TouchTransparent), typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TouchTransparentProperty = BindableProperty.Create(nameof(TouchTransparent), typeof(bool), typeof(Popup), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TouchTransparent, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TouchTransparent, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TouchTransparent).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TouchTransparent).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailVisibilityProperty = BindableProperty.Create(nameof(TailVisibility), typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailVisibilityProperty = BindableProperty.Create(nameof(TailVisibility), typeof(bool), typeof(Popup), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailVisibility, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailVisibility, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailVisibility).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailVisibility).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailPositionProperty = BindableProperty.Create(nameof(TailPosition), typeof(Vector3), typeof(Popup), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailPositionProperty = BindableProperty.Create(nameof(TailPosition), typeof(Vector3), typeof(Popup), Vector3.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailPosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailPosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailPosition).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailPosition).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContextualModeProperty = BindableProperty.Create(nameof(ContextualMode), typeof(ContextualModeType), typeof(Popup), ContextualModeType.Below, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContextualModeProperty = BindableProperty.Create(nameof(ContextualMode), typeof(ContextualModeType), typeof(Popup), ContextualModeType.Below, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             string valueToString = "";
@@ -218,14 +218,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ContextualMode, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.ContextualMode, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ContextualMode).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.ContextualMode).Get(out temp) == false)
             {
                 NUILog.Error("ContextualMode get error!");
             }
@@ -244,29 +244,29 @@ namespace Tizen.NUI.UIComponents
                 default:
                     return ContextualModeType.Below;
             }
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AnimationDurationProperty = BindableProperty.Create(nameof(AnimationDuration), typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AnimationDurationProperty = BindableProperty.Create(nameof(AnimationDuration), typeof(float), typeof(Popup), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AnimationDuration, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AnimationDuration, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AnimationDuration).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AnimationDuration).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AnimationModeProperty = BindableProperty.Create(nameof(AnimationMode), typeof(AnimationModeType), typeof(Popup), AnimationModeType.Fade, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AnimationModeProperty = BindableProperty.Create(nameof(AnimationMode), typeof(AnimationModeType), typeof(Popup), AnimationModeType.Fade, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             string valueToString = "";
@@ -300,14 +300,14 @@ namespace Tizen.NUI.UIComponents
                             break;
                         }
                 }
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AnimationMode, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AnimationMode, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AnimationMode).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AnimationMode).Get(out temp) == false)
             {
                 NUILog.Error("AnimationMode get error!");
             }
@@ -324,205 +324,205 @@ namespace Tizen.NUI.UIComponents
                 default:
                     return AnimationModeType.Fade;
             }
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EntryAnimationProperty = BindableProperty.Create(nameof(EntryAnimation), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EntryAnimationProperty = BindableProperty.Create(nameof(EntryAnimation), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.EntryAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.EntryAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EntryAnimation).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.EntryAnimation).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ExitAnimationProperty = BindableProperty.Create(nameof(ExitAnimation), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ExitAnimationProperty = BindableProperty.Create(nameof(ExitAnimation), typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ExitAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.ExitAnimation, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ExitAnimation).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.ExitAnimation).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AutoHideDelayProperty = BindableProperty.Create(nameof(AutoHideDelay), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoHideDelayProperty = BindableProperty.Create(nameof(AutoHideDelay), typeof(int), typeof(Popup), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.AutoHideDelay, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AutoHideDelay, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AutoHideDelay).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.AutoHideDelay).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackingEnabledProperty = BindableProperty.Create(nameof(BackingEnabled), typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackingEnabledProperty = BindableProperty.Create(nameof(BackingEnabled), typeof(bool), typeof(Popup), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BackingEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.BackingEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BackingEnabled).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.BackingEnabled).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackingColorProperty = BindableProperty.Create(nameof(BackingColor), typeof(Vector4), typeof(Popup), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackingColorProperty = BindableProperty.Create(nameof(BackingColor), typeof(Vector4), typeof(Popup), Vector4.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.BackingColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.BackingColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BackingColor).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.BackingColor).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupBackgroundImageProperty = BindableProperty.Create(nameof(PopupBackgroundImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupBackgroundImageProperty = BindableProperty.Create(nameof(PopupBackgroundImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundImage, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.PopupBackgroundImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundImage).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.PopupBackgroundImage).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupBackgroundBorderProperty = BindableProperty.Create(nameof(PopupBackgroundBorder), typeof(Rectangle), typeof(Popup), new Rectangle(0, 0, 0, 0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupBackgroundBorderProperty = BindableProperty.Create(nameof(PopupBackgroundBorder), typeof(Rectangle), typeof(Popup), new Rectangle(0, 0, 0, 0), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundBorder, new Tizen.NUI.PropertyValue((Rectangle)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.PopupBackgroundBorder, new Tizen.NUI.PropertyValue((Rectangle)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             Rectangle temp = new Rectangle(0, 0, 0, 0);
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.PopupBackgroundBorder).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.PopupBackgroundBorder).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailUpImageProperty = BindableProperty.Create(nameof(TailUpImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailUpImageProperty = BindableProperty.Create(nameof(TailUpImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailUpImage, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailUpImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailUpImage).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailUpImage).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailDownImageProperty = BindableProperty.Create(nameof(TailDownImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailDownImageProperty = BindableProperty.Create(nameof(TailDownImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailDownImage, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailDownImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailDownImage).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailDownImage).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailLeftImageProperty = BindableProperty.Create(nameof(TailLeftImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailLeftImageProperty = BindableProperty.Create(nameof(TailLeftImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailLeftImage, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailLeftImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailLeftImage).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailLeftImage).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TailRightImageProperty = BindableProperty.Create(nameof(TailRightImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TailRightImageProperty = BindableProperty.Create(nameof(TailRightImage), typeof(string), typeof(Popup), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var popup = (Popup)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.TailRightImage, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailRightImage, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var popup = (Popup)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TailRightImage).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)popup.SwigCPtr, Popup.Property.TailRightImage).Get(out temp);
             return temp;
-        });
+        }));
 
     }
 }

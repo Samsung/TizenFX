@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
         }
         internal Timer(Timer timer) : this(Interop.Timer.NewTimer(Timer.getCPtr(timer)), true)
         {
@@ -64,7 +64,7 @@ namespace Tizen.NUI
             _timerTickCallbackDelegate = OnTick;
             _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
 
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() contructor!");
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         /// </summary>
         ~Timer()
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -141,14 +141,14 @@ namespace Tizen.NUI
                 }
             }
 
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (SwigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return;
             }
 
             played = true;
-            Interop.Timer.Start(swigCPtr);
+            Interop.Timer.Start(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -172,14 +172,14 @@ namespace Tizen.NUI
                 }
             }
 
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (SwigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return;
             }
 
             played = false;
-            Interop.Timer.Stop(swigCPtr);
+            Interop.Timer.Stop(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -203,20 +203,20 @@ namespace Tizen.NUI
                 }
             }
 
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (SwigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return false;
             }
 
-            bool ret = Interop.Timer.IsRunning(swigCPtr);
+            bool ret = Interop.Timer.IsRunning(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -226,9 +226,9 @@ namespace Tizen.NUI
         /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X})SetInterval({milliSec})");
 
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (SwigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return;
@@ -236,26 +236,26 @@ namespace Tizen.NUI
 
             played = true;
 
-            Interop.Timer.SetInterval(swigCPtr, milliSec);
+            Interop.Timer.SetInterval(SwigCPtr, milliSec);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal uint GetInterval()
         {
-            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (SwigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return 0;
             }
 
-            uint ret = Interop.Timer.GetInterval(swigCPtr);
+            uint ret = Interop.Timer.GetInterval(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TimerSignalType TickSignal()
         {
-            TimerSignalType ret = new TimerSignalType(Interop.Timer.TickSignal(swigCPtr), false);
+            TimerSignalType ret = new TimerSignalType(Interop.Timer.TickSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -266,7 +266,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
+            NUILog.Debug($"(0x{SwigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
 
             if (this != null && _timerTickCallbackDelegate != null)
             {
@@ -295,7 +295,7 @@ namespace Tizen.NUI
 
             if (played == false)
             {
-                Tizen.Log.Fatal("NUI", $"(0x{swigCPtr.Handle:X}) OnTick() is called even played is false!");
+                Tizen.Log.Fatal("NUI", $"(0x{SwigCPtr.Handle:X}) OnTick() is called even played is false!");
                 //throw new System.InvalidOperationException($"OnTick() excpetion!");
             }
 

@@ -30,14 +30,8 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected bool disposed = false;
 
-        /// This will not be public.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool swigCMemOwn;
-
-        /// This will not be public.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private bool swigCMemOwn { get; set; }
         private bool isDisposeQueued = false;
 
         /// <summary>
@@ -80,7 +74,8 @@ namespace Tizen.NUI
             //Throw excpetion if Dispose() is called in separate thread.
             if (!Window.IsInstalled())
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                Tizen.Log.Error("NUI", "This API called from separate thread. This API must be called from MainThread.");
+                return;
             }
 
             if (isDisposeQueued)
@@ -117,7 +112,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (swigCMemOwn)
+                if (SwigCMemOwn)
                 {
                     swigCMemOwn = false;
                     ReleaseSwigCPtr(swigCPtr);
@@ -141,6 +136,15 @@ namespace Tizen.NUI
         internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
         {
             get => swigCPtr;
+            set
+            {
+                swigCPtr = value;
+            }
+        }
+
+        internal bool SwigCMemOwn
+        {
+            get => swigCMemOwn;
         }
     }
 }

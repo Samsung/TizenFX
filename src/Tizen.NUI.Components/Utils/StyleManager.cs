@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return ThemeManager.CurrentTheme?.Id;
+                return ThemeManager.CurrentTheme?.Id ?? ThemeManager.DefaultTheme.Id;
             }
             set
             {
@@ -201,7 +201,7 @@ namespace Tizen.NUI.Components
             /// CurrentTheme
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public string CurrentTheme;
+            public string CurrentTheme { get; set; }
         }
     }
 }

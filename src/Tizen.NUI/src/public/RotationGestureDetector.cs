@@ -105,19 +105,19 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RotationGestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal RotationGestureDetector Assign(RotationGestureDetector rhs)
         {
-            RotationGestureDetector ret = new RotationGestureDetector(Interop.RotationGesture.RotationGestureDetectorAssign(swigCPtr, RotationGestureDetector.getCPtr(rhs)), false);
+            RotationGestureDetector ret = new RotationGestureDetector(Interop.RotationGesture.RotationGestureDetectorAssign(SwigCPtr, RotationGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal RotationGestureDetectedSignal DetectedSignal()
         {
-            RotationGestureDetectedSignal ret = new RotationGestureDetectedSignal(Interop.RotationGesture.RotationGestureDetectorDetectedSignal(swigCPtr), false);
+            RotationGestureDetectedSignal ret = new RotationGestureDetectedSignal(Interop.RotationGesture.RotationGestureDetectorDetectedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

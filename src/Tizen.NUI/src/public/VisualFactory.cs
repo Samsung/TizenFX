@@ -53,7 +53,7 @@ namespace Tizen.NUI
                 if (!instance)
                 {
                     instance = new VisualFactory(Interop.VisualFactory.Get(), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 }
 
                 return instance;
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
-            VisualBase ret = new VisualBase(Interop.VisualFactory.CreateVisual(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
+            VisualBase ret = new VisualBase(Interop.VisualFactory.CreateVisual(SwigCPtr, PropertyMap.getCPtr(propertyMap)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

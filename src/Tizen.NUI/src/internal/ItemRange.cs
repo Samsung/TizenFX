@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -30,7 +31,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ItemRange obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
@@ -58,7 +59,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Assign(ItemRange range)
         {
-            ItemRange ret = new ItemRange(Interop.ItemRange.Assign(swigCPtr, ItemRange.getCPtr(range)), false);
+            ItemRange ret = new ItemRange(Interop.ItemRange.Assign(SwigCPtr, ItemRange.getCPtr(range)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -67,7 +68,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Within(uint itemId)
         {
-            bool ret = Interop.ItemRange.Within(swigCPtr, itemId);
+            bool ret = Interop.ItemRange.Within(SwigCPtr, itemId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -76,7 +77,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Intersection(ItemRange second)
         {
-            ItemRange ret = new ItemRange(Interop.ItemRange.Intersection(swigCPtr, ItemRange.getCPtr(second)), true);
+            ItemRange ret = new ItemRange(Interop.ItemRange.Intersection(SwigCPtr, ItemRange.getCPtr(second)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -87,13 +88,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.ItemRange.BeginSet(swigCPtr, value);
+                Interop.ItemRange.BeginSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.ItemRange.BeginGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.ItemRange.BeginGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -104,13 +105,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.ItemRange.EndSet(swigCPtr, value);
+                Interop.ItemRange.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.ItemRange.EndGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.ItemRange.EndGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
