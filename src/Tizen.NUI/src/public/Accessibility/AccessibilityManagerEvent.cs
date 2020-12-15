@@ -25,127 +25,127 @@ namespace Tizen.NUI.Accessibility
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool StatusChangedEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerStatusChangedEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerStatusChangedEventHandler;
         private StatusChangedEventCallbackDelegate _accessibilityManagerStatusChangedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionNextEventHandler;
         private ActionNextEventCallbackDelegate _accessibilityManagerActionNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPreviousEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPreviousEventHandler;
         private ActionPreviousEventCallbackDelegate _accessibilityManagerActionPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionActivateEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionActivateEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionActivateEventHandler;
         private ActionActivateEventCallbackDelegate _accessibilityManagerActionActivateEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadEventHandler;
         private ActionReadEventCallbackDelegate _accessibilityManagerActionReadEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionOverEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionOverEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionOverEventHandler;
         private ActionOverEventCallbackDelegate _accessibilityManagerActionOverEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadNextEventHandler;
         private ActionReadNextEventCallbackDelegate _accessibilityManagerActionReadNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPreviousEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadPreviousEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPreviousEventHandler;
         private ActionReadPreviousEventCallbackDelegate _accessibilityManagerActionReadPreviousEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionUpEventHandler;
         private ActionUpEventCallbackDelegate _accessibilityManagerActionUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionDownEventHandler;
         private ActionDownEventCallbackDelegate _accessibilityManagerActionDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionClearFocusEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionClearFocusEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionClearFocusEventHandler;
         private ActionClearFocusEventCallbackDelegate _accessibilityManagerActionClearFocusEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionBackEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionBackEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionBackEventHandler;
         private ActionBackEventCallbackDelegate _accessibilityManagerActionBackEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionScrollUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollUpEventHandler;
         private ActionScrollUpEventCallbackDelegate _accessibilityManagerActionScrollUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionScrollDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionScrollDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionScrollDownEventHandler;
         private ActionScrollDownEventCallbackDelegate _accessibilityManagerActionScrollDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageLeftEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageLeftEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageLeftEventHandler;
         private ActionPageLeftEventCallbackDelegate _accessibilityManagerActionPageLeftEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageRightEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageRightEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageRightEventHandler;
         private ActionPageRightEventCallbackDelegate _accessibilityManagerActionPageRightEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageUpEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageUpEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageUpEventHandler;
         private ActionPageUpEventCallbackDelegate _accessibilityManagerActionPageUpEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionPageDownEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionPageDownEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionPageDownEventHandler;
         private ActionPageDownEventCallbackDelegate _accessibilityManagerActionPageDownEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToFirstEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionMoveToFirstEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToFirstEventHandler;
         private ActionMoveToFirstEventCallbackDelegate _accessibilityManagerActionMoveToFirstEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionMoveToLastEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionMoveToLastEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionMoveToLastEventHandler;
         private ActionMoveToLastEventCallbackDelegate _accessibilityManagerActionMoveToLastEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromTopEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadFromTopEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromTopEventHandler;
         private ActionReadFromTopEventCallbackDelegate _accessibilityManagerActionReadFromTopEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadFromNextEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadFromNextEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadFromNextEventHandler;
         private ActionReadFromNextEventCallbackDelegate _accessibilityManagerActionReadFromNextEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionZoomEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionZoomEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionZoomEventHandler;
         private ActionZoomEventCallbackDelegate _accessibilityManagerActionZoomEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPauseResumeEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
         private ActionReadPauseResumeEventCallbackDelegate _accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionStartStopEventCallbackDelegate(IntPtr accessibilityManager);
-        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
+        private ReturnTypeEventHandler<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
         private ActionStartStopEventCallbackDelegate _accessibilityManagerActionStartStopEventCallbackDelegate;
 
         /*
@@ -180,7 +180,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> StatusChanged
+        public event ReturnTypeEventHandler<object, EventArgs, bool> StatusChanged
         {
             add
             {
@@ -214,7 +214,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionNext
         {
             add
             {
@@ -246,7 +246,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPrevious
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPrevious
         {
             add
             {
@@ -278,7 +278,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionActivate
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionActivate
         {
             add
             {
@@ -310,7 +310,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionRead
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionRead
         {
             add
             {
@@ -342,7 +342,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionOver
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionOver
         {
             add
             {
@@ -374,7 +374,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadNext
         {
             add
             {
@@ -406,7 +406,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadPrevious
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadPrevious
         {
             add
             {
@@ -439,7 +439,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionUp
         {
             add
             {
@@ -472,7 +472,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionDown
         {
             add
             {
@@ -505,7 +505,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionClearFocus
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionClearFocus
         {
             add
             {
@@ -537,7 +537,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionBack
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionBack
         {
             add
             {
@@ -570,7 +570,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionScrollUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionScrollUp
         {
             add
             {
@@ -602,7 +602,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionScrollDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionScrollDown
         {
             add
             {
@@ -635,7 +635,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageLeft
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageLeft
         {
             add
             {
@@ -667,7 +667,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageRight
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageRight
         {
             add
             {
@@ -699,7 +699,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageUp
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageUp
         {
             add
             {
@@ -731,7 +731,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionPageDown
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionPageDown
         {
             add
             {
@@ -764,7 +764,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionMoveToFirst
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionMoveToFirst
         {
             add
             {
@@ -797,7 +797,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionMoveToLast
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionMoveToLast
         {
             add
             {
@@ -830,7 +830,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadFromTop
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadFromTop
         {
             add
             {
@@ -863,7 +863,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadFromNext
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadFromNext
         {
             add
             {
@@ -895,7 +895,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionZoom
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionZoom
         {
             add
             {
@@ -927,7 +927,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionReadPauseResume
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionReadPauseResume
         {
             add
             {
@@ -959,7 +959,7 @@ namespace Tizen.NUI.Accessibility
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionStartStop
+        public event ReturnTypeEventHandler<object, EventArgs, bool> ActionStartStop
         {
             add
             {
