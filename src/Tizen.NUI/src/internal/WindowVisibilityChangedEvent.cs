@@ -35,7 +35,7 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.WindowVisibilityChangedSignal.Empty(swigCPtr);
+            bool ret = Interop.WindowVisibilityChangedSignal.Empty(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -43,7 +43,7 @@ namespace Tizen.NUI
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.WindowVisibilityChangedSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.WindowVisibilityChangedSignal.GetConnectionCount(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowVisibilityChangedSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowVisibilityChangedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -62,14 +62,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowVisibilityChangedSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowVisibilityChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Window window, bool visibility)
         {
-            Interop.WindowVisibilityChangedSignal.Emit(swigCPtr, Window.getCPtr(window), visibility);
+            Interop.WindowVisibilityChangedSignal.Emit(SwigCPtr, Window.getCPtr(window), visibility);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

@@ -201,7 +201,7 @@ namespace Tizen.NUI.Components
             /// CurrentTheme
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public string CurrentTheme;
+            public string CurrentTheme { get; set; }
         }
     }
 }

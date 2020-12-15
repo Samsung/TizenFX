@@ -340,7 +340,9 @@ namespace Tizen.NUI.Components
         /// SelectEventArgs is a class to record item selected arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use SelectedChangedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SelectEventArgs : EventArgs
         {

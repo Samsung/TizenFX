@@ -63,7 +63,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Attach(View view)
         {
-            Interop.GestureDetector.Attach(swigCPtr, View.getCPtr(view));
+            Interop.GestureDetector.Attach(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Detach(View view)
         {
-            Interop.GestureDetector.Detach(swigCPtr, View.getCPtr(view));
+            Interop.GestureDetector.Detach(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachAll()
         {
-            Interop.GestureDetector.DetachAll(swigCPtr);
+            Interop.GestureDetector.DetachAll(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetAttachedViewCount()
         {
-            uint ret = Interop.GestureDetector.GetAttachedActorCount(swigCPtr);
+            uint ret = Interop.GestureDetector.GetAttachedActorCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -112,14 +112,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetAttachedView(uint index)
         {
-            View ret = new View(Interop.GestureDetector.GetAttachedActor(swigCPtr, index), true);
+            View ret = new View(Interop.GestureDetector.GetAttachedActor(SwigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal GestureDetector Assign(GestureDetector rhs)
         {
-            GestureDetector ret = new GestureDetector(Interop.GestureDetector.Assign(swigCPtr, GestureDetector.getCPtr(rhs)), false);
+            GestureDetector ret = new GestureDetector(Interop.GestureDetector.Assign(SwigCPtr, GestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -133,7 +133,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

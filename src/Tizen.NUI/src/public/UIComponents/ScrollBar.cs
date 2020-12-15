@@ -35,7 +35,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             string valueToString = "";
@@ -47,14 +47,14 @@ namespace Tizen.NUI.UIComponents
                     case Direction.Horizontal: { valueToString = "Horizontal"; break; }
                     default: { valueToString = "Vertical"; break; }
                 }
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.ScrollDirection, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.ScrollDirection, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.ScrollDirection).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.ScrollDirection).Get(out temp) == false)
             {
                 NUILog.Error("ScrollDirection get error!");
             }
@@ -65,11 +65,11 @@ namespace Tizen.NUI.UIComponents
                 case "Horizontal": return Direction.Horizontal;
                 default: return Direction.Vertical;
             }
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorHeightPolicyProperty = BindableProperty.Create(nameof(IndicatorHeightPolicy), typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorHeightPolicyProperty = BindableProperty.Create(nameof(IndicatorHeightPolicy), typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             string valueToString = "";
@@ -81,14 +81,14 @@ namespace Tizen.NUI.UIComponents
                     case IndicatorHeightPolicyType.Fixed: { valueToString = "Fixed"; break; }
                     default: { valueToString = "Variable"; break; }
                 }
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorHeightPolicy, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorHeightPolicy, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             string temp;
-            if (Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorHeightPolicy).Get(out temp) == false)
+            if (Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorHeightPolicy).Get(out temp) == false)
             {
                 NUILog.Error("IndicatorHeightPolicy get error!");
             }
@@ -99,133 +99,133 @@ namespace Tizen.NUI.UIComponents
                 case "Fixed": return IndicatorHeightPolicyType.Fixed;
                 default: return IndicatorHeightPolicyType.Variable;
             }
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorFixedHeightProperty = BindableProperty.Create(nameof(IndicatorFixedHeight), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorFixedHeightProperty = BindableProperty.Create(nameof(IndicatorFixedHeight), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorFixedHeight, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorFixedHeight, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorFixedHeight).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorFixedHeight).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create(nameof(IndicatorShowDuration), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create(nameof(IndicatorShowDuration), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorShowDuration, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorShowDuration, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorShowDuration).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorShowDuration).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create(nameof(IndicatorHideDuration), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create(nameof(IndicatorHideDuration), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorHideDuration, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorHideDuration, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorHideDuration).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorHideDuration).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create(nameof(ScrollPositionIntervals), typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create(nameof(ScrollPositionIntervals), typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.ScrollPositionIntervals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.ScrollPositionIntervals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.ScrollPositionIntervals).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.ScrollPositionIntervals).Get(temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create(nameof(IndicatorMinimumHeight), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create(nameof(IndicatorMinimumHeight), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorMinimumHeight, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorMinimumHeight, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorMinimumHeight).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorMinimumHeight).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create(nameof(IndicatorStartPadding), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create(nameof(IndicatorStartPadding), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorStartPadding, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorStartPadding, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorStartPadding).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorStartPadding).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create(nameof(IndicatorEndPadding), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create(nameof(IndicatorEndPadding), typeof(float), typeof(ScrollBar), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollBar = (ScrollBar)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorEndPadding, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorEndPadding, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.IndicatorEndPadding).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollBar.SwigCPtr, ScrollBar.Property.IndicatorEndPadding).Get(out temp);
             return temp;
-        });
+        }));
 
 
         private EventHandler<PanFinishedEventArgs> _scrollBarPanFinishedEventHandler;
@@ -289,17 +289,21 @@ namespace Tizen.NUI.UIComponents
                 if (_scrollBarPanFinishedEventHandler == null)
                 {
                     _scrollBarPanFinishedEventCallbackDelegate = (OnScrollBarPanFinished);
-                    PanFinishedSignal().Connect(_scrollBarPanFinishedEventCallbackDelegate);
+                    VoidSignal panFinished = PanFinishedSignal();
+                    panFinished?.Connect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Dispose();
                 }
                 _scrollBarPanFinishedEventHandler += value;
             }
             remove
             {
                 _scrollBarPanFinishedEventHandler -= value;
-                if (_scrollBarPanFinishedEventHandler == null && PanFinishedSignal().Empty() == false)
+                VoidSignal panFinished = PanFinishedSignal();
+                if (_scrollBarPanFinishedEventHandler == null && panFinished.Empty() == false)
                 {
-                    PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
                 }
+                panFinished?.Dispose();
             }
         }
 
@@ -318,17 +322,21 @@ namespace Tizen.NUI.UIComponents
                 if (_scrollBarScrollPositionIntervalReachedEventHandler == null)
                 {
                     _scrollBarScrollPositionIntervalReachedEventCallbackDelegate = (OnScrollBarScrollPositionIntervalReached);
-                    ScrollPositionIntervalReachedSignal().Connect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                    scrollPositionIntervalReached?.Connect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Dispose();
                 }
                 _scrollBarScrollPositionIntervalReachedEventHandler += value;
             }
             remove
             {
                 _scrollBarScrollPositionIntervalReachedEventHandler -= value;
-                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && ScrollPositionIntervalReachedSignal().Empty() == false)
+                FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && scrollPositionIntervalReached.Empty() == false)
                 {
-                    ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
                 }
+                scrollPositionIntervalReached?.Dispose();
             }
         }
 
@@ -571,115 +579,115 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
         {
-            Interop.ScrollBar.SetScrollPropertySource(swigCPtr, Animatable.getCPtr(handle), propertyScrollPosition, propertyMinScrollPosition, propertyMaxScrollPosition, propertyScrollContentSize);
+            Interop.ScrollBar.SetScrollPropertySource(SwigCPtr, Animatable.getCPtr(handle), propertyScrollPosition, propertyMinScrollPosition, propertyMaxScrollPosition, propertyScrollContentSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollBar obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal void SetScrollIndicator(View indicator)
         {
-            Interop.ScrollBar.SetScrollIndicator(swigCPtr, View.getCPtr(indicator));
+            Interop.ScrollBar.SetScrollIndicator(SwigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetScrollIndicator()
         {
-            View ret = new View(Interop.ScrollBar.GetScrollIndicator(swigCPtr), true);
+            View ret = new View(Interop.ScrollBar.GetScrollIndicator(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetScrollDirection(ScrollBar.Direction direction)
         {
-            Interop.ScrollBar.SetScrollDirection(swigCPtr, (int)direction);
+            Interop.ScrollBar.SetScrollDirection(SwigCPtr, (int)direction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar.Direction GetScrollDirection()
         {
-            ScrollBar.Direction ret = (ScrollBar.Direction)Interop.ScrollBar.GetScrollDirection(swigCPtr);
+            ScrollBar.Direction ret = (ScrollBar.Direction)Interop.ScrollBar.GetScrollDirection(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorHeightPolicy(ScrollBar.IndicatorHeightPolicyType policy)
         {
-            Interop.ScrollBar.SetIndicatorHeightPolicy(swigCPtr, (int)policy);
+            Interop.ScrollBar.SetIndicatorHeightPolicy(SwigCPtr, (int)policy);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar.IndicatorHeightPolicyType GetIndicatorHeightPolicy()
         {
-            ScrollBar.IndicatorHeightPolicyType ret = (ScrollBar.IndicatorHeightPolicyType)Interop.ScrollBar.GetIndicatorHeightPolicy(swigCPtr);
+            ScrollBar.IndicatorHeightPolicyType ret = (ScrollBar.IndicatorHeightPolicyType)Interop.ScrollBar.GetIndicatorHeightPolicy(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorFixedHeight(float height)
         {
-            Interop.ScrollBar.SetIndicatorFixedHeight(swigCPtr, height);
+            Interop.ScrollBar.SetIndicatorFixedHeight(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorFixedHeight()
         {
-            float ret = Interop.ScrollBar.GetIndicatorFixedHeight(swigCPtr);
+            float ret = Interop.ScrollBar.GetIndicatorFixedHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorShowDuration(float durationSeconds)
         {
-            Interop.ScrollBar.SetIndicatorShowDuration(swigCPtr, durationSeconds);
+            Interop.ScrollBar.SetIndicatorShowDuration(SwigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorShowDuration()
         {
-            float ret = Interop.ScrollBar.GetIndicatorShowDuration(swigCPtr);
+            float ret = Interop.ScrollBar.GetIndicatorShowDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorHideDuration(float durationSeconds)
         {
-            Interop.ScrollBar.SetIndicatorHideDuration(swigCPtr, durationSeconds);
+            Interop.ScrollBar.SetIndicatorHideDuration(SwigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorHideDuration()
         {
-            float ret = Interop.ScrollBar.GetIndicatorHideDuration(swigCPtr);
+            float ret = Interop.ScrollBar.GetIndicatorHideDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void ShowIndicator()
         {
-            Interop.ScrollBar.ShowIndicator(swigCPtr);
+            Interop.ScrollBar.ShowIndicator(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void HideIndicator()
         {
-            Interop.ScrollBar.HideIndicator(swigCPtr);
+            Interop.ScrollBar.HideIndicator(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VoidSignal PanFinishedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.ScrollBar.PanFinishedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.ScrollBar.PanFinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FloatSignal ScrollPositionIntervalReachedSignal()
         {
-            FloatSignal ret = new FloatSignal(Interop.ScrollBar.ScrollPositionIntervalReachedSignal(swigCPtr), false);
+            FloatSignal ret = new FloatSignal(Interop.ScrollBar.ScrollPositionIntervalReachedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -705,12 +713,16 @@ namespace Tizen.NUI.UIComponents
             {
                 if (_scrollBarScrollPositionIntervalReachedEventCallbackDelegate != null)
                 {
-                    ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                    scrollPositionIntervalReached?.Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Dispose();
                 }
 
                 if (_scrollBarPanFinishedEventCallbackDelegate != null)
                 {
-                    PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    VoidSignal panFinished = PanFinishedSignal();
+                    panFinished?.Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Dispose();
                 }
             }
 

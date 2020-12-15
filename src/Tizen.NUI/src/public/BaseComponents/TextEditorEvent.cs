@@ -125,7 +125,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextEditorSignal TextChangedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,7 +139,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextEditorSignal MaxLengthReachedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

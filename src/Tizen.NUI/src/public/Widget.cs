@@ -84,16 +84,16 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Widget obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal System.IntPtr GetIntPtr()
         {
-            return swigCPtr.Handle;
+            return SwigCPtr.Handle;
         }
         internal Widget Assign(Widget widget)
         {
-            Widget ret = new Widget(Interop.Widget.Assign(swigCPtr, Widget.getCPtr(widget)), false);
+            Widget ret = new Widget(Interop.Widget.Assign(SwigCPtr, Widget.getCPtr(widget)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

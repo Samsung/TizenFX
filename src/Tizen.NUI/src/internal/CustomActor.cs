@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomActor obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -48,7 +48,7 @@ namespace Tizen.NUI
 
         public CustomActorImpl GetImplementation()
         {
-            CustomActorImpl ret = new CustomActorImpl(Interop.CustomActorImpl.CustomActorGetImplementation(swigCPtr), false);
+            CustomActorImpl ret = new CustomActorImpl(Interop.CustomActorImpl.CustomActorGetImplementation(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI
 
         public CustomActor Assign(CustomActor rhs)
         {
-            CustomActor ret = new CustomActor(Interop.CustomActorImpl.CustomActorAssign(swigCPtr, CustomActor.getCPtr(rhs)), false);
+            CustomActor ret = new CustomActor(Interop.CustomActorImpl.CustomActorAssign(SwigCPtr, CustomActor.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

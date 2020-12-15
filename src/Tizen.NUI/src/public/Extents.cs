@@ -106,10 +106,10 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(that));
             }
-            Interop.Extents.StartSet(swigCPtr, that.Start);
-            Interop.Extents.EndSet(swigCPtr, that.End);
-            Interop.Extents.TopSet(swigCPtr, that.Top);
-            Interop.Extents.BottomSet(swigCPtr, that.Bottom);
+            Interop.Extents.StartSet(SwigCPtr, that.Start);
+            Interop.Extents.EndSet(SwigCPtr, that.End);
+            Interop.Extents.TopSet(SwigCPtr, that.Top);
+            Interop.Extents.BottomSet(SwigCPtr, that.Bottom);
         }
 
         /// <summary>
@@ -144,14 +144,14 @@ namespace Tizen.NUI
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
-                Interop.Extents.StartSet(swigCPtr, value);
+                Interop.Extents.StartSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.StartGet(swigCPtr);
+                ushort ret = Interop.Extents.StartGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -178,14 +178,14 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.EndSet(swigCPtr, value);
+                Interop.Extents.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.EndGet(swigCPtr);
+                ushort ret = Interop.Extents.EndGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -212,14 +212,14 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.TopSet(swigCPtr, value);
+                Interop.Extents.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.TopGet(swigCPtr);
+                ushort ret = Interop.Extents.TopGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -246,14 +246,14 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.BottomSet(swigCPtr, value);
+                Interop.Extents.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.BottomGet(swigCPtr);
+                ushort ret = Interop.Extents.BottomGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -267,7 +267,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool EqualTo(Extents rhs)
         {
-            bool ret = Interop.Extents.EqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.EqualTo(SwigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -280,7 +280,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool NotEqualTo(Extents rhs)
         {
-            bool ret = Interop.Extents.NotEqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.NotEqualTo(SwigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -291,19 +291,19 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Extents obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal Extents Assign(SWIGTYPE_p_uint16_t array)
         {
-            Extents ret = new Extents(Interop.Extents.AssignUint16(swigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
+            Extents ret = new Extents(Interop.Extents.AssignUint16(SwigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Extents Assign(Extents copy)
         {
-            Extents ret = new Extents(Interop.Extents.Assign(swigCPtr, Extents.getCPtr(copy)), false);
+            Extents ret = new Extents(Interop.Extents.Assign(SwigCPtr, Extents.getCPtr(copy)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
