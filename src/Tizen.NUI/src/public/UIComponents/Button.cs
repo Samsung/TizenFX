@@ -478,6 +478,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1710: Rename EventHandlerWithReturnType to end in 'EventHandler'.")]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
             add
@@ -509,6 +510,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1710: Rename EventHandlerWithReturnType to end in 'EventHandler'.")]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
             add
@@ -540,6 +542,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1710: Rename EventHandlerWithReturnType to end in 'EventHandler'.")]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
             add
@@ -571,6 +574,7 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1710: Rename EventHandlerWithReturnType to end in 'EventHandler'.")]
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
             add
