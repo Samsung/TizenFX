@@ -364,7 +364,7 @@ namespace Tizen.NUI
                     break;
             }
 
-            texture.Dispose();
+            texture?.Dispose();
             geometry.Dispose();
             shader.Dispose();
             return renderer;
