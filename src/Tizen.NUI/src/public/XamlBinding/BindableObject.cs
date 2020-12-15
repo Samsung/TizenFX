@@ -599,7 +599,7 @@ namespace Tizen.NUI.Binding
 
             if (!converted && !property.TryConvert(ref value))
             {
-                Console.WriteLine("SetValue", "Can not convert {0} to type '{1}'", value, property.ReturnType);
+                Console.WriteLine($"SetValue : Can not convert {value} to type {property.ReturnType}");
                 return;
             }
 

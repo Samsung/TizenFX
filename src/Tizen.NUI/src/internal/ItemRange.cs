@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -37,19 +38,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ItemRange.delete_ItemRange(swigCPtr);
+            Interop.ItemRange.DeleteItemRange(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ItemRange(uint beginItem, uint endItem) : this(Interop.ItemRange.new_ItemRange__SWIG_0(beginItem, endItem), true)
+        public ItemRange(uint beginItem, uint endItem) : this(Interop.ItemRange.NewItemRange(beginItem, endItem), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ItemRange(ItemRange copy) : this(Interop.ItemRange.new_ItemRange__SWIG_1(ItemRange.getCPtr(copy)), true)
+        public ItemRange(ItemRange copy) : this(Interop.ItemRange.NewItemRange(ItemRange.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -58,7 +59,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Assign(ItemRange range)
         {
-            ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Assign(swigCPtr, ItemRange.getCPtr(range)), false);
+            ItemRange ret = new ItemRange(Interop.ItemRange.Assign(swigCPtr, ItemRange.getCPtr(range)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -67,7 +68,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Within(uint itemId)
         {
-            bool ret = Interop.ItemRange.ItemRange_Within(swigCPtr, itemId);
+            bool ret = Interop.ItemRange.Within(swigCPtr, itemId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -76,7 +77,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Intersection(ItemRange second)
         {
-            ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Intersection(swigCPtr, ItemRange.getCPtr(second)), true);
+            ItemRange ret = new ItemRange(Interop.ItemRange.Intersection(swigCPtr, ItemRange.getCPtr(second)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -87,13 +88,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.ItemRange.ItemRange_begin_set(swigCPtr, value);
+                Interop.ItemRange.BeginSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.ItemRange.ItemRange_begin_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.ItemRange.BeginGet(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -104,13 +105,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.ItemRange.ItemRange_end_set(swigCPtr, value);
+                Interop.ItemRange.EndSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.ItemRange.ItemRange_end_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.ItemRange.EndGet(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

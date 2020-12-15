@@ -266,7 +266,7 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            _rootFlex = Interop.FlexLayout.FlexLayout_New();
+            _rootFlex = Interop.FlexLayout.New();
             measureChildDelegate = new ChildMeasureCallback(measureChild);
         }
 
@@ -282,7 +282,8 @@ namespace Tizen.NUI
             // Throw exception if Dispose() is called in separate thread.
             if (!Window.IsInstalled())
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                Tizen.Log.Error("NUI", "This API called from separate thread.This API must be called from MainThread.");
+                return;
             }
 
             if (isDisposeQueued)
@@ -321,7 +322,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.FlexLayout.delete_FlexLayout(swigCPtr);
+                    Interop.FlexLayout.DeleteFlexLayout(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -332,33 +333,33 @@ namespace Tizen.NUI
         /// Creates a FlexLayout object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
+        public FlexLayout() : this(Interop.FlexLayout.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static FlexLayout DownCast(BaseHandle handle)
         {
-            FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_DownCast(BaseHandle.getCPtr(handle)), true);
+            FlexLayout ret = new FlexLayout(Interop.FlexLayout.DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal FlexLayout(FlexLayout other) : this(Interop.FlexLayout.new_FlexLayout__SWIG_1(FlexLayout.getCPtr(other)), true)
+        internal FlexLayout(FlexLayout other) : this(Interop.FlexLayout.NewFlexLayout(FlexLayout.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.AlignmentType GetFlexAlignment()
         {
-            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexAlignment(swigCPtr);
+            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.GetFlexAlignment(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FlexLayout.AlignmentType GetFlexItemsAlignment()
         {
-            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexItemsAlignment(swigCPtr);
+            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.GetFlexItemsAlignment(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -371,13 +372,13 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexDirection Direction
         {
-            get => (FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
+            get => (FlexDirection)Interop.FlexLayout.GetFlexDirection(swigCPtr);
             set
             {
                 if (value < FlexDirection.Column || value > FlexDirection.RowReverse)
                     throw new InvalidEnumArgumentException(nameof(Direction));
 
-                Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)value);
+                Interop.FlexLayout.SetFlexDirection(swigCPtr, (int)value);
                 RequestLayout();
             }
         }
@@ -392,13 +393,13 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
         {
-            get => (FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
+            get => (FlexJustification)Interop.FlexLayout.GetFlexJustification(swigCPtr);
             set
             {
                 if (value < FlexJustification.FlexStart || value > FlexJustification.SpaceAround)
                     throw new InvalidEnumArgumentException(nameof(Justification));
 
-                Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)value);
+                Interop.FlexLayout.SetFlexJustification(swigCPtr, (int)value);
                 RequestLayout();
             }
         }
@@ -414,13 +415,13 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
         {
-            get => (FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
+            get => (FlexWrapType)Interop.FlexLayout.GetFlexWrap(swigCPtr);
             set
             {
                 if (value != FlexWrapType.NoWrap && value != FlexWrapType.Wrap)
                     throw new InvalidEnumArgumentException(nameof(WrapType));
 
-                Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)value);
+                Interop.FlexLayout.SetFlexWrap(swigCPtr, (int)value);
                 RequestLayout();
 
             }
@@ -441,7 +442,7 @@ namespace Tizen.NUI
                 if (value < AlignmentType.Auto || value > AlignmentType.Stretch)
                     throw new InvalidEnumArgumentException(nameof(Alignment));
 
-                Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)value);
+                Interop.FlexLayout.SetFlexAlignment(swigCPtr, (int)value);
                 RequestLayout();
             }
         }
@@ -461,7 +462,7 @@ namespace Tizen.NUI
                 if (value < AlignmentType.Auto || value > AlignmentType.Stretch)
                     throw new InvalidEnumArgumentException(nameof(ItemsAlignment));
 
-                Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)value);
+                Interop.FlexLayout.SetFlexItemsAlignment(swigCPtr, (int)value);
                 RequestLayout();
             }
         }
@@ -618,7 +619,7 @@ namespace Tizen.NUI
         void InsertChild(LayoutItem child)
         {
             // Store created node for child
-            IntPtr childPtr = Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
+            IntPtr childPtr = Interop.FlexLayout.AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
             HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
             SetAttachedValue(child.Owner, FlexItemProperty, childHandleRef);
         }
@@ -648,7 +649,7 @@ namespace Tizen.NUI
         {
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
             // FlexLayout refers to the child as a View not LayoutItem.
-            Interop.FlexLayout.FlexLayout_RemoveChild(swigCPtr, child);
+            Interop.FlexLayout.RemoveChild(swigCPtr, child);
         }
 
         /// <summary>
@@ -662,7 +663,7 @@ namespace Tizen.NUI
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
             Extents padding = Owner.Padding;
 
-            Interop.FlexLayout.FlexLayout_SetPadding(swigCPtr, Extents.getCPtr(padding));
+            Interop.FlexLayout.SetPadding(swigCPtr, Extents.getCPtr(padding));
 
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
             float height = FlexUndefined; // Behaves as WrapContent (Flex Auto)
@@ -702,20 +703,20 @@ namespace Tizen.NUI
                 float flexGrow = GetFlexGrow(Child);
                 Extents childMargin = Child.ExcludeLayouting ? zeroMargin : layoutItem.Margin;
 
-                Interop.FlexLayout.FlexLayout_SetMargin(childHandleRef, Extents.getCPtr(childMargin));
-                Interop.FlexLayout.FlexLayout_SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
-                Interop.FlexLayout.FlexLayout_SetFlexPositionType(childHandleRef, (int)positionType);
-                Interop.FlexLayout.FlexLayout_SetFlexAspectRatio(childHandleRef, flexAspectRatio);
-                Interop.FlexLayout.FlexLayout_SetFlexBasis(childHandleRef, flexBasis);
-                Interop.FlexLayout.FlexLayout_SetFlexShrink(childHandleRef, flexShrink);
-                Interop.FlexLayout.FlexLayout_SetFlexGrow(childHandleRef, flexGrow);
+                Interop.FlexLayout.SetMargin(childHandleRef, Extents.getCPtr(childMargin));
+                Interop.FlexLayout.SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
+                Interop.FlexLayout.SetFlexPositionType(childHandleRef, (int)positionType);
+                Interop.FlexLayout.SetFlexAspectRatio(childHandleRef, flexAspectRatio);
+                Interop.FlexLayout.SetFlexBasis(childHandleRef, flexBasis);
+                Interop.FlexLayout.SetFlexShrink(childHandleRef, flexShrink);
+                Interop.FlexLayout.SetFlexGrow(childHandleRef, flexGrow);
             }
 
-            Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width, height, isLayoutRtl);
+            Interop.FlexLayout.CalculateLayout(swigCPtr, width, height, isLayoutRtl);
             zeroMargin.Dispose();
 
-            LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr));
-            LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr));
+            LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.GetWidth(swigCPtr));
+            LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.GetHeight(swigCPtr));
 
             Debug.WriteLineIf(LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
                                                 + " height:" + flexLayoutHeight.AsRoundedValue());
@@ -741,7 +742,7 @@ namespace Tizen.NUI
             LayoutLength height = bottom - top;
 
             // Call to FlexLayout implementation to calculate layout values for later retrieval.
-            Interop.FlexLayout.FlexLayout_CalculateLayout(swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl);
+            Interop.FlexLayout.CalculateLayout(swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl);
 
             for (int childIndex = 0; childIndex < LayoutChildren.Count; childIndex++)
             {
@@ -749,7 +750,7 @@ namespace Tizen.NUI
                 if (!childLayout?.Owner?.ExcludeLayouting ?? false)
                 {
                     // Get the frame for the child, start, top, end, bottom.
-                    Vector4 frame = new Vector4(Interop.FlexLayout.FlexLayout_GetNodeFrame(swigCPtr, childIndex), true);
+                    Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
                     childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                 }
             }

@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Size2D() : this(Interop.Vector2.new_Vector2__SWIG_0(), true)
+        public Size2D() : this(Interop.Vector2.NewVector2(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -62,7 +62,7 @@ namespace Tizen.NUI
         /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Size2D(int width, int height) : this(Interop.Vector2.new_Vector2__SWIG_1((float)width, (float)height), true)
+        public Size2D(int width, int height) : this(Interop.Vector2.NewVector2((float)width, (float)height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -90,15 +90,15 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor");
 
-                Interop.Vector2.Vector2_Width_set(swigCPtr, (float)value);
+                Interop.Vector2.WidthSet(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(value, null);
             }
             get
             {
-                float ret = Interop.Vector2.Vector2_Width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector2.WidthGet(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (int)ret;
             }
         }
@@ -124,15 +124,15 @@ namespace Tizen.NUI
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size2D(...) constructor");
 
-                Interop.Vector2.Vector2_Height_set(swigCPtr, (float)value);
+                Interop.Vector2.HeightSet(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(null, value);
             }
             get
             {
-                float ret = Interop.Vector2.Vector2_Height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Vector2.HeightGet(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (int)ret;
             }
         }
@@ -305,7 +305,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(Size2D rhs)
         {
-            bool ret = Interop.Vector2.Vector2_EqualTo(swigCPtr, Size2D.getCPtr(rhs));
+            bool ret = Interop.Vector2.EqualTo(swigCPtr, Size2D.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -319,7 +319,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(Size2D rhs)
         {
-            bool ret = Interop.Vector2.Vector2_NotEqualTo(swigCPtr, Size2D.getCPtr(rhs));
+            bool ret = Interop.Vector2.NotEqualTo(swigCPtr, Size2D.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -345,7 +345,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Size2D(Size2DChangedCallback cb, int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
+        internal Size2D(Size2DChangedCallback cb, int x, int y) : this(Interop.Vector2.NewVector2((float)x, (float)y), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -359,61 +359,61 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Vector2.delete_Vector2(swigCPtr);
+            Interop.Vector2.DeleteVector2(swigCPtr);
         }
 
         private Size2D Add(Size2D rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Add(swigCPtr, Size2D.getCPtr(rhs)), true);
+            Size2D ret = new Size2D(Interop.Vector2.Add(swigCPtr, Size2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Subtract(Size2D rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Subtract__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            Size2D ret = new Size2D(Interop.Vector2.Subtract(swigCPtr, Size2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Multiply(Size2D rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Multiply__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            Size2D ret = new Size2D(Interop.Vector2.Multiply(swigCPtr, Size2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Multiply(int rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Multiply__SWIG_1(swigCPtr, (float)rhs), true);
+            Size2D ret = new Size2D(Interop.Vector2.Multiply(swigCPtr, (float)rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Divide(Size2D rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Divide__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            Size2D ret = new Size2D(Interop.Vector2.Divide(swigCPtr, Size2D.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Divide(int rhs)
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Divide__SWIG_1(swigCPtr, (float)rhs), true);
+            Size2D ret = new Size2D(Interop.Vector2.Divide(swigCPtr, (float)rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Size2D Subtract()
         {
-            Size2D ret = new Size2D(Interop.Vector2.Vector2_Subtract__SWIG_1(swigCPtr), true);
+            Size2D ret = new Size2D(Interop.Vector2.Subtract(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private int ValueOfIndex(uint index)
         {
-            int ret = (int)Interop.Vector2.Vector2_ValueOfIndex__SWIG_0(swigCPtr, index);
+            int ret = (int)Interop.Vector2.ValueOfIndex(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

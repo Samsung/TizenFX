@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TouchPointContainer.delete_TouchPointContainer(swigCPtr);
+            Interop.TouchPointContainer.DeleteTouchPointContainer(swigCPtr);
         }
 
         public TouchPointContainer(global::System.Collections.ICollection c) : this()
@@ -232,80 +232,80 @@ namespace Tizen.NUI
 
         public void Clear()
         {
-            Interop.TouchPointContainer.TouchPointContainer_Clear(swigCPtr);
+            Interop.TouchPointContainer.Clear(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Add(TouchPoint x)
         {
-            Interop.TouchPointContainer.TouchPointContainer_Add(swigCPtr, TouchPoint.getCPtr(x));
+            Interop.TouchPointContainer.Add(swigCPtr, TouchPoint.getCPtr(x));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private uint size()
         {
-            uint ret = Interop.TouchPointContainer.TouchPointContainer_size(swigCPtr);
+            uint ret = Interop.TouchPointContainer.size(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private uint capacity()
         {
-            uint ret = Interop.TouchPointContainer.TouchPointContainer_capacity(swigCPtr);
+            uint ret = Interop.TouchPointContainer.capacity(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void reserve(uint n)
         {
-            Interop.TouchPointContainer.TouchPointContainer_reserve(swigCPtr, n);
+            Interop.TouchPointContainer.reserve(swigCPtr, n);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TouchPointContainer() : this(Interop.TouchPointContainer.new_TouchPointContainer__SWIG_0(), true)
+        public TouchPointContainer() : this(Interop.TouchPointContainer.NewTouchPointContainer(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TouchPointContainer(TouchPointContainer other) : this(Interop.TouchPointContainer.new_TouchPointContainer__SWIG_1(TouchPointContainer.getCPtr(other)), true)
+        public TouchPointContainer(TouchPointContainer other) : this(Interop.TouchPointContainer.NewTouchPointContainer(TouchPointContainer.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TouchPointContainer(int capacity) : this(Interop.TouchPointContainer.new_TouchPointContainer__SWIG_2(capacity), true)
+        public TouchPointContainer(int capacity) : this(Interop.TouchPointContainer.NewTouchPointContainer(capacity), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private TouchPoint getitemcopy(int index)
         {
-            TouchPoint ret = new TouchPoint(Interop.TouchPointContainer.TouchPointContainer_getitemcopy(swigCPtr, index), true);
+            TouchPoint ret = new TouchPoint(Interop.TouchPointContainer.getitemcopy(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private TouchPoint getitem(int index)
         {
-            TouchPoint ret = new TouchPoint(Interop.TouchPointContainer.TouchPointContainer_getitem(swigCPtr, index), false);
+            TouchPoint ret = new TouchPoint(Interop.TouchPointContainer.getitem(swigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void setitem(int index, TouchPoint val)
         {
-            Interop.TouchPointContainer.TouchPointContainer_setitem(swigCPtr, index, TouchPoint.getCPtr(val));
+            Interop.TouchPointContainer.setitem(swigCPtr, index, TouchPoint.getCPtr(val));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AddRange(TouchPointContainer values)
         {
-            Interop.TouchPointContainer.TouchPointContainer_AddRange(swigCPtr, TouchPointContainer.getCPtr(values));
+            Interop.TouchPointContainer.AddRange(swigCPtr, TouchPointContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public TouchPointContainer GetRange(int index, int count)
         {
-            global::System.IntPtr cPtr = Interop.TouchPointContainer.TouchPointContainer_GetRange(swigCPtr, index, count);
+            global::System.IntPtr cPtr = Interop.TouchPointContainer.GetRange(swigCPtr, index, count);
             TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -313,31 +313,31 @@ namespace Tizen.NUI
 
         public void Insert(int index, TouchPoint x)
         {
-            Interop.TouchPointContainer.TouchPointContainer_Insert(swigCPtr, index, TouchPoint.getCPtr(x));
+            Interop.TouchPointContainer.Insert(swigCPtr, index, TouchPoint.getCPtr(x));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void InsertRange(int index, TouchPointContainer values)
         {
-            Interop.TouchPointContainer.TouchPointContainer_InsertRange(swigCPtr, index, TouchPointContainer.getCPtr(values));
+            Interop.TouchPointContainer.InsertRange(swigCPtr, index, TouchPointContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveAt(int index)
         {
-            Interop.TouchPointContainer.TouchPointContainer_RemoveAt(swigCPtr, index);
+            Interop.TouchPointContainer.RemoveAt(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveRange(int index, int count)
         {
-            Interop.TouchPointContainer.TouchPointContainer_RemoveRange(swigCPtr, index, count);
+            Interop.TouchPointContainer.RemoveRange(swigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static TouchPointContainer Repeat(TouchPoint value, int count)
         {
-            global::System.IntPtr cPtr = Interop.TouchPointContainer.TouchPointContainer_Repeat(TouchPoint.getCPtr(value), count);
+            global::System.IntPtr cPtr = Interop.TouchPointContainer.Repeat(TouchPoint.getCPtr(value), count);
             TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -345,19 +345,19 @@ namespace Tizen.NUI
 
         public void Reverse()
         {
-            Interop.TouchPointContainer.TouchPointContainer_Reverse__SWIG_0(swigCPtr);
+            Interop.TouchPointContainer.Reverse(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reverse(int index, int count)
         {
-            Interop.TouchPointContainer.TouchPointContainer_Reverse__SWIG_1(swigCPtr, index, count);
+            Interop.TouchPointContainer.Reverse(swigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetRange(int index, TouchPointContainer values)
         {
-            Interop.TouchPointContainer.TouchPointContainer_SetRange(swigCPtr, index, TouchPointContainer.getCPtr(values));
+            Interop.TouchPointContainer.SetRange(swigCPtr, index, TouchPointContainer.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

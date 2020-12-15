@@ -9,7 +9,7 @@ namespace Tizen.NUI
         internal static partial class WindowInternal
         {
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
-            public static extern IntPtr Window_GetNativeHandle(HandleRef jarg1);
+            public static extern IntPtr WindowGetNativeHandle(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFrameRenderedCallback")]
             public static extern void AddFrameRenderedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);

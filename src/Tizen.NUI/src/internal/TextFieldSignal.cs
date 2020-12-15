@@ -29,20 +29,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TextField.delete_TextFieldSignal(swigCPtr);
+            Interop.TextField.DeleteTextFieldSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.TextField.TextFieldSignal_Empty(swigCPtr);
+            bool ret = Interop.TextField.TextFieldSignalEmpty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.TextField.TextFieldSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.TextField.TextFieldSignalGetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TextField.TextFieldSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TextField.TextFieldSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -60,18 +60,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TextField.TextFieldSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TextField.TextFieldSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(TextField arg)
         {
-            Interop.TextField.TextFieldSignal_Emit(swigCPtr, TextField.getCPtr(arg));
+            Interop.TextField.TextFieldSignalEmit(swigCPtr, TextField.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TextFieldSignal() : this(Interop.TextField.new_TextFieldSignal(), true)
+        public TextFieldSignal() : this(Interop.TextField.NewTextFieldSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

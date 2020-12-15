@@ -69,7 +69,7 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API8, will be removed in API10. This is not used anymore, please do not use.")]
         public void FeedWheelEvent(Wheel wheelEvent)
         {
-            Interop.Adaptor.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
+            Interop.Adaptor.FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -81,13 +81,13 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API8, will be removed in API10. This is not used anymore, please do not use.")]
         public void FeedKeyEvent(Key keyEvent)
         {
-            Interop.Adaptor.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
+            Interop.Adaptor.FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static Adaptor Get()
         {
-            Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_Get(), false);
+            Adaptor ret = new Adaptor(Interop.Adaptor.Get(), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         ///</remarks>
         internal void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
-            Interop.Adaptor.Adaptor_SetRenderRefreshRate(swigCPtr, numberOfVSyncsPerRender);
+            Interop.Adaptor.SetRenderRefreshRate(swigCPtr, numberOfVSyncsPerRender);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Adaptor.delete_Adaptor(swigCPtr);
+            Interop.Adaptor.DeleteAdaptor(swigCPtr);
         }
 
     }
