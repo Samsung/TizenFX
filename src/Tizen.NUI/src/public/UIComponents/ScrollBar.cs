@@ -289,17 +289,21 @@ namespace Tizen.NUI.UIComponents
                 if (_scrollBarPanFinishedEventHandler == null)
                 {
                     _scrollBarPanFinishedEventCallbackDelegate = (OnScrollBarPanFinished);
-                    PanFinishedSignal().Connect(_scrollBarPanFinishedEventCallbackDelegate);
+                    VoidSignal panFinished = PanFinishedSignal();
+                    panFinished?.Connect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Dispose();
                 }
                 _scrollBarPanFinishedEventHandler += value;
             }
             remove
             {
                 _scrollBarPanFinishedEventHandler -= value;
-                if (_scrollBarPanFinishedEventHandler == null && PanFinishedSignal().Empty() == false)
+                VoidSignal panFinished = PanFinishedSignal();
+                if (_scrollBarPanFinishedEventHandler == null && panFinished.Empty() == false)
                 {
-                    PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
                 }
+                panFinished?.Dispose();
             }
         }
 
@@ -318,17 +322,21 @@ namespace Tizen.NUI.UIComponents
                 if (_scrollBarScrollPositionIntervalReachedEventHandler == null)
                 {
                     _scrollBarScrollPositionIntervalReachedEventCallbackDelegate = (OnScrollBarScrollPositionIntervalReached);
-                    ScrollPositionIntervalReachedSignal().Connect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                    scrollPositionIntervalReached?.Connect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Dispose();
                 }
                 _scrollBarScrollPositionIntervalReachedEventHandler += value;
             }
             remove
             {
                 _scrollBarScrollPositionIntervalReachedEventHandler -= value;
-                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && ScrollPositionIntervalReachedSignal().Empty() == false)
+                FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                if (_scrollBarScrollPositionIntervalReachedEventHandler == null && scrollPositionIntervalReached.Empty() == false)
                 {
-                    ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
                 }
+                scrollPositionIntervalReached?.Dispose();
             }
         }
 
@@ -705,12 +713,16 @@ namespace Tizen.NUI.UIComponents
             {
                 if (_scrollBarScrollPositionIntervalReachedEventCallbackDelegate != null)
                 {
-                    ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    FloatSignal scrollPositionIntervalReached = ScrollPositionIntervalReachedSignal();
+                    scrollPositionIntervalReached?.Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+                    scrollPositionIntervalReached?.Dispose();
                 }
 
                 if (_scrollBarPanFinishedEventCallbackDelegate != null)
                 {
-                    PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    VoidSignal panFinished = PanFinishedSignal();
+                    panFinished?.Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+                    panFinished?.Dispose();
                 }
             }
 
