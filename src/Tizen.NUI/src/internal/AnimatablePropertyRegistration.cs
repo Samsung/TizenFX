@@ -27,15 +27,15 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.NDalic.delete_AnimatablePropertyRegistration(swigCPtr);
+            Interop.NDalic.DeleteAnimatablePropertyRegistration(swigCPtr);
         }
 
-        public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(Interop.NDalic.new_AnimatablePropertyRegistration__SWIG_0(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
+        public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(Interop.NDalic.NewAnimatablePropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyValue value) : this(Interop.NDalic.new_AnimatablePropertyRegistration__SWIG_1(TypeRegistration.getCPtr(registered), name, index, PropertyValue.getCPtr(value)), true)
+        public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyValue value) : this(Interop.NDalic.NewAnimatablePropertyRegistration(TypeRegistration.getCPtr(registered), name, index, PropertyValue.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

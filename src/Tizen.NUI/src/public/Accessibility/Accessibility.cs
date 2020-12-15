@@ -19,6 +19,7 @@ using global::System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Diagnostics.CodeAnalysis;
 #if (NUI_DEBUG_ON)
 using tlog = Tizen.Log;
 #endif
@@ -29,8 +30,9 @@ namespace Tizen.NUI.Accessibility
     /// Accessibility provides Dali-ATSPI interface which has funtionality of Screen-Reader and general accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility
+    public class Accessibility : IDisposable
     {
         #region Constructor, Distructor, Dispose
         private Accessibility()
@@ -88,7 +90,7 @@ namespace Tizen.NUI.Accessibility
                 callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
-            bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
+            bool ret = Interop.Accessibility.Say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -101,7 +103,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void PauseResume(bool pause)
         {
-            Interop.Accessibility.accessibility_pause_resume(View.getCPtr(dummy), pause);
+            Interop.Accessibility.PauseResume(View.getCPtr(dummy), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         #endregion Method
@@ -182,7 +184,7 @@ namespace Tizen.NUI.Accessibility
         #region Internal
         internal void PauseResume(View target, bool pause)
         {
-            Interop.Accessibility.accessibility_pause_resume(View.getCPtr(target), pause);
+            Interop.Accessibility.PauseResume(View.getCPtr(target), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -194,7 +196,7 @@ namespace Tizen.NUI.Accessibility
                 callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
-            bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
+            bool ret = Interop.Accessibility.Say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -221,5 +223,21 @@ namespace Tizen.NUI.Accessibility
 
         private static string tag = "NUITEST";
         #endregion Private
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                dummy?.Dispose();
+            }
+            // Free native resources.
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

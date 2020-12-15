@@ -82,7 +82,6 @@ namespace Tizen.NUI
             }
 
             LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
         }
 
         /// <summary>
@@ -105,7 +104,6 @@ namespace Tizen.NUI
             XamlResources.SetAndLoadSource(new Uri(themeResource), themeResource, Assembly.GetAssembly(GetType()), null);
 
             LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
         }
 
         /// <summary>
@@ -273,7 +271,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Merge(string xamlFile)
         {
-            Merge(new Theme(xamlFile));
+            MergeWithoutClone(new Theme(xamlFile));
         }
 
         /// <summary>Merge other Theme into this.</summary>
@@ -286,6 +284,8 @@ namespace Tizen.NUI
 
             this.xamlFile = theme.xamlFile;
 
+            if (Id == null) Id = theme.Id;
+
             foreach (var item in theme)
             {
                 if (item.Value == null)
@@ -294,11 +294,35 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].Merge(theme.GetStyle(item.Key));
+                    map[item.Key].Merge(item.Value);
                 }
                 else
                 {
-                    map[item.Key] = theme.GetStyle(item.Key).Clone();
+                    map[item.Key] = item.Value.Clone();
+                }
+            }
+        }
+
+        internal void MergeWithoutClone(Theme theme)
+        {
+            if (theme == null)
+                throw new ArgumentNullException(nameof(theme));
+
+            if (Id == null) Id = theme.Id;
+
+            foreach (var item in theme)
+            {
+                if (item.Value == null)
+                {
+                    map[item.Key] = null;
+                }
+                else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
+                {
+                    map[item.Key].Merge(item.Value);
+                }
+                else
+                {
+                    map[item.Key] = item.Value;
                 }
             }
         }
@@ -329,6 +353,7 @@ namespace Tizen.NUI
             {
                 using (var reader = XmlReader.Create(xamlFile))
                 {
+                    this.xamlFile = xamlFile;
                     XamlLoader.Load(this, reader);
                 }
             }

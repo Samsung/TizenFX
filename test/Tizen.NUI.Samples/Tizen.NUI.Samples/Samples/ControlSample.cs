@@ -35,10 +35,17 @@ namespace Tizen.NUI.Samples
                     Color = new Color(0.2f, 0.2f, 0.2f, 0.3f),
                     Offset = new Vector2(5, 5),
                 },
-                CornerRadius = 26f,
+                CornerRadius = 0.5f,
+                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
             };
 
             root.Add(control);
+
+            var animation = new Animation(2000);
+            animation.AnimateTo(control, "SizeWidth", 200, 0, 1000);
+            animation.AnimateTo(control, "SizeWidth", 100, 1000, 2000);
+            animation.Looping = true;
+            animation.Play();
         }
 
         public void Deactivate()

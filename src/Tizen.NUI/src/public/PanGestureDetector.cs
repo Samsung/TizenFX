@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PanGestureDetector() : this(Interop.PanGestureDetector.PanGestureDetector_New(), true)
+        public PanGestureDetector() : this(Interop.PanGestureDetector.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PanGestureDetector(PanGestureDetector handle) : this(Interop.PanGestureDetector.new_PanGestureDetector__SWIG_1(PanGestureDetector.getCPtr(handle)), true)
+        public PanGestureDetector(PanGestureDetector handle) : this(Interop.PanGestureDetector.NewPanGestureDetector(PanGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.PanGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -97,9 +97,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_LEFT_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionLeftGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -113,9 +113,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_RIGHT_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionRightGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -129,9 +129,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_UP_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionUpGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -145,9 +145,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_DOWN_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionDownGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -161,9 +161,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_HORIZONTAL_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionHorizontalGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -177,9 +177,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DIRECTION_VERTICAL_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionVerticalGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -193,9 +193,9 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDetector_DEFAULT_THRESHOLD_get();
+                global::System.IntPtr cPtr = Interop.PanGestureDetector.DefaultThresholdGet();
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -210,7 +210,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_POSITION).Get(temp);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return temp;
             }
         }
@@ -225,7 +225,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_DISPLACEMENT).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.ScreenDisplacement).Get(temp);
                 return temp;
             }
         }
@@ -240,7 +240,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.SCREEN_VELOCITY).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.ScreenVelocity).Get(temp);
                 return temp;
             }
         }
@@ -255,7 +255,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_POSITION).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LocalPosition).Get(temp);
                 return temp;
             }
         }
@@ -270,7 +270,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_DISPLACEMENT).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LocalDisplacement).Get(temp);
                 return temp;
             }
         }
@@ -285,7 +285,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LOCAL_VELOCITY).Get(temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.LocalVelocity).Get(temp);
                 return temp;
             }
         }
@@ -313,7 +313,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumTouchesRequired(uint minimum)
         {
-            Interop.PanGestureDetector.PanGestureDetector_SetMinimumTouchesRequired(swigCPtr, minimum);
+            Interop.PanGestureDetector.SetMinimumTouchesRequired(swigCPtr, minimum);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -325,7 +325,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaximumTouchesRequired(uint maximum)
         {
-            Interop.PanGestureDetector.PanGestureDetector_SetMaximumTouchesRequired(swigCPtr, maximum);
+            Interop.PanGestureDetector.SetMaximumTouchesRequired(swigCPtr, maximum);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -337,7 +337,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMinimumTouchesRequired()
         {
-            uint ret = Interop.PanGestureDetector.PanGestureDetector_GetMinimumTouchesRequired(swigCPtr);
+            uint ret = Interop.PanGestureDetector.GetMinimumTouchesRequired(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -350,7 +350,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMaximumTouchesRequired()
         {
-            uint ret = Interop.PanGestureDetector.PanGestureDetector_GetMaximumTouchesRequired(swigCPtr);
+            uint ret = Interop.PanGestureDetector.GetMaximumTouchesRequired(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -367,7 +367,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAngle(Radian angle, Radian threshold)
         {
-            Interop.PanGestureDetector.PanGestureDetector_AddAngle__SWIG_0(swigCPtr, Radian.getCPtr(angle), Radian.getCPtr(threshold));
+            Interop.PanGestureDetector.AddAngle(swigCPtr, Radian.getCPtr(angle), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -381,7 +381,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAngle(Radian angle)
         {
-            Interop.PanGestureDetector.PanGestureDetector_AddAngle__SWIG_1(swigCPtr, Radian.getCPtr(angle));
+            Interop.PanGestureDetector.AddAngle(swigCPtr, Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -395,7 +395,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDirection(Radian direction, Radian threshold)
         {
-            Interop.PanGestureDetector.PanGestureDetector_AddDirection__SWIG_0(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
+            Interop.PanGestureDetector.AddDirection(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -409,7 +409,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddDirection(Radian direction)
         {
-            Interop.PanGestureDetector.PanGestureDetector_AddDirection__SWIG_1(swigCPtr, Radian.getCPtr(direction));
+            Interop.PanGestureDetector.AddDirection(swigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -421,7 +421,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetAngleCount()
         {
-            uint ret = Interop.PanGestureDetector.PanGestureDetector_GetAngleCount(swigCPtr);
+            uint ret = Interop.PanGestureDetector.GetAngleCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -433,7 +433,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearAngles()
         {
-            Interop.PanGestureDetector.PanGestureDetector_ClearAngles(swigCPtr);
+            Interop.PanGestureDetector.ClearAngles(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -445,7 +445,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAngle(Radian angle)
         {
-            Interop.PanGestureDetector.PanGestureDetector_RemoveAngle(swigCPtr, Radian.getCPtr(angle));
+            Interop.PanGestureDetector.RemoveAngle(swigCPtr, Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -457,7 +457,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveDirection(Radian direction)
         {
-            Interop.PanGestureDetector.PanGestureDetector_RemoveDirection(swigCPtr, Radian.getCPtr(direction));
+            Interop.PanGestureDetector.RemoveDirection(swigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -469,7 +469,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetPanGestureProperties(PanGesture pan)
         {
-            Interop.PanGestureDetector.PanGestureDetector_SetPanGestureProperties(PanGesture.getCPtr(pan));
+            Interop.PanGestureDetector.SetPanGestureProperties(PanGesture.getCPtr(pan));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -494,21 +494,21 @@ namespace Tizen.NUI
 
         internal AngleThresholdPair GetAngle(uint index)
         {
-            AngleThresholdPair ret = new AngleThresholdPair(Interop.PanGestureDetector.PanGestureDetector_GetAngle(swigCPtr, index), true);
+            AngleThresholdPair ret = new AngleThresholdPair(Interop.PanGestureDetector.GetAngle(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PanGestureDetector Assign(PanGestureDetector rhs)
         {
-            PanGestureDetector ret = new PanGestureDetector(Interop.PanGestureDetector.PanGestureDetector_Assign(swigCPtr, PanGestureDetector.getCPtr(rhs)), false);
+            PanGestureDetector ret = new PanGestureDetector(Interop.PanGestureDetector.Assign(swigCPtr, PanGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PanGestureDetectedSignal DetectedSignal()
         {
-            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(Interop.PanGestureDetector.PanGestureDetector_DetectedSignal(swigCPtr), false);
+            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -522,7 +522,7 @@ namespace Tizen.NUI
                 DetectedSignal().Disconnect(_detectedCallback);
             }
 
-            Interop.PanGestureDetector.delete_PanGestureDetector(swigCPtr);
+            Interop.PanGestureDetector.DeletePanGestureDetector(swigCPtr);
         }
 
         private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
@@ -594,13 +594,13 @@ namespace Tizen.NUI
 
         internal class Property
         {
-            internal static readonly int SCREEN_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_POSITION_get();
-            internal static readonly int SCREEN_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
-            internal static readonly int SCREEN_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_VELOCITY_get();
-            internal static readonly int LOCAL_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_POSITION_get();
-            internal static readonly int LOCAL_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
-            internal static readonly int LOCAL_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_VELOCITY_get();
-            internal static readonly int PANNING = Interop.PanGestureDetector.PanGestureDetector_Property_PANNING_get();
+            internal static readonly int ScreenPosition = Interop.PanGestureDetector.ScreenPositionGet();
+            internal static readonly int ScreenDisplacement = Interop.PanGestureDetector.ScreenDisplacementGet();
+            internal static readonly int ScreenVelocity = Interop.PanGestureDetector.ScreenVelocityGet();
+            internal static readonly int LocalPosition = Interop.PanGestureDetector.LocalPositionGet();
+            internal static readonly int LocalDisplacement = Interop.PanGestureDetector.LocalDisplacementGet();
+            internal static readonly int LocalVelocity = Interop.PanGestureDetector.LocalVelocityGet();
+            internal static readonly int PANNING = Interop.PanGestureDetector.PanningGet();
         }
     }
 }

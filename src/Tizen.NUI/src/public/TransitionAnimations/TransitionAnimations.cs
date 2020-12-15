@@ -3,60 +3,157 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
+    /// Data of animation data for transition
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TransitionAnimationData
+    {
+        /// <summary>
+        /// start time of animation
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int StartTime { get; set; }
+
+        /// <summary>
+        /// end time of animation
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int EndTime { get; set; }
+
+        /// <summary>
+        /// property of animation
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Property { get; set; }
+
+        /// <summary>
+        /// destination value of animation
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string DestinationValue { get; set; }
+    }
+
+    /// <summary>
     /// Transition animation effect
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TransitionAnimation : Animation
+    public class TransitionAnimation : IDisposable
     {
+        private ImageViewStyle defaultImageStyle;
+        private List<TransitionAnimationData> animationDataList;
+        
+
         /// <summary>
         /// Create an instance of Transition.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TransitionAnimation(int durationMilliSeconds) : base(durationMilliSeconds)
+        public TransitionAnimation(int durationMilliSeconds)
         {
-
+            DurationMilliSeconds = durationMilliSeconds;
+            if (animationDataList == null)
+            {
+                animationDataList = new List<TransitionAnimationData>();
+            }
         }
 
         /// <summary>
-        /// Return default size of main view.
+        /// total time of animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Size GetDefaultSize()
+        public int DurationMilliSeconds { get; set; }
+
+        /// <summary>
+        /// Default style of animate image view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<TransitionAnimationData> AnimationDataList
         {
-            return new Size(0, 0);
+            get
+            {
+                return animationDataList;
+            }
+        }
+
+
+        /// <summary>
+        /// Add data of transition animation
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddAnimationData(TransitionAnimationData data)
+        {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            animationDataList?.Add(data);
         }
 
         /// <summary>
-        /// Return default position of main view.
+        /// Remove data of transition animation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Position GetDefaultPosition()
+        public void RemoveAnimationData(TransitionAnimationData data)
         {
-            return new Position(0, 0);
+            animationDataList?.Remove(data);
         }
 
         /// <summary>
-        /// Return default position of main view.
+        /// Clear data list of transition animation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Position GetDefaultParentOrigin()
+        public void ClearAnimationData()
         {
-            return ParentOrigin.Center;
+            animationDataList?.Clear();
         }
 
         /// <summary>
-        /// Return default position of main view.
+        /// Setting default style of ImageView
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual Position GetDefaultPivotPoint()
+        public ImageViewStyle DefaultImageStyle
         {
-            return PivotPoint.Center;
+            get
+            {
+                if (defaultImageStyle == null)
+                {
+                    defaultImageStyle = new ImageViewStyle();
+                    defaultImageStyle.Size = new Size(0, 0);
+                    defaultImageStyle.Position = new Position(0, 0);
+                    defaultImageStyle.ParentOrigin = ParentOrigin.Center;
+                    defaultImageStyle.PivotPoint = PivotPoint.Center;
+                    defaultImageStyle.PositionUsesPivotPoint = true;
+                }
+                return defaultImageStyle;
+            }
+            set
+            {
+                defaultImageStyle = value;
+            }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                defaultImageStyle?.Dispose();
+            }
+            // Free native resources.
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 
     /// <summary>
@@ -73,38 +170,18 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SlideIn(int durationMilliSeconds) : base(durationMilliSeconds)
         {
-            Properties = new string[1];
-            DestValue = new string[1];
-            StartTime = new int[1];
-            EndTime = new int[1];
-
-            StartTime[0] = 0;
-            EndTime[0] = durationMilliSeconds;
-
-            Properties[0] = "PositionX";
-            DestValue[0] = "0";
-
             defaultInitValue = -Window.Instance.GetWindowSize().Width;
-        }
 
-        /// <summary>
-        /// Return default position of main view.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position GetDefaultPosition()
-        {
-            return new Position(defaultInitValue, 0);
-        }
+            DefaultImageStyle.Position = new Position(defaultInitValue, 0);
+            DefaultImageStyle.Size = Window.Instance.GetWindowSize();
 
-        /// <summary>
-        /// Return default size of main view.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size GetDefaultSize()
-        {
-            return Window.Instance.GetWindowSize();
+            TransitionAnimationData data = new TransitionAnimationData();
+            data.StartTime = 0;
+            data.EndTime = durationMilliSeconds;
+            data.Property = "PositionX";
+            data.DestinationValue = "0";
+            AddAnimationData(data);
         }
-
     }
 
 
@@ -122,37 +199,17 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SlideOut(int durationMilliSeconds) : base(durationMilliSeconds)
         {
-            Properties = new string[1];
-            DestValue = new string[1];
-            StartTime = new int[1];
-            EndTime = new int[1];
-
-            StartTime[0] = 0;
-            EndTime[0] = durationMilliSeconds;
-
-            Properties[0] = "PositionX";
-
-            DestValue[0] = Window.Instance.GetWindowSize().Width.ToString();
-
             defaultInitValue = 0;
-        }
 
-        /// <summary>
-        /// Return default position of main view.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position GetDefaultPosition()
-        {
-            return new Position(defaultInitValue, 0);
-        }
+            DefaultImageStyle.Position = new Position(defaultInitValue, 0);
+            DefaultImageStyle.Size = Window.Instance.GetWindowSize();
 
-        /// <summary>
-        /// Return default size of main view.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size GetDefaultSize()
-        {
-            return Window.Instance.GetWindowSize();
+            TransitionAnimationData data = new TransitionAnimationData();
+            data.StartTime = 0;
+            data.EndTime = durationMilliSeconds;
+            data.Property = "PositionX";
+            data.DestinationValue = Window.Instance.GetWindowSize().Width.ToString();
+            AddAnimationData(data);
         }
     }
 }

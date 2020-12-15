@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  */
-extern alias TizenSystemInformation;
-using TizenSystemInformation.Tizen.System;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+    internal interface IThemeCreator
+    {
+        Theme Create();
+    }
+
     /// <summary>
     /// This static module provides methods that can manage NUI <seealso cref="Theme"/>.
     /// </summary>
@@ -34,17 +37,10 @@ namespace Tizen.NUI
     /// ThemeManager.ApplyTheme(customTheme);
     /// </code>
     /// </example>
+    /// <summary></summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ThemeManager
     {
-        private enum Profile
-        {
-            Common = 0,
-            Mobile = 1,
-            TV = 2,
-            Wearable = 3
-        }
-
         private static readonly string[] nuiThemeProjects =
         {
             "Tizen.NUI",
@@ -52,26 +48,17 @@ namespace Tizen.NUI
             "Tizen.NUI.Wearable"
         };
 
-        /// <summary>
-        /// Table that indicates default theme id by device profile.
-        /// Note that, the fallback of null value is Common value.
-        /// </summary>
-        private static readonly string[] profileDefaultTheme =
-        {
-            /* Common   */ "Tizen.NUI.Theme.Common",
-            /* Mobile   */ "Tizen.NUI.Theme.Common",
-            /* TV       */ null,
-            /* Wearable */ "Tizen.NUI.Theme.Wearable",
-        };
-
         private static Theme currentTheme;
         private static Theme defaultTheme;
-        private static bool isLoadingDefault = false;
-        private static Profile? currentProfile;
         private static readonly List<Theme> builtinThemes = new List<Theme>(); // Themes provided by framework.
-        internal static List<Theme> customThemes = new List<Theme>(); // Themes registered by user.
+        private static readonly List<Theme> customThemes = new List<Theme>(); // Themes registered by user. (Legacy support)
+        private static readonly List<string> packages = new List<string>();
 
-        static ThemeManager() { }
+        static ThemeManager()
+        {
+            defaultTheme = new DefaultThemeCreator().Create();
+            builtinThemes.Add(defaultTheme);
+        }
 
         /// <summary>
         /// An event invoked after the theme has changed by <seealso cref="ApplyTheme(Theme)"/>.
@@ -82,11 +69,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Internal one should be called before calling public ThemeChanged
         /// </summary>
-        internal static event EventHandler<ThemeChangedEventArgs> ThemeChangedInternal;
+        internal static WeakEvent<EventHandler<ThemeChangedEventArgs>> ThemeChangedInternal = new WeakEvent<EventHandler<ThemeChangedEventArgs>>();
 
         internal static Theme CurrentTheme
         {
-            get => currentTheme ?? (currentTheme = DefaultTheme);
+            get => currentTheme;
             set
             {
                 currentTheme = value;
@@ -94,58 +81,16 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The fallback theme that depends on the device profile.
+        /// </summary>
         internal static Theme DefaultTheme
         {
-            get
-            {
-                EnsureDefaultTheme();
-                return defaultTheme;
-            }
+            get => defaultTheme;
             set => defaultTheme = (Theme)value?.Clone();
         }
 
-        internal static bool ThemeApplied => (CurrentTheme.Count > 0 || DefaultTheme.Count > 0);
-
-        private static Profile CurrentProfile
-        {
-            get
-            {
-                if (currentProfile == null)
-                {
-                    currentProfile = Profile.Common;
-                    string profileString = "";
-
-                    try
-                    {
-                        Information.TryGetValue<string>("tizen.org/feature/profile", out profileString);
-                        Tizen.Log.Info("NUI", "Profile for initial theme found : " + profileString);
-                    }
-                    catch
-                    {
-                        // Note
-                        // Do not rethrow exception.
-                        // In some machine, profile may not exits.
-                        Tizen.Log.Info("NUI", "Unknown device profile\n");
-                    }
-                    finally
-                    {
-                        if (string.Equals(profileString, "mobile"))
-                        {
-                            currentProfile = Profile.Mobile;
-                        }
-                        else if (string.Equals(profileString, "tv"))
-                        {
-                            currentProfile = Profile.TV;
-                        }
-                        else if (string.Equals(profileString, "wearable"))
-                        {
-                            currentProfile = Profile.Wearable;
-                        }
-                    }
-                }
-                return (Profile)currentProfile;
-            }
-        }
+        internal static bool ThemeApplied => DefaultTheme.Count > 0 || (currentTheme != null && currentTheme.Count > 0);
 
         /// <summary>
         /// Set a theme to be used as fallback.
@@ -254,7 +199,7 @@ namespace Tizen.NUI
 
             if (!ThemeApplied) return null;
 
-            return (CurrentTheme.GetStyle(styleName) ?? DefaultTheme.GetStyle(styleName))?.Clone();
+            return (CurrentTheme?.GetStyle(styleName) ?? DefaultTheme.GetStyle(styleName))?.Clone();
         }
 
         /// <summary>
@@ -269,7 +214,7 @@ namespace Tizen.NUI
 
             if (!ThemeApplied) return null;
 
-            return (CurrentTheme.GetStyle(viewType) ?? DefaultTheme.GetStyle(viewType))?.Clone();
+            return (CurrentTheme?.GetStyle(viewType) ?? DefaultTheme.GetStyle(viewType))?.Clone();
         }
 
         /// <summary>
@@ -297,14 +242,15 @@ namespace Tizen.NUI
             return (Theme)result?.Clone();
         }
 
-        internal static void EnsureDefaultTheme()
+        internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
-            if (defaultTheme == null && !isLoadingDefault)
+            string name = themeCreator.GetType().FullName;
+            if (packages.FindIndex(x => string.Equals(x, name)) >= 0)
             {
-                isLoadingDefault = true;
-                defaultTheme = LoadBuiltinTheme(profileDefaultTheme[(int)CurrentProfile]);
-                isLoadingDefault = false;
+                return;
             }
+            packages.Add(name);
+            DefaultTheme.MergeWithoutClone(themeCreator.Create());
         }
 
         private static Theme LoadBuiltinTheme(string id)
@@ -316,35 +262,14 @@ namespace Tizen.NUI
 
             if (string.IsNullOrEmpty(id)) return loaded;
 
-            foreach (var project in nuiThemeProjects)
-            {
-                string path = FrameworkInformation.ResourcePath + "/Theme/" + project + "_" + id + ".xaml";
-
-                if (!File.Exists(path))
-                {
-                    Tizen.Log.Info("NUI", $"\"{path}\" is not found in this profile.\n");
-                    continue;
-                }
-
-                try
-                {
-                    loaded.Merge(path);
-                    loaded.Id = id;
-                    Tizen.Log.Info("NUI", $"Done to load \"{path}\".\n");
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Debug("NUI", $"Could not load \"{path}\"\n");
-                    Tizen.Log.Debug("NUI", "Message: " + e + "\n");
-                }
-            }
+            // TODO
 
             return loaded;
         }
 
         private static void NotifyThemeChanged()
         {
-            ThemeChangedInternal?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
+            ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
             ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(CurrentTheme?.Id));
         }
     }

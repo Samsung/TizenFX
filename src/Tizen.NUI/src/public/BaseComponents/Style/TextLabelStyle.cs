@@ -327,15 +327,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        /// <summary>
-        /// Create an instance and set properties from the given TextLabel.
-        /// </summary>
-        /// <param name="textLabel">The TextLabel instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle(TextLabel textLabel) : base(textLabel)
-        {
-        }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatableText

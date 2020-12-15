@@ -17,6 +17,8 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -179,7 +181,6 @@ namespace Tizen.NUI
             {
                 LayoutVertical(left, top, right, bottom);
             }
-            LayoutForIndependentChild();
         }
 
 
@@ -274,7 +275,7 @@ namespace Tizen.NUI
             float alternativeMaxHeight = 0.0f;
             float weightedMaxHeight = 0.0f;
             float totalWeight = 0.0f;
-            int childrenCount = 0;
+            int childrenCount = IterateLayoutChildren().Count();
 
             // Reset measure variables
             _totalLength = 0.0f;
@@ -288,16 +289,8 @@ namespace Tizen.NUI
             // Weighted children are not measured at this phase.
             // Available space for weighted children will be calculated in the phase 2 based on totalLength value.
             // Max height of children is stored.
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            foreach (LayoutItem childLayout in IterateLayoutChildren())
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout.Owner.ExcludeLayouting)
-                {
-                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
-                    continue;
-                }
-
-                childrenCount++;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
@@ -399,15 +392,8 @@ namespace Tizen.NUI
                 maxHeight = 0;
                 _totalLength = 0;
 
-                int numberOfChildren = LayoutChildren.Count;
-                for (int i = 0; i < numberOfChildren; ++i)
+                foreach (LayoutItem childLayout in IterateLayoutChildren())
                 {
-                    LayoutItem childLayout = LayoutChildren[i];
-                    if (childLayout.Owner.ExcludeLayouting)
-                    {
-                        continue;
-                    }
-
                     float desiredChildHeight = childLayout.Owner.HeightSpecification;
 
                     float childWeight = childLayout.Owner.Weight;
@@ -472,7 +458,7 @@ namespace Tizen.NUI
             float alternativeMaxWidth = 0.0f;
             float weightedMaxWidth = 0.0f;
             float totalWeight = 0.0f;
-            int childrenCount = 0;
+            int childrenCount = IterateLayoutChildren().Count();
 
             // Reset total length
             _totalLength = 0.0f;
@@ -488,15 +474,8 @@ namespace Tizen.NUI
             // to accumulate total used space in _totalLength.
             // Weighted children are not measured in this phase.
             // Available space for weighted children will be calculated in the phase 2 based on _totalLength value.
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            foreach (LayoutItem childLayout in IterateLayoutChildren())
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout.Owner.ExcludeLayouting)
-                {
-                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
-                    continue;
-                }
-
                 childrenCount++;
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -596,15 +575,8 @@ namespace Tizen.NUI
                 maxWidth = 0;
                 _totalLength = 0;
 
-                int numberOfChildren = LayoutChildren.Count;
-                for (int i = 0; i < numberOfChildren; ++i)
+                foreach (LayoutItem childLayout in IterateLayoutChildren())
                 {
-                    LayoutItem childLayout = LayoutChildren[i];
-                    if (childLayout.Owner.ExcludeLayouting)
-                    {
-                        continue;
-                    }
-
                     float desiredChildWidth = childLayout.Owner.WidthSpecification;
 
                     float childWeight = childLayout.Owner.Weight;
@@ -667,7 +639,8 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(height - Padding.Top - Padding.Bottom);
 
-            int count = LayoutChildren.Count;
+            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
+            int count = LinearChildren.Count;
 
             switch (LinearAlignment)
             {
@@ -717,34 +690,29 @@ namespace Tizen.NUI
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = LayoutChildren[childIndex];
-                if (childLayout != null)
-                {
-                    if (!childLayout.Owner.ExcludeLayouting)
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                        Extents childMargin = childLayout.Margin;
+                LayoutItem childLayout = LinearChildren[childIndex];
 
-                        switch (LinearAlignment)
-                        {
-                            case Alignment.Bottom:
-                                childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
-                                break;
-                            case Alignment.CenterVertical:
-                            case Alignment.Center: // FALLTHROUGH
-                                childTop = new LayoutLength(Padding.Top + ((childSpace - childHeight).AsDecimal() / 2.0f) + childMargin.Top - childMargin.Bottom);
-                                break;
-                            case Alignment.Top: // FALLTHROUGH default
-                            default:
-                                childTop = new LayoutLength(Padding.Top + childMargin.Top);
-                                break;
-                        }
-                        childLeft += childMargin.Start;
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                        childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
-                    }
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                Extents childMargin = childLayout.Margin;
+
+                switch (LinearAlignment)
+                {
+                    case Alignment.Bottom:
+                        childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
+                        break;
+                    case Alignment.CenterVertical:
+                    case Alignment.Center: // FALLTHROUGH
+                        childTop = new LayoutLength(Padding.Top + ((childSpace - childHeight).AsDecimal() / 2.0f) + childMargin.Top - childMargin.Bottom);
+                        break;
+                    case Alignment.Top: // FALLTHROUGH default
+                    default:
+                        childTop = new LayoutLength(Padding.Top + childMargin.Top);
+                        break;
                 }
+                childLeft += childMargin.Start;
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
             }
         } // LayoutHorizontally
 
@@ -759,7 +727,8 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(width - Padding.Start - Padding.End);
 
-            int count = LayoutChildren.Count;
+            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
+            int count = LinearChildren.Count;
 
             switch (LinearAlignment)
             {
@@ -781,40 +750,35 @@ namespace Tizen.NUI
 
             for (int i = 0; i < count; i++)
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout != null)
-                {
-                    if (!childLayout.Owner.ExcludeLayouting)
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                        Extents childMargin = childLayout.Margin;
+                LayoutItem childLayout = LinearChildren[i];
 
-                        childTop += childMargin.Top;
-                        switch (LinearAlignment)
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                Extents childMargin = childLayout.Margin;
+
+                childTop += childMargin.Top;
+                switch (LinearAlignment)
+                {
+                    case Alignment.Begin:
+                    default:
                         {
-                            case Alignment.Begin:
-                            default:
-                                {
-                                    childLeft = new LayoutLength(Padding.Start + childMargin.Start);
-                                    break;
-                                }
-                            case Alignment.End:
-                                {
-                                    childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
-                                    break;
-                                }
-                            case Alignment.CenterHorizontal:
-                            case Alignment.Center: // FALL THROUGH
-                                {
-                                    childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
-                                    break;
-                                }
+                            childLeft = new LayoutLength(Padding.Start + childMargin.Start);
+                            break;
                         }
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                        childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
-                    }
+                    case Alignment.End:
+                        {
+                            childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
+                            break;
+                        }
+                    case Alignment.CenterHorizontal:
+                    case Alignment.Center: // FALL THROUGH
+                        {
+                            childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
+                            break;
+                        }
                 }
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
             }
         } // LayoutVertical
 
@@ -824,12 +788,8 @@ namespace Tizen.NUI
             // ourselves. The measured height should be the max height of the children, changed
             // to accommodate the heightMeasureSpec from the parent
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach (LayoutItem childLayout in IterateLayoutChildren())
             {
-                if (childLayout.Owner.ExcludeLayouting)
-                {
-                    continue;
-                }
                 int desiredChildHeight = childLayout.Owner.HeightSpecification;
                 int desiredChildWidth = childLayout.Owner.WidthSpecification;
 
@@ -851,13 +811,8 @@ namespace Tizen.NUI
         {
             // Pretend that the linear layout has an exact size.
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredWidth.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in LayoutChildren)
+            foreach (LayoutItem childLayout in IterateLayoutChildren())
             {
-                if (childLayout.Owner.ExcludeLayouting)
-                {
-                    continue;
-                }
-
                 int desiredChildWidth = childLayout.Owner.WidthSpecification;
                 int desiredChildHeight = childLayout.Owner.WidthSpecification;
 
@@ -875,5 +830,18 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources.
+                _cellPadding?.Dispose();
+            }
+            // Free native resources.
+            base.Dispose(disposing);
+        }
+
     } //LinearLayout
 } // namespace
