@@ -17,7 +17,6 @@
 
 using System.Collections.Generic;
 using System;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -101,7 +100,7 @@ namespace Tizen.NUI
     /// Parts of the transition that can be configured to provide a custom effect.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TransitionComponents : IDisposable
+    public class TransitionComponents
     {
         /// <summary>
         /// TransitionComponents default constructor.
@@ -144,24 +143,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AlphaFunction AlphaFunction;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                AlphaFunction?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 
     /// <summary>
