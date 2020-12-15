@@ -613,7 +613,9 @@ namespace Tizen.NUI
                         _applicationInitEventHandler += value;
 
                         _applicationInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationInit);
-                        this.InitSignal().Connect(_applicationInitEventCallbackDelegate);
+                        ApplicationSignal initSignal = this.InitSignal();
+                        initSignal?.Connect(_applicationInitEventCallbackDelegate);
+                        initSignal?.Dispose();
                     }
                 }
             }
@@ -671,7 +673,9 @@ namespace Tizen.NUI
                         _applicationTerminateEventHandler += value;
 
                         _applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
-                        this.TerminateSignal().Connect(_applicationTerminateEventCallbackDelegate);
+                        ApplicationSignal terminateSignal = this.TerminateSignal();
+                        terminateSignal?.Connect(_applicationTerminateEventCallbackDelegate);
+                        terminateSignal?.Dispose();
                     }
                 }
             }
@@ -725,7 +729,9 @@ namespace Tizen.NUI
                         _applicationPauseEventHandler += value;
 
                         _applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
-                        this.PauseSignal().Connect(_applicationPauseEventCallbackDelegate);
+                        ApplicationSignal pauseSignal = this.PauseSignal();
+                        pauseSignal?.Connect(_applicationPauseEventCallbackDelegate);
+                        pauseSignal?.Dispose();
                     }
                 }
             }
@@ -773,7 +779,9 @@ namespace Tizen.NUI
                         _applicationResumeEventHandler += value;
 
                         _applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
-                        this.ResumeSignal().Connect(_applicationResumeEventCallbackDelegate);
+                        ApplicationSignal resumeSignal = this.ResumeSignal();
+                        resumeSignal?.Connect(_applicationResumeEventCallbackDelegate);
+                        resumeSignal?.Dispose();
                     }
                 }
             }
@@ -821,7 +829,9 @@ namespace Tizen.NUI
                         _applicationResetEventHandler += value;
 
                         _applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
-                        this.ResetSignal().Connect(_applicationResetEventCallbackDelegate);
+                        ApplicationSignal resetSignal = this.ResetSignal();
+                        resetSignal?.Connect(_applicationResetEventCallbackDelegate);
+                        resetSignal?.Dispose();
                     }
                 }
             }
@@ -869,7 +879,9 @@ namespace Tizen.NUI
                         _applicationLanguageChangedEventHandler += value;
 
                         _applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
-                        this.LanguageChangedSignal().Connect(_applicationLanguageChangedEventCallbackDelegate);
+                        ApplicationSignal languageChangedSignal = this.LanguageChangedSignal();
+                        languageChangedSignal?.Connect(_applicationLanguageChangedEventCallbackDelegate);
+                        languageChangedSignal?.Dispose();
                     }
                 }
             }
@@ -917,7 +929,9 @@ namespace Tizen.NUI
                         _applicationRegionChangedEventHandler += value;
 
                         _applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
-                        this.RegionChangedSignal().Connect(_applicationRegionChangedEventCallbackDelegate);
+                        ApplicationSignal regionChangedSignal = this.RegionChangedSignal();
+                        regionChangedSignal?.Connect(_applicationRegionChangedEventCallbackDelegate);
+                        regionChangedSignal?.Dispose();
                     }
                 }
             }
@@ -965,7 +979,9 @@ namespace Tizen.NUI
                         _applicationBatteryLowEventHandler += value;
 
                         _applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
-                        this.BatteryLowSignal().Connect(_applicationBatteryLowEventCallbackDelegate);
+                        LowBatterySignalType batteryLowSignal = this.BatteryLowSignal();
+                        batteryLowSignal?.Connect(_applicationBatteryLowEventCallbackDelegate);
+                        batteryLowSignal?.Dispose();
                     }
                 }
             }
@@ -1015,7 +1031,9 @@ namespace Tizen.NUI
                         _applicationMemoryLowEventHandler += value;
 
                         _applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
-                        this.MemoryLowSignal().Connect(_applicationMemoryLowEventCallbackDelegate);
+                        LowMemorySignalType memoryLowSignal = this.MemoryLowSignal();
+                        memoryLowSignal?.Connect(_applicationMemoryLowEventCallbackDelegate);
+                        memoryLowSignal?.Dispose();
                     }
                 }
             }
@@ -1065,7 +1083,9 @@ namespace Tizen.NUI
                         _applicationAppControlEventHandler += value;
 
                         _applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
-                        this.AppControlSignal().Connect(_applicationAppControlEventCallbackDelegate);
+                        ApplicationControlSignal appControlSignal = this.AppControlSignal();
+                        appControlSignal?.Connect(_applicationAppControlEventCallbackDelegate);
+                        appControlSignal?.Dispose();
                     }
                 }
             }

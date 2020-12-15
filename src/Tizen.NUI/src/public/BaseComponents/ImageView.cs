@@ -1206,6 +1206,7 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(ImageView.Property.IMAGE, setValue);
                 resourceUrl?.Dispose();
                 setValue?.Dispose();
+                imageMap?.Dispose();
                 return;
             }
 

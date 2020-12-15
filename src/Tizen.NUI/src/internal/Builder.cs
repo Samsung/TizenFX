@@ -56,7 +56,9 @@ namespace Tizen.NUI
                         _builderQuitEventHandler += value;
 
                         _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
-                        this.QuitSignal().Connect(_builderQuitEventCallbackDelegate);
+                        VoidSignal quitSignal = this.QuitSignal();
+                        quitSignal?.Connect(_builderQuitEventCallbackDelegate);
+                        quitSignal?.Dispose();
                     }
                 }
             }
@@ -67,7 +69,9 @@ namespace Tizen.NUI
                 {
                     if (_builderQuitEventHandler != null)
                     {
-                        this.QuitSignal().Disconnect(_builderQuitEventCallbackDelegate);
+                        VoidSignal quitSignal = this.QuitSignal();
+                        quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
+                        quitSignal?.Dispose();
                     }
 
                     _builderQuitEventHandler -= value;
