@@ -105,19 +105,19 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PinchGestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal PinchGestureDetector Assign(PinchGestureDetector rhs)
         {
-            PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetectorAssign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
+            PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetectorAssign(SwigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PinchGestureDetectedSignal DetectedSignal()
         {
-            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetectorDetectedSignal(swigCPtr), false);
+            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetectorDetectedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Ruler obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float Snap(float x, float bias)
         {
-            float ret = Interop.Ruler.Snap(swigCPtr, x, bias);
+            float ret = Interop.Ruler.Snap(SwigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float Snap(float x)
         {
-            float ret = Interop.Ruler.Snap(swigCPtr, x);
+            float ret = Interop.Ruler.Snap(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -62,7 +62,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = Interop.Ruler.GetPositionFromPage(swigCPtr, page, out volume, wrap);
+            float ret = Interop.Ruler.GetPositionFromPage(SwigCPtr, page, out volume, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = Interop.Ruler.GetPageFromPosition(swigCPtr, position, wrap);
+            uint ret = Interop.Ruler.GetPageFromPosition(SwigCPtr, position, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetTotalPages()
         {
-            uint ret = Interop.Ruler.GetTotalPages(swigCPtr);
+            uint ret = Interop.Ruler.GetTotalPages(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Ruler.RulerType GetType()
         {
-            Ruler.RulerType ret = (Ruler.RulerType)Interop.Ruler.GetType(swigCPtr);
+            Ruler.RulerType ret = (Ruler.RulerType)Interop.Ruler.GetType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsEnabled()
         {
-            bool ret = Interop.Ruler.IsEnabled(swigCPtr);
+            bool ret = Interop.Ruler.IsEnabled(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -107,7 +107,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Enable()
         {
-            Interop.Ruler.Enable(swigCPtr);
+            Interop.Ruler.Enable(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -115,7 +115,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disable()
         {
-            Interop.Ruler.Disable(swigCPtr);
+            Interop.Ruler.Disable(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -123,7 +123,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDomain(RulerDomain domain)
         {
-            Interop.Ruler.SetDomain(swigCPtr, RulerDomain.getCPtr(domain));
+            Interop.Ruler.SetDomain(SwigCPtr, RulerDomain.getCPtr(domain));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -131,7 +131,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RulerDomain GetDomain()
         {
-            RulerDomain ret = new RulerDomain(Interop.Ruler.GetDomain(swigCPtr), false);
+            RulerDomain ret = new RulerDomain(Interop.Ruler.GetDomain(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -140,7 +140,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DisableDomain()
         {
-            Interop.Ruler.DisableDomain(swigCPtr);
+            Interop.Ruler.DisableDomain(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length, float scale)
         {
-            float ret = Interop.Ruler.Clamp(swigCPtr, x, length, scale);
+            float ret = Interop.Ruler.Clamp(SwigCPtr, x, length, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length)
         {
-            float ret = Interop.Ruler.Clamp(swigCPtr, x, length);
+            float ret = Interop.Ruler.Clamp(SwigCPtr, x, length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -166,14 +166,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x)
         {
-            float ret = Interop.Ruler.Clamp(swigCPtr, x);
+            float ret = Interop.Ruler.Clamp(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
-            float ret = Interop.Ruler.Clamp(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
+            float ret = Interop.Ruler.Clamp(SwigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -182,7 +182,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias, float length, float scale)
         {
-            float ret = Interop.Ruler.SnapAndClamp(swigCPtr, x, bias, length, scale);
+            float ret = Interop.Ruler.SnapAndClamp(SwigCPtr, x, bias, length, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -191,7 +191,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias, float length)
         {
-            float ret = Interop.Ruler.SnapAndClamp(swigCPtr, x, bias, length);
+            float ret = Interop.Ruler.SnapAndClamp(SwigCPtr, x, bias, length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -200,7 +200,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x, float bias)
         {
-            float ret = Interop.Ruler.SnapAndClamp(swigCPtr, x, bias);
+            float ret = Interop.Ruler.SnapAndClamp(SwigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -209,14 +209,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float SnapAndClamp(float x)
         {
-            float ret = Interop.Ruler.SnapAndClamp(swigCPtr, x);
+            float ret = Interop.Ruler.SnapAndClamp(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float SnapAndClamp(float x, float bias, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
-            float ret = Interop.Ruler.SnapAndClamp(swigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
+            float ret = Interop.Ruler.SnapAndClamp(SwigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

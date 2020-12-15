@@ -34,14 +34,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.KeyInputFocusManager.KeyInputFocusSignalEmpty(swigCPtr);
+            bool ret = Interop.KeyInputFocusManager.KeyInputFocusSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.KeyInputFocusManager.KeyInputFocusSignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.KeyInputFocusManager.KeyInputFocusSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyInputFocusManager.KeyInputFocusSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyInputFocusManager.KeyInputFocusSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,14 +59,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyInputFocusManager.KeyInputFocusSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyInputFocusManager.KeyInputFocusSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.KeyInputFocusManager.KeyInputFocusSignalEmit(swigCPtr, View.getCPtr(arg));
+            Interop.KeyInputFocusManager.KeyInputFocusSignalEmit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

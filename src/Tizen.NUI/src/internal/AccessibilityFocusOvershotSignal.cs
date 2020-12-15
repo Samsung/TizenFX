@@ -34,14 +34,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.AccessibilityManager.AccessibilityFocusOvershotSignalEmpty(swigCPtr);
+            bool ret = Interop.AccessibilityManager.AccessibilityFocusOvershotSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.AccessibilityManager.AccessibilityFocusOvershotSignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.AccessibilityManager.AccessibilityFocusOvershotSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.AccessibilityManager.AccessibilityFocusOvershotSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AccessibilityManager.AccessibilityFocusOvershotSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,14 +59,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.AccessibilityManager.AccessibilityFocusOvershotSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.AccessibilityManager.AccessibilityFocusOvershotSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, AccessibilityManager.FocusOvershotDirection arg2)
         {
-            Interop.AccessibilityManager.AccessibilityFocusOvershotSignalEmit(swigCPtr, View.getCPtr(arg1), (int)arg2);
+            Interop.AccessibilityManager.AccessibilityFocusOvershotSignalEmit(SwigCPtr, View.getCPtr(arg1), (int)arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

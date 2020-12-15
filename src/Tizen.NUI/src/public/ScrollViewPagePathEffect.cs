@@ -74,7 +74,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyToPage(View page, uint pageOrder)
         {
-            Interop.ScrollView.ScrollViewPagePathEffectApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
+            Interop.ScrollView.ScrollViewPagePathEffectApplyToPage(SwigCPtr, View.getCPtr(page), pageOrder);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
