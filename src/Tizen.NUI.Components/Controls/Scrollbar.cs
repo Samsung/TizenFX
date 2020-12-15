@@ -243,7 +243,7 @@ namespace Tizen.NUI.Components
                 trackVisual = new ColorVisual
                 {
                     SuppressUpdateVisual = true,
-                    Color = TrackColor,
+                    MixColor = TrackColor,
                     SizePolicy = VisualTransformPolicyType.Absolute,
                     Origin = calculator.CalculatorTrackAlign(),
                     AnchorPoint = calculator.CalculatorTrackAlign(),
