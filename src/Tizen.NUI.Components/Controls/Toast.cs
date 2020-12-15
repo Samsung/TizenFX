@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -144,6 +145,8 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
+        [SuppressMessage("Microsoft.Performance", "CA1819: Properties should not return arrays")]
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string[] TextArray
         {
