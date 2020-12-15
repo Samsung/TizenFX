@@ -26,30 +26,30 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.doublep.delete_doublep(swigCPtr);
+            Interop.doublep.DeleteDoublep(swigCPtr);
         }
 
-        public doublep() : this(Interop.doublep.new_doublep(), true)
+        public doublep() : this(Interop.doublep.NewDoublep(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void assign(double value)
         {
-            Interop.doublep.doublep_assign(swigCPtr, value);
+            Interop.doublep.assign(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public double value()
         {
-            double ret = Interop.doublep.doublep_value(swigCPtr);
+            double ret = Interop.doublep.value(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_double cast()
         {
-            global::System.IntPtr cPtr = Interop.doublep.doublep_cast(swigCPtr);
+            global::System.IntPtr cPtr = Interop.doublep.cast(swigCPtr);
             SWIGTYPE_p_double ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_double(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -57,7 +57,7 @@ namespace Tizen.NUI
 
         public static doublep frompointer(SWIGTYPE_p_double t)
         {
-            global::System.IntPtr cPtr = Interop.doublep.doublep_frompointer(SWIGTYPE_p_double.getCPtr(t));
+            global::System.IntPtr cPtr = Interop.doublep.frompointer(SWIGTYPE_p_double.getCPtr(t));
             doublep ret = (cPtr == global::System.IntPtr.Zero) ? null : new doublep(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

@@ -88,9 +88,9 @@ namespace Tizen.NUI.Components
 
         internal new class Property
         {
-            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+            internal static readonly int ActionPlay = Interop.ImageView.ImageVisualActionPlayGet();
+            internal static readonly int ActionPause = Interop.ImageView.ImageVisualActionPauseGet();
+            internal static readonly int ActionStop = Interop.ImageView.ImageVisualActionStopGet();
         }
 
         static Loading() { }
@@ -266,7 +266,7 @@ namespace Tizen.NUI.Components
         public void Play()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, attributes);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionPlay, attributes);
             attributes.Dispose();
         }
 
@@ -278,7 +278,7 @@ namespace Tizen.NUI.Components
         public void Pause()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, attributes);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionPause, attributes);
             attributes.Dispose();
         }
 
@@ -290,7 +290,7 @@ namespace Tizen.NUI.Components
         public void Stop()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, attributes);
+            this.DoAction(imageVisual.VisualIndex, Property.ActionStop, attributes);
             attributes.Dispose();
         }
     }

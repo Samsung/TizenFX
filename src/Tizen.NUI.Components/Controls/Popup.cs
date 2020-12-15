@@ -886,10 +886,13 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ButtonClickEventArgs : EventArgs
         {
             /// <summary> Button index which is clicked in Popup </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int ButtonIndex;
         }

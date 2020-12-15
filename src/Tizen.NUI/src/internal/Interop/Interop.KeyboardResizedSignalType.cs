@@ -9,25 +9,25 @@ namespace Tizen.NUI
         internal static partial class KeyboardResizedSignalType
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardResizedSignalType_Empty")]
-            public static extern bool KeyboardResizedSignalType_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardResizedSignalType_GetConnectionCount")]
-            public static extern uint KeyboardResizedSignalType_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardResizedSignalType_Connect")]
-            public static extern void KeyboardResizedSignalType_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardResizedSignalType_Disconnect")]
-            public static extern void KeyboardResizedSignalType_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardResizedSignalType_Emit")]
-            public static extern void KeyboardResizedSignalType_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyboardResizedSignalType")]
-            public static extern global::System.IntPtr new_KeyboardResizedSignalType();
+            public static extern global::System.IntPtr NewKeyboardResizedSignalType();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyboardResizedSignalType")]
-            public static extern void delete_KeyboardResizedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteKeyboardResizedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

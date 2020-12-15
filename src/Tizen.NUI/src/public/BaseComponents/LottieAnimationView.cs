@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,6 +62,7 @@ namespace Tizen.NUI.BaseComponents
             currentStates.changed = false;
             currentStates.totalFrame = -1;
             currentStates.scale = scale;
+            currentStates.redrawInScalingDown = true;
             SetVisible(shown);
         }
 
@@ -399,6 +400,50 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](LottieAnimationView) Fail to get StopBehavior from dali>");
                 return currentStates.stopEndAction;
+            }
+        }
+
+        /// <summary>
+        /// Whether to redraw the image when the visual is scaled down.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API.
+        /// It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RedrawInScalingDown
+        {
+            set
+            {
+                currentStates.changed = true;
+                currentStates.redrawInScalingDown = value;
+                tlog.Fatal(tag, $"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
+                PropertyMap map = new PropertyMap();
+                map.Add(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
+                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+            }
+            get
+            {
+                PropertyMap map = base.Image;
+                var ret = true;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.RedrawInScalingDown);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            if (ret != currentStates.redrawInScalingDown)
+                            {
+                                tlog.Fatal(tag, $"<[ERROR][{GetId()}](LottieAnimationView) different redrawInScalingDown! gotten={ret}, redrawInScalingDown={currentStates.redrawInScalingDown}>");
+                            }
+                            currentStates.redrawInScalingDown = ret;
+                            return currentStates.redrawInScalingDown;
+                        }
+                    }
+                }
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](LottieAnimationView) Fail to get redrawInScalingDown from dali currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
+                return currentStates.redrawInScalingDown;
             }
         }
         #endregion Property
@@ -761,6 +806,7 @@ namespace Tizen.NUI.BaseComponents
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
             internal string mark1, mark2;
+            internal bool redrawInScalingDown;
         };
         private states currentStates;
 
@@ -824,8 +870,9 @@ namespace Tizen.NUI.BaseComponents
         private void debugPrint()
         {
             tlog.Fatal(tag, $"===================================");
-            tlog.Fatal(tag, $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
-            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopingMode}, LoopCount={LoopCount}, PlayState={PlayState} >");
+            tlog.Fatal(tag, $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, \nframePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
+            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopingMode}, LoopCount={LoopCount}, PlayState={PlayState}");
+            tlog.Fatal(tag, $"  RedrawInScalingDown={RedrawInScalingDown} >");
             tlog.Fatal(tag, $"===================================");
         }
         #endregion Private
@@ -895,7 +942,8 @@ namespace Tizen.NUI.BaseComponents
                 return new LottieFrameInfo(Int32.Parse(parts[0].Trim()), Int32.Parse(parts[1].Trim()));
             }
 
-            throw new InvalidCastException($"Can not convert string {pair} to LottieFrameInfo");
+            Tizen.Log.Error("NUI", $"Can not convert string {pair} to LottieFrameInfo");
+            return null;
         }
 
         /// <summary>

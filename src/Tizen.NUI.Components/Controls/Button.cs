@@ -788,6 +788,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use ClickedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ClickEventArgs : EventArgs
         {
         }
@@ -797,14 +798,19 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary> previous state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates PreviousState;
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }

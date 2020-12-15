@@ -33,26 +33,26 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PreFocusSignal.delete_PreFocusChangeSignal(swigCPtr);
+            Interop.PreFocusSignal.DeletePreFocusChangeSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.PreFocusSignal.PreFocusChangeSignal_Empty(swigCPtr);
+            bool ret = Interop.PreFocusSignal.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.PreFocusSignal.PreFocusChangeSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.PreFocusSignal.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Connect(FocusManager.PreFocusChangeEventCallback func)
         {
-            Interop.PreFocusSignal.PreFocusChangeSignal_Connect(swigCPtr, func);
+            Interop.PreFocusSignal.Connect(swigCPtr, func);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -60,19 +60,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PreFocusSignal.PreFocusChangeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PreFocusSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public View Emit(View arg1, View arg2, View.FocusDirection arg3)
         {
-            View ret = new View(Interop.PreFocusSignal.PreFocusChangeSignal_Emit(swigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
+            View ret = new View(Interop.PreFocusSignal.Emit(swigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public PreFocusChangeSignal() : this(Interop.PreFocusSignal.new_PreFocusChangeSignal(), true)
+        public PreFocusChangeSignal() : this(Interop.PreFocusSignal.NewPreFocusChangeSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

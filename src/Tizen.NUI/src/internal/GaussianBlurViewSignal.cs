@@ -27,19 +27,19 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.GaussianBlurViewSignal.delete_GaussianBlurViewSignal(swigCPtr);
+            Interop.GaussianBlurViewSignal.DeleteGaussianBlurViewSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.GaussianBlurViewSignal.GaussianBlurViewSignal_Empty(swigCPtr);
+            bool ret = Interop.GaussianBlurViewSignal.Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.GaussianBlurViewSignal.GaussianBlurViewSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.GaussianBlurViewSignal.GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.GaussianBlurViewSignal.GaussianBlurViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GaussianBlurViewSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,18 +57,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.GaussianBlurViewSignal.GaussianBlurViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.GaussianBlurViewSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(GaussianBlurView arg)
         {
-            Interop.GaussianBlurViewSignal.GaussianBlurViewSignal_Emit(swigCPtr, GaussianBlurView.getCPtr(arg));
+            Interop.GaussianBlurViewSignal.Emit(swigCPtr, GaussianBlurView.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public GaussianBlurViewSignal() : this(Interop.GaussianBlurViewSignal.new_GaussianBlurViewSignal(), true)
+        public GaussianBlurViewSignal() : this(Interop.GaussianBlurViewSignal.NewGaussianBlurViewSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
