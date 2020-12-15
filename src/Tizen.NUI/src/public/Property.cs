@@ -80,12 +80,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.PropertyIndexSet(swigCPtr, value);
+                Interop.Property.PropertyIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.PropertyIndexGet(swigCPtr);
+                int ret = Interop.Property.PropertyIndexGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -99,12 +99,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.ComponentIndexSet(swigCPtr, value);
+                Interop.Property.ComponentIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.ComponentIndexGet(swigCPtr);
+                int ret = Interop.Property.ComponentIndexGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -144,12 +144,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.ObjectSet(swigCPtr, Animatable.getCPtr(value));
+                Interop.Property.ObjectSet(SwigCPtr, Animatable.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Animatable ret = new Animatable(Interop.Property.ObjectGet(swigCPtr), false);
+                Animatable ret = new Animatable(Interop.Property.ObjectGet(SwigCPtr), false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -157,7 +157,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

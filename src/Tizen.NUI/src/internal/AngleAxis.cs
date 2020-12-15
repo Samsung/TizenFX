@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AngleAxis obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -48,12 +48,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleAxis.AngleSet(swigCPtr, Radian.getCPtr(value));
+                Interop.AngleAxis.AngleSet(SwigCPtr, Radian.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleAxis.AngleGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleAxis.AngleGet(SwigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -64,12 +64,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleAxis.AxisSet(swigCPtr, Vector3.getCPtr(value));
+                Interop.AngleAxis.AxisSet(SwigCPtr, Vector3.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleAxis.AxisGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleAxis.AxisGet(SwigCPtr);
                 Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

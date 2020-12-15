@@ -91,7 +91,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
         {
-            uint ret = Interop.Geometry.AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
+            uint ret = Interop.Geometry.AddVertexBuffer(SwigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public uint AddVertexBuffer(VertexBuffer vertexBuffer)
         {
-            uint ret = Interop.Geometry.AddVertexBuffer(swigCPtr, VertexBuffer.getCPtr(vertexBuffer));
+            uint ret = Interop.Geometry.AddVertexBuffer(SwigCPtr, VertexBuffer.getCPtr(vertexBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetNumberOfVertexBuffers()
         {
-            uint ret = Interop.Geometry.GetNumberOfVertexBuffers(swigCPtr);
+            uint ret = Interop.Geometry.GetNumberOfVertexBuffers(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveVertexBuffer(uint index)
         {
-            Interop.Geometry.RemoveVertexBuffer(swigCPtr, index);
+            Interop.Geometry.RemoveVertexBuffer(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetIndexBuffer(ushort[] indices, uint count)
         {
-            Interop.Geometry.SetIndexBuffer(swigCPtr, indices, count);
+            Interop.Geometry.SetIndexBuffer(SwigCPtr, indices, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -153,7 +153,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetType(Geometry.Type geometryType)
         {
-            Interop.Geometry.SetType(swigCPtr, (int)geometryType);
+            Interop.Geometry.SetType(SwigCPtr, (int)geometryType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -164,14 +164,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public new Geometry.Type GetType()
         {
-            Geometry.Type ret = (Geometry.Type)Interop.Geometry.GetType(swigCPtr);
+            Geometry.Type ret = (Geometry.Type)Interop.Geometry.GetType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Geometry obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
