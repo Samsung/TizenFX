@@ -1164,6 +1164,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
         /// Enable editing in text control.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -1181,6 +1182,31 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetProperty(TextField.Property.EnableEditing, new PropertyValue(value));
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Specify primary cursor (caret) position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int PrimaryCursorPosition
+        {
+            get
+            {
+                int temp;
+                using (PropertyValue propertyValue = GetProperty(TextField.Property.PrimaryCursorPosition))
+                {
+                    propertyValue.Get(out temp);
+                }
+                return temp;
+            }
+            set
+            {
+                using (PropertyValue propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextField.Property.PrimaryCursorPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -1347,7 +1373,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectNone()
         {
-            Interop.TextField.SelectNone(swigCPtr);
+            _ = Interop.TextField.SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1507,6 +1533,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SelectedTextStart = Interop.TextField.SelectedTextStartGet();
             internal static readonly int SelectedTextEnd = Interop.TextField.SelectedTextEndGet();
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
+            internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
         }
 
         internal class InputStyle

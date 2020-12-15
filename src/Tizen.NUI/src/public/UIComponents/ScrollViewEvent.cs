@@ -102,13 +102,15 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SnapEvent : Disposable
         {
             /// <summary>
             /// swigCMemOwn
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be deprecated
+            /// It will be removed in API9
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected bool swigCMemOwn;
@@ -150,7 +152,7 @@ namespace Tizen.NUI
                 {
                     global::System.IntPtr cPtr = Interop.ScrollView.SnapEventPositionGet(swigCPtr);
                     Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -172,7 +174,7 @@ namespace Tizen.NUI
                 get
                 {
                     float ret = Interop.ScrollView.SnapEventDurationGet(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
             }
@@ -254,6 +256,7 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SnapStartedEventArgs : EventArgs
         {
             private Tizen.NUI.ScrollView.SnapEvent _snapEvent;

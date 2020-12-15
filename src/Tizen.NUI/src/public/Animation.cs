@@ -338,7 +338,7 @@ namespace Tizen.NUI
             get
             {
                 Animation.EndActions ret = (Animation.EndActions)Interop.Animation.GetDisconnectAction(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -361,7 +361,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Animation.GetCurrentProgress(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -383,7 +383,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Animation.GetSpeedFactor(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -404,7 +404,7 @@ namespace Tizen.NUI
             get
             {
                 Vector2 ret = new Vector2(Interop.Animation.GetPlayRange(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -426,7 +426,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Animation.GetProgressNotification(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -1004,7 +1004,7 @@ namespace Tizen.NUI
                 if (toType == typeof(Char))
                 {
                     char c = '\0';
-                    Char.TryParse(str, out c);
+                    _ = Char.TryParse(str, out c);
                     return c;
                 }
                 if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))

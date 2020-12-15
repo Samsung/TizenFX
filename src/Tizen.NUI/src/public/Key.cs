@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -86,7 +87,7 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.NDalic.GetDeviceName(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -100,7 +101,7 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Key.KeyPressedNameGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -122,7 +123,7 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Key.LogicalKeyGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -152,7 +153,7 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Key.KeyStringGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -171,7 +172,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Key.KeyCodeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -190,7 +191,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Key.KeyModifierGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -209,7 +210,7 @@ namespace Tizen.NUI
             get
             {
                 uint ret = Interop.Key.TimeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -228,7 +229,7 @@ namespace Tizen.NUI
             get
             {
                 Key.StateType ret = (Key.StateType)Interop.Key.StateGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
@@ -247,7 +248,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.NDalic.GetDeviceClass(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (DeviceClassType)ret;
             }
         }
@@ -261,7 +262,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.NDalic.GetDeviceSubClass(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return (DeviceSubClassType)ret;
             }
         }

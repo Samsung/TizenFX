@@ -1111,6 +1111,31 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Specify primary cursor (caret) position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int PrimaryCursorPosition
+        {
+            get
+            {
+                int temp;
+                using (PropertyValue propertyValue = GetProperty(TextEditor.Property.PrimaryCursorPosition))
+                {
+                    propertyValue.Get(out temp);
+                }
+                return temp;
+            }
+            set
+            {
+                using (PropertyValue propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.PrimaryCursorPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -1285,7 +1310,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectNone()
         {
-            Interop.TextEditor.SelectNone(swigCPtr);
+            _ = Interop.TextEditor.SelectNone(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1440,6 +1465,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SelectedText = Interop.TextEditor.SelectedTextGet();
             internal static readonly int HorizontalScrollPosition = Interop.TextEditor.HorizontalScrollPositionGet();
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
+            internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
         }
 
         internal class InputStyle

@@ -333,20 +333,6 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
             return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(swigCPtr), true);
         }
-
-        /// <summary>
-        /// Generate captured image's Url
-        /// </summary>
-        /// <returns>The Url string representing this captured image source</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GenerateUrl()
-        {
-            string url = "";
-            url = Interop.Capture.GenerateUrl(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return url;
-        }
-
     }
 
     /// <summary>

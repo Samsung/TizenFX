@@ -287,7 +287,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class to get resources in current application.
     /// </summary>
-    public class GetResourcesProvider
+    public sealed class GetResourcesProvider
     {
         /// <summary>
         /// Get resources in current application.
@@ -453,52 +453,72 @@ namespace Tizen.NUI
 
             if (_applicationInitEventCallbackDelegate != null)
             {
-                this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
+                ApplicationSignal initSignal = this.InitSignal();
+                initSignal?.Disconnect(_applicationInitEventCallbackDelegate);
+                initSignal?.Dispose();
             }
 
             if (_applicationTerminateEventCallbackDelegate != null)
             {
-                this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
+                ApplicationSignal terminateSignal = this.TerminateSignal();
+                terminateSignal?.Disconnect(_applicationTerminateEventCallbackDelegate);
+                terminateSignal?.Dispose();
             }
 
             if (_applicationPauseEventCallbackDelegate != null)
             {
-                this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
+                ApplicationSignal pauseSignal = this.PauseSignal();
+                pauseSignal?.Disconnect(_applicationPauseEventCallbackDelegate);
+                pauseSignal?.Dispose();
             }
 
             if (_applicationResumeEventCallbackDelegate != null)
             {
-                this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
+                ApplicationSignal resumeSignal = this.ResumeSignal();
+                resumeSignal?.Disconnect(_applicationResumeEventCallbackDelegate);
+                resumeSignal?.Dispose();
             }
 
             if (_applicationResetEventCallbackDelegate != null)
             {
-                this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
+                ApplicationSignal resetSignal = this.ResetSignal();
+                resetSignal?.Disconnect(_applicationResetEventCallbackDelegate);
+                resetSignal?.Dispose();
             }
 
             if (_applicationLanguageChangedEventCallbackDelegate != null)
             {
-                this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                ApplicationSignal languageChangedSignal = this.LanguageChangedSignal();
+                languageChangedSignal?.Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                languageChangedSignal?.Dispose();
             }
 
             if (_applicationRegionChangedEventCallbackDelegate != null)
             {
-                this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                ApplicationSignal regionChangedSignal = this.RegionChangedSignal();
+                regionChangedSignal?.Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                regionChangedSignal?.Dispose();
             }
 
             if (_applicationBatteryLowEventCallbackDelegate != null)
             {
-                this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                LowBatterySignalType batteryLowSignal = this.BatteryLowSignal();
+                batteryLowSignal?.Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                batteryLowSignal?.Dispose();
             }
 
             if (_applicationMemoryLowEventCallbackDelegate != null)
             {
-                this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                LowMemorySignalType memoryLowSignal = this.MemoryLowSignal();
+                memoryLowSignal?.Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                memoryLowSignal?.Dispose();
             }
 
             if (_applicationAppControlEventCallbackDelegate != null)
             {
-                this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
+                ApplicationControlSignal appControlSignal = this.AppControlSignal();
+                appControlSignal?.Disconnect(_applicationAppControlEventCallbackDelegate);
+                appControlSignal?.Dispose();
             }
 
             base.Dispose(type);
@@ -604,7 +624,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationInitEventHandler != null)
                     {
-                        this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
+                        ApplicationSignal initSignal = this.InitSignal();
+                        initSignal?.Disconnect(_applicationInitEventCallbackDelegate);
+                        initSignal?.Dispose();
                     }
 
                     _applicationInitEventHandler -= value;
@@ -617,6 +639,12 @@ namespace Tizen.NUI
         {
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
+
+            // Notify that the window is displayed to the app core.
+            if (NUIApplication.IsPreLoad)
+            {
+                Window.Instance.Show();
+            }
 
             if (_applicationInitEventHandler != null)
             {
@@ -654,7 +682,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationTerminateEventHandler != null)
                     {
-                        this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
+                        ApplicationSignal terminateSignal = this.TerminateSignal();
+                        terminateSignal?.Disconnect(_applicationTerminateEventCallbackDelegate);
+                        terminateSignal?.Dispose();
                     }
 
                     _applicationTerminateEventHandler -= value;
@@ -706,7 +736,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationPauseEventHandler != null)
                     {
-                        this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
+                        ApplicationSignal pauseSignal = this.PauseSignal();
+                        pauseSignal?.Disconnect(_applicationPauseEventCallbackDelegate);
+                        pauseSignal?.Dispose();
                     }
 
                     _applicationPauseEventHandler -= value;
@@ -752,7 +784,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationResumeEventHandler != null)
                     {
-                        this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
+                        ApplicationSignal resumeSignal = this.ResumeSignal();
+                        resumeSignal?.Disconnect(_applicationResumeEventCallbackDelegate);
+                        resumeSignal?.Dispose();
                     }
 
                     _applicationResumeEventHandler -= value;
@@ -798,7 +832,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationResetEventHandler != null)
                     {
-                        this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
+                        ApplicationSignal resetSignal = this.ResetSignal();
+                        resetSignal?.Disconnect(_applicationResetEventCallbackDelegate);
+                        resetSignal?.Dispose();
                     }
 
                     _applicationResetEventHandler -= value;
@@ -844,7 +880,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationLanguageChangedEventHandler != null)
                     {
-                        this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                        ApplicationSignal languageChangedSignal = this.LanguageChangedSignal();
+                        languageChangedSignal?.Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                        languageChangedSignal?.Dispose();
                     }
 
                     _applicationLanguageChangedEventHandler -= value;
@@ -890,7 +928,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationRegionChangedEventHandler != null)
                     {
-                        this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                        ApplicationSignal regionChangedSignal = this.RegionChangedSignal();
+                        regionChangedSignal?.Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                        regionChangedSignal?.Dispose();
                     }
 
                     _applicationRegionChangedEventHandler -= value;
@@ -936,7 +976,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationBatteryLowEventHandler != null)
                     {
-                        this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                        LowBatterySignalType BatteryLowSignal = this.BatteryLowSignal();
+                        BatteryLowSignal?.Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                        BatteryLowSignal?.Dispose();
                     }
 
                     _applicationBatteryLowEventHandler -= value;
@@ -984,7 +1026,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationMemoryLowEventHandler != null)
                     {
-                        this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                        LowMemorySignalType memoryLowSignal = this.MemoryLowSignal();
+                        memoryLowSignal?.Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                        memoryLowSignal?.Dispose();
                     }
 
                     _applicationMemoryLowEventHandler -= value;
@@ -1032,7 +1076,9 @@ namespace Tizen.NUI
                 {
                     if (_applicationAppControlEventHandler != null)
                     {
-                        this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
+                        ApplicationControlSignal appControlSignal = this.AppControlSignal();
+                        appControlSignal?.Disconnect(_applicationAppControlEventCallbackDelegate);
+                        appControlSignal?.Dispose();
                     }
 
                     _applicationAppControlEventHandler -= value;

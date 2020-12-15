@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
@@ -41,6 +42,7 @@ namespace Tizen.NUI
         private Position2D _windowPosition2D = null;
         private TransitionOptions transitionOptions;
 
+        private static bool isPreLoad = false;
 
         /// <summary>
         /// The default constructor.
@@ -384,7 +386,7 @@ namespace Tizen.NUI
         static public void PreLoad()
         {
             Interop.Application.PreInitialize();
-            ThemeManager.EnsureDefaultTheme();
+            isPreLoad = true;
         }
 
         /// <summary>
@@ -411,11 +413,23 @@ namespace Tizen.NUI
                 transitionOptions = value;
             }
         }
+
+        /// <summary>
+        /// Check if it is loaded as dotnet-loader-nui.
+        /// </summary>
+        static internal bool IsPreLoad
+        {
+            get
+            {
+                return isPreLoad;
+            }
+        }
     }
 
     /// <summary>
     /// Graphics Backend Type.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete("Please do not use! This will be deprecated!")]
     public class Graphics

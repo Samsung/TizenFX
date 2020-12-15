@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -87,7 +88,7 @@ namespace Tizen.NUI
         /// Hint.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public class Hint
+        public sealed class Hint
         {
             /// <summary>
             /// Enumeration for the hint value.
@@ -121,7 +122,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
+#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
         public class Property
+#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
             /// The default value is empty.

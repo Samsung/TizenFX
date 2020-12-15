@@ -245,7 +245,7 @@ namespace Tizen.NUI
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<TransitionEffectArgs> TransitionEffect
+        public event EventHandler<TransitionEffectEventArgs> TransitionEffect
         {
             add
             {
@@ -305,7 +305,7 @@ namespace Tizen.NUI
         private event EventHandler _stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> _windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
-        private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
+        private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
 
         internal void SendViewAdded(View view)
@@ -740,7 +740,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            TransitionEffectArgs e = new TransitionEffectArgs();
+            TransitionEffectEventArgs e = new TransitionEffectEventArgs();
 
             e.State = (EffectStates)state;
 
@@ -889,6 +889,7 @@ namespace Tizen.NUI
             "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class WindowFocusChangedEventArgs : EventArgs
         {
             /// <summary>
@@ -942,7 +943,7 @@ namespace Tizen.NUI
         /// TransitionEffectArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class TransitionEffectArgs : EventArgs
+        public class TransitionEffectEventArgs : EventArgs
         {
             private EffectStates state;
             private EffectTypes type;
@@ -1002,7 +1003,7 @@ namespace Tizen.NUI
         /// VisibilityChangedArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class VisibilityChangedArgs : EventArgs
+        public class VisibilityChangedEventArgs : EventArgs
         {
             private bool visibility;
             /// <summary>
@@ -1027,7 +1028,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             e.Visibility = visibility;
             if (VisibilityChangedEventHandler != null)
             {
@@ -1038,14 +1039,14 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
-        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
         private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
         {
             add
             {
