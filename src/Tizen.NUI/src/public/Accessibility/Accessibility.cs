@@ -32,7 +32,7 @@ namespace Tizen.NUI.Accessibility
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility : IDisposable
+    public class Accessibility
     {
         #region Constructor, Distructor, Dispose
         private Accessibility()
@@ -223,21 +223,5 @@ namespace Tizen.NUI.Accessibility
 
         private static string tag = "NUITEST";
         #endregion Private
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                dummy?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 }
