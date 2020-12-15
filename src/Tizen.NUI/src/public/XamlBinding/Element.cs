@@ -15,7 +15,7 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
     {
-        internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);
+        internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(System.Array.Empty<Element>());
 
         /// <summary>
         /// Identifies the ClassId bindable property.

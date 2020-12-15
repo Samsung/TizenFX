@@ -49,14 +49,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -67,14 +67,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -85,14 +85,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledSelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledSelectedVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -103,14 +103,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledUnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledUnselectedVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -121,14 +121,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -139,14 +139,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -157,14 +157,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledUnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_UNSELECTED_BACKGROUND_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledUnselectedBackgroundVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -175,14 +175,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledSelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DISABLED_SELECTED_BACKGROUND_VISUAL).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledSelectedBackgroundVisual).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -202,14 +202,14 @@ namespace Tizen.NUI.UIComponents
                     case Align.Bottom: { valueToString = "BOTTOM"; break; }
                     default: { valueToString = "END"; break; }
                 }
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LabelRelativeAlignment, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              string temp;
-             if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
+             if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LabelRelativeAlignment).Get(out temp) == false)
              {
                  NUILog.Error("LabelRelativeAlignment get error!");
              }
@@ -230,14 +230,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LabelPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL_PADDING).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LabelPadding).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -248,14 +248,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.ForegroundVisualPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.ForegroundVisualPadding).Get(temp);
              return temp;
          });
         /// This will be deprecated
@@ -266,14 +266,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.AutoRepeating, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AUTO_REPEATING).Get(out temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AutoRepeating).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -284,14 +284,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.InitialAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.InitialAutoRepeatingDelay).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -302,14 +302,14 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.NextAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
          {
              var button = (Button)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NextAutoRepeatingDelay).Get(out temp);
              return temp;
          });
         /// This will be deprecated
@@ -359,7 +359,7 @@ namespace Tizen.NUI.UIComponents
                 PropertyMap background = new PropertyMap();
                 background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                           .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -367,7 +367,7 @@ namespace Tizen.NUI.UIComponents
              var button = (Button)bindable;
              Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
              Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(map);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual).Get(map);
              Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
              value?.Get(temp);
              return temp;
@@ -383,7 +383,7 @@ namespace Tizen.NUI.UIComponents
                 PropertyMap background = new PropertyMap();
                 background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                           .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -391,7 +391,7 @@ namespace Tizen.NUI.UIComponents
              var button = (Button)bindable;
              Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
              Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(map);
+             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual).Get(map);
              Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
              value?.Get(temp);
              return temp;
@@ -453,12 +453,12 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button() : this(Interop.Button.new_Button__SWIG_0(), true)
+        public Button() : this(Interop.Button.NewButton(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Button_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -485,7 +485,9 @@ namespace Tizen.NUI.UIComponents
                 if (_clickedEventHandler == null)
                 {
                     _clickedCallback = OnClicked;
-                    ClickedSignal().Connect(_clickedCallback);
+                    ButtonSignal clickSignal = ClickedSignal();
+                    clickSignal?.Connect(_clickedCallback);
+                    clickSignal?.Dispose();
                 }
 
                 _clickedEventHandler += value;
@@ -495,10 +497,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _clickedEventHandler -= value;
 
-                if (_clickedEventHandler == null && ClickedSignal().Empty() == false)
+                ButtonSignal clickSignal = ClickedSignal();
+                if (_clickedEventHandler == null && clickSignal.Empty() == false)
                 {
-                    ClickedSignal().Disconnect(_clickedCallback);
+                    clickSignal?.Disconnect(_clickedCallback);
                 }
+                clickSignal?.Dispose();
             }
         }
 
@@ -516,7 +520,9 @@ namespace Tizen.NUI.UIComponents
                 if (_pressedEventHandler == null)
                 {
                     _pressedCallback = OnPressed;
-                    PressedSignal().Connect(_pressedCallback);
+                    ButtonSignal pressSignal = PressedSignal();
+                    pressSignal?.Connect(_pressedCallback);
+                    pressSignal?.Dispose();
                 }
 
                 _pressedEventHandler += value;
@@ -526,10 +532,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _pressedEventHandler -= value;
 
-                if (_pressedEventHandler == null && PressedSignal().Empty() == false)
+                ButtonSignal pressSignal = this.PressedSignal();
+                if (_pressedEventHandler == null && pressSignal.Empty() == false)
                 {
-                    this.PressedSignal().Disconnect(_pressedCallback);
+                    pressSignal?.Disconnect(_pressedCallback);
                 }
+                pressSignal?.Dispose();
             }
         }
 
@@ -547,7 +555,9 @@ namespace Tizen.NUI.UIComponents
                 if (_releasedEventHandler == null)
                 {
                     _releasedCallback = OnReleased;
-                    ReleasedSignal().Connect(_releasedCallback);
+                    ButtonSignal releaseSignal = ReleasedSignal();
+                    releaseSignal?.Connect(_releasedCallback);
+                    releaseSignal?.Dispose();
                 }
                 _releasedEventHandler += value;
             }
@@ -556,10 +566,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _releasedEventHandler -= value;
 
-                if (_releasedEventHandler == null && ReleasedSignal().Empty() == false)
+                ButtonSignal releaseSignal = ReleasedSignal();
+                if (_releasedEventHandler == null && releaseSignal.Empty() == false)
                 {
-                    ReleasedSignal().Disconnect(_releasedCallback);
+                    releaseSignal?.Disconnect(_releasedCallback);
                 }
+                releaseSignal?.Dispose();
 
             }
         }
@@ -578,7 +590,9 @@ namespace Tizen.NUI.UIComponents
                 if (_stateChangedEventHandler == null)
                 {
                     _stateChangedCallback = OnStateChanged;
-                    StateChangedSignal().Connect(_stateChangedCallback);
+                    ButtonSignal stateChanged = StateChangedSignal();
+                    stateChanged?.Connect(_stateChangedCallback);
+                    stateChanged?.Dispose();
                 }
 
                 _stateChangedEventHandler += value;
@@ -588,10 +602,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false)
+                ButtonSignal stateChanged = StateChangedSignal();
+                if (_stateChangedEventHandler == null && stateChanged.Empty() == false)
                 {
-                    StateChangedSignal().Disconnect(_stateChangedCallback);
+                    stateChanged?.Disconnect(_stateChangedCallback);
                 }
+                stateChanged?.Dispose();
             }
         }
 
@@ -1009,28 +1025,28 @@ namespace Tizen.NUI.UIComponents
 
         internal ButtonSignal PressedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_PressedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.PressedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ReleasedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ReleasedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.ReleasedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ClickedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ClickedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.ClickedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal StateChangedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_StateChangedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.StateChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1064,7 +1080,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Button.delete_Button(swigCPtr);
+            Interop.Button.DeleteButton(swigCPtr);
         }
 
         private void DisConnectFromSignals()
@@ -1077,22 +1093,30 @@ namespace Tizen.NUI.UIComponents
 
             if (_stateChangedCallback != null)
             {
-                StateChangedSignal().Disconnect(_stateChangedCallback);
+                ButtonSignal stateChanged = StateChangedSignal();
+                stateChanged?.Disconnect(_stateChangedCallback);
+                stateChanged?.Dispose();
             }
 
             if (_releasedCallback != null)
             {
-                ReleasedSignal().Disconnect(_releasedCallback);
+                ButtonSignal released = ReleasedSignal();
+                released?.Disconnect(_releasedCallback);
+                released?.Dispose();
             }
 
             if (_pressedCallback != null)
             {
-                this.PressedSignal().Disconnect(_pressedCallback);
+                ButtonSignal pressSignal = PressedSignal();
+                pressSignal?.Disconnect(_pressedCallback);
+                pressSignal?.Dispose();
             }
 
             if (_clickedCallback != null)
             {
-                ClickedSignal().Disconnect(_clickedCallback);
+                ButtonSignal clickSignal = ClickedSignal();
+                clickSignal?.Disconnect(_clickedCallback);
+                clickSignal?.Dispose();
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
@@ -1138,23 +1162,23 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int UNSELECTED_VISUAL = Interop.Button.Button_Property_UNSELECTED_VISUAL_get();
-            internal static readonly int SELECTED_VISUAL = Interop.Button.Button_Property_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_VISUAL = Interop.Button.Button_Property_DISABLED_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_VISUAL = Interop.Button.Button_Property_DISABLED_UNSELECTED_VISUAL_get();
-            internal static readonly int UNSELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int SELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int LABEL_RELATIVE_ALIGNMENT = Interop.Button.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
-            internal static readonly int LABEL_PADDING = Interop.Button.Button_Property_LABEL_PADDING_get();
-            internal static readonly int FOREGROUND_VISUAL_PADDING = Interop.Button.Button_Property_VISUAL_PADDING_get();
-            internal static readonly int AUTO_REPEATING = Interop.Button.Button_Property_AUTO_REPEATING_get();
-            internal static readonly int INITIAL_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
-            internal static readonly int NEXT_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
-            internal static readonly int TOGGLABLE = Interop.Button.Button_Property_TOGGLABLE_get();
-            internal static readonly int SELECTED = Interop.Button.Button_Property_SELECTED_get();
-            internal static readonly int LABEL = Interop.Button.Button_Property_LABEL_get();
+            internal static readonly int UnselectedVisual = Interop.Button.UnselectedVisualGet();
+            internal static readonly int SelectedVisual = Interop.Button.SelectedVisualGet();
+            internal static readonly int DisabledSelectedVisual = Interop.Button.DisabledSelectedVisualGet();
+            internal static readonly int DisabledUnselectedVisual = Interop.Button.DisabledUnselectedVisualGet();
+            internal static readonly int UnselectedBackgroundVisual = Interop.Button.UnselectedBackgroundVisualGet();
+            internal static readonly int SelectedBackgroundVisual = Interop.Button.SelectedBackgroundVisualGet();
+            internal static readonly int DisabledUnselectedBackgroundVisual = Interop.Button.DisabledUnselectedBackgroundVisualGet();
+            internal static readonly int DisabledSelectedBackgroundVisual = Interop.Button.DisabledSelectedBackgroundVisualGet();
+            internal static readonly int LabelRelativeAlignment = Interop.Button.LabelRelativeAlignmentGet();
+            internal static readonly int LabelPadding = Interop.Button.LabelPaddingGet();
+            internal static readonly int ForegroundVisualPadding = Interop.Button.VisualPaddingGet();
+            internal static readonly int AutoRepeating = Interop.Button.AutoRepeatingGet();
+            internal static readonly int InitialAutoRepeatingDelay = Interop.Button.InitialAutoRepeatingDelayGet();
+            internal static readonly int NextAutoRepeatingDelay = Interop.Button.NextAutoRepeatingDelayGet();
+            internal static readonly int TOGGLABLE = Interop.Button.TogglableGet();
+            internal static readonly int SELECTED = Interop.Button.SelectedGet();
+            internal static readonly int LABEL = Interop.Button.LabelGet();
         }
     }
 }

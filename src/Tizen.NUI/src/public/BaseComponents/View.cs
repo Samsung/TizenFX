@@ -89,14 +89,14 @@ namespace Tizen.NUI.BaseComponents
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public View() : this(Interop.View.View_New(), true)
+        public View() : this(Interop.View.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true, viewStyle)
+        public View(ViewStyle viewStyle) : this(Interop.View.New(), true, viewStyle)
         {
         }
 
@@ -106,13 +106,13 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(bool shown) : this(Interop.View.View_New(), true)
+        public View(bool shown) : this(Interop.View.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
         }
 
-        internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+        internal View(View uiControl, bool shown = true) : this(Interop.View.NewView(View.getCPtr(uiControl)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (!shown)
@@ -125,13 +125,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
-            if (!ThemeManager.ThemeApplied) return;
-
-            if (viewStyle == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(viewStyle.Clone());   // Use given style
+            InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.Upcast(cPtr), cMemoryOwn)
         {
             if (HasBody())
             {
@@ -148,7 +145,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
+        internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -903,7 +900,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(View.Property.SCREEN_POSITION).Get(temp);
+                GetProperty(View.Property.ScreenPosition).Get(temp);
                 return temp;
             }
         }
@@ -945,12 +942,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
+                GetProperty(View.Property.PositionUsesAnchorPoint).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.PositionUsesAnchorPoint, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -1017,9 +1014,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -1035,9 +1031,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.Actor_GetNaturalSize(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
                 return new Size2D((int)temp.Width, (int)temp.Height);
             }
@@ -1236,7 +1231,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WORLD_POSITION).Get(temp);
+                GetProperty(View.Property.WorldPosition).Get(temp);
                 return temp;
             }
         }
@@ -1276,7 +1271,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Rotation temp = new Rotation();
-                GetProperty(View.Property.WORLD_ORIENTATION).Get(temp);
+                GetProperty(View.Property.WorldOrientation).Get(temp);
                 return temp;
             }
         }
@@ -1380,7 +1375,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WORLD_SCALE).Get(temp);
+                GetProperty(View.Property.WorldScale).Get(temp);
                 return temp;
             }
         }
@@ -1417,7 +1412,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.WORLD_COLOR).Get(temp);
+                GetProperty(View.Property.WorldColor).Get(temp);
                 return temp;
             }
         }
@@ -1835,12 +1830,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.ANCHOR_POINT).Get(temp);
+                GetProperty(View.Property.AnchorPoint).Get(temp);
                 return new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
-                SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.AnchorPoint, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -1886,7 +1881,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 View ret;
-                IntPtr cPtr = Interop.Actor.Actor_GetParent(swigCPtr);
+                IntPtr cPtr = Interop.Actor.GetParent(swigCPtr);
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
@@ -1900,11 +1895,10 @@ namespace Tizen.NUI.BaseComponents
                     ret = basehandle as View;
                 }
 
-                Interop.BaseHandle.delete_BaseHandle(CPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

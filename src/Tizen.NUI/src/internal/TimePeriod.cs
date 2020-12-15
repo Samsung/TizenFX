@@ -31,16 +31,16 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TimePeriod.delete_TimePeriod(swigCPtr);
+            Interop.TimePeriod.DeleteTimePeriod(swigCPtr);
         }
 
 
-        public TimePeriod(float durationSeconds) : this(Interop.TimePeriod.new_TimePeriod__SWIG_0(durationSeconds), true)
+        public TimePeriod(float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TimePeriod(float delaySeconds, float durationSeconds) : this(Interop.TimePeriod.new_TimePeriod__SWIG_1(delaySeconds, durationSeconds), true)
+        public TimePeriod(float delaySeconds, float durationSeconds) : this(Interop.TimePeriod.NewTimePeriod(delaySeconds, durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -49,12 +49,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.TimePeriod_delaySeconds_set(swigCPtr, value);
+                Interop.TimePeriod.DelaySecondsSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.TimePeriod_delaySeconds_get(swigCPtr);
+                float ret = Interop.TimePeriod.DelaySecondsGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -64,12 +64,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.TimePeriod_durationSeconds_set(swigCPtr, value);
+                Interop.TimePeriod.DurationSecondsSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.TimePeriod_durationSeconds_get(swigCPtr);
+                float ret = Interop.TimePeriod.DurationSecondsGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

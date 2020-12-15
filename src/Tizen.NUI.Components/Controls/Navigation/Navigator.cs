@@ -335,5 +335,94 @@ namespace Tizen.NUI.Components
 
             return defaultNavigator;
         }
+
+        /// <summary>
+        /// Shows a dialog by pushing a page containing dialog to default navigator.
+        /// </summary>
+        /// <param name="content">The content of Dialog.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ShowDialog(View content = null)
+        {
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+
+            var dialog = new Dialog(content);
+            SetDialogScrim(dialog);
+
+            var dialogPage = new Page(dialog);
+            defaultNavigator.Push(dialogPage);
+        }
+
+        /// <summary>
+        /// Shows an alert dialog by pushing a page containing the alert dialog
+        /// to default navigator.
+        /// </summary>
+        /// <param name="titleContent">The title content of AlertDialog.</param>
+        /// <param name="content">The content of AlertDialog.</param>
+        /// <param name="actionContent">The action content of AlertDialog.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ShowAlertDialog(View titleContent, View content, View actionContent)
+        {
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+
+            var dialog = new AlertDialog(titleContent, content, actionContent);
+            SetDialogScrim(dialog);
+
+            var dialogPage = new Page(dialog);
+            defaultNavigator.Push(dialogPage);
+        }
+
+        /// <summary>
+        /// Shows an alert dialog by pushing a page containing the alert dialog
+        /// to default navigator.
+        /// </summary>
+        /// <param name="title">The title of AlertDialog.</param>
+        /// <param name="message">The message of AlertDialog.</param>
+        /// <param name="positiveButtonText">The positive button text in the action content of AlertDialog.</param>
+        /// <param name="positiveButtonClickedHandler">The clicked callback of the positive button in the action content of AlertDialog.</param>
+        /// <param name="negativeButtonText">The negative button text in the action content of AlertDialog.</param>
+        /// <param name="negativeButtonClickedHandler">The clicked callback of the negative button in the action content of AlertDialog.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ShowAlertDialog(string title = null, string message = null, string positiveButtonText = null, EventHandler<ClickedEventArgs> positiveButtonClickedHandler = null, string negativeButtonText = null, EventHandler<ClickedEventArgs> negativeButtonClickedHandler = null)
+        {
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+
+            var dialog = new AlertDialog(title, message, positiveButtonText, positiveButtonClickedHandler, negativeButtonText, negativeButtonClickedHandler);
+            SetDialogScrim(dialog);
+
+            var dialogPage = new Page(dialog);
+            defaultNavigator.Push(dialogPage);
+        }
+
+
+        private static void SetDialogScrim(Dialog dialog)
+        {
+            if (dialog == null)
+            {
+                return;
+            }
+
+            var window = NUIApplication.GetDefaultWindow();
+            var defaultNavigator = window.GetDefaultNavigator();
+            var defaultScrim = dialog.Scrim;
+
+            //Copies default scrim's GUI properties.
+            var scrim = new VisualView();
+            scrim.BackgroundColor = defaultScrim.BackgroundColor;
+            scrim.Size = defaultScrim.Size;
+            scrim.TouchEvent += (object source, View.TouchEventArgs e) =>
+            {
+                if (e.Touch.GetState(0) == PointStateType.Up)
+                {
+                    defaultNavigator.Pop();
+                }
+
+                return true;
+            };
+
+            dialog.Scrim = scrim;
+        }
     }
 } //namespace Tizen.NUI

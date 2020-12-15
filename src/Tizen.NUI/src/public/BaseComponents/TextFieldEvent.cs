@@ -89,14 +89,14 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextFieldSignal TextChangedSignal()
         {
-            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextField_TextChangedSignal(swigCPtr), false);
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TextFieldSignal MaxLengthReachedSignal()
         {
-            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextField_MaxLengthReachedSignal(swigCPtr), false);
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.MaxLengthReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
