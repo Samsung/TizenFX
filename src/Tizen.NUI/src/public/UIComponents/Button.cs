@@ -44,151 +44,151 @@ namespace Tizen.NUI.UIComponents
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create(nameof(UnselectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create(nameof(UnselectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create(nameof(SelectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create(nameof(SelectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create(nameof(DisabledSelectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create(nameof(DisabledSelectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledSelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledSelectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledSelectedVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledSelectedVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create(nameof(DisabledUnselectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create(nameof(DisabledUnselectedVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledUnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledUnselectedVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledUnselectedVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledUnselectedVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create(nameof(UnselectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create(nameof(UnselectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedBackgroundVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create(nameof(SelectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create(nameof(SelectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedBackgroundVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
-        public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create(nameof(DisabledUnselectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create(nameof(DisabledUnselectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledUnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledUnselectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledUnselectedBackgroundVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledUnselectedBackgroundVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create(nameof(DisabledSelectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create(nameof(DisabledSelectedBackgroundVisual), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.DisabledSelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledSelectedBackgroundVisual, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.DisabledSelectedBackgroundVisual).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.DisabledSelectedBackgroundVisual).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create(nameof(LabelRelativeAlignment), typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create(nameof(LabelRelativeAlignment), typeof(Align), typeof(Button), Align.End, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             string valueToString = "";
@@ -202,14 +202,14 @@ namespace Tizen.NUI.UIComponents
                     case Align.Bottom: { valueToString = "BOTTOM"; break; }
                     default: { valueToString = "END"; break; }
                 }
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LabelRelativeAlignment, new Tizen.NUI.PropertyValue(valueToString));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.LabelRelativeAlignment, new Tizen.NUI.PropertyValue(valueToString));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              string temp;
-             if (Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LabelRelativeAlignment).Get(out temp) == false)
+             if (Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.LabelRelativeAlignment).Get(out temp) == false)
              {
                  NUILog.Error("LabelRelativeAlignment get error!");
              }
@@ -221,137 +221,137 @@ namespace Tizen.NUI.UIComponents
                  case "BOTTOM": return Align.Bottom;
                  default: return Align.End;
              }
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create(nameof(LabelPadding), typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create(nameof(LabelPadding), typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LabelPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.LabelPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LabelPadding).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.LabelPadding).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create(nameof(ForegroundVisualPadding), typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create(nameof(ForegroundVisualPadding), typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.ForegroundVisualPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.ForegroundVisualPadding, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.ForegroundVisualPadding).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.ForegroundVisualPadding).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create(nameof(AutoRepeating), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create(nameof(AutoRepeating), typeof(bool), typeof(Button), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.AutoRepeating, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.AutoRepeating, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.AutoRepeating).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.AutoRepeating).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create(nameof(InitialAutoRepeatingDelay), typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create(nameof(InitialAutoRepeatingDelay), typeof(float), typeof(Button), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.InitialAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.InitialAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.InitialAutoRepeatingDelay).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.InitialAutoRepeatingDelay).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create(nameof(NextAutoRepeatingDelay), typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create(nameof(NextAutoRepeatingDelay), typeof(float), typeof(Button), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.NextAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.NextAutoRepeatingDelay, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              float temp = 0.0f;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.NextAutoRepeatingDelay).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.NextAutoRepeatingDelay).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TogglableProperty = BindableProperty.Create(nameof(Togglable), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TogglableProperty = BindableProperty.Create(nameof(Togglable), typeof(bool), typeof(Button), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.TOGGLABLE, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.TOGGLABLE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.TOGGLABLE).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.TOGGLABLE).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedProperty = BindableProperty.Create(nameof(Selected), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedProperty = BindableProperty.Create(nameof(Selected), typeof(bool), typeof(Button), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.SELECTED, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              bool temp = false;
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED).Get(out temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.SELECTED).Get(out temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create(nameof(UnselectedColor), typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create(nameof(UnselectedColor), typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
@@ -359,23 +359,23 @@ namespace Tizen.NUI.UIComponents
                 PropertyMap background = new PropertyMap();
                 background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                           .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
              Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UnselectedBackgroundVisual).Get(map);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.UnselectedBackgroundVisual).Get(map);
              Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
              value?.Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
@@ -383,58 +383,58 @@ namespace Tizen.NUI.UIComponents
                 PropertyMap background = new PropertyMap();
                 background.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color))
                           .Add(ColorVisualProperty.MixColor, new PropertyValue((Color)newValue));
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedBackgroundVisual, new Tizen.NUI.PropertyValue(background));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
              Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SelectedBackgroundVisual).Get(map);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.SelectedBackgroundVisual).Get(map);
              Tizen.NUI.PropertyValue value = map.Find(Visual.Property.MixColor);
              value?.Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelProperty = BindableProperty.Create(nameof(Label), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelProperty = BindableProperty.Create(nameof(Label), typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(temp);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.LABEL).Get(temp);
              return temp;
-         });
+         }));
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelTextProperty = BindableProperty.Create(nameof(LabelText), typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelTextProperty = BindableProperty.Create(nameof(LabelText), typeof(string), typeof(Button), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)button.SwigCPtr, Button.Property.LABEL, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
          {
              var button = (Button)bindable;
              Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
-             Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.LABEL).Get(map);
+             Tizen.NUI.Object.GetProperty((HandleRef)button.SwigCPtr, Button.Property.LABEL).Get(map);
              Tizen.NUI.PropertyValue value = map.Find(TextVisualProperty.Text, "Text");
              string str = "";
              value?.Get(out str);
              return str;
-         });
+         }));
 
         private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         private ClickedCallbackType _clickedCallback;
@@ -485,7 +485,9 @@ namespace Tizen.NUI.UIComponents
                 if (_clickedEventHandler == null)
                 {
                     _clickedCallback = OnClicked;
-                    ClickedSignal().Connect(_clickedCallback);
+                    ButtonSignal clickSignal = ClickedSignal();
+                    clickSignal?.Connect(_clickedCallback);
+                    clickSignal?.Dispose();
                 }
 
                 _clickedEventHandler += value;
@@ -495,10 +497,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _clickedEventHandler -= value;
 
-                if (_clickedEventHandler == null && ClickedSignal().Empty() == false)
+                ButtonSignal clickSignal = ClickedSignal();
+                if (_clickedEventHandler == null && clickSignal.Empty() == false)
                 {
-                    ClickedSignal().Disconnect(_clickedCallback);
+                    clickSignal?.Disconnect(_clickedCallback);
                 }
+                clickSignal?.Dispose();
             }
         }
 
@@ -516,7 +520,9 @@ namespace Tizen.NUI.UIComponents
                 if (_pressedEventHandler == null)
                 {
                     _pressedCallback = OnPressed;
-                    PressedSignal().Connect(_pressedCallback);
+                    ButtonSignal pressSignal = PressedSignal();
+                    pressSignal?.Connect(_pressedCallback);
+                    pressSignal?.Dispose();
                 }
 
                 _pressedEventHandler += value;
@@ -526,10 +532,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _pressedEventHandler -= value;
 
-                if (_pressedEventHandler == null && PressedSignal().Empty() == false)
+                ButtonSignal pressSignal = this.PressedSignal();
+                if (_pressedEventHandler == null && pressSignal.Empty() == false)
                 {
-                    this.PressedSignal().Disconnect(_pressedCallback);
+                    pressSignal?.Disconnect(_pressedCallback);
                 }
+                pressSignal?.Dispose();
             }
         }
 
@@ -547,7 +555,9 @@ namespace Tizen.NUI.UIComponents
                 if (_releasedEventHandler == null)
                 {
                     _releasedCallback = OnReleased;
-                    ReleasedSignal().Connect(_releasedCallback);
+                    ButtonSignal releaseSignal = ReleasedSignal();
+                    releaseSignal?.Connect(_releasedCallback);
+                    releaseSignal?.Dispose();
                 }
                 _releasedEventHandler += value;
             }
@@ -556,10 +566,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _releasedEventHandler -= value;
 
-                if (_releasedEventHandler == null && ReleasedSignal().Empty() == false)
+                ButtonSignal releaseSignal = ReleasedSignal();
+                if (_releasedEventHandler == null && releaseSignal.Empty() == false)
                 {
-                    ReleasedSignal().Disconnect(_releasedCallback);
+                    releaseSignal?.Disconnect(_releasedCallback);
                 }
+                releaseSignal?.Dispose();
 
             }
         }
@@ -578,7 +590,9 @@ namespace Tizen.NUI.UIComponents
                 if (_stateChangedEventHandler == null)
                 {
                     _stateChangedCallback = OnStateChanged;
-                    StateChangedSignal().Connect(_stateChangedCallback);
+                    ButtonSignal stateChanged = StateChangedSignal();
+                    stateChanged?.Connect(_stateChangedCallback);
+                    stateChanged?.Dispose();
                 }
 
                 _stateChangedEventHandler += value;
@@ -588,10 +602,12 @@ namespace Tizen.NUI.UIComponents
             {
                 _stateChangedEventHandler -= value;
 
-                if (_stateChangedEventHandler == null && StateChangedSignal().Empty() == false)
+                ButtonSignal stateChanged = StateChangedSignal();
+                if (_stateChangedEventHandler == null && stateChanged.Empty() == false)
                 {
-                    StateChangedSignal().Disconnect(_stateChangedCallback);
+                    stateChanged?.Disconnect(_stateChangedCallback);
                 }
+                stateChanged?.Dispose();
             }
         }
 
@@ -1004,33 +1020,33 @@ namespace Tizen.NUI.UIComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Button obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal ButtonSignal PressedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.PressedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.PressedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ReleasedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.ReleasedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.ReleasedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ClickedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.ClickedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.ClickedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal StateChangedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(Interop.Button.StateChangedSignal(swigCPtr), false);
+            ButtonSignal ret = new ButtonSignal(Interop.Button.StateChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1070,34 +1086,42 @@ namespace Tizen.NUI.UIComponents
         private void DisConnectFromSignals()
         {
             // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
+            global::System.Runtime.InteropServices.HandleRef currentCPtr = SwigCPtr;
 
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            swigCPtr = GetBaseHandleCPtrHandleRef;
+            SwigCPtr = GetBaseHandleCPtrHandleRef;
 
             if (_stateChangedCallback != null)
             {
-                StateChangedSignal().Disconnect(_stateChangedCallback);
+                ButtonSignal stateChanged = StateChangedSignal();
+                stateChanged?.Disconnect(_stateChangedCallback);
+                stateChanged?.Dispose();
             }
 
             if (_releasedCallback != null)
             {
-                ReleasedSignal().Disconnect(_releasedCallback);
+                ButtonSignal released = ReleasedSignal();
+                released?.Disconnect(_releasedCallback);
+                released?.Dispose();
             }
 
             if (_pressedCallback != null)
             {
-                this.PressedSignal().Disconnect(_pressedCallback);
+                ButtonSignal pressSignal = PressedSignal();
+                pressSignal?.Disconnect(_pressedCallback);
+                pressSignal?.Dispose();
             }
 
             if (_clickedCallback != null)
             {
-                ClickedSignal().Disconnect(_clickedCallback);
+                ButtonSignal clickSignal = ClickedSignal();
+                clickSignal?.Disconnect(_clickedCallback);
+                clickSignal?.Dispose();
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
-            swigCPtr = currentCPtr;
+            SwigCPtr = currentCPtr;
         }
 
         private bool OnClicked(IntPtr data)

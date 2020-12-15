@@ -43,9 +43,9 @@ namespace Tizen.NUI
 
         public void Trigger()
         {
-            if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
+            if ((System.IntPtr)SwigCPtr != global::System.IntPtr.Zero)
             {
-                Interop.EventThreadCallback.Trigger(swigCPtr);
+                Interop.EventThreadCallback.Trigger(SwigCPtr);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)

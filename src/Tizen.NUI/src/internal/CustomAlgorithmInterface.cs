@@ -29,7 +29,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomAlgorithmInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
         {
-            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
+            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(SwigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         {
             if (SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes0))
                 swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableView);
-            Interop.CustomAlgorithmInterface.DirectorConnect(swigCPtr, swigDelegate0);
+            Interop.CustomAlgorithmInterface.DirectorConnect(SwigCPtr, swigDelegate0);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

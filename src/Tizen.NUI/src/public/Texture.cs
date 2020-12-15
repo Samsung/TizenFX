@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData)
         {
-            bool ret = Interop.Texture.Upload(swigCPtr, PixelData.getCPtr(pixelData));
+            bool ret = Interop.Texture.Upload(SwigCPtr, PixelData.getCPtr(pixelData));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
         {
-            bool ret = Interop.Texture.Upload(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
+            bool ret = Interop.Texture.Upload(SwigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GenerateMipmaps()
         {
-            Interop.Texture.GenerateMipmaps(swigCPtr);
+            Interop.Texture.GenerateMipmaps(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetWidth()
         {
-            uint ret = Interop.Texture.GetWidth(swigCPtr);
+            uint ret = Interop.Texture.GetWidth(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -118,14 +118,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetHeight()
         {
-            uint ret = Interop.Texture.GetHeight(swigCPtr);
+            uint ret = Interop.Texture.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Texture obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

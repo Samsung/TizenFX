@@ -58,7 +58,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
-            Interop.PropertyBuffer.SetData(swigCPtr, data, size);
+            Interop.PropertyBuffer.SetData(SwigCPtr, data, size);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,14 +69,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetSize()
         {
-            uint ret = Interop.PropertyBuffer.GetSize(swigCPtr);
+            uint ret = Interop.PropertyBuffer.GetSize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

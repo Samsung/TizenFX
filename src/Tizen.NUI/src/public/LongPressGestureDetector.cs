@@ -124,7 +124,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTouchesRequired(uint touches)
         {
-            Interop.LongPressGestureDetector.SetTouchesRequired(swigCPtr, touches);
+            Interop.LongPressGestureDetector.SetTouchesRequired(SwigCPtr, touches);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTouchesRequired(uint minTouches, uint maxTouches)
         {
-            Interop.LongPressGestureDetector.SetTouchesRequired(swigCPtr, minTouches, maxTouches);
+            Interop.LongPressGestureDetector.SetTouchesRequired(SwigCPtr, minTouches, maxTouches);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMinimumTouchesRequired()
         {
-            uint ret = Interop.LongPressGestureDetector.GetMinimumTouchesRequired(swigCPtr);
+            uint ret = Interop.LongPressGestureDetector.GetMinimumTouchesRequired(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMaximumTouchesRequired()
         {
-            uint ret = Interop.LongPressGestureDetector.GetMaximumTouchesRequired(swigCPtr);
+            uint ret = Interop.LongPressGestureDetector.GetMaximumTouchesRequired(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -183,21 +183,21 @@ namespace Tizen.NUI
 
         internal LongPressGestureDetector Assign(LongPressGestureDetector rhs)
         {
-            LongPressGestureDetector ret = new LongPressGestureDetector(Interop.LongPressGestureDetector.Assign(swigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
+            LongPressGestureDetector ret = new LongPressGestureDetector(Interop.LongPressGestureDetector.Assign(SwigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LongPressGestureDetectedSignal DetectedSignal()
         {
-            LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(Interop.LongPressGestureDetector.DetectedSignal(swigCPtr), false);
+            LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(Interop.LongPressGestureDetector.DetectedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LongPressGestureDetector obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

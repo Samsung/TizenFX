@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageFactory obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -36,14 +36,14 @@ namespace Tizen.NUI
 
         public virtual uint GetNumberOfPages()
         {
-            uint ret = Interop.PageFactory.GetNumberOfPages(swigCPtr);
+            uint ret = Interop.PageFactory.GetNumberOfPages(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual Texture NewPage(uint pageId)
         {
-            Texture ret = new Texture(Interop.PageFactory.NewPage(swigCPtr, pageId), true);
+            Texture ret = new Texture(Interop.PageFactory.NewPage(SwigCPtr, pageId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

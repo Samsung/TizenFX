@@ -49,7 +49,7 @@ namespace Tizen.NUI
             get
             {
                 string uri = "";
-                uri = Interop.NativeImageSource.GenerateUrl(this.swigCPtr.Handle);
+                uri = Interop.NativeImageSource.GenerateUrl(this.SwigCPtr.Handle);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return new Uri(uri);
             }
@@ -74,13 +74,13 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NativeImageSource obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IntPtr AcquireBuffer(ref int width, ref int height, ref int stride)
         {
-            IntPtr ret = Interop.NativeImageSource.AcquireBuffer(this.swigCPtr.Handle, ref width, ref height, ref stride);
+            IntPtr ret = Interop.NativeImageSource.AcquireBuffer(this.SwigCPtr.Handle, ref width, ref height, ref stride);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ReleaseBuffer()
         {
-            bool ret = Interop.NativeImageSource.ReleaseBuffer(this.swigCPtr.Handle);
+            bool ret = Interop.NativeImageSource.ReleaseBuffer(this.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

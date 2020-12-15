@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Matrix3 obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -67,41 +67,41 @@ namespace Tizen.NUI
 
         public Matrix3 Assign(Matrix3 matrix)
         {
-            Matrix3 ret = new Matrix3(Interop.Matrix.Matrix3Assign(swigCPtr, Matrix3.getCPtr(matrix)), false);
+            Matrix3 ret = new Matrix3(Interop.Matrix.Matrix3Assign(SwigCPtr, Matrix3.getCPtr(matrix)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Matrix3 Assign(Matrix matrix)
         {
-            Matrix3 ret = new Matrix3(Interop.Matrix.Matrix3AssignMatrix(swigCPtr, Matrix.getCPtr(matrix)), false);
+            Matrix3 ret = new Matrix3(Interop.Matrix.Matrix3AssignMatrix(SwigCPtr, Matrix.getCPtr(matrix)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool EqualTo(Matrix3 rhs)
         {
-            bool ret = Interop.Matrix.Matrix3EqualTo(swigCPtr, Matrix3.getCPtr(rhs));
+            bool ret = Interop.Matrix.Matrix3EqualTo(SwigCPtr, Matrix3.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool NotEqualTo(Matrix3 rhs)
         {
-            bool ret = Interop.Matrix.Matrix3NotEqualTo(swigCPtr, Matrix3.getCPtr(rhs));
+            bool ret = Interop.Matrix.Matrix3NotEqualTo(SwigCPtr, Matrix3.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetIdentity()
         {
-            Interop.Matrix.Matrix3SetIdentity(swigCPtr);
+            Interop.Matrix.Matrix3SetIdentity(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public SWIGTYPE_p_float AsFloat()
         {
-            global::System.IntPtr cPtr = Interop.Matrix.Matrix3AsFloat(swigCPtr);
+            global::System.IntPtr cPtr = Interop.Matrix.Matrix3AsFloat(SwigCPtr);
             SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -109,34 +109,34 @@ namespace Tizen.NUI
 
         public bool Invert()
         {
-            bool ret = Interop.Matrix.Matrix3Invert(swigCPtr);
+            bool ret = Interop.Matrix.Matrix3Invert(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Transpose()
         {
-            bool ret = Interop.Matrix.Matrix3Transpose(swigCPtr);
+            bool ret = Interop.Matrix.Matrix3Transpose(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Scale(float scale)
         {
-            Interop.Matrix.Matrix3Scale(swigCPtr, scale);
+            Interop.Matrix.Matrix3Scale(SwigCPtr, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float Magnitude()
         {
-            float ret = Interop.Matrix.Matrix3Magnitude(swigCPtr);
+            float ret = Interop.Matrix.Matrix3Magnitude(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool ScaledInverseTranspose()
         {
-            bool ret = Interop.Matrix.Matrix3ScaledInverseTranspose(swigCPtr);
+            bool ret = Interop.Matrix.Matrix3ScaledInverseTranspose(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
