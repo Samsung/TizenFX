@@ -15,14 +15,12 @@
  *
  */
 
-using System;
-
 namespace Tizen.NUI
 {
     /// <summary>
     /// The class storing Background extra properties such as CornerRadius, ImageBorder.
     /// </summary>
-    internal class BackgroundExtraData : IDisposable
+    internal class BackgroundExtraData
     {
         internal BackgroundExtraData()
         {
@@ -55,23 +53,6 @@ namespace Tizen.NUI
         {
             return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
         }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                backgroundImageBorder?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
     }
 }
 

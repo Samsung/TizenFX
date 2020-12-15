@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components.Extension
     /// </remark>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class SlidingSwitchExtension : SwitchExtension, IDisposable
+    internal class SlidingSwitchExtension : SwitchExtension
     {
         private Animation slidingAnimation;
 
@@ -68,7 +68,6 @@ namespace Tizen.NUI.Components.Extension
             }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnDispose(Button button)
         {
             if (slidingAnimation != null)
@@ -80,23 +79,6 @@ namespace Tizen.NUI.Components.Extension
                 slidingAnimation.Dispose();
                 slidingAnimation = null;
             }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                slidingAnimation?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
