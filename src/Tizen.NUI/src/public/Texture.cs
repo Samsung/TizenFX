@@ -34,25 +34,25 @@ namespace Tizen.NUI
         /// <param name="width">The width of the texture.</param>
         /// <param name="height">The height of the texture.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(Interop.Texture.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
+        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(Interop.Texture.New((int)type, (int)format, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Texture(NativeImageInterface nativeImageInterface) : this(Interop.Texture.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
+        public Texture(NativeImageInterface nativeImageInterface) : this(Interop.Texture.New(NativeImageInterface.getCPtr(nativeImageInterface)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal Texture(IntPtr tbmSurface) : this(Interop.Texture.Texture_New__TbmSurface(tbmSurface), true)
+        internal Texture(IntPtr tbmSurface) : this(Interop.Texture.NewTbmSurface(tbmSurface), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Texture.Texture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Texture.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData)
         {
-            bool ret = Interop.Texture.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
+            bool ret = Interop.Texture.Upload(swigCPtr, PixelData.getCPtr(pixelData));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
         {
-            bool ret = Interop.Texture.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
+            bool ret = Interop.Texture.Upload(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GenerateMipmaps()
         {
-            Interop.Texture.Texture_GenerateMipmaps(swigCPtr);
+            Interop.Texture.GenerateMipmaps(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetWidth()
         {
-            uint ret = Interop.Texture.Texture_GetWidth(swigCPtr);
+            uint ret = Interop.Texture.GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetHeight()
         {
-            uint ret = Interop.Texture.Texture_GetHeight(swigCPtr);
+            uint ret = Interop.Texture.GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Texture.delete_Texture(swigCPtr);
+            Interop.Texture.DeleteTexture(swigCPtr);
         }
     }
 }

@@ -39,14 +39,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ItemFactory.delete_ItemFactory(swigCPtr);
+            Interop.ItemFactory.DeleteItemFactory(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetNumberOfItems()
         {
-            uint ret = Interop.ItemFactory.ItemFactory_GetNumberOfItems(swigCPtr);
+            uint ret = Interop.ItemFactory.GetNumberOfItems(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual View NewItem(uint itemId)
         {
-            View ret = new View(Interop.ItemFactory.ItemFactory_NewItem(swigCPtr, itemId), true);
+            View ret = new View(Interop.ItemFactory.NewItem(swigCPtr, itemId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -64,13 +64,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ItemReleased(uint itemId, View view)
         {
-            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
+            if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemReleased(swigCPtr, itemId, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ItemFactory() : this(Interop.ItemFactory.new_ItemFactory(), true)
+        public ItemFactory() : this(Interop.ItemFactory.NewItemFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -84,7 +84,7 @@ namespace Tizen.NUI
                 swigDelegate1 = new SwigDelegateItemFactory_1(SwigDirectorNewItem);
             if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2))
                 swigDelegate2 = new SwigDelegateItemFactory_2(SwigDirectorItemReleased);
-            Interop.ItemFactory.ItemFactory_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
+            Interop.ItemFactory.DirectorConnect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -126,7 +126,7 @@ namespace Tizen.NUI
         private SwigDelegateItemFactory_1 swigDelegate1;
         private SwigDelegateItemFactory_2 swigDelegate2;
 
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { };
+        private static global::System.Type[] swigMethodTypes0 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };
         private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(uint), typeof(View) };
     }

@@ -49,13 +49,13 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.PixelData_New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
+        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PixelData.PixelData_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PixelData.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -79,17 +79,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get URL from pixel data.
+        /// Get URI from pixel data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Uri Url
+        public Uri Uri
         {
             get
             {
-                string url = "";
-                url = Interop.PixelData.GenerateUrl(this.swigCPtr.Handle);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return new Uri(url);
+                string Uri = "";
+                Uri = Interop.PixelData.GenerateUrl(this.swigCPtr.Handle);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return new Uri(Uri);
             }
         }
 
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetWidth()
         {
-            uint ret = Interop.PixelData.PixelData_GetWidth(swigCPtr);
+            uint ret = Interop.PixelData.GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetHeight()
         {
-            uint ret = Interop.PixelData.PixelData_GetHeight(swigCPtr);
+            uint ret = Interop.PixelData.GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelFormat GetPixelFormat()
         {
-            PixelFormat ret = (PixelFormat)Interop.PixelData.PixelData_GetPixelFormat(swigCPtr);
+            PixelFormat ret = (PixelFormat)Interop.PixelData.GetPixelFormat(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PixelData.delete_PixelData(swigCPtr);
+            Interop.PixelData.DeletePixelData(swigCPtr);
         }
     }
 }

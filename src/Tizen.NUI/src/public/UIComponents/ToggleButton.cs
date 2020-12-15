@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -37,14 +38,14 @@ namespace Tizen.NUI
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS).Get(temp);
+            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals).Get(temp);
             return temp;
         });
 
@@ -76,14 +77,14 @@ namespace Tizen.NUI
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX).Get(out temp);
+            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex).Get(out temp);
             return temp;
         });
 
@@ -95,12 +96,12 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToggleButton() : this(Interop.ToggleButton.ToggleButton_New(), true)
+        public ToggleButton() : this(Interop.ToggleButton.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ToggleButton.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ToggleButton.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -166,7 +167,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ToggleButton.delete_ToggleButton(swigCPtr);
+            Interop.ToggleButton.DeleteToggleButton(swigCPtr);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Tizen.NUI
             /// This will be deprecated
             [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int STATE_VISUALS = Interop.ToggleButton.ToggleButton_Property_STATE_VISUALS_get();
+            public static readonly int StateVisuals = Interop.ToggleButton.StateVisualsGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
@@ -195,7 +196,7 @@ namespace Tizen.NUI
             /// This will be deprecated
             [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int TOOLTIPS = Interop.ToggleButton.ToggleButton_Property_TOOLTIPS_get();
+            public static readonly int TOOLTIPS = Interop.ToggleButton.TooltipsGet();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
@@ -203,7 +204,7 @@ namespace Tizen.NUI
             /// This will be deprecated
             [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CURRENT_STATE_INDEX = Interop.ToggleButton.ToggleButton_Property_CURRENT_STATE_INDEX_get();
+            public static readonly int CurrentStateIndex = Interop.ToggleButton.CurrentStateIndexGet();
         }
     }
 }

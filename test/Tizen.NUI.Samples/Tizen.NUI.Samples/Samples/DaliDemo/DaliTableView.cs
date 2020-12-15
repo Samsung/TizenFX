@@ -739,7 +739,7 @@ namespace Tizen.NUI.Samples
 
             mScrollViewEffect = new ScrollViewPagePathEffect(path,
                                                              new Vector3(-1.0f, 0.0f, 0.0f),
-                                                             ScrollView.Property.SCROLL_FINAL_X,
+                                                             ScrollView.Property.ScrollFinalX,
                                                              new Vector3(stageSize.X * TABLE_RELATIVE_SIZE.X, stageSize.Y * TABLE_RELATIVE_SIZE.Y, 0.0f), mTotalPages);
         }
 

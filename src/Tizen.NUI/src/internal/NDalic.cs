@@ -23,15 +23,15 @@ namespace Tizen.NUI
     {
         public static uint int_to_uint(int x)
         {
-            uint ret = Interop.NDalic.int_to_uint(x);
+            uint ret = Interop.NDalic.IntToUint(x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static readonly int VISUAL_PROPERTY_TRANSFORM = Interop.Visual.Visual_Property_TRANSFORM_get();
-        public static readonly int VISUAL_PROPERTY_PREMULTIPLIED_ALPHA = Interop.Visual.Visual_Property_PREMULTIPLIED_ALPHA_get();
-        public static readonly int VISUAL_PROPERTY_MIX_COLOR = Interop.Visual.Visual_Property_MIX_COLOR_get();
-        public static readonly int IMAGE_VISUAL_BORDER = Interop.Visual.Image_Visual_BORDER_get();
+        public static readonly int VisualPropertyTransform = Interop.Visual.TransformGet();
+        public static readonly int VisualPropertyPremultipliedAlpha = Interop.Visual.PremultipliedAlphaGet();
+        public static readonly int VisualPropertyMixColor = Interop.Visual.MixColorGet();
+        public static readonly int ImageVisualBorder = Interop.Visual.ImageVisualBorderGet();
 
         public static void DaliAssertMessage(string location, string condition)
         {
@@ -41,70 +41,70 @@ namespace Tizen.NUI
 
         public static Vector2 Min(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.Min__SWIG_0(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = new Vector2(Interop.NDalic.MinVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Max(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.Max__SWIG_0(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = new Vector2(Interop.NDalic.MaxVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Clamp(Vector2 v, float min, float max)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.Clamp__SWIG_0(Vector2.getCPtr(v), min, max), true);
+            Vector2 ret = new Vector2(Interop.NDalic.ClampVector2(Vector2.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Min(Vector3 a, Vector3 b)
         {
-            Vector3 ret = new Vector3(Interop.NDalic.Min__SWIG_1(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
+            Vector3 ret = new Vector3(Interop.NDalic.MinVector3(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Max(Vector3 a, Vector3 b)
         {
-            Vector3 ret = new Vector3(Interop.NDalic.Max__SWIG_1(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
+            Vector3 ret = new Vector3(Interop.NDalic.MaxVector3(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Clamp(Vector3 v, float min, float max)
         {
-            Vector3 ret = new Vector3(Interop.NDalic.Clamp__SWIG_1(Vector3.getCPtr(v), min, max), true);
+            Vector3 ret = new Vector3(Interop.NDalic.ClampVector3(Vector3.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Min(Vector4 a, Vector4 b)
         {
-            Vector4 ret = new Vector4(Interop.NDalic.Min__SWIG_2(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
+            Vector4 ret = new Vector4(Interop.NDalic.MinVector4(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Max(Vector4 a, Vector4 b)
         {
-            Vector4 ret = new Vector4(Interop.NDalic.Max__SWIG_2(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
+            Vector4 ret = new Vector4(Interop.NDalic.MaxVector4(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Clamp(Vector4 v, float min, float max)
         {
-            Vector4 ret = new Vector4(Interop.NDalic.Clamp__SWIG_2(Vector4.getCPtr(v), min, max), true);
+            Vector4 ret = new Vector4(Interop.NDalic.ClampVector4(Vector4.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool EqualTo(AngleAxis lhs, AngleAxis rhs)
         {
-            bool ret = Interop.NDalic.EqualTo__SWIG_9(AngleAxis.getCPtr(lhs), AngleAxis.getCPtr(rhs));
+            bool ret = Interop.NDalic.EqualToSwig9(AngleAxis.getCPtr(lhs), AngleAxis.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,14 +139,14 @@ namespace Tizen.NUI
 
         public static bool Equals(float a, float b)
         {
-            bool ret = Interop.NDalic.Equals__SWIG_0(a, b);
+            bool ret = Interop.NDalic.Equals(a, b);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool Equals(float a, float b, float epsilon)
         {
-            bool ret = Interop.NDalic.Equals__SWIG_1(a, b, epsilon);
+            bool ret = Interop.NDalic.Equals(a, b, epsilon);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -190,7 +190,7 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.NDalic.WEIGHT_get();
+                int ret = Interop.NDalic.WeightGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -221,7 +221,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BLACK_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlackGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -232,7 +232,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.WHITE_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -243,7 +243,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.RED_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -254,7 +254,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GREEN_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -265,7 +265,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BLUE_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlueGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -276,7 +276,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.YELLOW_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -287,7 +287,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MAGENTA_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -298,7 +298,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CYAN_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.CyanGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -309,7 +309,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TRANSPARENT_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.TransparentGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -320,7 +320,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_0_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon0Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -330,7 +330,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_1_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon1Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -340,7 +340,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_10_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon10Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -350,7 +350,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_100_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon100Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -360,7 +360,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_1000_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon1000Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -370,7 +370,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicMachine.MACHINE_EPSILON_10000_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon10000Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -380,7 +380,7 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)Interop.NDalic.FIRST_VALID_PIXEL_FORMAT_get();
+                PixelFormat ret = (PixelFormat)Interop.NDalic.FirstValidPixelFormatGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -390,7 +390,7 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)Interop.NDalic.LAST_VALID_PIXEL_FORMAT_get();
+                PixelFormat ret = (PixelFormat)Interop.NDalic.LastValidPixelFormatGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -420,7 +420,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.POSITIVE_X_get();
+                uint ret = Interop.NDalicXYZ.PositiveXGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -430,7 +430,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NEGATIVE_X_get();
+                uint ret = Interop.NDalicXYZ.NegativeXGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -440,7 +440,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.POSITIVE_Y_get();
+                uint ret = Interop.NDalicXYZ.PositiveYGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -450,7 +450,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NEGATIVE_Y_get();
+                uint ret = Interop.NDalicXYZ.NegativeYGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -460,7 +460,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.POSITIVE_Z_get();
+                uint ret = Interop.NDalicXYZ.PositiveZGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -470,7 +470,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NEGATIVE_Z_get();
+                uint ret = Interop.NDalicXYZ.NegativeZGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -528,7 +528,7 @@ namespace Tizen.NUI
 
         public static ViewImpl GetImplementation(View handle)
         {
-            ViewImpl ret = new ViewImpl(Interop.NDalic.GetImplementation__SWIG_0(View.getCPtr(handle)), false);
+            ViewImpl ret = new ViewImpl(Interop.NDalic.GetImplementationControl(View.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -546,99 +546,99 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static readonly int VISUAL_PROPERTY_TYPE = Interop.NDalicVisual.VISUAL_PROPERTY_TYPE_get();
-        internal static readonly int VISUAL_PROPERTY_SHADER = Interop.NDalicVisual.VISUAL_PROPERTY_SHADER_get();
+        internal static readonly int VisualPropertyType = Interop.NDalicVisual.VisualPropertyTypeGet();
+        internal static readonly int VisualPropertyShader = Interop.NDalicVisual.VisualPropertyShaderGet();
 
-        internal static readonly int VISUAL_SHADER_VERTEX = Interop.NDalicVisual.VISUAL_SHADER_VERTEX_get();
-        internal static readonly int VISUAL_SHADER_FRAGMENT = Interop.NDalicVisual.VISUAL_SHADER_FRAGMENT_get();
-        internal static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_X = Interop.NDalicVisual.VISUAL_SHADER_SUBDIVIDE_GRID_X_get();
-        internal static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_Y = Interop.NDalicVisual.VISUAL_SHADER_SUBDIVIDE_GRID_Y_get();
-        internal static readonly int VISUAL_SHADER_HINTS = Interop.NDalicVisual.VISUAL_SHADER_HINTS_get();
+        internal static readonly int VisualShaderVertex = Interop.NDalicVisual.VisualShaderVertexGet();
+        internal static readonly int VisualShaderFragment = Interop.NDalicVisual.VisualShaderFragmentGet();
+        internal static readonly int VisualShaderSubdivideGridX = Interop.NDalicVisual.VisualShaderSubdivideGridXGet();
+        internal static readonly int VisualShaderSubdivideGridY = Interop.NDalicVisual.VisualShaderSubdivideGridYGet();
+        internal static readonly int VisualShaderHints = Interop.NDalicVisual.VisualShaderHintsGet();
 
-        internal static readonly int BORDER_VISUAL_COLOR = Interop.NDalicBorderVisual.BORDER_VISUAL_COLOR_get();
-        internal static readonly int BORDER_VISUAL_SIZE = Interop.NDalicBorderVisual.BORDER_VISUAL_SIZE_get();
-        internal static readonly int BORDER_VISUAL_ANTI_ALIASING = Interop.NDalicBorderVisual.BORDER_VISUAL_ANTI_ALIASING_get();
+        internal static readonly int BorderVisualColor = Interop.NDalicBorderVisual.ColorGet();
+        internal static readonly int BorderVisualSize = Interop.NDalicBorderVisual.SizeGet();
+        internal static readonly int BorderVisualAntiAliasing = Interop.NDalicBorderVisual.AntiAliasingGet();
 
-        internal static readonly int COLOR_VISUAL_MIX_COLOR = Interop.NDalicColorVisual.COLOR_VISUAL_MIX_COLOR_get();
+        internal static readonly int ColorVisualMixColor = Interop.NDalicColorVisual.ColorVisualMixColorGet();
 
-        internal static readonly int GRADIENT_VISUAL_START_POSITION = Interop.NDalicGradientVisual.GRADIENT_VISUAL_START_POSITION_get();
-        internal static readonly int GRADIENT_VISUAL_END_POSITION = Interop.NDalicGradientVisual.GRADIENT_VISUAL_END_POSITION_get();
-        internal static readonly int GRADIENT_VISUAL_CENTER = Interop.NDalicGradientVisual.GRADIENT_VISUAL_CENTER_get();
-        internal static readonly int GRADIENT_VISUAL_RADIUS = Interop.NDalicGradientVisual.GRADIENT_VISUAL_RADIUS_get();
-        internal static readonly int GRADIENT_VISUAL_STOP_OFFSET = Interop.NDalicGradientVisual.GRADIENT_VISUAL_STOP_OFFSET_get();
-        internal static readonly int GRADIENT_VISUAL_STOP_COLOR = Interop.NDalicGradientVisual.GRADIENT_VISUAL_STOP_COLOR_get();
-        internal static readonly int GRADIENT_VISUAL_UNITS = Interop.NDalicGradientVisual.GRADIENT_VISUAL_UNITS_get();
-        internal static readonly int GRADIENT_VISUAL_SPREAD_METHOD = Interop.NDalicGradientVisual.GRADIENT_VISUAL_SPREAD_METHOD_get();
+        internal static readonly int GradientVisualStartPosition = Interop.NDalicGradientVisual.GradientVisualStartPositionGet();
+        internal static readonly int GradientVisualEndPosition = Interop.NDalicGradientVisual.GradientVisualEndPositionGet();
+        internal static readonly int GradientVisualCenter = Interop.NDalicGradientVisual.GradientVisualCenterGet();
+        internal static readonly int GradientVisualRadius = Interop.NDalicGradientVisual.GradientVisualRadiusGet();
+        internal static readonly int GradientVisualStopOffset = Interop.NDalicGradientVisual.GradientVisualStopOffsetGet();
+        internal static readonly int GradientVisualStopColor = Interop.NDalicGradientVisual.GradientVisualStopColorGet();
+        internal static readonly int GradientVisualUnits = Interop.NDalicGradientVisual.GradientVisualUnitsGet();
+        internal static readonly int GradientVisualSpreadMethod = Interop.NDalicGradientVisual.GradientVisualSpreadMethodGet();
 
-        internal static readonly int IMAGE_VISUAL_URL = Interop.NDalicImageVisual.IMAGE_VISUAL_URL_get();
-        internal static readonly int IMAGE_VISUAL_ALPHA_MASK_URL = Interop.NDalicImageVisual.IMAGE_VISUAL_ALPHA_MASK_URL_get();
-        internal static readonly int IMAGE_VISUAL_FITTING_MODE = Interop.NDalicImageVisual.IMAGE_VISUAL_FITTING_MODE_get();
-        internal static readonly int IMAGE_VISUAL_SAMPLING_MODE = Interop.NDalicImageVisual.IMAGE_VISUAL_SAMPLING_MODE_get();
-        internal static readonly int IMAGE_VISUAL_DESIRED_WIDTH = Interop.NDalicImageVisual.IMAGE_VISUAL_DESIRED_WIDTH_get();
-        internal static readonly int IMAGE_VISUAL_DESIRED_HEIGHT = Interop.NDalicImageVisual.IMAGE_VISUAL_DESIRED_HEIGHT_get();
-        internal static readonly int IMAGE_VISUAL_SYNCHRONOUS_LOADING = Interop.NDalicImageVisual.IMAGE_VISUAL_SYNCHRONOUS_LOADING_get();
-        internal static readonly int IMAGE_VISUAL_BORDER_ONLY = Interop.NDalicImageVisual.IMAGE_VISUAL_BORDER_ONLY_get();
-        internal static readonly int IMAGE_VISUAL_PIXEL_AREA = Interop.NDalicImageVisual.IMAGE_VISUAL_PIXEL_AREA_get();
-        internal static readonly int IMAGE_VISUAL_WRAP_MODE_U = Interop.NDalicImageVisual.IMAGE_VISUAL_WRAP_MODE_U_get();
-        internal static readonly int IMAGE_VISUAL_WRAP_MODE_V = Interop.NDalicImageVisual.IMAGE_VISUAL_WRAP_MODE_V_get();
-        internal static readonly int IMAGE_VISUAL_BATCH_SIZE = Interop.NDalicImageVisual.IMAGE_VISUAL_BATCH_SIZE_get();
-        internal static readonly int IMAGE_VISUAL_CACHE_SIZE = Interop.NDalicImageVisual.IMAGE_VISUAL_CACHE_SIZE_get();
-        internal static readonly int IMAGE_VISUAL_FRAME_DELAY = Interop.NDalicImageVisual.IMAGE_VISUAL_FRAME_DELAY_get();
-        internal static readonly int IMAGE_VISUAL_LOOP_COUNT = Interop.NDalicImageVisual.IMAGE_VISUAL_LOOP_COUNT_get();
-        internal static readonly int IMAGE_VISUAL_MASK_CONTENT_SCALE = Interop.NDalicImageVisual.IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
-        internal static readonly int IMAGE_VISUAL_CROP_TO_MASK = Interop.NDalicImageVisual.IMAGE_VISUAL_CROP_TO_MASK_get();
-        internal static readonly int IMAGE_VISUAL_RELEASE_POLICY = Interop.NDalicImageVisual.IMAGE_VISUAL_RELEASE_POLICY_get();
-        internal static readonly int IMAGE_VISUAL_LOAD_POLICY = Interop.NDalicImageVisual.IMAGE_VISUAL_LOAD_POLICY_get();
-        internal static readonly int IMAGE_VISUAL_ORIENTATION_CORRECTION = Interop.NDalicImageVisual.IMAGE_VISUAL_ORIENTATION_CORRECTION_get();
-        internal static readonly int IMAGE_VISUAL_AUXILIARY_IMAGE_URL = Interop.NDalicImageVisual.IMAGE_VISUAL_AUXILIARY_IMAGE_URL_get();
-        internal static readonly int IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA = Interop.NDalicImageVisual.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA_get();
+        internal static readonly int ImageVisualUrl = Interop.NDalicImageVisual.ImageVisualUrlGet();
+        internal static readonly int ImageVisualAlphaMaskUrl = Interop.NDalicImageVisual.ImageVisualAlphaMaskUrlGet();
+        internal static readonly int ImageVisualFittingMode = Interop.NDalicImageVisual.ImageVisualFittingModeGet();
+        internal static readonly int ImageVisualSamplingMode = Interop.NDalicImageVisual.ImageVisualSamplingModeGet();
+        internal static readonly int ImageVisualDesiredWidth = Interop.NDalicImageVisual.ImageVisualDesiredWidthGet();
+        internal static readonly int ImageVisualDesiredHeight = Interop.NDalicImageVisual.ImageVisualDesiredHeightGet();
+        internal static readonly int ImageVisualSynchronousLoading = Interop.NDalicImageVisual.ImageVisualSynchronousLoadingGet();
+        internal static readonly int ImageVisualBorderOnly = Interop.NDalicImageVisual.ImageVisualBorderOnlyGet();
+        internal static readonly int ImageVisualPixelArea = Interop.NDalicImageVisual.ImageVisualPixelAreaGet();
+        internal static readonly int ImageVisualWrapModeU = Interop.NDalicImageVisual.ImageVisualWrapModeUGet();
+        internal static readonly int ImageVisualWrapModeV = Interop.NDalicImageVisual.ImageVisualWrapModeVGet();
+        internal static readonly int ImageVisualBatchSize = Interop.NDalicImageVisual.ImageVisualBatchSizeGet();
+        internal static readonly int ImageVisualCacheSize = Interop.NDalicImageVisual.ImageVisualCacheSizeGet();
+        internal static readonly int ImageVisualFrameDelay = Interop.NDalicImageVisual.ImageVisualFrameDelayGet();
+        internal static readonly int ImageVisualLoopCount = Interop.NDalicImageVisual.ImageVisualLoopCountGet();
+        internal static readonly int ImageVisualMaskContentScale = Interop.NDalicImageVisual.ImageVisualMaskContentScaleGet();
+        internal static readonly int ImageVisualCropToMask = Interop.NDalicImageVisual.ImageVisualCropToMaskGet();
+        internal static readonly int ImageVisualReleasePolicy = Interop.NDalicImageVisual.ImageVisualReleasePolicyGet();
+        internal static readonly int ImageVisualLoadPolicy = Interop.NDalicImageVisual.ImageVisualLoadPolicyGet();
+        internal static readonly int ImageVisualOrientationCorrection = Interop.NDalicImageVisual.ImageVisualOrientationCorrectionGet();
+        internal static readonly int ImageVisualAuxiliaryImageUrl = Interop.NDalicImageVisual.ImageVisualAuxiliaryImageUrlGet();
+        internal static readonly int ImageVisualAuxiliaryImageAlpha = Interop.NDalicImageVisual.ImageVisualAuxiliaryImageAlphaGet();
 
-        internal static readonly int MESH_VISUAL_OBJECT_URL = Interop.NDalicMeshVisual.MESH_VISUAL_OBJECT_URL_get();
-        internal static readonly int MESH_VISUAL_MATERIAL_URL = Interop.NDalicMeshVisual.MESH_VISUAL_MATERIAL_URL_get();
-        internal static readonly int MESH_VISUAL_TEXTURES_PATH = Interop.NDalicMeshVisual.MESH_VISUAL_TEXTURES_PATH_get();
-        internal static readonly int MESH_VISUAL_SHADING_MODE = Interop.NDalicMeshVisual.MESH_VISUAL_SHADING_MODE_get();
-        internal static readonly int MESH_VISUAL_USE_MIPMAPPING = Interop.NDalicMeshVisual.MESH_VISUAL_USE_MIPMAPPING_get();
-        internal static readonly int MESH_VISUAL_USE_SOFT_NORMALS = Interop.NDalicMeshVisual.MESH_VISUAL_USE_SOFT_NORMALS_get();
-        internal static readonly int MESH_VISUAL_LIGHT_POSITION = Interop.NDalicMeshVisual.MESH_VISUAL_LIGHT_POSITION_get();
+        internal static readonly int MeshVisualObjectUrl = Interop.NDalicMeshVisual.MeshVisualObjectUrlGet();
+        internal static readonly int MeshVisualMaterialUrl = Interop.NDalicMeshVisual.MeshVisualMaterialUrlGet();
+        internal static readonly int MeshVisualTexturesPath = Interop.NDalicMeshVisual.MeshVisualTexturesPathGet();
+        internal static readonly int MeshVisualShadingMode = Interop.NDalicMeshVisual.MeshVisualShadingModeGet();
+        internal static readonly int MeshVisualUseMipmapping = Interop.NDalicMeshVisual.MeshVisualUseMipmappingGet();
+        internal static readonly int MeshVisualUseSoftNormals = Interop.NDalicMeshVisual.MeshVisualUseSoftNormalsGet();
+        internal static readonly int MeshVisualLightPosition = Interop.NDalicMeshVisual.MeshVisualLightPositionGet();
 
-        internal static readonly int PRIMITIVE_VISUAL_SHAPE = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SHAPE_get();
-        internal static readonly int PRIMITIVE_VISUAL_MIX_COLOR = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_MIX_COLOR_get();
-        internal static readonly int PRIMITIVE_VISUAL_SLICES = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SLICES_get();
-        internal static readonly int PRIMITIVE_VISUAL_STACKS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_STACKS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_TOP_RADIUS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_HEIGHT = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SCALE_HEIGHT_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_RADIUS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SCALE_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_DIMENSIONS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_SCALE_DIMENSIONS_get();
-        internal static readonly int PRIMITIVE_VISUAL_BEVEL_PERCENTAGE = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE_get();
-        internal static readonly int PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS_get();
-        internal static readonly int PRIMITIVE_VISUAL_LIGHT_POSITION = Interop.NdalicPrimitive.PRIMITIVE_VISUAL_LIGHT_POSITION_get();
+        internal static readonly int PrimitiveVisualShape = Interop.NdalicPrimitive.PrimitiveVisualShapeGet();
+        internal static readonly int PrimitiveVisualMixColor = Interop.NdalicPrimitive.PrimitiveVisualMixColorGet();
+        internal static readonly int PrimitiveVisualSlices = Interop.NdalicPrimitive.PrimitiveVisualSlicesGet();
+        internal static readonly int PrimitiveVisualStacks = Interop.NdalicPrimitive.PrimitiveVisualStacksGet();
+        internal static readonly int PrimitiveVisualScaleTopRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleTopRadiusGet();
+        internal static readonly int PrimitiveVisualScaleBottomRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleBottomRadiusGet();
+        internal static readonly int PrimitiveVisualScaleHeight = Interop.NdalicPrimitive.PrimitiveVisualScaleHeightGet();
+        internal static readonly int PrimitiveVisualScaleRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleRadiusGet();
+        internal static readonly int PrimitiveVisualScaleDimensions = Interop.NdalicPrimitive.PrimitiveVisualScaleDimensionsGet();
+        internal static readonly int PrimitiveVisualBevelPercentage = Interop.NdalicPrimitive.PrimitiveVisualBevelPercentageGet();
+        internal static readonly int PrimitiveVisualBevelSmoothness = Interop.NdalicPrimitive.PrimitiveVisualBevelSmoothnessGet();
+        internal static readonly int PrimitiveVisualLightPosition = Interop.NdalicPrimitive.PrimitiveVisualLightPositionGet();
 
-        internal static readonly int TEXT_VISUAL_TEXT = Interop.NDalicText.TEXT_VISUAL_TEXT_get();
-        internal static readonly int TEXT_VISUAL_FONT_FAMILY = Interop.NDalicText.TEXT_VISUAL_FONT_FAMILY_get();
-        internal static readonly int TEXT_VISUAL_FONT_STYLE = Interop.NDalicText.TEXT_VISUAL_FONT_STYLE_get();
-        internal static readonly int TEXT_VISUAL_POINT_SIZE = Interop.NDalicText.TEXT_VISUAL_POINT_SIZE_get();
-        internal static readonly int TEXT_VISUAL_MULTI_LINE = Interop.NDalicText.TEXT_VISUAL_MULTI_LINE_get();
-        internal static readonly int TEXT_VISUAL_HORIZONTAL_ALIGNMENT = Interop.NDalicText.TEXT_VISUAL_HORIZONTAL_ALIGNMENT_get();
-        internal static readonly int TEXT_VISUAL_VERTICAL_ALIGNMENT = Interop.NDalicText.TEXT_VISUAL_VERTICAL_ALIGNMENT_get();
-        internal static readonly int TEXT_VISUAL_TEXT_COLOR = Interop.NDalicText.TEXT_VISUAL_TEXT_COLOR_get();
-        internal static readonly int TEXT_VISUAL_ENABLE_MARKUP = Interop.NDalicText.TEXT_VISUAL_ENABLE_MARKUP_get();
+        internal static readonly int TextVisualText = Interop.NDalicText.TextVisualTextGet();
+        internal static readonly int TextVisualFontFamily = Interop.NDalicText.TextVisualFontFamilyGet();
+        internal static readonly int TextVisualFontStyle = Interop.NDalicText.TextVisualFontStyleGet();
+        internal static readonly int TextVisualPointSize = Interop.NDalicText.TextVisualPointSizeGet();
+        internal static readonly int TextVisualMultiLine = Interop.NDalicText.TextVisualMultiLineGet();
+        internal static readonly int TextVisualHorizontalAlignment = Interop.NDalicText.TextVisualHorizontalAlignmentGet();
+        internal static readonly int TextVisualVerticalAlignment = Interop.NDalicText.TextVisualVerticalAlignmentGet();
+        internal static readonly int TextVisualTextColor = Interop.NDalicText.TextVisualTextColorGet();
+        internal static readonly int TextVisualEnableMarkup = Interop.NDalicText.TextVisualEnableMarkupGet();
 
-        internal static readonly int TOOLTIP_CONTENT = Interop.NDalicToolTip.TOOLTIP_CONTENT_get();
-        internal static readonly int TOOLTIP_LAYOUT = Interop.NDalicToolTip.TOOLTIP_LAYOUT_get();
-        internal static readonly int TOOLTIP_WAIT_TIME = Interop.NDalicToolTip.TOOLTIP_WAIT_TIME_get();
-        internal static readonly int TOOLTIP_BACKGROUND = Interop.NDalicToolTip.TOOLTIP_BACKGROUND_get();
-        internal static readonly int TOOLTIP_TAIL = Interop.NDalicToolTip.TOOLTIP_TAIL_get();
-        internal static readonly int TOOLTIP_POSITION = Interop.NDalicToolTip.TOOLTIP_POSITION_get();
-        internal static readonly int TOOLTIP_HOVER_POINT_OFFSET = Interop.NDalicToolTip.TOOLTIP_HOVER_POINT_OFFSET_get();
-        internal static readonly int TOOLTIP_MOVEMENT_THRESHOLD = Interop.NDalicToolTip.TOOLTIP_MOVEMENT_THRESHOLD_get();
-        internal static readonly int TOOLTIP_DISAPPEAR_ON_MOVEMENT = Interop.NDalicToolTip.TOOLTIP_DISAPPEAR_ON_MOVEMENT_get();
+        internal static readonly int TooltipContent = Interop.NDalicToolTip.TooltipContentGet();
+        internal static readonly int TooltipLayout = Interop.NDalicToolTip.TooltipLayoutGet();
+        internal static readonly int TooltipWaitTime = Interop.NDalicToolTip.TooltipWaitTimeGet();
+        internal static readonly int TooltipBackground = Interop.NDalicToolTip.TooltipBackgroundGet();
+        internal static readonly int TooltipTail = Interop.NDalicToolTip.TooltipTailGet();
+        internal static readonly int TooltipPosition = Interop.NDalicToolTip.TooltipPositionGet();
+        internal static readonly int TooltipHoverPointOffset = Interop.NDalicToolTip.TooltipHoverPointOffsetGet();
+        internal static readonly int TooltipMovementThreshold = Interop.NDalicToolTip.TooltipMovementThresholdGet();
+        internal static readonly int TooltipDisappearOnMovement = Interop.NDalicToolTip.TooltipDisappearOnMovementGet();
 
-        internal static readonly int TOOLTIP_BACKGROUND_VISUAL = Interop.NDalicToolTip.TOOLTIP_BACKGROUND_VISUAL_get();
-        internal static readonly int TOOLTIP_BACKGROUND_BORDER = Interop.NDalicToolTip.TOOLTIP_BACKGROUND_BORDER_get();
+        internal static readonly int TooltipBackgroundVisual = Interop.NDalicToolTip.TooltipBackgroundVisualGet();
+        internal static readonly int TooltipBackgroundBorder = Interop.NDalicToolTip.TooltipBackgroundBorderGet();
 
-        internal static readonly int TOOLTIP_TAIL_VISIBILITY = Interop.NDalicToolTip.TOOLTIP_TAIL_VISIBILITY_get();
-        internal static readonly int TOOLTIP_TAIL_ABOVE_VISUAL = Interop.NDalicToolTip.TOOLTIP_TAIL_ABOVE_VISUAL_get();
-        internal static readonly int TOOLTIP_TAIL_BELOW_VISUAL = Interop.NDalicToolTip.TOOLTIP_TAIL_BELOW_VISUAL_get();
+        internal static readonly int TooltipTailVisibility = Interop.NDalicToolTip.TooltipTailVisibilityGet();
+        internal static readonly int TooltipTailAboveVisual = Interop.NDalicToolTip.TooltipTailAboveVisualGet();
+        internal static readonly int TooltipTailBelowVisual = Interop.NDalicToolTip.TooltipTailBelowVisualGet();
     }
 }
