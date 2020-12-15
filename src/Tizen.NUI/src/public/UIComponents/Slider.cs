@@ -352,17 +352,21 @@ namespace Tizen.NUI.UIComponents
                 if (_sliderValueChangedEventHandler == null)
                 {
                     _sliderValueChangedCallbackDelegate = (OnValueChanged);
-                    ValueChangedSignal().Connect(_sliderValueChangedCallbackDelegate);
+                    SliderValueChangedSignal valueChanged = ValueChangedSignal();
+                    valueChanged?.Connect(_sliderValueChangedCallbackDelegate);
+                    valueChanged?.Dispose();
                 }
                 _sliderValueChangedEventHandler += value;
             }
             remove
             {
                 _sliderValueChangedEventHandler -= value;
-                if (_sliderValueChangedEventHandler == null && ValueChangedSignal().Empty() == false)
+                SliderValueChangedSignal valueChanged = ValueChangedSignal();
+                if (_sliderValueChangedEventHandler == null && valueChanged.Empty() == false)
                 {
-                    ValueChangedSignal().Disconnect(_sliderValueChangedCallbackDelegate);
+                    valueChanged?.Disconnect(_sliderValueChangedCallbackDelegate);
                 }
+                valueChanged?.Dispose();
             }
         }
 
@@ -380,17 +384,21 @@ namespace Tizen.NUI.UIComponents
                 if (_sliderSlidingFinishedEventHandler == null)
                 {
                     _sliderSlidingFinishedCallbackDelegate = (OnSlidingFinished);
-                    SlidingFinishedSignal().Connect(_sliderSlidingFinishedCallbackDelegate);
+                    SliderValueChangedSignal slidingFinished = SlidingFinishedSignal();
+                    slidingFinished?.Connect(_sliderSlidingFinishedCallbackDelegate);
+                    slidingFinished?.Dispose();
                 }
                 _sliderSlidingFinishedEventHandler += value;
             }
             remove
             {
                 _sliderSlidingFinishedEventHandler -= value;
-                if (_sliderSlidingFinishedEventHandler == null && SlidingFinishedSignal().Empty() == false)
+                SliderValueChangedSignal slidingFinished = SlidingFinishedSignal();
+                if (_sliderSlidingFinishedEventHandler == null && slidingFinished.Empty() == false)
                 {
-                    SlidingFinishedSignal().Disconnect(_sliderSlidingFinishedCallbackDelegate);
+                    slidingFinished?.Disconnect(_sliderSlidingFinishedCallbackDelegate);
                 }
+                slidingFinished?.Dispose();
             }
         }
 
@@ -408,17 +416,21 @@ namespace Tizen.NUI.UIComponents
                 if (_sliderMarkReachedEventHandler == null)
                 {
                     _sliderMarkReachedCallbackDelegate = (OnMarkReached);
-                    MarkReachedSignal().Connect(_sliderMarkReachedCallbackDelegate);
+                    SliderMarkReachedSignal markReached = MarkReachedSignal();
+                    markReached?.Connect(_sliderMarkReachedCallbackDelegate);
+                    markReached?.Dispose();
                 }
                 _sliderMarkReachedEventHandler += value;
             }
             remove
             {
                 _sliderMarkReachedEventHandler -= value;
-                if (_sliderMarkReachedEventHandler == null && MarkReachedSignal().Empty() == false)
+                SliderMarkReachedSignal markReached = MarkReachedSignal();
+                if (_sliderMarkReachedEventHandler == null && markReached.Empty() == false)
                 {
-                    MarkReachedSignal().Disconnect(_sliderMarkReachedCallbackDelegate);
+                    markReached?.Disconnect(_sliderMarkReachedCallbackDelegate);
                 }
+                markReached?.Dispose();
             }
         }
 
@@ -824,17 +836,23 @@ namespace Tizen.NUI.UIComponents
             {
                 if (_sliderValueChangedCallbackDelegate != null)
                 {
-                    ValueChangedSignal().Disconnect(_sliderValueChangedCallbackDelegate);
+                    SliderValueChangedSignal valueChanged = ValueChangedSignal();
+                    valueChanged?.Disconnect(_sliderValueChangedCallbackDelegate);
+                    valueChanged?.Dispose();
                 }
 
                 if (_sliderSlidingFinishedCallbackDelegate != null)
                 {
-                    SlidingFinishedSignal().Disconnect(_sliderSlidingFinishedCallbackDelegate);
+                    SliderValueChangedSignal slidingFinished = SlidingFinishedSignal();
+                    slidingFinished?.Disconnect(_sliderSlidingFinishedCallbackDelegate);
+                    slidingFinished?.Dispose();
                 }
 
                 if (_sliderMarkReachedCallbackDelegate != null)
                 {
-                    MarkReachedSignal().Disconnect(_sliderMarkReachedCallbackDelegate);
+                    SliderMarkReachedSignal markReached = MarkReachedSignal();
+                    markReached?.Disconnect(_sliderMarkReachedCallbackDelegate);
+                    markReached?.Dispose();
                 }
             }
 
