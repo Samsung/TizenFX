@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -24,7 +23,7 @@ namespace Tizen.NUI
     /// A class encapsulating the transform map of the visual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class VisualMap : IDisposable
+    public class VisualMap
     {
         /// <summary>
         /// outputVisualMap.
@@ -677,31 +676,5 @@ namespace Tizen.NUI
             if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
             if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
         }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                _outputVisualMap?.Dispose();
-                _shader?.Dispose();
-                _mixColor?.Dispose();
-                _visualSize?.Dispose();
-                _visualOffset?.Dispose();
-                _visualOffsetPolicy?.Dispose();
-                _visualSizePolicy?.Dispose();
-                _visualTransformMap?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
     }
 }
