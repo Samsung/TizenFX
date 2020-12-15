@@ -75,7 +75,7 @@ namespace Tizen.NUI
 
         internal ScrollViewSnapStartedSignal SnapStartedSignal()
         {
-            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(swigCPtr), false);
+            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

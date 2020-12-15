@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.WindowTransitionEffectSignal.Empty(swigCPtr);
+            bool ret = Interop.WindowTransitionEffectSignal.Empty(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -40,7 +40,7 @@ namespace Tizen.NUI
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.WindowTransitionEffectSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.WindowTransitionEffectSignal.GetConnectionCount(SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowTransitionEffectSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowTransitionEffectSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,14 +59,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.WindowTransitionEffectSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.WindowTransitionEffectSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(Window arg1, int state, int type)
         {
-            bool ret = Interop.WindowTransitionEffectSignal.Emit(swigCPtr, Window.getCPtr(arg1), state, type);
+            bool ret = Interop.WindowTransitionEffectSignal.Emit(SwigCPtr, Window.getCPtr(arg1), state, type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

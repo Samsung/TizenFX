@@ -147,12 +147,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.TypeSet(swigCPtr, (int)value);
+                Interop.Gesture.TypeSet(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.TypeGet(swigCPtr);
+                Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.TypeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -162,12 +162,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.StateSet(swigCPtr, (int)value);
+                Interop.Gesture.StateSet(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.StateGet(swigCPtr);
+                Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.StateGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -177,12 +177,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Gesture.TimeSet(swigCPtr, value);
+                Interop.Gesture.TimeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.Gesture.TimeGet(swigCPtr);
+                uint ret = Interop.Gesture.TimeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -190,7 +190,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Gesture obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static Gesture GetGestureFromPtr(global::System.IntPtr cPtr)

@@ -37,20 +37,20 @@ namespace Tizen.NUI
 
         public void assign(int value)
         {
-            Interop.intp.assign(swigCPtr, value);
+            Interop.intp.assign(SwigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public int value()
         {
-            int ret = Interop.intp.value(swigCPtr);
+            int ret = Interop.intp.value(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_int cast()
         {
-            global::System.IntPtr cPtr = Interop.intp.cast(swigCPtr);
+            global::System.IntPtr cPtr = Interop.intp.cast(SwigCPtr);
             SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

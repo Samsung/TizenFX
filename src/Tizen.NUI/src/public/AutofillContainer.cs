@@ -114,7 +114,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AutofillContainer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal AutofillContainer(AutofillContainer autofillContainer) : this(Interop.AutofillContainer.NewAutofillContainer(AutofillContainer.getCPtr(autofillContainer)), true)
@@ -124,7 +124,7 @@ namespace Tizen.NUI
 
         internal AutofillContainer Assign(AutofillContainer autofillContainer)
         {
-            AutofillContainer ret = new AutofillContainer(Interop.AutofillContainer.Assign(swigCPtr, AutofillContainer.getCPtr(autofillContainer)), false);
+            AutofillContainer ret = new AutofillContainer(Interop.AutofillContainer.Assign(SwigCPtr, AutofillContainer.getCPtr(autofillContainer)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAutofillView(BaseComponents.View view, int propertyIndex, string id, string label, AutofillContainer.ItemHint hint, bool isSensitive)
         {
-            Interop.AutofillContainer.AddAutofillView(swigCPtr, BaseComponents.View.getCPtr(view), propertyIndex, id, label, (uint)hint, isSensitive);
+            Interop.AutofillContainer.AddAutofillView(SwigCPtr, BaseComponents.View.getCPtr(view), propertyIndex, id, label, (uint)hint, isSensitive);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAutofillItem(BaseComponents.View view)
         {
-            Interop.AutofillContainer.RemoveAutofillItem(swigCPtr, BaseComponents.View.getCPtr(view));
+            Interop.AutofillContainer.RemoveAutofillItem(SwigCPtr, BaseComponents.View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -172,7 +172,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SaveAutofillData()
         {
-            Interop.AutofillContainer.SaveAutofillData(swigCPtr);
+            Interop.AutofillContainer.SaveAutofillData(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -183,7 +183,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestFillData()
         {
-            Interop.AutofillContainer.RequestFillData(swigCPtr);
+            Interop.AutofillContainer.RequestFillData(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAutofillServiceName()
         {
-            string ret = Interop.AutofillContainer.GetAutofillServiceName(swigCPtr);
+            string ret = Interop.AutofillContainer.GetAutofillServiceName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -208,7 +208,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAutofillServiceMessage()
         {
-            string ret = Interop.AutofillContainer.GetAutofillServiceMessage(swigCPtr);
+            string ret = Interop.AutofillContainer.GetAutofillServiceMessage(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -221,7 +221,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAutofillServiceImagePath()
         {
-            string ret = Interop.AutofillContainer.GetAutofillServiceImagePath(swigCPtr);
+            string ret = Interop.AutofillContainer.GetAutofillServiceImagePath(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -234,7 +234,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetListItemCount()
         {
-            uint ret = Interop.AutofillContainer.GetListItemCount(swigCPtr);
+            uint ret = Interop.AutofillContainer.GetListItemCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -248,7 +248,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetListItem(uint index)
         {
-            string ret = Interop.AutofillContainer.GetListItem(swigCPtr, index);
+            string ret = Interop.AutofillContainer.GetListItem(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -260,21 +260,21 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetSelectedItem(string selected)
         {
-            Interop.AutofillContainer.SetSelectedItem(swigCPtr, selected);
+            Interop.AutofillContainer.SetSelectedItem(SwigCPtr, selected);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AuthenticationSignalType AutofillServiceEventSignal()
         {
 
-            AuthenticationSignalType ret = new AuthenticationSignalType(Interop.AutofillContainer.AutofillServiceEventSignal(swigCPtr), false);
+            AuthenticationSignalType ret = new AuthenticationSignalType(Interop.AutofillContainer.AutofillServiceEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ListEventSignalType AutofillListEventSignal()
         {
-            ListEventSignalType ret = new ListEventSignalType(Interop.AutofillContainer.AutofillListEventSignal(swigCPtr), false);
+            ListEventSignalType ret = new ListEventSignalType(Interop.AutofillContainer.AutofillListEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

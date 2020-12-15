@@ -758,7 +758,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTitle(View titleView)
         {
-            Interop.Popup.SetTitle(swigCPtr, View.getCPtr(titleView));
+            Interop.Popup.SetTitle(SwigCPtr, View.getCPtr(titleView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -772,7 +772,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(View content)
         {
-            Interop.Popup.SetContent(swigCPtr, View.getCPtr(content));
+            Interop.Popup.SetContent(SwigCPtr, View.getCPtr(content));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -786,7 +786,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public void SetFooter(View footer)
         {
-            Interop.Popup.SetFooter(swigCPtr, View.getCPtr(footer));
+            Interop.Popup.SetFooter(SwigCPtr, View.getCPtr(footer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -813,14 +813,14 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
-            Interop.Popup.SetDisplayState(swigCPtr, (int)displayState);
+            Interop.Popup.SetDisplayState(SwigCPtr, (int)displayState);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetTitle(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetTitle(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -829,7 +829,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetContent()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetContent(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetContent(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -838,7 +838,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetFooter()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetFooter(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetFooter(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -846,42 +846,42 @@ namespace Tizen.NUI.UIComponents
 
         internal Popup.DisplayStateType GetDisplayState()
         {
-            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.GetDisplayState(swigCPtr);
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.GetDisplayState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal OutsideTouchedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.OutsideTouchedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.OutsideTouchedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShowingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.ShowingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShowingSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShownSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.ShownSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShownSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HidingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.HidingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HidingSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HiddenSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.HiddenSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HiddenSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

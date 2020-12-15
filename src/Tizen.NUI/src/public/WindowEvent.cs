@@ -400,21 +400,21 @@ namespace Tizen.NUI
 
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -428,7 +428,7 @@ namespace Tizen.NUI
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -464,14 +464,14 @@ namespace Tizen.NUI
 
         internal ResizeSignal ResizeSignal()
         {
-            ResizeSignal ret = new ResizeSignal(Interop.Window.ResizeSignal(swigCPtr), false);
+            ResizeSignal ret = new ResizeSignal(Interop.Window.ResizeSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal System.IntPtr GetNativeWindowHandler()
         {
-            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
+            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

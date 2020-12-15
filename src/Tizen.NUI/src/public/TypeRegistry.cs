@@ -33,7 +33,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TypeRegistry obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
@@ -73,7 +73,7 @@ namespace Tizen.NUI
 
         internal TypeRegistry Assign(TypeRegistry rhs)
         {
-            TypeRegistry ret = new TypeRegistry(Interop.TypeRegistry.Assign(swigCPtr, TypeRegistry.getCPtr(rhs)), false);
+            TypeRegistry ret = new TypeRegistry(Interop.TypeRegistry.Assign(SwigCPtr, TypeRegistry.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -87,14 +87,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.TypeInfo GetTypeInfo(string uniqueTypeName)
         {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(swigCPtr, uniqueTypeName), true);
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(SwigCPtr, uniqueTypeName), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Tizen.NUI.TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
         {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(SwigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -107,7 +107,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetTypeNameCount()
         {
-            uint ret = Interop.TypeRegistry.GetTypeNameCount(swigCPtr);
+            uint ret = Interop.TypeRegistry.GetTypeNameCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -121,7 +121,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetTypeName(uint index)
         {
-            string ret = Interop.TypeRegistry.GetTypeName(swigCPtr, index);
+            string ret = Interop.TypeRegistry.GetTypeName(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

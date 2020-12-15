@@ -35,14 +35,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.ViewResourceReadySignal.Empty(swigCPtr);
+            bool ret = Interop.ViewResourceReadySignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ViewResourceReadySignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.ViewResourceReadySignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ViewResourceReadySignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ViewResourceReadySignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -60,14 +60,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ViewResourceReadySignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ViewResourceReadySignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg)
         {
-            Interop.ViewResourceReadySignal.Emit(swigCPtr, View.getCPtr(arg));
+            Interop.ViewResourceReadySignal.Emit(SwigCPtr, View.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

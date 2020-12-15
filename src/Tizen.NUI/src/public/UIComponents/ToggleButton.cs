@@ -33,60 +33,60 @@ namespace Tizen.NUI
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create(nameof(StateVisuals), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create(nameof(StateVisuals), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.StateVisuals, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.StateVisuals).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.StateVisuals).Get(temp);
             return temp;
-        });
+        }));
 
         /// Only for XAML property binding. This will be changed as Inhouse API by ACR later.
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create(nameof(Tooltips), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create(nameof(Tooltips), typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
             return temp;
-        });
+        }));
 
         /// This will be deprecated
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create(nameof(CurrentStateIndex), typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create(nameof(CurrentStateIndex), typeof(int), typeof(ToggleButton), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.CurrentStateIndex, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CurrentStateIndex).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)toggleButton.SwigCPtr, ToggleButton.Property.CurrentStateIndex).Get(out temp);
             return temp;
-        });
+        }));
 
 
         /// <summary>

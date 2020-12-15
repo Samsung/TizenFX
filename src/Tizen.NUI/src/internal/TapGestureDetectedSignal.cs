@@ -33,14 +33,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.TapGestureDetectedSignal.Empty(swigCPtr);
+            bool ret = Interop.TapGestureDetectedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.TapGestureDetectedSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.TapGestureDetectedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TapGestureDetectedSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TapGestureDetectedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,14 +58,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.TapGestureDetectedSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.TapGestureDetectedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, TapGesture arg2)
         {
-            Interop.TapGestureDetectedSignal.Emit(swigCPtr, View.getCPtr(arg1), TapGesture.getCPtr(arg2));
+            Interop.TapGestureDetectedSignal.Emit(SwigCPtr, View.getCPtr(arg1), TapGesture.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

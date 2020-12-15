@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TimePeriod obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -49,12 +49,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.DelaySecondsSet(swigCPtr, value);
+                Interop.TimePeriod.DelaySecondsSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.DelaySecondsGet(swigCPtr);
+                float ret = Interop.TimePeriod.DelaySecondsGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -64,12 +64,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TimePeriod.DurationSecondsSet(swigCPtr, value);
+                Interop.TimePeriod.DurationSecondsSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.TimePeriod.DurationSecondsGet(swigCPtr);
+                float ret = Interop.TimePeriod.DurationSecondsGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

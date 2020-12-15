@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RefObject obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reference()
         {
-            Interop.RefObject.Reference(swigCPtr);
+            Interop.RefObject.Reference(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Unreference()
         {
-            Interop.RefObject.Unreference(swigCPtr);
+            Interop.RefObject.Unreference(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ReferenceCount()
         {
-            int ret = Interop.RefObject.ReferenceCount(swigCPtr);
+            int ret = Interop.RefObject.ReferenceCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

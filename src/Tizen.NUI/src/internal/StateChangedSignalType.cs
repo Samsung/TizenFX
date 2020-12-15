@@ -32,14 +32,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.StateChangeSignalType.Empty(swigCPtr);
+            bool ret = Interop.StateChangeSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.StateChangeSignalType.GetConnectionCount(swigCPtr);
+            uint ret = Interop.StateChangeSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.StateChangeSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StateChangeSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,14 +57,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.StateChangeSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StateChangeSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(TTSPlayer.TTSState arg1, TTSPlayer.TTSState arg2)
         {
-            Interop.StateChangeSignalType.Emit(swigCPtr, (int)arg1, (int)arg2);
+            Interop.StateChangeSignalType.Emit(SwigCPtr, (int)arg1, (int)arg2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
