@@ -105,6 +105,14 @@ namespace Tizen.NUI
             {
                 _application.Dispose();
             }
+            if (_windowSize != null)
+            {
+                _windowSize.Dispose();
+            }
+            if (_windowPosition != null)
+            {
+                _windowPosition.Dispose();
+            }
         }
 
         /// <summary>
@@ -138,7 +146,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.SWIGStringHelper.RegistCallback();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
-            if ("" == args[0])
+            if (string.IsNullOrEmpty(args[0]))
             {
                 args[0] = this.GetType().Assembly.FullName;
             }

@@ -136,7 +136,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapperImpl obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -158,67 +158,67 @@ namespace Tizen.NUI
 
         public void RelayoutRequest()
         {
-            Interop.ViewWrapperImpl.RelayoutRequest(swigCPtr);
+            Interop.ViewWrapperImpl.RelayoutRequest(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetHeightForWidthBase(float width)
         {
-            float ret = Interop.ViewWrapperImpl.GetHeightForWidthBase(swigCPtr, width);
+            float ret = Interop.ViewWrapperImpl.GetHeightForWidthBase(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float GetWidthForHeightBase(float height)
         {
-            float ret = Interop.ViewWrapperImpl.GetWidthForHeightBase(swigCPtr, height);
+            float ret = Interop.ViewWrapperImpl.GetWidthForHeightBase(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float CalculateChildSizeBase(View child, DimensionType dimension)
         {
-            float ret = Interop.ViewWrapperImpl.CalculateChildSizeBase(swigCPtr, View.getCPtr(child), (int)dimension);
+            float ret = Interop.ViewWrapperImpl.CalculateChildSizeBase(SwigCPtr, View.getCPtr(child), (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
-            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(swigCPtr, (int)dimension);
+            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(SwigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RelayoutDependentOnChildrenBase()
         {
-            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(swigCPtr);
+            bool ret = Interop.ViewWrapperImpl.RelayoutDependentOnChildrenBase(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void RegisterVisual(int index, VisualBase visual)
         {
-            Interop.ViewWrapperImpl.RegisterVisual(swigCPtr, index, VisualBase.getCPtr(visual));
+            Interop.ViewWrapperImpl.RegisterVisual(SwigCPtr, index, VisualBase.getCPtr(visual));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
-            Interop.ViewWrapperImpl.RegisterVisual(swigCPtr, index, VisualBase.getCPtr(visual), enabled);
+            Interop.ViewWrapperImpl.RegisterVisual(SwigCPtr, index, VisualBase.getCPtr(visual), enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void UnregisterVisual(int index)
         {
-            Interop.ViewWrapperImpl.UnregisterVisual(swigCPtr, index);
+            Interop.ViewWrapperImpl.UnregisterVisual(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VisualBase GetVisual(int index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.ViewWrapperImpl.GetVisual(swigCPtr, index);
+            System.IntPtr cPtr = Interop.ViewWrapperImpl.GetVisual(SwigCPtr, index);
             VisualBase ret = this.GetInstanceSafely<VisualBase>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -226,33 +226,33 @@ namespace Tizen.NUI
 
         public void EnableVisual(int index, bool enable)
         {
-            Interop.ViewWrapperImpl.EnableVisual(swigCPtr, index, enable);
+            Interop.ViewWrapperImpl.EnableVisual(SwigCPtr, index, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsVisualEnabled(int index)
         {
-            bool ret = Interop.ViewWrapperImpl.IsVisualEnabled(swigCPtr, index);
+            bool ret = Interop.ViewWrapperImpl.IsVisualEnabled(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Animation CreateTransition(TransitionData transitionData)
         {
-            Animation ret = new Animation(Interop.ViewWrapperImpl.CreateTransition(swigCPtr, TransitionData.getCPtr(transitionData)), true);
+            Animation ret = new Animation(Interop.ViewWrapperImpl.CreateTransition(SwigCPtr, TransitionData.getCPtr(transitionData)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void EmitFocusSignal(bool focusGained)
         {
-            Interop.ViewWrapperImpl.EmitKeyInputFocusSignal(swigCPtr, focusGained);
+            Interop.ViewWrapperImpl.EmitKeyInputFocusSignal(SwigCPtr, focusGained);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ApplyThemeStyle()
         {
-            Interop.ViewWrapperImpl.ApplyThemeStyle(swigCPtr);
+            Interop.ViewWrapperImpl.ApplyThemeStyle(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -291,7 +291,7 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.DirectorConnect(swigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
         private void DirectorOnSceneConnection(int depth)

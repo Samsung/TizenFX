@@ -50,14 +50,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
         {
-            WidgetView ret = new WidgetView(Interop.WidgetViewManager.AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
+            WidgetView ret = new WidgetView(Interop.WidgetViewManager.AddWidget(SwigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetViewManager obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static WidgetViewManager DownCast(BaseHandle handle)
@@ -74,7 +74,7 @@ namespace Tizen.NUI
 
         internal WidgetViewManager Assign(WidgetViewManager handle)
         {
-            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.Assign(swigCPtr, WidgetViewManager.getCPtr(handle)), false);
+            WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.Assign(SwigCPtr, WidgetViewManager.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

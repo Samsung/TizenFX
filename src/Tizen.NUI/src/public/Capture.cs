@@ -132,7 +132,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(swigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -176,7 +176,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -215,7 +215,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -252,7 +252,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(swigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
+                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -271,7 +271,7 @@ namespace Tizen.NUI
                 throw new InvalidOperationException("quality should between zero to 100");
             }
 
-            Interop.Capture.SetImageQuality(swigCPtr, quality);
+            Interop.Capture.SetImageQuality(SwigCPtr, quality);
         }
 
         private void onFinished(IntPtr data, int state)
@@ -305,7 +305,7 @@ namespace Tizen.NUI
             {
                 if (finishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(swigCPtr), false);
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr), false);
                     finishedCallback = onFinished;
                     finishedSignal.Connect(finishedCallback);
                 }
@@ -331,7 +331,7 @@ namespace Tizen.NUI
         public NativeImageSource GetNativeImageSource()
         {
             Tizen.Log.Debug("NUI", $"GetNativeImageSource()");
-            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(swigCPtr), true);
+            return new NativeImageSource(Interop.Capture.GetNativeImageSourcePtr(SwigCPtr), true);
         }
     }
 
@@ -359,7 +359,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            if (swigCMemOwn)
+            if (SwigCMemOwn)
             {
                 Interop.Capture.DeleteSignal(swigCPtr);
             }
@@ -367,14 +367,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.Capture.SignalEmpty(swigCPtr);
+            bool ret = Interop.Capture.SignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Capture.SignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.Capture.SignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -383,7 +383,7 @@ namespace Tizen.NUI
         {
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.Capture.SignalConnect(swigCPtr, new HandleRef(this, ip));
+                Interop.Capture.SignalConnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -392,14 +392,14 @@ namespace Tizen.NUI
         {
             IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.Capture.SignalDisconnect(swigCPtr, new HandleRef(this, ip));
+                Interop.Capture.SignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Capture src, bool success)
         {
-            Interop.Capture.SignalEmit(swigCPtr, src.SwigCPtr, (success ? 0 : 1));
+            Interop.Capture.SignalEmit(SwigCPtr, src.SwigCPtr, (success ? 0 : 1));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
