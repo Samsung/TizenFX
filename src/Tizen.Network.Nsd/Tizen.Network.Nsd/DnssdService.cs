@@ -18,6 +18,8 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Tizen.Network.Nsd
 {
