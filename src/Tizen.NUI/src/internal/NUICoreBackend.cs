@@ -105,6 +105,14 @@ namespace Tizen.NUI
             {
                 _application.Dispose();
             }
+            if (_windowSize != null)
+            {
+                _windowSize.Dispose();
+            }
+            if (_windowPosition != null)
+            {
+                _windowPosition.Dispose();
+            }
         }
 
         /// <summary>
