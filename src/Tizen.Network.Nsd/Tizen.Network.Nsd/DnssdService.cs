@@ -220,31 +220,19 @@ namespace Tizen.Network.Nsd
             }
         }
         
-        private void printTxt(byte [] value)
-        {
-            var sb = new StringBuilder("new byte[] { ");
-            foreach (var bt in value)
-            {
-                sb.Append(Convert.ToChar(bt));
-            }
-            sb.Append("}");
-            Log.Debug(Globals.LogTag, "PPKK2 txtRecord: " + sb.ToString());
-        }
-        
         /// <summary>
         /// Gets all TXT records in the form of key and value.
         /// </summary>
         /// <remarks>
         /// After adding the TXT record call for get TXT record.
         /// </remarks>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         /// <param name="map">gets the each record key, value in the map</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         public void GetTxtRecord(Dictionary<string, string> map)
         {
-            Log.Debug(Globals.LogTag, "PPKK2 in map txtrecord: ");
             IntPtr data;
             ushort length;
 
@@ -331,7 +319,6 @@ namespace Tizen.Network.Nsd
             byte[] txtValue;
             ushort txtLength;
             GetTxtRecord(out txtLength, out txtValue);
-            //printTxt(txtValue);
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, txtLength, txtValue);
             if (ret != (int)DnssdError.None)
             {
