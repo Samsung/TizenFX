@@ -269,15 +269,15 @@ namespace Tizen.Network.Nsd
         /// After adding the TXT record call for get TXT record.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="length">gets the length of total txt recods. It txt record not available length value will be zero</param>
         /// <param name="value">The value of the TXT record. If txt record not availabe added with an empty value.</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public void GetTxtRecord(out ushort length, out byte[] value)
+        public void GetTxtRecord(out byte[] value)
         {
             value = Array.Empty<byte>(); 
             IntPtr data;
+            ushort length;
             int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out length, out data);
             if (ret != (int)DnssdError.None)
             {
@@ -318,8 +318,8 @@ namespace Tizen.Network.Nsd
             }
 
             byte[] txtValue;
-            ushort txtLength;
-            GetTxtRecord(out txtLength, out txtValue);
+            GetTxtRecord(out txtValue);
+            ushort txtLength = (ushort)txtValue.Length;
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, txtLength, txtValue);
             if (ret != (int)DnssdError.None)
             {
@@ -347,8 +347,8 @@ namespace Tizen.Network.Nsd
             }
 
             byte[] txtValue;
-            ushort txtLength;
-            GetTxtRecord(out txtLength, out txtValue);
+            GetTxtRecord(out txtValue);
+            ushort txtLength = (ushort)txtValue.Length;
             if (txtLength == 0)
             {
                 ret = Interop.Nsd.Dnssd.UnsetRecord(_serviceHandle, _dnsRecordtype);
