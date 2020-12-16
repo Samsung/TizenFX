@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Layout(left, top, right, bottom, Owner.ExcludeLayouting);
+            Layout(left, top, right, bottom, Owner?.ExcludeLayouting ?? false);
         }
 
         /// <summary>
