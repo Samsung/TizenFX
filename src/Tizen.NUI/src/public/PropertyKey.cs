@@ -78,12 +78,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.KeyTypeSet(swigCPtr, (int)value);
+                Interop.Property.KeyTypeSet(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.KeyTypeGet(swigCPtr);
+                PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.KeyTypeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -97,12 +97,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.KeyIndexKeySet(swigCPtr, value);
+                Interop.Property.KeyIndexKeySet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Property.KeyIndexKeyGet(swigCPtr);
+                int ret = Interop.Property.KeyIndexKeyGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -116,12 +116,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Property.KeyStringKeySet(swigCPtr, value);
+                Interop.Property.KeyStringKeySet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.Property.KeyStringKeyGet(swigCPtr);
+                string ret = Interop.Property.KeyStringKeyGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(string rhs)
         {
-            bool ret = Interop.Property.KeyEqualTo(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyEqualTo(SwigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(int rhs)
         {
-            bool ret = Interop.Property.KeyEqualTo(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyEqualTo(SwigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(PropertyKey rhs)
         {
-            bool ret = Interop.Property.KeyEqualTo(swigCPtr, PropertyKey.getCPtr(rhs));
+            bool ret = Interop.Property.KeyEqualTo(SwigCPtr, PropertyKey.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(string rhs)
         {
-            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyNotEqualTo(SwigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -187,7 +187,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(int rhs)
         {
-            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, rhs);
+            bool ret = Interop.Property.KeyNotEqualTo(SwigCPtr, rhs);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -200,14 +200,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(PropertyKey rhs)
         {
-            bool ret = Interop.Property.KeyNotEqualTo(swigCPtr, PropertyKey.getCPtr(rhs));
+            bool ret = Interop.Property.KeyNotEqualTo(SwigCPtr, PropertyKey.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyKey obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

@@ -27,7 +27,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AngleThresholdPair obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -54,12 +54,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleThresholdPair.FirstSet(swigCPtr, Radian.getCPtr(value));
+                Interop.AngleThresholdPair.FirstSet(SwigCPtr, Radian.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleThresholdPair.FirstGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleThresholdPair.FirstGet(SwigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -70,12 +70,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.AngleThresholdPair.SecondSet(swigCPtr, Radian.getCPtr(value));
+                Interop.AngleThresholdPair.SecondSet(SwigCPtr, Radian.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.AngleThresholdPair.SecondGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleThresholdPair.SecondGet(SwigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

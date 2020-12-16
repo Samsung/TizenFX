@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Matrix obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -67,7 +67,7 @@ namespace Tizen.NUI
 
         public Matrix Assign(Matrix matrix)
         {
-            Matrix ret = new Matrix(Interop.Matrix.Assign(swigCPtr, Matrix.getCPtr(matrix)), false);
+            Matrix ret = new Matrix(Interop.Matrix.Assign(SwigCPtr, Matrix.getCPtr(matrix)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -85,109 +85,109 @@ namespace Tizen.NUI
 
         public void SetIdentity()
         {
-            Interop.Matrix.SetIdentity(swigCPtr);
+            Interop.Matrix.SetIdentity(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetIdentityAndScale(Vector3 scale)
         {
-            Interop.Matrix.SetIdentityAndScale(swigCPtr, Vector3.getCPtr(scale));
+            Interop.Matrix.SetIdentityAndScale(SwigCPtr, Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void InvertTransform(Matrix result)
         {
-            Interop.Matrix.InvertTransform(swigCPtr, Matrix.getCPtr(result));
+            Interop.Matrix.InvertTransform(SwigCPtr, Matrix.getCPtr(result));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool Invert()
         {
-            bool ret = Interop.Matrix.Invert(swigCPtr);
+            bool ret = Interop.Matrix.Invert(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Transpose()
         {
-            Interop.Matrix.Transpose(swigCPtr);
+            Interop.Matrix.Transpose(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector3 GetXAxis()
         {
-            Vector3 ret = new Vector3(Interop.Matrix.GetXAxis(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.Matrix.GetXAxis(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Vector3 GetYAxis()
         {
-            Vector3 ret = new Vector3(Interop.Matrix.GetYAxis(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.Matrix.GetYAxis(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Vector3 GetZAxis()
         {
-            Vector3 ret = new Vector3(Interop.Matrix.GetZAxis(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.Matrix.GetZAxis(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetXAxis(Vector3 axis)
         {
-            Interop.Matrix.SetXAxis(swigCPtr, Vector3.getCPtr(axis));
+            Interop.Matrix.SetXAxis(SwigCPtr, Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetYAxis(Vector3 axis)
         {
-            Interop.Matrix.SetYAxis(swigCPtr, Vector3.getCPtr(axis));
+            Interop.Matrix.SetYAxis(SwigCPtr, Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetZAxis(Vector3 axis)
         {
-            Interop.Matrix.SetZAxis(swigCPtr, Vector3.getCPtr(axis));
+            Interop.Matrix.SetZAxis(SwigCPtr, Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector4 GetTranslation()
         {
-            Vector4 ret = new Vector4(Interop.Matrix.GetTranslation(swigCPtr), false);
+            Vector4 ret = new Vector4(Interop.Matrix.GetTranslation(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Vector3 GetTranslation3()
         {
-            Vector3 ret = new Vector3(Interop.Matrix.GetTranslation3(swigCPtr), false);
+            Vector3 ret = new Vector3(Interop.Matrix.GetTranslation3(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetTranslation(Vector4 translation)
         {
-            Interop.Matrix.SetTranslationVector4(swigCPtr, Vector4.getCPtr(translation));
+            Interop.Matrix.SetTranslationVector4(SwigCPtr, Vector4.getCPtr(translation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetTranslation(Vector3 translation)
         {
-            Interop.Matrix.SetTranslationVector3(swigCPtr, Vector3.getCPtr(translation));
+            Interop.Matrix.SetTranslationVector3(SwigCPtr, Vector3.getCPtr(translation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void OrthoNormalize()
         {
-            Interop.Matrix.OrthoNormalize(swigCPtr);
+            Interop.Matrix.OrthoNormalize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public SWIGTYPE_p_float AsFloat()
         {
-            global::System.IntPtr cPtr = Interop.Matrix.AsFloat(swigCPtr);
+            global::System.IntPtr cPtr = Interop.Matrix.AsFloat(SwigCPtr);
             SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -207,46 +207,46 @@ namespace Tizen.NUI
 
         public Vector4 Multiply(Vector4 rhs)
         {
-            Vector4 ret = new Vector4(Interop.Matrix.Multiply(swigCPtr, Vector4.getCPtr(rhs)), true);
+            Vector4 ret = new Vector4(Interop.Matrix.Multiply(SwigCPtr, Vector4.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool EqualTo(Matrix rhs)
         {
-            bool ret = Interop.Matrix.EqualTo(swigCPtr, Matrix.getCPtr(rhs));
+            bool ret = Interop.Matrix.EqualTo(SwigCPtr, Matrix.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool NotEqualTo(Matrix rhs)
         {
-            bool ret = Interop.Matrix.NotEqualTo(swigCPtr, Matrix.getCPtr(rhs));
+            bool ret = Interop.Matrix.NotEqualTo(SwigCPtr, Matrix.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetTransformComponents(Vector3 scale, Rotation rotation, Vector3 translation)
         {
-            Interop.Matrix.SetTransformComponents(swigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
+            Interop.Matrix.SetTransformComponents(SwigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetInverseTransformComponents(Vector3 scale, Rotation rotation, Vector3 translation)
         {
-            Interop.Matrix.SetInverseTransformComponents(swigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
+            Interop.Matrix.SetInverseTransformComponents(SwigCPtr, Vector3.getCPtr(scale), Rotation.getCPtr(rotation), Vector3.getCPtr(translation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetInverseTransformComponents(Vector3 xAxis, Vector3 yAxis, Vector3 zAxis, Vector3 translation)
         {
-            Interop.Matrix.SetInverseTransformComponents(swigCPtr, Vector3.getCPtr(xAxis), Vector3.getCPtr(yAxis), Vector3.getCPtr(zAxis), Vector3.getCPtr(translation));
+            Interop.Matrix.SetInverseTransformComponents(SwigCPtr, Vector3.getCPtr(xAxis), Vector3.getCPtr(yAxis), Vector3.getCPtr(zAxis), Vector3.getCPtr(translation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void GetTransformComponents(Vector3 position, Rotation rotation, Vector3 scale)
         {
-            Interop.Matrix.GetTransformComponents(swigCPtr, Vector3.getCPtr(position), Rotation.getCPtr(rotation), Vector3.getCPtr(scale));
+            Interop.Matrix.GetTransformComponents(SwigCPtr, Vector3.getCPtr(position), Rotation.getCPtr(rotation), Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

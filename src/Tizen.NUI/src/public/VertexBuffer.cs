@@ -67,7 +67,7 @@ namespace Tizen.NUI
                 Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
             }
 
-            Interop.VertexBuffer.SetData(swigCPtr, buffer, (uint)vertices.Length);
+            Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         /// <since_tizen> 8 </since_tizen>
         public uint GetSize()
         {
-            uint ret = Interop.VertexBuffer.GetSize(swigCPtr);
+            uint ret = Interop.VertexBuffer.GetSize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -87,7 +87,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VertexBuffer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

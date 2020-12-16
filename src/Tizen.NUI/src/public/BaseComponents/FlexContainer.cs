@@ -33,106 +33,106 @@ namespace Tizen.NUI.BaseComponents
     {
         /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create(nameof(ContentDirection), typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create(nameof(ContentDirection), typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.ContentDirection, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
             return (ContentDirectionType)temp;
-        });
+        }));
         /// <summary> Property of FlexDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FlexDirection, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
             return (FlexDirectionType)temp;
-        });
+        }));
         /// <summary> Property of FlexWrap </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FlexWrap, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
             return (WrapType)temp;
-        });
+        }));
         /// <summary> Property of JustifyContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.JustifyContent, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
             return (Justification)temp;
-        });
+        }));
         /// <summary> Property of AlignItems </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.AlignItems, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
             return (Alignment)temp;
-        });
+        }));
         /// <summary> Property of AlignContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.AlignContent, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
             return (Alignment)temp;
-        });
+        }));
 
 
         /// <summary>

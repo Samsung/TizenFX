@@ -87,12 +87,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.RotationGesture.RotationSet(swigCPtr, value);
+                Interop.RotationGesture.RotationSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.RotationGesture.RotationGet(swigCPtr);
+                float ret = Interop.RotationGesture.RotationGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -102,12 +102,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.RotationGesture.ScreenCenterPointSet(swigCPtr, Vector2.getCPtr(value));
+                Interop.RotationGesture.ScreenCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.RotationGesture.ScreenCenterPointGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.RotationGesture.ScreenCenterPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -118,12 +118,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.RotationGesture.LocalCenterPointSet(swigCPtr, Vector2.getCPtr(value));
+                Interop.RotationGesture.LocalCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.RotationGesture.LocalCenterPointGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.RotationGesture.LocalCenterPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -132,7 +132,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RotationGesture obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static RotationGesture GetRotationGestureFromPtr(global::System.IntPtr cPtr)

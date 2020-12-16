@@ -39,12 +39,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.DaliException.LocationSet(swigCPtr, value);
+                Interop.DaliException.LocationSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.DaliException.LocationGet(swigCPtr);
+                string ret = Interop.DaliException.LocationGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -54,12 +54,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.DaliException.ConditionSet(swigCPtr, value);
+                Interop.DaliException.ConditionSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.DaliException.ConditionGet(swigCPtr);
+                string ret = Interop.DaliException.ConditionGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

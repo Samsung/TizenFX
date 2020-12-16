@@ -207,7 +207,7 @@ namespace Tizen.NUI.Xaml
                 }
 
                 var namespaceUri = reader.NamespaceURI;
-                if (reader.LocalName.Contains(".") && namespaceUri == "")
+                if (reader.LocalName.Contains(".") && string.IsNullOrEmpty(namespaceUri))
                     namespaceUri = ((IXmlNamespaceResolver)reader).LookupNamespace("");
                 var propertyName = new XmlName(namespaceUri, reader.LocalName);
 

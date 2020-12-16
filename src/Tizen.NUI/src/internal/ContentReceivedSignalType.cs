@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// <returns>True if there are any slots connected to the signal</returns>
         public bool Empty()
         {
-            bool ret = Interop.ContentReceivedSignalType.Empty(swigCPtr);
+            bool ret = Interop.ContentReceivedSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// <returns>The number of slots connected to this signal</returns>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ContentReceivedSignalType.GetConnectionCount(swigCPtr);
+            uint ret = Interop.ContentReceivedSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.ContentReceivedSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ContentReceivedSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.ContentReceivedSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ContentReceivedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         /// <param name="arg3">The member function to connect</param>
         public void Emit(string arg1, string arg2, string arg3)
         {
-            Interop.ContentReceivedSignalType.Emit(swigCPtr, arg1, arg2, arg3);
+            Interop.ContentReceivedSignalType.Emit(SwigCPtr, arg1, arg2, arg3);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
