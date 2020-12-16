@@ -1198,7 +1198,7 @@ namespace Tizen.NUI.BaseComponents
                 alphaMaskUrl?.Dispose();
             }
 
-            if (_resourceUrl == "")
+            if (string.IsNullOrEmpty(_resourceUrl))
             {
                 PropertyValue resourceUrl = new PropertyValue(_resourceUrl);
                 imageMap?.Insert(ImageVisualProperty.URL, resourceUrl);
