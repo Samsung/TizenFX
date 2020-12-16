@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
@@ -33,12 +34,18 @@ namespace Tizen.NUI
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected bool swigCMemOwn;
 
         /// <summary>
         /// A flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -437,6 +444,24 @@ namespace Tizen.NUI
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        internal protected bool SwigCMemOwn
+        {
+            get => swigCMemOwn;
+            set
+            {
+                swigCMemOwn = value;
+            }
+        }
+
+        internal protected bool Disposed
+        {
+            get => disposed;
+            set
+            {
+                disposed = value;
+            }
         }
 
         /// <summary>

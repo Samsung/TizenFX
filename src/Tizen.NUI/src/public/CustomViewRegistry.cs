@@ -4,6 +4,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -77,6 +79,9 @@ namespace Tizen.NUI
     {
 
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public readonly ScriptableType type;
 
         /// <since_tizen> 3 </since_tizen>
@@ -98,6 +103,13 @@ namespace Tizen.NUI
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
+
+        /// <summary>
+        /// Get the ScriptableType, Read Writable, non-animatable property, event thread only.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScriptableType Type => type;
     }
 
     /// <summary>

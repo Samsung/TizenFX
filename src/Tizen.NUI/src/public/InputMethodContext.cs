@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -944,8 +945,10 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
+            /// When deleting the field, change it to private.
+            [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+            [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             protected bool swigCMemOwn;
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
             /// The default constructor.
@@ -971,8 +974,8 @@ namespace Tizen.NUI
 
             internal EventData(IntPtr cPtr, bool cMemoryOwn)
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                SwigCMemOwn = cMemoryOwn;
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             }
 
             /// <summary>
@@ -983,12 +986,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.EventDataPredictiveStringSet(swigCPtr, value);
+                    Interop.InputMethodContext.EventDataPredictiveStringSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    string ret = Interop.InputMethodContext.EventDataPredictiveStringGet(swigCPtr);
+                    string ret = Interop.InputMethodContext.EventDataPredictiveStringGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1002,12 +1005,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.EventDataEventNameSet(swigCPtr, (int)value);
+                    Interop.InputMethodContext.EventDataEventNameSet(SwigCPtr, (int)value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    InputMethodContext.EventType ret = (InputMethodContext.EventType)Interop.InputMethodContext.EventDataEventNameGet(swigCPtr);
+                    InputMethodContext.EventType ret = (InputMethodContext.EventType)Interop.InputMethodContext.EventDataEventNameGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1021,12 +1024,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.EventDataCursorOffsetSet(swigCPtr, value);
+                    Interop.InputMethodContext.EventDataCursorOffsetSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    int ret = Interop.InputMethodContext.EventDataCursorOffsetGet(swigCPtr);
+                    int ret = Interop.InputMethodContext.EventDataCursorOffsetGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1040,12 +1043,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.EventDataNumberOfCharsSet(swigCPtr, value);
+                    Interop.InputMethodContext.EventDataNumberOfCharsSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    int ret = Interop.InputMethodContext.EventDataNumberOfCharsGet(swigCPtr);
+                    int ret = Interop.InputMethodContext.EventDataNumberOfCharsGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1053,7 +1056,7 @@ namespace Tizen.NUI
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EventData obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.SwigCPtr;
             }
 
             internal static EventData GetEventDataFromPtr(IntPtr cPtr)
@@ -1078,14 +1081,14 @@ namespace Tizen.NUI
                 //You should not access any managed member here except static instance.
                 //because the execution order of Finalizes is non-deterministic.
 
-                if (swigCPtr.Handle != IntPtr.Zero)
+                if (SwigCPtr.Handle != IntPtr.Zero)
                 {
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        Interop.InputMethodContext.DeleteInputMethodContextEventData(swigCPtr);
+                        Interop.InputMethodContext.DeleteInputMethodContextEventData(SwigCPtr);
                     }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                    SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
                 }
 
                 base.Dispose(type);
@@ -1102,8 +1105,9 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
+            [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+            [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             protected bool swigCMemOwn;
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
             /// The default constructor.
@@ -1135,12 +1139,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.CallbackDataCurrentTextSet(swigCPtr, value);
+                    Interop.InputMethodContext.CallbackDataCurrentTextSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    string ret = Interop.InputMethodContext.CallbackDataCurrentTextGet(swigCPtr);
+                    string ret = Interop.InputMethodContext.CallbackDataCurrentTextGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1154,12 +1158,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.CallbackDataCursorPositionSet(swigCPtr, value);
+                    Interop.InputMethodContext.CallbackDataCursorPositionSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    int ret = Interop.InputMethodContext.CallbackDataCursorPositionGet(swigCPtr);
+                    int ret = Interop.InputMethodContext.CallbackDataCursorPositionGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1173,12 +1177,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.CallbackDataUpdateSet(swigCPtr, value);
+                    Interop.InputMethodContext.CallbackDataUpdateSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    bool ret = Interop.InputMethodContext.CallbackDataUpdateGet(swigCPtr);
+                    bool ret = Interop.InputMethodContext.CallbackDataUpdateGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1192,12 +1196,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.InputMethodContext.CallbackDataPreeditResetRequiredSet(swigCPtr, value);
+                    Interop.InputMethodContext.CallbackDataPreeditResetRequiredSet(SwigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    bool ret = Interop.InputMethodContext.CallbackDataPreeditResetRequiredGet(swigCPtr);
+                    bool ret = Interop.InputMethodContext.CallbackDataPreeditResetRequiredGet(SwigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -1205,13 +1209,13 @@ namespace Tizen.NUI
 
             internal IntPtr GetCallbackDataPtr()
             {
-                return (IntPtr)swigCPtr;
+                return (IntPtr)SwigCPtr;
             }
 
             internal CallbackData(IntPtr cPtr, bool cMemoryOwn)
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                SwigCMemOwn = cMemoryOwn;
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             }
 
             internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
@@ -1236,14 +1240,14 @@ namespace Tizen.NUI
                 //You should not access any managed member here except static instance.
                 //Because the execution order of Finalizes is non-deterministic.
 
-                if (swigCPtr.Handle != IntPtr.Zero)
+                if (SwigCPtr.Handle != IntPtr.Zero)
                 {
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        Interop.InputMethodContext.DeleteInputMethodContextCallbackData(swigCPtr);
+                        Interop.InputMethodContext.DeleteInputMethodContextCallbackData(SwigCPtr);
                     }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                    SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
                 }
 
                 base.Dispose(type);

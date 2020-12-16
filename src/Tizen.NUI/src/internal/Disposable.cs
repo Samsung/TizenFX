@@ -14,7 +14,9 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -28,6 +30,8 @@ namespace Tizen.NUI
         /// A Flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -145,6 +149,19 @@ namespace Tizen.NUI
         internal bool SwigCMemOwn
         {
             get => swigCMemOwn;
+            set
+            {
+                swigCMemOwn = value;
+            }
+        }
+
+        internal protected bool Disposed
+        {
+            get => disposed;
+            set
+            {
+                disposed = value;
+            }
         }
     }
 }

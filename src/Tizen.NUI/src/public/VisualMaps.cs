@@ -14,7 +14,9 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -29,12 +31,18 @@ namespace Tizen.NUI
         /// outputVisualMap.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected PropertyMap _outputVisualMap = null;
 
         /// <summary>
         /// The shader of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected PropertyMap _shader = null;
         //private PropertyMap _transform = null;
 
@@ -42,25 +50,46 @@ namespace Tizen.NUI
         /// The premultipliedAlpha of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected bool? _premultipliedAlpha = null;
 
         /// <summary>
         /// The mixColor of the Visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected Color _mixColor = null;
 
         /// <summary>
         /// The opacity of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected float? _opacity = null;
 
         /// <summary>
         /// The FittingMode of the visual.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         protected VisualFittingModeType? _visualFittingMode = null;
+
+        /// <summary>
+        /// The map for visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// When deleting the field, change it to private.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
+        protected PropertyMap _commonlyUsedMap = null;
 
         /// <summary>
         /// The corner radius value of the visual.
@@ -68,22 +97,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         private float? cornerRadius = null;
 
-        /// <summary>
-        /// The map for visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected PropertyMap _commonlyUsedMap = null;
+        private Vector2 visualSize = null;
+        private Vector2 visualOffset = null;
+        private Vector2 visualOffsetPolicy = null;
+        private Vector2 visualSizePolicy = null;
+        private Visual.AlignType? visualOrigin = null;
+        private Visual.AlignType? visualAnchorPoint = null;
 
-        private Vector2 _visualSize = null;
-        private Vector2 _visualOffset = null;
-        private Vector2 _visualOffsetPolicy = null;
-        private Vector2 _visualSizePolicy = null;
-        private Visual.AlignType? _visualOrigin = null;
-        private Visual.AlignType? _visualAnchorPoint = null;
+        private PropertyMap visualTransformMap = null;
 
-        private PropertyMap _visualTransformMap = null;
-
-        private int? _depthIndex = null;
+        private int? depthIndex = null;
 
         /// <summary>
         /// Constructor.
@@ -104,14 +127,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualSize ?? (new Size2D(1, 1));
+                return visualSize ?? (new Size2D(1, 1));
             }
             set
             {
-                _visualSize = value;
-                if (_visualSizePolicy == null)
+                visualSize = value;
+                if (visualSizePolicy == null)
                 {
-                    _visualSizePolicy = new Vector2(1.0f, 1.0f);
+                    visualSizePolicy = new Vector2(1.0f, 1.0f);
                 }
                 UpdateVisual();
             }
@@ -128,14 +151,14 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualOffset ?? (new Vector2(0.0f, 0.0f));
+                return visualOffset ?? (new Vector2(0.0f, 0.0f));
             }
             set
             {
-                _visualOffset = value;
-                if (_visualOffsetPolicy == null)
+                visualOffset = value;
+                if (visualOffsetPolicy == null)
                 {
-                    _visualOffsetPolicy = new Vector2(1.0f, 1.0f);
+                    visualOffsetPolicy = new Vector2(1.0f, 1.0f);
                 }
                 UpdateVisual();
             }
@@ -151,12 +174,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualSize ?? (new RelativeVector2(1.0f, 1.0f));
+                return visualSize ?? (new RelativeVector2(1.0f, 1.0f));
             }
             set
             {
-                _visualSize = value;
-                _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                visualSize = value;
+                visualSizePolicy = new Vector2(0.0f, 0.0f);
                 UpdateVisual();
             }
         }
@@ -171,12 +194,12 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualOffset ?? (new RelativeVector2(0.0f, 0.0f));
+                return visualOffset ?? (new RelativeVector2(0.0f, 0.0f));
             }
             set
             {
-                _visualOffset = value;
-                _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                visualOffset = value;
+                visualOffsetPolicy = new Vector2(0.0f, 0.0f);
                 UpdateVisual();
             }
         }
@@ -192,8 +215,8 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualOffsetPolicy != null && _visualOffsetPolicy.X == 1.0f
-                    && _visualOffsetPolicy.Y == 1.0f)
+                if (visualOffsetPolicy != null && visualOffsetPolicy.X == 1.0f
+                    && visualOffsetPolicy.Y == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -204,13 +227,13 @@ namespace Tizen.NUI
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                        visualOffsetPolicy = new Vector2(0.0f, 0.0f);
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualOffsetPolicy = new Vector2(1.0f, 1.0f);
+                        visualOffsetPolicy = new Vector2(1.0f, 1.0f);
                         break;
                     default:
-                        _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                        visualOffsetPolicy = new Vector2(0.0f, 0.0f);
                         break;
                 }
                 UpdateVisual();
@@ -228,7 +251,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualOffsetPolicy != null && _visualOffsetPolicy.X == 1.0f)
+                if (visualOffsetPolicy != null && visualOffsetPolicy.X == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -250,7 +273,7 @@ namespace Tizen.NUI
                         x = 0.0f;
                         break;
                 }
-                _visualOffsetPolicy = new Vector2(x, _visualOffsetPolicy?.Y ?? 0);
+                visualOffsetPolicy = new Vector2(x, visualOffsetPolicy?.Y ?? 0);
 
                 UpdateVisual();
             }
@@ -267,7 +290,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualOffsetPolicy != null && _visualOffsetPolicy.Y == 1.0f)
+                if (visualOffsetPolicy != null && visualOffsetPolicy.Y == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -289,7 +312,7 @@ namespace Tizen.NUI
                         y = 0.0f;
                         break;
                 }
-                _visualOffsetPolicy = new Vector2(_visualOffsetPolicy?.X ?? 0, y);
+                visualOffsetPolicy = new Vector2(visualOffsetPolicy?.X ?? 0, y);
                 UpdateVisual();
             }
         }
@@ -305,8 +328,8 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualSizePolicy != null && _visualSizePolicy.X == 1.0f
-                    && _visualSizePolicy.Y == 1.0f)
+                if (visualSizePolicy != null && visualSizePolicy.X == 1.0f
+                    && visualSizePolicy.Y == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -317,13 +340,13 @@ namespace Tizen.NUI
                 switch (value)
                 {
                     case VisualTransformPolicyType.Relative:
-                        _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                        visualSizePolicy = new Vector2(0.0f, 0.0f);
                         break;
                     case VisualTransformPolicyType.Absolute:
-                        _visualSizePolicy = new Vector2(1.0f, 1.0f);
+                        visualSizePolicy = new Vector2(1.0f, 1.0f);
                         break;
                     default:
-                        _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                        visualSizePolicy = new Vector2(0.0f, 0.0f);
                         break;
                 }
                 UpdateVisual();
@@ -341,7 +364,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualSizePolicy != null && _visualSizePolicy.Width == 1.0f)
+                if (visualSizePolicy != null && visualSizePolicy.Width == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -363,7 +386,7 @@ namespace Tizen.NUI
                         break;
                 }
 
-                _visualSizePolicy = new Vector2(width, _visualSizePolicy?.Height ?? 0);
+                visualSizePolicy = new Vector2(width, visualSizePolicy?.Height ?? 0);
                 UpdateVisual();
             }
         }
@@ -379,7 +402,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_visualSizePolicy != null && _visualSizePolicy.Height == 1.0f)
+                if (visualSizePolicy != null && visualSizePolicy.Height == 1.0f)
                 {
                     return VisualTransformPolicyType.Absolute;
                 }
@@ -401,7 +424,7 @@ namespace Tizen.NUI
                         height = 0.0f;
                         break;
                 }
-                _visualSizePolicy = new Vector2(_visualSizePolicy?.Width ?? 0, height);
+                visualSizePolicy = new Vector2(visualSizePolicy?.Width ?? 0, height);
                 UpdateVisual();
             }
         }
@@ -416,11 +439,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualOrigin ?? (Visual.AlignType.Center);
+                return visualOrigin ?? (Visual.AlignType.Center);
             }
             set
             {
-                _visualOrigin = value;
+                visualOrigin = value;
                 UpdateVisual();
             }
         }
@@ -435,11 +458,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _visualAnchorPoint ?? (Visual.AlignType.Center);
+                return visualAnchorPoint ?? (Visual.AlignType.Center);
             }
             set
             {
-                _visualAnchorPoint = value;
+                visualAnchorPoint = value;
                 UpdateVisual();
             }
         }
@@ -454,11 +477,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _depthIndex ?? (0);
+                return depthIndex ?? (0);
             }
             set
             {
-                _depthIndex = value;
+                depthIndex = value;
             }
         }
 
@@ -471,7 +494,7 @@ namespace Tizen.NUI
             get
             {
                 ComposingTransformMap();
-                return _visualTransformMap;
+                return visualTransformMap;
             }
         }
 
@@ -668,13 +691,13 @@ namespace Tizen.NUI
 
         private void ComposingTransformMap()
         {
-            _visualTransformMap = new PropertyMap();
-            if (_visualSize != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(_visualSize)); }
-            if (_visualOffset != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(_visualOffset)); }
-            if (_visualOffsetPolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(_visualOffsetPolicy)); }
-            if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
-            if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
-            if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
+            visualTransformMap = new PropertyMap();
+            if (visualSize != null) { visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(visualSize)); }
+            if (visualOffset != null) { visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(visualOffset)); }
+            if (visualOffsetPolicy != null) { visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(visualOffsetPolicy)); }
+            if (visualSizePolicy != null) { visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(visualSizePolicy)); }
+            if (visualOrigin != null) { visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)visualOrigin)); }
+            if (visualAnchorPoint != null) { visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)visualAnchorPoint)); }
         }
     }
 }

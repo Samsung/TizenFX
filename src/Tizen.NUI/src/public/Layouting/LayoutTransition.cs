@@ -17,6 +17,7 @@
 
 using System.Collections.Generic;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -132,17 +133,29 @@ namespace Tizen.NUI
         /// Get, Set the time transition should execute for . Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Duration;
+
         /// <summary>
         /// Get, Set the delay before the transition executes. Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Delay;
+
         /// <summary>
         /// Get, Set the function to alter the transition path over time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public AlphaFunction AlphaFunction;
+
     }
 
     /// <summary>

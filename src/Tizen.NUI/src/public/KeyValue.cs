@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -28,21 +29,30 @@ namespace Tizen.NUI
         /// <summary>
         /// Int key.
         /// </summary>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int? KeyInt = null;
 
         /// <summary>
         /// String key.
         /// </summary>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public string KeyString = null;
 
         /// <summary>
         /// True value.
         /// </summary>
+        /// When deleting the field, change it to Property.
+        [Obsolete("Deprecated in API9, Will be removed in API11, Please use as keyword instead!")]
+        [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
 
-        private string _key = null;
-        private object _originalValue = null;
-        private object _originalKey = null;
+        private string key = null;
+        private object originalValue = null;
+        private object originalKey = null;
 
         /// <summary>
         /// Default Constructor.
@@ -57,11 +67,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _key;
+                return key;
             }
             set
             {
-                _key = value;
+                key = value;
                 ParseKey(value);
             }
         }
@@ -74,7 +84,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return _originalKey;
+                return originalKey;
             }
             set
             {
@@ -83,7 +93,7 @@ namespace Tizen.NUI
                     throw new ArgumentNullException(nameof(value));
                 }
 
-                _originalKey = value;
+                originalKey = value;
                 if (value is int || value is Int32)
                 {
                     KeyInt = (int)value;
@@ -110,11 +120,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _originalValue;
+                return originalValue;
             }
             set
             {
-                _originalValue = value;
+                originalValue = value;
                 TrueValue = PropertyValue.CreateFromObject(value);
             }
         }
