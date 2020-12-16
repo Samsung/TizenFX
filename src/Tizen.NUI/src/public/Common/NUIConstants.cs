@@ -1922,14 +1922,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Use the smallest cache capacity.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         DocumentViewer,
         /// <summary>
         /// Use the bigger cache capacity than DocumentBrowser.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         DocumentBrowser,
         /// <summary>
         /// Use the biggest cache capacity.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         PrimaryWebBrowser
     }
 
@@ -1942,14 +1945,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Accepts every cookie sent from any page.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Always,
         /// <summary>
         /// Rejects all the cookies.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Never,
         /// <summary>
         /// Accepts only cookies set by the main document that is loaded.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         NoThirdParty
     }
 

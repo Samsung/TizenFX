@@ -790,6 +790,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. The cache model of the current WebView.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CacheModel CacheModel
         {
             get
@@ -819,6 +820,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. The cookie acceptance policy.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicy CookieAcceptPolicy
         {
             get
@@ -865,6 +867,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. Whether JavaScript is enabled.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableJavaScript
         {
             get
@@ -894,6 +897,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. Whether images can be loaded automatically.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadImagesAutomatically
         {
             get
@@ -924,6 +928,7 @@ namespace Tizen.NUI.BaseComponents
         /// e.g. "UTF-8"<br />
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DefaultTextEncodingName
         {
             get
@@ -953,6 +958,7 @@ namespace Tizen.NUI.BaseComponents
         /// The default font size in pixel.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultFontSize
         {
             get
@@ -1883,6 +1889,7 @@ namespace Tizen.NUI.BaseComponents
         /// Clears the history of current WebView.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearHistory()
         {
             Interop.WebView.ClearHistory(SwigCPtr);
@@ -2039,6 +2046,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. Clears the cache of current WebView.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
         {
             Context.ClearCache();
@@ -2048,6 +2056,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated. Clears all the cookies of current WebView.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
         {
             CookieManager.ClearCookies();
