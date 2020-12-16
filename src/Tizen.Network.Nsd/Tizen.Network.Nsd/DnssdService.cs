@@ -221,21 +221,21 @@ namespace Tizen.Network.Nsd
         }
         
         /// <summary>
-        /// Gets all TXT records in the form of key and value.
+        /// Returns TXT records in the form of key and value.
         /// </summary>
         /// <remarks>
         /// After adding the TXT record call for get TXT record.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
-        /// <param name="map">gets the each record key, value in the map</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNS-SD is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        public void GetTxtRecord(Dictionary<string, string> map)
+        public IDictionary<string, string> GetTxtRecord()
         {
             IntPtr data;
             ushort length;
-
+            var map = new Dictionary <string, string>();
+            
             int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out length, out data);
             if (ret != (int)DnssdError.None)
             {
@@ -259,6 +259,7 @@ namespace Tizen.Network.Nsd
                     index += txtLen;
                 }
             }
+            return map;
         }
         
         /// <summary>
