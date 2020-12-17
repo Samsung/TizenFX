@@ -245,7 +245,7 @@ namespace Tizen.NUI
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<TransitionEffectArgs> TransitionEffect
+        public event EventHandler<TransitionEffectEventArgs> TransitionEffect
         {
             add
             {
@@ -305,7 +305,7 @@ namespace Tizen.NUI
         private event EventHandler _stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> _windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
-        private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
+        private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
 
         internal void SendViewAdded(View view)
@@ -400,21 +400,21 @@ namespace Tizen.NUI
 
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WindowFocusSignalType FocusChangedSignal()
         {
-            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(swigCPtr), false);
+            WindowFocusSignalType ret = new WindowFocusSignalType(Interop.Window.FocusChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -428,7 +428,7 @@ namespace Tizen.NUI
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -464,14 +464,14 @@ namespace Tizen.NUI
 
         internal ResizeSignal ResizeSignal()
         {
-            ResizeSignal ret = new ResizeSignal(Interop.Window.ResizeSignal(swigCPtr), false);
+            ResizeSignal ret = new ResizeSignal(Interop.Window.ResizeSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal System.IntPtr GetNativeWindowHandler()
         {
-            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
+            System.IntPtr ret = Interop.Window.GetNativeWindowHandler(HandleRef.ToIntPtr(this.SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -740,7 +740,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            TransitionEffectArgs e = new TransitionEffectArgs();
+            TransitionEffectEventArgs e = new TransitionEffectEventArgs();
 
             e.State = (EffectState)state;
 
@@ -943,7 +943,7 @@ namespace Tizen.NUI
         /// TransitionEffectArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class TransitionEffectArgs : EventArgs
+        public class TransitionEffectEventArgs : EventArgs
         {
             private EffectState state;
             private EffectType type;
@@ -1003,7 +1003,7 @@ namespace Tizen.NUI
         /// VisibilityChangedArgs
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class VisibilityChangedArgs : EventArgs
+        public class VisibilityChangedEventArgs : EventArgs
         {
             private bool visibility;
             /// <summary>
@@ -1028,7 +1028,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             e.Visibility = visibility;
             if (VisibilityChangedEventHandler != null)
             {
@@ -1039,14 +1039,14 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
-        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
         private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
         {
             add
             {

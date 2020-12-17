@@ -170,7 +170,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 tlog.Fatal(tag, $"[VAV START[ [{GetId()}] CurrentFrame SET");
 
-                if (mResourceURL == null || mResourceURL == String.Empty)
+                if (string.IsNullOrEmpty(mResourceURL))
                 {
                     throw new InvalidOperationException("Resource Url not yet Set");
                 }
@@ -338,7 +338,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -381,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -406,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
         {
             tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(mResourceURL))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }

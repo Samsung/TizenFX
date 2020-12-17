@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -63,8 +64,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.Hover.GetTime(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.Hover.GetTime(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -80,7 +81,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int GetDeviceId(uint point)
         {
-            int ret = Interop.Hover.GetDeviceId(swigCPtr, point);
+            int ret = Interop.Hover.GetDeviceId(SwigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -94,7 +95,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PointStateType GetState(uint point)
         {
-            PointStateType ret = (PointStateType)Interop.Hover.GetState(swigCPtr, point);
+            PointStateType ret = (PointStateType)Interop.Hover.GetState(SwigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -108,7 +109,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
-            global::System.IntPtr cPtr = Interop.Hover.GetHitActor(swigCPtr, point);
+            global::System.IntPtr cPtr = Interop.Hover.GetHitActor(SwigCPtr, point);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -122,7 +123,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
-            Vector2 ret = new Vector2(Interop.Hover.GetLocalPosition(swigCPtr, point), false);
+            Vector2 ret = new Vector2(Interop.Hover.GetLocalPosition(SwigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -135,7 +136,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
         {
-            Vector2 ret = new Vector2(Interop.Hover.GetScreenPosition(swigCPtr, point), false);
+            Vector2 ret = new Vector2(Interop.Hover.GetScreenPosition(SwigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -147,14 +148,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
-            uint ret = Interop.Hover.GetPointCount(swigCPtr);
+            uint ret = Interop.Hover.GetPointCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hover obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)

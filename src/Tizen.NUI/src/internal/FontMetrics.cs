@@ -25,7 +25,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FontMetrics obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -47,12 +47,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetricsAscenderSet(swigCPtr, value);
+                Interop.FontClient.FontMetricsAscenderSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetricsAscenderGet(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsAscenderGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -62,12 +62,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetricsDescenderSet(swigCPtr, value);
+                Interop.FontClient.FontMetricsDescenderSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetricsDescenderGet(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsDescenderGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -77,12 +77,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetricsHeightSet(swigCPtr, value);
+                Interop.FontClient.FontMetricsHeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetricsHeightGet(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsHeightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -92,12 +92,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetricsUnderlinePositionSet(swigCPtr, value);
+                Interop.FontClient.FontMetricsUnderlinePositionSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetricsUnderlinePositionGet(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsUnderlinePositionGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -107,12 +107,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.FontClient.FontMetricsUnderlineThicknessSet(swigCPtr, value);
+                Interop.FontClient.FontMetricsUnderlineThicknessSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.FontClient.FontMetricsUnderlineThicknessGet(swigCPtr);
+                float ret = Interop.FontClient.FontMetricsUnderlineThicknessGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

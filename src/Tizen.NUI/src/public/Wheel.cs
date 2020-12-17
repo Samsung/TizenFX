@@ -152,7 +152,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Wheel.WheelType ret = (Wheel.WheelType)Interop.Wheel.TypeGet(swigCPtr);
+                Wheel.WheelType ret = (Wheel.WheelType)Interop.Wheel.TypeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.Wheel.DirectionGet(swigCPtr);
+                int ret = Interop.Wheel.DirectionGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -172,7 +172,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.Wheel.ModifiersGet(swigCPtr);
+                uint ret = Interop.Wheel.ModifiersGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -182,7 +182,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.Wheel.PointGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Wheel.PointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -193,7 +193,7 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = Interop.Wheel.DeltaGet(swigCPtr);
+                int ret = Interop.Wheel.DeltaGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -203,7 +203,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.Wheel.TimeStampGet(swigCPtr);
+                uint ret = Interop.Wheel.TimeStampGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -217,7 +217,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsShiftModifier()
         {
-            bool ret = Interop.Wheel.IsShiftModifier(swigCPtr);
+            bool ret = Interop.Wheel.IsShiftModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -229,7 +229,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsCtrlModifier()
         {
-            bool ret = Interop.Wheel.IsCtrlModifier(swigCPtr);
+            bool ret = Interop.Wheel.IsCtrlModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -241,14 +241,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsAltModifier()
         {
-            bool ret = Interop.Wheel.IsAltModifier(swigCPtr);
+            bool ret = Interop.Wheel.IsAltModifier(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Wheel obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static Wheel GetWheelFromPtr(global::System.IntPtr cPtr)

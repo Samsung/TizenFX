@@ -7,10 +7,12 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using Tizen.NUI.Binding.Internals;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Binding
 {
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Binding : BindingBase
     {

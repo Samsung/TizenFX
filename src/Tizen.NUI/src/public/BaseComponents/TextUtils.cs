@@ -35,7 +35,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RendererParameters obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -65,13 +65,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.TextSet(swigCPtr, value);
+                Interop.RendererParameters.TextSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.TextGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.TextGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -108,13 +108,13 @@ namespace Tizen.NUI.BaseComponents
                             break;
                         }
                 }
-                Interop.RendererParameters.HorizontalAlignmentSet(swigCPtr, alignment);
+                Interop.RendererParameters.HorizontalAlignmentSet(SwigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.HorizontalAlignmentGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.HorizontalAlignmentGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 HorizontalAlignment alignment = HorizontalAlignment.Begin;
                 switch (ret)
                 {
@@ -174,13 +174,13 @@ namespace Tizen.NUI.BaseComponents
                             break;
                         }
                 }
-                Interop.RendererParameters.VerticalAlignmentSet(swigCPtr, alignment);
+                Interop.RendererParameters.VerticalAlignmentSet(SwigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.VerticalAlignmentGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.VerticalAlignmentGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 VerticalAlignment alignment = VerticalAlignment.Top;
                 switch (ret)
                 {
@@ -217,13 +217,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.FontFamilySet(swigCPtr, value);
+                Interop.RendererParameters.FontFamilySet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.FontFamilyGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.FontFamilyGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -237,13 +237,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.FontWeightSet(swigCPtr, value);
+                Interop.RendererParameters.FontWeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.FontWeightGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.FontWeightGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -257,13 +257,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.FontWidthSet(swigCPtr, value);
+                Interop.RendererParameters.FontWidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.FontWidthGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.FontWidthGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -277,13 +277,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.FontSlantSet(swigCPtr, value);
+                Interop.RendererParameters.FontSlantSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.FontSlantGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.FontSlantGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -320,13 +320,13 @@ namespace Tizen.NUI.BaseComponents
                             break;
                         }
                 }
-                Interop.RendererParameters.LayoutSet(swigCPtr, textLayout);
+                Interop.RendererParameters.LayoutSet(SwigCPtr, textLayout);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.LayoutGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.LayoutGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 TextLayout textLayout = TextLayout.SingleLine;
                 switch (ret)
                 {
@@ -386,13 +386,13 @@ namespace Tizen.NUI.BaseComponents
                             break;
                         }
                 }
-                Interop.RendererParameters.CircularAlignmentSet(swigCPtr, alignment);
+                Interop.RendererParameters.CircularAlignmentSet(SwigCPtr, alignment);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.RendererParameters.CircularAlignmentGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.RendererParameters.CircularAlignmentGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 CircularAlignment alignment = CircularAlignment.Begin;
                 switch (ret)
                 {
@@ -429,13 +429,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.TextColorSet(swigCPtr, Vector4.getCPtr(value));
+                Interop.RendererParameters.TextColorSet(SwigCPtr, Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector4 ret = new Vector4(Interop.RendererParameters.TextColorGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector4 ret = new Vector4(Interop.RendererParameters.TextColorGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -449,13 +449,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.FontSizeSet(swigCPtr, value);
+                Interop.RendererParameters.FontSizeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.RendererParameters.FontSizeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.RendererParameters.FontSizeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -469,13 +469,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.TextWidthSet(swigCPtr, value);
+                Interop.RendererParameters.TextWidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.RendererParameters.TextWidthGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.RendererParameters.TextWidthGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -489,13 +489,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.TextHeightSet(swigCPtr, value);
+                Interop.RendererParameters.TextHeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.RendererParameters.TextHeightGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.RendererParameters.TextHeightGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -509,13 +509,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.RadiusSet(swigCPtr, value);
+                Interop.RendererParameters.RadiusSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.RendererParameters.RadiusGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.RendererParameters.RadiusGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -529,13 +529,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.BeginAngleSet(swigCPtr, value);
+                Interop.RendererParameters.BeginAngleSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.RendererParameters.BeginAngleGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.RendererParameters.BeginAngleGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -549,13 +549,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.IncrementAngleSet(swigCPtr, value);
+                Interop.RendererParameters.IncrementAngleSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.RendererParameters.IncrementAngleGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.RendererParameters.IncrementAngleGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -569,13 +569,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.EllipsisEnabledSet(swigCPtr, value);
+                Interop.RendererParameters.EllipsisEnabledSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                bool ret = Interop.RendererParameters.EllipsisEnabledGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RendererParameters.EllipsisEnabledGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -589,13 +589,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.MarkupEnabledSet(swigCPtr, value);
+                Interop.RendererParameters.MarkupEnabledSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                bool ret = Interop.RendererParameters.MarkupEnabledGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RendererParameters.MarkupEnabledGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -609,13 +609,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.IsTextColorSetSet(swigCPtr, value);
+                Interop.RendererParameters.IsTextColorSetSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                bool ret = Interop.RendererParameters.IsTextColorSetGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.RendererParameters.IsTextColorSetGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -629,13 +629,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.MinLineSizeSet(swigCPtr, value);
+                Interop.RendererParameters.MinLineSizeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.RendererParameters.MinLineSizeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.RendererParameters.MinLineSizeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -649,13 +649,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.RendererParameters.PaddingSet(swigCPtr, Extents.getCPtr(value));
+                Interop.RendererParameters.PaddingSet(SwigCPtr, Extents.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Extents ret = new Extents(Interop.RendererParameters.PaddingGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Extents ret = new Extents(Interop.RendererParameters.PaddingGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -676,7 +676,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EmbeddedItemInfo obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -706,13 +706,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.CharacterIndexSet(swigCPtr, value);
+                Interop.EmbeddedItemInfo.CharacterIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.EmbeddedItemInfo.CharacterIndexGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.EmbeddedItemInfo.CharacterIndexGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -726,13 +726,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.GlyphIndexSet(swigCPtr, value);
+                Interop.EmbeddedItemInfo.GlyphIndexSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.EmbeddedItemInfo.GlyphIndexGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.EmbeddedItemInfo.GlyphIndexGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -746,13 +746,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.PositionSet(swigCPtr, Vector2.getCPtr(value));
+                Interop.EmbeddedItemInfo.PositionSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector2 ret = new Vector2(Interop.EmbeddedItemInfo.PositionGet(swigCPtr), swigCMemOwn);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector2 ret = new Vector2(Interop.EmbeddedItemInfo.PositionGet(SwigCPtr), SwigCMemOwn);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -766,13 +766,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.SizeSet(swigCPtr, Size.getCPtr(value));
+                Interop.EmbeddedItemInfo.SizeSet(SwigCPtr, Size.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Size ret = new Size(Interop.EmbeddedItemInfo.SizeGet(swigCPtr), swigCMemOwn);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Size ret = new Size(Interop.EmbeddedItemInfo.SizeGet(SwigCPtr), SwigCMemOwn);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -786,13 +786,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.RotatedSizeSet(swigCPtr, Size.getCPtr(value));
+                Interop.EmbeddedItemInfo.RotatedSizeSet(SwigCPtr, Size.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Size ret = new Size(Interop.EmbeddedItemInfo.RotatedSizeGet(swigCPtr), swigCMemOwn);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Size ret = new Size(Interop.EmbeddedItemInfo.RotatedSizeGet(SwigCPtr), SwigCMemOwn);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -806,13 +806,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.AngleSet(swigCPtr, Degree.getCPtr(value));
+                Interop.EmbeddedItemInfo.AngleSet(SwigCPtr, Degree.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Degree ret = new Degree(Interop.EmbeddedItemInfo.AngleGet(swigCPtr), swigCMemOwn);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Degree ret = new Degree(Interop.EmbeddedItemInfo.AngleGet(SwigCPtr), SwigCMemOwn);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -826,13 +826,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.ColorBlendingModeSet(swigCPtr, value);
+                Interop.EmbeddedItemInfo.ColorBlendingModeSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Tizen.NUI.ColorBlendingMode ret = Interop.EmbeddedItemInfo.ColorBlendingModeGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Tizen.NUI.ColorBlendingMode ret = Interop.EmbeddedItemInfo.ColorBlendingModeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -852,7 +852,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ShadowParameters obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -882,13 +882,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.ShadowParameters.InputSet(swigCPtr, PixelBuffer.getCPtr(value));
+                Interop.ShadowParameters.InputSet(SwigCPtr, PixelBuffer.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                PixelBuffer ret = new PixelBuffer(Interop.ShadowParameters.InputGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                PixelBuffer ret = new PixelBuffer(Interop.ShadowParameters.InputGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -902,13 +902,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.ShadowParameters.TextColorSet(swigCPtr, Vector4.getCPtr(value));
+                Interop.ShadowParameters.TextColorSet(SwigCPtr, Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector4 ret = new Vector4(Interop.ShadowParameters.TextColorGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector4 ret = new Vector4(Interop.ShadowParameters.TextColorGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -922,13 +922,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.ShadowParameters.ColorSet(swigCPtr, Vector4.getCPtr(value));
+                Interop.ShadowParameters.ColorSet(SwigCPtr, Vector4.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector4 ret = new Vector4(Interop.ShadowParameters.ColorGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector4 ret = new Vector4(Interop.ShadowParameters.ColorGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -942,13 +942,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.ShadowParameters.OffsetSet(swigCPtr, Vector2.getCPtr(value));
+                Interop.ShadowParameters.OffsetSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector2 ret = new Vector2(Interop.ShadowParameters.OffsetGet(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector2 ret = new Vector2(Interop.ShadowParameters.OffsetGet(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -962,13 +962,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.ShadowParameters.BlendShadowSet(swigCPtr, value);
+                Interop.ShadowParameters.BlendShadowSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                bool ret = Interop.ShadowParameters.BlendShadowGet(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.ShadowParameters.BlendShadowGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }

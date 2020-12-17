@@ -196,7 +196,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
-            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             controlPoint0 = new Vector2(ret.X, ret.Y);
@@ -211,7 +211,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
         {
-            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)Interop.AlphaFunction.GetBuiltinFunction(swigCPtr);
+            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)Interop.AlphaFunction.GetBuiltinFunction(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -223,14 +223,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.Modes GetMode()
         {
-            AlphaFunction.Modes ret = (AlphaFunction.Modes)Interop.AlphaFunction.GetMode(swigCPtr);
+            AlphaFunction.Modes ret = (AlphaFunction.Modes)Interop.AlphaFunction.GetMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AlphaFunction obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static string BuiltinToPropertyKey(BuiltinFunctions? alphaFunction)
@@ -317,7 +317,7 @@ namespace Tizen.NUI
 
         internal SWIGTYPE_p_f_float__float GetCustomFunction()
         {
-            global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(swigCPtr);
+            global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(SwigCPtr);
             SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

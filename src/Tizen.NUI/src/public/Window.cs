@@ -277,13 +277,13 @@ namespace Tizen.NUI
         {
             get
             {
-                WindowType ret = (WindowType)Interop.Window.GetType(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                WindowType ret = (WindowType)Interop.Window.GetType(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
             set
             {
-                Interop.Window.SetType(swigCPtr, (int)value);
+                Interop.Window.SetType(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -491,7 +491,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetAcceptFocus(bool accept)
         {
-            Interop.Window.SetAcceptFocus(swigCPtr, accept);
+            Interop.Window.SetAcceptFocus(SwigCPtr, accept);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -502,7 +502,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsFocusAcceptable()
         {
-            bool ret = Interop.Window.IsFocusAcceptable(swigCPtr);
+            bool ret = Interop.Window.IsFocusAcceptable(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return ret;
@@ -514,7 +514,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
-            Interop.Window.Show(swigCPtr);
+            Interop.Window.Show(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -524,7 +524,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Hide()
         {
-            Interop.Window.Hide(swigCPtr);
+            Interop.Window.Hide(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -535,7 +535,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsVisible()
         {
-            bool temp = Interop.Window.IsVisible(swigCPtr);
+            bool temp = Interop.Window.IsVisible(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return temp;
         }
@@ -547,7 +547,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetSupportedAuxiliaryHintCount()
         {
-            uint ret = Interop.Window.GetSupportedAuxiliaryHintCount(swigCPtr);
+            uint ret = Interop.Window.GetSupportedAuxiliaryHintCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -560,7 +560,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetSupportedAuxiliaryHint(uint index)
         {
-            string ret = Interop.Window.GetSupportedAuxiliaryHint(swigCPtr, index);
+            string ret = Interop.Window.GetSupportedAuxiliaryHint(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -574,7 +574,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint AddAuxiliaryHint(string hint, string value)
         {
-            uint ret = Interop.Window.AddAuxiliaryHint(swigCPtr, hint, value);
+            uint ret = Interop.Window.AddAuxiliaryHint(SwigCPtr, hint, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -587,7 +587,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool RemoveAuxiliaryHint(uint id)
         {
-            bool ret = Interop.Window.RemoveAuxiliaryHint(swigCPtr, id);
+            bool ret = Interop.Window.RemoveAuxiliaryHint(SwigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -601,7 +601,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool SetAuxiliaryHintValue(uint id, string value)
         {
-            bool ret = Interop.Window.SetAuxiliaryHintValue(swigCPtr, id, value);
+            bool ret = Interop.Window.SetAuxiliaryHintValue(SwigCPtr, id, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -614,7 +614,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetAuxiliaryHintValue(uint id)
         {
-            string ret = Interop.Window.GetAuxiliaryHintValue(swigCPtr, id);
+            string ret = Interop.Window.GetAuxiliaryHintValue(SwigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -627,7 +627,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetAuxiliaryHintId(string hint)
         {
-            uint ret = Interop.Window.GetAuxiliaryHintId(swigCPtr, hint);
+            uint ret = Interop.Window.GetAuxiliaryHintId(SwigCPtr, hint);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -639,7 +639,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetInputRegion(Rectangle inputRegion)
         {
-            Interop.Window.SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
+            Interop.Window.SetInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -651,7 +651,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level)
         {
-            bool ret = Interop.Window.SetNotificationLevel(swigCPtr, (int)level);
+            bool ret = Interop.Window.SetNotificationLevel(SwigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -663,7 +663,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public NotificationLevel GetNotificationLevel()
         {
-            NotificationLevel ret = (NotificationLevel)Interop.Window.GetNotificationLevel(swigCPtr);
+            NotificationLevel ret = (NotificationLevel)Interop.Window.GetNotificationLevel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -680,7 +680,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetOpaqueState(bool opaque)
         {
-            Interop.Window.SetOpaqueState(swigCPtr, opaque);
+            Interop.Window.SetOpaqueState(SwigCPtr, opaque);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -692,7 +692,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsOpaqueState()
         {
-            bool ret = Interop.Window.IsOpaqueState(swigCPtr);
+            bool ret = Interop.Window.IsOpaqueState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -705,7 +705,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
-            bool ret = Interop.Window.SetScreenOffMode(swigCPtr, (int)screenOffMode);
+            bool ret = Interop.Window.SetScreenOffMode(SwigCPtr, (int)screenOffMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -717,7 +717,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public ScreenOffMode GetScreenOffMode()
         {
-            ScreenOffMode ret = (ScreenOffMode)Interop.Window.GetScreenOffMode(swigCPtr);
+            ScreenOffMode ret = (ScreenOffMode)Interop.Window.GetScreenOffMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -730,7 +730,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness)
         {
-            bool ret = Interop.Window.SetBrightness(swigCPtr, brightness);
+            bool ret = Interop.Window.SetBrightness(SwigCPtr, brightness);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -742,7 +742,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int GetBrightness()
         {
-            int ret = Interop.Window.GetBrightness(swigCPtr);
+            int ret = Interop.Window.GetBrightness(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -755,7 +755,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void SetClass(string name, string klass)
         {
-            Interop.Window.SetClass(swigCPtr, name, klass);
+            Interop.Window.SetClass(SwigCPtr, name, klass);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -765,7 +765,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            Interop.Window.Raise(swigCPtr);
+            Interop.Window.Raise(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -775,7 +775,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            Interop.Window.Lower(swigCPtr);
+            Interop.Window.Lower(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -785,7 +785,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Activate()
         {
-            Interop.Window.Activate(swigCPtr);
+            Interop.Window.Activate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -879,7 +879,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKeyTopmost(int DaliKey)
         {
-            bool ret = Interop.Window.GrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            bool ret = Interop.Window.GrabKeyTopmost(HandleRef.ToIntPtr(this.SwigCPtr), DaliKey);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -893,7 +893,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKeyTopmost(int DaliKey)
         {
-            bool ret = Interop.Window.UngrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            bool ret = Interop.Window.UngrabKeyTopmost(HandleRef.ToIntPtr(this.SwigCPtr), DaliKey);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -911,7 +911,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
-            bool ret = Interop.Window.GrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey, (int)GrabMode);
+            bool ret = Interop.Window.GrabKey(HandleRef.ToIntPtr(this.SwigCPtr), DaliKey, (int)GrabMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -925,7 +925,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKey(int DaliKey)
         {
-            bool ret = Interop.Window.UngrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            bool ret = Interop.Window.UngrabKey(HandleRef.ToIntPtr(this.SwigCPtr), DaliKey);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -998,7 +998,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void RenderOnce()
         {
-            Interop.Window.RenderOnce(swigCPtr);
+            Interop.Window.RenderOnce(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1009,7 +1009,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void SetTransparency(bool transparent)
         {
-            Interop.Window.SetTransparency(swigCPtr, transparent);
+            Interop.Window.SetTransparency(SwigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // Setting transparency of the window should request a relayout of the tree in the case the window changes from fully transparent.
@@ -1031,7 +1031,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
-            Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
+            Interop.Window.SetParent(SwigCPtr, Window.getCPtr(parent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1048,7 +1048,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("Fail to create window. because this device does not support opengles.surfaceless_context.");
             }
-            Interop.Window.Unparent(swigCPtr);
+            Interop.Window.Unparent(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1065,7 +1065,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(swigCPtr)) as Window;
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(SwigCPtr)) as Window;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1083,7 +1083,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static bool IsInstalled()
@@ -1100,7 +1100,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void AddAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.AddAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.AddAvailableOrientation(SwigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1111,7 +1111,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RemoveAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.RemoveAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.RemoveAvailableOrientation(SwigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1122,7 +1122,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void SetPreferredOrientation(Window.WindowOrientation orientation)
         {
-            Interop.Window.SetPreferredOrientation(swigCPtr, (int)orientation);
+            Interop.Window.SetPreferredOrientation(SwigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1133,7 +1133,7 @@ namespace Tizen.NUI
         /// <returns>The preferred orientation if previously set, or none.</returns>
         public Window.WindowOrientation GetPreferredOrientation()
         {
-            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetPreferredOrientation(swigCPtr);
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetPreferredOrientation(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1146,7 +1146,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window.WindowOrientation GetCurrentOrientation()
         {
-            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetCurrentOrientation(swigCPtr);
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.GetCurrentOrientation(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1169,7 +1169,7 @@ namespace Tizen.NUI
                 }
             }
 
-            Interop.Window.SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
+            Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1180,14 +1180,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetNativeId()
         {
-            int ret = Interop.Window.GetNativeId(swigCPtr);
+            int ret = Interop.Window.GetNativeId(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Any GetNativeHandle()
         {
-            Any ret = new Any(Interop.WindowInternal.WindowGetNativeHandle(swigCPtr), true);
+            Any ret = new Any(Interop.WindowInternal.WindowGetNativeHandle(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1198,7 +1198,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(layer));
             }
-            Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
+            Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Add(layer);
@@ -1211,7 +1211,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(layer));
             }
-            Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
+            Interop.Window.Remove(SwigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Remove(layer);
@@ -1220,7 +1220,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1252,7 +1252,7 @@ namespace Tizen.NUI
             // Core has been initialized, not when Stage is ready.
             if (_rootLayer == null && Window.IsInstalled())
             {
-                _rootLayer = new Layer(Interop.Window.GetRootLayer(swigCPtr), true);
+                _rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 LayersChildren?.Add(_rootLayer);
                 _rootLayer.SetWindow(this);
@@ -1262,13 +1262,13 @@ namespace Tizen.NUI
 
         internal void SetBackgroundColor(Vector4 color)
         {
-            Interop.Window.SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.Window.SetBackgroundColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Vector4 GetBackgroundColor()
         {
-            Vector4 ret = new Vector4(Interop.Window.GetBackgroundColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.Window.GetBackgroundColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1308,7 +1308,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(size));
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            Interop.Window.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
+            Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1317,7 +1317,7 @@ namespace Tizen.NUI
 
         internal Size2D GetWindowSize()
         {
-            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), false);
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), false);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1331,7 +1331,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(position));
             }
             var val = new Uint16Pair((uint)position.X, (uint)position.Y);
-            Interop.Window.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
+            Interop.Window.SetPosition(SwigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
@@ -1339,7 +1339,7 @@ namespace Tizen.NUI
 
         internal Position2D GetPosition()
         {
-            var val = new Uint16Pair(Interop.Window.GetPosition(swigCPtr), true);
+            var val = new Uint16Pair(Interop.Window.GetPosition(SwigCPtr), true);
             Position2D ret = new Position2D(val.GetX(), val.GetY());
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1348,7 +1348,7 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
-            Interop.Window.SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
+            Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1499,7 +1499,7 @@ namespace Tizen.NUI
         public void AddFrameRenderedCallback(FrameCallbackType callback, int frameId)
         {
             var assignedKey = AddInterHookCallback(callback, frameId);
-            Interop.WindowInternal.AddFrameRenderedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
+            Interop.WindowInternal.AddFrameRenderedCallback(SwigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1522,7 +1522,7 @@ namespace Tizen.NUI
         public void AddFramePresentedCallback(FrameCallbackType callback, int frameId)
         {
             var assignedKey = AddInterHookCallback(callback, frameId);
-            Interop.WindowInternal.AddFramePresentedCallback(swigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
+            Interop.WindowInternal.AddFramePresentedCallback(SwigCPtr, new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(internalHookFrameCallback)), assignedKey);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
