@@ -789,7 +789,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. The cache model of the current WebView.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CacheModel CacheModel
         {
@@ -819,7 +819,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. The cookie acceptance policy.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicy CookieAcceptPolicy
         {
@@ -866,7 +866,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Whether JavaScript is enabled.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableJavaScript
         {
@@ -896,7 +896,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Whether images can be loaded automatically.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadImagesAutomatically
         {
@@ -927,7 +927,7 @@ namespace Tizen.NUI.BaseComponents
         /// The default text encoding name.<br />
         /// e.g. "UTF-8"<br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DefaultTextEncodingName
         {
@@ -957,7 +957,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The default font size in pixel.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultFontSize
         {
@@ -1888,7 +1888,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clears the history of current WebView.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearHistory()
         {
@@ -2045,7 +2045,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Clears the cache of current WebView.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
         {
@@ -2055,7 +2055,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated. Clears all the cookies of current WebView.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCookies()
         {
