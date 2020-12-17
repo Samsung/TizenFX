@@ -16,7 +16,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -44,9 +44,9 @@ namespace Tizen.NUI.Components
 
         private bool onThemeChangedEventOverrideChecker;
 
-        private Feedback feedback = new Feedback();
+        private Feedback feedback = null;
 
-        private TapGestureDetector tapGestureDetector = new TapGestureDetector();
+        private TapGestureDetector tapGestureDetector = null;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -98,7 +98,38 @@ namespace Tizen.NUI.Components
         /// Enable/Disable a sound feedback when tap gesture detected.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Feedback { get; set; } = false;
+        public bool Feedback
+        {
+            get => feedback != null;
+            set
+            {
+                if (value == (feedback != null))
+                {
+                    return;
+                }
+
+                if (value)
+                {
+                    Debug.Assert(feedback == null && tapGestureDetector == null);
+
+                    tapGestureDetector = new TapGestureDetector();
+                    tapGestureDetector.Attach(this);
+                    tapGestureDetector.Detected += OnTapGestureDetected;
+                    feedback = new Feedback();
+                }
+                else
+                {
+                    Debug.Assert(feedback != null && tapGestureDetector != null);
+
+                    feedback.Stop();
+                    feedback = null;
+
+                    tapGestureDetector.Detected -= OnTapGestureDetected;
+                    tapGestureDetector.Detach(this);
+                    tapGestureDetector = null;
+                }
+            }
+        }
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -156,14 +187,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                tapGestureDetector.Detected -= OnTapGestureDetected;
-                tapGestureDetector.Detach(this);
-
-                if (feedback != null)
-                {
-                    feedback.Stop();
-                    feedback = null;
-                }
+                Feedback = false; // Release feedback resources.
             }
 
             base.Dispose(type);
@@ -291,9 +315,6 @@ namespace Tizen.NUI.Components
             LeaveRequired = true;
 
             StateFocusableOnTouchMode = false;
-
-            tapGestureDetector.Attach(this);
-            tapGestureDetector.Detected += OnTapGestureDetected;
 
             EnableControlState = true;
         }
