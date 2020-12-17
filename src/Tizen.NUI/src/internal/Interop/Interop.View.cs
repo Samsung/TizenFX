@@ -26,6 +26,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DownCast")]
             public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_delete_Control")]
+            public static extern void delete_Control(Tizen.NUI.BaseComponents.View.ControlHandle jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_HasKeyInputFocus")]
             public static extern bool HasKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
 

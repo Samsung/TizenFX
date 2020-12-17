@@ -210,6 +210,13 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SHADOW = Interop.ViewProperty.ShadowGet();
             internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
             internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
+            internal static readonly int AccessibilityName = Interop.ViewProperty.AccessibilityNameGet();
+            internal static readonly int AccessibilityDescription = Interop.ViewProperty.AccessibilityDescriptionGet();
+            internal static readonly int AccessibilityTranslationDomain = Interop.ViewProperty.AccessibilityTranslationDomainGet();
+            internal static readonly int AccessibilityRole = Interop.ViewProperty.AccessibilityRoleGet();
+            internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
+            internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
+            internal static readonly int AccessibilityAnimated = Interop.ViewProperty.AccessibilityAnimatedGet();
         }
     }
 }

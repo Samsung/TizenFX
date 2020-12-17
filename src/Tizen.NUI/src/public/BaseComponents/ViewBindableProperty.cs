@@ -1645,6 +1645,131 @@ namespace Tizen.NUI.BaseComponents
             return ((View)bindable).themeChangeSensitive;
         });
 
+        /// <summary>
+        /// AccessibilityNameProperty (DALi json)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityNameProperty = BindableProperty.Create(nameof(AccessibilityName), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityDescriptionProperty (DALi json)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityDescriptionProperty = BindableProperty.Create(nameof(AccessibilityDescription), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityTranslationDomainProperty (DALi json)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityTranslationDomainProperty = BindableProperty.Create(nameof(AccessibilityTranslationDomain), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            string temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityRoleProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            int value;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole, new Tizen.NUI.PropertyValue((int)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            int temp = 0;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityHighlightableProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityHighlightableProperty = BindableProperty.Create(nameof(AccessibilityHighlightable), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable).Get(out temp);
+            return temp;
+        });
+
+        /// <summary>
+        /// AccessibilityAnimatedProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AccessibilityAnimatedProperty = BindableProperty.Create(nameof(AccessibilityAnimated), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityAnimated).Get(out temp);
+            return temp;
+        });
+
         #region Selectors
         internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
