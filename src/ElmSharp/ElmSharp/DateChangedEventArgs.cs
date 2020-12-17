@@ -20,8 +20,8 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits System.EventArgs.
-    /// The DateChanged event in Calendar and DateTimeChanged event in DateTimeSelector.
-    /// contain DateChangedEventArgs as a parameter.
+    /// The DateChanged event in the Calendar and the DateTimeChanged event in DateTimeSelector
+    /// contain the DateChangedEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class DateChangedEventArgs : EventArgs
@@ -42,10 +42,10 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the DateChangedEventArgs class.
         /// </summary>
         /// <param name="oldDate">
-        /// Old date when DateChanged event or DateTimeChanged event triggered
+        /// Old date when the DateChanged event or DateTimeChanged event triggered.
         /// </param>
         /// <param name="newDate">
-        /// New date when DateChanged event or DateTimeChanged event triggered
+        /// New date when the DateChanged event or DateTimeChanged event triggered.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public DateChangedEventArgs(DateTime oldDate, DateTime newDate)

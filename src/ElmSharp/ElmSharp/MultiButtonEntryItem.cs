@@ -20,8 +20,8 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits <see cref="ItemObject"/>.
-    /// MutltiButtonEntryItem is a item which is added to MultiButtonEntry.
-    /// It contains Next and Prev properties to get next and previous item.
+    /// MutltiButtonEntryItem is an item, which is added to MultiButtonEntry.
+    /// It contains Next and Prev properties to get the next and previous item.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class MultiButtonEntryItem : ItemObject
@@ -29,7 +29,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the MultiButtonEntryItem class.
         /// </summary>
-        /// <param name="text">The text of MultiButtonEntryItem's Label name.</param>
+        /// <param name="text">The text of the MultiButtonEntryItem's label name.</param>
         /// <since_tizen> preview </since_tizen>
         public MultiButtonEntryItem(string text) : base(IntPtr.Zero)
         {
@@ -37,6 +37,11 @@ namespace ElmSharp
         }
 
         internal MultiButtonEntryItem(IntPtr handle) : base(handle)
+        {
+            Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
+        }
+
+        internal MultiButtonEntryItem(IntPtr handle, EvasObject parent) : base(handle, parent)
         {
             Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
         }
@@ -64,7 +69,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the next item in the multibuttonentry.
+        /// Get the next item in the MultiButtonEntry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public MultiButtonEntryItem Next
@@ -77,7 +82,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the previous item in the multibuttonentry.
+        /// Get the previous item in the MultiButtonEntry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public MultiButtonEntryItem Prev

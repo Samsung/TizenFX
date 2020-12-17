@@ -17,15 +17,16 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.InputMethod;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// InputMethod Interop Class
+    /// The InputMethod Interop class.
     /// </summary>
     internal static class InputMethod
     {
@@ -44,6 +45,20 @@ internal static partial class Interop
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory
         };
 
+        internal enum ImeEventType
+        {
+            Language = 1,    /* The language of the input panel */
+            ShiftMode = 2,   /* The shift key state of the input panel */
+            Geometry = 3     /* The size of the input panel */
+        };
+
+        internal enum ImeShiftMode
+        {
+            Off,
+            On
+        };
+
+        [NativeStruct("ime_callback_s", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImeCallbackStruct
         {
@@ -57,6 +72,7 @@ internal static partial class Interop
             internal ImeHideCb hide;
         };
 
+        [NativeStruct("ime_preedit_attribute", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImePreEditAttributeStruct
         {
@@ -188,6 +204,9 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_main_window")]
         internal static extern IntPtr ImeGetMainWindow();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_request_hide")]
+        internal static extern ErrorCode ImeRequestHide();
+
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_prepare")]
         internal static extern ErrorCode ImePrepare();
 
@@ -245,6 +264,35 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_device_info_get_subclass")]
         internal static extern ErrorCode ImeDeviceInfoGetSubclass(IntPtr dev_info, out DeviceSubclass devSubClass);
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_mode")]
+        internal static extern ErrorCode ImeSetFloatingMode(bool floatingMode);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_start")]
+        internal static extern ErrorCode ImeSetFloatingDragStart();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_end")]
+        internal static extern ErrorCode ImeSetFloatingDragEnd();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_update_input_panel_event")]
+        internal static extern ErrorCode ImeUpdateInputPanelEvent(ImeEventType type, uint value);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_selected_text")]
+        internal static extern ErrorCode ImeGetSelectedText(out IntPtr text);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_prediction_hint_set_cb")]
+        internal static extern ErrorCode ImeEventSetPredictionHintSetCb(ImePredictionHintSetCb callbackFunction, IntPtr userData);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_prediction_hint_data_set_cb")]
+        internal static extern ErrorCode ImeEventSetPredictionHintDataSetCb(ImePredictionHintDataSetCb callbackFunction, IntPtr userData);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_mime_type_set_request_cb")]
+        internal static extern ErrorCode ImeEventSetMimeTypeSetRequestCb(ImeMimeTypeSetRequestCb callbackFunction, IntPtr userData);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_send_private_command")]
+        internal static extern ErrorCode ImeSendPrivateCommand(string command);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_commit_content")]
+        internal static extern ErrorCode ImeCommitContent(string content, string description, string mimeType);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeCreateCb(IntPtr userData);
@@ -308,5 +356,14 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeAccessibilityStateChangedCb(bool state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ImePredictionHintSetCb(IntPtr predictionHint, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ImePredictionHintDataSetCb(IntPtr key, IntPtr keyValue, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ImeMimeTypeSetRequestCb(IntPtr mimeType, IntPtr userData);
     }
 }

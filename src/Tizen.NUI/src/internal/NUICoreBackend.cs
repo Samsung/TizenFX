@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
 
@@ -31,6 +30,8 @@ namespace Tizen.NUI
         protected Application _application;
         private string _stylesheet = "";
         private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
+        private Size2D _windowSize = null;
+        private Position2D _windowPosition = null;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -62,6 +63,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with stylesheet, window mode, window size and window position.
+        /// </summary>
+        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition)
+        {
+            _stylesheet = stylesheet;
+            _windowMode = windowMode;
+            _windowSize = windowSize;
+            _windowPosition = windowPosition;
+        }
+
+        /// <summary>
         /// Adds NUIApplication event to Application.
         /// Puts each type of event callback in Dictionary.
         /// </summary>
@@ -84,13 +96,12 @@ namespace Tizen.NUI
             Handlers.Add(evType, handler);
         }
 
-
         /// <summary>
         /// The Dispose function.
         /// </summary>
         public void Dispose()
         {
-            if(_application != null)
+            if (_application != null)
             {
                 _application.Dispose();
             }
@@ -101,7 +112,7 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            if(_application != null)
+            if (_application != null)
             {
                 _application.Quit();
             }
@@ -124,15 +135,35 @@ namespace Tizen.NUI
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
+            NDalicPINVOKE.SWIGStringHelper.RegistCallback();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if ("" == args[0])
+            {
+                args[0] = this.GetType().Assembly.FullName;
+            }
+
             if (args.Length == 1)
             {
-                _application = Application.NewApplication();
+                if (_windowSize != null)
+                {
+                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
+                }
+                else
+                {
+                    _application = Application.NewApplication(_stylesheet, (Application.WindowMode)_windowMode);
+                }
             }
             else if (args.Length > 1)
             {
-                _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+                if (_windowSize != null)
+                {
+                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode, new Rectangle(_windowPosition.X, _windowPosition.Y, _windowSize.Width, _windowSize.Height));
+                }
+                else
+                {
+                    _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+                }
             }
 
             _application.BatteryLow += OnBatteryLow;
@@ -147,6 +178,7 @@ namespace Tizen.NUI
             _application.AppControl += OnAppControl;
 
             _application.MainLoop();
+            _application.Dispose();
         }
 
         /// <summary>
@@ -158,7 +190,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            handler?.Invoke( new RegionFormatChangedEventArgs(e.Application.GetRegion()));
+            handler?.Invoke(new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
         }
 
         /// <summary>
@@ -171,23 +203,23 @@ namespace Tizen.NUI
             Log.Info("NUI", "NUICorebackend OnMemoryLow Called");
             var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
 
-            switch ( e.MemoryStatus )
+            switch (e.MemoryStatus)
             {
                 case Application.MemoryStatus.Normal:
-                {
-                    handler?.Invoke( new LowMemoryEventArgs(LowMemoryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
+                        break;
+                    }
                 case Application.MemoryStatus.Low:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                        break;
+                    }
                 case Application.MemoryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                        break;
+                    }
             }
         }
 
@@ -200,7 +232,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            handler?.Invoke( new LocaleChangedEventArgs(e.Application.GetLanguage()));
+            handler?.Invoke(new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
         }
 
         /// <summary>
@@ -212,23 +244,23 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnBatteryLow Called");
             var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
-            switch( e.BatteryStatus )
+            switch (e.BatteryStatus)
             {
                 case Application.BatteryStatus.Normal:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                        break;
+                    }
                 case Application.BatteryStatus.CriticallyLow:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                        break;
+                    }
                 case Application.BatteryStatus.PowerOff:
-                {
-                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
-                    break;
-                }
+                    {
+                        handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
             }
         }
 
@@ -281,8 +313,8 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnAppControl Called");
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP,false);
-            handler?.Invoke( new AppControlReceivedEventArgs(new ReceivedAppControl(handle)) );
+            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP, false);
+            handler?.Invoke(new AppControlReceivedEventArgs(new ReceivedAppControl(handle)));
         }
 
         /// <summary>
@@ -297,14 +329,12 @@ namespace Tizen.NUI
             handler?.Invoke();
         }
 
-
-	internal Application ApplicationHandle
-	{
-		get
-		{
-			return _application;
-		}
-	}
-
+        internal Application ApplicationHandle
+        {
+            get
+            {
+                return _application;
+            }
+        }
     }
 }

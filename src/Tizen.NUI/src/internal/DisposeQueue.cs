@@ -12,7 +12,6 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-
     internal class DisposeQueue
     {
         private static readonly DisposeQueue _disposableQueue = new DisposeQueue();
@@ -34,10 +33,15 @@ namespace Tizen.NUI
             get { return _disposableQueue; }
         }
 
+        private bool _isCalled = false;
         public void Initialize()
         {
-            _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
-            _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+            if (_isCalled == false)
+            {
+                _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
+                _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+                _isCalled = true;
+            }
         }
 
         public void Add(IDisposable disposable)
@@ -53,7 +57,7 @@ namespace Tizen.NUI
             }
         }
 
-        private void ProcessDisposables()
+        public void ProcessDisposables()
         {
             lock (_listLock)
             {

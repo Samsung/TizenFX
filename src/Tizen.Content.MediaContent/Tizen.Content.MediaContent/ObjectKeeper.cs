@@ -53,10 +53,7 @@ namespace Tizen.Content.MediaContent
             {
                 if (!disposedValue)
                 {
-                    if (disposing)
-                    {
-                        _handle.Free();
-                    }
+                    _handle.Free();
 
                     disposedValue = true;
                 }

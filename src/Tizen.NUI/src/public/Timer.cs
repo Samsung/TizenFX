@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -34,74 +35,48 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Timer : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
         private bool played = false;
+        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
+        private TickCallbackDelegate _timerTickCallbackDelegate;
 
-        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn)
+        private System.IntPtr _timerTickCallbackOfNative;
+
+        /// <summary>
+        /// Creates a tick timer that emits periodic signal.
+        /// </summary>
+        /// <param name="milliSec">Interval in milliseconds.</param>
+        /// <returns>A new timer.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public Timer(uint milliSec) : this(Interop.Timer.New(milliSec), true)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
+        }
+        internal Timer(Timer timer) : this(Interop.Timer.NewTimer(Timer.getCPtr(timer)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Upcast(cPtr), cMemoryOwn)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+
+            _timerTickCallbackDelegate = OnTick;
+            _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
+
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
         }
 
         /// <summary>
-        /// Dispose.
+        /// Destructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        ~Timer()
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_timerTickCallbackDelegate != null)
-            {
-                TickSignal().Disconnect(_timerTickCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Timer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            played = false;
-            base.Dispose(type);
-        }
-
-
-        /// <summary>
-        /// Event arguments that passed via the tick event.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class TickEventArgs : EventArgs
-        {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool TickCallbackDelegate(IntPtr data);
-        private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
-        private TickCallbackDelegate _timerTickCallbackDelegate;
+        private delegate bool TickCallbackDelegate();
 
         /// <summary>
         /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
@@ -112,10 +87,9 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_timerTickEventHandler == null)
+                if (_timerTickEventHandler == null && disposed == false)
                 {
-                    _timerTickCallbackDelegate = new TickCallbackDelegate(OnTick);
-                    TickSignal().Connect(_timerTickCallbackDelegate);
+                    TickSignal().Connect(_timerTickCallbackOfNative);
                 }
                 _timerTickEventHandler += value;
             }
@@ -124,73 +98,17 @@ namespace Tizen.NUI
                 _timerTickEventHandler -= value;
                 if (_timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
-                    TickSignal().Disconnect(_timerTickCallbackDelegate);
+                    TickSignal().Disconnect(_timerTickCallbackOfNative);
                 }
             }
-        }
-
-        private bool OnTick(IntPtr data)
-        {
-            TickEventArgs e = new TickEventArgs();
-
-            if (played == false)
-            {
-                Tizen.Log.Fatal("NUI", $"({swigCPtr.Handle}) OnTick() is called even played is false!");
-            }
-
-            if (_timerTickEventHandler != null && played == true)
-            {
-                //here we send all data to user event handlers
-                return _timerTickEventHandler(this, e);
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Creates a tick timer that emits periodic signal.
-        /// </summary>
-        /// <param name="milliSec">Interval in milliseconds.</param>
-        /// <returns>A new timer.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) Timer({milliSec}) Constructor!");
-        }
-        internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Starts the timer.<br />
-        /// In case a timer is already running, its time is reset and the timer is restarted.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Start()
-        {
-            played = true;
-            NDalicPINVOKE.Timer_Start(swigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Stops the timer.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop()
-        {
-            played = false;
-            NDalicPINVOKE.Timer_Stop(swigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Gets/Sets the interval of the timer.
         /// </summary>
+        /// <remarks>For setter, this sets a new interval on the timer and starts the timer. <br />
+        /// Cancels the previous timer.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public uint Interval
         {
@@ -205,27 +123,65 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a new interval on the timer and starts the timer.<br />
-        /// Cancels the previous timer.<br />
+        /// Starts the timer.<br />
+        /// In case a timer is already running, its time is reset and the timer is restarted.<br />
         /// </summary>
-        /// <param name="milliSec">MilliSec interval in milliseconds.</param>
-        internal void SetInterval(uint milliSec)
+        /// <since_tizen> 3 </since_tizen>
+        public void Start()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
 
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) SetInterval({milliSec})");
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
 
-            NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
 
             played = true;
+            Interop.Timer.Start(swigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal uint GetInterval()
+        /// <summary>
+        /// Stops the timer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop()
         {
-            uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
+
+            played = false;
+            Interop.Timer.Stop(swigCPtr);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle})GetInterval({ret})");
-            return ret;
         }
 
         /// <summary>
@@ -235,18 +191,129 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsRunning()
         {
-            bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return false;
+            }
+
+            bool ret = Interop.Timer.IsRunning(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Sets a new interval on the timer and starts the timer.<br />
+        /// Cancels the previous timer.<br />
+        /// </summary>
+        /// <param name="milliSec">MilliSec interval in milliseconds.</param>
+        internal void SetInterval(uint milliSec)
+        {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
+
+            played = true;
+
+            Interop.Timer.SetInterval(swigCPtr, milliSec);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetInterval()
+        {
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return 0;
+            }
+
+            uint ret = Interop.Timer.GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TimerSignalType TickSignal()
         {
-            TimerSignalType ret = new TimerSignalType(NDalicPINVOKE.Timer_TickSignal(swigCPtr), false);
+            TimerSignalType ret = new TimerSignalType(Interop.Timer.TickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
+
+            if (this != null && _timerTickCallbackDelegate != null)
+            {
+                TickSignal().Disconnect(_timerTickCallbackOfNative);
+            }
+
+            if (disposed)
+            {
+                return;
+            }
+
+            played = false;
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Timer.DeleteTimer(swigCPtr);
+        }
+
+        private bool OnTick()
+        {
+            TickEventArgs e = new TickEventArgs();
+
+            if (played == false)
+            {
+                Tizen.Log.Fatal("NUI", $"(0x{swigCPtr.Handle:X}) OnTick() is called even played is false!");
+                //throw new System.InvalidOperationException($"OnTick() excpetion!");
+            }
+
+            if (_timerTickEventHandler != null && played == true)
+            {
+                //here we send all data to user event handlers
+                return _timerTickEventHandler(this, e);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the tick event.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class TickEventArgs : EventArgs
+        {
+        }
     }
 
 }

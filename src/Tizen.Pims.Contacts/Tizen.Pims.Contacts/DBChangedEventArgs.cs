@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// Event arguments passed when contacts database is changed
+    /// Event arguments passed when the contacts database is changed.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class DBChangedEventArgs : EventArgs
@@ -30,7 +30,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// The contacts view URI changed.
+        /// The contacts view URI is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string ViewUri

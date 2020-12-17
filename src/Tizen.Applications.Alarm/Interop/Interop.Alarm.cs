@@ -17,7 +17,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Tizen.Internals.Errors;
+using Tizen.Internals;
 using Tizen.Applications;
 using Tizen.Applications.Notifications;
 
@@ -25,6 +25,7 @@ internal static partial class Interop
 {
     internal static partial class Alarm
     {
+        [NativeStruct("struct tm", Include="time.h")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct DateTime
         {
@@ -37,7 +38,7 @@ internal static partial class Interop
             internal int wday; /* day of the week, range 0 to 6*/
             internal int yday; /* day in the year, range 0 to 365*/
             internal int isdst; /* daylight saving time*/
-            internal long tm_gmtoff;
+            internal IntPtr tm_gmtoff; // Workaround: Use IntPtr instead of long type to match struct size with "struct tm" in time.h
             internal IntPtr tm_zone;
         };
 
@@ -94,6 +95,18 @@ internal static partial class Interop
 
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_with_recurrence_week_flag")]
         internal static extern AlarmError CreateAlarmNotiRecurWeek(NotificationSafeHandle noti, ref DateTime date, int week, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_delay")]
+        internal static extern AlarmError UpdateDelay(int alarmId, int delay);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_date")]
+        internal static extern AlarmError UpdateDate(int alarmId, ref DateTime date);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_period")]
+        internal static extern AlarmError UpdatePeriod(int alarmId, int period);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_week_flag")]
+        internal static extern AlarmError UpdateWeekFlag(int alarmId, int week);
 
         //callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

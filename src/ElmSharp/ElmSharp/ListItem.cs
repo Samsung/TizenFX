@@ -20,13 +20,20 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits <see cref="ItemObject"/>.
-    /// A instance to the list item added.
-    /// It contains Text, LeftIcon and RightIcon properties to show a list item which is given.
+    /// An instance to the list item is added.
+    /// It contains the Text, LeftIcon, and RightIcon properties to show the list item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ListItem : ItemObject
     {
         internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon) : base(IntPtr.Zero)
+        {
+            Text = text;
+            LeftIcon = leftIcon;
+            RightIcon = rightIcon;
+        }
+        
+        internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
             LeftIcon = leftIcon;

@@ -21,28 +21,28 @@ using System.Text;
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration for Attribute Type
+    /// Enumeration for the attribute types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum AttributeType
     {
         /// <summary>
-        /// No attribute
+        /// No attribute.
         /// </summary>
         None,
         /// <summary>
-        /// A font style attribute, e.g., underline, etc.
+        /// A font style attribute, for example, underline, etc.
         /// </summary>
         FontStyle
     };
     /// <summary>
-    /// This class represents the attributes for preedit string.
+    /// This class represents the attributes for the pre-edit string.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class PreEditAttribute
     {
         /// <summary>
-        /// The start position in the string of this attribute
+        /// The start position in the string of this attribute.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public uint Start
@@ -52,7 +52,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The character length of this attribute, the range is [Start, Start+Length]
+        /// The character length of this attribute, the range is [Start, Start+Length].
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public uint Length
@@ -62,7 +62,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The type of this attribute
+        /// The type of this attribute.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public AttributeType Type
@@ -72,7 +72,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The value of this attribute
+        /// The value of this attribute.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public uint Value

@@ -20,7 +20,7 @@ namespace ElmSharp
 {
 
     /// <summary>
-    /// Provides a synchronization context for the efl application.
+    /// Provides a synchronization context for the EFL application.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EcoreSynchronizationContext : SynchronizationContext
@@ -34,7 +34,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Initilizes a new EcoreSynchronizationContext and install into current thread
+        /// Initilizes a new EcoreSynchronizationContext and installs into the current thread.
         /// </summary>
         /// <remarks>
         /// It is equivalent
@@ -51,8 +51,8 @@ namespace ElmSharp
         /// <summary>
         /// Dispatches an asynchronous message to a Ecore main loop.
         /// </summary>
-        /// <param name="d"><see cref="System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
-        /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
+        /// <param name="d">The <see cref="T:System.Threading.SendOrPostCallback"/> delegate to call.</param>
+        /// <param name="state">The object passed to the delegate.</param>
         /// <remarks>The Post method starts an asynchronous request to post a message.</remarks>
         /// <since_tizen> preview </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
@@ -64,10 +64,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Dispatches a synchronous message to a Ecore main loop
+        /// Dispatches an synchronous message to a Ecore main loop.
         /// </summary>
-        /// <param name="d"><see cref="System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
-        /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
+        /// <param name="d">The <see cref="T:System.Threading.SendOrPostCallback"/> delegate to call.</param>
+        /// <param name="state">The object passed to the delegate.</param>
         /// <remarks>
         /// The Send method starts a synchronous request to send a message.</remarks>
         /// <since_tizen> preview </since_tizen>

@@ -17,13 +17,13 @@
 namespace Tizen.Applications.Shortcut
 {
     /// <summary>
-    /// Enumeration for sizes of shortcut widget.
+    /// Enumeration for the sizes of the shortcut widget.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum ShortcutWidgetSize
     {
         /// <summary>
-        /// Type mask for the normal mode widget , don't use this value for specific size.
+        /// Type mask for the normal mode widget, don't use this value for a specific size.
         /// </summary>
         WidgetDefault = 0x10000000,
 
@@ -73,28 +73,28 @@ namespace Tizen.Applications.Shortcut
         Widget4by6 = 0x12000000,
 
         /// <summary>
-        /// Type mask for the easy mode widget, don't use this value for specific size.
+        /// Type mask for the easy mode widget, don't use this value for a specific size.
         /// </summary>
         EasyDefault = 0x30000000,
 
         /// <summary>
-        /// Easy mode 1by1
+        /// Easy mode 1by1.
         /// </summary>
         Easy1by1 = 0x30010000,
 
         /// <summary>
-        /// Easy mode 3by2
+        /// Easy mode 3by2.
         /// </summary>
         Easy3by1 = 0x30020000,
 
         /// <summary>
-        /// Easy mode 3by3
+        /// Easy mode 3by3.
         /// </summary>
         Easy3by3 = 0x30040000,
     }
 
     /// <summary>
-    /// Enumeration for shortcut types.
+    /// Enumeration for the shortcut types.
     /// </summary>
     internal enum ShortcutType
     {
@@ -104,7 +104,7 @@ namespace Tizen.Applications.Shortcut
         LaunchByApp = 0x00000000,
 
         /// <summary>
-        /// Launch the application with the given data(URI).
+        /// Launch the application with the given data (URI).
         /// </summary>
         LaunchByUri = 0x00000001,
     }

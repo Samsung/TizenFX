@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for the wrap type.
+    /// Enumeration for the wrap types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum WrapType
@@ -33,12 +33,12 @@ namespace ElmSharp
         /// </summary>
         Char,
         /// <summary>
-        /// Word wrap - wrap within the allowed wrapping points
+        /// Word wrap - wrap within the allowed wrapping points.
         /// (as defined in the unicode standard).
         /// </summary>
         Word,
         /// <summary>
-        /// Mixed wrap - Word wrap, if that fails, char wrap.
+        /// Mixed wrap - word wrap, if that fails, char wrap.
         /// </summary>
         Mixed
     }

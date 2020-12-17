@@ -14,21 +14,17 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
     internal class PageTurnView : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PageTurnView.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnView obj)
@@ -36,40 +32,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PageTurnView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.PageTurnView.DeletePageTurnView(swigCPtr);
         }
-
-
-
 
         /// <since_tizen> 3 </since_tizen>
         public class PagePanStartedEventArgs : EventArgs
@@ -424,157 +390,61 @@ namespace Tizen.NUI
             return ret;
         }
 
-
-        /// <since_tizen> 3 </since_tizen>
-        public new class Property : global::System.IDisposable
+        internal new class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_PageTurnView_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public Property() : this(NDalicPINVOKE.new_PageTurnView_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PAGE_SIZE = NDalicPINVOKE.PageTurnView_Property_PAGE_SIZE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int CURRENT_PAGE_ID = NDalicPINVOKE.PageTurnView_Property_CURRENT_PAGE_ID_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SPINE_SHADOW = NDalicPINVOKE.PageTurnView_Property_SPINE_SHADOW_get();
-
+            internal static readonly int ViewPageSize = Interop.PageTurnView.ViewPageSizeGet();
+            internal static readonly int CurrentPageId = Interop.PageTurnView.CurrentPageIdGet();
+            internal static readonly int SpineShadow = Interop.PageTurnView.SpineShadowGet();
         }
 
-        public PageTurnView() : this(NDalicPINVOKE.new_PageTurnView__SWIG_0(), true)
+        public PageTurnView() : this(Interop.PageTurnView.NewPageTurnView(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public PageTurnView(PageTurnView handle) : this(NDalicPINVOKE.new_PageTurnView__SWIG_1(PageTurnView.getCPtr(handle)), true)
+        public PageTurnView(PageTurnView handle) : this(Interop.PageTurnView.NewPageTurnView(PageTurnView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnView Assign(PageTurnView handle)
         {
-            PageTurnView ret = new PageTurnView(NDalicPINVOKE.PageTurnView_Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
+            PageTurnView ret = new PageTurnView(Interop.PageTurnView.Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public new static PageTurnView DownCast(BaseHandle handle)
+        public static PageTurnView DownCast(BaseHandle handle)
         {
-            PageTurnView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnView;
+            PageTurnView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnStartedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(NDalicPINVOKE.PageTurnView_PageTurnStartedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnStartedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnFinishedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(NDalicPINVOKE.PageTurnView_PageTurnFinishedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanStartedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(NDalicPINVOKE.PageTurnView_PagePanStartedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanStartedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanFinishedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(NDalicPINVOKE.PageTurnView_PagePanFinishedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PagePanFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -585,12 +455,12 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(PageTurnView.Property.PAGE_SIZE).Get(temp);
+                GetProperty(PageTurnView.Property.ViewPageSize).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.PAGE_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetProperty(PageTurnView.Property.ViewPageSize, new Tizen.NUI.PropertyValue(value));
             }
         }
         public int CurrentPageId
@@ -598,12 +468,12 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(PageTurnView.Property.CURRENT_PAGE_ID).Get(out temp);
+                GetProperty(PageTurnView.Property.CurrentPageId).Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.CURRENT_PAGE_ID, new Tizen.NUI.PropertyValue(value));
+                SetProperty(PageTurnView.Property.CurrentPageId, new Tizen.NUI.PropertyValue(value));
             }
         }
         public Vector2 SpineShadow
@@ -611,15 +481,13 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(PageTurnView.Property.SPINE_SHADOW).Get(temp);
+                GetProperty(PageTurnView.Property.SpineShadow).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.SPINE_SHADOW, new Tizen.NUI.PropertyValue(value));
+                SetProperty(PageTurnView.Property.SpineShadow, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }

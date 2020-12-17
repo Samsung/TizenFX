@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Tizen.Internals.Errors;
+using Native = Tizen.Multimedia.Interop.MediaPacket;
 
 namespace Tizen.Multimedia
 {
@@ -73,13 +74,7 @@ namespace Tizen.Multimedia
                 }
             }
 
-            internal bool IsLocked
-            {
-                get
-                {
-                    return Interlocked.CompareExchange(ref _locked, 0, 0) == LOCKED;
-                }
-            }
+            internal bool IsLocked => Interlocked.CompareExchange(ref _locked, 0, 0) == LOCKED;
         }
 
         /// <summary>
@@ -101,14 +96,9 @@ namespace Tizen.Multimedia
             {
                 Debug.Assert(packet != null);
 
-                lock (packet)
+                lock (packet._lock)
                 {
-                    Lock lck = FromHandle(packet._handle);
-
-                    if (lck == null)
-                    {
-                        lck = new Lock(packet);
-                    }
+                    Lock lck = FromHandle(packet._handle) ?? new Lock(packet);
 
                     lck._lockCount++;
 
@@ -147,34 +137,23 @@ namespace Tizen.Multimedia
 
             private void SetExtra(IntPtr ptr)
             {
-                int ret = Interop.MediaPacket.SetExtra(_packet._handle, ptr);
+                int ret = Native.SetExtra(_packet._handle, ptr);
 
                 MultimediaDebug.AssertNoError(ret);
             }
 
             private static IntPtr GetExtra(IntPtr handle)
             {
-                IntPtr value;
-
-                int ret = Interop.MediaPacket.GetExtra(handle, out value);
+                int ret = Native.GetExtra(handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
             }
 
-            internal IntPtr GetHandle()
-            {
-                return _packet.GetHandle();
-            }
+            internal IntPtr GetHandle() => _packet.GetHandle();
 
-            internal MediaPacket MediaPacket
-            {
-                get
-                {
-                    return _packet;
-                }
-            }
+            internal MediaPacket MediaPacket => _packet;
 
             private bool _isDisposed = false;
 
@@ -182,7 +161,7 @@ namespace Tizen.Multimedia
             {
                 if (!_isDisposed)
                 {
-                    lock (_packet)
+                    lock (_packet._lock)
                     {
                         _lockCount--;
 
@@ -195,7 +174,7 @@ namespace Tizen.Multimedia
                                 _gcHandle.Free();
                             }
 
-                            //We can assure that at this point '_packet' is always locked by this lock.
+                            // We can assure that at this point '_packet' is always locked by this lock.
                             _packet._lock.SetUnlock();
                         }
                     }

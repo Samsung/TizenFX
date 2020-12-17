@@ -50,7 +50,8 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(FaceRecognitionModelType), value);
+                ValidationUtil.ValidateEnum(typeof(FaceRecognitionModelType), value, nameof(value));
+
                 Set(KeyModelType, (int)value);
             }
         }

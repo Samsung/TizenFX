@@ -1,14 +1,23 @@
 <Project>
 
-  <Target Name="CopyToArtifactsDirectory"
-          Condition="'$(ArtifactsDirectory)' != ''"
-          DependsOnTargets="GetCopyToOutputDirectoryItems">
-    <ItemGroup>
-      <OutputFilesToCopy Include="$(OutDir)**" />
-    </ItemGroup>
+  <Import Project="$(MSBuildThisFileDirectory)profiles.targets" />
 
-    <Copy SourceFiles="@(OutputFilesToCopy)"
-          DestinationFiles="$(ArtifactsDirectory)%(RecursiveDir)%(Filename)%(Extension)" />
+  <PropertyGroup>
+    <__PostBuildDependsOn>
+      _CopyPreloadFilesToOutDir;
+      GenerateProfileFileList;
+    </__PostBuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="__PostBuild"
+          AfterTargets="Build"
+          DependsOnTargets="$(__PostBuildDependsOn)">
+  </Target>
+
+  <Target Name="_CopyPreloadFilesToOutDir">
+
+    <Copy SourceFiles="@(TizenPreloadFile)"
+          DestinationFiles="$(OutDir)%(Sequence).%(Filename)%(Extension)" />
 
   </Target>
 

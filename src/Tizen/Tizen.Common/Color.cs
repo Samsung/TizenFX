@@ -141,12 +141,12 @@ namespace Tizen.Common
         private int _value;
 
         /// <summary>
-        /// Initiates new Color with r,g,b,a components.
+        /// Initiates the new color with R,G,B,A components.
         /// </summary>
-        /// <param name="r">Red (0 ~ 255)</param>
-        /// <param name="g">Green (0 ~ 255)</param>
-        /// <param name="b">Blue (0 ~ 255)</param>
-        /// <param name="a">Alpha (0 ~ 255)</param>
+        /// <param name="r">Red (0 ~ 255).</param>
+        /// <param name="g">Green (0 ~ 255).</param>
+        /// <param name="b">Blue (0 ~ 255).</param>
+        /// <param name="a">Alpha (0 ~ 255).</param>
         /// <since_tizen> 3 </since_tizen>
         public Color(int r, int g, int b, int a)
         {
@@ -163,11 +163,11 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Initiates new Color with r,g,b components. The alpha value will be 255 as default.
+        /// Initiates the new color with R,G,B components. The Alpha value will be 255 as default.
         /// </summary>
-        /// <param name="r">Red (0 ~ 255)</param>
-        /// <param name="g">Green (0 ~ 255)</param>
-        /// <param name="b">Blue (0 ~ 255)</param>
+        /// <param name="r">Red (0 ~ 255).</param>
+        /// <param name="g">Green (0 ~ 255).</param>
+        /// <param name="b">Blue (0 ~ 255).</param>
         /// <since_tizen> 3 </since_tizen>
         public Color(int r, int g, int b) : this(r, g, b, 255)
         {
@@ -194,7 +194,7 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Gets the blue component of the color.
+        /// Gets the Blue component of the color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int B
@@ -203,7 +203,7 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Gets the alpha component of the color.
+        /// Gets the Alpha component of the color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int A
@@ -216,11 +216,11 @@ namespace Tizen.Common
         #region Static Methods
 
         /// <summary>
-        /// Returns a boolean indicating whether the two given Colors are equal.
+        /// Returns a boolean indicating whether the two given colors are equal.
         /// </summary>
-        /// <param name="color1">The first Color to compare.</param>
-        /// <param name="color2">The second Color to compare.</param>
-        /// <returns>True if the Colors are equal; False otherwise.</returns>
+        /// <param name="color1">The first color to compare.</param>
+        /// <param name="color2">The second color to compare.</param>
+        /// <returns>True if the colors are equal; False otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(Color color1, Color color2)
         {
@@ -228,11 +228,11 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a boolean indicating whether the two given Colors are not equal.
+        /// Returns a boolean indicating whether the two given colors are not equal.
         /// </summary>
-        /// <param name="color1">The first Color to compare.</param>
-        /// <param name="color2">The second Color to compare.</param>
-        /// <returns>True if the Colors are not equal; False if they are equal.</returns>
+        /// <param name="color1">The first color to compare.</param>
+        /// <param name="color2">The second color to compare.</param>
+        /// <returns>True if the colors are not equal; False if they are equal.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(Color color1, Color color2)
         {
@@ -242,9 +242,9 @@ namespace Tizen.Common
         /// <summary>
         /// Returns a new RGB color instance.
         /// </summary>
-        /// <param name="r">The red component of the color.</param>
-        /// <param name="g">The green component of the color.</param>
-        /// <param name="b">The blue component of the color.</param>
+        /// <param name="r">The Red component of the color.</param>
+        /// <param name="g">The Green component of the color.</param>
+        /// <param name="b">The Blue component of the color.</param>
         /// <returns></returns>
         /// <since_tizen> 3 </since_tizen>
         public static Color FromRgb(int r, int g, int b)
@@ -255,11 +255,11 @@ namespace Tizen.Common
         /// <summary>
         /// Returns a new RGBA color instance.
         /// </summary>
-        /// <param name="r">The red component of the color.</param>
-        /// <param name="g">The green component of the color.</param>
-        /// <param name="b">The blue component of the color.</param>
-        /// <param name="a">The alpha component of the color.</param>
-        /// <returns>the RGBA color instance.</returns>
+        /// <param name="r">The Red component of the color.</param>
+        /// <param name="g">The Green component of the color.</param>
+        /// <param name="b">The Blue component of the color.</param>
+        /// <param name="a">The Alpha component of the color.</param>
+        /// <returns>The RGBA color instance.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static Color FromRgba(int r, int g, int b, int a)
         {
@@ -267,10 +267,10 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a new RGB Color instance with the requested Red, Green, and Blue channels. The Alpha channel is set if hex contains one.
+        /// Returns a new RGB color instance with the requested Red, Green, and Blue channels. The Alpha channel is set if hex contains one.
         /// </summary>
         /// <param name="hex">A string that contains the hexadecimal RGB(A) color representation.</param>
-        /// <returns>the RGBA color instance.</returns>
+        /// <returns>The RGBA color instance.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static Color FromHex(string hex)
         {
@@ -327,7 +327,7 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a string representation in Hex. (ex: \#FFFFFFFF in RGBA order)
+        /// Returns a string representation in Hex (For example: \#FFFFFFFF in RGBA order).
         /// </summary>
         /// <returns>The string representation in Hex.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -337,10 +337,10 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a boolean indicating whether the given Color is equal to this Color instance.
+        /// Returns a boolean indicating whether the given color is equal to this Color instance.
         /// </summary>
-        /// <param name="other">The Color to compare this instance to.</param>
-        /// <returns>True if the other Color is equal to this instance; False otherwise.</returns>
+        /// <param name="other">The color to compare this instance to.</param>
+        /// <returns>True if the other color is equal to this instance; False otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
         public bool Equals(Color other)
         {
@@ -348,10 +348,10 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a boolean indicating whether the given Object is equal to this Color instance.
+        /// Returns a boolean indicating whether the given object is equal to this Color instance.
         /// </summary>
-        /// <param name="obj">The Object to compare against.</param>
-        /// <returns>True if the Object is equal to this Color; False otherwise.</returns>
+        /// <param name="obj">The object to compare against.</param>
+        /// <returns>True if the object is equal to this color; False otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
@@ -363,7 +363,7 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a string representation of the Color.
+        /// Returns a string representation of the color.
         /// </summary>
         /// <returns>The string representation.</returns>
         /// <since_tizen> 3 </since_tizen>

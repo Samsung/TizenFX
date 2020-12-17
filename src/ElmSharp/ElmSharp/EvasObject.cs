@@ -21,85 +21,85 @@ using System.Diagnostics;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for tooltip orientation.
+    /// Enumeration for the Tooltip orientation.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum TooltipOrientation
     {
         /// <summary>
-        /// Default value, Tooltip moves with mouse pointer.
+        /// Default value. Tooltip moves with a mouse pointer.
         /// </summary>
         None,
 
         /// <summary>
-        /// Tooltip should appear at the top left of parent.
+        /// Tooltip should appear to the top left of the parent.
         /// </summary>
         TopLeft,
 
         /// <summary>
-        /// Tooltip should appear at the left of parent.
+        /// Tooltip should appear to the left of the parent.
         /// </summary>
         Top,
 
         /// <summary>
-        /// Tooltip should appear at the top right of parent.
+        /// Tooltip should appear to the top right of the parent.
         /// </summary>
         TopRight,
 
         /// <summary>
-        /// Tooltip should appear at the left of parent.
+        /// Tooltip should appear to the left of the parent.
         /// </summary>
         Left,
 
         /// <summary>
-        /// Tooltip should appear at the center of parent.
+        /// Tooltip should appear to the center of the parent.
         /// </summary>
         Center,
 
         /// <summary>
-        /// Tooltip should appear at the right of parent.
+        /// Tooltip should appear to the right of the parent.
         /// </summary>
         Right,
 
         /// <summary>
-        /// Tooltip should appear at the bottom left of parent.
+        /// Tooltip should appear to the bottom left of the parent.
         /// </summary>
         BottomLeft,
 
         /// <summary>
-        /// Tooltip should appear at the bottom of parent.
+        /// Tooltip should appear to the bottom of the parent.
         /// </summary>
         Bottom,
 
         /// <summary>
-        /// Tooltip should appear at the bottom right of parent.
+        /// Tooltip should appear to the bottom right of the parent.
         /// </summary>
         BottomRight,
     }
 
     /// <summary>
-    /// Enumeration for aspect control.
+    /// Enumeration for the aspect control.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum AspectControl
     {
         /// <summary>
-        /// Preference on scaling unset.
+        /// Preference on the scaling unset.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Same effect as unset preference on scaling.
+        /// Same effect as the unset preference on the scaling.
         /// </summary>
         Neither = 1,
 
         /// <summary>
-        /// Use all horizontal container space to place an object, using the given aspect
+        /// Use all horizontal container space to place an object using the given aspect.
         /// </summary>
         Horizontal = 2,
 
         /// <summary>
-        /// Use all vertical container space to place an object, using the given aspect.
+        /// Use all vertical container space to place an object using the given aspect.
         /// </summary>
         Vertical = 3,
 
@@ -110,13 +110,81 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// The EcasObject is a base class for other widget class
+    /// How the object should be rendered to output.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderOp
+    {
+        /// <summary>
+        /// default op: d = d * (1 - sa) + s
+        /// </summary>
+        Blend = 0,
+
+        /// <summary>
+        /// d = d*(1 - sa) + s*da
+        /// </summary>
+        BlendRel = 1,
+
+        /// <summary>
+        /// d = s
+        /// </summary>
+        Copy = 2,
+
+        /// <summary>
+        /// d = s*da
+        /// </summary>
+        CopyRel = 3,
+
+        /// <summary>
+        /// d = d + s
+        /// </summary>
+        Add = 4,
+
+        /// <summary>
+        /// d = d + s*da
+        /// </summary>
+        AddRel = 5,
+
+        /// <summary>
+        /// d = d - s
+        /// </summary>
+        Sub = 6,
+
+        /// <summary>
+        /// d = d - s*da
+        /// </summary>
+        SubRel = 7,
+
+        /// <summary>
+        /// d = d*s + d*(1 - sa) + s*(1 - da)
+        /// </summary>
+        Tint = 8,
+
+        /// <summary>
+        /// d = d*(1 - sa + s)
+        /// </summary>
+        TintRel = 9,
+
+        /// <summary>
+        /// d = d*sa
+        /// </summary>
+        Mask = 10,
+
+        /// <summary>
+        /// d = d*s
+        /// </summary>
+        Mul = 11
+    }
+
+    /// <summary>
+    /// The EvasObject is a base class for other widget classes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public abstract class EvasObject
     {
         private IntPtr _realHandle = IntPtr.Zero;
         private EvasCanvas _evasCanvas;
+        private string _automationId;
 
         private event EventHandler _backButtonPressed;
 
@@ -124,6 +192,8 @@ namespace ElmSharp
 
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
+
+        private static Dictionary<IntPtr, EvasObject> s_handleTable = new Dictionary<IntPtr, EvasObject>();
 
         /// <summary>
         /// Sets or gets the handle for EvasObject.
@@ -159,6 +229,8 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
+        EvasObjectEvent _shown;
+        EvasObjectEvent _hidden;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
         Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
@@ -168,9 +240,9 @@ namespace ElmSharp
         readonly HashSet<IInvalidatable> _eventStore = new HashSet<IInvalidatable>();
 
         /// <summary>
-        /// Creates and initializes a new instance of the EvasObject class with parent EvasObject class parameter.
+        /// Creates and initializes a new instance of the EvasObject class with the parent EvasObject class parameter.
         /// </summary>
-        /// <param name="parent">Parent EvasObject class </param>
+        /// <param name="parent">Parent EvasObject class.</param>
         /// <since_tizen> preview </since_tizen>
         protected EvasObject(EvasObject parent) : this()
         {
@@ -204,13 +276,13 @@ namespace ElmSharp
         //}
 
         /// <summary>
-        /// Deleted will be triggered when widght is deleted
+        /// Deleted will be triggered when the widght is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Deleted;
 
         /// <summary>
-        /// KeyUp will be triggered when key is loose
+        /// KeyUp will be triggered when the key is loose.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<EvasKeyEventArgs> KeyUp
@@ -220,7 +292,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// KeyDown will be triggered when key is preesd down
+        /// KeyDown will be triggered when the key is pressed down.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<EvasKeyEventArgs> KeyDown
@@ -230,7 +302,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// BackButtonPressed will be triggered when Back button is pressed
+        /// BackButtonPressed will be triggered when the Back button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler BackButtonPressed
@@ -254,7 +326,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// MoreButtonPressed will be triggered when More button is pressed
+        /// MoreButtonPressed will be triggered when the More button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler MoreButtonPressed
@@ -278,7 +350,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Moved will be triggered when widght is moved
+        /// Moved will be triggered when the widght is moved.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Moved
@@ -288,7 +360,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Current widget's size Resized Event Handler
+        /// Resized Event Handler of the current widget's size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Resized
@@ -298,7 +370,27 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Current widget RenderPost Event Handler
+        /// Shown will be triggered when the widget is shown.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Shown
+        {
+            add { _shown.On += value; }
+            remove { _shown.On -= value; }
+        }
+        
+        /// <summary>
+        /// Hidden will be triggered when the widget is hidden.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Hidden
+        {
+            add { _hidden.On += value; }
+            remove { _hidden.On -= value; }
+        }
+
+        /// <summary>
+        /// RenderPost Event Handler of the current widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler RenderPost
@@ -324,20 +416,20 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Called back when a widget's tooltip is activated and needs content.
+        /// Called when a widget's tooltip is activated and needs content.
         /// </summary>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public delegate EvasObject GetTooltipContentDelegate();
 
         /// <summary>
-        /// Get widget's status of Realized or not.
+        /// Gets a widget's status of realized or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
 
         /// <summary>
-        /// Gets EvasCanvas
+        /// Gets EvasCanvas.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasCanvas EvasCanvas
@@ -351,6 +443,24 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets of gets a value that allow the automation framework to find and interact with this object.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public string AutomationId
+        {
+            get
+            {
+                return _automationId;
+            }
+            set
+            {
+                if (_automationId != null)
+                    throw new InvalidOperationException("AutomationId may only be set one time.");
+                _automationId = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the current class's Name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -358,7 +468,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(RealHandle));
+                return Interop.Eo.efl_class_name_get(Interop.Eo.efl_class_get(RealHandle));
             }
         }
 
@@ -427,7 +537,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the Width hints for an object's minimum size.
+        /// Sets or gets the width hints for an object's minimum size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int MinimumWidth
@@ -446,7 +556,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the Height hints for an object's minimum size.
+        /// Sets or gets the height hints for an object's minimum size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int MinimumHeight
@@ -530,7 +640,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets current object transformation map.
+        /// Sets or gets the current object's transformation map.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasMap EvasMap
@@ -613,7 +723,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets style for this object tooltip.
+        /// Sets or gets the style for this object tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string TooltipStyle
@@ -629,7 +739,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the orientation of Tooltip.
+        /// Sets or gets the orientation of tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public TooltipOrientation TooltipOrientation
@@ -685,7 +795,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the movement freeze by 1
+        /// Gets the movement freeze by 1.
         /// This gets the movement freeze count by one.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -736,9 +846,26 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the render operation to be used for rendering the Evas object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderOp RenderOperation
+        {
+            get
+            {
+                return (RenderOp)Interop.Evas.evas_object_render_op_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_render_op_set(RealHandle, (Interop.Evas.RenderOp)value);
+            }
+        }
+
+
+        /// <summary>
         /// Clips one object to another.
         /// </summary>
-        /// <param name="clip">The object to clip object by</param>
+        /// <param name="clip">The object to clip object by.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetClip(EvasObject clip)
         {
@@ -748,8 +875,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the hints for an object's alignment.
         /// </summary>
-        /// <param name="x">The horizontal alignment hint as double value ranging from 0.0 to 1.0,The default alignment hint value is 0.5 </param>
-        /// <param name="y">The vertical alignment hint as double value ranging from 0.0 to 1.0,The default alignment hint value is 0.5 </param>
+        /// <param name="x">The horizontal alignment hint as double value ranging from 0.0 to 1.0. The default alignment hint value is 0.5.</param>
+        /// <param name="y">The vertical alignment hint as double value ranging from 0.0 to 1.0. The default alignment hint value is 0.5.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetAlignment(double x, double y)
         {
@@ -759,8 +886,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the hints for an object's weight.
         /// </summary>
-        /// <param name="x">The non-negative double value to use as horizontal weight hint</param>
-        /// <param name="y">The non-negative double value to use as vertical weight hint</param>
+        /// <param name="x">The non-negative double value to be used as horizontal weight hint.</param>
+        /// <param name="y">The non-negative double value to be used as vertical weight hint.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetWeight(double x, double y)
         {
@@ -770,7 +897,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the text for an object's tooltip.
         /// </summary>
-        /// <param name="text">The text value to display inside the tooltip</param>
+        /// <param name="text">The text value to display inside the tooltip.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetTooltipText(string text)
         {
@@ -806,7 +933,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Force hide tooltip of object.
+        /// Force hide the tooltip of the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void HideTooltip()
@@ -815,7 +942,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Force show tooltip of object.
+        /// Force show the tooltip of the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void ShowTooltip()
@@ -844,8 +971,8 @@ namespace ElmSharp
         /// <summary>
         /// Changes the size of the current object.
         /// </summary>
-        /// <param name="w">The new width</param>
-        /// <param name="h">The new height</param>
+        /// <param name="w">The new width.</param>
+        /// <param name="h">The new height.</param>
         /// <since_tizen> preview </since_tizen>
         public void Resize(int w, int h)
         {
@@ -855,8 +982,8 @@ namespace ElmSharp
         /// <summary>
         /// Moves the current object to the given location.
         /// </summary>
-        /// <param name="x">The X position to move the object to.</param>
-        /// <param name="y">The Y position to move the object to.</param>
+        /// <param name="x">The X position to move the object.</param>
+        /// <param name="y">The Y position to move the object.</param>
         /// <since_tizen> preview </since_tizen>
         public void Move(int x, int y)
         {
@@ -864,7 +991,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Lowers obj to the bottom of its layer.
+        /// Lowers the object to the bottom of its layer.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Lower()
@@ -873,9 +1000,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Define IntPtr operator
+        /// Define the IntPtr operator.
         /// </summary>
-        /// <param name="obj">Parent object</param>
+        /// <param name="obj">Parent object.</param>
         /// <since_tizen> preview </since_tizen>
         public static implicit operator IntPtr(EvasObject obj)
         {
@@ -884,12 +1011,19 @@ namespace ElmSharp
             return obj.Handle;
         }
 
-        /// <summary>
-        /// Requests keyname key events be directed to current obj.
+	/// <summary>
+        /// Define cast to EvasObject operator from IntPtr
         /// </summary>
-        /// <param name="keyname">The key to request events for</param>
-        /// <param name="exclusive">Set TRUE to request that the obj is the only object receiving the keyname events,otherwise set FALSE</param>
-        /// <returns>If the call succeeded is true,otherwise is false</returns>
+        /// <param name="handle">Native handle to EvasObject</param>
+        /// <since_tizen> preview </since_tizen>
+        public static explicit operator EvasObject(IntPtr handle) => EvasObject.s_handleTable.TryGetValue(handle, out EvasObject obj) ? obj : null;
+
+        /// <summary>
+        /// Requests the keyname key events to be directed to the current object.
+        /// </summary>
+        /// <param name="keyname">The key to request events for.</param>
+        /// <param name="exclusive">Set TRUE to request that the obj is the only object receiving the keyname events, otherwise set to FALSE.</param>
+        /// <returns>If the call succeeds then true, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool KeyGrab(string keyname, bool exclusive)
         {
@@ -897,9 +1031,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes the grab on keyname key events.
+        /// Removes the grab on the keyname key events.
         /// </summary>
-        /// <param name="keyname">The key the grab is set for</param>
+        /// <param name="keyname">The key the grab is set for.</param>
         /// <since_tizen> preview </since_tizen>
         public void KeyUngrab(string keyname)
         {
@@ -907,7 +1041,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Mark smart object as changed.
+        /// Marks the smart object as changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void MarkChanged()
@@ -916,7 +1050,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Call the calculate smart function immediately.
+        /// Calls the calculate smart function immediately.
         /// This will force immediate calculations needed for renderization of this object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -928,9 +1062,9 @@ namespace ElmSharp
         /// <summary>
         /// Sets the hints for an object's aspect ratio.
         /// </summary>
-        /// <param name="aspect">The policy or type of aspect ratio to apply to object</param>
-        /// <param name="w">The integer to use as aspect width ratio term</param>
-        /// <param name="h">The integer to use as aspect height ratio term</param>
+        /// <param name="aspect">The policy or type of aspect ratio to apply to an object.</param>
+        /// <param name="w">The integer to be used as aspect width ratio term.</param>
+        /// <param name="h">The integer to be used as aspect height ratio term.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetSizeHintAspect(AspectControl aspect, int w, int h)
         {
@@ -940,9 +1074,9 @@ namespace ElmSharp
         /// <summary>
         /// Gets the hints for an object's aspect ratio.
         /// </summary>
-        /// <param name="aspect">The policy or type of aspect ratio to apply to object</param>
-        /// <param name="w">The integer to use as aspect width ratio term</param>
-        /// <param name="h">The integer to use as aspect height ratio term</param>
+        /// <param name="aspect">The policy or type of aspect ratio to apply to an object.</param>
+        /// <param name="w">The integer to be used as aspect width ratio term.</param>
+        /// <param name="h">The integer to be used as aspect height ratio term.</param>
         /// <since_tizen> preview </since_tizen>
         public void GetSizeHintAspect(out AspectControl aspect, out int w, out int h)
         {
@@ -952,7 +1086,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Stack immediately below anchor.
+        /// Stacks immediately below anchor.
         /// </summary>
         /// <param name="anchor">The object below which to stack.</param>
         /// <since_tizen> preview </since_tizen>
@@ -962,7 +1096,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Stack immediately above anchor.
+        /// Stacks immediately above anchor.
         /// </summary>
         /// <param name="anchor">The object above which to stack.</param>
         /// <since_tizen> preview </since_tizen>
@@ -972,7 +1106,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Raise to the top of its layer.
+        /// Raises to the top of its layer.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void RaiseTop()
@@ -981,18 +1115,33 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the geometry of a line number.
+        /// Gets the geometry of a line number.
         /// </summary>
-        /// <param name="lineNumber">the line number.</param>
-        /// <param name="x">x coord of the line.</param>
-        /// <param name="y">y coord of the line.</param>
-        /// <param name="w">w coord of the line.</param>
-        /// <param name="h">h coord of the line.</param>
-        /// <returns></returns>
+        /// <param name="lineNumber">The line number.</param>
+        /// <param name="x">x coordinate of the line.</param>
+        /// <param name="y">y coordinate of the line.</param>
+        /// <param name="w">w coordinate of the line.</param>
+        /// <param name="h">h coordinate of the line.</param>
+        /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
-            return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
+            x = -1; y = -1; w = -1; h = -1;
+
+            IntPtr _edjeHandle = Interop.Elementary.elm_layout_edje_get(RealHandle);
+            if (_edjeHandle == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            IntPtr _textblock = Interop.Elementary.edje_object_part_object_get(_edjeHandle, "elm.text");
+            if (_textblock == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            return Interop.Evas.evas_object_textblock_line_number_geometry_get(_textblock, lineNumber, out x, out y, out w, out h);
         }
 
         internal IntPtr GetData(string key)
@@ -1011,7 +1160,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Invalidate Event
+        /// The callback of the Invalidate Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected virtual void OnInvalidate()
@@ -1019,7 +1168,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Instantiated Event
+        /// The callback of the Instantiated Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected virtual void OnInstantiated()
@@ -1027,7 +1176,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Realized Event
+        /// The callback of the Realized Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected virtual void OnRealized()
@@ -1035,7 +1184,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Unrealize Event
+        /// The callback of the Unrealize Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected virtual void OnUnrealize()
@@ -1045,15 +1194,15 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected abstract IntPtr CreateHandle(EvasObject parent);
 
         /// <summary>
         /// For this object bind Parent object.Init handle and all kinds of EvasObjectEvent.
         /// </summary>
-        /// <param name="parent">Parent object</param>
+        /// <param name="parent">Parent object.</param>
         /// <since_tizen> preview </since_tizen>
         public void Realize(EvasObject parent)
         {
@@ -1063,6 +1212,8 @@ namespace ElmSharp
                 Handle = CreateHandle(parent);
                 Debug.Assert(Handle != IntPtr.Zero);
 
+                s_handleTable[Handle] = this;
+
                 (parent as Window)?.AddChild(this);
 
                 OnRealized();
@@ -1071,13 +1222,16 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
+                _shown = new EvasObjectEvent(this, EvasObjectCallbackType.Show);
+                _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
+                _shown.On += (s, e) => Elementary.SendEvasObjectRealized(this);
             }
         }
 
         /// <summary>
-        /// Removes current object relationship with others.
+        /// Removes the current object relationship with others.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Unrealize()
@@ -1099,7 +1253,9 @@ namespace ElmSharp
                 (Parent as Window)?.RemoveChild(this);
 
                 Interop.Evas.evas_object_del(toBeDeleted);
+                Deleted?.Invoke(this, EventArgs.Empty);
                 Parent = null;
+                s_handleTable.Remove(toBeDeleted);
             }
         }
 
@@ -1107,6 +1263,7 @@ namespace ElmSharp
         {
             Deleted?.Invoke(this, EventArgs.Empty);
             OnInvalidate();
+            IntPtr toBeDeleted = Handle;
             Handle = IntPtr.Zero;
 
             MakeInvalidateEvent();
@@ -1114,11 +1271,14 @@ namespace ElmSharp
             (Parent as Window)?.RemoveChild(this);
             Parent = null;
             _deleted = null;
+
+            s_handleTable.Remove(toBeDeleted);
         }
 
         private void DisposeEvent()
         {
-            foreach (var evt in _eventStore)
+            var events = new List<IInvalidatable>(_eventStore);
+            foreach (var evt in events)
             {
                 evt.Dispose();
             }
@@ -1137,6 +1297,11 @@ namespace ElmSharp
         internal void AddToEventLifeTracker(IInvalidatable item)
         {
             _eventStore.Add(item);
+        }
+
+        internal void RemoveFromEventLifeTracker(IInvalidatable item)
+        {
+            _eventStore.Remove(item);
         }
     }
 }

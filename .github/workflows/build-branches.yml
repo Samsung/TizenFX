@@ -1,0 +1,51 @@
+name: Build Branches
+
+on:
+  push:
+    branches:
+    - master
+    - DevelNUI
+    - API*
+
+    paths:
+    - 'build/**'
+    - 'internals/**'
+    - 'src/**'
+    - 'tools/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.402
+
+    - name: Build
+      run: ./build.sh full
+
+    - name: Checkout APITool
+      uses: actions/checkout@v2
+      with:
+        repository: TizenAPI/APITool
+        path: .apitool
+
+    - name: Extract API
+      run: |
+        dotnet run -p .apitool/ \
+            -- print --format=json --include-hidden \
+            -o Artifacts/api.json Artifacts/bin/public/
+
+    - name: Upload API Spec to S3
+      uses: TizenAPI/tizenfx-build-actions/s3-upload@master
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      with:
+        file: Artifacts/api.json
+        region: ap-northeast-2
+        bucket: tizenfx-api-specs
+        key: ${{ github.sha }}.json

@@ -17,7 +17,7 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to AccessibilityStateChanged Event
+    /// This class contains the data related to the AccessibilityStateChanged event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class AccessibilityStateChangedEventArgs
@@ -28,7 +28,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Accessibility option state
+        /// Accessibility option state.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool State

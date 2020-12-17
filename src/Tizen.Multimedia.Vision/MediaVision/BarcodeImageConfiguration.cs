@@ -66,7 +66,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(path));
             }
 
-            ValidationUtil.ValidateEnum(typeof(BarcodeImageFormat), imageFormat);
+            ValidationUtil.ValidateEnum(typeof(BarcodeImageFormat), imageFormat, nameof(imageFormat));
 
             Size = size;
             Path = path;

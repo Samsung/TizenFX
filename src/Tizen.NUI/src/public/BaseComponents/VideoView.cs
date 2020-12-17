@@ -17,6 +17,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -26,90 +27,166 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VideoView : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty VideoProperty = BindableProperty.Create(nameof(Video), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VideoView obj)
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            var videoView = (VideoView)bindable;
+            PropertyMap temp = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VIDEO).Get(temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var videoView = (VideoView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.LOOPING).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.MUTED, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var videoView = (VideoView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.MUTED).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VOLUME, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var videoView = (VideoView)bindable;
+            PropertyMap temp = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VOLUME).Get(temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.UNDERLAY, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var videoView = (VideoView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var videoView = (VideoView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((string)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var videoView = (VideoView)bindable;
+            string temp;
+            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VIDEO).Get(out temp);
+            return temp;
+        });
+
+        private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
+        private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
+
+        /// <summary>
+        /// Creates an initialized VideoView.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public VideoView() : this(Interop.VideoView.New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Dispose.
+        /// Creates an initialized VideoView.<br />
+        /// If the string is empty, VideoView will not display anything.<br />
         /// </summary>
-        /// <param name="type">DisposeTypes</param>
+        /// <param name="url">The URL of the video resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        public VideoView(string url) : this(Interop.VideoView.New(url), true)
         {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_videoViewFinishedCallbackDelegate != null)
-            {
-                FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_VideoView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Event arguments that passed via the finished signal.
+        /// Creates an initialized VideoView.<br />
+        /// If the string is empty, VideoView will not display anything.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class FinishedEventArgs : EventArgs
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(bool swCodec) : this(Interop.VideoView.New(swCodec), true)
         {
-            private VideoView _videoView;
-
-            /// <summary>
-            /// The view for video playback and display.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public VideoView VideoView
-            {
-                get
-                {
-                    return _videoView;
-                }
-                set
-                {
-                    _videoView = value;
-                }
-            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an initialized VideoView.<br />
+        /// If the string is empty, VideoView will not display anything.<br />
+        /// </summary>
+        /// <param name="url">The URL of the video resource to display.</param>
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(string url, bool swCodec) : this(Interop.VideoView.New(url, swCodec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VideoView(VideoView videoView) : this(Interop.VideoView.NewVideoView(VideoView.getCPtr(videoView)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.Upcast(cPtr), cMemoryOwn)
+        {
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FinishedCallbackDelegate(IntPtr data);
-        private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
-        private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
-
 
         /// <summary>
         /// Event for the finished signal which can be used to subscribe or unsubscribe the event handler
@@ -137,6 +214,204 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Video file setting type of PropertyMap.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyMap Video
+        {
+            get
+            {
+                return (PropertyMap)GetValue(VideoProperty);
+            }
+            set
+            {
+                SetValue(VideoProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The looping status, true or false.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool Looping
+        {
+            get
+            {
+                return (bool)GetValue(LoopingProperty);
+            }
+            set
+            {
+                SetValue(LoopingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The mute status, true or false.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool Muted
+        {
+            get
+            {
+                return (bool)GetValue(MutedProperty);
+            }
+            set
+            {
+                SetValue(MutedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The left and the right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyMap Volume
+        {
+            get
+            {
+                return (PropertyMap)GetValue(VolumeProperty);
+            }
+            set
+            {
+                SetValue(VolumeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Video rendering by underlay, true or false.<br />
+        /// This shows video composited underneath the window by the system. This means it may ignore rotation of the video-view.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public bool Underlay
+        {
+            get
+            {
+                return (bool)GetValue(UnderlayProperty);
+            }
+            set
+            {
+                SetValue(UnderlayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Video file URL as string type.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public string ResourceUrl
+        {
+            get
+            {
+                return (string)GetValue(ResourceUrlProperty);
+            }
+            set
+            {
+                SetValue(ResourceUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Starts the video playback.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Play()
+        {
+            Interop.VideoView.Play(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Pauses the video playback.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Pause()
+        {
+            Interop.VideoView.Pause(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Stops the video playback.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop()
+        {
+            Interop.VideoView.Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Seeks forward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for forward playback.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void Forward(int millisecond)
+        {
+            Interop.VideoView.Forward(swigCPtr, millisecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Seeks backward by the specified number of milliseconds.
+        /// </summary>
+        /// <param name="millisecond">The position for backward playback.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void Backward(int millisecond)
+        {
+            Interop.VideoView.Backward(swigCPtr, millisecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VideoViewSignal FinishedSignal()
+        {
+            VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.FinishedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VideoView obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (this != null && _videoViewFinishedCallbackDelegate != null)
+            {
+                FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+            }
+
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.VideoView.DeleteVideoView(swigCPtr);
+        }
+
         // Callback for VideoView Finished signal
         private void OnFinished(IntPtr data)
         {
@@ -152,209 +427,94 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Event arguments that passed via the finished signal.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class FinishedEventArgs : EventArgs
+        {
+            private VideoView _videoView;
+
+            /// <summary>
+            /// The view for video playback and display.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public VideoView VideoView
+            {
+                get
+                {
+                    return _videoView;
+                }
+                set
+                {
+                    _videoView = value;
+                }
+            }
+        }
+
         internal new class Property
         {
-            internal static readonly int VIDEO = NDalicPINVOKE.VideoView_Property_VIDEO_get();
-            internal static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();
-            internal static readonly int MUTED = NDalicPINVOKE.VideoView_Property_MUTED_get();
-            internal static readonly int VOLUME = NDalicPINVOKE.VideoView_Property_VOLUME_get();
-            internal static readonly int UNDERLAY = NDalicPINVOKE.VideoView_Property_UNDERLAY_get();
+            internal static readonly int VIDEO = Interop.VideoView.VideoGet();
+            internal static readonly int LOOPING = Interop.VideoView.LoopingGet();
+            internal static readonly int MUTED = Interop.VideoView.MutedGet();
+            internal static readonly int VOLUME = Interop.VideoView.VolumeGet();
+            internal static readonly int UNDERLAY = Interop.VideoView.UnderlayGet();
         }
 
-        /// <summary>
-        /// Creates an initialized VideoView.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public VideoView() : this(NDalicPINVOKE.VideoView_New__SWIG_0(), true)
+        internal System.IntPtr GetNativePlayerHandle()
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Creates an initialized VideoView.<br />
-        /// If the string is empty, VideoView will not display anything.<br />
-        /// </summary>
-        /// <param name="url">The URL of the video resource to display.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-        internal VideoView(VideoView videoView) : this(NDalicPINVOKE.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Starts the video playback.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Play()
-        {
-            NDalicPINVOKE.VideoView_Play(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Pauses the video playback.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Pause()
-        {
-            NDalicPINVOKE.VideoView_Pause(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Stops the video playback.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop()
-        {
-            NDalicPINVOKE.VideoView_Stop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Seeks forward by the specified number of milliseconds.
-        /// </summary>
-        /// <param name="millisecond">The position for forward playback.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void Forward(int millisecond)
-        {
-            NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Seeks backward by the specified number of milliseconds.
-        /// </summary>
-        /// <param name="millisecond">The position for backward playback.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void Backward(int millisecond)
-        {
-            NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal VideoViewSignal FinishedSignal()
-        {
-            VideoViewSignal ret = new VideoViewSignal(NDalicPINVOKE.VideoView_FinishedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            var ret = Interop.VideoView.GetNativePlayerHandle(swigCPtr);
+            NUILog.Debug($"NativePlayerHandle=0x{ret:X}");
             return ret;
         }
-
-        /// <summary>
-        /// Video file setting type of PropertyMap.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyMap Video
-        {
-            get
-            {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(VideoView.Property.VIDEO).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// The looping status, true or false.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public bool Looping
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(VideoView.Property.LOOPING).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// The mute status, true or false.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public bool Muted
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(VideoView.Property.MUTED).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.MUTED, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// The left and the right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyMap Volume
-        {
-            get
-            {
-                PropertyMap temp = new PropertyMap();
-                GetProperty(VideoView.Property.VOLUME).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.VOLUME, new PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Video rendering by underlay, true or false.<br />
-        /// This shows video composited underneath the window by the system. This means it may ignore rotation of the video-view.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public bool Underlay
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(VideoView.Property.UNDERLAY).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.UNDERLAY, new PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Video file URL as string type.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public string ResourceUrl
-        {
-            get
-            {
-                string tmp;
-                GetProperty(VideoView.Property.VIDEO).Get(out tmp);
-                return tmp;
-            }
-            set
-            {
-                SetProperty(VideoView.Property.VIDEO, new PropertyValue(value));
-            }
-        }
-
     }
 
+    /// <summary>
+    /// Contains and encapsulates Native Player handle.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SafeNativePlayerHandle : SafeHandle
+    {
+        /// <summary>
+        /// Contructor, null handle is set.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SafeNativePlayerHandle() : base(global::System.IntPtr.Zero, false)
+        {
+        }
+
+        /// <summary>
+        /// Contructor, Native player handle is set to handle.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
+        {
+            if (videoView != null)
+            {
+                SetHandle(videoView.GetNativePlayerHandle());
+            }
+        }
+
+        /// <summary>
+        /// Null check if the handle is valid or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsInvalid
+        {
+            get
+            {
+                return handle == global::System.IntPtr.Zero;
+            }
+        }
+        /// <summary>
+        /// Release handle itself.
+        /// </summary>
+        /// <returns>true when released successfully.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool ReleaseHandle()
+        {
+            SetHandle(global::System.IntPtr.Zero);
+            return true;
+        }
+    }
 }

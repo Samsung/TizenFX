@@ -21,23 +21,23 @@ namespace Tizen.Applications.Shortcut
     using Tizen.Internals.Errors;
 
     /// <summary>
-    /// The callback function that is invoked when add request occurred
+    /// The callback function that is invoked when the add request occurs.
     /// </summary>
-    /// <param name="args">Object that contain shortcut info to add.</param>
-    /// <returns>The result of handling a shortcut add request</returns>
+    /// <param name="args">Object that contains the shortcut information to add.</param>
+    /// <returns>The result of handling a shortcut add request.</returns>
     /// <since_tizen> 4 </since_tizen>
     public delegate ShortcutError ShortcutAdded(ShortcutAddedInfo args);
 
     /// <summary>
-    /// The callback function that is invoked when delete request occurred
+    /// The callback function that is invoked when the delete request occurs.
     /// </summary>
-    /// <param name="args">Object that contain shortcut info to delete.</param>
-    /// <returns>The result of handling a shortcut delete request</returns>
+    /// <param name="args">Object that contains the shortcut information to delete.</param>
+    /// <returns>The result of handling a shortcut delete request.</returns>
     /// <since_tizen> 4 </since_tizen>
     public delegate ShortcutError ShortcutDeleted(ShortcutDeletedInfo args);
 
     /// <summary>
-    /// This class provides a way to register callback function for shortcut add, delete events.
+    /// This class provides a way to register the callback function for the shortcut add and delete events.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public static class ShortcutEventManager
@@ -53,18 +53,18 @@ namespace Tizen.Applications.Shortcut
         private static ShortcutDeleted shortcutDeleted = null;
 
         /// <summary>
-        /// Registers a callback function to listen requests from applications.
+        /// Registers a callback function to listen requests from the applications.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="addedEvent">The callback function pointer that is invoked when Add() is requested</param>
+        /// <param name="addedEvent">The callback function pointer that is invoked when Add() is requested.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <remarks>
-        /// Previous registered delegate function should be unregister.
+        /// Previous registered delegate function should be unregistered.
         /// </remarks>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void RegisterEventHandler(ShortcutAdded addedEvent)
@@ -89,18 +89,18 @@ namespace Tizen.Applications.Shortcut
         }
 
         /// <summary>
-        /// Registers a callback function to listen requests from applications.
+        /// Registers a callback function to listen requests from the applications.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="deletedEvent">The callback function pointer that is invoked when Delete() is requested</param>
+        /// <param name="deletedEvent">The callback function pointer that is invoked when Delete() is requested.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <remarks>
-        /// Previous registered delegate function should be unregister.
+        /// Previous registered delegate function should be unregistered.
         /// </remarks>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void RegisterEventHandler(ShortcutDeleted deletedEvent)
@@ -128,12 +128,12 @@ namespace Tizen.Applications.Shortcut
         /// Unregisters a callback for the shortcut request.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="addedEvent">The callback function pointer that used for RegisterCallback</param>
+        /// <param name="addedEvent">The callback function pointer that is used for RegisterCallback.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         public static void UnregisterEventHandler(ShortcutAdded addedEvent)
         {
             if (shortcutAdded != null && shortcutAdded.Equals(addedEvent))
@@ -162,12 +162,12 @@ namespace Tizen.Applications.Shortcut
         /// Unregisters a callback for the shortcut request.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="deletedEvent">The callback function pointer that used for RegisterCallback</param>
+        /// <param name="deletedEvent">The callback function pointer that is used for RegisterCallback.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)
         {
             if (shortcutDeleted != null && shortcutDeleted.Equals(deletedEvent))
@@ -193,16 +193,16 @@ namespace Tizen.Applications.Shortcut
         }
 
         /// <summary>
-        /// Gets the preset list of shortcut template from the installed package.
+        /// Gets the preset list of the shortcut template from the installed package.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="appId">Application ID.</param>
+        /// <param name="appId">The application ID.</param>
         /// <returns>The List of ShortcutTemplate.</returns>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static IEnumerable<ShortcutTemplate> GetTemplateList(string appId)

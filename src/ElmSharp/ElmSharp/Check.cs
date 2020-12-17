@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The check is a widget allows for toggling a value between true and false.
+    /// The Check is a widget that allows for toggling a value between true and false.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Check : Layout
@@ -31,7 +31,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Check class.
         /// </summary>
         /// <param name="parent">
-        /// The EvasObject to which the new Check will be attached as a child.
+        /// The EvasObject to which the new check will be attached as a child.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public Check(EvasObject parent) : base(parent)
@@ -44,16 +44,16 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// StateChanged will be triggered when the IsChecked in the Check is changed.
+        /// StateChanged will be triggered when the IsChecked in the check is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<CheckStateChangedEventArgs> StateChanged;
 
         /// <summary>
-        /// Sets or gets whether the given Check is checked or not.
+        /// Sets or gets whether the given check is checked or not.
         /// </summary>
         /// <remarks>
-        /// When object is checked, the value will set to true, Conversely will set to false.
+        /// When an object is checked, the value will be set to true. Conversely, will be set to false.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsChecked
@@ -72,8 +72,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

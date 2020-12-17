@@ -19,9 +19,9 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Control Endpoint class.
+    /// The USB Control Endpoint class.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbControlEndpoint : UsbEndpoint
     {
         private readonly UsbDevice _device;
@@ -32,11 +32,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets number of this endpoint.
+        /// Gets the number of this endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5</since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public new int Id
         {
             get
@@ -46,11 +46,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets direction of this endpoint.
+        /// Gets the direction of this endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public new EndpointDirection Direction
         {
             get
@@ -60,11 +60,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets max packet size of given endpoint.
+        /// Gets the maximum packet size of a given endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public new int MaxPacketSize
         {
             get
@@ -75,24 +75,24 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Performs a control transaction on endpoint zero for this device.
+        /// Performs a control transaction on the endpoint, zero for this device.
         /// </summary>
         /// <param name="requestType">bmRequestType type field for the setup packet.</param>
         /// <param name="request">bRequest field for the setup packet.</param>
         /// <param name="value">wValue field for the setup packet.</param>
         /// <param name="index">wIndex field for the setup packet.</param>
-        /// <param name="data">Suitably-sized data buffer for either input or output, (depending on direction bits within bmRequestType).</param>
+        /// <param name="data">Suitably-sized data buffer for either an input or output (depending on the direction bits within a bmRequestType).</param>
         /// <param name="length">wLength field for the setup packet. The data buffer should be at least this size.</param>
         /// <param name="timeout">
-        /// Time (in milliseconds) that this function should wait for, before giving up due to no response being received
-        /// (for an unlimited timeout 0 value should be used).
+        /// The time (in milliseconds) that this function should wait for, before giving up due to no response being received
+        /// (for an unlimited timeout, 0 value should be used).
         /// </param>
-        /// <returns>Transferred Number of transferred bytes.</returns>
+        /// <returns>Transferred number of the transferred bytes.</returns>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
-        /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected or not opened for an operation.</exception>
+        /// <exception cref="TimeoutException">Throws an exception if the transfer is timed out.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Transfer(byte requestType, byte request, ushort value, ushort index, byte[] data, ushort length, uint timeout)
         {
             _device.ThrowIfDisposed();

@@ -20,12 +20,18 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits <see cref="ItemObject"/>.
-    /// A instance to the ContextPopup item added.
+    /// An instance to the ContextPopup item is added.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ContextPopupItem : ItemObject
     {
         internal ContextPopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
+        {
+            Text = text;
+            Icon = icon;
+        }
+
+        internal ContextPopupItem(string text, EvasObject icon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
             Icon = icon;
@@ -38,13 +44,13 @@ namespace ElmSharp
         public string Text { get; internal set; }
 
         /// <summary>
-        /// Gets the Icon(type is <see cref="EvasObject"/>) property of the given ContextPopupItem.
+        /// Gets the Icon (type is <see cref="EvasObject"/>) property of the given ContextPopupItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasObject Icon { get; internal set; }
 
         /// <summary>
-        /// Selected will be triggered when the ContextPopupItem is Selected.
+        /// Selected will be triggered when the ContextPopupItem is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;

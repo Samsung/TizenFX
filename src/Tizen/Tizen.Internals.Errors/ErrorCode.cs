@@ -17,494 +17,494 @@
 namespace Tizen.Internals.Errors
 {
     /// <summary>
-    /// Error codes used inside Tizen .NET API implementation
+    /// Error codes used inside Tizen .NET API implementation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ErrorCode : int
     {
         /// <summary>
-        /// Successful
+        /// Successful.
         /// </summary>
         None = 0, //  0
 
         /// <summary>
-        /// Operation not permitted
+        /// Operation not permitted.
         /// </summary>
         NotPermitted = -1, //  -EPERM
 
         /// <summary>
-        /// No such file or directory
+        /// No such file or directory.
         /// </summary>
         NoSuchFile = -2, //  -ENOENT
 
         /// <summary>
-        /// No such process
+        /// No such process.
         /// </summary>
         NoSuchProcess = -3, //  -ESRCH
 
         /// <summary>
-        /// Interrupted system call
+        /// Interrupted system call.
         /// </summary>
         InterruptedSysCall = -4, //  -EINTR
 
         /// <summary>
-        /// I/O error
+        /// I/O error.
         /// </summary>
         IoError = -5, //  -EIO
 
         /// <summary>
-        /// No such device or address
+        /// No such device or address.
         /// </summary>
         NoSuchDevice = -6, //  -ENXIO
 
         /// <summary>
-        /// Argument list too long
+        /// Argument list too long.
         /// </summary>
         ArgumentListTooLong = -7, //  -E2BIG
 
         /// <summary>
-        /// Exec format error
+        /// Executable format error.
         /// </summary>
         ExecFormatError = -8, //  -ENOEXEC
 
         /// <summary>
-        /// Bad file number
+        /// Bad file number.
         /// </summary>
         BadFileNumber = -9, //  -EBADF
 
         /// <summary>
-        /// Try again
+        /// Try again.
         /// </summary>
         TryAgain = -11, //  -EAGAIN
 
         /// <summary>
-        /// Out of memory
+        /// Out of memory.
         /// </summary>
         OutOfMemory = -12, //  -ENOMEM
 
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied = -13, //  -EACCES
 
         /// <summary>
-        /// Bad address
+        /// Bad address.
         /// </summary>
         BadAddress = -14, //  -EFAULT
 
         /// <summary>
-        /// Block device required
+        /// Block device required.
         /// </summary>
         BlockDeviceRequired = -15, //  -ENOTBLK
 
         /// <summary>
-        /// Device or resource busy
+        /// Device or resource busy.
         /// </summary>
         ResourceBusy = -16, //  -EBUSY
 
         /// <summary>
-        /// File exists
+        /// File exists.
         /// </summary>
         FileExists = -17, //  -EEXIST
 
         /// <summary>
-        /// Cross-device link
+        /// Cross-device link.
         /// </summary>
         CrossDeviceLink = -18, //  -EXDEV
 
         /// <summary>
-        /// Not a directory
+        /// Not a directory.
         /// </summary>
         NotaDirectory = -20, //  -ENOTDIR
 
         /// <summary>
-        /// Is a directory
+        /// Is a directory.
         /// </summary>
         IsADirectory = -21, //  -EISDIR
 
         /// <summary>
-        /// Invalid function parameter
+        /// Invalid function parameter.
         /// </summary>
         InvalidParameter = -22, //  -EINVAL
 
         /// <summary>
-        /// File table overflow
+        /// File table overflow.
         /// </summary>
         FileTableOverflow = -23, //  -ENFILE
 
         /// <summary>
-        /// Too many open files
+        /// Too many open files.
         /// </summary>
         TooManyOpenFiles = -24, //  -EMFILE
 
         /// <summary>
-        /// Not a terminal
+        /// Not a terminal.
         /// </summary>
         TooNotaTerminal = -25, //  -ENOTTY
 
         /// <summary>
-        /// Too text file busy
+        /// Too text file busy.
         /// </summary>
         TooTextFileBusy = -26, //  -ETXTBSY
 
         /// <summary>
-        /// File too large
+        /// File too large.
         /// </summary>
         FileTooLarge = -27, //  -EFBIG
 
         /// <summary>
-        /// No space left on device
+        /// No space left on device.
         /// </summary>
         FileNoSpaceOnDevice = -28, //  -ENOSPC
 
         /// <summary>
-        /// Illegal seek
+        /// Illegal seek.
         /// </summary>
         IllegalSeek = -29, //  -ESPIPE
 
         /// <summary>
-        /// Read-only file system
+        /// Read-only file system.
         /// </summary>
         ReadOnlyFilesystem = -30, //  -EROFS
 
         /// <summary>
-        /// No data available
+        /// No data available.
         /// </summary>
         NoData = -61, //  -ENODATA
 
         /// <summary>
-        /// Too many links
+        /// Too many links.
         /// </summary>
         TooManyLinks = -31, //  -EMLINK
 
         /// <summary>
-        /// Broken pipe
+        /// Broken pipe.
         /// </summary>
         BrokenPipe = -32, //  -EPIPE
 
         /// <summary>
-        /// Math argument out of domain of func
+        /// Math argument out of domain of the function.
         /// </summary>
         ArgumentOutOfDomain = -33, //  -EDOM
 
         /// <summary>
-        /// Math result not representable
+        /// Math result not representable.
         /// </summary>
         ResultOutOfRange = -34, //  -ERANGE
 
         /// <summary>
-        /// Resource deadlock would occur
+        /// Resource deadlock would occur.
         /// </summary>
         WouldCauseDeadlock = -35, //  -EDEADLK
 
         /// <summary>
-        /// File name too long
+        /// File name too long.
         /// </summary>
         FileNameTooLong = -36, //  -ENAMETOOLONG
 
         /// <summary>
-        /// No record locks available
+        /// No record locks available.
         /// </summary>
         FileNoLocksAvailable = -37, //  -ENOLCK
 
         /// <summary>
-        /// Function not implemented
+        /// Function not implemented.
         /// </summary>
         InvalidOperation = -38, //  -ENOSYS
 
         /// <summary>
-        /// Directory not empty
+        /// Directory not empty.
         /// </summary>
         DirNotEmpty = -39, //  -ENOTEMPTY
 
         /// <summary>
-        /// Too many symbolic links encountered
+        /// Too many symbolic links encountered.
         /// </summary>
         TooManySymbolicLinks = -40, //  -ELOOP
 
         /// <summary>
-        /// Operation would block
+        /// Operation would block.
         /// </summary>
         WouldBlock = -11, //  TryAgain (-EAGAIN)
 
         /// <summary>
-        /// Accessing a corrupted shared library
+        /// Accessing a corrupted shared library.
         /// </summary>
         CorruptedSharedLib = -80, //  -ELIBBAD
 
         /// <summary>
-        /// .lib section in a.out corrupted
+        /// .lib section in a.out corrupted.
         /// </summary>
         LibSectionCorrupted = -81, //  -ELIBSCN
 
         /// <summary>
-        /// Attempting to link in too many shared libraries
+        /// Attempting to link in too many shared libraries.
         /// </summary>
         LinkTooManySharedLib = -82, //  -ELIBMAX
 
         /// <summary>
-        /// Cannot exec a shared library directly
+        /// Cannot execute a shared library directly.
         /// </summary>
         SharedLibExec = -83, //  -ELIBEXEC
 
         /// <summary>
-        /// Illegal byte sequence
+        /// Illegal byte sequence.
         /// </summary>
         IllegalByteSeq = -84, //  -EILSEQ
 
         /// <summary>
-        /// Interrupted system call should be restarted
+        /// Interrupted system call should be restarted.
         /// </summary>
         SystemCallRestart = -85, //  -ERESTART
 
         /// <summary>
-        /// Streams pipe error
+        /// Streams pipe error.
         /// </summary>
         StreamsPipe = -86, //  -ESTRPIPE
 
         /// <summary>
-        /// Too many users
+        /// Too many users.
         /// </summary>
         TooManyUsers = -87, //  -EUSERS
 
         /// <summary>
-        /// Socket operation on non-socket
+        /// Socket operation on non-socket.
         /// </summary>
         NonSocket = -88, //  -ENOTSOCK
 
         /// <summary>
-        /// Destination address required
+        /// Destination address required.
         /// </summary>
         NoDestAddress = -89, //  -EDESTADDRREQ
 
         /// <summary>
-        /// Message too long
+        /// Message too long.
         /// </summary>
         MsgTooLong = -90, //  -EMSGSIZE
 
         /// <summary>
-        /// Protocol wrong type for socket
+        /// Protocol wrong type for socket.
         /// </summary>
         ProtocolWrongType = -91, //  -EPROTOTYPE
 
         /// <summary>
-        /// Protocol not available
+        /// Protocol not available.
         /// </summary>
         ProtocolNotAvaliable = -92, //  -ENOPROTOOPT
 
         /// <summary>
-        /// Protocol not supported
+        /// Protocol not supported.
         /// </summary>
         ProtocolNotSupported = -93, //  -EPROTONOSUPPORT
 
         /// <summary>
-        /// Socket type not supported
+        /// Socket type not supported.
         /// </summary>
         SocketTypeNotSupported = -94, //  -ESOCKTNOSUPPORT
 
         /// <summary>
-        /// Operation not supported on transport endpoint
+        /// Operation not supported on the transport endpoint.
         /// </summary>
         EndpointOperatinNotSupported = -95, //  -EOPNOTSUPP
 
         /// <summary>
-        /// Protocol family not supported
+        /// Protocol family not supported.
         /// </summary>
         ProtocolFamilyNotSupported = -96, //  -EPFNOSUPPORT
 
         /// <summary>
-        /// Address family not supported by protocol
+        /// Address family not supported by protocol.
         /// </summary>
         AddressFamilyNotSupported = -97, //  -EAFNOSUPPORT
 
         /// <summary>
-        /// Address already in use
+        /// Address already in use.
         /// </summary>
         AddresInUse = -98, //  -EADDRINUSE
 
         /// <summary>
-        /// Cannot assign requested address
+        /// Cannot assign requested address.
         /// </summary>
         CannotAssignAddress = -99, //  -EADDRNOTAVAIL
 
         /// <summary>
-        /// Network is down
+        /// Network down.
         /// </summary>
         Networkdown = -100, //  -ENETDOWN
 
         /// <summary>
-        /// Network is unreachable
+        /// Network unreachable.
         /// </summary>
         NetworkUnreachable = -101, //  -ENETUNREACH
 
         /// <summary>
-        /// Network dropped connection because of reset
+        /// Network dropped the connection because of the reset.
         /// </summary>
         NetworkReset = -102, //  -ENETRESET
 
         /// <summary>
-        /// Software caused connection abort
+        /// Software caused the connection to abort.
         /// </summary>
         ConnectionAborted = -103, //  -ECONNABORTED
 
         /// <summary>
-        /// Connection reset by peer
+        /// Connection reset by the peer.
         /// </summary>
         ConnectionResetByPeer = -104, //  -ECONNRESET
 
         /// <summary>
-        /// No buffer space available
+        /// No buffer space available.
         /// </summary>
         BufferSpace = -105, //  -ENOBUFS
 
         /// <summary>
-        /// Transport endpoint is already connected
+        /// Transport endpoint already connected.
         /// </summary>
         EndpointConnected = -106, //  -EISCONN
 
         /// <summary>
-        /// Transport endpoint is not connected
+        /// Transport endpoint not connected.
         /// </summary>
         EndpointNotConnected = -107, //  -ENOTCONN
 
         /// <summary>
-        /// Cannot send after transport endpoint shutdown
+        /// Cannot send after the transport endpoint shutdown.
         /// </summary>
         EndpointShutdown = -108, //  -ESHUTDOWN
 
         /// <summary>
-        /// Too many references: cannot splice
+        /// Too many references: cannot splice.
         /// </summary>
         TooManyReferences = -109, //  -ETOOMANYREFS
 
         /// <summary>
-        /// Connection timed out
+        /// Connection timed out.
         /// </summary>
         ConnectionTimeout = -110, //  -ETIMEDOUT
 
         /// <summary>
-        /// Connection refused
+        /// Connection refused.
         /// </summary>
         ConnectionRefused = -111, //  -ECONNREFUSED
 
         /// <summary>
-        /// Host is down
+        /// Host down.
         /// </summary>
         Hostdown = -112, //  -EHOSTDOWN
 
         /// <summary>
-        /// No route to host
+        /// No route to host.
         /// </summary>
         NoRouteToHost = -113, //  -EHOSTUNREACH
 
         /// <summary>
-        /// Operation already in progress
+        /// Operation already in progress.
         /// </summary>
         AlreadyInProgress = -114, //  -EALREADY
 
         /// <summary>
-        /// Operation now in progress
+        /// Operation now in progress.
         /// </summary>
         NowInProgress = -115, //  -EINPROGRESS
 
         /// <summary>
-        /// Stale NFS file handle
+        /// Stale NFS file handle.
         /// </summary>
         StaleNfsFileHandle = -116, //  -ESTALE
 
         /// <summary>
-        /// Structure needs cleaning
+        /// Structure needs cleaning.
         /// </summary>
         StructureUnclean = -117, //  -EUCLEAN
 
         /// <summary>
-        /// Not a XENIX named type file
+        /// Not a XENIX named type file.
         /// </summary>
         NotXenixNamedTypeFile = -118, //  -ENOTNAM
 
         /// <summary>
-        /// No XENIX semaphores available
+        /// No XENIX semaphores available.
         /// </summary>
         NoXenixSemaphoresAvailable = -119, //  -ENAVAIL
 
         /// <summary>
-        /// Is a named type file
+        /// Is a named type file.
         /// </summary>
         IsNamedTypeFile = -120, //  -EISNAM
 
         /// <summary>
-        /// Remote I/O error
+        /// Remote I/O error.
         /// </summary>
         RemoteIo = -121, //  -EREMOTEIO
 
         /// <summary>
-        /// Quota exceeded
+        /// Quota exceeded.
         /// </summary>
         QuotaExceeded = -122, //  -EDQUOT
 
         /// <summary>
-        /// No medium found
+        /// No medium found.
         /// </summary>
         NoMedium = -123, //  -ENOMEDIUM
 
         /// <summary>
-        /// Wrong medium type
+        /// Wrong medium type.
         /// </summary>
         WrongMediumType = -124, //  -EMEDIUMTYPE
 
         /// <summary>
-        /// Operation Canceled
+        /// Operation Canceled.
         /// </summary>
         Canceled = -125, //  -ECANCELED
 
         /// <summary>
-        /// Required key not available
+        /// Required key not available.
         /// </summary>
         KeyNotAvailable = -126, //  -ENOKEY
 
         /// <summary>
-        /// Key has expired
+        /// Key has expired.
         /// </summary>
         KeyExpired = -127, //  -EKEYEXPIRED
 
         /// <summary>
-        /// Key has been revoked
+        /// Key has been revoked.
         /// </summary>
         KeyRevoked = -128, //  -EKEYREVOKED
 
         /// <summary>
-        /// Key was rejected by service
+        /// Key was rejected by the service.
         /// </summary>
         KeyRejected = -129, //  -EKEYREJECTED
 
 
         /// <summary>
-        /// Owner died (for robust mutexes)
+        /// Owner died (for robust mutexes).
         /// </summary>
         OwnerDead = -130, //  -EOWNERDEAD
 
         /// <summary>
-        /// Unknown error
+        /// Unknown error.
         /// </summary>
         Unknown = -1073741824, //  TIZEN_ERROR_MIN_PLATFORM_ERROR
 
         /// <summary>
-        /// Time out
+        /// Timed out.
         /// </summary>
         TimedOut,
 
         /// <summary>
-        /// Not Supported
+        /// Not supported.
         /// </summary>
         NotSupported,
 
         /// <summary>
-        /// Not Consented
+        /// Not consented.
         /// </summary>
         UserNotConsented,
 
         /// <summary>
-        /// The end of collection
+        /// The end of collection.
         /// </summary>
         EndofCollection
     }

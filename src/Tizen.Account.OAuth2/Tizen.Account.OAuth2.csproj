@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>$(NoWarn);CS0612;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SupportedProfiles>mobile;wearable</SupportedProfiles>
   </PropertyGroup>
 
   <ItemGroup>

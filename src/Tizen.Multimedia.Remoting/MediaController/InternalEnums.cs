@@ -13,14 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-using System.Diagnostics;
+using System;
 
 namespace Tizen.Multimedia.Remoting
 {
-    internal enum MediaControllerPlaybackCode
+    internal enum MediaControllerNativePlaybackState
     {
         None,
+        Play,
+        Pause,
+        Stop,
+        Next,           // Deprecated since 4.0
+        Prev,           // Deprecated since 4.0
+        FastForward,    // Deprecated since 4.0
+        Rewind,         // Deprecated since 4.0
+        MovingToNext,   // Since 4.0
+        MovingToPrev,   // Since 4.0
+        FastForwarding, // Since 4.0
+        Rewinding,      // Since 4.0
+        Connecting,     // Since 6.0(API8)
+        Buffering,      // Since 6.0(API8)
+        Error           // Since 6.0(API8)
+    }
+
+    internal enum MediaControllerNativePlaybackAction
+    {
         Play,
         Pause,
         Stop,
@@ -28,28 +45,30 @@ namespace Tizen.Multimedia.Remoting
         Prev,
         FastForward,
         Rewind,
+        Toggle
     }
 
-    internal enum MediaControllerServerState
+    internal enum MediaControllerNativeServerState
     {
         None,
         Activated,
         Deactivated,
     }
 
-    internal enum MediaControllerShuffleMode
+    internal enum MediaControllerNativeShuffleMode
     {
         On,
         Off,
     }
 
-    internal enum NativeRepeatMode
+    internal enum MediaControllerNativeRepeatMode
     {
         On,
         Off,
+        OneMedia
     }
 
-    internal enum MediaControllerAttribute
+    internal enum MediaControllerNativeAttribute
     {
         Title,
         Artist,
@@ -62,5 +81,40 @@ namespace Tizen.Multimedia.Remoting
         Description,
         TrackNumber,
         Picture,
+        Season,
+        Episode,
+        Resolution
+    }
+
+    internal enum MediaControlNativeCapabilityCategory
+    {
+        Shuffle,
+        Repeat,
+        PlaybackPosition,
+        Playlist,
+        ClientCustom,
+        Search,
+        Subtitle,
+        Mode360
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayMode
+    {
+        LetterBox = 1,
+        OriginSize = 2,
+        FullScreen = 4,
+        CroppedFull = 8,
+        All = LetterBox | OriginSize | FullScreen | CroppedFull
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayRotation
+    {
+        Rotate0 = 1,
+        Rotate90 = 2,
+        Rotate180 = 4,
+        Rotate270 = 8,
+        All = Rotate0 | Rotate90 | Rotate180 | Rotate270
     }
 }

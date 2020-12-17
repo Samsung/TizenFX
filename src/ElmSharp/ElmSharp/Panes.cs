@@ -20,7 +20,7 @@ namespace ElmSharp
 {
     /// <summary>
     /// The Panes is a widget that adds a draggable bar between two contents.
-    /// When dragged this bar resizes contents' size.
+    /// When dragged, this bar resizes the contents' size.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Panes : Layout
@@ -43,19 +43,19 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pressed will be triggered when panes have been pressed (button isn't released yet).
+        /// Pressed will be triggered when the panes have been pressed (button isn't released yet).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Pressed;
 
         /// <summary>
-        /// Unpressed will be triggered when panes are released after being pressed.
+        /// Unpressed will be triggered when the panes are released after being pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Unpressed;
 
         /// <summary>
-        /// Sets or gets resize mode of a given Panes widget.
+        /// Sets or gets the resize mode of a given Panes widget.
         /// True means the left and right panes resize homogeneously.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -72,16 +72,16 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets the size proportion of the Panes widget's left side.
+        /// Sets or gets the size proportion of the Panes widget's left side.
         /// </summary>
         /// <remarks>
-        /// By default it's homogeneous, i.e., both sides have the same size.If something different is required,
+        /// By default, it's homogeneous, i.e., both sides have the same size. If something different is required,
         /// it can be set with this function. For example, if the left content should be displayed over 75% of the panes size,
-        /// size should be passed as 0.75. This way, the right content is resized to 25% of the panes size.
-        /// If displayed vertically, left content is displayed at the top, and right content at the bottom.
+        /// the size should be passed as 0.75. This way, the right content is resized to 25% of the panes size.
+        /// If displayed vertically, left content is displayed at the top and right content at the bottom.
         /// This proportion changes when the user drags the panes bar.
         ///
-        /// The value is float type and between 0.0 and 1.0 representing the size proportion of the left side.
+        /// The float type value between 0.0 and 1.0 represents the size proportion of the left side.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double Proportion
@@ -100,9 +100,9 @@ namespace ElmSharp
         /// Sets or gets the orientation of a given Panes widget.
         /// </summary>
         /// <remarks>
-        /// Use this function to change how your panes is to be disposed: vertically or horizontally.
+        /// Use this function to change how your panes are to be disposed: vertically or horizontally.
         /// Horizontal panes have "top" and "bottom" contents, vertical panes have "left" and "right" contents.
-        /// By default panes is in a vertical mode.
+        /// By default, the panes are in a vertical mode.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
@@ -119,8 +119,8 @@ namespace ElmSharp
 
         /// <summary>
         /// Sets or gets the absolute minimum size of panes widget's left side.
-        /// If displayed vertically, left content is displayed at top.
-        /// value representing minimum size of left side in pixels.
+        /// If displayed vertically, left content is displayed at the top.
+        /// The value represents minimum size of the left side in pixels.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int LeftMinimumSize
@@ -136,10 +136,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the relative minimum size of panes widget's left side.
-        /// proportion of minimum size of left side.
-        /// If displayed vertically, left content is displayed at top.
-        /// value between 0.0 and 1.0 representing size proportion of minimum size of left side.
+        /// Sets or gets the relative minimum size of the panes widget's left side.
+        /// The proportion of minimum size of the left side.
+        /// If displayed vertically, left content is displayed at the top.
+        /// The value between 0.0 and 1.0 represents size proportion of the minimum size of the left side.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double LeftMinimumRelativeSize
@@ -155,9 +155,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the absolute minimum size of panes widget's right side.
-        /// If displayed vertically, right content is displayed at top.
-        /// value representing minimum size of right side in pixels.
+        /// Sets or gets the absolute minimum size of the panes widget's right side.
+        /// If displayed vertically, right content is displayed at the top.
+        /// The value represents the minimum size of the right side in pixels.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int RightMinimumSize
@@ -173,10 +173,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the relative minimum size of panes widget's right side.
-        /// proportion of minimum size of right side.
-        /// If displayed vertically, right content is displayed at top.
-        /// value between 0.0 and 1.0 representing size proportion of minimum size of right side.
+        /// Sets or gets the relative minimum size of the panes widget's right side.
+        /// Proportion of the minimum size of the right side.
+        /// If displayed vertically, right content is displayed at the top.
+        /// The value between 0.0 and 1.0 represents size proportion of the minimum size of the right side.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double RightMinimumRelativeSize
@@ -194,8 +194,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

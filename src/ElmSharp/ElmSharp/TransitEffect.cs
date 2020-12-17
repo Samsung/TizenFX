@@ -20,109 +20,109 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// The axis along which flip effect should be applied.
+    /// Enumeration for the axis along which flip effect should be applied.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum FlipAxis
     {
         /// <summary>
-        /// Flip on X axis
+        /// Flip on X-axis.
         /// </summary>
         X,
 
         /// <summary>
-        /// Flip on Y axis
+        /// Flip on Y-axis.
         /// </summary>
         Y,
     }
 
     /// <summary>
-    /// The direction in which the wipe effect should occur.
+    /// Enumeration for the direction in which the wipe effect should occur.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum WipeDirection
     {
         /// <summary>
-        /// Wipe to the left
+        /// Wipe to the left.
         /// </summary>
         Left,
 
         /// <summary>
-        /// Wipe to the right
+        /// Wipe to the right.
         /// </summary>
         Right,
 
         /// <summary>
-        /// Wipe to the up
+        /// Wipe to the up.
         /// </summary>
         Up,
 
         /// <summary>
-        /// Wipe to the down
+        /// Wipe to the down.
         /// </summary>
         Down,
     }
 
     /// <summary>
-    /// Whether the wipe effect should show or hide the object.
+    /// Enumeration for whether the wipe effect should show or hide the object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum WipeType
     {
         /// <summary>
-        /// Hide the object during the animation
+        /// Hide the object during the animation.
         /// </summary>
         Hide,
 
         /// <summary>
-        /// Show the object during the animation
+        /// Show the object during the animation.
         /// </summary>
         Show,
     }
 
     /// <summary>
-    /// The type of acceleration used in the transition.
+    /// Enumration for the type of acceleration used in transition.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum TweenMode
     {
         /// <summary>
-        /// Constant speed
+        /// Constant speed.
         /// </summary>
         Linear,
 
         /// <summary>
-        /// Starts slow, increase speed over time, then decrease again and stop slowly, v1 being a power factor
+        /// Starts slow, increases speed over time, then decrease again and stop slowly, v1 being a power factor.
         /// </summary>
         Sinusoidal,
 
         /// <summary>
-        /// Starts fast and decrease speed over time, v1 being a power factor
+        /// Starts fast and decreases speed over time, v1 being a power factor.
         /// </summary>
         Decelerate,
 
         /// <summary>
-        /// Starts slow and increase speed over time, v1 being a power factor
+        /// Starts slow and increases speed over time, v1 being a power factor.
         /// </summary>
         Accelerate,
 
         /// <summary>
-        /// Start at gradient v1, interpolated via power of v2 curve
+        /// Starts at gradient v1, interpolated via power of v2 curve.
         /// </summary>
         DivisorInterpolate,
 
         /// <summary>
-        /// Start at 0.0 then "drop" like a ball bouncing to the ground at 1.0, and bounce v2 times, with decay factor of v1
+        /// Starts at 0.0 then "drop" like a ball bouncing to the ground at 1.0, and bounce v2 times, with decay factor of v1.
         /// </summary>
         Bounce,
 
         /// <summary>
-        /// Start at 0.0 then "wobble" like a spring rest position 1.0, and wobble v2 times, with decay factor of v1
+        /// Starts at 0.0 then "wobble" like a spring rest position 1.0, and wobble v2 times, with decay factor of v1.
         /// </summary>
         Spring,
 
         /// <summary>
-        /// Follow the cubic-bezier curve calculated with the control points (x1, y1), (x2, y2)
+        /// Follows the cubic-bezier curve calculated with the control points (x1, y1), (x2, y2).
         /// </summary>
         BezierCurve,
     }
@@ -134,7 +134,7 @@ namespace ElmSharp
     public class BlendEffect : EffectBase
     {
         /// <summary>
-        /// Creates and initializes a new instance of BlendEffect class.
+        /// Creates and initializes a new instance of the BlendEffect class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public BlendEffect()
@@ -157,10 +157,10 @@ namespace ElmSharp
         Color _end;
 
         /// <summary>
-        /// Creates and initializes a new instance of ColorEffect class.
+        /// Creates and initializes a new instance of the ColorEffect class.
         /// </summary>
-        /// <param name="beginColor">The begin color of the effect</param>
-        /// <param name="endColor">The end color of the effect</param>
+        /// <param name="beginColor">The begin color of the effect.</param>
+        /// <param name="endColor">The end color of the effect.</param>
         /// <since_tizen> preview </since_tizen>
         public ColorEffect(Color beginColor, Color endColor)
         {
@@ -169,7 +169,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The begin color of the effect
+        /// The begin color of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color BeginColor
@@ -178,7 +178,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The end color of the effect
+        /// The end color of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color EndColor
@@ -199,7 +199,7 @@ namespace ElmSharp
     public class FadeEffect : EffectBase
     {
         /// <summary>
-        /// Creates and initializes a new instance of FadeEffect class.
+        /// Creates and initializes a new instance of the FadeEffect class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public FadeEffect()
@@ -223,11 +223,11 @@ namespace ElmSharp
         bool _resizable;
 
         /// <summary>
-        /// Creates and initializes a new instance of FlipEffect class.
+        /// Creates and initializes a new instance of the FlipEffect class.
         /// </summary>
-        /// <param name="axis">Flipping Axis(X or Y).</param>
-        /// <param name="clockWise">Flipping Direction. True is clock-wise.</param>
-        /// <param name="resizable">Resizable effect with FlipEffect</param>
+        /// <param name="axis">Flipping axis (X or Y).</param>
+        /// <param name="clockWise">Flipping Direction. True is clockwise.</param>
+        /// <param name="resizable">Resizable effect with FlipEffect.</param>
         /// <since_tizen> preview </since_tizen>
         public FlipEffect(FlipAxis axis, bool clockWise, bool resizable = false)
         {
@@ -237,7 +237,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flipping Axis(X or Y).
+        /// Flipping axis (X or Y).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public FlipAxis Axis
@@ -246,7 +246,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flipping Direction. True is clock-wise.
+        /// Flipping direction. True is clockwise.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool ClockWise
@@ -281,10 +281,10 @@ namespace ElmSharp
         Size _end;
 
         /// <summary>
-        /// Creates and initializes a new instance of FlipEffect class.
+        /// Creates and initializes a new instance of the ResizingEffect class.
         /// </summary>
-        /// <param name="beginSize">The begin Size of the effect</param>
-        /// <param name="endSize">The end Size of the effect</param>
+        /// <param name="beginSize">The begin size of the effect.</param>
+        /// <param name="endSize">The end size of the effect.</param>
         /// <since_tizen> preview </since_tizen>
         public ResizingEffect(Size beginSize, Size endSize)
         {
@@ -293,7 +293,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The begin Size of the effect
+        /// The begin size of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size BeginSize
@@ -302,7 +302,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The end Size of the effect
+        /// The end size of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size EndSize
@@ -326,10 +326,10 @@ namespace ElmSharp
         float _end;
 
         /// <summary>
-        /// Creates and initializes a new instance of RotationEffect class.
+        /// Creates and initializes a new instance of the RotationEffect class.
         /// </summary>
-        /// <param name="beginDegree">The begin degree of the effect</param>
-        /// <param name="endDegree">The end degree of the effect</param>
+        /// <param name="beginDegree">The begin degree of the effect.</param>
+        /// <param name="endDegree">The end degree of the effect.</param>
         /// <since_tizen> preview </since_tizen>
         public RotationEffect(float beginDegree, float endDegree)
         {
@@ -338,7 +338,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The begin degree of the effect
+        /// The begin degree of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public float BeginDegree
@@ -347,7 +347,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The end degree of the effect
+        /// The end degree of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public float EndDegree
@@ -371,10 +371,10 @@ namespace ElmSharp
         Point _end;
 
         /// <summary>
-        /// Creates and initializes a new instance of FlipEffect class.
+        /// Creates and initializes a new instance of the TranslationEffect class.
         /// </summary>
-        /// <param name="beginPoint">The begin Point of the effect</param>
-        /// <param name="endPoint">The end Point of the effect</param>
+        /// <param name="beginPoint">The begin point of the effect.</param>
+        /// <param name="endPoint">The end point of the effect.</param>
         /// <since_tizen> preview </since_tizen>
         public TranslationEffect(Point beginPoint, Point endPoint)
         {
@@ -383,7 +383,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The begin Point of the effect
+        /// The begin point of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Point BeginPoint
@@ -392,7 +392,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The end Point of the effect
+        /// The end point of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Point EndPoint
@@ -416,10 +416,10 @@ namespace ElmSharp
         WipeDirection _direction;
 
         /// <summary>
-        /// Creates and initializes a new instance of WipeEffect class.
+        /// Creates and initializes a new instance of the WipeEffect class.
         /// </summary>
         /// <param name="type">Wipe type. Hide or show.</param>
-        /// <param name="direction">Wipe Direction.</param>
+        /// <param name="direction">Wipe direction.</param>
         /// <since_tizen> preview </since_tizen>
         public WipeEffect(WipeType type, WipeDirection direction)
         {
@@ -437,7 +437,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Wipe Direction.
+        /// Wipe direction.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public WipeDirection Direction
@@ -461,10 +461,10 @@ namespace ElmSharp
         float _end;
 
         /// <summary>
-        /// Creates and initializes a new instance of ZoomEffect class.
+        /// Creates and initializes a new instance of the ZoomEffect class.
         /// </summary>
-        /// <param name="beginRate">The begin rate of the effect</param>
-        /// <param name="endRate">The end rate of the effect</param>
+        /// <param name="beginRate">The begin rate of the effect.</param>
+        /// <param name="endRate">The end rate of the effect.</param>
         /// <since_tizen> preview </since_tizen>
         public ZoomEffect(float beginRate, float endRate)
         {
@@ -473,7 +473,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The begin rate of the effect
+        /// The begin rate of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public float BeginRate
@@ -482,7 +482,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The end rate of the effect
+        /// The end rate of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public float EndRate

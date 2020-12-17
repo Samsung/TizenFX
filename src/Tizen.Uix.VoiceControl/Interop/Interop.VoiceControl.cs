@@ -30,7 +30,7 @@ internal static partial class Interop
     /// </summary>
     internal static class VoiceControl
     {
-        internal static string LogTag = "Tizen.Uix.VoiceControl";
+        internal const string LogTag = "Tizen.Uix.VoiceControl";
 
         private const int ErrorVoiceControl = -0x02F50000;
 

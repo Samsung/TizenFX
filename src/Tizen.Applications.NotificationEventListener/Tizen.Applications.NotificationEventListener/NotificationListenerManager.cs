@@ -21,6 +21,8 @@ namespace Tizen.Applications.NotificationEventListener
     using System.ComponentModel;
     using System.Runtime.InteropServices;
 
+    using Tizen.Internals;
+
     /// <summary>
     /// This class provides a way to register callback function for some notification events.
     /// </summary>
@@ -40,6 +42,7 @@ namespace Tizen.Applications.NotificationEventListener
 
         private static Interop.NotificationEventListener.ChangedCallback callback;
 
+        [NativeStruct("notification_op", Include="notification_type.h", PkgConfig="notification")]
         [StructLayout(LayoutKind.Sequential)]
         private struct NotificationOperation
         {

@@ -43,6 +43,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.VisibilityModeChangedCallback _visibilityChangedCallback;
         private Interop.Bluetooth.VisibilityDurationChangedCallback _visibilitydurationChangedCallback;
         private Interop.Bluetooth.DiscoveryStateChangedCallback _discoveryStateChangedCallback;
+        private Interop.Bluetooth.BondedDeviceCallback _bondedDeviceCallback;
 
         private static readonly BluetoothAdapterImpl _instance = new BluetoothAdapterImpl();
         private bool disposed = false;
@@ -396,6 +397,57 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        internal void Enable()
+        {
+            if (Globals.IsInitialize)
+            {
+                int ret = Interop.Bluetooth.EnableAdapter();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to enable adapter, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }
+        }
+
+        internal void Disable()
+        {
+            if (IsBluetoothEnabled)
+            {
+                int ret = Interop.Bluetooth.DisableAdapter();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to disable adapter, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        internal void SetVisibility(VisibilityMode mode, int timeout)
+        {
+            if (IsBluetoothEnabled)
+            {
+                int ret = Interop.Bluetooth.SetVisibility(mode, timeout);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to set visibility, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
         internal void StartDiscovery()
         {
             int ret = Interop.Bluetooth.StartDiscovery();
@@ -419,7 +471,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothDevice> GetBondedDevices()
         {
             List<BluetoothDevice> deviceList = new List<BluetoothDevice>();
-            Interop.Bluetooth.BondedDeviceCallback callback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
+            _bondedDeviceCallback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Bonded devices cb is called");
                 if(!deviceInfo.Equals(null))
@@ -428,7 +480,7 @@ namespace Tizen.Network.Bluetooth
                 }
                 return true;
             };
-            int ret = Interop.Bluetooth.GetBondedDevices(callback, IntPtr.Zero);
+            int ret = Interop.Bluetooth.GetBondedDevices(_bondedDeviceCallback, IntPtr.Zero);
             if(ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get bonded devices, Error - " + (BluetoothError)ret);
@@ -448,6 +500,7 @@ namespace Tizen.Network.Bluetooth
             }
             BluetoothDeviceStruct device = (BluetoothDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDeviceStruct));
 
+            Interop.Bluetooth.FreeDeviceInfo(deviceInfo);
             return BluetoothUtils.ConvertStructToDeviceClass(device);
         }
 

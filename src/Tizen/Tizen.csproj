@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TizenPreloadFile Include="Tizen.preload" Sequence="20" />
+  </ItemGroup>
+
 </Project>

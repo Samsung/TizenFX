@@ -27,9 +27,6 @@ namespace ElmSharp.Test
         public override string TestName => "ImageTest5";
         public override string TestDescription => "TC of IsOpaque";
 
-        Image image;
-        Label lbInfo;
-
         public override void Run(Window window)
         {
             Conformant conformant = new Conformant(window);
@@ -38,7 +35,7 @@ namespace ElmSharp.Test
             conformant.SetContent(box);
             box.Show();
 
-            image = new Image(window)
+            var image = new Image(window)
             {
                 IsFixedAspect = true,
                 AlignmentX = -1,
@@ -60,7 +57,7 @@ namespace ElmSharp.Test
 
             kill.Clicked += async (s, e) =>
             {
-                image.LoadAsync(Path.Combine(TestRunner.ResourceDir, "img_1_a.png"));
+                await image.LoadAsync(Path.Combine(TestRunner.ResourceDir, "img_1_a.png"));
                 await Task.Delay(10);
                 await image.LoadAsync(Path.Combine(TestRunner.ResourceDir, "img_2_a.png"));
                 image.IsOpaque = false;

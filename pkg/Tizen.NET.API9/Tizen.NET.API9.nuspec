@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Tizen.NET.API9</id>
+    <version>$fxversion$</version>
+    <authors>Samsung Electronics</authors>
+    <owners>Samsung Electronics</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://www.tizen.org/</projectUrl>
+    <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+    <description>Reference assemblies of Tizen .NET API Level 9.</description>
+    <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
+  </metadata>
+  <files>
+    <file src="pkg\Tizen.NET.API9\build\**" target="build" />
+    <file src="pkg\Tizen.NET.API9\design\*.dll" target="ref\netstandard2.0\Design" />
+    <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
+  </files>
+</package>

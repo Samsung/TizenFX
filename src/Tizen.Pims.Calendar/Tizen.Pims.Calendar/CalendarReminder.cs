@@ -19,11 +19,11 @@ using System;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// A class for reminder for event.
+    /// A class for the reminder for an event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     /// <remarks>
-    /// The client who wants to be alerted at specific time should register MIME("application/x-tizen.calendar.reminder") type in manifest.xml file.
+    /// The client who wants to be alerted at a specific time should register MIME ("application/x-tizen.calendar.reminder") type in manifest.xml file.
     /// </remarks>
     public class CalendarReminder:IDisposable
     {
@@ -37,7 +37,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Disposes of the resources (other than memory) used by the CalendarReminder.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <param name="disposing">true to release both managed and unmanaged resources, false to release only unmanaged resources.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -48,8 +48,8 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Releases all resources used by the CalendarReminder.
-        /// It should be called after having finished using of the object.
+        /// Releases all the resources used by the CalendarReminder.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -68,7 +68,7 @@ namespace Tizen.Pims.Calendar
         private static event EventHandler<ReminderAlertedEventArgs> s_reminderAlerted;
 
         /// <summary>
-        /// Reminder event is triggered when the alarm is alerted.
+        /// The Reminder event is triggered when the alarm is alerted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<ReminderAlertedEventArgs> ReminderAlerted

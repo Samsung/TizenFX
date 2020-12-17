@@ -20,20 +20,20 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits System.EventArgs.
-    /// The CheckStateChangedEventArgs is EventArgs to record Check's state.
-    /// Include old state and new state.
+    /// The CheckStateChangedEventArgs is an EventArgs to record the check's state.
+    /// Include the old state and the new state.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class CheckStateChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets the OldState property.The return type is bool.
+        /// Gets the OldState property. The return type is bool.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool OldState { get; private set; }
 
         /// <summary>
-        /// Gets the NewState property.The return type is bool.
+        /// Gets the NewState property. The return type is bool.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool NewState { get; private set; }
@@ -41,8 +41,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the CheckStateChangedEventArgs class.
         /// </summary>
-        /// <param name="oldState">Old state of Check which to use this CheckStateChangedEventArgs.</param>
-        /// <param name="newState">New state of Check which to use this CheckStateChangedEventArgs.</param>
+        /// <param name="oldState">Old state of check to use this CheckStateChangedEventArgs.</param>
+        /// <param name="newState">New state of check to use this CheckStateChangedEventArgs.</param>
         /// <since_tizen> preview </since_tizen>
         public CheckStateChangedEventArgs(bool oldState, bool newState)
         {

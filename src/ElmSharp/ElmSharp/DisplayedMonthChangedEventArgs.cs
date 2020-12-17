@@ -20,7 +20,7 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits System.EventArgs.
-    /// The DisplayedMonthChangedEvent in Calendar contain
+    /// The DisplayedMonthChangedEvent in a calendar contains the
     /// DisplayedMonthChangedEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -42,10 +42,10 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the DisplayedMonthChangedEventArgs class.
         /// </summary>
         /// <param name="oldMonth">
-        /// old month of date when DisplayedMonthChangedEvent triggered.
+        /// Old month of the date when the DisplayedMonthChangedEvent triggered.
         /// </param>
         /// <param name="newMonth">
-        /// new month of date when DisplayedMonthChangedEvent triggered.
+        /// New month of the date when the DisplayedMonthChangedEvent triggered.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public DisplayedMonthChangedEventArgs(int oldMonth, int newMonth)

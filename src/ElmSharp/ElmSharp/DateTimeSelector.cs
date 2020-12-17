@@ -19,42 +19,42 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration of datetime field types for DateTimeSelector.
+    /// Enumeration for the datetime field types for DateTimeSelector.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum DateTimeFieldType
     {
         /// <summary>
-        /// Indicates Year field.
+        /// Indicates the Year field.
         /// </summary>
         Year,
         /// <summary>
-        /// Indicates Month field.
+        /// Indicates the Month field.
         /// </summary>
         Month,
         /// <summary>
-        /// Indicates Date field.
+        /// Indicates the Date field.
         /// </summary>
         Date,
         /// <summary>
-        /// Indicates Hour field.
+        /// Indicates the Hour field.
         /// </summary>
         Hour,
         /// <summary>
-        /// Indicates Minute field.
+        /// Indicates the Minute field.
         /// </summary>
         Minute,
         /// <summary>
-        /// Indicates AM/PM field.
+        /// Indicates the AM/PM field.
         /// </summary>
         AmPm
     }
 
     /// <summary>
-    /// It inherits <see cref="Layout"/>
-    /// DateTimeSelector is a widget to display and input date &amp; time values.
-    /// This widget displays date and time as per the system's locale settings
-    /// (Date includes Day, Month &amp; Year along with the defined separators and Time includes Hour, Minute &amp; AM/PM fields. Separator for AM/PM field is ignored.
+    /// It inherits <see cref="Layout"/>.
+    /// The DateTimeSelector is a widget to display and input the date &amp; time values.
+    /// This widget displays the date and time as per the system's locale settings
+    /// (Date includes Day, Month &amp; Year) along with the defined separators and time including hour, minute &amp; AM/PM fields. Separator for the AM/PM field is ignored.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class DateTimeSelector : Layout
@@ -65,15 +65,15 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the DateTimeSelector class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by DateTimeSelector
-        ///as a child.It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by the DateTimeSelector
+        ///  as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of DateTimeSelector class.
+        /// Creates and initializes a new instance of the DateTimeSelector class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected DateTimeSelector() : base()
@@ -81,7 +81,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ItemSelected is raised when Datetime field value changed.
+        /// ItemSelected is raised when the DateTime field value is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<DateChangedEventArgs> DateTimeChanged;
@@ -90,7 +90,7 @@ namespace ElmSharp
         /// Gets or sets the datetime format.
         /// </summary>
         /// <remarks>
-        /// format is a combination of allowed LIBC date format specifiers like: "%b %d, %Y %I : %M %p".
+        /// Format is a combination of the allowed LIBC date format specifiers like: "%b %d, %Y %I : %M %p".
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public string Format
@@ -106,7 +106,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the upper boundary of DateTime field.
+        /// Gets or sets the upper boundary of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public DateTime MaximumDateTime
@@ -125,7 +125,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the lower boundary of DateTime field.
+        /// Gets or sets the lower boundary of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public DateTime MinimumDateTime
@@ -144,7 +144,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the current value of DateTime field.
+        /// Gets or sets the current value of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public DateTime DateTime
@@ -166,10 +166,10 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether a field can be visible.
         /// </summary>
-        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
+        /// <param name="type">Enumeration for <see cref="DateTimeFieldType"/>.</param>
         /// <returns>
         /// The field is visible or not.
-        /// Type is bool.If visible, return true.
+        /// Type is bool. If visible, return true.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public bool IsFieldVisible(DateTimeFieldType type)
@@ -180,9 +180,9 @@ namespace ElmSharp
         /// <summary>
         /// Sets the field limits of a field.
         /// </summary>
-        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
-        /// <param name="minimum">minimum limit</param>
-        /// <param name="maximum">maximum limit</param>
+        /// <param name="type">Enumeration for <see cref="DateTimeFieldType"/>.</param>
+        /// <param name="minimum">The minimum limit.</param>
+        /// <param name="maximum">The maximum limit.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetFieldLimit(DateTimeFieldType type, int minimum, int maximum)
         {
@@ -192,8 +192,8 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether a field can be visible.
         /// </summary>
-        /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
-        /// <param name="visible">When set as true, the field type visible.</param>
+        /// <param name="type">Enumeration for <see cref="DateTimeFieldType"/>.</param>
+        /// <param name="visible">When set as true, the field type is visible.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetFieldVisible(DateTimeFieldType type, bool visible)
         {
@@ -201,7 +201,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Realized Event
+        /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
@@ -219,8 +219,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

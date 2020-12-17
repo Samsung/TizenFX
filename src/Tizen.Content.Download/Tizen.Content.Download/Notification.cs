@@ -58,7 +58,7 @@ namespace Tizen.Content.Download
             }
             set
             {
-                int ret = Interop.Download.SetNotificationTitle(_downloadId, value.ToString());
+                int ret = Interop.Download.SetNotificationTitle(_downloadId, value);
                 if (ret != (int)DownloadError.None)
                 {
                     DownloadErrorFactory.ThrowException(ret, "Failed to set Notification Title");
@@ -92,7 +92,7 @@ namespace Tizen.Content.Download
             }
             set
             {
-                int ret = Interop.Download.SetNotificationDescription(_downloadId, value.ToString());
+                int ret = Interop.Download.SetNotificationDescription(_downloadId, value);
                 if (ret != (int)DownloadError.None)
                 {
                     DownloadErrorFactory.ThrowException(ret, "Failed to set Notification Description");

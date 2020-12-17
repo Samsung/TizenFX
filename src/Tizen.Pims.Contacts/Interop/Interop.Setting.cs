@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 using Tizen.Pims.Contacts;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {

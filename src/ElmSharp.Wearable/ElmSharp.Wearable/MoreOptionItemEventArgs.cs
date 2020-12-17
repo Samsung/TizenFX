@@ -19,14 +19,14 @@ using System;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The MoreOptionItemEventArgs is a event args class for MoreOptionItem.
+    /// The MoreOptionItemEventArgs is an event arguments class for the MoreOptionItem.
     /// Inherits EventArgs
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class MoreOptionItemEventArgs : EventArgs
     {
         /// <summary>
-        /// Sets or gets the more option item
+        /// Sets or gets the more option item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public MoreOptionItem Item { get; set; }

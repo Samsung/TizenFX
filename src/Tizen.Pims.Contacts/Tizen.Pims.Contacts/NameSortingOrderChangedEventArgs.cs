@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// Event arguments passed when setting value of contacts name sorting order is changed
+    /// Event arguments passed when a setting value of the contacts name sorting order is changed.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class NameSortingOrderChangedEventArgs : EventArgs
@@ -30,7 +30,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// A setting value of contacts name sorting order
+        /// A setting value of the contacts name sorting order.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public ContactSortingOrder NameSortingOrder

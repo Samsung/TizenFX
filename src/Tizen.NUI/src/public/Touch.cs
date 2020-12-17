@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,12 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Touch events are a collection of points at a specific moment in time.<br />
     /// When a multi-touch event occurs, each point represents the points that are currently being
@@ -26,79 +28,24 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Touch : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Touch_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Touch obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Touch(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
-        internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
-        {
-            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
-            if (ret == null)
-            {
-                ret = new Touch(cPtr, false);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// An uninitialized touch instance.<br />
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Touch() : this(NDalicPINVOKE.new_Touch__SWIG_0(), true)
+        public Touch() : this(Interop.Touch.NewTouch(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Touch(Touch other) : this(NDalicPINVOKE.new_Touch__SWIG_1(Touch.getCPtr(other)), true)
+        internal Touch(Touch other) : this(Interop.Touch.NewTouch(Touch.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Touch.Upcast(cPtr), cMemoryOwn)
+        {
         }
 
         /// <summary>
@@ -108,7 +55,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetTime()
         {
-            uint ret = NDalicPINVOKE.Touch_GetTime(swigCPtr);
+            uint ret = Interop.Touch.GetTime(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -120,7 +67,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
-            uint ret = NDalicPINVOKE.Touch_GetPointCount(swigCPtr);
+            uint ret = Interop.Touch.GetPointCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -136,7 +83,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int GetDeviceId(uint point)
         {
-            int ret = NDalicPINVOKE.Touch_GetDeviceId(swigCPtr, point);
+            int ret = Interop.Touch.GetDeviceId(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -150,7 +97,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PointStateType GetState(uint point)
         {
-            PointStateType ret = (PointStateType)NDalicPINVOKE.Touch_GetState(swigCPtr, point);
+            PointStateType ret = (PointStateType)Interop.Touch.GetState(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -164,9 +111,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            //to fix memory leak issue, match the handle count with native side.
+            global::System.IntPtr cPtr = Interop.Touch.GetHitActor(swigCPtr, point);
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -183,7 +130,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetLocalPosition(swigCPtr, point), false);
+            Vector2 ret = new Vector2(Interop.Touch.GetLocalPosition(swigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -197,7 +144,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetScreenPosition(swigCPtr, point), false);
+            Vector2 ret = new Vector2(Interop.Touch.GetScreenPosition(swigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -212,7 +159,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float GetRadius(uint point)
         {
-            float ret = NDalicPINVOKE.Touch_GetRadius(swigCPtr, point);
+            float ret = Interop.Touch.GetRadius(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -226,7 +173,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetEllipseRadius(uint point)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetEllipseRadius(swigCPtr, point), false);
+            Vector2 ret = new Vector2(Interop.Touch.GetEllipseRadius(swigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -244,17 +191,88 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float GetPressure(uint point)
         {
-            float ret = NDalicPINVOKE.Touch_GetPressure(swigCPtr, point);
+            float ret = Interop.Touch.GetPressure(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Degree GetAngle(uint point)
+        /// <summary>
+        /// Get mouse device's button value (for example, right or left button)
+        /// </summary>
+        /// <param name="point">The point required.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MouseButton GetMouseButton(uint point)
         {
-            Degree ret = new Degree(NDalicPINVOKE.Touch_GetAngle(swigCPtr, point), true);
+            int ret = Interop.Touch.GetMouseButton(swigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (MouseButton)ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Touch obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
+        {
+            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
+            if (ret == null)
+            {
+                ret = new Touch(cPtr, false);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Degree GetAngle(uint point)
+        {
+            Degree ret = new Degree(Interop.Touch.GetAngle(swigCPtr, point), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Touch.DeleteTouch(swigCPtr);
+        }
     }
+
+    /// <summary>
+    /// Mouse device button type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum MouseButton
+    {
+        /// <summary>
+        /// No mouse button event or invalid data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Invalid = -1,
+        /// <summary>
+        /// Primary(Left) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Primary = 1,
+        /// <summary>
+        /// Secondary(Right) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Secondary = 3,
+        /// <summary>
+        /// Center(Wheel) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Tertiary = 2,
+    }
+
 }

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.PhonenumberUtils
 {
     /// <summary>
-    /// The PhonenumberUtils class provides methods for parsing, formatting and normalizing phone numbers.
+    /// The PhonenumberUtils class provides the methods for parsing, formatting, and normalizing the phone numbers.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PhonenumberUtils : IDisposable
@@ -30,8 +30,8 @@ namespace Tizen.PhonenumberUtils
         /// Creates a PhonenumberUtils.
         /// </summary>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public PhonenumberUtils()
         {
@@ -46,7 +46,7 @@ namespace Tizen.PhonenumberUtils
         }
 
         /// <summary>
-        /// Destructor
+        /// The destructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         ~PhonenumberUtils()
@@ -55,8 +55,8 @@ namespace Tizen.PhonenumberUtils
         }
 
         /// <summary>
-        /// Releases all resources used by the PhonenumberUtils.
-        /// It should be called after finished using of the object.
+        /// Releases all the resources used by the PhonenumberUtils.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
@@ -81,17 +81,17 @@ namespace Tizen.PhonenumberUtils
         }
 
         /// <summary>
-        /// Gets the location string from number, region, and language.
+        /// Gets the location string from the number, region, and language.
         /// </summary>
-        /// <param name="number">The number</param>
-        /// <param name="region">The region of number</param>
-        /// <param name="language">The language of location</param>
-        /// <returns>The location string</returns>
+        /// <param name="number">The number.</param>
+        /// <param name="region">The region of number.</param>
+        /// <param name="language">The language of location.</param>
+        /// <returns>The location string.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the input coordinates are invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <since_tizen> 3 </since_tizen>
         public string GetLocationFromNumber(string number, Region region, Language language)
         {
@@ -111,14 +111,14 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Gets the formatted number.
         /// </summary>
-        /// <param name="number">The number</param>
-        /// <param name="region">The region of number</param>
-        /// <returns>The formatted number string</returns>
+        /// <param name="number">The number.</param>
+        /// <param name="region">The region of number.</param>
+        /// <returns>The formatted number string.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the input coordinates are invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <since_tizen> 3 </since_tizen>
         public string GetFormattedNumber(string number, Region region)
         {
@@ -138,18 +138,18 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Gets the normalized number.
         /// </summary>
-        /// <param name="number">The number</param>
-        /// <returns>The normalized number</returns>
+        /// <param name="number">The number.</param>
+        /// <returns>The normalized number.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the input coordinates are invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         /// <remarks>
         /// Normalized number starts with plus('+') and country code, and excludes the separators such as dash or space.
-        /// It is a format of E.164 standard including the country code based on current network.
+        /// It is a format of the E.164 standard including the country code based on the current network.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public string GetNormalizedNumber(string number)

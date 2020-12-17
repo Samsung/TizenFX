@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,9 @@ internal static partial class Interop
         internal delegate void VideoFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AudioFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SubtitleUpdatedCallback(uint duration, string text, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -60,6 +63,12 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SeekCompletedCallback(IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool AdaptiveVariantCallback(int bandwidth, int width, int height, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
+
         [DllImport(Libraries.Player, EntryPoint = "player_create")]
         internal static extern PlayerErrorCode Create(out PlayerHandle player);
 
@@ -68,6 +77,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_prepare")]
         internal static extern PlayerErrorCode Prepare(IntPtr player);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_prepare_async")]
+        internal static extern PlayerErrorCode PrepareAsync(IntPtr player, PrepareCallback callback,
+            IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.Player, EntryPoint = "player_unprepare")]
         internal static extern PlayerErrorCode Unprepare(IntPtr player);
@@ -96,6 +109,12 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_volume")]
         internal static extern PlayerErrorCode GetVolume(IntPtr player, out float left, out float right);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_set_replaygain_enabled")]
+        internal static extern PlayerErrorCode SetReplayGain(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_replaygain_enabled")]
+        internal static extern PlayerErrorCode IsReplayGain(IntPtr player, out bool enabled);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern PlayerErrorCode SetAudioPolicyInfo(IntPtr player, AudioStreamPolicyHandle streamInfo);
 
@@ -110,6 +129,13 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_play_position")]
         internal static extern PlayerErrorCode SetPlayPosition(IntPtr player, int millisecond,
+            bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_play_position_nsec")]
+        internal static extern PlayerErrorCode GetPlayPositionNanoseconds(IntPtr player, out long nanoseconds);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_play_position_nsec")]
+        internal static extern PlayerErrorCode SetPlayPositionNanoseconds(IntPtr player, long nanoseconds,
             bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_mute")]
@@ -156,6 +182,13 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_video_frame_decoded_cb")]
         internal static extern PlayerErrorCode UnsetVideoFrameDecodedCb(IntPtr player);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_set_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode SetAudioFrameDecodedCb(IntPtr player, IntPtr format, PlayerAudioExtractOption opt,
+            AudioFrameDecodedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode UnsetAudioFrameDecodedCb(IntPtr player);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_cookie")]
         internal static extern PlayerErrorCode SetStreamingCookie(IntPtr player, string cookie, int size);
 
@@ -164,6 +197,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_download_progress")]
         internal static extern PlayerErrorCode GetStreamingDownloadProgress(IntPtr player, out int start, out int current);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_buffering_time")]
+        internal static extern PlayerErrorCode SetStreamingBufferingTime(IntPtr player, int bufferingTime, int reBufferingTime);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_buffering_time")]
+        internal static extern PlayerErrorCode GetStreamingBufferingTime(IntPtr player, out int bufferingTime, out int reBufferingTime);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_buffering_cb")]
         internal static extern PlayerErrorCode SetBufferingCb(IntPtr player,
@@ -179,7 +218,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode PushMediaStream(IntPtr player, IntPtr packet);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_info")]
-        internal static extern PlayerErrorCode SetMediaStreamInfo(IntPtr player, int type, IntPtr format);
+        internal static extern PlayerErrorCode SetMediaStreamInfo(IntPtr player, StreamType type, IntPtr format);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_buffer_status_cb")]
         internal static extern PlayerErrorCode SetMediaStreamBufferStatusCb(IntPtr player, StreamType type,
@@ -228,6 +267,9 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_duration")]
         internal static extern PlayerErrorCode GetDuration(IntPtr player, out int duration);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_get_duration_nsec")]
+        internal static extern PlayerErrorCode GetDurationNanoseconds(IntPtr player, out long duration);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_path")]
         internal static extern PlayerErrorCode SetSubtitlePath(IntPtr player, string path);
 
@@ -249,22 +291,113 @@ internal static partial class Interop
         internal static extern PlayerErrorCode UnsetVideoStreamChangedCb(IntPtr player);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_count")]
-        internal static extern PlayerErrorCode GetTrackCount(IntPtr player, int type, out int count);
+        internal static extern PlayerErrorCode GetTrackCount(IntPtr player, StreamType type, out int count);
 
         [DllImport(Libraries.Player, EntryPoint = "player_select_track")]
-        internal static extern PlayerErrorCode SelectTrack(IntPtr player, int type, int index);
+        internal static extern PlayerErrorCode SelectTrack(IntPtr player, StreamType type, int index);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_current_track")]
-        internal static extern PlayerErrorCode GetCurrentTrack(IntPtr player, int type, out int index);
+        internal static extern PlayerErrorCode GetCurrentTrack(IntPtr player, StreamType type,
+            out int index);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_language_code")]
-        internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, int type, int index, out IntPtr code);
+        internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, StreamType type,
+            int index, out IntPtr code);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_only")]
+        internal static extern PlayerErrorCode SetAudioOnly(IntPtr player, bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_audio_only")]
+        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, out bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_content_spherical")]
+        internal static extern PlayerErrorCode IsSphericalContent(IntPtr player, out bool isspherical);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_enabled")]
+        internal static extern PlayerErrorCode SetSphericalMode(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_enabled")]
+        internal static extern PlayerErrorCode IsSphericalMode(IntPtr player, out bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_direction_of_view")]
+        internal static extern PlayerErrorCode SetDirectionOfView(IntPtr player, float yaw, float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_direction_of_view")]
+        internal static extern PlayerErrorCode GetDirectionOfView(IntPtr player, out float yaw, out float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom")]
+        internal static extern PlayerErrorCode SetZoom(IntPtr player, float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_zoom")]
+        internal static extern PlayerErrorCode GetZoom(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_field_of_view")]
+        internal static extern PlayerErrorCode SetFieldOfView(IntPtr player, int horizontalDegrees, int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_field_of_view")]
+        internal static extern PlayerErrorCode GetFieldOfView(IntPtr player, out int horizontalDegrees, out int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom_with_field_of_view")]
+        internal static extern PlayerErrorCode SetZoomWithFieldOfView(IntPtr player, float level, int horizontalDegrees, int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_adaptive_variant")]
+        internal static extern PlayerErrorCode ForeachAdaptiveVariants(IntPtr player, AdaptiveVariantCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode SetMaxLimit(IntPtr player, int bandwidth, int width, int height);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode GetMaxLimit(IntPtr player, out int bandwidth, out int width, out int height);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_video_roi_area")]
+        internal static extern PlayerErrorCode SetVideoRoi(IntPtr player, double scaleX, double scaleY, double scaleWidth, double scaleHeight);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_video_roi_area")]
+        internal static extern PlayerErrorCode GetVideoRoi(IntPtr player, out double scaleX, out double scaleY, out double scaleWidth, out double scaleHeight);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_enabled")]
+        internal static extern PlayerErrorCode SetAudioPitchEnabled(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_is_enabled")]
+        internal static extern PlayerErrorCode IsAudioPitchEnabled(IntPtr player, out bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_value")]
+        internal static extern PlayerErrorCode SetAudioPitch(IntPtr player, float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_get_value")]
+        internal static extern PlayerErrorCode GetAudioPitch(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_set_enabled")]
+        internal static extern PlayerErrorCode SetAudioOffloadEnabled(IntPtr player, bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_enabled")]
+        internal static extern PlayerErrorCode IsAudioOffloadEnabled(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_activated")]
+        internal static extern PlayerErrorCode IsAudioOffloadActivated(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_foreach_supported_format")]
+        internal static extern PlayerErrorCode SupportedAudioOffloadFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_media_stream_supported_format")]
+        internal static extern PlayerErrorCode SupportedMediaStreamFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_codec_type")]
+        internal static extern PlayerErrorCode SetAudioCodecType(IntPtr player, CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_audio_codec_type")]
+        internal static extern PlayerErrorCode GetAudioCodecType(IntPtr player, out CodecType type);
     }
 
     internal class PlayerHandle : SafeHandle
     {
         protected PlayerHandle() : base(IntPtr.Zero, true)
         {
+        }
+
+        internal PlayerHandle(IntPtr rawHandle) : this()
+        {
+            handle = rawHandle;
         }
 
         public override bool IsInvalid => handle == IntPtr.Zero;

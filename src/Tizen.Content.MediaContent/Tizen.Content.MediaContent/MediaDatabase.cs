@@ -41,7 +41,7 @@ namespace Tizen.Content.MediaContent
         /// Connects to the database.
         /// </summary>
         /// <exception cref="InvalidOperationException">The database is already connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while connecting.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Connect()
@@ -65,7 +65,7 @@ namespace Tizen.Content.MediaContent
         /// Disconnects from the media database.
         /// </summary>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while connecting.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Disconnect()
@@ -207,13 +207,16 @@ namespace Tizen.Content.MediaContent
         /// the record of the media file will be deleted from the database.<br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
-        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.<br/>
+        /// <br/>
+        /// If http://tizen.org/feature/content.scanning.others feature is not supported and the specified file is other-type,
+        /// <see cref="NotSupportedException"/> will be thrown.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="path"/> is a zero-length string, contains only white space.<br/>
@@ -223,6 +226,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void ScanFile(string path)
         {
@@ -247,7 +251,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -278,7 +282,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -309,7 +313,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -341,7 +345,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -474,9 +478,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the value indicating whether the database has been disposed of.
+        /// Gets the value indicating whether the database has been disposed.
         /// </summary>
-        /// <value>true if the database has been disposed of; otherwise, false.</value>
+        /// <value>true if the database has been disposed; otherwise, false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsDisposed => _disposed;
         #endregion

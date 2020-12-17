@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// Argument from the SmartCallback.
+    /// The argument from the SmartCallback.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SmartCallbackArgs : EventArgs
@@ -33,9 +33,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets argument as integer type.
+        /// Gets the argument as an integer type.
         /// </summary>
-        /// <returns>Argument as integer type</returns>
+        /// <returns>Argument as an integer type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public int GetAsInteger()
         {
@@ -47,9 +47,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets argument as double type.
+        /// Gets the argument as a double type.
         /// </summary>
-        /// <returns>Argument as double type</returns>
+        /// <returns>Argument as a double type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public double GetAsDouble()
         {
@@ -63,9 +63,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets argument as boolean type.
+        /// Gets the argument as a boolean type.
         /// </summary>
-        /// <returns>Argument as boolean type</returns>
+        /// <returns>Argument as a boolean type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public bool GetAsBoolean()
         {
@@ -77,9 +77,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets argument as string type.
+        /// Gets the argument as a string type.
         /// </summary>
-        /// <returns>Argument as string type</returns>
+        /// <returns>Argument as a string type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public string GetAsString()
         {

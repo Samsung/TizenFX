@@ -15,93 +15,75 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-
-    internal class FixedRuler : Ruler
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class FixedRuler : Ruler
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FixedRuler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FixedRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.FixedRulerUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FixedRuler obj)
+
+        /// This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            Interop.Ruler.DeleteFixedRuler(swigCPtr);
         }
 
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_FixedRuler(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        public FixedRuler(float spacing) : this(NDalicPINVOKE.new_FixedRuler__SWIG_0(spacing), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FixedRuler(float spacing) : this(Interop.Ruler.NewFixedRuler(spacing), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public FixedRuler() : this(NDalicPINVOKE.new_FixedRuler__SWIG_1(), true)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FixedRuler() : this(Interop.Ruler.NewFixedRuler(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override float Snap(float x, float bias)
         {
-            float ret = NDalicPINVOKE.FixedRuler_Snap(swigCPtr, x, bias);
+            float ret = Interop.Ruler.FixedRulerSnap(swigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = NDalicPINVOKE.FixedRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
+            float ret = Interop.Ruler.FixedRulerGetPositionFromPage(swigCPtr, page, out volume, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = NDalicPINVOKE.FixedRuler_GetPageFromPosition(swigCPtr, position, wrap);
+            uint ret = Interop.Ruler.FixedRulerGetPageFromPosition(swigCPtr, position, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetTotalPages()
         {
-            uint ret = NDalicPINVOKE.FixedRuler_GetTotalPages(swigCPtr);
+            uint ret = Interop.Ruler.FixedRulerGetTotalPages(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

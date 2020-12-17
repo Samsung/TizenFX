@@ -15,11 +15,12 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.WebView
 {
     /// <summary>
-    /// Enumeration that contains option for cache model.
+    /// Enumeration for cache model options.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum CacheModel
@@ -29,7 +30,7 @@ namespace Tizen.WebView
         /// </summary>
         DocumentViewer,
         /// <summary>
-        /// Use bigger cache capacity than DocumentBrowser.
+        /// Use the bigger cache capacity than DocumentBrowser.
         /// </summary>
         DocumentBrowser,
         /// <summary>
@@ -39,7 +40,7 @@ namespace Tizen.WebView
     }
 
     /// <summary>
-    /// This class encapsulates all pages related to the specific use of Chromium-efl.
+    /// This class encapsulates all the pages related to the specific use of the Chromium-efl.
     /// </summary>
     /// <remarks>
     /// Applications have the option of creating a context different from the default one and using it for a group of pages.
@@ -50,6 +51,16 @@ namespace Tizen.WebView
     {
         private IntPtr _handle;
         private CookieManager _cookieManager;
+
+        private Interop.ChromiumEwk.DownloadStartCallback _downloadStartCallback;
+        
+        /// <summary>
+        /// The delegate for handling download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="url"> url of the download request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void DownloadRequestDelegate(string url);
 
         internal Context(IntPtr handle)
         {
@@ -79,7 +90,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Gets the CookieManager object for this context.
         /// </summary>
-        /// <returns>The CookieManager object</returns>
+        /// <returns>The CookieManager object.</returns>
         /// <since_tizen> 4 </since_tizen>
         public CookieManager GetCookieManager()
         {
@@ -93,6 +104,39 @@ namespace Tizen.WebView
                 _cookieManager = new CookieManager(cookieManagerHandle);
             }
             return _cookieManager;
+        }
+
+        /// <summary>
+        /// Clears HTTP caches in the local storage and all resources cached in memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ClearResourceCache()
+        {
+            Interop.ChromiumEwk.ewk_context_resource_cache_clear(_handle);
+        }
+
+        /// <summary>
+        /// Informs the WebEngine low memory to release unused memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyLowMemory()
+        {
+            Interop.ChromiumEwk.ewk_context_notify_low_memory(_handle);
+        }
+
+        /// <summary>
+        /// Sets the delegate function for download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDownloadRequestDelegate(DownloadRequestDelegate startDownloadCb)
+        {
+            _downloadStartCallback = (string url, IntPtr userData) =>
+            {
+                startDownloadCb(url);
+            };
+            Interop.ChromiumEwk.ewk_context_did_start_download_callback_set(_handle, _downloadStartCallback, IntPtr.Zero);
         }
     }
 }

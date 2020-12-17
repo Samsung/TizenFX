@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,20 @@
 
 namespace Tizen.NUI
 {
-
     using System;
+    using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
+
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Xml;
+    using Tizen.NUI.Binding.Internals;
+    using Tizen.NUI.Binding;
+    using System.Globalization;
+    using Tizen.NUI.Xaml.Internals;
 
     /// <summary>
     /// Animation can be used to animate the properties of any number of objects, typically view.<br />
@@ -32,75 +42,18 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private static bool? disableAnimation = null;
 
-        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Animation_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
+        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
+        private System.IntPtr _finishedCallbackOfNative;
 
-        /// <summary>
-        /// To make animation instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if(disposed)
-            {
-                return;
-            }
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
 
-            }
-            else if(type == DisposeTypes.Implicit)
-            {
-
-            }
-
-            if (_animationFinishedEventCallback != null)
-            {
-                FinishedSignal().Disconnect(_animationFinishedEventCallback);
-            }
-
-            if (_animationProgressReachedEventCallback != null)
-            {
-
-                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-            }
-
-            if(this)
-            {
-                this.Clear();
-                this.Reset();
-                NUILog.Error("Now Animation is playing! Clear and Reset here!");
-                //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Animation(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
+        private string[] _properties = null;
+        private string[] _destValue = null;
+        private int[] _startTime = null;
+        private int[] _endTime = null;
 
         /// <summary>
         /// Creates an initialized animation.<br />
@@ -111,15 +64,26 @@ namespace Tizen.NUI
         /// <remarks>DurationmSeconds must be greater than zero.</remarks>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Animation(int durationMilliSeconds) : this(NDalicPINVOKE.Animation_New((float)durationMilliSeconds / 1000.0f), true)
+        public Animation(int durationMilliSeconds) : this(Interop.Animation.New((float)durationMilliSeconds / 1000.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
+        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Animation.Upcast(cPtr), cMemoryOwn)
+        {
+
+            _animationFinishedEventCallback = OnFinished;
+            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnimationFinishedEventCallbackType(IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
+
         private event EventHandler _animationFinishedEventHandler;
+
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
         * The finished signal is emitted when an animation's animations have finished.
@@ -129,12 +93,11 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationFinishedEventHandler == null)
+                if (_animationFinishedEventHandler == null && disposed == false)
                 {
-                    NUILog.Debug("[add before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    _animationFinishedEventCallback = OnFinished;
-                    FinishedSignal().Connect(_animationFinishedEventCallback);
-                    NUILog.Debug("[add after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    AnimationSignal finishedSignal = FinishedSignal();
+                    finishedSignal.Connect(_finishedCallbackOfNative);
+                    finishedSignal.Dispose();
                 }
                 _animationFinishedEventHandler += value;
             }
@@ -142,31 +105,21 @@ namespace Tizen.NUI
             {
                 _animationFinishedEventHandler -= value;
 
-                if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                AnimationSignal finishedSignal = FinishedSignal();
+                if (_animationFinishedEventHandler == null && finishedSignal.Empty() == false)
                 {
-                    NUILog.Debug("[remove before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    FinishedSignal().Disconnect(_animationFinishedEventCallback);
-                    NUILog.Debug("[remove after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    finishedSignal.Disconnect(_finishedCallbackOfNative);
                 }
-            }
-        }
-        private void OnFinished(IntPtr data)
-        {
-            if (_animationFinishedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _animationFinishedEventHandler(this, null);
+                finishedSignal.Dispose();
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
-        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
         private event EventHandler _animationProgressReachedEventHandler;
+
         /**
-        * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
-        * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
-        */
+       * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
+       * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
+       */
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler ProgressReached
         {
@@ -174,10 +127,10 @@ namespace Tizen.NUI
             {
                 if (_animationProgressReachedEventHandler == null)
                 {
-                    NUILog.Debug("[add before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                     _animationProgressReachedEventCallback = OnProgressReached;
-                    ProgressReachedSignal().Connect(_animationProgressReachedEventCallback);
-                    NUILog.Debug("[add after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                    progressReachedSignal?.Connect(_animationProgressReachedEventCallback);
+                    progressReachedSignal?.Dispose();
                 }
 
                 _animationProgressReachedEventHandler += value;
@@ -186,33 +139,71 @@ namespace Tizen.NUI
             {
                 _animationProgressReachedEventHandler -= value;
 
-                if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
+                AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                if (_animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
                 {
-                    NUILog.Debug("[remove before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                    NUILog.Debug("[remove after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
                 }
-            }
-        }
-        private void OnProgressReached(IntPtr data)
-        {
-            if (_animationProgressReachedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _animationProgressReachedEventHandler(this, null);
+                progressReachedSignal.Dispose();
             }
         }
 
-        private float MilliSecondsToSeconds(int millisec)
+        /// <summary>
+        /// Enumeration for what to do when the animation ends, stopped, or destroyed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum EndActions
         {
-            return (float)millisec / 1000.0f;
+            /// <summary>
+            /// When the animation ends, the animated property values are saved.
+            /// </summary>
+            Cancel,
+            /// <summary>
+            /// When the animation ends, the animated property values are forgotten.
+            /// </summary>
+            Discard,
+            /// <summary>
+            /// If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like cancel.
+            /// </summary>
+            StopFinal
         }
 
-        private int SecondsToMilliSeconds(float sec)
+        /// <summary>
+        /// Enumeration for what interpolation method to use on key-frame animations.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum Interpolation
         {
-            return (int)(sec * 1000);
+            /// <summary>
+            /// Values in between key frames are interpolated using a linear polynomial. (Default)
+            /// </summary>
+            Linear,
+            /// <summary>
+            /// Values in between key frames are interpolated using a cubic polynomial.
+            /// </summary>
+            Cubic
         }
 
+        /// <summary>
+        /// Enumeration for what state the animation is in.
+        /// </summary>
+        /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
+        /// <since_tizen> 3 </since_tizen>
+        public enum States
+        {
+            /// <summary>
+            /// The animation has stopped.
+            /// </summary>
+            Stopped,
+            /// <summary>
+            /// The animation is playing.
+            /// </summary>
+            Playing,
+            /// <summary>
+            /// The animation is paused.
+            /// </summary>
+            Paused
+        }
 
         /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
@@ -318,19 +309,6 @@ namespace Tizen.NUI
             }
         }
 
-
-        /// <summary>
-        /// Stops the animation.
-        /// </summary>
-        /// <param name="action">The end action can be set.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop(EndActions action = EndActions.Cancel)
-        {
-            SetEndAction(action);
-            NDalicPINVOKE.Animation_Stop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         /// <summary>
         /// Gets the current loop count.<br />
         /// A value 0 indicating the current loop count when looping.<br />
@@ -354,13 +332,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Animation_SetDisconnectAction(swigCPtr, (int)value);
+                Interop.Animation.SetDisconnectAction(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Animation.EndActions ret = (Animation.EndActions)NDalicPINVOKE.Animation_GetDisconnectAction(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Animation.EndActions ret = (Animation.EndActions)Interop.Animation.GetDisconnectAction(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -377,13 +355,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Animation_SetCurrentProgress(swigCPtr, value);
+                Interop.Animation.SetCurrentProgress(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.Animation_GetCurrentProgress(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Animation.GetCurrentProgress(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -399,13 +377,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Animation_SetSpeedFactor(swigCPtr, value);
+                Interop.Animation.SetSpeedFactor(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.Animation_GetSpeedFactor(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Animation.GetSpeedFactor(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -420,13 +398,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Animation_SetPlayRange(swigCPtr, Vector2.getCPtr(value));
+                Interop.Animation.SetPlayRange(swigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                Vector2 ret = new Vector2(NDalicPINVOKE.Animation_GetPlayRange(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Vector2 ret = new Vector2(Interop.Animation.GetPlayRange(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -442,15 +420,125 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Animation_SetProgressNotification(swigCPtr, value);
+                Interop.Animation.SetProgressNotification(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.Animation_GetProgressNotification(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Animation.GetProgressNotification(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the properties of the animation.
+        /// </summary>
+        public string[] Properties
+        {
+            get
+            {
+                return _properties;
+            }
+            set
+            {
+                _properties = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the destination value for each property of the animation.
+        /// </summary>
+        public string[] DestValue
+        {
+            get
+            {
+                return _destValue;
+            }
+            set
+            {
+                _destValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start time for each property of the animation.
+        /// </summary>
+        public int[] StartTime
+        {
+            get
+            {
+                return _startTime;
+            }
+            set
+            {
+                _startTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the end time for each property of the animation.
+        /// </summary>
+        public int[] EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+            set
+            {
+                _endTime = value;
+            }
+        }
+
+        private bool DisableAnimation
+        {
+            get
+            {
+                if (disableAnimation.HasValue == false)
+                {
+                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
+                    if (type == "Entry")
+                        disableAnimation = true;
+                    else
+                        disableAnimation = false;
+                }
+                return disableAnimation.Value;
+            }
+        }
+
+        /// <summary>
+        /// Downcasts a handle to animation handle.<br />
+        /// If handle points to an animation object, the downcast produces a valid handle.<br />
+        /// If not, the returned handle is left uninitialized.<br />
+        /// </summary>
+        /// <param name="handle">Handle to an object.</param>
+        /// <returns>Handle to an animation object or an uninitialized handle.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Animation DownCast(BaseHandle handle)
+        {
+            if (handle == null)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Stops the animation.
+        /// </summary>
+        /// <param name="action">The end action can be set.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop(EndActions action = EndActions.Cancel)
+        {
+            SetEndAction(action);
+            Interop.Animation.Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -460,22 +548,21 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="relativeValue">The property value will change by this amount.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (target == null)
             {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
             }
 
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -486,6 +573,9 @@ namespace Tizen.NUI
             {
                 AnimateBy(_prop, val);
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -497,34 +587,38 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or relativeValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (target == null)
             {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (relativeValue == null)
+            {
+                throw new ArgumentNullException(nameof(relativeValue));
             }
 
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateBy(_prop, val, alphaFunction, time);
+                time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateBy(_prop, val, time);
+                time.Dispose();
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -534,22 +628,21 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="destinationValue">The destination value.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (target == null)
             {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
             }
 
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -559,6 +652,45 @@ namespace Tizen.NUI
             else
             {
                 AnimateTo(_prop, val);
+            }
+
+            val.Dispose();
+            _prop.Dispose();
+        }
+
+        /// <summary>
+        /// Animates one or more properties to a destination value.<br />
+        /// </summary>
+        /// <param name="target">The target object to animate.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
+        public void PlayAnimateTo(View target)
+        {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            Clear();
+            if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
+            {
+                int length = _properties.Length;
+                for (int index = 0; index < length; index++)
+                {
+                    //object destinationValue = _destValue[index];
+                    var elementType = target.GetType();
+                    PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
+                    //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
+                    if (propertyInfo != null)
+                    {
+                        object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
+
+                        if (destinationValue != null)
+                        {
+                            AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
+                        }
+                    }
+                }
+                Play();
             }
         }
 
@@ -571,34 +703,38 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target or destinationValue is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (target == null)
             {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
+                throw new ArgumentNullException(nameof(target));
+            }
+            else if (destinationValue == null)
+            {
+                throw new ArgumentNullException(nameof(destinationValue));
             }
 
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateTo(_prop, val, alphaFunction, time);
+                time.Dispose();
             }
             else
             {
                 Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
                 AnimateTo(_prop, val, time);
+                time.Dispose();
             }
+
+            val.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -614,7 +750,7 @@ namespace Tizen.NUI
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
 
-            if (_prop.propertyIndex == Property.INVALID_INDEX)
+            if (_prop.propertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("second argument string property is invalid parameter!");
             }
@@ -627,8 +763,9 @@ namespace Tizen.NUI
             {
                 AnimateBetween(_prop, keyFrames, interpolation);
             }
-        }
 
+            _prop.Dispose();
+        }
 
         /// <summary>
         /// Animates a property between keyframes.
@@ -654,6 +791,9 @@ namespace Tizen.NUI
             {
                 AnimateBetween(_prop, keyFrames, time, interpolation);
             }
+
+            time.Dispose();
+            _prop.Dispose();
         }
 
         /// <summary>
@@ -701,6 +841,7 @@ namespace Tizen.NUI
             {
                 Animate(view, path, forward, alphaFunction, time);
             }
+            time.Dispose();
         }
 
         /// <summary>
@@ -710,183 +851,9 @@ namespace Tizen.NUI
         /// The default alpha function is linear.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animation() : this(NDalicPINVOKE.Animation_New(0.0f), true)
+        public Animation() : this(Interop.Animation.New(0.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation(float durationSeconds) : this(NDalicPINVOKE.Animation_New(durationSeconds), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Downcasts a handle to animation handle.<br />
-        /// If handle points to an animation object, the downcast produces a valid handle.<br />
-        /// If not, the returned handle is left uninitialized.<br />
-        /// </summary>
-        /// <param name="handle">Handle to an object.</param>
-        /// <returns>Handle to an animation object or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Animation DownCast(BaseHandle handle)
-        {
-            Animation ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Animation(Animation handle) : this(NDalicPINVOKE.new_Animation__SWIG_1(Animation.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation Assign(Animation rhs)
-        {
-            Animation ret = new Animation(NDalicPINVOKE.Animation_Assign(swigCPtr, Animation.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetDuration(float seconds)
-        {
-            NDalicPINVOKE.Animation_SetDuration(swigCPtr, seconds);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal float GetDuration()
-        {
-            float ret = NDalicPINVOKE.Animation_GetDuration(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetLooping(bool looping)
-        {
-            NDalicPINVOKE.Animation_SetLooping(swigCPtr, looping);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetLoopCount(int count)
-        {
-            NDalicPINVOKE.Animation_SetLoopCount(swigCPtr, count);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal int GetLoopCount()
-        {
-            int ret = NDalicPINVOKE.Animation_GetLoopCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal int GetCurrentLoop()
-        {
-            int ret = NDalicPINVOKE.Animation_GetCurrentLoop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal bool IsLooping()
-        {
-            bool ret = NDalicPINVOKE.Animation_IsLooping(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetEndAction(Animation.EndActions action)
-        {
-            NDalicPINVOKE.Animation_SetEndAction(swigCPtr, (int)action);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation.EndActions GetEndAction()
-        {
-            Animation.EndActions ret = (Animation.EndActions)NDalicPINVOKE.Animation_GetEndAction(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetDisconnectAction(Animation.EndActions disconnectAction)
-        {
-            NDalicPINVOKE.Animation_SetDisconnectAction(swigCPtr, (int)disconnectAction);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation.EndActions GetDisconnectAction()
-        {
-            Animation.EndActions ret = (Animation.EndActions)NDalicPINVOKE.Animation_GetDisconnectAction(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetDefaultAlphaFunction(AlphaFunction alpha)
-        {
-            NDalicPINVOKE.Animation_SetDefaultAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal AlphaFunction GetDefaultAlphaFunction()
-        {
-            AlphaFunction ret = new AlphaFunction(NDalicPINVOKE.Animation_GetDefaultAlphaFunction(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetCurrentProgress(float progress)
-        {
-            NDalicPINVOKE.Animation_SetCurrentProgress(swigCPtr, progress);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal float GetCurrentProgress()
-        {
-            float ret = NDalicPINVOKE.Animation_GetCurrentProgress(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetSpeedFactor(float factor)
-        {
-            NDalicPINVOKE.Animation_SetSpeedFactor(swigCPtr, factor);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal float GetSpeedFactor()
-        {
-            float ret = NDalicPINVOKE.Animation_GetSpeedFactor(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetPlayRange(Vector2 range)
-        {
-            NDalicPINVOKE.Animation_SetPlayRange(swigCPtr, Vector2.getCPtr(range));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Vector2 GetPlayRange()
-        {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Animation_GetPlayRange(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private static bool? disableAnimation = null;
-        private bool DisableAnimation
-        {
-            get
-            {
-                if (disableAnimation.HasValue == false)
-                {
-                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
-                    if (type == "Entry")
-                        disableAnimation = true;
-                    else
-                        disableAnimation = false;
-                }
-                return disableAnimation.Value;
-            }
         }
 
         /// <summary>
@@ -895,7 +862,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
-            NDalicPINVOKE.Animation_Play(swigCPtr);
+            Interop.Animation.Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (DisableAnimation == true)
@@ -911,7 +878,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void PlayFrom(float progress)
         {
-            NDalicPINVOKE.Animation_PlayFrom(swigCPtr, progress);
+            Interop.Animation.PlayFrom(swigCPtr, progress);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -924,7 +891,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void PlayAfter(int delayMilliseconds)
         {
-            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
+            Interop.Animation.PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -934,15 +901,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
-            NDalicPINVOKE.Animation_Pause(swigCPtr);
+            Interop.Animation.Pause(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation.States GetState()
-        {
-            Animation.States ret = (Animation.States)NDalicPINVOKE.Animation_GetState(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -951,7 +911,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
-            NDalicPINVOKE.Animation_Stop(swigCPtr);
+            Interop.Animation.Stop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -962,213 +922,525 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
-            NDalicPINVOKE.Animation_Clear(swigCPtr);
+            Interop.Animation.Clear(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal object ConvertTo(object value, Type toType)
+        {
+            Func<object> getConverter = () =>
+            {
+                string converterTypeName = GetTypeConverterTypeName(toType.GetTypeInfo().CustomAttributes);
+                if (converterTypeName == null)
+                    return null;
+
+                Type convertertype = Type.GetType(converterTypeName);
+                return Activator.CreateInstance(convertertype);
+            };
+
+            return ConvertTo(value, toType, getConverter);
+        }
+
+        internal object ConvertTo(object value, Type toType, Func<object> getConverter)
+        {
+            if (value == null)
+                return null;
+
+            var str = value as string;
+            if (str != null)
+            {
+                //If there's a [TypeConverter], use it
+                object converter = getConverter?.Invoke();
+                var xfTypeConverter = converter as Tizen.NUI.Binding.TypeConverter;
+                if (xfTypeConverter != null)
+                    return value = xfTypeConverter.ConvertFromInvariantString(str);
+                var converterType = converter?.GetType();
+                if (converterType != null)
+                {
+                    var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
+                        new[] { typeof(string) });
+                    if (convertFromStringInvariant != null)
+                        return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
+                }
+
+                //If the type is nullable, as the value is not null, it's safe to assume we want the built-in conversion
+                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    toType = Nullable.GetUnderlyingType(toType);
+
+                //Obvious Built-in conversions
+                if (toType.GetTypeInfo().IsEnum)
+                    return Enum.Parse(toType, str, true);
+                if (toType == typeof(SByte))
+                    return SByte.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Int16))
+                    return Int16.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Int32))
+                    return Int32.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Int64))
+                    return Int64.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Byte))
+                    return Byte.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(UInt16))
+                    return UInt16.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(UInt32))
+                    return UInt32.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(UInt64))
+                    return UInt64.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Single))
+                    return Single.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Double))
+                    return Double.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Boolean))
+                    return Boolean.Parse(str);
+                if (toType == typeof(TimeSpan))
+                    return TimeSpan.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(DateTime))
+                    return DateTime.Parse(str, CultureInfo.InvariantCulture);
+                if (toType == typeof(Char))
+                {
+                    char c = '\0';
+                    _ = Char.TryParse(str, out c);
+                    return c;
+                }
+                if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))
+                    return str.Substring(2);
+                if (toType == typeof(String))
+                    return value;
+                if (toType == typeof(Decimal))
+                    return Decimal.Parse(str, CultureInfo.InvariantCulture);
+            }
+
+            //if the value is not assignable and there's an implicit conversion, convert
+            if (value != null && !toType.IsAssignableFrom(value.GetType()))
+            {
+                var opImplicit = GetImplicitConversionOperator(value.GetType(), value.GetType(), toType)
+                                 ?? GetImplicitConversionOperator(toType, value.GetType(), toType);
+                //var opImplicit = value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
+                //                ?? toType.GetImplicitConversionOperator(fromType: value.GetType(), toType: toType);
+
+                if (opImplicit != null)
+                {
+                    value = opImplicit.Invoke(null, new[] { value });
+                    return value;
+                }
+            }
+
+            return value;
+        }
+
+        internal string GetTypeConverterTypeName(IEnumerable<CustomAttributeData> attributes)
+        {
+            var converterAttribute =
+                attributes.FirstOrDefault(cad => Tizen.NUI.Binding.TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
+            if (converterAttribute == null)
+                return null;
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
+                return (string)converterAttribute.ConstructorArguments[0].Value;
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(Type))
+                return ((Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
+            return null;
+        }
+
+        internal MethodInfo GetImplicitConversionOperator(Type onType, Type fromType, Type toType)
+        {
+#if NETSTANDARD1_0
+            var mi = onType.GetRuntimeMethod("op_Implicit", new[] { fromType });
+#else
+            var bindingFlags = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+            var mi = onType.GetMethod("op_Implicit", bindingFlags, null, new[] { fromType }, null);
+#endif
+            if (mi == null) return null;
+            if (!mi.IsSpecialName) return null;
+            if (!mi.IsPublic) return null;
+            if (!mi.IsStatic) return null;
+            if (!toType.IsAssignableFrom(mi.ReturnType)) return null;
+
+            return mi;
+        }
+
+        internal Animation(float durationSeconds) : this(Interop.Animation.New(durationSeconds), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        internal Animation(Animation handle) : this(Interop.Animation.NewAnimation(Animation.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Animation Assign(Animation rhs)
+        {
+            Animation ret = new Animation(Interop.Animation.Assign(swigCPtr, Animation.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetDuration(float seconds)
+        {
+            Interop.Animation.SetDuration(swigCPtr, seconds);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetDuration()
+        {
+            float ret = Interop.Animation.GetDuration(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetLooping(bool looping)
+        {
+            Interop.Animation.SetLooping(swigCPtr, looping);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetLoopCount(int count)
+        {
+            Interop.Animation.SetLoopCount(swigCPtr, count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal int GetLoopCount()
+        {
+            int ret = Interop.Animation.GetLoopCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal int GetCurrentLoop()
+        {
+            int ret = Interop.Animation.GetCurrentLoop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal bool IsLooping()
+        {
+            bool ret = Interop.Animation.IsLooping(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetEndAction(Animation.EndActions action)
+        {
+            Interop.Animation.SetEndAction(swigCPtr, (int)action);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Animation.EndActions GetEndAction()
+        {
+            Animation.EndActions ret = (Animation.EndActions)Interop.Animation.GetEndAction(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetDisconnectAction(Animation.EndActions disconnectAction)
+        {
+            Interop.Animation.SetDisconnectAction(swigCPtr, (int)disconnectAction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Animation.EndActions GetDisconnectAction()
+        {
+            Animation.EndActions ret = (Animation.EndActions)Interop.Animation.GetDisconnectAction(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetDefaultAlphaFunction(AlphaFunction alpha)
+        {
+            Interop.Animation.SetDefaultAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal AlphaFunction GetDefaultAlphaFunction()
+        {
+            AlphaFunction ret = new AlphaFunction(Interop.Animation.GetDefaultAlphaFunction(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetCurrentProgress(float progress)
+        {
+            Interop.Animation.SetCurrentProgress(swigCPtr, progress);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetCurrentProgress()
+        {
+            float ret = Interop.Animation.GetCurrentProgress(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetSpeedFactor(float factor)
+        {
+            Interop.Animation.SetSpeedFactor(swigCPtr, factor);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetSpeedFactor()
+        {
+            float ret = Interop.Animation.GetSpeedFactor(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetPlayRange(Vector2 range)
+        {
+            Interop.Animation.SetPlayRange(swigCPtr, Vector2.getCPtr(range));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Vector2 GetPlayRange()
+        {
+            Vector2 ret = new Vector2(Interop.Animation.GetPlayRange(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Animation.States GetState()
+        {
+            Animation.States ret = (Animation.States)Interop.Animation.GetState(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal AnimationSignal FinishedSignal()
         {
-            AnimationSignal ret = new AnimationSignal(NDalicPINVOKE.Animation_FinishedSignal(swigCPtr), false);
+            AnimationSignal ret = new AnimationSignal(Interop.Animation.FinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal AnimationSignal ProgressReachedSignal()
         {
-            AnimationSignal ret = new AnimationSignal(NDalicPINVOKE.Animation_ProgressReachedSignal(swigCPtr), false);
+            AnimationSignal ret = new AnimationSignal(Interop.Animation.ProgressReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue)
         {
-            NDalicPINVOKE.Animation_AnimateBy__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
+            Interop.Animation.AnimateBy(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha)
         {
-            NDalicPINVOKE.Animation_AnimateBy__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
+            Interop.Animation.AnimateByAlphaFunction(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateBy__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateByTimePeriod(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateBy__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateBy(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue)
         {
-            NDalicPINVOKE.Animation_AnimateTo__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
+            Interop.Animation.AnimateTo(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha)
         {
-            NDalicPINVOKE.Animation_AnimateTo__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
+            Interop.Animation.AnimateToAlphaFunction(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateTo__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateToTimePeriod(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateTo__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateTo(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_0(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
+            Interop.Animation.AnimateBetween(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, Animation.Interpolation interpolation)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_1(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
+            Interop.Animation.AnimateBetween(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_2(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
+            Interop.Animation.AnimateBetweenAlphaFunction(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, Animation.Interpolation interpolation)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_3(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
+            Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_4(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateBetweenTimePeriod(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period, Animation.Interpolation interpolation)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_5(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
+            Interop.Animation.AnimateBetweenTimePeriodInterpolation(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_6(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateBetween(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period, Animation.Interpolation interpolation)
         {
-            NDalicPINVOKE.Animation_AnimateBetween__SWIG_7(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
+            Interop.Animation.AnimateBetween(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_0(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward));
+            Interop.Animation.Animate(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_1(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
+            Interop.Animation.AnimateAlphaFunction(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_2(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
+            Interop.Animation.AnimateTimePeriod(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
-            NDalicPINVOKE.Animation_Animate__SWIG_3(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            Interop.Animation.Animate(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Show(View view, float delaySeconds)
         {
-            NDalicPINVOKE.Animation_Show(swigCPtr, View.getCPtr(view), delaySeconds);
+            Interop.Animation.Show(swigCPtr, View.getCPtr(view), delaySeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Hide(View view, float delaySeconds)
         {
-            NDalicPINVOKE.Animation_Hide(swigCPtr, View.getCPtr(view), delaySeconds);
+            Interop.Animation.Hide(swigCPtr, View.getCPtr(view), delaySeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Enumeration for what to do when the animation ends, stopped, or destroyed.
+        /// To make animation instance be disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public enum EndActions
+        protected override void Dispose(DisposeTypes type)
         {
-            /// <summary>
-            /// When the animation ends, the animated property values are saved.
-            /// </summary>
-            Cancel,
-            /// <summary>
-            /// When the animation ends, the animated property values are forgotten.
-            /// </summary>
-            Discard,
-            /// <summary>
-            /// If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like cancel.
-            /// </summary>
-            StopFinal
+            if (disposed)
+            {
+                return;
+            }
+
+            if (_animationFinishedEventHandler != null)
+            {
+                AnimationSignal finishedSignal = FinishedSignal();
+                finishedSignal?.Disconnect(_finishedCallbackOfNative);
+                finishedSignal?.Dispose();
+                _animationFinishedEventHandler = null;
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+                AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                progressReachedSignal?.Disconnect(_animationProgressReachedEventCallback);
+                progressReachedSignal?.Dispose();
+                _animationProgressReachedEventCallback = null;
+            }
+
+            base.Dispose(type);
         }
 
-        /// <summary>
-        /// Enumeration for what interpolation method to use on key-frame animations.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum Interpolation
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            /// <summary>
-            /// Values in between key frames are interpolated using a linear polynomial. (Default)
-            /// </summary>
-            Linear,
-            /// <summary>
-            /// Values in between key frames are interpolated using a cubic polynomial.
-            /// </summary>
-            Cubic
+            if (swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] Animation ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
+                return;
+            }
+            Interop.Animation.DeleteAnimation(swigCPtr);
         }
 
-        /// <summary>
-        /// Enumeration for what state the animation is in.
-        /// </summary>
-        /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
-        /// <since_tizen> 3 </since_tizen>
-        public enum States
+        private void OnFinished(IntPtr data)
         {
-            /// <summary>
-            /// The animation has stopped.
-            /// </summary>
-            Stopped,
-            /// <summary>
-            /// The animation is playing.
-            /// </summary>
-            Playing,
-            /// <summary>
-            /// The animation is paused.
-            /// </summary>
-            Paused
+            if (_animationFinishedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _animationFinishedEventHandler(this, null);
+            }
         }
 
+        private void OnProgressReached(IntPtr data)
+        {
+            if (_animationProgressReachedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _animationProgressReachedEventHandler(this, null);
+            }
+        }
+
+        private float MilliSecondsToSeconds(int millisec)
+        {
+            return (float)millisec / 1000.0f;
+        }
+
+        private int SecondsToMilliSeconds(float sec)
+        {
+            return (int)(sec * 1000);
+        }
+
+        private object AvoidFloatPropertyHasIntegerValue(View target, Property property, object value)
+        {
+            PropertyType propertyType = target.GetPropertyType(property.propertyIndex);
+            if (propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = value.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)value;
+                    value = (float)num;
+                }
+            }
+            return value;
+        }
     }
-
 }

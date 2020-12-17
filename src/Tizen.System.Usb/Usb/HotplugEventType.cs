@@ -17,17 +17,17 @@
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Enumeration of hot plugged event type for USB devices.
+    /// Enumeration for the Hot Plugged event type for USB devices.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum HotplugEventType
     {
         /// <summary>
-        /// USB device is attached
+        /// USB device is attached.
         /// </summary>
         Attach = Interop.HotplugEventType.Attach,
         /// <summary>
-        /// USB device is detached
+        /// USB device is detached.
         /// </summary>
         Detach = Interop.HotplugEventType.Detach,
     }

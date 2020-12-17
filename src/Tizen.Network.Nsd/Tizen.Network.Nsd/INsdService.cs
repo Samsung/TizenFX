@@ -19,37 +19,37 @@ using System;
 namespace Tizen.Network.Nsd
 {
     /// <summary>
-    /// This interface is used for managing local service registration using DNSSD/SSDP.
+    /// This interface is used for managing the local service registration using DNS-SD/SSDP.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public interface INsdService : IDisposable
     {
         /// <summary>
-        /// Registers the DNSSD/SSDP local service for publishing.
+        /// Registers the DNS-SD/SSDP local service for publishing.
         /// </summary>
         /// <remarks>
-        /// A service created locally must be passed.
+        /// A service that is created locally must be passed.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNS-SD/SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         void RegisterService();
 
         /// <summary>
-        /// Deregisters the DNSSD/SSDP local service.
+        /// Deregisters the DNS-SD/SSDP local service.
         /// </summary>
         /// <remarks>
-        /// A local service registered using RegisterService() must be passed.
+        /// A local service that is registered using RegisterService() must be passed.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNS-SD/SSDP is not supported.</exception>
         void DeregisterService();
     }
 }

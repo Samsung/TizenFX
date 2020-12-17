@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,171 +19,169 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     internal class NDalic
     {
         public static uint int_to_uint(int x)
         {
-            uint ret = NDalicPINVOKE.int_to_uint(x);
+            uint ret = Interop.NDalic.IntToUint(x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-
-        public static readonly int VISUAL_PROPERTY_TRANSFORM = NDalicManualPINVOKE.Visual_Property_TRANSFORM_get();
-        public static readonly int VISUAL_PROPERTY_PREMULTIPLIED_ALPHA = NDalicManualPINVOKE.Visual_Property_PREMULTIPLIED_ALPHA_get();
-        public static readonly int VISUAL_PROPERTY_MIX_COLOR = NDalicManualPINVOKE.Visual_Property_MIX_COLOR_get();
-        public static readonly int IMAGE_VISUAL_BORDER = NDalicManualPINVOKE.Image_Visual_BORDER_get();
+        public static readonly int VisualPropertyTransform = Interop.Visual.TransformGet();
+        public static readonly int VisualPropertyPremultipliedAlpha = Interop.Visual.PremultipliedAlphaGet();
+        public static readonly int VisualPropertyMixColor = Interop.Visual.MixColorGet();
+        public static readonly int ImageVisualBorder = Interop.Visual.ImageVisualBorderGet();
 
         public static void DaliAssertMessage(string location, string condition)
         {
-            NDalicPINVOKE.DaliAssertMessage(location, condition);
+            Interop.NDalic.DaliAssertMessage(location, condition);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static Vector2 Min(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Min__SWIG_0(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = new Vector2(Interop.NDalic.MinVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Max(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Max__SWIG_0(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = new Vector2(Interop.NDalic.MaxVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Clamp(Vector2 v, float min, float max)
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.Clamp__SWIG_0(Vector2.getCPtr(v), min, max), true);
+            Vector2 ret = new Vector2(Interop.NDalic.ClampVector2(Vector2.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Min(Vector3 a, Vector3 b)
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Min__SWIG_1(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
+            Vector3 ret = new Vector3(Interop.NDalic.MinVector3(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Max(Vector3 a, Vector3 b)
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Max__SWIG_1(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
+            Vector3 ret = new Vector3(Interop.NDalic.MaxVector3(Vector3.getCPtr(a), Vector3.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector3 Clamp(Vector3 v, float min, float max)
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Clamp__SWIG_1(Vector3.getCPtr(v), min, max), true);
+            Vector3 ret = new Vector3(Interop.NDalic.ClampVector3(Vector3.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Min(Vector4 a, Vector4 b)
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.Min__SWIG_2(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
+            Vector4 ret = new Vector4(Interop.NDalic.MinVector4(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Max(Vector4 a, Vector4 b)
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.Max__SWIG_2(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
+            Vector4 ret = new Vector4(Interop.NDalic.MaxVector4(Vector4.getCPtr(a), Vector4.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector4 Clamp(Vector4 v, float min, float max)
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.Clamp__SWIG_2(Vector4.getCPtr(v), min, max), true);
+            Vector4 ret = new Vector4(Interop.NDalic.ClampVector4(Vector4.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool EqualTo(AngleAxis lhs, AngleAxis rhs)
         {
-            bool ret = NDalicPINVOKE.EqualTo__SWIG_9(AngleAxis.getCPtr(lhs), AngleAxis.getCPtr(rhs));
+            bool ret = Interop.NDalic.EqualToSwig9(AngleAxis.getCPtr(lhs), AngleAxis.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static uint NextPowerOfTwo(uint i)
         {
-            uint ret = NDalicPINVOKE.NextPowerOfTwo(i);
+            uint ret = Interop.NDalic.NextPowerOfTwo(i);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool IsPowerOfTwo(uint i)
         {
-            bool ret = NDalicPINVOKE.IsPowerOfTwo(i);
+            bool ret = Interop.NDalic.IsPowerOfTwo(i);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static float GetRangedEpsilon(float a, float b)
         {
-            float ret = NDalicPINVOKE.GetRangedEpsilon(a, b);
+            float ret = Interop.NDalic.GetRangedEpsilon(a, b);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool EqualsZero(float value)
         {
-            bool ret = NDalicPINVOKE.EqualsZero(value);
+            bool ret = Interop.NDalic.EqualsZero(value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool Equals(float a, float b)
         {
-            bool ret = NDalicPINVOKE.Equals__SWIG_0(a, b);
+            bool ret = Interop.NDalic.Equals(a, b);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static bool Equals(float a, float b, float epsilon)
         {
-            bool ret = NDalicPINVOKE.Equals__SWIG_1(a, b, epsilon);
+            bool ret = Interop.NDalic.Equals(a, b, epsilon);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static float Round(float value, int pos)
         {
-            float ret = NDalicPINVOKE.Round(value, pos);
+            float ret = Interop.NDalic.Round(value, pos);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static float WrapInDomain(float x, float start, float end)
         {
-            float ret = NDalicPINVOKE.WrapInDomain(x, start, end);
+            float ret = Interop.NDalic.WrapInDomain(x, start, end);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static float ShortestDistanceInDomain(float a, float b, float start, float end)
         {
-            float ret = NDalicPINVOKE.ShortestDistanceInDomain(a, b, start, end);
+            float ret = Interop.NDalic.ShortestDistanceInDomain(a, b, start, end);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static string GetName(PropertyType type)
         {
-            string ret = NDalicPINVOKE.GetName((int)type);
+            string ret = Interop.NDalic.GetName((int)type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static BaseObject GetImplementation(BaseHandle handle)
+        public static BaseObject c(BaseHandle handle)
         {
-            BaseObject ret = new BaseObject(NDalicPINVOKE.GetImplementation(BaseHandle.getCPtr(handle)), false);
+            BaseObject ret = new BaseObject(Interop.NDalic.GetImplementation(BaseHandle.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -192,7 +190,7 @@ namespace Tizen.NUI
         {
             get
             {
-                int ret = NDalicPINVOKE.WEIGHT_get();
+                int ret = Interop.NDalic.WeightGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -202,7 +200,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(f);
             {
-                bool ret = NDalicPINVOKE.RegisterType(name, SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip));
+                bool ret = Interop.NDalic.RegisterType(name, SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -213,305 +211,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(setFunc);
             System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(getFunc);
             {
-                bool ret = NDalicPINVOKE.RegisterProperty(objectName, name, index, (int)type, new System.Runtime.InteropServices.HandleRef(null, ip), new System.Runtime.InteropServices.HandleRef(null, ip2));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float ParentOriginTop
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginTop_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float ParentOriginBottom
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginBottom_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float ParentOriginLeft
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginLeft_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float ParentOriginRight
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginRight_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float ParentOriginMiddle
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.ParentOriginMiddle_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginTopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginTopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginTopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginCenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginCenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginBottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginBottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 ParentOriginBottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float AnchorPointTop
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.AnchorPointTop_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float AnchorPointBottom
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.AnchorPointBottom_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float AnchorPointLeft
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.AnchorPointLeft_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float AnchorPointRight
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.AnchorPointRight_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static float AnchorPointMiddle
-        {
-            get
-            {
-                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointTopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointTopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointTopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointCenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointCenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointBottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointBottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public static Vector3 AnchorPointBottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
+                bool ret = Interop.NDalic.RegisterProperty(objectName, name, index, (int)type, new System.Runtime.InteropServices.HandleRef(null, ip), new System.Runtime.InteropServices.HandleRef(null, ip2));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -521,7 +221,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.BLACK_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlackGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -532,7 +232,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.WHITE_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -543,7 +243,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.RED_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -554,7 +254,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.GREEN_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -565,7 +265,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.BLUE_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.BlueGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -576,7 +276,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.YELLOW_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -587,7 +287,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.MAGENTA_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -598,7 +298,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.CYAN_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.CyanGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -609,7 +309,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TRANSPARENT_get();
+                global::System.IntPtr cPtr = Interop.NDalicColor.TransparentGet();
                 Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -620,7 +320,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_0_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon0Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -630,7 +330,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_1_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon1Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -640,7 +340,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_10_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon10Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -650,7 +350,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_100_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon100Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -660,7 +360,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_1000_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon1000Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -670,7 +370,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.MACHINE_EPSILON_10000_get();
+                float ret = Interop.NDalicMachine.MachineEpsilon10000Get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -680,7 +380,7 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)NDalicPINVOKE.FIRST_VALID_PIXEL_FORMAT_get();
+                PixelFormat ret = (PixelFormat)Interop.NDalic.FirstValidPixelFormatGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -690,7 +390,7 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)NDalicPINVOKE.LAST_VALID_PIXEL_FORMAT_get();
+                PixelFormat ret = (PixelFormat)Interop.NDalic.LastValidPixelFormatGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -698,21 +398,21 @@ namespace Tizen.NUI
 
         internal static bool HasAlpha(PixelFormat pixelformat)
         {
-            bool ret = NDalicPINVOKE.HasAlpha((int)pixelformat);
+            bool ret = Interop.NDalic.HasAlpha((int)pixelformat);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static uint GetBytesPerPixel(PixelFormat pixelFormat)
         {
-            uint ret = NDalicPINVOKE.GetBytesPerPixel((int)pixelFormat);
+            uint ret = Interop.NDalic.GetBytesPerPixel((int)pixelFormat);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static void GetAlphaOffsetAndMask(PixelFormat pixelFormat, SWIGTYPE_p_int byteOffset, SWIGTYPE_p_int bitMask)
         {
-            NDalicPINVOKE.GetAlphaOffsetAndMask((int)pixelFormat, SWIGTYPE_p_int.getCPtr(byteOffset), SWIGTYPE_p_int.getCPtr(bitMask));
+            Interop.NDalic.GetAlphaOffsetAndMask((int)pixelFormat, SWIGTYPE_p_int.getCPtr(byteOffset), SWIGTYPE_p_int.getCPtr(bitMask));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -720,7 +420,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.POSITIVE_X_get();
+                uint ret = Interop.NDalicXYZ.PositiveXGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -730,7 +430,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.NEGATIVE_X_get();
+                uint ret = Interop.NDalicXYZ.NegativeXGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -740,7 +440,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.POSITIVE_Y_get();
+                uint ret = Interop.NDalicXYZ.PositiveYGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -750,7 +450,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.NEGATIVE_Y_get();
+                uint ret = Interop.NDalicXYZ.NegativeYGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -760,7 +460,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.POSITIVE_Z_get();
+                uint ret = Interop.NDalicXYZ.PositiveZGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -770,7 +470,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.NEGATIVE_Z_get();
+                uint ret = Interop.NDalicXYZ.NegativeZGet();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -778,167 +478,167 @@ namespace Tizen.NUI
 
         private static string GetDeviceName(Key keyEvent)
         {
-            string ret = NDalicPINVOKE.GetDeviceName(Key.getCPtr(keyEvent));
+            string ret = Interop.NDalic.GetDeviceName(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static DeviceClassType GetDeviceClass(Key keyEvent)
         {
-            DeviceClassType ret = (DeviceClassType)NDalicPINVOKE.GetDeviceClass(Key.getCPtr(keyEvent));
+            DeviceClassType ret = (DeviceClassType)Interop.NDalic.GetDeviceClass(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static void Raise(View view)
         {
-            NDalicPINVOKE.Raise(View.getCPtr(view));
+            Interop.NDalic.Raise(View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void Lower(View view)
         {
-            NDalicPINVOKE.Lower(View.getCPtr(view));
+            Interop.NDalic.Lower(View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void RaiseToTop(View view)
         {
-            NDalicPINVOKE.RaiseToTop(View.getCPtr(view));
+            Interop.NDalic.RaiseToTop(View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void LowerToBottom(View view)
         {
-            NDalicPINVOKE.LowerToBottom(View.getCPtr(view));
+            Interop.NDalic.LowerToBottom(View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void RaiseAbove(View view, View target)
         {
-            NDalicPINVOKE.RaiseAbove(View.getCPtr(view), View.getCPtr(target));
+            Interop.NDalic.RaiseAbove(View.getCPtr(view), View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static void LowerBelow(View view, View target)
         {
-            NDalicPINVOKE.LowerBelow(View.getCPtr(view), View.getCPtr(target));
+            Interop.NDalic.LowerBelow(View.getCPtr(view), View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static ViewImpl GetImplementation(View handle)
         {
-            ViewImpl ret = new ViewImpl(NDalicPINVOKE.GetImplementation__SWIG_0(View.getCPtr(handle)), false);
+            ViewImpl ret = new ViewImpl(Interop.NDalic.GetImplementationControl(View.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t NewItemLayout(DefaultItemLayoutType type)
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(NDalicPINVOKE.NewItemLayout((int)type), true);
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.NDalic.NewItemLayout((int)type));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static void SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager keyboardFocusManager, CustomAlgorithmInterface arg1)
         {
-            NDalicPINVOKE.SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager.getCPtr(keyboardFocusManager), CustomAlgorithmInterface.getCPtr(arg1));
+            Interop.NDalic.SetCustomAlgorithm(SWIGTYPE_p_KeyboardFocusManager.getCPtr(keyboardFocusManager), CustomAlgorithmInterface.getCPtr(arg1));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static readonly int VISUAL_PROPERTY_TYPE = NDalicPINVOKE.VISUAL_PROPERTY_TYPE_get();
-        internal static readonly int VISUAL_PROPERTY_SHADER = NDalicPINVOKE.VISUAL_PROPERTY_SHADER_get();
+        internal static readonly int VisualPropertyType = Interop.NDalicVisual.VisualPropertyTypeGet();
+        internal static readonly int VisualPropertyShader = Interop.NDalicVisual.VisualPropertyShaderGet();
 
-        internal static readonly int VISUAL_SHADER_VERTEX = NDalicPINVOKE.VISUAL_SHADER_VERTEX_get();
-        internal static readonly int VISUAL_SHADER_FRAGMENT = NDalicPINVOKE.VISUAL_SHADER_FRAGMENT_get();
-        internal static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_X = NDalicPINVOKE.VISUAL_SHADER_SUBDIVIDE_GRID_X_get();
-        internal static readonly int VISUAL_SHADER_SUBDIVIDE_GRID_Y = NDalicPINVOKE.VISUAL_SHADER_SUBDIVIDE_GRID_Y_get();
-        internal static readonly int VISUAL_SHADER_HINTS = NDalicPINVOKE.VISUAL_SHADER_HINTS_get();
+        internal static readonly int VisualShaderVertex = Interop.NDalicVisual.VisualShaderVertexGet();
+        internal static readonly int VisualShaderFragment = Interop.NDalicVisual.VisualShaderFragmentGet();
+        internal static readonly int VisualShaderSubdivideGridX = Interop.NDalicVisual.VisualShaderSubdivideGridXGet();
+        internal static readonly int VisualShaderSubdivideGridY = Interop.NDalicVisual.VisualShaderSubdivideGridYGet();
+        internal static readonly int VisualShaderHints = Interop.NDalicVisual.VisualShaderHintsGet();
 
-        internal static readonly int BORDER_VISUAL_COLOR = NDalicPINVOKE.BORDER_VISUAL_COLOR_get();
-        internal static readonly int BORDER_VISUAL_SIZE = NDalicPINVOKE.BORDER_VISUAL_SIZE_get();
-        internal static readonly int BORDER_VISUAL_ANTI_ALIASING = NDalicPINVOKE.BORDER_VISUAL_ANTI_ALIASING_get();
+        internal static readonly int BorderVisualColor = Interop.NDalicBorderVisual.ColorGet();
+        internal static readonly int BorderVisualSize = Interop.NDalicBorderVisual.SizeGet();
+        internal static readonly int BorderVisualAntiAliasing = Interop.NDalicBorderVisual.AntiAliasingGet();
 
-        internal static readonly int COLOR_VISUAL_MIX_COLOR = NDalicPINVOKE.COLOR_VISUAL_MIX_COLOR_get();
+        internal static readonly int ColorVisualMixColor = Interop.NDalicColorVisual.ColorVisualMixColorGet();
 
-        internal static readonly int GRADIENT_VISUAL_START_POSITION = NDalicPINVOKE.GRADIENT_VISUAL_START_POSITION_get();
-        internal static readonly int GRADIENT_VISUAL_END_POSITION = NDalicPINVOKE.GRADIENT_VISUAL_END_POSITION_get();
-        internal static readonly int GRADIENT_VISUAL_CENTER = NDalicPINVOKE.GRADIENT_VISUAL_CENTER_get();
-        internal static readonly int GRADIENT_VISUAL_RADIUS = NDalicPINVOKE.GRADIENT_VISUAL_RADIUS_get();
-        internal static readonly int GRADIENT_VISUAL_STOP_OFFSET = NDalicPINVOKE.GRADIENT_VISUAL_STOP_OFFSET_get();
-        internal static readonly int GRADIENT_VISUAL_STOP_COLOR = NDalicPINVOKE.GRADIENT_VISUAL_STOP_COLOR_get();
-        internal static readonly int GRADIENT_VISUAL_UNITS = NDalicPINVOKE.GRADIENT_VISUAL_UNITS_get();
-        internal static readonly int GRADIENT_VISUAL_SPREAD_METHOD = NDalicPINVOKE.GRADIENT_VISUAL_SPREAD_METHOD_get();
+        internal static readonly int GradientVisualStartPosition = Interop.NDalicGradientVisual.GradientVisualStartPositionGet();
+        internal static readonly int GradientVisualEndPosition = Interop.NDalicGradientVisual.GradientVisualEndPositionGet();
+        internal static readonly int GradientVisualCenter = Interop.NDalicGradientVisual.GradientVisualCenterGet();
+        internal static readonly int GradientVisualRadius = Interop.NDalicGradientVisual.GradientVisualRadiusGet();
+        internal static readonly int GradientVisualStopOffset = Interop.NDalicGradientVisual.GradientVisualStopOffsetGet();
+        internal static readonly int GradientVisualStopColor = Interop.NDalicGradientVisual.GradientVisualStopColorGet();
+        internal static readonly int GradientVisualUnits = Interop.NDalicGradientVisual.GradientVisualUnitsGet();
+        internal static readonly int GradientVisualSpreadMethod = Interop.NDalicGradientVisual.GradientVisualSpreadMethodGet();
 
-        internal static readonly int IMAGE_VISUAL_URL = NDalicPINVOKE.IMAGE_VISUAL_URL_get();
-        internal static readonly int IMAGE_VISUAL_ALPHA_MASK_URL = NDalicPINVOKE.IMAGE_VISUAL_ALPHA_MASK_URL_get();
-        internal static readonly int IMAGE_VISUAL_FITTING_MODE = NDalicPINVOKE.IMAGE_VISUAL_FITTING_MODE_get();
-        internal static readonly int IMAGE_VISUAL_SAMPLING_MODE = NDalicPINVOKE.IMAGE_VISUAL_SAMPLING_MODE_get();
-        internal static readonly int IMAGE_VISUAL_DESIRED_WIDTH = NDalicPINVOKE.IMAGE_VISUAL_DESIRED_WIDTH_get();
-        internal static readonly int IMAGE_VISUAL_DESIRED_HEIGHT = NDalicPINVOKE.IMAGE_VISUAL_DESIRED_HEIGHT_get();
-        internal static readonly int IMAGE_VISUAL_SYNCHRONOUS_LOADING = NDalicPINVOKE.IMAGE_VISUAL_SYNCHRONOUS_LOADING_get();
-        internal static readonly int IMAGE_VISUAL_BORDER_ONLY = NDalicPINVOKE.IMAGE_VISUAL_BORDER_ONLY_get();
-        internal static readonly int IMAGE_VISUAL_PIXEL_AREA = NDalicPINVOKE.IMAGE_VISUAL_PIXEL_AREA_get();
-        internal static readonly int IMAGE_VISUAL_WRAP_MODE_U = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_U_get();
-        internal static readonly int IMAGE_VISUAL_WRAP_MODE_V = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_V_get();
-        internal static readonly int IMAGE_VISUAL_BATCH_SIZE = NDalicPINVOKE.IMAGE_VISUAL_BATCH_SIZE_get();
-        internal static readonly int IMAGE_VISUAL_CACHE_SIZE = NDalicPINVOKE.IMAGE_VISUAL_CACHE_SIZE_get();
-        internal static readonly int IMAGE_VISUAL_FRAME_DELAY = NDalicPINVOKE.IMAGE_VISUAL_FRAME_DELAY_get();
-        internal static readonly int IMAGE_VISUAL_MASK_CONTENT_SCALE = NDalicPINVOKE.IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
-        internal static readonly int IMAGE_VISUAL_CROP_TO_MASK = NDalicPINVOKE.IMAGE_VISUAL_CROP_TO_MASK_get();
-        internal static readonly int IMAGE_VISUAL_RELEASE_POLICY = NDalicPINVOKE.IMAGE_VISUAL_RELEASE_POLICY_get();
-        internal static readonly int IMAGE_VISUAL_LOAD_POLICY = NDalicPINVOKE.IMAGE_VISUAL_LOAD_POLICY_get();
-        internal static readonly int IMAGE_VISUAL_ORIENTATION_CORRECTION = NDalicPINVOKE.IMAGE_VISUAL_ORIENTATION_CORRECTION_get();
-        internal static readonly int IMAGE_VISUAL_AUXILIARY_IMAGE_URL = NDalicPINVOKE.IMAGE_VISUAL_AUXILIARY_IMAGE_URL_get();
-        internal static readonly int IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA = NDalicPINVOKE.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA_get();
-        internal static readonly int MESH_VISUAL_OBJECT_URL = NDalicPINVOKE.MESH_VISUAL_OBJECT_URL_get();
-        internal static readonly int MESH_VISUAL_MATERIAL_URL = NDalicPINVOKE.MESH_VISUAL_MATERIAL_URL_get();
-        internal static readonly int MESH_VISUAL_TEXTURES_PATH = NDalicPINVOKE.MESH_VISUAL_TEXTURES_PATH_get();
-        internal static readonly int MESH_VISUAL_SHADING_MODE = NDalicPINVOKE.MESH_VISUAL_SHADING_MODE_get();
-        internal static readonly int MESH_VISUAL_USE_MIPMAPPING = NDalicPINVOKE.MESH_VISUAL_USE_MIPMAPPING_get();
-        internal static readonly int MESH_VISUAL_USE_SOFT_NORMALS = NDalicPINVOKE.MESH_VISUAL_USE_SOFT_NORMALS_get();
-        internal static readonly int MESH_VISUAL_LIGHT_POSITION = NDalicPINVOKE.MESH_VISUAL_LIGHT_POSITION_get();
+        internal static readonly int ImageVisualUrl = Interop.NDalicImageVisual.ImageVisualUrlGet();
+        internal static readonly int ImageVisualAlphaMaskUrl = Interop.NDalicImageVisual.ImageVisualAlphaMaskUrlGet();
+        internal static readonly int ImageVisualFittingMode = Interop.NDalicImageVisual.ImageVisualFittingModeGet();
+        internal static readonly int ImageVisualSamplingMode = Interop.NDalicImageVisual.ImageVisualSamplingModeGet();
+        internal static readonly int ImageVisualDesiredWidth = Interop.NDalicImageVisual.ImageVisualDesiredWidthGet();
+        internal static readonly int ImageVisualDesiredHeight = Interop.NDalicImageVisual.ImageVisualDesiredHeightGet();
+        internal static readonly int ImageVisualSynchronousLoading = Interop.NDalicImageVisual.ImageVisualSynchronousLoadingGet();
+        internal static readonly int ImageVisualBorderOnly = Interop.NDalicImageVisual.ImageVisualBorderOnlyGet();
+        internal static readonly int ImageVisualPixelArea = Interop.NDalicImageVisual.ImageVisualPixelAreaGet();
+        internal static readonly int ImageVisualWrapModeU = Interop.NDalicImageVisual.ImageVisualWrapModeUGet();
+        internal static readonly int ImageVisualWrapModeV = Interop.NDalicImageVisual.ImageVisualWrapModeVGet();
+        internal static readonly int ImageVisualBatchSize = Interop.NDalicImageVisual.ImageVisualBatchSizeGet();
+        internal static readonly int ImageVisualCacheSize = Interop.NDalicImageVisual.ImageVisualCacheSizeGet();
+        internal static readonly int ImageVisualFrameDelay = Interop.NDalicImageVisual.ImageVisualFrameDelayGet();
+        internal static readonly int ImageVisualLoopCount = Interop.NDalicImageVisual.ImageVisualLoopCountGet();
+        internal static readonly int ImageVisualMaskContentScale = Interop.NDalicImageVisual.ImageVisualMaskContentScaleGet();
+        internal static readonly int ImageVisualCropToMask = Interop.NDalicImageVisual.ImageVisualCropToMaskGet();
+        internal static readonly int ImageVisualReleasePolicy = Interop.NDalicImageVisual.ImageVisualReleasePolicyGet();
+        internal static readonly int ImageVisualLoadPolicy = Interop.NDalicImageVisual.ImageVisualLoadPolicyGet();
+        internal static readonly int ImageVisualOrientationCorrection = Interop.NDalicImageVisual.ImageVisualOrientationCorrectionGet();
+        internal static readonly int ImageVisualAuxiliaryImageUrl = Interop.NDalicImageVisual.ImageVisualAuxiliaryImageUrlGet();
+        internal static readonly int ImageVisualAuxiliaryImageAlpha = Interop.NDalicImageVisual.ImageVisualAuxiliaryImageAlphaGet();
 
-        internal static readonly int PRIMITIVE_VISUAL_SHAPE = NDalicPINVOKE.PRIMITIVE_VISUAL_SHAPE_get();
-        internal static readonly int PRIMITIVE_VISUAL_MIX_COLOR = NDalicPINVOKE.PRIMITIVE_VISUAL_MIX_COLOR_get();
-        internal static readonly int PRIMITIVE_VISUAL_SLICES = NDalicPINVOKE.PRIMITIVE_VISUAL_SLICES_get();
-        internal static readonly int PRIMITIVE_VISUAL_STACKS = NDalicPINVOKE.PRIMITIVE_VISUAL_STACKS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_TOP_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_HEIGHT = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_HEIGHT_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_RADIUS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_RADIUS_get();
-        internal static readonly int PRIMITIVE_VISUAL_SCALE_DIMENSIONS = NDalicPINVOKE.PRIMITIVE_VISUAL_SCALE_DIMENSIONS_get();
-        internal static readonly int PRIMITIVE_VISUAL_BEVEL_PERCENTAGE = NDalicPINVOKE.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE_get();
-        internal static readonly int PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS = NDalicPINVOKE.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS_get();
-        internal static readonly int PRIMITIVE_VISUAL_LIGHT_POSITION = NDalicPINVOKE.PRIMITIVE_VISUAL_LIGHT_POSITION_get();
+        internal static readonly int MeshVisualObjectUrl = Interop.NDalicMeshVisual.MeshVisualObjectUrlGet();
+        internal static readonly int MeshVisualMaterialUrl = Interop.NDalicMeshVisual.MeshVisualMaterialUrlGet();
+        internal static readonly int MeshVisualTexturesPath = Interop.NDalicMeshVisual.MeshVisualTexturesPathGet();
+        internal static readonly int MeshVisualShadingMode = Interop.NDalicMeshVisual.MeshVisualShadingModeGet();
+        internal static readonly int MeshVisualUseMipmapping = Interop.NDalicMeshVisual.MeshVisualUseMipmappingGet();
+        internal static readonly int MeshVisualUseSoftNormals = Interop.NDalicMeshVisual.MeshVisualUseSoftNormalsGet();
+        internal static readonly int MeshVisualLightPosition = Interop.NDalicMeshVisual.MeshVisualLightPositionGet();
 
-        internal static readonly int TEXT_VISUAL_TEXT = NDalicPINVOKE.TEXT_VISUAL_TEXT_get();
-        internal static readonly int TEXT_VISUAL_FONT_FAMILY = NDalicPINVOKE.TEXT_VISUAL_FONT_FAMILY_get();
-        internal static readonly int TEXT_VISUAL_FONT_STYLE = NDalicPINVOKE.TEXT_VISUAL_FONT_STYLE_get();
-        internal static readonly int TEXT_VISUAL_POINT_SIZE = NDalicPINVOKE.TEXT_VISUAL_POINT_SIZE_get();
-        internal static readonly int TEXT_VISUAL_MULTI_LINE = NDalicPINVOKE.TEXT_VISUAL_MULTI_LINE_get();
-        internal static readonly int TEXT_VISUAL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TEXT_VISUAL_HORIZONTAL_ALIGNMENT_get();
-        internal static readonly int TEXT_VISUAL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TEXT_VISUAL_VERTICAL_ALIGNMENT_get();
-        internal static readonly int TEXT_VISUAL_TEXT_COLOR = NDalicPINVOKE.TEXT_VISUAL_TEXT_COLOR_get();
-        internal static readonly int TEXT_VISUAL_ENABLE_MARKUP = NDalicPINVOKE.TEXT_VISUAL_ENABLE_MARKUP_get();
+        internal static readonly int PrimitiveVisualShape = Interop.NdalicPrimitive.PrimitiveVisualShapeGet();
+        internal static readonly int PrimitiveVisualMixColor = Interop.NdalicPrimitive.PrimitiveVisualMixColorGet();
+        internal static readonly int PrimitiveVisualSlices = Interop.NdalicPrimitive.PrimitiveVisualSlicesGet();
+        internal static readonly int PrimitiveVisualStacks = Interop.NdalicPrimitive.PrimitiveVisualStacksGet();
+        internal static readonly int PrimitiveVisualScaleTopRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleTopRadiusGet();
+        internal static readonly int PrimitiveVisualScaleBottomRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleBottomRadiusGet();
+        internal static readonly int PrimitiveVisualScaleHeight = Interop.NdalicPrimitive.PrimitiveVisualScaleHeightGet();
+        internal static readonly int PrimitiveVisualScaleRadius = Interop.NdalicPrimitive.PrimitiveVisualScaleRadiusGet();
+        internal static readonly int PrimitiveVisualScaleDimensions = Interop.NdalicPrimitive.PrimitiveVisualScaleDimensionsGet();
+        internal static readonly int PrimitiveVisualBevelPercentage = Interop.NdalicPrimitive.PrimitiveVisualBevelPercentageGet();
+        internal static readonly int PrimitiveVisualBevelSmoothness = Interop.NdalicPrimitive.PrimitiveVisualBevelSmoothnessGet();
+        internal static readonly int PrimitiveVisualLightPosition = Interop.NdalicPrimitive.PrimitiveVisualLightPositionGet();
 
-        internal static readonly int TOOLTIP_CONTENT = NDalicPINVOKE.TOOLTIP_CONTENT_get();
-        internal static readonly int TOOLTIP_LAYOUT = NDalicPINVOKE.TOOLTIP_LAYOUT_get();
-        internal static readonly int TOOLTIP_WAIT_TIME = NDalicPINVOKE.TOOLTIP_WAIT_TIME_get();
-        internal static readonly int TOOLTIP_BACKGROUND = NDalicPINVOKE.TOOLTIP_BACKGROUND_get();
-        internal static readonly int TOOLTIP_TAIL = NDalicPINVOKE.TOOLTIP_TAIL_get();
-        internal static readonly int TOOLTIP_POSITION = NDalicPINVOKE.TOOLTIP_POSITION_get();
-        internal static readonly int TOOLTIP_HOVER_POINT_OFFSET = NDalicPINVOKE.TOOLTIP_HOVER_POINT_OFFSET_get();
-        internal static readonly int TOOLTIP_MOVEMENT_THRESHOLD = NDalicPINVOKE.TOOLTIP_MOVEMENT_THRESHOLD_get();
-        internal static readonly int TOOLTIP_DISAPPEAR_ON_MOVEMENT = NDalicPINVOKE.TOOLTIP_DISAPPEAR_ON_MOVEMENT_get();
+        internal static readonly int TextVisualText = Interop.NDalicText.TextVisualTextGet();
+        internal static readonly int TextVisualFontFamily = Interop.NDalicText.TextVisualFontFamilyGet();
+        internal static readonly int TextVisualFontStyle = Interop.NDalicText.TextVisualFontStyleGet();
+        internal static readonly int TextVisualPointSize = Interop.NDalicText.TextVisualPointSizeGet();
+        internal static readonly int TextVisualMultiLine = Interop.NDalicText.TextVisualMultiLineGet();
+        internal static readonly int TextVisualHorizontalAlignment = Interop.NDalicText.TextVisualHorizontalAlignmentGet();
+        internal static readonly int TextVisualVerticalAlignment = Interop.NDalicText.TextVisualVerticalAlignmentGet();
+        internal static readonly int TextVisualTextColor = Interop.NDalicText.TextVisualTextColorGet();
+        internal static readonly int TextVisualEnableMarkup = Interop.NDalicText.TextVisualEnableMarkupGet();
 
-        internal static readonly int TOOLTIP_BACKGROUND_VISUAL = NDalicPINVOKE.TOOLTIP_BACKGROUND_VISUAL_get();
-        internal static readonly int TOOLTIP_BACKGROUND_BORDER = NDalicPINVOKE.TOOLTIP_BACKGROUND_BORDER_get();
+        internal static readonly int TooltipContent = Interop.NDalicToolTip.TooltipContentGet();
+        internal static readonly int TooltipLayout = Interop.NDalicToolTip.TooltipLayoutGet();
+        internal static readonly int TooltipWaitTime = Interop.NDalicToolTip.TooltipWaitTimeGet();
+        internal static readonly int TooltipBackground = Interop.NDalicToolTip.TooltipBackgroundGet();
+        internal static readonly int TooltipTail = Interop.NDalicToolTip.TooltipTailGet();
+        internal static readonly int TooltipPosition = Interop.NDalicToolTip.TooltipPositionGet();
+        internal static readonly int TooltipHoverPointOffset = Interop.NDalicToolTip.TooltipHoverPointOffsetGet();
+        internal static readonly int TooltipMovementThreshold = Interop.NDalicToolTip.TooltipMovementThresholdGet();
+        internal static readonly int TooltipDisappearOnMovement = Interop.NDalicToolTip.TooltipDisappearOnMovementGet();
 
-        internal static readonly int TOOLTIP_TAIL_VISIBILITY = NDalicPINVOKE.TOOLTIP_TAIL_VISIBILITY_get();
-        internal static readonly int TOOLTIP_TAIL_ABOVE_VISUAL = NDalicPINVOKE.TOOLTIP_TAIL_ABOVE_VISUAL_get();
-        internal static readonly int TOOLTIP_TAIL_BELOW_VISUAL = NDalicPINVOKE.TOOLTIP_TAIL_BELOW_VISUAL_get();
+        internal static readonly int TooltipBackgroundVisual = Interop.NDalicToolTip.TooltipBackgroundVisualGet();
+        internal static readonly int TooltipBackgroundBorder = Interop.NDalicToolTip.TooltipBackgroundBorderGet();
 
+        internal static readonly int TooltipTailVisibility = Interop.NDalicToolTip.TooltipTailVisibilityGet();
+        internal static readonly int TooltipTailAboveVisual = Interop.NDalicToolTip.TooltipTailAboveVisualGet();
+        internal static readonly int TooltipTailBelowVisual = Interop.NDalicToolTip.TooltipTailBelowVisualGet();
     }
-
 }

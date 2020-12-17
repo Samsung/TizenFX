@@ -41,19 +41,19 @@ namespace Tizen.Applications
         public static class Values
         {
             /// <summary>
-            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at internal storage.
+            /// A pre-defined value string for InstalledStorage key. This value indicates that the application is installed at internal storage.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public const string InstalledInternal = "installed_internal";
 
             /// <summary>
-            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at external storage.
+            /// A pre-defined value string for InstalledStorage key. This value indicates that the application is installed at external storage.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public const string InstalledExternal = "installed_external";
 
             /// <summary>
-            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at extended storage.
+            /// A pre-defined value string for InstalledStorage key. This value indicates that the application is installed at extended storage.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public const string InstalledExtended = "installed_extended";

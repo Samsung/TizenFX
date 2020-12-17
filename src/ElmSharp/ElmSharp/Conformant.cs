@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The check is a widget that can be used in elementary apps
+    /// The Conformant is a widget that can be used in elementary applications
     /// to account for space taken up by the indicator,
     /// virtual keypad &amp; softkey windows when running the illume2 module of E17.
     /// </summary>
@@ -29,8 +29,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Conformant class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Conformant
-        /// as a child.It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by Conformant
+        /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public Conformant(Window parent) : base(parent)
         {
@@ -42,8 +42,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

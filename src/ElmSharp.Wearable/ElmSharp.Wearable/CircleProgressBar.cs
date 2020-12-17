@@ -22,7 +22,7 @@ namespace ElmSharp.Wearable
 {
 
     /// <summary>
-    /// The Circle ProgressBar is a widget for visually representing the progress status of a given job/task with the circular design.
+    /// The Circle ProgressBar is a widget for visually representing the progress status of a given job or task with the circular design.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class CircleProgressBar : Widget, ICircleWidget
@@ -32,7 +32,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle Progressbar class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle Progressbar instance</param>
+        /// <param name="parent">The parent of the new Circle Progressbar instance.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleProgressBar(EvasObject parent, CircleSurface surface) : base()
@@ -45,7 +45,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle Progressbar class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle Progressbar instance</param>
+        /// <param name="parent">The parent of the new Circle Progressbar instance.</param>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -54,19 +54,19 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Gets the handle for Circle Widget.
+        /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => Handle;
 
         /// <summary>
-        /// Gets the handle for Circle Surface used in this widget
+        /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
-        /// Sets or gets disabled state of this widget.
+        /// Sets or gets the disabled state of this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
@@ -94,7 +94,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the value of ProgressBar.
+        /// Sets or gets the value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Value
@@ -110,7 +110,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the maximum value of ProgressBar.
+        /// Sets or gets the maximum value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Maximum
@@ -130,7 +130,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the minimum value of ProgressBar.
+        /// Sets or gets the minimum value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Minimum
@@ -150,7 +150,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the angle value of ProgressBar.
+        /// Sets or gets the angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarAngle
@@ -166,7 +166,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the angle value of Background ProgressBar.
+        /// Sets or gets the angle value of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BackgroundAngle
@@ -182,7 +182,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the angle offset value of ProgressBar.
+        /// Sets or gets the angle offset value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarAngleOffset
@@ -198,7 +198,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the angle offset value of Background ProgressBar.
+        /// Sets or gets the angle offset value of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BackgroundAngleOffset
@@ -214,7 +214,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the maximum angle value of ProgressBar.
+        /// Sets or gets the maximum angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarAngleMaximum
@@ -234,7 +234,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the minimum angle value of ProgressBar.
+        /// Sets or gets the minimum angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarAngleMinimum
@@ -254,7 +254,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets color of ProgressBar.
+        /// Sets or gets the color of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color BarColor
@@ -275,7 +275,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets color of Background ProgressBar.
+        /// Sets or gets the color of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
@@ -296,7 +296,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets line width of ProgressBar.
+        /// Sets or gets the line width of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int BarLineWidth
@@ -312,7 +312,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets line width of Background ProgressBar.
+        /// Sets or gets the line width of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int BackgroundLineWidth
@@ -328,7 +328,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets radius of ProgressBar.
+        /// Sets or gets the radius of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarRadius
@@ -344,7 +344,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets radius of Background ProgressBar.
+        /// Sets or gets the radius of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BackgroundRadius
@@ -362,8 +362,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

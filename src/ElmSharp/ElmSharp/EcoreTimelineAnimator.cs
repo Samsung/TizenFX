@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// EcoreTimelineAnimator is a helper class, it provides functions to manager animations.
+    /// EcoreTimelineAnimator is a helper class, which provides the functions to manage animations.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EcoreTimelineAnimator
@@ -39,8 +39,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the EcoreTimelineAnimator class.
         /// </summary>
-        /// <param name="runtime">The time to run in seconds</param>
-        /// <param name="timelineCallback">Functions called at each time line</param>
+        /// <param name="runtime">The time to run in seconds.</param>
+        /// <param name="timelineCallback">Functions called at each time line.</param>
         /// <since_tizen> preview </since_tizen>
         public EcoreTimelineAnimator(double runtime, Action timelineCallback)
         {
@@ -63,7 +63,7 @@ namespace ElmSharp
         public double Position => _position;
 
         /// <summary>
-        /// Starts an animator that runs for a limited time.for a limited time.
+        /// Starts an animator that runs for a limited time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Start()
@@ -73,7 +73,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Stops an animator that running.
+        /// Stops an animator that is running.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Stop()
@@ -101,7 +101,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Callback that is called when ticks off
+        /// Callback is called when it ticks off.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected void OnTimeline()

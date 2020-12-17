@@ -19,9 +19,9 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Event arguments for Hot Plugged event for USB devices.
+    /// Event arguments for the Hot Plugged event for USB devices.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class HotPluggedEventArgs : EventArgs
     {
         internal HotPluggedEventArgs(UsbDevice device, HotplugEventType type)
@@ -35,15 +35,15 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public UsbDevice Device { get; }
 
         /// <summary>
-        /// Event Type
+        /// Event type.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public HotplugEventType EventType { get; }
     }
 }

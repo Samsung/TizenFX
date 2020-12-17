@@ -19,25 +19,25 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for paneldirection type.
+    /// Enumeration for the PanelDirection types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum PanelDirection
     {
         /// <summary>
-        /// Top to bottom
+        /// Top to bottom.
         /// </summary>
         Top = 0,
         /// <summary>
-        /// Bottom to top
+        /// Bottom to top.
         /// </summary>
         Bottom,
         /// <summary>
-        /// Left to right
+        /// Left to right.
         /// </summary>
         Left,
         /// <summary>
-        /// Right to left
+        /// Right to left.
         /// </summary>
         Right,
     }
@@ -49,16 +49,20 @@ namespace ElmSharp
     public class Panel : Layout
     {
         SmartEvent _toggled;
+        SmartEvent _scrolled;
 
         /// <summary>
-        /// Creates and initializes a new instance of Panel class.
+        /// Creates and initializes a new instance of the Panel class.
         /// </summary>
-        /// <param name="parent">The EvasObject to which the new Panel will be attached as a child.</param>
+        /// <param name="parent">The EvasObject to which the new panel will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Panel(EvasObject parent) : base(parent)
         {
             _toggled = new SmartEvent(this, this.RealHandle, "toggled");
+            _scrolled = new SmartEvent(this, this.RealHandle, "scroll");
+
             _toggled.On += (s, e) => Toggled?.Invoke(this, EventArgs.Empty);
+            _scrolled.On += (s, e) => Scrolled?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -94,13 +98,19 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Toggled will be triggered when toggles Panel.
+        /// Toggled will be triggered when the panel is toggled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Toggled;
 
         /// <summary>
-        /// Enable or disable scrolling in the Panel.
+        /// Scrolled will be triggered when the panel has been scrolled. This event is emitted only when the panel is scrollable
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Scrolled;
+
+        /// <summary>
+        /// Enable or disable scrolling in the panel.
         /// </summary>
         /// <param name="enable">
         /// Bool value can be false or true.
@@ -112,10 +122,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the scroll size of Panel.
+        /// Sets the scroll size of the panel.
         /// </summary>
         /// <param name="ratio">
-        /// The size of scroll area.
+        /// The size of the scroll area.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public void SetScrollableArea(double ratio)
@@ -124,7 +134,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Toggles the hidden state of the Panel.
+        /// Toggles the hidden state of the panel.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Toggle()
@@ -135,12 +145,12 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
 
             RealHandle = Interop.Elementary.elm_panel_add(handle);

@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal enum BlendFactorType
     {
         ZERO = 0,
@@ -36,5 +35,4 @@ namespace Tizen.NUI
         CONSTANT_ALPHA = 0x8003,
         ONE_MINUS_CONSTANT_ALPHA = 0x8004
     }
-
 }

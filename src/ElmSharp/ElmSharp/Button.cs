@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Button is a widget works as a clickable input element to trigger events.
+    /// The Button is a widget that works as a clickable input element to trigger events.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Button : Layout
@@ -65,37 +65,37 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Clicked will be triggered when Button is clicked.
+        /// Clicked will be triggered when the button is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
-        /// Repeated will be triggered when Button is pressed without releasing it.
+        /// Repeated will be triggered when the button is pressed without releasing it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Repeated;
 
         /// <summary>
-        /// Pressed will be triggered when the Button is pressed.
+        /// Pressed will be triggered when the button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Pressed;
 
         /// <summary>
-        /// Released will be triggered when the Button is released after being pressed.
+        /// Released will be triggered when the button is released after being pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Released;
 
         /// <summary>
-        /// Sets or gets the autorepeat feature of a given Button.
+        /// Sets or gets the autorepeat feature of a given Bbutton.
         /// </summary>
         /// <remarks>
-        /// Autorepeat feature means autorepeat event generated when the button is kept pressed.
-        /// When set AutoRepeat to false, no autorepeat is performed and buttons will trigger Clicked event when they are clicked.
-        /// When set to true, keeping a button pressed continuously trigger Repeated event until the button is released.
-        /// The time it takes until it starts triggering Repeated is given by AutoRepeatInitialTime,
+        /// Autorepeat feature means the autorepeat event is generated when the button is kept pressed.
+        /// When set to false, no autorepeat is performed and the buttons will trigger the Clicked event when they are clicked.
+        /// When set to true, keeping a button pressed continuously will trigger the Repeated event until the button is released.
+        /// The time it takes until it starts triggering, repeated is given by AutoRepeatInitialTime,
         /// and the time between each new emission is given by AutoRepeatGapTimeout.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -144,9 +144,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Delete the object color class.
+        /// Deletes the object Color class.
         /// </summary>
-        /// <param name="part">The color class to be deleted.</param>
+        /// <param name="part">The Color class to be deleted.</param>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("DeleteColorClass is obsolete, please use EdjeObject.DeleteColorClass(string)")]
         public void DeleteColorClass(string part)
@@ -155,7 +155,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the BackgroundColor of a given Button in normal and pressed status.
+        /// Sets or gets the BackgroundColor of a given button in the normal and pressed status.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
@@ -181,8 +181,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,24 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
     /// This should be internal, please do not use.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API6, Will be removed in API9, " +
+        "Please do not use!" +
+        "IntPtr(native integer pointer) is supposed to be not used in Application!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SWIGTYPE_p_bundle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal SWIGTYPE_p_bundle(global::System.IntPtr cPtr, bool futureUse)
+        internal SWIGTYPE_p_bundle(global::System.IntPtr cPtr)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -38,11 +45,5 @@ namespace Tizen.NUI
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_bundle obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
     }
-
 }

@@ -53,7 +53,8 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Visibility), value);
+                ValidationUtil.ValidateEnum(typeof(Visibility), value, nameof(value));
+
                 Set(KeyTextAttr, (int)value);
             }
         }

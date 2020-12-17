@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,15 @@
  * limitations under the License.
  *
  */
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    using Tizen.NUI.BaseComponents;
     internal class CustomActorImpl : RefObject
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CustomActorImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal CustomActorImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CustomActorImpl.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomActorImpl obj)
@@ -32,209 +30,159 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    throw new global::System.MethodAccessException("C++ destructor does not have public access");
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
         internal CustomActor Self()
         {
-            CustomActor ret = new CustomActor(NDalicPINVOKE.CustomActorImpl_Self(swigCPtr), true);
+            CustomActor ret = new CustomActor(Interop.CustomActorImpl.Self(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public virtual void OnStageConnection(int depth)
+        public virtual void OnSceneConnection(int depth)
         {
-            NDalicPINVOKE.CustomActorImpl_OnStageConnection(swigCPtr, depth);
+            Interop.CustomActorImpl.OnSceneConnection(swigCPtr, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public virtual void OnStageDisconnection()
+        public virtual void OnSceneDisconnection()
         {
-            NDalicPINVOKE.CustomActorImpl_OnStageDisconnection(swigCPtr);
+            Interop.CustomActorImpl.OnSceneDisconnection(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnChildAdd(View child)
         {
-            NDalicPINVOKE.CustomActorImpl_OnChildAdd(swigCPtr, View.getCPtr(child));
+            Interop.CustomActorImpl.OnChildAdd(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnChildRemove(View child)
         {
-            NDalicPINVOKE.CustomActorImpl_OnChildRemove(swigCPtr, View.getCPtr(child));
+            Interop.CustomActorImpl.OnChildRemove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnPropertySet(int index, PropertyValue propertyValue)
         {
-            NDalicPINVOKE.CustomActorImpl_OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
+            Interop.CustomActorImpl.OnPropertySet(swigCPtr, index, PropertyValue.getCPtr(propertyValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnSizeSet(Vector3 targetSize)
         {
-            NDalicPINVOKE.CustomActorImpl_OnSizeSet(swigCPtr, Vector3.getCPtr(targetSize));
+            Interop.CustomActorImpl.OnSizeSet(swigCPtr, Vector3.getCPtr(targetSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
-            NDalicPINVOKE.CustomActorImpl_OnSizeAnimation(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize));
+            Interop.CustomActorImpl.OnSizeAnimation(swigCPtr, Animation.getCPtr(animation), Vector3.getCPtr(targetSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal virtual bool OnTouchEvent(SWIGTYPE_p_Dali__TouchEvent arg0)
-        {
-            bool ret = NDalicPINVOKE.CustomActorImpl_OnTouchEvent(swigCPtr, SWIGTYPE_p_Dali__TouchEvent.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnHoverEvent(Hover arg0)
-        {
-            bool ret = NDalicPINVOKE.CustomActorImpl_OnHoverEvent(swigCPtr, Hover.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public virtual bool OnKeyEvent(Key arg0)
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_OnKeyEvent(swigCPtr, Key.getCPtr(arg0));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnWheelEvent(Wheel arg0)
-        {
-            bool ret = NDalicPINVOKE.CustomActorImpl_OnWheelEvent(swigCPtr, Wheel.getCPtr(arg0));
+            bool ret = Interop.CustomActorImpl.OnKeyEvent(swigCPtr, Key.getCPtr(arg0));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            NDalicPINVOKE.CustomActorImpl_OnRelayout(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container));
+            Interop.CustomActorImpl.OnRelayout(swigCPtr, Vector2.getCPtr(size), RelayoutContainer.getCPtr(container));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
-            NDalicPINVOKE.CustomActorImpl_OnSetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            Interop.CustomActorImpl.OnSetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual Vector3 GetNaturalSize()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.CustomActorImpl_GetNaturalSize(swigCPtr), true);
+            Vector3 ret = new Vector3(Interop.CustomActorImpl.GetNaturalSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual float CalculateChildSize(View child, DimensionType dimension)
         {
-            float ret = NDalicPINVOKE.CustomActorImpl_CalculateChildSize(swigCPtr, View.getCPtr(child), (int)dimension);
+            float ret = Interop.CustomActorImpl.CalculateChildSize(swigCPtr, View.getCPtr(child), (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual float GetHeightForWidth(float width)
         {
-            float ret = NDalicPINVOKE.CustomActorImpl_GetHeightForWidth(swigCPtr, width);
+            float ret = Interop.CustomActorImpl.GetHeightForWidth(swigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual float GetWidthForHeight(float height)
         {
-            float ret = NDalicPINVOKE.CustomActorImpl_GetWidthForHeight(swigCPtr, height);
+            float ret = Interop.CustomActorImpl.GetWidthForHeight(swigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_RelayoutDependentOnChildren__SWIG_0(swigCPtr, (int)dimension);
+            bool ret = Interop.CustomActorImpl.RelayoutDependentOnChildren(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual bool RelayoutDependentOnChildren()
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_RelayoutDependentOnChildren__SWIG_1(swigCPtr);
+            bool ret = Interop.CustomActorImpl.RelayoutDependentOnChildren(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void OnCalculateRelayoutSize(DimensionType dimension)
         {
-            NDalicPINVOKE.CustomActorImpl_OnCalculateRelayoutSize(swigCPtr, (int)dimension);
+            Interop.CustomActorImpl.OnCalculateRelayoutSize(swigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public virtual void OnLayoutNegotiated(float size, DimensionType dimension)
         {
-            NDalicPINVOKE.CustomActorImpl_OnLayoutNegotiated(swigCPtr, size, (int)dimension);
+            Interop.CustomActorImpl.OnLayoutNegotiated(swigCPtr, size, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool RequiresTouchEvents()
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_RequiresTouchEvents(swigCPtr);
+            bool ret = Interop.CustomActorImpl.RequiresTouchEvents(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RequiresHoverEvents()
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_RequiresHoverEvents(swigCPtr);
+            bool ret = Interop.CustomActorImpl.RequiresHoverEvents(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool RequiresWheelEvents()
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_RequiresWheelEvents(swigCPtr);
+            bool ret = Interop.CustomActorImpl.RequiresWheelEvents(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool IsRelayoutEnabled()
         {
-            bool ret = NDalicPINVOKE.CustomActorImpl_IsRelayoutEnabled(swigCPtr);
+            bool ret = Interop.CustomActorImpl.IsRelayoutEnabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

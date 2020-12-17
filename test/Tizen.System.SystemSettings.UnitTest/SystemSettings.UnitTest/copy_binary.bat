@@ -1,0 +1,1 @@
+copy Y:\001_work_source\12_c_shap\github\TizenFX\test\Tizen.System.SystemSettings.UnitTest\SystemSettings.UnitTest\bin\Debug\netcoreapp2.0\org.tizen.example.SystemSettings.UnitTest-1.0.0.tpk   Y:\temp\tizen

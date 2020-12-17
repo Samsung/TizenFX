@@ -19,29 +19,23 @@ namespace Tizen.Applications.Shortcut
     using System;
 
     /// <summary>
-    /// This class provides the some functions to add, delete shortcut.
+    /// This class provides some functions to add or delete a shortcut.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public static class ShortcutManager
     {
         private const string LogTag = "Tizen.Applications.Shortcut";
 
-        private static Interop.Shortcut.ResultCallback shortcutAddResult = null;
-
-        private static Interop.Shortcut.ResultCallback widgetAddResult = null;
-
-        private static Interop.Shortcut.ResultCallback shortcutDeleteResult = null;
-
         /// <summary>
-        /// Adds a shortcut on home-screen.
+        /// Adds a shortcut on the home-screen.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="shortcut">Object that contain shortcut info.</param>
+        /// <param name="shortcut">Object that contains the shortcut information.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Add(HomeShortcutInfo shortcut)
@@ -61,12 +55,7 @@ namespace Tizen.Applications.Shortcut
                     type = 1;
                 }
 
-                if (shortcutAddResult == null)
-                {
-                    shortcutAddResult = new Interop.Shortcut.ResultCallback(ShortcutAddResultCallback);
-                }
-
-                err = Interop.Shortcut.AddToHome(shortcut.ShortcutName, type, shortcut.Uri, shortcut.IconPath, Convert.ToInt32(shortcut.IsAllowDuplicate), shortcutAddResult, IntPtr.Zero);
+                err = Interop.Shortcut.AddToHome(shortcut.ShortcutName, type, shortcut.Uri, shortcut.IconPath, Convert.ToInt32(shortcut.IsAllowDuplicate));
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to add shortcut");
@@ -79,15 +68,15 @@ namespace Tizen.Applications.Shortcut
         }
 
         /// <summary>
-        /// Adds a shortcut on home-screen.
+        /// Adds a shortcut on the home-screen.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="shortcut">Object that contain shortcut info.</param>
+        /// <param name="shortcut">Object that contains the shortcut information.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Add(WidgetShortcutInfo shortcut)
@@ -101,12 +90,7 @@ namespace Tizen.Applications.Shortcut
 
             try
             {
-                if (widgetAddResult == null)
-                {
-                    widgetAddResult = new Interop.Shortcut.ResultCallback(WidgetAddResultCallback);
-                }
-
-                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate), widgetAddResult, IntPtr.Zero);
+                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate));
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to add widget");
@@ -119,15 +103,15 @@ namespace Tizen.Applications.Shortcut
         }
 
         /// <summary>
-        /// Removes a shortcut from home by ShortcutName.
+        /// Removes a shortcut from home by the ShortcutName.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="shortcutName">Shortcut name string.</param>
+        /// <param name="shortcutName">The shortcut name string.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Delete(string shortcutName)
@@ -141,12 +125,7 @@ namespace Tizen.Applications.Shortcut
 
             try
             {
-                if (shortcutDeleteResult == null)
-                {
-                    shortcutDeleteResult = new Interop.Shortcut.ResultCallback(DeleteResultCallback);
-                }
-
-                err = Interop.Shortcut.Delete(shortcutName, shortcutDeleteResult, IntPtr.Zero);
+                err = Interop.Shortcut.Delete(shortcutName);
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
                     throw ShortcutErrorFactory.GetException(err, "unable to delete shortcut");
@@ -159,15 +138,15 @@ namespace Tizen.Applications.Shortcut
         }
 
         /// <summary>
-        /// Removes a shortcut from home by ShortcutInfo.
+        /// Removes a shortcut from home by the ShortcutInfo.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="shortcut">Object that contain shortcut info.</param>
+        /// <param name="shortcut">Object that contains the shortcut information.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Delete(ShortcutInfo shortcut)
@@ -185,36 +164,6 @@ namespace Tizen.Applications.Shortcut
             {
                 throw ShortcutErrorFactory.GetException(Interop.Shortcut.ErrorCode.IoError, e.Message);
             }
-        }
-
-        private static int ShortcutAddResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add shortcut");
-            }
-
-            return 0;
-        }
-
-        private static int WidgetAddResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add widget");
-            }
-
-            return 0;
-        }
-
-        private static int DeleteResultCallback(int ret, IntPtr data)
-        {
-            if (ret != (int)Interop.Shortcut.ErrorCode.None)
-            {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to delete shortcut");
-            }
-
-            return 0;
         }
     }
 }

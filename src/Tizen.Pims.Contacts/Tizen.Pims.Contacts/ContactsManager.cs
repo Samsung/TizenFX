@@ -20,43 +20,43 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// Enumeration for name display order.
+    /// Enumeration for the name display order.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum ContactDisplayOrder
     {
         /// <summary>
-        /// First name comes at the first
+        /// First name comes at the first.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         FirstLast,
         /// <summary>
-        /// First name comes at the last
+        /// First name comes at the last.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         LastFirst
     };
 
     /// <summary>
-    /// Enumeration for name sorting order.
+    /// Enumeration for the name sorting order.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum ContactSortingOrder
     {
         /// <summary>
-        /// Contacts are first sorted based on the first name
+        /// Contacts are first sorted based on the first name.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         FirstLast,
         /// <summary>
-        /// Contacts are first sorted based on the last name
+        /// Contacts are first sorted based on the last name.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         LastFirst
     };
 
     /// <summary>
-    /// A class for managing contact information. It allows applications to access contacts database.
+    /// A class for managing the contact information. It allows the applications to access the contacts database.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class ContactsManager : IDisposable
@@ -70,8 +70,8 @@ namespace Tizen.Pims.Contacts
         /// Creates a ContactsManager.
         /// </summary>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public ContactsManager()
         {
@@ -85,7 +85,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Destructor
+        /// The destructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         ~ContactsManager()
@@ -97,9 +97,9 @@ namespace Tizen.Pims.Contacts
         private bool disposedValue = false; // To detect redundant calls
 
         /// <summary>
-        /// Releases all resources used by the ContactsManager.
+        /// Releases all the resources used by the ContactsManager.
         /// </summary>
-        /// <param name="disposing">Disposing by User</param>
+        /// <param name="disposing">Disposing by the user.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -123,8 +123,8 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Releases all resources used by the ContactsManager.
-        /// It should be called after finished using of the object.
+        /// Releases all the resources used by the ContactsManager.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -138,7 +138,7 @@ namespace Tizen.Pims.Contacts
         private EventHandler<NameSortingOrderChangedEventArgs> _nameSortingOrderChanged;
 
         /// <summary>
-        /// (event) NameDisplayOrderChanged is raised when changing setting value of contacts name display order
+        /// (event) NameDisplayOrderChanged is raised when changing the setting value of the contacts name display order.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <since_tizen> 4 </since_tizen>
@@ -189,7 +189,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// (event) NameSortingOrderChanged is raised when changing setting value of contacts name sorting order
+        /// (event) NameSortingOrderChanged is raised when changing the setting value of the contacts name sorting order.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <since_tizen> 4 </since_tizen>
@@ -240,9 +240,9 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// A ContactsDatabase
+        /// A ContactsDatabase.
         /// </summary>
-        /// <value>A ContactsDatabase</value>
+        /// <value>A ContactsDatabase.</value>
         /// <since_tizen> 4 </since_tizen>
         public ContactsDatabase Database
         {
@@ -253,11 +253,11 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// A setting value of contacts name display order
+        /// A setting value of the contacts name display order.
         /// </summary>
-        /// <value>A setting value of contacts name display order</value>
+        /// <value>A setting value of the contacts name display order.</value>
         /// <remarks>
-        /// DisplayName of contacts returned from database are determined by this property
+        /// DisplayName of the contacts returned from the database is determined by this property.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
@@ -286,11 +286,11 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// A setting value of contacts name sorting order
+        /// A setting value of the contacts name sorting order.
         /// </summary>
-        /// <value>A setting value of contacts name sorting order</value>
+        /// <value>A setting value of the contacts name sorting order.</value>
         /// <remarks>
-        /// Contacts returned from database are first sorted based on the first name or last name by this property
+        /// Contacts returned from the database are first sorted based on the first name or last name by this property.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>

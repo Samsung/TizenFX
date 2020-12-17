@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,59 +26,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class LongPressGesture : Gesture
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal LongPressGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LongPressGesture_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LongPressGesture obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         /// <summary>
-        /// Dispose.
+        /// The constructor.
         /// </summary>
+        /// <param name="state">The state of the gesture</param>
         /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.New((int)state), true)
         {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_LongPressGesture(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
-        internal static LongPressGesture GetLongPressGestureFromPtr(global::System.IntPtr cPtr)
+        internal LongPressGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LongPressGesture.Upcast(cPtr), cMemoryOwn)
         {
-            LongPressGesture ret = new LongPressGesture(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -119,27 +80,17 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="state">The state of the gesture</param>
-        /// <since_tizen> 3 </since_tizen>
-        public LongPressGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_0((int)state), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
 
         private uint numberOfTouches
         {
             set
             {
-                NDalicPINVOKE.LongPressGesture_numberOfTouches_set(swigCPtr, value);
+                Interop.LongPressGesture.NumberOfTouchesSet(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.LongPressGesture_numberOfTouches_get(swigCPtr);
+                uint ret = Interop.LongPressGesture.NumberOfTouchesGet(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -149,12 +100,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.LongPressGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.LongPressGesture.ScreenPointSet(swigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.LongPressGesture_screenPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.LongPressGesture.ScreenPointGet(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -165,18 +116,35 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.LongPressGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.LongPressGesture.LocalPointSet(swigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.LongPressGesture_localPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.LongPressGesture.LocalPointGet(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LongPressGesture obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
+        internal static LongPressGesture GetLongPressGestureFromPtr(global::System.IntPtr cPtr)
+        {
+            LongPressGesture ret = new LongPressGesture(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.LongPressGesture.DeleteLongPressGesture(swigCPtr);
+        }
+    }
 }

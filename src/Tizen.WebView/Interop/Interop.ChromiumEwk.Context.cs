@@ -37,5 +37,17 @@ internal static partial class Interop
 
         [DllImport(Libraries.ChromiumEwk)]
         internal static extern CacheModel ewk_context_cache_model_get(IntPtr context);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_context_resource_cache_clear(IntPtr context);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_context_notify_low_memory(IntPtr context);
+        
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DownloadStartCallback(string url, IntPtr userData);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_context_did_start_download_callback_set(IntPtr context, DownloadStartCallback callback, IntPtr userData);
     }
 }

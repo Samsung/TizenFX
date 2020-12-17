@@ -20,13 +20,13 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Arguments for the event that reaised when the device enters or exits the ambient mode.
+    /// Arguments for the event that are raised when the device enters or exits the ambient mode.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class AmbientEventArgs : EventArgs
     {
         /// <summary>
-        /// The received Ambient mode
+        /// The received ambient mode.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool Enabled { get; internal set; }

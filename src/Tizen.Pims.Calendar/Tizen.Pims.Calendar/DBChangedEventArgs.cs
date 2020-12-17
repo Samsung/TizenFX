@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// Event arguments passed when calendar database is changed
+    /// The event arguments passed when the calendar database is changed.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class DBChangedEventArgs : EventArgs
@@ -30,7 +30,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The calendar view URI changed.
+        /// The calendar view URI is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string ViewUri

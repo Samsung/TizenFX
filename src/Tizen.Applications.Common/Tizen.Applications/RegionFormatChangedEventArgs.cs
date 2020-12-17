@@ -36,7 +36,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The property to get the intformation of the Region
+        /// The property to get the information of the Region
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Region { get; private set; }

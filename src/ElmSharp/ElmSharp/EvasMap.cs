@@ -64,7 +64,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the flag of the object move synchronization for map rendering.
+        /// Gets or sets the flag of the object to move synchronization for map rendering.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsMoveSync
@@ -80,9 +80,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Populates source and destination map points to exactly match the object.
+        /// Populates the source and destination map points to exactly match the object.
         /// </summary>
-        /// <param name="obj">The object to use unmapped geometry to populate map coordinates</param>
+        /// <param name="obj">The object to use unmapped geometry to populate the map coordinates.</param>
         /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(EvasObject obj)
         {
@@ -90,11 +90,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Populates source and destination map points to exactly match the object.
+        /// Populates the source and destination map points to exactly match the object.
         /// </summary>
-        /// <param name="obj">The object to use unmapped geometry to populate map coordinates</param>
+        /// <param name="obj">The object to use unmapped geometry to populate the map coordinates.</param>
         /// <param name="z">
-        /// The point Z coordinate hint (pre-perspective transform)This value is used for all four points.
+        /// The point Z-coordinate hint (pre-perspective transform). This value is used for all the four points.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(EvasObject obj, int z)
@@ -105,8 +105,8 @@ namespace ElmSharp
         /// <summary>
         /// Populates the source and destination map points to match the given geometry.
         /// </summary>
-        /// <param name="geometry">The geometry value contains X coordinate,Y coordinate,the width and height to use to calculate second and third points</param>
-        /// <param name="z">The Z coordinate hint (pre-perspective transform) This value is used for all four points.</param>
+        /// <param name="geometry">The geometry value contains X-coordinate, Y-coordinate, the width and height to use, to calculate the second and third points.</param>
+        /// <param name="z">The Z-coordinate hint (pre-perspective transform) This value is used for all the four points.</param>
         /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(Rect geometry, int z)
         {
@@ -114,11 +114,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Rotate the map
+        /// Rotates the map.
         /// </summary>
-        /// <param name="degrees">The abount of degrees from 0.0 to 360.0 to rotate</param>
-        /// <param name="cx">rotation's center horizontal position.</param>
-        /// <param name="cy">rotation's center vertical position.</param>
+        /// <param name="degrees">The abount of degrees from 0.0 to 360.0 to rotate.</param>
+        /// <param name="cx">The rotation's center horizontal position.</param>
+        /// <param name="cy">The rotation's center vertical position.</param>
         /// <since_tizen> preview </since_tizen>
         public void Rotate(double degrees, int cx, int cy)
         {
@@ -128,12 +128,12 @@ namespace ElmSharp
         /// <summary>
         /// Rotates the map around 3 axes in 3D.
         /// </summary>
-        /// <param name="dx">The amount of degrees from 0.0 to 360.0 to rotate around X axis</param>
-        /// <param name="dy">The amount of degrees from 0.0 to 360.0 to rotate around Y axis</param>
-        /// <param name="dz">The amount of degrees from 0.0 to 360.0 to rotate around Z axis</param>
-        /// <param name="cx">The rotation's center horizontal position</param>
-        /// <param name="cy">The rotation's center vertical position</param>
-        /// <param name="cz">The rotation's center depth position</param>
+        /// <param name="dx">The amount of degrees from 0.0 to 360.0 to rotate around the X-axis.</param>
+        /// <param name="dy">The amount of degrees from 0.0 to 360.0 to rotate around the Y-axis.</param>
+        /// <param name="dz">The amount of degrees from 0.0 to 360.0 to rotate around the Z-axis.</param>
+        /// <param name="cx">The rotation's center horizontal position.</param>
+        /// <param name="cy">The rotation's center vertical position.</param>
+        /// <param name="cz">The rotation's center depth position.</param>
         /// <since_tizen> preview </since_tizen>
         public void Rotate3D(double dx, double dy, double dz, int cx, int cy, int cz)
         {
@@ -143,8 +143,8 @@ namespace ElmSharp
         /// <summary>
         /// Changes the map point's coordinate.
         /// </summary>
-        /// <param name="idx">The index of point to change ,this must be smaller than map size.</param>
-        /// <param name="point">3D Point coordinate</param>
+        /// <param name="idx">The index of point to change, this must be smaller than the map size.</param>
+        /// <param name="point">The 3D point coordinate.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPointCoordinate(int idx, Point3D point)
         {
@@ -154,8 +154,8 @@ namespace ElmSharp
         /// <summary>
         /// Gets the map point's coordinate.
         /// </summary>
-        /// <param name="idx">The index of point to change ,this must be smaller than map size.</param>
-        /// <returns>The coordinates of the given point in the map.</returns>
+        /// <param name="idx">The index of point to change, this must be smaller than the map size.</param>
+        /// <returns>The coordinates of a given point in the map.</returns>
         /// <since_tizen> preview </since_tizen>
         public Point3D GetPointCoordinate(int idx)
         {
@@ -167,10 +167,10 @@ namespace ElmSharp
         /// <summary>
         /// Changes the map to apply the given zooming.
         /// </summary>
-        /// <param name="x">The horizontal zoom to use</param>
-        /// <param name="y">The vertical zoom to use</param>
-        /// <param name="cx">The zooming center horizontal position</param>
-        /// <param name="cy">The zooming center vertical position</param>
+        /// <param name="x">The horizontal zoom to use.</param>
+        /// <param name="y">The vertical zoom to use.</param>
+        /// <param name="cx">The zooming center horizontal position.</param>
+        /// <param name="cy">The zooming center vertical position.</param>
         /// <since_tizen> preview </since_tizen>
         public void Zoom(double x, double y, int cx, int cy)
         {

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.IO;
 using Tizen.Internals.Errors;
@@ -47,19 +48,30 @@ namespace Tizen.Multimedia
         ServiceDisconnected = PlayerErrorClass | 0x0d,
         NotSupportedAudioCodec = PlayerErrorClass | 0x0e,
         NotSupportedVideoCodec = PlayerErrorClass | 0x0f,
-        NotSupportedSubtitle = PlayerErrorClass | 0x10
+        NotSupportedSubtitle = PlayerErrorClass | 0x10,
+        NotAvailable = PlayerErrorClass | 0x12
     }
 
     internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfFailed(this PlayerErrorCode err, string message)
+        internal static void ThrowIfFailed(this PlayerErrorCode err, Player player, string message)
         {
             if (err == PlayerErrorCode.None)
             {
                 return;
             }
 
-            throw err.GetException(message);
+            var ex = err.GetException(message);
+
+            if (ex == null)
+            {
+                // Notify only when it can't be handled.
+                player?.NotifyError((int)err, message);
+
+                throw new InvalidOperationException($"{message} : Unknown error({err.ToString()}).");
+            }
+
+            throw ex;
         }
 
         internal static Exception GetException(this PlayerErrorCode err, string message)
@@ -119,9 +131,11 @@ namespace Tizen.Multimedia
                 case PlayerErrorCode.NotSupportedVideoCodec:
                     throw new CodecNotSupportedException(CodecKind.Video);
 
+                case PlayerErrorCode.NotAvailable:
+                    throw new NotAvailableException(msg);
             }
 
-            throw new InvalidOperationException(msg);
+            return null;
         }
     }
 
@@ -153,6 +167,22 @@ namespace Tizen.Multimedia
         /// <param name="message">Error description.</param>
         /// <since_tizen> 3 </since_tizen>
         public ResourceLimitException(string message) : base(message)
+        {
+        }
+    }
+
+    /// <summary>
+    /// The exception that is thrown when it is not available.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class NotAvailableException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the NotAvailableException class with a specified error message.
+        /// </summary>
+        /// <param name="message">Error description.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public NotAvailableException(string message) : base(message)
         {
         }
     }

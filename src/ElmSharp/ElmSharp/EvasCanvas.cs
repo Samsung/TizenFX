@@ -20,14 +20,14 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Low level Evas canvas functions. Sub groups will present more high level ones, though.
-    /// Most of these functions deal with low level Evas actions, like:
-    /// create/destroy raw canvases, not bound to any displaying engine
-    /// tell a canvas i got focused(in a windowing context, for example)
-    /// tell a canvas a region should not be calculated anymore in rendering
-    /// tell a canvas to render its contents, immediately
-    /// Most users will be using Evas by means of the Ecore_Evas wrapper, which deals with all the above mentioned issues automatically for them.Thus, you'll be looking at this section only if you're building low level stuff.
-    /// The groups within present you functions that deal with the canvas directly, too, and not yet with its objects.They are the functions you need to use at a minimum to get a working canvas.
+    /// Low-level Evas canvas functions. Subgroups will be present more than the high-level ones, though.
+    /// Most of these functions deal with low-level Evas actions like:
+    /// create/destroy raw canvases, not bound to any displaying engine.
+    /// tell a canvas, I got focused (in a windowing context, for example).
+    /// tell a canvas, a region should not be calculated anymore in rendering.
+    /// tell a canvas, to render its contents immediately.
+    /// Most users will be using Evas by means of the Ecore_Evas wrapper, which deals with all the above mentioned issues automatically for them. Thus, you will be looking at this section only if you're building low-level stuff.
+    /// The groups within, present you functions that deal with the canvas directly too, and not yet with its objects. They are the functions you need to use at a minimum to get a working canvas.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EvasCanvas
@@ -57,7 +57,7 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets the image cache.
-        /// This function returns the image cache size of canvas in bytes.
+        /// This function returns the image cache size of the canvas in bytes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int ImageCacheSize
@@ -73,7 +73,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flush the image cache of the canvas.
+        /// Flushes the image cache of the canvas.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void FlushImageCache()
@@ -82,7 +82,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add a damage rectangle.
+        /// Adds a damage rectangle.
         /// </summary>
         /// <param name="x">The rectangle's top left corner's horizontal coordinate.</param>
         /// <param name="y">The rectangle's top left corner's vertical coordinate.</param>
@@ -95,7 +95,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add an "obscured region" to an Evas canvas.
+        /// Adds an "obscured region" to an Evas canvas.
         /// </summary>
         /// <param name="x">The rectangle's top left corner's horizontal coordinate.</param>
         /// <param name="y">The rectangle's top left corner's vertical coordinate.</param>
@@ -108,7 +108,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove all "obscured regions" from an Evas canvas.
+        /// Removes all the "obscured regions" from an Evas canvas.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void ClearObscuredRectangle()
@@ -117,10 +117,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds or registers a event to a given canvas event.
+        /// Adds or registers an event to a given canvas event.
         /// </summary>
-        /// <param name="type">The type of event that triggers</param>
-        /// <param name="action">The action to be called when the event is triggered</param>
+        /// <param name="type">The type of event that triggers.</param>
+        /// <param name="action">The action to be called when the event is triggered.</param>
         /// <since_tizen> preview </since_tizen>
         public void AddEventAction(EvasObjectCallbackType type, Action action)
         {
@@ -138,9 +138,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Deletes a event to a given canvas event.
+        /// Deletes an event to a given canvas event.
         /// </summary>
-        /// <param name="type">The type of event that triggers</param>
+        /// <param name="type">The type of event that triggers.</param>
         /// <param name="action">The action to be called when the event is triggered</param>
         /// <since_tizen> preview </since_tizen>
         public void DeleteEventAction(EvasObjectCallbackType type, Action action)
@@ -163,7 +163,7 @@ namespace ElmSharp
         /// Creates an Evas canvas handle.
         /// </summary>
         /// <param name="evasObject">EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <returns>Handle IntPtr.</returns>
         IntPtr CreateHandle(IntPtr evasObject)
         {
             return Interop.Evas.evas_object_evas_get(evasObject);
@@ -185,8 +185,8 @@ namespace ElmSharp
             /// </summary>
             /// <param name="obj">The object to compare with the current instance.</param>
             /// <returns>
-            /// true if obj and this instance are the same type and represent the same value.
-            /// otherwise, false.
+            /// true if the object and this instance are of the same type and represent the same value,
+            /// otherwise false.
             /// </returns>
             public override bool Equals(object obj)
             {

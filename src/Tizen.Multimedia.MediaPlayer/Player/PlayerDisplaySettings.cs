@@ -30,6 +30,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This constructor supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <param name="player"> The handle for the media player </param>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected PlayerDisplaySettings(Player player)
@@ -65,16 +66,16 @@ namespace Tizen.Multimedia
             get
             {
                 Native.GetMode(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get display mode");
+                    ThrowIfFailed(Player, "Failed to get display mode");
 
                 return value;
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
+                ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value, nameof(value));
 
                 Native.SetMode(Player.Handle, value).
-                    ThrowIfFailed("Failed to set display mode");
+                    ThrowIfFailed(Player, "Failed to set display mode");
             }
         }
 
@@ -92,13 +93,14 @@ namespace Tizen.Multimedia
             get
             {
                 Native.IsVisible(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get the visible state of the display");
+                    ThrowIfFailed(Player, "Failed to get the visible state of the display");
 
                 return value;
             }
             set
             {
-                Native.SetVisible(Player.Handle, value).ThrowIfFailed("Failed to set the visible state of the display");
+                Native.SetVisible(Player.Handle, value).ThrowIfFailed(
+                    Player, "Failed to set the visible state of the display");
             }
         }
 
@@ -118,16 +120,16 @@ namespace Tizen.Multimedia
             get
             {
                 Native.GetRotation(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get the rotation state of the display");
+                    ThrowIfFailed(Player, "Failed to get the rotation state of the display");
 
                 return value;
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
                 Native.SetRotation(Player.Handle, value).
-                    ThrowIfFailed("Failed to set the rotation state of the display");
+                    ThrowIfFailed(Player, "Failed to set the rotation state of the display");
             }
         }
 
@@ -136,12 +138,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="roi">The region.</param>
         /// <remarks>
-        /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
+        /// the roi can be set before setting <see cref="PlayerDisplayMode.Roi"/>. (since 4.0)
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed; internal error.<br/>
-        ///     -or-<br/>
-        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
+        ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The width or the height is less than or equal to zero.</exception>
@@ -153,19 +153,15 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Width,
                     $"The width of the roi can't be less than or equal to zero.");
             }
+
             if (roi.Height <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Height,
                     $"The height of the roi can't be less than or equal to zero.");
             }
 
-            if (Mode != PlayerDisplayMode.Roi)
-            {
-                throw new InvalidOperationException("Mode is not set to Roi");
-            }
-
             Native.SetRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
-                ThrowIfFailed("Failed to set the roi");
+                ThrowIfFailed(Player, "Failed to set the roi");
         }
     }
 }

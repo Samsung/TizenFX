@@ -23,12 +23,12 @@ namespace Tizen.WebView
     /// <summary>
     /// The callback function that is invoked when the message is received from the script.
     /// </summary>
-    /// <param name="message">The JavaScriptMessage returned by the script</param>
+    /// <param name="message">The JavaScriptMessage returned by the script.</param>
     /// <since_tizen> 4 </since_tizen>
     public delegate void JavaScriptMessageHandler(JavaScriptMessage message);
 
     /// <summary>
-    /// A Script message contains information that sent from JavaScript runtime.
+    /// A script message contains information that is sent from the JavaScript runtime.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class JavaScriptMessage
@@ -43,7 +43,7 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Obect name in JavaScript.
+        /// The object name in JavaScript.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string Name
@@ -55,9 +55,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the value of body as integer type.
+        /// Gets the value of the body as an integer type.
         /// </summary>
-        /// <returns>The value of body as integer type</returns>
+        /// <returns>The value of the body as an integer type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public int GetBodyAsInteger()
         {
@@ -69,9 +69,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the value of body as double type.
+        /// Gets the value of the body as a double type.
         /// </summary>
-        /// <returns>The value of body as double type</returns>
+        /// <returns>The value of the body as a double type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public double GetBodyAsDouble()
         {
@@ -85,9 +85,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the value of body as boolean type.
+        /// Gets the value of the body as a boolean type.
         /// </summary>
-        /// <returns>The value of body as boolean type</returns>
+        /// <returns>The value of the body as boolean type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public bool GetBodyAsBoolean()
         {
@@ -99,9 +99,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the value of body as string type.
+        /// Gets the value of the body as a string type.
         /// </summary>
-        /// <returns>The value of body as string type</returns>
+        /// <returns>The value of the body as a string type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public string GetBodyAsString()
         {

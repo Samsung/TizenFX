@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The FloatingButton is a widget that to add floating area for buttons.
+    /// The FloatingButton is a widget to add the floating area for buttons.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class FloatingButton : Layout
@@ -27,14 +27,14 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the FloatingButton class.
         /// </summary>
-        /// <param name="parent">Created on this parent container..</param>
+        /// <param name="parent">Created on this parent container.</param>
         /// <since_tizen> preview </since_tizen>
         public FloatingButton(EvasObject parent) : base(parent)
         {
         }
 
         /// <summary>
-        /// Sets or gets floatingbutton mode.
+        /// Sets or gets the floatingbutton mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public FloatingButtonMode Mode
@@ -50,7 +50,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets floatingbutton Position.
+        /// Gets the floatingbutton position.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public FloatingButtonPosition Position
@@ -62,7 +62,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets movability for a given floatingbutton widget.
+        /// Sets or gets the movability for a given FloatingButton widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool MovementBlock
@@ -78,7 +78,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get Opacity's value of the given FloatingButton.
+        /// Gets the opacity's value of the given FloatingButton.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override int Opacity
@@ -95,10 +95,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the floatingbutton position with animation or not.
+        /// Set the floatingbutton position with or without animation.
         /// </summary>
-        /// <param name="position">Button position</param>
-        /// <param name="animated">Animat flag</param>
+        /// <param name="position">Button position.</param>
+        /// <param name="animated">Animation flag.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPosition(FloatingButtonPosition position, bool animated)
         {
@@ -115,8 +115,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -125,50 +125,50 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration for FloatingButtonMode
+    /// Enumeration for the FloatingButtonMode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum FloatingButtonMode
     {
         /// <summary>
-        /// Allows all positions
+        /// Allows all positions.
         /// </summary>
         All,
 
         /// <summary>
-        /// Allows LEFT and RIGHT positions only
+        /// Allows left and right positions only.
         /// </summary>
         LeftRightOnly,
     }
 
     /// <summary>
-    /// Enumeration for FloatingButtonPosition
+    /// Enumeration for the FloatingButtonPosition.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum FloatingButtonPosition
     {
         /// <summary>
-        /// Hides in the left, but small handler will show only
+        /// Hides in the left, but only the small handler will show.
         /// </summary>
         LeftOut,
 
         /// <summary>
-        /// Shows all of buttons, but lies on the left
+        /// Shows all of the buttons, but lies on the left.
         /// </summary>
         Left,
 
         /// <summary>
-        /// Shows all of buttons, but lies on the center
+        /// Shows all of the buttons, but lies on the center.
         /// </summary>
         Center,
 
         /// <summary>
-        /// Shows all of buttons, but lies on the right
+        /// Shows all of the buttons, but lies on the right.
         /// </summary>
         Right,
 
         /// <summary>
-        /// Hides in the right, but small handler will show only
+        /// Hides in the right, but only the small handler will show.
         /// </summary>
         RightOut,
     }

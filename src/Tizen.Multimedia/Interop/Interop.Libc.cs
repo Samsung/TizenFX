@@ -32,8 +32,6 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.Libc, EntryPoint = "free")]
             public static extern void Free(IntPtr ptr);
 
-
-
             [DllImport(Libraries.Libc, EntryPoint = "access")]
             public static extern int Access(string path, int mode);
         }

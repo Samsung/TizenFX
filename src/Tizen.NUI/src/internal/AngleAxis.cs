@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,11 @@
 
 namespace Tizen.NUI
 {
-
-    internal class AngleAxis : global::System.IDisposable
+    internal class AngleAxis : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
 
-        internal AngleAxis(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal AngleAxis(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AngleAxis obj)
@@ -34,78 +29,17 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-        ~AngleAxis()
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            Interop.AngleAxis.DeleteAngleAxis(swigCPtr);
         }
 
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_AngleAxis(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
-
-        public AngleAxis() : this(NDalicPINVOKE.new_AngleAxis__SWIG_0(), true)
+        public AngleAxis() : this(Interop.AngleAxis.NewAngleAxis(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public AngleAxis(Radian initialAngle, Vector3 initialAxis) : this(NDalicPINVOKE.new_AngleAxis__SWIG_1(Radian.getCPtr(initialAngle), Vector3.getCPtr(initialAxis)), true)
+        public AngleAxis(Radian initialAngle, Vector3 initialAxis) : this(Interop.AngleAxis.NewAngleAxis(Radian.getCPtr(initialAngle), Vector3.getCPtr(initialAxis)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -114,12 +48,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.AngleAxis_angle_set(swigCPtr, Radian.getCPtr(value));
+                Interop.AngleAxis.AngleSet(swigCPtr, Radian.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AngleAxis_angle_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleAxis.AngleGet(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -130,18 +64,16 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.AngleAxis_axis_set(swigCPtr, Vector3.getCPtr(value));
+                Interop.AngleAxis.AxisSet(swigCPtr, Vector3.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AngleAxis_axis_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleAxis.AxisGet(swigCPtr);
                 Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
-
     }
-
 }

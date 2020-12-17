@@ -196,7 +196,7 @@ namespace Tizen.Telephony
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
-            VoiceCallStatusIdle,
+            VoiceCallStatusIdle = 0x32,
             /// <summary>
             /// The notification to be invoked when a voice call is in the active status.
             /// 'handle id(uint)' will be delivered in the notification data.

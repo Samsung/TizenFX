@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tizen.System;
 
 namespace Tizen.Content.MediaContent
 {
@@ -34,7 +35,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaInfoCommand(MediaDatabase database) : base(database)
         {
@@ -46,7 +47,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to count the bookmarks added to the media.</param>
         /// <returns>The number of the bookmarks.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -63,7 +64,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of the bookmarks.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -83,7 +84,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to select the bookmarks added to the media.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -100,7 +101,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -121,7 +122,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to count face information added to the media.</param>
         /// <returns>The number of the face information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -138,7 +139,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of the face information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -158,7 +159,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to select face information added to the media.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -175,7 +176,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -196,7 +197,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>The number of tags.</returns>
         /// <param name="mediaId">The media ID to count tags added to the media.</param>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -213,7 +214,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of tags.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -233,7 +234,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to select tags added to the media.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -250,7 +251,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -270,7 +271,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The number of the media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int CountMedia()
@@ -284,7 +285,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int CountMedia(CountArguments arguments)
@@ -300,7 +301,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to retrieve.</param>
         /// <returns>The <see cref="MediaInfo"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -330,7 +331,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="columnKey">The column key.</param>
         /// <returns>The number of groups.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -346,7 +347,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of groups.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -369,7 +370,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="columnKey">The column key.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -385,7 +386,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -415,7 +416,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia()
@@ -429,7 +430,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia(SelectArguments arguments)
@@ -476,9 +477,17 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <param name="mediaId">The media ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
-        /// <remarks>The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.</remarks>
-        /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <remarks>
+        /// The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.<br/>
+        /// Since API level 6, if the file related with the <paramref name="mediaId"/> in DB still exists in file system before calling this method,
+        /// <see cref="InvalidOperationException"/> will be thrown to keep consistency in DB.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
+        ///     The file related with the <paramref name="mediaId"/> in DB still exists in file system. (Since API level 6)
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -496,7 +505,21 @@ namespace Tizen.Content.MediaContent
                 return false;
             }
 
-            CommandHelper.Delete(Interop.MediaInfo.Delete, mediaId);
+            Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).
+                ThrowIfError("Failed to delete MediaInfo.");
+
+            var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+            // If we don't check file existence before calling `ScanFile` method,
+            // The inconsistency between DB and file system could be occurred.
+            if (File.Exists(path))
+            {
+                throw new InvalidOperationException("File still exists in file system. Remove it first.");
+            }
+
+            // Native 'delete' function was deprecated, so we need to use 'scan file' function instead of it.
+            Database.ScanFile(path);
+
             return true;
         }
 
@@ -511,13 +534,16 @@ namespace Tizen.Content.MediaContent
         ///     The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.<br/>
         ///     <br/>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
-        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.<br/>
+        ///     <br/>
+        ///     If http://tizen.org/feature/content.scanning.others feature is not supported and the specified file is other-type,
+        ///     <see cref="NotSupportedException"/> will be thrown.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -529,6 +555,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaInfo Add(string path)
         {
@@ -598,7 +625,10 @@ namespace Tizen.Content.MediaContent
         ///     At most 300 items can be added at once.<br/>
         ///     <br/>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
-        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.<br/>
+        ///     <br/>
+        ///     If http://tizen.org/feature/content.scanning.others feature is not supported and the specified file is other-type,
+        ///     <see cref="NotSupportedException"/> will be thrown.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
@@ -606,7 +636,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="paths">The paths of the media files to add.</param>
         /// <returns>A task that represents the asynchronous add operation.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="paths"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -618,6 +648,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="paths"/> contains a path that does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public async Task AddAsync(IEnumerable<string> paths)
         {
@@ -656,7 +687,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="value">The value indicating whether the media is favorite.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -710,7 +741,7 @@ namespace Tizen.Content.MediaContent
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="mediaId"/> is null.<br/>
@@ -781,7 +812,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
@@ -813,7 +844,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
@@ -850,12 +881,15 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+                foreach (var extendedInternal in StorageManager.Storages.Where(s => s.StorageType == StorageArea.ExtendedInternal))
+                {
+                    if (path.Contains(extendedInternal.RootDirectory))
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+                }
 
                 if (File.Exists(path) == false)
                 {
@@ -923,7 +957,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
@@ -946,6 +980,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <remarks>
         ///     Media in the external storage is not supported, with the exception of MMC.
+        ///     Only JPEG, PNG, BMP images are supported.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
@@ -957,7 +992,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
@@ -1008,6 +1043,14 @@ namespace Tizen.Content.MediaContent
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
+                }
+
+                // Native P/Invoke function also check below case, but it returns invalid operation error.
+                // So we check it here to throw more proper exception.
+                string mimeType = InteropHelper.GetString(handle, Interop.MediaInfo.GetMimeType);
+                if (!mimeType.Equals("image/jpeg") && !mimeType.Equals("image/png") && !mimeType.Equals("image/bmp"))
+                {
+                    throw new UnsupportedContentException($"{mimeType} is not supported. Only JPEG, PNG, BMP is supported.");
                 }
 
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);

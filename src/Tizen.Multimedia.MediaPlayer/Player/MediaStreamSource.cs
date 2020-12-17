@@ -33,6 +33,8 @@ namespace Tizen.Multimedia
     {
         private readonly MediaFormat _audioMediaFormat;
         private readonly MediaFormat _videoMediaFormat;
+        private static List<MediaFormatAudioMimeType> _supportedAudioFormats;
+        private static List<MediaFormatVideoMimeType> _supportedVideoFormats;
 
         /// <summary>
         /// Gets all supported audio types.
@@ -42,7 +44,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                yield return MediaFormatAudioMimeType.Aac;
+                GetSupportedTypes();
+                return _supportedAudioFormats.AsReadOnly();
             }
         }
 
@@ -54,7 +57,54 @@ namespace Tizen.Multimedia
         {
             get
             {
-                yield return MediaFormatVideoMimeType.H264SP;
+                GetSupportedTypes();
+                return _supportedVideoFormats.AsReadOnly();
+            }
+        }
+
+        private static void GetSupportedTypes()
+        {
+            if (_supportedAudioFormats == null && _supportedVideoFormats == null)
+            {
+                PlayerHandle _playerHandle;
+                IntPtr _handle;
+
+                NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
+                _handle = _playerHandle.DangerousGetHandle();
+                Debug.Assert(_handle != IntPtr.Zero);
+
+                try
+                {
+                    _supportedAudioFormats = new List<MediaFormatAudioMimeType>();
+                    _supportedVideoFormats = new List<MediaFormatVideoMimeType>();
+
+                    NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
+                    {
+                        if (Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
+                            _supportedAudioFormats.Add((MediaFormatAudioMimeType)format);
+                        }
+                        else if (Enum.IsDefined(typeof(MediaFormatVideoMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
+                            _supportedVideoFormats.Add((MediaFormatVideoMimeType)format);
+                        }
+                        else
+                        {
+                            Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
+                        }
+
+                        return true;
+                    };
+
+                    NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
+                        ThrowIfFailed(null, "Failed to get the list");
+                }
+                finally
+                {
+                    _playerHandle.Dispose();
+                }
             }
         }
 
@@ -92,7 +142,6 @@ namespace Tizen.Multimedia
             return new MediaStreamConfiguration(this, StreamType.Video);
         }
 
-
         /// <summary>
         /// Initializes a new instance of the MediaStreamSource class
         /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
@@ -113,7 +162,7 @@ namespace Tizen.Multimedia
         {
             if (audioMediaFormat == null && videoMediaFormat == null)
             {
-                throw new ArgumentNullException(nameof(audioMediaFormat) + " and " + nameof(videoMediaFormat));
+                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
             }
 
             _audioMediaFormat = audioMediaFormat;
@@ -134,13 +183,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(AudioMediaFormat audioMediaFormat)
         {
-            if (audioMediaFormat == null)
-            {
-                throw new ArgumentNullException(nameof(audioMediaFormat));
-            }
-
-            _audioMediaFormat = audioMediaFormat;
-
+            _audioMediaFormat = audioMediaFormat ?? throw new ArgumentNullException(nameof(audioMediaFormat));
             AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
         }
         /// <summary>
@@ -154,13 +197,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(VideoMediaFormat videoMediaFormat)
         {
-            if (videoMediaFormat == null)
-            {
-                throw new ArgumentNullException(nameof(videoMediaFormat));
-            }
-
-            _videoMediaFormat = videoMediaFormat;
-
+            _videoMediaFormat = videoMediaFormat ?? throw new ArgumentNullException(nameof(videoMediaFormat));
             VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
         }
 
@@ -206,11 +243,13 @@ namespace Tizen.Multimedia
                 Log.Error(PlayerLog.Tag, "The source is not set as a source to a player yet.");
                 throw new InvalidOperationException("The source is not set as a source to a player yet.");
             }
+
             if (packet == null)
             {
                 Log.Error(PlayerLog.Tag, "packet is null");
                 throw new ArgumentNullException(nameof(packet));
             }
+
             if (packet.IsDisposed)
             {
                 Log.Error(PlayerLog.Tag, "packet is disposed");
@@ -234,6 +273,7 @@ namespace Tizen.Multimedia
                 Log.Error(PlayerLog.Tag, "Video is not configured with the current source.");
                 throw new ArgumentException("Video is not configured with the current source.");
             }
+
             if (packet.Format.Type == MediaFormatType.Audio && _audioMediaFormat == null)
             {
                 Log.Error(PlayerLog.Tag, "Audio is not configured with the current source.");
@@ -243,14 +283,14 @@ namespace Tizen.Multimedia
             _player.ValidatePlayerState(PlayerState.Paused, PlayerState.Playing, PlayerState.Ready);
 
             NativePlayer.PushMediaStream(_player.Handle, packet.GetHandle()).
-                ThrowIfFailed("Failed to push the packet to the player");
+                ThrowIfFailed(_player, "Failed to push the packet to the player");
         }
 
         private void SetMediaStreamInfo(StreamType streamType, MediaFormat mediaFormat)
         {
             if (mediaFormat == null)
             {
-                Log.Error(PlayerLog.Tag, "invalid media format");
+                Log.Warn(PlayerLog.Tag, "invalid media format");
                 return;
             }
 
@@ -259,8 +299,9 @@ namespace Tizen.Multimedia
             try
             {
                 ptr = mediaFormat.AsNativeHandle();
-                NativePlayer.SetMediaStreamInfo(_player.Handle, (int)streamType, ptr).
-                    ThrowIfFailed("Failed to set the media stream info");
+
+                NativePlayer.SetMediaStreamInfo(_player.Handle, streamType, ptr).
+                    ThrowIfFailed(_player, "Failed to set the media stream info");
             }
             finally
             {

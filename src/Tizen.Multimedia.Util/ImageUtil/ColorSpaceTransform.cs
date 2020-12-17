@@ -16,8 +16,8 @@
 
 using System;
 using System.Collections.Generic;
-using static Interop.ImageUtil;
-using static Interop.ImageUtil.Transform;
+using static Interop;
+using NativeTransform = Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -66,7 +66,7 @@ namespace Tizen.Multimedia.Util
 
         internal override void Configure(TransformHandle handle)
         {
-            SetColorspace(handle, _imageColorSpace);
+            NativeTransform.SetColorspace(handle, _imageColorSpace);
         }
 
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.TextLabelTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+      <TextLabel BackgroundColor="Green" Text="Text1" TextColor="Red" PositionY="50" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+
+</ContentPage>

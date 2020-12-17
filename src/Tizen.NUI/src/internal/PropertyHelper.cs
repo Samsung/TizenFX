@@ -14,11 +14,10 @@
  * limitations under the License.
  *
  */
+using System.Text;
 
 namespace Tizen.NUI
 {
-    using System.Text;
-
     internal static class PropertyHelper
     {
         ///<summary>
@@ -32,7 +31,7 @@ namespace Tizen.NUI
             string str = sb.ToString();
 
             Property property = new Property(handle, str);
-            if (property.propertyIndex == Property.INVALID_INDEX)
+            if (property.propertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("string property is invalid");
             }

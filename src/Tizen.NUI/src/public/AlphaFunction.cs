@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -24,100 +26,8 @@ namespace Tizen.NUI
     /// the animation before computing the final animation value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class AlphaFunction : global::System.IDisposable
+    public class AlphaFunction : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AlphaFunction obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~AlphaFunction()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-        /// <summary>
-        /// To make the AlphaFunction instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// To make the AlphaFunction instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_AlphaFunction(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
-        }
 
         /// <summary>
         /// The constructor.<br />
@@ -125,7 +35,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(System.Delegate func) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
+        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -135,7 +45,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the default built-in alpha function.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction() : this(NDalicPINVOKE.new_AlphaFunction__SWIG_0(), true)
+        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -146,12 +56,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="function">One of the built-in alpha functions.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_1((int)function), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
+        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -164,57 +69,18 @@ namespace Tizen.NUI
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
+        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Retrives the control points of the alpha function.<br />
-        /// </summary>
-        /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
-        /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            controlPoint0 = new Vector2(ret.X, ret.Y);
-            controlPoint1 = new Vector2(ret.Z, ret.W);
         }
 
-        internal SWIGTYPE_p_f_float__float GetCustomFunction()
+        internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.AlphaFunction_GetCustomFunction(swigCPtr);
-            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns the built-in function used by the alpha function.<br />
-        /// In case no built-in function has been specified, it will return AlphaFunction::DEFAULT.<br />
-        /// </summary>
-        /// <returns>One of the built-in alpha functions.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
-        {
-            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)NDalicPINVOKE.AlphaFunction_GetBuiltinFunction(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        ///  Returns the functioning mode of the alpha function.
-        /// </summary>
-        /// <returns>The functioning mode of the alpha function.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction.Modes GetMode()
-        {
-            AlphaFunction.Modes ret = (AlphaFunction.Modes)NDalicPINVOKE.AlphaFunction_GetMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -226,58 +92,72 @@ namespace Tizen.NUI
             /// <summary>
             /// Linear.
             /// </summary>
+            [Description("DEFAULT")]
             Default,
             /// <summary>
             /// No transformation.
             /// </summary>
+            [Description("LINEAR")]
             Linear,
             /// <summary>
             /// Reverse linear.
             /// </summary>
+            [Description("REVERSE")]
             Reverse,
             /// <summary>
             /// Speeds up and comes to a sudden stop (square).
             /// </summary>
+            [Description("EASE_IN_SQUARE")]
             EaseInSquare,
             /// <summary>
             /// Sudden start and slows to a gradual stop (square).
             /// </summary>
+            [Description("EASE_OUT_SQUARE")]
             EaseOutSquare,
             /// <summary>
             /// Speeds up and comes to a sudden stop (cubic).
             /// </summary>
+            [Description("EASE_IN")]
             EaseIn,
             /// <summary>
             /// Sudden start and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_OUT")]
             EaseOut,
             /// <summary>
             /// Speeds up and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_IN_OUT")]
             EaseInOut,
             /// <summary>
             /// Speeds up and comes to a sudden stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_SINE")]
             EaseInSine,
             /// <summary>
             /// Sudden start and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_OUT_SINE")]
             EaseOutSine,
             /// <summary>
             /// Speeds up and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_OUT_SINE")]
             EaseInOutSine,
             /// <summary>
             /// Sudden start, loses momentum and returns to start position.
             /// </summary>
+            [Description("BOUNCE")]
             Bounce,
             /// <summary>
             /// Single revolution.
             /// </summary>
+            [Description("SIN")]
             Sin,
             /// <summary>
             /// Sudden start, exceed end position and return to a gradual stop.
             /// </summary>
+            [Description("EASE_OUT_BACK")]
             EaseOutBack,
             /// <summary>
             /// The count of the BuiltinFunctions enum.
@@ -306,6 +186,51 @@ namespace Tizen.NUI
             Bezier
         }
 
+        /// <summary>
+        /// Retrives the control points of the alpha function.<br />
+        /// </summary>
+        /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
+        /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
+        {
+            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            controlPoint0 = new Vector2(ret.X, ret.Y);
+            controlPoint1 = new Vector2(ret.Z, ret.W);
+        }
+
+        /// <summary>
+        /// Returns the built-in function used by the alpha function.<br />
+        /// In case no built-in function has been specified, it will return AlphaFunction::DEFAULT.<br />
+        /// </summary>
+        /// <returns>One of the built-in alpha functions.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
+        {
+            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)Interop.AlphaFunction.GetBuiltinFunction(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        ///  Returns the functioning mode of the alpha function.
+        /// </summary>
+        /// <returns>The functioning mode of the alpha function.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public AlphaFunction.Modes GetMode()
+        {
+            AlphaFunction.Modes ret = (AlphaFunction.Modes)Interop.AlphaFunction.GetMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AlphaFunction obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
         internal static string BuiltinToPropertyKey(BuiltinFunctions? alphaFunction)
         {
             string propertyKey = null;
@@ -314,78 +239,93 @@ namespace Tizen.NUI
                 switch (alphaFunction)
                 {
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
-                    {
-                        propertyKey = "LINEAR";
-                        break;
-                    }
+                        {
+                            propertyKey = "LINEAR";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
-                    {
-                        propertyKey = "REVERSE";
-                        break;
-                    }
+                        {
+                            propertyKey = "REVERSE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
-                    {
-                        propertyKey = "EASE_IN_SQUARE";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_IN_SQUARE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
-                    {
-                        propertyKey = "EASE_OUT_SQUARE";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_OUT_SQUARE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
-                    {
-                        propertyKey = "EASE_IN";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_IN";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
-                    {
-                        propertyKey = "EASE_OUT";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_OUT";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
-                    {
-                        propertyKey = "EASE_IN_OUT";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_IN_OUT";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
-                    {
-                        propertyKey = "EASE_IN_SINE";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_IN_SINE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
-                    {
-                        propertyKey = "EASE_OUT_SINE";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_OUT_SINE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
-                    {
-                        propertyKey = "EASE_IN_OUT_SINE";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_IN_OUT_SINE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
-                    {
-                        propertyKey = "BOUNCE";
-                        break;
-                    }
+                        {
+                            propertyKey = "BOUNCE";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
-                    {
-                        propertyKey = "SIN";
-                        break;
-                    }
+                        {
+                            propertyKey = "SIN";
+                            break;
+                        }
                     case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
-                    {
-                        propertyKey = "EASE_OUT_BACK";
-                        break;
-                    }
+                        {
+                            propertyKey = "EASE_OUT_BACK";
+                            break;
+                        }
                     default:
-                    {
-                        propertyKey = "DEFAULT";
-                        break;
-                    }
+                        {
+                            propertyKey = "DEFAULT";
+                            break;
+                        }
                 }
             }
             return propertyKey;
+        }
+
+        internal SWIGTYPE_p_f_float__float GetCustomFunction()
+        {
+            global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(swigCPtr);
+            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.AlphaFunction.DeleteAlphaFunction(swigCPtr);
         }
     }
 }

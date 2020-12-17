@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,57 +27,37 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualFactory : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
+        /// <summary>
+        /// Instance of the VisualFactory singleton.
+        /// </summary>
+        private static VisualFactory instance;
+
+        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VisualFactory obj)
+        internal VisualFactory() : this(Interop.VisualFactory.NewVisualFactory(), true)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Dispose.
+        /// Retrieves the VisualFactory singleton.
         /// </summary>
-        /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
-        /// Please DO NOT use! This will be deprecated!
-        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
-        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        public static VisualFactory Instance
         {
-            if (disposed)
+            get
             {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
+                if (!instance)
                 {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_VisualFactory(swigCPtr);
+                    instance = new VisualFactory(Interop.VisualFactory.Get(), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
 
-            base.Dispose(type);
+                return instance;
+            }
         }
 
         /// <summary>
@@ -91,16 +71,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static VisualFactory Get()
         {
-            VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return VisualFactory.Instance;
         }
-
-        internal VisualFactory() : this(NDalicPINVOKE.new_VisualFactory__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
 
         /// <summary>
         /// Request the visual.
@@ -110,30 +82,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
-            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
+            VisualBase ret = new VisualBase(Interop.VisualFactory.CreateVisual(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal VisualBase CreateVisual(Image image)
-        {
-            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private static readonly VisualFactory instance = VisualFactory.Get();
-
-        /// <summary>
-        /// Retrieves the VisualFactory singleton.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static VisualFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
         }
 
     }

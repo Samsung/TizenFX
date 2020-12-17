@@ -17,74 +17,74 @@
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// This class provides enumerations about calendar information.
+    /// This class provides enumerations about the calendar information.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     /// <remarks>
-    /// Most enumerations are based on vcalendar, icalendar(ver 2.0) specification.
+    /// Most enumerations are based on vCalendar and iCalendar(ver 2.0) specification.
     /// https://www.ietf.org/rfc/rfc2445.txt
     /// </remarks>
     public static class CalendarTypes
     {
         /// <summary>
-        /// Enumeration for Default book
+        /// Enumeration for the default books.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum DefaultBook
         {
             /// <summary>
-            /// Default event calendar book.
+            /// The default event calendar book.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Event,
             /// <summary>
-            /// Default Todo calendar book.
+            /// The default todo calendar book.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Todo,
             /// <summary>
-            /// Default Birthday calendar book.
+            /// The default birthday calendar book.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Birthday,
         }
 
         /// <summary>
-        /// Enumeration for Store type
+        /// Enumeration for the store types.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum StoreType
         {
             /// <summary>
-            /// Book type
+            /// Book type.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Book,
             /// <summary>
-            /// Event type
+            /// Event type.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Event,
             /// <summary>
-            /// Todo type
+            /// Todo type.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Todo,
         }
 
         /// <summary>
-        /// Enumeration for the book mode.
+        /// Enumeration for the book modes.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum BookMode
         {
             /// <summary>
-            /// All modules can read and write records of this calendar_book
+            /// All modules can read and write records of this calendar book.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Default,
             /// <summary>
-            /// All modules can only read records of this calendar book
+            /// All modules can only read records of this calendar book.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             ReadOnly,
@@ -97,55 +97,55 @@ namespace Tizen.Pims.Calendar
         public enum EventStatus
         {
             /// <summary>
-            /// No status
+            /// No status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None = 0x01,
             /// <summary>
-            /// The event is tentative
+            /// The event is tentative.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Tentative = 0x02,
             /// <summary>
-            /// The event is confirmed
+            /// The event is confirmed.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Confirmed = 0x04,
             /// <summary>
-            /// The event is cancelled
+            /// The event is cancelled.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Cancelled = 0x08,
         }
 
         /// <summary>
-        /// Enumeration for for the status of a to-do.
+        /// Enumeration for the status of a to-do.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum TodoStatus
         {
             /// <summary>
-            /// No status
+            /// No status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None = 0x0100,
             /// <summary>
-            /// Needs action status
+            /// Needs action status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             NeedAction = 0x0200,
             /// <summary>
-            /// Completed status
+            /// Completed status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Completed = 0x0400,
             /// <summary>
-            /// Work in process status
+            /// Work in process status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             InProcess = 0x0800,
             /// <summary>
-            /// Cancelled status
+            /// Cancelled status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Cancelled = 0x1000,
@@ -158,22 +158,22 @@ namespace Tizen.Pims.Calendar
         public enum BusyStatus
         {
             /// <summary>
-            /// The free status
+            /// The free status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Free,
             /// <summary>
-            /// The busy status
+            /// The busy status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Busy,
             /// <summary>
-            /// The unavailable status
+            /// The unavailable status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Unavailable,
             /// <summary>
-            /// The tentative status
+            /// The tentative status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Tentative,
@@ -186,17 +186,17 @@ namespace Tizen.Pims.Calendar
         public enum Sensitivity
         {
             /// <summary>
-            /// Public Sensitivity
+            /// Public sensitivity.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Public,
             /// <summary>
-            /// Private Sensitivity
+            /// Private sensitivity.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Private,
             /// <summary>
-            /// Confidential Sensitivity
+            /// Confidential sensitivity.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Confidential,
@@ -209,50 +209,50 @@ namespace Tizen.Pims.Calendar
         public enum MeetingStatus
         {
             /// <summary>
-            /// No meeting
+            /// No meeting.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             NoMeeting,
             /// <summary>
-            /// Meeting exists
+            /// Meeting exists.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Meeting,
             /// <summary>
-            /// Meeting received
+            /// Meeting received.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Received,
             /// <summary>
-            /// Meeting cancelled
+            /// Meeting canceled.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Cancelled,
         }
 
         /// <summary>
-        /// Enumeration for the calendar event item's priority
+        /// Enumeration for the calendar event item's priority.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum Priority
         {
             /// <summary>
-            /// No priority
+            /// No priority.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None = 0x01,
             /// <summary>
-            /// Low priority
+            /// Low priority.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             High = 0x02,
             /// <summary>
-            /// Normal priority
+            /// Normal priority.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Normal = 0x04,
             /// <summary>
-            /// High priority
+            /// High priority.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Low = 0x08,
@@ -265,73 +265,73 @@ namespace Tizen.Pims.Calendar
         public enum Recurrence
         {
             /// <summary>
-            /// No recurrence event
+            /// No recurrence event.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None,
             /// <summary>
-            /// An event occurs every day
+            /// An event occurs every day.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Daily,
             /// <summary>
-            /// An event occurs on the same day of every week. According to the week flag, the event will recur every day of the week
+            /// An event occurs on the same day of every week. According to the week flag, the event will recur every day of the week.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Weekly,
             /// <summary>
-            /// An event occurs on the same day of every month
+            /// An event occurs on the same day of every month.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Monthly,
             /// <summary>
-            /// An event occurs on the same day of every year
+            /// An event occurs on the same day of every year.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Yearly,
         }
 
         /// <summary>
-        /// Enumeration for the range type.
+        /// Enumeration for the range types.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum RangeType
         {
             /// <summary>
-            /// Range until
+            /// Range until.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Until,
             /// <summary>
-            /// Range count
+            /// Range count.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Count,
             /// <summary>
-            /// No range
+            /// No range.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None,
         }
 
         /// <summary>
-        /// Enumeration for the system type.
+        /// Enumeration for the system types.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum SystemType
         {
             /// <summary>
-            /// Locale's default calendar
+            /// Locale's default calendar.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Default,
             /// <summary>
-            /// Locale's default calendar
+            /// Locale's default calendar.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Gregorian,
             /// <summary>
-            /// East Asian lunisolar calendar
+            /// East Asian lunisolar calendar.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Lunisolar,
@@ -344,32 +344,32 @@ namespace Tizen.Pims.Calendar
         public enum TickUnit
         {
             /// <summary>
-            /// No reminder set
+            /// No reminder set.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             None = -1,
             /// <summary>
-            /// Specific in seconds
+            /// Specific in seconds.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Specific = 1,
             /// <summary>
-            /// Alarm time unit in minutes
+            /// Alarm time unit in minutes.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Minute = 60,
             /// <summary>
-            /// Alarm time unit in hours
+            /// Alarm time unit in hours.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Hour = 3600,
             /// <summary>
-            /// Alarm time unit in days
+            /// Alarm time unit in days.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Day = 86400,
             /// <summary>
-            /// Alarm time unit in weeks
+            /// Alarm time unit in weeks.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Week = 604800,
@@ -382,98 +382,98 @@ namespace Tizen.Pims.Calendar
         public enum WeekDay
         {
             /// <summary>
-            /// Sunday
+            /// Sunday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Sunday = 1,
             /// <summary>
-            /// Monday
+            /// Monday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Monday,
             /// <summary>
-            /// Tuesday
+            /// Tuesday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Tuesday,
             /// <summary>
-            /// Wednesday
+            /// Wednesday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Wednesday,
             /// <summary>
-            /// Thursday
+            /// Thursday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Thursday,
             /// <summary>
-            /// Friday
+            /// Friday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Friday,
             /// <summary>
-            /// Saturday
+            /// Saturday.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Saturday,
         }
 
         /// <summary>
-        /// Enumeration to specify the type of calendar user specified by the property.
+        /// Enumeration to specify the type of calendar user, specified by the property.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum Cutype
         {
             /// <summary>
-            /// An individual
+            /// An individual.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Individual,
             /// <summary>
-            /// A group of individuals
+            /// A group of individuals.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Group,
             /// <summary>
-            /// A physical resource
+            /// A physical resource.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Resource,
             /// <summary>
-            /// A room resource
+            /// A room resource.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Room,
             /// <summary>
-            /// Otherwise not known
+            /// Otherwise not known.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Unknown,
         }
 
         /// <summary>
-        /// Enumeration for the attendee role.
+        /// Enumeration for the attendee roles.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum AttendeeRole
         {
             /// <summary>
-            /// Participation is required
+            /// Participation is required.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             ReqParticipant,
             /// <summary>
-            /// Accepted status
+            /// Accepted status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             OptParticipant,
             /// <summary>
-            /// Non-Participant
+            /// Non-Participant.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             NonParticipant,
             /// <summary>
-            /// Chairperson
+            /// Chairperson.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Chair,
@@ -486,60 +486,60 @@ namespace Tizen.Pims.Calendar
         public enum AttendeeStatus
         {
             /// <summary>
-            /// Pending status
+            /// Pending status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Pending,
             /// <summary>
-            /// Accepted status
+            /// Accepted status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Accepted,
             /// <summary>
-            /// Declined status
+            /// Declined status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Declined,
             /// <summary>
-            /// Tentative status
+            /// Tentative status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Tentative,
             /// <summary>
-            /// Delegated status
+            /// Delegated status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Delegated,
             /// <summary>
-            /// Completed status
+            /// Completed status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Completed,
             /// <summary>
-            /// In process status
+            /// In process status.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             InProcess,
         }
 
         /// <summary>
-        /// Enumeration for the alarm action.
+        /// Enumeration for the alarm actions.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum Action
         {
             /// <summary>
-            /// Audio action
+            /// Audio action.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Audio,
             /// <summary>
-            /// Display action
+            /// Display action.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Display,
             /// <summary>
-            /// Email action
+            /// Email action.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             Email,

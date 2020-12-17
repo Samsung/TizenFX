@@ -21,275 +21,275 @@ using static Interop.InputMethod;
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration for Input Panel Layout
+    /// Enumeration for the input panel layout.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum InputPanelLayout
     {
         /// <summary>
-        /// Normal
+        /// Normal.
         /// </summary>
         LayoutNormal,
         /// <summary>
-        /// Number
+        /// Number.
         /// </summary>
         LayoutNumber,
         /// <summary>
-        /// Email
+        /// Email.
         /// </summary>
         LayoutEMail,
         /// <summary>
-        /// URL
+        /// URL.
         /// </summary>
         LayoutURL,
         /// <summary>
-        /// Phone Number
+        /// Phone Number.
         /// </summary>
         LayoutPhoneNumber,
         /// <summary>
-        /// IP
+        /// IP.
         /// </summary>
         LayoutIP,
         /// <summary>
-        /// Month
+        /// Month.
         /// </summary>
         LayoutMonth,
         /// <summary>
-        /// Number Only
+        /// Number Only.
         /// </summary>
         LayoutNumberOnly,
         /// <summary>
-        /// Invalid
+        /// Invalid.
         /// </summary>
         LayoutInvalid,
         /// <summary>
-        /// HEX
+        /// HEX.
         /// </summary>
         LayoutHEX,
         /// <summary>
-        /// Terminal
+        /// Terminal.
         /// </summary>
         LayoutTerminal,
         /// <summary>
-        /// Password
+        /// Password.
         /// </summary>
         LayoutPassword,
         /// <summary>
-        /// Date Time
+        /// Date and time.
         /// </summary>
         LayoutDateTime,
         /// <summary>
-        /// Emoticon
+        /// Emoticon.
         /// </summary>
         LayoutEmoticon,
         /// <summary>
-        /// Voice
+        /// Voice.
         /// </summary>
         LayoutVoice,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for Layout Variation
+    /// Enumeration for the layout variation.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum LayoutVariation
     {
         /// <summary>
-        /// The plain normal layout
+        /// The plain normal layout.
         /// </summary>
         NormalNormal = 0,
         /// <summary>
-        /// Filename layout; symbols such as '/', '\*', '\', '|', '&lt;', '&gt;', '?', '&quot;' and ':' should be disabled
+        /// Filename layout; symbols such as '/', '\*', '\', '|', '&lt;', '&gt;', '?', '&quot;', and ':' should be disabled.
         /// </summary>
         NormalFileName,
         /// <summary>
-        /// The name of a person
+        /// The name of a person.
         /// </summary>
         NormalPersonName,
         /// <summary>
-        /// The plain normal number layout
+        /// The plain normal number layout.
         /// </summary>
         NumberOnlyNormal = 0,
         /// <summary>
-        /// The number layout to allow a negative sign
+        /// The number layout to allow a negative sign.
         /// </summary>
         NumberOnlySigned,
         /// <summary>
-        /// The number layout to allow decimal point to provide fractional value
+        /// The number layout to allow a decimal point to provide fractional value.
         /// </summary>
         NumberOnlyDecimal,
         /// <summary>
-        /// The number layout to allow decimal point and negative sign
+        /// The number layout to allow a decimal point and negative sign.
         /// </summary>
         NumberOnlySignedAndDecimal,
         /// <summary>
-        /// The normal password layout
+        /// The normal password layout.
         /// </summary>
         PasswordNormal = 0,
         /// <summary>
-        /// The password layout to allow only number
+        /// The password layout to allow only a number.
         /// </summary>
         PasswordNumberOnly,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for AutoCapital Type
+    /// Enumeration for the AutoCapital types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum AutoCapitalization
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None,
         /// <summary>
-        /// Word
+        /// Word.
         /// </summary>
         Word,
         /// <summary>
-        /// Sentence
+        /// Sentence.
         /// </summary>
         Sentence,
         /// <summary>
-        /// All Character
+        /// All characters.
         /// </summary>
         AllCharacter,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for InputPanel ReturnKey Type
+    /// Enumeration for the InputPanel ReturnKey types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum InputPanelReturnKey
     {
         /// <summary>
-        /// Default
+        /// Default.
         /// </summary>
         Default,
         /// <summary>
-        /// Done
+        /// Done.
         /// </summary>
         Done,
         /// <summary>
-        /// Go
+        /// Go.
         /// </summary>
         Go,
         /// <summary>
-        /// Join
+        /// Join.
         /// </summary>
         Join,
         /// <summary>
-        /// Login
+        /// Login.
         /// </summary>
         Login,
         /// <summary>
-        /// Next
+        /// Next.
         /// </summary>
         Next,
         /// <summary>
-        /// Search
+        /// Search.
         /// </summary>
         Search,
         /// <summary>
-        /// Send
+        /// Send.
         /// </summary>
         Send,
         /// <summary>
-        /// SignIn
+        /// SignIn.
         /// </summary>
         SignIn,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for InputHints
+    /// Enumeration for the InputHints.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum InputHints
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None,
         /// <summary>
-        /// AutoComplete
+        /// AutoComplete.
         /// </summary>
         AutoComplete,
         /// <summary>
-        /// SensitiveData
+        /// SensitiveData.
         /// </summary>
         SensitiveData,
         /// <summary>
-        /// Multiline
+        /// Multiline.
         /// </summary>
         Multiline,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for BiDi Direction
+    /// Enumeration for the BiDirection.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum BiDirection
     {
         /// <summary>
-        /// Neutral
+        /// Neutral.
         /// </summary>
         Neutral,
         /// <summary>
-        /// LTR
+        /// LTR.
         /// </summary>
         LTR,
         /// <summary>
-        /// RTL
+        /// RTL.
         /// </summary>
         RTL,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for InputPanel Language
+    /// Enumeration for the InputPanel language.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum InputPanelLanguage
     {
         /// <summary>
-        /// Automatic
+        /// Automatic.
         /// </summary>
         Automatic,
         /// <summary>
-        /// Alphabet
+        /// Alphabet.
         /// </summary>
         Alphabet,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// This class represents the context of InputMethodEditor
+    /// This class represents the context of the InputMethodEditor.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class InputMethodContext

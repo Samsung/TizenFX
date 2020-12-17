@@ -22,8 +22,8 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The Rotary Selector is a widget to display a selector and multiple items surrounding the selector.
-    /// And an item can be selected by rotary event or user item click.
+    /// The RotarySelector is a widget to display a selector and multiple items surrounding the selector.
+    /// An item can be selected by the Rotary event or user item click.
     /// Inherits <see cref="Layout"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -37,13 +37,13 @@ namespace ElmSharp.Wearable
         const string ItemClickedEventName = "item,clicked";
 
         /// <summary>
-        /// Selected will be triggered when selected an item.
+        /// Selected will be triggered when selecting an item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<RotarySelectorItemEventArgs> Selected;
 
         /// <summary>
-        /// Clicked will be triggered when selecting again the alredy selected item or selecting a selector.
+        /// Clicked will be triggered when selecting again the already selected item or selecting a selector.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<RotarySelectorItemEventArgs> Clicked;
@@ -61,7 +61,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Rotary Selector class.
         /// </summary>
-        /// <param name="parent">The parent of new Rotary Selector instance</param>
+        /// <param name="parent">The parent of the new Rotary Selector instance.</param>
         /// <since_tizen> preview </since_tizen>
         public RotarySelector(EvasObject parent) : base(parent)
         {
@@ -130,8 +130,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

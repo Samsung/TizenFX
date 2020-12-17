@@ -84,6 +84,8 @@ namespace Tizen.Content.MediaContent
                     return new InvalidOperationException($"{msg} : {err}.");
                 case MediaContentError.UnsupportedContent:
                     return new UnsupportedContentException();
+                case MediaContentError.NotSupported:
+                    return new NotSupportedException($"{msg}.");
 
                 default:
                     return new InvalidOperationException($"Unknown Error : {err.ToString()}, {msg}.");

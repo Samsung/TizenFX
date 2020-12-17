@@ -21,7 +21,7 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The MoreOptionItem is a item of MoreOption widget.
+    /// The MoreOptionItem is an item of the MoreOption widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class MoreOptionItem
@@ -59,7 +59,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of MoreOptionItem class.
+        /// Creates and initializes a new instance of the MoreOptionItem class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public MoreOptionItem()
@@ -68,7 +68,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the main text of a more option object.
+        /// Sets or gets the main text of the more option object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string MainText
@@ -90,7 +90,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the sub text of a more option object.
+        /// Sets or gets the subtext of the more option object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string SubText
@@ -112,7 +112,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the icon image
+        /// Sets or gets the icon image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Image Icon

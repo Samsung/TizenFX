@@ -18,89 +18,89 @@
 namespace ElmSharp.Accessible
 {
     /// <summary>
-    /// Enumeration for AccessRole.
+    /// Enumeration for the AccessRole.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum AccessRole
     {
         /// <summary>
-        /// Invalid
+        /// Invalid.
         /// </summary>
         Invalid,
         /// <summary>
-        /// AcceleratorLabel role
+        /// AcceleratorLabel role.
         /// </summary>
         AcceleratorLabel,
         /// <summary>
-        /// Alert role
+        /// Alert role.
         /// </summary>
         Alert,
         /// <summary>
-        /// Animation role
+        /// Animation role.
         /// </summary>
         Animation,
         /// <summary>
-        /// Arrow role
+        /// Arrow role.
         /// </summary>
         Arrow,
         /// <summary>
-        /// Calendar role
+        /// Calendar role.
         /// </summary>
         Calendar,
         /// <summary>
-        /// Canvas role
+        /// Canvas role.
         /// </summary>
         Canvas,
         /// <summary>
-        /// CheckBox role
+        /// CheckBox role.
         /// </summary>
         CheckBox,
         /// <summary>
-        /// CheckMenuItem role
+        /// CheckMenuItem role.
         /// </summary>
         CheckMenuItem,
         /// <summary>
-        /// ColorChooser role
+        /// ColorChooser role.
         /// </summary>
         ColorChooser,
         /// <summary>
-        /// ColumnHeader role
+        /// ColumnHeader role.
         /// </summary>
         ColumnHeader,
         /// <summary>
-        /// ComboBox role
+        /// ComboBox role.
         /// </summary>
         ComboBox,
         /// <summary>
-        /// DateEditor role
+        /// DateEditor role.
         /// </summary>
         DateEditor,
         /// <summary>
-        /// DesktopIcon role
+        /// DesktopIcon role.
         /// </summary>
         DesktopIcon,
         /// <summary>
-        /// DesktopFrame role
+        /// DesktopFrame role.
         /// </summary>
         DesktopFrame,
         /// <summary>
-        /// Dial role
+        /// Dial role.
         /// </summary>
         Dial,
         /// <summary>
-        /// Dialog role
+        /// Dialog role.
         /// </summary>
         Dialog,
         /// <summary>
-        /// DirectoryPane role
+        /// DirectoryPane role.
         /// </summary>
         DirectoryPane,
         /// <summary>
-        /// DrawingArea role
+        /// DrawingArea role.
         /// </summary>
         DrawingArea,
         /// <summary>
-        /// FileChooser role
+        /// FileChooser role.
         /// </summary>
         FileChooser,
         /// <summary>
@@ -108,35 +108,35 @@ namespace ElmSharp.Accessible
         /// </summary>
         Filler,
         /// <summary>
-        /// FocusTraversable role
+        /// FocusTraversable role.
         /// </summary>
         FocusTraversable,
         /// <summary>
-        /// FontChooser role
+        /// FontChooser role.
         /// </summary>
         FontChooser,
         /// <summary>
-        /// Frame role
+        /// Frame role.
         /// </summary>
         Frame,
         /// <summary>
-        /// GlassPane role
+        /// GlassPane role.
         /// </summary>
         GlassPane,
         /// <summary>
-        /// HtmlContainer role
+        /// HtmlContainer role.
         /// </summary>
         HtmlContainer,
         /// <summary>
-        /// Icon role
+        /// Icon role.
         /// </summary>
         Icon,
         /// <summary>
-        /// Image role
+        /// Image role.
         /// </summary>
         Image,
         /// <summary>
-        /// InternalFrame role
+        /// InternalFrame role.
         /// </summary>
         InternalFrame,
         /// <summary>
@@ -144,295 +144,295 @@ namespace ElmSharp.Accessible
         /// </summary>
         Label,
         /// <summary>
-        /// LayeredPane role
+        /// LayeredPane role.
         /// </summary>
         LayeredPane,
         /// <summary>
-        /// List role
+        /// List role.
         /// </summary>
         List,
         /// <summary>
-        /// ListItem role
+        /// ListItem role.
         /// </summary>
         ListItem,
         /// <summary>
-        /// Menu role
+        /// Menu role.
         /// </summary>
         Menu,
         /// <summary>
-        /// MenuBar role
+        /// MenuBar role.
         /// </summary>
         MenuBar,
         /// <summary>
-        /// MenuItem role
+        /// MenuItem role.
         /// </summary>
         MenuItem,
         /// <summary>
-        /// OptionPane role
+        /// OptionPane role.
         /// </summary>
         OptionPane,
         /// <summary>
-        /// PageTab role
+        /// PageTab role.
         /// </summary>
         PageTab,
         /// <summary>
-        /// PageTabList role
+        /// PageTabList role.
         /// </summary>
         PageTabList,
         /// <summary>
-        /// Panel role
+        /// Panel role.
         /// </summary>
         Panel,
         /// <summary>
-        /// PasswordText role
+        /// PasswordText role.
         /// </summary>
         PasswordText,
         /// <summary>
-        /// PopupMenu role
+        /// PopupMenu role.
         /// </summary>
         PopupMenu,
         /// <summary>
-        /// ProgressBar role
+        /// ProgressBar role.
         /// </summary>
         ProgressBar,
         /// <summary>
-        /// PushButton role
+        /// PushButton role.
         /// </summary>
         PushButton,
         /// <summary>
-        /// RadioButton role
+        /// RadioButton role.
         /// </summary>
         RadioButton,
         /// <summary>
-        /// RadioMenuItem role
+        /// RadioMenuItem role.
         /// </summary>
         RadioMenuItem,
         /// <summary>
-        /// RootPane role
+        /// RootPane role.
         /// </summary>
         RootPane,
         /// <summary>
-        /// RowHeader role
+        /// RowHeader role.
         /// </summary>
         RowHeader,
         /// <summary>
-        /// ScrollBar role
+        /// ScrollBar role.
         /// </summary>
         ScrollBar,
         /// <summary>
-        /// ScrollPane role
+        /// ScrollPane role.
         /// </summary>
         ScrollPane,
         /// <summary>
-        /// Separator role
+        /// Separator role.
         /// </summary>
         Separator,
         /// <summary>
-        /// Slider role
+        /// Slider role.
         /// </summary>
         Slider,
         /// <summary>
-        /// SpinButton role
+        /// SpinButton role.
         /// </summary>
         SpinButton,
         /// <summary>
-        /// SplitPane role
+        /// SplitPane role.
         /// </summary>
         SplitPane,
         /// <summary>
-        /// StatusBar role
+        /// StatusBar role.
         /// </summary>
         StatusBar,
         /// <summary>
-        /// Table role
+        /// Table role.
         /// </summary>
         Table,
         /// <summary>
-        /// TableCell role
+        /// TableCell role.
         /// </summary>
         TableCell,
         /// <summary>
-        /// TableColumnHeader role
+        /// TableColumnHeader role.
         /// </summary>
         TableColumnHeader,
         /// <summary>
-        /// TableRowHeader role
+        /// TableRowHeader role.
         /// </summary>
         TableRowHeader,
         /// <summary>
-        /// TearoffMenuItem role
+        /// TearoffMenuItem role.
         /// </summary>
         TearoffMenuItem,
         /// <summary>
-        /// Terminal role
+        /// Terminal role.
         /// </summary>
         Terminal,
         /// <summary>
-        /// Text role
+        /// Text role.
         /// </summary>
         Text,
         /// <summary>
-        /// ToggleButton role
+        /// ToggleButton role.
         /// </summary>
         ToggleButton,
         /// <summary>
-        /// ToolBar role
+        /// ToolBar role.
         /// </summary>
         ToolBar,
         /// <summary>
-        /// ToolTip role
+        /// ToolTip role.
         /// </summary>
         ToolTip,
         /// <summary>
-        /// Tree role
+        /// Tree role.
         /// </summary>
         Tree,
         /// <summary>
-        /// TreeTable role
+        /// TreeTable role.
         /// </summary>
         TreeTable,
         /// <summary>
-        /// Unknown
+        /// Unknown role.
         /// </summary>
         Unknown,
         /// <summary>
-        /// Viewport role
+        /// Viewport role.
         /// </summary>
         Viewport,
         /// <summary>
-        /// Window role
+        /// Window role.
         /// </summary>
         Window,
         /// <summary>
-        /// Extended role
+        /// Extended role.
         /// </summary>
         Extended,
         /// <summary>
-        /// Header role
+        /// Header role.
         /// </summary>
         Header,
         /// <summary>
-        /// Footer role
+        /// Footer role.
         /// </summary>
         Footer,
         /// <summary>
-        /// Paragraph
+        /// Paragraph role.
         /// </summary>
         Paragraph,
         /// <summary>
-        /// Ruler role
+        /// Ruler role.
         /// </summary>
         Ruler,
         /// <summary>
-        /// Application role
+        /// Application role.
         /// </summary>
         Application,
         /// <summary>
-        /// Autocomplete role
+        /// Autocomplete role.
         /// </summary>
         Autocomplete,
         /// <summary>
-        /// Editbar role
+        /// Editbar role.
         /// </summary>
         Editbar,
         /// <summary>
-        /// Embedded role
+        /// Embedded role.
         /// </summary>
         Embedded,
         /// <summary>
-        /// Entry role
+        /// Entry role.
         /// </summary>
         Entry,
         /// <summary>
-        /// Chart role
+        /// Chart role.
         /// </summary>
         Chart,
         /// <summary>
-        /// Caption role
+        /// Caption role.
         /// </summary>
         Caption,
         /// <summary>
-        /// DocumentFrame role
+        /// DocumentFrame role.
         /// </summary>
         DocumentFrame,
         /// <summary>
-        /// Heading role
+        /// Heading role.
         /// </summary>
         Heading,
         /// <summary>
-        /// Page role
+        /// Page role.
         /// </summary>
         Page,
         /// <summary>
-        /// Section role
+        /// Section role.
         /// </summary>
         Section,
         /// <summary>
-        /// RedundantObject role
+        /// RedundantObject role.
         /// </summary>
         RedundantObject,
         /// <summary>
-        /// Form role
+        /// Form role.
         /// </summary>
         Form,
         /// <summary>
-        /// Link role
+        /// Link role.
         /// </summary>
         Link,
         /// <summary>
-        /// InputMethodWindow role
+        /// InputMethodWindow role.
         /// </summary>
         InputMethodWindow,
         /// <summary>
-        /// TableRow role
+        /// TableRow role.
         /// </summary>
         TableRow,
         /// <summary>
-        /// TreeItem role
+        /// TreeItem role.
         /// </summary>
         TreeItem,
         /// <summary>
-        /// DocumentSpreadsheet role
+        /// DocumentSpreadsheet role.
         /// </summary>
         DocumentSpreadsheet,
         /// <summary>
-        /// DocumentPresentation role
+        /// DocumentPresentation role.
         /// </summary>
         DocumentPresentation,
         /// <summary>
-        /// DocumentText role
+        /// DocumentText role.
         /// </summary>
         DocumentText,
         /// <summary>
-        /// DocumentWeb role
+        /// DocumentWeb role.
         /// </summary>
         DocumentWeb,
         /// <summary>
-        /// DocumentEmail role
+        /// DocumentEmail role.
         /// </summary>
         DocumentEmail,
         /// <summary>
-        /// Comment role
+        /// Comment role.
         /// </summary>
         Comment,
         /// <summary>
-        /// ListBox role
+        /// ListBox role.
         /// </summary>
         ListBox,
         /// <summary>
-        /// Grouping role
+        /// Grouping role.
         /// </summary>
         Grouping,
         /// <summary>
-        /// ImageMap role
+        /// ImageMap role.
         /// </summary>
         ImageMap,
         /// <summary>
-        /// Notification role
+        /// Notification role.
         /// </summary>
         Notification,
         /// <summary>
-        /// InfoBar role
+        /// InfoBar role.
         /// </summary>
         InfoBar
     }

@@ -39,6 +39,5 @@ namespace Tizen.Multimedia.MediaCodec
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public MediaCodecStatus Status { get; }
-
     }
 }

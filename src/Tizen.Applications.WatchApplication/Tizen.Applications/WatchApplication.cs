@@ -21,16 +21,16 @@ using ElmSharp;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The class that represents a Tizen watch application.
+    /// The class that represents the Tizen watch application.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class WatchApplication : CoreApplication
     {
         /// <summary>
-        /// Initialize the WatchApplication class
+        /// Initializes the WatchApplication class.
         /// </summary>
         /// <remarks>
-        /// Default backend for Watch application will be used.
+        /// Default backend for the watch application will be used.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public WatchApplication() : base(new WatchCoreBackend())
@@ -38,19 +38,19 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initialize the WatchApplication class
+        /// Initializes the WatchApplication class.
         /// </summary>
         /// <remarks>
-        /// If want to change the backend , use this constructor
+        /// If you want to change the backend, use this constructor.
         /// </remarks>
-        /// <param name="backend">The backend instance implementing ICoreBackend interface.</param>
+        /// <param name="backend">The backend instance implementing the ICoreBackend interface.</param>
         /// <since_tizen> 4 </since_tizen>
         public WatchApplication(ICoreBackend backend) : base(backend)
         {
         }
 
         /// <summary>
-        /// Instance for the window
+        /// Instances for the window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected Window Window;
@@ -74,7 +74,7 @@ namespace Tizen.Applications
         public event EventHandler<TimeEventArgs> TimeTick;
 
         /// <summary>
-        /// Occurs whenever the time tick comes in ambient mode.
+        /// Occurs whenever the time tick comes in the ambient mode.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TimeEventArgs> AmbientTick;
@@ -88,7 +88,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Runs the UI applications' main loop.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <param name="args">Arguments from the commandline.</param>
         /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
@@ -103,7 +103,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application is launched.
+        /// Overrides this method to handle the behavior when the application is launched.
         /// If base.OnCreate() is not called, the event 'Created' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -118,7 +118,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application is resumed.
+        /// Overrides this method to handle the behavior when the application is resumed.
         /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -128,7 +128,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application is paused.
+        /// Overrides this method to handle the behavior when the application is paused.
         /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -138,10 +138,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the time tick event comes.
+        /// Overrides this method to handle the behavior when the time tick event comes.
         /// If base.OnTick() is not called, the event 'TimeTick' will not be emitted.
         /// </summary>
-        /// <param name="time">The received TimeEventArgs to get time information.</param>
+        /// <param name="time">The received TimeEventArgs to get the time information.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void OnTick(TimeEventArgs time)
         {
@@ -149,7 +149,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the time tick event comes in ambient mode.
+        /// Overrides this method to handle the behavior when the time tick event comes in ambient mode.
         /// If base.OnAmbientTick() is not called, the event 'AmbientTick' will not be emitted.
         /// </summary>
         /// <param name="time">The received TimeEventArgs to get time information.</param>
@@ -161,10 +161,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the ambient mode is changed.
+        /// Overrides this method to handle the behavior when the ambient mode is changed.
         /// If base.OnAmbientChanged() is not called, the event 'AmbientChanged' will not be emitted.
         /// </summary>
-        /// <param name="mode">The received AmbientEventArgs</param>
+        /// <param name="mode">The received AmbientEventArgs.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void OnAmbientChanged(AmbientEventArgs mode)
         {
@@ -172,12 +172,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the current time
+        /// Gets the current time.
         /// </summary>
         /// <returns>WatchTime</returns>
         /// <feature>http://tizen.org/feature/watch_app</feature>
-        /// <exception cref="InvalidOperationException">Thrown when failed to get current time because of invalid parameter.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed to get current time because memory is not enough.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to get the current time because of an invalid parameter.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed to get the current time because the memory is not enough.</exception>
         /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
@@ -217,11 +217,11 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the type of periodic ambient tick.
+        /// Gets the type of the periodic ambient tick.
         /// </summary>
         /// <returns>AmbientTickType</returns>
         /// <feature>http://tizen.org/feature/watch_app</feature>
-        /// <exception cref="InvalidOperationException">Thrown when failed to get ambient tick type.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to get the ambient tick type.</exception>
         /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
@@ -261,13 +261,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets the type of periodic ambient tick.
-        /// OnAmbientTick will be called following settings.
-        /// If SetAmbientTickType is not called, OnAmbientTick will be called every minute.
+        /// Sets the type of the periodic ambient tick.
+        /// OnAmbientTick will be called for the following settings.
+        /// If the SetAmbientTickType is not called, the OnAmbientTick will be called every minute.
         /// </summary>
-        /// <param name="ambientTickType">the type of ambient tick</param>
+        /// <param name="ambientTickType">The type of the ambient tick.</param>
         /// <feature>http://tizen.org/feature/watch_app</feature>
-        /// <exception cref="InvalidOperationException">Thrown when failed to set ambient tick type.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to set the ambient tick type.</exception>
         /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
@@ -302,14 +302,14 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets the frequency of time tick.
-        /// OnTick will be called following settings.
+        /// Sets the frequency of the time tick.
+        /// OnTick will be called for the following settings.
         /// If SetTimeTickFrequency is not called, OnTick will be called every second.
         /// </summary>
-        /// <param name="ticks">Ticks the number of ticks per given resolution type</param>
-        /// <param name="type">Type of the resolution type</param>
+        /// <param name="ticks">Ticks the number of ticks per given resolution type.</param>
+        /// <param name="type">Type of the resolution type.</param>
         /// <feature>http://tizen.org/feature/watch_app</feature>
-        /// <exception cref="InvalidOperationException">Thrown when failed to set time tick frequency.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to set the time tick frequency.</exception>
         /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
@@ -344,12 +344,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the frequency fo time tick.
+        /// Gets the frequency of the time tick.
         /// </summary>
-        /// <param name="ticks">Ticks the number of ticks per given resolution type</param>
-        /// <param name="type">Type of the resolution type</param>
+        /// <param name="ticks">Ticks the number of ticks per given resolution type.</param>
+        /// <param name="type">Type of the resolution type.</param>
         /// <feature>http://tizen.org/feature/watch_app</feature>
-        /// <exception cref="InvalidOperationException">Thrown when failed to get time tick frequency.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to get the time tick frequency.</exception>
         /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>

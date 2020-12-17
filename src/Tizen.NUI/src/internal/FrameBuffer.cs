@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,17 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-
-    internal class FrameBuffer : BaseHandle
+    /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class FrameBuffer : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FrameBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FrameBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBuffer.Upcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameBuffer obj)
@@ -32,40 +33,13 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_FrameBuffer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.FrameBuffer.DeleteFrameBuffer(swigCPtr);
         }
 
         /// <since_tizen> 3 </since_tizen>
-        public class Attachment
+        public sealed class Attachment
         {
             /// <since_tizen> 3 </since_tizen>
             public enum Mask
@@ -77,7 +51,7 @@ namespace Tizen.NUI
             }
         }
 
-        public FrameBuffer(uint width, uint height, uint attachments) : this(NDalicPINVOKE.FrameBuffer_New(width, height, attachments), true)
+        public FrameBuffer(uint width, uint height, uint attachments) : this(Interop.FrameBuffer.New(width, height, attachments), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -85,25 +59,23 @@ namespace Tizen.NUI
 
         public void AttachColorTexture(Texture texture)
         {
-            NDalicPINVOKE.FrameBuffer_AttachColorTexture__SWIG_0(swigCPtr, Texture.getCPtr(texture));
+            Interop.FrameBuffer.AttachColorTexture(swigCPtr, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AttachColorTexture(Texture texture, uint mipmapLevel, uint layer)
         {
-            NDalicPINVOKE.FrameBuffer_AttachColorTexture__SWIG_1(swigCPtr, Texture.getCPtr(texture), mipmapLevel, layer);
+            Interop.FrameBuffer.AttachColorTexture(swigCPtr, Texture.getCPtr(texture), mipmapLevel, layer);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Texture GetColorTexture()
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.FrameBuffer_GetColorTexture(swigCPtr);
-            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
-
+            //to fix memory leak issue, match the handle count with native side.
+            global::System.IntPtr cPtr = Interop.FrameBuffer.GetColorTexture(swigCPtr);
+            Texture ret = this.GetInstanceSafely<Texture>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

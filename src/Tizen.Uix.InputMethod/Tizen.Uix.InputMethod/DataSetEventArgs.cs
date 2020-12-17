@@ -17,7 +17,7 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to DataSet Event
+    /// This class contains the data related to the DataSet event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SetDataEventArgs
@@ -29,7 +29,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The specific data to be set to the input panel
+        /// The specific data to be set to the input panel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public byte[] Data
@@ -39,7 +39,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The length of data, in bytes, to send to the input panel
+        /// The length of data, in bytes, to be sent to the input panel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public uint DataLength

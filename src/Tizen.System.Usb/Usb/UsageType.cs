@@ -17,21 +17,21 @@
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Enumeration of an endpoint's usage type.
+    /// Enumeration for an endpoint's usage types.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum UsageType
     {
         /// <summary>
-        /// Data endpoint
+        /// Data endpoint.
         /// </summary>
         Data = Interop.UsageType.Data,
         /// <summary>
-        /// Feedback endpoint
+        /// Feedback endpoint.
         /// </summary>
         Feedback = Interop.UsageType.Feedback,
         /// <summary>
-        /// Implicit feedback Data endpoint
+        /// Implicit feedback data endpoint.
         /// </summary>
         Implicit = Interop.UsageType.Implicit,
     }
