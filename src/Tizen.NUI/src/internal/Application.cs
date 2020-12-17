@@ -605,32 +605,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationInitEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationInitEventHandler == null)
-                    {
-                        _applicationInitEventHandler += value;
+                    _applicationInitEventHandler += value;
 
-                        _applicationInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationInit);
-                        this.InitSignal().Connect(_applicationInitEventCallbackDelegate);
-                    }
+                    _applicationInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationInit);
+                    this.InitSignal().Connect(_applicationInitEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationInitEventHandler != null)
                 {
-                    if (_applicationInitEventHandler != null)
-                    {
-                        ApplicationSignal initSignal = this.InitSignal();
-                        initSignal?.Disconnect(_applicationInitEventCallbackDelegate);
-                        initSignal?.Dispose();
-                    }
-
-                    _applicationInitEventHandler -= value;
+                    ApplicationSignal initSignal = this.InitSignal();
+                    initSignal?.Disconnect(_applicationInitEventCallbackDelegate);
+                    initSignal?.Dispose();
                 }
+
+                _applicationInitEventHandler -= value;
             }
         }
 
@@ -663,32 +657,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationTerminateEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationTerminateEventHandler == null)
-                    {
-                        _applicationTerminateEventHandler += value;
+                    _applicationTerminateEventHandler += value;
 
-                        _applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
-                        this.TerminateSignal().Connect(_applicationTerminateEventCallbackDelegate);
-                    }
+                    _applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
+                    this.TerminateSignal().Connect(_applicationTerminateEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationTerminateEventHandler != null)
                 {
-                    if (_applicationTerminateEventHandler != null)
-                    {
-                        ApplicationSignal terminateSignal = this.TerminateSignal();
-                        terminateSignal?.Disconnect(_applicationTerminateEventCallbackDelegate);
-                        terminateSignal?.Dispose();
-                    }
-
-                    _applicationTerminateEventHandler -= value;
+                    ApplicationSignal terminateSignal = this.TerminateSignal();
+                    terminateSignal?.Disconnect(_applicationTerminateEventCallbackDelegate);
+                    terminateSignal?.Dispose();
                 }
+
+                _applicationTerminateEventHandler -= value;
             }
         }
 
@@ -717,32 +705,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationPauseEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationPauseEventHandler == null)
-                    {
-                        _applicationPauseEventHandler += value;
+                    _applicationPauseEventHandler += value;
 
-                        _applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
-                        this.PauseSignal().Connect(_applicationPauseEventCallbackDelegate);
-                    }
+                    _applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
+                    this.PauseSignal().Connect(_applicationPauseEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationPauseEventHandler != null)
                 {
-                    if (_applicationPauseEventHandler != null)
-                    {
-                        ApplicationSignal pauseSignal = this.PauseSignal();
-                        pauseSignal?.Disconnect(_applicationPauseEventCallbackDelegate);
-                        pauseSignal?.Dispose();
-                    }
-
-                    _applicationPauseEventHandler -= value;
+                    ApplicationSignal pauseSignal = this.PauseSignal();
+                    pauseSignal?.Disconnect(_applicationPauseEventCallbackDelegate);
+                    pauseSignal?.Dispose();
                 }
+
+                _applicationPauseEventHandler -= value;
             }
         }
 
@@ -765,32 +747,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationResumeEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationResumeEventHandler == null)
-                    {
-                        _applicationResumeEventHandler += value;
+                    _applicationResumeEventHandler += value;
 
-                        _applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
-                        this.ResumeSignal().Connect(_applicationResumeEventCallbackDelegate);
-                    }
+                    _applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
+                    this.ResumeSignal().Connect(_applicationResumeEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationResumeEventHandler != null)
                 {
-                    if (_applicationResumeEventHandler != null)
-                    {
-                        ApplicationSignal resumeSignal = this.ResumeSignal();
-                        resumeSignal?.Disconnect(_applicationResumeEventCallbackDelegate);
-                        resumeSignal?.Dispose();
-                    }
-
-                    _applicationResumeEventHandler -= value;
+                    ApplicationSignal resumeSignal = this.ResumeSignal();
+                    resumeSignal?.Disconnect(_applicationResumeEventCallbackDelegate);
+                    resumeSignal?.Dispose();
                 }
+
+                _applicationResumeEventHandler -= value;
             }
         }
 
@@ -813,32 +789,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationResetEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationResetEventHandler == null)
-                    {
-                        _applicationResetEventHandler += value;
+                    _applicationResetEventHandler += value;
 
-                        _applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
-                        this.ResetSignal().Connect(_applicationResetEventCallbackDelegate);
-                    }
+                    _applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
+                    this.ResetSignal().Connect(_applicationResetEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationResetEventHandler != null)
                 {
-                    if (_applicationResetEventHandler != null)
-                    {
-                        ApplicationSignal resetSignal = this.ResetSignal();
-                        resetSignal?.Disconnect(_applicationResetEventCallbackDelegate);
-                        resetSignal?.Dispose();
-                    }
-
-                    _applicationResetEventHandler -= value;
+                    ApplicationSignal resetSignal = this.ResetSignal();
+                    resetSignal?.Disconnect(_applicationResetEventCallbackDelegate);
+                    resetSignal?.Dispose();
                 }
+
+                _applicationResetEventHandler -= value;
             }
         }
 
@@ -861,32 +831,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationLanguageChangedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationLanguageChangedEventHandler == null)
-                    {
-                        _applicationLanguageChangedEventHandler += value;
+                    _applicationLanguageChangedEventHandler += value;
 
-                        _applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
-                        this.LanguageChangedSignal().Connect(_applicationLanguageChangedEventCallbackDelegate);
-                    }
+                    _applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
+                    this.LanguageChangedSignal().Connect(_applicationLanguageChangedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationLanguageChangedEventHandler != null)
                 {
-                    if (_applicationLanguageChangedEventHandler != null)
-                    {
-                        ApplicationSignal languageChangedSignal = this.LanguageChangedSignal();
-                        languageChangedSignal?.Disconnect(_applicationLanguageChangedEventCallbackDelegate);
-                        languageChangedSignal?.Dispose();
-                    }
-
-                    _applicationLanguageChangedEventHandler -= value;
+                    ApplicationSignal languageChangedSignal = this.LanguageChangedSignal();
+                    languageChangedSignal?.Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+                    languageChangedSignal?.Dispose();
                 }
+
+                _applicationLanguageChangedEventHandler -= value;
             }
         }
 
@@ -909,32 +873,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationRegionChangedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationRegionChangedEventHandler == null)
-                    {
-                        _applicationRegionChangedEventHandler += value;
+                    _applicationRegionChangedEventHandler += value;
 
-                        _applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
-                        this.RegionChangedSignal().Connect(_applicationRegionChangedEventCallbackDelegate);
-                    }
+                    _applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
+                    this.RegionChangedSignal().Connect(_applicationRegionChangedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationRegionChangedEventHandler != null)
                 {
-                    if (_applicationRegionChangedEventHandler != null)
-                    {
-                        ApplicationSignal regionChangedSignal = this.RegionChangedSignal();
-                        regionChangedSignal?.Disconnect(_applicationRegionChangedEventCallbackDelegate);
-                        regionChangedSignal?.Dispose();
-                    }
-
-                    _applicationRegionChangedEventHandler -= value;
+                    ApplicationSignal regionChangedSignal = this.RegionChangedSignal();
+                    regionChangedSignal?.Disconnect(_applicationRegionChangedEventCallbackDelegate);
+                    regionChangedSignal?.Dispose();
                 }
+
+                _applicationRegionChangedEventHandler -= value;
             }
         }
 
@@ -957,46 +915,37 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationBatteryLowEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationBatteryLowEventHandler == null)
-                    {
-                        _applicationBatteryLowEventHandler += value;
+                    _applicationBatteryLowEventHandler += value;
 
-                        _applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
-                        this.BatteryLowSignal().Connect(_applicationBatteryLowEventCallbackDelegate);
-                    }
+                    _applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
+                    this.BatteryLowSignal().Connect(_applicationBatteryLowEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationBatteryLowEventHandler != null)
                 {
-                    if (_applicationBatteryLowEventHandler != null)
-                    {
-                        LowBatterySignalType BatteryLowSignal = this.BatteryLowSignal();
-                        BatteryLowSignal?.Disconnect(_applicationBatteryLowEventCallbackDelegate);
-                        BatteryLowSignal?.Dispose();
-                    }
-
-                    _applicationBatteryLowEventHandler -= value;
+                    LowBatterySignalType BatteryLowSignal = this.BatteryLowSignal();
+                    BatteryLowSignal?.Disconnect(_applicationBatteryLowEventCallbackDelegate);
+                    BatteryLowSignal?.Dispose();
                 }
+
+                _applicationBatteryLowEventHandler -= value;
             }
         }
 
         // Callback for Application BatteryLowSignal
         private void OnNUIApplicationBatteryLow(BatteryStatus status)
         {
-            lock (this)
-            {
-                NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
-                // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-                e.BatteryStatus = status;
-                _applicationBatteryLowEventHandler?.Invoke(this, e);
-            }
+            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+            e.BatteryStatus = status;
+            _applicationBatteryLowEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1007,46 +956,37 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationMemoryLowEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationMemoryLowEventHandler == null)
-                    {
-                        _applicationMemoryLowEventHandler += value;
+                    _applicationMemoryLowEventHandler += value;
 
-                        _applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
-                        this.MemoryLowSignal().Connect(_applicationMemoryLowEventCallbackDelegate);
-                    }
+                    _applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
+                    this.MemoryLowSignal().Connect(_applicationMemoryLowEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationMemoryLowEventHandler != null)
                 {
-                    if (_applicationMemoryLowEventHandler != null)
-                    {
-                        LowMemorySignalType memoryLowSignal = this.MemoryLowSignal();
-                        memoryLowSignal?.Disconnect(_applicationMemoryLowEventCallbackDelegate);
-                        memoryLowSignal?.Dispose();
-                    }
-
-                    _applicationMemoryLowEventHandler -= value;
+                    LowMemorySignalType memoryLowSignal = this.MemoryLowSignal();
+                    memoryLowSignal?.Disconnect(_applicationMemoryLowEventCallbackDelegate);
+                    memoryLowSignal?.Dispose();
                 }
+
+                _applicationMemoryLowEventHandler -= value;
             }
         }
 
         // Callback for Application MemoryLowSignal
         private void OnNUIApplicationMemoryLow(MemoryStatus status)
         {
-            lock (this)
-            {
-                NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
-                // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-                e.MemoryStatus = status;
-                _applicationMemoryLowEventHandler?.Invoke(this, e);
-            }
+            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+            e.MemoryStatus = status;
+            _applicationMemoryLowEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1057,32 +997,26 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_applicationAppControlEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_applicationAppControlEventHandler == null)
-                    {
-                        _applicationAppControlEventHandler += value;
+                    _applicationAppControlEventHandler += value;
 
-                        _applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
-                        this.AppControlSignal().Connect(_applicationAppControlEventCallbackDelegate);
-                    }
+                    _applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
+                    this.AppControlSignal().Connect(_applicationAppControlEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_applicationAppControlEventHandler != null)
                 {
-                    if (_applicationAppControlEventHandler != null)
-                    {
-                        ApplicationControlSignal appControlSignal = this.AppControlSignal();
-                        appControlSignal?.Disconnect(_applicationAppControlEventCallbackDelegate);
-                        appControlSignal?.Dispose();
-                    }
-
-                    _applicationAppControlEventHandler -= value;
+                    ApplicationControlSignal appControlSignal = this.AppControlSignal();
+                    appControlSignal?.Disconnect(_applicationAppControlEventCallbackDelegate);
+                    appControlSignal?.Dispose();
                 }
+
+                _applicationAppControlEventHandler -= value;
             }
         }
 

@@ -171,10 +171,7 @@ namespace Tizen.NUI
                 if (pendingException != null)
                     throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
                 pendingException = e;
-                lock (typeof(NDalicPINVOKE))
-                {
-                    numExceptionsPending++;
-                }
+                numExceptionsPending++;
             }
 
             /// <since_tizen> 3 </since_tizen>
@@ -187,10 +184,7 @@ namespace Tizen.NUI
                     {
                         e = pendingException;
                         pendingException = null;
-                        lock (typeof(NDalicPINVOKE))
-                        {
-                            numExceptionsPending--;
-                        }
+                        numExceptionsPending--;
                     }
                 }
                 if (e == null)
