@@ -159,8 +159,35 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's state.
         /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use Window.EffectState instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectStates
+        {
+            /// <summary>
+            /// None state.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.None instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Transition effect is started.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.Start instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Start,
+            /// <summary>
+            /// Transition effect is ended.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.End instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            End,
+        }
+
+        /// <summary>
+        /// Enumeration for transition effect's state.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectState
         {
             /// <summary>
             /// None state.
@@ -182,8 +209,35 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's type.
         /// </summary>
+        [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectTypes
+        {
+            /// <summary>
+            /// None type.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.None instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Window show effect.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Show instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Show,
+            /// <summary>
+            /// Window hide effect.
+            /// </summary>
+            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Hide instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Hide,
+        }
+
+        /// <summary>
+        /// Enumeration for transition effect's type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectType
         {
             /// <summary>
             /// None type.
@@ -1433,7 +1487,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
@@ -1456,7 +1510,7 @@ namespace Tizen.NUI
         /// <code>
         /// void MyFunction( int frameId )
         /// </code>
-        /// This callback will be deleted once it is called. 
+        /// This callback will be deleted once it is called.
         /// <remarks>
         /// Ownership of the callback is passed onto this class
         /// </remarks>
