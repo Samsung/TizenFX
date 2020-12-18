@@ -48,6 +48,8 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
+        private bool disposedThis = false;
+
         /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
@@ -107,14 +109,7 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        ~BaseHandle()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
+        ~BaseHandle() => Dispose(false);
 
         /// <summary>
         /// Event when a property is set.
@@ -295,23 +290,64 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposedThis)
             {
-                Tizen.Log.Error("NUI", "This API called from separate thread.This API must be called from MainThread.");
                 return;
             }
 
-            if (isDisposeQueued)
+            if (disposing)
             {
-                Dispose(DisposeTypes.Implicit);
+                // TODO: dispose managed state (managed objects).
+                // Explicit call. user calls Dispose()
+
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                }
             }
             else
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
             }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+
+            disposedThis = true;
         }
+
 
         /// <summary>
         /// Performs an action on this object with the given action name and attributes.
