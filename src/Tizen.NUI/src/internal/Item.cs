@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Item obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
@@ -69,12 +69,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.FirstSet(swigCPtr, value);
+                Interop.Item.FirstSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.Item.FirstGet(swigCPtr);
+                uint ret = Interop.Item.FirstGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -86,12 +86,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Item.SecondSet(swigCPtr, View.getCPtr(value));
+                Interop.Item.SecondSet(SwigCPtr, View.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.Item.SecondGet(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Item.SecondGet(SwigCPtr);
                 View ret = (cPtr == global::System.IntPtr.Zero) ? null : new View(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;

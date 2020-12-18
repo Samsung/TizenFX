@@ -33,14 +33,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.ResizeSignal.Empty(swigCPtr);
+            bool ret = Interop.ResizeSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ResizeSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.ResizeSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ResizeSignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ResizeSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,14 +58,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ResizeSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ResizeSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Size2D arg)
         {
-            Interop.ResizeSignal.Emit(swigCPtr, Size2D.getCPtr(arg));
+            Interop.ResizeSignal.Emit(SwigCPtr, Size2D.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

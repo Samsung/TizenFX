@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -24,7 +23,7 @@ namespace Tizen.NUI
     /// A class encapsulating the transform map of the visual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class VisualMap : IDisposable
+    public class VisualMap
     {
         /// <summary>
         /// outputVisualMap.
@@ -67,7 +66,7 @@ namespace Tizen.NUI
         /// The corner radius value of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected float? _cornerRadius = null;
+        private float? cornerRadius = null;
 
         /// <summary>
         /// The map for visual.
@@ -600,13 +599,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CornerRadius
         {
-            get
+            protected get
             {
-                return _cornerRadius ?? (0.0f);
+                return cornerRadius ?? (0.0f);
             }
             set
             {
-                _cornerRadius = value;
+                cornerRadius = value;
                 UpdateVisual();
             }
         }
@@ -664,7 +663,7 @@ namespace Tizen.NUI
             if (_mixColor != null) { _outputVisualMap.Add(Visual.Property.MixColor, new PropertyValue(_mixColor)); }
             if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
             if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
-            if (_cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)_cornerRadius)); }
+            if (cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)cornerRadius)); }
         }
 
         private void ComposingTransformMap()
@@ -677,31 +676,5 @@ namespace Tizen.NUI
             if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
             if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
         }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                _outputVisualMap?.Dispose();
-                _shader?.Dispose();
-                _mixColor?.Dispose();
-                _visualSize?.Dispose();
-                _visualOffset?.Dispose();
-                _visualOffsetPolicy?.Dispose();
-                _visualSizePolicy?.Dispose();
-                _visualTransformMap?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
     }
 }

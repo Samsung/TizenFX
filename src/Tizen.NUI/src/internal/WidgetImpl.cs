@@ -34,7 +34,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetImpl obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -278,13 +278,13 @@ namespace Tizen.NUI
 
         public void SetContentInfo(string contentInfo)
         {
-            Interop.WidgetImpl.SetContentInfo(swigCPtr, contentInfo);
+            Interop.WidgetImpl.SetContentInfo(SwigCPtr, contentInfo);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
-            Interop.WidgetImpl.SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
+            Interop.WidgetImpl.SetImpl(SwigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -298,7 +298,7 @@ namespace Tizen.NUI
             swigDelegate5 = new SwigDelegateWidgetImpl_5(SwigDirectorOnUpdate);
             swigDelegate6 = new SwigDelegateWidgetImpl_6(SwigDirectorSignalConnected);
             swigDelegate7 = new SwigDelegateWidgetImpl_7(SwigDirectorSignalDisconnected);
-            Interop.WidgetImpl.DirectorConnect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
+            Interop.WidgetImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

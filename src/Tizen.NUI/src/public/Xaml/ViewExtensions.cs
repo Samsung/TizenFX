@@ -29,12 +29,14 @@ using System;
 using System.Reflection;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Extensions
     {

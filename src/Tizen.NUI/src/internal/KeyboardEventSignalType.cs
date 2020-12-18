@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.KeyboardEventSignalType.Empty(swigCPtr);
+            bool ret = Interop.KeyboardEventSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.KeyboardEventSignalType.GetConnectionCount(swigCPtr);
+            uint ret = Interop.KeyboardEventSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyboardEventSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardEventSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.KeyboardEventSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyboardEventSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.CallbackData Emit(InputMethodContext arg1, InputMethodContext.EventData arg2)
         {
-            InputMethodContext.CallbackData ret = new InputMethodContext.CallbackData(Interop.KeyboardEventSignalType.Emit(swigCPtr, InputMethodContext.getCPtr(arg1), InputMethodContext.EventData.getCPtr(arg2)), true);
+            InputMethodContext.CallbackData ret = new InputMethodContext.CallbackData(Interop.KeyboardEventSignalType.Emit(SwigCPtr, InputMethodContext.getCPtr(arg1), InputMethodContext.EventData.getCPtr(arg2)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

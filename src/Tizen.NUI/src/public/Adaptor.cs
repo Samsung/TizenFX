@@ -69,7 +69,7 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API8, will be removed in API10. This is not used anymore, please do not use.")]
         public void FeedWheelEvent(Wheel wheelEvent)
         {
-            Interop.Adaptor.FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
+            Interop.Adaptor.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API8, will be removed in API10. This is not used anymore, please do not use.")]
         public void FeedKeyEvent(Key keyEvent)
         {
-            Interop.Adaptor.FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
+            Interop.Adaptor.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         ///</remarks>
         internal void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
-            Interop.Adaptor.SetRenderRefreshRate(swigCPtr, numberOfVSyncsPerRender);
+            Interop.Adaptor.SetRenderRefreshRate(SwigCPtr, numberOfVSyncsPerRender);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

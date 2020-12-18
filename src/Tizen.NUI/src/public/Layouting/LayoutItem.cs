@@ -37,7 +37,7 @@ namespace Tizen.NUI
     /// [Draft] Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
-    public class LayoutItem : IDisposable
+    public class LayoutItem
     {
         static bool LayoutDebugFrameData = false; // Debug flag
         private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Layout(left, top, right, bottom, Owner.ExcludeLayouting);
+            Layout(left, top, right, bottom, Owner?.ExcludeLayouting ?? false);
         }
 
         /// <summary>
@@ -623,25 +623,6 @@ namespace Tizen.NUI
             }
 
             return changed;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose managed resources.
-                _padding?.Dispose();
-                _margin?.Dispose();
-            }
-            // Free native resources.
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

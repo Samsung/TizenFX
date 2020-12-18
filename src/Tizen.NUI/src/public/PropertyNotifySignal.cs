@@ -56,7 +56,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.PropertyNotifySignal.Empty(swigCPtr);
+            bool ret = Interop.PropertyNotifySignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.PropertyNotifySignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.PropertyNotifySignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PropertyNotifySignal.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PropertyNotifySignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PropertyNotifySignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PropertyNotifySignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(PropertyNotification arg)
         {
-            Interop.PropertyNotifySignal.Emit(swigCPtr, PropertyNotification.getCPtr(arg));
+            Interop.PropertyNotifySignal.Emit(SwigCPtr, PropertyNotification.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

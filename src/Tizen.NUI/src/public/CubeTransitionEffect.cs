@@ -48,7 +48,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CubeTransitionEffect obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal CubeTransitionEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionEffect.Upcast(cPtr), cMemoryOwn)
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTransitionDuration(float duration)
         {
-            Interop.CubeTransitionEffect.SetTransitionDuration(swigCPtr, duration);
+            Interop.CubeTransitionEffect.SetTransitionDuration(SwigCPtr, duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetTransitionDuration()
         {
-            float result = Interop.CubeTransitionEffect.GetTransitionDuration(swigCPtr);
+            float result = Interop.CubeTransitionEffect.GetTransitionDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -76,7 +76,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCubeDisplacement(float displacement)
         {
-            Interop.CubeTransitionEffect.SetCubeDisplacement(swigCPtr, displacement);
+            Interop.CubeTransitionEffect.SetCubeDisplacement(SwigCPtr, displacement);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetCubeDisplacement()
         {
-            float result = Interop.CubeTransitionEffect.GetCubeDisplacement(swigCPtr);
+            float result = Interop.CubeTransitionEffect.GetCubeDisplacement(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsTransitioning()
         {
-            bool result = Interop.CubeTransitionEffect.IsTransitioning(swigCPtr);
+            bool result = Interop.CubeTransitionEffect.IsTransitioning(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCurrentTexture(Texture texture)
         {
-            Interop.CubeTransitionEffect.SetCurrentTexture(swigCPtr, Texture.getCPtr(texture));
+            Interop.CubeTransitionEffect.SetCurrentTexture(SwigCPtr, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -110,7 +110,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTargetTexture(Texture texture)
         {
-            Interop.CubeTransitionEffect.SetTargetTexture(swigCPtr, Texture.getCPtr(texture));
+            Interop.CubeTransitionEffect.SetTargetTexture(SwigCPtr, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartTransition(bool toNextImage = true)
         {
-            Interop.CubeTransitionEffect.StartTransitionSwig1(swigCPtr, toNextImage);
+            Interop.CubeTransitionEffect.StartTransitionSwig1(SwigCPtr, toNextImage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -126,7 +126,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartTransition(Vector2 panPosition, Vector2 panDisplacement)
         {
-            Interop.CubeTransitionEffect.StartTransitionSwig2(swigCPtr, Vector2.getCPtr(panPosition), Vector2.getCPtr(panDisplacement));
+            Interop.CubeTransitionEffect.StartTransitionSwig2(SwigCPtr, Vector2.getCPtr(panPosition), Vector2.getCPtr(panDisplacement));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void PauseTransition()
         {
-            Interop.CubeTransitionEffect.PauseTransition(swigCPtr);
+            Interop.CubeTransitionEffect.PauseTransition(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResumeTransition()
         {
-            Interop.CubeTransitionEffect.ResumeTransition(swigCPtr);
+            Interop.CubeTransitionEffect.ResumeTransition(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -150,13 +150,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopTransition()
         {
-            Interop.CubeTransitionEffect.StopTransition(swigCPtr);
+            Interop.CubeTransitionEffect.StopTransition(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         CubeTransitionEffectSignal TransitionCompletedSignal()
         {
-            CubeTransitionEffectSignal ret = new CubeTransitionEffectSignal(Interop.CubeTransitionEffect.TransitionCompletedSignal(swigCPtr), false);
+            CubeTransitionEffectSignal ret = new CubeTransitionEffectSignal(Interop.CubeTransitionEffect.TransitionCompletedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -260,7 +260,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.CubeTransitionEffect.CubeTransitionEffectSignalEmpty(swigCPtr);
+            bool ret = Interop.CubeTransitionEffect.CubeTransitionEffectSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -269,7 +269,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.CubeTransitionEffect.CubeTransitionEffectSignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.CubeTransitionEffect.CubeTransitionEffectSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -280,7 +280,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.CubeTransitionEffect.CubeTransitionEffectSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.CubeTransitionEffect.CubeTransitionEffectSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -291,7 +291,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.CubeTransitionEffect.CubeTransitionEffectSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.CubeTransitionEffect.CubeTransitionEffectSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -300,7 +300,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(CubeTransitionEffect arg)
         {
-            Interop.TextField.TextFieldSignalEmit(swigCPtr, CubeTransitionEffect.getCPtr(arg));
+            Interop.TextField.TextFieldSignalEmit(SwigCPtr, CubeTransitionEffect.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

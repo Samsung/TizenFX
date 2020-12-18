@@ -83,17 +83,21 @@ namespace Tizen.NUI.UIComponents
                 if (_popUpOutsideTouchedEventHandler == null)
                 {
                     _popUpOutsideTouchedEventCallbackDelegate = (OnOutsideTouched);
-                    OutsideTouchedSignal().Connect(_popUpOutsideTouchedEventCallbackDelegate);
+                    VoidSignal outsideTouchedSignal = OutsideTouchedSignal();
+                    outsideTouchedSignal?.Connect(_popUpOutsideTouchedEventCallbackDelegate);
+                    outsideTouchedSignal?.Dispose();
                 }
                 _popUpOutsideTouchedEventHandler += value;
             }
             remove
             {
                 _popUpOutsideTouchedEventHandler -= value;
-                if (_popUpOutsideTouchedEventHandler == null && OutsideTouchedSignal().Empty() == false)
+                VoidSignal outsideTouchedSignal = OutsideTouchedSignal();
+                if (_popUpOutsideTouchedEventHandler == null && outsideTouchedSignal.Empty() == false)
                 {
-                    this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+                    outsideTouchedSignal?.Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
                 }
+                outsideTouchedSignal?.Dispose();
             }
         }
 
@@ -111,17 +115,21 @@ namespace Tizen.NUI.UIComponents
                 if (_popUpShowingEventHandler == null)
                 {
                     _popUpShowingEventCallbackDelegate = (OnShowing);
-                    ShowingSignal().Connect(_popUpShowingEventCallbackDelegate);
+                    VoidSignal showingSignal = ShowingSignal();
+                    showingSignal?.Connect(_popUpShowingEventCallbackDelegate);
+                    showingSignal?.Dispose();
                 }
                 _popUpShowingEventHandler += value;
             }
             remove
             {
                 _popUpShowingEventHandler -= value;
-                if (_popUpShowingEventHandler == null && ShowingSignal().Empty() == false)
+                VoidSignal showingSignal = ShowingSignal();
+                if (_popUpShowingEventHandler == null && showingSignal.Empty() == false)
                 {
-                    ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
+                    showingSignal?.Disconnect(_popUpShowingEventCallbackDelegate);
                 }
+                showingSignal?.Dispose();
             }
         }
 
@@ -139,17 +147,21 @@ namespace Tizen.NUI.UIComponents
                 if (_popUpShownEventHandler == null)
                 {
                     _popUpShownEventCallbackDelegate = (OnShown);
-                    ShownSignal().Connect(_popUpShownEventCallbackDelegate);
+                    VoidSignal shownSignal = ShownSignal();
+                    shownSignal?.Connect(_popUpShownEventCallbackDelegate);
+                    shownSignal?.Dispose();
                 }
                 _popUpShownEventHandler += value;
             }
             remove
             {
                 _popUpShownEventHandler -= value;
-                if (_popUpShownEventHandler == null && ShownSignal().Empty() == false)
+                VoidSignal shownSignal = ShownSignal();
+                if (_popUpShownEventHandler == null && shownSignal.Empty() == false)
                 {
-                    ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
+                    shownSignal?.Disconnect(_popUpShownEventCallbackDelegate);
                 }
+                shownSignal?.Dispose();
             }
         }
 
@@ -167,17 +179,21 @@ namespace Tizen.NUI.UIComponents
                 if (_popUpHidingEventHandler == null)
                 {
                     _popUpHidingEventCallbackDelegate = (OnHiding);
-                    HidingSignal().Connect(_popUpHidingEventCallbackDelegate);
+                    VoidSignal hidingSignal = HidingSignal();
+                    hidingSignal?.Connect(_popUpHidingEventCallbackDelegate);
+                    hidingSignal?.Dispose();
                 }
                 _popUpHidingEventHandler += value;
             }
             remove
             {
                 _popUpHidingEventHandler -= value;
-                if (_popUpHidingEventHandler == null && HidingSignal().Empty() == false)
+                VoidSignal hidingSignal = HidingSignal();
+                if (_popUpHidingEventHandler == null && hidingSignal.Empty() == false)
                 {
-                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                    hidingSignal?.Disconnect(_popUpHidingEventCallbackDelegate);
                 }
+                hidingSignal?.Dispose();
             }
         }
 
@@ -195,17 +211,21 @@ namespace Tizen.NUI.UIComponents
                 if (_popUpHiddenEventHandler == null)
                 {
                     _popUpHiddenEventCallbackDelegate = (OnHidden);
-                    HiddenSignal().Connect(_popUpHiddenEventCallbackDelegate);
+                    VoidSignal hiddenSignal = HiddenSignal();
+                    hiddenSignal?.Connect(_popUpHiddenEventCallbackDelegate);
+                    hiddenSignal?.Dispose();
                 }
                 _popUpHiddenEventHandler += value;
             }
             remove
             {
                 _popUpHiddenEventHandler -= value;
-                if (_popUpHiddenEventHandler == null && HiddenSignal().Empty() == false)
+                VoidSignal hiddenSignal = HiddenSignal();
+                if (_popUpHiddenEventHandler == null && hiddenSignal.Empty() == false)
                 {
-                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+                    hiddenSignal?.Disconnect(_popUpHiddenEventCallbackDelegate);
                 }
+                hiddenSignal?.Dispose();
             }
         }
 
@@ -758,7 +778,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTitle(View titleView)
         {
-            Interop.Popup.SetTitle(swigCPtr, View.getCPtr(titleView));
+            Interop.Popup.SetTitle(SwigCPtr, View.getCPtr(titleView));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -772,7 +792,7 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(View content)
         {
-            Interop.Popup.SetContent(swigCPtr, View.getCPtr(content));
+            Interop.Popup.SetContent(SwigCPtr, View.getCPtr(content));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -786,7 +806,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public void SetFooter(View footer)
         {
-            Interop.Popup.SetFooter(swigCPtr, View.getCPtr(footer));
+            Interop.Popup.SetFooter(SwigCPtr, View.getCPtr(footer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -813,14 +833,14 @@ namespace Tizen.NUI.UIComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
-            Interop.Popup.SetDisplayState(swigCPtr, (int)displayState);
+            Interop.Popup.SetDisplayState(SwigCPtr, (int)displayState);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetTitle(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetTitle(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -829,7 +849,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetContent()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetContent(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetContent(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -838,7 +858,7 @@ namespace Tizen.NUI.UIComponents
         internal View GetFooter()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Popup.GetFooter(swigCPtr);
+            IntPtr cPtr = Interop.Popup.GetFooter(SwigCPtr);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -846,42 +866,42 @@ namespace Tizen.NUI.UIComponents
 
         internal Popup.DisplayStateType GetDisplayState()
         {
-            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.GetDisplayState(swigCPtr);
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.GetDisplayState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal OutsideTouchedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.OutsideTouchedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.OutsideTouchedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShowingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.ShowingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShowingSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShownSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.ShownSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.ShownSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HidingSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.HidingSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HidingSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HiddenSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.Popup.HiddenSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(Interop.Popup.HiddenSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -908,28 +928,38 @@ namespace Tizen.NUI.UIComponents
             {
                 if (_popUpHiddenEventCallbackDelegate != null)
                 {
-                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+                    VoidSignal hiddenSignal = HiddenSignal();
+                    hiddenSignal?.Disconnect(_popUpHiddenEventCallbackDelegate);
+                    hiddenSignal?.Dispose();
                 }
 
                 if (_popUpHidingEventCallbackDelegate != null)
                 {
-                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                    VoidSignal hidingSignal = HidingSignal();
+                    hidingSignal?.Disconnect(_popUpHidingEventCallbackDelegate);
+                    hidingSignal?.Dispose();
                 }
             }
 
             if (_popUpShownEventCallbackDelegate != null)
             {
-                ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
+                VoidSignal shownSignal = ShownSignal();
+                shownSignal?.Disconnect(_popUpShownEventCallbackDelegate);
+                shownSignal?.Dispose();
             }
 
             if (_popUpShowingEventCallbackDelegate != null)
             {
-                ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
+                VoidSignal showingSignal = ShowingSignal();
+                showingSignal?.Disconnect(_popUpShowingEventCallbackDelegate);
+                showingSignal?.Dispose();
             }
 
             if (_popUpOutsideTouchedEventCallbackDelegate != null)
             {
-                this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+                VoidSignal outsideTouchedSingal = this.OutsideTouchedSignal();
+                outsideTouchedSingal?.Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+                outsideTouchedSingal?.Dispose();
             }
 
             base.Dispose(type);
