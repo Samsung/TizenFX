@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
             _window = window;
             _instance = new Callback(Process);
-            Interop.LayoutController.SetCallback(swigCPtr, _instance);
+            Interop.LayoutController.SetCallback(SwigCPtr, _instance);
 
             _layoutTransitionDataQueue = new List<LayoutData>();
         }
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return Interop.LayoutController.GetId(swigCPtr);
+            return Interop.LayoutController.GetId(SwigCPtr);
         }
 
         /// <summary>
@@ -143,10 +143,10 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            if (SwigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                Interop.LayoutController.DeleteLayoutController(swigCPtr);
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Interop.LayoutController.DeleteLayoutController(SwigCPtr);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             base.Dispose(type);

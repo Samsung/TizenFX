@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
-    public struct LayoutLength
+    public struct LayoutLength : IEquatable<LayoutLength>
     {
         private float _value;
 

@@ -14,10 +14,8 @@
  * limitations under the License.
  *
  */
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -29,15 +27,12 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ControlStyle : ViewStyle, global::System.IDisposable
     {
-        /// <summary>
-        /// A Flag to check if it is already disposed.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool disposed = false;
-
         private bool isDisposeQueued = false;
 
-        static ControlStyle() { }
+        static ControlStyle()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Creates a new instance of a ControlStyle.
@@ -75,6 +70,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// A Flag to check if it is already disposed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool Disposed { get; set; }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -103,7 +104,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if (Disposed)
             {
                 return;
             }
@@ -115,7 +116,7 @@ namespace Tizen.NUI.Components
                 //You should release all of your own disposable objects here.
             }
 
-            disposed = true;
+            Disposed = true;
         }
 
         private void SubStyleCalledEvent(object sender, global::System.EventArgs e)

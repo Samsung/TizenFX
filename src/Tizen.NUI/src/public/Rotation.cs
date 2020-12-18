@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -57,7 +58,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Rotation.IdentityGet();
                 Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -254,7 +255,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsIdentity()
         {
-            bool ret = Interop.Rotation.IsIdentity(swigCPtr);
+            bool ret = Interop.Rotation.IsIdentity(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -268,7 +269,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GetAxisAngle(Vector3 axis, Radian angle)
         {
-            bool ret = Interop.Rotation.GetAxisAngle(swigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
+            bool ret = Interop.Rotation.GetAxisAngle(SwigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -280,7 +281,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float Length()
         {
-            float ret = Interop.Rotation.Length(swigCPtr);
+            float ret = Interop.Rotation.Length(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -292,7 +293,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float LengthSquared()
         {
-            float ret = Interop.Rotation.LengthSquared(swigCPtr);
+            float ret = Interop.Rotation.LengthSquared(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -303,7 +304,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Normalize()
         {
-            Interop.Rotation.Normalize(swigCPtr);
+            Interop.Rotation.Normalize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -314,7 +315,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Rotation Normalized()
         {
-            Rotation ret = new Rotation(Interop.Rotation.Normalized(swigCPtr), true);
+            Rotation ret = new Rotation(Interop.Rotation.Normalized(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -325,7 +326,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Conjugate()
         {
-            Interop.Rotation.Conjugate(swigCPtr);
+            Interop.Rotation.Conjugate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -335,7 +336,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Invert()
         {
-            Interop.Rotation.Invert(swigCPtr);
+            Interop.Rotation.Invert(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -346,7 +347,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Rotation Log()
         {
-            Rotation ret = new Rotation(Interop.Rotation.Log(swigCPtr), true);
+            Rotation ret = new Rotation(Interop.Rotation.Log(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -358,14 +359,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Rotation Exp()
         {
-            Rotation ret = new Rotation(Interop.Rotation.Exp(swigCPtr), true);
+            Rotation ret = new Rotation(Interop.Rotation.Exp(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rotation obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -381,105 +382,105 @@ namespace Tizen.NUI
 
         private Rotation Add(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.Add(swigCPtr, Rotation.getCPtr(other)), true);
+            Rotation ret = new Rotation(Interop.Rotation.Add(SwigCPtr, Rotation.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Subtract(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.Subtract(swigCPtr, Rotation.getCPtr(other)), true);
+            Rotation ret = new Rotation(Interop.Rotation.Subtract(SwigCPtr, Rotation.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Multiply(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.MultiplyQuaternion(swigCPtr, Rotation.getCPtr(other)), true);
+            Rotation ret = new Rotation(Interop.Rotation.MultiplyQuaternion(SwigCPtr, Rotation.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector3 Multiply(Vector3 other)
         {
-            Vector3 ret = new Vector3(Interop.Rotation.MultiplyVector3(swigCPtr, Vector3.getCPtr(other)), true);
+            Vector3 ret = new Vector3(Interop.Rotation.MultiplyVector3(SwigCPtr, Vector3.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Divide(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.Divide(swigCPtr, Rotation.getCPtr(other)), true);
+            Rotation ret = new Rotation(Interop.Rotation.Divide(SwigCPtr, Rotation.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Multiply(float scale)
         {
-            Rotation ret = new Rotation(Interop.Rotation.Multiply(swigCPtr, scale), true);
+            Rotation ret = new Rotation(Interop.Rotation.Multiply(SwigCPtr, scale), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Divide(float scale)
         {
-            Rotation ret = new Rotation(Interop.Rotation.Divide(swigCPtr, scale), true);
+            Rotation ret = new Rotation(Interop.Rotation.Divide(SwigCPtr, scale), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation Subtract()
         {
-            Rotation ret = new Rotation(Interop.Rotation.Subtract(swigCPtr), true);
+            Rotation ret = new Rotation(Interop.Rotation.Subtract(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation AddAssign(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.AddAssign(swigCPtr, Rotation.getCPtr(other)), false);
+            Rotation ret = new Rotation(Interop.Rotation.AddAssign(SwigCPtr, Rotation.getCPtr(other)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation SubtractAssign(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.SubtractAssign(swigCPtr, Rotation.getCPtr(other)), false);
+            Rotation ret = new Rotation(Interop.Rotation.SubtractAssign(SwigCPtr, Rotation.getCPtr(other)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation MultiplyAssign(Rotation other)
         {
-            Rotation ret = new Rotation(Interop.Rotation.MultiplyAssign(swigCPtr, Rotation.getCPtr(other)), false);
+            Rotation ret = new Rotation(Interop.Rotation.MultiplyAssign(SwigCPtr, Rotation.getCPtr(other)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation MultiplyAssign(float scale)
         {
-            Rotation ret = new Rotation(Interop.Rotation.MultiplyAssign(swigCPtr, scale), false);
+            Rotation ret = new Rotation(Interop.Rotation.MultiplyAssign(SwigCPtr, scale), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Rotation DivideAssign(float scale)
         {
-            Rotation ret = new Rotation(Interop.Rotation.DivideAssign(swigCPtr, scale), false);
+            Rotation ret = new Rotation(Interop.Rotation.DivideAssign(SwigCPtr, scale), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool EqualTo(Rotation rhs)
         {
-            bool ret = Interop.Rotation.EqualTo(swigCPtr, Rotation.getCPtr(rhs));
+            bool ret = Interop.Rotation.EqualTo(SwigCPtr, Rotation.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(Rotation rhs)
         {
-            bool ret = Interop.Rotation.NotEqualTo(swigCPtr, Rotation.getCPtr(rhs));
+            bool ret = Interop.Rotation.NotEqualTo(SwigCPtr, Rotation.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

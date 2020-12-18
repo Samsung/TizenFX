@@ -95,6 +95,7 @@ namespace Tizen.NUI
         private bool swigCMemOwn;
         private bool disposed;
         private bool isDisposeQueued = false;
+        private bool disposedThis = false;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
@@ -275,25 +276,73 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Destructor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ~FlexLayout() => Dispose(false);
+
         /// <inheritdoc/>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
-            // Throw exception if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposedThis)
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                return;
             }
 
-            if (isDisposeQueued)
+            if (disposing)
             {
-                Dispose(DisposeTypes.Implicit);
+                // TODO: dispose managed state (managed objects).
+                // Explicit call. user calls Dispose()
+
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                }
             }
             else
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
             }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+
+            disposedThis = true;
         }
 
         /// <inheritdoc/>
@@ -307,25 +356,36 @@ namespace Tizen.NUI
 
             if (type == DisposeTypes.Explicit)
             {
-                // Called by User
-                // Release your own managed resources here.
-                // You should release all of your own disposable objects here.
-
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
 
-            // Release your own unmanaged resources here.
-            // You should not access any managed member here except static instance.
-            // because the execution order of Finalizes is non-deterministic.
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.FlexLayout.DeleteFlexLayout(swigCPtr);
+                    ReleaseSwigCPtr(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+
             disposed = true;
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Release swigCPtr.
+        /// </summary>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.FlexLayout.DeleteFlexLayout(swigCPtr);
         }
 
         /// <summary>

@@ -44,13 +44,13 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameUpdateCallbackInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         private void DirectorConnect()
         {
             Delegate0 = new DelegateFrameUpdateCallbackInterface(DirectorOnUpdate);
-            Interop.FrameUpdateCallbackInterface.FrameUpdateCallbackInterfaceDirectorConnect(swigCPtr, Delegate0);
+            Interop.FrameUpdateCallbackInterface.FrameUpdateCallbackInterfaceDirectorConnect(SwigCPtr, Delegate0);
         }
 
         private global::System.IntPtr proxyIntPtr;
@@ -251,12 +251,12 @@ namespace Tizen.NUI
 
         internal void AddFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr, global::System.Runtime.InteropServices.HandleRef layerCPtr)
         {
-            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceAddFrameUpdateCallback(windowCPtr, swigCPtr, layerCPtr);
+            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceAddFrameUpdateCallback(windowCPtr, SwigCPtr, layerCPtr);
         }
 
         internal void RemoveFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr)
         {
-            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceRemoveFrameUpdateCallback(windowCPtr, swigCPtr);
+            Interop.FrameUpdateCallbackInterface.FraemCallbackInterfaceRemoveFrameUpdateCallback(windowCPtr, SwigCPtr);
         }
     }
 }

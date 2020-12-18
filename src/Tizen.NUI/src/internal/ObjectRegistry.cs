@@ -28,7 +28,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ObjectRegistry obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -189,21 +189,21 @@ namespace Tizen.NUI
 
         public ObjectRegistry Assign(ObjectRegistry rhs)
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.ObjectRegistry.Assign(swigCPtr, ObjectRegistry.getCPtr(rhs)), false);
+            ObjectRegistry ret = new ObjectRegistry(Interop.ObjectRegistry.Assign(SwigCPtr, ObjectRegistry.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectCreatedSignal ObjectCreatedSignal()
         {
-            ObjectCreatedSignal ret = new ObjectCreatedSignal(Interop.ObjectRegistry.ObjectCreatedSignal(swigCPtr), false);
+            ObjectCreatedSignal ret = new ObjectCreatedSignal(Interop.ObjectRegistry.ObjectCreatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ObjectDestroyedSignal ObjectDestroyedSignal()
         {
-            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(Interop.ObjectRegistry.ObjectDestroyedSignal(swigCPtr), false);
+            ObjectDestroyedSignal ret = new ObjectDestroyedSignal(Interop.ObjectRegistry.ObjectDestroyedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.LanguageChangedSignalType.Empty(swigCPtr);
+            bool ret = Interop.LanguageChangedSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(swigCPtr);
+            uint ret = Interop.LanguageChangedSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.LanguageChangedSignalType.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.LanguageChangedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -91,7 +91,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
-            Interop.LanguageChangedSignalType.Emit(swigCPtr, arg);
+            Interop.LanguageChangedSignalType.Emit(SwigCPtr, arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

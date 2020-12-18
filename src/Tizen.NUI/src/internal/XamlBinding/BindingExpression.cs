@@ -205,7 +205,7 @@ namespace Tizen.NUI.Binding
         IEnumerable<BindingExpressionPart> GetPart(string part)
         {
             part = part.Trim();
-            if (part == string.Empty)
+            if (string.IsNullOrEmpty(part))
                 throw new FormatException("Path contains an empty part");
 
             BindingExpressionPart indexer = null;

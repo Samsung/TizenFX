@@ -102,7 +102,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTransformAndSize(PropertyMap transform, Vector2 controlSize)
         {
-            Interop.VisualBase.SetTransformAndSize(swigCPtr, PropertyMap.getCPtr(transform), Vector2.getCPtr(controlSize));
+            Interop.VisualBase.SetTransformAndSize(SwigCPtr, PropertyMap.getCPtr(transform), Vector2.getCPtr(controlSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float GetHeightForWidth(float width)
         {
-            float ret = Interop.VisualBase.GetHeightForWidth(swigCPtr, width);
+            float ret = Interop.VisualBase.GetHeightForWidth(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float GetWidthForHeight(float height)
         {
-            float ret = Interop.VisualBase.GetWidthForHeight(swigCPtr, height);
+            float ret = Interop.VisualBase.GetWidthForHeight(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -141,44 +141,44 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetNaturalSize(Size2D naturalSize)
         {
-            Interop.VisualBase.GetNaturalSize(swigCPtr, Size2D.getCPtr(naturalSize));
+            Interop.VisualBase.GetNaturalSize(SwigCPtr, Size2D.getCPtr(naturalSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VisualBase obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal void SetName(string name)
         {
-            Interop.VisualBase.SetName(swigCPtr, name);
+            Interop.VisualBase.SetName(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal string GetName()
         {
-            string ret = Interop.VisualBase.GetName(swigCPtr);
+            string ret = Interop.VisualBase.GetName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetDepthIndex(int index)
         {
-            Interop.VisualBase.SetDepthIndex(swigCPtr, index);
+            Interop.VisualBase.SetDepthIndex(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal int GetDepthIndex()
         {
-            int ret = Interop.VisualBase.GetDepthIndex(swigCPtr);
+            int ret = Interop.VisualBase.GetDepthIndex(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void CreatePropertyMap(PropertyMap map)
         {
-            Interop.VisualBase.CreatePropertyMap(swigCPtr, PropertyMap.getCPtr(map));
+            Interop.VisualBase.CreatePropertyMap(SwigCPtr, PropertyMap.getCPtr(map));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

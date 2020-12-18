@@ -32,7 +32,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ItemCollection obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
@@ -269,7 +269,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
-            Interop.ItemContainer.Clear(swigCPtr);
+            Interop.ItemContainer.Clear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -277,27 +277,27 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(Item x)
         {
-            Interop.ItemContainer.Add(swigCPtr, Item.getCPtr(x));
+            Interop.ItemContainer.Add(SwigCPtr, Item.getCPtr(x));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private uint size()
         {
-            uint ret = Interop.ItemContainer.size(swigCPtr);
+            uint ret = Interop.ItemContainer.size(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private uint capacity()
         {
-            uint ret = Interop.ItemContainer.capacity(swigCPtr);
+            uint ret = Interop.ItemContainer.capacity(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void reserve(uint n)
         {
-            Interop.ItemContainer.reserve(swigCPtr, n);
+            Interop.ItemContainer.reserve(SwigCPtr, n);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -324,21 +324,21 @@ namespace Tizen.NUI
 
         private Item getitemcopy(int index)
         {
-            Item ret = new Item(Interop.ItemContainer.getitemcopy(swigCPtr, index), true);
+            Item ret = new Item(Interop.ItemContainer.getitemcopy(SwigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Item getitem(int index)
         {
-            Item ret = new Item(Interop.ItemContainer.getitem(swigCPtr, index), false);
+            Item ret = new Item(Interop.ItemContainer.getitem(SwigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void setitem(int index, Item val)
         {
-            Interop.ItemContainer.setitem(swigCPtr, index, Item.getCPtr(val));
+            Interop.ItemContainer.setitem(SwigCPtr, index, Item.getCPtr(val));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -346,7 +346,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddRange(ItemCollection values)
         {
-            Interop.ItemContainer.AddRange(swigCPtr, ItemCollection.getCPtr(values));
+            Interop.ItemContainer.AddRange(SwigCPtr, ItemCollection.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -354,7 +354,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemCollection GetRange(int index, int count)
         {
-            global::System.IntPtr cPtr = Interop.ItemContainer.GetRange(swigCPtr, index, count);
+            global::System.IntPtr cPtr = Interop.ItemContainer.GetRange(SwigCPtr, index, count);
             ItemCollection ret = (cPtr == global::System.IntPtr.Zero) ? null : new ItemCollection(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -364,7 +364,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Insert(int index, Item x)
         {
-            Interop.ItemContainer.Insert(swigCPtr, index, Item.getCPtr(x));
+            Interop.ItemContainer.Insert(SwigCPtr, index, Item.getCPtr(x));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -372,7 +372,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertRange(int index, ItemCollection values)
         {
-            Interop.ItemContainer.InsertRange(swigCPtr, index, ItemCollection.getCPtr(values));
+            Interop.ItemContainer.InsertRange(SwigCPtr, index, ItemCollection.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -380,7 +380,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAt(int index)
         {
-            Interop.ItemContainer.RemoveAt(swigCPtr, index);
+            Interop.ItemContainer.RemoveAt(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -388,7 +388,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveRange(int index, int count)
         {
-            Interop.ItemContainer.RemoveRange(swigCPtr, index, count);
+            Interop.ItemContainer.RemoveRange(SwigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -406,7 +406,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reverse()
         {
-            Interop.ItemContainer.Reverse(swigCPtr);
+            Interop.ItemContainer.Reverse(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -414,7 +414,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reverse(int index, int count)
         {
-            Interop.ItemContainer.Reverse(swigCPtr, index, count);
+            Interop.ItemContainer.Reverse(SwigCPtr, index, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -422,7 +422,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRange(int index, ItemCollection values)
         {
-            Interop.ItemContainer.SetRange(swigCPtr, index, ItemCollection.getCPtr(values));
+            Interop.ItemContainer.SetRange(SwigCPtr, index, ItemCollection.getCPtr(values));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
