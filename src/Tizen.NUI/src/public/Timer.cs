@@ -72,7 +72,7 @@ namespace Tizen.NUI
         /// </summary>
         ~Timer()
         {
-            NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
+            Tizen.Log.Debug("NUI",$"(0x{SwigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
