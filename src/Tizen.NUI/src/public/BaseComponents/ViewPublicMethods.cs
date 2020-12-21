@@ -165,6 +165,11 @@ namespace Tizen.NUI.BaseComponents
             if (child == null || child.GetParent() == null) // Early out if child null.
                 return;
 
+            if (child.Parent != this)
+            {
+                throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
+            }
+
             bool hasLayout = (layout != null);
 
             // If View has a layout then do a deferred child removal
