@@ -23,6 +23,7 @@ namespace Tizen
 {
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
+    /// Depending on products, some priorities (e.g., Vervose and Debug) can be disabled by default to prevent too many logs.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Log
