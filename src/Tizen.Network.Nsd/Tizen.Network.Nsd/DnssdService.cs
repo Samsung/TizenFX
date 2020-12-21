@@ -242,8 +242,11 @@ namespace Tizen.Network.Nsd
                 while (index < data.Length)
                 {
                     var txtLen = data[index++];
-                    if (txtLen > data.Length)
-                        Log.Debug(Globals.LogTag, "Invalid data");
+                    if (txtLen + index > data.Length)
+                    {
+                        Log.Error(Globals.LogTag, "Invalid data");
+                        NsdErrorFactory.ThrowDnssdException((int)DnssdError.InvalidParameter);
+                    }
 
                     string record = Encoding.UTF8.GetString(data, index, txtLen);
                     string[] list = record.Split('=');
@@ -277,8 +280,7 @@ namespace Tizen.Network.Nsd
             {
                 byte[] managedArray = new byte[length];
                 Marshal.Copy(data, managedArray, 0, length);
-                value = new byte[length];
-                managedArray.CopyTo(value, 0);
+                return managedArray;
             }
             return value;
         }
@@ -335,7 +337,7 @@ namespace Tizen.Network.Nsd
             }
 
             byte[] txtValue = GetRawTxtRecord();
-            if ((ushort)txtValue.Length == 0)
+            if (txtValue.Length == 0)
             {
                 ret = Interop.Nsd.Dnssd.UnsetRecord(_serviceHandle, _dnsRecordtype);
                 if (ret != (int)DnssdError.None)
