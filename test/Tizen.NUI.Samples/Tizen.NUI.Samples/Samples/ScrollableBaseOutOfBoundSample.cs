@@ -65,11 +65,11 @@ namespace Tizen.NUI.Samples
 
         private void OnHorizontalScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
         {
-            if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Left)
+            if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Left)
             {
                 horizontalItems[0].Text = "Reached at the left.";
             }
-            else if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Right)
+            else if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Right)
             {
                 horizontalItems[4].Text = "Reached at the right.";
             }
@@ -114,14 +114,14 @@ namespace Tizen.NUI.Samples
             {
                 if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Down)
                 {
-                    items[0].Text = $"Reached at the top, panned displacement is {e.Displacement}.";
+                    verticalItems[0].Text = $"Reached at the top, panned displacement is {e.Displacement}.";
                 }
             }
             else if (0 - e.Displacement > 100)
             {
                 if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Up)
                 {
-                    items[4].Text = $"Reached at the bottom, panned displacement is {e.Displacement}.";
+                    verticalItems[4].Text = $"Reached at the bottom, panned displacement is {e.Displacement}.";
                 }
             }
         }
