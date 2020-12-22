@@ -31,6 +31,7 @@ namespace Tizen.NUI.Accessibility
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
+    [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Accessibility
     {
@@ -45,6 +46,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         ~Accessibility()
         {
+            Tizen.Log.Debug("NUI",$"Accessibility is destroyed\n");
         }
         #endregion Constructor, Distructor, Dispose
 

@@ -160,10 +160,16 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.Remove" />
         /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when deleting a view that is not a child of this view</exception>
         public override void Remove(View child)
         {
             if (child == null || child.GetParent() == null) // Early out if child null.
                 return;
+
+            if (child.Parent != this)
+            {
+                throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
+            }
 
             bool hasLayout = (layout != null);
 

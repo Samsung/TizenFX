@@ -43,6 +43,7 @@ namespace Tizen.NUI
         private delegate void QuitEventCallbackDelegate();
         private DaliEventHandler<object, QuitEventArgs> _builderQuitEventHandler;
         private QuitEventCallbackDelegate _builderQuitEventCallbackDelegate;
+        private VoidSignal quitSignal;
 
         public event DaliEventHandler<object, QuitEventArgs> Quit
         {
@@ -56,7 +57,8 @@ namespace Tizen.NUI
                         _builderQuitEventHandler += value;
 
                         _builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
-                        this.QuitSignal().Connect(_builderQuitEventCallbackDelegate);
+                        quitSignal = this.QuitSignal();
+                        quitSignal?.Connect(_builderQuitEventCallbackDelegate);
                     }
                 }
             }
@@ -67,7 +69,7 @@ namespace Tizen.NUI
                 {
                     if (_builderQuitEventHandler != null)
                     {
-                        this.QuitSignal().Disconnect(_builderQuitEventCallbackDelegate);
+                        quitSignal?.Disconnect(_builderQuitEventCallbackDelegate);
                     }
 
                     _builderQuitEventHandler -= value;

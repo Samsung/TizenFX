@@ -39,7 +39,7 @@ namespace Tizen.NUI
             Interop.CameraActor.DeleteCameraActor(swigCPtr);
         }
 
-        internal class Property
+        new internal class Property
         {
             internal static readonly int TYPE = Interop.CameraActor.TypeGet();
             internal static readonly int ProjectionMode = Interop.CameraActor.ProjectionModeGet();
