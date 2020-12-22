@@ -575,7 +575,7 @@ namespace Tizen.NUI.Samples
             mDeleteButton.Hide();
             mDeleteButton.Clicked += (obj, e) =>
             {
-                ItemIdContainer removeList = new ItemIdContainer();
+                ItemIdCollection removeList = new ItemIdCollection();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
                 {
                     View child = mItemView.GetChildAt(i);
@@ -618,7 +618,7 @@ namespace Tizen.NUI.Samples
             mInsertButton.Hide();
             mInsertButton.Clicked += (obj, e) =>
             {
-                ItemContainer insertList = new ItemContainer();
+                ItemCollection insertList = new ItemCollection();
                 Random random = new Random();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
                 {
@@ -661,7 +661,7 @@ namespace Tizen.NUI.Samples
             mReplaceButton.Hide();
             mReplaceButton.Clicked += (obj, e) =>
             {
-                ItemContainer replaceList = new ItemContainer();
+                ItemCollection replaceList = new ItemCollection();
                 Random random = new Random();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
                 {
