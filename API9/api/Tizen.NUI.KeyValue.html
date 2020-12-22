@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class KeyValue</code></pre>
+    <pre><code class="lang-csharp hljs">public class KeyValue : IDisposable</code></pre>
   </div>
 
   
@@ -110,11 +110,17 @@
 
   
   
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L52">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue__ctor_" data-uid="Tizen.NUI.KeyValue.#ctor*"></a>
   <h4 id="Tizen_NUI_KeyValue__ctor" data-uid="Tizen.NUI.KeyValue.#ctor">KeyValue()</h4>
@@ -132,7 +138,7 @@
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L31">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L33">View Source</a>
   </span>
   <h4 id="Tizen_NUI_KeyValue_KeyInt" data-uid="Tizen.NUI.KeyValue.KeyInt">KeyInt</h4>
   <div class="markdown level1 summary"><p>Int key.</p>
@@ -162,7 +168,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L36">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L38">View Source</a>
   </span>
   <h4 id="Tizen_NUI_KeyValue_KeyString" data-uid="Tizen.NUI.KeyValue.KeyString">KeyString</h4>
   <div class="markdown level1 summary"><p>String key.</p>
@@ -192,7 +198,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L41">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L43">View Source</a>
   </span>
   <h4 id="Tizen_NUI_KeyValue_TrueValue" data-uid="Tizen.NUI.KeyValue.TrueValue">TrueValue</h4>
   <div class="markdown level1 summary"><p>True value.</p>
@@ -224,7 +230,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L145">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_BooleanValue_" data-uid="Tizen.NUI.KeyValue.BooleanValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_BooleanValue" data-uid="Tizen.NUI.KeyValue.BooleanValue">BooleanValue</h4>
@@ -255,7 +261,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L352">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L354">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_ColorValue_" data-uid="Tizen.NUI.KeyValue.ColorValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_ColorValue" data-uid="Tizen.NUI.KeyValue.ColorValue">ColorValue</h4>
@@ -286,7 +292,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L478">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L480">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_ExtentsValue_" data-uid="Tizen.NUI.KeyValue.ExtentsValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_ExtentsValue" data-uid="Tizen.NUI.KeyValue.ExtentsValue">ExtentsValue</h4>
@@ -317,7 +323,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L125">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L127">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_IntergerValue_" data-uid="Tizen.NUI.KeyValue.IntergerValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_IntergerValue" data-uid="Tizen.NUI.KeyValue.IntergerValue">IntergerValue</h4>
@@ -348,7 +354,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L56">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L58">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Key_" data-uid="Tizen.NUI.KeyValue.Key*"></a>
   <h4 id="Tizen_NUI_KeyValue_Key" data-uid="Tizen.NUI.KeyValue.Key">Key</h4>
@@ -379,7 +385,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L73">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_OriginalKey_" data-uid="Tizen.NUI.KeyValue.OriginalKey*"></a>
   <h4 id="Tizen_NUI_KeyValue_OriginalKey" data-uid="Tizen.NUI.KeyValue.OriginalKey">OriginalKey</h4>
@@ -426,7 +432,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L289">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L291">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Position2DValue_" data-uid="Tizen.NUI.KeyValue.Position2DValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_Position2DValue" data-uid="Tizen.NUI.KeyValue.Position2DValue">Position2DValue</h4>
@@ -457,7 +463,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L268">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L270">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_PositionValue_" data-uid="Tizen.NUI.KeyValue.PositionValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_PositionValue" data-uid="Tizen.NUI.KeyValue.PositionValue">PositionValue</h4>
@@ -488,7 +494,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L499">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L501">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_PropertyArrayValue_" data-uid="Tizen.NUI.KeyValue.PropertyArrayValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_PropertyArrayValue" data-uid="Tizen.NUI.KeyValue.PropertyArrayValue">PropertyArrayValue</h4>
@@ -519,7 +525,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L520">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L522">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_PropertyMapValue_" data-uid="Tizen.NUI.KeyValue.PropertyMapValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_PropertyMapValue" data-uid="Tizen.NUI.KeyValue.PropertyMapValue">PropertyMapValue</h4>
@@ -550,7 +556,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L373">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L375">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_RectangleValue_" data-uid="Tizen.NUI.KeyValue.RectangleValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_RectangleValue" data-uid="Tizen.NUI.KeyValue.RectangleValue">RectangleValue</h4>
@@ -581,7 +587,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L415">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L417">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_RelativeVector2Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector2Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_RelativeVector2Value" data-uid="Tizen.NUI.KeyValue.RelativeVector2Value">RelativeVector2Value</h4>
@@ -612,7 +618,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L436">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L438">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_RelativeVector3Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector3Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_RelativeVector3Value" data-uid="Tizen.NUI.KeyValue.RelativeVector3Value">RelativeVector3Value</h4>
@@ -643,7 +649,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L457">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L459">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_RelativeVector4Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector4Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_RelativeVector4Value" data-uid="Tizen.NUI.KeyValue.RelativeVector4Value">RelativeVector4Value</h4>
@@ -674,7 +680,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L394">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L396">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_RotationValue_" data-uid="Tizen.NUI.KeyValue.RotationValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_RotationValue" data-uid="Tizen.NUI.KeyValue.RotationValue">RotationValue</h4>
@@ -705,7 +711,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L165">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L167">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_SingleValue_" data-uid="Tizen.NUI.KeyValue.SingleValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_SingleValue" data-uid="Tizen.NUI.KeyValue.SingleValue">SingleValue</h4>
@@ -736,7 +742,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L331">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L333">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Size2DValue_" data-uid="Tizen.NUI.KeyValue.Size2DValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_Size2DValue" data-uid="Tizen.NUI.KeyValue.Size2DValue">Size2DValue</h4>
@@ -767,7 +773,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L310">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L312">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_SizeValue_" data-uid="Tizen.NUI.KeyValue.SizeValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_SizeValue" data-uid="Tizen.NUI.KeyValue.SizeValue">SizeValue</h4>
@@ -798,7 +804,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L185">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L187">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_StringValue_" data-uid="Tizen.NUI.KeyValue.StringValue*"></a>
   <h4 id="Tizen_NUI_KeyValue_StringValue" data-uid="Tizen.NUI.KeyValue.StringValue">StringValue</h4>
@@ -829,7 +835,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L109">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L111">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Value_" data-uid="Tizen.NUI.KeyValue.Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_Value" data-uid="Tizen.NUI.KeyValue.Value">Value</h4>
@@ -860,7 +866,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L205">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L207">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Vector2Value_" data-uid="Tizen.NUI.KeyValue.Vector2Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_Vector2Value" data-uid="Tizen.NUI.KeyValue.Vector2Value">Vector2Value</h4>
@@ -891,7 +897,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L226">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L228">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Vector3Value_" data-uid="Tizen.NUI.KeyValue.Vector3Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_Vector3Value" data-uid="Tizen.NUI.KeyValue.Vector3Value">Vector3Value</h4>
@@ -922,7 +928,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L247">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L249">View Source</a>
   </span>
   <a id="Tizen_NUI_KeyValue_Vector4Value_" data-uid="Tizen.NUI.KeyValue.Vector4Value*"></a>
   <h4 id="Tizen_NUI_KeyValue_Vector4Value" data-uid="Tizen.NUI.KeyValue.Vector4Value">Vector4Value</h4>
@@ -952,6 +958,10 @@
   
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
 </article>
           </div>
           
@@ -960,7 +970,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/KeyValue.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
