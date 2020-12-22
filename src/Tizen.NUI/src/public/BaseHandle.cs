@@ -536,6 +536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Contains event arguments for the FocusChangeRequested event.
         /// </summary>
+        [Obsolete("Deprecated in API9; Will be removed in API11.")]
         public class FocusRequestArgs : EventArgs
         {
 
