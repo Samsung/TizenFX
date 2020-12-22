@@ -1404,8 +1404,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!ThemeManager.ThemeApplied) return;
 
-            if (viewStyle == null) UpdateStyle(); // Use style in the current theme
-            else ApplyStyle(viewStyle.Clone());   // Use given style
+            if (style == null) UpdateStyle(); // Use style in the current theme
+            else ApplyStyle(style.Clone());   // Use given style
         }
     }
 }

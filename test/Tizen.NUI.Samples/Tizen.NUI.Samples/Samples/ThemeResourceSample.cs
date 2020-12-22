@@ -1,4 +1,5 @@
-﻿using Tizen.NUI;
+﻿using System.Collections.Generic;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
@@ -6,12 +7,21 @@ namespace Tizen.NUI.Samples
 {
     public class ThemeResourceSample : IExample
     {
+        Dictionary<string, string> DefaultThemeResources { get; } = new Dictionary<string, string>()
+        {
+            {"ButtonBackgroundColorNormal", "0.054, 0.631, 0.921, 1" },
+            {"ButtonBackgroundColorPressed", "0.454, 0.752, 0.905, 1" },
+            {"ButtonBackgroundColorDisabled", "0.88, 0.88, 0.88, 1" },
+        };
+        Dictionary<string, string> DarkThemeResources { get; } = new Dictionary<string, string>()
+        {
+            {"ButtonBackgroundColorNormal", "0.309, 0.309, 0.309, 1" },
+            {"ButtonBackgroundColorPressed", "0.631, 0.631, 0.631, 1" },
+            {"ButtonBackgroundColorDisabled", "0.8, 0.8, 0.8, 1" },
+        };
         public void Activate()
         {
-            string resourceDefault = global::System.IO.Path.Combine("res", "resSampleThemeResourceDefault.xaml");
-            string resourceDark = global::System.IO.Path.Combine("res", "SampleThemeResourceDark.xaml");
-            Theme sampleTheme = new Theme(global::System.IO.Path.Combine("res", "SampleTheme.xaml"), resourceDefault);
-            ThemeManager.ApplyTheme(sampleTheme);
+            bool isCurrentThemeDefault = true;
 
             View root = new View();
             root.WidthSpecification = LayoutParamPolicies.MatchParent;
@@ -23,16 +33,15 @@ namespace Tizen.NUI.Samples
             button.Size = new Size2D(200, 200);
             button.Clicked += (object sender, ClickedEventArgs e) =>
             {
-                if (sampleTheme.Resource == resourceDefault)
+                if (isCurrentThemeDefault)
                 {
-                    sampleTheme.Resource = resourceDark;
-                    ThemeManager.ApplyTheme(sampleTheme);
-
+                    isCurrentThemeDefault = false;
+                    ThemeManager.UpdateCurrentThemeResources(DarkThemeResources);
                 }
                 else
                 {
-                    sampleTheme.Resource = resourceDefault;
-                    ThemeManager.ApplyTheme(sampleTheme);
+                    isCurrentThemeDefault = true;
+                    ThemeManager.UpdateCurrentThemeResources(DefaultThemeResources);
                 }
             };
             root.Add(button);
