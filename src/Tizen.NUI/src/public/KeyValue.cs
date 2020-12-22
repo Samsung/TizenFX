@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,8 +24,9 @@ namespace Tizen.NUI
     /// <summary>
     /// KeyValue class.
     /// </summary>
-    public class KeyValue
+    public class KeyValue : IDisposable
     {
+        private bool disposed = false;
         /// <summary>
         /// Int key.
         /// </summary>
@@ -547,6 +549,29 @@ namespace Tizen.NUI
             {
                 KeyString = Key;
             }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                TrueValue?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }
