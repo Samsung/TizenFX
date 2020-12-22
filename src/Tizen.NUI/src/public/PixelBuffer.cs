@@ -88,7 +88,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelData CreatePixelData()
         {
-            PixelData ret = new PixelData(Interop.PixelBuffer.CreatePixelData(swigCPtr), true);
+            PixelData ret = new PixelData(Interop.PixelBuffer.CreatePixelData(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetWidth()
         {
-            uint ret = Interop.PixelBuffer.GetWidth(swigCPtr);
+            uint ret = Interop.PixelBuffer.GetWidth(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetHeight()
         {
-            uint ret = Interop.PixelBuffer.GetHeight(swigCPtr);
+            uint ret = Interop.PixelBuffer.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelFormat GetPixelFormat()
         {
-            PixelFormat ret = (PixelFormat)Interop.PixelBuffer.GetPixelFormat(swigCPtr);
+            PixelFormat ret = (PixelFormat)Interop.PixelBuffer.GetPixelFormat(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask, float contentScale, bool cropToMask)
         {
-            Interop.PixelBuffer.ApplyMask(swigCPtr, PixelBuffer.getCPtr(mask), contentScale, cropToMask);
+            Interop.PixelBuffer.ApplyMask(SwigCPtr, PixelBuffer.getCPtr(mask), contentScale, cropToMask);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -176,7 +176,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask, float contentScale)
         {
-            Interop.PixelBuffer.ApplyMask(swigCPtr, PixelBuffer.getCPtr(mask), contentScale);
+            Interop.PixelBuffer.ApplyMask(SwigCPtr, PixelBuffer.getCPtr(mask), contentScale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -197,7 +197,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask)
         {
-            Interop.PixelBuffer.ApplyMask(swigCPtr, PixelBuffer.getCPtr(mask));
+            Interop.PixelBuffer.ApplyMask(SwigCPtr, PixelBuffer.getCPtr(mask));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -211,7 +211,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyGaussianBlur(float blurRadius)
         {
-            Interop.PixelBuffer.ApplyGaussianBlur(swigCPtr, blurRadius);
+            Interop.PixelBuffer.ApplyGaussianBlur(SwigCPtr, blurRadius);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -227,7 +227,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Crop(ushort x, ushort y, ushort width, ushort height)
         {
-            Interop.PixelBuffer.Crop(swigCPtr, x, y, width, height);
+            Interop.PixelBuffer.Crop(SwigCPtr, x, y, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -241,7 +241,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Resize(ushort width, ushort height)
         {
-            Interop.PixelBuffer.Resize(swigCPtr, width, height);
+            Interop.PixelBuffer.Resize(SwigCPtr, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -254,7 +254,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Rotate(Degree angle)
         {
-            bool ret = Interop.PixelBuffer.Rotate(swigCPtr, Degree.getCPtr(angle));
+            bool ret = Interop.PixelBuffer.Rotate(SwigCPtr, Degree.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -267,19 +267,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public global::System.IntPtr GetBuffer()
         {
-            global::System.IntPtr ret = Interop.PixelBuffer.GetBuffer(swigCPtr);
+            global::System.IntPtr ret = Interop.PixelBuffer.GetBuffer(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PixelBuffer obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal PixelBuffer Assign(PixelBuffer rhs)
         {
-            PixelBuffer ret = new PixelBuffer(Interop.PixelBuffer.Assign(swigCPtr, PixelBuffer.getCPtr(rhs)), false);
+            PixelBuffer ret = new PixelBuffer(Interop.PixelBuffer.Assign(SwigCPtr, PixelBuffer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

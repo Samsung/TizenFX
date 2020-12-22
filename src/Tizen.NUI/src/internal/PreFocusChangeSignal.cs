@@ -38,21 +38,21 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.PreFocusSignal.Empty(swigCPtr);
+            bool ret = Interop.PreFocusSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.PreFocusSignal.GetConnectionCount(swigCPtr);
+            uint ret = Interop.PreFocusSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Connect(FocusManager.PreFocusChangeEventCallback func)
         {
-            Interop.PreFocusSignal.Connect(swigCPtr, func);
+            Interop.PreFocusSignal.Connect(SwigCPtr, func);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -60,14 +60,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PreFocusSignal.Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PreFocusSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public View Emit(View arg1, View arg2, View.FocusDirection arg3)
         {
-            View ret = new View(Interop.PreFocusSignal.Emit(swigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
+            View ret = new View(Interop.PreFocusSignal.Emit(SwigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

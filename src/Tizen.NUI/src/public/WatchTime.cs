@@ -191,7 +191,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchTime obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static WatchTime GetWatchTimeFromPtr(global::System.IntPtr cPtr)
@@ -203,91 +203,91 @@ namespace Tizen.NUI
 
         internal int GetDayOfWeek()
         {
-            int ret = Interop.Watch.WatchTimeGetDayOfWeek(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetDayOfWeek(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_tm GetUtcTime()
         {
-            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(Interop.Watch.WatchTimeGetUtcTime(swigCPtr));
+            SWIGTYPE_p_tm ret = new SWIGTYPE_p_tm(Interop.Watch.WatchTimeGetUtcTime(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_time_t GetUtcTimeStamp()
         {
-            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(Interop.Watch.WatchTimeGetUtcTimeStamp(swigCPtr));
+            SWIGTYPE_p_time_t ret = new SWIGTYPE_p_time_t(Interop.Watch.WatchTimeGetUtcTimeStamp(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal string GetTimeZone()
         {
-            string ret = Interop.Watch.WatchTimeGetTimeZone(swigCPtr);
+            string ret = Interop.Watch.WatchTimeGetTimeZone(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool GetDaylightSavingTimeStatus()
         {
-            bool ret = Interop.Watch.WatchTimeGetDaylightSavingTimeStatus(swigCPtr);
+            bool ret = Interop.Watch.WatchTimeGetDaylightSavingTimeStatus(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetHour()
         {
-            int ret = Interop.Watch.WatchTimeGetHour(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetHour(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetHour24()
         {
-            int ret = Interop.Watch.WatchTimeGetHour24(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetHour24(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetMinute()
         {
-            int ret = Interop.Watch.WatchTimeGetMinute(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetMinute(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetSecond()
         {
-            int ret = Interop.Watch.WatchTimeGetSecond(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetSecond(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetMillisecond()
         {
-            int ret = Interop.Watch.WatchTimeGetMillisecond(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetMillisecond(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetYear()
         {
-            int ret = Interop.Watch.WatchTimeGetYear(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetYear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetMonth()
         {
-            int ret = Interop.Watch.WatchTimeGetMonth(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetMonth(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetDay()
         {
-            int ret = Interop.Watch.WatchTimeGetDay(swigCPtr);
+            int ret = Interop.Watch.WatchTimeGetDay(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

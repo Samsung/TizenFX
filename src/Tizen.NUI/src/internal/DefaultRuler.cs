@@ -47,7 +47,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float Snap(float x, float bias)
         {
-            float ret = Interop.Ruler.DefaultRulerSnap(swigCPtr, x, bias);
+            float ret = Interop.Ruler.DefaultRulerSnap(SwigCPtr, x, bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = Interop.Ruler.DefaultRulerGetPositionFromPage(swigCPtr, page, out volume, wrap);
+            float ret = Interop.Ruler.DefaultRulerGetPositionFromPage(SwigCPtr, page, out volume, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = Interop.Ruler.DefaultRulerGetPageFromPosition(swigCPtr, position, wrap);
+            uint ret = Interop.Ruler.DefaultRulerGetPageFromPosition(SwigCPtr, position, wrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetTotalPages()
         {
-            uint ret = Interop.Ruler.DefaultRulerGetTotalPages(swigCPtr);
+            uint ret = Interop.Ruler.DefaultRulerGetTotalPages(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -28,7 +28,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Model3dView obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -65,7 +65,7 @@ namespace Tizen.NUI
 
         public Model3dView Assign(Model3dView model3dView)
         {
-            Model3dView ret = new Model3dView(Interop.Model3DView.Model3dViewAssign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
+            Model3dView ret = new Model3dView(Interop.Model3DView.Model3dViewAssign(SwigCPtr, Model3dView.getCPtr(model3dView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

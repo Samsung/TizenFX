@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RenderTaskList obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -53,34 +53,34 @@ namespace Tizen.NUI
 
         public RenderTaskList Assign(RenderTaskList rhs)
         {
-            RenderTaskList ret = new RenderTaskList(Interop.RenderTask.RenderTaskListAssign(swigCPtr, RenderTaskList.getCPtr(rhs)), false);
+            RenderTaskList ret = new RenderTaskList(Interop.RenderTask.RenderTaskListAssign(SwigCPtr, RenderTaskList.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public RenderTask CreateTask()
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListCreateTask(swigCPtr), true);
+            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void RemoveTask(RenderTask task)
         {
-            Interop.RenderTask.RenderTaskListRemoveTask(swigCPtr, RenderTask.getCPtr(task));
+            Interop.RenderTask.RenderTaskListRemoveTask(SwigCPtr, RenderTask.getCPtr(task));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint GetTaskCount()
         {
-            uint ret = Interop.RenderTask.RenderTaskListGetTaskCount(swigCPtr);
+            uint ret = Interop.RenderTask.RenderTaskListGetTaskCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public RenderTask GetTask(uint index)
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListGetTask(swigCPtr, index), true);
+            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListGetTask(SwigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
