@@ -1168,11 +1168,14 @@ namespace Tizen.NUI
                 {
                     PropertyValue value = new PropertyValue((int)orientations[i]);
                     orientationArray.PushBack(value);
-                    value.Dispose();
                 }
             }
 
             Interop.Window.SetAvailableOrientations(SwigCPtr, PropertyArray.getCPtr(orientationArray));
+            for (uint i = 0; i < orientationArray.Count(); i++)
+            {
+                orientationArray[i].Dispose();
+            }
             orientationArray.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
