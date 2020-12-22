@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -52,15 +53,34 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((LoadingStyle)bindable).images = (string[])((string[])newValue)?.Clone();
+            ((LoadingStyle)bindable).images = new List<string>((string[])newValue);
         },
         defaultValueCreator: (bindable) =>
         {
+            if(((LoadingStyle)bindable).images == null)
+            {
+                ((LoadingStyle)bindable).images = new List<string>();
+            }
+            return ((LoadingStyle)bindable).images.ToArray();
+        });
+
+        /// <summary>The Images bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(List<string>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).images = (List<string>)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            if (((LoadingStyle)bindable).images == null)
+            {
+                ((LoadingStyle)bindable).images = new List<string>();
+            }
             return ((LoadingStyle)bindable).images;
         });
 
         private Selector<int?> frameRate;
-        private string[] images;
+        private List<string> images;
 
         static LoadingStyle() { }
 
@@ -87,6 +107,16 @@ namespace Tizen.NUI.Components
         {
             get => (string[])GetValue(ImagesProperty);
             set => SetValue(ImagesProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets loading image resources.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<string> ImageList
+        {
+            get => (List<string>)GetValue(ImageListProperty);
+            internal set => SetValue(ImageListProperty, value);
         }
 
         /// <summary>
