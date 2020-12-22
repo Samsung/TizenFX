@@ -24,6 +24,8 @@ using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
+using Tizen.Applications.ThemeManager;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -45,6 +47,7 @@ namespace Tizen.NUI
         internal static NUIApplication me;
 
         private static bool isPreLoad = false;
+        private readonly ThemeLoader themeLoader = new ThemeLoader();
 
         /// <summary>
         /// The default constructor.
@@ -54,6 +57,7 @@ namespace Tizen.NUI
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             me = this;
+            themeLoader.ThemeChanged += TizenThemeChanged;
         }
 
         /// <summary>
@@ -67,6 +71,7 @@ namespace Tizen.NUI
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", WindowMode.Opaque, windowSize, windowPosition))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            themeLoader.ThemeChanged += TizenThemeChanged;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
             me = this;
@@ -81,6 +86,7 @@ namespace Tizen.NUI
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             me = this;
+            themeLoader.ThemeChanged += TizenThemeChanged;
         }
 
         /// <summary>
@@ -95,6 +101,7 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            themeLoader.ThemeChanged += TizenThemeChanged;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
             me = this;
@@ -110,6 +117,7 @@ namespace Tizen.NUI
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             me = this;
+            themeLoader.ThemeChanged += TizenThemeChanged;
         }
 
         /// <summary>
@@ -125,6 +133,7 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            themeLoader.ThemeChanged += TizenThemeChanged;
             _windowSize2D = windowSize;
             _windowPosition2D = windowPosition;
             me = this;
@@ -151,6 +160,7 @@ namespace Tizen.NUI
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             me = this;
+            themeLoader.ThemeChanged += TizenThemeChanged;
         }
 
         /// <summary>
@@ -435,6 +445,27 @@ namespace Tizen.NUI
             {
                 transitionOptions = value;
             }
+        }
+        private void TizenThemeChanged(object sender, ThemeEventArgs e)
+        {
+            string prefix = "/theme/";
+
+            Dictionary<string, string> changedResources = new Dictionary<string, string>();
+            foreach (string key in ThemeManager.DefaultTheme.Resources.Keys)
+            {
+                // NOTE Need improve this code by checking HasKey
+                string newValue = null;
+                try
+                {
+                    newValue = e.Theme.GetString(prefix + key);
+                }
+                catch { }
+                if (newValue != null)
+                {
+                    changedResources[key] = newValue;
+                }
+            }
+            ThemeManager.UpdateCurrentThemeResources(changedResources);
         }
 
         /// <summary>
