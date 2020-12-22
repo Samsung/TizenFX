@@ -32,6 +32,8 @@ namespace Tizen.NUI.Components
     {
         private SelectGroup itemGroup = null;
 
+        private bool invokeSelectedChanged = false;
+
         /// <summary>
         /// Item group which is used to manager all SelectButton in it.
         /// </summary>
@@ -134,20 +136,24 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            if (IsEnabled == false)
+            if ((IsEnabled == false) || (key == null))
             {
                 return false;
             }
-            bool ret = base.OnKey(key);
+
             if (key.State == Key.StateType.Up)
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    OnSelect();
+                    invokeSelectedChanged = true;
                 }
             }
+            else
+            {
+                invokeSelectedChanged = false;
+            }
 
-            return ret;
+            return base.OnKey(key);
         }
 
         /// <summary>
@@ -168,22 +174,23 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
         {
-            if (false == IsEnabled)
+            if ((IsEnabled == false) || (touch == null))
             {
                 return false;
             }
 
             PointStateType state = touch.GetState(0);
-            bool ret = base.HandleControlStateOnTouch(touch);
             switch (state)
             {
                 case PointStateType.Up:
-                    OnSelect();
+                    invokeSelectedChanged = true;
                     break;
                 default:
+                    invokeSelectedChanged = false;
                     break;
             }
-            return ret;
+
+            return base.HandleControlStateOnTouch(touch);
         }
 
         /// <summary>
@@ -200,15 +207,26 @@ namespace Tizen.NUI.Components
             IsSelectable = true;
         }
 
-        private void OnSelect()
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs info)
         {
-            OnSelectedChanged();
-
-            if (SelectedChanged != null)
+            if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
             {
-                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
-                eventArgs.IsSelected = IsSelected;
-                SelectedChanged(this, eventArgs);
+                // SelectedChanged is invoked when button or key is unpressed.
+                if (invokeSelectedChanged == false)
+                {
+                    return;
+                }
+
+                OnSelectedChanged();
+
+                if (SelectedChanged != null)
+                {
+                    SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
+                    eventArgs.IsSelected = IsSelected;
+                    SelectedChanged(this, eventArgs);
+                }
             }
         }
     }
