@@ -59,6 +59,14 @@ namespace Tizen.NUI.Components
         #region Methods
 
         /// <summary>
+        /// Removes a view from its parent ScrollableBase. If a view has no parent, this method does nothing.
+        /// </summary>
+        public new void Unparent()
+        {
+            (GetParent() as ScrollableBase)?.BaseRemove(this);
+        }
+
+        /// <summary>
         /// Update content length and position at once.
         /// </summary>
         /// <param name="contentLength">The total length of the content.</param>
