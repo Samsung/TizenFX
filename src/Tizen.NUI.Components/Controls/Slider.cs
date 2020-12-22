@@ -118,7 +118,7 @@ namespace Tizen.NUI.Components
         /// The constructor of the Slider class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Slider() 
+        public Slider()
         {
             Initialize();
         }
@@ -589,8 +589,8 @@ namespace Tizen.NUI.Components
             {
                 if (null != lowIndicatorText)
                 {
-                    lowIndicatorText.Text= value;
-                    sliderStyle.LowIndicator.Text= value;
+                    lowIndicatorText.Text = value;
+                    sliderStyle.LowIndicator.Text = value;
                 }
             }
         }
@@ -954,7 +954,7 @@ namespace Tizen.NUI.Components
                     slidingFinishedHandler(this, args);
                 }
 
-                if (null !=sliderSlidingFinishedHandler)
+                if (null != sliderSlidingFinishedHandler)
                 {
                     SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
                     args.CurrentValue = curValue;
@@ -1122,12 +1122,15 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs.CurrentValue instead.")]
             public float CurrentValue;
         }
@@ -1137,12 +1140,15 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs.CurrentValue instead.")]
             public float CurrentValue;
         }
@@ -1152,12 +1158,15 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
             /// Curent state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
         }

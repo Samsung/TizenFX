@@ -29,22 +29,22 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomAlgorithmInterface obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.CustomAlgorithmInterface.delete_CustomAlgorithmInterface(swigCPtr);
+            Interop.CustomAlgorithmInterface.DeleteCustomAlgorithmInterface(swigCPtr);
         }
 
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
         {
-            View ret = new View(Interop.CustomAlgorithmInterface.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
+            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(SwigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal CustomAlgorithmInterface() : this(Interop.CustomAlgorithmInterface.new_CustomAlgorithmInterface(), true)
+        internal CustomAlgorithmInterface() : this(Interop.CustomAlgorithmInterface.NewCustomAlgorithmInterface(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         {
             if (SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes0))
                 swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableView);
-            Interop.CustomAlgorithmInterface.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
+            Interop.CustomAlgorithmInterface.DirectorConnect(SwigCPtr, swigDelegate0);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -80,7 +80,7 @@ namespace Tizen.NUI
             }
             catch (global::System.Exception ex)
             {
-              Tizen.Log.Error("NUI","Registry Error: "+ ex);
+                Tizen.Log.Error("NUI", "Registry Error: " + ex);
             }
             return global::System.IntPtr.Zero;
         }

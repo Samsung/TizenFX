@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Tizen.Applications;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -28,11 +29,13 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionOptions : IDisposable
     {
+        private bool disposed = false;
         private FrameProvider frameProvider;
         private DefaultFrameBroker frameBroker;
 
         private bool enableTransition = false;
         private Window mainWindow;
+        private View animatedTarget;
         private string sharedId;
 
         /// <summary>
@@ -43,6 +46,23 @@ namespace Tizen.NUI
         public TransitionOptions(Window window)
         {
             mainWindow = window;
+        }
+
+
+        /// <summary>
+        /// Set animated view of seamless animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View AnimatedTarget
+        {
+            get
+            {
+                return animatedTarget;
+            }
+            set
+            {
+                animatedTarget = value;
+            }
         }
 
         /// <summary>
@@ -61,6 +81,7 @@ namespace Tizen.NUI
                 if (value)
                 {
                     frameBroker = new DefaultFrameBroker(mainWindow);
+                    frameBroker.mainView = animatedTarget;
                     frameBroker.AnimationInitialized += FrameBroker_TransitionAnimationInitialized;
                     frameBroker.AnimationFinished += FrameBroker_TransitionAnimationFinished;
                     EnableProvider();
@@ -130,45 +151,33 @@ namespace Tizen.NUI
                 }
             }
         }
-        
+
         /// <summary>
         /// Emits the event when the animation is started.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler AnimationInitialized;
+        public delegate void AnimationEventHandler(bool direction);
+
+        /// <summary>
+        /// Emits the event when the animation is started.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event AnimationEventHandler AnimationInitialized;
 
         /// <summary>
         /// Emits the event when the animation is finished.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler AnimationFinished;
+        public event AnimationEventHandler AnimationFinished;
 
-
-        /// <summary>
-        /// Dispose for IDisposable pattern
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
+        private void FrameBroker_TransitionAnimationFinished(bool direction)
         {
-            if (frameBroker != null)
-            {
-                frameBroker.Dispose();
-            }
-
-            if (frameProvider != null)
-            {
-                frameProvider.Dispose();
-            }
+            AnimationFinished?.Invoke(direction);
         }
 
-        private void FrameBroker_TransitionAnimationFinished()
+        private void FrameBroker_TransitionAnimationInitialized(bool direction)
         {
-            AnimationFinished?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void FrameBroker_TransitionAnimationInitialized()
-        {
-            AnimationInitialized?.Invoke(this, EventArgs.Empty);
+            AnimationInitialized?.Invoke(direction);
         }
 
         /// <summary>
@@ -190,6 +199,8 @@ namespace Tizen.NUI
             frameProvider?.NotifyShowStatus(bundle);
 
             CallerScreenShown?.Invoke(this, e);
+            bundle.Dispose();
+            bundle = null;
         }
 
         private void FrameProvider_Hidden(object sender, EventArgs e)
@@ -199,11 +210,46 @@ namespace Tizen.NUI
             frameProvider?.NotifyHideStatus(bundle);
 
             CallerScreenHidden?.Invoke(this, e);
+            bundle.Dispose();
+            bundle = null;
         }
 
         internal void SendLaunchRequest(AppControl appControl)
         {
             this.frameBroker.SendLaunchRequest(appControl, true);
+        }
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose.
+        /// </summary>
+        /// <param name="disposing"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (frameBroker != null)
+                {
+                    frameBroker.Dispose();
+                }
+
+                if (frameProvider != null)
+                {
+                    frameProvider.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Dispose for IDisposable pattern
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
         }
     }
 }

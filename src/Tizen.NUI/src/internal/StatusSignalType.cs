@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.StatusSignalType.delete_StatusSignalType(swigCPtr);
+            Interop.StatusSignalType.DeleteStatusSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = Interop.StatusSignalType.StatusSignalType_Empty(swigCPtr);
+            bool ret = Interop.StatusSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = Interop.StatusSignalType.StatusSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.StatusSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.StatusSignalType.StatusSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StatusSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.StatusSignalType.StatusSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.StatusSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -92,7 +92,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Emit(bool arg)
         {
-            Interop.StatusSignalType.StatusSignalType_Emit(swigCPtr, arg);
+            Interop.StatusSignalType.Emit(SwigCPtr, arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public StatusSignalType() : this(Interop.StatusSignalType.new_StatusSignalType(), true)
+        public StatusSignalType() : this(Interop.StatusSignalType.NewStatusSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -327,9 +327,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.size == null)
                 {
                     if ((float)newValue == 0) return;
-                    viewStyle.size = new Size();
                 }
-                viewStyle.size.Width = (float)newValue;
+                viewStyle.size = new Size((float)newValue, viewStyle.size?.Height ?? 0);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -346,9 +345,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.size == null)
                 {
                     if ((float)newValue == 0) return;
-                    viewStyle.size = new Size();
                 }
-                viewStyle.size.Height = (float)newValue;
+                viewStyle.size = new Size(viewStyle.size?.Width ?? 0, (float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -381,9 +379,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.position == null)
                 {
                     if ((float)newValue == 0) return;
-                    viewStyle.position = new Position();
                 }
-                viewStyle.position.X = (float)newValue;
+                viewStyle.position = new Position((float)newValue, viewStyle.position?.Y ?? 0);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -400,9 +397,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.position == null)
                 {
                     if ((float)newValue == 0) return;
-                    viewStyle.position = new Position();
                 }
-                viewStyle.position.Y = (float)newValue;
+                viewStyle.position = new Position(viewStyle.position?.X ?? 0, (float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -419,9 +415,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.position == null)
                 {
                     if ((float)newValue == 0) return;
-                    viewStyle.position = new Position();
                 }
-                viewStyle.position.Z = (float)newValue;
+                viewStyle.position = new Position(viewStyle.Position?.X ?? 0, viewStyle.Position?.Y ?? 0, (float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -463,9 +458,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.scale == null)
                 {
                     if ((float)newValue == 1.0f) return;
-                    viewStyle.scale = new Vector3();
                 }
-                viewStyle.scale.X = (float)newValue;
+                viewStyle.scale = new Vector3((float)newValue, viewStyle.scale?.Y ?? 0, viewStyle.scale?.Z ?? 0);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -482,9 +476,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.scale == null)
                 {
                     if ((float)newValue == 1.0f) return;
-                    viewStyle.scale = new Vector3();
                 }
-                viewStyle.scale.Y = (float)newValue;
+                viewStyle.scale = new Vector3(viewStyle.scale?.X ?? 0, (float)newValue, viewStyle.scale?.Z ?? 0);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -501,9 +494,8 @@ namespace Tizen.NUI.BaseComponents
                 if (viewStyle.scale == null)
                 {
                     if ((float)newValue == 1.0f) return;
-                    viewStyle.scale = new Vector3();
                 }
-                viewStyle.scale.Z = (float)newValue;
+                viewStyle.scale = new Vector3(viewStyle.scale?.X ?? 0, viewStyle.scale?.Y ?? 0, (float)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -785,7 +777,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            
+
             if (newValue == null)
             {
                 viewStyle.backgroundColorSelector = null;
@@ -795,7 +787,7 @@ namespace Tizen.NUI.BaseComponents
                 viewStyle.backgroundColorSelector = ((Selector<Color>)newValue).Clone();
                 viewStyle.backgroundImageSelector = null;
             }
-            
+
         },
         defaultValueCreator: (bindable) =>
         {
@@ -876,6 +868,13 @@ namespace Tizen.NUI.BaseComponents
             return viewStyle.cornerRadius;
         });
 
+        /// <summary> A BindableProperty for CornerRadiusPolicy </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType?), typeof(ViewStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).cornerRadiusPolicy = (VisualTransformPolicyType?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).cornerRadiusPolicy
+        );
+
         /// <summary>
         /// EnableControlState property
         /// </summary>
@@ -893,7 +892,7 @@ namespace Tizen.NUI.BaseComponents
         /// EnableControlState property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create("ThemeChangeSensitive", typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue;
         },

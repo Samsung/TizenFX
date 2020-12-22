@@ -82,7 +82,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<object> Data{
+        public List<object> Data
+        {
             get
             {
                 return mData;

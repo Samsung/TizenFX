@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -30,26 +31,26 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RulerDomain obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Ruler.delete_RulerDomain(swigCPtr);
+            Interop.Ruler.DeleteRulerDomain(swigCPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RulerDomain(float min, float max, bool enabled) : this(Interop.Ruler.new_RulerDomain__SWIG_0(min, max, enabled), true)
+        public RulerDomain(float min, float max, bool enabled) : this(Interop.Ruler.NewRulerDomain(min, max, enabled), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RulerDomain(float min, float max) : this(Interop.Ruler.new_RulerDomain__SWIG_1(min, max), true)
+        public RulerDomain(float min, float max) : this(Interop.Ruler.NewRulerDomain(min, max), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -60,13 +61,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Ruler.RulerDomain_min_set(swigCPtr, value);
+                Interop.Ruler.RulerDomainMinSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.Ruler.RulerDomain_min_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Ruler.RulerDomainMinGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -77,13 +78,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Ruler.RulerDomain_max_set(swigCPtr, value);
+                Interop.Ruler.RulerDomainMaxSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.Ruler.RulerDomain_max_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.Ruler.RulerDomainMaxGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -94,13 +95,13 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Ruler.RulerDomain_enabled_set(swigCPtr, value);
+                Interop.Ruler.RulerDomainEnabledSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                bool ret = Interop.Ruler.RulerDomain_enabled_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                bool ret = Interop.Ruler.RulerDomainEnabledGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -109,7 +110,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length, float scale)
         {
-            float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_0(swigCPtr, x, length, scale);
+            float ret = Interop.Ruler.RulerDomainClamp(SwigCPtr, x, length, scale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -118,7 +119,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length)
         {
-            float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_1(swigCPtr, x, length);
+            float ret = Interop.Ruler.RulerDomainClamp(SwigCPtr, x, length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -127,14 +128,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x)
         {
-            float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_2(swigCPtr, x);
+            float ret = Interop.Ruler.RulerDomainClamp(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
-            float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
+            float ret = Interop.Ruler.RulerDomainClamp(SwigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -143,7 +144,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetSize()
         {
-            float ret = Interop.Ruler.RulerDomain_GetSize(swigCPtr);
+            float ret = Interop.Ruler.RulerDomainGetSize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

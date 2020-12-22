@@ -30,7 +30,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ListEventSignalType.delete_ListEventSignalType(swigCPtr);
+            Interop.ListEventSignalType.DeleteListEventSignalType(swigCPtr);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
-            bool ret = Interop.ListEventSignalType.ListEventSignalType_Empty(swigCPtr);
+            bool ret = Interop.ListEventSignalType.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ListEventSignalType.ListEventSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ListEventSignalType.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ListEventSignalType.ListEventSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ListEventSignalType.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ListEventSignalType.ListEventSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ListEventSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -97,7 +97,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(BaseComponents.View arg1)
         {
-            Interop.ListEventSignalType.ListEventSignalType_Emit(swigCPtr, BaseComponents.View.getCPtr(arg1));
+            Interop.ListEventSignalType.Emit(SwigCPtr, BaseComponents.View.getCPtr(arg1));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ListEventSignalType() : this(Interop.ListEventSignalType.new_ListEventSignalType(), true)
+        public ListEventSignalType() : this(Interop.ListEventSignalType.NewListEventSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -124,19 +124,19 @@ namespace Tizen.NUI
 
         private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
 
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Hidden-API (Inhouse-API).
+        /// Convert previous "public AnimationBehavior[] Behaviors" property to method.
+        /// </summary>
+        /// <param name="Behaviors">Array of AnimationBehavior type</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimationBehavior[] Behaviors
+        public void SetBehaviors(AnimationBehavior[] Behaviors)
         {
-            set
+            if (null != Behaviors)
             {
-                if (null != value)
+                foreach (AnimationBehavior behavior in Behaviors)
                 {
-                    foreach (AnimationBehavior behavior in value)
-                    {
-                        behaviors.Add(behavior.Key, behavior);
-                    }
+                    behaviors.Add(behavior.Key, behavior);
                 }
             }
         }
@@ -149,7 +149,7 @@ namespace Tizen.NUI
             AnimationBehavior behavior = null;
             behaviors.TryGetValue(behaviorKey, out behavior);
 
-            if (null != behavior)
+            if (null != instance && null != behavior)
             {
                 var elementType = instance.GetType();
                 PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == behavior.Property);
@@ -185,7 +185,7 @@ namespace Tizen.NUI
             AnimationBehavior behavior = null;
             behaviors.TryGetValue(behaviorKey, out behavior);
 
-            if (null != behavior)
+            if (null != instance && null != behavior)
             {
                 var elementType = instance.GetType();
                 PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == behavior.Property);

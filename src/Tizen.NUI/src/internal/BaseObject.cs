@@ -21,7 +21,7 @@ namespace Tizen.NUI
     internal class BaseObject : RefObject
     {
 
-        internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BaseObject.BaseObject_SWIGUpcast(cPtr), cMemoryOwn)
+        internal BaseObject(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BaseObject.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -34,28 +34,28 @@ namespace Tizen.NUI
 
         public bool DoAction(string actionName, PropertyMap attributes)
         {
-            bool ret = Interop.BaseObject.BaseObject_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
+            bool ret = Interop.BaseObject.DoAction(SwigCPtr, actionName, PropertyMap.getCPtr(attributes));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetTypeName()
         {
-            string ret = Interop.BaseObject.BaseObject_GetTypeName(swigCPtr);
+            string ret = Interop.BaseObject.GetTypeName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = Interop.BaseObject.BaseObject_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
+            bool ret = Interop.BaseObject.GetTypeInfo(SwigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate)
         {
-            bool ret = Interop.BaseObject.BaseObject_DoConnectSignal(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
+            bool ret = Interop.BaseObject.DoConnectSignal(SwigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

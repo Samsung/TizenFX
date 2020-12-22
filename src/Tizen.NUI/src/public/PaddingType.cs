@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// Creates an uninitialized PaddingType.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PaddingType() : this(Interop.PaddingType.new_PaddingType__SWIG_0(), true)
+        public PaddingType() : this(Interop.PaddingType.NewPaddingType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// <param name="top">Top padding or Height</param>
         /// <param name="bottom">Bottom padding or Width</param>
         /// <since_tizen> 3 </since_tizen>
-        public PaddingType(float start, float end, float top, float bottom) : this(Interop.PaddingType.new_PaddingType__SWIG_1(start, end, top, bottom), true)
+        public PaddingType(float start, float end, float top, float bottom) : this(Interop.PaddingType.NewPaddingType(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -121,12 +121,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_left_set(swigCPtr, value);
+                Interop.PaddingType.LeftSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_left_get(swigCPtr);
+                float ret = Interop.PaddingType.LeftGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -136,12 +136,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_start_set(swigCPtr, value);
+                Interop.PaddingType.StartSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_start_get(swigCPtr);
+                float ret = Interop.PaddingType.StartGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -151,12 +151,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_right_set(swigCPtr, value);
+                Interop.PaddingType.RightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_right_get(swigCPtr);
+                float ret = Interop.PaddingType.RightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -166,12 +166,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_end_set(swigCPtr, value);
+                Interop.PaddingType.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_end_get(swigCPtr);
+                float ret = Interop.PaddingType.EndGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -181,12 +181,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_top_set(swigCPtr, value);
+                Interop.PaddingType.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_top_get(swigCPtr);
+                float ret = Interop.PaddingType.TopGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -196,12 +196,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.PaddingType.PaddingType_bottom_set(swigCPtr, value);
+                Interop.PaddingType.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = Interop.PaddingType.PaddingType_bottom_get(swigCPtr);
+                float ret = Interop.PaddingType.BottomGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -255,18 +255,18 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object o)
         {
-            if(o == null)
+            if (o == null)
             {
                 return false;
             }
-            if(!(o is PaddingType))
+            if (!(o is PaddingType))
             {
                 return false;
             }
             PaddingType p = (PaddingType)o;
 
             // Return true if the fields match:
-            return (System.Math.Abs(Start- p.Start) < NDalic.GetRangedEpsilon(Start, p.Start)) &&
+            return (System.Math.Abs(Start - p.Start) < NDalic.GetRangedEpsilon(Start, p.Start)) &&
                    (System.Math.Abs(End - p.End) < NDalic.GetRangedEpsilon(End, p.End)) &&
                    (System.Math.Abs(Bottom - p.Bottom) < NDalic.GetRangedEpsilon(Bottom, p.Bottom)) &&
                    (System.Math.Abs(Top - p.Top) < NDalic.GetRangedEpsilon(Top, p.Top));
@@ -292,20 +292,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Set(float newStart, float newEnd, float newTop, float newBottom)
         {
-            Interop.PaddingType.PaddingType_Set(swigCPtr, newStart, newEnd, newTop, newBottom);
+            Interop.PaddingType.Set(SwigCPtr, newStart, newEnd, newTop, newBottom);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PaddingType obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.PaddingType.delete_PaddingType(swigCPtr);
+            Interop.PaddingType.DeletePaddingType(swigCPtr);
         }
     }
 }

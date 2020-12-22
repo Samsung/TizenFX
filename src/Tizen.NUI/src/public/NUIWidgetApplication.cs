@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>Widget ID will be replaced as the application ID.</remarks>
         /// <param name="widgetType">Derived widget class type.</param>
-        public NUIWidgetApplication( System.Type widgetType ) : base(new NUIWidgetCoreBackend())
+        public NUIWidgetApplication(System.Type widgetType) : base(new NUIWidgetCoreBackend())
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
@@ -47,9 +47,9 @@ namespace Tizen.NUI
         /// <param name="widgetTypes">List of derived widget class type.</param>
         public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
         {
-            if( widgetTypes == null )
+            if (widgetTypes == null)
             {
-              throw new InvalidOperationException("Dictionary is null");
+                throw new InvalidOperationException("Dictionary is null");
             }
             else
             {
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widgetType">Derived widget class type.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddWidgetType( System.Type widgetType )
+        public void AddWidgetType(System.Type widgetType)
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.AddWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widgetTypes">Derived widget class type.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddWidgetType( Dictionary<System.Type, string> widgetTypes )
+        public void AddWidgetType(Dictionary<System.Type, string> widgetTypes)
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.AddWidgetInfo(widgetTypes);
@@ -192,7 +192,7 @@ namespace Tizen.NUI
             // This is also required to create DisposeQueue on main thread.
             DisposeQueue disposeQ = DisposeQueue.Instance;
             disposeQ.Initialize();
-            Log.Fatal("NUI","OnCreate() is called!");
+            Log.Fatal("NUI", "OnCreate() is called!");
             base.OnCreate();
         }
     }

@@ -27,20 +27,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ProgressBar.delete_ProgressBarValueChangedSignal(swigCPtr);
+            Interop.ProgressBar.DeleteProgressBarValueChangedSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.ProgressBar.ProgressBarValueChangedSignal_Empty(swigCPtr);
+            bool ret = Interop.ProgressBar.ProgressBarValueChangedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ProgressBar.ProgressBarValueChangedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ProgressBar.ProgressBarValueChangedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ProgressBar.ProgressBarValueChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ProgressBar.ProgressBarValueChangedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ProgressBar.ProgressBarValueChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ProgressBar.ProgressBarValueChangedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Tizen.NUI.UIComponents.ProgressBar arg1, float arg2, float arg3)
         {
-            Interop.ProgressBar.ProgressBarValueChangedSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.ProgressBar.getCPtr(arg1), arg2, arg3);
+            Interop.ProgressBar.ProgressBarValueChangedSignalEmit(SwigCPtr, Tizen.NUI.UIComponents.ProgressBar.getCPtr(arg1), arg2, arg3);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ProgressBarValueChangedSignal() : this(Interop.ProgressBar.new_ProgressBarValueChangedSignal(), true)
+        public ProgressBarValueChangedSignal() : this(Interop.ProgressBar.NewProgressBarValueChangedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

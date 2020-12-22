@@ -62,6 +62,9 @@ namespace Tizen.NUI.BaseComponents
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
+            // Unused parameter
+            _ = data;
+
             NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
         }
 
@@ -262,7 +265,7 @@ namespace Tizen.NUI.BaseComponents
         ///  This prevents the parent from interceping touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisallowInterceptTouchEvent {get; set;}
+        public bool DisallowInterceptTouchEvent { get; set; }
 
 
         /// <summary>
@@ -539,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void EmitBackKeyPressed()
         {
-            _backKeyPressed.Invoke(this,null);
+            _backKeyPressed.Invoke(this, null);
         }
 
 
@@ -569,7 +572,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TouchDataSignal InterceptTouchSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_InterceptTouchSignal(swigCPtr), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -577,7 +580,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TouchDataSignal TouchSignal()
         {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(swigCPtr), false);
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -585,7 +588,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal HoverSignal HoveredSignal()
         {
-            HoverSignal ret = new HoverSignal(Interop.ActorSignal.Actor_HoveredSignal(swigCPtr), false);
+            HoverSignal ret = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -593,7 +596,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal WheelSignal WheelEventSignal()
         {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(swigCPtr), false);
+            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -601,7 +604,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -609,7 +612,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OffWindowSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -617,7 +620,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal OnRelayoutSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.Actor_OnRelayoutSignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -639,28 +642,28 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewSignal ResourcesLoadedSignal()
         {
-            ViewSignal ret = new ViewSignal(Interop.View.ResourceReadySignal(swigCPtr), false);
+            ViewSignal ret = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ControlKeySignal KeyEventSignal()
         {
-            ControlKeySignal ret = new ControlKeySignal(Interop.ViewSignal.View_KeyEventSignal(swigCPtr), false);
+            ControlKeySignal ret = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyInputFocusSignal KeyInputFocusGainedSignal()
         {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.View_KeyInputFocusGainedSignal(swigCPtr), false);
+            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyInputFocusSignal KeyInputFocusLostSignal()
         {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.View_KeyInputFocusLostSignal(swigCPtr), false);
+            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -669,11 +672,11 @@ namespace Tizen.NUI.BaseComponents
         {
             if (width != null)
             {
-                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)width));
             }
             if (height != null)
             {
-                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)height));
             }
         }
 
@@ -726,15 +729,15 @@ namespace Tizen.NUI.BaseComponents
         {
             if (width != null)
             {
-                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)width));
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)width));
             }
             if (height != null)
             {
-                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)height));
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)height));
             }
             if (depth != null)
             {
-                Tizen.NUI.Object.SetProperty(this.swigCPtr, View.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue((float)depth));
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeDepth, new Tizen.NUI.PropertyValue((float)depth));
             }
         }
 
@@ -980,7 +983,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnBackgroundResourceLoaded(IntPtr view)
         {
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
+            e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
 
             if (_backgroundResourceLoadedEventHandler != null)
             {
@@ -1265,9 +1268,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
         private void OnWindowWheelEvent(object sender, Window.WheelEventArgs e)
         {
-            if(e != null)
+            if (e != null)
             {
-                if(e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
                 {
                     var arg = new WheelEventArgs()
                     {

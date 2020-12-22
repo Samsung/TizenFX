@@ -1,9 +1,10 @@
+using System;
 using System.Diagnostics;
 
 namespace Tizen.NUI.Xaml
 {
     [DebuggerDisplay("{NamespaceURI}:{LocalName}")]
-    internal struct XmlName
+    internal struct XmlName : IEquatable<XmlName>
     {
         public static readonly XmlName _CreateContent = new XmlName("_", "CreateContent");
         public static readonly XmlName xKey = new XmlName("x", "Key");
@@ -27,11 +28,14 @@ namespace Tizen.NUI.Xaml
         {
             if (obj == null)
                 return false;
-            if (obj.GetType() != typeof (XmlName))
+            if (obj.GetType() != typeof(XmlName))
                 return false;
             var other = (XmlName)obj;
             return NamespaceURI == other.NamespaceURI && LocalName == other.LocalName;
         }
+
+        public bool Equals(XmlName other)
+            => NamespaceURI == other.NamespaceURI && LocalName == other.LocalName;
 
         public bool Equals(string namespaceUri, string localName)
             => Equals(new XmlName(namespaceUri, localName));
@@ -53,6 +57,6 @@ namespace Tizen.NUI.Xaml
             => x1.NamespaceURI == x2.NamespaceURI && x1.LocalName == x2.LocalName;
 
         public static bool operator !=(XmlName x1, XmlName x2)
-            =>  !(x1 == x2);
+            => !(x1 == x2);
     }
 }

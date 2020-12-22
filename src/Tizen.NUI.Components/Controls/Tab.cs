@@ -213,7 +213,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != value && null != tabStyle?.ItemPadding)
+                if (null != value && null != tabStyle?.ItemPadding)
                 {
                     tabStyle.ItemPadding.CopyFrom(value);
 
@@ -317,7 +317,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.FontFamily = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -338,7 +338,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.TextColor = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -400,7 +400,7 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void DeleteItem(int itemIndex)
         {
-            if(itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
+            if (itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
             {
                 return;
             }
@@ -450,9 +450,9 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if(underlineAni != null)
+                if (underlineAni != null)
                 {
-                    if(underlineAni.State == Animation.States.Playing)
+                    if (underlineAni.State == Animation.States.Playing)
                     {
                         underlineAni.Stop();
                     }
@@ -460,9 +460,9 @@ namespace Tizen.NUI.Components
                     underlineAni = null;
                 }
                 Utility.Dispose(underline);
-                if(itemList != null)
+                if (itemList != null)
                 {
-                    for(int i = 0; i < itemList.Count; i++)
+                    for (int i = 0; i < itemList.Count; i++)
                     {
                         Remove(itemList[i]);
                         itemList[i].Dispose();
@@ -527,8 +527,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -538,8 +538,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -554,8 +554,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = w - preW - preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = w - preW - preX;
+                        itemList[i].SizeWidth = preW;
                         preX = w - itemList[i].Position2D.X + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -565,8 +565,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -599,8 +599,8 @@ namespace Tizen.NUI.Components
             item.TextItem.ApplyStyle(tabStyle.Text);
 
             item.Text = itemData.Text;
-            item.Size2D.Height = Size2D.Height - h - topSpace;
-            item.Position2D.Y = topSpace;
+            item.SizeHeight = SizeHeight - h - topSpace;
+            item.PositionY = topSpace;
             item.TouchEvent += ItemTouchEvent;
             Add(item);
 
@@ -640,7 +640,7 @@ namespace Tizen.NUI.Components
                 underlineAni = new Animation(aniTime);
             }
         }
-        
+
         private void UpdateUnderLinePos()
         {
             if (underline == null || Underline.Size == null || itemList == null || itemList.Count <= 0)
@@ -648,7 +648,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            Underline.Size.Width = itemList[curIndex].Size2D.Width;
+            Underline.SizeWidth = itemList[curIndex].Size2D.Width;
 
             underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Underline.Size.Height);
             underline.BackgroundColor = tabStyle.UnderLine.BackgroundColor.All;
@@ -665,7 +665,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                underline.Position2D.X = itemList[curIndex].Position2D.X;
+                underline.PositionX = itemList[curIndex].PositionX;
                 isNeedAnimation = true;
             }
 
@@ -674,7 +674,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateSelectedItem(TabItem item)
         {
-            if(item == null || curIndex == item.Index)
+            if (item == null || curIndex == item.Index)
             {
                 return;
             }
@@ -696,7 +696,7 @@ namespace Tizen.NUI.Components
         private bool ItemTouchEvent(object source, TouchEventArgs e)
         {
             TabItem item = source as TabItem;
-            if(item == null)
+            if (item == null)
             {
                 return false;
             }
@@ -773,6 +773,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class TabItemData
         {
             /// <summary>
@@ -792,14 +793,19 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ItemChangedEventArgs : EventArgs
         {
             /// <summary> Previous selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int PreviousIndex;
             /// <summary> Current selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int CurrentIndex;
         }

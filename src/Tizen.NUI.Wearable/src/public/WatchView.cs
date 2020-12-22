@@ -35,16 +35,16 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WatchView(Window window, string watchId, string contentInfo, int width, int height) : this(Interop.WatchView.WatchView_New(Window.getCPtr(window), watchId, contentInfo, width, height), true)
+        public WatchView(Window window, string watchId, string contentInfo, int width, int height) : this(Interop.WatchView.New(Window.getCPtr(window), watchId, contentInfo, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal WatchView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WatchView.WatchView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WatchView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WatchView.Upcast(cPtr), cMemoryOwn)
         {
         }
-        internal WatchView(WatchView handle) : this(Interop.WatchView.new_WatchView__SWIG_1(WatchView.getCPtr(handle)), true)
+        internal WatchView(WatchView handle) : this(Interop.WatchView.NewWatchView(WatchView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PauseWatch()
         {
-            bool ret = Interop.WatchView.WatchView_PauseWatch(swigCPtr);
+            bool ret = Interop.WatchView.PauseWatch(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -70,14 +70,14 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ResumeWatch()
         {
-            bool ret = Interop.WatchView.WatchView_ResumeWatch(swigCPtr);
+            bool ret = Interop.WatchView.ResumeWatch(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static WatchView DownCast(BaseHandle handle)
         {
-            WatchView ret = new WatchView(Interop.WatchView.WatchView_DownCast(BaseHandle.getCPtr(handle)), true);
+            WatchView ret = new WatchView(Interop.WatchView.DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -91,12 +91,12 @@ namespace Tizen.NUI.Wearable
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WatchView obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal WatchView Assign(WatchView handle)
         {
-            WatchView ret = new WatchView(Interop.WatchView.WatchView_Assign(swigCPtr, WatchView.getCPtr(handle)), false);
+            WatchView ret = new WatchView(Interop.WatchView.Assign(SwigCPtr, WatchView.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

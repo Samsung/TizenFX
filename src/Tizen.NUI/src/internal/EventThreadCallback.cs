@@ -32,10 +32,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            //NDalicManualPINVOKE.delete_EventThreadCallback(swigCPtr);
+            //NDalicManualPINVOKE.DeleteEventThreadCallback(swigCPtr);
         }
 
-        public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.new_EventThreadCallback(func), true)
+        public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.NewEventThreadCallback(func), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -43,9 +43,9 @@ namespace Tizen.NUI
 
         public void Trigger()
         {
-            if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
+            if ((System.IntPtr)SwigCPtr != global::System.IntPtr.Zero)
             {
-                Interop.EventThreadCallback.EventThreadCallback_Trigger(swigCPtr);
+                Interop.EventThreadCallback.Trigger(SwigCPtr);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)

@@ -26,7 +26,7 @@ namespace Tizen.NUI
     class NUIComponentCoreBackend : ICoreBackend
     {
         private Dictionary<Type, ComponentStateManger> _componentFactories;
-        public Dictionary<Type, ComponentStateManger>  ComponentFactories
+        public Dictionary<Type, ComponentStateManger> ComponentFactories
         {
             set
             {
@@ -119,7 +119,7 @@ namespace Tizen.NUI
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
             _application = ComponentApplication.NewComponentApplication(args, _stylesheet);
-            
+
             _application.Initialized += OnInitialized;
             _application.CreateNative += OnCreateNative;
             _application.Terminating += OnTerminated;
@@ -164,7 +164,7 @@ namespace Tizen.NUI
             var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }
-		
+
     }
 }
 

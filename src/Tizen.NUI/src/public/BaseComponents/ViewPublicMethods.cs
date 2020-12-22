@@ -39,7 +39,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)
         {
-            Interop.View.View_DoAction(swigCPtr, propertyIndexOfVisual, propertyIndexOfActionId, PropertyValue.getCPtr(attributes));
+            Interop.View.DoAction(SwigCPtr, propertyIndexOfVisual, propertyIndexOfActionId, PropertyValue.getCPtr(attributes));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -100,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
                 _transition.Add("targetValue", destValue);
                 TransitionData _transitionData = new TransitionData(_transition);
 
-                animation = new Animation(Interop.View.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true);
+                animation = new Animation(Interop.View.CreateTransition(SwigCPtr, TransitionData.getCPtr(_transitionData)), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -115,7 +115,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            bool hasLayout = (_layout != null);
+            bool hasLayout = (layout != null);
 
             if (null == child)
             {
@@ -129,7 +129,7 @@ namespace Tizen.NUI.BaseComponents
                 // If child already has a parent then re-parent child
                 if (oldParent != null)
                 {
-                    if (child.Layout !=null)
+                    if (child.Layout != null)
                     {
                         child.Layout.SetReplaceFlag();
                     }
@@ -137,7 +137,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 child.InternalParent = this;
 
-                Interop.Actor.Actor_Add(swigCPtr, View.getCPtr(child));
+                Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -160,19 +160,25 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.Remove" />
         /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when deleting a view that is not a child of this view</exception>
         public override void Remove(View child)
         {
-            if (!child || child.GetParent() == null) // Early out if child null.
+            if (child == null || child.GetParent() == null) // Early out if child null.
                 return;
 
-            bool hasLayout = (_layout != null);
+            if (child.Parent != this)
+            {
+                throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
+            }
+
+            bool hasLayout = (layout != null);
 
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
             // transitions can be completed.
             if (hasLayout)
             {
-                (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
+                (layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
             }
 
             RemoveChild(child);
@@ -223,9 +229,9 @@ namespace Tizen.NUI.BaseComponents
         public bool HasFocus()
         {
             bool ret = false;
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            if (SwigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                ret = Interop.View.View_HasKeyInputFocus(swigCPtr);
+                ret = Interop.View.HasKeyInputFocus(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             else
@@ -242,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetStyleName(string styleName)
         {
-            Interop.View.View_SetStyleName(swigCPtr, styleName);
+            Interop.View.SetStyleName(SwigCPtr, styleName);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -253,7 +259,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public string GetStyleName()
         {
-            string ret = Interop.View.View_GetStyleName(swigCPtr);
+            string ret = Interop.View.GetStyleName(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -264,7 +270,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void ClearBackground()
         {
-            Interop.View.View_ClearBackground(swigCPtr);
+            Interop.View.ClearBackground(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -312,9 +318,9 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Add(this);
 
                 LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(parentChildren.Count-1);
+                layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
 
-                Interop.NDalic.RaiseToTop(swigCPtr);
+                Interop.NDalic.RaiseToTop(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -341,7 +347,7 @@ namespace Tizen.NUI.BaseComponents
                 LayoutGroup layout = Layout as LayoutGroup;
                 layout?.ChangeLayoutSiblingOrder(0);
 
-                Interop.NDalic.LowerToBottom(swigCPtr);
+                Interop.NDalic.LowerToBottom(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -355,7 +361,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool IsResourceReady()
         {
-            bool ret = Interop.View.IsResourceReady(swigCPtr);
+            bool ret = Interop.View.IsResourceReady(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -369,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
         public Layer GetLayer()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.Actor_GetLayer(swigCPtr);
+            IntPtr cPtr = Interop.Actor.GetLayer(SwigCPtr);
             Layer ret = this.GetInstanceSafely<Layer>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -396,7 +402,7 @@ namespace Tizen.NUI.BaseComponents
         public View FindChildByName(string viewName)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.Actor_FindChildByName(swigCPtr, viewName);
+            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, viewName);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -415,7 +421,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool ScreenToLocal(out float localX, out float localY, float screenX, float screenY)
         {
-            bool ret = Interop.Actor.Actor_ScreenToLocal(swigCPtr, out localX, out localY, screenX, screenY);
+            bool ret = Interop.Actor.ScreenToLocal(SwigCPtr, out localX, out localY, screenX, screenY);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -432,7 +438,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetSizeModeFactor(Vector3 factor)
         {
-            Interop.Actor.Actor_SetSizeModeFactor(swigCPtr, Vector3.getCPtr(factor));
+            Interop.Actor.SetSizeModeFactor(SwigCPtr, Vector3.getCPtr(factor));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -446,7 +452,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetHeightForWidth(float width)
         {
-            float ret = Interop.Actor.Actor_GetHeightForWidth(swigCPtr, width);
+            float ret = Interop.Actor.GetHeightForWidth(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -462,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetWidthForHeight(float height)
         {
-            float ret = Interop.Actor.Actor_GetWidthForHeight(swigCPtr, height);
+            float ret = Interop.Actor.GetWidthForHeight(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -476,7 +482,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetRelayoutSize(DimensionType dimension)
         {
-            float ret = Interop.Actor.Actor_GetRelayoutSize(swigCPtr, (int)dimension);
+            float ret = Interop.Actor.GetRelayoutSize(SwigCPtr, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -489,7 +495,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetPadding(PaddingType padding)
         {
-            Interop.Actor.Actor_SetPadding(swigCPtr, PaddingType.getCPtr(padding));
+            Interop.Actor.SetPadding(SwigCPtr, PaddingType.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -501,7 +507,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void GetPadding(PaddingType paddingOut)
         {
-            Interop.Actor.Actor_GetPadding(swigCPtr, PaddingType.getCPtr(paddingOut));
+            Interop.Actor.GetPadding(SwigCPtr, PaddingType.getCPtr(paddingOut));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -509,7 +515,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public uint AddRenderer(Renderer renderer)
         {
-            uint ret = Interop.Actor.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
+            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -519,7 +525,7 @@ namespace Tizen.NUI.BaseComponents
         public Renderer GetRendererAt(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.Actor_GetRendererAt(swigCPtr, index);
+            IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
             if (cPtr != null && ret == null)
@@ -529,7 +535,7 @@ namespace Tizen.NUI.BaseComponents
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.DeleteBaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -540,7 +546,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(Renderer renderer)
         {
-            Interop.Actor.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
+            Interop.Actor.RemoveRenderer(SwigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -548,7 +554,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(uint index)
         {
-            Interop.Actor.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
+            Interop.Actor.RemoveRenderer(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -557,7 +563,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Degree angle, Vector3 axis)
         {
-            Interop.ActorInternal.Actor_RotateBy__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
+            Interop.ActorInternal.RotateByDegree(SwigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -566,7 +572,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Radian angle, Vector3 axis)
         {
-            Interop.ActorInternal.Actor_RotateBy__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
+            Interop.ActorInternal.RotateByRadian(SwigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -575,7 +581,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Rotation relativeRotation)
         {
-            Interop.ActorInternal.Actor_RotateBy__SWIG_2(swigCPtr, Rotation.getCPtr(relativeRotation));
+            Interop.ActorInternal.RotateByQuaternion(SwigCPtr, Rotation.getCPtr(relativeRotation));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -584,7 +590,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScaleBy(Vector3 relativeScale)
         {
-            Interop.ActorInternal.Actor_ScaleBy(swigCPtr, Vector3.getCPtr(relativeScale));
+            Interop.ActorInternal.ScaleBy(SwigCPtr, Vector3.getCPtr(relativeScale));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -593,7 +599,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetColorMode(ColorMode colorMode)
         {
-            Interop.ActorInternal.Actor_SetColorMode(swigCPtr, (int)colorMode);
+            Interop.ActorInternal.SetColorMode(SwigCPtr, (int)colorMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -613,11 +619,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ObjectDump()
         {
-            if ( 0== Children.Count)
+            if (0 == Children.Count)
             {
                 Type type = this.GetType();
                 PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                foreach(var property in properties)
+                foreach (var property in properties)
                 {
                     if (null != property && property.CanRead)
                     {

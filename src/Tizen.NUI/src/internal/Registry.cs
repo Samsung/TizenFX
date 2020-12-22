@@ -58,7 +58,7 @@ namespace Tizen.NUI
         internal static void Register(BaseHandle baseHandle)
         {
             // We store a pointer to the RefObject for the control
-            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
+            IntPtr refCptr = Interop.BaseHandle.GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             RegistryCurrentThreadCheck();
 
@@ -76,7 +76,7 @@ namespace Tizen.NUI
         /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
         internal static void Unregister(BaseHandle baseHandle)
         {
-            IntPtr refCptr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
+            IntPtr refCptr = Interop.BaseHandle.GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             RegistryCurrentThreadCheck();
             WeakReference refe;
@@ -90,7 +90,7 @@ namespace Tizen.NUI
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(BaseHandle baseHandle)
         {
-            IntPtr refObjectPtr = Interop.BaseHandle.BaseHandle_GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
+            IntPtr refObjectPtr = Interop.BaseHandle.GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
 
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
             return GetManagedBaseHandleFromRefObject(refObjectPtr);
@@ -152,7 +152,7 @@ namespace Tizen.NUI
 
         private static void RegistryCurrentThreadCheck()
         {
-            
+
             if (savedApplicationThread == null)
             {
                 Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");

@@ -30,17 +30,17 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ScrollViewEffect() : this(Interop.ScrollView.new_ScrollViewEffect(), true)
+        public ScrollViewEffect() : this(Interop.ScrollView.NewScrollViewEffect(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewEffectUpcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ScrollView.delete_ScrollViewEffect(swigCPtr);
+            Interop.ScrollView.DeleteScrollViewEffect(swigCPtr);
         }
     }
 }

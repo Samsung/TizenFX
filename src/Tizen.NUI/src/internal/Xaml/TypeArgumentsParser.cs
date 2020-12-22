@@ -54,12 +54,15 @@ namespace Tizen.NUI.Xaml
                 return null;
 
             string prefix, name;
-            if (split.Length == 2) {
-                prefix = split [0];
-                name = split [1];
-            } else {
+            if (split.Length == 2)
+            {
+                prefix = split[0];
+                name = split[1];
+            }
+            else
+            {
                 prefix = "";
-                name = split [0];
+                name = split[0];
             }
 
             var namespaceuri = resolver.LookupNamespace(prefix);

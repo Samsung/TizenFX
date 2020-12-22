@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<Vector4> PlaceholderTextColor { get; } = new TriggerableSelector<Vector4>(TextField.PlaceholderTextColorProperty, delegate (View view)
         {
             Vector4 color = new Vector4();
-            if (view.GetProperty(TextField.Property.PLACEHOLDER_TEXT_COLOR).Get(color))
+            if (view.GetProperty(TextField.Property.PlaceholderTextColor).Get(color))
             {
                 return color;
             }
@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<Vector4> PrimaryCursorColor { get; } = new TriggerableSelector<Vector4>(TextField.PrimaryCursorColorProperty, delegate (View view)
         {
             Vector4 color = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            if (view.GetProperty(TextField.Property.PRIMARY_CURSOR_COLOR).Get(color))
+            if (view.GetProperty(TextField.Property.PrimaryCursorColor).Get(color))
             {
                 return color;
             }
@@ -63,7 +63,7 @@ namespace Tizen.NUI.BaseComponents
         private static Color GetTextColor(View view)
         {
             Color color = new Color();
-            if (view.GetProperty(TextField.Property.TEXT_COLOR).Get(color))
+            if (view.GetProperty(TextField.Property.TextColor).Get(color))
             {
                 return color;
             }

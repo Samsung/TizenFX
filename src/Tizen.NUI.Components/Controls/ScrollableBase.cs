@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,39 +62,64 @@ namespace Tizen.NUI.Components
     public class ScrollOutOfBoundEventArgs : EventArgs
     {
         /// <summary>
-        /// The bound to be scrolled out of.
+        /// The direction to be touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum Bound
+        public enum Direction
         {
             /// <summary>
-            /// Top bound.
+            /// Upwards.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Top,
+            Up,
 
             /// <summary>
-            /// Bottom bound.
+            /// Downwards.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Bottom
+            Down,
+
+            /// <summary>
+            /// Left bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left,
+
+            /// <summary>
+            /// Right bound.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right,
         }
 
         /// <summary>
-        /// Default constructor.
+        /// Constructor.
         /// </summary>
-        /// <param name="bound">Current scrollable bound</param>
+        /// <param name="direction">Current pan direction</param>
+        /// <param name="displacement">Current total displacement</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollOutOfBoundEventArgs(Bound bound)
+        public ScrollOutOfBoundEventArgs(Direction direction, float displacement)
         {
-            ScrollableBound = bound;
+            PanDirection = direction;
+            Displacement = displacement;
         }
 
         /// <summary>
-        /// Current position of ContentContainer.
+        /// Current pan direction of ContentContainer.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Bound ScrollableBound
+        public Direction PanDirection
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Current total displacement of ContentContainer.
+        /// if its value is greater than 0, it is at the top/left;
+        /// if less than 0, it is at the bottom/right.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Displacement
         {
             get;
         }
@@ -112,9 +137,9 @@ namespace Tizen.NUI.Components
         private int mScrollDuration = 125;
         private int mPageWidth = 0;
         private float mPageFlickThreshold = 0.4f;
-        private float mScrollingEventThreshold = 0.00001f;
+        private float mScrollingEventThreshold = 0.001f;
 
-        private class ScrollableBaseCustomLayout : LayoutGroup
+        private class ScrollableBaseCustomLayout : AbsoluteLayout
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
@@ -180,26 +205,10 @@ namespace Tizen.NUI.Components
                     ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
-                scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
-                scrollableBase.OnScrollingChildRelayout(null, null);
-            }
-
-            protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
-            {
-                foreach (LayoutItem childLayout in LayoutChildren)
+                if (scrollableBase != null)
                 {
-                    if (childLayout != null && childLayout.Owner.Name == "ContentContainer")
-                    {
-                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-
-                        Position2D childPosition = childLayout.Owner.Position2D;
-
-                        LayoutLength childLeft = new LayoutLength(childPosition.X);
-                        LayoutLength childTop = new LayoutLength(childPosition.Y);
-
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                    }
+                    scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
+                    scrollableBase.OnScrollingChildRelayout(null, null);
                 }
             }
         } //  ScrollableBaseCustomLayout
@@ -433,10 +442,6 @@ namespace Tizen.NUI.Components
             set
             {
                 ContentContainer.Layout = value;
-                if (ContentContainer.Layout != null)
-                {
-                    ContentContainer.Layout.SetPositionByLayout = false;
-                }
             }
         }
 
@@ -478,7 +483,10 @@ namespace Tizen.NUI.Components
         public float DecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
-        /// Scrolling event will be thrown when this amount of scroll positino is changed.
+        /// Scrolling event will be thrown when this amount of scroll position is changed.
+        /// If this threshold becomes smaller, the tracking detail increases but the scrolling range that can be tracked becomes smaller.
+        /// If large sized ContentContainer is required, please use larger threshold value.
+        /// Default ScrollingEventThreshold value is 0.001f.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollingEventThreshold
@@ -578,12 +586,14 @@ namespace Tizen.NUI.Components
         private float logValueOfDeceleration = 0.0f;
         private float decelerationRate = 0.0f;
 
-        private View verticalTopShadowView;
-        private View verticalBottomShadowView;
-        private const int verticalShadowScaleHeightLimit = 64 * 3;
-        private const int verticalShadowAnimationDuration = 300;
-        private Animation verticalShadowAnimation;
-        private bool isVerticalShadowShown = false;
+        private View topOverShootingShadowView;
+        private View bottomOverShootingShadowView;
+        private View leftOverShootingShadowView;
+        private View rightOverShootingShadowView;
+        private const int overShootingShadowScaleHeightLimit = 64 * 3;
+        private const int overShootingShadowAnimationDuration = 300;
+        private Animation overShootingShadowAnimation;
+        private bool isOverShootingShadowShown = false;
         private float startShowShadowDisplacement;
 
         /// <summary>
@@ -600,7 +610,7 @@ namespace Tizen.NUI.Components
             mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
-            ClippingMode = ClippingModeType.ClipChildren;
+            ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             //Default Scrolling child
             ContentContainer = new View()
@@ -608,10 +618,6 @@ namespace Tizen.NUI.Components
                 Name = "ContentContainer",
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
-                Layout = new AbsoluteLayout()
-                {
-                    SetPositionByLayout = false
-                },
             };
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
@@ -628,23 +634,42 @@ namespace Tizen.NUI.Components
             Scrollbar = new Scrollbar();
 
             //Show vertical shadow on the top (or bottom) of the scrollable when panning down (or up).
-            verticalTopShadowView = new View
+            topOverShootingShadowView = new View
             {
-                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_top.png",
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_scroll_over_shooting_top.png",
                 Opacity = 1.0f,
                 SizeHeight = 0.0f,
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.TopCenter,
                 PivotPoint = NUI.PivotPoint.TopCenter,
             };
-            verticalBottomShadowView = new View
+            bottomOverShootingShadowView = new View
             {
-                BackgroundImage = Tizen.NUI.StyleManager.FrameworkResourcePath + "nui_component_default_scroll_over_shooting_bottom.png",
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_scroll_over_shooting_bottom.png",
                 Opacity = 1.0f,
                 SizeHeight = 0.0f,
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.BottomCenter,
                 PivotPoint = NUI.PivotPoint.BottomCenter,
+            };
+            //Show horizontal shadow on the left (or right) of the scrollable when panning down (or up).
+            leftOverShootingShadowView = new View
+            {
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_scroll_over_shooting_left.png",
+                Opacity = 1.0f,
+                SizeWidth = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                PivotPoint = NUI.PivotPoint.CenterLeft,
+            };
+            rightOverShootingShadowView = new View
+            {
+                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_default_scroll_over_shooting_right.png",
+                Opacity = 1.0f,
+                SizeWidth = 0.0f,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.CenterRight,
+                PivotPoint = NUI.PivotPoint.CenterRight,
             };
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
@@ -942,7 +967,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                StopVerticalShadowAnimation();
+                StopOverShootingShadowAnimation();
                 StopScroll();
 
                 if (mPanGestureDetector != null)
@@ -1017,131 +1042,224 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
-        private void AttachShadowView()
+        /// <summary>
+        /// Enable/Disable overshooting effect. default is disabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableOverShootingEffect { get; set; } = false;
+
+        private void AttachOverShootingShadowView()
         {
-            if (ScrollingDirection != Direction.Vertical)
+            if (!EnableOverShootingEffect)
                 return;
 
             // stop animation if necessary.
-            StopVerticalShadowAnimation();
+            StopOverShootingShadowAnimation();
 
-            base.Add(verticalTopShadowView);
-            base.Add(verticalBottomShadowView);
+            if (ScrollingDirection == Direction.Horizontal)
+            {
+                base.Add(leftOverShootingShadowView);
+                base.Add(rightOverShootingShadowView);
 
-            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
-            verticalTopShadowView.Opacity = 1.0f;
+                leftOverShootingShadowView.Size = new Size(0.0f, SizeHeight);
+                leftOverShootingShadowView.Opacity = 1.0f;
+                leftOverShootingShadowView.RaiseToTop();
 
-            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
-            verticalBottomShadowView.Opacity = 1.0f;
+                rightOverShootingShadowView.Size = new Size(0.0f, SizeHeight);
+                rightOverShootingShadowView.Opacity = 1.0f;
+                rightOverShootingShadowView.RaiseToTop();
+            }
+            else
+            {
+                base.Add(topOverShootingShadowView);
+                base.Add(bottomOverShootingShadowView);
 
-            // at the beginning, height of vertical shadow is 0, so it is invisible.
-            isVerticalShadowShown = false;
+                topOverShootingShadowView.Size = new Size(SizeWidth, 0.0f);
+                topOverShootingShadowView.Opacity = 1.0f;
+                topOverShootingShadowView.RaiseToTop();
+
+                bottomOverShootingShadowView.Size = new Size(SizeWidth, 0.0f);
+                bottomOverShootingShadowView.Opacity = 1.0f;
+                bottomOverShootingShadowView.RaiseToTop();
+            }
+
+            // at the beginning, height or width of overshooting shadow is 0, so it is invisible.
+            isOverShootingShadowShown = false;
         }
 
-        private void DragVerticalShadow(float displacement)
+        private void DragOverShootingShadow(float totalPanDisplacement, float panDisplacement)
         {
-            if (ScrollingDirection != Direction.Vertical)
+            if (!EnableOverShootingEffect)
                 return;
 
-            if ((int)displacement > 0) // downwards
+            if (totalPanDisplacement > 0) // downwards
             {
-                // check if reaching at the top.
+                // check if reaching at the top / left.
                 if ((int)finalTargetPosition != 0)
+                {
+                    isOverShootingShadowShown = false;
                     return;
+                }
 
                 // save start displacement, and re-calculate displacement.
-                if (!isVerticalShadowShown)
+                if (!isOverShootingShadowShown)
                 {
-                    startShowShadowDisplacement = displacement;
-                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Top);
+                    startShowShadowDisplacement = totalPanDisplacement;
                 }
-                isVerticalShadowShown = true;
+                isOverShootingShadowShown = true;
 
-                float newDisplacement = (int)displacement < (int)startShowShadowDisplacement ? 0 : displacement - startShowShadowDisplacement;
+                float newDisplacement = (int)totalPanDisplacement < (int)startShowShadowDisplacement ? 0 : totalPanDisplacement - startShowShadowDisplacement;
 
-                // scale limit of width is 60%.
-                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
-                verticalTopShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+                if (ScrollingDirection == Direction.Horizontal)
+                {
+                    // scale limit of height is 60%.
+                    float heightScale = newDisplacement / overShootingShadowScaleHeightLimit;
+                    leftOverShootingShadowView.SizeHeight = heightScale > 0.6f ? SizeHeight * 0.4f : SizeHeight * (1.0f - heightScale);
 
-                // scale limit of height is 300%.
-                verticalTopShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+                    // scale limit of width is 300%.
+                    leftOverShootingShadowView.SizeWidth = newDisplacement > overShootingShadowScaleHeightLimit ? overShootingShadowScaleHeightLimit : newDisplacement;
+
+                    // trigger event
+                    ScrollOutOfBoundEventArgs.Direction scrollDirection = panDisplacement > 0 ?
+                       ScrollOutOfBoundEventArgs.Direction.Right : ScrollOutOfBoundEventArgs.Direction.Left;
+                    OnScrollOutOfBound(scrollDirection, totalPanDisplacement);
+                }
+                else
+                {
+                    // scale limit of width is 60%.
+                    float widthScale = newDisplacement / overShootingShadowScaleHeightLimit;
+                    topOverShootingShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                    // scale limit of height is 300%.
+                    topOverShootingShadowView.SizeHeight = newDisplacement > overShootingShadowScaleHeightLimit ? overShootingShadowScaleHeightLimit : newDisplacement;
+
+                    // trigger event
+                    ScrollOutOfBoundEventArgs.Direction scrollDirection = panDisplacement > 0 ?
+                       ScrollOutOfBoundEventArgs.Direction.Down : ScrollOutOfBoundEventArgs.Direction.Up;
+                    OnScrollOutOfBound(scrollDirection, totalPanDisplacement);
+                }
             }
-            else if ((int)displacement < 0) // upwards
+            else if (totalPanDisplacement < 0) // upwards
             {
                 // check if reaching at the bottom.
                 if (-(int)finalTargetPosition != (int)maxScrollDistance)
+                {
+                    isOverShootingShadowShown = false;
                     return;
+                }
 
                 // save start displacement, and re-calculate displacement.
-                if (!isVerticalShadowShown)
+                if (!isOverShootingShadowShown)
                 {
-                    startShowShadowDisplacement = displacement;
-                    OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound.Bottom);
+                    startShowShadowDisplacement = totalPanDisplacement;
                 }
-                isVerticalShadowShown = true;
+                isOverShootingShadowShown = true;
 
-                float newDisplacement = (int)startShowShadowDisplacement < (int)displacement ? 0 : startShowShadowDisplacement - displacement;
+                float newDisplacement = (int)startShowShadowDisplacement < (int)totalPanDisplacement ? 0 : startShowShadowDisplacement - totalPanDisplacement;
 
-                // scale limit of width is 60%.
-                float widthScale = newDisplacement / verticalShadowScaleHeightLimit;
-                verticalBottomShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+                if (ScrollingDirection == Direction.Horizontal)
+                {
+                    // scale limit of height is 60%.
+                    float heightScale = newDisplacement / overShootingShadowScaleHeightLimit;
+                    rightOverShootingShadowView.SizeHeight = heightScale > 0.6f ? SizeHeight * 0.4f : SizeHeight * (1.0f - heightScale);
 
-                // scale limit of height is 300%.
-                verticalBottomShadowView.SizeHeight = newDisplacement > verticalShadowScaleHeightLimit ? verticalShadowScaleHeightLimit : newDisplacement;
+                    // scale limit of width is 300%.
+                    rightOverShootingShadowView.SizeWidth = newDisplacement > overShootingShadowScaleHeightLimit ? overShootingShadowScaleHeightLimit : newDisplacement;
+
+                    // trigger event
+                    ScrollOutOfBoundEventArgs.Direction scrollDirection = panDisplacement > 0 ?
+                       ScrollOutOfBoundEventArgs.Direction.Right : ScrollOutOfBoundEventArgs.Direction.Left;
+                    OnScrollOutOfBound(scrollDirection, totalPanDisplacement);
+                }
+                else
+                {
+                    // scale limit of width is 60%.
+                    float widthScale = newDisplacement / overShootingShadowScaleHeightLimit;
+                    bottomOverShootingShadowView.SizeWidth = widthScale > 0.6f ? SizeWidth * 0.4f : SizeWidth * (1.0f - widthScale);
+
+                    // scale limit of height is 300%.
+                    bottomOverShootingShadowView.SizeHeight = newDisplacement > overShootingShadowScaleHeightLimit ? overShootingShadowScaleHeightLimit : newDisplacement;
+
+                    // trigger event
+                    ScrollOutOfBoundEventArgs.Direction scrollDirection = panDisplacement > 0 ?
+                       ScrollOutOfBoundEventArgs.Direction.Down : ScrollOutOfBoundEventArgs.Direction.Up;
+                    OnScrollOutOfBound(scrollDirection, totalPanDisplacement);
+                }
             }
             else
             {
                 // if total displacement is 0, shadow would become invisible.
-                isVerticalShadowShown = false;
+                isOverShootingShadowShown = false;
             }
         }
 
-        private void PlayVerticalShadowAnimation()
+        private void PlayOverShootingShadowAnimation()
         {
-            if (ScrollingDirection != Direction.Vertical)
+            if (!EnableOverShootingEffect)
                 return;
 
             // stop animation if necessary.
-            StopVerticalShadowAnimation();
+            StopOverShootingShadowAnimation();
 
-            if (verticalShadowAnimation == null)
+            if (overShootingShadowAnimation == null)
             {
-                verticalShadowAnimation = new Animation(verticalShadowAnimationDuration);
-                verticalShadowAnimation.Finished += OnVerticalShadowAnimationFinished;
+                overShootingShadowAnimation = new Animation(overShootingShadowAnimationDuration);
+                overShootingShadowAnimation.Finished += OnOverShootingShadowAnimationFinished;
             }
 
-            View targetView = totalDisplacementForPan < 0 ? verticalBottomShadowView : verticalTopShadowView;
-            verticalShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
-            verticalShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
-            verticalShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
-            verticalShadowAnimation.Play();
+            if (ScrollingDirection == Direction.Horizontal)
+            {
+                View targetView = totalDisplacementForPan < 0 ? rightOverShootingShadowView : leftOverShootingShadowView;
+                overShootingShadowAnimation.AnimateTo(targetView, "SizeHeight", SizeHeight);
+                overShootingShadowAnimation.AnimateTo(targetView, "SizeWidth", 0.0f);
+                overShootingShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            }
+            else
+            {
+                View targetView = totalDisplacementForPan < 0 ? bottomOverShootingShadowView : topOverShootingShadowView;
+                overShootingShadowAnimation.AnimateTo(targetView, "SizeWidth", SizeWidth);
+                overShootingShadowAnimation.AnimateTo(targetView, "SizeHeight", 0.0f);
+                overShootingShadowAnimation.AnimateTo(targetView, "Opacity", 0.0f);
+            }
+            overShootingShadowAnimation.Play();
         }
 
-        private void StopVerticalShadowAnimation()
+        private void StopOverShootingShadowAnimation()
         {
-            if (verticalShadowAnimation == null || verticalShadowAnimation.State != Animation.States.Playing)
+            if (overShootingShadowAnimation == null || overShootingShadowAnimation.State != Animation.States.Playing)
                 return;
 
-            verticalShadowAnimation.Stop(Animation.EndActions.Cancel);
-            OnVerticalShadowAnimationFinished(null, null);
-            verticalShadowAnimation.Clear();
+            overShootingShadowAnimation.Stop(Animation.EndActions.Cancel);
+            OnOverShootingShadowAnimationFinished(null, null);
+            overShootingShadowAnimation.Clear();
         }
 
-        private void OnVerticalShadowAnimationFinished(object sender, EventArgs e)
+        private void OnOverShootingShadowAnimationFinished(object sender, EventArgs e)
         {
-            base.Remove(verticalTopShadowView);
-            base.Remove(verticalBottomShadowView);
+            if (ScrollingDirection == Direction.Horizontal)
+            {
+                base.Remove(leftOverShootingShadowView);
+                base.Remove(rightOverShootingShadowView);
 
-            verticalTopShadowView.Size = new Size(SizeWidth, 0.0f);
-            verticalBottomShadowView.Size = new Size(SizeWidth, 0.0f);
+                leftOverShootingShadowView.Size = new Size(0.0f, SizeHeight);
+                rightOverShootingShadowView.Size = new Size(0.0f, SizeHeight);
+            }
+            else
+            {
+                base.Remove(topOverShootingShadowView);
+                base.Remove(bottomOverShootingShadowView);
 
-            // after animation finished, height & opacity of vertical shadow both are 0, so it is invisible.
-            isVerticalShadowShown = false;
+                topOverShootingShadowView.Size = new Size(SizeWidth, 0.0f);
+                bottomOverShootingShadowView.Size = new Size(SizeWidth, 0.0f);
+            }
+
+            // after animation finished, height/width & opacity of vertical shadow both are 0, so it is invisible.
+            isOverShootingShadowShown = false;
         }
 
-        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Bound bound)
+        private void OnScrollOutOfBound(ScrollOutOfBoundEventArgs.Direction direction, float displacement)
         {
-            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(bound);
+            ScrollOutOfBoundEventArgs args = new ScrollOutOfBoundEventArgs(direction, displacement);
             ScrollOutOfBound?.Invoke(this, args);
         }
 
@@ -1161,7 +1279,7 @@ namespace Tizen.NUI.Components
             {
                 readyToNotice = false;
                 base.Add(mInterruptTouchingChild);
-                AttachShadowView();
+                AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
                 {
@@ -1174,24 +1292,29 @@ namespace Tizen.NUI.Components
             {
                 if (ScrollingDirection == Direction.Horizontal)
                 {
-                    ScrollBy(panGesture.Displacement.X, false);
+                    // if vertical shadow is shown, does not scroll.
+                    if (!isOverShootingShadowShown)
+                    {
+                        ScrollBy(panGesture.Displacement.X, false);
+                    }
                     totalDisplacementForPan += panGesture.Displacement.X;
+                    DragOverShootingShadow(totalDisplacementForPan, panGesture.Displacement.X);
                 }
                 else
                 {
                     // if vertical shadow is shown, does not scroll.
-                    if (!isVerticalShadowShown)
+                    if (!isOverShootingShadowShown)
                     {
                         ScrollBy(panGesture.Displacement.Y, false);
                     }
                     totalDisplacementForPan += panGesture.Displacement.Y;
-                    DragVerticalShadow(totalDisplacementForPan);
+                    DragOverShootingShadow(totalDisplacementForPan, panGesture.Displacement.Y);
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
             }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
-                PlayVerticalShadowAnimation();
+                PlayOverShootingShadowAnimation();
                 OnScrollDragEnded();
                 StopScroll(); // Will replace previous animation so will stop existing one.
 

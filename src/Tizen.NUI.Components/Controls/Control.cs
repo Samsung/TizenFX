@@ -14,12 +14,14 @@
  * limitations under the License.
  *
  */
+
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using System.Windows.Input;
+using Tizen.System;
 
 namespace Tizen.NUI.Components
 {
@@ -33,22 +35,27 @@ namespace Tizen.NUI.Components
     {
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(Button), null,
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Button), null,
             propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
 
         private bool onThemeChangedEventOverrideChecker;
 
-        private TapGestureDetector tapGestureDetector = new TapGestureDetector();
+        private Feedback feedback = null;
+
+        private TapGestureDetector tapGestureDetector = null;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle Style => (ControlStyle)ViewStyle.Clone();
 
-        static Control() { }
+        static Control()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Construct an empty Control.
@@ -88,6 +95,43 @@ namespace Tizen.NUI.Components
 
             this.styleName = styleName;
             ThemeChangeSensitive = true;
+        }
+
+        /// <summary>
+        /// Enable/Disable a sound feedback when tap gesture detected.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Feedback
+        {
+            get => feedback != null;
+            set
+            {
+                if (value == (feedback != null))
+                {
+                    return;
+                }
+
+                if (value)
+                {
+                    Debug.Assert(feedback == null && tapGestureDetector == null);
+
+                    tapGestureDetector = new TapGestureDetector();
+                    tapGestureDetector.Attach(this);
+                    tapGestureDetector.Detected += OnTapGestureDetected;
+                    feedback = new Feedback();
+                }
+                else
+                {
+                    Debug.Assert(feedback != null && tapGestureDetector != null);
+
+                    feedback.Stop();
+                    feedback = null;
+
+                    tapGestureDetector.Detected -= OnTapGestureDetected;
+                    tapGestureDetector.Detach(this);
+                    tapGestureDetector = null;
+                }
+            }
         }
 
         /// Internal used.
@@ -146,8 +190,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                tapGestureDetector.Detected -= OnTapGestureDetected;
-                tapGestureDetector.Detach(this);
+                Feedback = false; // Release feedback resources.
             }
 
             base.Dispose(type);
@@ -213,7 +256,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e) { }
+        protected virtual void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
+        {
+            if (Feedback && e?.TapGesture?.State == Gesture.StateType.Started)
+            {
+                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                {
+                    feedback.Play(FeedbackType.Sound, "Tap");
+                }
+            }
+        }
 
         /// <summary>
         /// Update by style.
@@ -266,9 +318,6 @@ namespace Tizen.NUI.Components
             LeaveRequired = true;
 
             StateFocusableOnTouchMode = false;
-
-            tapGestureDetector.Attach(this);
-            tapGestureDetector.Detected += OnTapGestureDetected;
 
             EnableControlState = true;
         }

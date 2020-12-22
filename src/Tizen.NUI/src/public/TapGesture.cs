@@ -30,12 +30,12 @@ namespace Tizen.NUI
         /// Creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TapGesture() : this(Interop.TapGesture.TapGesture_New(0), true)
+        public TapGesture() : this(Interop.TapGesture.New(0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGesture.TapGesture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGesture.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -91,12 +91,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TapGesture.TapGesture_numberOfTaps_set(swigCPtr, value);
+                Interop.TapGesture.NumberOfTapsSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.TapGesture.TapGesture_numberOfTaps_get(swigCPtr);
+                uint ret = Interop.TapGesture.NumberOfTapsGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -106,12 +106,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TapGesture.TapGesture_numberOfTouches_set(swigCPtr, value);
+                Interop.TapGesture.NumberOfTouchesSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = Interop.TapGesture.TapGesture_numberOfTouches_get(swigCPtr);
+                uint ret = Interop.TapGesture.NumberOfTouchesGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -121,12 +121,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TapGesture.TapGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.TapGesture.ScreenPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.TapGesture.TapGesture_screenPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.ScreenPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -137,12 +137,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.TapGesture.TapGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
+                Interop.TapGesture.LocalPointSet(SwigCPtr, Vector2.getCPtr(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = Interop.TapGesture.TapGesture_localPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.LocalPointGet(SwigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -151,7 +151,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGesture obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TapGesture.delete_TapGesture(swigCPtr);
+            Interop.TapGesture.DeleteTapGesture(swigCPtr);
         }
     }
 }

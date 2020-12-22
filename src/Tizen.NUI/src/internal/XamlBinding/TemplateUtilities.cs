@@ -13,11 +13,11 @@ namespace Tizen.NUI.Binding
             if (element.RealParent is Application)
                 return null;
 
-            element = await GetRealParentAsync(element);
+            element = await GetRealParentAsync(element).ConfigureAwait(false);
             while (!Application.IsApplicationOrNull(element))
             {
                 var controlTemplated = element as IControlTemplated;
-                element = await GetRealParentAsync(element);
+                element = await GetRealParentAsync(element).ConfigureAwait(false);
             }
 
             return null;
@@ -44,12 +44,11 @@ namespace Tizen.NUI.Binding
             return tcs.Task;
         }
 
-        public static void OnContentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-        }
-
         public static void OnControlTemplateChanged(BindableObject bindable, object oldValue, object newValue)
         {
+            // Unused parameter
+            _ = newValue;
+
             var self = (IControlTemplated)bindable;
 
             // First make sure any old ContentPresenters are no longer bound up. This MUST be

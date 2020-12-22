@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// Pagination shows the number of pages available and the currently active page.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class Pagination: Control
+    public class Pagination : Control
     {
         private VisualView container;
 
@@ -461,8 +461,8 @@ namespace Tizen.NUI.Components
             this.Add(container);
 
             //TODO: Apply color properties from PaginationStyle class.
-			indicatorColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-			selectedIndicatorColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            indicatorColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            selectedIndicatorColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
 
         private void CreateIndicator()
@@ -473,7 +473,7 @@ namespace Tizen.NUI.Components
             }
             ImageVisual indicator = new ImageVisual
             {
-                URL = paginationStyle.IndicatorImageUrl.Normal,
+                URL = paginationStyle.IndicatorImageUrl?.Normal,
                 Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height),
                 //TODO: Apply color properties from PaginationStyle class.
                 MixColor = (indicatorColor == null) ? new Color(1.0f, 1.0f, 1.0f, 0.5f) : indicatorColor,
@@ -511,7 +511,7 @@ namespace Tizen.NUI.Components
             for (int i = 0; i < indicatorList.Count; i++)
             {
                 ImageVisual indicator = indicatorList[i];
-                indicator.URL = paginationStyle.IndicatorImageUrl.Normal;
+                indicator.URL = paginationStyle.IndicatorImageUrl?.Normal;
                 indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
                 indicator.Position = new Vector2((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
             }

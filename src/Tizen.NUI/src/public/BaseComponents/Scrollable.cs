@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -30,174 +31,174 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootEffectColorProperty = BindableProperty.Create(nameof(OvershootEffectColor), typeof(Vector4), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootEffectColorProperty = BindableProperty.Create(nameof(OvershootEffectColor), typeof(Vector4), typeof(Scrollable), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_EFFECT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEffectColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_EFFECT_COLOR).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEffectColor).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootAnimationSpeedProperty = BindableProperty.Create(nameof(OvershootAnimationSpeed), typeof(float), typeof(Scrollable), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootAnimationSpeedProperty = BindableProperty.Create(nameof(OvershootAnimationSpeed), typeof(float), typeof(Scrollable), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_ANIMATION_SPEED, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootAnimationSpeed, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_ANIMATION_SPEED).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootAnimationSpeed).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootEnabledProperty = BindableProperty.Create(nameof(OvershootEnabled), typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootEnabledProperty = BindableProperty.Create(nameof(OvershootEnabled), typeof(bool), typeof(Scrollable), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_ENABLED).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEnabled).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_SIZE, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootSize, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.OVERSHOOT_SIZE).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootSize).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollToAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollToAlphaFunction), typeof(int), typeof(Scrollable), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollToAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollToAlphaFunction), typeof(int), typeof(Scrollable), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollToAlphaFunction, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollToAlphaFunction).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollRelativePositionProperty = BindableProperty.Create(nameof(ScrollRelativePosition), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollRelativePositionProperty = BindableProperty.Create(nameof(ScrollRelativePosition), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_RELATIVE_POSITION, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollRelativePosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_RELATIVE_POSITION).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollRelativePosition).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionMinProperty = BindableProperty.Create(nameof(ScrollPositionMin), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionMinProperty = BindableProperty.Create(nameof(ScrollPositionMin), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_POSITION_MIN, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMin, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_POSITION_MIN).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMin).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionMaxProperty = BindableProperty.Create(nameof(ScrollPositionMax), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionMaxProperty = BindableProperty.Create(nameof(ScrollPositionMax), typeof(Vector2), typeof(Scrollable), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_POSITION_MAX, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMax, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.SCROLL_POSITION_MAX).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMax).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CanScrollVerticalProperty = BindableProperty.Create(nameof(CanScrollVertical), typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CanScrollVerticalProperty = BindableProperty.Create(nameof(CanScrollVertical), typeof(bool), typeof(Scrollable), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.CAN_SCROLL_VERTICAL, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollVertical, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.CAN_SCROLL_VERTICAL).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollVertical).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CanScrollHorizontalProperty = BindableProperty.Create(nameof(CanScrollHorizontal), typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CanScrollHorizontalProperty = BindableProperty.Create(nameof(CanScrollHorizontal), typeof(bool), typeof(Scrollable), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(scrollable.swigCPtr, Scrollable.Property.CAN_SCROLL_HORIZONTAL, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollHorizontal, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollable.swigCPtr, Scrollable.Property.CAN_SCROLL_HORIZONTAL).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollHorizontal).Get(out temp);
             return temp;
-        });
+        }));
 
         private DaliEventHandler<object, StartedEventArgs> _scrollableStartedEventHandler;
         private StartedCallbackDelegate _scrollableStartedCallbackDelegate;
@@ -210,12 +211,12 @@ namespace Tizen.NUI.BaseComponents
         /// Create an instance of scrollable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Scrollable() : this(Interop.Scrollable.new_Scrollable__SWIG_0(), true)
+        public Scrollable() : this(Interop.Scrollable.NewScrollable(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -506,21 +507,21 @@ namespace Tizen.NUI.BaseComponents
 
         internal ScrollableSignal ScrollStartedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollStartedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.ScrollStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollUpdatedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.ScrollUpdatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollCompletedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollCompletedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.ScrollCompletedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -552,16 +553,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Scrollable.delete_Scrollable(swigCPtr);
+            Interop.Scrollable.DeleteScrollable(swigCPtr);
         }
 
         private void DisConnectFromSignals()
         {
             // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
+            global::System.Runtime.InteropServices.HandleRef currentCPtr = SwigCPtr;
 
             // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            swigCPtr = GetBaseHandleCPtrHandleRef;
+            SwigCPtr = GetBaseHandleCPtrHandleRef;
 
             if (_scrollableCompletedCallbackDelegate != null)
             {
@@ -580,7 +581,7 @@ namespace Tizen.NUI.BaseComponents
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
-            swigCPtr = currentCPtr;
+            SwigCPtr = currentCPtr;
         }
 
         private void OnStarted(IntPtr vector2)
@@ -630,39 +631,39 @@ namespace Tizen.NUI.BaseComponents
 
         private bool IsOvershootEnabled()
         {
-            bool ret = Interop.Scrollable.Scrollable_IsOvershootEnabled(swigCPtr);
+            bool ret = Interop.Scrollable.IsOvershootEnabled(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootEnabled(bool enable)
         {
-            Interop.Scrollable.Scrollable_SetOvershootEnabled(swigCPtr, enable);
+            Interop.Scrollable.SetOvershootEnabled(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void SetOvershootEffectColor(Vector4 color)
         {
-            Interop.Scrollable.Scrollable_SetOvershootEffectColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.Scrollable.SetOvershootEffectColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private Vector4 GetOvershootEffectColor()
         {
-            Vector4 ret = new Vector4(Interop.Scrollable.Scrollable_GetOvershootEffectColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.Scrollable.GetOvershootEffectColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootAnimationSpeed(float pixelsPerSecond)
         {
-            Interop.Scrollable.Scrollable_SetOvershootAnimationSpeed(swigCPtr, pixelsPerSecond);
+            Interop.Scrollable.SetOvershootAnimationSpeed(SwigCPtr, pixelsPerSecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private float GetOvershootAnimationSpeed()
         {
-            float ret = Interop.Scrollable.Scrollable_GetOvershootAnimationSpeed(swigCPtr);
+            float ret = Interop.Scrollable.GetOvershootAnimationSpeed(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -748,7 +749,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
+#pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
         public new class Property
+#pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
             /// The color of the overshoot effect.
@@ -756,98 +759,98 @@ namespace Tizen.NUI.BaseComponents
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OVERSHOOT_EFFECT_COLOR = Interop.Scrollable.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
+            public static readonly int OvershootEffectColor = Interop.Scrollable.OvershootEffectColorGet();
             /// <summary>
             /// The speed of overshoot animation in pixels per second.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OVERSHOOT_ANIMATION_SPEED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
+            public static readonly int OvershootAnimationSpeed = Interop.Scrollable.OvershootAnimationSpeedGet();
             /// <summary>
             /// Whether to enables or disable scroll overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OVERSHOOT_ENABLED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ENABLED_get();
+            public static readonly int OvershootEnabled = Interop.Scrollable.OvershootEnabledGet();
             /// <summary>
             /// The size of the overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int OVERSHOOT_SIZE = Interop.Scrollable.Scrollable_Property_OVERSHOOT_SIZE_get();
+            public static readonly int OvershootSize = Interop.Scrollable.OvershootSizeGet();
             /// <summary>
             /// scrollToAlphaFunction.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_TO_ALPHA_FUNCTION = Interop.Scrollable.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
+            public static readonly int ScrollToAlphaFunction = Interop.Scrollable.ScrollToAlphaFunctionGet();
             /// <summary>
             /// scrollRelativePosition
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_RELATIVE_POSITION = Interop.Scrollable.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
+            public static readonly int ScrollRelativePosition = Interop.Scrollable.ScrollRelativePositionGet();
             /// <summary>
             /// scrollPositionMin
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MIN = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_get();
+            public static readonly int ScrollPositionMin = Interop.Scrollable.ScrollPositionMinGet();
             /// <summary>
             /// scrollPositionMinX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MIN_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
+            public static readonly int ScrollPositionMinX = Interop.Scrollable.ScrollPositionMinXGet();
             /// <summary>
             /// scrollPositionMinY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MIN_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
+            public static readonly int ScrollPositionMinY = Interop.Scrollable.ScrollPositionMinYGet();
             /// <summary>
             /// scrollPositionMax.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MAX = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_get();
+            public static readonly int ScrollPositionMax = Interop.Scrollable.ScrollPositionMaxGet();
             /// <summary>
             /// scrollPositionMaxX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MAX_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
+            public static readonly int ScrollPositionMaxX = Interop.Scrollable.ScrollPositionMaxXGet();
             /// <summary>
             /// scrollPositionMaxY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int SCROLL_POSITION_MAX_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
+            public static readonly int ScrollPositionMaxY = Interop.Scrollable.ScrollPositionMaxYGet();
             /// <summary>
             /// canScrollVertical
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int CAN_SCROLL_VERTICAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
+            public static readonly int CanScrollVertical = Interop.Scrollable.CanScrollVerticalGet();
             /// <summary>
             /// canScrollHorizontal.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
-            public static readonly int CAN_SCROLL_HORIZONTAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
+            public static readonly int CanScrollHorizontal = Interop.Scrollable.CanScrollHorizontalGet();
         }
     }
 }

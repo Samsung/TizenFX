@@ -10,7 +10,7 @@ namespace Tizen.NUI.Xaml
 
         public object Parse(string match, ref string remaining, IServiceProvider serviceProvider)
         {
-            var typeResolver = serviceProvider.GetService(typeof (IXamlTypeResolver)) as IXamlTypeResolver;
+            var typeResolver = serviceProvider.GetService(typeof(IXamlTypeResolver)) as IXamlTypeResolver;
 
             //shortcut for Binding and StaticResource, to avoid too many reflection calls.
             if (match == "Binding")
@@ -28,7 +28,7 @@ namespace Tizen.NUI.Xaml
                 //The order of lookup is to look for the Extension-suffixed class name first and then look for the class name without the Extension suffix.
                 if (!typeResolver.TryResolve(match + "Extension", out type) && !typeResolver.TryResolve(match, out type))
                 {
-                    var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                    var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                     var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
                     throw new XamlParseException(String.Format("MarkupExtension not found for {0}", match), lineInfo);
                 }
@@ -37,7 +37,7 @@ namespace Tizen.NUI.Xaml
 
             if (markupExtension == null)
             {
-                var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
                 throw new XamlParseException(String.Format("Missing public default constructor for MarkupExtension {0}", match),
                     lineInfo);

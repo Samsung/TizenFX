@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// Create an instance of Sampler.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Sampler() : this(Interop.Sampler.Sampler_New(), true)
+        public Sampler() : this(Interop.Sampler.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
-            Interop.Sampler.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
+            Interop.Sampler.SetFilterMode(SwigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
-            Interop.Sampler.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
+            Interop.Sampler.SetWrapMode(SwigCPtr, (int)uWrap, (int)vWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -67,16 +67,16 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
-            Interop.Sampler.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
+            Interop.Sampler.SetWrapMode(SwigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Sampler.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Sampler.delete_Sampler(swigCPtr);
+            Interop.Sampler.DeleteSampler(swigCPtr);
         }
     }
 }

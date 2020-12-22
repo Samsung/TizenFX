@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Samples
@@ -8,8 +6,11 @@ namespace Tizen.NUI.Samples
     public class ScrollableBaseOutOfBoundSample : IExample
     {
         private View root;
-        private Components.ScrollableBase mScrollableBase = null;
-        private TextLabel[] items;
+        private Components.ScrollableBase horizontalScrollableBase = null;
+        private TextLabel[] horizontalItems;
+
+        private Components.ScrollableBase verticalScrollableBase = null;
+        private TextLabel[] verticalItems;
 
         public void Activate()
         {
@@ -21,55 +22,107 @@ namespace Tizen.NUI.Samples
             };
             root.Layout = new LinearLayout()
             {
-                LinearOrientation = LinearLayout.Orientation.Vertical
+                LinearOrientation = LinearLayout.Orientation.Vertical,
             };
             window.Add(root);
 
-            CreateScrollableBase();
+            CreateHorizontalScrollableBase();
+
+            CreateVerticalScrollableBase();
         }
 
-        private void CreateScrollableBase()
+        private void CreateHorizontalScrollableBase()
         {
-            mScrollableBase = new Components.ScrollableBase()
+            horizontalScrollableBase = new Components.ScrollableBase()
             {
-                Position = new Position(300, 100),
                 Size = new Size(400, 300),
-                ScrollingDirection = Components.ScrollableBase.Direction.Vertical,
+                ScrollingDirection = Components.ScrollableBase.Direction.Horizontal,
             };
-            mScrollableBase.ScrollOutOfBound += OnScrollOutOfBound;
+            horizontalScrollableBase.ScrollOutOfBound += OnHorizontalScrollOutOfBound;
 
-            items = new TextLabel[5];
+            horizontalItems = new TextLabel[5];
             for (int i = 0; i < 5; i++)
             {
-                items[i] = new TextLabel
+                horizontalItems[i] = new TextLabel
                 {
-                    Position = new Position(0, i * 100),
-                    Size = new Size(800, 100),
+                    Position = new Position(i * 200, 0),
+                    Size = new Size(200, 300),
                     PointSize = 12.0f,
                     TextColor = Color.Black,
                 };
                 if (i % 2 == 0)
                 {
-                    items[i].BackgroundColor = Color.White;
+                    horizontalItems[i].BackgroundColor = Color.White;
                 }
                 else
                 {
-                    items[i].BackgroundColor = Color.Cyan;
+                    horizontalItems[i].BackgroundColor = Color.Cyan;
                 }
-                mScrollableBase.Add(items[i]);
+                horizontalScrollableBase.Add(horizontalItems[i]);
             }
-            root.Add(mScrollableBase);
+            root.Add(horizontalScrollableBase);
         }
 
-        private void OnScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
+        private void OnHorizontalScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
         {
-            if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Top)
+            if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Left)
             {
-                items[0].Text = "Reached at the top.";
+                horizontalItems[0].Text = "Reached at the left.";
             }
-            else
+            else if (e.ScrollableBound == Components.ScrollOutOfBoundEventArgs.Bound.Right)
             {
-                items[4].Text = "Reached at the bottom.";
+                horizontalItems[4].Text = "Reached at the right.";
+            }
+        }
+
+        private void CreateVerticalScrollableBase()
+        {
+            verticalScrollableBase = new Components.ScrollableBase()
+            {
+                Size = new Size(400, 300),
+                ScrollingDirection = Components.ScrollableBase.Direction.Vertical,
+                EnableOverShootingEffect = true,
+            };
+            verticalScrollableBase.ScrollOutOfBound += OnVerticalScrollOutOfBound;
+
+            verticalItems = new TextLabel[5];
+            for (int i = 0; i < 5; i++)
+            {
+                verticalItems[i] = new TextLabel
+                {
+                    Position = new Position(0, i * 100),
+                    Size = new Size(400, 100),
+                    PointSize = 12.0f,
+                    TextColor = Color.Black,
+                };
+                if (i % 2 == 0)
+                {
+                    verticalItems[i].BackgroundColor = Color.White;
+                }
+                else
+                {
+                    verticalItems[i].BackgroundColor = Color.Cyan;
+                }
+                verticalScrollableBase.Add(verticalItems[i]);
+            }
+            root.Add(verticalScrollableBase);
+        }
+
+        private void OnVerticalScrollOutOfBound(object sender, Components.ScrollOutOfBoundEventArgs e)
+        {
+            if (e.Displacement > 100)
+            {
+                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Down)
+                {
+                    items[0].Text = $"Reached at the top, panned displacement is {e.Displacement}.";
+                }
+            }
+            else if (0 - e.Displacement > 100)
+            {
+                if (e.PanDirection == Components.ScrollOutOfBoundEventArgs.Direction.Up)
+                {
+                    items[4].Text = $"Reached at the bottom, panned displacement is {e.Displacement}.";
+                }
             }
         }
 
@@ -77,16 +130,29 @@ namespace Tizen.NUI.Samples
         {
             for (int i = 0; i < 5; i++)
             {
-                if (items[i] != null)
+                if (verticalItems[i] != null)
                 {
-                    mScrollableBase.Remove(items[i]);
-                    items[i].Dispose();
+                    verticalScrollableBase.Remove(verticalItems[i]);
+                    verticalItems[i].Dispose();
                 }
             }
-            if (mScrollableBase != null)
+            if (verticalScrollableBase != null)
             {
-                root.Remove(mScrollableBase);
-                mScrollableBase.Dispose();
+                root.Remove(verticalScrollableBase);
+                verticalScrollableBase.Dispose();
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                if (horizontalItems[i] != null)
+                {
+                    horizontalScrollableBase.Remove(horizontalItems[i]);
+                    horizontalItems[i].Dispose();
+                }
+            }
+            if (horizontalScrollableBase != null)
+            {
+                root.Remove(horizontalScrollableBase);
+                horizontalScrollableBase.Dispose();
             }
             root.Dispose();
         }

@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private static Color GetTextColor(View view)
         {
             Color color = new Color();
-            if (view.GetProperty(TextLabel.Property.TEXT_COLOR).Get(color))
+            if (view.GetProperty(TextLabel.Property.TextColor).Get(color))
             {
                 return color;
             }

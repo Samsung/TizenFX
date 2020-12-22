@@ -37,7 +37,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(Interop.Widget.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
+        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(Interop.Widget.New(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
         {
             this.widgetImpl = widgetImpl;
             widgetImpl.WidgetInstanceCreated += OnWidgetInstanceCreated;
@@ -50,7 +50,7 @@ namespace Tizen.NUI
             (WidgetApplication.Instance as WidgetApplication)?.AddWidgetInstance(this);
         }
 
-        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -84,16 +84,16 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Widget obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal System.IntPtr GetIntPtr()
         {
-            return swigCPtr.Handle;
+            return SwigCPtr.Handle;
         }
         internal Widget Assign(Widget widget)
         {
-            Widget ret = new Widget(Interop.Widget.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
+            Widget ret = new Widget(Interop.Widget.Assign(SwigCPtr, Widget.getCPtr(widget)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Widget.delete_Widget(swigCPtr);
+            Interop.Widget.DeleteWidget(swigCPtr);
         }
 
         private void OnWidgetInstanceCreated(object sender, WidgetImpl.WIdgetInstanceOnCreateArgs e)

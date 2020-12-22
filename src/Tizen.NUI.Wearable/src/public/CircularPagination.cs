@@ -62,7 +62,10 @@ namespace Tizen.NUI.Wearable
                                                    new Position2D(237, 14), new Position2D(253, 22), new Position2D(269, 31), new Position2D(283, 41),
                                                    new Position2D(297, 53), new Position2D(309, 67) };
 
-        static CircularPagination() { }
+        static CircularPagination()
+        {
+            ThemeManager.AddPackageTheme(new DefaultThemeCreator());
+        }
 
         /// <summary>
         /// Creates a new instance of a CircularPagination.
@@ -482,11 +485,16 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="index">Indicator index</param>
         /// <param name="position">The position of a indicator by index</param>
+        /// <exception cref="ArgumentNullException">This exception can occur by the position is null.</exception>
         /// <since_tizen> 8 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void SetIndicatorPosition(int index, Position position)
         {
+            if (position == null)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
             // Update odd / even Array and List by each converted index.
             if (isOddNumber)
             {
@@ -498,14 +506,12 @@ namespace Tizen.NUI.Wearable
                 {
                     oddArray[(middleIndex - leftIndicatorCount) + index] = position;
                 }
-                indicatorList[index].Position.X = position.X;
-                indicatorList[index].Position.Y = position.Y;
+                indicatorList[index].Position = new Vector2(position.X, position.Y);
             }
             else // Only symmetry circular pagination can be even number.
             {
                 evenArray[(middleIndex - (indicatorCount / 2) + index)] = position;
-                indicatorList[index].Position.X = position.X;
-                indicatorList[index].Position.Y = position.Y;
+                indicatorList[index].Position = new Vector2(position.X, position.Y);
             }
             UpdateVisual();
         }

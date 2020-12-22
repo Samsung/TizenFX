@@ -37,18 +37,11 @@ namespace Tizen.NUI
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
-        /// Internal use only. Do not open this API.
-        /// This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public readonly static string FrameworkResourcePath = "/usr/share/dotnet.tizen/framework/res/";
-
-        /// <summary>
         /// Creates a StyleManager handle.<br />
         /// This can be initialized with StyleManager::Get().<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public StyleManager() : this(Interop.StyleManager.new_StyleManager(), true)
+        public StyleManager() : this(Interop.StyleManager.NewStyleManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -103,7 +96,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static StyleManager Get()
         {
-            StyleManager ret = new StyleManager(Interop.StyleManager.StyleManager_Get(), true);
+            StyleManager ret = new StyleManager(Interop.StyleManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -119,7 +112,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void ApplyTheme(string themeFile)
         {
-            Interop.StyleManager.StyleManager_ApplyTheme(swigCPtr, themeFile);
+            Interop.StyleManager.ApplyTheme(SwigCPtr, themeFile);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -129,7 +122,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void ApplyDefaultTheme()
         {
-            Interop.StyleManager.StyleManager_ApplyDefaultTheme(swigCPtr);
+            Interop.StyleManager.ApplyDefaultTheme(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -141,7 +134,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddConstant(string key, PropertyValue value)
         {
-            Interop.StyleManager.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
+            Interop.StyleManager.SetStyleConstant(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -154,7 +147,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GetConstant(string key, PropertyValue valueOut)
         {
-            bool ret = Interop.StyleManager.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
+            bool ret = Interop.StyleManager.GetStyleConstant(SwigCPtr, key, PropertyValue.getCPtr(valueOut));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -168,22 +161,22 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
-            Interop.StyleManager.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
+            Interop.StyleManager.ApplyStyle(SwigCPtr, View.getCPtr(control), jsonFileName, styleName);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
-        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.StyleManager.StyleManager_SWIGUpcast(cPtr), cMemoryOwn)
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.StyleManager.Upcast(cPtr), cMemoryOwn)
         {
         }
 
         internal StyleChangedSignal StyleChangedSignal()
         {
-            StyleChangedSignal ret = new StyleChangedSignal(Interop.StyleManager.StyleManager_StyleChangedSignal(swigCPtr), false);
+            StyleChangedSignal ret = new StyleChangedSignal(Interop.StyleManager.StyleChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

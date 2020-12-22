@@ -31,12 +31,12 @@ namespace Tizen.NUI
         /// Create an instance of TextureSet.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextureSet() : this(Interop.TextureSet.TextureSet_New(), true)
+        public TextureSet() : this(Interop.TextureSet.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextureSet.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextureSet.Upcast(cPtr), cMemoryOwn)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTexture(uint index, Texture texture)
         {
-            Interop.TextureSet.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
+            Interop.TextureSet.SetTexture(SwigCPtr, index, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI
         public Texture GetTexture(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.TextureSet_GetTexture(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.GetTexture(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
             if (cPtr != null && ret == null)
@@ -70,7 +70,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.DeleteBaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetSampler(uint index, Sampler sampler)
         {
-            Interop.TextureSet.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
+            Interop.TextureSet.SetSampler(SwigCPtr, index, Sampler.getCPtr(sampler));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         public Sampler GetSampler(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.TextureSet_GetSampler(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.GetSampler(SwigCPtr, index);
             Sampler ret = this.GetInstanceSafely<Sampler>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -111,21 +111,21 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetTextureCount()
         {
-            uint ret = Interop.TextureSet.TextureSet_GetTextureCount(swigCPtr);
+            uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextureSet obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TextureSet.delete_TextureSet(swigCPtr);
+            Interop.TextureSet.DeleteTextureSet(swigCPtr);
         }
     }
 }

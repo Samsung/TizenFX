@@ -166,7 +166,7 @@ namespace Tizen.NUI.Xaml
                     if (remaining[end] == stringTerminator)
                     {
                         inString = false;
-                        end ++;
+                        end++;
                         break;
                     }
                 }
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Xaml
                     {
                         inString = true;
                         stringTerminator = remaining[end];
-                        end ++;
+                        end++;
                         continue;
                     }
                 }
@@ -184,7 +184,7 @@ namespace Tizen.NUI.Xaml
                 // If this is an escape char, consume it and append the next char to our piece.
                 if (remaining[end] == '\\')
                 {
-                    end ++;
+                    end++;
                     if (end == remaining.Length)
                         break;
                 }
@@ -210,7 +210,7 @@ namespace Tizen.NUI.Xaml
             // Whitespace is trimmed from the end of the piece before stripping
             // quote chars from the start/end of the string. 
             while (piece.Length > 0 && char.IsWhiteSpace(piece[piece.Length - 1]))
-                piece.Length --;
+                piece.Length--;
 
             if (piece.Length >= 2)
             {

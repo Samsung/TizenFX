@@ -43,8 +43,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Size size = (Size)value;
-            return size.Width.ToString() + " " + size.Height.ToString() + " " + size.Depth.ToString();
+            if (value != null)
+            {
+                Size size = (Size)value;
+                return size.Width.ToString() + " " + size.Height.ToString() + " " + size.Depth.ToString();
+            }
+            return "";
         }
     }
 
@@ -75,8 +79,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Size2D size = (Size2D)value;
-            return size.Width.ToString() + " " + size.Height.ToString();
+            if (value != null)
+            {
+                Size2D size = (Size2D)value;
+                return size.Width.ToString() + " " + size.Height.ToString();
+            }
+            return "";
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// Constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public Extents() : this(Interop.Extents.new_Extents__SWIG_0(), true)
+        public Extents() : this(Interop.Extents.NewExtents(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="copy">A reference to the copied Extents.</param>
         /// <since_tizen> 4 </since_tizen>
-        public Extents(Extents copy) : this(Interop.Extents.new_Extents__SWIG_1(Extents.getCPtr(copy)), true)
+        public Extents(Extents copy) : this(Interop.Extents.NewExtents(Extents.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom extent.</param>
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
+        public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.NewExtents(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -87,7 +87,7 @@ namespace Tizen.NUI
         /// <param name="bottom"></param>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
+        public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.NewExtents(start, end, top, bottom), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -97,14 +97,19 @@ namespace Tizen.NUI
         /// Copy other extents
         /// </summary>
         /// <param name="that"></param>
+        /// <exception cref="ArgumentNullException"> Thrown when that is null. </exception>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public void CopyFrom(Extents that)
         {
-            Interop.Extents.Extents_start_set(swigCPtr, that.Start);
-            Interop.Extents.Extents_end_set(swigCPtr, that.End);
-            Interop.Extents.Extents_top_set(swigCPtr, that.Top);
-            Interop.Extents.Extents_bottom_set(swigCPtr, that.Bottom);
+            if (null == that)
+            {
+                throw new ArgumentNullException(nameof(that));
+            }
+            Interop.Extents.StartSet(SwigCPtr, that.Start);
+            Interop.Extents.EndSet(SwigCPtr, that.End);
+            Interop.Extents.TopSet(SwigCPtr, that.Top);
+            Interop.Extents.BottomSet(SwigCPtr, that.Bottom);
         }
 
         /// <summary>
@@ -122,22 +127,32 @@ namespace Tizen.NUI
         /// <summary>
         /// The Start extent.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Start = 1; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Start
         {
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
-                Interop.Extents.Extents_start_set(swigCPtr, value);
+                Interop.Extents.StartSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.Extents_start_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ushort ret = Interop.Extents.StartGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -145,23 +160,33 @@ namespace Tizen.NUI
         /// <summary>
         /// The End extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.End = 2; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort End
         {
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.Extents_end_set(swigCPtr, value);
+                Interop.Extents.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.Extents_end_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ushort ret = Interop.Extents.EndGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -169,23 +194,33 @@ namespace Tizen.NUI
         /// <summary>
         /// The Top extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Top = 3; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Top
         {
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.Extents_top_set(swigCPtr, value);
+                Interop.Extents.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.Extents_top_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ushort ret = Interop.Extents.TopGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -193,23 +228,33 @@ namespace Tizen.NUI
         /// <summary>
         /// The Bottom Extend.
         /// </summary>
+        /// <remarks>
+        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// </remarks>
+        /// <code>
+        /// // DO NOT use like the followings!
+        /// Extents extents = new Extents();
+        /// extents.Bottom = 4; 
+        /// // Please USE like this
+        /// ushort start = 1, end = 2, top = 3, bottom = 4;
+        /// Extents extents = new Extents(start, end, top, bottom);
+        /// </code>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
         public ushort Bottom
         {
             set
             {
                 Tizen.Log.Fatal("NUI", "Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor");
 
-                Interop.Extents.Extents_bottom_set(swigCPtr, value);
+                Interop.Extents.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
-                ushort ret = Interop.Extents.Extents_bottom_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ushort ret = Interop.Extents.BottomGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
         }
@@ -222,7 +267,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool EqualTo(Extents rhs)
         {
-            bool ret = Interop.Extents.Extents_EqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.EqualTo(SwigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -235,7 +280,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool NotEqualTo(Extents rhs)
         {
-            bool ret = Interop.Extents.Extents_NotEqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.NotEqualTo(SwigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -246,19 +291,19 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Extents obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal Extents Assign(SWIGTYPE_p_uint16_t array)
         {
-            Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_1(swigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
+            Extents ret = new Extents(Interop.Extents.AssignUint16(SwigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Extents Assign(Extents copy)
         {
-            Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_0(swigCPtr, Extents.getCPtr(copy)), false);
+            Extents ret = new Extents(Interop.Extents.Assign(SwigCPtr, Extents.getCPtr(copy)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -267,7 +312,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Extents.delete_Extents(swigCPtr);
+            Interop.Extents.DeleteExtents(swigCPtr);
         }
     }
 }

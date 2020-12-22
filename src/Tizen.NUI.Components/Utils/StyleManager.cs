@@ -55,7 +55,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return ThemeManager.CurrentTheme?.Id;
+                return ThemeManager.CurrentTheme?.Id ?? ThemeManager.DefaultTheme.Id;
             }
             set
             {
@@ -172,7 +172,7 @@ namespace Tizen.NUI.Components
             if (Activator.CreateInstance(style) as StyleBase != null)
             {
                 ThemeMap[key].AddStyleWithoutClone(component.FullName, (Activator.CreateInstance(style) as StyleBase).GetViewStyle());
-            }          
+            }
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Tizen.NUI.Components
             /// CurrentTheme
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public string CurrentTheme;
+            public string CurrentTheme { get; set; }
         }
     }
 }

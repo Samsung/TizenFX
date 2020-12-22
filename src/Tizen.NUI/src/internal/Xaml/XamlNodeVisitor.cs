@@ -18,7 +18,8 @@ namespace Tizen.NUI.Xaml
         bool IsResourceDictionary(ElementNode node);
     }
 
-    internal enum TreeVisitingMode {
+    internal enum TreeVisitingMode
+    {
         TopDown,
         BottomUp
     }

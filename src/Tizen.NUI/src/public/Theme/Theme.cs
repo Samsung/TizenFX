@@ -15,7 +15,6 @@
  *
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
@@ -26,30 +25,25 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
-    /// <summary></summary>
+    /// <summary>
+    /// <para>
+    /// Basically, the Theme is a dictionary of <seealso cref="ViewStyle"/>s that can decorate NUI <seealso cref="View"/>s.
+    /// Each ViewStyle item is identified by a string key that can be matched the <seealso cref="View.StyleName"/>.
+    /// </para>
+    /// <para>
+    /// The main purpose of providing Theme is to separate style details from the structure.
+    /// Managing style separately makes it easier to customize the look of application by user context.
+    /// Also since a Theme can be created from xaml file, it can be treated as a resource.
+    /// This enables sharing styles with other applications.
+    /// </para>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Theme : BindableObject, IResourcesProvider
+    public class Theme : BindableObject
     {
         private readonly Dictionary<string, ViewStyle> map;
+        private IEnumerable<KeyValuePair<string, string>> changedResources = null;
         private string baseTheme;
-        private string resource;
-        private string xamlFile;
-
-        /// <summary>
-        /// The resource file path that is used in the theme.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Resource
-        {
-            get => resource;
-            set
-            {
-                if (resource == value) return;
-                resource = value;
-
-                Reload();
-            }
-        }
+        ResourceDictionary resources;
 
         /// <summary>Create an empty theme.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -68,37 +62,33 @@ namespace Tizen.NUI
         {
             if (string.IsNullOrEmpty(xamlFile))
             {
-                throw new ArgumentNullException("The xaml file path cannot be null or empty string", nameof(xamlFile));
+                throw new ArgumentNullException(nameof(xamlFile), "The xaml file path cannot be null or empty string");
             }
 
-            LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
+            try
+            {
+                using (var reader = XmlReader.Create(xamlFile))
+                {
+                    XamlLoader.Load(this, reader);
+                }
+            }
+            catch (System.IO.IOException)
+            {
+                Tizen.Log.Error("NUI", $"Could not load \"{xamlFile}\".\n");
+                throw;
+            }
+            catch (Exception)
+            {
+                Tizen.Log.Error("NUI", $"Could not parse \"{xamlFile}\".\n");
+                Tizen.Log.Error("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
+                Tizen.Log.Error("NUI", "Make sure the type and namespace are correct.\n");
+                throw;
+            }
         }
 
         /// <summary>
-        /// Create a new theme from the xaml file with theme resource.
+        /// The string key to identify the Theme.
         /// </summary>
-        /// <param name="xamlFile">An absolute path to the xaml file.</param>
-        /// <param name="themeResource">An absolute path to the theme resource file.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the given xamlFile is null or empty string.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when there are file IO problems.</exception>
-        /// <exception cref="Exception">Thrown when the content of the xaml file is not valid xaml form.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Theme(string xamlFile, string themeResource) : this()
-        {
-            if (string.IsNullOrEmpty(xamlFile))
-                throw new ArgumentNullException(nameof(xamlFile), "The xaml file path cannot be null or empty string");
-            if (string.IsNullOrEmpty(themeResource))
-                throw new ArgumentNullException(nameof(themeResource), "The theme resource file path cannot be null or empty string");
-
-            resource = themeResource;
-            XamlResources.SetAndLoadSource(new Uri(themeResource), themeResource, Assembly.GetAssembly(GetType()), null);
-
-            LoadFromXaml(xamlFile);
-            this.xamlFile = xamlFile;
-        }
-
-        /// <summary></summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Id { get; set; }
 
@@ -135,11 +125,37 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsResourcesCreated { get; } = true;
+        public bool IsResourcesCreated => resources != null;
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources { get; set; } = new ResourceDictionary();
+        internal ResourceDictionary Resources
+        {
+            get
+            {
+                if (resources != null)
+                    return resources;
+                resources = new ResourceDictionary();
+                ((IResourceDictionary)resources).ValuesChanged += OnThemeResourcesChanged;
+                return resources;
+            }
+            set
+            {
+                if (resources == value)
+                    return;
+
+                if (resources != null)
+                {
+                    ((IResourceDictionary)resources).ValuesChanged -= OnThemeResourcesChanged;
+                }
+                resources = value;
+                if (resources != null)
+                {
+                    // This callback will be removed when Resource.Source is assigned.
+                    ((IResourceDictionary)resources).ValuesChanged += OnThemeResourcesChanged;
+                }
+            }
+        }
 
         /// <summary>
         /// For Xaml use only.
@@ -209,10 +225,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="viewType">The type of View.</param>
         /// <returns>Founded style instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the given viewType is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle GetStyle(Type viewType)
         {
-            var currentType = viewType;
+            var currentType = viewType ?? throw new ArgumentNullException(nameof(viewType));
             ViewStyle resultStyle = null;
 
             do
@@ -243,6 +260,7 @@ namespace Tizen.NUI
             var result = new Theme()
             {
                 Id = this.Id,
+                Resources = Resources
             };
 
             foreach (var item in this)
@@ -260,7 +278,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Merge(string xamlFile)
         {
-            Merge(new Theme(xamlFile));
+            MergeWithoutClone(new Theme(xamlFile));
         }
 
         /// <summary>Merge other Theme into this.</summary>
@@ -271,7 +289,7 @@ namespace Tizen.NUI
             if (theme == null)
                 throw new ArgumentNullException(nameof(theme));
 
-            this.xamlFile = theme.xamlFile;
+            if (Id == null) Id = theme.Id;
 
             foreach (var item in theme)
             {
@@ -281,11 +299,43 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].Merge(theme.GetStyle(item.Key));
+                    map[item.Key].Merge(item.Value);
                 }
                 else
                 {
-                    map[item.Key] = theme.GetStyle(item.Key).Clone();
+                    map[item.Key] = item.Value.Clone();
+                }
+            }
+        }
+
+        internal void MergeWithoutClone(Theme theme)
+        {
+            if (theme == null)
+                throw new ArgumentNullException(nameof(theme));
+
+            if (Id == null) Id = theme.Id;
+
+            foreach (var item in theme)
+            {
+                if (item.Value == null)
+                {
+                    map[item.Key] = null;
+                }
+                else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
+                {
+                    map[item.Key].Merge(item.Value);
+                }
+                else
+                {
+                    map[item.Key] = item.Value;
+                }
+            }
+
+            if (theme.resources != null)
+            {
+                foreach (var res in theme.resources)
+                {
+                    Resources[res.Key] = res.Value;
                 }
             }
         }
@@ -295,41 +345,36 @@ namespace Tizen.NUI
         /// </summary>
         internal void AddStyleWithoutClone(string styleName, ViewStyle value) => map[styleName] = value;
 
-        internal void Reload()
+        internal void SetChangedResources(IEnumerable<KeyValuePair<string, string>> changedResources)
         {
-            if (xamlFile == null)
-                throw new InvalidOperationException("Cannot reload without xaml file.");
-
-            map.Clear();
-            if (Resource != null)
-            {
-                XamlResources.Clear();
-                XamlResources.SetAndLoadSource(new Uri(Resource), Resource, Assembly.GetAssembly(GetType()), null);
-            }
-
-            LoadFromXaml(xamlFile);
+            this.changedResources = changedResources;
         }
 
-        private void LoadFromXaml(string xamlFile)
+        internal void OnThemeResourcesChanged(object sender, ResourcesChangedEventArgs e) => OnThemeResourcesChanged();
+
+        internal void OnThemeResourcesChanged()
         {
-            try
+            if (changedResources != null)
             {
-                using (var reader = XmlReader.Create(xamlFile))
+                // To avoid loop in infinite, remove OnThemeResourcesChanged callback.
+                ((IResourceDictionary)resources).ValuesChanged -= OnThemeResourcesChanged;
+                foreach (var changedResource in changedResources)
                 {
-                    XamlLoader.Load(this, reader);
+                    if (resources.TryGetValue(changedResource.Key, out object resourceValue))
+                    {
+                        string changedValue = changedResource.Value;
+
+                        // check NUIResourcePath
+                        string[] changedValues = changedValue.Split('/');
+                        if (changedValues[0] == "NUIResourcePath")
+                        {
+                            changedValue = changedValues[1];
+                        }
+
+                        Type toType = resourceValue.GetType();
+                        resources[changedResource.Key] = changedValue.ConvertTo(toType, () => toType.GetTypeInfo(), null);
+                    }
                 }
-            }
-            catch (System.IO.IOException)
-            {
-                Tizen.Log.Error("NUI", $"Could not load \"{xamlFile}\".\n");
-                throw;
-            }
-            catch (Exception)
-            {
-                Tizen.Log.Error("NUI", $"Could not parse \"{xamlFile}\".\n");
-                Tizen.Log.Error("NUI", "Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.\n");
-                Tizen.Log.Error("NUI", "Make sure the type and namespace are correct.\n");
-                throw;
             }
         }
     }

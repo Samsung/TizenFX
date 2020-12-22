@@ -27,20 +27,20 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ObjectCreatedSignal.delete_ObjectCreatedSignal(swigCPtr);
+            Interop.ObjectCreatedSignal.DeleteObjectCreatedSignal(swigCPtr);
         }
 
 
         public bool Empty()
         {
-            bool ret = Interop.ObjectCreatedSignal.ObjectCreatedSignal_Empty(swigCPtr);
+            bool ret = Interop.ObjectCreatedSignal.Empty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ObjectCreatedSignal.ObjectCreatedSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.ObjectCreatedSignal.GetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ObjectCreatedSignal.ObjectCreatedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ObjectCreatedSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -58,18 +58,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ObjectCreatedSignal.ObjectCreatedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ObjectCreatedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(BaseHandle arg)
         {
-            Interop.ObjectCreatedSignal.ObjectCreatedSignal_Emit(swigCPtr, BaseHandle.getCPtr(arg));
+            Interop.ObjectCreatedSignal.Emit(SwigCPtr, BaseHandle.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ObjectCreatedSignal() : this(Interop.ObjectCreatedSignal.new_ObjectCreatedSignal(), true)
+        public ObjectCreatedSignal() : this(Interop.ObjectCreatedSignal.NewObjectCreatedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

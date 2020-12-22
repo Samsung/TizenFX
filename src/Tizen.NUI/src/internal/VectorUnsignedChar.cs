@@ -26,130 +26,130 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VectorUnsignedChar obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VectorUnsignedChar.delete_VectorUnsignedChar(swigCPtr);
+            Interop.VectorUnsignedChar.DeleteVectorUnsignedChar(swigCPtr);
         }
 
-        public VectorUnsignedChar() : this(Interop.VectorUnsignedChar.new_VectorUnsignedChar__SWIG_0(), true)
+        public VectorUnsignedChar() : this(Interop.VectorUnsignedChar.NewVectorUnsignedChar(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public VectorUnsignedChar(VectorUnsignedChar vector) : this(Interop.VectorUnsignedChar.new_VectorUnsignedChar__SWIG_1(VectorUnsignedChar.getCPtr(vector)), true)
+        public VectorUnsignedChar(VectorUnsignedChar vector) : this(Interop.VectorUnsignedChar.NewVectorUnsignedChar(VectorUnsignedChar.getCPtr(vector)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VectorUnsignedChar Assign(VectorUnsignedChar vector)
         {
-            VectorUnsignedChar ret = new VectorUnsignedChar(Interop.VectorUnsignedChar.VectorUnsignedChar_Assign(swigCPtr, VectorUnsignedChar.getCPtr(vector)), false);
+            VectorUnsignedChar ret = new VectorUnsignedChar(Interop.VectorUnsignedChar.Assign(SwigCPtr, VectorUnsignedChar.getCPtr(vector)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_char Begin()
         {
-            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.VectorUnsignedChar_Begin(swigCPtr);
-            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.Begin(SwigCPtr);
+            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_char End()
         {
-            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.VectorUnsignedChar_End(swigCPtr);
-            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.End(SwigCPtr);
+            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_char ValueOfIndex(uint index)
         {
-            SWIGTYPE_p_unsigned_char ret = new SWIGTYPE_p_unsigned_char(Interop.VectorUnsignedChar.VectorUnsignedChar_ValueOfIndex__SWIG_0(swigCPtr, index), false);
+            SWIGTYPE_p_unsigned_char ret = new SWIGTYPE_p_unsigned_char(Interop.VectorUnsignedChar.ValueOfIndex(SwigCPtr, index));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void PushBack(byte element)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_PushBack(swigCPtr, element);
+            Interop.VectorUnsignedChar.PushBack(SwigCPtr, element);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Insert(byte[] at, byte element)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Insert__SWIG_0(swigCPtr, at, element);
+            Interop.VectorUnsignedChar.Insert(SwigCPtr, at, element);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Insert(byte[] at, SWIGTYPE_p_unsigned_char from, SWIGTYPE_p_unsigned_char to)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Insert__SWIG_1(swigCPtr, at, SWIGTYPE_p_unsigned_char.getCPtr(from), SWIGTYPE_p_unsigned_char.getCPtr(to));
+            Interop.VectorUnsignedChar.Insert(SwigCPtr, at, SWIGTYPE_p_unsigned_char.getCPtr(from), SWIGTYPE_p_unsigned_char.getCPtr(to));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reserve(uint count)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Reserve(swigCPtr, count);
+            Interop.VectorUnsignedChar.Reserve(SwigCPtr, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Resize__SWIG_0(swigCPtr, count);
+            Interop.VectorUnsignedChar.Resize(SwigCPtr, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count, byte item)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Resize__SWIG_1(swigCPtr, count, item);
+            Interop.VectorUnsignedChar.Resize(SwigCPtr, count, item);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal SWIGTYPE_p_unsigned_char Erase(byte[] iterator)
         {
-            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.VectorUnsignedChar_Erase__SWIG_0(swigCPtr, iterator);
-            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.Erase(SwigCPtr, iterator);
+            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_char Erase(byte[] first, SWIGTYPE_p_unsigned_char last)
         {
-            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.VectorUnsignedChar_Erase__SWIG_1(swigCPtr, first, SWIGTYPE_p_unsigned_char.getCPtr(last));
-            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+            global::System.IntPtr cPtr = Interop.VectorUnsignedChar.Erase(SwigCPtr, first, SWIGTYPE_p_unsigned_char.getCPtr(last));
+            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Remove(byte[] iterator)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Remove(swigCPtr, iterator);
+            Interop.VectorUnsignedChar.Remove(SwigCPtr, iterator);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Swap(VectorUnsignedChar vector)
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Swap(swigCPtr, VectorUnsignedChar.getCPtr(vector));
+            Interop.VectorUnsignedChar.Swap(SwigCPtr, VectorUnsignedChar.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Clear()
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Clear(swigCPtr);
+            Interop.VectorUnsignedChar.Clear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Release()
         {
-            Interop.VectorUnsignedChar.VectorUnsignedChar_Release(swigCPtr);
+            Interop.VectorUnsignedChar.Release(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static readonly int BaseType = Interop.VectorUnsignedChar.VectorUnsignedChar_BaseType_get();
+        public static readonly int BaseType = Interop.VectorUnsignedChar.BaseTypeGet();
     }
 }

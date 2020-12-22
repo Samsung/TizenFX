@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
+        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the default built-in alpha function.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction() : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_0(), true)
+        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="function">One of the built-in alpha functions.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_1((int)function), true)
+        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
+        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
+        internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -194,7 +194,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
-            Vector4 ret = new Vector4(Interop.AlphaFunction.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             controlPoint0 = new Vector2(ret.X, ret.Y);
@@ -209,7 +209,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
         {
-            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)Interop.AlphaFunction.AlphaFunction_GetBuiltinFunction(swigCPtr);
+            AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)Interop.AlphaFunction.GetBuiltinFunction(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -221,14 +221,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.Modes GetMode()
         {
-            AlphaFunction.Modes ret = (AlphaFunction.Modes)Interop.AlphaFunction.AlphaFunction_GetMode(swigCPtr);
+            AlphaFunction.Modes ret = (AlphaFunction.Modes)Interop.AlphaFunction.GetMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AlphaFunction obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal static string BuiltinToPropertyKey(BuiltinFunctions? alphaFunction)
@@ -315,8 +315,8 @@ namespace Tizen.NUI
 
         internal SWIGTYPE_p_f_float__float GetCustomFunction()
         {
-            global::System.IntPtr cPtr = Interop.AlphaFunction.AlphaFunction_GetCustomFunction(swigCPtr);
-            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr, false);
+            global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(SwigCPtr);
+            SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -325,7 +325,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.AlphaFunction.delete_AlphaFunction(swigCPtr);
+            Interop.AlphaFunction.DeleteAlphaFunction(swigCPtr);
         }
     }
 }
