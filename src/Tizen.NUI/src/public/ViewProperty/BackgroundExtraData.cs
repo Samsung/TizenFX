@@ -14,14 +14,17 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// The class storing Background extra properties such as CornerRadius, ImageBorder.
     /// </summary>
-    internal class BackgroundExtraData
+    internal class BackgroundExtraData : IDisposable
     {
+        private bool disposed = false;
         internal BackgroundExtraData()
         {
         }
@@ -52,6 +55,28 @@ namespace Tizen.NUI
         internal bool Empty()
         {
             return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                backgroundImageBorder?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }
