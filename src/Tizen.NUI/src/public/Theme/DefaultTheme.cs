@@ -16,13 +16,18 @@
  */
 #if !PROFILE_WEARABLE
 
+using System.Collections.Generic;
+
 namespace Tizen.NUI
 {
     internal class DefaultThemeCreator : IThemeCreator
     {
-        public Theme Create()
+        public Theme Create() => Create(null);
+        public Theme Create(IEnumerable<KeyValuePair<string, string>> changedResources)
         {
-            return new Theme() { Id = "Tizen.NUI.Theme.Common" };
+            Theme theme = new Theme() { Id = "Tizen.NUI.Theme.Common" };
+            theme.SetChangedResources(changedResources);
+            return theme;
         }
     }
 }
