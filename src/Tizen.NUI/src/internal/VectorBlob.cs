@@ -33,12 +33,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.RSet(swigCPtr, value);
+                Interop.VectorBlob.RSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.RGet(swigCPtr);
+                byte ret = Interop.VectorBlob.RGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -48,12 +48,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.GSet(swigCPtr, value);
+                Interop.VectorBlob.GSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.GGet(swigCPtr);
+                byte ret = Interop.VectorBlob.GGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -63,12 +63,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.BSet(swigCPtr, value);
+                Interop.VectorBlob.BSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.BGet(swigCPtr);
+                byte ret = Interop.VectorBlob.BGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -78,12 +78,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.VectorBlob.ASet(swigCPtr, value);
+                Interop.VectorBlob.ASet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                byte ret = Interop.VectorBlob.AGet(swigCPtr);
+                byte ret = Interop.VectorBlob.AGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

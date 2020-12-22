@@ -214,12 +214,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.XSet(swigCPtr, value);
+                Interop.Rectangle.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.XGet(swigCPtr);
+                int ret = Interop.Rectangle.XGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -229,12 +229,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.LeftSet(swigCPtr, value);
+                Interop.Rectangle.LeftSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.LeftGet(swigCPtr);
+                int ret = Interop.Rectangle.LeftGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -244,12 +244,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.YSet(swigCPtr, value);
+                Interop.Rectangle.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.YGet(swigCPtr);
+                int ret = Interop.Rectangle.YGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -259,12 +259,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.RightSet(swigCPtr, value);
+                Interop.Rectangle.RightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.RightGet(swigCPtr);
+                int ret = Interop.Rectangle.RightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -274,12 +274,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.WidthSet(swigCPtr, value);
+                Interop.Rectangle.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.WidthGet(swigCPtr);
+                int ret = Interop.Rectangle.WidthGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -289,12 +289,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.BottomSet(swigCPtr, value);
+                Interop.Rectangle.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.BottomGet(swigCPtr);
+                int ret = Interop.Rectangle.BottomGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -304,12 +304,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.HeightSet(swigCPtr, value);
+                Interop.Rectangle.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.HeightGet(swigCPtr);
+                int ret = Interop.Rectangle.HeightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -319,12 +319,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Rectangle.TopSet(swigCPtr, value);
+                Interop.Rectangle.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = Interop.Rectangle.TopGet(swigCPtr);
+                int ret = Interop.Rectangle.TopGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -409,7 +409,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Set(int newX, int newY, int newWidth, int newHeight)
         {
-            Interop.Rectangle.Set(swigCPtr, newX, newY, newWidth, newHeight);
+            Interop.Rectangle.Set(SwigCPtr, newX, newY, newWidth, newHeight);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -420,7 +420,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsEmpty()
         {
-            bool ret = Interop.Rectangle.IsEmpty(swigCPtr);
+            bool ret = Interop.Rectangle.IsEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -432,7 +432,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Left()
         {
-            int ret = Interop.Rectangle.Left(swigCPtr);
+            int ret = Interop.Rectangle.Left(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -444,7 +444,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Right()
         {
-            int ret = Interop.Rectangle.Right(swigCPtr);
+            int ret = Interop.Rectangle.Right(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -456,7 +456,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Top()
         {
-            int ret = Interop.Rectangle.Top(swigCPtr);
+            int ret = Interop.Rectangle.Top(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -468,7 +468,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Bottom()
         {
-            int ret = Interop.Rectangle.Bottom(swigCPtr);
+            int ret = Interop.Rectangle.Bottom(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -480,7 +480,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int Area()
         {
-            int ret = Interop.Rectangle.Area(swigCPtr);
+            int ret = Interop.Rectangle.Area(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -493,7 +493,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Intersects(Rectangle other)
         {
-            bool ret = Interop.Rectangle.Intersects(swigCPtr, Rectangle.getCPtr(other));
+            bool ret = Interop.Rectangle.Intersects(SwigCPtr, Rectangle.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -506,7 +506,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Contains(Rectangle other)
         {
-            bool ret = Interop.Rectangle.Contains(swigCPtr, Rectangle.getCPtr(other));
+            bool ret = Interop.Rectangle.Contains(SwigCPtr, Rectangle.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -517,7 +517,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rectangle obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// This will not be public opened.

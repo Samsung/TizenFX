@@ -26,7 +26,7 @@ namespace Tizen.NUI
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AsyncImageLoader obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -46,7 +46,7 @@ namespace Tizen.NUI
 
         public AsyncImageLoader Assign(AsyncImageLoader handle)
         {
-            AsyncImageLoader ret = new AsyncImageLoader(Interop.AsyncImageLoader.Assign(swigCPtr, AsyncImageLoader.getCPtr(handle)), false);
+            AsyncImageLoader ret = new AsyncImageLoader(Interop.AsyncImageLoader.Assign(SwigCPtr, AsyncImageLoader.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -60,41 +60,41 @@ namespace Tizen.NUI
 
         public uint Load(string url)
         {
-            uint ret = Interop.AsyncImageLoader.Load(swigCPtr, url);
+            uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Load(string url, Uint16Pair dimensions)
         {
-            uint ret = Interop.AsyncImageLoader.Load(swigCPtr, url, Uint16Pair.getCPtr(dimensions));
+            uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url, Uint16Pair.getCPtr(dimensions));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Load(string url, Uint16Pair dimensions, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
-            uint ret = Interop.AsyncImageLoader.Load(swigCPtr, url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection);
+            uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Cancel(uint loadingTaskId)
         {
-            bool ret = Interop.AsyncImageLoader.Cancel(swigCPtr, loadingTaskId);
+            bool ret = Interop.AsyncImageLoader.Cancel(SwigCPtr, loadingTaskId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void CancelAll()
         {
-            Interop.AsyncImageLoader.CancelAll(swigCPtr);
+            Interop.AsyncImageLoader.CancelAll(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ImageLoadedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(Interop.AsyncImageLoader.ImageLoadedSignal(swigCPtr));
+            SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(Interop.AsyncImageLoader.ImageLoadedSignal(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

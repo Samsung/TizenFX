@@ -34,14 +34,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.PanGestureDetector.PanGestureDetectedSignalEmpty(swigCPtr);
+            bool ret = Interop.PanGestureDetector.PanGestureDetectedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.PanGestureDetector.PanGestureDetectedSignalGetConnectionCount(swigCPtr);
+            uint ret = Interop.PanGestureDetector.PanGestureDetectedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PanGestureDetector.PanGestureDetectedSignalConnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PanGestureDetector.PanGestureDetectedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -59,14 +59,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.PanGestureDetector.PanGestureDetectedSignalDisconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.PanGestureDetector.PanGestureDetectedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(View arg1, PanGesture arg2)
         {
-            Interop.PanGestureDetector.PanGestureDetectedSignalEmit(swigCPtr, View.getCPtr(arg1), PanGesture.getCPtr(arg2));
+            Interop.PanGestureDetector.PanGestureDetectedSignalEmit(SwigCPtr, View.getCPtr(arg1), PanGesture.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
