@@ -102,7 +102,7 @@ namespace Tizen.NUI.Components
             theme.Resources = CreateThemeResource();
             theme.OnThemeResourcesChanged();
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
+            ButtonStyle buttonSty = new ButtonStyle()
             {
                 Size = new Size(100, 45),
                 BackgroundColor = new Selector<Color>()
@@ -121,9 +121,12 @@ namespace Tizen.NUI.Components
                         Disabled = (Color)theme.Resources["ButtonTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", buttonSty);
+            buttonSty.Dispose();
+            buttonSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
+            ButtonStyle checkBoxSty = new ButtonStyle()
             {
                 Size = new Size(30, 30),
                 Icon = new ImageViewStyle()
@@ -157,9 +160,12 @@ namespace Tizen.NUI.Components
                         Disabled = (Color)theme.Resources["CheckBoxTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", checkBoxSty);
+            checkBoxSty.Dispose();
+            checkBoxSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Popup", new PopupStyle()
+            PopupStyle popupSty = new PopupStyle()
             {
                 Size = new Size(500, 280),
                 BackgroundColor = (Color)theme.Resources["PopupBackgroundColor"],
@@ -196,9 +202,12 @@ namespace Tizen.NUI.Components
                         TextColor = (Color)theme.Resources["PopupButtonTextColor"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Popup", popupSty);
+            popupSty.Dispose();
+            popupSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", new ProgressStyle()
+            ProgressStyle progressSty = new ProgressStyle()
             {
                 Size = new Size(200, 5),
                 Track = new ImageViewStyle()
@@ -213,9 +222,12 @@ namespace Tizen.NUI.Components
                 {
                     BackgroundColor = (Color)theme.Resources["ProgressProgressBackgroundColor"],
                 },
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", progressSty);
+            progressSty.Dispose();
+            progressSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
+            ButtonStyle radioButtonSty = new ButtonStyle()
             {
                 Size = new Size(30, 30),
                 Icon = new ImageViewStyle()
@@ -243,9 +255,12 @@ namespace Tizen.NUI.Components
                         Disabled = (Color)theme.Resources["RadioButtonTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", radioButtonSty);
+            radioButtonSty.Dispose();
+            radioButtonSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", new SliderStyle()
+            SliderStyle sliderSty = new SliderStyle()
             {
                 Size = new Size(200, 50),
                 TrackThickness = 5,
@@ -267,9 +282,12 @@ namespace Tizen.NUI.Components
                         Pressed = (string)theme.Resources["SliderThumbBackgroundImagePressed"],
                     }
                 },
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", sliderSty);
+            sliderSty.Dispose();
+            sliderSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
+            SwitchStyle switchSty = new SwitchStyle()
             {
                 Size = new Size(96, 60),
                 Track = new ImageViewStyle()
@@ -303,9 +321,12 @@ namespace Tizen.NUI.Components
                         Disabled = (Color)theme.Resources["SwitchTextColorDisabled"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", switchSty);
+            switchSty.Dispose();
+            switchSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Tab", new TabStyle()
+            TabStyle tabSty = new TabStyle()
             {
                 Size = new Size(480, 80),
                 BackgroundColor = (Color)theme.Resources["TabBackgroundColor"],
@@ -323,9 +344,12 @@ namespace Tizen.NUI.Components
                         Selected = (Color)theme.Resources["TabTextColorSelected"],
                     }
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Tab", tabSty);
+            tabSty.Dispose();
+            tabSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Toast", new ToastStyle()
+            ToastStyle toastSty = new ToastStyle()
             {
                 Size = new Size(480, 80),
                 BackgroundColor = (Color)theme.Resources["ToastBackgroundColor"],
@@ -333,30 +357,42 @@ namespace Tizen.NUI.Components
                 {
                     Padding = new Extents(12, 12, 8, 8)
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Toast", toastSty);
+            toastSty.Dispose();
+            toastSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Loading", new LoadingStyle()
+            LoadingStyle loadingSty = new LoadingStyle()
             {
                 LoadingSize = new Size(100, 100),
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Loading", loadingSty);
+            loadingSty.Dispose();
+            loadingSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Pagination", new PaginationStyle()
+            PaginationStyle paginationSty = new PaginationStyle()
             {
                 IndicatorImageUrl = new Selector<string>()
                 {
                     Normal = (string)theme.Resources["PaginationIndicatorImageUrlNormal"],
                     Selected = (string)theme.Resources["PaginationIndicatorImageUrlSelected"],
                 }
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Pagination", paginationSty);
+            paginationSty.Dispose();
+            paginationSty = null;
 
-            theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", new ScrollbarStyle()
+            ScrollbarStyle scrollSty = new ScrollbarStyle()
             {
                 TrackThickness = 6,
                 ThumbThickness = 6,
                 TrackColor = (Color)theme.Resources["ScrollbarTrackColor"],
                 ThumbColor = (Color)theme.Resources["ScrollbarThumbColor"],
                 TrackPadding = 4
-            });
+            };
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Scrollbar", scrollSty);
+            scrollSty.Dispose();
+            scrollSty = null;
 
             return theme;
         }
