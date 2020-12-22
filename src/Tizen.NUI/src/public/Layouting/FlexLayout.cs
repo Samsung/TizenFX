@@ -29,7 +29,7 @@ namespace Tizen.NUI
     /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
     /// We implement the subset of the API in the class below.
     /// </summary>
-    public class FlexLayout : LayoutGroup, global::System.IDisposable
+    public class FlexLayout : LayoutGroup
     {
         /// <summary>
         /// FlexItemProperty
@@ -285,7 +285,7 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         /// <since_tizen> 6 </since_tizen>
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
             System.GC.SuppressFinalize(this);
@@ -302,7 +302,7 @@ namespace Tizen.NUI
         /// <param name="disposing">true in order to free managed objects</param>
         // Protected implementation of Dispose pattern.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposedThis)
             {
@@ -341,8 +341,8 @@ namespace Tizen.NUI
 
             // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
             // TODO: set large fields to null.
-
             disposedThis = true;
+            base.Dispose(disposing);
         }
 
         /// <inheritdoc/>

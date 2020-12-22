@@ -143,7 +143,6 @@ namespace Tizen.NUI
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
-            NDalicPINVOKE.SWIGStringHelper.RegistCallback();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
             if (string.IsNullOrEmpty(args[0]))

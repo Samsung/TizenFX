@@ -216,10 +216,6 @@ namespace Tizen.NUI
             {
                 SWIGRegisterStringCallbackNDalic(stringDelegate);
             }
-            public static void RegistCallback()
-            {
-                SWIGRegisterStringCallbackNDalic(stringDelegate);
-            }
         }
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
         static NDalicPINVOKE()
