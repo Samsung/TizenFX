@@ -15,6 +15,9 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -216,6 +219,13 @@ namespace Tizen.NUI
             {
                 SWIGRegisterStringCallbackNDalic(stringDelegate);
             }
+
+            [Obsolete("Please do not use! Deprecated in API9, will be removed in API11! Please delete this if currently used!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static void RegistCallback()
+            {
+                //do nothing!
+            }
         }
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
         static NDalicPINVOKE()
@@ -266,5 +276,10 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
         public static extern global::System.IntPtr ApplicationLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+
+        [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use NDalicPINVOKE.DeleteBaseHandle(...) instead!")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
+        public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 }
