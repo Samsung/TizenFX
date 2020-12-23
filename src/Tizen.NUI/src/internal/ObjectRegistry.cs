@@ -88,30 +88,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectCreatedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectCreatedEventHandler == null)
-                    {
-                        _objectRegistryObjectCreatedEventHandler += value;
+                    _objectRegistryObjectCreatedEventHandler += value;
 
-                        _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
-                        this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
+                    this.ObjectCreatedSignal().Connect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectCreatedEventHandler != null)
                 {
-                    if (_objectRegistryObjectCreatedEventHandler != null)
-                    {
-                        this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectCreatedEventHandler -= value;
+                    this.ObjectCreatedSignal().Disconnect(_objectRegistryObjectCreatedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectCreatedEventHandler -= value;
             }
         }
 
@@ -134,30 +128,24 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                // Restricted to only one listener
+                if (_objectRegistryObjectDestroyedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_objectRegistryObjectDestroyedEventHandler == null)
-                    {
-                        _objectRegistryObjectDestroyedEventHandler += value;
+                    _objectRegistryObjectDestroyedEventHandler += value;
 
-                        _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
-                        this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
+                    _objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
+                    this.ObjectDestroyedSignal().Connect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
             }
 
             remove
             {
-                lock (this)
+                if (_objectRegistryObjectDestroyedEventHandler != null)
                 {
-                    if (_objectRegistryObjectDestroyedEventHandler != null)
-                    {
-                        this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
-                    }
-
-                    _objectRegistryObjectDestroyedEventHandler -= value;
+                    this.ObjectDestroyedSignal().Disconnect(_objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
+
+                _objectRegistryObjectDestroyedEventHandler -= value;
             }
         }
 
