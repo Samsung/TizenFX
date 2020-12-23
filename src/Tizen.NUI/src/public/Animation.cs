@@ -56,7 +56,7 @@ namespace Tizen.NUI
         private int[] _startTime = null;
         private int[] _endTime = null;
 
-        private List<string> _propertiesList = null;
+        private List<string> _propertyList = null;
         private List<string> _destValueList = null;
         private List<int> _startTimeList = null;
         private List<int> _endTimeList = null;
@@ -516,12 +516,12 @@ namespace Tizen.NUI
         {
             get
             {
-                if (null == _propertiesList)
+                if (null == _propertyList)
                 {
-                    _propertiesList = new List<string>();
+                    _propertyList = new List<string>();
                 }
 
-                return _propertiesList;
+                return _propertyList;
             }
         }
 
@@ -760,19 +760,19 @@ namespace Tizen.NUI
 
             Clear();
 
-            if (null != _propertiesList && null != _destValueList && null != _startTimeList && null != _endTimeList)
+            if (null != _propertyList && null != _destValueList && null != _startTimeList && null != _endTimeList)
             {
-                if (_propertiesList.Count == _destValueList.Count
+                if (_propertyList.Count == _destValueList.Count
                     &&
                     _startTimeList.Count == _endTimeList.Count
                     &&
-                    _propertiesList.Count == _startTimeList.Count)
+                    _propertyList.Count == _startTimeList.Count)
                 {
-                    int count = _propertiesList.Count;
+                    int count = _propertyList.Count;
                     for (int index = 0; index < count; index++)
                     {
                         var elementType = target.GetType();
-                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _propertiesList[index]);
+                        PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _propertyList[index]);
 
                         if (propertyInfo != null)
                         {
@@ -780,7 +780,7 @@ namespace Tizen.NUI
 
                             if (destinationValue != null)
                             {
-                                AnimateTo(target, _propertiesList[index], destinationValue, _startTimeList[index], _endTimeList[index]);
+                                AnimateTo(target, _propertyList[index], destinationValue, _startTimeList[index], _endTimeList[index]);
                             }
                         }
                     }
