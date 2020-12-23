@@ -165,10 +165,13 @@ namespace Tizen.NUI
             if (_urls != null)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
+                PropertyValue animatedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
+                _outputVisualMap.Add(Visual.Property.Type, animatedImage);
                 if (_urls.Count == 1)
                 {
-                    _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_urls[0]));
+                    PropertyValue urls = new PropertyValue(_urls[0]);
+                    _outputVisualMap.Add(ImageVisualProperty.URL, urls);
+                    urls.Dispose();
                 }
                 else
                 {
@@ -177,12 +180,25 @@ namespace Tizen.NUI
                     {
                         urlArray.Add(new PropertyValue(url));
                     }
-                    _outputVisualMap.Add(ImageVisualProperty.URL, (new PropertyValue(urlArray)));
+                    PropertyValue urlA = new PropertyValue(urlArray);
+                    _outputVisualMap.Add(ImageVisualProperty.URL, urlA);
+                    urlA.Dispose();
+                    urlArray.Dispose();
                 }
-                if (_batchSize != null) { _outputVisualMap.Add(ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
-                if (_cacheSize != null) { _outputVisualMap.Add(ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
-                if (_frameDelay != null) { _outputVisualMap.Add(ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
-                if (_loopCount != null) { _outputVisualMap.Add(ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
+                PropertyValue batchSize = new PropertyValue((int)_batchSize);
+                PropertyValue cacheSize = new PropertyValue((int)_cacheSize);
+                PropertyValue frameDelay = new PropertyValue((float)_frameDelay);
+                PropertyValue loopCount = new PropertyValue((int)_loopCount);
+                if (_batchSize != null) { _outputVisualMap.Add(ImageVisualProperty.BatchSize, batchSize); }
+                if (_cacheSize != null) { _outputVisualMap.Add(ImageVisualProperty.CacheSize, cacheSize); }
+                if (_frameDelay != null) { _outputVisualMap.Add(ImageVisualProperty.FrameDelay, frameDelay); }
+                if (_loopCount != null) { _outputVisualMap.Add(ImageVisualProperty.LoopCount, loopCount); }
+
+                animatedImage.Dispose();
+                batchSize.Dispose();
+                cacheSize.Dispose();
+                frameDelay.Dispose();
+                loopCount.Dispose();
                 base.ComposingPropertyMap();
             }
         }
