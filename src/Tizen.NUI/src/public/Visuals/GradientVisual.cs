@@ -199,16 +199,37 @@ namespace Tizen.NUI
             if (((_startPosition != null && _endPosition != null) || (_center != null && _radius != null)) && _stopColor != null)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Gradient));
-                _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor));
-                if (_startPosition != null) { _outputVisualMap.Add(GradientVisualProperty.StartPosition, new PropertyValue(_startPosition)); }
-                if (_endPosition != null) { _outputVisualMap.Add(GradientVisualProperty.EndPosition, new PropertyValue(_endPosition)); }
-                if (_center != null) { _outputVisualMap.Add(GradientVisualProperty.Center, new PropertyValue(_center)); }
-                if (_radius != null) { _outputVisualMap.Add(GradientVisualProperty.Radius, new PropertyValue((float)_radius)); }
-                if (_stopOffset != null) { _outputVisualMap.Add(GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset)); }
-                if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units)); }
-                if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod)); }
+                PropertyValue gradient = new PropertyValue((int)Visual.Type.Gradient);
+                _outputVisualMap.Add(Visual.Property.Type, gradient);
+                PropertyValue stopColor = new PropertyValue(_stopColor);
+                _outputVisualMap.Add(GradientVisualProperty.StopColor, stopColor);
+
+                PropertyValue startPosition = new PropertyValue(_startPosition);
+                PropertyValue endPosition = new PropertyValue(_endPosition);
+                PropertyValue center = new PropertyValue(_center);
+                PropertyValue radius = new PropertyValue((float)_radius);
+                PropertyValue stopOffset = new PropertyValue(_stopOffset);
+                PropertyValue units = new PropertyValue((int)_units);
+                PropertyValue spreadMethod = new PropertyValue((int)_spreadMethod);
+
+                if (_startPosition != null) { _outputVisualMap.Add(GradientVisualProperty.StartPosition, startPosition); }
+                if (_endPosition != null) { _outputVisualMap.Add(GradientVisualProperty.EndPosition, endPosition); }
+                if (_center != null) { _outputVisualMap.Add(GradientVisualProperty.Center, center); }
+                if (_radius != null) { _outputVisualMap.Add(GradientVisualProperty.Radius, radius); }
+                if (_stopOffset != null) { _outputVisualMap.Add(GradientVisualProperty.StopOffset, stopOffset); }
+                if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, units); }
+                if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, spreadMethod); }
                 base.ComposingPropertyMap();
+
+                gradient.Dispose();
+                stopColor.Dispose();
+                startPosition.Dispose();
+                endPosition.Dispose();
+                center.Dispose();
+                radius.Dispose();
+                stopOffset.Dispose();
+                units.Dispose();
+                spreadMethod.Dispose();
             }
         }
     }

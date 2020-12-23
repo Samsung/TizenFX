@@ -659,24 +659,49 @@ namespace Tizen.NUI
             {
                 _outputVisualMap = new PropertyMap();
             }
+            PropertyValue shader = new PropertyValue(_shader);
+            PropertyValue premultipliedAlpha = new PropertyValue((bool)_premultipliedAlpha);
+            PropertyValue mixColor = new PropertyValue(_mixColor);
+            PropertyValue opacity = new PropertyValue((float)_opacity);
+            PropertyValue visualFittingMode = new PropertyValue((int)_visualFittingMode);
+            PropertyValue cornerRa = new PropertyValue((int)cornerRadius);
+            if (_shader != null) { _outputVisualMap.Add(Visual.Property.Shader, shader); }
+            if (_premultipliedAlpha != null) { _outputVisualMap.Add(Visual.Property.PremultipliedAlpha, premultipliedAlpha); }
+            if (_mixColor != null) { _outputVisualMap.Add(Visual.Property.MixColor, mixColor); }
+            if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, opacity); }
+            if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, visualFittingMode); }
+            if (cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, cornerRa); }
 
-            if (_shader != null) { _outputVisualMap.Add(Visual.Property.Shader, new PropertyValue(_shader)); }
-            if (_premultipliedAlpha != null) { _outputVisualMap.Add(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-            if (_mixColor != null) { _outputVisualMap.Add(Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-            if (_opacity != null) { _outputVisualMap.Add(Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
-            if (_visualFittingMode != null) { _outputVisualMap.Add(Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
-            if (cornerRadius != null) { _outputVisualMap.Add(Visual.Property.CornerRadius, new PropertyValue((int)cornerRadius)); }
+            shader.Dispose();
+            premultipliedAlpha.Dispose();
+            mixColor.Dispose();
+            opacity.Dispose();
+            visualFittingMode.Dispose();
+            cornerRa.Dispose();
         }
 
         private void ComposingTransformMap()
         {
             _visualTransformMap = new PropertyMap();
-            if (_visualSize != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(_visualSize)); }
-            if (_visualOffset != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(_visualOffset)); }
-            if (_visualOffsetPolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(_visualOffsetPolicy)); }
-            if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
-            if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
-            if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
+            PropertyValue visualSize = new PropertyValue(_visualSize);
+            PropertyValue visualOffset = new PropertyValue(_visualOffset);
+            PropertyValue visualOffsetPolicy = new PropertyValue(_visualOffsetPolicy);
+            PropertyValue visualSizePolicy = new PropertyValue(_visualSizePolicy);
+            PropertyValue visualOrigin = new PropertyValue((int)_visualOrigin);
+            PropertyValue visualAnchorPoint = new PropertyValue((int)_visualAnchorPoint);
+            if (_visualSize != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Size, visualSize); }
+            if (_visualOffset != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, visualOffset); }
+            if (_visualOffsetPolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, visualOffsetPolicy); }
+            if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, visualSizePolicy); }
+            if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, visualOrigin); }
+            if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, visualAnchorPoint); }
+
+            visualSize.Dispose();
+            visualOffset.Dispose();
+            visualOffsetPolicy.Dispose();
+            visualSizePolicy.Dispose();
+            visualOrigin.Dispose();
+            visualAnchorPoint.Dispose();
         }
 
 
