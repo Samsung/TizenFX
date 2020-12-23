@@ -704,7 +704,7 @@ namespace Tizen.NUI
             // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
             // val.Dispose();
 
-            // Workaround : windowSize should be valid pointer from dali, 
+            // Workaround : windowSize should be valid pointer from dali,
             // but currenlty it is fixed and is not Uint16Pair class.
             // will be fixed later.
             e.WindowSize = this.WindowSize;
@@ -742,9 +742,9 @@ namespace Tizen.NUI
 
             TransitionEffectEventArgs e = new TransitionEffectEventArgs();
 
-            e.State = (EffectStates)state;
+            e.State = (EffectState)state;
 
-            e.Type = (EffectTypes)type;
+            e.Type = (EffectType)type;
 
             if (transitionEffectHandler != null)
             {
@@ -945,14 +945,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class TransitionEffectEventArgs : EventArgs
         {
-            private EffectStates state;
-            private EffectTypes type;
+            private EffectState state;
+            private EffectType type;
 
             /// <summary>
             /// State
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public EffectStates State
+            public EffectState State
             {
                 get
                 {
@@ -967,7 +967,7 @@ namespace Tizen.NUI
             /// Type
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public EffectTypes Type
+            public EffectType Type
             {
                 get
                 {
